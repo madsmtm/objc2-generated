@@ -49,7 +49,7 @@ unsafe impl NSObjectProtocol for WKHTTPCookieStore {}
 extern_methods!(
     unsafe impl WKHTTPCookieStore {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(getAllCookies:)]
@@ -104,6 +104,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKHTTPCookieStore {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

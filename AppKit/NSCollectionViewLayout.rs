@@ -83,7 +83,7 @@ extern_methods!(
         pub unsafe fn setHidden(&self, hidden: bool);
 
         #[method_id(@__retain_semantics Other indexPath)]
-        pub unsafe fn indexPath(&self) -> Option<Id<NSIndexPath>>;
+        pub unsafe fn indexPath(&self) -> Option<Retained<NSIndexPath>>;
 
         #[method(setIndexPath:)]
         pub unsafe fn setIndexPath(&self, index_path: Option<&NSIndexPath>);
@@ -92,28 +92,30 @@ extern_methods!(
         pub unsafe fn representedElementCategory(&self) -> NSCollectionElementCategory;
 
         #[method_id(@__retain_semantics Other representedElementKind)]
-        pub unsafe fn representedElementKind(&self) -> Option<Id<NSString>>;
+        pub unsafe fn representedElementKind(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other layoutAttributesForItemWithIndexPath:)]
-        pub unsafe fn layoutAttributesForItemWithIndexPath(index_path: &NSIndexPath) -> Id<Self>;
+        pub unsafe fn layoutAttributesForItemWithIndexPath(
+            index_path: &NSIndexPath,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other layoutAttributesForInterItemGapBeforeIndexPath:)]
         pub unsafe fn layoutAttributesForInterItemGapBeforeIndexPath(
             index_path: &NSIndexPath,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSCollectionView")]
         #[method_id(@__retain_semantics Other layoutAttributesForSupplementaryViewOfKind:withIndexPath:)]
         pub unsafe fn layoutAttributesForSupplementaryViewOfKind_withIndexPath(
             element_kind: &NSCollectionViewSupplementaryElementKind,
             index_path: &NSIndexPath,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other layoutAttributesForDecorationViewOfKind:withIndexPath:)]
         pub unsafe fn layoutAttributesForDecorationViewOfKind_withIndexPath(
             decoration_view_kind: &NSCollectionViewDecorationElementKind,
             index_path: &NSIndexPath,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -121,10 +123,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCollectionViewLayoutAttributes {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -168,10 +170,10 @@ unsafe impl NSObjectProtocol for NSCollectionViewUpdateItem {}
 extern_methods!(
     unsafe impl NSCollectionViewUpdateItem {
         #[method_id(@__retain_semantics Other indexPathBeforeUpdate)]
-        pub unsafe fn indexPathBeforeUpdate(&self) -> Option<Id<NSIndexPath>>;
+        pub unsafe fn indexPathBeforeUpdate(&self) -> Option<Retained<NSIndexPath>>;
 
         #[method_id(@__retain_semantics Other indexPathAfterUpdate)]
-        pub unsafe fn indexPathAfterUpdate(&self) -> Option<Id<NSIndexPath>>;
+        pub unsafe fn indexPathAfterUpdate(&self) -> Option<Retained<NSIndexPath>>;
 
         #[method(updateAction)]
         pub unsafe fn updateAction(&self) -> NSCollectionUpdateAction;
@@ -182,10 +184,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCollectionViewUpdateItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -228,18 +230,20 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other invalidatedItemIndexPaths)]
-        pub unsafe fn invalidatedItemIndexPaths(&self) -> Option<Id<NSSet<NSIndexPath>>>;
+        pub unsafe fn invalidatedItemIndexPaths(&self) -> Option<Retained<NSSet<NSIndexPath>>>;
 
         #[cfg(feature = "NSCollectionView")]
         #[method_id(@__retain_semantics Other invalidatedSupplementaryIndexPaths)]
         pub unsafe fn invalidatedSupplementaryIndexPaths(
             &self,
-        ) -> Option<Id<NSDictionary<NSCollectionViewSupplementaryElementKind, NSSet<NSIndexPath>>>>;
+        ) -> Option<
+            Retained<NSDictionary<NSCollectionViewSupplementaryElementKind, NSSet<NSIndexPath>>>,
+        >;
 
         #[method_id(@__retain_semantics Other invalidatedDecorationIndexPaths)]
         pub unsafe fn invalidatedDecorationIndexPaths(
             &self,
-        ) -> Option<Id<NSDictionary<NSCollectionViewDecorationElementKind, NSSet<NSIndexPath>>>>;
+        ) -> Option<Retained<NSDictionary<NSCollectionViewDecorationElementKind, NSSet<NSIndexPath>>>>;
 
         #[method(contentOffsetAdjustment)]
         pub unsafe fn contentOffsetAdjustment(&self) -> NSPoint;
@@ -259,10 +263,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCollectionViewLayoutInvalidationContext {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -288,7 +292,10 @@ extern_methods!(
             feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other collectionView)]
-        pub unsafe fn collectionView(&self, mtm: MainThreadMarker) -> Option<Id<NSCollectionView>>;
+        pub unsafe fn collectionView(
+            &self,
+            mtm: MainThreadMarker,
+        ) -> Option<Retained<NSCollectionView>>;
 
         #[method(invalidateLayout)]
         pub unsafe fn invalidateLayout(&self);
@@ -320,10 +327,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCollectionViewLayout {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -343,13 +350,13 @@ extern_methods!(
         pub unsafe fn layoutAttributesForElementsInRect(
             &self,
             rect: NSRect,
-        ) -> Id<NSArray<NSCollectionViewLayoutAttributes>>;
+        ) -> Retained<NSArray<NSCollectionViewLayoutAttributes>>;
 
         #[method_id(@__retain_semantics Other layoutAttributesForItemAtIndexPath:)]
         pub unsafe fn layoutAttributesForItemAtIndexPath(
             &self,
             index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
+        ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(feature = "NSCollectionView")]
         #[method_id(@__retain_semantics Other layoutAttributesForSupplementaryViewOfKind:atIndexPath:)]
@@ -357,26 +364,26 @@ extern_methods!(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
             index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
+        ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
         #[method_id(@__retain_semantics Other layoutAttributesForDecorationViewOfKind:atIndexPath:)]
         pub unsafe fn layoutAttributesForDecorationViewOfKind_atIndexPath(
             &self,
             element_kind: &NSCollectionViewDecorationElementKind,
             index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
+        ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
         #[method_id(@__retain_semantics Other layoutAttributesForDropTargetAtPoint:)]
         pub unsafe fn layoutAttributesForDropTargetAtPoint(
             &self,
             point_in_collection_view: NSPoint,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
+        ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
         #[method_id(@__retain_semantics Other layoutAttributesForInterItemGapBeforeIndexPath:)]
         pub unsafe fn layoutAttributesForInterItemGapBeforeIndexPath(
             &self,
             index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
+        ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
         #[method(shouldInvalidateLayoutForBoundsChange:)]
         pub unsafe fn shouldInvalidateLayoutForBoundsChange(&self, new_bounds: NSRect) -> bool;
@@ -385,7 +392,7 @@ extern_methods!(
         pub unsafe fn invalidationContextForBoundsChange(
             &self,
             new_bounds: NSRect,
-        ) -> Id<NSCollectionViewLayoutInvalidationContext>;
+        ) -> Retained<NSCollectionViewLayoutInvalidationContext>;
 
         #[method(shouldInvalidateLayoutForPreferredLayoutAttributes:withOriginalAttributes:)]
         pub unsafe fn shouldInvalidateLayoutForPreferredLayoutAttributes_withOriginalAttributes(
@@ -399,7 +406,7 @@ extern_methods!(
             &self,
             preferred_attributes: &NSCollectionViewLayoutAttributes,
             original_attributes: &NSCollectionViewLayoutAttributes,
-        ) -> Id<NSCollectionViewLayoutInvalidationContext>;
+        ) -> Retained<NSCollectionViewLayoutInvalidationContext>;
 
         #[method(targetContentOffsetForProposedContentOffset:withScrollingVelocity:)]
         pub unsafe fn targetContentOffsetForProposedContentOffset_withScrollingVelocity(
@@ -450,13 +457,13 @@ extern_methods!(
         pub unsafe fn initialLayoutAttributesForAppearingItemAtIndexPath(
             &self,
             item_index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
+        ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
         #[method_id(@__retain_semantics Other finalLayoutAttributesForDisappearingItemAtIndexPath:)]
         pub unsafe fn finalLayoutAttributesForDisappearingItemAtIndexPath(
             &self,
             item_index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
+        ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(feature = "NSCollectionView")]
         #[method_id(@__retain_semantics Other initialLayoutAttributesForAppearingSupplementaryElementOfKind:atIndexPath:)]
@@ -464,7 +471,7 @@ extern_methods!(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
             element_index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
+        ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(feature = "NSCollectionView")]
         #[method_id(@__retain_semantics Other finalLayoutAttributesForDisappearingSupplementaryElementOfKind:atIndexPath:)]
@@ -472,46 +479,46 @@ extern_methods!(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
             element_index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
+        ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
         #[method_id(@__retain_semantics Other initialLayoutAttributesForAppearingDecorationElementOfKind:atIndexPath:)]
         pub unsafe fn initialLayoutAttributesForAppearingDecorationElementOfKind_atIndexPath(
             &self,
             element_kind: &NSCollectionViewDecorationElementKind,
             decoration_index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
+        ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
         #[method_id(@__retain_semantics Other finalLayoutAttributesForDisappearingDecorationElementOfKind:atIndexPath:)]
         pub unsafe fn finalLayoutAttributesForDisappearingDecorationElementOfKind_atIndexPath(
             &self,
             element_kind: &NSCollectionViewDecorationElementKind,
             decoration_index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
+        ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(feature = "NSCollectionView")]
         #[method_id(@__retain_semantics Other indexPathsToDeleteForSupplementaryViewOfKind:)]
         pub unsafe fn indexPathsToDeleteForSupplementaryViewOfKind(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
-        ) -> Id<NSSet<NSIndexPath>>;
+        ) -> Retained<NSSet<NSIndexPath>>;
 
         #[method_id(@__retain_semantics Other indexPathsToDeleteForDecorationViewOfKind:)]
         pub unsafe fn indexPathsToDeleteForDecorationViewOfKind(
             &self,
             element_kind: &NSCollectionViewDecorationElementKind,
-        ) -> Id<NSSet<NSIndexPath>>;
+        ) -> Retained<NSSet<NSIndexPath>>;
 
         #[cfg(feature = "NSCollectionView")]
         #[method_id(@__retain_semantics Other indexPathsToInsertForSupplementaryViewOfKind:)]
         pub unsafe fn indexPathsToInsertForSupplementaryViewOfKind(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
-        ) -> Id<NSSet<NSIndexPath>>;
+        ) -> Retained<NSSet<NSIndexPath>>;
 
         #[method_id(@__retain_semantics Other indexPathsToInsertForDecorationViewOfKind:)]
         pub unsafe fn indexPathsToInsertForDecorationViewOfKind(
             &self,
             element_kind: &NSCollectionViewDecorationElementKind,
-        ) -> Id<NSSet<NSIndexPath>>;
+        ) -> Retained<NSSet<NSIndexPath>>;
     }
 );

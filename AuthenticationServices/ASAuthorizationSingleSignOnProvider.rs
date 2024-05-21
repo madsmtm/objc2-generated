@@ -23,7 +23,7 @@ unsafe impl NSObjectProtocol for ASAuthorizationSingleSignOnProvider {}
 extern_methods!(
     unsafe impl ASAuthorizationSingleSignOnProvider {
         #[method_id(@__retain_semantics Other authorizationProviderWithIdentityProviderURL:)]
-        pub unsafe fn authorizationProviderWithIdentityProviderURL(url: &NSURL) -> Id<Self>;
+        pub unsafe fn authorizationProviderWithIdentityProviderURL(url: &NSURL) -> Retained<Self>;
 
         #[cfg(all(
             feature = "ASAuthorizationOpenIDRequest",
@@ -31,16 +31,16 @@ extern_methods!(
             feature = "ASAuthorizationSingleSignOnRequest"
         ))]
         #[method_id(@__retain_semantics Other createRequest)]
-        pub unsafe fn createRequest(&self) -> Id<ASAuthorizationSingleSignOnRequest>;
+        pub unsafe fn createRequest(&self) -> Retained<ASAuthorizationSingleSignOnRequest>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other url)]
-        pub unsafe fn url(&self) -> Id<NSURL>;
+        pub unsafe fn url(&self) -> Retained<NSURL>;
 
         #[method(canPerformAuthorization)]
         pub unsafe fn canPerformAuthorization(&self) -> bool;

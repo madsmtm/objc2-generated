@@ -35,22 +35,22 @@ extern_methods!(
         #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other getNamedItem:)]
-        pub unsafe fn getNamedItem(&self, name: Option<&NSString>) -> Option<Id<DOMNode>>;
+        pub unsafe fn getNamedItem(&self, name: Option<&NSString>) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other setNamedItem:)]
-        pub unsafe fn setNamedItem(&self, node: Option<&DOMNode>) -> Option<Id<DOMNode>>;
+        pub unsafe fn setNamedItem(&self, node: Option<&DOMNode>) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other removeNamedItem:)]
-        pub unsafe fn removeNamedItem(&self, name: Option<&NSString>) -> Option<Id<DOMNode>>;
+        pub unsafe fn removeNamedItem(&self, name: Option<&NSString>) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other item:)]
-        pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMNode>>;
+        pub unsafe fn item(&self, index: c_uint) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[method_id(@__retain_semantics Other getNamedItemNS:localName:)]
@@ -58,12 +58,12 @@ extern_methods!(
             &self,
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
-        ) -> Option<Id<DOMNode>>;
+        ) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other setNamedItemNS:)]
-        pub unsafe fn setNamedItemNS(&self, node: Option<&DOMNode>) -> Option<Id<DOMNode>>;
+        pub unsafe fn setNamedItemNS(&self, node: Option<&DOMNode>) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[method_id(@__retain_semantics Other removeNamedItemNS:localName:)]
@@ -71,7 +71,7 @@ extern_methods!(
             &self,
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
-        ) -> Option<Id<DOMNode>>;
+        ) -> Option<Retained<DOMNode>>;
     }
 );
 
@@ -81,7 +81,7 @@ extern_methods!(
     unsafe impl DOMNamedNodeMap {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -90,7 +90,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNamedNodeMap {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -105,7 +105,7 @@ extern_methods!(
             &self,
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
-        ) -> Option<Id<DOMNode>>;
+        ) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
@@ -114,6 +114,6 @@ extern_methods!(
             &self,
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
-        ) -> Option<Id<DOMNode>>;
+        ) -> Option<Retained<DOMNode>>;
     }
 );

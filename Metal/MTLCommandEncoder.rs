@@ -56,10 +56,10 @@ extern_protocol!(
     pub unsafe trait MTLCommandEncoder: NSObjectProtocol + IsRetainable {
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
-        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
+        unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[method_id(@__retain_semantics Other label)]
-        fn label(&self) -> Option<Id<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
 
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);

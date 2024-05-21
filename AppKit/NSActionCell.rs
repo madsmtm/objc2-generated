@@ -40,7 +40,7 @@ extern_methods!(
     #[cfg(feature = "NSCell")]
     unsafe impl NSActionCell {
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -64,17 +64,20 @@ extern_methods!(
     #[cfg(feature = "NSCell")]
     unsafe impl NSActionCell {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Id<Self>;
+        pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
-        pub unsafe fn initImageCell(this: Allocated<Self>, image: Option<&NSImage>) -> Id<Self>;
+        pub unsafe fn initImageCell(
+            this: Allocated<Self>,
+            image: Option<&NSImage>,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     }
 );
 
@@ -83,6 +86,6 @@ extern_methods!(
     #[cfg(feature = "NSCell")]
     unsafe impl NSActionCell {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

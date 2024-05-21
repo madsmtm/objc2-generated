@@ -12,7 +12,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Retained<Self>>;
     }
 
     unsafe impl ProtocolType for dyn NSCoding {}
@@ -42,7 +42,7 @@ extern_category!(
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Other replacementObjectForCoder:)]
-        unsafe fn replacementObjectForCoder(&self, coder: &NSCoder) -> Option<Id<AnyObject>>;
+        unsafe fn replacementObjectForCoder(&self, coder: &NSCoder) -> Option<Retained<AnyObject>>;
     }
 
     unsafe impl NSObjectNSCoderMethods for NSObject {}
@@ -71,7 +71,7 @@ extern_category!(
     #[doc(alias = "NSDiscardableContentProxy")]
     pub unsafe trait NSObjectNSDiscardableContentProxy {
         #[method_id(@__retain_semantics Other autoContentAccessingProxy)]
-        unsafe fn autoContentAccessingProxy(&self) -> Id<AnyObject>;
+        unsafe fn autoContentAccessingProxy(&self) -> Retained<AnyObject>;
     }
 
     unsafe impl NSObjectNSDiscardableContentProxy for NSObject {}

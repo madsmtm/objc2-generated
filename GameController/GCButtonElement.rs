@@ -9,11 +9,11 @@ extern_protocol!(
     pub unsafe trait GCButtonElement: GCPhysicalInputElement {
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         #[method_id(@__retain_semantics Other pressedInput)]
-        unsafe fn pressedInput(&self) -> Id<TodoProtocols>;
+        unsafe fn pressedInput(&self) -> Retained<TodoProtocols>;
 
         #[cfg(feature = "GCTouchedStateInput")]
         #[method_id(@__retain_semantics Other touchedInput)]
-        unsafe fn touchedInput(&self) -> Option<Id<ProtocolObject<dyn GCTouchedStateInput>>>;
+        unsafe fn touchedInput(&self) -> Option<Retained<ProtocolObject<dyn GCTouchedStateInput>>>;
     }
 
     #[cfg(feature = "GCPhysicalInputElement")]

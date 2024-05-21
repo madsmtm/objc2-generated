@@ -27,7 +27,7 @@ unsafe impl NSSecureCoding for NSFileProviderDomainVersion {}
 extern_methods!(
     unsafe impl NSFileProviderDomainVersion {
         #[method_id(@__retain_semantics Other next)]
-        pub unsafe fn next(&self) -> Id<NSFileProviderDomainVersion>;
+        pub unsafe fn next(&self) -> Retained<NSFileProviderDomainVersion>;
 
         #[method(compare:)]
         pub unsafe fn compare(
@@ -41,10 +41,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderDomainVersion {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -87,23 +87,23 @@ extern_methods!(
             identifier: &NSFileProviderDomainIdentifier,
             display_name: &NSString,
             path_relative_to_document_storage: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithIdentifier:displayName:)]
         pub unsafe fn initWithIdentifier_displayName(
             this: Allocated<Self>,
             identifier: &NSFileProviderDomainIdentifier,
             display_name: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSFileProviderDomainIdentifier>;
+        pub unsafe fn identifier(&self) -> Retained<NSFileProviderDomainIdentifier>;
 
         #[method_id(@__retain_semantics Other displayName)]
-        pub unsafe fn displayName(&self) -> Id<NSString>;
+        pub unsafe fn displayName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other pathRelativeToDocumentStorage)]
-        pub unsafe fn pathRelativeToDocumentStorage(&self) -> Id<NSString>;
+        pub unsafe fn pathRelativeToDocumentStorage(&self) -> Retained<NSString>;
 
         #[method(isDisconnected)]
         pub unsafe fn isDisconnected(&self) -> bool;
@@ -127,7 +127,7 @@ extern_methods!(
         pub unsafe fn setTestingModes(&self, testing_modes: NSFileProviderDomainTestingModes);
 
         #[method_id(@__retain_semantics Other backingStoreIdentity)]
-        pub unsafe fn backingStoreIdentity(&self) -> Option<Id<NSData>>;
+        pub unsafe fn backingStoreIdentity(&self) -> Option<Retained<NSData>>;
 
         #[method(supportsSyncingTrash)]
         pub unsafe fn supportsSyncingTrash(&self) -> bool;
@@ -141,10 +141,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderDomain {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -153,7 +153,7 @@ extern_methods!(
     #[cfg(feature = "NSFileProviderExtension")]
     unsafe impl NSFileProviderExtension {
         #[method_id(@__retain_semantics Other domain)]
-        pub unsafe fn domain(&self) -> Option<Id<NSFileProviderDomain>>;
+        pub unsafe fn domain(&self) -> Option<Retained<NSFileProviderDomain>>;
     }
 );
 

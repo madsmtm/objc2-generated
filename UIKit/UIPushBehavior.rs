@@ -48,7 +48,7 @@ extern_methods!(
             this: Allocated<Self>,
             items: &NSArray<ProtocolObject<dyn UIDynamicItem>>,
             mode: UIPushBehaviorMode,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(addItem:)]
         pub unsafe fn addItem(&self, item: &ProtocolObject<dyn UIDynamicItem>);
@@ -57,7 +57,7 @@ extern_methods!(
         pub unsafe fn removeItem(&self, item: &ProtocolObject<dyn UIDynamicItem>);
 
         #[method_id(@__retain_semantics Other items)]
-        pub unsafe fn items(&self) -> Id<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
+        pub unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
 
         #[cfg(feature = "UIGeometry")]
         #[method(targetOffsetFromCenterForItem:)]
@@ -111,9 +111,9 @@ extern_methods!(
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UIPushBehavior {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

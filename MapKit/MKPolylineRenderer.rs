@@ -26,11 +26,14 @@ extern_methods!(
     unsafe impl MKPolylineRenderer {
         #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
         #[method_id(@__retain_semantics Init initWithPolyline:)]
-        pub unsafe fn initWithPolyline(this: Allocated<Self>, polyline: &MKPolyline) -> Id<Self>;
+        pub unsafe fn initWithPolyline(
+            this: Allocated<Self>,
+            polyline: &MKPolyline,
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
         #[method_id(@__retain_semantics Other polyline)]
-        pub unsafe fn polyline(&self) -> Id<MKPolyline>;
+        pub unsafe fn polyline(&self) -> Retained<MKPolyline>;
 
         #[method(strokeStart)]
         pub unsafe fn strokeStart(&self) -> CGFloat;
@@ -55,7 +58,7 @@ extern_methods!(
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -64,9 +67,9 @@ extern_methods!(
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKPolylineRenderer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

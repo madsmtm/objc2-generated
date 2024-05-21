@@ -65,7 +65,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIContextMenuInteractionDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIContextMenuInteractionDelegate>>>;
 
         #[method(menuAppearance)]
         pub unsafe fn menuAppearance(&self) -> UIContextMenuInteractionAppearance;
@@ -74,13 +74,13 @@ extern_methods!(
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: &ProtocolObject<dyn UIContextMenuInteractionDelegate>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(locationInView:)]
@@ -104,7 +104,7 @@ extern_protocol!(
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[method_id(@__retain_semantics Other previewViewController)]
-        unsafe fn previewViewController(&self) -> Option<Id<UIViewController>>;
+        unsafe fn previewViewController(&self) -> Option<Retained<UIViewController>>;
 
         #[cfg(feature = "block2")]
         #[method(addAnimations:)]
@@ -145,7 +145,7 @@ extern_protocol!(
             &self,
             interaction: &UIContextMenuInteraction,
             location: CGPoint,
-        ) -> Option<Id<UIContextMenuConfiguration>>;
+        ) -> Option<Retained<UIContextMenuConfiguration>>;
 
         #[cfg(all(feature = "UIContextMenuConfiguration", feature = "UITargetedPreview"))]
         #[optional]
@@ -155,7 +155,7 @@ extern_protocol!(
             interaction: &UIContextMenuInteraction,
             configuration: &UIContextMenuConfiguration,
             identifier: &ProtocolObject<dyn NSCopying>,
-        ) -> Option<Id<UITargetedPreview>>;
+        ) -> Option<Retained<UITargetedPreview>>;
 
         #[cfg(all(feature = "UIContextMenuConfiguration", feature = "UITargetedPreview"))]
         #[optional]
@@ -165,7 +165,7 @@ extern_protocol!(
             interaction: &UIContextMenuInteraction,
             configuration: &UIContextMenuConfiguration,
             identifier: &ProtocolObject<dyn NSCopying>,
-        ) -> Option<Id<UITargetedPreview>>;
+        ) -> Option<Retained<UITargetedPreview>>;
 
         #[cfg(feature = "UIContextMenuConfiguration")]
         #[optional]
@@ -205,7 +205,7 @@ extern_protocol!(
             &self,
             interaction: &UIContextMenuInteraction,
             configuration: &UIContextMenuConfiguration,
-        ) -> Option<Id<UITargetedPreview>>;
+        ) -> Option<Retained<UITargetedPreview>>;
 
         #[cfg(all(feature = "UIContextMenuConfiguration", feature = "UITargetedPreview"))]
         #[deprecated]
@@ -215,7 +215,7 @@ extern_protocol!(
             &self,
             interaction: &UIContextMenuInteraction,
             configuration: &UIContextMenuConfiguration,
-        ) -> Option<Id<UITargetedPreview>>;
+        ) -> Option<Retained<UITargetedPreview>>;
     }
 
     unsafe impl ProtocolType for dyn UIContextMenuInteractionDelegate {}

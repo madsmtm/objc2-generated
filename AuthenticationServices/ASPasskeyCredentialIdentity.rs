@@ -29,7 +29,7 @@ unsafe impl NSSecureCoding for ASPasskeyCredentialIdentity {}
 extern_methods!(
     unsafe impl ASPasskeyCredentialIdentity {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithRelyingPartyIdentifier:userName:credentialID:userHandle:recordIdentifier:)]
         pub unsafe fn initWithRelyingPartyIdentifier_userName_credentialID_userHandle_recordIdentifier(
@@ -39,7 +39,7 @@ extern_methods!(
             credential_id: &NSData,
             user_handle: &NSData,
             record_identifier: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other identityWithRelyingPartyIdentifier:userName:credentialID:userHandle:recordIdentifier:)]
         pub unsafe fn identityWithRelyingPartyIdentifier_userName_credentialID_userHandle_recordIdentifier(
@@ -48,22 +48,22 @@ extern_methods!(
             credential_id: &NSData,
             user_handle: &NSData,
             record_identifier: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other relyingPartyIdentifier)]
-        pub unsafe fn relyingPartyIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other userName)]
-        pub unsafe fn userName(&self) -> Id<NSString>;
+        pub unsafe fn userName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other credentialID)]
-        pub unsafe fn credentialID(&self) -> Id<NSData>;
+        pub unsafe fn credentialID(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other userHandle)]
-        pub unsafe fn userHandle(&self) -> Id<NSData>;
+        pub unsafe fn userHandle(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other recordIdentifier)]
-        pub unsafe fn recordIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn recordIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(rank)]
         pub unsafe fn rank(&self) -> NSInteger;
@@ -77,6 +77,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASPasskeyCredentialIdentity {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

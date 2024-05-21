@@ -31,7 +31,7 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXGPUMetric {
         #[method_id(@__retain_semantics Other cumulativeGPUTime)]
-        pub unsafe fn cumulativeGPUTime(&self) -> Id<NSMeasurement<NSUnitDuration>>;
+        pub unsafe fn cumulativeGPUTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
     }
 );
 
@@ -40,9 +40,9 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXGPUMetric {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

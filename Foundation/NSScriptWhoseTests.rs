@@ -48,11 +48,14 @@ extern_methods!(
         pub unsafe fn isTrue(&self) -> bool;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            in_coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -60,7 +63,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScriptWhoseTest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -87,20 +90,20 @@ extern_methods!(
         pub unsafe fn initAndTestWithTests(
             this: Allocated<Self>,
             sub_tests: &NSArray<NSSpecifierTest>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Init initOrTestWithTests:)]
         pub unsafe fn initOrTestWithTests(
             this: Allocated<Self>,
             sub_tests: &NSArray<NSSpecifierTest>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initNotTestWithTest:)]
         pub unsafe fn initNotTestWithTest(
             this: Allocated<Self>,
             sub_test: &NSScriptWhoseTest,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -108,11 +111,14 @@ extern_methods!(
     /// Methods declared on superclass `NSScriptWhoseTest`
     unsafe impl NSLogicalTest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            in_coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -120,7 +126,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSLogicalTest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -143,11 +149,14 @@ unsafe impl NSObjectProtocol for NSSpecifierTest {}
 extern_methods!(
     unsafe impl NSSpecifierTest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            in_coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[method_id(@__retain_semantics Init initWithObjectSpecifier:comparisonOperator:testObject:)]
@@ -156,7 +165,7 @@ extern_methods!(
             obj1: Option<&NSScriptObjectSpecifier>,
             comp_op: NSTestComparisonOperation,
             obj2: Option<&AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -164,7 +173,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSpecifierTest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

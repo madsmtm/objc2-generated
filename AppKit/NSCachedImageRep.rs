@@ -38,7 +38,7 @@ extern_methods!(
             this: Allocated<Self>,
             win: Option<&NSWindow>,
             rect: NSRect,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSGraphics")]
         #[deprecated]
@@ -49,12 +49,12 @@ extern_methods!(
             depth: NSWindowDepth,
             flag: bool,
             alpha: bool,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other window)]
-        pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Id<NSWindow>>;
+        pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Retained<NSWindow>>;
 
         #[deprecated]
         #[method(rect)]
@@ -67,10 +67,13 @@ extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCachedImageRep {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -79,6 +82,6 @@ extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCachedImageRep {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

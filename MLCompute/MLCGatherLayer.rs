@@ -30,7 +30,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithDimension:)]
-        pub unsafe fn layerWithDimension(dimension: NSUInteger) -> Id<Self>;
+        pub unsafe fn layerWithDimension(dimension: NSUInteger) -> Retained<Self>;
     }
 );
 
@@ -40,10 +40,10 @@ extern_methods!(
     unsafe impl MLCGatherLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

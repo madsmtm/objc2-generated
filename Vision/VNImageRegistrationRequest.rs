@@ -36,14 +36,14 @@ extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
     unsafe impl VNImageRegistrationRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-image"))]
         #[method_id(@__retain_semantics Init initWithTargetedCIImage:options:)]
@@ -51,7 +51,7 @@ extern_methods!(
             this: Allocated<Self>,
             ci_image: &CIImage,
             options: &NSDictionary<VNImageOption, AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "VNRequestHandler",
@@ -64,7 +64,7 @@ extern_methods!(
             ci_image: &CIImage,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "VNRequestHandler")]
         #[method_id(@__retain_semantics Init initWithTargetedImageURL:options:)]
@@ -72,7 +72,7 @@ extern_methods!(
             this: Allocated<Self>,
             image_url: &NSURL,
             options: &NSDictionary<VNImageOption, AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithTargetedImageURL:options:completionHandler:)]
@@ -81,7 +81,7 @@ extern_methods!(
             image_url: &NSURL,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "VNRequestHandler")]
         #[method_id(@__retain_semantics Init initWithTargetedImageData:options:)]
@@ -89,7 +89,7 @@ extern_methods!(
             this: Allocated<Self>,
             image_data: &NSData,
             options: &NSDictionary<VNImageOption, AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithTargetedImageData:options:completionHandler:)]
@@ -98,7 +98,7 @@ extern_methods!(
             image_data: &NSData,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -107,7 +107,7 @@ extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
     unsafe impl VNImageRegistrationRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -135,8 +135,9 @@ extern_methods!(
     unsafe impl VNTranslationalImageRegistrationRequest {
         #[cfg(feature = "VNObservation")]
         #[method_id(@__retain_semantics Other results)]
-        pub unsafe fn results(&self)
-            -> Option<Id<NSArray<VNImageTranslationAlignmentObservation>>>;
+        pub unsafe fn results(
+            &self,
+        ) -> Option<Retained<NSArray<VNImageTranslationAlignmentObservation>>>;
     }
 );
 
@@ -145,14 +146,14 @@ extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
     unsafe impl VNTranslationalImageRegistrationRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-image"))]
         #[method_id(@__retain_semantics Init initWithTargetedCIImage:options:)]
@@ -160,7 +161,7 @@ extern_methods!(
             this: Allocated<Self>,
             ci_image: &CIImage,
             options: &NSDictionary<VNImageOption, AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "VNRequestHandler",
@@ -173,7 +174,7 @@ extern_methods!(
             ci_image: &CIImage,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "VNRequestHandler")]
         #[method_id(@__retain_semantics Init initWithTargetedImageURL:options:)]
@@ -181,7 +182,7 @@ extern_methods!(
             this: Allocated<Self>,
             image_url: &NSURL,
             options: &NSDictionary<VNImageOption, AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithTargetedImageURL:options:completionHandler:)]
@@ -190,7 +191,7 @@ extern_methods!(
             image_url: &NSURL,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "VNRequestHandler")]
         #[method_id(@__retain_semantics Init initWithTargetedImageData:options:)]
@@ -198,7 +199,7 @@ extern_methods!(
             this: Allocated<Self>,
             image_data: &NSData,
             options: &NSDictionary<VNImageOption, AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithTargetedImageData:options:completionHandler:)]
@@ -207,7 +208,7 @@ extern_methods!(
             image_data: &NSData,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -216,7 +217,7 @@ extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
     unsafe impl VNTranslationalImageRegistrationRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -246,8 +247,9 @@ extern_methods!(
     unsafe impl VNHomographicImageRegistrationRequest {
         #[cfg(feature = "VNObservation")]
         #[method_id(@__retain_semantics Other results)]
-        pub unsafe fn results(&self)
-            -> Option<Id<NSArray<VNImageHomographicAlignmentObservation>>>;
+        pub unsafe fn results(
+            &self,
+        ) -> Option<Retained<NSArray<VNImageHomographicAlignmentObservation>>>;
     }
 );
 
@@ -256,14 +258,14 @@ extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
     unsafe impl VNHomographicImageRegistrationRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-image"))]
         #[method_id(@__retain_semantics Init initWithTargetedCIImage:options:)]
@@ -271,7 +273,7 @@ extern_methods!(
             this: Allocated<Self>,
             ci_image: &CIImage,
             options: &NSDictionary<VNImageOption, AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "VNRequestHandler",
@@ -284,7 +286,7 @@ extern_methods!(
             ci_image: &CIImage,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "VNRequestHandler")]
         #[method_id(@__retain_semantics Init initWithTargetedImageURL:options:)]
@@ -292,7 +294,7 @@ extern_methods!(
             this: Allocated<Self>,
             image_url: &NSURL,
             options: &NSDictionary<VNImageOption, AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithTargetedImageURL:options:completionHandler:)]
@@ -301,7 +303,7 @@ extern_methods!(
             image_url: &NSURL,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "VNRequestHandler")]
         #[method_id(@__retain_semantics Init initWithTargetedImageData:options:)]
@@ -309,7 +311,7 @@ extern_methods!(
             this: Allocated<Self>,
             image_data: &NSData,
             options: &NSDictionary<VNImageOption, AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithTargetedImageData:options:completionHandler:)]
@@ -318,7 +320,7 @@ extern_methods!(
             image_data: &NSData,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -327,7 +329,7 @@ extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
     unsafe impl VNHomographicImageRegistrationRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

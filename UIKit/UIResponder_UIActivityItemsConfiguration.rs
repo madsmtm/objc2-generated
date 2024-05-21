@@ -12,7 +12,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other activityItemsConfiguration)]
         pub unsafe fn activityItemsConfiguration(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIActivityItemsConfigurationReading>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIActivityItemsConfigurationReading>>>;
 
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
         #[method(setActivityItemsConfiguration:)]

@@ -33,7 +33,7 @@ extern_protocol!(
     {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other containerView)]
-        unsafe fn containerView(&self) -> Id<UIView>;
+        unsafe fn containerView(&self) -> Retained<UIView>;
 
         #[method(isAnimated)]
         unsafe fn isAnimated(&self) -> bool;
@@ -72,7 +72,7 @@ extern_protocol!(
         unsafe fn viewControllerForKey(
             &self,
             key: &UITransitionContextViewControllerKey,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -80,7 +80,7 @@ extern_protocol!(
             feature = "UIViewControllerTransitionCoordinator"
         ))]
         #[method_id(@__retain_semantics Other viewForKey:)]
-        unsafe fn viewForKey(&self, key: &UITransitionContextViewKey) -> Option<Id<UIView>>;
+        unsafe fn viewForKey(&self, key: &UITransitionContextViewKey) -> Option<Retained<UIView>>;
 
         #[method(targetTransform)]
         unsafe fn targetTransform(&self) -> CGAffineTransform;
@@ -119,7 +119,7 @@ extern_protocol!(
         unsafe fn interruptibleAnimatorForTransition(
             &self,
             transition_context: &ProtocolObject<dyn UIViewControllerContextTransitioning>,
-        ) -> Id<ProtocolObject<dyn UIViewImplicitlyAnimating>>;
+        ) -> Retained<ProtocolObject<dyn UIViewImplicitlyAnimating>>;
 
         #[optional]
         #[method(animationEnded:)]
@@ -168,7 +168,7 @@ extern_protocol!(
             presented: &UIViewController,
             presenting: &UIViewController,
             source: &UIViewController,
-        ) -> Option<Id<ProtocolObject<dyn UIViewControllerAnimatedTransitioning>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIViewControllerAnimatedTransitioning>>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
@@ -176,21 +176,21 @@ extern_protocol!(
         unsafe fn animationControllerForDismissedController(
             &self,
             dismissed: &UIViewController,
-        ) -> Option<Id<ProtocolObject<dyn UIViewControllerAnimatedTransitioning>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIViewControllerAnimatedTransitioning>>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other interactionControllerForPresentation:)]
         unsafe fn interactionControllerForPresentation(
             &self,
             animator: &ProtocolObject<dyn UIViewControllerAnimatedTransitioning>,
-        ) -> Option<Id<ProtocolObject<dyn UIViewControllerInteractiveTransitioning>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIViewControllerInteractiveTransitioning>>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other interactionControllerForDismissal:)]
         unsafe fn interactionControllerForDismissal(
             &self,
             animator: &ProtocolObject<dyn UIViewControllerAnimatedTransitioning>,
-        ) -> Option<Id<ProtocolObject<dyn UIViewControllerInteractiveTransitioning>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIViewControllerInteractiveTransitioning>>>;
 
         #[cfg(all(
             feature = "UIPresentationController",
@@ -204,7 +204,7 @@ extern_protocol!(
             presented: &UIViewController,
             presenting: Option<&UIViewController>,
             source: &UIViewController,
-        ) -> Option<Id<UIPresentationController>>;
+        ) -> Option<Retained<UIPresentationController>>;
     }
 
     unsafe impl ProtocolType for dyn UIViewControllerTransitioningDelegate {}
@@ -248,7 +248,9 @@ extern_methods!(
 
         #[cfg(feature = "UITimingCurveProvider")]
         #[method_id(@__retain_semantics Other timingCurve)]
-        pub unsafe fn timingCurve(&self) -> Option<Id<ProtocolObject<dyn UITimingCurveProvider>>>;
+        pub unsafe fn timingCurve(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn UITimingCurveProvider>>>;
 
         #[cfg(feature = "UITimingCurveProvider")]
         #[method(setTimingCurve:)]
@@ -281,9 +283,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPercentDrivenInteractiveTransition {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

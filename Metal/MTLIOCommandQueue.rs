@@ -75,16 +75,16 @@ extern_protocol!(
 
         #[cfg(feature = "MTLIOCommandBuffer")]
         #[method_id(@__retain_semantics Other commandBuffer)]
-        unsafe fn commandBuffer(&self) -> Id<ProtocolObject<dyn MTLIOCommandBuffer>>;
+        unsafe fn commandBuffer(&self) -> Retained<ProtocolObject<dyn MTLIOCommandBuffer>>;
 
         #[cfg(feature = "MTLIOCommandBuffer")]
         #[method_id(@__retain_semantics Other commandBufferWithUnretainedReferences)]
         unsafe fn commandBufferWithUnretainedReferences(
             &self,
-        ) -> Id<ProtocolObject<dyn MTLIOCommandBuffer>>;
+        ) -> Retained<ProtocolObject<dyn MTLIOCommandBuffer>>;
 
         #[method_id(@__retain_semantics Other label)]
-        unsafe fn label(&self) -> Option<Id<NSString>>;
+        unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         #[method(setLabel:)]
         unsafe fn setLabel(&self, label: Option<&NSString>);
@@ -97,7 +97,7 @@ extern_protocol!(
     pub unsafe trait MTLIOScratchBuffer: NSObjectProtocol + IsRetainable {
         #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other buffer)]
-        unsafe fn buffer(&self) -> Id<ProtocolObject<dyn MTLBuffer>>;
+        unsafe fn buffer(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
     }
 
     unsafe impl ProtocolType for dyn MTLIOScratchBuffer {}
@@ -109,7 +109,7 @@ extern_protocol!(
         unsafe fn newScratchBufferWithMinimumSize(
             &self,
             minimum_size: NSUInteger,
-        ) -> Option<Id<ProtocolObject<dyn MTLIOScratchBuffer>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MTLIOScratchBuffer>>>;
     }
 
     unsafe impl ProtocolType for dyn MTLIOScratchBufferAllocator {}
@@ -158,7 +158,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other scratchBufferAllocator)]
         pub unsafe fn scratchBufferAllocator(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLIOScratchBufferAllocator>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MTLIOScratchBufferAllocator>>>;
 
         #[method(setScratchBufferAllocator:)]
         pub unsafe fn setScratchBufferAllocator(
@@ -172,17 +172,17 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLIOCommandQueueDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
 extern_protocol!(
     pub unsafe trait MTLIOFileHandle: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other label)]
-        unsafe fn label(&self) -> Option<Id<NSString>>;
+        unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         #[method(setLabel:)]
         unsafe fn setLabel(&self, label: Option<&NSString>);

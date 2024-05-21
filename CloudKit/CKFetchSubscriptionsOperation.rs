@@ -25,21 +25,21 @@ extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchSubscriptionsOperation {
         #[method_id(@__retain_semantics Other fetchAllSubscriptionsOperation)]
-        pub unsafe fn fetchAllSubscriptionsOperation() -> Id<Self>;
+        pub unsafe fn fetchAllSubscriptionsOperation() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKSubscription")]
         #[method_id(@__retain_semantics Init initWithSubscriptionIDs:)]
         pub unsafe fn initWithSubscriptionIDs(
             this: Allocated<Self>,
             subscription_i_ds: &NSArray<CKSubscriptionID>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKSubscription")]
         #[method_id(@__retain_semantics Other subscriptionIDs)]
-        pub unsafe fn subscriptionIDs(&self) -> Option<Id<NSArray<CKSubscriptionID>>>;
+        pub unsafe fn subscriptionIDs(&self) -> Option<Retained<NSArray<CKSubscriptionID>>>;
 
         #[cfg(feature = "CKSubscription")]
         #[method(setSubscriptionIDs:)]
@@ -91,6 +91,6 @@ extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchSubscriptionsOperation {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

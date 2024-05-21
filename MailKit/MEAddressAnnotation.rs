@@ -24,24 +24,24 @@ unsafe impl NSSecureCoding for MEAddressAnnotation {}
 extern_methods!(
     unsafe impl MEAddressAnnotation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other errorWithLocalizedDescription:)]
         pub unsafe fn errorWithLocalizedDescription(
             localized_description: &NSString,
-        ) -> Id<MEAddressAnnotation>;
+        ) -> Retained<MEAddressAnnotation>;
 
         #[method_id(@__retain_semantics Other warningWithLocalizedDescription:)]
         pub unsafe fn warningWithLocalizedDescription(
             localized_description: &NSString,
-        ) -> Id<MEAddressAnnotation>;
+        ) -> Retained<MEAddressAnnotation>;
 
         #[method_id(@__retain_semantics Other successWithLocalizedDescription:)]
         pub unsafe fn successWithLocalizedDescription(
             localized_description: &NSString,
-        ) -> Id<MEAddressAnnotation>;
+        ) -> Retained<MEAddressAnnotation>;
     }
 );

@@ -45,14 +45,14 @@ extern_methods!(
         pub fn count(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other objectForKey:)]
-        pub unsafe fn objectForKey(&self, a_key: &KeyType) -> Option<Id<ObjectType>>;
+        pub unsafe fn objectForKey(&self, a_key: &KeyType) -> Option<Retained<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
         #[method_id(@__retain_semantics Other keyEnumerator)]
-        pub unsafe fn keyEnumerator(&self) -> Id<NSEnumerator<KeyType>>;
+        pub unsafe fn keyEnumerator(&self) -> Retained<NSEnumerator<KeyType>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Allocated<Self>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSObject")]
         #[method_id(@__retain_semantics Init initWithObjects:forKeys:count:)]
@@ -61,11 +61,14 @@ extern_methods!(
             objects: *mut NonNull<ObjectType>,
             keys: *mut NonNull<ProtocolObject<dyn NSCopying>>,
             cnt: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -73,13 +76,13 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[method_id(@__retain_semantics New new)]
-        pub fn new() -> Id<Self>;
+        pub fn new() -> Retained<Self>;
     }
 );
 
-impl<KeyType: Message, ObjectType: Message> DefaultId for NSDictionary<KeyType, ObjectType> {
+impl<KeyType: Message, ObjectType: Message> DefaultRetained for NSDictionary<KeyType, ObjectType> {
     #[inline]
-    fn default_id() -> Id<Self> {
+    fn default_id() -> Retained<Self> {
         Self::new()
     }
 }
@@ -89,27 +92,31 @@ extern_methods!(
     unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other allKeys)]
-        pub unsafe fn allKeys(&self) -> Id<NSArray<KeyType>>;
+        pub unsafe fn allKeys(&self) -> Retained<NSArray<KeyType>>;
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other allKeysForObject:)]
-        pub unsafe fn allKeysForObject(&self, an_object: &ObjectType) -> Id<NSArray<KeyType>>;
+        pub unsafe fn allKeysForObject(&self, an_object: &ObjectType)
+            -> Retained<NSArray<KeyType>>;
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other allValues)]
-        pub unsafe fn allValues(&self) -> Id<NSArray<ObjectType>>;
+        pub unsafe fn allValues(&self) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other description)]
-        pub unsafe fn description(&self) -> Id<NSString>;
+        pub unsafe fn description(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other descriptionInStringsFileFormat)]
-        pub unsafe fn descriptionInStringsFileFormat(&self) -> Id<NSString>;
+        pub unsafe fn descriptionInStringsFileFormat(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
-        pub unsafe fn descriptionWithLocale(&self, locale: Option<&AnyObject>) -> Id<NSString>;
+        pub unsafe fn descriptionWithLocale(
+            &self,
+            locale: Option<&AnyObject>,
+        ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:indent:)]
@@ -117,7 +124,7 @@ extern_methods!(
             &self,
             locale: Option<&AnyObject>,
             level: NSUInteger,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[method(isEqualToDictionary:)]
         pub unsafe fn isEqualToDictionary(
@@ -127,7 +134,7 @@ extern_methods!(
 
         #[cfg(feature = "NSEnumerator")]
         #[method_id(@__retain_semantics Other objectEnumerator)]
-        pub unsafe fn objectEnumerator(&self) -> Id<NSEnumerator<ObjectType>>;
+        pub unsafe fn objectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other objectsForKeys:notFoundMarker:)]
@@ -135,18 +142,18 @@ extern_methods!(
             &self,
             keys: &NSArray<KeyType>,
             marker: &ObjectType,
-        ) -> Id<NSArray<ObjectType>>;
+        ) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method(writeToURL:error:_)]
-        pub unsafe fn writeToURL_error(&self, url: &NSURL) -> Result<(), Id<NSError>>;
+        pub unsafe fn writeToURL_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other keysSortedByValueUsingSelector:)]
         pub unsafe fn keysSortedByValueUsingSelector(
             &self,
             comparator: Sel,
-        ) -> Id<NSArray<KeyType>>;
+        ) -> Retained<NSArray<KeyType>>;
 
         #[method(getObjects:andKeys:count:)]
         pub unsafe fn getObjects_andKeys_count(
@@ -157,7 +164,8 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
-        pub unsafe fn objectForKeyedSubscript(&self, key: &KeyType) -> Option<Id<ObjectType>>;
+        pub unsafe fn objectForKeyedSubscript(&self, key: &KeyType)
+            -> Option<Retained<ObjectType>>;
 
         #[cfg(feature = "block2")]
         #[method(enumerateKeysAndObjectsUsingBlock:)]
@@ -183,7 +191,7 @@ extern_methods!(
         pub unsafe fn keysSortedByValueUsingComparator(
             &self,
             cmptr: NSComparator,
-        ) -> Id<NSArray<KeyType>>;
+        ) -> Retained<NSArray<KeyType>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "block2"))]
         #[method_id(@__retain_semantics Other keysSortedByValueWithOptions:usingComparator:)]
@@ -191,7 +199,7 @@ extern_methods!(
             &self,
             opts: NSSortOptions,
             cmptr: NSComparator,
-        ) -> Id<NSArray<KeyType>>;
+        ) -> Retained<NSArray<KeyType>>;
 
         #[cfg(all(feature = "NSSet", feature = "block2"))]
         #[method_id(@__retain_semantics Other keysOfEntriesPassingTest:)]
@@ -200,7 +208,7 @@ extern_methods!(
             predicate: &block2::Block<
                 dyn Fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) -> Bool + '_,
             >,
-        ) -> Id<NSSet<KeyType>>;
+        ) -> Retained<NSSet<KeyType>>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSSet", feature = "block2"))]
         #[method_id(@__retain_semantics Other keysOfEntriesWithOptions:passingTest:)]
@@ -210,7 +218,7 @@ extern_methods!(
             predicate: &block2::Block<
                 dyn Fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) -> Bool + '_,
             >,
-        ) -> Id<NSSet<KeyType>>;
+        ) -> Retained<NSSet<KeyType>>;
     }
 );
 
@@ -230,14 +238,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dictionaryWithContentsOfFile:)]
         pub unsafe fn dictionaryWithContentsOfFile(
             path: &NSString,
-        ) -> Option<Id<NSDictionary<KeyType, ObjectType>>>;
+        ) -> Option<Retained<NSDictionary<KeyType, ObjectType>>>;
 
         #[cfg(feature = "NSURL")]
         #[deprecated]
         #[method_id(@__retain_semantics Other dictionaryWithContentsOfURL:)]
         pub unsafe fn dictionaryWithContentsOfURL(
             url: &NSURL,
-        ) -> Option<Id<NSDictionary<KeyType, ObjectType>>>;
+        ) -> Option<Retained<NSDictionary<KeyType, ObjectType>>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated]
@@ -245,7 +253,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfFile(
             this: Allocated<Self>,
             path: &NSString,
-        ) -> Option<Id<NSDictionary<KeyType, ObjectType>>>;
+        ) -> Option<Retained<NSDictionary<KeyType, ObjectType>>>;
 
         #[cfg(feature = "NSURL")]
         #[deprecated]
@@ -253,7 +261,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
             url: &NSURL,
-        ) -> Option<Id<NSDictionary<KeyType, ObjectType>>>;
+        ) -> Option<Retained<NSDictionary<KeyType, ObjectType>>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated]
@@ -275,14 +283,14 @@ extern_methods!(
     /// NSDictionaryCreation
     unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[method_id(@__retain_semantics Other dictionary)]
-        pub unsafe fn dictionary() -> Id<Self>;
+        pub unsafe fn dictionary() -> Retained<Self>;
 
         #[cfg(feature = "NSObject")]
         #[method_id(@__retain_semantics Other dictionaryWithObject:forKey:)]
         pub unsafe fn dictionaryWithObject_forKey(
             object: &ObjectType,
             key: &ProtocolObject<dyn NSCopying>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSObject")]
         #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:count:)]
@@ -290,32 +298,32 @@ extern_methods!(
             objects: *mut NonNull<ObjectType>,
             keys: *mut NonNull<ProtocolObject<dyn NSCopying>>,
             cnt: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other dictionaryWithDictionary:)]
         pub unsafe fn dictionaryWithDictionary(
             dict: &NSDictionary<KeyType, ObjectType>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObject"))]
         #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:)]
         pub unsafe fn dictionaryWithObjects_forKeys(
             objects: &NSArray<ObjectType>,
             keys: &NSArray<ProtocolObject<dyn NSCopying>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithDictionary:)]
         pub unsafe fn initWithDictionary(
             this: Allocated<Self>,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithDictionary:copyItems:)]
         pub unsafe fn initWithDictionary_copyItems(
             this: Allocated<Self>,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
             flag: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObject"))]
         #[method_id(@__retain_semantics Init initWithObjects:forKeys:)]
@@ -323,7 +331,7 @@ extern_methods!(
             this: Allocated<Self>,
             objects: &NSArray<ObjectType>,
             keys: &NSArray<ProtocolObject<dyn NSCopying>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -333,14 +341,14 @@ extern_methods!(
     /// NSDictionaryCreation
     unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
         #[method_id(@__retain_semantics Other dictionary)]
-        pub unsafe fn dictionary() -> Id<Self>;
+        pub unsafe fn dictionary() -> Retained<Self>;
 
         #[cfg(feature = "NSObject")]
         #[method_id(@__retain_semantics Other dictionaryWithObject:forKey:)]
         pub unsafe fn dictionaryWithObject_forKey(
             object: &ObjectType,
             key: &ProtocolObject<dyn NSCopying>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSObject")]
         #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:count:)]
@@ -348,32 +356,32 @@ extern_methods!(
             objects: *mut NonNull<ObjectType>,
             keys: *mut NonNull<ProtocolObject<dyn NSCopying>>,
             cnt: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other dictionaryWithDictionary:)]
         pub unsafe fn dictionaryWithDictionary(
             dict: &NSDictionary<KeyType, ObjectType>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObject"))]
         #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:)]
         pub unsafe fn dictionaryWithObjects_forKeys(
             objects: &NSArray<ObjectType>,
             keys: &NSArray<ProtocolObject<dyn NSCopying>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithDictionary:)]
         pub unsafe fn initWithDictionary(
             this: Allocated<Self>,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithDictionary:copyItems:)]
         pub unsafe fn initWithDictionary_copyItems(
             this: Allocated<Self>,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
             flag: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObject"))]
         #[method_id(@__retain_semantics Init initWithObjects:forKeys:)]
@@ -381,7 +389,7 @@ extern_methods!(
             this: Allocated<Self>,
             objects: &NSArray<ObjectType>,
             keys: &NSArray<ProtocolObject<dyn NSCopying>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -434,14 +442,20 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Allocated<Self>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCapacity:)]
-        pub unsafe fn initWithCapacity(this: Allocated<Self>, num_items: NSUInteger) -> Id<Self>;
+        pub unsafe fn initWithCapacity(
+            this: Allocated<Self>,
+            num_items: NSUInteger,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -455,7 +469,7 @@ extern_methods!(
             objects: *mut NonNull<ObjectType>,
             keys: *mut NonNull<ProtocolObject<dyn NSCopying>>,
             cnt: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -463,13 +477,15 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
         #[method_id(@__retain_semantics New new)]
-        pub fn new() -> Id<Self>;
+        pub fn new() -> Retained<Self>;
     }
 );
 
-impl<KeyType: Message, ObjectType: Message> DefaultId for NSMutableDictionary<KeyType, ObjectType> {
+impl<KeyType: Message, ObjectType: Message> DefaultRetained
+    for NSMutableDictionary<KeyType, ObjectType>
+{
     #[inline]
-    fn default_id() -> Id<Self> {
+    fn default_id() -> Retained<Self> {
         Self::new()
     }
 }
@@ -510,33 +526,33 @@ extern_methods!(
     /// NSMutableDictionaryCreation
     unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
         #[method_id(@__retain_semantics Other dictionaryWithCapacity:)]
-        pub unsafe fn dictionaryWithCapacity(num_items: NSUInteger) -> Id<Self>;
+        pub unsafe fn dictionaryWithCapacity(num_items: NSUInteger) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other dictionaryWithContentsOfFile:)]
         pub unsafe fn dictionaryWithContentsOfFile(
             path: &NSString,
-        ) -> Option<Id<NSMutableDictionary<KeyType, ObjectType>>>;
+        ) -> Option<Retained<NSMutableDictionary<KeyType, ObjectType>>>;
 
         #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other dictionaryWithContentsOfURL:)]
         pub unsafe fn dictionaryWithContentsOfURL(
             url: &NSURL,
-        ) -> Option<Id<NSMutableDictionary<KeyType, ObjectType>>>;
+        ) -> Option<Retained<NSMutableDictionary<KeyType, ObjectType>>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
         pub unsafe fn initWithContentsOfFile(
             this: Allocated<Self>,
             path: &NSString,
-        ) -> Option<Id<NSMutableDictionary<KeyType, ObjectType>>>;
+        ) -> Option<Retained<NSMutableDictionary<KeyType, ObjectType>>>;
 
         #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
             url: &NSURL,
-        ) -> Option<Id<NSMutableDictionary<KeyType, ObjectType>>>;
+        ) -> Option<Retained<NSMutableDictionary<KeyType, ObjectType>>>;
     }
 );
 
@@ -547,7 +563,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharedKeySetForKeys:)]
         pub unsafe fn sharedKeySetForKeys(
             keys: &NSArray<ProtocolObject<dyn NSCopying>>,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
     }
 );
 
@@ -557,6 +573,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dictionaryWithSharedKeySet:)]
         pub unsafe fn dictionaryWithSharedKeySet(
             keyset: &AnyObject,
-        ) -> Id<NSMutableDictionary<KeyType, ObjectType>>;
+        ) -> Retained<NSMutableDictionary<KeyType, ObjectType>>;
     }
 );

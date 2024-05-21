@@ -81,74 +81,76 @@ unsafe impl NSObjectProtocol for NSImage {}
 extern_methods!(
     unsafe impl NSImage {
         #[method_id(@__retain_semantics Other imageNamed:)]
-        pub unsafe fn imageNamed(name: &NSImageName) -> Option<Id<NSImage>>;
+        pub unsafe fn imageNamed(name: &NSImageName) -> Option<Retained<NSImage>>;
 
         #[method_id(@__retain_semantics Other imageWithSystemSymbolName:accessibilityDescription:)]
         pub unsafe fn imageWithSystemSymbolName_accessibilityDescription(
             name: &NSString,
             description: Option<&NSString>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other imageWithSystemSymbolName:variableValue:accessibilityDescription:)]
         pub unsafe fn imageWithSystemSymbolName_variableValue_accessibilityDescription(
             name: &NSString,
             value: c_double,
             description: Option<&NSString>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other imageWithSymbolName:variableValue:)]
         pub unsafe fn imageWithSymbolName_variableValue(
             name: &NSString,
             value: c_double,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other imageWithSymbolName:bundle:variableValue:)]
         pub unsafe fn imageWithSymbolName_bundle_variableValue(
             name: &NSString,
             bundle: Option<&NSBundle>,
             value: c_double,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithSize:)]
-        pub unsafe fn initWithSize(this: Allocated<Self>, size: NSSize) -> Id<Self>;
+        pub unsafe fn initWithSize(this: Allocated<Self>, size: NSSize) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithData:)]
-        pub fn initWithData(this: Allocated<Self>, data: &NSData) -> Option<Id<Self>>;
+        pub fn initWithData(this: Allocated<Self>, data: &NSData) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
         pub unsafe fn initWithContentsOfFile(
             this: Allocated<Self>,
             file_name: &NSString,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
-        pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL)
-            -> Option<Id<Self>>;
+        pub unsafe fn initWithContentsOfURL(
+            this: Allocated<Self>,
+            url: &NSURL,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initByReferencingFile:)]
         pub fn initByReferencingFile(
             this: Allocated<Self>,
             file_name: &NSString,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initByReferencingURL:)]
-        pub unsafe fn initByReferencingURL(this: Allocated<Self>, url: &NSURL) -> Id<Self>;
+        pub unsafe fn initByReferencingURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Init initWithPasteboard:)]
         pub unsafe fn initWithPasteboard(
             this: Allocated<Self>,
             pasteboard: &NSPasteboard,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithDataIgnoringOrientation:)]
         pub unsafe fn initWithDataIgnoringOrientation(
             this: Allocated<Self>,
             data: &NSData,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Other imageWithSize:flipped:drawingHandler:)]
@@ -156,7 +158,7 @@ extern_methods!(
             size: NSSize,
             drawing_handler_should_be_called_with_flipped_context: bool,
             drawing_handler: &block2::Block<dyn Fn(NSRect) -> Bool>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
@@ -168,11 +170,11 @@ extern_methods!(
         pub unsafe fn setName(&self, string: Option<&NSImageName>) -> bool;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSImageName>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSImageName>>;
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
+        pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         #[method(setBackgroundColor:)]
@@ -252,7 +254,7 @@ extern_methods!(
         pub unsafe fn recache(&self);
 
         #[method_id(@__retain_semantics Other TIFFRepresentation)]
-        pub unsafe fn TIFFRepresentation(&self) -> Option<Id<NSData>>;
+        pub unsafe fn TIFFRepresentation(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSBitmapImageRep")]
         #[method_id(@__retain_semantics Other TIFFRepresentationUsingCompression:factor:)]
@@ -260,11 +262,11 @@ extern_methods!(
             &self,
             comp: NSTIFFCompression,
             factor: c_float,
-        ) -> Option<Id<NSData>>;
+        ) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSImageRep")]
         #[method_id(@__retain_semantics Other representations)]
-        pub unsafe fn representations(&self) -> Id<NSArray<NSImageRep>>;
+        pub unsafe fn representations(&self) -> Retained<NSArray<NSImageRep>>;
 
         #[cfg(feature = "NSImageRep")]
         #[method(addRepresentations:)]
@@ -282,16 +284,16 @@ extern_methods!(
         pub unsafe fn isValid(&self) -> bool;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSImageDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSImageDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSImageDelegate>>);
 
         #[method_id(@__retain_semantics Other imageTypes)]
-        pub unsafe fn imageTypes() -> Id<NSArray<NSString>>;
+        pub unsafe fn imageTypes() -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other imageUnfilteredTypes)]
-        pub unsafe fn imageUnfilteredTypes() -> Id<NSArray<NSString>>;
+        pub unsafe fn imageUnfilteredTypes() -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[method(canInitWithPasteboard:)]
@@ -316,7 +318,7 @@ extern_methods!(
         pub unsafe fn setTemplate(&self, template: bool);
 
         #[method_id(@__retain_semantics Other accessibilityDescription)]
-        pub unsafe fn accessibilityDescription(&self) -> Option<Id<NSString>>;
+        pub unsafe fn accessibilityDescription(&self) -> Option<Retained<NSString>>;
 
         #[method(setAccessibilityDescription:)]
         pub unsafe fn setAccessibilityDescription(
@@ -331,7 +333,7 @@ extern_methods!(
             rect: NSRect,
             reference_context: Option<&NSGraphicsContext>,
             hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
-        ) -> Option<Id<NSImageRep>>;
+        ) -> Option<Retained<NSImageRep>>;
 
         #[cfg(all(feature = "NSGraphicsContext", feature = "NSImageRep"))]
         #[method(hitTestRect:withImageDestinationRect:context:hints:flipped:)]
@@ -354,7 +356,7 @@ extern_methods!(
         pub unsafe fn layerContentsForContentsScale(
             &self,
             layer_contents_scale: CGFloat,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
 
         #[method(capInsets)]
         pub unsafe fn capInsets(&self) -> NSEdgeInsets;
@@ -372,16 +374,16 @@ extern_methods!(
         pub unsafe fn imageWithSymbolConfiguration(
             &self,
             configuration: &NSImageSymbolConfiguration,
-        ) -> Option<Id<NSImage>>;
+        ) -> Option<Retained<NSImage>>;
 
         #[method_id(@__retain_semantics Other symbolConfiguration)]
-        pub unsafe fn symbolConfiguration(&self) -> Id<NSImageSymbolConfiguration>;
+        pub unsafe fn symbolConfiguration(&self) -> Retained<NSImageSymbolConfiguration>;
 
         #[method_id(@__retain_semantics Other imageWithLocale:)]
-        pub unsafe fn imageWithLocale(&self, locale: Option<&NSLocale>) -> Id<NSImage>;
+        pub unsafe fn imageWithLocale(&self, locale: Option<&NSLocale>) -> Retained<NSImage>;
 
         #[method_id(@__retain_semantics Other locale)]
-        pub unsafe fn locale(&self) -> Option<Id<NSLocale>>;
+        pub unsafe fn locale(&self) -> Option<Retained<NSLocale>>;
     }
 );
 
@@ -389,10 +391,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSImage {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -426,7 +428,7 @@ extern_protocol!(
             &self,
             sender: &NSImage,
             rect: NSRect,
-        ) -> Option<Id<NSImage>>;
+        ) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImageRep")]
         #[deprecated = "This method is no longer called on 10.4 or later."]
@@ -470,13 +472,13 @@ extern_category!(
     /// Category on [`NSBundle`].
     pub unsafe trait NSBundleImageExtension {
         #[method_id(@__retain_semantics Other imageForResource:)]
-        unsafe fn imageForResource(&self, name: &NSImageName) -> Option<Id<NSImage>>;
+        unsafe fn imageForResource(&self, name: &NSImageName) -> Option<Retained<NSImage>>;
 
         #[method_id(@__retain_semantics Other pathForImageResource:)]
-        unsafe fn pathForImageResource(&self, name: &NSImageName) -> Option<Id<NSString>>;
+        unsafe fn pathForImageResource(&self, name: &NSImageName) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other URLForImageResource:)]
-        unsafe fn URLForImageResource(&self, name: &NSImageName) -> Option<Id<NSURL>>;
+        unsafe fn URLForImageResource(&self, name: &NSImageName) -> Option<Retained<NSURL>>;
     }
 
     unsafe impl NSBundleImageExtension for NSBundle {}
@@ -487,21 +489,21 @@ extern_methods!(
     unsafe impl NSImage {
         #[deprecated = "Use +imageUnfilteredTypes instead"]
         #[method_id(@__retain_semantics Other imageUnfilteredFileTypes)]
-        pub unsafe fn imageUnfilteredFileTypes() -> Id<NSArray<NSString>>;
+        pub unsafe fn imageUnfilteredFileTypes() -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[deprecated = "Use +imageUnfilteredTypes instead"]
         #[method_id(@__retain_semantics Other imageUnfilteredPasteboardTypes)]
-        pub unsafe fn imageUnfilteredPasteboardTypes() -> Id<NSArray<NSPasteboardType>>;
+        pub unsafe fn imageUnfilteredPasteboardTypes() -> Retained<NSArray<NSPasteboardType>>;
 
         #[deprecated = "Use +imageTypes instead"]
         #[method_id(@__retain_semantics Other imageFileTypes)]
-        pub unsafe fn imageFileTypes() -> Id<NSArray<NSString>>;
+        pub unsafe fn imageFileTypes() -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[deprecated = "Use +imageTypes instead"]
         #[method_id(@__retain_semantics Other imagePasteboardTypes)]
-        pub unsafe fn imagePasteboardTypes() -> Id<NSArray<NSPasteboardType>>;
+        pub unsafe fn imagePasteboardTypes() -> Retained<NSArray<NSPasteboardType>>;
 
         #[cfg(feature = "NSImageRep")]
         #[deprecated = "Use -[NSImage bestRepresentationForRect:context:hints:] instead.  Any deviceDescription dictionary is also a valid hints dictionary."]
@@ -509,7 +511,7 @@ extern_methods!(
         pub unsafe fn bestRepresentationForDevice(
             &self,
             device_description: Option<&NSDictionary>,
-        ) -> Option<Id<NSImageRep>>;
+        ) -> Option<Retained<NSImageRep>>;
 
         #[deprecated = "This method is incompatible with resolution-independent drawing and should not be used. Instead, use +[NSImage imageWithSize:flipped:drawingHandler:] to create a block-based image describing the desired image drawing, or use +[NSGraphicsContext graphicsContextWithBitmapImageRep:] to manipulate specific bitmap image representations."]
         #[method(lockFocus)]
@@ -1230,52 +1232,55 @@ extern_methods!(
             point_size: CGFloat,
             weight: NSFontWeight,
             scale: NSImageSymbolScale,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSFontDescriptor")]
         #[method_id(@__retain_semantics Other configurationWithPointSize:weight:)]
         pub unsafe fn configurationWithPointSize_weight(
             point_size: CGFloat,
             weight: NSFontWeight,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSFontDescriptor")]
         #[method_id(@__retain_semantics Other configurationWithTextStyle:scale:)]
         pub unsafe fn configurationWithTextStyle_scale(
             style: &NSFontTextStyle,
             scale: NSImageSymbolScale,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSFontDescriptor")]
         #[method_id(@__retain_semantics Other configurationWithTextStyle:)]
-        pub unsafe fn configurationWithTextStyle(style: &NSFontTextStyle) -> Id<Self>;
+        pub unsafe fn configurationWithTextStyle(style: &NSFontTextStyle) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationWithScale:)]
-        pub unsafe fn configurationWithScale(scale: NSImageSymbolScale) -> Id<Self>;
+        pub unsafe fn configurationWithScale(scale: NSImageSymbolScale) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationPreferringMonochrome)]
-        pub unsafe fn configurationPreferringMonochrome() -> Id<Self>;
+        pub unsafe fn configurationPreferringMonochrome() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationPreferringHierarchical)]
-        pub unsafe fn configurationPreferringHierarchical() -> Id<Self>;
+        pub unsafe fn configurationPreferringHierarchical() -> Retained<Self>;
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other configurationWithHierarchicalColor:)]
-        pub unsafe fn configurationWithHierarchicalColor(hierarchical_color: &NSColor) -> Id<Self>;
+        pub unsafe fn configurationWithHierarchicalColor(
+            hierarchical_color: &NSColor,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other configurationWithPaletteColors:)]
-        pub unsafe fn configurationWithPaletteColors(palette_colors: &NSArray<NSColor>)
-            -> Id<Self>;
+        pub unsafe fn configurationWithPaletteColors(
+            palette_colors: &NSArray<NSColor>,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationPreferringMulticolor)]
-        pub unsafe fn configurationPreferringMulticolor() -> Id<Self>;
+        pub unsafe fn configurationPreferringMulticolor() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationByApplyingConfiguration:)]
         pub unsafe fn configurationByApplyingConfiguration(
             &self,
             configuration: &NSImageSymbolConfiguration,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -1283,9 +1288,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSImageSymbolConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

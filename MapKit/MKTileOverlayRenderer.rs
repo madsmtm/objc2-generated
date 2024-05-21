@@ -28,7 +28,7 @@ extern_methods!(
         pub unsafe fn initWithTileOverlay(
             this: Allocated<Self>,
             overlay: &MKTileOverlay,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(reloadData)]
         pub unsafe fn reloadData(&self);
@@ -44,7 +44,7 @@ extern_methods!(
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -53,9 +53,9 @@ extern_methods!(
     #[cfg(feature = "MKOverlayRenderer")]
     unsafe impl MKTileOverlayRenderer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

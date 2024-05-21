@@ -24,16 +24,19 @@ unsafe impl NSObjectProtocol for ASWebAuthenticationSessionCallback {}
 extern_methods!(
     unsafe impl ASWebAuthenticationSessionCallback {
         #[method_id(@__retain_semantics Other callbackWithCustomScheme:)]
-        pub unsafe fn callbackWithCustomScheme(custom_scheme: &NSString) -> Id<Self>;
+        pub unsafe fn callbackWithCustomScheme(custom_scheme: &NSString) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other callbackWithHTTPSHost:path:)]
-        pub unsafe fn callbackWithHTTPSHost_path(host: &NSString, path: &NSString) -> Id<Self>;
+        pub unsafe fn callbackWithHTTPSHost_path(
+            host: &NSString,
+            path: &NSString,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method(matchesURL:)]
         pub unsafe fn matchesURL(&self, url: &NSURL) -> bool;

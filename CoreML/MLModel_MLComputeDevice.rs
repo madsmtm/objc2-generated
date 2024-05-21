@@ -12,6 +12,6 @@ extern_methods!(
         #[cfg(feature = "MLComputeDeviceProtocol")]
         #[method_id(@__retain_semantics Other availableComputeDevices)]
         pub unsafe fn availableComputeDevices(
-        ) -> Id<NSArray<ProtocolObject<dyn MLComputeDeviceProtocol>>>;
+        ) -> Retained<NSArray<ProtocolObject<dyn MLComputeDeviceProtocol>>>;
     }
 );

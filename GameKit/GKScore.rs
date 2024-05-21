@@ -29,7 +29,7 @@ extern_methods!(
         pub unsafe fn initWithLeaderboardIdentifier(
             this: Allocated<Self>,
             identifier: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Init initWithLeaderboardIdentifier:player:)]
@@ -37,7 +37,7 @@ extern_methods!(
             this: Allocated<Self>,
             identifier: &NSString,
             player: &GKPlayer,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method(value)]
@@ -49,10 +49,10 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other formattedValue)]
-        pub unsafe fn formattedValue(&self) -> Option<Id<NSString>>;
+        pub unsafe fn formattedValue(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other leaderboardIdentifier)]
-        pub unsafe fn leaderboardIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn leaderboardIdentifier(&self) -> Retained<NSString>;
 
         #[method(setLeaderboardIdentifier:)]
         pub unsafe fn setLeaderboardIdentifier(&self, leaderboard_identifier: &NSString);
@@ -65,11 +65,11 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other date)]
-        pub unsafe fn date(&self) -> Id<NSDate>;
+        pub unsafe fn date(&self) -> Retained<NSDate>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other player)]
-        pub unsafe fn player(&self) -> Option<Id<GKPlayer>>;
+        pub unsafe fn player(&self) -> Option<Retained<GKPlayer>>;
 
         #[deprecated]
         #[method(rank)]
@@ -94,10 +94,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKScore {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -117,11 +117,11 @@ extern_methods!(
         pub unsafe fn initWithCategory(
             this: Allocated<Self>,
             category: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other category)]
-        pub unsafe fn category(&self) -> Option<Id<NSString>>;
+        pub unsafe fn category(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method(setCategory:)]
@@ -138,10 +138,10 @@ extern_methods!(
             this: Allocated<Self>,
             identifier: &NSString,
             player_id: &NSString,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other playerID)]
-        pub unsafe fn playerID(&self) -> Option<Id<NSString>>;
+        pub unsafe fn playerID(&self) -> Option<Retained<NSString>>;
     }
 );

@@ -20,19 +20,19 @@ unsafe impl NSObjectProtocol for NSPropertyMapping {}
 extern_methods!(
     unsafe impl NSPropertyMapping {
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other valueExpression)]
-        pub unsafe fn valueExpression(&self) -> Option<Id<NSExpression>>;
+        pub unsafe fn valueExpression(&self) -> Option<Retained<NSExpression>>;
 
         #[method(setValueExpression:)]
         pub unsafe fn setValueExpression(&self, value_expression: Option<&NSExpression>);
 
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
+        pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
@@ -43,9 +43,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPropertyMapping {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

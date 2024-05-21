@@ -31,11 +31,11 @@ extern_methods!(
             this: Allocated<Self>,
             network_rule: &NENetworkRule,
             action: NEFilterAction,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NENetworkRule")]
         #[method_id(@__retain_semantics Other networkRule)]
-        pub unsafe fn networkRule(&self) -> Id<NENetworkRule>;
+        pub unsafe fn networkRule(&self) -> Retained<NENetworkRule>;
 
         #[cfg(feature = "NEFilterProvider")]
         #[method(action)]
@@ -47,9 +47,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterRule {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

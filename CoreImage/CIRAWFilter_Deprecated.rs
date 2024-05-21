@@ -141,17 +141,17 @@ extern_methods!(
         pub unsafe fn filterWithImageURL_options(
             url: Option<&NSURL>,
             options: Option<&NSDictionary<CIRAWFilterOption, AnyObject>>,
-        ) -> Option<Id<CIFilter>>;
+        ) -> Option<Retained<CIFilter>>;
 
         #[deprecated = "Use new CIRAWFilter class instead."]
         #[method_id(@__retain_semantics Other filterWithImageData:options:)]
         pub unsafe fn filterWithImageData_options(
             data: Option<&NSData>,
             options: Option<&NSDictionary<CIRAWFilterOption, AnyObject>>,
-        ) -> Option<Id<CIFilter>>;
+        ) -> Option<Retained<CIFilter>>;
 
         #[deprecated = "Use new CIRAWFilter class instead."]
         #[method_id(@__retain_semantics Other supportedRawCameraModels)]
-        pub unsafe fn supportedRawCameraModels() -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn supportedRawCameraModels() -> Option<Retained<NSArray<NSString>>>;
     }
 );

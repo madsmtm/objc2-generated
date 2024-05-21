@@ -8,7 +8,7 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait MLWritable: NSObjectProtocol {
         #[method(writeToURL:error:_)]
-        unsafe fn writeToURL_error(&self, url: &NSURL) -> Result<(), Id<NSError>>;
+        unsafe fn writeToURL_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
     }
 
     unsafe impl ProtocolType for dyn MLWritable {}

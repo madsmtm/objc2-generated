@@ -27,12 +27,14 @@ extern_methods!(
         #[cfg(feature = "MLCMatMulDescriptor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptor)]
-        pub unsafe fn descriptor(&self) -> Id<MLCMatMulDescriptor>;
+        pub unsafe fn descriptor(&self) -> Retained<MLCMatMulDescriptor>;
 
         #[cfg(feature = "MLCMatMulDescriptor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithDescriptor:)]
-        pub unsafe fn layerWithDescriptor(descriptor: &MLCMatMulDescriptor) -> Option<Id<Self>>;
+        pub unsafe fn layerWithDescriptor(
+            descriptor: &MLCMatMulDescriptor,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -42,10 +44,10 @@ extern_methods!(
     unsafe impl MLCMatMulLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

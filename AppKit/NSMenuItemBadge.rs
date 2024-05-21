@@ -45,29 +45,30 @@ unsafe impl NSObjectProtocol for NSMenuItemBadge {}
 extern_methods!(
     unsafe impl NSMenuItemBadge {
         #[method_id(@__retain_semantics Other updatesWithCount:)]
-        pub unsafe fn updatesWithCount(item_count: NSInteger) -> Id<Self>;
+        pub unsafe fn updatesWithCount(item_count: NSInteger) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New newItemsWithCount:)]
-        pub unsafe fn newItemsWithCount(item_count: NSInteger) -> Id<Self>;
+        pub unsafe fn newItemsWithCount(item_count: NSInteger) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other alertsWithCount:)]
-        pub unsafe fn alertsWithCount(item_count: NSInteger) -> Id<Self>;
+        pub unsafe fn alertsWithCount(item_count: NSInteger) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCount:type:)]
         pub unsafe fn initWithCount_type(
             this: Allocated<Self>,
             item_count: NSInteger,
             r#type: NSMenuItemBadgeType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCount:)]
-        pub unsafe fn initWithCount(this: Allocated<Self>, item_count: NSInteger) -> Id<Self>;
+        pub unsafe fn initWithCount(this: Allocated<Self>, item_count: NSInteger)
+            -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithString:)]
-        pub unsafe fn initWithString(this: Allocated<Self>, string: &NSString) -> Id<Self>;
+        pub unsafe fn initWithString(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(itemCount)]
         pub unsafe fn itemCount(&self) -> NSInteger;
@@ -76,7 +77,7 @@ extern_methods!(
         pub unsafe fn r#type(&self) -> NSMenuItemBadgeType;
 
         #[method_id(@__retain_semantics Other stringValue)]
-        pub unsafe fn stringValue(&self) -> Option<Id<NSString>>;
+        pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
     }
 );
 
@@ -84,6 +85,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMenuItemBadge {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

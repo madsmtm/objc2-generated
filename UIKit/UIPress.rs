@@ -88,25 +88,25 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "UIWindow"))]
         #[method_id(@__retain_semantics Other window)]
-        pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Id<UIWindow>>;
+        pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Retained<UIWindow>>;
 
         #[cfg(feature = "UIResponder")]
         #[method_id(@__retain_semantics Other responder)]
-        pub unsafe fn responder(&self, mtm: MainThreadMarker) -> Option<Id<UIResponder>>;
+        pub unsafe fn responder(&self, mtm: MainThreadMarker) -> Option<Retained<UIResponder>>;
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[method_id(@__retain_semantics Other gestureRecognizers)]
         pub unsafe fn gestureRecognizers(
             &self,
             mtm: MainThreadMarker,
-        ) -> Option<Id<NSArray<UIGestureRecognizer>>>;
+        ) -> Option<Retained<NSArray<UIGestureRecognizer>>>;
 
         #[method(force)]
         pub unsafe fn force(&self) -> CGFloat;
 
         #[cfg(feature = "UIKey")]
         #[method_id(@__retain_semantics Other key)]
-        pub unsafe fn key(&self, mtm: MainThreadMarker) -> Option<Id<UIKey>>;
+        pub unsafe fn key(&self, mtm: MainThreadMarker) -> Option<Retained<UIKey>>;
     }
 );
 
@@ -114,9 +114,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPress {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

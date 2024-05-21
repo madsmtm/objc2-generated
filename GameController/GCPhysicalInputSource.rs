@@ -36,13 +36,13 @@ extern_protocol!(
     pub unsafe trait GCPhysicalInputSource: NSObjectProtocol {
         #[cfg(feature = "GCInputNames")]
         #[method_id(@__retain_semantics Other elementAliases)]
-        unsafe fn elementAliases(&self) -> Id<NSSet<NSString>>;
+        unsafe fn elementAliases(&self) -> Retained<NSSet<NSString>>;
 
         #[method_id(@__retain_semantics Other elementLocalizedName)]
-        unsafe fn elementLocalizedName(&self) -> Option<Id<NSString>>;
+        unsafe fn elementLocalizedName(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other sfSymbolsName)]
-        unsafe fn sfSymbolsName(&self) -> Option<Id<NSString>>;
+        unsafe fn sfSymbolsName(&self) -> Option<Retained<NSString>>;
 
         #[method(direction)]
         unsafe fn direction(&self) -> GCPhysicalInputSourceDirection;

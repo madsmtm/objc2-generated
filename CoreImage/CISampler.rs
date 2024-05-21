@@ -23,18 +23,18 @@ extern_methods!(
     unsafe impl CISampler {
         #[cfg(feature = "CIImage")]
         #[method_id(@__retain_semantics Other samplerWithImage:)]
-        pub unsafe fn samplerWithImage(im: &CIImage) -> Id<Self>;
+        pub unsafe fn samplerWithImage(im: &CIImage) -> Retained<Self>;
 
         #[cfg(feature = "CIImage")]
         #[method_id(@__retain_semantics Other samplerWithImage:options:)]
         pub unsafe fn samplerWithImage_options(
             im: &CIImage,
             dict: Option<&NSDictionary>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CIImage")]
         #[method_id(@__retain_semantics Init initWithImage:)]
-        pub unsafe fn initWithImage(this: Allocated<Self>, im: &CIImage) -> Id<Self>;
+        pub unsafe fn initWithImage(this: Allocated<Self>, im: &CIImage) -> Retained<Self>;
 
         #[cfg(feature = "CIImage")]
         #[method_id(@__retain_semantics Init initWithImage:options:)]
@@ -42,11 +42,11 @@ extern_methods!(
             this: Allocated<Self>,
             im: &CIImage,
             dict: Option<&NSDictionary>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CIFilterShape")]
         #[method_id(@__retain_semantics Other definition)]
-        pub unsafe fn definition(&self) -> Id<CIFilterShape>;
+        pub unsafe fn definition(&self) -> Retained<CIFilterShape>;
 
         #[method(extent)]
         pub unsafe fn extent(&self) -> CGRect;
@@ -57,10 +57,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CISampler {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

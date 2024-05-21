@@ -123,7 +123,7 @@ extern_protocol!(
         unsafe fn preferredLayoutAttributesFittingAttributes(
             &self,
             layout_attributes: &NSCollectionViewLayoutAttributes,
-        ) -> Id<NSCollectionViewLayoutAttributes>;
+        ) -> Retained<NSCollectionViewLayoutAttributes>;
     }
 
     #[cfg(feature = "NSUserInterfaceItemIdentification")]
@@ -143,7 +143,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other sectionCollapseButton)]
-        unsafe fn sectionCollapseButton(&self) -> Option<Id<NSButton>>;
+        unsafe fn sectionCollapseButton(&self) -> Option<Retained<NSButton>>;
 
         #[cfg(all(
             feature = "NSButton",
@@ -215,7 +215,7 @@ extern_methods!(
     unsafe impl NSCollectionViewItem {
         #[cfg(feature = "NSView")]
         #[method_id(@__retain_semantics Other collectionView)]
-        pub unsafe fn collectionView(&self) -> Option<Id<NSCollectionView>>;
+        pub unsafe fn collectionView(&self) -> Option<Retained<NSCollectionView>>;
 
         #[method(isSelected)]
         pub unsafe fn isSelected(&self) -> bool;
@@ -231,7 +231,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSControl", feature = "NSImageView", feature = "NSView"))]
         #[method_id(@__retain_semantics Other imageView)]
-        pub unsafe fn imageView(&self) -> Option<Id<NSImageView>>;
+        pub unsafe fn imageView(&self) -> Option<Retained<NSImageView>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSImageView", feature = "NSView"))]
         #[method(setImageView:)]
@@ -239,7 +239,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSControl", feature = "NSTextField", feature = "NSView"))]
         #[method_id(@__retain_semantics Other textField)]
-        pub unsafe fn textField(&self) -> Option<Id<NSTextField>>;
+        pub unsafe fn textField(&self) -> Option<Retained<NSTextField>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSTextField", feature = "NSView"))]
         #[method(setTextField:)]
@@ -247,7 +247,8 @@ extern_methods!(
 
         #[cfg(feature = "NSDraggingItem")]
         #[method_id(@__retain_semantics Other draggingImageComponents)]
-        pub unsafe fn draggingImageComponents(&self) -> Id<NSArray<NSDraggingImageComponent>>;
+        pub unsafe fn draggingImageComponents(&self)
+            -> Retained<NSArray<NSDraggingImageComponent>>;
     }
 );
 
@@ -261,10 +262,13 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -273,7 +277,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSCollectionViewItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -282,7 +286,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSCollectionViewItem {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -344,7 +348,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSCollectionViewDataSource>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSCollectionViewDataSource>>>;
 
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
@@ -355,7 +359,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other prefetchDataSource)]
         pub unsafe fn prefetchDataSource(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSCollectionViewPrefetching>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSCollectionViewPrefetching>>>;
 
         #[method(setPrefetchDataSource:)]
         pub unsafe fn setPrefetchDataSource(
@@ -364,7 +368,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other content)]
-        pub unsafe fn content(&self) -> Id<NSArray<AnyObject>>;
+        pub unsafe fn content(&self) -> Retained<NSArray<AnyObject>>;
 
         #[method(setContent:)]
         pub unsafe fn setContent(&self, content: &NSArray<AnyObject>);
@@ -373,7 +377,9 @@ extern_methods!(
         pub unsafe fn reloadData(&self);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSCollectionViewDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn NSCollectionViewDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -382,7 +388,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other backgroundView)]
-        pub unsafe fn backgroundView(&self) -> Option<Id<NSView>>;
+        pub unsafe fn backgroundView(&self) -> Option<Retained<NSView>>;
 
         #[method(setBackgroundView:)]
         pub unsafe fn setBackgroundView(&self, background_view: Option<&NSView>);
@@ -398,7 +404,7 @@ extern_methods!(
 
         #[cfg(feature = "NSCollectionViewLayout")]
         #[method_id(@__retain_semantics Other collectionViewLayout)]
-        pub unsafe fn collectionViewLayout(&self) -> Option<Id<NSCollectionViewLayout>>;
+        pub unsafe fn collectionViewLayout(&self) -> Option<Retained<NSCollectionViewLayout>>;
 
         #[cfg(feature = "NSCollectionViewLayout")]
         #[method(setCollectionViewLayout:)]
@@ -412,7 +418,7 @@ extern_methods!(
         pub unsafe fn layoutAttributesForItemAtIndexPath(
             &self,
             index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
+        ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(feature = "NSCollectionViewLayout")]
         #[method_id(@__retain_semantics Other layoutAttributesForSupplementaryElementOfKind:atIndexPath:)]
@@ -420,7 +426,7 @@ extern_methods!(
             &self,
             kind: &NSCollectionViewSupplementaryElementKind,
             index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
+        ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
         #[method(frameForItemAtIndex:)]
         pub unsafe fn frameForItemAtIndex(&self, index: NSUInteger) -> NSRect;
@@ -434,7 +440,7 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other backgroundColors)]
-        pub unsafe fn backgroundColors(&self) -> Id<NSArray<NSColor>>;
+        pub unsafe fn backgroundColors(&self) -> Retained<NSArray<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         #[method(setBackgroundColors:)]
@@ -468,13 +474,13 @@ extern_methods!(
         pub unsafe fn setAllowsMultipleSelection(&self, allows_multiple_selection: bool);
 
         #[method_id(@__retain_semantics Other selectionIndexes)]
-        pub unsafe fn selectionIndexes(&self) -> Id<NSIndexSet>;
+        pub unsafe fn selectionIndexes(&self) -> Retained<NSIndexSet>;
 
         #[method(setSelectionIndexes:)]
         pub unsafe fn setSelectionIndexes(&self, selection_indexes: &NSIndexSet);
 
         #[method_id(@__retain_semantics Other selectionIndexPaths)]
-        pub unsafe fn selectionIndexPaths(&self) -> Id<NSSet<NSIndexPath>>;
+        pub unsafe fn selectionIndexPaths(&self) -> Retained<NSSet<NSIndexPath>>;
 
         #[method(setSelectionIndexPaths:)]
         pub unsafe fn setSelectionIndexPaths(&self, selection_index_paths: &NSSet<NSIndexPath>);
@@ -538,7 +544,7 @@ extern_methods!(
             &self,
             identifier: &NSUserInterfaceItemIdentifier,
             index_path: &NSIndexPath,
-        ) -> Id<NSCollectionViewItem>;
+        ) -> Retained<NSCollectionViewItem>;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         #[method_id(@__retain_semantics Other makeSupplementaryViewOfKind:withIdentifier:forIndexPath:)]
@@ -547,35 +553,41 @@ extern_methods!(
             element_kind: &NSCollectionViewSupplementaryElementKind,
             identifier: &NSUserInterfaceItemIdentifier,
             index_path: &NSIndexPath,
-        ) -> Id<NSView>;
+        ) -> Retained<NSView>;
 
         #[cfg(feature = "NSViewController")]
         #[method_id(@__retain_semantics Other itemAtIndex:)]
-        pub unsafe fn itemAtIndex(&self, index: NSUInteger) -> Option<Id<NSCollectionViewItem>>;
+        pub unsafe fn itemAtIndex(
+            &self,
+            index: NSUInteger,
+        ) -> Option<Retained<NSCollectionViewItem>>;
 
         #[cfg(feature = "NSViewController")]
         #[method_id(@__retain_semantics Other itemAtIndexPath:)]
         pub unsafe fn itemAtIndexPath(
             &self,
             index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewItem>>;
+        ) -> Option<Retained<NSCollectionViewItem>>;
 
         #[cfg(feature = "NSViewController")]
         #[method_id(@__retain_semantics Other visibleItems)]
-        pub unsafe fn visibleItems(&self) -> Id<NSArray<NSCollectionViewItem>>;
+        pub unsafe fn visibleItems(&self) -> Retained<NSArray<NSCollectionViewItem>>;
 
         #[method_id(@__retain_semantics Other indexPathsForVisibleItems)]
-        pub unsafe fn indexPathsForVisibleItems(&self) -> Id<NSSet<NSIndexPath>>;
+        pub unsafe fn indexPathsForVisibleItems(&self) -> Retained<NSSet<NSIndexPath>>;
 
         #[cfg(feature = "NSViewController")]
         #[method_id(@__retain_semantics Other indexPathForItem:)]
         pub unsafe fn indexPathForItem(
             &self,
             item: &NSCollectionViewItem,
-        ) -> Option<Id<NSIndexPath>>;
+        ) -> Option<Retained<NSIndexPath>>;
 
         #[method_id(@__retain_semantics Other indexPathForItemAtPoint:)]
-        pub unsafe fn indexPathForItemAtPoint(&self, point: NSPoint) -> Option<Id<NSIndexPath>>;
+        pub unsafe fn indexPathForItemAtPoint(
+            &self,
+            point: NSPoint,
+        ) -> Option<Retained<NSIndexPath>>;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         #[method_id(@__retain_semantics Other supplementaryViewForElementKind:atIndexPath:)]
@@ -583,20 +595,20 @@ extern_methods!(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
             index_path: &NSIndexPath,
-        ) -> Option<Id<NSView>>;
+        ) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         #[method_id(@__retain_semantics Other visibleSupplementaryViewsOfKind:)]
         pub unsafe fn visibleSupplementaryViewsOfKind(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
-        ) -> Id<NSArray<NSView>>;
+        ) -> Retained<NSArray<NSView>>;
 
         #[method_id(@__retain_semantics Other indexPathsForVisibleSupplementaryElementsOfKind:)]
         pub unsafe fn indexPathsForVisibleSupplementaryElementsOfKind(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
-        ) -> Id<NSSet<NSIndexPath>>;
+        ) -> Retained<NSSet<NSIndexPath>>;
 
         #[method(insertSections:)]
         pub unsafe fn insertSections(&self, sections: &NSIndexSet);
@@ -659,7 +671,7 @@ extern_methods!(
             index_paths: &NSSet<NSIndexPath>,
             event: &NSEvent,
             drag_image_offset: NSPointPointer,
-        ) -> Id<NSImage>;
+        ) -> Retained<NSImage>;
 
         #[cfg(all(feature = "NSEvent", feature = "NSImage"))]
         #[method_id(@__retain_semantics Other draggingImageForItemsAtIndexes:withEvent:offset:)]
@@ -668,7 +680,7 @@ extern_methods!(
             indexes: &NSIndexSet,
             event: &NSEvent,
             drag_image_offset: NSPointPointer,
-        ) -> Id<NSImage>;
+        ) -> Retained<NSImage>;
     }
 );
 
@@ -677,10 +689,13 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSCollectionView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -689,7 +704,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSCollectionView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -698,7 +713,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSCollectionView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -724,7 +739,7 @@ extern_protocol!(
             &self,
             collection_view: &NSCollectionView,
             index_path: &NSIndexPath,
-        ) -> Id<NSCollectionViewItem>;
+        ) -> Retained<NSCollectionViewItem>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -742,7 +757,7 @@ extern_protocol!(
             collection_view: &NSCollectionView,
             kind: &NSCollectionViewSupplementaryElementKind,
             index_path: &NSIndexPath,
-        ) -> Id<NSView>;
+        ) -> Retained<NSView>;
     }
 
     unsafe impl ProtocolType for dyn NSCollectionViewDataSource {}
@@ -826,7 +841,7 @@ extern_protocol!(
             collection_view: &NSCollectionView,
             drop_url: &NSURL,
             index_paths: &NSSet<NSIndexPath>,
-        ) -> Id<NSArray<NSString>>;
+        ) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use NSFilePromiseReceiver objects instead"]
@@ -837,7 +852,7 @@ extern_protocol!(
             collection_view: &NSCollectionView,
             drop_url: &NSURL,
             indexes: &NSIndexSet,
-        ) -> Id<NSArray<NSString>>;
+        ) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(
             feature = "NSEvent",
@@ -853,7 +868,7 @@ extern_protocol!(
             index_paths: &NSSet<NSIndexPath>,
             event: &NSEvent,
             drag_image_offset: NSPointPointer,
-        ) -> Id<NSImage>;
+        ) -> Retained<NSImage>;
 
         #[cfg(all(
             feature = "NSEvent",
@@ -869,7 +884,7 @@ extern_protocol!(
             indexes: &NSIndexSet,
             event: &NSEvent,
             drag_image_offset: NSPointPointer,
-        ) -> Id<NSImage>;
+        ) -> Retained<NSImage>;
 
         #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -878,7 +893,7 @@ extern_protocol!(
             &self,
             collection_view: &NSCollectionView,
             dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
-            proposed_drop_index_path: &mut Id<NSIndexPath>,
+            proposed_drop_index_path: &mut Retained<NSIndexPath>,
             proposed_drop_operation: NonNull<NSCollectionViewDropOperation>,
         ) -> NSDragOperation;
 
@@ -922,7 +937,7 @@ extern_protocol!(
             &self,
             collection_view: &NSCollectionView,
             index_path: &NSIndexPath,
-        ) -> Option<Id<ProtocolObject<dyn NSPasteboardWriting>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSPasteboardWriting>>>;
 
         #[cfg(all(feature = "NSPasteboard", feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -931,7 +946,7 @@ extern_protocol!(
             &self,
             collection_view: &NSCollectionView,
             index: NSUInteger,
-        ) -> Option<Id<ProtocolObject<dyn NSPasteboardWriting>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSPasteboardWriting>>>;
 
         #[cfg(all(
             feature = "NSDraggingSession",
@@ -996,7 +1011,7 @@ extern_protocol!(
             collection_view: &NSCollectionView,
             index_paths: &NSSet<NSIndexPath>,
             highlight_state: NSCollectionViewItemHighlightState,
-        ) -> Id<NSSet<NSIndexPath>>;
+        ) -> Retained<NSSet<NSIndexPath>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -1015,7 +1030,7 @@ extern_protocol!(
             &self,
             collection_view: &NSCollectionView,
             index_paths: &NSSet<NSIndexPath>,
-        ) -> Id<NSSet<NSIndexPath>>;
+        ) -> Retained<NSSet<NSIndexPath>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -1024,7 +1039,7 @@ extern_protocol!(
             &self,
             collection_view: &NSCollectionView,
             index_paths: &NSSet<NSIndexPath>,
-        ) -> Id<NSSet<NSIndexPath>>;
+        ) -> Retained<NSSet<NSIndexPath>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -1107,7 +1122,7 @@ extern_protocol!(
             collection_view: &NSCollectionView,
             from_layout: &NSCollectionViewLayout,
             to_layout: &NSCollectionViewLayout,
-        ) -> Id<NSCollectionViewTransitionLayout>;
+        ) -> Retained<NSCollectionViewTransitionLayout>;
     }
 
     unsafe impl ProtocolType for dyn NSCollectionViewDelegate {}
@@ -1121,7 +1136,7 @@ extern_category!(
         unsafe fn indexPathForItem_inSection(
             item: NSInteger,
             section: NSInteger,
-        ) -> Id<NSIndexPath>;
+        ) -> Retained<NSIndexPath>;
 
         #[method(item)]
         unsafe fn item(&self) -> NSInteger;
@@ -1138,10 +1153,12 @@ extern_category!(
     #[doc(alias = "NSCollectionViewAdditions")]
     pub unsafe trait NSSetNSCollectionViewAdditions {
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPath:)]
-        unsafe fn setWithCollectionViewIndexPath(index_path: &NSIndexPath) -> Id<Self>;
+        unsafe fn setWithCollectionViewIndexPath(index_path: &NSIndexPath) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPaths:)]
-        unsafe fn setWithCollectionViewIndexPaths(index_paths: &NSArray<NSIndexPath>) -> Id<Self>;
+        unsafe fn setWithCollectionViewIndexPaths(
+            index_paths: &NSArray<NSIndexPath>,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(enumerateIndexPathsWithOptions:usingBlock:)]
@@ -1165,12 +1182,12 @@ extern_methods!(
         pub unsafe fn newItemForRepresentedObject(
             &self,
             object: &AnyObject,
-        ) -> Id<NSCollectionViewItem>;
+        ) -> Retained<NSCollectionViewItem>;
 
         #[cfg(feature = "NSViewController")]
         #[deprecated = "Use -registerNib:forItemWithIdentifier: or -registerClass:forItemWithIdentifier: instead."]
         #[method_id(@__retain_semantics Other itemPrototype)]
-        pub unsafe fn itemPrototype(&self) -> Option<Id<NSCollectionViewItem>>;
+        pub unsafe fn itemPrototype(&self) -> Option<Retained<NSCollectionViewItem>>;
 
         #[cfg(feature = "NSViewController")]
         #[deprecated = "Use -registerNib:forItemWithIdentifier: or -registerClass:forItemWithIdentifier: instead."]

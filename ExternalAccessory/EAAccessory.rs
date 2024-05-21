@@ -28,32 +28,32 @@ extern_methods!(
         pub unsafe fn connectionID(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other manufacturer)]
-        pub unsafe fn manufacturer(&self) -> Id<NSString>;
+        pub unsafe fn manufacturer(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other modelNumber)]
-        pub unsafe fn modelNumber(&self) -> Id<NSString>;
+        pub unsafe fn modelNumber(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other serialNumber)]
-        pub unsafe fn serialNumber(&self) -> Id<NSString>;
+        pub unsafe fn serialNumber(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other firmwareRevision)]
-        pub unsafe fn firmwareRevision(&self) -> Id<NSString>;
+        pub unsafe fn firmwareRevision(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other hardwareRevision)]
-        pub unsafe fn hardwareRevision(&self) -> Id<NSString>;
+        pub unsafe fn hardwareRevision(&self) -> Retained<NSString>;
 
         #[deprecated = "Not supported"]
         #[method_id(@__retain_semantics Other dockType)]
-        pub unsafe fn dockType(&self) -> Id<NSString>;
+        pub unsafe fn dockType(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other protocolStrings)]
-        pub unsafe fn protocolStrings(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn protocolStrings(&self) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn EAAccessoryDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn EAAccessoryDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -67,10 +67,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EAAccessory {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

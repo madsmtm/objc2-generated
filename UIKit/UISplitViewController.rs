@@ -224,20 +224,23 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UISplitViewController {
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithStyle:)]
         pub unsafe fn initWithStyle(
             this: Allocated<Self>,
             style: UISplitViewControllerStyle,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(style)]
         pub unsafe fn style(&self) -> UISplitViewControllerStyle;
@@ -245,7 +248,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UISplitViewControllerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UISplitViewControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -282,7 +285,7 @@ extern_methods!(
         pub unsafe fn viewControllerForColumn(
             &self,
             column: UISplitViewControllerColumn,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[method(hideColumn:)]
         pub unsafe fn hideColumn(&self, column: UISplitViewControllerColumn);
@@ -291,7 +294,7 @@ extern_methods!(
         pub unsafe fn showColumn(&self, column: UISplitViewControllerColumn);
 
         #[method_id(@__retain_semantics Other viewControllers)]
-        pub unsafe fn viewControllers(&self) -> Id<NSArray<UIViewController>>;
+        pub unsafe fn viewControllers(&self) -> Retained<NSArray<UIViewController>>;
 
         #[method(setViewControllers:)]
         pub unsafe fn setViewControllers(&self, view_controllers: &NSArray<UIViewController>);
@@ -319,7 +322,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method_id(@__retain_semantics Other displayModeButtonItem)]
-        pub unsafe fn displayModeButtonItem(&self) -> Id<UIBarButtonItem>;
+        pub unsafe fn displayModeButtonItem(&self) -> Retained<UIBarButtonItem>;
 
         #[method(displayModeButtonVisibility)]
         pub unsafe fn displayModeButtonVisibility(
@@ -440,10 +443,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UISplitViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -492,7 +495,7 @@ extern_protocol!(
         unsafe fn primaryViewControllerForCollapsingSplitViewController(
             &self,
             split_view_controller: &UISplitViewController,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
@@ -500,7 +503,7 @@ extern_protocol!(
         unsafe fn primaryViewControllerForExpandingSplitViewController(
             &self,
             split_view_controller: &UISplitViewController,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
@@ -519,7 +522,7 @@ extern_protocol!(
             &self,
             split_view_controller: &UISplitViewController,
             primary_view_controller: &UIViewController,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[cfg(all(
             feature = "UIOrientation",
@@ -680,7 +683,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIViewController {
         #[method_id(@__retain_semantics Other splitViewController)]
-        pub unsafe fn splitViewController(&self) -> Option<Id<UISplitViewController>>;
+        pub unsafe fn splitViewController(&self) -> Option<Retained<UISplitViewController>>;
 
         #[method(collapseSecondaryViewController:forSplitViewController:)]
         pub unsafe fn collapseSecondaryViewController_forSplitViewController(
@@ -693,6 +696,6 @@ extern_methods!(
         pub unsafe fn separateSecondaryViewControllerForSplitViewController(
             &self,
             split_view_controller: &UISplitViewController,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
     }
 );

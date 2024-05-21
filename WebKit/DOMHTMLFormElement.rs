@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl DOMHTMLFormElement {
         #[deprecated]
         #[method_id(@__retain_semantics Other acceptCharset)]
-        pub unsafe fn acceptCharset(&self) -> Id<NSString>;
+        pub unsafe fn acceptCharset(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setAcceptCharset:)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other action)]
-        pub unsafe fn action(&self) -> Id<NSString>;
+        pub unsafe fn action(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setAction:)]
@@ -86,21 +86,21 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other enctype)]
-        pub unsafe fn enctype(&self) -> Id<NSString>;
+        pub unsafe fn enctype(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setEnctype:)]
         pub unsafe fn setEnctype(&self, enctype: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other encoding)]
-        pub unsafe fn encoding(&self) -> Id<NSString>;
+        pub unsafe fn encoding(&self) -> Retained<NSString>;
 
         #[method(setEncoding:)]
         pub unsafe fn setEncoding(&self, encoding: Option<&NSString>);
 
         #[deprecated]
         #[method_id(@__retain_semantics Other method)]
-        pub unsafe fn method(&self) -> Id<NSString>;
+        pub unsafe fn method(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setMethod:)]
@@ -108,7 +108,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setName:)]
@@ -116,7 +116,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Id<NSString>;
+        pub unsafe fn target(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setTarget:)]
@@ -125,7 +125,7 @@ extern_methods!(
         #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
         #[method_id(@__retain_semantics Other elements)]
-        pub unsafe fn elements(&self) -> Option<Id<DOMHTMLCollection>>;
+        pub unsafe fn elements(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[deprecated]
         #[method(length)]
@@ -153,7 +153,7 @@ extern_methods!(
     unsafe impl DOMHTMLFormElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -168,6 +168,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLFormElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

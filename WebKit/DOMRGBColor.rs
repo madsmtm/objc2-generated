@@ -34,27 +34,27 @@ extern_methods!(
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other red)]
-        pub unsafe fn red(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
+        pub unsafe fn red(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other green)]
-        pub unsafe fn green(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
+        pub unsafe fn green(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other blue)]
-        pub unsafe fn blue(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
+        pub unsafe fn blue(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other alpha)]
-        pub unsafe fn alpha(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
+        pub unsafe fn alpha(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other color)]
-        pub unsafe fn color(&self) -> Id<NSColor>;
+        pub unsafe fn color(&self) -> Retained<NSColor>;
     }
 );
 
@@ -64,7 +64,7 @@ extern_methods!(
     unsafe impl DOMRGBColor {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -73,6 +73,6 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRGBColor {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

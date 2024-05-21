@@ -26,21 +26,21 @@ unsafe impl NSSecureCoding for MEComposeSession {}
 extern_methods!(
     unsafe impl MEComposeSession {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other sessionID)]
-        pub unsafe fn sessionID(&self) -> Id<NSUUID>;
+        pub unsafe fn sessionID(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "MEMessage")]
         #[method_id(@__retain_semantics Other mailMessage)]
-        pub unsafe fn mailMessage(&self) -> Id<MEMessage>;
+        pub unsafe fn mailMessage(&self) -> Retained<MEMessage>;
 
         #[cfg(feature = "MEComposeContext")]
         #[method_id(@__retain_semantics Other composeContext)]
-        pub unsafe fn composeContext(&self) -> Id<MEComposeContext>;
+        pub unsafe fn composeContext(&self) -> Retained<MEComposeContext>;
 
         #[method(reloadSession)]
         pub unsafe fn reloadSession(&self);
@@ -86,7 +86,7 @@ extern_protocol!(
             &self,
             session: &MEComposeSession,
             mtm: MainThreadMarker,
-        ) -> Id<MEExtensionViewController>;
+        ) -> Retained<MEExtensionViewController>;
 
         #[cfg(all(
             feature = "MEAddressAnnotation",
@@ -117,7 +117,7 @@ extern_protocol!(
         unsafe fn additionalHeadersForSession(
             &self,
             session: &MEComposeSession,
-        ) -> Id<NSDictionary<NSString, NSArray<NSString>>>;
+        ) -> Retained<NSDictionary<NSString, NSArray<NSString>>>;
     }
 
     unsafe impl ProtocolType for dyn MEComposeSessionHandler {}

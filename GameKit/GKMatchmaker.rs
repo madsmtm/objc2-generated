@@ -102,14 +102,14 @@ extern_methods!(
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other recipients)]
-        pub unsafe fn recipients(&self) -> Option<Id<NSArray<GKPlayer>>>;
+        pub unsafe fn recipients(&self) -> Option<Retained<NSArray<GKPlayer>>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method(setRecipients:)]
         pub unsafe fn setRecipients(&self, recipients: Option<&NSArray<GKPlayer>>);
 
         #[method_id(@__retain_semantics Other inviteMessage)]
-        pub unsafe fn inviteMessage(&self) -> Option<Id<NSString>>;
+        pub unsafe fn inviteMessage(&self) -> Option<Retained<NSString>>;
 
         #[method(setInviteMessage:)]
         pub unsafe fn setInviteMessage(&self, invite_message: Option<&NSString>);
@@ -165,21 +165,21 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other playersToInvite)]
-        pub unsafe fn playersToInvite(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn playersToInvite(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[deprecated]
         #[method(setPlayersToInvite:)]
         pub unsafe fn setPlayersToInvite(&self, players_to_invite: Option<&NSArray<NSString>>);
 
         #[method_id(@__retain_semantics Other queueName)]
-        pub unsafe fn queueName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn queueName(&self) -> Option<Retained<NSString>>;
 
         #[method(setQueueName:)]
         pub unsafe fn setQueueName(&self, queue_name: Option<&NSString>);
 
         #[cfg(feature = "GKDefines")]
         #[method_id(@__retain_semantics Other properties)]
-        pub unsafe fn properties(&self) -> Option<Id<GKMatchProperties>>;
+        pub unsafe fn properties(&self) -> Option<Retained<GKMatchProperties>>;
 
         #[cfg(feature = "GKDefines")]
         #[method(setProperties:)]
@@ -189,7 +189,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other recipientProperties)]
         pub unsafe fn recipientProperties(
             &self,
-        ) -> Option<Id<NSDictionary<GKPlayer, GKMatchProperties>>>;
+        ) -> Option<Retained<NSDictionary<GKPlayer, GKMatchProperties>>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKDefines", feature = "GKPlayer"))]
         #[method(setRecipientProperties:)]
@@ -204,10 +204,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKMatchRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -227,7 +227,7 @@ extern_methods!(
     unsafe impl GKInvite {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other sender)]
-        pub unsafe fn sender(&self) -> Id<GKPlayer>;
+        pub unsafe fn sender(&self) -> Retained<GKPlayer>;
 
         #[method(isHosted)]
         pub unsafe fn isHosted(&self) -> bool;
@@ -240,7 +240,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other inviter)]
-        pub unsafe fn inviter(&self) -> Id<NSString>;
+        pub unsafe fn inviter(&self) -> Retained<NSString>;
     }
 );
 
@@ -248,10 +248,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKInvite {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -301,17 +301,17 @@ extern_methods!(
     unsafe impl GKMatchedPlayers {
         #[cfg(feature = "GKDefines")]
         #[method_id(@__retain_semantics Other properties)]
-        pub unsafe fn properties(&self) -> Option<Id<GKMatchProperties>>;
+        pub unsafe fn properties(&self) -> Option<Retained<GKMatchProperties>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other players)]
-        pub unsafe fn players(&self) -> Id<NSArray<GKPlayer>>;
+        pub unsafe fn players(&self) -> Retained<NSArray<GKPlayer>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKDefines", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other playerProperties)]
         pub unsafe fn playerProperties(
             &self,
-        ) -> Option<Id<NSDictionary<GKPlayer, GKMatchProperties>>>;
+        ) -> Option<Retained<NSDictionary<GKPlayer, GKMatchProperties>>>;
     }
 );
 
@@ -319,10 +319,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKMatchedPlayers {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -341,7 +341,7 @@ unsafe impl NSObjectProtocol for GKMatchmaker {}
 extern_methods!(
     unsafe impl GKMatchmaker {
         #[method_id(@__retain_semantics Other sharedMatchmaker)]
-        pub unsafe fn sharedMatchmaker() -> Id<GKMatchmaker>;
+        pub unsafe fn sharedMatchmaker() -> Retained<GKMatchmaker>;
 
         #[cfg(all(feature = "GKMatch", feature = "block2"))]
         #[method(matchForInvite:completionHandler:)]
@@ -446,10 +446,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKMatchmaker {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

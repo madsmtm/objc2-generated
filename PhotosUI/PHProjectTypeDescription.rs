@@ -28,24 +28,25 @@ extern_methods!(
     unsafe impl PHProjectTypeDescription {
         #[cfg(feature = "PhotosUITypes")]
         #[method_id(@__retain_semantics Other projectType)]
-        pub unsafe fn projectType(&self) -> Id<PHProjectType>;
+        pub unsafe fn projectType(&self) -> Retained<PHProjectType>;
 
         #[method_id(@__retain_semantics Other localizedTitle)]
-        pub unsafe fn localizedTitle(&self) -> Id<NSString>;
+        pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other localizedDescription)]
-        pub unsafe fn localizedDescription(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other localizedAttributedDescription)]
-        pub unsafe fn localizedAttributedDescription(&self) -> Option<Id<NSAttributedString>>;
+        pub unsafe fn localizedAttributedDescription(&self)
+            -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[method_id(@__retain_semantics Other subtypeDescriptions)]
-        pub unsafe fn subtypeDescriptions(&self) -> Id<NSArray<PHProjectTypeDescription>>;
+        pub unsafe fn subtypeDescriptions(&self) -> Retained<NSArray<PHProjectTypeDescription>>;
 
         #[method(canProvideSubtypes)]
         pub unsafe fn canProvideSubtypes(&self) -> bool;
@@ -60,7 +61,7 @@ extern_methods!(
             localized_description: Option<&NSString>,
             image: Option<&NSImage>,
             subtype_descriptions: &NSArray<PHProjectTypeDescription>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "PhotosUITypes", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
@@ -72,7 +73,7 @@ extern_methods!(
             localized_attributed_description: Option<&NSAttributedString>,
             image: Option<&NSImage>,
             subtype_descriptions: &NSArray<PHProjectTypeDescription>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "PhotosUITypes", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
@@ -83,7 +84,7 @@ extern_methods!(
             localized_title: &NSString,
             localized_description: Option<&NSString>,
             image: Option<&NSImage>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "PhotosUITypes", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
@@ -95,7 +96,7 @@ extern_methods!(
             localized_description: Option<&NSString>,
             image: Option<&NSImage>,
             can_provide_subtypes: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "PhotosUITypes", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
@@ -107,12 +108,12 @@ extern_methods!(
             localized_attributed_description: Option<&NSAttributedString>,
             image: Option<&NSImage>,
             can_provide_subtypes: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

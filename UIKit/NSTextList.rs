@@ -120,20 +120,23 @@ extern_methods!(
             marker_format: &NSTextListMarkerFormat,
             options: NSTextListOptions,
             starting_item_number: NSInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithMarkerFormat:options:)]
         pub unsafe fn initWithMarkerFormat_options(
             this: Allocated<Self>,
             marker_format: &NSTextListMarkerFormat,
             options: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other markerFormat)]
-        pub unsafe fn markerFormat(&self) -> Id<NSTextListMarkerFormat>;
+        pub unsafe fn markerFormat(&self) -> Retained<NSTextListMarkerFormat>;
 
         #[method(listOptions)]
         pub unsafe fn listOptions(&self) -> NSTextListOptions;
@@ -148,7 +151,7 @@ extern_methods!(
         pub unsafe fn isOrdered(&self) -> bool;
 
         #[method_id(@__retain_semantics Other markerForItemNumber:)]
-        pub unsafe fn markerForItemNumber(&self, item_number: NSInteger) -> Id<NSString>;
+        pub unsafe fn markerForItemNumber(&self, item_number: NSInteger) -> Retained<NSString>;
     }
 );
 
@@ -156,9 +159,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextList {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

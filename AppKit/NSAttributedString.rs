@@ -507,9 +507,11 @@ extern_category!(
             url: &NSURL,
             options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
+                &mut Option<
+                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
+                >,
             >,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Init initWithData:options:documentAttributes:error:_)]
         unsafe fn initWithData_options_documentAttributes_error(
@@ -517,50 +519,58 @@ extern_category!(
             data: &NSData,
             options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
+                &mut Option<
+                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
+                >,
             >,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other dataFromRange:documentAttributes:error:_)]
         unsafe fn dataFromRange_documentAttributes_error(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
-        ) -> Result<Id<NSData>, Id<NSError>>;
+        ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other fileWrapperFromRange:documentAttributes:error:_)]
         unsafe fn fileWrapperFromRange_documentAttributes_error(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
-        ) -> Result<Id<NSFileWrapper>, Id<NSError>>;
+        ) -> Result<Retained<NSFileWrapper>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Init initWithRTF:documentAttributes:)]
         unsafe fn initWithRTF_documentAttributes(
             this: Allocated<Self>,
             data: &NSData,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
+                &mut Option<
+                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
+                >,
             >,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithRTFD:documentAttributes:)]
         unsafe fn initWithRTFD_documentAttributes(
             this: Allocated<Self>,
             data: &NSData,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
+                &mut Option<
+                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
+                >,
             >,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithHTML:documentAttributes:)]
         unsafe fn initWithHTML_documentAttributes(
             this: Allocated<Self>,
             data: &NSData,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
+                &mut Option<
+                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
+                >,
             >,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithHTML:baseURL:documentAttributes:)]
         unsafe fn initWithHTML_baseURL_documentAttributes(
@@ -568,18 +578,22 @@ extern_category!(
             data: &NSData,
             base: &NSURL,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
+                &mut Option<
+                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
+                >,
             >,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithDocFormat:documentAttributes:)]
         unsafe fn initWithDocFormat_documentAttributes(
             this: Allocated<Self>,
             data: &NSData,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
+                &mut Option<
+                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
+                >,
             >,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithHTML:options:documentAttributes:)]
         unsafe fn initWithHTML_options_documentAttributes(
@@ -587,46 +601,50 @@ extern_category!(
             data: &NSData,
             options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
+                &mut Option<
+                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
+                >,
             >,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithRTFDFileWrapper:documentAttributes:)]
         unsafe fn initWithRTFDFileWrapper_documentAttributes(
             this: Allocated<Self>,
             wrapper: &NSFileWrapper,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
+                &mut Option<
+                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
+                >,
             >,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other RTFFromRange:documentAttributes:)]
         unsafe fn RTFFromRange_documentAttributes(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
-        ) -> Option<Id<NSData>>;
+        ) -> Option<Retained<NSData>>;
 
         #[method_id(@__retain_semantics Other RTFDFromRange:documentAttributes:)]
         unsafe fn RTFDFromRange_documentAttributes(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
-        ) -> Option<Id<NSData>>;
+        ) -> Option<Retained<NSData>>;
 
         #[method_id(@__retain_semantics Other RTFDFileWrapperFromRange:documentAttributes:)]
         unsafe fn RTFDFileWrapperFromRange_documentAttributes(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
-        ) -> Option<Id<NSFileWrapper>>;
+        ) -> Option<Retained<NSFileWrapper>>;
 
         #[method_id(@__retain_semantics Other docFormatFromRange:documentAttributes:)]
         unsafe fn docFormatFromRange_documentAttributes(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
-        ) -> Option<Id<NSData>>;
+        ) -> Option<Retained<NSData>>;
     }
 
     unsafe impl NSAttributedStringDocumentFormats for NSAttributedString {}
@@ -641,9 +659,11 @@ extern_category!(
             url: &NSURL,
             opts: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
+                &mut Option<
+                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
+                >,
             >,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(readFromData:options:documentAttributes:error:_)]
         unsafe fn readFromData_options_documentAttributes_error(
@@ -651,9 +671,11 @@ extern_category!(
             data: &NSData,
             opts: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
+                &mut Option<
+                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
+                >,
             >,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
     }
 
     unsafe impl NSMutableAttributedStringDocumentFormats for NSMutableAttributedString {}
@@ -666,13 +688,13 @@ extern_category!(
         unsafe fn fontAttributesInRange(
             &self,
             range: NSRange,
-        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[method_id(@__retain_semantics Other rulerAttributesInRange:)]
         unsafe fn rulerAttributesInRange(
             &self,
             range: NSRange,
-        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[method(containsAttachmentsInRange:)]
         unsafe fn containsAttachmentsInRange(&self, range: NSRange) -> bool;
@@ -741,10 +763,10 @@ extern_category!(
     /// Category on [`NSAttributedString`].
     pub unsafe trait NSAttributedStringPasteboardAdditions {
         #[method_id(@__retain_semantics Other textTypes)]
-        unsafe fn textTypes() -> Id<NSArray<NSString>>;
+        unsafe fn textTypes() -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other textUnfilteredTypes)]
-        unsafe fn textUnfilteredTypes() -> Id<NSArray<NSString>>;
+        unsafe fn textUnfilteredTypes() -> Retained<NSArray<NSString>>;
     }
 
     unsafe impl NSAttributedStringPasteboardAdditions for NSAttributedString {}
@@ -847,35 +869,35 @@ extern_category!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other textFileTypes)]
-        unsafe fn textFileTypes() -> Id<NSArray>;
+        unsafe fn textFileTypes() -> Retained<NSArray>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other textPasteboardTypes)]
-        unsafe fn textPasteboardTypes() -> Id<NSArray>;
+        unsafe fn textPasteboardTypes() -> Retained<NSArray>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other textUnfilteredFileTypes)]
-        unsafe fn textUnfilteredFileTypes() -> Id<NSArray>;
+        unsafe fn textUnfilteredFileTypes() -> Retained<NSArray>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other textUnfilteredPasteboardTypes)]
-        unsafe fn textUnfilteredPasteboardTypes() -> Id<NSArray>;
+        unsafe fn textUnfilteredPasteboardTypes() -> Retained<NSArray>;
 
         #[deprecated = "Use -initWithURL:options:documentAttributes:error: instead"]
         #[method_id(@__retain_semantics Init initWithURL:documentAttributes:)]
         unsafe fn initWithURL_documentAttributes(
             this: Allocated<Self>,
             url: &NSURL,
-            dict: Option<&mut Option<Id<NSDictionary>>>,
-        ) -> Option<Id<Self>>;
+            dict: Option<&mut Option<Retained<NSDictionary>>>,
+        ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use -initWithURL:options:documentAttributes:error: instead"]
         #[method_id(@__retain_semantics Init initWithPath:documentAttributes:)]
         unsafe fn initWithPath_documentAttributes(
             this: Allocated<Self>,
             path: &NSString,
-            dict: Option<&mut Option<Id<NSDictionary>>>,
-        ) -> Option<Id<Self>>;
+            dict: Option<&mut Option<Retained<NSDictionary>>>,
+        ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use NSDataDetector instead"]
         #[method_id(@__retain_semantics Other URLAtIndex:effectiveRange:)]
@@ -883,7 +905,7 @@ extern_category!(
             &self,
             location: NSUInteger,
             effective_range: NSRangePointer,
-        ) -> Option<Id<NSURL>>;
+        ) -> Option<Retained<NSURL>>;
     }
 
     unsafe impl NSAttributedStringNSDeprecatedKitAdditions for NSAttributedString {}

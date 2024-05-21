@@ -20,15 +20,15 @@ unsafe impl NSObjectProtocol for CKAsset {}
 extern_methods!(
     unsafe impl CKAsset {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithFileURL:)]
-        pub unsafe fn initWithFileURL(this: Allocated<Self>, file_url: &NSURL) -> Id<Self>;
+        pub unsafe fn initWithFileURL(this: Allocated<Self>, file_url: &NSURL) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other fileURL)]
-        pub unsafe fn fileURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn fileURL(&self) -> Option<Retained<NSURL>>;
     }
 );

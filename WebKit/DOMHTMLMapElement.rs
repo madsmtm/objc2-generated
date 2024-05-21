@@ -71,11 +71,11 @@ extern_methods!(
         #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
         #[method_id(@__retain_semantics Other areas)]
-        pub unsafe fn areas(&self) -> Option<Id<DOMHTMLCollection>>;
+        pub unsafe fn areas(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setName:)]
@@ -95,7 +95,7 @@ extern_methods!(
     unsafe impl DOMHTMLMapElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -110,6 +110,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLMapElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -22,16 +22,16 @@ unsafe impl NSObjectProtocol for VZGenericMachineIdentifier {}
 extern_methods!(
     unsafe impl VZGenericMachineIdentifier {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithDataRepresentation:)]
         pub unsafe fn initWithDataRepresentation(
             this: Allocated<Self>,
             data_representation: &NSData,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other dataRepresentation)]
-        pub unsafe fn dataRepresentation(&self) -> Id<NSData>;
+        pub unsafe fn dataRepresentation(&self) -> Retained<NSData>;
     }
 );
 
@@ -39,6 +39,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VZGenericMachineIdentifier {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

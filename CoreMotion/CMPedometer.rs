@@ -26,31 +26,31 @@ unsafe impl NSSecureCoding for CMPedometerData {}
 extern_methods!(
     unsafe impl CMPedometerData {
         #[method_id(@__retain_semantics Other startDate)]
-        pub unsafe fn startDate(&self) -> Id<NSDate>;
+        pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other endDate)]
-        pub unsafe fn endDate(&self) -> Id<NSDate>;
+        pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other numberOfSteps)]
-        pub unsafe fn numberOfSteps(&self) -> Id<NSNumber>;
+        pub unsafe fn numberOfSteps(&self) -> Retained<NSNumber>;
 
         #[method_id(@__retain_semantics Other distance)]
-        pub unsafe fn distance(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn distance(&self) -> Option<Retained<NSNumber>>;
 
         #[method_id(@__retain_semantics Other floorsAscended)]
-        pub unsafe fn floorsAscended(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn floorsAscended(&self) -> Option<Retained<NSNumber>>;
 
         #[method_id(@__retain_semantics Other floorsDescended)]
-        pub unsafe fn floorsDescended(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn floorsDescended(&self) -> Option<Retained<NSNumber>>;
 
         #[method_id(@__retain_semantics Other currentPace)]
-        pub unsafe fn currentPace(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn currentPace(&self) -> Option<Retained<NSNumber>>;
 
         #[method_id(@__retain_semantics Other currentCadence)]
-        pub unsafe fn currentCadence(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn currentCadence(&self) -> Option<Retained<NSNumber>>;
 
         #[method_id(@__retain_semantics Other averageActivePace)]
-        pub unsafe fn averageActivePace(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn averageActivePace(&self) -> Option<Retained<NSNumber>>;
     }
 );
 
@@ -58,10 +58,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMPedometerData {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -105,7 +105,7 @@ unsafe impl NSSecureCoding for CMPedometerEvent {}
 extern_methods!(
     unsafe impl CMPedometerEvent {
         #[method_id(@__retain_semantics Other date)]
-        pub unsafe fn date(&self) -> Id<NSDate>;
+        pub unsafe fn date(&self) -> Retained<NSDate>;
 
         #[method(type)]
         pub unsafe fn r#type(&self) -> CMPedometerEventType;
@@ -116,10 +116,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMPedometerEvent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -201,9 +201,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMPedometer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

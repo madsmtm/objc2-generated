@@ -20,15 +20,15 @@ unsafe impl NSObjectProtocol for UITabBarItemStateAppearance {}
 extern_methods!(
     unsafe impl UITabBarItemStateAppearance {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other titleTextAttributes)]
         pub unsafe fn titleTextAttributes(
             &self,
-        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[method(setTitleTextAttributes:)]
         pub unsafe fn setTitleTextAttributes(
@@ -46,7 +46,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other iconColor)]
-        pub unsafe fn iconColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn iconColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setIconColor:)]
@@ -62,7 +62,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other badgeBackgroundColor)]
-        pub unsafe fn badgeBackgroundColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn badgeBackgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setBadgeBackgroundColor:)]
@@ -71,7 +71,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other badgeTextAttributes)]
         pub unsafe fn badgeTextAttributes(
             &self,
-        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[method(setBadgeTextAttributes:)]
         pub unsafe fn setBadgeTextAttributes(
@@ -134,34 +134,34 @@ unsafe impl NSSecureCoding for UITabBarItemAppearance {}
 extern_methods!(
     unsafe impl UITabBarItemAppearance {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithStyle:)]
         pub unsafe fn initWithStyle(
             this: Allocated<Self>,
             style: UITabBarItemAppearanceStyle,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method_id(@__retain_semantics CopyOrMutCopy copy)]
-        pub unsafe fn copy(&self) -> Id<Self>;
+        pub unsafe fn copy(&self) -> Retained<Self>;
 
         #[method(configureWithDefaultForStyle:)]
         pub unsafe fn configureWithDefaultForStyle(&self, style: UITabBarItemAppearanceStyle);
 
         #[method_id(@__retain_semantics Other normal)]
-        pub unsafe fn normal(&self) -> Id<UITabBarItemStateAppearance>;
+        pub unsafe fn normal(&self) -> Retained<UITabBarItemStateAppearance>;
 
         #[method_id(@__retain_semantics Other selected)]
-        pub unsafe fn selected(&self) -> Id<UITabBarItemStateAppearance>;
+        pub unsafe fn selected(&self) -> Retained<UITabBarItemStateAppearance>;
 
         #[method_id(@__retain_semantics Other disabled)]
-        pub unsafe fn disabled(&self) -> Id<UITabBarItemStateAppearance>;
+        pub unsafe fn disabled(&self) -> Retained<UITabBarItemStateAppearance>;
 
         #[method_id(@__retain_semantics Other focused)]
-        pub unsafe fn focused(&self) -> Id<UITabBarItemStateAppearance>;
+        pub unsafe fn focused(&self) -> Retained<UITabBarItemStateAppearance>;
     }
 );
 
@@ -169,7 +169,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITabBarItemAppearance {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -202,7 +202,7 @@ extern_methods!(
     #[cfg(feature = "UIBarAppearance")]
     unsafe impl UITabBarAppearance {
         #[method_id(@__retain_semantics Other stackedLayoutAppearance)]
-        pub unsafe fn stackedLayoutAppearance(&self) -> Id<UITabBarItemAppearance>;
+        pub unsafe fn stackedLayoutAppearance(&self) -> Retained<UITabBarItemAppearance>;
 
         #[method(setStackedLayoutAppearance:)]
         pub unsafe fn setStackedLayoutAppearance(
@@ -211,7 +211,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other inlineLayoutAppearance)]
-        pub unsafe fn inlineLayoutAppearance(&self) -> Id<UITabBarItemAppearance>;
+        pub unsafe fn inlineLayoutAppearance(&self) -> Retained<UITabBarItemAppearance>;
 
         #[method(setInlineLayoutAppearance:)]
         pub unsafe fn setInlineLayoutAppearance(
@@ -220,7 +220,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other compactInlineLayoutAppearance)]
-        pub unsafe fn compactInlineLayoutAppearance(&self) -> Id<UITabBarItemAppearance>;
+        pub unsafe fn compactInlineLayoutAppearance(&self) -> Retained<UITabBarItemAppearance>;
 
         #[method(setCompactInlineLayoutAppearance:)]
         pub unsafe fn setCompactInlineLayoutAppearance(
@@ -230,7 +230,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other selectionIndicatorTintColor)]
-        pub unsafe fn selectionIndicatorTintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn selectionIndicatorTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setSelectionIndicatorTintColor:)]
@@ -241,7 +241,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other selectionIndicatorImage)]
-        pub unsafe fn selectionIndicatorImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn selectionIndicatorImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setSelectionIndicatorImage:)]
@@ -280,21 +280,23 @@ extern_methods!(
     #[cfg(feature = "UIBarAppearance")]
     unsafe impl UITabBarAppearance {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIDevice")]
         #[method_id(@__retain_semantics Init initWithIdiom:)]
-        pub unsafe fn initWithIdiom(this: Allocated<Self>, idiom: UIUserInterfaceIdiom)
-            -> Id<Self>;
+        pub unsafe fn initWithIdiom(
+            this: Allocated<Self>,
+            idiom: UIUserInterfaceIdiom,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithBarAppearance:)]
         pub unsafe fn initWithBarAppearance(
             this: Allocated<Self>,
             bar_appearance: &UIBarAppearance,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     }
 );
 
@@ -303,6 +305,6 @@ extern_methods!(
     #[cfg(feature = "UIBarAppearance")]
     unsafe impl UITabBarAppearance {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

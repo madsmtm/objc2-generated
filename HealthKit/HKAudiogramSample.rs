@@ -31,7 +31,7 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKAudiogramSample {
         #[method_id(@__retain_semantics Other sensitivityPoints)]
-        pub unsafe fn sensitivityPoints(&self) -> Id<NSArray<HKAudiogramSensitivityPoint>>;
+        pub unsafe fn sensitivityPoints(&self) -> Retained<NSArray<HKAudiogramSensitivityPoint>>;
 
         #[method_id(@__retain_semantics Other audiogramSampleWithSensitivityPoints:startDate:endDate:metadata:)]
         pub unsafe fn audiogramSampleWithSensitivityPoints_startDate_endDate_metadata(
@@ -39,7 +39,7 @@ extern_methods!(
             start_date: &NSDate,
             end_date: &NSDate,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -48,7 +48,7 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKAudiogramSample {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -57,7 +57,7 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKAudiogramSample {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -77,15 +77,15 @@ extern_methods!(
     unsafe impl HKAudiogramSensitivityPoint {
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other frequency)]
-        pub unsafe fn frequency(&self) -> Id<HKQuantity>;
+        pub unsafe fn frequency(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other leftEarSensitivity)]
-        pub unsafe fn leftEarSensitivity(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn leftEarSensitivity(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other rightEarSensitivity)]
-        pub unsafe fn rightEarSensitivity(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn rightEarSensitivity(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other sensitivityPointWithFrequency:leftEarSensitivity:rightEarSensitivity:error:_)]
@@ -93,10 +93,10 @@ extern_methods!(
             frequency: &HKQuantity,
             left_ear_sensitivity: Option<&HKQuantity>,
             right_ear_sensitivity: Option<&HKQuantity>,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -104,6 +104,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKAudiogramSensitivityPoint {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

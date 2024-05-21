@@ -8,7 +8,7 @@ extern_protocol!(
     pub unsafe trait ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest {
         #[cfg(feature = "ASPublicKeyCredentialClientData")]
         #[method_id(@__retain_semantics Other clientData)]
-        unsafe fn clientData(&self) -> Option<Id<ASPublicKeyCredentialClientData>>;
+        unsafe fn clientData(&self) -> Option<Retained<ASPublicKeyCredentialClientData>>;
 
         #[method(shouldShowHybridTransport)]
         unsafe fn shouldShowHybridTransport(&self) -> bool;

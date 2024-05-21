@@ -46,7 +46,9 @@ extern_methods!(
     #[cfg(feature = "VZDirectoryShare")]
     unsafe impl VZLinuxRosettaDirectoryShare {
         #[method_id(@__retain_semantics Init initWithError:_)]
-        pub unsafe fn initWithError(this: Allocated<Self>) -> Result<Id<Self>, Id<NSError>>;
+        pub unsafe fn initWithError(
+            this: Allocated<Self>,
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "block2")]
         #[method(installRosettaWithCompletionHandler:)]
@@ -56,7 +58,7 @@ extern_methods!(
 
         #[cfg(feature = "VZLinuxRosettaCachingOptions")]
         #[method_id(@__retain_semantics Other options)]
-        pub unsafe fn options(&self) -> Option<Id<VZLinuxRosettaCachingOptions>>;
+        pub unsafe fn options(&self) -> Option<Retained<VZLinuxRosettaCachingOptions>>;
 
         #[cfg(feature = "VZLinuxRosettaCachingOptions")]
         #[method(setOptions:)]
@@ -72,9 +74,9 @@ extern_methods!(
     #[cfg(feature = "VZDirectoryShare")]
     unsafe impl VZLinuxRosettaDirectoryShare {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

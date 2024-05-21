@@ -21,7 +21,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other signatureWithObjCTypes:)]
         pub unsafe fn signatureWithObjCTypes(
             types: NonNull<c_char>,
-        ) -> Option<Id<NSMethodSignature>>;
+        ) -> Option<Retained<NSMethodSignature>>;
 
         #[method(numberOfArguments)]
         pub unsafe fn numberOfArguments(&self) -> NSUInteger;
@@ -47,9 +47,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMethodSignature {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -28,10 +28,10 @@ extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKParticipant {
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL>;
+        pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "EKTypes")]
         #[method(participantStatus)]
@@ -49,7 +49,7 @@ extern_methods!(
         pub unsafe fn isCurrentUser(&self) -> bool;
 
         #[method_id(@__retain_semantics Other contactPredicate)]
-        pub unsafe fn contactPredicate(&self) -> Id<NSPredicate>;
+        pub unsafe fn contactPredicate(&self) -> Retained<NSPredicate>;
     }
 );
 
@@ -58,9 +58,9 @@ extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKParticipant {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

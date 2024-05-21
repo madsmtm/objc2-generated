@@ -17,7 +17,7 @@ extern_protocol!(
             substring: &NSString,
             token_index: NSInteger,
             selected_index: *mut NSInteger,
-        ) -> Option<Id<NSArray>>;
+        ) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -27,7 +27,7 @@ extern_protocol!(
             token_field: &NSTokenField,
             tokens: &NSArray,
             index: NSUInteger,
-        ) -> Id<NSArray>;
+        ) -> Retained<NSArray>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -36,7 +36,7 @@ extern_protocol!(
             &self,
             token_field: &NSTokenField,
             represented_object: &AnyObject,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -45,7 +45,7 @@ extern_protocol!(
             &self,
             token_field: &NSTokenField,
             represented_object: &AnyObject,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -54,7 +54,7 @@ extern_protocol!(
             &self,
             token_field: &NSTokenField,
             editing_string: &NSString,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSPasteboard", feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -73,7 +73,7 @@ extern_protocol!(
             &self,
             token_field: &NSTokenField,
             pboard: &NSPasteboard,
-        ) -> Option<Id<NSArray>>;
+        ) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "NSMenu", feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -82,7 +82,7 @@ extern_protocol!(
             &self,
             token_field: &NSTokenField,
             represented_object: &AnyObject,
-        ) -> Option<Id<NSMenu>>;
+        ) -> Option<Retained<NSMenu>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -249,7 +249,8 @@ extern_methods!(
     ))]
     unsafe impl NSTokenField {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTokenFieldDelegate>>>;
+        pub unsafe fn delegate(&self)
+            -> Option<Retained<ProtocolObject<dyn NSTokenFieldDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -275,7 +276,7 @@ extern_methods!(
         pub unsafe fn defaultCompletionDelay(mtm: MainThreadMarker) -> NSTimeInterval;
 
         #[method_id(@__retain_semantics Other tokenizingCharacterSet)]
-        pub unsafe fn tokenizingCharacterSet(&self) -> Id<NSCharacterSet>;
+        pub unsafe fn tokenizingCharacterSet(&self) -> Retained<NSCharacterSet>;
 
         #[method(setTokenizingCharacterSet:)]
         pub unsafe fn setTokenizingCharacterSet(
@@ -284,7 +285,9 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other defaultTokenizingCharacterSet)]
-        pub unsafe fn defaultTokenizingCharacterSet(mtm: MainThreadMarker) -> Id<NSCharacterSet>;
+        pub unsafe fn defaultTokenizingCharacterSet(
+            mtm: MainThreadMarker,
+        ) -> Retained<NSCharacterSet>;
     }
 );
 
@@ -298,10 +301,13 @@ extern_methods!(
     ))]
     unsafe impl NSTokenField {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -315,7 +321,7 @@ extern_methods!(
     ))]
     unsafe impl NSTokenField {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -329,6 +335,6 @@ extern_methods!(
     ))]
     unsafe impl NSTokenField {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

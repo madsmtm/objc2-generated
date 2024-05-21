@@ -24,24 +24,24 @@ unsafe impl NSSecureCoding for MEDecodedMessage {}
 extern_methods!(
     unsafe impl MEDecodedMessage {
         #[method_id(@__retain_semantics Other rawData)]
-        pub unsafe fn rawData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn rawData(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "MEMessageSecurityInformation")]
         #[method_id(@__retain_semantics Other securityInformation)]
-        pub unsafe fn securityInformation(&self) -> Id<MEMessageSecurityInformation>;
+        pub unsafe fn securityInformation(&self) -> Retained<MEMessageSecurityInformation>;
 
         #[method_id(@__retain_semantics Other context)]
-        pub unsafe fn context(&self) -> Option<Id<NSData>>;
+        pub unsafe fn context(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "MEDecodedMessageBanner")]
         #[method_id(@__retain_semantics Other banner)]
-        pub unsafe fn banner(&self) -> Option<Id<MEDecodedMessageBanner>>;
+        pub unsafe fn banner(&self) -> Option<Retained<MEDecodedMessageBanner>>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MEMessageSecurityInformation")]
         #[method_id(@__retain_semantics Init initWithData:securityInformation:context:)]
@@ -50,7 +50,7 @@ extern_methods!(
             raw_data: Option<&NSData>,
             security_information: &MEMessageSecurityInformation,
             context: Option<&NSData>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "MEDecodedMessageBanner",
@@ -63,6 +63,6 @@ extern_methods!(
             security_information: &MEMessageSecurityInformation,
             context: Option<&NSData>,
             banner: Option<&MEDecodedMessageBanner>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

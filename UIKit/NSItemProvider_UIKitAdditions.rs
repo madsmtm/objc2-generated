@@ -31,7 +31,7 @@ extern_category!(
     #[doc(alias = "UIKitAdditions")]
     pub unsafe trait NSItemProviderUIKitAdditions {
         #[method_id(@__retain_semantics Other teamData)]
-        unsafe fn teamData(&self) -> Option<Id<NSData>>;
+        unsafe fn teamData(&self) -> Option<Retained<NSData>>;
 
         #[method(setTeamData:)]
         unsafe fn setTeamData(&self, team_data: Option<&NSData>);
@@ -73,13 +73,15 @@ extern_protocol!(
             data: &NSData,
             type_identifier: &NSString,
             requested_class: &AnyClass,
-        ) -> Result<Id<AnyObject>, Id<NSError>>;
+        ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other additionalLeadingReadableTypeIdentifiersForItemProvider)]
-        unsafe fn additionalLeadingReadableTypeIdentifiersForItemProvider() -> Id<NSArray<NSString>>;
+        unsafe fn additionalLeadingReadableTypeIdentifiersForItemProvider(
+        ) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other additionalTrailingReadableTypeIdentifiersForItemProvider)]
-        unsafe fn additionalTrailingReadableTypeIdentifiersForItemProvider() -> Id<NSArray<NSString>>;
+        unsafe fn additionalTrailingReadableTypeIdentifiersForItemProvider(
+        ) -> Retained<NSArray<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn UIItemProviderReadingAugmentationProviding {}

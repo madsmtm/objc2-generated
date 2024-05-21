@@ -49,18 +49,18 @@ extern_methods!(
         pub unsafe fn handleCloseScriptCommand(
             &self,
             command: &NSCloseCommand,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[method_id(@__retain_semantics Other handlePrintScriptCommand:)]
         pub unsafe fn handlePrintScriptCommand(
             &self,
             command: &NSScriptCommand,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[method_id(@__retain_semantics Other handleSaveScriptCommand:)]
         pub unsafe fn handleSaveScriptCommand(
             &self,
             command: &NSScriptCommand,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
     }
 );

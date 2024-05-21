@@ -79,7 +79,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other current)]
-        pub unsafe fn current() -> Option<Id<GCController>>;
+        pub unsafe fn current() -> Option<Retained<GCController>>;
 
         #[method(shouldMonitorBackgroundEvents)]
         pub unsafe fn shouldMonitorBackgroundEvents() -> bool;
@@ -101,46 +101,46 @@ extern_methods!(
 
         #[cfg(feature = "GCControllerInput")]
         #[method_id(@__retain_semantics Other input)]
-        pub unsafe fn input(&self) -> Id<GCControllerLiveInput>;
+        pub unsafe fn input(&self) -> Retained<GCControllerLiveInput>;
 
         #[cfg(feature = "GCDeviceBattery")]
         #[method_id(@__retain_semantics Other battery)]
-        pub unsafe fn battery(&self) -> Option<Id<GCDeviceBattery>>;
+        pub unsafe fn battery(&self) -> Option<Retained<GCDeviceBattery>>;
 
         #[cfg(feature = "GCPhysicalInputProfile")]
         #[method_id(@__retain_semantics Other physicalInputProfile)]
-        pub unsafe fn physicalInputProfile(&self) -> Id<GCPhysicalInputProfile>;
+        pub unsafe fn physicalInputProfile(&self) -> Retained<GCPhysicalInputProfile>;
 
         #[cfg(all(feature = "GCGamepad", feature = "GCPhysicalInputProfile"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other gamepad)]
-        pub unsafe fn gamepad(&self) -> Option<Id<GCGamepad>>;
+        pub unsafe fn gamepad(&self) -> Option<Retained<GCGamepad>>;
 
         #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
         #[method_id(@__retain_semantics Other microGamepad)]
-        pub unsafe fn microGamepad(&self) -> Option<Id<GCMicroGamepad>>;
+        pub unsafe fn microGamepad(&self) -> Option<Retained<GCMicroGamepad>>;
 
         #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
         #[method_id(@__retain_semantics Other extendedGamepad)]
-        pub unsafe fn extendedGamepad(&self) -> Option<Id<GCExtendedGamepad>>;
+        pub unsafe fn extendedGamepad(&self) -> Option<Retained<GCExtendedGamepad>>;
 
         #[cfg(feature = "GCMotion")]
         #[method_id(@__retain_semantics Other motion)]
-        pub unsafe fn motion(&self) -> Option<Id<GCMotion>>;
+        pub unsafe fn motion(&self) -> Option<Retained<GCMotion>>;
 
         #[cfg(feature = "GCDeviceLight")]
         #[method_id(@__retain_semantics Other light)]
-        pub unsafe fn light(&self) -> Option<Id<GCDeviceLight>>;
+        pub unsafe fn light(&self) -> Option<Retained<GCDeviceLight>>;
 
         #[cfg(feature = "GCDeviceHaptics")]
         #[method_id(@__retain_semantics Other haptics)]
-        pub unsafe fn haptics(&self) -> Option<Id<GCDeviceHaptics>>;
+        pub unsafe fn haptics(&self) -> Option<Retained<GCDeviceHaptics>>;
 
         #[method_id(@__retain_semantics Other capture)]
-        pub unsafe fn capture(&self) -> Id<GCController>;
+        pub unsafe fn capture(&self) -> Retained<GCController>;
 
         #[method_id(@__retain_semantics Other controllers)]
-        pub unsafe fn controllers() -> Id<NSArray<GCController>>;
+        pub unsafe fn controllers() -> Retained<NSArray<GCController>>;
 
         #[cfg(feature = "block2")]
         #[method(startWirelessControllerDiscoveryWithCompletionHandler:)]
@@ -152,10 +152,10 @@ extern_methods!(
         pub unsafe fn stopWirelessControllerDiscovery();
 
         #[method_id(@__retain_semantics Other controllerWithMicroGamepad)]
-        pub unsafe fn controllerWithMicroGamepad() -> Id<GCController>;
+        pub unsafe fn controllerWithMicroGamepad() -> Retained<GCController>;
 
         #[method_id(@__retain_semantics Other controllerWithExtendedGamepad)]
-        pub unsafe fn controllerWithExtendedGamepad() -> Id<GCController>;
+        pub unsafe fn controllerWithExtendedGamepad() -> Retained<GCController>;
     }
 );
 
@@ -163,9 +163,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

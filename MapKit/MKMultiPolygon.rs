@@ -35,11 +35,11 @@ extern_methods!(
         pub unsafe fn initWithPolygons(
             this: Allocated<Self>,
             polygons: &NSArray<MKPolygon>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKMultiPoint", feature = "MKPolygon"))]
         #[method_id(@__retain_semantics Other polygons)]
-        pub unsafe fn polygons(&self) -> Id<NSArray<MKPolygon>>;
+        pub unsafe fn polygons(&self) -> Retained<NSArray<MKPolygon>>;
     }
 );
 
@@ -48,9 +48,9 @@ extern_methods!(
     #[cfg(feature = "MKShape")]
     unsafe impl MKMultiPolygon {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

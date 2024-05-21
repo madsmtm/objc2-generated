@@ -53,7 +53,7 @@ unsafe impl NSObjectProtocol for NSExceptionHandler {}
 extern_methods!(
     unsafe impl NSExceptionHandler {
         #[method_id(@__retain_semantics Other defaultExceptionHandler)]
-        pub unsafe fn defaultExceptionHandler() -> Option<Id<NSExceptionHandler>>;
+        pub unsafe fn defaultExceptionHandler() -> Option<Retained<NSExceptionHandler>>;
 
         #[method(setExceptionHandlingMask:)]
         pub unsafe fn setExceptionHandlingMask(&self, a_mask: NSUInteger);
@@ -71,7 +71,7 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, an_object: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
     }
 );
 
@@ -79,10 +79,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSExceptionHandler {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

@@ -26,11 +26,11 @@ extern_methods!(
         pub unsafe fn initWithURL_error(
             this: Allocated<Self>,
             url: &NSURL,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other scriptURL)]
-        pub unsafe fn scriptURL(&self) -> Id<NSURL>;
+        pub unsafe fn scriptURL(&self) -> Retained<NSURL>;
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
         #[method(executeWithCompletionHandler:)]
@@ -45,10 +45,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUserScriptTask {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -72,7 +72,7 @@ extern_methods!(
     unsafe impl NSUserUnixTask {
         #[cfg(feature = "NSFileHandle")]
         #[method_id(@__retain_semantics Other standardInput)]
-        pub unsafe fn standardInput(&self) -> Option<Id<NSFileHandle>>;
+        pub unsafe fn standardInput(&self) -> Option<Retained<NSFileHandle>>;
 
         #[cfg(feature = "NSFileHandle")]
         #[method(setStandardInput:)]
@@ -80,7 +80,7 @@ extern_methods!(
 
         #[cfg(feature = "NSFileHandle")]
         #[method_id(@__retain_semantics Other standardOutput)]
-        pub unsafe fn standardOutput(&self) -> Option<Id<NSFileHandle>>;
+        pub unsafe fn standardOutput(&self) -> Option<Retained<NSFileHandle>>;
 
         #[cfg(feature = "NSFileHandle")]
         #[method(setStandardOutput:)]
@@ -88,7 +88,7 @@ extern_methods!(
 
         #[cfg(feature = "NSFileHandle")]
         #[method_id(@__retain_semantics Other standardError)]
-        pub unsafe fn standardError(&self) -> Option<Id<NSFileHandle>>;
+        pub unsafe fn standardError(&self) -> Option<Retained<NSFileHandle>>;
 
         #[cfg(feature = "NSFileHandle")]
         #[method(setStandardError:)]
@@ -117,7 +117,7 @@ extern_methods!(
         pub unsafe fn initWithURL_error(
             this: Allocated<Self>,
             url: &NSURL,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
     }
 );
 
@@ -125,10 +125,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUserUnixTask {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -177,7 +177,7 @@ extern_methods!(
         pub unsafe fn initWithURL_error(
             this: Allocated<Self>,
             url: &NSURL,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
     }
 );
 
@@ -185,10 +185,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUserAppleScriptTask {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -213,7 +213,7 @@ extern_methods!(
     unsafe impl NSUserAutomatorTask {
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other variables)]
-        pub unsafe fn variables(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        pub unsafe fn variables(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setVariables:)]
@@ -237,7 +237,7 @@ extern_methods!(
         pub unsafe fn initWithURL_error(
             this: Allocated<Self>,
             url: &NSURL,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
     }
 );
 
@@ -245,9 +245,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUserAutomatorTask {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

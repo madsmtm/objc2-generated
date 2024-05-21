@@ -120,7 +120,10 @@ unsafe impl NSObjectProtocol for LAContext {}
 extern_methods!(
     unsafe impl LAContext {
         #[method(canEvaluatePolicy:error:_)]
-        pub unsafe fn canEvaluatePolicy_error(&self, policy: LAPolicy) -> Result<(), Id<NSError>>;
+        pub unsafe fn canEvaluatePolicy_error(
+            &self,
+            policy: LAPolicy,
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "block2")]
         #[method(evaluatePolicy:localizedReason:reply:)]
@@ -145,27 +148,27 @@ extern_methods!(
         pub unsafe fn isCredentialSet(&self, r#type: LACredentialType) -> bool;
 
         #[method_id(@__retain_semantics Other localizedFallbackTitle)]
-        pub unsafe fn localizedFallbackTitle(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localizedFallbackTitle(&self) -> Option<Retained<NSString>>;
 
         #[method(setLocalizedFallbackTitle:)]
         pub unsafe fn setLocalizedFallbackTitle(&self, localized_fallback_title: Option<&NSString>);
 
         #[deprecated = "No longer supported"]
         #[method_id(@__retain_semantics Other maxBiometryFailures)]
-        pub unsafe fn maxBiometryFailures(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn maxBiometryFailures(&self) -> Option<Retained<NSNumber>>;
 
         #[deprecated = "No longer supported"]
         #[method(setMaxBiometryFailures:)]
         pub unsafe fn setMaxBiometryFailures(&self, max_biometry_failures: Option<&NSNumber>);
 
         #[method_id(@__retain_semantics Other localizedCancelTitle)]
-        pub unsafe fn localizedCancelTitle(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localizedCancelTitle(&self) -> Option<Retained<NSString>>;
 
         #[method(setLocalizedCancelTitle:)]
         pub unsafe fn setLocalizedCancelTitle(&self, localized_cancel_title: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other evaluatedPolicyDomainState)]
-        pub unsafe fn evaluatedPolicyDomainState(&self) -> Option<Id<NSData>>;
+        pub unsafe fn evaluatedPolicyDomainState(&self) -> Option<Retained<NSData>>;
 
         #[method(touchIDAuthenticationAllowableReuseDuration)]
         pub unsafe fn touchIDAuthenticationAllowableReuseDuration(&self) -> NSTimeInterval;
@@ -177,7 +180,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other localizedReason)]
-        pub unsafe fn localizedReason(&self) -> Id<NSString>;
+        pub unsafe fn localizedReason(&self) -> Retained<NSString>;
 
         #[method(setLocalizedReason:)]
         pub unsafe fn setLocalizedReason(&self, localized_reason: &NSString);
@@ -197,9 +200,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl LAContext {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -77,15 +77,18 @@ unsafe impl NSTextSelectionDataSource for NSTextLayoutManager {}
 extern_methods!(
     unsafe impl NSTextLayoutManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSTextLayoutManagerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSTextLayoutManagerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -116,7 +119,7 @@ extern_methods!(
 
         #[cfg(feature = "NSTextContentManager")]
         #[method_id(@__retain_semantics Other textContentManager)]
-        pub unsafe fn textContentManager(&self) -> Option<Id<NSTextContentManager>>;
+        pub unsafe fn textContentManager(&self) -> Option<Retained<NSTextContentManager>>;
 
         #[cfg(feature = "NSTextContentManager")]
         #[method(replaceTextContentManager:)]
@@ -124,7 +127,7 @@ extern_methods!(
 
         #[cfg(feature = "NSTextContainer")]
         #[method_id(@__retain_semantics Other textContainer)]
-        pub unsafe fn textContainer(&self) -> Option<Id<NSTextContainer>>;
+        pub unsafe fn textContainer(&self) -> Option<Retained<NSTextContainer>>;
 
         #[cfg(feature = "NSTextContainer")]
         #[method(setTextContainer:)]
@@ -135,10 +138,12 @@ extern_methods!(
 
         #[cfg(feature = "NSTextViewportLayoutController")]
         #[method_id(@__retain_semantics Other textViewportLayoutController)]
-        pub unsafe fn textViewportLayoutController(&self) -> Id<NSTextViewportLayoutController>;
+        pub unsafe fn textViewportLayoutController(
+            &self,
+        ) -> Retained<NSTextViewportLayoutController>;
 
         #[method_id(@__retain_semantics Other layoutQueue)]
-        pub unsafe fn layoutQueue(&self) -> Option<Id<NSOperationQueue>>;
+        pub unsafe fn layoutQueue(&self) -> Option<Retained<NSOperationQueue>>;
 
         #[method(setLayoutQueue:)]
         pub unsafe fn setLayoutQueue(&self, layout_queue: Option<&NSOperationQueue>);
@@ -159,14 +164,14 @@ extern_methods!(
         pub unsafe fn textLayoutFragmentForPosition(
             &self,
             position: CGPoint,
-        ) -> Option<Id<NSTextLayoutFragment>>;
+        ) -> Option<Retained<NSTextLayoutFragment>>;
 
         #[cfg(all(feature = "NSTextLayoutFragment", feature = "NSTextRange"))]
         #[method_id(@__retain_semantics Other textLayoutFragmentForLocation:)]
         pub unsafe fn textLayoutFragmentForLocation(
             &self,
             location: &ProtocolObject<dyn NSTextLocation>,
-        ) -> Option<Id<NSTextLayoutFragment>>;
+        ) -> Option<Retained<NSTextLayoutFragment>>;
 
         #[cfg(all(
             feature = "NSTextLayoutFragment",
@@ -179,11 +184,11 @@ extern_methods!(
             location: Option<&ProtocolObject<dyn NSTextLocation>>,
             options: NSTextLayoutFragmentEnumerationOptions,
             block: &block2::Block<dyn Fn(NonNull<NSTextLayoutFragment>) -> Bool + '_>,
-        ) -> Option<Id<ProtocolObject<dyn NSTextLocation>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSTextLocation>>>;
 
         #[cfg(feature = "NSTextSelection")]
         #[method_id(@__retain_semantics Other textSelections)]
-        pub unsafe fn textSelections(&self) -> Id<NSArray<NSTextSelection>>;
+        pub unsafe fn textSelections(&self) -> Retained<NSArray<NSTextSelection>>;
 
         #[cfg(feature = "NSTextSelection")]
         #[method(setTextSelections:)]
@@ -191,7 +196,7 @@ extern_methods!(
 
         #[cfg(feature = "NSTextSelectionNavigation")]
         #[method_id(@__retain_semantics Other textSelectionNavigation)]
-        pub unsafe fn textSelectionNavigation(&self) -> Id<NSTextSelectionNavigation>;
+        pub unsafe fn textSelectionNavigation(&self) -> Retained<NSTextSelectionNavigation>;
 
         #[cfg(feature = "NSTextSelectionNavigation")]
         #[method(setTextSelectionNavigation:)]
@@ -261,7 +266,8 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other linkRenderingAttributes)]
-        pub unsafe fn linkRenderingAttributes() -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
+        pub unsafe fn linkRenderingAttributes(
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(feature = "NSTextRange")]
         #[method_id(@__retain_semantics Other renderingAttributesForLink:atLocation:)]
@@ -269,7 +275,7 @@ extern_methods!(
             &self,
             link: &AnyObject,
             location: &ProtocolObject<dyn NSTextLocation>,
-        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(all(
             feature = "NSTextContainer",
@@ -309,7 +315,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextLayoutManager {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -327,7 +333,7 @@ extern_protocol!(
             text_layout_manager: &NSTextLayoutManager,
             location: &ProtocolObject<dyn NSTextLocation>,
             text_element: &NSTextElement,
-        ) -> Id<NSTextLayoutFragment>;
+        ) -> Retained<NSTextLayoutFragment>;
 
         #[cfg(feature = "NSTextRange")]
         #[optional]
@@ -348,7 +354,7 @@ extern_protocol!(
             link: &AnyObject,
             location: &ProtocolObject<dyn NSTextLocation>,
             rendering_attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
-        ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
     }
 
     unsafe impl ProtocolType for dyn NSTextLayoutManagerDelegate {}

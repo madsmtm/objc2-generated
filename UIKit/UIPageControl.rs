@@ -188,7 +188,7 @@ extern_methods!(
 
         #[cfg(feature = "UIPageControlProgress")]
         #[method_id(@__retain_semantics Other progress)]
-        pub unsafe fn progress(&self) -> Option<Id<UIPageControlProgress>>;
+        pub unsafe fn progress(&self) -> Option<Retained<UIPageControlProgress>>;
 
         #[cfg(feature = "UIPageControlProgress")]
         #[method(setProgress:)]
@@ -196,7 +196,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other pageIndicatorTintColor)]
-        pub unsafe fn pageIndicatorTintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn pageIndicatorTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setPageIndicatorTintColor:)]
@@ -204,7 +204,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other currentPageIndicatorTintColor)]
-        pub unsafe fn currentPageIndicatorTintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn currentPageIndicatorTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setCurrentPageIndicatorTintColor:)]
@@ -236,7 +236,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other preferredIndicatorImage)]
-        pub unsafe fn preferredIndicatorImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn preferredIndicatorImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setPreferredIndicatorImage:)]
@@ -247,7 +247,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other indicatorImageForPage:)]
-        pub unsafe fn indicatorImageForPage(&self, page: NSInteger) -> Option<Id<UIImage>>;
+        pub unsafe fn indicatorImageForPage(&self, page: NSInteger) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setIndicatorImage:forPage:)]
@@ -255,7 +255,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other preferredCurrentPageIndicatorImage)]
-        pub unsafe fn preferredCurrentPageIndicatorImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn preferredCurrentPageIndicatorImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setPreferredCurrentPageIndicatorImage:)]
@@ -269,7 +269,7 @@ extern_methods!(
         pub unsafe fn currentPageIndicatorImageForPage(
             &self,
             page: NSInteger,
-        ) -> Option<Id<UIImage>>;
+        ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setCurrentPageIndicatorImage:forPage:)]
@@ -301,10 +301,13 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIPageControl {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Init initWithFrame:primaryAction:)]
@@ -312,7 +315,7 @@ extern_methods!(
             this: Allocated<Self>,
             frame: CGRect,
             primary_action: Option<&UIAction>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -321,9 +324,9 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIPageControl {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

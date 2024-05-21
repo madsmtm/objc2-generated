@@ -130,25 +130,25 @@ extern_methods!(
         #[method(getObjectValue:forString:range:error:_)]
         pub unsafe fn getObjectValue_forString_range_error(
             &self,
-            obj: Option<&mut Option<Id<AnyObject>>>,
+            obj: Option<&mut Option<Retained<AnyObject>>>,
             string: &NSString,
             rangep: *mut NSRange,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSString", feature = "NSValue"))]
         #[method_id(@__retain_semantics Other stringFromNumber:)]
-        pub unsafe fn stringFromNumber(&self, number: &NSNumber) -> Option<Id<NSString>>;
+        pub unsafe fn stringFromNumber(&self, number: &NSNumber) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSString", feature = "NSValue"))]
         #[method_id(@__retain_semantics Other numberFromString:)]
-        pub unsafe fn numberFromString(&self, string: &NSString) -> Option<Id<NSNumber>>;
+        pub unsafe fn numberFromString(&self, string: &NSString) -> Option<Retained<NSNumber>>;
 
         #[cfg(all(feature = "NSString", feature = "NSValue"))]
         #[method_id(@__retain_semantics Other localizedStringFromNumber:numberStyle:)]
         pub unsafe fn localizedStringFromNumber_numberStyle(
             num: &NSNumber,
             nstyle: NSNumberFormatterStyle,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[method(defaultFormatterBehavior)]
         pub unsafe fn defaultFormatterBehavior() -> NSNumberFormatterBehavior;
@@ -164,7 +164,7 @@ extern_methods!(
 
         #[cfg(feature = "NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
-        pub unsafe fn locale(&self) -> Id<NSLocale>;
+        pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
         #[method(setLocale:)]
@@ -184,7 +184,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other negativeFormat)]
-        pub unsafe fn negativeFormat(&self) -> Id<NSString>;
+        pub unsafe fn negativeFormat(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setNegativeFormat:)]
@@ -194,7 +194,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textAttributesForNegativeValues)]
         pub unsafe fn textAttributesForNegativeValues(
             &self,
-        ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setTextAttributesForNegativeValues:)]
@@ -205,7 +205,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other positiveFormat)]
-        pub unsafe fn positiveFormat(&self) -> Id<NSString>;
+        pub unsafe fn positiveFormat(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setPositiveFormat:)]
@@ -215,7 +215,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textAttributesForPositiveValues)]
         pub unsafe fn textAttributesForPositiveValues(
             &self,
-        ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setTextAttributesForPositiveValues:)]
@@ -232,7 +232,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other decimalSeparator)]
-        pub unsafe fn decimalSeparator(&self) -> Id<NSString>;
+        pub unsafe fn decimalSeparator(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setDecimalSeparator:)]
@@ -246,7 +246,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other currencyDecimalSeparator)]
-        pub unsafe fn currencyDecimalSeparator(&self) -> Id<NSString>;
+        pub unsafe fn currencyDecimalSeparator(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setCurrencyDecimalSeparator:)]
@@ -263,7 +263,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other groupingSeparator)]
-        pub unsafe fn groupingSeparator(&self) -> Id<NSString>;
+        pub unsafe fn groupingSeparator(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setGroupingSeparator:)]
@@ -271,7 +271,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other zeroSymbol)]
-        pub unsafe fn zeroSymbol(&self) -> Option<Id<NSString>>;
+        pub unsafe fn zeroSymbol(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setZeroSymbol:)]
@@ -279,8 +279,9 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other textAttributesForZero)]
-        pub unsafe fn textAttributesForZero(&self)
-            -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        pub unsafe fn textAttributesForZero(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setTextAttributesForZero:)]
@@ -291,7 +292,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other nilSymbol)]
-        pub unsafe fn nilSymbol(&self) -> Id<NSString>;
+        pub unsafe fn nilSymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setNilSymbol:)]
@@ -299,7 +300,9 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other textAttributesForNil)]
-        pub unsafe fn textAttributesForNil(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        pub unsafe fn textAttributesForNil(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setTextAttributesForNil:)]
@@ -310,7 +313,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other notANumberSymbol)]
-        pub unsafe fn notANumberSymbol(&self) -> Id<NSString>;
+        pub unsafe fn notANumberSymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setNotANumberSymbol:)]
@@ -320,7 +323,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textAttributesForNotANumber)]
         pub unsafe fn textAttributesForNotANumber(
             &self,
-        ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setTextAttributesForNotANumber:)]
@@ -331,7 +334,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other positiveInfinitySymbol)]
-        pub unsafe fn positiveInfinitySymbol(&self) -> Id<NSString>;
+        pub unsafe fn positiveInfinitySymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setPositiveInfinitySymbol:)]
@@ -341,7 +344,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textAttributesForPositiveInfinity)]
         pub unsafe fn textAttributesForPositiveInfinity(
             &self,
-        ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setTextAttributesForPositiveInfinity:)]
@@ -352,7 +355,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other negativeInfinitySymbol)]
-        pub unsafe fn negativeInfinitySymbol(&self) -> Id<NSString>;
+        pub unsafe fn negativeInfinitySymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setNegativeInfinitySymbol:)]
@@ -362,7 +365,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textAttributesForNegativeInfinity)]
         pub unsafe fn textAttributesForNegativeInfinity(
             &self,
-        ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setTextAttributesForNegativeInfinity:)]
@@ -373,7 +376,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other positivePrefix)]
-        pub unsafe fn positivePrefix(&self) -> Id<NSString>;
+        pub unsafe fn positivePrefix(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setPositivePrefix:)]
@@ -381,7 +384,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other positiveSuffix)]
-        pub unsafe fn positiveSuffix(&self) -> Id<NSString>;
+        pub unsafe fn positiveSuffix(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setPositiveSuffix:)]
@@ -389,7 +392,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other negativePrefix)]
-        pub unsafe fn negativePrefix(&self) -> Id<NSString>;
+        pub unsafe fn negativePrefix(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setNegativePrefix:)]
@@ -397,7 +400,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other negativeSuffix)]
-        pub unsafe fn negativeSuffix(&self) -> Id<NSString>;
+        pub unsafe fn negativeSuffix(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setNegativeSuffix:)]
@@ -405,7 +408,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other currencyCode)]
-        pub unsafe fn currencyCode(&self) -> Id<NSString>;
+        pub unsafe fn currencyCode(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setCurrencyCode:)]
@@ -413,7 +416,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other currencySymbol)]
-        pub unsafe fn currencySymbol(&self) -> Id<NSString>;
+        pub unsafe fn currencySymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setCurrencySymbol:)]
@@ -421,7 +424,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other internationalCurrencySymbol)]
-        pub unsafe fn internationalCurrencySymbol(&self) -> Id<NSString>;
+        pub unsafe fn internationalCurrencySymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setInternationalCurrencySymbol:)]
@@ -432,7 +435,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other percentSymbol)]
-        pub unsafe fn percentSymbol(&self) -> Id<NSString>;
+        pub unsafe fn percentSymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setPercentSymbol:)]
@@ -440,7 +443,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other perMillSymbol)]
-        pub unsafe fn perMillSymbol(&self) -> Id<NSString>;
+        pub unsafe fn perMillSymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setPerMillSymbol:)]
@@ -448,7 +451,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other minusSign)]
-        pub unsafe fn minusSign(&self) -> Id<NSString>;
+        pub unsafe fn minusSign(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setMinusSign:)]
@@ -456,7 +459,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other plusSign)]
-        pub unsafe fn plusSign(&self) -> Id<NSString>;
+        pub unsafe fn plusSign(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setPlusSign:)]
@@ -464,7 +467,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other exponentSymbol)]
-        pub unsafe fn exponentSymbol(&self) -> Id<NSString>;
+        pub unsafe fn exponentSymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setExponentSymbol:)]
@@ -484,7 +487,7 @@ extern_methods!(
 
         #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other multiplier)]
-        pub unsafe fn multiplier(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn multiplier(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
         #[method(setMultiplier:)]
@@ -498,7 +501,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other paddingCharacter)]
-        pub unsafe fn paddingCharacter(&self) -> Id<NSString>;
+        pub unsafe fn paddingCharacter(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setPaddingCharacter:)]
@@ -518,7 +521,7 @@ extern_methods!(
 
         #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other roundingIncrement)]
-        pub unsafe fn roundingIncrement(&self) -> Id<NSNumber>;
+        pub unsafe fn roundingIncrement(&self) -> Retained<NSNumber>;
 
         #[cfg(feature = "NSValue")]
         #[method(setRoundingIncrement:)]
@@ -550,7 +553,7 @@ extern_methods!(
 
         #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other minimum)]
-        pub unsafe fn minimum(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn minimum(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
         #[method(setMinimum:)]
@@ -558,7 +561,7 @@ extern_methods!(
 
         #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other maximum)]
-        pub unsafe fn maximum(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn maximum(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
         #[method(setMaximum:)]
@@ -566,7 +569,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other currencyGroupingSeparator)]
-        pub unsafe fn currencyGroupingSeparator(&self) -> Id<NSString>;
+        pub unsafe fn currencyGroupingSeparator(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setCurrencyGroupingSeparator:)]
@@ -615,10 +618,10 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSNumberFormatter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -634,7 +637,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other thousandSeparator)]
-        pub unsafe fn thousandSeparator(&self) -> Id<NSString>;
+        pub unsafe fn thousandSeparator(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setThousandSeparator:)]
@@ -648,7 +651,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other format)]
-        pub unsafe fn format(&self) -> Id<NSString>;
+        pub unsafe fn format(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setFormat:)]
@@ -656,7 +659,7 @@ extern_methods!(
 
         #[cfg(feature = "NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedStringForZero)]
-        pub unsafe fn attributedStringForZero(&self) -> Id<NSAttributedString>;
+        pub unsafe fn attributedStringForZero(&self) -> Retained<NSAttributedString>;
 
         #[cfg(feature = "NSAttributedString")]
         #[method(setAttributedStringForZero:)]
@@ -667,7 +670,7 @@ extern_methods!(
 
         #[cfg(feature = "NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedStringForNil)]
-        pub unsafe fn attributedStringForNil(&self) -> Id<NSAttributedString>;
+        pub unsafe fn attributedStringForNil(&self) -> Retained<NSAttributedString>;
 
         #[cfg(feature = "NSAttributedString")]
         #[method(setAttributedStringForNil:)]
@@ -678,7 +681,7 @@ extern_methods!(
 
         #[cfg(feature = "NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedStringForNotANumber)]
-        pub unsafe fn attributedStringForNotANumber(&self) -> Id<NSAttributedString>;
+        pub unsafe fn attributedStringForNotANumber(&self) -> Retained<NSAttributedString>;
 
         #[cfg(feature = "NSAttributedString")]
         #[method(setAttributedStringForNotANumber:)]
@@ -689,7 +692,7 @@ extern_methods!(
 
         #[cfg(feature = "NSDecimalNumber")]
         #[method_id(@__retain_semantics Other roundingBehavior)]
-        pub unsafe fn roundingBehavior(&self) -> Id<NSDecimalNumberHandler>;
+        pub unsafe fn roundingBehavior(&self) -> Retained<NSDecimalNumberHandler>;
 
         #[cfg(feature = "NSDecimalNumber")]
         #[method(setRoundingBehavior:)]

@@ -30,7 +30,7 @@ extern_methods!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other fillColor)]
-        pub unsafe fn fillColor(&self) -> Option<Id<NSColor>>;
+        pub unsafe fn fillColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
@@ -40,7 +40,7 @@ extern_methods!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other strokeColor)]
-        pub unsafe fn strokeColor(&self) -> Option<Id<NSColor>>;
+        pub unsafe fn strokeColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
@@ -66,7 +66,7 @@ extern_methods!(
         pub unsafe fn setLineDashPhase(&self, line_dash_phase: CGFloat);
 
         #[method_id(@__retain_semantics Other lineDashPattern)]
-        pub unsafe fn lineDashPattern(&self) -> Option<Id<NSArray<NSNumber>>>;
+        pub unsafe fn lineDashPattern(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[method(setLineDashPattern:)]
         pub unsafe fn setLineDashPattern(&self, line_dash_pattern: Option<&NSArray<NSNumber>>);
@@ -94,7 +94,7 @@ extern_methods!(
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -103,9 +103,9 @@ extern_methods!(
     #[cfg(feature = "MKOverlayRenderer")]
     unsafe impl MKOverlayPathRenderer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

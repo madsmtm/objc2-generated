@@ -25,8 +25,9 @@ extern_methods!(
     #[cfg(feature = "NEProvider")]
     unsafe impl NEAppPushProvider {
         #[method_id(@__retain_semantics Other providerConfiguration)]
-        pub unsafe fn providerConfiguration(&self)
-            -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        pub unsafe fn providerConfiguration(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(feature = "block2")]
         #[deprecated]
@@ -63,9 +64,9 @@ extern_methods!(
     #[cfg(feature = "NEProvider")]
     unsafe impl NEAppPushProvider {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

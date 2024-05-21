@@ -22,10 +22,10 @@ unsafe impl NSObjectProtocol for MPAdTimeRange {}
 extern_methods!(
     unsafe impl MPAdTimeRange {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -44,15 +44,15 @@ unsafe impl NSObjectProtocol for MPNowPlayingSession {}
 extern_methods!(
     unsafe impl MPNowPlayingSession {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn MPNowPlayingSessionDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MPNowPlayingSessionDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -71,11 +71,11 @@ extern_methods!(
 
         #[cfg(feature = "MPNowPlayingInfoCenter")]
         #[method_id(@__retain_semantics Other nowPlayingInfoCenter)]
-        pub unsafe fn nowPlayingInfoCenter(&self) -> Id<MPNowPlayingInfoCenter>;
+        pub unsafe fn nowPlayingInfoCenter(&self) -> Retained<MPNowPlayingInfoCenter>;
 
         #[cfg(feature = "MPRemoteCommandCenter")]
         #[method_id(@__retain_semantics Other remoteCommandCenter)]
-        pub unsafe fn remoteCommandCenter(&self) -> Id<MPRemoteCommandCenter>;
+        pub unsafe fn remoteCommandCenter(&self) -> Retained<MPRemoteCommandCenter>;
 
         #[method(canBecomeActive)]
         pub unsafe fn canBecomeActive(&self) -> bool;

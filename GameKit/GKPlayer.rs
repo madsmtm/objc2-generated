@@ -35,22 +35,24 @@ extern_methods!(
         pub unsafe fn scopedIDsArePersistent(&self) -> bool;
 
         #[method_id(@__retain_semantics Other gamePlayerID)]
-        pub unsafe fn gamePlayerID(&self) -> Id<NSString>;
+        pub unsafe fn gamePlayerID(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other teamPlayerID)]
-        pub unsafe fn teamPlayerID(&self) -> Id<NSString>;
+        pub unsafe fn teamPlayerID(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other displayName)]
-        pub unsafe fn displayName(&self) -> Id<NSString>;
+        pub unsafe fn displayName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other alias)]
-        pub unsafe fn alias(&self) -> Id<NSString>;
+        pub unsafe fn alias(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other anonymousGuestPlayerWithIdentifier:)]
-        pub unsafe fn anonymousGuestPlayerWithIdentifier(guest_identifier: &NSString) -> Id<Self>;
+        pub unsafe fn anonymousGuestPlayerWithIdentifier(
+            guest_identifier: &NSString,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other guestIdentifier)]
-        pub unsafe fn guestIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn guestIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(isInvitable)]
         pub unsafe fn isInvitable(&self) -> bool;
@@ -62,10 +64,10 @@ extern_methods!(
     #[cfg(feature = "GKBasePlayer")]
     unsafe impl GKPlayer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -117,7 +119,7 @@ extern_methods!(
 
         #[deprecated = "Use either the gamePlayerID or teamPlayerID property to identify a player."]
         #[method_id(@__retain_semantics Other playerID)]
-        pub unsafe fn playerID(&self) -> Id<NSString>;
+        pub unsafe fn playerID(&self) -> Retained<NSString>;
 
         #[cfg(feature = "block2")]
         #[deprecated]

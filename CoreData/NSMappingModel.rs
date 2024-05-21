@@ -25,24 +25,24 @@ extern_methods!(
             bundles: Option<&NSArray<NSBundle>>,
             source_model: Option<&NSManagedObjectModel>,
             destination_model: Option<&NSManagedObjectModel>,
-        ) -> Option<Id<NSMappingModel>>;
+        ) -> Option<Retained<NSMappingModel>>;
 
         #[cfg(feature = "NSManagedObjectModel")]
         #[method_id(@__retain_semantics Other inferredMappingModelForSourceModel:destinationModel:error:_)]
         pub unsafe fn inferredMappingModelForSourceModel_destinationModel_error(
             source_model: &NSManagedObjectModel,
             destination_model: &NSManagedObjectModel,
-        ) -> Result<Id<NSMappingModel>, Id<NSError>>;
+        ) -> Result<Retained<NSMappingModel>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
             url: Option<&NSURL>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSEntityMapping")]
         #[method_id(@__retain_semantics Other entityMappings)]
-        pub unsafe fn entityMappings(&self) -> Option<Id<NSArray<NSEntityMapping>>>;
+        pub unsafe fn entityMappings(&self) -> Option<Retained<NSArray<NSEntityMapping>>>;
 
         #[cfg(feature = "NSEntityMapping")]
         #[method(setEntityMappings:)]
@@ -50,7 +50,9 @@ extern_methods!(
 
         #[cfg(feature = "NSEntityMapping")]
         #[method_id(@__retain_semantics Other entityMappingsByName)]
-        pub unsafe fn entityMappingsByName(&self) -> Id<NSDictionary<NSString, NSEntityMapping>>;
+        pub unsafe fn entityMappingsByName(
+            &self,
+        ) -> Retained<NSDictionary<NSString, NSEntityMapping>>;
     }
 );
 
@@ -58,9 +60,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMappingModel {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

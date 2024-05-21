@@ -37,7 +37,7 @@ unsafe impl NSObjectProtocol for VNImageRequestHandler {}
 extern_methods!(
     unsafe impl VNImageRequestHandler {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-image")]
         #[method_id(@__retain_semantics Init initWithCIImage:options:)]
@@ -45,28 +45,28 @@ extern_methods!(
             this: Allocated<Self>,
             image: &CIImage,
             options: &NSDictionary<VNImageOption, AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithURL:options:)]
         pub unsafe fn initWithURL_options(
             this: Allocated<Self>,
             image_url: &NSURL,
             options: &NSDictionary<VNImageOption, AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithData:options:)]
         pub unsafe fn initWithData_options(
             this: Allocated<Self>,
             image_data: &NSData,
             options: &NSDictionary<VNImageOption, AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "VNRequest")]
         #[method(performRequests:error:_)]
         pub unsafe fn performRequests_error(
             &self,
             requests: &NSArray<VNRequest>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
     }
 );
 
@@ -74,7 +74,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNImageRequestHandler {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -93,7 +93,7 @@ unsafe impl NSObjectProtocol for VNSequenceRequestHandler {}
 extern_methods!(
     unsafe impl VNSequenceRequestHandler {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequest", feature = "objc2-core-image"))]
         #[method(performRequests:onCIImage:error:_)]
@@ -101,7 +101,7 @@ extern_methods!(
             &self,
             requests: &NSArray<VNRequest>,
             image: &CIImage,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "VNRequest")]
         #[method(performRequests:onImageURL:error:_)]
@@ -109,7 +109,7 @@ extern_methods!(
             &self,
             requests: &NSArray<VNRequest>,
             image_url: &NSURL,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "VNRequest")]
         #[method(performRequests:onImageData:error:_)]
@@ -117,7 +117,7 @@ extern_methods!(
             &self,
             requests: &NSArray<VNRequest>,
             image_data: &NSData,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
     }
 );
 
@@ -125,6 +125,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNSequenceRequestHandler {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

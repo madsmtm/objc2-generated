@@ -27,13 +27,13 @@ extern_methods!(
     unsafe impl HKSourceRevision {
         #[cfg(feature = "HKSource")]
         #[method_id(@__retain_semantics Other source)]
-        pub unsafe fn source(&self) -> Id<HKSource>;
+        pub unsafe fn source(&self) -> Retained<HKSource>;
 
         #[method_id(@__retain_semantics Other version)]
-        pub unsafe fn version(&self) -> Option<Id<NSString>>;
+        pub unsafe fn version(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other productType)]
-        pub unsafe fn productType(&self) -> Option<Id<NSString>>;
+        pub unsafe fn productType(&self) -> Option<Retained<NSString>>;
 
         #[method(operatingSystemVersion)]
         pub unsafe fn operatingSystemVersion(&self) -> NSOperatingSystemVersion;
@@ -46,7 +46,7 @@ extern_methods!(
             version: Option<&NSString>,
             product_type: Option<&NSString>,
             operating_system_version: NSOperatingSystemVersion,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "HKSource")]
         #[method_id(@__retain_semantics Init initWithSource:version:)]
@@ -54,10 +54,10 @@ extern_methods!(
             this: Allocated<Self>,
             source: &HKSource,
             version: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -65,7 +65,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKSourceRevision {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

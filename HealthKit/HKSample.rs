@@ -32,13 +32,13 @@ extern_methods!(
     unsafe impl HKSample {
         #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other sampleType)]
-        pub unsafe fn sampleType(&self) -> Id<HKSampleType>;
+        pub unsafe fn sampleType(&self) -> Retained<HKSampleType>;
 
         #[method_id(@__retain_semantics Other startDate)]
-        pub unsafe fn startDate(&self) -> Id<NSDate>;
+        pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other endDate)]
-        pub unsafe fn endDate(&self) -> Id<NSDate>;
+        pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
         #[method(hasUndeterminedDuration)]
         pub unsafe fn hasUndeterminedDuration(&self) -> bool;
@@ -50,7 +50,7 @@ extern_methods!(
     #[cfg(feature = "HKObject")]
     unsafe impl HKSample {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -59,7 +59,7 @@ extern_methods!(
     #[cfg(feature = "HKObject")]
     unsafe impl HKSample {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

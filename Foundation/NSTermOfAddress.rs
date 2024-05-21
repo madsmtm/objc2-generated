@@ -28,33 +28,33 @@ unsafe impl NSSecureCoding for NSTermOfAddress {}
 extern_methods!(
     unsafe impl NSTermOfAddress {
         #[method_id(@__retain_semantics Other neutral)]
-        pub unsafe fn neutral() -> Id<Self>;
+        pub unsafe fn neutral() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other feminine)]
-        pub unsafe fn feminine() -> Id<Self>;
+        pub unsafe fn feminine() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other masculine)]
-        pub unsafe fn masculine() -> Id<Self>;
+        pub unsafe fn masculine() -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSMorphology", feature = "NSString"))]
         #[method_id(@__retain_semantics Other localizedForLanguageIdentifier:withPronouns:)]
         pub unsafe fn localizedForLanguageIdentifier_withPronouns(
             language: &NSString,
             pronouns: &NSArray<NSMorphologyPronoun>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other languageIdentifier)]
-        pub unsafe fn languageIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn languageIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSMorphology"))]
         #[method_id(@__retain_semantics Other pronouns)]
-        pub unsafe fn pronouns(&self) -> Option<Id<NSArray<NSMorphologyPronoun>>>;
+        pub unsafe fn pronouns(&self) -> Option<Retained<NSArray<NSMorphologyPronoun>>>;
     }
 );

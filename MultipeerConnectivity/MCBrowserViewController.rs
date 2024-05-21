@@ -57,7 +57,7 @@ extern_methods!(
             this: Allocated<Self>,
             service_type: &NSString,
             session: &MCSession,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MCNearbyServiceBrowser", feature = "MCSession"))]
         #[method_id(@__retain_semantics Init initWithBrowser:session:)]
@@ -65,12 +65,12 @@ extern_methods!(
             this: Allocated<Self>,
             browser: &MCNearbyServiceBrowser,
             session: &MCSession,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn MCBrowserViewControllerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MCBrowserViewControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -80,11 +80,11 @@ extern_methods!(
 
         #[cfg(feature = "MCNearbyServiceBrowser")]
         #[method_id(@__retain_semantics Other browser)]
-        pub unsafe fn browser(&self) -> Id<MCNearbyServiceBrowser>;
+        pub unsafe fn browser(&self) -> Retained<MCNearbyServiceBrowser>;
 
         #[cfg(feature = "MCSession")]
         #[method_id(@__retain_semantics Other session)]
-        pub unsafe fn session(&self) -> Id<MCSession>;
+        pub unsafe fn session(&self) -> Retained<MCSession>;
 
         #[method(minimumNumberOfPeers)]
         pub unsafe fn minimumNumberOfPeers(&self) -> NSUInteger;
@@ -110,10 +110,13 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -123,7 +126,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MCBrowserViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -133,7 +136,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MCBrowserViewController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

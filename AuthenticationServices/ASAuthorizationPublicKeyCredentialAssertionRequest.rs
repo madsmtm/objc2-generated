@@ -10,13 +10,13 @@ extern_protocol!(
         NSCopying + NSObjectProtocol + NSSecureCoding
     {
         #[method_id(@__retain_semantics Other challenge)]
-        unsafe fn challenge(&self) -> Id<NSData>;
+        unsafe fn challenge(&self) -> Retained<NSData>;
 
         #[method(setChallenge:)]
         unsafe fn setChallenge(&self, challenge: &NSData);
 
         #[method_id(@__retain_semantics Other relyingPartyIdentifier)]
-        unsafe fn relyingPartyIdentifier(&self) -> Id<NSString>;
+        unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 
         #[method(setRelyingPartyIdentifier:)]
         unsafe fn setRelyingPartyIdentifier(&self, relying_party_identifier: &NSString);
@@ -25,7 +25,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other allowedCredentials)]
         unsafe fn allowedCredentials(
             &self,
-        ) -> Id<NSArray<ProtocolObject<dyn ASAuthorizationPublicKeyCredentialDescriptor>>>;
+        ) -> Retained<NSArray<ProtocolObject<dyn ASAuthorizationPublicKeyCredentialDescriptor>>>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialDescriptor")]
         #[method(setAllowedCredentials:)]
@@ -40,7 +40,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other userVerificationPreference)]
         unsafe fn userVerificationPreference(
             &self,
-        ) -> Id<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
+        ) -> Retained<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         #[method(setUserVerificationPreference:)]

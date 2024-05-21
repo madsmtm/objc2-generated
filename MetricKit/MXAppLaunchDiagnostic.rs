@@ -32,10 +32,10 @@ extern_methods!(
     unsafe impl MXAppLaunchDiagnostic {
         #[cfg(feature = "MXCallStackTree")]
         #[method_id(@__retain_semantics Other callStackTree)]
-        pub unsafe fn callStackTree(&self) -> Id<MXCallStackTree>;
+        pub unsafe fn callStackTree(&self) -> Retained<MXCallStackTree>;
 
         #[method_id(@__retain_semantics Other launchDuration)]
-        pub unsafe fn launchDuration(&self) -> Id<NSMeasurement<NSUnitDuration>>;
+        pub unsafe fn launchDuration(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
     }
 );
 
@@ -44,9 +44,9 @@ extern_methods!(
     #[cfg(feature = "MXDiagnostic")]
     unsafe impl MXAppLaunchDiagnostic {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

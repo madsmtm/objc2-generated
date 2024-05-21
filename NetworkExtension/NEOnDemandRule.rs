@@ -75,7 +75,7 @@ extern_methods!(
         pub unsafe fn action(&self) -> NEOnDemandRuleAction;
 
         #[method_id(@__retain_semantics Other DNSSearchDomainMatch)]
-        pub unsafe fn DNSSearchDomainMatch(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn DNSSearchDomainMatch(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setDNSSearchDomainMatch:)]
         pub unsafe fn setDNSSearchDomainMatch(
@@ -84,7 +84,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other DNSServerAddressMatch)]
-        pub unsafe fn DNSServerAddressMatch(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn DNSServerAddressMatch(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setDNSServerAddressMatch:)]
         pub unsafe fn setDNSServerAddressMatch(
@@ -102,13 +102,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other SSIDMatch)]
-        pub unsafe fn SSIDMatch(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn SSIDMatch(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setSSIDMatch:)]
         pub unsafe fn setSSIDMatch(&self, ssid_match: Option<&NSArray<NSString>>);
 
         #[method_id(@__retain_semantics Other probeURL)]
-        pub unsafe fn probeURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn probeURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setProbeURL:)]
         pub unsafe fn setProbeURL(&self, probe_url: Option<&NSURL>);
@@ -119,10 +119,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEOnDemandRule {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -153,10 +153,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEOnDemandRuleConnect {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -187,10 +187,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEOnDemandRuleDisconnect {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -221,10 +221,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEOnDemandRuleIgnore {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -250,7 +250,8 @@ unsafe impl NSSecureCoding for NEOnDemandRuleEvaluateConnection {}
 extern_methods!(
     unsafe impl NEOnDemandRuleEvaluateConnection {
         #[method_id(@__retain_semantics Other connectionRules)]
-        pub unsafe fn connectionRules(&self) -> Option<Id<NSArray<NEEvaluateConnectionRule>>>;
+        pub unsafe fn connectionRules(&self)
+            -> Option<Retained<NSArray<NEEvaluateConnectionRule>>>;
 
         #[method(setConnectionRules:)]
         pub unsafe fn setConnectionRules(
@@ -264,10 +265,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEOnDemandRuleEvaluateConnection {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -315,22 +316,22 @@ extern_methods!(
             this: Allocated<Self>,
             domains: &NSArray<NSString>,
             action: NEEvaluateConnectionRuleAction,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(action)]
         pub unsafe fn action(&self) -> NEEvaluateConnectionRuleAction;
 
         #[method_id(@__retain_semantics Other matchDomains)]
-        pub unsafe fn matchDomains(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn matchDomains(&self) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other useDNSServers)]
-        pub unsafe fn useDNSServers(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn useDNSServers(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setUseDNSServers:)]
         pub unsafe fn setUseDNSServers(&self, use_dns_servers: Option<&NSArray<NSString>>);
 
         #[method_id(@__retain_semantics Other probeURL)]
-        pub unsafe fn probeURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn probeURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setProbeURL:)]
         pub unsafe fn setProbeURL(&self, probe_url: Option<&NSURL>);
@@ -341,9 +342,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEEvaluateConnectionRule {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

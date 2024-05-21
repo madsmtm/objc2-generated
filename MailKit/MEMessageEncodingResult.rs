@@ -25,19 +25,19 @@ extern_methods!(
     unsafe impl MEMessageEncodingResult {
         #[cfg(feature = "MEEncodedOutgoingMessage")]
         #[method_id(@__retain_semantics Other encodedMessage)]
-        pub unsafe fn encodedMessage(&self) -> Option<Id<MEEncodedOutgoingMessage>>;
+        pub unsafe fn encodedMessage(&self) -> Option<Retained<MEEncodedOutgoingMessage>>;
 
         #[method_id(@__retain_semantics Other signingError)]
-        pub unsafe fn signingError(&self) -> Option<Id<NSError>>;
+        pub unsafe fn signingError(&self) -> Option<Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other encryptionError)]
-        pub unsafe fn encryptionError(&self) -> Option<Id<NSError>>;
+        pub unsafe fn encryptionError(&self) -> Option<Retained<NSError>>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MEEncodedOutgoingMessage")]
         #[method_id(@__retain_semantics Init initWithEncodedMessage:signingError:encryptionError:)]
@@ -46,6 +46,6 @@ extern_methods!(
             encoded_message: Option<&MEEncodedOutgoingMessage>,
             signing_error: Option<&NSError>,
             encryption_error: Option<&NSError>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

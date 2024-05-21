@@ -46,7 +46,7 @@ extern_protocol!(
             &self,
             controller: &ASAccountAuthenticationModificationController,
             mtm: MainThreadMarker,
-        ) -> Id<ASPresentationAnchor>;
+        ) -> Retained<ASPresentationAnchor>;
     }
 
     unsafe impl ProtocolType
@@ -72,7 +72,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn ASAccountAuthenticationModificationControllerDelegate>>>;
+        ) -> Option<
+            Retained<ProtocolObject<dyn ASAccountAuthenticationModificationControllerDelegate>>,
+        >;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -86,7 +88,7 @@ extern_methods!(
         pub unsafe fn presentationContextProvider(
             &self,
         ) -> Option<
-            Id<
+            Retained<
                 ProtocolObject<
                     dyn ASAccountAuthenticationModificationControllerPresentationContextProviding,
                 >,
@@ -113,9 +115,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAccountAuthenticationModificationController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

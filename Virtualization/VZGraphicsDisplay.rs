@@ -20,10 +20,10 @@ unsafe impl NSObjectProtocol for VZGraphicsDisplay {}
 extern_methods!(
     unsafe impl VZGraphicsDisplay {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(sizeInPixels)]
         pub unsafe fn sizeInPixels(&self) -> CGSize;
@@ -32,14 +32,14 @@ extern_methods!(
         pub unsafe fn reconfigureWithSizeInPixels_error(
             &self,
             size_in_pixels: CGSize,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "VZGraphicsDisplayConfiguration")]
         #[method(reconfigureWithConfiguration:error:_)]
         pub unsafe fn reconfigureWithConfiguration_error(
             &self,
             configuration: &VZGraphicsDisplayConfiguration,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(addObserver:)]
         pub unsafe fn addObserver(&self, observer: &ProtocolObject<dyn VZGraphicsDisplayObserver>);

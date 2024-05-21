@@ -32,17 +32,23 @@ extern_methods!(
     unsafe impl NSWindowController {
         #[cfg(feature = "NSWindow")]
         #[method_id(@__retain_semantics Init initWithWindow:)]
-        pub unsafe fn initWithWindow(this: Allocated<Self>, window: Option<&NSWindow>) -> Id<Self>;
+        pub unsafe fn initWithWindow(
+            this: Allocated<Self>,
+            window: Option<&NSWindow>,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSNib")]
         #[method_id(@__retain_semantics Init initWithWindowNibName:)]
         pub unsafe fn initWithWindowNibName(
             this: Allocated<Self>,
             window_nib_name: &NSNibName,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSNib")]
         #[method_id(@__retain_semantics Init initWithWindowNibName:owner:)]
@@ -50,28 +56,28 @@ extern_methods!(
             this: Allocated<Self>,
             window_nib_name: &NSNibName,
             owner: &AnyObject,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithWindowNibPath:owner:)]
         pub unsafe fn initWithWindowNibPath_owner(
             this: Allocated<Self>,
             window_nib_path: &NSString,
             owner: &AnyObject,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSNib")]
         #[method_id(@__retain_semantics Other windowNibName)]
-        pub unsafe fn windowNibName(&self) -> Option<Id<NSNibName>>;
+        pub unsafe fn windowNibName(&self) -> Option<Retained<NSNibName>>;
 
         #[method_id(@__retain_semantics Other windowNibPath)]
-        pub unsafe fn windowNibPath(&self) -> Option<Id<NSString>>;
+        pub unsafe fn windowNibPath(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other owner)]
-        pub unsafe fn owner(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn owner(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSWindow")]
         #[method_id(@__retain_semantics Other windowFrameAutosaveName)]
-        pub unsafe fn windowFrameAutosaveName(&self) -> Id<NSWindowFrameAutosaveName>;
+        pub unsafe fn windowFrameAutosaveName(&self) -> Retained<NSWindowFrameAutosaveName>;
 
         #[cfg(feature = "NSWindow")]
         #[method(setWindowFrameAutosaveName:)]
@@ -90,7 +96,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other previewRepresentableActivityItems)]
         pub unsafe fn previewRepresentableActivityItems(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn NSPreviewRepresentableActivityItem>>>>;
+        ) -> Option<Retained<NSArray<ProtocolObject<dyn NSPreviewRepresentableActivityItem>>>>;
 
         #[cfg(feature = "NSPreviewRepresentingActivityItem")]
         #[method(setPreviewRepresentableActivityItems:)]
@@ -102,7 +108,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other document)]
-        pub unsafe fn document(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn document(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setDocument:)]
         pub unsafe fn setDocument(&self, document: Option<&AnyObject>);
@@ -123,11 +129,11 @@ extern_methods!(
         pub unsafe fn windowTitleForDocumentDisplayName(
             &self,
             display_name: &NSString,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(feature = "NSViewController")]
         #[method_id(@__retain_semantics Other contentViewController)]
-        pub unsafe fn contentViewController(&self) -> Option<Id<NSViewController>>;
+        pub unsafe fn contentViewController(&self) -> Option<Retained<NSViewController>>;
 
         #[cfg(feature = "NSViewController")]
         #[method(setContentViewController:)]
@@ -138,7 +144,7 @@ extern_methods!(
 
         #[cfg(feature = "NSWindow")]
         #[method_id(@__retain_semantics Other window)]
-        pub unsafe fn window(&self) -> Option<Id<NSWindow>>;
+        pub unsafe fn window(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "NSWindow")]
         #[method(setWindow:)]
@@ -169,7 +175,7 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSWindowController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -178,7 +184,7 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSWindowController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -188,7 +194,7 @@ extern_methods!(
     unsafe impl NSWindowController {
         #[cfg(feature = "NSStoryboard")]
         #[method_id(@__retain_semantics Other storyboard)]
-        pub unsafe fn storyboard(&self) -> Option<Id<NSStoryboard>>;
+        pub unsafe fn storyboard(&self) -> Option<Retained<NSStoryboard>>;
     }
 );
 

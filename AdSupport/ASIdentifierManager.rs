@@ -20,10 +20,10 @@ unsafe impl NSObjectProtocol for ASIdentifierManager {}
 extern_methods!(
     unsafe impl ASIdentifierManager {
         #[method_id(@__retain_semantics Other sharedManager)]
-        pub unsafe fn sharedManager() -> Id<ASIdentifierManager>;
+        pub unsafe fn sharedManager() -> Retained<ASIdentifierManager>;
 
         #[method_id(@__retain_semantics Other advertisingIdentifier)]
-        pub unsafe fn advertisingIdentifier(&self) -> Id<NSUUID>;
+        pub unsafe fn advertisingIdentifier(&self) -> Retained<NSUUID>;
 
         #[deprecated = "This has been replaced by functionality in AppTrackingTransparency's ATTrackingManager class."]
         #[method(isAdvertisingTrackingEnabled)]
@@ -35,9 +35,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASIdentifierManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

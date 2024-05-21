@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl DOMHTMLBaseElement {
         #[deprecated]
         #[method_id(@__retain_semantics Other href)]
-        pub unsafe fn href(&self) -> Id<NSString>;
+        pub unsafe fn href(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setHref:)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Id<NSString>;
+        pub unsafe fn target(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setTarget:)]
@@ -98,7 +98,7 @@ extern_methods!(
     unsafe impl DOMHTMLBaseElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -113,6 +113,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLBaseElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

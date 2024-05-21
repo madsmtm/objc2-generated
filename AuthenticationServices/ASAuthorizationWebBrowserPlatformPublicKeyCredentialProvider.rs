@@ -18,7 +18,7 @@ extern_protocol!(
             client_data: &ASPublicKeyCredentialClientData,
             name: &NSString,
             user_id: &NSData,
-        ) -> Id<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest>;
+        ) -> Retained<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest>;
 
         #[cfg(all(
             feature = "ASAuthorizationPlatformPublicKeyCredentialAssertionRequest",
@@ -29,7 +29,7 @@ extern_protocol!(
         unsafe fn createCredentialAssertionRequestWithClientData(
             &self,
             client_data: &ASPublicKeyCredentialClientData,
-        ) -> Id<ASAuthorizationPlatformPublicKeyCredentialAssertionRequest>;
+        ) -> Retained<ASAuthorizationPlatformPublicKeyCredentialAssertionRequest>;
     }
 
     unsafe impl ProtocolType for dyn ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider {}

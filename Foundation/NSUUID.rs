@@ -32,14 +32,17 @@ unsafe impl NSSecureCoding for NSUUID {}
 extern_methods!(
     unsafe impl NSUUID {
         #[method_id(@__retain_semantics Other UUID)]
-        pub fn UUID() -> Id<Self>;
+        pub fn UUID() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Allocated<Self>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithUUIDString:)]
-        pub fn initWithUUIDString(this: Allocated<Self>, string: &NSString) -> Option<Id<Self>>;
+        pub fn initWithUUIDString(
+            this: Allocated<Self>,
+            string: &NSString,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSObjCRuntime")]
         #[method(compare:)]
@@ -47,7 +50,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other UUIDString)]
-        pub fn UUIDString(&self) -> Id<NSString>;
+        pub fn UUIDString(&self) -> Retained<NSString>;
     }
 );
 
@@ -55,13 +58,13 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUUID {
         #[method_id(@__retain_semantics New new)]
-        pub fn new() -> Id<Self>;
+        pub fn new() -> Retained<Self>;
     }
 );
 
-impl DefaultId for NSUUID {
+impl DefaultRetained for NSUUID {
     #[inline]
-    fn default_id() -> Id<Self> {
+    fn default_id() -> Retained<Self> {
         Self::new()
     }
 }

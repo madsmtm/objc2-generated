@@ -9,11 +9,11 @@ extern_protocol!(
     pub unsafe trait UITraitDefinition: IsMainThreadOnly {
         #[optional]
         #[method_id(@__retain_semantics Other identifier)]
-        unsafe fn identifier(mtm: MainThreadMarker) -> Id<NSString>;
+        unsafe fn identifier(mtm: MainThreadMarker) -> Retained<NSString>;
 
         #[optional]
         #[method_id(@__retain_semantics Other name)]
-        unsafe fn name(mtm: MainThreadMarker) -> Id<NSString>;
+        unsafe fn name(mtm: MainThreadMarker) -> Retained<NSString>;
 
         #[optional]
         #[method(affectsColorAppearance)]
@@ -52,7 +52,7 @@ pub type UINSIntegerTrait = *mut AnyClass;
 extern_protocol!(
     pub unsafe trait UIObjectTraitDefinition: UITraitDefinition + IsMainThreadOnly {
         #[method_id(@__retain_semantics Other defaultValue)]
-        unsafe fn defaultValue(mtm: MainThreadMarker) -> Option<Id<NSObject>>;
+        unsafe fn defaultValue(mtm: MainThreadMarker) -> Option<Retained<NSObject>>;
     }
 
     unsafe impl ProtocolType for dyn UIObjectTraitDefinition {}
@@ -84,10 +84,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITraitUserInterfaceIdiom {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -115,10 +115,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITraitUserInterfaceStyle {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -146,10 +146,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITraitLayoutDirection {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -177,10 +177,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITraitDisplayScale {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -208,10 +208,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITraitHorizontalSizeClass {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -239,10 +239,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITraitVerticalSizeClass {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -270,10 +270,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITraitForceTouchCapability {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -301,10 +301,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITraitPreferredContentSizeCategory {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -332,10 +332,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITraitDisplayGamut {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -363,10 +363,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITraitAccessibilityContrast {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -394,10 +394,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITraitUserInterfaceLevel {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -425,10 +425,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITraitLegibilityWeight {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -456,10 +456,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITraitActiveAppearance {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -487,10 +487,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITraitToolbarItemPresentationSize {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -518,10 +518,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITraitImageDynamicRange {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -549,10 +549,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITraitTypesettingLanguage {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -580,9 +580,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITraitSceneCaptureState {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

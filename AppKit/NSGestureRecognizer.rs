@@ -55,13 +55,16 @@ extern_methods!(
             this: Allocated<Self>,
             target: Option<&AnyObject>,
             action: Option<Sel>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -75,7 +78,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSGestureRecognizerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSGestureRecognizerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -91,11 +94,11 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Option<Id<NSView>>;
+        pub unsafe fn view(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSPressureConfiguration")]
         #[method_id(@__retain_semantics Other pressureConfiguration)]
-        pub unsafe fn pressureConfiguration(&self) -> Id<NSPressureConfiguration>;
+        pub unsafe fn pressureConfiguration(&self) -> Retained<NSPressureConfiguration>;
 
         #[cfg(feature = "NSPressureConfiguration")]
         #[method(setPressureConfiguration:)]
@@ -159,10 +162,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGestureRecognizer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

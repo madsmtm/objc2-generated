@@ -86,7 +86,7 @@ extern_methods!(
             language_option_characteristics: Option<&NSArray<NSString>>,
             display_name: &NSString,
             identifier: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(isAutomaticLegibleLanguageOption)]
         pub unsafe fn isAutomaticLegibleLanguageOption(&self) -> bool;
@@ -98,16 +98,16 @@ extern_methods!(
         pub unsafe fn languageOptionType(&self) -> MPNowPlayingInfoLanguageOptionType;
 
         #[method_id(@__retain_semantics Other languageTag)]
-        pub unsafe fn languageTag(&self) -> Option<Id<NSString>>;
+        pub unsafe fn languageTag(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other languageOptionCharacteristics)]
-        pub unsafe fn languageOptionCharacteristics(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn languageOptionCharacteristics(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method_id(@__retain_semantics Other displayName)]
-        pub unsafe fn displayName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
     }
 );
 
@@ -115,10 +115,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPNowPlayingInfoLanguageOption {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -142,13 +142,15 @@ extern_methods!(
             language_options: &NSArray<MPNowPlayingInfoLanguageOption>,
             default_language_option: Option<&MPNowPlayingInfoLanguageOption>,
             allow_empty_selection: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other languageOptions)]
-        pub unsafe fn languageOptions(&self) -> Id<NSArray<MPNowPlayingInfoLanguageOption>>;
+        pub unsafe fn languageOptions(&self) -> Retained<NSArray<MPNowPlayingInfoLanguageOption>>;
 
         #[method_id(@__retain_semantics Other defaultLanguageOption)]
-        pub unsafe fn defaultLanguageOption(&self) -> Option<Id<MPNowPlayingInfoLanguageOption>>;
+        pub unsafe fn defaultLanguageOption(
+            &self,
+        ) -> Option<Retained<MPNowPlayingInfoLanguageOption>>;
 
         #[method(allowEmptySelection)]
         pub unsafe fn allowEmptySelection(&self) -> bool;
@@ -159,9 +161,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPNowPlayingInfoLanguageOptionGroup {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

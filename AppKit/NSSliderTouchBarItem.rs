@@ -44,7 +44,7 @@ extern_methods!(
             feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Id<NSView>;
+        pub unsafe fn view(&self) -> Retained<NSView>;
 
         #[cfg(all(
             feature = "NSControl",
@@ -53,7 +53,7 @@ extern_methods!(
             feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other slider)]
-        pub unsafe fn slider(&self) -> Id<NSSlider>;
+        pub unsafe fn slider(&self) -> Retained<NSSlider>;
 
         #[cfg(all(
             feature = "NSControl",
@@ -83,14 +83,14 @@ extern_methods!(
         pub unsafe fn setMaximumSliderWidth(&self, maximum_slider_width: CGFloat);
 
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Option<Id<NSString>>;
+        pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "NSSliderAccessory")]
         #[method_id(@__retain_semantics Other minimumValueAccessory)]
-        pub unsafe fn minimumValueAccessory(&self) -> Option<Id<NSSliderAccessory>>;
+        pub unsafe fn minimumValueAccessory(&self) -> Option<Retained<NSSliderAccessory>>;
 
         #[cfg(feature = "NSSliderAccessory")]
         #[method(setMinimumValueAccessory:)]
@@ -101,7 +101,7 @@ extern_methods!(
 
         #[cfg(feature = "NSSliderAccessory")]
         #[method_id(@__retain_semantics Other maximumValueAccessory)]
-        pub unsafe fn maximumValueAccessory(&self) -> Option<Id<NSSliderAccessory>>;
+        pub unsafe fn maximumValueAccessory(&self) -> Option<Retained<NSSliderAccessory>>;
 
         #[cfg(feature = "NSSliderAccessory")]
         #[method(setMaximumValueAccessory:)]
@@ -117,7 +117,7 @@ extern_methods!(
         pub unsafe fn setValueAccessoryWidth(&self, value_accessory_width: NSSliderAccessoryWidth);
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -129,7 +129,7 @@ extern_methods!(
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
         #[method_id(@__retain_semantics Other customizationLabel)]
-        pub unsafe fn customizationLabel(&self) -> Id<NSString>;
+        pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
@@ -144,13 +144,16 @@ extern_methods!(
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -159,6 +162,6 @@ extern_methods!(
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSSliderTouchBarItem {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

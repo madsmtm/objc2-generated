@@ -41,27 +41,30 @@ extern_methods!(
     #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
     unsafe impl UIKeyCommand {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         #[method_id(@__retain_semantics Other discoverabilityTitle)]
-        pub unsafe fn discoverabilityTitle(&self) -> Option<Id<NSString>>;
+        pub unsafe fn discoverabilityTitle(&self) -> Option<Retained<NSString>>;
 
         #[method(setDiscoverabilityTitle:)]
         pub unsafe fn setDiscoverabilityTitle(&self, discoverability_title: Option<&NSString>);
@@ -70,13 +73,13 @@ extern_methods!(
         pub unsafe fn action(&self) -> Option<Sel>;
 
         #[method_id(@__retain_semantics Other input)]
-        pub unsafe fn input(&self) -> Option<Id<NSString>>;
+        pub unsafe fn input(&self) -> Option<Retained<NSString>>;
 
         #[method(modifierFlags)]
         pub unsafe fn modifierFlags(&self) -> UIKeyModifierFlags;
 
         #[method_id(@__retain_semantics Other propertyList)]
-        pub unsafe fn propertyList(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn propertyList(&self) -> Option<Retained<AnyObject>>;
 
         #[method(attributes)]
         pub unsafe fn attributes(&self) -> UIMenuElementAttributes;
@@ -91,7 +94,7 @@ extern_methods!(
         pub unsafe fn setState(&self, state: UIMenuElementState);
 
         #[method_id(@__retain_semantics Other alternates)]
-        pub unsafe fn alternates(&self) -> Id<NSArray<UICommandAlternate>>;
+        pub unsafe fn alternates(&self) -> Retained<NSArray<UICommandAlternate>>;
 
         #[method(wantsPriorityOverSystemBehavior)]
         pub unsafe fn wantsPriorityOverSystemBehavior(&self) -> bool;
@@ -124,7 +127,7 @@ extern_methods!(
             modifier_flags: UIKeyModifierFlags,
             property_list: Option<&AnyObject>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other commandWithTitle:image:action:input:modifierFlags:propertyList:alternates:)]
@@ -137,7 +140,7 @@ extern_methods!(
             property_list: Option<&AnyObject>,
             alternates: &NSArray<UICommandAlternate>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other keyCommandWithInput:modifierFlags:action:)]
         pub unsafe fn keyCommandWithInput_modifierFlags_action(
@@ -145,7 +148,7 @@ extern_methods!(
             modifier_flags: UIKeyModifierFlags,
             action: Sel,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other keyCommandWithInput:modifierFlags:action:discoverabilityTitle:)]
@@ -155,7 +158,7 @@ extern_methods!(
             action: Sel,
             discoverability_title: &NSString,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other commandWithTitle:image:action:propertyList:)]
@@ -165,7 +168,7 @@ extern_methods!(
             action: Sel,
             property_list: Option<&AnyObject>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other commandWithTitle:image:action:propertyList:alternates:)]
@@ -176,7 +179,7 @@ extern_methods!(
             property_list: Option<&AnyObject>,
             alternates: &NSArray<UICommandAlternate>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -185,6 +188,6 @@ extern_methods!(
     #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
     unsafe impl UIKeyCommand {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

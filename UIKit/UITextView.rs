@@ -66,7 +66,7 @@ extern_protocol!(
             text_view: &UITextView,
             range: NSRange,
             suggested_actions: &NSArray<UIMenuElement>,
-        ) -> Option<Id<UIMenu>>;
+        ) -> Option<Retained<UIMenu>>;
 
         #[cfg(all(
             feature = "UIEditMenuInteraction",
@@ -108,7 +108,7 @@ extern_protocol!(
             text_view: &UITextView,
             text_item: &UITextItem,
             default_action: &UIAction,
-        ) -> Option<Id<UIAction>>;
+        ) -> Option<Retained<UIAction>>;
 
         #[cfg(all(
             feature = "UIMenu",
@@ -124,7 +124,7 @@ extern_protocol!(
             text_view: &UITextView,
             text_item: &UITextItem,
             default_menu: &UIMenu,
-        ) -> Option<Id<UITextItemMenuConfiguration>>;
+        ) -> Option<Retained<UITextItemMenuConfiguration>>;
 
         #[cfg(all(
             feature = "UIContextMenuInteraction",
@@ -383,20 +383,20 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
     unsafe impl UITextView {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn UITextViewDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UITextViewDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UITextViewDelegate>>);
 
         #[method_id(@__retain_semantics Other text)]
-        pub unsafe fn text(&self) -> Id<NSString>;
+        pub unsafe fn text(&self) -> Retained<NSString>;
 
         #[method(setText:)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
         #[cfg(feature = "UIFont")]
         #[method_id(@__retain_semantics Other font)]
-        pub unsafe fn font(&self) -> Option<Id<UIFont>>;
+        pub unsafe fn font(&self) -> Option<Retained<UIFont>>;
 
         #[cfg(feature = "UIFont")]
         #[method(setFont:)]
@@ -404,7 +404,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other textColor)]
-        pub unsafe fn textColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn textColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setTextColor:)]
@@ -451,14 +451,15 @@ extern_methods!(
         pub unsafe fn setAllowsEditingTextAttributes(&self, allows_editing_text_attributes: bool);
 
         #[method_id(@__retain_semantics Other attributedText)]
-        pub unsafe fn attributedText(&self) -> Id<NSAttributedString>;
+        pub unsafe fn attributedText(&self) -> Retained<NSAttributedString>;
 
         #[method(setAttributedText:)]
         pub unsafe fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);
 
         #[method_id(@__retain_semantics Other typingAttributes)]
-        pub unsafe fn typingAttributes(&self)
-            -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
+        pub unsafe fn typingAttributes(
+            &self,
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[method(setTypingAttributes:)]
         pub unsafe fn setTypingAttributes(
@@ -470,13 +471,13 @@ extern_methods!(
         pub unsafe fn scrollRangeToVisible(&self, range: NSRange);
 
         #[method_id(@__retain_semantics Other inputView)]
-        pub unsafe fn inputView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn inputView(&self) -> Option<Retained<UIView>>;
 
         #[method(setInputView:)]
         pub unsafe fn setInputView(&self, input_view: Option<&UIView>);
 
         #[method_id(@__retain_semantics Other inputAccessoryView)]
-        pub unsafe fn inputAccessoryView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn inputAccessoryView(&self) -> Option<Retained<UIView>>;
 
         #[method(setInputAccessoryView:)]
         pub unsafe fn setInputAccessoryView(&self, input_accessory_view: Option<&UIView>);
@@ -493,20 +494,23 @@ extern_methods!(
             this: Allocated<Self>,
             frame: CGRect,
             text_container: Option<&NSTextContainer>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other textViewUsingTextLayoutManager:)]
         pub unsafe fn textViewUsingTextLayoutManager(
             using_text_layout_manager: bool,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSTextContainer")]
         #[method_id(@__retain_semantics Other textContainer)]
-        pub unsafe fn textContainer(&self) -> Id<NSTextContainer>;
+        pub unsafe fn textContainer(&self) -> Retained<NSTextContainer>;
 
         #[cfg(feature = "UIGeometry")]
         #[method(textContainerInset)]
@@ -518,20 +522,20 @@ extern_methods!(
 
         #[cfg(feature = "NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other textLayoutManager)]
-        pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager>>;
+        pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "NSLayoutManager")]
         #[method_id(@__retain_semantics Other layoutManager)]
-        pub unsafe fn layoutManager(&self) -> Id<NSLayoutManager>;
+        pub unsafe fn layoutManager(&self) -> Retained<NSLayoutManager>;
 
         #[cfg(feature = "NSTextStorage")]
         #[method_id(@__retain_semantics Other textStorage)]
-        pub unsafe fn textStorage(&self) -> Id<NSTextStorage>;
+        pub unsafe fn textStorage(&self) -> Retained<NSTextStorage>;
 
         #[method_id(@__retain_semantics Other linkTextAttributes)]
         pub unsafe fn linkTextAttributes(
             &self,
-        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[method(setLinkTextAttributes:)]
         pub unsafe fn setLinkTextAttributes(
@@ -547,7 +551,7 @@ extern_methods!(
 
         #[cfg(feature = "UIFindInteraction")]
         #[method_id(@__retain_semantics Other findInteraction)]
-        pub unsafe fn findInteraction(&self) -> Option<Id<UIFindInteraction>>;
+        pub unsafe fn findInteraction(&self) -> Option<Retained<UIFindInteraction>>;
 
         #[method(isFindInteractionEnabled)]
         pub unsafe fn isFindInteractionEnabled(&self) -> bool;
@@ -568,7 +572,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
     unsafe impl UITextView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
     }
 );
 
@@ -577,10 +581,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
     unsafe impl UITextView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -641,7 +645,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
     unsafe impl UITextView {
         #[method_id(@__retain_semantics Other interactionState)]
-        pub unsafe fn interactionState(&self) -> Id<AnyObject>;
+        pub unsafe fn interactionState(&self) -> Retained<AnyObject>;
 
         #[method(setInteractionState:)]
         pub unsafe fn setInteractionState(&self, interaction_state: &AnyObject);

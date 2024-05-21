@@ -39,7 +39,7 @@ unsafe impl NSObjectProtocol for NSPageLayout {}
 extern_methods!(
     unsafe impl NSPageLayout {
         #[method_id(@__retain_semantics Other pageLayout)]
-        pub unsafe fn pageLayout(mtm: MainThreadMarker) -> Id<NSPageLayout>;
+        pub unsafe fn pageLayout(mtm: MainThreadMarker) -> Retained<NSPageLayout>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method(addAccessoryController:)]
@@ -51,7 +51,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other accessoryControllers)]
-        pub unsafe fn accessoryControllers(&self) -> Id<NSArray<NSViewController>>;
+        pub unsafe fn accessoryControllers(&self) -> Retained<NSArray<NSViewController>>;
 
         #[cfg(all(
             feature = "NSPrintInfo",
@@ -88,7 +88,7 @@ extern_methods!(
 
         #[cfg(feature = "NSPrintInfo")]
         #[method_id(@__retain_semantics Other printInfo)]
-        pub unsafe fn printInfo(&self) -> Option<Id<NSPrintInfo>>;
+        pub unsafe fn printInfo(&self) -> Option<Retained<NSPrintInfo>>;
     }
 );
 
@@ -96,10 +96,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPageLayout {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -114,7 +114,7 @@ extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other accessoryView)]
-        pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
+        pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;
 
         #[deprecated]
         #[method(readPrintInfo)]

@@ -20,7 +20,7 @@ unsafe impl NSObjectProtocol for SKAdImpression {}
 extern_methods!(
     unsafe impl SKAdImpression {
         #[method_id(@__retain_semantics Other sourceAppStoreItemIdentifier)]
-        pub unsafe fn sourceAppStoreItemIdentifier(&self) -> Id<NSNumber>;
+        pub unsafe fn sourceAppStoreItemIdentifier(&self) -> Retained<NSNumber>;
 
         #[method(setSourceAppStoreItemIdentifier:)]
         pub unsafe fn setSourceAppStoreItemIdentifier(
@@ -29,7 +29,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other advertisedAppStoreItemIdentifier)]
-        pub unsafe fn advertisedAppStoreItemIdentifier(&self) -> Id<NSNumber>;
+        pub unsafe fn advertisedAppStoreItemIdentifier(&self) -> Retained<NSNumber>;
 
         #[method(setAdvertisedAppStoreItemIdentifier:)]
         pub unsafe fn setAdvertisedAppStoreItemIdentifier(
@@ -38,61 +38,61 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other adNetworkIdentifier)]
-        pub unsafe fn adNetworkIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn adNetworkIdentifier(&self) -> Retained<NSString>;
 
         #[method(setAdNetworkIdentifier:)]
         pub unsafe fn setAdNetworkIdentifier(&self, ad_network_identifier: &NSString);
 
         #[method_id(@__retain_semantics Other adCampaignIdentifier)]
-        pub unsafe fn adCampaignIdentifier(&self) -> Id<NSNumber>;
+        pub unsafe fn adCampaignIdentifier(&self) -> Retained<NSNumber>;
 
         #[method(setAdCampaignIdentifier:)]
         pub unsafe fn setAdCampaignIdentifier(&self, ad_campaign_identifier: &NSNumber);
 
         #[method_id(@__retain_semantics Other sourceIdentifier)]
-        pub unsafe fn sourceIdentifier(&self) -> Id<NSNumber>;
+        pub unsafe fn sourceIdentifier(&self) -> Retained<NSNumber>;
 
         #[method(setSourceIdentifier:)]
         pub unsafe fn setSourceIdentifier(&self, source_identifier: &NSNumber);
 
         #[method_id(@__retain_semantics Other adImpressionIdentifier)]
-        pub unsafe fn adImpressionIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn adImpressionIdentifier(&self) -> Retained<NSString>;
 
         #[method(setAdImpressionIdentifier:)]
         pub unsafe fn setAdImpressionIdentifier(&self, ad_impression_identifier: &NSString);
 
         #[method_id(@__retain_semantics Other adType)]
-        pub unsafe fn adType(&self) -> Option<Id<NSString>>;
+        pub unsafe fn adType(&self) -> Option<Retained<NSString>>;
 
         #[method(setAdType:)]
         pub unsafe fn setAdType(&self, ad_type: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other adDescription)]
-        pub unsafe fn adDescription(&self) -> Option<Id<NSString>>;
+        pub unsafe fn adDescription(&self) -> Option<Retained<NSString>>;
 
         #[method(setAdDescription:)]
         pub unsafe fn setAdDescription(&self, ad_description: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other adPurchaserName)]
-        pub unsafe fn adPurchaserName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn adPurchaserName(&self) -> Option<Retained<NSString>>;
 
         #[method(setAdPurchaserName:)]
         pub unsafe fn setAdPurchaserName(&self, ad_purchaser_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other timestamp)]
-        pub unsafe fn timestamp(&self) -> Id<NSNumber>;
+        pub unsafe fn timestamp(&self) -> Retained<NSNumber>;
 
         #[method(setTimestamp:)]
         pub unsafe fn setTimestamp(&self, timestamp: &NSNumber);
 
         #[method_id(@__retain_semantics Other signature)]
-        pub unsafe fn signature(&self) -> Id<NSString>;
+        pub unsafe fn signature(&self) -> Retained<NSString>;
 
         #[method(setSignature:)]
         pub unsafe fn setSignature(&self, signature: &NSString);
 
         #[method_id(@__retain_semantics Other version)]
-        pub unsafe fn version(&self) -> Id<NSString>;
+        pub unsafe fn version(&self) -> Retained<NSString>;
 
         #[method(setVersion:)]
         pub unsafe fn setVersion(&self, version: &NSString);
@@ -103,9 +103,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKAdImpression {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

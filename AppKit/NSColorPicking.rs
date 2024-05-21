@@ -18,11 +18,11 @@ extern_protocol!(
             this: Allocated<Self>,
             mask: NSUInteger,
             owning_color_panel: &NSColorPanel,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other provideNewButtonImage)]
-        unsafe fn provideNewButtonImage(&self) -> Id<NSImage>;
+        unsafe fn provideNewButtonImage(&self) -> Retained<NSImage>;
 
         #[cfg(all(
             feature = "NSActionCell",
@@ -56,7 +56,7 @@ extern_protocol!(
         unsafe fn setMode(&self, mode: NSColorPanelMode);
 
         #[method_id(@__retain_semantics Other buttonToolTip)]
-        unsafe fn buttonToolTip(&self) -> Id<NSString>;
+        unsafe fn buttonToolTip(&self) -> Retained<NSString>;
 
         #[method(minContentSize)]
         unsafe fn minContentSize(&self) -> NSSize;
@@ -77,7 +77,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other provideNewView:)]
-        unsafe fn provideNewView(&self, initial_request: bool) -> Id<NSView>;
+        unsafe fn provideNewView(&self, initial_request: bool) -> Retained<NSView>;
 
         #[cfg(feature = "NSColor")]
         #[method(setColor:)]

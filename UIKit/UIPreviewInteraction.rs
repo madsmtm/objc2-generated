@@ -21,19 +21,19 @@ extern_methods!(
     unsafe impl UIPreviewInteraction {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Init initWithView:)]
-        pub unsafe fn initWithView(this: Allocated<Self>, view: &UIView) -> Id<Self>;
+        pub unsafe fn initWithView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Option<Id<UIView>>;
+        pub unsafe fn view(&self) -> Option<Retained<UIView>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIPreviewInteractionDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIPreviewInteractionDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -57,7 +57,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPreviewInteraction {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

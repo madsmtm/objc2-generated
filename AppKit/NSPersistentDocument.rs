@@ -42,7 +42,7 @@ extern_methods!(
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
-        pub unsafe fn managedObjectContext(&self) -> Option<Id<NSManagedObjectContext>>;
+        pub unsafe fn managedObjectContext(&self) -> Option<Retained<NSManagedObjectContext>>;
 
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
@@ -55,7 +55,7 @@ extern_methods!(
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other managedObjectModel)]
-        pub unsafe fn managedObjectModel(&self) -> Option<Id<NSManagedObjectModel>>;
+        pub unsafe fn managedObjectModel(&self) -> Option<Retained<NSManagedObjectModel>>;
 
         #[method(configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:_)]
         pub unsafe fn configurePersistentStoreCoordinatorForURL_ofType_modelConfiguration_storeOptions_error(
@@ -64,10 +64,13 @@ extern_methods!(
             file_type: &NSString,
             configuration: Option<&NSString>,
             store_options: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other persistentStoreTypeForFileType:)]
-        pub unsafe fn persistentStoreTypeForFileType(&self, file_type: &NSString) -> Id<NSString>;
+        pub unsafe fn persistentStoreTypeForFileType(
+            &self,
+            file_type: &NSString,
+        ) -> Retained<NSString>;
 
         #[method(writeToURL:ofType:forSaveOperation:originalContentsURL:error:_)]
         pub unsafe fn writeToURL_ofType_forSaveOperation_originalContentsURL_error(
@@ -76,21 +79,21 @@ extern_methods!(
             type_name: &NSString,
             save_operation: NSSaveOperationType,
             absolute_original_contents_url: Option<&NSURL>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(readFromURL:ofType:error:_)]
         pub unsafe fn readFromURL_ofType_error(
             &self,
             absolute_url: &NSURL,
             type_name: &NSString,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(revertToContentsOfURL:ofType:error:_)]
         pub unsafe fn revertToContentsOfURL_ofType_error(
             &self,
             in_absolute_url: &NSURL,
             in_type_name: &NSString,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
     }
 );
 
@@ -99,20 +102,20 @@ extern_methods!(
     #[cfg(feature = "NSDocument")]
     unsafe impl NSPersistentDocument {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithType:error:_)]
         pub unsafe fn initWithType_error(
             this: Allocated<Self>,
             type_name: &NSString,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Init initWithContentsOfURL:ofType:error:_)]
         pub unsafe fn initWithContentsOfURL_ofType_error(
             this: Allocated<Self>,
             url: &NSURL,
             type_name: &NSString,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Init initForURL:withContentsOfURL:ofType:error:_)]
         pub unsafe fn initForURL_withContentsOfURL_ofType_error(
@@ -120,7 +123,7 @@ extern_methods!(
             url_or_nil: Option<&NSURL>,
             contents_url: &NSURL,
             type_name: &NSString,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
     }
 );
 
@@ -129,7 +132,7 @@ extern_methods!(
     #[cfg(feature = "NSDocument")]
     unsafe impl NSPersistentDocument {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -143,6 +146,6 @@ extern_methods!(
             &self,
             url: Option<&NSURL>,
             file_type: Option<&NSString>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
     }
 );

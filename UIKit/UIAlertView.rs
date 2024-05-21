@@ -99,15 +99,18 @@ extern_methods!(
     unsafe impl UIAlertView {
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
 
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[method(setDelegate:)]
@@ -115,7 +118,7 @@ extern_methods!(
 
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[method(setTitle:)]
@@ -123,7 +126,7 @@ extern_methods!(
 
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[method_id(@__retain_semantics Other message)]
-        pub unsafe fn message(&self) -> Option<Id<NSString>>;
+        pub unsafe fn message(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[method(setMessage:)]
@@ -135,7 +138,10 @@ extern_methods!(
 
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[method_id(@__retain_semantics Other buttonTitleAtIndex:)]
-        pub unsafe fn buttonTitleAtIndex(&self, button_index: NSInteger) -> Option<Id<NSString>>;
+        pub unsafe fn buttonTitleAtIndex(
+            &self,
+            button_index: NSInteger,
+        ) -> Option<Retained<NSString>>;
 
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[method(numberOfButtons)]
@@ -180,7 +186,7 @@ extern_methods!(
         pub unsafe fn textFieldAtIndex(
             &self,
             text_field_index: NSInteger,
-        ) -> Option<Id<UITextField>>;
+        ) -> Option<Retained<UITextField>>;
     }
 );
 
@@ -189,10 +195,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIAlertView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

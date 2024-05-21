@@ -26,14 +26,14 @@ extern_methods!(
     unsafe impl UIPressesEvent {
         #[cfg(feature = "UIPress")]
         #[method_id(@__retain_semantics Other allPresses)]
-        pub unsafe fn allPresses(&self) -> Id<NSSet<UIPress>>;
+        pub unsafe fn allPresses(&self) -> Retained<NSSet<UIPress>>;
 
         #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPress"))]
         #[method_id(@__retain_semantics Other pressesForGestureRecognizer:)]
         pub unsafe fn pressesForGestureRecognizer(
             &self,
             gesture: &UIGestureRecognizer,
-        ) -> Id<NSSet<UIPress>>;
+        ) -> Retained<NSSet<UIPress>>;
     }
 );
 
@@ -42,9 +42,9 @@ extern_methods!(
     #[cfg(feature = "UIEvent")]
     unsafe impl UIPressesEvent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -57,7 +57,7 @@ extern_methods!(
             options: NSTrackingAreaOptions,
             owner: Option<&AnyObject>,
             user_info: Option<&NSDictionary<AnyObject, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(rect)]
         pub unsafe fn rect(&self) -> NSRect;
@@ -66,10 +66,10 @@ extern_methods!(
         pub unsafe fn options(&self) -> NSTrackingAreaOptions;
 
         #[method_id(@__retain_semantics Other owner)]
-        pub unsafe fn owner(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn owner(&self) -> Option<Retained<AnyObject>>;
 
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary<AnyObject, AnyObject>>>;
+        pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary<AnyObject, AnyObject>>>;
     }
 );
 
@@ -77,9 +77,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTrackingArea {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

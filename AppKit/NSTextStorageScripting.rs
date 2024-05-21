@@ -10,32 +10,32 @@ extern_methods!(
     #[cfg(feature = "NSTextStorage")]
     unsafe impl NSTextStorage {
         #[method_id(@__retain_semantics Other attributeRuns)]
-        pub unsafe fn attributeRuns(&self) -> Id<NSArray<NSTextStorage>>;
+        pub unsafe fn attributeRuns(&self) -> Retained<NSArray<NSTextStorage>>;
 
         #[method(setAttributeRuns:)]
         pub unsafe fn setAttributeRuns(&mut self, attribute_runs: &NSArray<NSTextStorage>);
 
         #[method_id(@__retain_semantics Other paragraphs)]
-        pub unsafe fn paragraphs(&self) -> Id<NSArray<NSTextStorage>>;
+        pub unsafe fn paragraphs(&self) -> Retained<NSArray<NSTextStorage>>;
 
         #[method(setParagraphs:)]
         pub unsafe fn setParagraphs(&mut self, paragraphs: &NSArray<NSTextStorage>);
 
         #[method_id(@__retain_semantics Other words)]
-        pub unsafe fn words(&self) -> Id<NSArray<NSTextStorage>>;
+        pub unsafe fn words(&self) -> Retained<NSArray<NSTextStorage>>;
 
         #[method(setWords:)]
         pub unsafe fn setWords(&mut self, words: &NSArray<NSTextStorage>);
 
         #[method_id(@__retain_semantics Other characters)]
-        pub unsafe fn characters(&self) -> Id<NSArray<NSTextStorage>>;
+        pub unsafe fn characters(&self) -> Retained<NSArray<NSTextStorage>>;
 
         #[method(setCharacters:)]
         pub unsafe fn setCharacters(&mut self, characters: &NSArray<NSTextStorage>);
 
         #[cfg(feature = "NSFont")]
         #[method_id(@__retain_semantics Other font)]
-        pub unsafe fn font(&self) -> Option<Id<NSFont>>;
+        pub unsafe fn font(&self) -> Option<Retained<NSFont>>;
 
         #[cfg(feature = "NSFont")]
         #[method(setFont:)]
@@ -43,7 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other foregroundColor)]
-        pub unsafe fn foregroundColor(&self) -> Option<Id<NSColor>>;
+        pub unsafe fn foregroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         #[method(setForegroundColor:)]

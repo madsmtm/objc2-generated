@@ -26,16 +26,16 @@ unsafe impl NSSecureCoding for NEFlowMetaData {}
 extern_methods!(
     unsafe impl NEFlowMetaData {
         #[method_id(@__retain_semantics Other sourceAppUniqueIdentifier)]
-        pub unsafe fn sourceAppUniqueIdentifier(&self) -> Id<NSData>;
+        pub unsafe fn sourceAppUniqueIdentifier(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other sourceAppSigningIdentifier)]
-        pub unsafe fn sourceAppSigningIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn sourceAppSigningIdentifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other sourceAppAuditToken)]
-        pub unsafe fn sourceAppAuditToken(&self) -> Option<Id<NSData>>;
+        pub unsafe fn sourceAppAuditToken(&self) -> Option<Retained<NSData>>;
 
         #[method_id(@__retain_semantics Other filterFlowIdentifier)]
-        pub unsafe fn filterFlowIdentifier(&self) -> Option<Id<NSUUID>>;
+        pub unsafe fn filterFlowIdentifier(&self) -> Option<Retained<NSUUID>>;
     }
 );
 
@@ -43,9 +43,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFlowMetaData {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

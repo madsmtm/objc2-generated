@@ -13,7 +13,7 @@ extern_category!(
     pub unsafe trait UNNotificationResponseUIKitAdditions {
         #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
         #[method_id(@__retain_semantics Other targetScene)]
-        unsafe fn targetScene(&self, mtm: MainThreadMarker) -> Option<Id<UIScene>>;
+        unsafe fn targetScene(&self, mtm: MainThreadMarker) -> Option<Retained<UIScene>>;
     }
 
     #[cfg(feature = "objc2-user-notifications")]

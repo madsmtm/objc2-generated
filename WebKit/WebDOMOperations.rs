@@ -16,7 +16,7 @@ extern_methods!(
         #[cfg(feature = "WebArchive")]
         #[deprecated]
         #[method_id(@__retain_semantics Other webArchive)]
-        pub unsafe fn webArchive(&self) -> Option<Id<WebArchive>>;
+        pub unsafe fn webArchive(&self) -> Option<Retained<WebArchive>>;
     }
 );
 
@@ -32,12 +32,14 @@ extern_methods!(
         #[cfg(feature = "WebFrame")]
         #[deprecated]
         #[method_id(@__retain_semantics Other webFrame)]
-        pub unsafe fn webFrame(&self) -> Option<Id<WebFrame>>;
+        pub unsafe fn webFrame(&self) -> Option<Retained<WebFrame>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other URLWithAttributeString:)]
-        pub unsafe fn URLWithAttributeString(&self, string: Option<&NSString>)
-            -> Option<Id<NSURL>>;
+        pub unsafe fn URLWithAttributeString(
+            &self,
+            string: Option<&NSString>,
+        ) -> Option<Retained<NSURL>>;
     }
 );
 
@@ -52,11 +54,11 @@ extern_methods!(
         #[cfg(feature = "WebArchive")]
         #[deprecated]
         #[method_id(@__retain_semantics Other webArchive)]
-        pub unsafe fn webArchive(&self) -> Option<Id<WebArchive>>;
+        pub unsafe fn webArchive(&self) -> Option<Retained<WebArchive>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other markupString)]
-        pub unsafe fn markupString(&self) -> Id<NSString>;
+        pub unsafe fn markupString(&self) -> Retained<NSString>;
     }
 );
 
@@ -74,7 +76,7 @@ extern_methods!(
         #[cfg(feature = "WebFrame")]
         #[deprecated]
         #[method_id(@__retain_semantics Other contentFrame)]
-        pub unsafe fn contentFrame(&self) -> Option<Id<WebFrame>>;
+        pub unsafe fn contentFrame(&self) -> Option<Retained<WebFrame>>;
     }
 );
 
@@ -92,7 +94,7 @@ extern_methods!(
         #[cfg(feature = "WebFrame")]
         #[deprecated]
         #[method_id(@__retain_semantics Other contentFrame)]
-        pub unsafe fn contentFrame(&self) -> Option<Id<WebFrame>>;
+        pub unsafe fn contentFrame(&self) -> Option<Retained<WebFrame>>;
     }
 );
 
@@ -110,6 +112,6 @@ extern_methods!(
         #[cfg(feature = "WebFrame")]
         #[deprecated]
         #[method_id(@__retain_semantics Other contentFrame)]
-        pub unsafe fn contentFrame(&self) -> Option<Id<WebFrame>>;
+        pub unsafe fn contentFrame(&self) -> Option<Retained<WebFrame>>;
     }
 );

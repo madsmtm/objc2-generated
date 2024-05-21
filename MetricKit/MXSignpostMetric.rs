@@ -25,22 +25,23 @@ extern_methods!(
     unsafe impl MXSignpostIntervalData {
         #[cfg(feature = "MXHistogram")]
         #[method_id(@__retain_semantics Other histogrammedSignpostDuration)]
-        pub unsafe fn histogrammedSignpostDuration(&self) -> Id<MXHistogram<NSUnitDuration>>;
+        pub unsafe fn histogrammedSignpostDuration(&self) -> Retained<MXHistogram<NSUnitDuration>>;
 
         #[method_id(@__retain_semantics Other cumulativeCPUTime)]
-        pub unsafe fn cumulativeCPUTime(&self) -> Option<Id<NSMeasurement<NSUnitDuration>>>;
+        pub unsafe fn cumulativeCPUTime(&self) -> Option<Retained<NSMeasurement<NSUnitDuration>>>;
 
         #[cfg(feature = "MXAverage")]
         #[method_id(@__retain_semantics Other averageMemory)]
-        pub unsafe fn averageMemory(&self) -> Option<Id<MXAverage<NSUnitInformationStorage>>>;
+        pub unsafe fn averageMemory(&self)
+            -> Option<Retained<MXAverage<NSUnitInformationStorage>>>;
 
         #[method_id(@__retain_semantics Other cumulativeLogicalWrites)]
         pub unsafe fn cumulativeLogicalWrites(
             &self,
-        ) -> Option<Id<NSMeasurement<NSUnitInformationStorage>>>;
+        ) -> Option<Retained<NSMeasurement<NSUnitInformationStorage>>>;
 
         #[method_id(@__retain_semantics Other cumulativeHitchTimeRatio)]
-        pub unsafe fn cumulativeHitchTimeRatio(&self) -> Option<Id<NSMeasurement<NSUnit>>>;
+        pub unsafe fn cumulativeHitchTimeRatio(&self) -> Option<Retained<NSMeasurement<NSUnit>>>;
     }
 );
 
@@ -48,10 +49,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXSignpostIntervalData {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -81,13 +82,13 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXSignpostMetric {
         #[method_id(@__retain_semantics Other signpostName)]
-        pub unsafe fn signpostName(&self) -> Id<NSString>;
+        pub unsafe fn signpostName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other signpostCategory)]
-        pub unsafe fn signpostCategory(&self) -> Id<NSString>;
+        pub unsafe fn signpostCategory(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other signpostIntervalData)]
-        pub unsafe fn signpostIntervalData(&self) -> Option<Id<MXSignpostIntervalData>>;
+        pub unsafe fn signpostIntervalData(&self) -> Option<Retained<MXSignpostIntervalData>>;
 
         #[method(totalCount)]
         pub unsafe fn totalCount(&self) -> NSUInteger;
@@ -99,9 +100,9 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXSignpostMetric {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

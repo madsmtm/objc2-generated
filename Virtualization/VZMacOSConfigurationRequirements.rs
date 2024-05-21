@@ -19,14 +19,14 @@ unsafe impl NSObjectProtocol for VZMacOSConfigurationRequirements {}
 extern_methods!(
     unsafe impl VZMacOSConfigurationRequirements {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZMacHardwareModel")]
         #[method_id(@__retain_semantics Other hardwareModel)]
-        pub unsafe fn hardwareModel(&self) -> Id<VZMacHardwareModel>;
+        pub unsafe fn hardwareModel(&self) -> Retained<VZMacHardwareModel>;
 
         #[method(minimumSupportedCPUCount)]
         pub unsafe fn minimumSupportedCPUCount(&self) -> NSUInteger;

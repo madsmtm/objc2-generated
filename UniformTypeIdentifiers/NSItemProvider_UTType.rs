@@ -18,7 +18,7 @@ extern_category!(
             open_in_place: bool,
             coordinated: bool,
             visibility: NSItemProviderRepresentationVisibility,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UTType", feature = "block2"))]
         #[method(registerDataRepresentationForContentType:visibility:loadHandler:)]
@@ -49,18 +49,18 @@ extern_category!(
 
         #[cfg(feature = "UTType")]
         #[method_id(@__retain_semantics Other registeredContentTypes)]
-        unsafe fn registeredContentTypes(&self) -> Id<NSArray<UTType>>;
+        unsafe fn registeredContentTypes(&self) -> Retained<NSArray<UTType>>;
 
         #[cfg(feature = "UTType")]
         #[method_id(@__retain_semantics Other registeredContentTypesForOpenInPlace)]
-        unsafe fn registeredContentTypesForOpenInPlace(&self) -> Id<NSArray<UTType>>;
+        unsafe fn registeredContentTypesForOpenInPlace(&self) -> Retained<NSArray<UTType>>;
 
         #[cfg(feature = "UTType")]
         #[method_id(@__retain_semantics Other registeredContentTypesConformingToContentType:)]
         unsafe fn registeredContentTypesConformingToContentType(
             &self,
             content_type: &UTType,
-        ) -> Id<NSArray<UTType>>;
+        ) -> Retained<NSArray<UTType>>;
 
         #[cfg(all(feature = "UTType", feature = "block2"))]
         #[method_id(@__retain_semantics Other loadDataRepresentationForContentType:completionHandler:)]
@@ -68,7 +68,7 @@ extern_category!(
             &self,
             content_type: &UTType,
             completion_handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
-        ) -> Id<NSProgress>;
+        ) -> Retained<NSProgress>;
 
         #[cfg(all(feature = "UTType", feature = "block2"))]
         #[method_id(@__retain_semantics Other loadFileRepresentationForContentType:openInPlace:completionHandler:)]
@@ -77,7 +77,7 @@ extern_category!(
             content_type: &UTType,
             open_in_place: bool,
             completion_handler: &block2::Block<dyn Fn(*mut NSURL, Bool, *mut NSError)>,
-        ) -> Id<NSProgress>;
+        ) -> Retained<NSProgress>;
     }
 
     unsafe impl NSItemProviderUTType for NSItemProvider {}

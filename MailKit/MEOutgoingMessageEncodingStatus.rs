@@ -30,17 +30,17 @@ extern_methods!(
         pub unsafe fn canEncrypt(&self) -> bool;
 
         #[method_id(@__retain_semantics Other securityError)]
-        pub unsafe fn securityError(&self) -> Option<Id<NSError>>;
+        pub unsafe fn securityError(&self) -> Option<Retained<NSError>>;
 
         #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Other addressesFailingEncryption)]
-        pub unsafe fn addressesFailingEncryption(&self) -> Id<NSArray<MEEmailAddress>>;
+        pub unsafe fn addressesFailingEncryption(&self) -> Retained<NSArray<MEEmailAddress>>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Init initWithCanSign:canEncrypt:securityError:addressesFailingEncryption:)]
@@ -50,6 +50,6 @@ extern_methods!(
             can_encrypt: bool,
             security_error: Option<&NSError>,
             addresses_failing_encryption: &NSArray<MEEmailAddress>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

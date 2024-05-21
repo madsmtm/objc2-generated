@@ -22,16 +22,16 @@ extern_methods!(
     unsafe impl MLModelCollection {
         #[deprecated = "Use Background Assets or NSURLSession instead."]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MLModelCollectionEntry")]
         #[deprecated = "Use Background Assets or NSURLSession instead."]
         #[method_id(@__retain_semantics Other entries)]
-        pub unsafe fn entries(&self) -> Id<NSDictionary<NSString, MLModelCollectionEntry>>;
+        pub unsafe fn entries(&self) -> Retained<NSDictionary<NSString, MLModelCollectionEntry>>;
 
         #[deprecated = "Use Background Assets or NSURLSession instead."]
         #[method_id(@__retain_semantics Other deploymentID)]
-        pub unsafe fn deploymentID(&self) -> Id<NSString>;
+        pub unsafe fn deploymentID(&self) -> Retained<NSString>;
 
         #[cfg(feature = "block2")]
         #[deprecated = "Use Background Assets or NSURLSession instead."]
@@ -39,7 +39,7 @@ extern_methods!(
         pub unsafe fn beginAccessingModelCollectionWithIdentifier_completionHandler(
             identifier: &NSString,
             completion_handler: &block2::Block<dyn Fn(*mut MLModelCollection, *mut NSError)>,
-        ) -> Id<NSProgress>;
+        ) -> Retained<NSProgress>;
 
         #[cfg(feature = "block2")]
         #[deprecated = "Use Background Assets or NSURLSession instead."]
@@ -51,11 +51,11 @@ extern_methods!(
 
         #[deprecated = "Use Background Assets or NSURLSession instead."]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Use Background Assets or NSURLSession instead."]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

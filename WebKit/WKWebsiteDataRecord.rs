@@ -76,10 +76,10 @@ unsafe impl NSObjectProtocol for WKWebsiteDataRecord {}
 extern_methods!(
     unsafe impl WKWebsiteDataRecord {
         #[method_id(@__retain_semantics Other displayName)]
-        pub unsafe fn displayName(&self) -> Id<NSString>;
+        pub unsafe fn displayName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other dataTypes)]
-        pub unsafe fn dataTypes(&self) -> Id<NSSet<NSString>>;
+        pub unsafe fn dataTypes(&self) -> Retained<NSSet<NSString>>;
     }
 );
 
@@ -87,9 +87,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKWebsiteDataRecord {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

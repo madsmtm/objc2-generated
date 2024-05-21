@@ -33,7 +33,7 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CALayer {
         #[method_id(@__retain_semantics Other constraints)]
-        pub unsafe fn constraints(&self) -> Option<Id<NSArray<CAConstraint>>>;
+        pub unsafe fn constraints(&self) -> Option<Retained<NSArray<CAConstraint>>>;
 
         #[method(setConstraints:)]
         pub unsafe fn setConstraints(&self, constraints: Option<&NSArray<CAConstraint>>);
@@ -61,7 +61,7 @@ unsafe impl NSObjectProtocol for CAConstraintLayoutManager {}
 extern_methods!(
     unsafe impl CAConstraintLayoutManager {
         #[method_id(@__retain_semantics Other layoutManager)]
-        pub unsafe fn layoutManager() -> Id<Self>;
+        pub unsafe fn layoutManager() -> Retained<Self>;
     }
 );
 
@@ -69,10 +69,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CAConstraintLayoutManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -101,7 +101,7 @@ extern_methods!(
             src_attr: CAConstraintAttribute,
             m: CGFloat,
             c: CGFloat,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other constraintWithAttribute:relativeTo:attribute:offset:)]
         pub unsafe fn constraintWithAttribute_relativeTo_attribute_offset(
@@ -109,14 +109,14 @@ extern_methods!(
             src_id: &NSString,
             src_attr: CAConstraintAttribute,
             c: CGFloat,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other constraintWithAttribute:relativeTo:attribute:)]
         pub unsafe fn constraintWithAttribute_relativeTo_attribute(
             attr: CAConstraintAttribute,
             src_id: &NSString,
             src_attr: CAConstraintAttribute,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithAttribute:relativeTo:attribute:scale:offset:)]
         pub unsafe fn initWithAttribute_relativeTo_attribute_scale_offset(
@@ -126,13 +126,13 @@ extern_methods!(
             src_attr: CAConstraintAttribute,
             m: CGFloat,
             c: CGFloat,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(attribute)]
         pub unsafe fn attribute(&self) -> CAConstraintAttribute;
 
         #[method_id(@__retain_semantics Other sourceName)]
-        pub unsafe fn sourceName(&self) -> Id<NSString>;
+        pub unsafe fn sourceName(&self) -> Retained<NSString>;
 
         #[method(sourceAttribute)]
         pub unsafe fn sourceAttribute(&self) -> CAConstraintAttribute;
@@ -149,9 +149,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CAConstraint {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

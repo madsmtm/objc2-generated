@@ -25,7 +25,7 @@ unsafe impl NSObjectProtocol for GCSteeringWheelElement {}
 extern_methods!(
     unsafe impl GCSteeringWheelElement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(maximumDegreesOfRotation)]
         pub unsafe fn maximumDegreesOfRotation(&self) -> c_float;
@@ -36,6 +36,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCSteeringWheelElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -25,7 +25,7 @@ extern_methods!(
     #[cfg(feature = "UICalendarSelection")]
     unsafe impl UICalendarSelectionMultiDate {
         #[method_id(@__retain_semantics Other selectedDates)]
-        pub unsafe fn selectedDates(&self) -> Id<NSArray<NSDateComponents>>;
+        pub unsafe fn selectedDates(&self) -> Retained<NSArray<NSDateComponents>>;
 
         #[method(setSelectedDates:)]
         pub unsafe fn setSelectedDates(&self, selected_dates: &NSArray<NSDateComponents>);
@@ -40,13 +40,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UICalendarSelectionMultiDateDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UICalendarSelectionMultiDateDelegate>>>;
 
         #[method_id(@__retain_semantics Init initWithDelegate:)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: Option<&ProtocolObject<dyn UICalendarSelectionMultiDateDelegate>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -55,10 +55,10 @@ extern_methods!(
     #[cfg(feature = "UICalendarSelection")]
     unsafe impl UICalendarSelectionMultiDate {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

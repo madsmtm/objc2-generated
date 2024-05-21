@@ -20,26 +20,29 @@ unsafe impl NSObjectProtocol for MPContentItem {}
 extern_methods!(
     unsafe impl MPContentItem {
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
-        pub unsafe fn initWithIdentifier(this: Allocated<Self>, identifier: &NSString) -> Id<Self>;
+        pub unsafe fn initWithIdentifier(
+            this: Allocated<Self>,
+            identifier: &NSString,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other subtitle)]
-        pub unsafe fn subtitle(&self) -> Option<Id<NSString>>;
+        pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         #[method(setSubtitle:)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
 
         #[cfg(feature = "MPMediaItem")]
         #[method_id(@__retain_semantics Other artwork)]
-        pub unsafe fn artwork(&self) -> Option<Id<MPMediaItemArtwork>>;
+        pub unsafe fn artwork(&self) -> Option<Retained<MPMediaItemArtwork>>;
 
         #[cfg(feature = "MPMediaItem")]
         #[method(setArtwork:)]
@@ -81,9 +84,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPContentItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

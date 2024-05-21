@@ -85,7 +85,7 @@ extern_methods!(
     unsafe impl MCSession {
         #[cfg(feature = "MCPeerID")]
         #[method_id(@__retain_semantics Init initWithPeer:)]
-        pub unsafe fn initWithPeer(this: Allocated<Self>, my_peer_id: &MCPeerID) -> Id<Self>;
+        pub unsafe fn initWithPeer(this: Allocated<Self>, my_peer_id: &MCPeerID) -> Retained<Self>;
 
         #[cfg(feature = "MCPeerID")]
         #[method_id(@__retain_semantics Init initWithPeer:securityIdentity:encryptionPreference:)]
@@ -94,7 +94,7 @@ extern_methods!(
             my_peer_id: &MCPeerID,
             identity: Option<&NSArray>,
             encryption_preference: MCEncryptionPreference,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MCPeerID")]
         #[method(sendData:toPeers:withMode:error:_)]
@@ -103,7 +103,7 @@ extern_methods!(
             data: &NSData,
             peer_i_ds: &NSArray<MCPeerID>,
             mode: MCSessionSendDataMode,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(disconnect)]
         pub unsafe fn disconnect(&self);
@@ -116,7 +116,7 @@ extern_methods!(
             resource_name: &NSString,
             peer_id: &MCPeerID,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
-        ) -> Option<Id<NSProgress>>;
+        ) -> Option<Retained<NSProgress>>;
 
         #[cfg(feature = "MCPeerID")]
         #[method_id(@__retain_semantics Other startStreamWithName:toPeer:error:_)]
@@ -124,27 +124,27 @@ extern_methods!(
             &self,
             stream_name: &NSString,
             peer_id: &MCPeerID,
-        ) -> Result<Id<NSOutputStream>, Id<NSError>>;
+        ) -> Result<Retained<NSOutputStream>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn MCSessionDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn MCSessionDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn MCSessionDelegate>>);
 
         #[cfg(feature = "MCPeerID")]
         #[method_id(@__retain_semantics Other myPeerID)]
-        pub unsafe fn myPeerID(&self) -> Id<MCPeerID>;
+        pub unsafe fn myPeerID(&self) -> Retained<MCPeerID>;
 
         #[method_id(@__retain_semantics Other securityIdentity)]
-        pub unsafe fn securityIdentity(&self) -> Option<Id<NSArray>>;
+        pub unsafe fn securityIdentity(&self) -> Option<Retained<NSArray>>;
 
         #[method(encryptionPreference)]
         pub unsafe fn encryptionPreference(&self) -> MCEncryptionPreference;
 
         #[cfg(feature = "MCPeerID")]
         #[method_id(@__retain_semantics Other connectedPeers)]
-        pub unsafe fn connectedPeers(&self) -> Id<NSArray<MCPeerID>>;
+        pub unsafe fn connectedPeers(&self) -> Retained<NSArray<MCPeerID>>;
     }
 );
 
@@ -152,10 +152,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MCSession {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

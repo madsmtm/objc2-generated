@@ -35,7 +35,7 @@ extern_methods!(
             feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other searchField)]
-        pub unsafe fn searchField(&self) -> Id<NSSearchField>;
+        pub unsafe fn searchField(&self) -> Retained<NSSearchField>;
 
         #[cfg(all(
             feature = "NSControl",
@@ -49,7 +49,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Option<Id<NSView>>;
+        pub unsafe fn view(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setView:)]
@@ -90,7 +90,7 @@ extern_methods!(
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -99,9 +99,9 @@ extern_methods!(
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSSearchToolbarItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

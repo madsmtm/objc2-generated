@@ -63,7 +63,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other cssText)]
-        pub unsafe fn cssText(&self) -> Id<NSString>;
+        pub unsafe fn cssText(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setCssText:)]
@@ -72,11 +72,11 @@ extern_methods!(
         #[cfg(all(feature = "DOMCSSStyleSheet", feature = "DOMStyleSheet"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other parentStyleSheet)]
-        pub unsafe fn parentStyleSheet(&self) -> Option<Id<DOMCSSStyleSheet>>;
+        pub unsafe fn parentStyleSheet(&self) -> Option<Retained<DOMCSSStyleSheet>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other parentRule)]
-        pub unsafe fn parentRule(&self) -> Option<Id<DOMCSSRule>>;
+        pub unsafe fn parentRule(&self) -> Option<Retained<DOMCSSRule>>;
     }
 );
 
@@ -86,7 +86,7 @@ extern_methods!(
     unsafe impl DOMCSSRule {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -95,6 +95,6 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCSSRule {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

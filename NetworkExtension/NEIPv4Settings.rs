@@ -30,31 +30,31 @@ extern_methods!(
             this: Allocated<Self>,
             addresses: &NSArray<NSString>,
             subnet_masks: &NSArray<NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other settingsWithAutomaticAddressing)]
-        pub unsafe fn settingsWithAutomaticAddressing() -> Id<Self>;
+        pub unsafe fn settingsWithAutomaticAddressing() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other addresses)]
-        pub unsafe fn addresses(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn addresses(&self) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other subnetMasks)]
-        pub unsafe fn subnetMasks(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn subnetMasks(&self) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other router)]
-        pub unsafe fn router(&self) -> Option<Id<NSString>>;
+        pub unsafe fn router(&self) -> Option<Retained<NSString>>;
 
         #[method(setRouter:)]
         pub unsafe fn setRouter(&self, router: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other includedRoutes)]
-        pub unsafe fn includedRoutes(&self) -> Option<Id<NSArray<NEIPv4Route>>>;
+        pub unsafe fn includedRoutes(&self) -> Option<Retained<NSArray<NEIPv4Route>>>;
 
         #[method(setIncludedRoutes:)]
         pub unsafe fn setIncludedRoutes(&self, included_routes: Option<&NSArray<NEIPv4Route>>);
 
         #[method_id(@__retain_semantics Other excludedRoutes)]
-        pub unsafe fn excludedRoutes(&self) -> Option<Id<NSArray<NEIPv4Route>>>;
+        pub unsafe fn excludedRoutes(&self) -> Option<Retained<NSArray<NEIPv4Route>>>;
 
         #[method(setExcludedRoutes:)]
         pub unsafe fn setExcludedRoutes(&self, excluded_routes: Option<&NSArray<NEIPv4Route>>);
@@ -65,10 +65,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEIPv4Settings {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -97,22 +97,22 @@ extern_methods!(
             this: Allocated<Self>,
             address: &NSString,
             subnet_mask: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other destinationAddress)]
-        pub unsafe fn destinationAddress(&self) -> Id<NSString>;
+        pub unsafe fn destinationAddress(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other destinationSubnetMask)]
-        pub unsafe fn destinationSubnetMask(&self) -> Id<NSString>;
+        pub unsafe fn destinationSubnetMask(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other gatewayAddress)]
-        pub unsafe fn gatewayAddress(&self) -> Option<Id<NSString>>;
+        pub unsafe fn gatewayAddress(&self) -> Option<Retained<NSString>>;
 
         #[method(setGatewayAddress:)]
         pub unsafe fn setGatewayAddress(&self, gateway_address: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other defaultRoute)]
-        pub unsafe fn defaultRoute() -> Id<NEIPv4Route>;
+        pub unsafe fn defaultRoute() -> Retained<NEIPv4Route>;
     }
 );
 
@@ -120,9 +120,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEIPv4Route {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

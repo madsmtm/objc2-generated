@@ -26,11 +26,11 @@ extern_methods!(
     unsafe impl MKCircleRenderer {
         #[cfg(all(feature = "MKCircle", feature = "MKShape"))]
         #[method_id(@__retain_semantics Init initWithCircle:)]
-        pub unsafe fn initWithCircle(this: Allocated<Self>, circle: &MKCircle) -> Id<Self>;
+        pub unsafe fn initWithCircle(this: Allocated<Self>, circle: &MKCircle) -> Retained<Self>;
 
         #[cfg(all(feature = "MKCircle", feature = "MKShape"))]
         #[method_id(@__retain_semantics Other circle)]
-        pub unsafe fn circle(&self) -> Id<MKCircle>;
+        pub unsafe fn circle(&self) -> Retained<MKCircle>;
 
         #[method(strokeStart)]
         pub unsafe fn strokeStart(&self) -> CGFloat;
@@ -55,7 +55,7 @@ extern_methods!(
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -64,9 +64,9 @@ extern_methods!(
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKCircleRenderer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

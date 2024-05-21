@@ -50,7 +50,7 @@ extern_protocol!(
         #[cfg(feature = "UIBezierPath")]
         #[optional]
         #[method_id(@__retain_semantics Other collisionBoundingPath)]
-        unsafe fn collisionBoundingPath(&self) -> Id<UIBezierPath>;
+        unsafe fn collisionBoundingPath(&self) -> Retained<UIBezierPath>;
     }
 
     unsafe impl ProtocolType for dyn UIDynamicItem {}
@@ -76,10 +76,10 @@ extern_methods!(
         pub unsafe fn initWithItems(
             this: Allocated<Self>,
             items: &NSArray<ProtocolObject<dyn UIDynamicItem>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other items)]
-        pub unsafe fn items(&self) -> Id<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
+        pub unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
     }
 );
 
@@ -87,10 +87,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDynamicItemGroup {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -115,7 +115,7 @@ extern_methods!(
         pub unsafe fn removeChildBehavior(&self, behavior: &UIDynamicBehavior);
 
         #[method_id(@__retain_semantics Other childBehaviors)]
-        pub unsafe fn childBehaviors(&self) -> Id<NSArray<UIDynamicBehavior>>;
+        pub unsafe fn childBehaviors(&self) -> Retained<NSArray<UIDynamicBehavior>>;
 
         #[cfg(feature = "block2")]
         #[method(action)]
@@ -131,7 +131,7 @@ extern_methods!(
 
         #[cfg(feature = "UIDynamicAnimator")]
         #[method_id(@__retain_semantics Other dynamicAnimator)]
-        pub unsafe fn dynamicAnimator(&self) -> Option<Id<UIDynamicAnimator>>;
+        pub unsafe fn dynamicAnimator(&self) -> Option<Retained<UIDynamicAnimator>>;
     }
 );
 
@@ -139,9 +139,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDynamicBehavior {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

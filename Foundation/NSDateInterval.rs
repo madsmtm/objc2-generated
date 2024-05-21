@@ -33,22 +33,22 @@ extern_methods!(
     unsafe impl NSDateInterval {
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other startDate)]
-        pub unsafe fn startDate(&self) -> Id<NSDate>;
+        pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other endDate)]
-        pub unsafe fn endDate(&self) -> Id<NSDate>;
+        pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "NSDate")]
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Init initWithStartDate:duration:)]
@@ -56,7 +56,7 @@ extern_methods!(
             this: Allocated<Self>,
             start_date: &NSDate,
             duration: NSTimeInterval,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Init initWithStartDate:endDate:)]
@@ -64,7 +64,7 @@ extern_methods!(
             this: Allocated<Self>,
             start_date: &NSDate,
             end_date: &NSDate,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSObjCRuntime")]
         #[method(compare:)]
@@ -80,7 +80,7 @@ extern_methods!(
         pub unsafe fn intersectionWithDateInterval(
             &self,
             date_interval: &NSDateInterval,
-        ) -> Option<Id<NSDateInterval>>;
+        ) -> Option<Retained<NSDateInterval>>;
 
         #[cfg(feature = "NSDate")]
         #[method(containsDate:)]
@@ -92,6 +92,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDateInterval {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -35,7 +35,7 @@ extern_methods!(
     unsafe impl UIToolbarAppearance {
         #[cfg(feature = "UIBarButtonItemAppearance")]
         #[method_id(@__retain_semantics Other buttonAppearance)]
-        pub unsafe fn buttonAppearance(&self) -> Id<UIBarButtonItemAppearance>;
+        pub unsafe fn buttonAppearance(&self) -> Retained<UIBarButtonItemAppearance>;
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
         #[method(setButtonAppearance:)]
@@ -43,7 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
         #[method_id(@__retain_semantics Other doneButtonAppearance)]
-        pub unsafe fn doneButtonAppearance(&self) -> Id<UIBarButtonItemAppearance>;
+        pub unsafe fn doneButtonAppearance(&self) -> Retained<UIBarButtonItemAppearance>;
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
         #[method(setDoneButtonAppearance:)]
@@ -59,21 +59,23 @@ extern_methods!(
     #[cfg(feature = "UIBarAppearance")]
     unsafe impl UIToolbarAppearance {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIDevice")]
         #[method_id(@__retain_semantics Init initWithIdiom:)]
-        pub unsafe fn initWithIdiom(this: Allocated<Self>, idiom: UIUserInterfaceIdiom)
-            -> Id<Self>;
+        pub unsafe fn initWithIdiom(
+            this: Allocated<Self>,
+            idiom: UIUserInterfaceIdiom,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithBarAppearance:)]
         pub unsafe fn initWithBarAppearance(
             this: Allocated<Self>,
             bar_appearance: &UIBarAppearance,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     }
 );
 
@@ -82,6 +84,6 @@ extern_methods!(
     #[cfg(feature = "UIBarAppearance")]
     unsafe impl UIToolbarAppearance {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

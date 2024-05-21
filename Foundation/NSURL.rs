@@ -856,7 +856,7 @@ extern_methods!(
             scheme: &NSString,
             host: Option<&NSString>,
             path: &NSString,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initFileURLWithPath:isDirectory:relativeToURL:)]
@@ -865,7 +865,7 @@ extern_methods!(
             path: &NSString,
             is_dir: bool,
             base_url: Option<&NSURL>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initFileURLWithPath:relativeToURL:)]
@@ -873,7 +873,7 @@ extern_methods!(
             this: Allocated<Self>,
             path: &NSString,
             base_url: Option<&NSURL>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initFileURLWithPath:isDirectory:)]
@@ -881,11 +881,12 @@ extern_methods!(
             this: Allocated<Self>,
             path: &NSString,
             is_dir: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initFileURLWithPath:)]
-        pub unsafe fn initFileURLWithPath(this: Allocated<Self>, path: &NSString) -> Id<Self>;
+        pub unsafe fn initFileURLWithPath(this: Allocated<Self>, path: &NSString)
+            -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other fileURLWithPath:isDirectory:relativeToURL:)]
@@ -893,22 +894,23 @@ extern_methods!(
             path: &NSString,
             is_dir: bool,
             base_url: Option<&NSURL>,
-        ) -> Id<NSURL>;
+        ) -> Retained<NSURL>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other fileURLWithPath:relativeToURL:)]
         pub unsafe fn fileURLWithPath_relativeToURL(
             path: &NSString,
             base_url: Option<&NSURL>,
-        ) -> Id<NSURL>;
+        ) -> Retained<NSURL>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other fileURLWithPath:isDirectory:)]
-        pub unsafe fn fileURLWithPath_isDirectory(path: &NSString, is_dir: bool) -> Id<NSURL>;
+        pub unsafe fn fileURLWithPath_isDirectory(path: &NSString, is_dir: bool)
+            -> Retained<NSURL>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other fileURLWithPath:)]
-        pub unsafe fn fileURLWithPath(path: &NSString) -> Id<NSURL>;
+        pub unsafe fn fileURLWithPath(path: &NSString) -> Retained<NSURL>;
 
         #[method_id(@__retain_semantics Init initFileURLWithFileSystemRepresentation:isDirectory:relativeToURL:)]
         pub unsafe fn initFileURLWithFileSystemRepresentation_isDirectory_relativeToURL(
@@ -916,21 +918,21 @@ extern_methods!(
             path: NonNull<c_char>,
             is_dir: bool,
             base_url: Option<&NSURL>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other fileURLWithFileSystemRepresentation:isDirectory:relativeToURL:)]
         pub unsafe fn fileURLWithFileSystemRepresentation_isDirectory_relativeToURL(
             path: NonNull<c_char>,
             is_dir: bool,
             base_url: Option<&NSURL>,
-        ) -> Id<NSURL>;
+        ) -> Retained<NSURL>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(
             this: Allocated<Self>,
             url_string: &NSString,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithString:relativeToURL:)]
@@ -938,18 +940,18 @@ extern_methods!(
             this: Allocated<Self>,
             url_string: &NSString,
             base_url: Option<&NSURL>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other URLWithString:)]
-        pub unsafe fn URLWithString(url_string: &NSString) -> Option<Id<Self>>;
+        pub unsafe fn URLWithString(url_string: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other URLWithString:relativeToURL:)]
         pub unsafe fn URLWithString_relativeToURL(
             url_string: &NSString,
             base_url: Option<&NSURL>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithString:encodingInvalidCharacters:)]
@@ -957,14 +959,14 @@ extern_methods!(
             this: Allocated<Self>,
             url_string: &NSString,
             encoding_invalid_characters: bool,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other URLWithString:encodingInvalidCharacters:)]
         pub unsafe fn URLWithString_encodingInvalidCharacters(
             url_string: &NSString,
             encoding_invalid_characters: bool,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Init initWithDataRepresentation:relativeToURL:)]
@@ -972,14 +974,14 @@ extern_methods!(
             this: Allocated<Self>,
             data: &NSData,
             base_url: Option<&NSURL>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other URLWithDataRepresentation:relativeToURL:)]
         pub unsafe fn URLWithDataRepresentation_relativeToURL(
             data: &NSData,
             base_url: Option<&NSURL>,
-        ) -> Id<NSURL>;
+        ) -> Retained<NSURL>;
 
         #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Init initAbsoluteURLWithDataRepresentation:relativeToURL:)]
@@ -987,77 +989,77 @@ extern_methods!(
             this: Allocated<Self>,
             data: &NSData,
             base_url: Option<&NSURL>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other absoluteURLWithDataRepresentation:relativeToURL:)]
         pub unsafe fn absoluteURLWithDataRepresentation_relativeToURL(
             data: &NSData,
             base_url: Option<&NSURL>,
-        ) -> Id<NSURL>;
+        ) -> Retained<NSURL>;
 
         #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other dataRepresentation)]
-        pub unsafe fn dataRepresentation(&self) -> Id<NSData>;
+        pub unsafe fn dataRepresentation(&self) -> Retained<NSData>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other absoluteString)]
-        pub unsafe fn absoluteString(&self) -> Option<Id<NSString>>;
+        pub unsafe fn absoluteString(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other relativeString)]
-        pub unsafe fn relativeString(&self) -> Id<NSString>;
+        pub unsafe fn relativeString(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other baseURL)]
-        pub unsafe fn baseURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn baseURL(&self) -> Option<Retained<NSURL>>;
 
         #[method_id(@__retain_semantics Other absoluteURL)]
-        pub unsafe fn absoluteURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn absoluteURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other scheme)]
-        pub unsafe fn scheme(&self) -> Option<Id<NSString>>;
+        pub unsafe fn scheme(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other resourceSpecifier)]
-        pub unsafe fn resourceSpecifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn resourceSpecifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other host)]
-        pub unsafe fn host(&self) -> Option<Id<NSString>>;
+        pub unsafe fn host(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other port)]
-        pub unsafe fn port(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn port(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other user)]
-        pub unsafe fn user(&self) -> Option<Id<NSString>>;
+        pub unsafe fn user(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other password)]
-        pub unsafe fn password(&self) -> Option<Id<NSString>>;
+        pub unsafe fn password(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other path)]
-        pub unsafe fn path(&self) -> Option<Id<NSString>>;
+        pub unsafe fn path(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other fragment)]
-        pub unsafe fn fragment(&self) -> Option<Id<NSString>>;
+        pub unsafe fn fragment(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "The parameterString method is deprecated. Post deprecation for applications linked with or after the macOS 10.15, and for all iOS, watchOS, and tvOS applications, parameterString will always return nil, and the path method will return the complete path including the semicolon separator and params component if the URL string contains them."]
         #[method_id(@__retain_semantics Other parameterString)]
-        pub unsafe fn parameterString(&self) -> Option<Id<NSString>>;
+        pub unsafe fn parameterString(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other query)]
-        pub unsafe fn query(&self) -> Option<Id<NSString>>;
+        pub unsafe fn query(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other relativePath)]
-        pub unsafe fn relativePath(&self) -> Option<Id<NSString>>;
+        pub unsafe fn relativePath(&self) -> Option<Retained<NSString>>;
 
         #[method(hasDirectoryPath)]
         pub unsafe fn hasDirectoryPath(&self) -> bool;
@@ -1076,24 +1078,24 @@ extern_methods!(
         pub unsafe fn isFileURL(&self) -> bool;
 
         #[method_id(@__retain_semantics Other standardizedURL)]
-        pub unsafe fn standardizedURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn standardizedURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(isFileReferenceURL)]
         pub unsafe fn isFileReferenceURL(&self) -> bool;
 
         #[method_id(@__retain_semantics Other fileReferenceURL)]
-        pub unsafe fn fileReferenceURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn fileReferenceURL(&self) -> Option<Retained<NSURL>>;
 
         #[method_id(@__retain_semantics Other filePathURL)]
-        pub unsafe fn filePathURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn filePathURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[method(getResourceValue:forKey:error:_)]
         pub unsafe fn getResourceValue_forKey_error(
             &self,
-            value: &mut Option<Id<AnyObject>>,
+            value: &mut Option<Retained<AnyObject>>,
             key: &NSURLResourceKey,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(
             feature = "NSArray",
@@ -1105,7 +1107,7 @@ extern_methods!(
         pub unsafe fn resourceValuesForKeys_error(
             &self,
             keys: &NSArray<NSURLResourceKey>,
-        ) -> Result<Id<NSDictionary<NSURLResourceKey, AnyObject>>, Id<NSError>>;
+        ) -> Result<Retained<NSDictionary<NSURLResourceKey, AnyObject>>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[method(setResourceValue:forKey:error:_)]
@@ -1113,14 +1115,14 @@ extern_methods!(
             &self,
             value: Option<&AnyObject>,
             key: &NSURLResourceKey,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSError", feature = "NSString"))]
         #[method(setResourceValues:error:_)]
         pub unsafe fn setResourceValues_error(
             &self,
             keyed_values: &NSDictionary<NSURLResourceKey, AnyObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSString")]
         #[method(removeCachedResourceValueForKey:)]
@@ -1149,7 +1151,7 @@ extern_methods!(
             options: NSURLBookmarkCreationOptions,
             keys: Option<&NSArray<NSURLResourceKey>>,
             relative_url: Option<&NSURL>,
-        ) -> Result<Id<NSData>, Id<NSError>>;
+        ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
         #[method_id(@__retain_semantics Init initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:_)]
@@ -1159,7 +1161,7 @@ extern_methods!(
             options: NSURLBookmarkResolutionOptions,
             relative_url: Option<&NSURL>,
             is_stale: *mut Bool,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
         #[method_id(@__retain_semantics Other URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:_)]
@@ -1168,7 +1170,7 @@ extern_methods!(
             options: NSURLBookmarkResolutionOptions,
             relative_url: Option<&NSURL>,
             is_stale: *mut Bool,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(
             feature = "NSArray",
@@ -1180,7 +1182,7 @@ extern_methods!(
         pub unsafe fn resourceValuesForKeys_fromBookmarkData(
             keys: &NSArray<NSURLResourceKey>,
             bookmark_data: &NSData,
-        ) -> Option<Id<NSDictionary<NSURLResourceKey, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSURLResourceKey, AnyObject>>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
         #[method(writeBookmarkData:toURL:options:error:_)]
@@ -1188,20 +1190,20 @@ extern_methods!(
             bookmark_data: &NSData,
             bookmark_file_url: &NSURL,
             options: NSURLBookmarkFileCreationOptions,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
         #[method_id(@__retain_semantics Other bookmarkDataWithContentsOfURL:error:_)]
         pub unsafe fn bookmarkDataWithContentsOfURL_error(
             bookmark_file_url: &NSURL,
-        ) -> Result<Id<NSData>, Id<NSError>>;
+        ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
         #[method_id(@__retain_semantics Other URLByResolvingAliasFileAtURL:options:error:_)]
         pub unsafe fn URLByResolvingAliasFileAtURL_options_error(
             url: &NSURL,
             options: NSURLBookmarkResolutionOptions,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method(startAccessingSecurityScopedResource)]
         pub unsafe fn startAccessingSecurityScopedResource(&self) -> bool;
@@ -1215,10 +1217,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURL {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -1229,9 +1231,9 @@ extern_methods!(
         #[method(getPromisedItemResourceValue:forKey:error:_)]
         pub unsafe fn getPromisedItemResourceValue_forKey_error(
             &self,
-            value: &mut Option<Id<AnyObject>>,
+            value: &mut Option<Retained<AnyObject>>,
             key: &NSURLResourceKey,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(
             feature = "NSArray",
@@ -1243,11 +1245,13 @@ extern_methods!(
         pub unsafe fn promisedItemResourceValuesForKeys_error(
             &self,
             keys: &NSArray<NSURLResourceKey>,
-        ) -> Result<Id<NSDictionary<NSURLResourceKey, AnyObject>>, Id<NSError>>;
+        ) -> Result<Retained<NSDictionary<NSURLResourceKey, AnyObject>>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
         #[method(checkPromisedItemIsReachableAndReturnError:_)]
-        pub unsafe fn checkPromisedItemIsReachableAndReturnError(&self) -> Result<(), Id<NSError>>;
+        pub unsafe fn checkPromisedItemIsReachableAndReturnError(
+            &self,
+        ) -> Result<(), Retained<NSError>>;
     }
 );
 
@@ -1295,22 +1299,22 @@ extern_methods!(
             this: Allocated<Self>,
             name: &NSString,
             value: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other queryItemWithName:value:)]
         pub unsafe fn queryItemWithName_value(
             name: &NSString,
             value: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Option<Id<NSString>>;
+        pub unsafe fn value(&self) -> Option<Retained<NSString>>;
     }
 );
 
@@ -1318,10 +1322,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLQueryItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -1343,31 +1347,31 @@ unsafe impl NSObjectProtocol for NSURLComponents {}
 extern_methods!(
     unsafe impl NSURLComponents {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithURL:resolvingAgainstBaseURL:)]
         pub unsafe fn initWithURL_resolvingAgainstBaseURL(
             this: Allocated<Self>,
             url: &NSURL,
             resolve: bool,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other componentsWithURL:resolvingAgainstBaseURL:)]
         pub unsafe fn componentsWithURL_resolvingAgainstBaseURL(
             url: &NSURL,
             resolve: bool,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(
             this: Allocated<Self>,
             url_string: &NSString,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other componentsWithString:)]
-        pub unsafe fn componentsWithString(url_string: &NSString) -> Option<Id<Self>>;
+        pub unsafe fn componentsWithString(url_string: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithString:encodingInvalidCharacters:)]
@@ -1375,28 +1379,28 @@ extern_methods!(
             this: Allocated<Self>,
             url_string: &NSString,
             encoding_invalid_characters: bool,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other componentsWithString:encodingInvalidCharacters:)]
         pub unsafe fn componentsWithString_encodingInvalidCharacters(
             url_string: &NSString,
             encoding_invalid_characters: bool,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[method_id(@__retain_semantics Other URLRelativeToURL:)]
-        pub unsafe fn URLRelativeToURL(&self, base_url: Option<&NSURL>) -> Option<Id<NSURL>>;
+        pub unsafe fn URLRelativeToURL(&self, base_url: Option<&NSURL>) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other string)]
-        pub unsafe fn string(&self) -> Option<Id<NSString>>;
+        pub unsafe fn string(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other scheme)]
-        pub unsafe fn scheme(&self) -> Option<Id<NSString>>;
+        pub unsafe fn scheme(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setScheme:)]
@@ -1404,7 +1408,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other user)]
-        pub unsafe fn user(&self) -> Option<Id<NSString>>;
+        pub unsafe fn user(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setUser:)]
@@ -1412,7 +1416,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other password)]
-        pub unsafe fn password(&self) -> Option<Id<NSString>>;
+        pub unsafe fn password(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setPassword:)]
@@ -1420,7 +1424,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other host)]
-        pub unsafe fn host(&self) -> Option<Id<NSString>>;
+        pub unsafe fn host(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setHost:)]
@@ -1428,7 +1432,7 @@ extern_methods!(
 
         #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other port)]
-        pub unsafe fn port(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn port(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
         #[method(setPort:)]
@@ -1436,7 +1440,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other path)]
-        pub unsafe fn path(&self) -> Option<Id<NSString>>;
+        pub unsafe fn path(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setPath:)]
@@ -1444,7 +1448,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other query)]
-        pub unsafe fn query(&self) -> Option<Id<NSString>>;
+        pub unsafe fn query(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setQuery:)]
@@ -1452,7 +1456,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other fragment)]
-        pub unsafe fn fragment(&self) -> Option<Id<NSString>>;
+        pub unsafe fn fragment(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setFragment:)]
@@ -1460,7 +1464,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other percentEncodedUser)]
-        pub unsafe fn percentEncodedUser(&self) -> Option<Id<NSString>>;
+        pub unsafe fn percentEncodedUser(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setPercentEncodedUser:)]
@@ -1468,7 +1472,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other percentEncodedPassword)]
-        pub unsafe fn percentEncodedPassword(&self) -> Option<Id<NSString>>;
+        pub unsafe fn percentEncodedPassword(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setPercentEncodedPassword:)]
@@ -1477,7 +1481,7 @@ extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated = "Use encodedHost instead"]
         #[method_id(@__retain_semantics Other percentEncodedHost)]
-        pub unsafe fn percentEncodedHost(&self) -> Option<Id<NSString>>;
+        pub unsafe fn percentEncodedHost(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use encodedHost instead"]
@@ -1486,7 +1490,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other percentEncodedPath)]
-        pub unsafe fn percentEncodedPath(&self) -> Option<Id<NSString>>;
+        pub unsafe fn percentEncodedPath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setPercentEncodedPath:)]
@@ -1494,7 +1498,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other percentEncodedQuery)]
-        pub unsafe fn percentEncodedQuery(&self) -> Option<Id<NSString>>;
+        pub unsafe fn percentEncodedQuery(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setPercentEncodedQuery:)]
@@ -1502,7 +1506,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other percentEncodedFragment)]
-        pub unsafe fn percentEncodedFragment(&self) -> Option<Id<NSString>>;
+        pub unsafe fn percentEncodedFragment(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setPercentEncodedFragment:)]
@@ -1510,7 +1514,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other encodedHost)]
-        pub unsafe fn encodedHost(&self) -> Option<Id<NSString>>;
+        pub unsafe fn encodedHost(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setEncodedHost:)]
@@ -1550,7 +1554,7 @@ extern_methods!(
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other queryItems)]
-        pub unsafe fn queryItems(&self) -> Option<Id<NSArray<NSURLQueryItem>>>;
+        pub unsafe fn queryItems(&self) -> Option<Retained<NSArray<NSURLQueryItem>>>;
 
         #[cfg(feature = "NSArray")]
         #[method(setQueryItems:)]
@@ -1558,7 +1562,7 @@ extern_methods!(
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other percentEncodedQueryItems)]
-        pub unsafe fn percentEncodedQueryItems(&self) -> Option<Id<NSArray<NSURLQueryItem>>>;
+        pub unsafe fn percentEncodedQueryItems(&self) -> Option<Retained<NSArray<NSURLQueryItem>>>;
 
         #[cfg(feature = "NSArray")]
         #[method(setPercentEncodedQueryItems:)]
@@ -1573,7 +1577,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLComponents {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -1582,22 +1586,22 @@ extern_methods!(
     #[cfg(feature = "NSCharacterSet")]
     unsafe impl NSCharacterSet {
         #[method_id(@__retain_semantics Other URLUserAllowedCharacterSet)]
-        pub unsafe fn URLUserAllowedCharacterSet() -> Id<NSCharacterSet>;
+        pub unsafe fn URLUserAllowedCharacterSet() -> Retained<NSCharacterSet>;
 
         #[method_id(@__retain_semantics Other URLPasswordAllowedCharacterSet)]
-        pub unsafe fn URLPasswordAllowedCharacterSet() -> Id<NSCharacterSet>;
+        pub unsafe fn URLPasswordAllowedCharacterSet() -> Retained<NSCharacterSet>;
 
         #[method_id(@__retain_semantics Other URLHostAllowedCharacterSet)]
-        pub unsafe fn URLHostAllowedCharacterSet() -> Id<NSCharacterSet>;
+        pub unsafe fn URLHostAllowedCharacterSet() -> Retained<NSCharacterSet>;
 
         #[method_id(@__retain_semantics Other URLPathAllowedCharacterSet)]
-        pub unsafe fn URLPathAllowedCharacterSet() -> Id<NSCharacterSet>;
+        pub unsafe fn URLPathAllowedCharacterSet() -> Retained<NSCharacterSet>;
 
         #[method_id(@__retain_semantics Other URLQueryAllowedCharacterSet)]
-        pub unsafe fn URLQueryAllowedCharacterSet() -> Id<NSCharacterSet>;
+        pub unsafe fn URLQueryAllowedCharacterSet() -> Retained<NSCharacterSet>;
 
         #[method_id(@__retain_semantics Other URLFragmentAllowedCharacterSet)]
-        pub unsafe fn URLFragmentAllowedCharacterSet() -> Id<NSCharacterSet>;
+        pub unsafe fn URLFragmentAllowedCharacterSet() -> Retained<NSCharacterSet>;
     }
 );
 
@@ -1610,24 +1614,24 @@ extern_methods!(
         pub unsafe fn stringByAddingPercentEncodingWithAllowedCharacters(
             &self,
             allowed_characters: &NSCharacterSet,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other stringByRemovingPercentEncoding)]
-        pub unsafe fn stringByRemovingPercentEncoding(&self) -> Option<Id<NSString>>;
+        pub unsafe fn stringByRemovingPercentEncoding(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Use -stringByAddingPercentEncodingWithAllowedCharacters: instead, which always uses the recommended UTF-8 encoding, and which encodes for a specific URL component or subcomponent since each URL component or subcomponent has different rules for what characters are valid."]
         #[method_id(@__retain_semantics Other stringByAddingPercentEscapesUsingEncoding:)]
         pub unsafe fn stringByAddingPercentEscapesUsingEncoding(
             &self,
             enc: NSStringEncoding,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[deprecated = "Use -stringByRemovingPercentEncoding instead, which always uses the recommended UTF-8 encoding."]
         #[method_id(@__retain_semantics Other stringByReplacingPercentEscapesUsingEncoding:)]
         pub unsafe fn stringByReplacingPercentEscapesUsingEncoding(
             &self,
             enc: NSStringEncoding,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
     }
 );
 
@@ -1638,26 +1642,26 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fileURLWithPathComponents:)]
         pub unsafe fn fileURLWithPathComponents(
             components: &NSArray<NSString>,
-        ) -> Option<Id<NSURL>>;
+        ) -> Option<Retained<NSURL>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other pathComponents)]
-        pub unsafe fn pathComponents(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn pathComponents(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other lastPathComponent)]
-        pub unsafe fn lastPathComponent(&self) -> Option<Id<NSString>>;
+        pub unsafe fn lastPathComponent(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other pathExtension)]
-        pub unsafe fn pathExtension(&self) -> Option<Id<NSString>>;
+        pub unsafe fn pathExtension(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other URLByAppendingPathComponent:)]
         pub unsafe fn URLByAppendingPathComponent(
             &self,
             path_component: &NSString,
-        ) -> Option<Id<NSURL>>;
+        ) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other URLByAppendingPathComponent:isDirectory:)]
@@ -1665,30 +1669,32 @@ extern_methods!(
             &self,
             path_component: &NSString,
             is_directory: bool,
-        ) -> Option<Id<NSURL>>;
+        ) -> Option<Retained<NSURL>>;
 
         #[method_id(@__retain_semantics Other URLByDeletingLastPathComponent)]
-        pub unsafe fn URLByDeletingLastPathComponent(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn URLByDeletingLastPathComponent(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other URLByAppendingPathExtension:)]
         pub unsafe fn URLByAppendingPathExtension(
             &self,
             path_extension: &NSString,
-        ) -> Option<Id<NSURL>>;
+        ) -> Option<Retained<NSURL>>;
 
         #[method_id(@__retain_semantics Other URLByDeletingPathExtension)]
-        pub unsafe fn URLByDeletingPathExtension(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn URLByDeletingPathExtension(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSError")]
         #[method(checkResourceIsReachableAndReturnError:_)]
-        pub unsafe fn checkResourceIsReachableAndReturnError(&self) -> Result<(), Id<NSError>>;
+        pub unsafe fn checkResourceIsReachableAndReturnError(
+            &self,
+        ) -> Result<(), Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other URLByStandardizingPath)]
-        pub unsafe fn URLByStandardizingPath(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn URLByStandardizingPath(&self) -> Option<Retained<NSURL>>;
 
         #[method_id(@__retain_semantics Other URLByResolvingSymlinksInPath)]
-        pub unsafe fn URLByResolvingSymlinksInPath(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn URLByResolvingSymlinksInPath(&self) -> Option<Retained<NSURL>>;
     }
 );
 
@@ -1717,7 +1723,10 @@ extern_methods!(
     unsafe impl NSFileSecurity {
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -1725,10 +1734,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileSecurity {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -1738,7 +1747,10 @@ extern_methods!(
         #[cfg(feature = "NSData")]
         #[deprecated = "Use NSURLConnection instead"]
         #[method_id(@__retain_semantics Other resourceDataUsingCache:)]
-        pub unsafe fn resourceDataUsingCache(&self, should_use_cache: bool) -> Option<Id<NSData>>;
+        pub unsafe fn resourceDataUsingCache(
+            &self,
+            should_use_cache: bool,
+        ) -> Option<Retained<NSData>>;
 
         #[deprecated = "Use NSURLConnection instead"]
         #[method(loadResourceDataNotifyingClient:usingCache:)]
@@ -1751,7 +1763,8 @@ extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSURLConnection instead"]
         #[method_id(@__retain_semantics Other propertyForKey:)]
-        pub unsafe fn propertyForKey(&self, property_key: &NSString) -> Option<Id<AnyObject>>;
+        pub unsafe fn propertyForKey(&self, property_key: &NSString)
+            -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSData")]
         #[deprecated = "Use NSURLConnection instead"]
@@ -1770,7 +1783,9 @@ extern_methods!(
         #[cfg(feature = "NSURLHandle")]
         #[deprecated = "Use NSURLConnection instead"]
         #[method_id(@__retain_semantics Other URLHandleUsingCache:)]
-        pub unsafe fn URLHandleUsingCache(&self, should_use_cache: bool)
-            -> Option<Id<NSURLHandle>>;
+        pub unsafe fn URLHandleUsingCache(
+            &self,
+            should_use_cache: bool,
+        ) -> Option<Retained<NSURLHandle>>;
     }
 );

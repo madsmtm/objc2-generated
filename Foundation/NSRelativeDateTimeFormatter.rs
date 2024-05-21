@@ -91,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "NSCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
-        pub unsafe fn calendar(&self) -> Id<NSCalendar>;
+        pub unsafe fn calendar(&self) -> Retained<NSCalendar>;
 
         #[cfg(feature = "NSCalendar")]
         #[method(setCalendar:)]
@@ -99,7 +99,7 @@ extern_methods!(
 
         #[cfg(feature = "NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
-        pub unsafe fn locale(&self) -> Id<NSLocale>;
+        pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
         #[method(setLocale:)]
@@ -110,14 +110,14 @@ extern_methods!(
         pub unsafe fn localizedStringFromDateComponents(
             &self,
             date_components: &NSDateComponents,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
         #[method_id(@__retain_semantics Other localizedStringFromTimeInterval:)]
         pub unsafe fn localizedStringFromTimeInterval(
             &self,
             time_interval: NSTimeInterval,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
         #[method_id(@__retain_semantics Other localizedStringForDate:relativeToDate:)]
@@ -125,11 +125,14 @@ extern_methods!(
             &self,
             date: &NSDate,
             reference_date: &NSDate,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringForObjectValue:)]
-        pub unsafe fn stringForObjectValue(&self, obj: Option<&AnyObject>) -> Option<Id<NSString>>;
+        pub unsafe fn stringForObjectValue(
+            &self,
+            obj: Option<&AnyObject>,
+        ) -> Option<Retained<NSString>>;
     }
 );
 
@@ -138,9 +141,9 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSRelativeDateTimeFormatter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -34,7 +34,7 @@ extern_methods!(
             this: Allocated<Self>,
             pending_changes: &NSArray<CKSyncEnginePendingRecordZoneChange>,
             record_provider: &block2::Block<dyn Fn(NonNull<CKRecordID>) -> *mut CKRecord + '_>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID"))]
         #[method_id(@__retain_semantics Init initWithRecordsToSave:recordIDsToDelete:atomicByZone:)]
@@ -43,21 +43,21 @@ extern_methods!(
             records_to_save: Option<&NSArray<CKRecord>>,
             record_i_ds_to_delete: Option<&NSArray<CKRecordID>>,
             atomic_by_zone: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Other recordsToSave)]
-        pub unsafe fn recordsToSave(&self) -> Id<NSArray<CKRecord>>;
+        pub unsafe fn recordsToSave(&self) -> Retained<NSArray<CKRecord>>;
 
         #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other recordIDsToDelete)]
-        pub unsafe fn recordIDsToDelete(&self) -> Id<NSArray<CKRecordID>>;
+        pub unsafe fn recordIDsToDelete(&self) -> Retained<NSArray<CKRecordID>>;
 
         #[method(atomicByZone)]
         pub unsafe fn atomicByZone(&self) -> bool;

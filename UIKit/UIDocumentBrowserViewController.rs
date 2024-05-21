@@ -124,26 +124,26 @@ extern_methods!(
         pub unsafe fn initForOpeningFilesWithContentTypes(
             this: Allocated<Self>,
             allowed_content_types: Option<&NSArray<NSString>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         #[method_id(@__retain_semantics Init initForOpeningContentTypes:)]
         pub unsafe fn initForOpeningContentTypes(
             this: Allocated<Self>,
             content_types: Option<&NSArray<UTType>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name: Option<&NSString>,
             bundle: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIDocumentBrowserViewControllerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIDocumentBrowserViewControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -165,15 +165,15 @@ extern_methods!(
 
         #[deprecated = "allowedContentTypes is no longer supported"]
         #[method_id(@__retain_semantics Other allowedContentTypes)]
-        pub unsafe fn allowedContentTypes(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn allowedContentTypes(&self) -> Retained<NSArray<NSString>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other recentDocumentsContentTypes)]
-        pub unsafe fn recentDocumentsContentTypes(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn recentDocumentsContentTypes(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         #[method_id(@__retain_semantics Other contentTypesForRecentDocuments)]
-        pub unsafe fn contentTypesForRecentDocuments(&self) -> Id<NSArray<UTType>>;
+        pub unsafe fn contentTypesForRecentDocuments(&self) -> Retained<NSArray<UTType>>;
 
         #[method(shouldShowFileExtensions)]
         pub unsafe fn shouldShowFileExtensions(&self) -> bool;
@@ -185,7 +185,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other additionalLeadingNavigationBarButtonItems)]
         pub unsafe fn additionalLeadingNavigationBarButtonItems(
             &self,
-        ) -> Id<NSArray<UIBarButtonItem>>;
+        ) -> Retained<NSArray<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method(setAdditionalLeadingNavigationBarButtonItems:)]
@@ -198,7 +198,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other additionalTrailingNavigationBarButtonItems)]
         pub unsafe fn additionalTrailingNavigationBarButtonItems(
             &self,
-        ) -> Id<NSArray<UIBarButtonItem>>;
+        ) -> Retained<NSArray<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method(setAdditionalTrailingNavigationBarButtonItems:)]
@@ -239,18 +239,18 @@ extern_methods!(
         pub unsafe fn transitionControllerForDocumentAtURL(
             &self,
             document_url: &NSURL,
-        ) -> Id<UIDocumentBrowserTransitionController>;
+        ) -> Retained<UIDocumentBrowserTransitionController>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other transitionControllerForDocumentURL:)]
         pub unsafe fn transitionControllerForDocumentURL(
             &self,
             document_url: &NSURL,
-        ) -> Id<UIDocumentBrowserTransitionController>;
+        ) -> Retained<UIDocumentBrowserTransitionController>;
 
         #[cfg(feature = "UIDocumentBrowserAction")]
         #[method_id(@__retain_semantics Other customActions)]
-        pub unsafe fn customActions(&self) -> Id<NSArray<UIDocumentBrowserAction>>;
+        pub unsafe fn customActions(&self) -> Retained<NSArray<UIDocumentBrowserAction>>;
 
         #[cfg(feature = "UIDocumentBrowserAction")]
         #[method(setCustomActions:)]
@@ -266,7 +266,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other localizedCreateDocumentActionTitle)]
-        pub unsafe fn localizedCreateDocumentActionTitle(&self) -> Id<NSString>;
+        pub unsafe fn localizedCreateDocumentActionTitle(&self) -> Retained<NSString>;
 
         #[method(setLocalizedCreateDocumentActionTitle:)]
         pub unsafe fn setLocalizedCreateDocumentActionTitle(
@@ -287,7 +287,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentBrowserViewController {
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -296,10 +299,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentBrowserViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -368,7 +371,7 @@ extern_protocol!(
             &self,
             controller: &UIDocumentBrowserViewController,
             document_ur_ls: &NSArray<NSURL>,
-        ) -> Id<NSArray<UIActivity>>;
+        ) -> Retained<NSArray<UIActivity>>;
 
         #[cfg(all(
             feature = "UIActivityViewController",
@@ -405,17 +408,17 @@ unsafe impl UIViewControllerAnimatedTransitioning for UIDocumentBrowserTransitio
 extern_methods!(
     unsafe impl UIDocumentBrowserTransitionController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other loadingProgress)]
-        pub unsafe fn loadingProgress(&self) -> Option<Id<NSProgress>>;
+        pub unsafe fn loadingProgress(&self) -> Option<Retained<NSProgress>>;
 
         #[method(setLoadingProgress:)]
         pub unsafe fn setLoadingProgress(&self, loading_progress: Option<&NSProgress>);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other targetView)]
-        pub unsafe fn targetView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn targetView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(setTargetView:)]
@@ -427,6 +430,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDocumentBrowserTransitionController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

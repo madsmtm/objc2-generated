@@ -76,7 +76,7 @@ extern_methods!(
             center: CLLocationCoordinate2D,
             radius: CLLocationDistance,
             identifier: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CLLocation")]
         #[deprecated = "Please see CLCircularRegion"]
@@ -89,7 +89,7 @@ extern_methods!(
         pub unsafe fn radius(&self) -> CLLocationDistance;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[method(notifyOnEntry)]
         pub unsafe fn notifyOnEntry(&self) -> bool;
@@ -114,9 +114,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLRegion {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

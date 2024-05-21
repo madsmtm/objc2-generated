@@ -26,25 +26,25 @@ unsafe impl NSSecureCoding for CXTransaction {}
 extern_methods!(
     unsafe impl CXTransaction {
         #[method_id(@__retain_semantics Other UUID)]
-        pub unsafe fn UUID(&self) -> Id<NSUUID>;
+        pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         #[method(isComplete)]
         pub unsafe fn isComplete(&self) -> bool;
 
         #[cfg(feature = "CXAction")]
         #[method_id(@__retain_semantics Other actions)]
-        pub unsafe fn actions(&self) -> Id<NSArray<CXAction>>;
+        pub unsafe fn actions(&self) -> Retained<NSArray<CXAction>>;
 
         #[cfg(feature = "CXAction")]
         #[method_id(@__retain_semantics Init initWithActions:)]
         pub unsafe fn initWithActions(
             this: Allocated<Self>,
             actions: &NSArray<CXAction>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CXAction")]
         #[method_id(@__retain_semantics Init initWithAction:)]
-        pub unsafe fn initWithAction(this: Allocated<Self>, action: &CXAction) -> Id<Self>;
+        pub unsafe fn initWithAction(this: Allocated<Self>, action: &CXAction) -> Retained<Self>;
 
         #[cfg(feature = "CXAction")]
         #[method(addAction:)]
@@ -56,9 +56,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXTransaction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

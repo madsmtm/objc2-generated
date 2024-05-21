@@ -68,7 +68,7 @@ extern_methods!(
     unsafe impl NSSplitViewController {
         #[cfg(all(feature = "NSSplitView", feature = "NSView"))]
         #[method_id(@__retain_semantics Other splitView)]
-        pub unsafe fn splitView(&self) -> Id<NSSplitView>;
+        pub unsafe fn splitView(&self) -> Retained<NSSplitView>;
 
         #[cfg(all(feature = "NSSplitView", feature = "NSView"))]
         #[method(setSplitView:)]
@@ -76,7 +76,7 @@ extern_methods!(
 
         #[cfg(feature = "NSSplitViewItem")]
         #[method_id(@__retain_semantics Other splitViewItems)]
-        pub unsafe fn splitViewItems(&self) -> Id<NSArray<NSSplitViewItem>>;
+        pub unsafe fn splitViewItems(&self) -> Retained<NSArray<NSSplitViewItem>>;
 
         #[cfg(feature = "NSSplitViewItem")]
         #[method(setSplitViewItems:)]
@@ -103,7 +103,7 @@ extern_methods!(
         pub unsafe fn splitViewItemForViewController(
             &self,
             view_controller: &NSViewController,
-        ) -> Option<Id<NSSplitViewItem>>;
+        ) -> Option<Retained<NSSplitViewItem>>;
 
         #[method(minimumThicknessForInlineSidebars)]
         pub unsafe fn minimumThicknessForInlineSidebars(&self) -> CGFloat;
@@ -180,10 +180,13 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -192,7 +195,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSSplitViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -201,7 +204,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSSplitViewController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

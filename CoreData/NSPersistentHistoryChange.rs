@@ -46,36 +46,36 @@ extern_methods!(
         #[method_id(@__retain_semantics Other entityDescriptionWithContext:)]
         pub unsafe fn entityDescriptionWithContext(
             context: &NSManagedObjectContext,
-        ) -> Option<Id<NSEntityDescription>>;
+        ) -> Option<Retained<NSEntityDescription>>;
 
         #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entityDescription)]
-        pub unsafe fn entityDescription() -> Option<Id<NSEntityDescription>>;
+        pub unsafe fn entityDescription() -> Option<Retained<NSEntityDescription>>;
 
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         #[method_id(@__retain_semantics Other fetchRequest)]
-        pub unsafe fn fetchRequest() -> Option<Id<NSFetchRequest>>;
+        pub unsafe fn fetchRequest() -> Option<Retained<NSFetchRequest>>;
 
         #[method(changeID)]
         pub unsafe fn changeID(&self) -> i64;
 
         #[cfg(feature = "NSManagedObjectID")]
         #[method_id(@__retain_semantics Other changedObjectID)]
-        pub unsafe fn changedObjectID(&self) -> Id<NSManagedObjectID>;
+        pub unsafe fn changedObjectID(&self) -> Retained<NSManagedObjectID>;
 
         #[method(changeType)]
         pub unsafe fn changeType(&self) -> NSPersistentHistoryChangeType;
 
         #[method_id(@__retain_semantics Other tombstone)]
-        pub unsafe fn tombstone(&self) -> Option<Id<NSDictionary>>;
+        pub unsafe fn tombstone(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSPersistentHistoryTransaction")]
         #[method_id(@__retain_semantics Other transaction)]
-        pub unsafe fn transaction(&self) -> Option<Id<NSPersistentHistoryTransaction>>;
+        pub unsafe fn transaction(&self) -> Option<Retained<NSPersistentHistoryTransaction>>;
 
         #[cfg(feature = "NSPropertyDescription")]
         #[method_id(@__retain_semantics Other updatedProperties)]
-        pub unsafe fn updatedProperties(&self) -> Option<Id<NSSet<NSPropertyDescription>>>;
+        pub unsafe fn updatedProperties(&self) -> Option<Retained<NSSet<NSPropertyDescription>>>;
     }
 );
 
@@ -83,9 +83,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPersistentHistoryChange {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

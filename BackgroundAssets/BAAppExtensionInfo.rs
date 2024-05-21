@@ -28,15 +28,16 @@ unsafe impl NSSecureCoding for BAAppExtensionInfo {}
 extern_methods!(
     unsafe impl BAAppExtensionInfo {
         #[method_id(@__retain_semantics Other restrictedDownloadSizeRemaining)]
-        pub unsafe fn restrictedDownloadSizeRemaining(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn restrictedDownloadSizeRemaining(&self) -> Option<Retained<NSNumber>>;
 
         #[method_id(@__retain_semantics Other restrictedEssentialDownloadSizeRemaining)]
-        pub unsafe fn restrictedEssentialDownloadSizeRemaining(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn restrictedEssentialDownloadSizeRemaining(&self)
+            -> Option<Retained<NSNumber>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

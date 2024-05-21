@@ -27,15 +27,15 @@ extern_methods!(
     unsafe impl MLCSliceLayer {
         #[deprecated]
         #[method_id(@__retain_semantics Other start)]
-        pub unsafe fn start(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn start(&self) -> Retained<NSArray<NSNumber>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other end)]
-        pub unsafe fn end(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn end(&self) -> Retained<NSArray<NSNumber>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other stride)]
-        pub unsafe fn stride(&self) -> Option<Id<NSArray<NSNumber>>>;
+        pub unsafe fn stride(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other sliceLayerWithStart:end:stride:)]
@@ -43,7 +43,7 @@ extern_methods!(
             start: &NSArray<NSNumber>,
             end: &NSArray<NSNumber>,
             stride: Option<&NSArray<NSNumber>>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -53,10 +53,10 @@ extern_methods!(
     unsafe impl MLCSliceLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

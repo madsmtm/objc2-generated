@@ -34,10 +34,10 @@ extern_methods!(
     #[cfg(feature = "BADownload")]
     unsafe impl BAURLDownload {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithIdentifier:request:fileSize:applicationGroupIdentifier:)]
         pub unsafe fn initWithIdentifier_request_fileSize_applicationGroupIdentifier(
@@ -46,7 +46,7 @@ extern_methods!(
             request: &NSURLRequest,
             file_size: NSUInteger,
             application_group_identifier: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithIdentifier:request:essential:fileSize:applicationGroupIdentifier:priority:)]
         pub unsafe fn initWithIdentifier_request_essential_fileSize_applicationGroupIdentifier_priority(
@@ -57,7 +57,7 @@ extern_methods!(
             file_size: NSUInteger,
             application_group_identifier: &NSString,
             priority: BADownloaderPriority,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithIdentifier:request:applicationGroupIdentifier:)]
@@ -66,7 +66,7 @@ extern_methods!(
             identifier: &NSString,
             request: &NSURLRequest,
             application_group_identifier: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithIdentifier:request:applicationGroupIdentifier:priority:)]
@@ -76,6 +76,6 @@ extern_methods!(
             request: &NSURLRequest,
             application_group_identifier: &NSString,
             priority: BADownloaderPriority,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

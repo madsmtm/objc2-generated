@@ -75,10 +75,10 @@ extern_protocol!(
             &self,
             range: NSRange,
             actual_range: NSRangePointer,
-        ) -> Option<Id<NSAttributedString>>;
+        ) -> Option<Retained<NSAttributedString>>;
 
         #[method_id(@__retain_semantics Other validAttributesForMarkedText)]
-        unsafe fn validAttributesForMarkedText(&self) -> Id<NSArray<NSAttributedStringKey>>;
+        unsafe fn validAttributesForMarkedText(&self) -> Retained<NSArray<NSAttributedStringKey>>;
 
         #[method(firstRectForCharacterRange:actualRange:)]
         unsafe fn firstRectForCharacterRange_actualRange(
@@ -92,7 +92,7 @@ extern_protocol!(
 
         #[optional]
         #[method_id(@__retain_semantics Other attributedString)]
-        unsafe fn attributedString(&self) -> Id<NSAttributedString>;
+        unsafe fn attributedString(&self) -> Retained<NSAttributedString>;
 
         #[optional]
         #[method(fractionOfDistanceThroughGlyphForPoint:)]

@@ -20,13 +20,13 @@ unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionUserLoginConfig
 extern_methods!(
     unsafe impl ASAuthorizationProviderExtensionUserLoginConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other loginUserName)]
-        pub unsafe fn loginUserName(&self) -> Id<NSString>;
+        pub unsafe fn loginUserName(&self) -> Retained<NSString>;
 
         #[method(setLoginUserName:)]
         pub unsafe fn setLoginUserName(&self, login_user_name: &NSString);
@@ -35,30 +35,30 @@ extern_methods!(
         pub unsafe fn initWithLoginUserName(
             this: Allocated<Self>,
             login_user_name: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(setCustomAssertionRequestHeaderClaims:returningError:_)]
         pub unsafe fn setCustomAssertionRequestHeaderClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(setCustomAssertionRequestBodyClaims:returningError:_)]
         pub unsafe fn setCustomAssertionRequestBodyClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(setCustomLoginRequestHeaderClaims:returningError:_)]
         pub unsafe fn setCustomLoginRequestHeaderClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(setCustomLoginRequestBodyClaims:returningError:_)]
         pub unsafe fn setCustomLoginRequestBodyClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
     }
 );

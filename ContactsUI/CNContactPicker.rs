@@ -23,14 +23,16 @@ unsafe impl NSObjectProtocol for CNContactPicker {}
 extern_methods!(
     unsafe impl CNContactPicker {
         #[method_id(@__retain_semantics Other displayedKeys)]
-        pub unsafe fn displayedKeys(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn displayedKeys(&self) -> Retained<NSArray<NSString>>;
 
         #[method(setDisplayedKeys:)]
         pub unsafe fn setDisplayedKeys(&self, displayed_keys: &NSArray<NSString>);
 
         #[cfg(feature = "CNContactPickerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn CNContactPickerDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn CNContactPickerDelegate>>>;
 
         #[cfg(feature = "CNContactPickerDelegate")]
         #[method(setDelegate:)]
@@ -58,9 +60,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNContactPicker {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

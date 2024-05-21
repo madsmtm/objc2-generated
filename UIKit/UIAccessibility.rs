@@ -81,13 +81,13 @@ extern_category!(
         unsafe fn setIsAccessibilityElement(&self, is_accessibility_element: bool);
 
         #[method_id(@__retain_semantics Other accessibilityLabel)]
-        unsafe fn accessibilityLabel(&self) -> Option<Id<NSString>>;
+        unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
 
         #[method(setAccessibilityLabel:)]
         unsafe fn setAccessibilityLabel(&self, accessibility_label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other accessibilityAttributedLabel)]
-        unsafe fn accessibilityAttributedLabel(&self) -> Option<Id<NSAttributedString>>;
+        unsafe fn accessibilityAttributedLabel(&self) -> Option<Retained<NSAttributedString>>;
 
         #[method(setAccessibilityAttributedLabel:)]
         unsafe fn setAccessibilityAttributedLabel(
@@ -96,13 +96,13 @@ extern_category!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityHint)]
-        unsafe fn accessibilityHint(&self) -> Option<Id<NSString>>;
+        unsafe fn accessibilityHint(&self) -> Option<Retained<NSString>>;
 
         #[method(setAccessibilityHint:)]
         unsafe fn setAccessibilityHint(&self, accessibility_hint: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other accessibilityAttributedHint)]
-        unsafe fn accessibilityAttributedHint(&self) -> Option<Id<NSAttributedString>>;
+        unsafe fn accessibilityAttributedHint(&self) -> Option<Retained<NSAttributedString>>;
 
         #[method(setAccessibilityAttributedHint:)]
         unsafe fn setAccessibilityAttributedHint(
@@ -111,13 +111,13 @@ extern_category!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityValue)]
-        unsafe fn accessibilityValue(&self) -> Option<Id<NSString>>;
+        unsafe fn accessibilityValue(&self) -> Option<Retained<NSString>>;
 
         #[method(setAccessibilityValue:)]
         unsafe fn setAccessibilityValue(&self, accessibility_value: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other accessibilityAttributedValue)]
-        unsafe fn accessibilityAttributedValue(&self) -> Option<Id<NSAttributedString>>;
+        unsafe fn accessibilityAttributedValue(&self) -> Option<Retained<NSAttributedString>>;
 
         #[method(setAccessibilityAttributedValue:)]
         unsafe fn setAccessibilityAttributedValue(
@@ -141,7 +141,7 @@ extern_category!(
 
         #[cfg(feature = "UIBezierPath")]
         #[method_id(@__retain_semantics Other accessibilityPath)]
-        unsafe fn accessibilityPath(&self) -> Option<Id<UIBezierPath>>;
+        unsafe fn accessibilityPath(&self) -> Option<Retained<UIBezierPath>>;
 
         #[cfg(feature = "UIBezierPath")]
         #[method(setAccessibilityPath:)]
@@ -154,7 +154,7 @@ extern_category!(
         unsafe fn setAccessibilityActivationPoint(&self, accessibility_activation_point: CGPoint);
 
         #[method_id(@__retain_semantics Other accessibilityLanguage)]
-        unsafe fn accessibilityLanguage(&self) -> Option<Id<NSString>>;
+        unsafe fn accessibilityLanguage(&self) -> Option<Retained<NSString>>;
 
         #[method(setAccessibilityLanguage:)]
         unsafe fn setAccessibilityLanguage(&self, accessibility_language: Option<&NSString>);
@@ -201,7 +201,7 @@ extern_category!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityUserInputLabels)]
-        unsafe fn accessibilityUserInputLabels(&self) -> Option<Id<NSArray<NSString>>>;
+        unsafe fn accessibilityUserInputLabels(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setAccessibilityUserInputLabels:)]
         unsafe fn setAccessibilityUserInputLabels(
@@ -210,7 +210,9 @@ extern_category!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityAttributedUserInputLabels)]
-        unsafe fn accessibilityAttributedUserInputLabels(&self) -> Id<NSArray<NSAttributedString>>;
+        unsafe fn accessibilityAttributedUserInputLabels(
+            &self,
+        ) -> Retained<NSArray<NSAttributedString>>;
 
         #[method(setAccessibilityAttributedUserInputLabels:)]
         unsafe fn setAccessibilityAttributedUserInputLabels(
@@ -219,7 +221,7 @@ extern_category!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityHeaderElements)]
-        unsafe fn accessibilityHeaderElements(&self) -> Option<Id<NSArray>>;
+        unsafe fn accessibilityHeaderElements(&self) -> Option<Retained<NSArray>>;
 
         #[method(setAccessibilityHeaderElements:)]
         unsafe fn setAccessibilityHeaderElements(
@@ -229,7 +231,9 @@ extern_category!(
 
         #[cfg(feature = "UIAccessibilityConstants")]
         #[method_id(@__retain_semantics Other accessibilityTextualContext)]
-        unsafe fn accessibilityTextualContext(&self) -> Option<Id<UIAccessibilityTextualContext>>;
+        unsafe fn accessibilityTextualContext(
+            &self,
+        ) -> Option<Retained<UIAccessibilityTextualContext>>;
 
         #[cfg(feature = "UIAccessibilityConstants")]
         #[method(setAccessibilityTextualContext:)]
@@ -602,7 +606,7 @@ extern_category!(
         #[method_id(@__retain_semantics Other accessibilityAssistiveTechnologyFocusedIdentifiers)]
         unsafe fn accessibilityAssistiveTechnologyFocusedIdentifiers(
             &self,
-        ) -> Option<Id<NSSet<UIAccessibilityAssistiveTechnologyIdentifier>>>;
+        ) -> Option<Retained<NSSet<UIAccessibilityAssistiveTechnologyIdentifier>>>;
     }
 
     unsafe impl NSObjectUIAccessibilityFocus for NSObject {}
@@ -667,7 +671,7 @@ extern_category!(
         #[method_id(@__retain_semantics Other accessibilityCustomActions)]
         unsafe fn accessibilityCustomActions(
             &self,
-        ) -> Option<Id<NSArray<UIAccessibilityCustomAction>>>;
+        ) -> Option<Retained<NSArray<UIAccessibilityCustomAction>>>;
 
         #[cfg(feature = "UIAccessibilityCustomAction")]
         #[method(setAccessibilityCustomActions:)]
@@ -689,24 +693,25 @@ extern_protocol!(
         unsafe fn accessibilityContentForLineNumber(
             &self,
             line_number: NSInteger,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[method(accessibilityFrameForLineNumber:)]
         unsafe fn accessibilityFrameForLineNumber(&self, line_number: NSInteger) -> CGRect;
 
         #[method_id(@__retain_semantics Other accessibilityPageContent)]
-        unsafe fn accessibilityPageContent(&self) -> Option<Id<NSString>>;
+        unsafe fn accessibilityPageContent(&self) -> Option<Retained<NSString>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityAttributedContentForLineNumber:)]
         unsafe fn accessibilityAttributedContentForLineNumber(
             &self,
             line_number: NSInteger,
-        ) -> Option<Id<NSAttributedString>>;
+        ) -> Option<Retained<NSAttributedString>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityAttributedPageContent)]
-        unsafe fn accessibilityAttributedPageContent(&self) -> Option<Id<NSAttributedString>>;
+        unsafe fn accessibilityAttributedPageContent(&self)
+            -> Option<Retained<NSAttributedString>>;
     }
 
     unsafe impl ProtocolType for dyn UIAccessibilityReadingContent {}
@@ -720,7 +725,7 @@ extern_category!(
         #[method_id(@__retain_semantics Other accessibilityDragSourceDescriptors)]
         unsafe fn accessibilityDragSourceDescriptors(
             &self,
-        ) -> Option<Id<NSArray<UIAccessibilityLocationDescriptor>>>;
+        ) -> Option<Retained<NSArray<UIAccessibilityLocationDescriptor>>>;
 
         #[cfg(feature = "UIAccessibilityLocationDescriptor")]
         #[method(setAccessibilityDragSourceDescriptors:)]
@@ -735,7 +740,7 @@ extern_category!(
         #[method_id(@__retain_semantics Other accessibilityDropPointDescriptors)]
         unsafe fn accessibilityDropPointDescriptors(
             &self,
-        ) -> Option<Id<NSArray<UIAccessibilityLocationDescriptor>>>;
+        ) -> Option<Retained<NSArray<UIAccessibilityLocationDescriptor>>>;
 
         #[cfg(feature = "UIAccessibilityLocationDescriptor")]
         #[method(setAccessibilityDropPointDescriptors:)]

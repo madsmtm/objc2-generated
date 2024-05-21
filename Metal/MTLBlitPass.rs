@@ -23,8 +23,9 @@ extern_methods!(
     unsafe impl MTLBlitPassSampleBufferAttachmentDescriptor {
         #[cfg(feature = "MTLCounters")]
         #[method_id(@__retain_semantics Other sampleBuffer)]
-        pub unsafe fn sampleBuffer(&self)
-            -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
+        pub unsafe fn sampleBuffer(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
         #[cfg(feature = "MTLCounters")]
         #[method(setSampleBuffer:)]
@@ -54,10 +55,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLBlitPassSampleBufferAttachmentDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -79,7 +80,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
-        ) -> Id<MTLBlitPassSampleBufferAttachmentDescriptor>;
+        ) -> Retained<MTLBlitPassSampleBufferAttachmentDescriptor>;
 
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -94,10 +95,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLBlitPassSampleBufferAttachmentDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -118,12 +119,12 @@ unsafe impl NSObjectProtocol for MTLBlitPassDescriptor {}
 extern_methods!(
     unsafe impl MTLBlitPassDescriptor {
         #[method_id(@__retain_semantics Other blitPassDescriptor)]
-        pub unsafe fn blitPassDescriptor() -> Id<MTLBlitPassDescriptor>;
+        pub unsafe fn blitPassDescriptor() -> Retained<MTLBlitPassDescriptor>;
 
         #[method_id(@__retain_semantics Other sampleBufferAttachments)]
         pub unsafe fn sampleBufferAttachments(
             &self,
-        ) -> Id<MTLBlitPassSampleBufferAttachmentDescriptorArray>;
+        ) -> Retained<MTLBlitPassSampleBufferAttachmentDescriptorArray>;
     }
 );
 
@@ -131,9 +132,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLBlitPassDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

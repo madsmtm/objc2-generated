@@ -45,7 +45,7 @@ extern_methods!(
     unsafe impl NSTextStorage {
         #[cfg(feature = "NSLayoutManager")]
         #[method_id(@__retain_semantics Other layoutManagers)]
-        pub unsafe fn layoutManagers(&self) -> Id<NSArray<NSLayoutManager>>;
+        pub unsafe fn layoutManagers(&self) -> Retained<NSArray<NSLayoutManager>>;
 
         #[cfg(feature = "NSLayoutManager")]
         #[method(addLayoutManager:)]
@@ -65,7 +65,9 @@ extern_methods!(
         pub unsafe fn changeInLength(&self) -> NSInteger;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTextStorageDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn NSTextStorageDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -96,7 +98,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textStorageObserver)]
         pub unsafe fn textStorageObserver(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSTextStorageObserving>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSTextStorageObserving>>>;
 
         #[method(setTextStorageObserver:)]
         pub unsafe fn setTextStorageObserver(
@@ -110,10 +112,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextStorage {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -154,7 +156,7 @@ extern "C" {
 extern_protocol!(
     pub unsafe trait NSTextStorageObserving: NSObjectProtocol {
         #[method_id(@__retain_semantics Other textStorage)]
-        unsafe fn textStorage(&self) -> Option<Id<NSTextStorage>>;
+        unsafe fn textStorage(&self) -> Option<Retained<NSTextStorage>>;
 
         #[method(setTextStorage:)]
         unsafe fn setTextStorage(&self, text_storage: Option<&NSTextStorage>);

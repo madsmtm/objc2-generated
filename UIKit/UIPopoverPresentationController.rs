@@ -40,7 +40,7 @@ extern_protocol!(
             &self,
             popover_presentation_controller: &UIPopoverPresentationController,
             rect: NonNull<CGRect>,
-            view: &mut Id<UIView>,
+            view: &mut Retained<UIView>,
         );
     }
 
@@ -82,7 +82,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIPopoverPresentationControllerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIPopoverPresentationControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -103,7 +103,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other sourceView)]
-        pub unsafe fn sourceView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn sourceView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(setSourceView:)]
@@ -125,7 +125,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sourceItem)]
         pub unsafe fn sourceItem(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIPopoverPresentationControllerSourceItem>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIPopoverPresentationControllerSourceItem>>>;
 
         #[cfg(feature = "UIPopoverPresentationControllerSourceItem")]
         #[method(setSourceItem:)]
@@ -137,7 +137,7 @@ extern_methods!(
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other barButtonItem)]
-        pub unsafe fn barButtonItem(&self) -> Option<Id<UIBarButtonItem>>;
+        pub unsafe fn barButtonItem(&self) -> Option<Retained<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[deprecated]
@@ -150,7 +150,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other passthroughViews)]
-        pub unsafe fn passthroughViews(&self) -> Option<Id<NSArray<UIView>>>;
+        pub unsafe fn passthroughViews(&self) -> Option<Retained<NSArray<UIView>>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(setPassthroughViews:)]
@@ -158,7 +158,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setBackgroundColor:)]
@@ -187,7 +187,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other adaptiveSheetPresentationController)]
         pub unsafe fn adaptiveSheetPresentationController(
             &self,
-        ) -> Id<UISheetPresentationController>;
+        ) -> Retained<UISheetPresentationController>;
     }
 );
 
@@ -201,10 +201,10 @@ extern_methods!(
             this: Allocated<Self>,
             presented_view_controller: &UIViewController,
             presenting_view_controller: Option<&UIViewController>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -213,6 +213,6 @@ extern_methods!(
     #[cfg(feature = "UIPresentationController")]
     unsafe impl UIPopoverPresentationController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

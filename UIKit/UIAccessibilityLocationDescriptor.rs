@@ -20,10 +20,10 @@ unsafe impl NSObjectProtocol for UIAccessibilityLocationDescriptor {}
 extern_methods!(
     unsafe impl UIAccessibilityLocationDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Init initWithName:view:)]
@@ -31,7 +31,7 @@ extern_methods!(
             this: Allocated<Self>,
             name: &NSString,
             view: &UIView,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Init initWithName:point:inView:)]
@@ -40,7 +40,7 @@ extern_methods!(
             name: &NSString,
             point: CGPoint,
             view: &UIView,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Init initWithAttributedName:point:inView:)]
@@ -49,19 +49,19 @@ extern_methods!(
             attributed_name: &NSAttributedString,
             point: CGPoint,
             view: &UIView,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Id<UIView>>;
+        pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Retained<UIView>>;
 
         #[method(point)]
         pub unsafe fn point(&self) -> CGPoint;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other attributedName)]
-        pub unsafe fn attributedName(&self) -> Id<NSAttributedString>;
+        pub unsafe fn attributedName(&self) -> Retained<NSAttributedString>;
     }
 );

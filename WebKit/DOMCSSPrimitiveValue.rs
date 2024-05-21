@@ -129,22 +129,22 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other getStringValue)]
-        pub unsafe fn getStringValue(&self) -> Option<Id<NSString>>;
+        pub unsafe fn getStringValue(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "DOMCounter")]
         #[deprecated]
         #[method_id(@__retain_semantics Other getCounterValue)]
-        pub unsafe fn getCounterValue(&self) -> Option<Id<DOMCounter>>;
+        pub unsafe fn getCounterValue(&self) -> Option<Retained<DOMCounter>>;
 
         #[cfg(feature = "DOMRect")]
         #[deprecated]
         #[method_id(@__retain_semantics Other getRectValue)]
-        pub unsafe fn getRectValue(&self) -> Option<Id<DOMRect>>;
+        pub unsafe fn getRectValue(&self) -> Option<Retained<DOMRect>>;
 
         #[cfg(feature = "DOMRGBColor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other getRGBColorValue)]
-        pub unsafe fn getRGBColorValue(&self) -> Option<Id<DOMRGBColor>>;
+        pub unsafe fn getRGBColorValue(&self) -> Option<Retained<DOMRGBColor>>;
     }
 );
 
@@ -158,7 +158,7 @@ extern_methods!(
     unsafe impl DOMCSSPrimitiveValue {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -171,7 +171,7 @@ extern_methods!(
     ))]
     unsafe impl DOMCSSPrimitiveValue {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

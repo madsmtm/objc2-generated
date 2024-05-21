@@ -51,30 +51,36 @@ unsafe impl NSSecureCoding for CKRecordZone {}
 extern_methods!(
     unsafe impl CKRecordZone {
         #[method_id(@__retain_semantics Other defaultRecordZone)]
-        pub unsafe fn defaultRecordZone() -> Id<CKRecordZone>;
+        pub unsafe fn defaultRecordZone() -> Retained<CKRecordZone>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithZoneName:)]
-        pub unsafe fn initWithZoneName(this: Allocated<Self>, zone_name: &NSString) -> Id<Self>;
+        pub unsafe fn initWithZoneName(
+            this: Allocated<Self>,
+            zone_name: &NSString,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithZoneID:)]
-        pub unsafe fn initWithZoneID(this: Allocated<Self>, zone_id: &CKRecordZoneID) -> Id<Self>;
+        pub unsafe fn initWithZoneID(
+            this: Allocated<Self>,
+            zone_id: &CKRecordZoneID,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other zoneID)]
-        pub unsafe fn zoneID(&self) -> Id<CKRecordZoneID>;
+        pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;
 
         #[method(capabilities)]
         pub unsafe fn capabilities(&self) -> CKRecordZoneCapabilities;
 
         #[cfg(feature = "CKReference")]
         #[method_id(@__retain_semantics Other share)]
-        pub unsafe fn share(&self) -> Option<Id<CKReference>>;
+        pub unsafe fn share(&self) -> Option<Retained<CKReference>>;
     }
 );

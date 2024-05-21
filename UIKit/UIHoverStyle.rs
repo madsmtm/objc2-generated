@@ -23,7 +23,7 @@ extern_methods!(
     unsafe impl UIHoverStyle {
         #[cfg(feature = "UIHoverEffect")]
         #[method_id(@__retain_semantics Other effect)]
-        pub unsafe fn effect(&self) -> Id<ProtocolObject<dyn UIHoverEffect>>;
+        pub unsafe fn effect(&self) -> Retained<ProtocolObject<dyn UIHoverEffect>>;
 
         #[cfg(feature = "UIHoverEffect")]
         #[method(setEffect:)]
@@ -31,7 +31,7 @@ extern_methods!(
 
         #[cfg(feature = "UIShape")]
         #[method_id(@__retain_semantics Other shape)]
-        pub unsafe fn shape(&self) -> Option<Id<UIShape>>;
+        pub unsafe fn shape(&self) -> Option<Retained<UIShape>>;
 
         #[cfg(feature = "UIShape")]
         #[method(setShape:)]
@@ -48,20 +48,23 @@ extern_methods!(
         pub unsafe fn styleWithEffect_shape(
             effect: &ProtocolObject<dyn UIHoverEffect>,
             shape: Option<&UIShape>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIShape")]
         #[method_id(@__retain_semantics Other styleWithShape:)]
-        pub unsafe fn styleWithShape(shape: Option<&UIShape>, mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn styleWithShape(
+            shape: Option<&UIShape>,
+            mtm: MainThreadMarker,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other automaticStyle)]
-        pub unsafe fn automaticStyle(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn automaticStyle(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -70,7 +73,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIView {
         #[method_id(@__retain_semantics Other hoverStyle)]
-        pub unsafe fn hoverStyle(&self) -> Option<Id<UIHoverStyle>>;
+        pub unsafe fn hoverStyle(&self) -> Option<Retained<UIHoverStyle>>;
 
         #[method(setHoverStyle:)]
         pub unsafe fn setHoverStyle(&self, hover_style: Option<&UIHoverStyle>);

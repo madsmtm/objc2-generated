@@ -79,7 +79,9 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSPageController {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPageControllerDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn NSPageControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -88,7 +90,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other selectedViewController)]
-        pub unsafe fn selectedViewController(&self) -> Option<Id<NSViewController>>;
+        pub unsafe fn selectedViewController(&self) -> Option<Retained<NSViewController>>;
 
         #[method(transitionStyle)]
         pub unsafe fn transitionStyle(&self) -> NSPageControllerTransitionStyle;
@@ -97,7 +99,7 @@ extern_methods!(
         pub unsafe fn setTransitionStyle(&self, transition_style: NSPageControllerTransitionStyle);
 
         #[method_id(@__retain_semantics Other arrangedObjects)]
-        pub unsafe fn arrangedObjects(&self) -> Id<NSArray>;
+        pub unsafe fn arrangedObjects(&self) -> Retained<NSArray>;
 
         #[method(setArrangedObjects:)]
         pub unsafe fn setArrangedObjects(&self, arranged_objects: &NSArray);
@@ -135,10 +137,13 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -147,7 +152,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSPageController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -156,7 +161,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSPageController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -169,7 +174,7 @@ extern_protocol!(
             &self,
             page_controller: &NSPageController,
             object: &AnyObject,
-        ) -> Id<NSPageControllerObjectIdentifier>;
+        ) -> Retained<NSPageControllerObjectIdentifier>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[optional]
@@ -178,7 +183,7 @@ extern_protocol!(
             &self,
             page_controller: &NSPageController,
             identifier: &NSPageControllerObjectIdentifier,
-        ) -> Id<NSViewController>;
+        ) -> Retained<NSViewController>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[optional]

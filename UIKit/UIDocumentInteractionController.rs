@@ -26,12 +26,12 @@ extern_methods!(
         pub unsafe fn interactionControllerWithURL(
             url: &NSURL,
             mtm: MainThreadMarker,
-        ) -> Id<UIDocumentInteractionController>;
+        ) -> Retained<UIDocumentInteractionController>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIDocumentInteractionControllerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIDocumentInteractionControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -40,29 +40,29 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other UTI)]
-        pub unsafe fn UTI(&self) -> Option<Id<NSString>>;
+        pub unsafe fn UTI(&self) -> Option<Retained<NSString>>;
 
         #[method(setUTI:)]
         pub unsafe fn setUTI(&self, uti: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other icons)]
-        pub unsafe fn icons(&self) -> Id<NSArray<UIImage>>;
+        pub unsafe fn icons(&self) -> Retained<NSArray<UIImage>>;
 
         #[method_id(@__retain_semantics Other annotation)]
-        pub unsafe fn annotation(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn annotation(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setAnnotation:)]
         pub unsafe fn setAnnotation(&self, annotation: Option<&AnyObject>);
@@ -112,7 +112,7 @@ extern_methods!(
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[method_id(@__retain_semantics Other gestureRecognizers)]
-        pub unsafe fn gestureRecognizers(&self) -> Id<NSArray<UIGestureRecognizer>>;
+        pub unsafe fn gestureRecognizers(&self) -> Retained<NSArray<UIGestureRecognizer>>;
     }
 );
 
@@ -120,10 +120,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDocumentInteractionController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -135,7 +135,7 @@ extern_protocol!(
         unsafe fn documentInteractionControllerViewControllerForPreview(
             &self,
             controller: &UIDocumentInteractionController,
-        ) -> Id<UIViewController>;
+        ) -> Retained<UIViewController>;
 
         #[optional]
         #[method(documentInteractionControllerRectForPreview:)]
@@ -150,7 +150,7 @@ extern_protocol!(
         unsafe fn documentInteractionControllerViewForPreview(
             &self,
             controller: &UIDocumentInteractionController,
-        ) -> Option<Id<UIView>>;
+        ) -> Option<Retained<UIView>>;
 
         #[optional]
         #[method(documentInteractionControllerWillBeginPreview:)]

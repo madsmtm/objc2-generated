@@ -46,7 +46,7 @@ extern_methods!(
         pub unsafe fn polygonWithPoints_count(
             points: NonNull<MKMapPoint>,
             count: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MKGeometry")]
         #[method_id(@__retain_semantics Other polygonWithPoints:count:interiorPolygons:)]
@@ -54,14 +54,14 @@ extern_methods!(
             points: NonNull<MKMapPoint>,
             count: NSUInteger,
             interior_polygons: Option<&NSArray<MKPolygon>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method_id(@__retain_semantics Other polygonWithCoordinates:count:)]
         pub unsafe fn polygonWithCoordinates_count(
             coords: NonNull<CLLocationCoordinate2D>,
             count: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method_id(@__retain_semantics Other polygonWithCoordinates:count:interiorPolygons:)]
@@ -69,10 +69,10 @@ extern_methods!(
             coords: NonNull<CLLocationCoordinate2D>,
             count: NSUInteger,
             interior_polygons: Option<&NSArray<MKPolygon>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other interiorPolygons)]
-        pub unsafe fn interiorPolygons(&self) -> Option<Id<NSArray<MKPolygon>>>;
+        pub unsafe fn interiorPolygons(&self) -> Option<Retained<NSArray<MKPolygon>>>;
     }
 );
 
@@ -81,9 +81,9 @@ extern_methods!(
     #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
     unsafe impl MKPolygon {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

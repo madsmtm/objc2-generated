@@ -14,7 +14,7 @@ extern_protocol!(
         unsafe fn featuresAtIndex(
             &self,
             index: NSInteger,
-        ) -> Id<ProtocolObject<dyn MLFeatureProvider>>;
+        ) -> Retained<ProtocolObject<dyn MLFeatureProvider>>;
     }
 
     unsafe impl ProtocolType for dyn MLBatchProvider {}

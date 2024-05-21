@@ -17,7 +17,7 @@ extern_protocol!(
             &self,
             picker_view: &UIPickerView,
             component: NSInteger,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
@@ -26,7 +26,7 @@ extern_protocol!(
             &self,
             picker_view: &UIPickerView,
             component: NSInteger,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
@@ -35,7 +35,7 @@ extern_protocol!(
             &self,
             picker_view: &UIPickerView,
             component: NSInteger,
-        ) -> Id<NSArray<NSString>>;
+        ) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
@@ -44,7 +44,7 @@ extern_protocol!(
             &self,
             picker_view: &UIPickerView,
             component: NSInteger,
-        ) -> Option<Id<NSAttributedString>>;
+        ) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
@@ -53,7 +53,7 @@ extern_protocol!(
             &self,
             picker_view: &UIPickerView,
             component: NSInteger,
-        ) -> Option<Id<NSAttributedString>>;
+        ) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
@@ -62,7 +62,7 @@ extern_protocol!(
             &self,
             picker_view: &UIPickerView,
             component: NSInteger,
-        ) -> Id<NSArray<NSAttributedString>>;
+        ) -> Retained<NSArray<NSAttributedString>>;
     }
 
     #[cfg(feature = "UIPickerView")]
@@ -80,7 +80,7 @@ extern_protocol!(
         unsafe fn accessibilityScrollStatusForScrollView(
             &self,
             scroll_view: &UIScrollView,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
@@ -88,7 +88,7 @@ extern_protocol!(
         unsafe fn accessibilityAttributedScrollStatusForScrollView(
             &self,
             scroll_view: &UIScrollView,
-        ) -> Option<Id<NSAttributedString>>;
+        ) -> Option<Retained<NSAttributedString>>;
     }
 
     #[cfg(feature = "UIScrollView")]
@@ -115,6 +115,6 @@ extern_methods!(
     #[cfg(feature = "UIColor")]
     unsafe impl UIColor {
         #[method_id(@__retain_semantics Other accessibilityName)]
-        pub unsafe fn accessibilityName(&self) -> Id<NSString>;
+        pub unsafe fn accessibilityName(&self) -> Retained<NSString>;
     }
 );

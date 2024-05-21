@@ -39,25 +39,28 @@ extern_methods!(
             this: Allocated<Self>,
             call_uuid: &NSUUID,
             handle: &CXHandle,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder)
-            -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            a_decoder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithCallUUID:)]
-        pub unsafe fn initWithCallUUID(this: Allocated<Self>, call_uuid: &NSUUID) -> Id<Self>;
+        pub unsafe fn initWithCallUUID(this: Allocated<Self>, call_uuid: &NSUUID)
+            -> Retained<Self>;
 
         #[cfg(feature = "CXHandle")]
         #[method_id(@__retain_semantics Other handle)]
-        pub unsafe fn handle(&self) -> Id<CXHandle>;
+        pub unsafe fn handle(&self) -> Retained<CXHandle>;
 
         #[cfg(feature = "CXHandle")]
         #[method(setHandle:)]
         pub unsafe fn setHandle(&self, handle: &CXHandle);
 
         #[method_id(@__retain_semantics Other contactIdentifier)]
-        pub unsafe fn contactIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn contactIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(setContactIdentifier:)]
         pub unsafe fn setContactIdentifier(&self, contact_identifier: Option<&NSString>);
@@ -78,7 +81,7 @@ extern_methods!(
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXStartCallAction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -87,6 +90,6 @@ extern_methods!(
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXStartCallAction {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

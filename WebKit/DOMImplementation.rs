@@ -42,7 +42,7 @@ extern_methods!(
             qualified_name: Option<&NSString>,
             public_id: Option<&NSString>,
             system_id: Option<&NSString>,
-        ) -> Option<Id<DOMDocumentType>>;
+        ) -> Option<Retained<DOMDocumentType>>;
 
         #[cfg(all(
             feature = "DOMDocument",
@@ -55,7 +55,7 @@ extern_methods!(
             namespace_uri: Option<&NSString>,
             qualified_name: Option<&NSString>,
             doctype: Option<&DOMDocumentType>,
-        ) -> Option<Id<DOMDocument>>;
+        ) -> Option<Retained<DOMDocument>>;
 
         #[cfg(all(feature = "DOMCSSStyleSheet", feature = "DOMStyleSheet"))]
         #[method_id(@__retain_semantics Other createCSSStyleSheet:media:)]
@@ -63,7 +63,7 @@ extern_methods!(
             &self,
             title: Option<&NSString>,
             media: Option<&NSString>,
-        ) -> Option<Id<DOMCSSStyleSheet>>;
+        ) -> Option<Retained<DOMCSSStyleSheet>>;
 
         #[cfg(all(
             feature = "DOMDocument",
@@ -74,7 +74,7 @@ extern_methods!(
         pub unsafe fn createHTMLDocument(
             &self,
             title: Option<&NSString>,
-        ) -> Option<Id<DOMHTMLDocument>>;
+        ) -> Option<Retained<DOMHTMLDocument>>;
     }
 );
 
@@ -84,7 +84,7 @@ extern_methods!(
     unsafe impl DOMImplementation {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -93,7 +93,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMImplementation {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -117,7 +117,7 @@ extern_methods!(
             qualified_name: Option<&NSString>,
             public_id: Option<&NSString>,
             system_id: Option<&NSString>,
-        ) -> Option<Id<DOMDocumentType>>;
+        ) -> Option<Retained<DOMDocumentType>>;
 
         #[cfg(all(
             feature = "DOMDocument",
@@ -131,7 +131,7 @@ extern_methods!(
             namespace_uri: Option<&NSString>,
             qualified_name: Option<&NSString>,
             doctype: Option<&DOMDocumentType>,
-        ) -> Option<Id<DOMDocument>>;
+        ) -> Option<Retained<DOMDocument>>;
 
         #[cfg(all(feature = "DOMCSSStyleSheet", feature = "DOMStyleSheet"))]
         #[deprecated]
@@ -140,6 +140,6 @@ extern_methods!(
             &self,
             title: Option<&NSString>,
             media: Option<&NSString>,
-        ) -> Option<Id<DOMCSSStyleSheet>>;
+        ) -> Option<Retained<DOMCSSStyleSheet>>;
     }
 );

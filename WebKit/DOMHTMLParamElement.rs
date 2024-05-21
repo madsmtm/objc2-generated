@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl DOMHTMLParamElement {
         #[deprecated]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setName:)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSString>;
+        pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setType:)]
@@ -86,7 +86,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Id<NSString>;
+        pub unsafe fn value(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setValue:)]
@@ -94,7 +94,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other valueType)]
-        pub unsafe fn valueType(&self) -> Id<NSString>;
+        pub unsafe fn valueType(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setValueType:)]
@@ -114,7 +114,7 @@ extern_methods!(
     unsafe impl DOMHTMLParamElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -129,6 +129,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLParamElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

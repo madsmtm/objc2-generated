@@ -26,16 +26,16 @@ unsafe impl NSSecureCoding for CNSocialProfile {}
 extern_methods!(
     unsafe impl CNSocialProfile {
         #[method_id(@__retain_semantics Other urlString)]
-        pub unsafe fn urlString(&self) -> Id<NSString>;
+        pub unsafe fn urlString(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other username)]
-        pub unsafe fn username(&self) -> Id<NSString>;
+        pub unsafe fn username(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other userIdentifier)]
-        pub unsafe fn userIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn userIdentifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other service)]
-        pub unsafe fn service(&self) -> Id<NSString>;
+        pub unsafe fn service(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Init initWithUrlString:username:userIdentifier:service:)]
         pub unsafe fn initWithUrlString_username_userIdentifier_service(
@@ -44,13 +44,13 @@ extern_methods!(
             username: Option<&NSString>,
             user_identifier: Option<&NSString>,
             service: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other localizedStringForKey:)]
-        pub unsafe fn localizedStringForKey(key: &NSString) -> Id<NSString>;
+        pub unsafe fn localizedStringForKey(key: &NSString) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other localizedStringForService:)]
-        pub unsafe fn localizedStringForService(service: &NSString) -> Id<NSString>;
+        pub unsafe fn localizedStringForService(service: &NSString) -> Retained<NSString>;
     }
 );
 
@@ -58,10 +58,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNSocialProfile {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

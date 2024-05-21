@@ -37,10 +37,10 @@ extern_methods!(
         pub unsafe fn remapLineEndings(&self) -> bool;
 
         #[method_id(@__retain_semantics Other inputFieldSeparator)]
-        pub unsafe fn inputFieldSeparator(&self) -> Id<NSString>;
+        pub unsafe fn inputFieldSeparator(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other outputFieldSeparator)]
-        pub unsafe fn outputFieldSeparator(&self) -> Id<NSString>;
+        pub unsafe fn outputFieldSeparator(&self) -> Retained<NSString>;
     }
 );
 
@@ -53,13 +53,13 @@ extern_methods!(
             this: Allocated<Self>,
             dict: Option<&NSDictionary<NSString, AnyObject>>,
             archived: bool,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             file_url: &NSURL,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
     }
 );
 
@@ -68,9 +68,9 @@ extern_methods!(
     #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
     unsafe impl AMShellScriptAction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

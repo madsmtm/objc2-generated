@@ -30,28 +30,28 @@ extern_methods!(
             this: Allocated<Self>,
             addresses: &NSArray<NSString>,
             network_prefix_lengths: &NSArray<NSNumber>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other settingsWithAutomaticAddressing)]
-        pub unsafe fn settingsWithAutomaticAddressing() -> Id<Self>;
+        pub unsafe fn settingsWithAutomaticAddressing() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other settingsWithLinkLocalAddressing)]
-        pub unsafe fn settingsWithLinkLocalAddressing() -> Id<Self>;
+        pub unsafe fn settingsWithLinkLocalAddressing() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other addresses)]
-        pub unsafe fn addresses(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn addresses(&self) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other networkPrefixLengths)]
-        pub unsafe fn networkPrefixLengths(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn networkPrefixLengths(&self) -> Retained<NSArray<NSNumber>>;
 
         #[method_id(@__retain_semantics Other includedRoutes)]
-        pub unsafe fn includedRoutes(&self) -> Option<Id<NSArray<NEIPv6Route>>>;
+        pub unsafe fn includedRoutes(&self) -> Option<Retained<NSArray<NEIPv6Route>>>;
 
         #[method(setIncludedRoutes:)]
         pub unsafe fn setIncludedRoutes(&self, included_routes: Option<&NSArray<NEIPv6Route>>);
 
         #[method_id(@__retain_semantics Other excludedRoutes)]
-        pub unsafe fn excludedRoutes(&self) -> Option<Id<NSArray<NEIPv6Route>>>;
+        pub unsafe fn excludedRoutes(&self) -> Option<Retained<NSArray<NEIPv6Route>>>;
 
         #[method(setExcludedRoutes:)]
         pub unsafe fn setExcludedRoutes(&self, excluded_routes: Option<&NSArray<NEIPv6Route>>);
@@ -62,10 +62,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEIPv6Settings {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -94,22 +94,22 @@ extern_methods!(
             this: Allocated<Self>,
             address: &NSString,
             network_prefix_length: &NSNumber,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other destinationAddress)]
-        pub unsafe fn destinationAddress(&self) -> Id<NSString>;
+        pub unsafe fn destinationAddress(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other destinationNetworkPrefixLength)]
-        pub unsafe fn destinationNetworkPrefixLength(&self) -> Id<NSNumber>;
+        pub unsafe fn destinationNetworkPrefixLength(&self) -> Retained<NSNumber>;
 
         #[method_id(@__retain_semantics Other gatewayAddress)]
-        pub unsafe fn gatewayAddress(&self) -> Option<Id<NSString>>;
+        pub unsafe fn gatewayAddress(&self) -> Option<Retained<NSString>>;
 
         #[method(setGatewayAddress:)]
         pub unsafe fn setGatewayAddress(&self, gateway_address: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other defaultRoute)]
-        pub unsafe fn defaultRoute() -> Id<NEIPv6Route>;
+        pub unsafe fn defaultRoute() -> Retained<NEIPv6Route>;
     }
 );
 
@@ -117,9 +117,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEIPv6Route {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

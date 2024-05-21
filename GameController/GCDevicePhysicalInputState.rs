@@ -9,7 +9,7 @@ extern_protocol!(
     pub unsafe trait GCDevicePhysicalInputState: NSObjectProtocol {
         #[cfg(feature = "GCDevice")]
         #[method_id(@__retain_semantics Other device)]
-        unsafe fn device(&self) -> Option<Id<ProtocolObject<dyn GCDevice>>>;
+        unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn GCDevice>>>;
 
         #[method(lastEventTimestamp)]
         unsafe fn lastEventTimestamp(&self) -> NSTimeInterval;
@@ -21,7 +21,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other elements)]
         unsafe fn elements(
             &self,
-        ) -> Id<
+        ) -> Retained<
             GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCPhysicalInputElement>>,
         >;
 
@@ -33,7 +33,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other buttons)]
         unsafe fn buttons(
             &self,
-        ) -> Id<GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCButtonElement>>>;
+        ) -> Retained<GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCButtonElement>>>;
 
         #[cfg(all(
             feature = "GCAxisElement",
@@ -43,7 +43,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other axes)]
         unsafe fn axes(
             &self,
-        ) -> Id<GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCAxisElement>>>;
+        ) -> Retained<GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCAxisElement>>>;
 
         #[cfg(all(
             feature = "GCInputNames",
@@ -53,7 +53,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other switches)]
         unsafe fn switches(
             &self,
-        ) -> Id<GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCSwitchElement>>>;
+        ) -> Retained<GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCSwitchElement>>>;
 
         #[cfg(all(
             feature = "GCDirectionPadElement",
@@ -63,14 +63,16 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other dpads)]
         unsafe fn dpads(
             &self,
-        ) -> Id<GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCDirectionPadElement>>>;
+        ) -> Retained<
+            GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCDirectionPadElement>>,
+        >;
 
         #[cfg(feature = "GCPhysicalInputElement")]
         #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
         unsafe fn objectForKeyedSubscript(
             &self,
             key: &NSString,
-        ) -> Option<Id<ProtocolObject<dyn GCPhysicalInputElement>>>;
+        ) -> Option<Retained<ProtocolObject<dyn GCPhysicalInputElement>>>;
     }
 
     unsafe impl ProtocolType for dyn GCDevicePhysicalInputState {}

@@ -183,7 +183,7 @@ extern "C" {
 extern_protocol!(
     pub unsafe trait NSTextContent {
         #[method_id(@__retain_semantics Other contentType)]
-        unsafe fn contentType(&self) -> Option<Id<NSTextContentType>>;
+        unsafe fn contentType(&self) -> Option<Retained<NSTextContentType>>;
 
         #[method(setContentType:)]
         unsafe fn setContentType(&self, content_type: Option<&NSTextContentType>);

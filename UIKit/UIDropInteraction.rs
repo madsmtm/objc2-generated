@@ -26,16 +26,18 @@ extern_methods!(
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: &ProtocolObject<dyn UIDropInteractionDelegate>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn UIDropInteractionDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn UIDropInteractionDelegate>>>;
 
         #[method(allowsSimultaneousDropSessions)]
         pub unsafe fn allowsSimultaneousDropSessions(&self) -> bool;
@@ -91,13 +93,13 @@ extern_methods!(
         pub unsafe fn initWithDropOperation(
             this: Allocated<Self>,
             operation: UIDropOperation,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(operation)]
         pub unsafe fn operation(&self) -> UIDropOperation;
@@ -143,7 +145,7 @@ extern_protocol!(
             &self,
             interaction: &UIDropInteraction,
             session: &ProtocolObject<dyn UIDropSession>,
-        ) -> Id<UIDropProposal>;
+        ) -> Retained<UIDropProposal>;
 
         #[cfg(feature = "UIDragSession")]
         #[optional]
@@ -193,7 +195,7 @@ extern_protocol!(
             interaction: &UIDropInteraction,
             item: &UIDragItem,
             default_preview: &UITargetedDragPreview,
-        ) -> Option<Id<UITargetedDragPreview>>;
+        ) -> Option<Retained<UITargetedDragPreview>>;
 
         #[cfg(all(feature = "UIDragInteraction", feature = "UIDragItem"))]
         #[optional]

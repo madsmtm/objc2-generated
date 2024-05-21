@@ -8,14 +8,14 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait UIMenuLeaf: NSObjectProtocol + IsMainThreadOnly {
         #[method_id(@__retain_semantics Other title)]
-        unsafe fn title(&self) -> Id<NSString>;
+        unsafe fn title(&self) -> Retained<NSString>;
 
         #[method(setTitle:)]
         unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other image)]
-        unsafe fn image(&self) -> Option<Id<UIImage>>;
+        unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setImage:)]
@@ -23,14 +23,14 @@ extern_protocol!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other selectedImage)]
-        unsafe fn selectedImage(&self) -> Option<Id<UIImage>>;
+        unsafe fn selectedImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setSelectedImage:)]
         unsafe fn setSelectedImage(&self, selected_image: Option<&UIImage>);
 
         #[method_id(@__retain_semantics Other discoverabilityTitle)]
-        unsafe fn discoverabilityTitle(&self) -> Option<Id<NSString>>;
+        unsafe fn discoverabilityTitle(&self) -> Option<Retained<NSString>>;
 
         #[method(setDiscoverabilityTitle:)]
         unsafe fn setDiscoverabilityTitle(&self, discoverability_title: Option<&NSString>);
@@ -52,13 +52,13 @@ extern_protocol!(
         unsafe fn setState(&self, state: UIMenuElementState);
 
         #[method_id(@__retain_semantics Other sender)]
-        unsafe fn sender(&self) -> Option<Id<AnyObject>>;
+        unsafe fn sender(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "UIPopoverPresentationControllerSourceItem")]
         #[method_id(@__retain_semantics Other presentationSourceItem)]
         unsafe fn presentationSourceItem(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIPopoverPresentationControllerSourceItem>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIPopoverPresentationControllerSourceItem>>>;
 
         #[method(performWithSender:target:)]
         unsafe fn performWithSender_target(

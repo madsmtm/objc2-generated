@@ -34,40 +34,40 @@ extern_methods!(
     #[cfg(feature = "MLKey")]
     unsafe impl MLParameterKey {
         #[method_id(@__retain_semantics Other learningRate)]
-        pub unsafe fn learningRate() -> Id<MLParameterKey>;
+        pub unsafe fn learningRate() -> Retained<MLParameterKey>;
 
         #[method_id(@__retain_semantics Other momentum)]
-        pub unsafe fn momentum() -> Id<MLParameterKey>;
+        pub unsafe fn momentum() -> Retained<MLParameterKey>;
 
         #[method_id(@__retain_semantics Other miniBatchSize)]
-        pub unsafe fn miniBatchSize() -> Id<MLParameterKey>;
+        pub unsafe fn miniBatchSize() -> Retained<MLParameterKey>;
 
         #[method_id(@__retain_semantics Other beta1)]
-        pub unsafe fn beta1() -> Id<MLParameterKey>;
+        pub unsafe fn beta1() -> Retained<MLParameterKey>;
 
         #[method_id(@__retain_semantics Other beta2)]
-        pub unsafe fn beta2() -> Id<MLParameterKey>;
+        pub unsafe fn beta2() -> Retained<MLParameterKey>;
 
         #[method_id(@__retain_semantics Other eps)]
-        pub unsafe fn eps() -> Id<MLParameterKey>;
+        pub unsafe fn eps() -> Retained<MLParameterKey>;
 
         #[method_id(@__retain_semantics Other epochs)]
-        pub unsafe fn epochs() -> Id<MLParameterKey>;
+        pub unsafe fn epochs() -> Retained<MLParameterKey>;
 
         #[method_id(@__retain_semantics Other shuffle)]
-        pub unsafe fn shuffle() -> Id<MLParameterKey>;
+        pub unsafe fn shuffle() -> Retained<MLParameterKey>;
 
         #[method_id(@__retain_semantics Other seed)]
-        pub unsafe fn seed() -> Id<MLParameterKey>;
+        pub unsafe fn seed() -> Retained<MLParameterKey>;
 
         #[method_id(@__retain_semantics Other numberOfNeighbors)]
-        pub unsafe fn numberOfNeighbors() -> Id<MLParameterKey>;
+        pub unsafe fn numberOfNeighbors() -> Retained<MLParameterKey>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -76,10 +76,10 @@ extern_methods!(
     #[cfg(feature = "MLKey")]
     unsafe impl MLParameterKey {
         #[method_id(@__retain_semantics Other linkedModelFileName)]
-        pub unsafe fn linkedModelFileName() -> Id<MLParameterKey>;
+        pub unsafe fn linkedModelFileName() -> Retained<MLParameterKey>;
 
         #[method_id(@__retain_semantics Other linkedModelSearchPath)]
-        pub unsafe fn linkedModelSearchPath() -> Id<MLParameterKey>;
+        pub unsafe fn linkedModelSearchPath() -> Retained<MLParameterKey>;
     }
 );
 
@@ -88,10 +88,10 @@ extern_methods!(
     #[cfg(feature = "MLKey")]
     unsafe impl MLParameterKey {
         #[method_id(@__retain_semantics Other weights)]
-        pub unsafe fn weights() -> Id<MLParameterKey>;
+        pub unsafe fn weights() -> Retained<MLParameterKey>;
 
         #[method_id(@__retain_semantics Other biases)]
-        pub unsafe fn biases() -> Id<MLParameterKey>;
+        pub unsafe fn biases() -> Retained<MLParameterKey>;
     }
 );
 
@@ -100,6 +100,6 @@ extern_methods!(
     #[cfg(feature = "MLKey")]
     unsafe impl MLParameterKey {
         #[method_id(@__retain_semantics Other scopedTo:)]
-        pub unsafe fn scopedTo(&self, scope: &NSString) -> Id<MLParameterKey>;
+        pub unsafe fn scopedTo(&self, scope: &NSString) -> Retained<MLParameterKey>;
     }
 );

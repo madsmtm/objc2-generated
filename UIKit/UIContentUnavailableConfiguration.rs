@@ -48,23 +48,23 @@ unsafe impl UIContentConfiguration for UIContentUnavailableConfiguration {}
 extern_methods!(
     unsafe impl UIContentUnavailableConfiguration {
         #[method_id(@__retain_semantics Other emptyConfiguration)]
-        pub unsafe fn emptyConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn emptyConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other loadingConfiguration)]
-        pub unsafe fn loadingConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn loadingConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other searchConfiguration)]
-        pub unsafe fn searchConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn searchConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setImage:)]
@@ -72,32 +72,32 @@ extern_methods!(
 
         #[cfg(feature = "UIContentUnavailableImageProperties")]
         #[method_id(@__retain_semantics Other imageProperties)]
-        pub unsafe fn imageProperties(&self) -> Id<UIContentUnavailableImageProperties>;
+        pub unsafe fn imageProperties(&self) -> Retained<UIContentUnavailableImageProperties>;
 
         #[method_id(@__retain_semantics Other text)]
-        pub unsafe fn text(&self) -> Option<Id<NSString>>;
+        pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         #[method(setText:)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other attributedText)]
-        pub unsafe fn attributedText(&self) -> Option<Id<NSAttributedString>>;
+        pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         #[method(setAttributedText:)]
         pub unsafe fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);
 
         #[cfg(feature = "UIContentUnavailableTextProperties")]
         #[method_id(@__retain_semantics Other textProperties)]
-        pub unsafe fn textProperties(&self) -> Id<UIContentUnavailableTextProperties>;
+        pub unsafe fn textProperties(&self) -> Retained<UIContentUnavailableTextProperties>;
 
         #[method_id(@__retain_semantics Other secondaryText)]
-        pub unsafe fn secondaryText(&self) -> Option<Id<NSString>>;
+        pub unsafe fn secondaryText(&self) -> Option<Retained<NSString>>;
 
         #[method(setSecondaryText:)]
         pub unsafe fn setSecondaryText(&self, secondary_text: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other secondaryAttributedText)]
-        pub unsafe fn secondaryAttributedText(&self) -> Option<Id<NSAttributedString>>;
+        pub unsafe fn secondaryAttributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         #[method(setSecondaryAttributedText:)]
         pub unsafe fn setSecondaryAttributedText(
@@ -107,11 +107,13 @@ extern_methods!(
 
         #[cfg(feature = "UIContentUnavailableTextProperties")]
         #[method_id(@__retain_semantics Other secondaryTextProperties)]
-        pub unsafe fn secondaryTextProperties(&self) -> Id<UIContentUnavailableTextProperties>;
+        pub unsafe fn secondaryTextProperties(
+            &self,
+        ) -> Retained<UIContentUnavailableTextProperties>;
 
         #[cfg(feature = "UIButtonConfiguration")]
         #[method_id(@__retain_semantics Other button)]
-        pub unsafe fn button(&self) -> Id<UIButtonConfiguration>;
+        pub unsafe fn button(&self) -> Retained<UIButtonConfiguration>;
 
         #[cfg(feature = "UIButtonConfiguration")]
         #[method(setButton:)]
@@ -119,11 +121,11 @@ extern_methods!(
 
         #[cfg(feature = "UIContentUnavailableButtonProperties")]
         #[method_id(@__retain_semantics Other buttonProperties)]
-        pub unsafe fn buttonProperties(&self) -> Id<UIContentUnavailableButtonProperties>;
+        pub unsafe fn buttonProperties(&self) -> Retained<UIContentUnavailableButtonProperties>;
 
         #[cfg(feature = "UIButtonConfiguration")]
         #[method_id(@__retain_semantics Other secondaryButton)]
-        pub unsafe fn secondaryButton(&self) -> Id<UIButtonConfiguration>;
+        pub unsafe fn secondaryButton(&self) -> Retained<UIButtonConfiguration>;
 
         #[cfg(feature = "UIButtonConfiguration")]
         #[method(setSecondaryButton:)]
@@ -131,7 +133,9 @@ extern_methods!(
 
         #[cfg(feature = "UIContentUnavailableButtonProperties")]
         #[method_id(@__retain_semantics Other secondaryButtonProperties)]
-        pub unsafe fn secondaryButtonProperties(&self) -> Id<UIContentUnavailableButtonProperties>;
+        pub unsafe fn secondaryButtonProperties(
+            &self,
+        ) -> Retained<UIContentUnavailableButtonProperties>;
 
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> UIContentUnavailableAlignment;
@@ -190,7 +194,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         #[method_id(@__retain_semantics Other background)]
-        pub unsafe fn background(&self) -> Id<UIBackgroundConfiguration>;
+        pub unsafe fn background(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         #[method(setBackground:)]

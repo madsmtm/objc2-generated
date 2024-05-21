@@ -28,10 +28,10 @@ unsafe impl NSSecureCoding for CNGroup {}
 extern_methods!(
     unsafe impl CNGroup {
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
     }
 );
 
@@ -39,10 +39,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNGroup {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

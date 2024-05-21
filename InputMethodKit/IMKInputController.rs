@@ -43,19 +43,19 @@ extern_category!(
         ) -> bool;
 
         #[method_id(@__retain_semantics Other composedString:)]
-        unsafe fn composedString(&self, sender: Option<&AnyObject>) -> Option<Id<AnyObject>>;
+        unsafe fn composedString(&self, sender: Option<&AnyObject>) -> Option<Retained<AnyObject>>;
 
         #[method_id(@__retain_semantics Other originalString:)]
         unsafe fn originalString(
             &self,
             sender: Option<&AnyObject>,
-        ) -> Option<Id<NSAttributedString>>;
+        ) -> Option<Retained<NSAttributedString>>;
 
         #[method(commitComposition:)]
         unsafe fn commitComposition(&self, sender: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other candidates:)]
-        unsafe fn candidates(&self, sender: Option<&AnyObject>) -> Option<Id<NSArray>>;
+        unsafe fn candidates(&self, sender: Option<&AnyObject>) -> Option<Retained<NSArray>>;
     }
 
     unsafe impl NSObjectIMKServerInput for NSObject {}
@@ -74,7 +74,7 @@ extern_protocol!(
             &self,
             tag: c_long,
             sender: Option<&AnyObject>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[method(setValue:forTag:client:)]
         unsafe fn setValue_forTag_client(
@@ -85,7 +85,7 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other modes:)]
-        unsafe fn modes(&self, sender: Option<&AnyObject>) -> Option<Id<NSDictionary>>;
+        unsafe fn modes(&self, sender: Option<&AnyObject>) -> Option<Retained<NSDictionary>>;
 
         #[method(recognizedEvents:)]
         unsafe fn recognizedEvents(&self, sender: Option<&AnyObject>) -> NSUInteger;
@@ -156,7 +156,7 @@ extern_methods!(
             server: Option<&IMKServer>,
             delegate: Option<&AnyObject>,
             input_client: Option<&AnyObject>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method(updateComposition)]
         pub unsafe fn updateComposition(&self);
@@ -168,7 +168,7 @@ extern_methods!(
         pub unsafe fn compositionAttributesAtRange(
             &self,
             range: NSRange,
-        ) -> Option<Id<NSMutableDictionary>>;
+        ) -> Option<Retained<NSMutableDictionary>>;
 
         #[method(selectionRange)]
         pub unsafe fn selectionRange(&self) -> NSRange;
@@ -181,7 +181,7 @@ extern_methods!(
             &self,
             style: NSInteger,
             range: NSRange,
-        ) -> Option<Id<NSDictionary>>;
+        ) -> Option<Retained<NSDictionary>>;
 
         #[method(doCommandBySelector:commandDictionary:)]
         pub unsafe fn doCommandBySelector_commandDictionary(
@@ -195,17 +195,17 @@ extern_methods!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[method_id(@__retain_semantics Other menu)]
-        pub unsafe fn menu(&self, mtm: MainThreadMarker) -> Option<Id<NSMenu>>;
+        pub unsafe fn menu(&self, mtm: MainThreadMarker) -> Option<Retained<NSMenu>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, new_delegate: Option<&AnyObject>);
 
         #[cfg(feature = "IMKServer")]
         #[method_id(@__retain_semantics Other server)]
-        pub unsafe fn server(&self) -> Option<Id<IMKServer>>;
+        pub unsafe fn server(&self) -> Option<Retained<IMKServer>>;
 
         #[method(inputControllerWillClose)]
         pub unsafe fn inputControllerWillClose(&self);
@@ -232,9 +232,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl IMKInputController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

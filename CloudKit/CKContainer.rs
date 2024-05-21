@@ -32,19 +32,21 @@ unsafe impl NSObjectProtocol for CKContainer {}
 extern_methods!(
     unsafe impl CKContainer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other defaultContainer)]
-        pub unsafe fn defaultContainer() -> Id<CKContainer>;
+        pub unsafe fn defaultContainer() -> Retained<CKContainer>;
 
         #[method_id(@__retain_semantics Other containerWithIdentifier:)]
-        pub unsafe fn containerWithIdentifier(container_identifier: &NSString) -> Id<CKContainer>;
+        pub unsafe fn containerWithIdentifier(
+            container_identifier: &NSString,
+        ) -> Retained<CKContainer>;
 
         #[method_id(@__retain_semantics Other containerIdentifier)]
-        pub unsafe fn containerIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn containerIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CKOperation")]
         #[method(addOperation:)]
@@ -57,22 +59,22 @@ extern_methods!(
     unsafe impl CKContainer {
         #[cfg(feature = "CKDatabase")]
         #[method_id(@__retain_semantics Other privateCloudDatabase)]
-        pub unsafe fn privateCloudDatabase(&self) -> Id<CKDatabase>;
+        pub unsafe fn privateCloudDatabase(&self) -> Retained<CKDatabase>;
 
         #[cfg(feature = "CKDatabase")]
         #[method_id(@__retain_semantics Other publicCloudDatabase)]
-        pub unsafe fn publicCloudDatabase(&self) -> Id<CKDatabase>;
+        pub unsafe fn publicCloudDatabase(&self) -> Retained<CKDatabase>;
 
         #[cfg(feature = "CKDatabase")]
         #[method_id(@__retain_semantics Other sharedCloudDatabase)]
-        pub unsafe fn sharedCloudDatabase(&self) -> Id<CKDatabase>;
+        pub unsafe fn sharedCloudDatabase(&self) -> Retained<CKDatabase>;
 
         #[cfg(feature = "CKDatabase")]
         #[method_id(@__retain_semantics Other databaseWithDatabaseScope:)]
         pub unsafe fn databaseWithDatabaseScope(
             &self,
             database_scope: CKDatabaseScope,
-        ) -> Id<CKDatabase>;
+        ) -> Retained<CKDatabase>;
     }
 );
 

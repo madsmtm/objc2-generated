@@ -27,7 +27,7 @@ extern_methods!(
     unsafe impl CKMarkNotificationsReadOperation {
         #[deprecated = "Instead of iterating notifications, consider using CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation as appropriate"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKNotification")]
         #[deprecated = "Instead of iterating notifications, consider using CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation as appropriate"]
@@ -35,12 +35,12 @@ extern_methods!(
         pub unsafe fn initWithNotificationIDsToMarkRead(
             this: Allocated<Self>,
             notification_i_ds: &NSArray<CKNotificationID>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKNotification")]
         #[deprecated = "Instead of iterating notifications, consider using CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation as appropriate"]
         #[method_id(@__retain_semantics Other notificationIDs)]
-        pub unsafe fn notificationIDs(&self) -> Option<Id<NSArray<CKNotificationID>>>;
+        pub unsafe fn notificationIDs(&self) -> Option<Retained<NSArray<CKNotificationID>>>;
 
         #[cfg(feature = "CKNotification")]
         #[deprecated = "Instead of iterating notifications, consider using CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation as appropriate"]
@@ -74,6 +74,6 @@ extern_methods!(
     #[cfg(feature = "CKOperation")]
     unsafe impl CKMarkNotificationsReadOperation {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

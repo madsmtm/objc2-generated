@@ -86,7 +86,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSString>;
+        pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setType:)]
@@ -106,7 +106,7 @@ extern_methods!(
     unsafe impl DOMHTMLOListElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -121,6 +121,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLOListElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

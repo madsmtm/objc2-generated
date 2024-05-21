@@ -29,10 +29,10 @@ unsafe impl NSSecureCoding for CKLocationSortDescriptor {}
 extern_methods!(
     unsafe impl CKLocationSortDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method_id(@__retain_semantics Init initWithKey:relativeLocation:)]
@@ -40,14 +40,14 @@ extern_methods!(
             this: Allocated<Self>,
             key: &NSString,
             relative_location: &CLLocation,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method_id(@__retain_semantics Other relativeLocation)]
-        pub unsafe fn relativeLocation(&self) -> Id<CLLocation>;
+        pub unsafe fn relativeLocation(&self) -> Retained<CLLocation>;
     }
 );
 
@@ -58,21 +58,21 @@ extern_methods!(
         pub unsafe fn sortDescriptorWithKey_ascending(
             key: Option<&NSString>,
             ascending: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other sortDescriptorWithKey:ascending:selector:)]
         pub unsafe fn sortDescriptorWithKey_ascending_selector(
             key: Option<&NSString>,
             ascending: bool,
             selector: Option<Sel>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithKey:ascending:)]
         pub unsafe fn initWithKey_ascending(
             this: Allocated<Self>,
             key: Option<&NSString>,
             ascending: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithKey:ascending:selector:)]
         pub unsafe fn initWithKey_ascending_selector(
@@ -80,7 +80,7 @@ extern_methods!(
             key: Option<&NSString>,
             ascending: bool,
             selector: Option<Sel>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Other sortDescriptorWithKey:ascending:comparator:)]
@@ -88,7 +88,7 @@ extern_methods!(
             key: Option<&NSString>,
             ascending: bool,
             cmptr: NSComparator,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithKey:ascending:comparator:)]
@@ -97,6 +97,6 @@ extern_methods!(
             key: Option<&NSString>,
             ascending: bool,
             cmptr: NSComparator,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

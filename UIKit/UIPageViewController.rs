@@ -152,15 +152,18 @@ extern_methods!(
             style: UIPageViewControllerTransitionStyle,
             navigation_orientation: UIPageViewControllerNavigationOrientation,
             options: Option<&NSDictionary<UIPageViewControllerOptionsKey, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIPageViewControllerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIPageViewControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -171,7 +174,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIPageViewControllerDataSource>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIPageViewControllerDataSource>>>;
 
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
@@ -196,10 +199,10 @@ extern_methods!(
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[method_id(@__retain_semantics Other gestureRecognizers)]
-        pub unsafe fn gestureRecognizers(&self) -> Id<NSArray<UIGestureRecognizer>>;
+        pub unsafe fn gestureRecognizers(&self) -> Retained<NSArray<UIGestureRecognizer>>;
 
         #[method_id(@__retain_semantics Other viewControllers)]
-        pub unsafe fn viewControllers(&self) -> Option<Id<NSArray<UIViewController>>>;
+        pub unsafe fn viewControllers(&self) -> Option<Retained<NSArray<UIViewController>>>;
 
         #[cfg(feature = "block2")]
         #[method(setViewControllers:direction:animated:completion:)]
@@ -222,7 +225,7 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -231,10 +234,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIPageViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -313,7 +316,7 @@ extern_protocol!(
             &self,
             page_view_controller: &UIPageViewController,
             view_controller: &UIViewController,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[method_id(@__retain_semantics Other pageViewController:viewControllerAfterViewController:)]
@@ -321,7 +324,7 @@ extern_protocol!(
             &self,
             page_view_controller: &UIPageViewController,
             view_controller: &UIViewController,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]

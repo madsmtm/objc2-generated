@@ -76,7 +76,7 @@ extern_methods!(
     unsafe impl UIPointerAccessory {
         #[cfg(feature = "UIPointerStyle")]
         #[method_id(@__retain_semantics Other shape)]
-        pub unsafe fn shape(&self) -> Id<UIPointerShape>;
+        pub unsafe fn shape(&self) -> Retained<UIPointerShape>;
 
         #[method(position)]
         pub unsafe fn position(&self) -> UIPointerAccessoryPosition;
@@ -92,18 +92,18 @@ extern_methods!(
         pub unsafe fn accessoryWithShape_position(
             shape: &UIPointerShape,
             position: UIPointerAccessoryPosition,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other arrowAccessoryWithPosition:)]
         pub unsafe fn arrowAccessoryWithPosition(
             position: UIPointerAccessoryPosition,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

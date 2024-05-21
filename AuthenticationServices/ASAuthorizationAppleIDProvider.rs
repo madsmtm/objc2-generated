@@ -52,7 +52,7 @@ extern_methods!(
             feature = "ASAuthorizationRequest"
         ))]
         #[method_id(@__retain_semantics Other createRequest)]
-        pub unsafe fn createRequest(&self) -> Id<ASAuthorizationAppleIDRequest>;
+        pub unsafe fn createRequest(&self) -> Retained<ASAuthorizationAppleIDRequest>;
 
         #[cfg(feature = "block2")]
         #[method(getCredentialStateForUserID:completion:)]
@@ -70,9 +70,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAuthorizationAppleIDProvider {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

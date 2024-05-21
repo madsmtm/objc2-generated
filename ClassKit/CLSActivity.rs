@@ -41,7 +41,7 @@ extern_methods!(
 
         #[cfg(feature = "CLSActivityItem")]
         #[method_id(@__retain_semantics Other primaryActivityItem)]
-        pub unsafe fn primaryActivityItem(&self) -> Option<Id<CLSActivityItem>>;
+        pub unsafe fn primaryActivityItem(&self) -> Option<Retained<CLSActivityItem>>;
 
         #[cfg(feature = "CLSActivityItem")]
         #[method(setPrimaryActivityItem:)]
@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "CLSActivityItem")]
         #[method_id(@__retain_semantics Other additionalActivityItems)]
-        pub unsafe fn additionalActivityItems(&self) -> Id<NSArray<CLSActivityItem>>;
+        pub unsafe fn additionalActivityItems(&self) -> Retained<NSArray<CLSActivityItem>>;
     }
 );
 
@@ -68,10 +68,10 @@ extern_methods!(
     #[cfg(feature = "CLSObject")]
     unsafe impl CLSActivity {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -98,9 +98,9 @@ extern_methods!(
     #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
     unsafe impl CLSContext {
         #[method_id(@__retain_semantics Other currentActivity)]
-        pub unsafe fn currentActivity(&self) -> Option<Id<CLSActivity>>;
+        pub unsafe fn currentActivity(&self) -> Option<Retained<CLSActivity>>;
 
         #[method_id(@__retain_semantics Other createNewActivity)]
-        pub unsafe fn createNewActivity(&self) -> Id<CLSActivity>;
+        pub unsafe fn createNewActivity(&self) -> Retained<CLSActivity>;
     }
 );

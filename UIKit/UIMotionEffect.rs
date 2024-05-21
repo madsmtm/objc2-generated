@@ -24,17 +24,20 @@ unsafe impl NSObjectProtocol for UIMotionEffect {}
 extern_methods!(
     unsafe impl UIMotionEffect {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "UIGeometry")]
         #[method_id(@__retain_semantics Other keyPathsAndRelativeValuesForViewerOffset:)]
         pub unsafe fn keyPathsAndRelativeValuesForViewerOffset(
             &self,
             viewer_offset: UIOffset,
-        ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
     }
 );
 
@@ -42,7 +45,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIMotionEffect {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -89,25 +92,28 @@ extern_methods!(
             this: Allocated<Self>,
             key_path: &NSString,
             r#type: UIInterpolatingMotionEffectType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other keyPath)]
-        pub unsafe fn keyPath(&self) -> Id<NSString>;
+        pub unsafe fn keyPath(&self) -> Retained<NSString>;
 
         #[method(type)]
         pub unsafe fn r#type(&self) -> UIInterpolatingMotionEffectType;
 
         #[method_id(@__retain_semantics Other minimumRelativeValue)]
-        pub unsafe fn minimumRelativeValue(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn minimumRelativeValue(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setMinimumRelativeValue:)]
         pub unsafe fn setMinimumRelativeValue(&self, minimum_relative_value: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other maximumRelativeValue)]
-        pub unsafe fn maximumRelativeValue(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn maximumRelativeValue(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setMaximumRelativeValue:)]
         pub unsafe fn setMaximumRelativeValue(&self, maximum_relative_value: Option<&AnyObject>);
@@ -118,7 +124,7 @@ extern_methods!(
     /// Methods declared on superclass `UIMotionEffect`
     unsafe impl UIInterpolatingMotionEffect {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -126,7 +132,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIInterpolatingMotionEffect {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -150,7 +156,7 @@ unsafe impl NSObjectProtocol for UIMotionEffectGroup {}
 extern_methods!(
     unsafe impl UIMotionEffectGroup {
         #[method_id(@__retain_semantics Other motionEffects)]
-        pub unsafe fn motionEffects(&self) -> Option<Id<NSArray<UIMotionEffect>>>;
+        pub unsafe fn motionEffects(&self) -> Option<Retained<NSArray<UIMotionEffect>>>;
 
         #[method(setMotionEffects:)]
         pub unsafe fn setMotionEffects(&self, motion_effects: Option<&NSArray<UIMotionEffect>>);
@@ -161,10 +167,13 @@ extern_methods!(
     /// Methods declared on superclass `UIMotionEffect`
     unsafe impl UIMotionEffectGroup {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -172,6 +181,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIMotionEffectGroup {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

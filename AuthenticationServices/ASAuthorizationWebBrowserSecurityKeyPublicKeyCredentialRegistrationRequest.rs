@@ -8,7 +8,7 @@ extern_protocol!(
     pub unsafe trait ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialRegistrationRequest {
         #[cfg(feature = "ASPublicKeyCredentialClientData")]
         #[method_id(@__retain_semantics Other clientData)]
-        unsafe fn clientData(&self) -> Option<Id<ASPublicKeyCredentialClientData>>;
+        unsafe fn clientData(&self) -> Option<Retained<ASPublicKeyCredentialClientData>>;
     }
 
     unsafe impl ProtocolType

@@ -10,7 +10,7 @@ extern_category!(
     #[doc(alias = "NSExtensions")]
     pub unsafe trait NSAppleScriptNSExtensions {
         #[method_id(@__retain_semantics Other richTextSource)]
-        unsafe fn richTextSource(&self) -> Option<Id<NSAttributedString>>;
+        unsafe fn richTextSource(&self) -> Option<Retained<NSAttributedString>>;
     }
 
     unsafe impl NSAppleScriptNSExtensions for NSAppleScript {}

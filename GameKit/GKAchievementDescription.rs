@@ -35,19 +35,19 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other groupIdentifier)]
-        pub unsafe fn groupIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn groupIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other achievedDescription)]
-        pub unsafe fn achievedDescription(&self) -> Option<Id<NSString>>;
+        pub unsafe fn achievedDescription(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other unachievedDescription)]
-        pub unsafe fn unachievedDescription(&self) -> Option<Id<NSString>>;
+        pub unsafe fn unachievedDescription(&self) -> Option<Retained<NSString>>;
 
         #[method(maximumPoints)]
         pub unsafe fn maximumPoints(&self) -> NSInteger;
@@ -59,7 +59,7 @@ extern_methods!(
         pub unsafe fn isReplayable(&self) -> bool;
 
         #[method_id(@__retain_semantics Other rarityPercent)]
-        pub unsafe fn rarityPercent(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn rarityPercent(&self) -> Option<Retained<NSNumber>>;
     }
 );
 
@@ -67,10 +67,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKAchievementDescription {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -81,7 +81,7 @@ extern_methods!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
@@ -94,11 +94,11 @@ extern_methods!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other incompleteAchievementImage)]
-        pub unsafe fn incompleteAchievementImage() -> Id<NSImage>;
+        pub unsafe fn incompleteAchievementImage() -> Retained<NSImage>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other placeholderCompletedAchievementImage)]
-        pub unsafe fn placeholderCompletedAchievementImage() -> Id<NSImage>;
+        pub unsafe fn placeholderCompletedAchievementImage() -> Retained<NSImage>;
     }
 );

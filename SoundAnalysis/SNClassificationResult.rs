@@ -20,16 +20,16 @@ unsafe impl NSObjectProtocol for SNClassification {}
 extern_methods!(
     unsafe impl SNClassification {
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[method(confidence)]
         pub unsafe fn confidence(&self) -> c_double;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -51,18 +51,18 @@ unsafe impl SNResult for SNClassificationResult {}
 extern_methods!(
     unsafe impl SNClassificationResult {
         #[method_id(@__retain_semantics Other classifications)]
-        pub unsafe fn classifications(&self) -> Id<NSArray<SNClassification>>;
+        pub unsafe fn classifications(&self) -> Retained<NSArray<SNClassification>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other classificationForIdentifier:)]
         pub unsafe fn classificationForIdentifier(
             &self,
             identifier: &NSString,
-        ) -> Option<Id<SNClassification>>;
+        ) -> Option<Retained<SNClassification>>;
     }
 );

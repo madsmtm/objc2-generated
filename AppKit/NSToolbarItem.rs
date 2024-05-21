@@ -37,43 +37,43 @@ extern_methods!(
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSToolbar")]
         #[method_id(@__retain_semantics Other itemIdentifier)]
-        pub unsafe fn itemIdentifier(&self) -> Id<NSToolbarItemIdentifier>;
+        pub unsafe fn itemIdentifier(&self) -> Retained<NSToolbarItemIdentifier>;
 
         #[cfg(feature = "NSToolbar")]
         #[method_id(@__retain_semantics Other toolbar)]
-        pub unsafe fn toolbar(&self) -> Option<Id<NSToolbar>>;
+        pub unsafe fn toolbar(&self) -> Option<Retained<NSToolbar>>;
 
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Id<NSString>;
+        pub unsafe fn label(&self) -> Retained<NSString>;
 
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
         #[method_id(@__retain_semantics Other paletteLabel)]
-        pub unsafe fn paletteLabel(&self) -> Id<NSString>;
+        pub unsafe fn paletteLabel(&self) -> Retained<NSString>;
 
         #[method(setPaletteLabel:)]
         pub unsafe fn setPaletteLabel(&self, palette_label: &NSString);
 
         #[method_id(@__retain_semantics Other possibleLabels)]
-        pub unsafe fn possibleLabels(&self) -> Id<NSSet<NSString>>;
+        pub unsafe fn possibleLabels(&self) -> Retained<NSSet<NSString>>;
 
         #[method(setPossibleLabels:)]
         pub unsafe fn setPossibleLabels(&self, possible_labels: &NSSet<NSString>);
 
         #[method_id(@__retain_semantics Other toolTip)]
-        pub unsafe fn toolTip(&self) -> Option<Id<NSString>>;
+        pub unsafe fn toolTip(&self) -> Option<Retained<NSString>>;
 
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
         #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other menuFormRepresentation)]
-        pub unsafe fn menuFormRepresentation(&self) -> Option<Id<NSMenuItem>>;
+        pub unsafe fn menuFormRepresentation(&self) -> Option<Retained<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
         #[method(setMenuFormRepresentation:)]
@@ -89,7 +89,7 @@ extern_methods!(
         pub unsafe fn setTag(&self, tag: NSInteger);
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -108,14 +108,14 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -134,7 +134,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Option<Id<NSView>>;
+        pub unsafe fn view(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setView:)]
@@ -186,10 +186,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSToolbarItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

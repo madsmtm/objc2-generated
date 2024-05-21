@@ -43,19 +43,19 @@ extern_methods!(
     unsafe impl HKClinicalRecord {
         #[cfg(all(feature = "HKClinicalType", feature = "HKObjectType"))]
         #[method_id(@__retain_semantics Other clinicalType)]
-        pub unsafe fn clinicalType(&self) -> Id<HKClinicalType>;
+        pub unsafe fn clinicalType(&self) -> Retained<HKClinicalType>;
 
         #[method_id(@__retain_semantics Other displayName)]
-        pub unsafe fn displayName(&self) -> Id<NSString>;
+        pub unsafe fn displayName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HKFHIRResource")]
         #[method_id(@__retain_semantics Other FHIRResource)]
-        pub unsafe fn FHIRResource(&self) -> Option<Id<HKFHIRResource>>;
+        pub unsafe fn FHIRResource(&self) -> Option<Retained<HKFHIRResource>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

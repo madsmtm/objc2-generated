@@ -119,7 +119,7 @@ extern_methods!(
         pub unsafe fn defaultCompletionDelay(mtm: MainThreadMarker) -> NSTimeInterval;
 
         #[method_id(@__retain_semantics Other tokenizingCharacterSet)]
-        pub unsafe fn tokenizingCharacterSet(&self) -> Id<NSCharacterSet>;
+        pub unsafe fn tokenizingCharacterSet(&self) -> Retained<NSCharacterSet>;
 
         #[method(setTokenizingCharacterSet:)]
         pub unsafe fn setTokenizingCharacterSet(
@@ -128,10 +128,14 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other defaultTokenizingCharacterSet)]
-        pub unsafe fn defaultTokenizingCharacterSet(mtm: MainThreadMarker) -> Id<NSCharacterSet>;
+        pub unsafe fn defaultTokenizingCharacterSet(
+            mtm: MainThreadMarker,
+        ) -> Retained<NSCharacterSet>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTokenFieldCellDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn NSTokenFieldCellDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -150,14 +154,17 @@ extern_methods!(
     ))]
     unsafe impl NSTokenFieldCell {
         #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Id<Self>;
+        pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
-        pub unsafe fn initImageCell(this: Allocated<Self>, image: Option<&NSImage>) -> Id<Self>;
+        pub unsafe fn initImageCell(
+            this: Allocated<Self>,
+            image: Option<&NSImage>,
+        ) -> Retained<Self>;
     }
 );
 
@@ -170,7 +177,7 @@ extern_methods!(
     ))]
     unsafe impl NSTokenFieldCell {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -183,7 +190,7 @@ extern_methods!(
     ))]
     unsafe impl NSTokenFieldCell {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -202,7 +209,7 @@ extern_protocol!(
             substring: &NSString,
             token_index: NSInteger,
             selected_index: NonNull<NSInteger>,
-        ) -> Id<NSArray>;
+        ) -> Retained<NSArray>;
 
         #[cfg(all(
             feature = "NSActionCell",
@@ -216,7 +223,7 @@ extern_protocol!(
             token_field_cell: &NSTokenFieldCell,
             tokens: &NSArray,
             index: NSUInteger,
-        ) -> Id<NSArray>;
+        ) -> Retained<NSArray>;
 
         #[cfg(all(
             feature = "NSActionCell",
@@ -229,7 +236,7 @@ extern_protocol!(
             &self,
             token_field_cell: &NSTokenFieldCell,
             represented_object: &AnyObject,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(
             feature = "NSActionCell",
@@ -242,7 +249,7 @@ extern_protocol!(
             &self,
             token_field_cell: &NSTokenFieldCell,
             represented_object: &AnyObject,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(
             feature = "NSActionCell",
@@ -255,7 +262,7 @@ extern_protocol!(
             &self,
             token_field_cell: &NSTokenFieldCell,
             editing_string: &NSString,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(
             feature = "NSActionCell",
@@ -284,7 +291,7 @@ extern_protocol!(
             &self,
             token_field_cell: &NSTokenFieldCell,
             pboard: &NSPasteboard,
-        ) -> Option<Id<NSArray>>;
+        ) -> Option<Retained<NSArray>>;
 
         #[cfg(all(
             feature = "NSActionCell",
@@ -298,7 +305,7 @@ extern_protocol!(
             &self,
             token_field_cell: &NSTokenFieldCell,
             represented_object: &AnyObject,
-        ) -> Option<Id<NSMenu>>;
+        ) -> Option<Retained<NSMenu>>;
 
         #[cfg(all(
             feature = "NSActionCell",

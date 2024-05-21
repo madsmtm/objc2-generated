@@ -19,7 +19,7 @@ extern_protocol!(
         unsafe fn activityViewControllerPlaceholderItem(
             &self,
             activity_view_controller: &UIActivityViewController,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
 
         #[cfg(all(
             feature = "UIActivity",
@@ -32,7 +32,7 @@ extern_protocol!(
             &self,
             activity_view_controller: &UIActivityViewController,
             activity_type: Option<&UIActivityType>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(
             feature = "UIActivity",
@@ -46,7 +46,7 @@ extern_protocol!(
             &self,
             activity_view_controller: &UIActivityViewController,
             activity_type: Option<&UIActivityType>,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(all(
             feature = "UIActivity",
@@ -60,7 +60,7 @@ extern_protocol!(
             &self,
             activity_view_controller: &UIActivityViewController,
             activity_type: Option<&UIActivityType>,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(all(
             feature = "UIActivity",
@@ -76,7 +76,7 @@ extern_protocol!(
             activity_view_controller: &UIActivityViewController,
             activity_type: Option<&UIActivityType>,
             size: CGSize,
-        ) -> Option<Id<UIImage>>;
+        ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(
             feature = "UIActivityViewController",
@@ -90,7 +90,7 @@ extern_protocol!(
         unsafe fn activityViewControllerLinkMetadata(
             &self,
             activity_view_controller: &UIActivityViewController,
-        ) -> Option<Id<LPLinkMetadata>>;
+        ) -> Option<Retained<LPLinkMetadata>>;
     }
 
     unsafe impl ProtocolType for dyn UIActivityItemSource {}
@@ -114,23 +114,23 @@ unsafe impl UIActivityItemSource for UIActivityItemProvider {}
 extern_methods!(
     unsafe impl UIActivityItemProvider {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithPlaceholderItem:)]
         pub unsafe fn initWithPlaceholderItem(
             this: Allocated<Self>,
             placeholder_item: &AnyObject,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other placeholderItem)]
-        pub unsafe fn placeholderItem(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn placeholderItem(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "UIActivity")]
         #[method_id(@__retain_semantics Other activityType)]
-        pub unsafe fn activityType(&self) -> Option<Id<UIActivityType>>;
+        pub unsafe fn activityType(&self) -> Option<Retained<UIActivityType>>;
 
         #[method_id(@__retain_semantics Other item)]
-        pub unsafe fn item(&self) -> Id<AnyObject>;
+        pub unsafe fn item(&self) -> Retained<AnyObject>;
     }
 );
 
@@ -138,6 +138,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIActivityItemProvider {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -28,22 +28,23 @@ extern_methods!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other pictureInPictureButtonStartImage)]
-        pub unsafe fn pictureInPictureButtonStartImage() -> Id<NSImage>;
+        pub unsafe fn pictureInPictureButtonStartImage() -> Retained<NSImage>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other pictureInPictureButtonStopImage)]
-        pub unsafe fn pictureInPictureButtonStopImage() -> Id<NSImage>;
+        pub unsafe fn pictureInPictureButtonStopImage() -> Retained<NSImage>;
 
         #[method_id(@__retain_semantics Init initWithContentSource:)]
         pub unsafe fn initWithContentSource(
             this: Allocated<Self>,
             content_source: &AVPictureInPictureControllerContentSource,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other contentSource)]
-        pub unsafe fn contentSource(&self)
-            -> Option<Id<AVPictureInPictureControllerContentSource>>;
+        pub unsafe fn contentSource(
+            &self,
+        ) -> Option<Retained<AVPictureInPictureControllerContentSource>>;
 
         #[method(setContentSource:)]
         pub unsafe fn setContentSource(
@@ -54,7 +55,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn AVPictureInPictureControllerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn AVPictureInPictureControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -101,10 +102,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPictureInPictureController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -123,10 +124,10 @@ unsafe impl NSObjectProtocol for AVPictureInPictureControllerContentSource {}
 extern_methods!(
     unsafe impl AVPictureInPictureControllerContentSource {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

@@ -31,7 +31,7 @@ extern_methods!(
     #[cfg(feature = "CNFetchRequest")]
     unsafe impl CNChangeHistoryFetchRequest {
         #[method_id(@__retain_semantics Other startingToken)]
-        pub unsafe fn startingToken(&self) -> Option<Id<NSData>>;
+        pub unsafe fn startingToken(&self) -> Option<Retained<NSData>>;
 
         #[method(setStartingToken:)]
         pub unsafe fn setStartingToken(&self, starting_token: Option<&NSData>);
@@ -40,7 +40,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other additionalContactKeyDescriptors)]
         pub unsafe fn additionalContactKeyDescriptors(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn CNKeyDescriptor>>>>;
+        ) -> Option<Retained<NSArray<ProtocolObject<dyn CNKeyDescriptor>>>>;
 
         #[cfg(feature = "CNContact")]
         #[method(setAdditionalContactKeyDescriptors:)]
@@ -70,7 +70,7 @@ extern_methods!(
         pub unsafe fn setIncludeGroupChanges(&self, include_group_changes: bool);
 
         #[method_id(@__retain_semantics Other excludedTransactionAuthors)]
-        pub unsafe fn excludedTransactionAuthors(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn excludedTransactionAuthors(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setExcludedTransactionAuthors:)]
         pub unsafe fn setExcludedTransactionAuthors(
@@ -85,9 +85,9 @@ extern_methods!(
     #[cfg(feature = "CNFetchRequest")]
     unsafe impl CNChangeHistoryFetchRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

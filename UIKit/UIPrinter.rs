@@ -46,22 +46,22 @@ unsafe impl NSObjectProtocol for UIPrinter {}
 extern_methods!(
     unsafe impl UIPrinter {
         #[method_id(@__retain_semantics Other printerWithURL:)]
-        pub unsafe fn printerWithURL(url: &NSURL, mtm: MainThreadMarker) -> Id<UIPrinter>;
+        pub unsafe fn printerWithURL(url: &NSURL, mtm: MainThreadMarker) -> Retained<UIPrinter>;
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL>;
+        pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         #[method_id(@__retain_semantics Other displayName)]
-        pub unsafe fn displayName(&self) -> Id<NSString>;
+        pub unsafe fn displayName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other displayLocation)]
-        pub unsafe fn displayLocation(&self) -> Option<Id<NSString>>;
+        pub unsafe fn displayLocation(&self) -> Option<Retained<NSString>>;
 
         #[method(supportedJobTypes)]
         pub unsafe fn supportedJobTypes(&self) -> UIPrinterJobTypes;
 
         #[method_id(@__retain_semantics Other makeAndModel)]
-        pub unsafe fn makeAndModel(&self) -> Option<Id<NSString>>;
+        pub unsafe fn makeAndModel(&self) -> Option<Retained<NSString>>;
 
         #[method(supportsColor)]
         pub unsafe fn supportsColor(&self) -> bool;
@@ -82,9 +82,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrinter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -25,18 +25,18 @@ extern_methods!(
     #[cfg(feature = "CKOperation")]
     unsafe impl CKAcceptSharesOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKShareMetadata")]
         #[method_id(@__retain_semantics Init initWithShareMetadatas:)]
         pub unsafe fn initWithShareMetadatas(
             this: Allocated<Self>,
             share_metadatas: &NSArray<CKShareMetadata>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKShareMetadata")]
         #[method_id(@__retain_semantics Other shareMetadatas)]
-        pub unsafe fn shareMetadatas(&self) -> Option<Id<NSArray<CKShareMetadata>>>;
+        pub unsafe fn shareMetadatas(&self) -> Option<Retained<NSArray<CKShareMetadata>>>;
 
         #[cfg(feature = "CKShareMetadata")]
         #[method(setShareMetadatas:)]
@@ -87,6 +87,6 @@ extern_methods!(
     #[cfg(feature = "CKOperation")]
     unsafe impl CKAcceptSharesOperation {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

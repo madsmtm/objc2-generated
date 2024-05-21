@@ -61,23 +61,23 @@ unsafe impl NSObjectProtocol for NSProcessInfo {}
 extern_methods!(
     unsafe impl NSProcessInfo {
         #[method_id(@__retain_semantics Other processInfo)]
-        pub fn processInfo() -> Id<NSProcessInfo>;
+        pub fn processInfo() -> Retained<NSProcessInfo>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other environment)]
-        pub unsafe fn environment(&self) -> Id<NSDictionary<NSString, NSString>>;
+        pub unsafe fn environment(&self) -> Retained<NSDictionary<NSString, NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other arguments)]
-        pub unsafe fn arguments(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn arguments(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other hostName)]
-        pub unsafe fn hostName(&self) -> Id<NSString>;
+        pub unsafe fn hostName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other processName)]
-        pub fn processName(&self) -> Id<NSString>;
+        pub fn processName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setProcessName:)]
@@ -88,7 +88,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other globallyUniqueString)]
-        pub unsafe fn globallyUniqueString(&self) -> Id<NSString>;
+        pub unsafe fn globallyUniqueString(&self) -> Retained<NSString>;
 
         #[deprecated = "-operatingSystem always returns NSMACHOperatingSystem, use -operatingSystemVersion or -isOperatingSystemAtLeastVersion: instead"]
         #[method(operatingSystem)]
@@ -97,11 +97,11 @@ extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated = "-operatingSystemName always returns NSMACHOperatingSystem, use -operatingSystemVersionString instead"]
         #[method_id(@__retain_semantics Other operatingSystemName)]
-        pub unsafe fn operatingSystemName(&self) -> Id<NSString>;
+        pub unsafe fn operatingSystemName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other operatingSystemVersionString)]
-        pub unsafe fn operatingSystemVersionString(&self) -> Id<NSString>;
+        pub unsafe fn operatingSystemVersionString(&self) -> Retained<NSString>;
 
         #[method(operatingSystemVersion)]
         pub fn operatingSystemVersion(&self) -> NSOperatingSystemVersion;
@@ -154,10 +154,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSProcessInfo {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -198,7 +198,7 @@ extern_methods!(
             &self,
             options: NSActivityOptions,
             reason: &NSString,
-        ) -> Id<NSObject>;
+        ) -> Retained<NSObject>;
 
         #[method(endActivity:)]
         pub unsafe fn endActivity(&self, activity: &NSObject);
@@ -227,11 +227,11 @@ extern_methods!(
     unsafe impl NSProcessInfo {
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other userName)]
-        pub unsafe fn userName(&self) -> Id<NSString>;
+        pub unsafe fn userName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other fullUserName)]
-        pub unsafe fn fullUserName(&self) -> Id<NSString>;
+        pub unsafe fn fullUserName(&self) -> Retained<NSString>;
     }
 );
 

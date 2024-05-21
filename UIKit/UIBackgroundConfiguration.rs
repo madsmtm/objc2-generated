@@ -26,45 +26,48 @@ unsafe impl NSSecureCoding for UIBackgroundConfiguration {}
 extern_methods!(
     unsafe impl UIBackgroundConfiguration {
         #[method_id(@__retain_semantics Other clearConfiguration)]
-        pub unsafe fn clearConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn clearConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other listPlainCellConfiguration)]
-        pub unsafe fn listPlainCellConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn listPlainCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other listPlainHeaderFooterConfiguration)]
-        pub unsafe fn listPlainHeaderFooterConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn listPlainHeaderFooterConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other listGroupedCellConfiguration)]
-        pub unsafe fn listGroupedCellConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn listGroupedCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other listGroupedHeaderFooterConfiguration)]
-        pub unsafe fn listGroupedHeaderFooterConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn listGroupedHeaderFooterConfiguration(mtm: MainThreadMarker)
+            -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other listSidebarHeaderConfiguration)]
-        pub unsafe fn listSidebarHeaderConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn listSidebarHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other listSidebarCellConfiguration)]
-        pub unsafe fn listSidebarCellConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn listSidebarCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other listAccompaniedSidebarCellConfiguration)]
-        pub unsafe fn listAccompaniedSidebarCellConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn listAccompaniedSidebarCellConfiguration(
+            mtm: MainThreadMarker,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIConfigurationState")]
         #[method_id(@__retain_semantics Other updatedConfigurationForState:)]
         pub unsafe fn updatedConfigurationForState(
             &self,
             state: &ProtocolObject<dyn UIConfigurationState>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other customView)]
-        pub unsafe fn customView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn customView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(setCustomView:)]
@@ -97,7 +100,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setBackgroundColor:)]
@@ -127,11 +130,11 @@ extern_methods!(
         pub unsafe fn resolvedBackgroundColorForTintColor(
             &self,
             tint_color: &UIColor,
-        ) -> Id<UIColor>;
+        ) -> Retained<UIColor>;
 
         #[cfg(feature = "UIVisualEffect")]
         #[method_id(@__retain_semantics Other visualEffect)]
-        pub unsafe fn visualEffect(&self) -> Option<Id<UIVisualEffect>>;
+        pub unsafe fn visualEffect(&self) -> Option<Retained<UIVisualEffect>>;
 
         #[cfg(feature = "UIVisualEffect")]
         #[method(setVisualEffect:)]
@@ -139,7 +142,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setImage:)]
@@ -155,7 +158,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other strokeColor)]
-        pub unsafe fn strokeColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn strokeColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setStrokeColor:)]
@@ -182,7 +185,10 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other resolvedStrokeColorForTintColor:)]
-        pub unsafe fn resolvedStrokeColorForTintColor(&self, tint_color: &UIColor) -> Id<UIColor>;
+        pub unsafe fn resolvedStrokeColorForTintColor(
+            &self,
+            tint_color: &UIColor,
+        ) -> Retained<UIColor>;
 
         #[method(strokeWidth)]
         pub unsafe fn strokeWidth(&self) -> CGFloat;

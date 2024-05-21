@@ -13,7 +13,7 @@ extern_category!(
         unsafe fn localizedUserNotificationStringForKey_arguments(
             key: &NSString,
             arguments: Option<&NSArray>,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
     }
 
     unsafe impl NSStringUNUserNotificationCenterSupport for NSString {}

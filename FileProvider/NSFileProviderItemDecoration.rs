@@ -12,8 +12,9 @@ extern_protocol!(
     #[cfg(feature = "NSFileProviderItem")]
     pub unsafe trait NSFileProviderItemDecorating: NSFileProviderItemProtocol {
         #[method_id(@__retain_semantics Other decorations)]
-        unsafe fn decorations(&self)
-            -> Option<Id<NSArray<NSFileProviderItemDecorationIdentifier>>>;
+        unsafe fn decorations(
+            &self,
+        ) -> Option<Retained<NSArray<NSFileProviderItemDecorationIdentifier>>>;
     }
 
     #[cfg(feature = "NSFileProviderItem")]

@@ -101,19 +101,19 @@ extern_methods!(
             this: Allocated<Self>,
             table_view: &NSTableView,
             cell_provider: NSTableViewDiffableDataSourceCellProvider,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSDiffableDataSource")]
         #[method_id(@__retain_semantics Other snapshot)]
         pub unsafe fn snapshot(
             &self,
-        ) -> Id<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
+        ) -> Retained<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
 
         #[cfg(feature = "NSDiffableDataSource")]
         #[method(applySnapshot:animatingDifferences:)]
@@ -133,8 +133,10 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other itemIdentifierForRow:)]
-        pub unsafe fn itemIdentifierForRow(&self, row: NSInteger)
-            -> Option<Id<ItemIdentifierType>>;
+        pub unsafe fn itemIdentifierForRow(
+            &self,
+            row: NSInteger,
+        ) -> Option<Retained<ItemIdentifierType>>;
 
         #[method(rowForItemIdentifier:)]
         pub unsafe fn rowForItemIdentifier(&self, identifier: &ItemIdentifierType) -> NSInteger;
@@ -143,7 +145,7 @@ extern_methods!(
         pub unsafe fn sectionIdentifierForRow(
             &self,
             row: NSInteger,
-        ) -> Option<Id<SectionIdentifierType>>;
+        ) -> Option<Retained<SectionIdentifierType>>;
 
         #[method(rowForSectionIdentifier:)]
         pub unsafe fn rowForSectionIdentifier(

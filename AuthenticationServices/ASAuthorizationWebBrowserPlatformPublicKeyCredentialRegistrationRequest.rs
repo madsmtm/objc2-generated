@@ -9,13 +9,13 @@ extern_protocol!(
     pub unsafe trait ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest {
         #[cfg(feature = "ASPublicKeyCredentialClientData")]
         #[method_id(@__retain_semantics Other clientData)]
-        unsafe fn clientData(&self) -> Option<Id<ASPublicKeyCredentialClientData>>;
+        unsafe fn clientData(&self) -> Option<Retained<ASPublicKeyCredentialClientData>>;
 
         #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
         #[method_id(@__retain_semantics Other excludedCredentials)]
         unsafe fn excludedCredentials(
             &self,
-        ) -> Option<Id<NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor>>>;
+        ) -> Option<Retained<NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor>>>;
 
         #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
         #[method(setExcludedCredentials:)]

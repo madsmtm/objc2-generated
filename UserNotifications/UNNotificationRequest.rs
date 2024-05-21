@@ -26,15 +26,15 @@ unsafe impl NSSecureCoding for UNNotificationRequest {}
 extern_methods!(
     unsafe impl UNNotificationRequest {
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UNNotificationContent")]
         #[method_id(@__retain_semantics Other content)]
-        pub unsafe fn content(&self) -> Id<UNNotificationContent>;
+        pub unsafe fn content(&self) -> Retained<UNNotificationContent>;
 
         #[cfg(feature = "UNNotificationTrigger")]
         #[method_id(@__retain_semantics Other trigger)]
-        pub unsafe fn trigger(&self) -> Option<Id<UNNotificationTrigger>>;
+        pub unsafe fn trigger(&self) -> Option<Retained<UNNotificationTrigger>>;
 
         #[cfg(all(feature = "UNNotificationContent", feature = "UNNotificationTrigger"))]
         #[method_id(@__retain_semantics Other requestWithIdentifier:content:trigger:)]
@@ -42,10 +42,10 @@ extern_methods!(
             identifier: &NSString,
             content: &UNNotificationContent,
             trigger: Option<&UNNotificationTrigger>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -53,6 +53,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNNotificationRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

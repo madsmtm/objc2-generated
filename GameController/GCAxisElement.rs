@@ -9,11 +9,11 @@ extern_protocol!(
     pub unsafe trait GCAxisElement: GCPhysicalInputElement {
         #[cfg(feature = "GCAxisInput")]
         #[method_id(@__retain_semantics Other absoluteInput)]
-        unsafe fn absoluteInput(&self) -> Option<Id<ProtocolObject<dyn GCAxisInput>>>;
+        unsafe fn absoluteInput(&self) -> Option<Retained<ProtocolObject<dyn GCAxisInput>>>;
 
         #[cfg(feature = "GCRelativeInput")]
         #[method_id(@__retain_semantics Other relativeInput)]
-        unsafe fn relativeInput(&self) -> Id<ProtocolObject<dyn GCRelativeInput>>;
+        unsafe fn relativeInput(&self) -> Retained<ProtocolObject<dyn GCRelativeInput>>;
     }
 
     #[cfg(feature = "GCPhysicalInputElement")]

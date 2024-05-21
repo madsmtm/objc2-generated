@@ -24,7 +24,9 @@ unsafe impl NSObjectProtocol for SKPaymentQueue {}
 extern_methods!(
     unsafe impl SKPaymentQueue {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn SKPaymentQueueDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn SKPaymentQueueDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -34,10 +36,10 @@ extern_methods!(
 
         #[cfg(feature = "SKStorefront")]
         #[method_id(@__retain_semantics Other storefront)]
-        pub unsafe fn storefront(&self) -> Option<Id<SKStorefront>>;
+        pub unsafe fn storefront(&self) -> Option<Retained<SKStorefront>>;
 
         #[method_id(@__retain_semantics Other defaultQueue)]
-        pub unsafe fn defaultQueue() -> Id<Self>;
+        pub unsafe fn defaultQueue() -> Retained<Self>;
 
         #[method(canMakePayments)]
         pub unsafe fn canMakePayments() -> bool;
@@ -94,11 +96,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other transactionObservers)]
         pub unsafe fn transactionObservers(
             &self,
-        ) -> Id<NSArray<ProtocolObject<dyn SKPaymentTransactionObserver>>>;
+        ) -> Retained<NSArray<ProtocolObject<dyn SKPaymentTransactionObserver>>>;
 
         #[cfg(feature = "SKPaymentTransaction")]
         #[method_id(@__retain_semantics Other transactions)]
-        pub unsafe fn transactions(&self) -> Id<NSArray<SKPaymentTransaction>>;
+        pub unsafe fn transactions(&self) -> Retained<NSArray<SKPaymentTransaction>>;
 
         #[method(showPriceConsentIfNeeded)]
         pub unsafe fn showPriceConsentIfNeeded(&self);
@@ -112,10 +114,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPaymentQueue {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

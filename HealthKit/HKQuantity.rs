@@ -30,11 +30,14 @@ unsafe impl NSSecureCoding for HKQuantity {}
 extern_methods!(
     unsafe impl HKQuantity {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKUnit")]
         #[method_id(@__retain_semantics Other quantityWithUnit:doubleValue:)]
-        pub unsafe fn quantityWithUnit_doubleValue(unit: &HKUnit, value: c_double) -> Id<Self>;
+        pub unsafe fn quantityWithUnit_doubleValue(
+            unit: &HKUnit,
+            value: c_double,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "HKUnit")]
         #[method(isCompatibleWithUnit:)]
@@ -53,6 +56,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKQuantity {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

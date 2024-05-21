@@ -46,7 +46,7 @@ extern_protocol!(
         unsafe fn itemTitleForCloudSharingController(
             &self,
             csc: &UICloudSharingController,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
@@ -54,7 +54,7 @@ extern_protocol!(
         unsafe fn itemThumbnailDataForCloudSharingController(
             &self,
             csc: &UICloudSharingController,
-        ) -> Option<Id<NSData>>;
+        ) -> Option<Retained<NSData>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
@@ -62,7 +62,7 @@ extern_protocol!(
         unsafe fn itemTypeForCloudSharingController(
             &self,
             csc: &UICloudSharingController,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
@@ -132,10 +132,13 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "block2", feature = "objc2-cloud-kit"))]
         #[deprecated = "Use -[UIActivityViewController initWithActivityItemsConfiguration:] and pass it a UIActivityItemsConfigurationReading-conforming object with an NSItemProvider and registered preparation handler"]
@@ -148,7 +151,7 @@ extern_methods!(
                     NonNull<block2::Block<dyn Fn(*mut CKShare, *mut CKContainer, *mut NSError)>>,
                 ),
             >,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-cloud-kit")]
         #[method_id(@__retain_semantics Init initWithShare:container:)]
@@ -156,12 +159,12 @@ extern_methods!(
             this: Allocated<Self>,
             share: &CKShare,
             container: &CKContainer,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UICloudSharingControllerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UICloudSharingControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -171,7 +174,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-cloud-kit")]
         #[method_id(@__retain_semantics Other share)]
-        pub unsafe fn share(&self) -> Option<Id<CKShare>>;
+        pub unsafe fn share(&self) -> Option<Retained<CKShare>>;
 
         #[method(availablePermissions)]
         pub unsafe fn availablePermissions(&self) -> UICloudSharingPermissionOptions;
@@ -184,7 +187,9 @@ extern_methods!(
 
         #[cfg(feature = "UIActivityItemProvider")]
         #[method_id(@__retain_semantics Other activityItemSource)]
-        pub unsafe fn activityItemSource(&self) -> Id<ProtocolObject<dyn UIActivityItemSource>>;
+        pub unsafe fn activityItemSource(
+            &self,
+        ) -> Retained<ProtocolObject<dyn UIActivityItemSource>>;
     }
 );
 
@@ -193,9 +198,9 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UICloudSharingController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

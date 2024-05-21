@@ -11,14 +11,14 @@ extern_protocol!(
     {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other makeContentView)]
-        unsafe fn makeContentView(&self) -> Id<UIView>;
+        unsafe fn makeContentView(&self) -> Retained<UIView>;
 
         #[cfg(feature = "UIConfigurationState")]
         #[method_id(@__retain_semantics Other updatedConfigurationForState:)]
         unsafe fn updatedConfigurationForState(
             &self,
             state: &ProtocolObject<dyn UIConfigurationState>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 
     unsafe impl ProtocolType for dyn UIContentConfiguration {}
@@ -27,7 +27,7 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait UIContentView: NSObjectProtocol + IsMainThreadOnly {
         #[method_id(@__retain_semantics Other configuration)]
-        unsafe fn configuration(&self) -> Id<ProtocolObject<dyn UIContentConfiguration>>;
+        unsafe fn configuration(&self) -> Retained<ProtocolObject<dyn UIContentConfiguration>>;
 
         #[method(setConfiguration:)]
         unsafe fn setConfiguration(

@@ -35,12 +35,12 @@ extern_methods!(
     unsafe impl VNHumanBodyRecognizedPoint3D {
         #[cfg(feature = "VNTypes")]
         #[method_id(@__retain_semantics Other parentJoint)]
-        pub unsafe fn parentJoint(&self) -> Id<VNHumanBodyPose3DObservationJointName>;
+        pub unsafe fn parentJoint(&self) -> Retained<VNHumanBodyPose3DObservationJointName>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

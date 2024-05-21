@@ -20,21 +20,21 @@ unsafe impl NSObjectProtocol for WKContentWorld {}
 extern_methods!(
     unsafe impl WKContentWorld {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other pageWorld)]
-        pub unsafe fn pageWorld() -> Id<WKContentWorld>;
+        pub unsafe fn pageWorld() -> Retained<WKContentWorld>;
 
         #[method_id(@__retain_semantics Other defaultClientWorld)]
-        pub unsafe fn defaultClientWorld() -> Id<WKContentWorld>;
+        pub unsafe fn defaultClientWorld() -> Retained<WKContentWorld>;
 
         #[method_id(@__retain_semantics Other worldWithName:)]
-        pub unsafe fn worldWithName(name: &NSString) -> Id<WKContentWorld>;
+        pub unsafe fn worldWithName(name: &NSString) -> Retained<WKContentWorld>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
     }
 );

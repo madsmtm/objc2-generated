@@ -28,7 +28,7 @@ extern_methods!(
     unsafe impl NSXMLElement {
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithName:)]
-        pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Id<Self>;
+        pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithName:URI:)]
@@ -36,7 +36,7 @@ extern_methods!(
             this: Allocated<Self>,
             name: &NSString,
             uri: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithName:stringValue:)]
@@ -44,14 +44,14 @@ extern_methods!(
             this: Allocated<Self>,
             name: &NSString,
             string: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[method_id(@__retain_semantics Init initWithXMLString:error:_)]
         pub unsafe fn initWithXMLString_error(
             this: Allocated<Self>,
             string: &NSString,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSXMLNodeOptions")]
         #[method_id(@__retain_semantics Init initWithKind:options:)]
@@ -59,11 +59,11 @@ extern_methods!(
             this: Allocated<Self>,
             kind: NSXMLNodeKind,
             options: NSXMLNodeOptions,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other elementsForName:)]
-        pub unsafe fn elementsForName(&self, name: &NSString) -> Id<NSArray<NSXMLElement>>;
+        pub unsafe fn elementsForName(&self, name: &NSString) -> Retained<NSArray<NSXMLElement>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other elementsForLocalName:URI:)]
@@ -71,7 +71,7 @@ extern_methods!(
             &self,
             local_name: &NSString,
             uri: Option<&NSString>,
-        ) -> Id<NSArray<NSXMLElement>>;
+        ) -> Retained<NSArray<NSXMLElement>>;
 
         #[method(addAttribute:)]
         pub unsafe fn addAttribute(&self, attribute: &NSXMLNode);
@@ -82,7 +82,7 @@ extern_methods!(
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other attributes)]
-        pub unsafe fn attributes(&self) -> Option<Id<NSArray<NSXMLNode>>>;
+        pub unsafe fn attributes(&self) -> Option<Retained<NSArray<NSXMLNode>>>;
 
         #[cfg(feature = "NSArray")]
         #[method(setAttributes:)]
@@ -97,7 +97,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other attributeForName:)]
-        pub unsafe fn attributeForName(&self, name: &NSString) -> Option<Id<NSXMLNode>>;
+        pub unsafe fn attributeForName(&self, name: &NSString) -> Option<Retained<NSXMLNode>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other attributeForLocalName:URI:)]
@@ -105,7 +105,7 @@ extern_methods!(
             &self,
             local_name: &NSString,
             uri: Option<&NSString>,
-        ) -> Option<Id<NSXMLNode>>;
+        ) -> Option<Retained<NSXMLNode>>;
 
         #[method(addNamespace:)]
         pub unsafe fn addNamespace(&self, a_namespace: &NSXMLNode);
@@ -116,7 +116,7 @@ extern_methods!(
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other namespaces)]
-        pub unsafe fn namespaces(&self) -> Option<Id<NSArray<NSXMLNode>>>;
+        pub unsafe fn namespaces(&self) -> Option<Retained<NSArray<NSXMLNode>>>;
 
         #[cfg(feature = "NSArray")]
         #[method(setNamespaces:)]
@@ -124,18 +124,21 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other namespaceForPrefix:)]
-        pub unsafe fn namespaceForPrefix(&self, name: &NSString) -> Option<Id<NSXMLNode>>;
+        pub unsafe fn namespaceForPrefix(&self, name: &NSString) -> Option<Retained<NSXMLNode>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other resolveNamespaceForName:)]
-        pub unsafe fn resolveNamespaceForName(&self, name: &NSString) -> Option<Id<NSXMLNode>>;
+        pub unsafe fn resolveNamespaceForName(
+            &self,
+            name: &NSString,
+        ) -> Option<Retained<NSXMLNode>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other resolvePrefixForNamespaceURI:)]
         pub unsafe fn resolvePrefixForNamespaceURI(
             &self,
             namespace_uri: &NSString,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[method(insertChild:atIndex:)]
         pub unsafe fn insertChild_atIndex(&self, child: &NSXMLNode, index: NSUInteger);
@@ -171,10 +174,10 @@ extern_methods!(
     #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLElement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithKind:)]
-        pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Id<Self>;
+        pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
     }
 );
 
@@ -183,7 +186,7 @@ extern_methods!(
     #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

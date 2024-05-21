@@ -121,7 +121,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other minimumValueImage)]
-        pub unsafe fn minimumValueImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn minimumValueImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setMinimumValueImage:)]
@@ -129,7 +129,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other maximumValueImage)]
-        pub unsafe fn maximumValueImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn maximumValueImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setMaximumValueImage:)]
@@ -143,7 +143,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other minimumTrackTintColor)]
-        pub unsafe fn minimumTrackTintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn minimumTrackTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setMinimumTrackTintColor:)]
@@ -151,7 +151,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other maximumTrackTintColor)]
-        pub unsafe fn maximumTrackTintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn maximumTrackTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setMaximumTrackTintColor:)]
@@ -159,7 +159,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other thumbTintColor)]
-        pub unsafe fn thumbTintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn thumbTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setThumbTintColor:)]
@@ -190,33 +190,34 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other thumbImageForState:)]
-        pub unsafe fn thumbImageForState(&self, state: UIControlState) -> Option<Id<UIImage>>;
+        pub unsafe fn thumbImageForState(&self, state: UIControlState)
+            -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other minimumTrackImageForState:)]
         pub unsafe fn minimumTrackImageForState(
             &self,
             state: UIControlState,
-        ) -> Option<Id<UIImage>>;
+        ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other maximumTrackImageForState:)]
         pub unsafe fn maximumTrackImageForState(
             &self,
             state: UIControlState,
-        ) -> Option<Id<UIImage>>;
+        ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other currentThumbImage)]
-        pub unsafe fn currentThumbImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn currentThumbImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other currentMinimumTrackImage)]
-        pub unsafe fn currentMinimumTrackImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn currentMinimumTrackImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other currentMaximumTrackImage)]
-        pub unsafe fn currentMaximumTrackImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn currentMaximumTrackImage(&self) -> Option<Retained<UIImage>>;
 
         #[method(minimumValueImageRectForBounds:)]
         pub unsafe fn minimumValueImageRectForBounds(&self, bounds: CGRect) -> CGRect;
@@ -242,10 +243,13 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISlider {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Init initWithFrame:primaryAction:)]
@@ -253,7 +257,7 @@ extern_methods!(
             this: Allocated<Self>,
             frame: CGRect,
             primary_action: Option<&UIAction>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -262,9 +266,9 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISlider {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -71,44 +71,45 @@ extern_methods!(
         #[method_id(@__retain_semantics Other contextWithOptions:)]
         pub unsafe fn contextWithOptions(
             options: Option<&NSDictionary<CIContextOption, AnyObject>>,
-        ) -> Id<CIContext>;
+        ) -> Retained<CIContext>;
 
         #[method_id(@__retain_semantics Other context)]
-        pub unsafe fn context() -> Id<CIContext>;
+        pub unsafe fn context() -> Retained<CIContext>;
 
         #[method_id(@__retain_semantics Init initWithOptions:)]
         pub unsafe fn initWithOptions(
             this: Allocated<Self>,
             options: Option<&NSDictionary<CIContextOption, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other contextWithMTLDevice:)]
-        pub unsafe fn contextWithMTLDevice(device: &ProtocolObject<dyn MTLDevice>)
-            -> Id<CIContext>;
+        pub unsafe fn contextWithMTLDevice(
+            device: &ProtocolObject<dyn MTLDevice>,
+        ) -> Retained<CIContext>;
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other contextWithMTLDevice:options:)]
         pub unsafe fn contextWithMTLDevice_options(
             device: &ProtocolObject<dyn MTLDevice>,
             options: Option<&NSDictionary<CIContextOption, AnyObject>>,
-        ) -> Id<CIContext>;
+        ) -> Retained<CIContext>;
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other contextWithMTLCommandQueue:)]
         pub unsafe fn contextWithMTLCommandQueue(
             command_queue: &ProtocolObject<dyn MTLCommandQueue>,
-        ) -> Id<CIContext>;
+        ) -> Retained<CIContext>;
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other contextWithMTLCommandQueue:options:)]
         pub unsafe fn contextWithMTLCommandQueue_options(
             command_queue: &ProtocolObject<dyn MTLCommandQueue>,
             options: Option<&NSDictionary<CIContextOption, AnyObject>>,
-        ) -> Id<CIContext>;
+        ) -> Retained<CIContext>;
 
         #[cfg(feature = "CIImage")]
         #[method(workingFormat)]
@@ -151,7 +152,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIContext {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -168,7 +169,7 @@ extern_methods!(
 
         #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
         #[method_id(@__retain_semantics Other contextForOfflineGPUAtIndex:)]
-        pub unsafe fn contextForOfflineGPUAtIndex(index: c_uint) -> Option<Id<CIContext>>;
+        pub unsafe fn contextForOfflineGPUAtIndex(index: c_uint) -> Option<Retained<CIContext>>;
     }
 );
 
@@ -235,7 +236,7 @@ extern_methods!(
             &self,
             image: &CIImage,
             options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
-        ) -> Result<Id<NSData>, Id<NSError>>;
+        ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(feature = "CIImage")]
         #[method(writeOpenEXRRepresentationOfImage:toURL:options:error:_)]
@@ -244,7 +245,7 @@ extern_methods!(
             image: &CIImage,
             url: &NSURL,
             options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
     }
 );
 
@@ -257,7 +258,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             options: Option<&NSDictionary>,
-        ) -> Option<Id<CIFilter>>;
+        ) -> Option<Retained<CIFilter>>;
 
         #[cfg(feature = "CIFilter")]
         #[method_id(@__retain_semantics Other depthBlurEffectFilterForImageData:options:)]
@@ -265,6 +266,6 @@ extern_methods!(
             &self,
             data: &NSData,
             options: Option<&NSDictionary>,
-        ) -> Option<Id<CIFilter>>;
+        ) -> Option<Retained<CIFilter>>;
     }
 );

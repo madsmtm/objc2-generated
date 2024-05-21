@@ -86,7 +86,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method_id(@__retain_semantics Other items)]
-        pub unsafe fn items(&self) -> Option<Id<NSArray<UIBarButtonItem>>>;
+        pub unsafe fn items(&self) -> Option<Retained<NSArray<UIBarButtonItem>>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method(setItems:)]
@@ -108,7 +108,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other tintColor)]
-        pub unsafe fn tintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setTintColor:)]
@@ -116,7 +116,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other barTintColor)]
-        pub unsafe fn barTintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn barTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setBarTintColor:)]
@@ -137,7 +137,7 @@ extern_methods!(
             &self,
             top_or_bottom: UIBarPosition,
             bar_metrics: UIBarMetrics,
-        ) -> Option<Id<UIImage>>;
+        ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
         #[method(setShadowImage:forToolbarPosition:)]
@@ -152,11 +152,11 @@ extern_methods!(
         pub unsafe fn shadowImageForToolbarPosition(
             &self,
             top_or_bottom: UIBarPosition,
-        ) -> Option<Id<UIImage>>;
+        ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         #[method_id(@__retain_semantics Other standardAppearance)]
-        pub unsafe fn standardAppearance(&self) -> Id<UIToolbarAppearance>;
+        pub unsafe fn standardAppearance(&self) -> Retained<UIToolbarAppearance>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         #[method(setStandardAppearance:)]
@@ -164,7 +164,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         #[method_id(@__retain_semantics Other compactAppearance)]
-        pub unsafe fn compactAppearance(&self) -> Option<Id<UIToolbarAppearance>>;
+        pub unsafe fn compactAppearance(&self) -> Option<Retained<UIToolbarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         #[method(setCompactAppearance:)]
@@ -172,7 +172,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         #[method_id(@__retain_semantics Other scrollEdgeAppearance)]
-        pub unsafe fn scrollEdgeAppearance(&self) -> Option<Id<UIToolbarAppearance>>;
+        pub unsafe fn scrollEdgeAppearance(&self) -> Option<Retained<UIToolbarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         #[method(setScrollEdgeAppearance:)]
@@ -183,7 +183,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         #[method_id(@__retain_semantics Other compactScrollEdgeAppearance)]
-        pub unsafe fn compactScrollEdgeAppearance(&self) -> Option<Id<UIToolbarAppearance>>;
+        pub unsafe fn compactScrollEdgeAppearance(&self) -> Option<Retained<UIToolbarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         #[method(setCompactScrollEdgeAppearance:)]
@@ -194,7 +194,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBarCommon")]
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn UIToolbarDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UIToolbarDelegate>>>;
 
         #[cfg(feature = "UIBarCommon")]
         #[method(setDelegate:)]
@@ -207,10 +207,13 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIToolbar {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -219,10 +222,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIToolbar {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

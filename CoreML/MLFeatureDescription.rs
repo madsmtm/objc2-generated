@@ -26,7 +26,7 @@ unsafe impl NSSecureCoding for MLFeatureDescription {}
 extern_methods!(
     unsafe impl MLFeatureDescription {
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MLFeatureType")]
         #[method(type)]
@@ -45,10 +45,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLFeatureDescription {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -57,18 +57,18 @@ extern_methods!(
     unsafe impl MLFeatureDescription {
         #[cfg(feature = "MLMultiArrayConstraint")]
         #[method_id(@__retain_semantics Other multiArrayConstraint)]
-        pub unsafe fn multiArrayConstraint(&self) -> Option<Id<MLMultiArrayConstraint>>;
+        pub unsafe fn multiArrayConstraint(&self) -> Option<Retained<MLMultiArrayConstraint>>;
 
         #[cfg(feature = "MLImageConstraint")]
         #[method_id(@__retain_semantics Other imageConstraint)]
-        pub unsafe fn imageConstraint(&self) -> Option<Id<MLImageConstraint>>;
+        pub unsafe fn imageConstraint(&self) -> Option<Retained<MLImageConstraint>>;
 
         #[cfg(feature = "MLDictionaryConstraint")]
         #[method_id(@__retain_semantics Other dictionaryConstraint)]
-        pub unsafe fn dictionaryConstraint(&self) -> Option<Id<MLDictionaryConstraint>>;
+        pub unsafe fn dictionaryConstraint(&self) -> Option<Retained<MLDictionaryConstraint>>;
 
         #[cfg(feature = "MLSequenceConstraint")]
         #[method_id(@__retain_semantics Other sequenceConstraint)]
-        pub unsafe fn sequenceConstraint(&self) -> Option<Id<MLSequenceConstraint>>;
+        pub unsafe fn sequenceConstraint(&self) -> Option<Retained<MLSequenceConstraint>>;
     }
 );

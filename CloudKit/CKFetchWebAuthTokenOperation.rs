@@ -25,13 +25,16 @@ extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchWebAuthTokenOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithAPIToken:)]
-        pub unsafe fn initWithAPIToken(this: Allocated<Self>, api_token: &NSString) -> Id<Self>;
+        pub unsafe fn initWithAPIToken(
+            this: Allocated<Self>,
+            api_token: &NSString,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other APIToken)]
-        pub unsafe fn APIToken(&self) -> Option<Id<NSString>>;
+        pub unsafe fn APIToken(&self) -> Option<Retained<NSString>>;
 
         #[method(setAPIToken:)]
         pub unsafe fn setAPIToken(&self, api_token: Option<&NSString>);
@@ -58,6 +61,6 @@ extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchWebAuthTokenOperation {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

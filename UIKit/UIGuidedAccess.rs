@@ -50,7 +50,7 @@ extern_protocol!(
         NSObjectProtocol + IsMainThreadOnly
     {
         #[method_id(@__retain_semantics Other guidedAccessRestrictionIdentifiers)]
-        unsafe fn guidedAccessRestrictionIdentifiers(&self) -> Option<Id<NSArray<NSString>>>;
+        unsafe fn guidedAccessRestrictionIdentifiers(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(guidedAccessRestrictionWithIdentifier:didChangeState:)]
         unsafe fn guidedAccessRestrictionWithIdentifier_didChangeState(
@@ -63,14 +63,14 @@ extern_protocol!(
         unsafe fn textForGuidedAccessRestrictionWithIdentifier(
             &self,
             restriction_identifier: &NSString,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other detailTextForGuidedAccessRestrictionWithIdentifier:)]
         unsafe fn detailTextForGuidedAccessRestrictionWithIdentifier(
             &self,
             restriction_identifier: &NSString,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn UIGuidedAccessRestrictionDelegate {}

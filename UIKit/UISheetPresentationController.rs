@@ -28,7 +28,7 @@ extern_protocol!(
     {
         #[cfg(feature = "UITraitCollection")]
         #[method_id(@__retain_semantics Other containerTraitCollection)]
-        unsafe fn containerTraitCollection(&self) -> Id<UITraitCollection>;
+        unsafe fn containerTraitCollection(&self) -> Retained<UITraitCollection>;
 
         #[method(maximumDetentValue)]
         unsafe fn maximumDetentValue(&self) -> CGFloat;
@@ -52,16 +52,16 @@ unsafe impl NSObjectProtocol for UISheetPresentationControllerDetent {}
 extern_methods!(
     unsafe impl UISheetPresentationControllerDetent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other mediumDetent)]
-        pub unsafe fn mediumDetent(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn mediumDetent(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other largeDetent)]
-        pub unsafe fn largeDetent(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn largeDetent(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Other customDetentWithIdentifier:resolver:)]
@@ -75,10 +75,10 @@ extern_methods!(
                 ) -> CGFloat,
             >,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<UISheetPresentationControllerDetentIdentifier>;
+        pub unsafe fn identifier(&self) -> Retained<UISheetPresentationControllerDetentIdentifier>;
 
         #[method(resolvedValueInContext:)]
         pub unsafe fn resolvedValueInContext(
@@ -143,7 +143,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UISheetPresentationControllerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UISheetPresentationControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -153,7 +153,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other sourceView)]
-        pub unsafe fn sourceView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn sourceView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(setSourceView:)]
@@ -196,7 +196,7 @@ extern_methods!(
         pub unsafe fn setPreferredCornerRadius(&self, preferred_corner_radius: CGFloat);
 
         #[method_id(@__retain_semantics Other detents)]
-        pub unsafe fn detents(&self) -> Id<NSArray<UISheetPresentationControllerDetent>>;
+        pub unsafe fn detents(&self) -> Retained<NSArray<UISheetPresentationControllerDetent>>;
 
         #[method(setDetents:)]
         pub unsafe fn setDetents(&self, detents: &NSArray<UISheetPresentationControllerDetent>);
@@ -207,7 +207,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other selectedDetentIdentifier)]
         pub unsafe fn selectedDetentIdentifier(
             &self,
-        ) -> Option<Id<UISheetPresentationControllerDetentIdentifier>>;
+        ) -> Option<Retained<UISheetPresentationControllerDetentIdentifier>>;
 
         #[method(setSelectedDetentIdentifier:)]
         pub unsafe fn setSelectedDetentIdentifier(
@@ -218,7 +218,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other largestUndimmedDetentIdentifier)]
         pub unsafe fn largestUndimmedDetentIdentifier(
             &self,
-        ) -> Option<Id<UISheetPresentationControllerDetentIdentifier>>;
+        ) -> Option<Retained<UISheetPresentationControllerDetentIdentifier>>;
 
         #[method(setLargestUndimmedDetentIdentifier:)]
         pub unsafe fn setLargestUndimmedDetentIdentifier(
@@ -253,10 +253,10 @@ extern_methods!(
             this: Allocated<Self>,
             presented_view_controller: &UIViewController,
             presenting_view_controller: Option<&UIViewController>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -265,6 +265,6 @@ extern_methods!(
     #[cfg(feature = "UIPresentationController")]
     unsafe impl UISheetPresentationController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

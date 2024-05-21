@@ -25,20 +25,20 @@ extern_methods!(
     #[cfg(feature = "CKOperation")]
     unsafe impl CKFetchShareParticipantsOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
         #[method_id(@__retain_semantics Init initWithUserIdentityLookupInfos:)]
         pub unsafe fn initWithUserIdentityLookupInfos(
             this: Allocated<Self>,
             user_identity_lookup_infos: &NSArray<CKUserIdentityLookupInfo>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
         #[method_id(@__retain_semantics Other userIdentityLookupInfos)]
         pub unsafe fn userIdentityLookupInfos(
             &self,
-        ) -> Option<Id<NSArray<CKUserIdentityLookupInfo>>>;
+        ) -> Option<Retained<NSArray<CKUserIdentityLookupInfo>>>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
         #[method(setUserIdentityLookupInfos:)]
@@ -115,6 +115,6 @@ extern_methods!(
     #[cfg(feature = "CKOperation")]
     unsafe impl CKFetchShareParticipantsOperation {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

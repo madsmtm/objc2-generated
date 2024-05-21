@@ -26,17 +26,17 @@ unsafe impl NSSecureCoding for CWNetwork {}
 extern_methods!(
     unsafe impl CWNetwork {
         #[method_id(@__retain_semantics Other ssid)]
-        pub unsafe fn ssid(&self) -> Option<Id<NSString>>;
+        pub unsafe fn ssid(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other ssidData)]
-        pub unsafe fn ssidData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn ssidData(&self) -> Option<Retained<NSData>>;
 
         #[method_id(@__retain_semantics Other bssid)]
-        pub unsafe fn bssid(&self) -> Option<Id<NSString>>;
+        pub unsafe fn bssid(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CWChannel")]
         #[method_id(@__retain_semantics Other wlanChannel)]
-        pub unsafe fn wlanChannel(&self) -> Option<Id<CWChannel>>;
+        pub unsafe fn wlanChannel(&self) -> Option<Retained<CWChannel>>;
 
         #[method(rssiValue)]
         pub unsafe fn rssiValue(&self) -> NSInteger;
@@ -45,10 +45,10 @@ extern_methods!(
         pub unsafe fn noiseMeasurement(&self) -> NSInteger;
 
         #[method_id(@__retain_semantics Other informationElementData)]
-        pub unsafe fn informationElementData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn informationElementData(&self) -> Option<Retained<NSData>>;
 
         #[method_id(@__retain_semantics Other countryCode)]
-        pub unsafe fn countryCode(&self) -> Option<Id<NSString>>;
+        pub unsafe fn countryCode(&self) -> Option<Retained<NSString>>;
 
         #[method(beaconInterval)]
         pub unsafe fn beaconInterval(&self) -> NSInteger;
@@ -73,9 +73,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWNetwork {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

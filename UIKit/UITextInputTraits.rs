@@ -269,19 +269,19 @@ unsafe impl NSSecureCoding for UITextInputPasswordRules {}
 extern_methods!(
     unsafe impl UITextInputPasswordRules {
         #[method_id(@__retain_semantics Other passwordRulesDescriptor)]
-        pub unsafe fn passwordRulesDescriptor(&self) -> Id<NSString>;
+        pub unsafe fn passwordRulesDescriptor(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other passwordRulesWithDescriptor:)]
         pub unsafe fn passwordRulesWithDescriptor(
             password_rules_descriptor: &NSString,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -394,7 +394,7 @@ extern_protocol!(
 
         #[optional]
         #[method_id(@__retain_semantics Other textContentType)]
-        unsafe fn textContentType(&self) -> Id<UITextContentType>;
+        unsafe fn textContentType(&self) -> Retained<UITextContentType>;
 
         #[optional]
         #[method(setTextContentType:)]
@@ -402,7 +402,7 @@ extern_protocol!(
 
         #[optional]
         #[method_id(@__retain_semantics Other passwordRules)]
-        unsafe fn passwordRules(&self) -> Option<Id<UITextInputPasswordRules>>;
+        unsafe fn passwordRules(&self) -> Option<Retained<UITextInputPasswordRules>>;
 
         #[optional]
         #[method(setPasswordRules:)]

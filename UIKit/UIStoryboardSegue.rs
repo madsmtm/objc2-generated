@@ -31,7 +31,7 @@ extern_methods!(
             source: &UIViewController,
             destination: &UIViewController,
             perform_handler: &block2::Block<dyn Fn()>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
@@ -41,25 +41,25 @@ extern_methods!(
             identifier: Option<&NSString>,
             source: &UIViewController,
             destination: &UIViewController,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[method_id(@__retain_semantics Other sourceViewController)]
-        pub unsafe fn sourceViewController(&self) -> Id<UIViewController>;
+        pub unsafe fn sourceViewController(&self) -> Retained<UIViewController>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[method_id(@__retain_semantics Other destinationViewController)]
-        pub unsafe fn destinationViewController(&self) -> Id<UIViewController>;
+        pub unsafe fn destinationViewController(&self) -> Retained<UIViewController>;
 
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[method(perform)]
@@ -71,7 +71,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIStoryboardSegue {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -90,17 +90,17 @@ unsafe impl NSObjectProtocol for UIStoryboardUnwindSegueSource {}
 extern_methods!(
     unsafe impl UIStoryboardUnwindSegueSource {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[method_id(@__retain_semantics Other sourceViewController)]
-        pub unsafe fn sourceViewController(&self) -> Id<UIViewController>;
+        pub unsafe fn sourceViewController(&self) -> Retained<UIViewController>;
 
         #[method(unwindAction)]
         pub unsafe fn unwindAction(&self) -> Sel;
 
         #[method_id(@__retain_semantics Other sender)]
-        pub unsafe fn sender(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn sender(&self) -> Option<Retained<AnyObject>>;
     }
 );
 
@@ -108,6 +108,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIStoryboardUnwindSegueSource {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

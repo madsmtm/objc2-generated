@@ -36,28 +36,28 @@ extern_methods!(
             this: Allocated<Self>,
             location: &ProtocolObject<dyn NSTextLocation>,
             end_location: Option<&ProtocolObject<dyn NSTextLocation>>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithLocation:)]
         pub unsafe fn initWithLocation(
             this: Allocated<Self>,
             location: &ProtocolObject<dyn NSTextLocation>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method(isEmpty)]
         pub unsafe fn isEmpty(&self) -> bool;
 
         #[method_id(@__retain_semantics Other location)]
-        pub unsafe fn location(&self) -> Id<ProtocolObject<dyn NSTextLocation>>;
+        pub unsafe fn location(&self) -> Retained<ProtocolObject<dyn NSTextLocation>>;
 
         #[method_id(@__retain_semantics Other endLocation)]
-        pub unsafe fn endLocation(&self) -> Id<ProtocolObject<dyn NSTextLocation>>;
+        pub unsafe fn endLocation(&self) -> Retained<ProtocolObject<dyn NSTextLocation>>;
 
         #[method(isEqualToTextRange:)]
         pub unsafe fn isEqualToTextRange(&self, text_range: &NSTextRange) -> bool;
@@ -78,12 +78,12 @@ extern_methods!(
         pub unsafe fn textRangeByIntersectingWithTextRange(
             &self,
             text_range: &NSTextRange,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other textRangeByFormingUnionWithTextRange:)]
         pub unsafe fn textRangeByFormingUnionWithTextRange(
             &self,
             text_range: &NSTextRange,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

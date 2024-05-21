@@ -54,7 +54,9 @@ extern_protocol!(
         NSObjectProtocol + IsMainThreadOnly
     {
         #[method_id(@__retain_semantics Other itemProvidersForActivityItemsConfiguration)]
-        unsafe fn itemProvidersForActivityItemsConfiguration(&self) -> Id<NSArray<NSItemProvider>>;
+        unsafe fn itemProvidersForActivityItemsConfiguration(
+            &self,
+        ) -> Retained<NSArray<NSItemProvider>>;
 
         #[optional]
         #[method(activityItemsConfigurationSupportsInteraction:)]
@@ -68,7 +70,7 @@ extern_protocol!(
         unsafe fn activityItemsConfigurationMetadataForKey(
             &self,
             key: &UIActivityItemsConfigurationMetadataKey,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other activityItemsConfigurationMetadataForItemAtIndex:key:)]
@@ -76,7 +78,7 @@ extern_protocol!(
             &self,
             index: NSInteger,
             key: &UIActivityItemsConfigurationMetadataKey,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other activityItemsConfigurationPreviewForItemAtIndex:intent:suggestedSize:)]
@@ -85,14 +87,14 @@ extern_protocol!(
             index: NSInteger,
             intent: &UIActivityItemsConfigurationPreviewIntent,
             suggested_size: CGSize,
-        ) -> Option<Id<NSItemProvider>>;
+        ) -> Option<Retained<NSItemProvider>>;
 
         #[cfg(feature = "UIActivity")]
         #[optional]
         #[method_id(@__retain_semantics Other applicationActivitiesForActivityItemsConfiguration)]
         unsafe fn applicationActivitiesForActivityItemsConfiguration(
             &self,
-        ) -> Option<Id<NSArray<UIActivity>>>;
+        ) -> Option<Retained<NSArray<UIActivity>>>;
     }
 
     unsafe impl ProtocolType for dyn UIActivityItemsConfigurationReading {}
@@ -104,7 +106,7 @@ extern_protocol!(
         unsafe fn activityItemsConfiguration(
             &self,
             mtm: MainThreadMarker,
-        ) -> Option<Id<ProtocolObject<dyn UIActivityItemsConfigurationReading>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIActivityItemsConfigurationReading>>>;
     }
 
     unsafe impl ProtocolType for dyn UIActivityItemsConfigurationProviding {}

@@ -29,7 +29,7 @@ extern_methods!(
             name: &NSString,
             target: Option<&AnyObject>,
             selector: Sel,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithAttributedName:target:selector:)]
         pub unsafe fn initWithAttributedName_target_selector(
@@ -37,7 +37,7 @@ extern_methods!(
             attributed_name: &NSAttributedString,
             target: Option<&AnyObject>,
             selector: Sel,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Init initWithName:image:target:selector:)]
@@ -47,7 +47,7 @@ extern_methods!(
             image: Option<&UIImage>,
             target: Option<&AnyObject>,
             selector: Sel,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Init initWithAttributedName:image:target:selector:)]
@@ -57,7 +57,7 @@ extern_methods!(
             image: Option<&UIImage>,
             target: Option<&AnyObject>,
             selector: Sel,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithName:actionHandler:)]
@@ -65,7 +65,7 @@ extern_methods!(
             this: Allocated<Self>,
             name: &NSString,
             action_handler: UIAccessibilityCustomActionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithAttributedName:actionHandler:)]
@@ -73,7 +73,7 @@ extern_methods!(
             this: Allocated<Self>,
             attributed_name: &NSAttributedString,
             action_handler: UIAccessibilityCustomActionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithName:image:actionHandler:)]
@@ -82,7 +82,7 @@ extern_methods!(
             name: &NSString,
             image: Option<&UIImage>,
             action_handler: UIAccessibilityCustomActionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithAttributedName:image:actionHandler:)]
@@ -91,30 +91,30 @@ extern_methods!(
             attributed_name: &NSAttributedString,
             image: Option<&UIImage>,
             action_handler: UIAccessibilityCustomActionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         #[method_id(@__retain_semantics Other attributedName)]
-        pub unsafe fn attributedName(&self) -> Id<NSAttributedString>;
+        pub unsafe fn attributedName(&self) -> Retained<NSAttributedString>;
 
         #[method(setAttributedName:)]
         pub unsafe fn setAttributedName(&self, attributed_name: &NSAttributedString);
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -139,9 +139,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIAccessibilityCustomAction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

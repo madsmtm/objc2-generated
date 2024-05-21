@@ -53,22 +53,22 @@ extern_methods!(
     unsafe impl WebPreferences {
         #[deprecated]
         #[method_id(@__retain_semantics Other standardPreferences)]
-        pub unsafe fn standardPreferences() -> Option<Id<WebPreferences>>;
+        pub unsafe fn standardPreferences() -> Option<Retained<WebPreferences>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             an_identifier: Option<&NSString>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other standardFontFamily)]
-        pub unsafe fn standardFontFamily(&self) -> Id<NSString>;
+        pub unsafe fn standardFontFamily(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setStandardFontFamily:)]
@@ -76,7 +76,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other fixedFontFamily)]
-        pub unsafe fn fixedFontFamily(&self) -> Id<NSString>;
+        pub unsafe fn fixedFontFamily(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setFixedFontFamily:)]
@@ -84,7 +84,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other serifFontFamily)]
-        pub unsafe fn serifFontFamily(&self) -> Id<NSString>;
+        pub unsafe fn serifFontFamily(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setSerifFontFamily:)]
@@ -92,7 +92,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other sansSerifFontFamily)]
-        pub unsafe fn sansSerifFontFamily(&self) -> Id<NSString>;
+        pub unsafe fn sansSerifFontFamily(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setSansSerifFontFamily:)]
@@ -100,7 +100,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other cursiveFontFamily)]
-        pub unsafe fn cursiveFontFamily(&self) -> Id<NSString>;
+        pub unsafe fn cursiveFontFamily(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setCursiveFontFamily:)]
@@ -108,7 +108,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other fantasyFontFamily)]
-        pub unsafe fn fantasyFontFamily(&self) -> Id<NSString>;
+        pub unsafe fn fantasyFontFamily(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setFantasyFontFamily:)]
@@ -148,7 +148,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other defaultTextEncodingName)]
-        pub unsafe fn defaultTextEncodingName(&self) -> Id<NSString>;
+        pub unsafe fn defaultTextEncodingName(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setDefaultTextEncodingName:)]
@@ -167,7 +167,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other userStyleSheetLocation)]
-        pub unsafe fn userStyleSheetLocation(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn userStyleSheetLocation(&self) -> Option<Retained<NSURL>>;
 
         #[deprecated]
         #[method(setUserStyleSheetLocation:)]
@@ -308,9 +308,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebPreferences {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

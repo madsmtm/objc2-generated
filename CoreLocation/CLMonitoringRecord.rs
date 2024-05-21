@@ -25,16 +25,16 @@ extern_methods!(
     unsafe impl CLMonitoringRecord {
         #[cfg(feature = "CLCondition")]
         #[method_id(@__retain_semantics Other condition)]
-        pub unsafe fn condition(&self) -> Id<CLCondition>;
+        pub unsafe fn condition(&self) -> Retained<CLCondition>;
 
         #[cfg(feature = "CLMonitoringEvent")]
         #[method_id(@__retain_semantics Other lastEvent)]
-        pub unsafe fn lastEvent(&self) -> Id<CLMonitoringEvent>;
+        pub unsafe fn lastEvent(&self) -> Retained<CLMonitoringEvent>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

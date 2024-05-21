@@ -32,10 +32,10 @@ extern_methods!(
     unsafe impl GCKeyboard {
         #[cfg(all(feature = "GCKeyboardInput", feature = "GCPhysicalInputProfile"))]
         #[method_id(@__retain_semantics Other keyboardInput)]
-        pub unsafe fn keyboardInput(&self) -> Option<Id<GCKeyboardInput>>;
+        pub unsafe fn keyboardInput(&self) -> Option<Retained<GCKeyboardInput>>;
 
         #[method_id(@__retain_semantics Other coalescedKeyboard)]
-        pub unsafe fn coalescedKeyboard() -> Option<Id<GCKeyboard>>;
+        pub unsafe fn coalescedKeyboard() -> Option<Retained<GCKeyboard>>;
     }
 );
 
@@ -43,9 +43,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCKeyboard {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

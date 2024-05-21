@@ -42,7 +42,7 @@ unsafe impl<ItemIdentifierType: ?Sized> NSObjectProtocol
 extern_methods!(
     unsafe impl<ItemIdentifierType: Message> NSDiffableDataSourceSectionSnapshot<ItemIdentifierType> {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(appendItems:)]
         pub unsafe fn appendItems(&self, items: &NSArray<ItemIdentifierType>);
@@ -99,7 +99,7 @@ extern_methods!(
             &self,
             snapshot: &NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>,
             item: &ItemIdentifierType,
-        ) -> Id<ItemIdentifierType>;
+        ) -> Retained<ItemIdentifierType>;
 
         #[method(isExpanded:)]
         pub unsafe fn isExpanded(&self, item: &ItemIdentifierType) -> bool;
@@ -117,35 +117,35 @@ extern_methods!(
         pub unsafe fn indexOfItem(&self, item: &ItemIdentifierType) -> NSInteger;
 
         #[method_id(@__retain_semantics Other expandedItems)]
-        pub unsafe fn expandedItems(&self) -> Id<NSArray<ItemIdentifierType>>;
+        pub unsafe fn expandedItems(&self) -> Retained<NSArray<ItemIdentifierType>>;
 
         #[method_id(@__retain_semantics Other parentOfChildItem:)]
         pub unsafe fn parentOfChildItem(
             &self,
             child_item: &ItemIdentifierType,
-        ) -> Option<Id<ItemIdentifierType>>;
+        ) -> Option<Retained<ItemIdentifierType>>;
 
         #[method_id(@__retain_semantics Other snapshotOfParentItem:)]
         pub unsafe fn snapshotOfParentItem(
             &self,
             parent_item: &ItemIdentifierType,
-        ) -> Id<NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>>;
+        ) -> Retained<NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>>;
 
         #[method_id(@__retain_semantics Other snapshotOfParentItem:includingParentItem:)]
         pub unsafe fn snapshotOfParentItem_includingParentItem(
             &self,
             parent_item: &ItemIdentifierType,
             including_parent_item: bool,
-        ) -> Id<NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>>;
+        ) -> Retained<NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>>;
 
         #[method_id(@__retain_semantics Other rootItems)]
-        pub unsafe fn rootItems(&self) -> Id<NSArray<ItemIdentifierType>>;
+        pub unsafe fn rootItems(&self) -> Retained<NSArray<ItemIdentifierType>>;
 
         #[method_id(@__retain_semantics Other visibleItems)]
-        pub unsafe fn visibleItems(&self) -> Id<NSArray<ItemIdentifierType>>;
+        pub unsafe fn visibleItems(&self) -> Retained<NSArray<ItemIdentifierType>>;
 
         #[method_id(@__retain_semantics Other visualDescription)]
-        pub unsafe fn visualDescription(&self) -> Id<NSString>;
+        pub unsafe fn visualDescription(&self) -> Retained<NSString>;
     }
 );
 
@@ -153,6 +153,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ItemIdentifierType: Message> NSDiffableDataSourceSectionSnapshot<ItemIdentifierType> {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

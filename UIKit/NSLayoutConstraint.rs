@@ -159,7 +159,7 @@ extern_methods!(
             metrics: Option<&NSDictionary<NSString, AnyObject>>,
             views: &NSDictionary<NSString, AnyObject>,
             mtm: MainThreadMarker,
-        ) -> Id<NSArray<NSLayoutConstraint>>;
+        ) -> Retained<NSArray<NSLayoutConstraint>>;
 
         #[method_id(@__retain_semantics Other constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:)]
         pub unsafe fn constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant(
@@ -171,7 +171,7 @@ extern_methods!(
             multiplier: CGFloat,
             c: CGFloat,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(priority)]
         pub unsafe fn priority(&self) -> UILayoutPriority;
@@ -186,10 +186,10 @@ extern_methods!(
         pub unsafe fn setShouldBeArchived(&self, should_be_archived: bool);
 
         #[method_id(@__retain_semantics Other firstItem)]
-        pub unsafe fn firstItem(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn firstItem(&self) -> Option<Retained<AnyObject>>;
 
         #[method_id(@__retain_semantics Other secondItem)]
-        pub unsafe fn secondItem(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn secondItem(&self) -> Option<Retained<AnyObject>>;
 
         #[method(firstAttribute)]
         pub unsafe fn firstAttribute(&self) -> NSLayoutAttribute;
@@ -199,11 +199,11 @@ extern_methods!(
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other firstAnchor)]
-        pub unsafe fn firstAnchor(&self) -> Id<NSLayoutAnchor>;
+        pub unsafe fn firstAnchor(&self) -> Retained<NSLayoutAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other secondAnchor)]
-        pub unsafe fn secondAnchor(&self) -> Option<Id<NSLayoutAnchor>>;
+        pub unsafe fn secondAnchor(&self) -> Option<Retained<NSLayoutAnchor>>;
 
         #[method(relation)]
         pub unsafe fn relation(&self) -> NSLayoutRelation;
@@ -241,10 +241,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSLayoutConstraint {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -252,7 +252,7 @@ extern_methods!(
     /// NSIdentifier
     unsafe impl NSLayoutConstraint {
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
@@ -266,15 +266,15 @@ extern_protocol!(
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other topAnchor)]
-        unsafe fn topAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
+        unsafe fn topAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other bottomAnchor)]
-        unsafe fn bottomAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
+        unsafe fn bottomAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other heightAnchor)]
-        unsafe fn heightAnchor(&self) -> Id<NSLayoutDimension>;
+        unsafe fn heightAnchor(&self) -> Retained<NSLayoutDimension>;
     }
 
     unsafe impl ProtocolType for dyn UILayoutSupport {}

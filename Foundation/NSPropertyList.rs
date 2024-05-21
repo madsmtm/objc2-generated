@@ -72,7 +72,7 @@ extern_methods!(
             plist: &AnyObject,
             format: NSPropertyListFormat,
             opt: NSPropertyListWriteOptions,
-        ) -> Result<Id<NSData>, Id<NSError>>;
+        ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
         #[method_id(@__retain_semantics Other propertyListWithData:options:format:error:_)]
@@ -80,7 +80,7 @@ extern_methods!(
             data: &NSData,
             opt: NSPropertyListReadOptions,
             format: *mut NSPropertyListFormat,
-        ) -> Result<Id<AnyObject>, Id<NSError>>;
+        ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSStream"))]
         #[method_id(@__retain_semantics Other propertyListWithStream:options:format:error:_)]
@@ -88,7 +88,7 @@ extern_methods!(
             stream: &NSInputStream,
             opt: NSPropertyListReadOptions,
             format: *mut NSPropertyListFormat,
-        ) -> Result<Id<AnyObject>, Id<NSError>>;
+        ) -> Result<Retained<AnyObject>, Retained<NSError>>;
     }
 );
 
@@ -96,9 +96,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPropertyListSerialization {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

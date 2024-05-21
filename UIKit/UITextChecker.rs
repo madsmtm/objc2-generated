@@ -35,7 +35,7 @@ extern_methods!(
             range: NSRange,
             string: &NSString,
             language: &NSString,
-        ) -> Option<Id<NSArray<NSString>>>;
+        ) -> Option<Retained<NSArray<NSString>>>;
 
         #[method_id(@__retain_semantics Other completionsForPartialWordRange:inString:language:)]
         pub unsafe fn completionsForPartialWordRange_inString_language(
@@ -43,13 +43,13 @@ extern_methods!(
             range: NSRange,
             string: &NSString,
             language: &NSString,
-        ) -> Option<Id<NSArray<NSString>>>;
+        ) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(ignoreWord:)]
         pub unsafe fn ignoreWord(&self, word_to_ignore: &NSString);
 
         #[method_id(@__retain_semantics Other ignoredWords)]
-        pub unsafe fn ignoredWords(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn ignoredWords(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setIgnoredWords:)]
         pub unsafe fn setIgnoredWords(&self, ignored_words: Option<&NSArray<NSString>>);
@@ -64,7 +64,7 @@ extern_methods!(
         pub unsafe fn unlearnWord(word: &NSString, mtm: MainThreadMarker);
 
         #[method_id(@__retain_semantics Other availableLanguages)]
-        pub unsafe fn availableLanguages(mtm: MainThreadMarker) -> Id<NSArray<NSString>>;
+        pub unsafe fn availableLanguages(mtm: MainThreadMarker) -> Retained<NSArray<NSString>>;
     }
 );
 
@@ -72,9 +72,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextChecker {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -71,19 +71,19 @@ extern_methods!(
 
         #[deprecated = "Use enumeration based NSFileProviderExtension instead"]
         #[method_id(@__retain_semantics Other originalURL)]
-        pub unsafe fn originalURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn originalURL(&self) -> Option<Retained<NSURL>>;
 
         #[deprecated = "Use enumeration based NSFileProviderExtension instead"]
         #[method_id(@__retain_semantics Other validTypes)]
-        pub unsafe fn validTypes(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn validTypes(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[deprecated = "Use enumeration based NSFileProviderExtension instead"]
         #[method_id(@__retain_semantics Other providerIdentifier)]
-        pub unsafe fn providerIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn providerIdentifier(&self) -> Retained<NSString>;
 
         #[deprecated = "Use enumeration based NSFileProviderExtension instead"]
         #[method_id(@__retain_semantics Other documentStorageURL)]
-        pub unsafe fn documentStorageURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn documentStorageURL(&self) -> Option<Retained<NSURL>>;
     }
 );
 
@@ -96,10 +96,13 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -108,9 +111,9 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentPickerExtensionViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

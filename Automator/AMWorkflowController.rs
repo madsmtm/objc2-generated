@@ -37,7 +37,7 @@ extern_methods!(
     unsafe impl AMWorkflowController {
         #[cfg(feature = "AMWorkflow")]
         #[method_id(@__retain_semantics Other workflow)]
-        pub unsafe fn workflow(&self) -> Option<Id<AMWorkflow>>;
+        pub unsafe fn workflow(&self) -> Option<Retained<AMWorkflow>>;
 
         #[cfg(feature = "AMWorkflow")]
         #[method(setWorkflow:)]
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "AMWorkflowView")]
         #[method_id(@__retain_semantics Other workflowView)]
-        pub unsafe fn workflowView(&self) -> Option<Id<AMWorkflowView>>;
+        pub unsafe fn workflowView(&self) -> Option<Retained<AMWorkflowView>>;
 
         #[cfg(feature = "AMWorkflowView")]
         #[method(setWorkflowView:)]
@@ -54,7 +54,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn AMWorkflowControllerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn AMWorkflowControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -93,10 +93,13 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -105,7 +108,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

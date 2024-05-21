@@ -21,6 +21,6 @@ extern_methods!(
             &self,
             drawing_actions: UIGraphicsDrawingActions,
             completion_actions: UIGraphicsDrawingActions,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
     }
 );

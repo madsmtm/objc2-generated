@@ -27,10 +27,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNVideoProcessorCadence {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -52,10 +52,13 @@ unsafe impl NSObjectProtocol for VNVideoProcessorFrameRateCadence {}
 extern_methods!(
     unsafe impl VNVideoProcessorFrameRateCadence {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithFrameRate:)]
-        pub unsafe fn initWithFrameRate(this: Allocated<Self>, frame_rate: NSInteger) -> Id<Self>;
+        pub unsafe fn initWithFrameRate(
+            this: Allocated<Self>,
+            frame_rate: NSInteger,
+        ) -> Retained<Self>;
 
         #[method(frameRate)]
         pub unsafe fn frameRate(&self) -> NSInteger;
@@ -66,7 +69,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNVideoProcessorFrameRateCadence {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -88,7 +91,7 @@ unsafe impl NSObjectProtocol for VNVideoProcessorTimeIntervalCadence {}
 extern_methods!(
     unsafe impl VNVideoProcessorTimeIntervalCadence {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -96,7 +99,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNVideoProcessorTimeIntervalCadence {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -117,7 +120,7 @@ unsafe impl NSObjectProtocol for VNVideoProcessorRequestProcessingOptions {}
 extern_methods!(
     unsafe impl VNVideoProcessorRequestProcessingOptions {
         #[method_id(@__retain_semantics Other cadence)]
-        pub unsafe fn cadence(&self) -> Option<Id<VNVideoProcessorCadence>>;
+        pub unsafe fn cadence(&self) -> Option<Retained<VNVideoProcessorCadence>>;
 
         #[method(setCadence:)]
         pub unsafe fn setCadence(&self, cadence: Option<&VNVideoProcessorCadence>);
@@ -128,10 +131,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNVideoProcessorRequestProcessingOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -150,10 +153,10 @@ unsafe impl NSObjectProtocol for VNVideoProcessor {}
 extern_methods!(
     unsafe impl VNVideoProcessor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithURL:)]
-        pub unsafe fn initWithURL(this: Allocated<Self>, video_url: &NSURL) -> Id<Self>;
+        pub unsafe fn initWithURL(this: Allocated<Self>, video_url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "VNRequest")]
         #[method(addRequest:processingOptions:error:_)]
@@ -161,7 +164,7 @@ extern_methods!(
             &self,
             request: &VNRequest,
             processing_options: &VNVideoProcessorRequestProcessingOptions,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "VNRequest", feature = "VNTypes"))]
         #[deprecated]
@@ -170,11 +173,14 @@ extern_methods!(
             &self,
             request: &VNRequest,
             processing_options: &NSDictionary<VNVideoProcessingOption, AnyObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "VNRequest")]
         #[method(removeRequest:error:_)]
-        pub unsafe fn removeRequest_error(&self, request: &VNRequest) -> Result<(), Id<NSError>>;
+        pub unsafe fn removeRequest_error(
+            &self,
+            request: &VNRequest,
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(cancel)]
         pub unsafe fn cancel(&self);
@@ -185,6 +191,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNVideoProcessor {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

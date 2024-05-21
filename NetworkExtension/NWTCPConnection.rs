@@ -50,7 +50,7 @@ extern_methods!(
         pub unsafe fn initWithUpgradeForConnection(
             this: Allocated<Self>,
             connection: &NWTCPConnection,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(state)]
         pub unsafe fn state(&self) -> NWTCPConnectionState;
@@ -63,25 +63,25 @@ extern_methods!(
 
         #[cfg(feature = "NWEndpoint")]
         #[method_id(@__retain_semantics Other endpoint)]
-        pub unsafe fn endpoint(&self) -> Id<NWEndpoint>;
+        pub unsafe fn endpoint(&self) -> Retained<NWEndpoint>;
 
         #[cfg(feature = "NWPath")]
         #[method_id(@__retain_semantics Other connectedPath)]
-        pub unsafe fn connectedPath(&self) -> Option<Id<NWPath>>;
+        pub unsafe fn connectedPath(&self) -> Option<Retained<NWPath>>;
 
         #[cfg(feature = "NWEndpoint")]
         #[method_id(@__retain_semantics Other localAddress)]
-        pub unsafe fn localAddress(&self) -> Option<Id<NWEndpoint>>;
+        pub unsafe fn localAddress(&self) -> Option<Retained<NWEndpoint>>;
 
         #[cfg(feature = "NWEndpoint")]
         #[method_id(@__retain_semantics Other remoteAddress)]
-        pub unsafe fn remoteAddress(&self) -> Option<Id<NWEndpoint>>;
+        pub unsafe fn remoteAddress(&self) -> Option<Retained<NWEndpoint>>;
 
         #[method_id(@__retain_semantics Other txtRecord)]
-        pub unsafe fn txtRecord(&self) -> Option<Id<NSData>>;
+        pub unsafe fn txtRecord(&self) -> Option<Retained<NSData>>;
 
         #[method_id(@__retain_semantics Other error)]
-        pub unsafe fn error(&self) -> Option<Id<NSError>>;
+        pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         #[method(cancel)]
         pub unsafe fn cancel(&self);
@@ -120,10 +120,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NWTCPConnection {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

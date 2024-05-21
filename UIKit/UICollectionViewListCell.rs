@@ -131,7 +131,7 @@ extern_methods!(
     unsafe impl UICollectionViewListCell {
         #[cfg(feature = "UIListContentConfiguration")]
         #[method_id(@__retain_semantics Other defaultContentConfiguration)]
-        pub unsafe fn defaultContentConfiguration(&self) -> Id<UIListContentConfiguration>;
+        pub unsafe fn defaultContentConfiguration(&self) -> Retained<UIListContentConfiguration>;
 
         #[method(indentationLevel)]
         pub unsafe fn indentationLevel(&self) -> NSInteger;
@@ -153,7 +153,7 @@ extern_methods!(
 
         #[cfg(feature = "UICellAccessory")]
         #[method_id(@__retain_semantics Other accessories)]
-        pub unsafe fn accessories(&self) -> Id<NSArray<UICellAccessory>>;
+        pub unsafe fn accessories(&self) -> Retained<NSArray<UICellAccessory>>;
 
         #[cfg(feature = "UICellAccessory")]
         #[method(setAccessories:)]
@@ -161,7 +161,7 @@ extern_methods!(
 
         #[cfg(feature = "UILayoutGuide")]
         #[method_id(@__retain_semantics Other separatorLayoutGuide)]
-        pub unsafe fn separatorLayoutGuide(&self) -> Id<UILayoutGuide>;
+        pub unsafe fn separatorLayoutGuide(&self) -> Retained<UILayoutGuide>;
     }
 );
 
@@ -174,10 +174,13 @@ extern_methods!(
     ))]
     unsafe impl UICollectionViewListCell {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -190,9 +193,9 @@ extern_methods!(
     ))]
     unsafe impl UICollectionViewListCell {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

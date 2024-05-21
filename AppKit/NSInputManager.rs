@@ -40,7 +40,7 @@ extern_protocol!(
         unsafe fn attributedSubstringFromRange(
             &self,
             range: NSRange,
-        ) -> Option<Id<NSAttributedString>>;
+        ) -> Option<Retained<NSAttributedString>>;
 
         #[deprecated]
         #[method(markedRange)]
@@ -60,7 +60,7 @@ extern_protocol!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other validAttributesForMarkedText)]
-        unsafe fn validAttributesForMarkedText(&self) -> Option<Id<NSArray>>;
+        unsafe fn validAttributesForMarkedText(&self) -> Option<Retained<NSArray>>;
     }
 
     unsafe impl ProtocolType for dyn NSTextInput {}
@@ -85,7 +85,7 @@ extern_methods!(
     unsafe impl NSInputManager {
         #[deprecated]
         #[method_id(@__retain_semantics Other currentInputManager)]
-        pub unsafe fn currentInputManager() -> Option<Id<NSInputManager>>;
+        pub unsafe fn currentInputManager() -> Option<Retained<NSInputManager>>;
 
         #[deprecated]
         #[method(cycleToNextInputLanguage:)]
@@ -101,11 +101,11 @@ extern_methods!(
             this: Allocated<Self>,
             input_server_name: Option<&NSString>,
             host_name: Option<&NSString>,
-        ) -> Option<Id<NSInputManager>>;
+        ) -> Option<Retained<NSInputManager>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other localizedInputManagerName)]
-        pub unsafe fn localizedInputManagerName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localizedInputManagerName(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method(markedTextAbandoned:)]
@@ -125,17 +125,17 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other language)]
-        pub unsafe fn language(&self) -> Option<Id<NSString>>;
+        pub unsafe fn language(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSImage")]
         #[deprecated]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSInputServer")]
         #[deprecated]
         #[method_id(@__retain_semantics Other server)]
-        pub unsafe fn server(&self) -> Option<Id<NSInputServer>>;
+        pub unsafe fn server(&self) -> Option<Retained<NSInputServer>>;
 
         #[deprecated]
         #[method(wantsToHandleMouseEvents)]
@@ -156,9 +156,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInputManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

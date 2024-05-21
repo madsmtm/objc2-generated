@@ -68,10 +68,13 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -81,7 +84,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl GKLeaderboardViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -91,7 +94,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl GKLeaderboardViewController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -111,7 +114,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other category)]
-        pub unsafe fn category(&self) -> Id<NSString>;
+        pub unsafe fn category(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setCategory:)]
@@ -121,7 +124,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other leaderboardDelegate)]
         pub unsafe fn leaderboardDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn GKLeaderboardViewControllerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn GKLeaderboardViewControllerDelegate>>>;
 
         #[deprecated]
         #[method(setLeaderboardDelegate:)]

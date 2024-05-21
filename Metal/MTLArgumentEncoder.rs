@@ -11,10 +11,10 @@ extern_protocol!(
     pub unsafe trait MTLArgumentEncoder: NSObjectProtocol + IsRetainable {
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
-        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
+        unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[method_id(@__retain_semantics Other label)]
-        unsafe fn label(&self) -> Option<Id<NSString>>;
+        unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         #[method(setLabel:)]
         unsafe fn setLabel(&self, label: Option<&NSString>);
@@ -155,7 +155,7 @@ extern_protocol!(
         unsafe fn newArgumentEncoderForBufferAtIndex(
             &self,
             index: NSUInteger,
-        ) -> Option<Id<ProtocolObject<dyn MTLArgumentEncoder>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MTLArgumentEncoder>>>;
 
         #[cfg(all(feature = "MTLResource", feature = "MTLVisibleFunctionTable"))]
         #[method(setVisibleFunctionTable:atIndex:)]

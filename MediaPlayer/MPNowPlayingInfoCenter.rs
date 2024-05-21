@@ -66,16 +66,16 @@ unsafe impl NSObjectProtocol for MPNowPlayingInfoCenter {}
 extern_methods!(
     unsafe impl MPNowPlayingInfoCenter {
         #[method_id(@__retain_semantics Other defaultCenter)]
-        pub unsafe fn defaultCenter() -> Id<MPNowPlayingInfoCenter>;
+        pub unsafe fn defaultCenter() -> Retained<MPNowPlayingInfoCenter>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other nowPlayingInfo)]
-        pub unsafe fn nowPlayingInfo(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        pub unsafe fn nowPlayingInfo(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[method(setNowPlayingInfo:)]
         pub unsafe fn setNowPlayingInfo(

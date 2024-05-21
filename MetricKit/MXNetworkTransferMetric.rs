@@ -31,20 +31,24 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXNetworkTransferMetric {
         #[method_id(@__retain_semantics Other cumulativeWifiUpload)]
-        pub unsafe fn cumulativeWifiUpload(&self) -> Id<NSMeasurement<NSUnitInformationStorage>>;
+        pub unsafe fn cumulativeWifiUpload(
+            &self,
+        ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
 
         #[method_id(@__retain_semantics Other cumulativeWifiDownload)]
-        pub unsafe fn cumulativeWifiDownload(&self) -> Id<NSMeasurement<NSUnitInformationStorage>>;
+        pub unsafe fn cumulativeWifiDownload(
+            &self,
+        ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
 
         #[method_id(@__retain_semantics Other cumulativeCellularUpload)]
         pub unsafe fn cumulativeCellularUpload(
             &self,
-        ) -> Id<NSMeasurement<NSUnitInformationStorage>>;
+        ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
 
         #[method_id(@__retain_semantics Other cumulativeCellularDownload)]
         pub unsafe fn cumulativeCellularDownload(
             &self,
-        ) -> Id<NSMeasurement<NSUnitInformationStorage>>;
+        ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
     }
 );
 
@@ -53,9 +57,9 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXNetworkTransferMetric {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -34,7 +34,7 @@ extern_methods!(
             r#type: EKRecurrenceFrequency,
             interval: NSInteger,
             end: Option<&EKRecurrenceEnd>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "EKRecurrenceDayOfWeek",
@@ -53,14 +53,14 @@ extern_methods!(
             days_of_the_year: Option<&NSArray<NSNumber>>,
             set_positions: Option<&NSArray<NSNumber>>,
             end: Option<&EKRecurrenceEnd>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other calendarIdentifier)]
-        pub unsafe fn calendarIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn calendarIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "EKRecurrenceEnd")]
         #[method_id(@__retain_semantics Other recurrenceEnd)]
-        pub unsafe fn recurrenceEnd(&self) -> Option<Id<EKRecurrenceEnd>>;
+        pub unsafe fn recurrenceEnd(&self) -> Option<Retained<EKRecurrenceEnd>>;
 
         #[cfg(feature = "EKRecurrenceEnd")]
         #[method(setRecurrenceEnd:)]
@@ -78,22 +78,22 @@ extern_methods!(
 
         #[cfg(feature = "EKRecurrenceDayOfWeek")]
         #[method_id(@__retain_semantics Other daysOfTheWeek)]
-        pub unsafe fn daysOfTheWeek(&self) -> Option<Id<NSArray<EKRecurrenceDayOfWeek>>>;
+        pub unsafe fn daysOfTheWeek(&self) -> Option<Retained<NSArray<EKRecurrenceDayOfWeek>>>;
 
         #[method_id(@__retain_semantics Other daysOfTheMonth)]
-        pub unsafe fn daysOfTheMonth(&self) -> Option<Id<NSArray<NSNumber>>>;
+        pub unsafe fn daysOfTheMonth(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[method_id(@__retain_semantics Other daysOfTheYear)]
-        pub unsafe fn daysOfTheYear(&self) -> Option<Id<NSArray<NSNumber>>>;
+        pub unsafe fn daysOfTheYear(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[method_id(@__retain_semantics Other weeksOfTheYear)]
-        pub unsafe fn weeksOfTheYear(&self) -> Option<Id<NSArray<NSNumber>>>;
+        pub unsafe fn weeksOfTheYear(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[method_id(@__retain_semantics Other monthsOfTheYear)]
-        pub unsafe fn monthsOfTheYear(&self) -> Option<Id<NSArray<NSNumber>>>;
+        pub unsafe fn monthsOfTheYear(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[method_id(@__retain_semantics Other setPositions)]
-        pub unsafe fn setPositions(&self) -> Option<Id<NSArray<NSNumber>>>;
+        pub unsafe fn setPositions(&self) -> Option<Retained<NSArray<NSNumber>>>;
     }
 );
 
@@ -102,9 +102,9 @@ extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKRecurrenceRule {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

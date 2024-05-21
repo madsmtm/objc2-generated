@@ -20,11 +20,11 @@ unsafe impl NSObjectProtocol for CXCallController {}
 extern_methods!(
     unsafe impl CXCallController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CXCallObserver")]
         #[method_id(@__retain_semantics Other callObserver)]
-        pub unsafe fn callObserver(&self) -> Id<CXCallObserver>;
+        pub unsafe fn callObserver(&self) -> Retained<CXCallObserver>;
 
         #[cfg(all(feature = "CXTransaction", feature = "block2"))]
         #[method(requestTransaction:completion:)]
@@ -56,6 +56,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXCallController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

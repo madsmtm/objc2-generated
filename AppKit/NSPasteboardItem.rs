@@ -27,14 +27,14 @@ extern_methods!(
     unsafe impl NSPasteboardItem {
         #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Other types)]
-        pub unsafe fn types(&self) -> Id<NSArray<NSPasteboardType>>;
+        pub unsafe fn types(&self) -> Retained<NSArray<NSPasteboardType>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Other availableTypeFromArray:)]
         pub unsafe fn availableTypeFromArray(
             &self,
             types: &NSArray<NSPasteboardType>,
-        ) -> Option<Id<NSPasteboardType>>;
+        ) -> Option<Retained<NSPasteboardType>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[method(setDataProvider:forTypes:)]
@@ -66,18 +66,19 @@ extern_methods!(
 
         #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Other dataForType:)]
-        pub unsafe fn dataForType(&self, r#type: &NSPasteboardType) -> Option<Id<NSData>>;
+        pub unsafe fn dataForType(&self, r#type: &NSPasteboardType) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Other stringForType:)]
-        pub unsafe fn stringForType(&self, r#type: &NSPasteboardType) -> Option<Id<NSString>>;
+        pub unsafe fn stringForType(&self, r#type: &NSPasteboardType)
+            -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Other propertyListForType:)]
         pub unsafe fn propertyListForType(
             &self,
             r#type: &NSPasteboardType,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
     }
 );
 
@@ -85,10 +86,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPasteboardItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

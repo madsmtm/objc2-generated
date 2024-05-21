@@ -26,7 +26,7 @@ unsafe impl NSSecureCoding for UIPasteConfiguration {}
 extern_methods!(
     unsafe impl UIPasteConfiguration {
         #[method_id(@__retain_semantics Other acceptableTypeIdentifiers)]
-        pub unsafe fn acceptableTypeIdentifiers(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn acceptableTypeIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         #[method(setAcceptableTypeIdentifiers:)]
         pub unsafe fn setAcceptableTypeIdentifiers(
@@ -35,13 +35,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithAcceptableTypeIdentifiers:)]
         pub unsafe fn initWithAcceptableTypeIdentifiers(
             this: Allocated<Self>,
             acceptable_type_identifiers: &NSArray<NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(addAcceptableTypeIdentifiers:)]
         pub unsafe fn addAcceptableTypeIdentifiers(
@@ -53,7 +53,7 @@ extern_methods!(
         pub unsafe fn initWithTypeIdentifiersForAcceptingClass(
             this: Allocated<Self>,
             a_class: &AnyClass,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(addTypeIdentifiersForAcceptingClass:)]
         pub unsafe fn addTypeIdentifiersForAcceptingClass(&self, a_class: &AnyClass);
@@ -64,6 +64,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPasteConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

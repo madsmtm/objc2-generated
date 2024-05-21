@@ -74,10 +74,10 @@ extern_methods!(
     unsafe impl EKEvent {
         #[cfg(feature = "EKEventStore")]
         #[method_id(@__retain_semantics Other eventWithEventStore:)]
-        pub unsafe fn eventWithEventStore(event_store: &EKEventStore) -> Id<EKEvent>;
+        pub unsafe fn eventWithEventStore(event_store: &EKEventStore) -> Retained<EKEvent>;
 
         #[method_id(@__retain_semantics Other eventIdentifier)]
-        pub unsafe fn eventIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn eventIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(isAllDay)]
         pub unsafe fn isAllDay(&self) -> bool;
@@ -86,20 +86,20 @@ extern_methods!(
         pub unsafe fn setAllDay(&self, all_day: bool);
 
         #[method_id(@__retain_semantics Other startDate)]
-        pub unsafe fn startDate(&self) -> Id<NSDate>;
+        pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         #[method(setStartDate:)]
         pub unsafe fn setStartDate(&self, start_date: Option<&NSDate>);
 
         #[method_id(@__retain_semantics Other endDate)]
-        pub unsafe fn endDate(&self) -> Id<NSDate>;
+        pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
         #[method(setEndDate:)]
         pub unsafe fn setEndDate(&self, end_date: Option<&NSDate>);
 
         #[cfg(feature = "EKStructuredLocation")]
         #[method_id(@__retain_semantics Other structuredLocation)]
-        pub unsafe fn structuredLocation(&self) -> Option<Id<EKStructuredLocation>>;
+        pub unsafe fn structuredLocation(&self) -> Option<Retained<EKStructuredLocation>>;
 
         #[cfg(feature = "EKStructuredLocation")]
         #[method(setStructuredLocation:)]
@@ -113,7 +113,7 @@ extern_methods!(
 
         #[cfg(feature = "EKParticipant")]
         #[method_id(@__retain_semantics Other organizer)]
-        pub unsafe fn organizer(&self) -> Option<Id<EKParticipant>>;
+        pub unsafe fn organizer(&self) -> Option<Retained<EKParticipant>>;
 
         #[method(availability)]
         pub unsafe fn availability(&self) -> EKEventAvailability;
@@ -128,20 +128,20 @@ extern_methods!(
         pub unsafe fn isDetached(&self) -> bool;
 
         #[method_id(@__retain_semantics Other occurrenceDate)]
-        pub unsafe fn occurrenceDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn occurrenceDate(&self) -> Option<Retained<NSDate>>;
 
         #[method(refresh)]
         pub unsafe fn refresh(&self) -> bool;
 
         #[method_id(@__retain_semantics Other birthdayContactIdentifier)]
-        pub unsafe fn birthdayContactIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn birthdayContactIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(birthdayPersonID)]
         pub unsafe fn birthdayPersonID(&self) -> NSInteger;
 
         #[deprecated = "Use birthdayContactIdentifier instead"]
         #[method_id(@__retain_semantics Other birthdayPersonUniqueID)]
-        pub unsafe fn birthdayPersonUniqueID(&self) -> Option<Id<NSString>>;
+        pub unsafe fn birthdayPersonUniqueID(&self) -> Option<Retained<NSString>>;
     }
 );
 
@@ -150,9 +150,9 @@ extern_methods!(
     #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
     unsafe impl EKEvent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

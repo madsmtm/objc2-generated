@@ -76,10 +76,10 @@ extern_methods!(
 
         #[cfg(feature = "PhotosUITypes")]
         #[method_id(@__retain_semantics Other projectType)]
-        pub unsafe fn projectType(&self) -> Id<PHProjectType>;
+        pub unsafe fn projectType(&self) -> Retained<PHProjectType>;
 
         #[method_id(@__retain_semantics Other sections)]
-        pub unsafe fn sections(&self) -> Id<NSArray<PHProjectSection>>;
+        pub unsafe fn sections(&self) -> Retained<NSArray<PHProjectSection>>;
 
         #[method(brandingEnabled)]
         pub unsafe fn brandingEnabled(&self) -> bool;
@@ -88,16 +88,16 @@ extern_methods!(
         pub unsafe fn pageNumbersEnabled(&self) -> bool;
 
         #[method_id(@__retain_semantics Other productIdentifier)]
-        pub unsafe fn productIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn productIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other themeIdentifier)]
-        pub unsafe fn themeIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn themeIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -143,19 +143,19 @@ unsafe impl NSSecureCoding for PHProjectSection {}
 extern_methods!(
     unsafe impl PHProjectSection {
         #[method_id(@__retain_semantics Other sectionContents)]
-        pub unsafe fn sectionContents(&self) -> Id<NSArray<PHProjectSectionContent>>;
+        pub unsafe fn sectionContents(&self) -> Retained<NSArray<PHProjectSectionContent>>;
 
         #[method(sectionType)]
         pub unsafe fn sectionType(&self) -> PHProjectSectionType;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -178,7 +178,7 @@ unsafe impl NSSecureCoding for PHProjectSectionContent {}
 extern_methods!(
     unsafe impl PHProjectSectionContent {
         #[method_id(@__retain_semantics Other elements)]
-        pub unsafe fn elements(&self) -> Id<NSArray<PHProjectElement>>;
+        pub unsafe fn elements(&self) -> Retained<NSArray<PHProjectElement>>;
 
         #[method(numberOfColumns)]
         pub unsafe fn numberOfColumns(&self) -> NSInteger;
@@ -188,18 +188,18 @@ extern_methods!(
 
         #[cfg(feature = "objc2-photos")]
         #[method_id(@__retain_semantics Other cloudAssetIdentifiers)]
-        pub unsafe fn cloudAssetIdentifiers(&self) -> Id<NSArray<PHCloudIdentifier>>;
+        pub unsafe fn cloudAssetIdentifiers(&self) -> Retained<NSArray<PHCloudIdentifier>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor>>;
+        pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -228,10 +228,10 @@ extern_methods!(
         pub unsafe fn placement(&self) -> CGRect;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -266,13 +266,13 @@ extern_methods!(
         pub unsafe fn quality(&self) -> c_double;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<PHProjectRegionOfInterestIdentifier>;
+        pub unsafe fn identifier(&self) -> Retained<PHProjectRegionOfInterestIdentifier>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -297,16 +297,16 @@ extern_methods!(
     unsafe impl PHProjectAssetElement {
         #[cfg(feature = "objc2-photos")]
         #[method_id(@__retain_semantics Other cloudAssetIdentifier)]
-        pub unsafe fn cloudAssetIdentifier(&self) -> Id<PHCloudIdentifier>;
+        pub unsafe fn cloudAssetIdentifier(&self) -> Retained<PHCloudIdentifier>;
 
         #[method_id(@__retain_semantics Other annotation)]
-        pub unsafe fn annotation(&self) -> Id<NSString>;
+        pub unsafe fn annotation(&self) -> Retained<NSString>;
 
         #[method(cropRect)]
         pub unsafe fn cropRect(&self) -> CGRect;
 
         #[method_id(@__retain_semantics Other regionsOfInterest)]
-        pub unsafe fn regionsOfInterest(&self) -> Id<NSArray<PHProjectRegionOfInterest>>;
+        pub unsafe fn regionsOfInterest(&self) -> Retained<NSArray<PHProjectRegionOfInterest>>;
 
         #[method(horizontallyFlipped)]
         pub unsafe fn horizontallyFlipped(&self) -> bool;
@@ -320,10 +320,10 @@ extern_methods!(
     /// Methods declared on superclass `PHProjectElement`
     unsafe impl PHProjectAssetElement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -368,10 +368,10 @@ unsafe impl NSSecureCoding for PHProjectTextElement {}
 extern_methods!(
     unsafe impl PHProjectTextElement {
         #[method_id(@__retain_semantics Other text)]
-        pub unsafe fn text(&self) -> Id<NSString>;
+        pub unsafe fn text(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other attributedText)]
-        pub unsafe fn attributedText(&self) -> Option<Id<NSAttributedString>>;
+        pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         #[method(textElementType)]
         pub unsafe fn textElementType(&self) -> PHProjectTextElementType;
@@ -382,10 +382,10 @@ extern_methods!(
     /// Methods declared on superclass `PHProjectElement`
     unsafe impl PHProjectTextElement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -409,13 +409,13 @@ unsafe impl NSSecureCoding for PHProjectJournalEntryElement {}
 extern_methods!(
     unsafe impl PHProjectJournalEntryElement {
         #[method_id(@__retain_semantics Other date)]
-        pub unsafe fn date(&self) -> Id<NSDate>;
+        pub unsafe fn date(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other assetElement)]
-        pub unsafe fn assetElement(&self) -> Option<Id<PHProjectAssetElement>>;
+        pub unsafe fn assetElement(&self) -> Option<Retained<PHProjectAssetElement>>;
 
         #[method_id(@__retain_semantics Other textElement)]
-        pub unsafe fn textElement(&self) -> Option<Id<PHProjectTextElement>>;
+        pub unsafe fn textElement(&self) -> Option<Retained<PHProjectTextElement>>;
     }
 );
 
@@ -423,10 +423,10 @@ extern_methods!(
     /// Methods declared on superclass `PHProjectElement`
     unsafe impl PHProjectJournalEntryElement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -470,7 +470,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-map-kit")]
         #[method_id(@__retain_semantics Other annotations)]
-        pub unsafe fn annotations(&self) -> Id<NSArray<ProtocolObject<dyn MKAnnotation>>>;
+        pub unsafe fn annotations(&self) -> Retained<NSArray<ProtocolObject<dyn MKAnnotation>>>;
     }
 );
 
@@ -478,9 +478,9 @@ extern_methods!(
     /// Methods declared on superclass `PHProjectElement`
     unsafe impl PHProjectMapElement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

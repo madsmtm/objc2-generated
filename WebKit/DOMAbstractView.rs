@@ -31,7 +31,7 @@ extern_methods!(
         #[cfg(all(feature = "DOMDocument", feature = "DOMNode"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other document)]
-        pub unsafe fn document(&self) -> Option<Id<DOMDocument>>;
+        pub unsafe fn document(&self) -> Option<Retained<DOMDocument>>;
     }
 );
 
@@ -41,7 +41,7 @@ extern_methods!(
     unsafe impl DOMAbstractView {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -50,6 +50,6 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMAbstractView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

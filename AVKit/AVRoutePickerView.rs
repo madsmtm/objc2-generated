@@ -104,7 +104,9 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl AVRoutePickerView {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn AVRoutePickerViewDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn AVRoutePickerViewDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -116,7 +118,7 @@ extern_methods!(
         pub unsafe fn routePickerButtonColorForState(
             &self,
             state: AVRoutePickerViewButtonState,
-        ) -> Id<NSColor>;
+        ) -> Retained<NSColor>;
 
         #[method(setRoutePickerButtonColor:forState:)]
         pub unsafe fn setRoutePickerButtonColor_forState(
@@ -132,7 +134,7 @@ extern_methods!(
         pub unsafe fn setRoutePickerButtonBordered(&self, route_picker_button_bordered: bool);
 
         #[method_id(@__retain_semantics Other activeTintColor)]
-        pub unsafe fn activeTintColor(&self) -> Option<Id<NSColor>>;
+        pub unsafe fn activeTintColor(&self) -> Option<Retained<NSColor>>;
 
         #[method(setActiveTintColor:)]
         pub unsafe fn setActiveTintColor(&self, active_tint_color: Option<&NSColor>);
@@ -160,10 +162,13 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl AVRoutePickerView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -173,7 +178,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl AVRoutePickerView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -183,7 +188,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl AVRoutePickerView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

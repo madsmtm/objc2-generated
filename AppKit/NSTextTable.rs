@@ -118,7 +118,7 @@ unsafe impl NSSecureCoding for NSTextBlock {}
 extern_methods!(
     unsafe impl NSTextBlock {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(setValue:type:forDimension:)]
         pub unsafe fn setValue_type_forDimension(
@@ -185,7 +185,7 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor>>;
+        pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         #[method(setBackgroundColor:)]
@@ -201,7 +201,7 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other borderColorForEdge:)]
-        pub unsafe fn borderColorForEdge(&self, edge: NSRectEdge) -> Option<Id<NSColor>>;
+        pub unsafe fn borderColorForEdge(&self, edge: NSRectEdge) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSTextContainer")]
         #[method(rectForLayoutAtPoint:inRect:textContainer:characterRange:)]
@@ -243,7 +243,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextBlock {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -276,10 +276,10 @@ extern_methods!(
             row_span: NSInteger,
             col: NSInteger,
             col_span: NSInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other table)]
-        pub unsafe fn table(&self) -> Id<NSTextTable>;
+        pub unsafe fn table(&self) -> Retained<NSTextTable>;
 
         #[method(startingRow)]
         pub unsafe fn startingRow(&self) -> NSInteger;
@@ -299,7 +299,7 @@ extern_methods!(
     /// Methods declared on superclass `NSTextBlock`
     unsafe impl NSTextTableBlock {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -307,7 +307,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextTableBlock {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -399,7 +399,7 @@ extern_methods!(
     /// Methods declared on superclass `NSTextBlock`
     unsafe impl NSTextTable {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -407,6 +407,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextTable {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

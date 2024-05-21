@@ -23,21 +23,21 @@ unsafe impl UIInteraction for UIScribbleInteraction {}
 extern_methods!(
     unsafe impl UIScribbleInteraction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithDelegate:)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: &ProtocolObject<dyn UIScribbleInteractionDelegate>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIScribbleInteractionDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIScribbleInteractionDelegate>>>;
 
         #[method(isHandlingWriting)]
         pub unsafe fn isHandlingWriting(&self) -> bool;

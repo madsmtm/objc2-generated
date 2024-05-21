@@ -71,26 +71,26 @@ unsafe impl NSSecureCoding for ASAuthorizationAppleIDCredential {}
 extern_methods!(
     unsafe impl ASAuthorizationAppleIDCredential {
         #[method_id(@__retain_semantics Other user)]
-        pub unsafe fn user(&self) -> Id<NSString>;
+        pub unsafe fn user(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other state)]
-        pub unsafe fn state(&self) -> Option<Id<NSString>>;
+        pub unsafe fn state(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "ASAuthorization")]
         #[method_id(@__retain_semantics Other authorizedScopes)]
-        pub unsafe fn authorizedScopes(&self) -> Id<NSArray<ASAuthorizationScope>>;
+        pub unsafe fn authorizedScopes(&self) -> Retained<NSArray<ASAuthorizationScope>>;
 
         #[method_id(@__retain_semantics Other authorizationCode)]
-        pub unsafe fn authorizationCode(&self) -> Option<Id<NSData>>;
+        pub unsafe fn authorizationCode(&self) -> Option<Retained<NSData>>;
 
         #[method_id(@__retain_semantics Other identityToken)]
-        pub unsafe fn identityToken(&self) -> Option<Id<NSData>>;
+        pub unsafe fn identityToken(&self) -> Option<Retained<NSData>>;
 
         #[method_id(@__retain_semantics Other email)]
-        pub unsafe fn email(&self) -> Option<Id<NSString>>;
+        pub unsafe fn email(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other fullName)]
-        pub unsafe fn fullName(&self) -> Option<Id<NSPersonNameComponents>>;
+        pub unsafe fn fullName(&self) -> Option<Retained<NSPersonNameComponents>>;
 
         #[method(realUserStatus)]
         pub unsafe fn realUserStatus(&self) -> ASUserDetectionStatus;
@@ -99,9 +99,9 @@ extern_methods!(
         pub unsafe fn userAgeRange(&self) -> ASUserAgeRange;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

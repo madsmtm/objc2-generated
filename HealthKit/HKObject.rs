@@ -24,26 +24,26 @@ unsafe impl NSSecureCoding for HKObject {}
 extern_methods!(
     unsafe impl HKObject {
         #[method_id(@__retain_semantics Other UUID)]
-        pub unsafe fn UUID(&self) -> Id<NSUUID>;
+        pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "HKSource")]
         #[deprecated]
         #[method_id(@__retain_semantics Other source)]
-        pub unsafe fn source(&self) -> Id<HKSource>;
+        pub unsafe fn source(&self) -> Retained<HKSource>;
 
         #[cfg(feature = "HKSourceRevision")]
         #[method_id(@__retain_semantics Other sourceRevision)]
-        pub unsafe fn sourceRevision(&self) -> Id<HKSourceRevision>;
+        pub unsafe fn sourceRevision(&self) -> Retained<HKSourceRevision>;
 
         #[cfg(feature = "HKDevice")]
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Option<Id<HKDevice>>;
+        pub unsafe fn device(&self) -> Option<Retained<HKDevice>>;
 
         #[method_id(@__retain_semantics Other metadata)]
-        pub unsafe fn metadata(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -51,7 +51,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKObject {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

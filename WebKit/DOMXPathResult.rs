@@ -59,7 +59,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other stringValue)]
-        pub unsafe fn stringValue(&self) -> Id<NSString>;
+        pub unsafe fn stringValue(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(booleanValue)]
@@ -68,7 +68,7 @@ extern_methods!(
         #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other singleNodeValue)]
-        pub unsafe fn singleNodeValue(&self) -> Option<Id<DOMNode>>;
+        pub unsafe fn singleNodeValue(&self) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
         #[method(invalidIteratorState)]
@@ -81,12 +81,12 @@ extern_methods!(
         #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other iterateNext)]
-        pub unsafe fn iterateNext(&self) -> Option<Id<DOMNode>>;
+        pub unsafe fn iterateNext(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other snapshotItem:)]
-        pub unsafe fn snapshotItem(&self, index: c_uint) -> Option<Id<DOMNode>>;
+        pub unsafe fn snapshotItem(&self, index: c_uint) -> Option<Retained<DOMNode>>;
     }
 );
 
@@ -96,7 +96,7 @@ extern_methods!(
     unsafe impl DOMXPathResult {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -105,6 +105,6 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMXPathResult {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

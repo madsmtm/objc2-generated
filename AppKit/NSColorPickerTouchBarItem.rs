@@ -31,19 +31,19 @@ extern_methods!(
         pub unsafe fn colorPickerWithIdentifier(
             identifier: &NSTouchBarItemIdentifier,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other textColorPickerWithIdentifier:)]
         pub unsafe fn textColorPickerWithIdentifier(
             identifier: &NSTouchBarItemIdentifier,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other strokeColorPickerWithIdentifier:)]
         pub unsafe fn strokeColorPickerWithIdentifier(
             identifier: &NSTouchBarItemIdentifier,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other colorPickerWithIdentifier:buttonImage:)]
@@ -51,11 +51,11 @@ extern_methods!(
             identifier: &NSTouchBarItemIdentifier,
             image: &NSImage,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other color)]
-        pub unsafe fn color(&self) -> Id<NSColor>;
+        pub unsafe fn color(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         #[method(setColor:)]
@@ -69,7 +69,7 @@ extern_methods!(
 
         #[cfg(feature = "NSColorSpace")]
         #[method_id(@__retain_semantics Other allowedColorSpaces)]
-        pub unsafe fn allowedColorSpaces(&self) -> Option<Id<NSArray<NSColorSpace>>>;
+        pub unsafe fn allowedColorSpaces(&self) -> Option<Retained<NSArray<NSColorSpace>>>;
 
         #[cfg(feature = "NSColorSpace")]
         #[method(setAllowedColorSpaces:)]
@@ -80,20 +80,20 @@ extern_methods!(
 
         #[cfg(feature = "NSColorList")]
         #[method_id(@__retain_semantics Other colorList)]
-        pub unsafe fn colorList(&self) -> Option<Id<NSColorList>>;
+        pub unsafe fn colorList(&self) -> Option<Retained<NSColorList>>;
 
         #[cfg(feature = "NSColorList")]
         #[method(setColorList:)]
         pub unsafe fn setColorList(&self, color_list: Option<&NSColorList>);
 
         #[method_id(@__retain_semantics Other customizationLabel)]
-        pub unsafe fn customizationLabel(&self) -> Id<NSString>;
+        pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -120,13 +120,16 @@ extern_methods!(
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -135,6 +138,6 @@ extern_methods!(
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSColorPickerTouchBarItem {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

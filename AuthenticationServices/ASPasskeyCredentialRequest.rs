@@ -29,7 +29,7 @@ unsafe impl NSSecureCoding for ASPasskeyCredentialRequest {}
 extern_methods!(
     unsafe impl ASPasskeyCredentialRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(
             feature = "ASAuthorizationPublicKeyCredentialConstants",
@@ -42,7 +42,7 @@ extern_methods!(
             client_data_hash: &NSData,
             user_verification_preference: &ASAuthorizationPublicKeyCredentialUserVerificationPreference,
             supported_algorithms: &NSArray<NSNumber>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "ASAuthorizationPublicKeyCredentialConstants",
@@ -54,16 +54,16 @@ extern_methods!(
             client_data_hash: &NSData,
             user_verification_preference: &ASAuthorizationPublicKeyCredentialUserVerificationPreference,
             supported_algorithms: &NSArray<NSNumber>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other clientDataHash)]
-        pub unsafe fn clientDataHash(&self) -> Id<NSData>;
+        pub unsafe fn clientDataHash(&self) -> Retained<NSData>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         #[method_id(@__retain_semantics Other userVerificationPreference)]
         pub unsafe fn userVerificationPreference(
             &self,
-        ) -> Id<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
+        ) -> Retained<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         #[method(setUserVerificationPreference:)]
@@ -73,7 +73,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other supportedAlgorithms)]
-        pub unsafe fn supportedAlgorithms(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn supportedAlgorithms(&self) -> Retained<NSArray<NSNumber>>;
     }
 );
 
@@ -81,6 +81,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASPasskeyCredentialRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

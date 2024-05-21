@@ -31,30 +31,32 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXLocationActivityMetric {
         #[method_id(@__retain_semantics Other cumulativeBestAccuracyTime)]
-        pub unsafe fn cumulativeBestAccuracyTime(&self) -> Id<NSMeasurement<NSUnitDuration>>;
+        pub unsafe fn cumulativeBestAccuracyTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
 
         #[method_id(@__retain_semantics Other cumulativeBestAccuracyForNavigationTime)]
         pub unsafe fn cumulativeBestAccuracyForNavigationTime(
             &self,
-        ) -> Id<NSMeasurement<NSUnitDuration>>;
+        ) -> Retained<NSMeasurement<NSUnitDuration>>;
 
         #[method_id(@__retain_semantics Other cumulativeNearestTenMetersAccuracyTime)]
         pub unsafe fn cumulativeNearestTenMetersAccuracyTime(
             &self,
-        ) -> Id<NSMeasurement<NSUnitDuration>>;
+        ) -> Retained<NSMeasurement<NSUnitDuration>>;
 
         #[method_id(@__retain_semantics Other cumulativeHundredMetersAccuracyTime)]
         pub unsafe fn cumulativeHundredMetersAccuracyTime(
             &self,
-        ) -> Id<NSMeasurement<NSUnitDuration>>;
+        ) -> Retained<NSMeasurement<NSUnitDuration>>;
 
         #[method_id(@__retain_semantics Other cumulativeKilometerAccuracyTime)]
-        pub unsafe fn cumulativeKilometerAccuracyTime(&self) -> Id<NSMeasurement<NSUnitDuration>>;
+        pub unsafe fn cumulativeKilometerAccuracyTime(
+            &self,
+        ) -> Retained<NSMeasurement<NSUnitDuration>>;
 
         #[method_id(@__retain_semantics Other cumulativeThreeKilometersAccuracyTime)]
         pub unsafe fn cumulativeThreeKilometersAccuracyTime(
             &self,
-        ) -> Id<NSMeasurement<NSUnitDuration>>;
+        ) -> Retained<NSMeasurement<NSUnitDuration>>;
     }
 );
 
@@ -63,9 +65,9 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXLocationActivityMetric {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -40,13 +40,13 @@ extern_methods!(
     unsafe impl GCMouse {
         #[cfg(all(feature = "GCMouseInput", feature = "GCPhysicalInputProfile"))]
         #[method_id(@__retain_semantics Other mouseInput)]
-        pub unsafe fn mouseInput(&self) -> Option<Id<GCMouseInput>>;
+        pub unsafe fn mouseInput(&self) -> Option<Retained<GCMouseInput>>;
 
         #[method_id(@__retain_semantics Other current)]
-        pub unsafe fn current() -> Option<Id<GCMouse>>;
+        pub unsafe fn current() -> Option<Retained<GCMouse>>;
 
         #[method_id(@__retain_semantics Other mice)]
-        pub unsafe fn mice() -> Id<NSArray<GCMouse>>;
+        pub unsafe fn mice() -> Retained<NSArray<GCMouse>>;
     }
 );
 
@@ -54,9 +54,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCMouse {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

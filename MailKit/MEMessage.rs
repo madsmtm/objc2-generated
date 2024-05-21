@@ -72,48 +72,49 @@ extern_methods!(
         pub unsafe fn encryptionState(&self) -> MEMessageEncryptionState;
 
         #[method_id(@__retain_semantics Other subject)]
-        pub unsafe fn subject(&self) -> Id<NSString>;
+        pub unsafe fn subject(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Other fromAddress)]
-        pub unsafe fn fromAddress(&self) -> Id<MEEmailAddress>;
+        pub unsafe fn fromAddress(&self) -> Retained<MEEmailAddress>;
 
         #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Other toAddresses)]
-        pub unsafe fn toAddresses(&self) -> Id<NSArray<MEEmailAddress>>;
+        pub unsafe fn toAddresses(&self) -> Retained<NSArray<MEEmailAddress>>;
 
         #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Other ccAddresses)]
-        pub unsafe fn ccAddresses(&self) -> Id<NSArray<MEEmailAddress>>;
+        pub unsafe fn ccAddresses(&self) -> Retained<NSArray<MEEmailAddress>>;
 
         #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Other bccAddresses)]
-        pub unsafe fn bccAddresses(&self) -> Id<NSArray<MEEmailAddress>>;
+        pub unsafe fn bccAddresses(&self) -> Retained<NSArray<MEEmailAddress>>;
 
         #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Other replyToAddresses)]
-        pub unsafe fn replyToAddresses(&self) -> Id<NSArray<MEEmailAddress>>;
+        pub unsafe fn replyToAddresses(&self) -> Retained<NSArray<MEEmailAddress>>;
 
         #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Other allRecipientAddresses)]
-        pub unsafe fn allRecipientAddresses(&self) -> Id<NSArray<MEEmailAddress>>;
+        pub unsafe fn allRecipientAddresses(&self) -> Retained<NSArray<MEEmailAddress>>;
 
         #[method_id(@__retain_semantics Other dateSent)]
-        pub unsafe fn dateSent(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn dateSent(&self) -> Option<Retained<NSDate>>;
 
         #[method_id(@__retain_semantics Other dateReceived)]
-        pub unsafe fn dateReceived(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn dateReceived(&self) -> Option<Retained<NSDate>>;
 
         #[method_id(@__retain_semantics Other headers)]
-        pub unsafe fn headers(&self) -> Option<Id<NSDictionary<NSString, NSArray<NSString>>>>;
+        pub unsafe fn headers(&self)
+            -> Option<Retained<NSDictionary<NSString, NSArray<NSString>>>>;
 
         #[method_id(@__retain_semantics Other rawData)]
-        pub unsafe fn rawData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn rawData(&self) -> Option<Retained<NSData>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

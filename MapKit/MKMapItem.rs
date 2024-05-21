@@ -23,38 +23,39 @@ extern_methods!(
     unsafe impl MKMapItem {
         #[cfg(all(feature = "MKPlacemark", feature = "objc2-core-location"))]
         #[method_id(@__retain_semantics Other placemark)]
-        pub unsafe fn placemark(&self) -> Id<MKPlacemark>;
+        pub unsafe fn placemark(&self) -> Retained<MKPlacemark>;
 
         #[method(isCurrentLocation)]
         pub unsafe fn isCurrentLocation(&self) -> bool;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other phoneNumber)]
-        pub unsafe fn phoneNumber(&self) -> Option<Id<NSString>>;
+        pub unsafe fn phoneNumber(&self) -> Option<Retained<NSString>>;
 
         #[method(setPhoneNumber:)]
         pub unsafe fn setPhoneNumber(&self, phone_number: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other url)]
-        pub unsafe fn url(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
         #[method(setUrl:)]
         pub unsafe fn setUrl(&self, url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other timeZone)]
-        pub unsafe fn timeZone(&self) -> Option<Id<NSTimeZone>>;
+        pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
         #[cfg(feature = "MKPointOfInterestCategory")]
         #[method_id(@__retain_semantics Other pointOfInterestCategory)]
-        pub unsafe fn pointOfInterestCategory(&self) -> Option<Id<MKPointOfInterestCategory>>;
+        pub unsafe fn pointOfInterestCategory(&self)
+            -> Option<Retained<MKPointOfInterestCategory>>;
 
         #[cfg(feature = "MKPointOfInterestCategory")]
         #[method(setPointOfInterestCategory:)]
@@ -64,12 +65,14 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other mapItemForCurrentLocation)]
-        pub unsafe fn mapItemForCurrentLocation() -> Id<MKMapItem>;
+        pub unsafe fn mapItemForCurrentLocation() -> Retained<MKMapItem>;
 
         #[cfg(all(feature = "MKPlacemark", feature = "objc2-core-location"))]
         #[method_id(@__retain_semantics Init initWithPlacemark:)]
-        pub unsafe fn initWithPlacemark(this: Allocated<Self>, placemark: &MKPlacemark)
-            -> Id<Self>;
+        pub unsafe fn initWithPlacemark(
+            this: Allocated<Self>,
+            placemark: &MKPlacemark,
+        ) -> Retained<Self>;
 
         #[method(openInMapsWithLaunchOptions:)]
         pub unsafe fn openInMapsWithLaunchOptions(
@@ -105,10 +108,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKMapItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

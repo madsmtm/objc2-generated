@@ -26,44 +26,44 @@ unsafe impl NSSecureCoding for HKWorkoutActivity {}
 extern_methods!(
     unsafe impl HKWorkoutActivity {
         #[method_id(@__retain_semantics Other UUID)]
-        pub unsafe fn UUID(&self) -> Id<NSUUID>;
+        pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "HKWorkoutConfiguration")]
         #[method_id(@__retain_semantics Other workoutConfiguration)]
-        pub unsafe fn workoutConfiguration(&self) -> Id<HKWorkoutConfiguration>;
+        pub unsafe fn workoutConfiguration(&self) -> Retained<HKWorkoutConfiguration>;
 
         #[method_id(@__retain_semantics Other startDate)]
-        pub unsafe fn startDate(&self) -> Id<NSDate>;
+        pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other endDate)]
-        pub unsafe fn endDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
         #[method_id(@__retain_semantics Other metadata)]
-        pub unsafe fn metadata(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         #[cfg(feature = "HKWorkout")]
         #[method_id(@__retain_semantics Other workoutEvents)]
-        pub unsafe fn workoutEvents(&self) -> Id<NSArray<HKWorkoutEvent>>;
+        pub unsafe fn workoutEvents(&self) -> Retained<NSArray<HKWorkoutEvent>>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKStatistics"))]
         #[method_id(@__retain_semantics Other allStatistics)]
-        pub unsafe fn allStatistics(&self) -> Id<NSDictionary<HKQuantityType, HKStatistics>>;
+        pub unsafe fn allStatistics(&self) -> Retained<NSDictionary<HKQuantityType, HKStatistics>>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKStatistics"))]
         #[method_id(@__retain_semantics Other statisticsForType:)]
         pub unsafe fn statisticsForType(
             &self,
             quantity_type: &HKQuantityType,
-        ) -> Option<Id<HKStatistics>>;
+        ) -> Option<Retained<HKStatistics>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "HKWorkoutConfiguration")]
         #[method_id(@__retain_semantics Init initWithWorkoutConfiguration:startDate:endDate:metadata:)]
@@ -73,7 +73,7 @@ extern_methods!(
             start_date: &NSDate,
             end_date: Option<&NSDate>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 

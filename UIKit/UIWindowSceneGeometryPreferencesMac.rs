@@ -25,10 +25,13 @@ extern_methods!(
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]
     unsafe impl UIWindowSceneGeometryPreferencesMac {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithSystemFrame:)]
-        pub unsafe fn initWithSystemFrame(this: Allocated<Self>, system_frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithSystemFrame(
+            this: Allocated<Self>,
+            system_frame: CGRect,
+        ) -> Retained<Self>;
 
         #[method(systemFrame)]
         pub unsafe fn systemFrame(&self) -> CGRect;
@@ -43,6 +46,6 @@ extern_methods!(
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]
     unsafe impl UIWindowSceneGeometryPreferencesMac {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

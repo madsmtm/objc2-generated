@@ -35,7 +35,8 @@ extern_methods!(
     unsafe impl UIVibrancyEffect {
         #[cfg(feature = "UIBlurEffect")]
         #[method_id(@__retain_semantics Other effectForBlurEffect:)]
-        pub unsafe fn effectForBlurEffect(blur_effect: &UIBlurEffect) -> Id<UIVibrancyEffect>;
+        pub unsafe fn effectForBlurEffect(blur_effect: &UIBlurEffect)
+            -> Retained<UIVibrancyEffect>;
     }
 );
 
@@ -44,10 +45,10 @@ extern_methods!(
     #[cfg(feature = "UIVisualEffect")]
     unsafe impl UIVibrancyEffect {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -91,6 +92,6 @@ extern_methods!(
         pub unsafe fn effectForBlurEffect_style(
             blur_effect: &UIBlurEffect,
             style: UIVibrancyEffectStyle,
-        ) -> Id<UIVibrancyEffect>;
+        ) -> Retained<UIVibrancyEffect>;
     }
 );

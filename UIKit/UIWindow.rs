@@ -81,11 +81,11 @@ extern_methods!(
         pub unsafe fn initWithWindowScene(
             this: Allocated<Self>,
             window_scene: &UIWindowScene,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIScene", feature = "UIWindowScene"))]
         #[method_id(@__retain_semantics Other windowScene)]
-        pub unsafe fn windowScene(&self) -> Option<Id<UIWindowScene>>;
+        pub unsafe fn windowScene(&self) -> Option<Retained<UIWindowScene>>;
 
         #[cfg(all(feature = "UIScene", feature = "UIWindowScene"))]
         #[method(setWindowScene:)]
@@ -99,7 +99,7 @@ extern_methods!(
 
         #[cfg(feature = "UIScreen")]
         #[method_id(@__retain_semantics Other screen)]
-        pub fn screen(&self) -> Id<UIScreen>;
+        pub fn screen(&self) -> Retained<UIScreen>;
 
         #[cfg(feature = "UIScreen")]
         #[method(setScreen:)]
@@ -131,7 +131,7 @@ extern_methods!(
 
         #[cfg(feature = "UIViewController")]
         #[method_id(@__retain_semantics Other rootViewController)]
-        pub fn rootViewController(&self) -> Option<Id<UIViewController>>;
+        pub fn rootViewController(&self) -> Option<Retained<UIViewController>>;
 
         #[cfg(feature = "UIViewController")]
         #[method(setRootViewController:)]
@@ -176,10 +176,13 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIWindow {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -188,10 +191,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIWindow {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -213,7 +216,7 @@ extern_methods!(
     unsafe impl UIWindow {
         #[cfg(feature = "UILayoutGuide")]
         #[method_id(@__retain_semantics Other safeAreaAspectFitLayoutGuide)]
-        pub unsafe fn safeAreaAspectFitLayoutGuide(&self) -> Id<UILayoutGuide>;
+        pub unsafe fn safeAreaAspectFitLayoutGuide(&self) -> Retained<UILayoutGuide>;
     }
 );
 

@@ -31,7 +31,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSSharingServicePickerToolbarItemDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSSharingServicePickerToolbarItemDelegate>>>;
 
         #[cfg(feature = "NSSharingService")]
         #[method(setDelegate:)]
@@ -51,7 +51,7 @@ extern_methods!(
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -60,10 +60,10 @@ extern_methods!(
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSSharingServicePickerToolbarItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -77,7 +77,7 @@ extern_protocol!(
         unsafe fn itemsForSharingServicePickerToolbarItem(
             &self,
             picker_toolbar_item: &NSSharingServicePickerToolbarItem,
-        ) -> Id<NSArray>;
+        ) -> Retained<NSArray>;
     }
 
     #[cfg(feature = "NSSharingService")]

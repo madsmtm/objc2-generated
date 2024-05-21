@@ -40,7 +40,7 @@ extern_methods!(
     unsafe impl MKDirectionsRequest {
         #[cfg(feature = "MKMapItem")]
         #[method_id(@__retain_semantics Other source)]
-        pub unsafe fn source(&self) -> Option<Id<MKMapItem>>;
+        pub unsafe fn source(&self) -> Option<Retained<MKMapItem>>;
 
         #[cfg(feature = "MKMapItem")]
         #[method(setSource:)]
@@ -48,7 +48,7 @@ extern_methods!(
 
         #[cfg(feature = "MKMapItem")]
         #[method_id(@__retain_semantics Other destination)]
-        pub unsafe fn destination(&self) -> Option<Id<MKMapItem>>;
+        pub unsafe fn destination(&self) -> Option<Retained<MKMapItem>>;
 
         #[cfg(feature = "MKMapItem")]
         #[method(setDestination:)]
@@ -60,10 +60,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKDirectionsRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -85,13 +85,13 @@ extern_methods!(
         pub unsafe fn setRequestsAlternateRoutes(&self, requests_alternate_routes: bool);
 
         #[method_id(@__retain_semantics Other departureDate)]
-        pub unsafe fn departureDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn departureDate(&self) -> Option<Retained<NSDate>>;
 
         #[method(setDepartureDate:)]
         pub unsafe fn setDepartureDate(&self, departure_date: Option<&NSDate>);
 
         #[method_id(@__retain_semantics Other arrivalDate)]
-        pub unsafe fn arrivalDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn arrivalDate(&self) -> Option<Retained<NSDate>>;
 
         #[method(setArrivalDate:)]
         pub unsafe fn setArrivalDate(&self, arrival_date: Option<&NSDate>);
@@ -114,7 +114,7 @@ extern_methods!(
     /// MKDirectionsURL
     unsafe impl MKDirectionsRequest {
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
-        pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL) -> Id<Self>;
+        pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[method(isDirectionsRequestURL:)]
         pub unsafe fn isDirectionsRequestURL(url: &NSURL) -> bool;

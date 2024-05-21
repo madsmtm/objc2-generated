@@ -57,7 +57,7 @@ extern_methods!(
         pub unsafe fn initializeCloudKitSchemaWithOptions_error(
             &self,
             options: NSPersistentCloudKitContainerSchemaInitializationOptions,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSManagedObjectID")]
         #[method(canUpdateRecordForManagedObjectWithID:)]
@@ -84,17 +84,17 @@ extern_methods!(
     #[cfg(feature = "NSPersistentContainer")]
     unsafe impl NSPersistentCloudKitContainer {
         #[method_id(@__retain_semantics Other persistentContainerWithName:)]
-        pub unsafe fn persistentContainerWithName(name: &NSString) -> Id<Self>;
+        pub unsafe fn persistentContainerWithName(name: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectModel")]
         #[method_id(@__retain_semantics Other persistentContainerWithName:managedObjectModel:)]
         pub unsafe fn persistentContainerWithName_managedObjectModel(
             name: &NSString,
             model: &NSManagedObjectModel,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithName:)]
-        pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Id<Self>;
+        pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectModel")]
         #[method_id(@__retain_semantics Init initWithName:managedObjectModel:)]
@@ -102,7 +102,7 @@ extern_methods!(
             this: Allocated<Self>,
             name: &NSString,
             model: &NSManagedObjectModel,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -111,9 +111,9 @@ extern_methods!(
     #[cfg(feature = "NSPersistentContainer")]
     unsafe impl NSPersistentCloudKitContainer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

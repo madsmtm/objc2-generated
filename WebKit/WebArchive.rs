@@ -36,31 +36,31 @@ extern_methods!(
             main_resource: Option<&WebResource>,
             subresources: Option<&NSArray>,
             subframe_archives: Option<&NSArray>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Allocated<Self>,
             data: Option<&NSData>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "WebResource")]
         #[deprecated]
         #[method_id(@__retain_semantics Other mainResource)]
-        pub unsafe fn mainResource(&self) -> Option<Id<WebResource>>;
+        pub unsafe fn mainResource(&self) -> Option<Retained<WebResource>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other subresources)]
-        pub unsafe fn subresources(&self) -> Id<NSArray>;
+        pub unsafe fn subresources(&self) -> Retained<NSArray>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other subframeArchives)]
-        pub unsafe fn subframeArchives(&self) -> Id<NSArray>;
+        pub unsafe fn subframeArchives(&self) -> Retained<NSArray>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Id<NSData>;
+        pub unsafe fn data(&self) -> Retained<NSData>;
     }
 );
 
@@ -68,9 +68,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebArchive {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

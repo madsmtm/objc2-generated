@@ -54,11 +54,11 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -66,7 +66,7 @@ extern_methods!(
         pub unsafe fn descriptorWithType_reductionType(
             loss_type: MLCLossType,
             reduction_type: MLCReductionType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -75,7 +75,7 @@ extern_methods!(
             loss_type: MLCLossType,
             reduction_type: MLCReductionType,
             weight: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -86,7 +86,7 @@ extern_methods!(
             weight: c_float,
             label_smoothing: c_float,
             class_count: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -99,6 +99,6 @@ extern_methods!(
             class_count: NSUInteger,
             epsilon: c_float,
             delta: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

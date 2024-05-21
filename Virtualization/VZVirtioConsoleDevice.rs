@@ -48,15 +48,15 @@ extern_methods!(
     #[cfg(feature = "VZConsoleDevice")]
     unsafe impl VZVirtioConsoleDevice {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn VZVirtioConsoleDeviceDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn VZVirtioConsoleDeviceDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -66,6 +66,6 @@ extern_methods!(
 
         #[cfg(feature = "VZVirtioConsolePortArray")]
         #[method_id(@__retain_semantics Other ports)]
-        pub unsafe fn ports(&self) -> Id<VZVirtioConsolePortArray>;
+        pub unsafe fn ports(&self) -> Retained<VZVirtioConsolePortArray>;
     }
 );

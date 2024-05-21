@@ -50,7 +50,7 @@ extern_methods!(
     unsafe impl GCMicroGamepad {
         #[cfg(feature = "GCController")]
         #[method_id(@__retain_semantics Other controller)]
-        pub unsafe fn controller(&self) -> Option<Id<GCController>>;
+        pub unsafe fn controller(&self) -> Option<Retained<GCController>>;
 
         #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
         #[method(valueChangedHandler)]
@@ -66,23 +66,23 @@ extern_methods!(
         #[cfg(feature = "GCMicroGamepadSnapshot")]
         #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController capture] instead"]
         #[method_id(@__retain_semantics Other saveSnapshot)]
-        pub unsafe fn saveSnapshot(&self) -> Id<GCMicroGamepadSnapshot>;
+        pub unsafe fn saveSnapshot(&self) -> Retained<GCMicroGamepadSnapshot>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other dpad)]
-        pub unsafe fn dpad(&self) -> Id<GCControllerDirectionPad>;
+        pub unsafe fn dpad(&self) -> Retained<GCControllerDirectionPad>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other buttonA)]
-        pub unsafe fn buttonA(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn buttonA(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other buttonX)]
-        pub unsafe fn buttonX(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn buttonX(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other buttonMenu)]
-        pub unsafe fn buttonMenu(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn buttonMenu(&self) -> Retained<GCControllerButtonInput>;
 
         #[method(reportsAbsoluteDpadValues)]
         pub unsafe fn reportsAbsoluteDpadValues(&self) -> bool;
@@ -106,9 +106,9 @@ extern_methods!(
     #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl GCMicroGamepad {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

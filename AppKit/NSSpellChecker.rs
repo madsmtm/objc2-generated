@@ -115,7 +115,7 @@ unsafe impl NSObjectProtocol for NSSpellChecker {}
 extern_methods!(
     unsafe impl NSSpellChecker {
         #[method_id(@__retain_semantics Other sharedSpellChecker)]
-        pub unsafe fn sharedSpellChecker() -> Id<NSSpellChecker>;
+        pub unsafe fn sharedSpellChecker() -> Retained<NSSpellChecker>;
 
         #[method(sharedSpellCheckerExists)]
         pub unsafe fn sharedSpellCheckerExists() -> bool;
@@ -156,7 +156,7 @@ extern_methods!(
             language: Option<&NSString>,
             wrap_flag: bool,
             tag: NSInteger,
-            details: Option<&mut Option<Id<NSArray<NSDictionary<NSString, AnyObject>>>>>,
+            details: Option<&mut Option<Retained<NSArray<NSDictionary<NSString, AnyObject>>>>>,
         ) -> NSRange;
 
         #[method_id(@__retain_semantics Other checkString:range:types:options:inSpellDocumentWithTag:orthography:wordCount:)]
@@ -167,9 +167,9 @@ extern_methods!(
             checking_types: NSTextCheckingTypes,
             options: Option<&NSDictionary<NSTextCheckingOptionKey, AnyObject>>,
             tag: NSInteger,
-            orthography: Option<&mut Option<Id<NSOrthography>>>,
+            orthography: Option<&mut Option<Retained<NSOrthography>>>,
             word_count: *mut NSInteger,
-        ) -> Id<NSArray<NSTextCheckingResult>>;
+        ) -> Retained<NSArray<NSTextCheckingResult>>;
 
         #[cfg(feature = "block2")]
         #[method(requestCheckingOfString:range:types:options:inSpellDocumentWithTag:completionHandler:)]
@@ -215,16 +215,18 @@ extern_methods!(
             options: Option<&NSDictionary<NSTextCheckingOptionKey, AnyObject>>,
             location: NSPoint,
             view: &NSView,
-        ) -> Option<Id<NSMenu>>;
+        ) -> Option<Retained<NSMenu>>;
 
         #[method_id(@__retain_semantics Other userQuotesArrayForLanguage:)]
         pub unsafe fn userQuotesArrayForLanguage(
             &self,
             language: &NSString,
-        ) -> Id<NSArray<NSString>>;
+        ) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other userReplacementsDictionary)]
-        pub unsafe fn userReplacementsDictionary(&self) -> Id<NSDictionary<NSString, NSString>>;
+        pub unsafe fn userReplacementsDictionary(
+            &self,
+        ) -> Retained<NSDictionary<NSString, NSString>>;
 
         #[method(updateSpellingPanelWithMisspelledWord:)]
         pub unsafe fn updateSpellingPanelWithMisspelledWord(&self, word: &NSString);
@@ -238,11 +240,11 @@ extern_methods!(
 
         #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
         #[method_id(@__retain_semantics Other spellingPanel)]
-        pub unsafe fn spellingPanel(&self, mtm: MainThreadMarker) -> Id<NSPanel>;
+        pub unsafe fn spellingPanel(&self, mtm: MainThreadMarker) -> Retained<NSPanel>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other accessoryView)]
-        pub unsafe fn accessoryView(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
+        pub unsafe fn accessoryView(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setAccessoryView:)]
@@ -250,14 +252,14 @@ extern_methods!(
 
         #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
         #[method_id(@__retain_semantics Other substitutionsPanel)]
-        pub unsafe fn substitutionsPanel(&self, mtm: MainThreadMarker) -> Id<NSPanel>;
+        pub unsafe fn substitutionsPanel(&self, mtm: MainThreadMarker) -> Retained<NSPanel>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other substitutionsPanelAccessoryViewController)]
         pub unsafe fn substitutionsPanelAccessoryViewController(
             &self,
             mtm: MainThreadMarker,
-        ) -> Option<Id<NSViewController>>;
+        ) -> Option<Retained<NSViewController>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method(setSubstitutionsPanelAccessoryViewController:)]
@@ -280,7 +282,7 @@ extern_methods!(
         pub unsafe fn ignoredWordsInSpellDocumentWithTag(
             &self,
             tag: NSInteger,
-        ) -> Option<Id<NSArray<NSString>>>;
+        ) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setIgnoredWords:inSpellDocumentWithTag:)]
         pub unsafe fn setIgnoredWords_inSpellDocumentWithTag(
@@ -296,7 +298,7 @@ extern_methods!(
             string: &NSString,
             language: Option<&NSString>,
             tag: NSInteger,
-        ) -> Option<Id<NSArray<NSString>>>;
+        ) -> Option<Retained<NSArray<NSString>>>;
 
         #[method_id(@__retain_semantics Other correctionForWordRange:inString:language:inSpellDocumentWithTag:)]
         pub unsafe fn correctionForWordRange_inString_language_inSpellDocumentWithTag(
@@ -305,7 +307,7 @@ extern_methods!(
             string: &NSString,
             language: &NSString,
             tag: NSInteger,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other completionsForPartialWordRange:inString:language:inSpellDocumentWithTag:)]
         pub unsafe fn completionsForPartialWordRange_inString_language_inSpellDocumentWithTag(
@@ -314,7 +316,7 @@ extern_methods!(
             string: &NSString,
             language: Option<&NSString>,
             tag: NSInteger,
-        ) -> Option<Id<NSArray<NSString>>>;
+        ) -> Option<Retained<NSArray<NSString>>>;
 
         #[method_id(@__retain_semantics Other languageForWordRange:inString:orthography:)]
         pub unsafe fn languageForWordRange_inString_orthography(
@@ -322,7 +324,7 @@ extern_methods!(
             range: NSRange,
             string: &NSString,
             orthography: Option<&NSOrthography>,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[method(closeSpellDocumentWithTag:)]
         pub unsafe fn closeSpellDocumentWithTag(&self, tag: NSInteger);
@@ -377,10 +379,10 @@ extern_methods!(
         ) -> bool;
 
         #[method_id(@__retain_semantics Other availableLanguages)]
-        pub unsafe fn availableLanguages(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn availableLanguages(&self) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other userPreferredLanguages)]
-        pub unsafe fn userPreferredLanguages(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn userPreferredLanguages(&self) -> Retained<NSArray<NSString>>;
 
         #[method(automaticallyIdentifiesLanguages)]
         pub unsafe fn automaticallyIdentifiesLanguages(&self) -> bool;
@@ -428,7 +430,7 @@ extern_methods!(
         pub unsafe fn isAutomaticInlinePredictionEnabled() -> bool;
 
         #[method_id(@__retain_semantics Other language)]
-        pub unsafe fn language(&self) -> Id<NSString>;
+        pub unsafe fn language(&self) -> Retained<NSString>;
 
         #[method(setLanguage:)]
         pub unsafe fn setLanguage(&self, language: &NSString) -> bool;
@@ -439,10 +441,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSpellChecker {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -491,7 +493,7 @@ extern_methods!(
     unsafe impl NSSpellChecker {
         #[deprecated = "Use -guessesForWordRange:inString:language:inSpellDocumentWithTag instead"]
         #[method_id(@__retain_semantics Other guessesForWord:)]
-        pub unsafe fn guessesForWord(&self, word: Option<&NSString>) -> Option<Id<NSArray>>;
+        pub unsafe fn guessesForWord(&self, word: Option<&NSString>) -> Option<Retained<NSArray>>;
 
         #[deprecated]
         #[method(forgetWord:)]

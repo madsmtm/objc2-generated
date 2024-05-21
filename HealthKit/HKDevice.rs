@@ -58,28 +58,28 @@ unsafe impl NSSecureCoding for HKDevice {}
 extern_methods!(
     unsafe impl HKDevice {
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other manufacturer)]
-        pub unsafe fn manufacturer(&self) -> Option<Id<NSString>>;
+        pub unsafe fn manufacturer(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other model)]
-        pub unsafe fn model(&self) -> Option<Id<NSString>>;
+        pub unsafe fn model(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other hardwareVersion)]
-        pub unsafe fn hardwareVersion(&self) -> Option<Id<NSString>>;
+        pub unsafe fn hardwareVersion(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other firmwareVersion)]
-        pub unsafe fn firmwareVersion(&self) -> Option<Id<NSString>>;
+        pub unsafe fn firmwareVersion(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other softwareVersion)]
-        pub unsafe fn softwareVersion(&self) -> Option<Id<NSString>>;
+        pub unsafe fn softwareVersion(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other localIdentifier)]
-        pub unsafe fn localIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other UDIDeviceIdentifier)]
-        pub unsafe fn UDIDeviceIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn UDIDeviceIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Init initWithName:manufacturer:model:hardwareVersion:firmwareVersion:softwareVersion:localIdentifier:UDIDeviceIdentifier:)]
         pub unsafe fn initWithName_manufacturer_model_hardwareVersion_firmwareVersion_softwareVersion_localIdentifier_UDIDeviceIdentifier(
@@ -92,13 +92,13 @@ extern_methods!(
             software_version: Option<&NSString>,
             local_identifier: Option<&NSString>,
             udi_device_identifier: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other localDevice)]
-        pub unsafe fn localDevice() -> Id<HKDevice>;
+        pub unsafe fn localDevice() -> Retained<HKDevice>;
     }
 );
 
@@ -106,6 +106,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKDevice {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

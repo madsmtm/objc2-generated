@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl NSPersonNameComponents {
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other namePrefix)]
-        pub unsafe fn namePrefix(&self) -> Option<Id<NSString>>;
+        pub unsafe fn namePrefix(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setNamePrefix:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other givenName)]
-        pub unsafe fn givenName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn givenName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setGivenName:)]
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other middleName)]
-        pub unsafe fn middleName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn middleName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setMiddleName:)]
@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other familyName)]
-        pub unsafe fn familyName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn familyName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setFamilyName:)]
@@ -61,7 +61,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other nameSuffix)]
-        pub unsafe fn nameSuffix(&self) -> Option<Id<NSString>>;
+        pub unsafe fn nameSuffix(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setNameSuffix:)]
@@ -69,14 +69,14 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other nickname)]
-        pub unsafe fn nickname(&self) -> Option<Id<NSString>>;
+        pub unsafe fn nickname(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setNickname:)]
         pub unsafe fn setNickname(&self, nickname: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other phoneticRepresentation)]
-        pub unsafe fn phoneticRepresentation(&self) -> Option<Id<NSPersonNameComponents>>;
+        pub unsafe fn phoneticRepresentation(&self) -> Option<Retained<NSPersonNameComponents>>;
 
         #[method(setPhoneticRepresentation:)]
         pub unsafe fn setPhoneticRepresentation(
@@ -90,9 +90,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPersonNameComponents {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

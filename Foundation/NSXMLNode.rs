@@ -50,10 +50,10 @@ unsafe impl NSObjectProtocol for NSXMLNode {}
 extern_methods!(
     unsafe impl NSXMLNode {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithKind:)]
-        pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Id<Self>;
+        pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
 
         #[cfg(feature = "NSXMLNodeOptions")]
         #[method_id(@__retain_semantics Init initWithKind:options:)]
@@ -61,29 +61,29 @@ extern_methods!(
             this: Allocated<Self>,
             kind: NSXMLNodeKind,
             options: NSXMLNodeOptions,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other document)]
-        pub unsafe fn document() -> Id<AnyObject>;
+        pub unsafe fn document() -> Retained<AnyObject>;
 
         #[cfg(feature = "NSXMLElement")]
         #[method_id(@__retain_semantics Other documentWithRootElement:)]
-        pub unsafe fn documentWithRootElement(element: &NSXMLElement) -> Id<AnyObject>;
+        pub unsafe fn documentWithRootElement(element: &NSXMLElement) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other elementWithName:)]
-        pub unsafe fn elementWithName(name: &NSString) -> Id<AnyObject>;
+        pub unsafe fn elementWithName(name: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other elementWithName:URI:)]
-        pub unsafe fn elementWithName_URI(name: &NSString, uri: &NSString) -> Id<AnyObject>;
+        pub unsafe fn elementWithName_URI(name: &NSString, uri: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other elementWithName:stringValue:)]
         pub unsafe fn elementWithName_stringValue(
             name: &NSString,
             string: &NSString,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other elementWithName:children:attributes:)]
@@ -91,14 +91,14 @@ extern_methods!(
             name: &NSString,
             children: Option<&NSArray<NSXMLNode>>,
             attributes: Option<&NSArray<NSXMLNode>>,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other attributeWithName:stringValue:)]
         pub unsafe fn attributeWithName_stringValue(
             name: &NSString,
             string_value: &NSString,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other attributeWithName:URI:stringValue:)]
@@ -106,54 +106,54 @@ extern_methods!(
             name: &NSString,
             uri: &NSString,
             string_value: &NSString,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other namespaceWithName:stringValue:)]
         pub unsafe fn namespaceWithName_stringValue(
             name: &NSString,
             string_value: &NSString,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other processingInstructionWithName:stringValue:)]
         pub unsafe fn processingInstructionWithName_stringValue(
             name: &NSString,
             string_value: &NSString,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other commentWithStringValue:)]
-        pub unsafe fn commentWithStringValue(string_value: &NSString) -> Id<AnyObject>;
+        pub unsafe fn commentWithStringValue(string_value: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other textWithStringValue:)]
-        pub unsafe fn textWithStringValue(string_value: &NSString) -> Id<AnyObject>;
+        pub unsafe fn textWithStringValue(string_value: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other DTDNodeWithXMLString:)]
-        pub unsafe fn DTDNodeWithXMLString(string: &NSString) -> Option<Id<AnyObject>>;
+        pub unsafe fn DTDNodeWithXMLString(string: &NSString) -> Option<Retained<AnyObject>>;
 
         #[method(kind)]
         pub unsafe fn kind(&self) -> NSXMLNodeKind;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other objectValue)]
-        pub unsafe fn objectValue(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn objectValue(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setObjectValue:)]
         pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringValue)]
-        pub unsafe fn stringValue(&self) -> Option<Id<NSString>>;
+        pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setStringValue:)]
@@ -171,51 +171,51 @@ extern_methods!(
 
         #[cfg(feature = "NSXMLDocument")]
         #[method_id(@__retain_semantics Other rootDocument)]
-        pub unsafe fn rootDocument(&self) -> Option<Id<NSXMLDocument>>;
+        pub unsafe fn rootDocument(&self) -> Option<Retained<NSXMLDocument>>;
 
         #[method_id(@__retain_semantics Other parent)]
-        pub unsafe fn parent(&self) -> Option<Id<NSXMLNode>>;
+        pub unsafe fn parent(&self) -> Option<Retained<NSXMLNode>>;
 
         #[method(childCount)]
         pub unsafe fn childCount(&self) -> NSUInteger;
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other children)]
-        pub unsafe fn children(&self) -> Option<Id<NSArray<NSXMLNode>>>;
+        pub unsafe fn children(&self) -> Option<Retained<NSArray<NSXMLNode>>>;
 
         #[method_id(@__retain_semantics Other childAtIndex:)]
-        pub unsafe fn childAtIndex(&self, index: NSUInteger) -> Option<Id<NSXMLNode>>;
+        pub unsafe fn childAtIndex(&self, index: NSUInteger) -> Option<Retained<NSXMLNode>>;
 
         #[method_id(@__retain_semantics Other previousSibling)]
-        pub unsafe fn previousSibling(&self) -> Option<Id<NSXMLNode>>;
+        pub unsafe fn previousSibling(&self) -> Option<Retained<NSXMLNode>>;
 
         #[method_id(@__retain_semantics Other nextSibling)]
-        pub unsafe fn nextSibling(&self) -> Option<Id<NSXMLNode>>;
+        pub unsafe fn nextSibling(&self) -> Option<Retained<NSXMLNode>>;
 
         #[method_id(@__retain_semantics Other previousNode)]
-        pub unsafe fn previousNode(&self) -> Option<Id<NSXMLNode>>;
+        pub unsafe fn previousNode(&self) -> Option<Retained<NSXMLNode>>;
 
         #[method_id(@__retain_semantics Other nextNode)]
-        pub unsafe fn nextNode(&self) -> Option<Id<NSXMLNode>>;
+        pub unsafe fn nextNode(&self) -> Option<Retained<NSXMLNode>>;
 
         #[method(detach)]
         pub unsafe fn detach(&self);
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other XPath)]
-        pub unsafe fn XPath(&self) -> Option<Id<NSString>>;
+        pub unsafe fn XPath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other localName)]
-        pub unsafe fn localName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other prefix)]
-        pub unsafe fn prefix(&self) -> Option<Id<NSString>>;
+        pub unsafe fn prefix(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other URI)]
-        pub unsafe fn URI(&self) -> Option<Id<NSString>>;
+        pub unsafe fn URI(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setURI:)]
@@ -223,38 +223,41 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other localNameForName:)]
-        pub unsafe fn localNameForName(name: &NSString) -> Id<NSString>;
+        pub unsafe fn localNameForName(name: &NSString) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other prefixForName:)]
-        pub unsafe fn prefixForName(name: &NSString) -> Option<Id<NSString>>;
+        pub unsafe fn prefixForName(name: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other predefinedNamespaceForPrefix:)]
-        pub unsafe fn predefinedNamespaceForPrefix(name: &NSString) -> Option<Id<NSXMLNode>>;
+        pub unsafe fn predefinedNamespaceForPrefix(name: &NSString) -> Option<Retained<NSXMLNode>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other description)]
-        pub unsafe fn description(&self) -> Id<NSString>;
+        pub unsafe fn description(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other XMLString)]
-        pub unsafe fn XMLString(&self) -> Id<NSString>;
+        pub unsafe fn XMLString(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSString", feature = "NSXMLNodeOptions"))]
         #[method_id(@__retain_semantics Other XMLStringWithOptions:)]
-        pub unsafe fn XMLStringWithOptions(&self, options: NSXMLNodeOptions) -> Id<NSString>;
+        pub unsafe fn XMLStringWithOptions(&self, options: NSXMLNodeOptions) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other canonicalXMLStringPreservingComments:)]
-        pub unsafe fn canonicalXMLStringPreservingComments(&self, comments: bool) -> Id<NSString>;
+        pub unsafe fn canonicalXMLStringPreservingComments(
+            &self,
+            comments: bool,
+        ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSArray", feature = "NSError", feature = "NSString"))]
         #[method_id(@__retain_semantics Other nodesForXPath:error:_)]
         pub unsafe fn nodesForXPath_error(
             &self,
             xpath: &NSString,
-        ) -> Result<Id<NSArray<NSXMLNode>>, Id<NSError>>;
+        ) -> Result<Retained<NSArray<NSXMLNode>>, Retained<NSError>>;
 
         #[cfg(all(
             feature = "NSArray",
@@ -267,14 +270,14 @@ extern_methods!(
             &self,
             xquery: &NSString,
             constants: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Result<Id<NSArray>, Id<NSError>>;
+        ) -> Result<Retained<NSArray>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSError", feature = "NSString"))]
         #[method_id(@__retain_semantics Other objectsForXQuery:error:_)]
         pub unsafe fn objectsForXQuery_error(
             &self,
             xquery: &NSString,
-        ) -> Result<Id<NSArray>, Id<NSError>>;
+        ) -> Result<Retained<NSArray>, Retained<NSError>>;
     }
 );
 
@@ -282,6 +285,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSXMLNode {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -27,17 +27,17 @@ extern_methods!(
         #[cfg(feature = "MLCLossDescriptor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptor)]
-        pub unsafe fn descriptor(&self) -> Id<MLCLossDescriptor>;
+        pub unsafe fn descriptor(&self) -> Retained<MLCLossDescriptor>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other weights)]
-        pub unsafe fn weights(&self) -> Option<Id<MLCTensor>>;
+        pub unsafe fn weights(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCLossDescriptor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithDescriptor:)]
-        pub unsafe fn layerWithDescriptor(loss_descriptor: &MLCLossDescriptor) -> Id<Self>;
+        pub unsafe fn layerWithDescriptor(loss_descriptor: &MLCLossDescriptor) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCLossDescriptor", feature = "MLCTensor"))]
         #[deprecated]
@@ -45,7 +45,7 @@ extern_methods!(
         pub unsafe fn layerWithDescriptor_weights(
             loss_descriptor: &MLCLossDescriptor,
             weights: &MLCTensor,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -55,7 +55,7 @@ extern_methods!(
             label_smoothing: c_float,
             class_count: NSUInteger,
             weight: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
         #[deprecated]
@@ -65,7 +65,7 @@ extern_methods!(
             label_smoothing: c_float,
             class_count: NSUInteger,
             weights: Option<&MLCTensor>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -75,7 +75,7 @@ extern_methods!(
             label_smoothing: c_float,
             class_count: NSUInteger,
             weight: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
         #[deprecated]
@@ -85,7 +85,7 @@ extern_methods!(
             label_smoothing: c_float,
             class_count: NSUInteger,
             weights: Option<&MLCTensor>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -94,7 +94,7 @@ extern_methods!(
             reduction_type: MLCReductionType,
             label_smoothing: c_float,
             weight: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
         #[deprecated]
@@ -103,7 +103,7 @@ extern_methods!(
             reduction_type: MLCReductionType,
             label_smoothing: c_float,
             weights: Option<&MLCTensor>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -112,7 +112,7 @@ extern_methods!(
             reduction_type: MLCReductionType,
             epsilon: c_float,
             weight: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
         #[deprecated]
@@ -121,7 +121,7 @@ extern_methods!(
             reduction_type: MLCReductionType,
             epsilon: c_float,
             weights: Option<&MLCTensor>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -130,7 +130,7 @@ extern_methods!(
             reduction_type: MLCReductionType,
             delta: c_float,
             weight: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
         #[deprecated]
@@ -139,7 +139,7 @@ extern_methods!(
             reduction_type: MLCReductionType,
             delta: c_float,
             weights: Option<&MLCTensor>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -147,7 +147,7 @@ extern_methods!(
         pub unsafe fn meanAbsoluteErrorLossWithReductionType_weight(
             reduction_type: MLCReductionType,
             weight: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
         #[deprecated]
@@ -155,7 +155,7 @@ extern_methods!(
         pub unsafe fn meanAbsoluteErrorLossWithReductionType_weights(
             reduction_type: MLCReductionType,
             weights: Option<&MLCTensor>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -163,7 +163,7 @@ extern_methods!(
         pub unsafe fn meanSquaredErrorLossWithReductionType_weight(
             reduction_type: MLCReductionType,
             weight: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
         #[deprecated]
@@ -171,7 +171,7 @@ extern_methods!(
         pub unsafe fn meanSquaredErrorLossWithReductionType_weights(
             reduction_type: MLCReductionType,
             weights: Option<&MLCTensor>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -179,7 +179,7 @@ extern_methods!(
         pub unsafe fn hingeLossWithReductionType_weight(
             reduction_type: MLCReductionType,
             weight: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
         #[deprecated]
@@ -187,7 +187,7 @@ extern_methods!(
         pub unsafe fn hingeLossWithReductionType_weights(
             reduction_type: MLCReductionType,
             weights: Option<&MLCTensor>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -195,7 +195,7 @@ extern_methods!(
         pub unsafe fn cosineDistanceLossWithReductionType_weight(
             reduction_type: MLCReductionType,
             weight: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
         #[deprecated]
@@ -203,7 +203,7 @@ extern_methods!(
         pub unsafe fn cosineDistanceLossWithReductionType_weights(
             reduction_type: MLCReductionType,
             weights: Option<&MLCTensor>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -213,10 +213,10 @@ extern_methods!(
     unsafe impl MLCLossLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

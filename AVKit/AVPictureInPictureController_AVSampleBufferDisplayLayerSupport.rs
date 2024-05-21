@@ -50,6 +50,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sampleBufferPlaybackDelegate)]
         pub unsafe fn sampleBufferPlaybackDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn AVPictureInPictureSampleBufferPlaybackDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn AVPictureInPictureSampleBufferPlaybackDelegate>>>;
     }
 );

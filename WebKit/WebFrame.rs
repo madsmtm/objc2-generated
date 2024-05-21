@@ -36,23 +36,23 @@ extern_methods!(
             name: Option<&NSString>,
             view: Option<&WebFrameView>,
             web_view: Option<&WebView>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[method_id(@__retain_semantics Other webView)]
-        pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Id<WebView>>;
+        pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Retained<WebView>>;
 
         #[cfg(all(feature = "WebFrameView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[method_id(@__retain_semantics Other frameView)]
-        pub unsafe fn frameView(&self, mtm: MainThreadMarker) -> Option<Id<WebFrameView>>;
+        pub unsafe fn frameView(&self, mtm: MainThreadMarker) -> Option<Retained<WebFrameView>>;
 
         #[cfg(all(
             feature = "DOMDocument",
@@ -62,7 +62,7 @@ extern_methods!(
         ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other DOMDocument)]
-        pub unsafe fn DOMDocument(&self) -> Option<Id<DOMDocument>>;
+        pub unsafe fn DOMDocument(&self) -> Option<Retained<DOMDocument>>;
 
         #[cfg(all(
             feature = "DOMElement",
@@ -73,7 +73,7 @@ extern_methods!(
         ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other frameElement)]
-        pub unsafe fn frameElement(&self) -> Option<Id<DOMHTMLElement>>;
+        pub unsafe fn frameElement(&self) -> Option<Retained<DOMHTMLElement>>;
 
         #[deprecated]
         #[method(loadRequest:)]
@@ -110,12 +110,12 @@ extern_methods!(
         #[cfg(feature = "WebDataSource")]
         #[deprecated]
         #[method_id(@__retain_semantics Other dataSource)]
-        pub unsafe fn dataSource(&self) -> Option<Id<WebDataSource>>;
+        pub unsafe fn dataSource(&self) -> Option<Retained<WebDataSource>>;
 
         #[cfg(feature = "WebDataSource")]
         #[deprecated]
         #[method_id(@__retain_semantics Other provisionalDataSource)]
-        pub unsafe fn provisionalDataSource(&self) -> Option<Id<WebDataSource>>;
+        pub unsafe fn provisionalDataSource(&self) -> Option<Retained<WebDataSource>>;
 
         #[deprecated]
         #[method(stopLoading)]
@@ -131,20 +131,20 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other findFrameNamed:)]
-        pub unsafe fn findFrameNamed(&self, name: Option<&NSString>) -> Option<Id<WebFrame>>;
+        pub unsafe fn findFrameNamed(&self, name: Option<&NSString>) -> Option<Retained<WebFrame>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other parentFrame)]
-        pub unsafe fn parentFrame(&self) -> Option<Id<WebFrame>>;
+        pub unsafe fn parentFrame(&self) -> Option<Retained<WebFrame>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other childFrames)]
-        pub unsafe fn childFrames(&self) -> Id<NSArray>;
+        pub unsafe fn childFrames(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "WebScriptObject")]
         #[deprecated]
         #[method_id(@__retain_semantics Other windowObject)]
-        pub unsafe fn windowObject(&self) -> Option<Id<WebScriptObject>>;
+        pub unsafe fn windowObject(&self) -> Option<Retained<WebScriptObject>>;
     }
 );
 
@@ -152,9 +152,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebFrame {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

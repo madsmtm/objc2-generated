@@ -8,7 +8,7 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait MEContentBlocker: NSObjectProtocol {
         #[method_id(@__retain_semantics Other contentRulesJSON)]
-        unsafe fn contentRulesJSON(&self) -> Id<NSData>;
+        unsafe fn contentRulesJSON(&self) -> Retained<NSData>;
     }
 
     unsafe impl ProtocolType for dyn MEContentBlocker {}

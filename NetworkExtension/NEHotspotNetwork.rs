@@ -45,10 +45,10 @@ unsafe impl NSObjectProtocol for NEHotspotNetwork {}
 extern_methods!(
     unsafe impl NEHotspotNetwork {
         #[method_id(@__retain_semantics Other SSID)]
-        pub unsafe fn SSID(&self) -> Id<NSString>;
+        pub unsafe fn SSID(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other BSSID)]
-        pub unsafe fn BSSID(&self) -> Id<NSString>;
+        pub unsafe fn BSSID(&self) -> Retained<NSString>;
 
         #[method(securityType)]
         pub unsafe fn securityType(&self) -> NEHotspotNetworkSecurityType;
@@ -65,9 +65,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEHotspotNetwork {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

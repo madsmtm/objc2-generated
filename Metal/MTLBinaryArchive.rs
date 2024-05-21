@@ -51,7 +51,7 @@ unsafe impl NSObjectProtocol for MTLBinaryArchiveDescriptor {}
 extern_methods!(
     unsafe impl MTLBinaryArchiveDescriptor {
         #[method_id(@__retain_semantics Other url)]
-        pub fn url(&self) -> Option<Id<NSURL>>;
+        pub fn url(&self) -> Option<Retained<NSURL>>;
 
         #[method(setUrl:)]
         pub fn setUrl(&self, url: Option<&NSURL>);
@@ -62,16 +62,16 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLBinaryArchiveDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Allocated<Self>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub fn new() -> Id<Self>;
+        pub fn new() -> Retained<Self>;
     }
 );
 
-impl DefaultId for MTLBinaryArchiveDescriptor {
+impl DefaultRetained for MTLBinaryArchiveDescriptor {
     #[inline]
-    fn default_id() -> Id<Self> {
+    fn default_id() -> Retained<Self> {
         Self::new()
     }
 }
@@ -79,38 +79,38 @@ impl DefaultId for MTLBinaryArchiveDescriptor {
 extern_protocol!(
     pub unsafe trait MTLBinaryArchive: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other label)]
-        fn label(&self) -> Option<Id<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
 
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
-        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "MTLComputePipeline")]
         #[method(addComputePipelineFunctionsWithDescriptor:error:_)]
         fn addComputePipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &MTLComputePipelineDescriptor,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "MTLRenderPipeline")]
         #[method(addRenderPipelineFunctionsWithDescriptor:error:_)]
         fn addRenderPipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &MTLRenderPipelineDescriptor,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "MTLRenderPipeline")]
         #[method(addTileRenderPipelineFunctionsWithDescriptor:error:_)]
         unsafe fn addTileRenderPipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &MTLTileRenderPipelineDescriptor,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(serializeToURL:error:_)]
-        fn serializeToURL_error(&self, url: &NSURL) -> Result<(), Id<NSError>>;
+        fn serializeToURL_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "MTLFunctionDescriptor", feature = "MTLLibrary"))]
         #[method(addFunctionWithDescriptor:library:error:_)]
@@ -118,7 +118,7 @@ extern_protocol!(
             &self,
             descriptor: &MTLFunctionDescriptor,
             library: &ProtocolObject<dyn MTLLibrary>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
     }
 
     unsafe impl ProtocolType for dyn MTLBinaryArchive {}

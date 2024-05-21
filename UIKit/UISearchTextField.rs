@@ -192,7 +192,7 @@ extern_methods!(
     ))]
     unsafe impl UISearchTextField {
         #[method_id(@__retain_semantics Other tokens)]
-        pub unsafe fn tokens(&self) -> Id<NSArray<UISearchToken>>;
+        pub unsafe fn tokens(&self) -> Retained<NSArray<UISearchToken>>;
 
         #[method(setTokens:)]
         pub unsafe fn setTokens(&self, tokens: &NSArray<UISearchToken>);
@@ -205,15 +205,21 @@ extern_methods!(
 
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other positionOfTokenAtIndex:)]
-        pub unsafe fn positionOfTokenAtIndex(&self, token_index: NSInteger) -> Id<UITextPosition>;
+        pub unsafe fn positionOfTokenAtIndex(
+            &self,
+            token_index: NSInteger,
+        ) -> Retained<UITextPosition>;
 
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other tokensInRange:)]
-        pub unsafe fn tokensInRange(&self, text_range: &UITextRange) -> Id<NSArray<UISearchToken>>;
+        pub unsafe fn tokensInRange(
+            &self,
+            text_range: &UITextRange,
+        ) -> Retained<NSArray<UISearchToken>>;
 
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other textualRange)]
-        pub unsafe fn textualRange(&self) -> Id<UITextRange>;
+        pub unsafe fn textualRange(&self) -> Retained<UITextRange>;
 
         #[cfg(feature = "UITextInput")]
         #[method(replaceTextualPortionOfRange:withToken:atIndex:)]
@@ -226,7 +232,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other tokenBackgroundColor)]
-        pub unsafe fn tokenBackgroundColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn tokenBackgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setTokenBackgroundColor:)]
@@ -248,7 +254,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other searchSuggestions)]
         pub unsafe fn searchSuggestions(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn UISearchSuggestion>>>>;
+        ) -> Option<Retained<NSArray<ProtocolObject<dyn UISearchSuggestion>>>>;
 
         #[cfg(feature = "UISearchSuggestion")]
         #[method(setSearchSuggestions:)]
@@ -269,10 +275,13 @@ extern_methods!(
     ))]
     unsafe impl UISearchTextField {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Init initWithFrame:primaryAction:)]
@@ -280,7 +289,7 @@ extern_methods!(
             this: Allocated<Self>,
             frame: CGRect,
             primary_action: Option<&UIAction>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -294,10 +303,10 @@ extern_methods!(
     ))]
     unsafe impl UISearchTextField {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -316,10 +325,10 @@ unsafe impl NSObjectProtocol for UISearchToken {}
 extern_methods!(
     unsafe impl UISearchToken {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other tokenWithIcon:text:)]
@@ -327,10 +336,10 @@ extern_methods!(
             icon: Option<&UIImage>,
             text: &NSString,
             mtm: MainThreadMarker,
-        ) -> Id<UISearchToken>;
+        ) -> Retained<UISearchToken>;
 
         #[method_id(@__retain_semantics Other representedObject)]
-        pub unsafe fn representedObject(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn representedObject(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setRepresentedObject:)]
         pub unsafe fn setRepresentedObject(&self, represented_object: Option<&AnyObject>);
@@ -349,7 +358,7 @@ extern_protocol!(
             &self,
             search_text_field: &UISearchTextField,
             token: &UISearchToken,
-        ) -> Id<NSItemProvider>;
+        ) -> Retained<NSItemProvider>;
 
         #[cfg(all(
             feature = "UIControl",

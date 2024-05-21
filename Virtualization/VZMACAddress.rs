@@ -22,19 +22,22 @@ unsafe impl NSObjectProtocol for VZMACAddress {}
 extern_methods!(
     unsafe impl VZMACAddress {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithString:)]
-        pub unsafe fn initWithString(this: Allocated<Self>, string: &NSString) -> Option<Id<Self>>;
+        pub unsafe fn initWithString(
+            this: Allocated<Self>,
+            string: &NSString,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other randomLocallyAdministeredAddress)]
-        pub unsafe fn randomLocallyAdministeredAddress() -> Id<Self>;
+        pub unsafe fn randomLocallyAdministeredAddress() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other string)]
-        pub unsafe fn string(&self) -> Id<NSString>;
+        pub unsafe fn string(&self) -> Retained<NSString>;
 
         #[method(isBroadcastAddress)]
         pub unsafe fn isBroadcastAddress(&self) -> bool;

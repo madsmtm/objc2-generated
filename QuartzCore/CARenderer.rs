@@ -24,11 +24,11 @@ extern_methods!(
         pub unsafe fn rendererWithCGLContext_options(
             ctx: NonNull<c_void>,
             dict: Option<&NSDictionary>,
-        ) -> Id<CARenderer>;
+        ) -> Retained<CARenderer>;
 
         #[cfg(feature = "CALayer")]
         #[method_id(@__retain_semantics Other layer)]
-        pub fn layer(&self) -> Option<Id<CALayer>>;
+        pub fn layer(&self) -> Option<Retained<CALayer>>;
 
         #[cfg(feature = "CALayer")]
         #[method(setLayer:)]
@@ -61,10 +61,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CARenderer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

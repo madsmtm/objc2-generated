@@ -76,7 +76,7 @@ extern_methods!(
             this: Allocated<Self>,
             allowed_participant_permission_options: CKSharingParticipantPermissionOption,
             allowed_participant_access_options: CKSharingParticipantAccessOption,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(allowedParticipantPermissionOptions)]
         pub unsafe fn allowedParticipantPermissionOptions(
@@ -99,7 +99,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other standardOptions)]
-        pub unsafe fn standardOptions() -> Id<CKAllowedSharingOptions>;
+        pub unsafe fn standardOptions() -> Retained<CKAllowedSharingOptions>;
     }
 );
 
@@ -107,9 +107,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKAllowedSharingOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

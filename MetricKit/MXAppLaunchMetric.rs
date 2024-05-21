@@ -32,21 +32,23 @@ extern_methods!(
     unsafe impl MXAppLaunchMetric {
         #[cfg(feature = "MXHistogram")]
         #[method_id(@__retain_semantics Other histogrammedTimeToFirstDraw)]
-        pub unsafe fn histogrammedTimeToFirstDraw(&self) -> Id<MXHistogram<NSUnitDuration>>;
+        pub unsafe fn histogrammedTimeToFirstDraw(&self) -> Retained<MXHistogram<NSUnitDuration>>;
 
         #[cfg(feature = "MXHistogram")]
         #[method_id(@__retain_semantics Other histogrammedApplicationResumeTime)]
-        pub unsafe fn histogrammedApplicationResumeTime(&self) -> Id<MXHistogram<NSUnitDuration>>;
+        pub unsafe fn histogrammedApplicationResumeTime(
+            &self,
+        ) -> Retained<MXHistogram<NSUnitDuration>>;
 
         #[cfg(feature = "MXHistogram")]
         #[method_id(@__retain_semantics Other histogrammedOptimizedTimeToFirstDraw)]
         pub unsafe fn histogrammedOptimizedTimeToFirstDraw(
             &self,
-        ) -> Id<MXHistogram<NSUnitDuration>>;
+        ) -> Retained<MXHistogram<NSUnitDuration>>;
 
         #[cfg(feature = "MXHistogram")]
         #[method_id(@__retain_semantics Other histogrammedExtendedLaunch)]
-        pub unsafe fn histogrammedExtendedLaunch(&self) -> Id<MXHistogram<NSUnitDuration>>;
+        pub unsafe fn histogrammedExtendedLaunch(&self) -> Retained<MXHistogram<NSUnitDuration>>;
     }
 );
 
@@ -55,9 +57,9 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAppLaunchMetric {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

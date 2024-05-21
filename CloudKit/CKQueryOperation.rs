@@ -26,10 +26,10 @@ unsafe impl NSSecureCoding for CKQueryCursor {}
 extern_methods!(
     unsafe impl CKQueryCursor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -57,32 +57,35 @@ extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKQueryOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKQuery")]
         #[method_id(@__retain_semantics Init initWithQuery:)]
-        pub unsafe fn initWithQuery(this: Allocated<Self>, query: &CKQuery) -> Id<Self>;
+        pub unsafe fn initWithQuery(this: Allocated<Self>, query: &CKQuery) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCursor:)]
-        pub unsafe fn initWithCursor(this: Allocated<Self>, cursor: &CKQueryCursor) -> Id<Self>;
+        pub unsafe fn initWithCursor(
+            this: Allocated<Self>,
+            cursor: &CKQueryCursor,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKQuery")]
         #[method_id(@__retain_semantics Other query)]
-        pub unsafe fn query(&self) -> Option<Id<CKQuery>>;
+        pub unsafe fn query(&self) -> Option<Retained<CKQuery>>;
 
         #[cfg(feature = "CKQuery")]
         #[method(setQuery:)]
         pub unsafe fn setQuery(&self, query: Option<&CKQuery>);
 
         #[method_id(@__retain_semantics Other cursor)]
-        pub unsafe fn cursor(&self) -> Option<Id<CKQueryCursor>>;
+        pub unsafe fn cursor(&self) -> Option<Retained<CKQueryCursor>>;
 
         #[method(setCursor:)]
         pub unsafe fn setCursor(&self, cursor: Option<&CKQueryCursor>);
 
         #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other zoneID)]
-        pub unsafe fn zoneID(&self) -> Option<Id<CKRecordZoneID>>;
+        pub unsafe fn zoneID(&self) -> Option<Retained<CKRecordZoneID>>;
 
         #[cfg(feature = "CKRecordZoneID")]
         #[method(setZoneID:)]
@@ -96,7 +99,7 @@ extern_methods!(
 
         #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Other desiredKeys)]
-        pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
+        pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
         #[method(setDesiredKeys:)]
@@ -152,6 +155,6 @@ extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKQueryOperation {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

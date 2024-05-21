@@ -63,14 +63,17 @@ extern_methods!(
     ))]
     unsafe impl DOMText {
         #[method_id(@__retain_semantics Other wholeText)]
-        pub unsafe fn wholeText(&self) -> Id<NSString>;
+        pub unsafe fn wholeText(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other splitText:)]
-        pub unsafe fn splitText(&self, offset: c_uint) -> Option<Id<DOMText>>;
+        pub unsafe fn splitText(&self, offset: c_uint) -> Option<Retained<DOMText>>;
 
         #[method_id(@__retain_semantics Other replaceWholeText:)]
-        pub unsafe fn replaceWholeText(&self, content: Option<&NSString>) -> Option<Id<DOMText>>;
+        pub unsafe fn replaceWholeText(
+            &self,
+            content: Option<&NSString>,
+        ) -> Option<Retained<DOMText>>;
     }
 );
 
@@ -85,7 +88,7 @@ extern_methods!(
     unsafe impl DOMText {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -99,6 +102,6 @@ extern_methods!(
     ))]
     unsafe impl DOMText {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

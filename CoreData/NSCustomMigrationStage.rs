@@ -26,11 +26,11 @@ extern_methods!(
     unsafe impl NSCustomMigrationStage {
         #[cfg(feature = "NSManagedObjectModelReference")]
         #[method_id(@__retain_semantics Other currentModel)]
-        pub unsafe fn currentModel(&self) -> Id<NSManagedObjectModelReference>;
+        pub unsafe fn currentModel(&self) -> Retained<NSManagedObjectModelReference>;
 
         #[cfg(feature = "NSManagedObjectModelReference")]
         #[method_id(@__retain_semantics Other nextModel)]
-        pub unsafe fn nextModel(&self) -> Id<NSManagedObjectModelReference>;
+        pub unsafe fn nextModel(&self) -> Retained<NSManagedObjectModelReference>;
 
         #[cfg(all(feature = "NSStagedMigrationManager", feature = "block2"))]
         #[method(willMigrateHandler)]
@@ -87,7 +87,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectModelReference")]
         #[method_id(@__retain_semantics Init initWithCurrentModelReference:nextModelReference:)]
@@ -95,7 +95,7 @@ extern_methods!(
             this: Allocated<Self>,
             current_model: &NSManagedObjectModelReference,
             next_model: &NSManagedObjectModelReference,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -104,6 +104,6 @@ extern_methods!(
     #[cfg(feature = "NSMigrationStage")]
     unsafe impl NSCustomMigrationStage {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

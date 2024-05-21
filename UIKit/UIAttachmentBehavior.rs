@@ -83,7 +83,7 @@ extern_methods!(
             this: Allocated<Self>,
             item: &ProtocolObject<dyn UIDynamicItem>,
             point: CGPoint,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIGeometry")]
         #[method_id(@__retain_semantics Init initWithItem:offsetFromCenter:attachedToAnchor:)]
@@ -92,14 +92,14 @@ extern_methods!(
             item: &ProtocolObject<dyn UIDynamicItem>,
             offset: UIOffset,
             point: CGPoint,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithItem:attachedToItem:)]
         pub unsafe fn initWithItem_attachedToItem(
             this: Allocated<Self>,
             item1: &ProtocolObject<dyn UIDynamicItem>,
             item2: &ProtocolObject<dyn UIDynamicItem>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIGeometry")]
         #[method_id(@__retain_semantics Init initWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:)]
@@ -109,7 +109,7 @@ extern_methods!(
             offset1: UIOffset,
             item2: &ProtocolObject<dyn UIDynamicItem>,
             offset2: UIOffset,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other slidingAttachmentWithItem:attachedToItem:attachmentAnchor:axisOfTranslation:)]
         pub unsafe fn slidingAttachmentWithItem_attachedToItem_attachmentAnchor_axisOfTranslation(
@@ -117,14 +117,14 @@ extern_methods!(
             item2: &ProtocolObject<dyn UIDynamicItem>,
             point: CGPoint,
             axis: CGVector,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other slidingAttachmentWithItem:attachmentAnchor:axisOfTranslation:)]
         pub unsafe fn slidingAttachmentWithItem_attachmentAnchor_axisOfTranslation(
             item: &ProtocolObject<dyn UIDynamicItem>,
             point: CGPoint,
             axis: CGVector,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIGeometry")]
         #[method_id(@__retain_semantics Other limitAttachmentWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:)]
@@ -133,24 +133,24 @@ extern_methods!(
             offset1: UIOffset,
             item2: &ProtocolObject<dyn UIDynamicItem>,
             offset2: UIOffset,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other fixedAttachmentWithItem:attachedToItem:attachmentAnchor:)]
         pub unsafe fn fixedAttachmentWithItem_attachedToItem_attachmentAnchor(
             item1: &ProtocolObject<dyn UIDynamicItem>,
             item2: &ProtocolObject<dyn UIDynamicItem>,
             point: CGPoint,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other pinAttachmentWithItem:attachedToItem:attachmentAnchor:)]
         pub unsafe fn pinAttachmentWithItem_attachedToItem_attachmentAnchor(
             item1: &ProtocolObject<dyn UIDynamicItem>,
             item2: &ProtocolObject<dyn UIDynamicItem>,
             point: CGPoint,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other items)]
-        pub unsafe fn items(&self) -> Id<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
+        pub unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
 
         #[method(attachedBehaviorType)]
         pub unsafe fn attachedBehaviorType(&self) -> UIAttachmentBehaviorType;
@@ -198,9 +198,9 @@ extern_methods!(
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UIAttachmentBehavior {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

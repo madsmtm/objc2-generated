@@ -10,7 +10,7 @@ extern_protocol!(
         NSCopying + NSObjectProtocol + NSSecureCoding
     {
         #[method_id(@__retain_semantics Other credentialID)]
-        unsafe fn credentialID(&self) -> Id<NSData>;
+        unsafe fn credentialID(&self) -> Retained<NSData>;
 
         #[method(setCredentialID:)]
         unsafe fn setCredentialID(&self, credential_id: &NSData);

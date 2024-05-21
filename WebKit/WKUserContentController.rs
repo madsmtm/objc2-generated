@@ -25,7 +25,7 @@ extern_methods!(
     unsafe impl WKUserContentController {
         #[cfg(feature = "WKUserScript")]
         #[method_id(@__retain_semantics Other userScripts)]
-        pub unsafe fn userScripts(&self) -> Id<NSArray<WKUserScript>>;
+        pub unsafe fn userScripts(&self) -> Retained<NSArray<WKUserScript>>;
 
         #[cfg(feature = "WKUserScript")]
         #[method(addUserScript:)]
@@ -101,9 +101,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKUserContentController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

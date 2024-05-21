@@ -88,32 +88,32 @@ unsafe impl NSSecureCoding for MEMessageAction {}
 extern_methods!(
     unsafe impl MEMessageAction {
         #[method_id(@__retain_semantics Other moveToTrashAction)]
-        pub unsafe fn moveToTrashAction() -> Id<MEMessageAction>;
+        pub unsafe fn moveToTrashAction() -> Retained<MEMessageAction>;
 
         #[method_id(@__retain_semantics Other moveToArchiveAction)]
-        pub unsafe fn moveToArchiveAction() -> Id<MEMessageAction>;
+        pub unsafe fn moveToArchiveAction() -> Retained<MEMessageAction>;
 
         #[method_id(@__retain_semantics Other moveToJunkAction)]
-        pub unsafe fn moveToJunkAction() -> Id<MEMessageAction>;
+        pub unsafe fn moveToJunkAction() -> Retained<MEMessageAction>;
 
         #[method_id(@__retain_semantics Other markAsReadAction)]
-        pub unsafe fn markAsReadAction() -> Id<MEMessageAction>;
+        pub unsafe fn markAsReadAction() -> Retained<MEMessageAction>;
 
         #[method_id(@__retain_semantics Other markAsUnreadAction)]
-        pub unsafe fn markAsUnreadAction() -> Id<MEMessageAction>;
+        pub unsafe fn markAsUnreadAction() -> Retained<MEMessageAction>;
 
         #[method_id(@__retain_semantics Other flagActionWithFlag:)]
-        pub unsafe fn flagActionWithFlag(flag: MEMessageActionFlag) -> Id<Self>;
+        pub unsafe fn flagActionWithFlag(flag: MEMessageActionFlag) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other setBackgroundColorActionWithColor:)]
         pub unsafe fn setBackgroundColorActionWithColor(
             color: MEMessageActionMessageColor,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

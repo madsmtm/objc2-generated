@@ -28,11 +28,11 @@ extern_methods!(
     #[cfg(feature = "VZPlatformConfiguration")]
     unsafe impl VZMacPlatformConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZMacHardwareModel")]
         #[method_id(@__retain_semantics Other hardwareModel)]
-        pub unsafe fn hardwareModel(&self) -> Id<VZMacHardwareModel>;
+        pub unsafe fn hardwareModel(&self) -> Retained<VZMacHardwareModel>;
 
         #[cfg(feature = "VZMacHardwareModel")]
         #[method(setHardwareModel:)]
@@ -40,7 +40,7 @@ extern_methods!(
 
         #[cfg(feature = "VZMacMachineIdentifier")]
         #[method_id(@__retain_semantics Other machineIdentifier)]
-        pub unsafe fn machineIdentifier(&self) -> Id<VZMacMachineIdentifier>;
+        pub unsafe fn machineIdentifier(&self) -> Retained<VZMacMachineIdentifier>;
 
         #[cfg(feature = "VZMacMachineIdentifier")]
         #[method(setMachineIdentifier:)]
@@ -48,7 +48,7 @@ extern_methods!(
 
         #[cfg(feature = "VZMacAuxiliaryStorage")]
         #[method_id(@__retain_semantics Other auxiliaryStorage)]
-        pub unsafe fn auxiliaryStorage(&self) -> Option<Id<VZMacAuxiliaryStorage>>;
+        pub unsafe fn auxiliaryStorage(&self) -> Option<Retained<VZMacAuxiliaryStorage>>;
 
         #[cfg(feature = "VZMacAuxiliaryStorage")]
         #[method(setAuxiliaryStorage:)]
@@ -61,6 +61,6 @@ extern_methods!(
     #[cfg(feature = "VZPlatformConfiguration")]
     unsafe impl VZMacPlatformConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

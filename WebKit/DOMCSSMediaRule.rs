@@ -51,12 +51,12 @@ extern_methods!(
         #[cfg(feature = "DOMMediaList")]
         #[deprecated]
         #[method_id(@__retain_semantics Other media)]
-        pub unsafe fn media(&self) -> Option<Id<DOMMediaList>>;
+        pub unsafe fn media(&self) -> Option<Retained<DOMMediaList>>;
 
         #[cfg(feature = "DOMCSSRuleList")]
         #[deprecated]
         #[method_id(@__retain_semantics Other cssRules)]
-        pub unsafe fn cssRules(&self) -> Option<Id<DOMCSSRuleList>>;
+        pub unsafe fn cssRules(&self) -> Option<Retained<DOMCSSRuleList>>;
 
         #[method(insertRule:index:)]
         pub unsafe fn insertRule_index(&self, rule: Option<&NSString>, index: c_uint) -> c_uint;
@@ -77,7 +77,7 @@ extern_methods!(
     unsafe impl DOMCSSMediaRule {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -90,7 +90,7 @@ extern_methods!(
     ))]
     unsafe impl DOMCSSMediaRule {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

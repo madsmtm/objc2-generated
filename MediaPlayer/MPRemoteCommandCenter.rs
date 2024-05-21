@@ -20,91 +20,93 @@ extern_methods!(
     unsafe impl MPRemoteCommandCenter {
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other pauseCommand)]
-        pub unsafe fn pauseCommand(&self) -> Id<MPRemoteCommand>;
+        pub unsafe fn pauseCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other playCommand)]
-        pub unsafe fn playCommand(&self) -> Id<MPRemoteCommand>;
+        pub unsafe fn playCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other stopCommand)]
-        pub unsafe fn stopCommand(&self) -> Id<MPRemoteCommand>;
+        pub unsafe fn stopCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other togglePlayPauseCommand)]
-        pub unsafe fn togglePlayPauseCommand(&self) -> Id<MPRemoteCommand>;
+        pub unsafe fn togglePlayPauseCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other enableLanguageOptionCommand)]
-        pub unsafe fn enableLanguageOptionCommand(&self) -> Id<MPRemoteCommand>;
+        pub unsafe fn enableLanguageOptionCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other disableLanguageOptionCommand)]
-        pub unsafe fn disableLanguageOptionCommand(&self) -> Id<MPRemoteCommand>;
+        pub unsafe fn disableLanguageOptionCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other changePlaybackRateCommand)]
-        pub unsafe fn changePlaybackRateCommand(&self) -> Id<MPChangePlaybackRateCommand>;
+        pub unsafe fn changePlaybackRateCommand(&self) -> Retained<MPChangePlaybackRateCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other changeRepeatModeCommand)]
-        pub unsafe fn changeRepeatModeCommand(&self) -> Id<MPChangeRepeatModeCommand>;
+        pub unsafe fn changeRepeatModeCommand(&self) -> Retained<MPChangeRepeatModeCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other changeShuffleModeCommand)]
-        pub unsafe fn changeShuffleModeCommand(&self) -> Id<MPChangeShuffleModeCommand>;
+        pub unsafe fn changeShuffleModeCommand(&self) -> Retained<MPChangeShuffleModeCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other nextTrackCommand)]
-        pub unsafe fn nextTrackCommand(&self) -> Id<MPRemoteCommand>;
+        pub unsafe fn nextTrackCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other previousTrackCommand)]
-        pub unsafe fn previousTrackCommand(&self) -> Id<MPRemoteCommand>;
+        pub unsafe fn previousTrackCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other skipForwardCommand)]
-        pub unsafe fn skipForwardCommand(&self) -> Id<MPSkipIntervalCommand>;
+        pub unsafe fn skipForwardCommand(&self) -> Retained<MPSkipIntervalCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other skipBackwardCommand)]
-        pub unsafe fn skipBackwardCommand(&self) -> Id<MPSkipIntervalCommand>;
+        pub unsafe fn skipBackwardCommand(&self) -> Retained<MPSkipIntervalCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other seekForwardCommand)]
-        pub unsafe fn seekForwardCommand(&self) -> Id<MPRemoteCommand>;
+        pub unsafe fn seekForwardCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other seekBackwardCommand)]
-        pub unsafe fn seekBackwardCommand(&self) -> Id<MPRemoteCommand>;
+        pub unsafe fn seekBackwardCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other changePlaybackPositionCommand)]
-        pub unsafe fn changePlaybackPositionCommand(&self) -> Id<MPChangePlaybackPositionCommand>;
+        pub unsafe fn changePlaybackPositionCommand(
+            &self,
+        ) -> Retained<MPChangePlaybackPositionCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other ratingCommand)]
-        pub unsafe fn ratingCommand(&self) -> Id<MPRatingCommand>;
+        pub unsafe fn ratingCommand(&self) -> Retained<MPRatingCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other likeCommand)]
-        pub unsafe fn likeCommand(&self) -> Id<MPFeedbackCommand>;
+        pub unsafe fn likeCommand(&self) -> Retained<MPFeedbackCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other dislikeCommand)]
-        pub unsafe fn dislikeCommand(&self) -> Id<MPFeedbackCommand>;
+        pub unsafe fn dislikeCommand(&self) -> Retained<MPFeedbackCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other bookmarkCommand)]
-        pub unsafe fn bookmarkCommand(&self) -> Id<MPFeedbackCommand>;
+        pub unsafe fn bookmarkCommand(&self) -> Retained<MPFeedbackCommand>;
 
         #[method_id(@__retain_semantics Other sharedCommandCenter)]
-        pub unsafe fn sharedCommandCenter() -> Id<MPRemoteCommandCenter>;
+        pub unsafe fn sharedCommandCenter() -> Retained<MPRemoteCommandCenter>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

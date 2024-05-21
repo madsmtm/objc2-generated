@@ -41,14 +41,14 @@ unsafe impl NSObjectProtocol for NSFileProviderManager {}
 extern_methods!(
     unsafe impl NSFileProviderManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other defaultManager)]
-        pub unsafe fn defaultManager() -> Id<NSFileProviderManager>;
+        pub unsafe fn defaultManager() -> Retained<NSFileProviderManager>;
 
         #[cfg(feature = "NSFileProviderDomain")]
         #[method_id(@__retain_semantics Other managerForDomain:)]
-        pub unsafe fn managerForDomain(domain: &NSFileProviderDomain) -> Option<Id<Self>>;
+        pub unsafe fn managerForDomain(domain: &NSFileProviderDomain) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(signalEnumeratorForContainerItemIdentifier:completionHandler:)]
@@ -93,23 +93,25 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other providerIdentifier)]
-        pub unsafe fn providerIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn providerIdentifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other documentStorageURL)]
-        pub unsafe fn documentStorageURL(&self) -> Id<NSURL>;
+        pub unsafe fn documentStorageURL(&self) -> Retained<NSURL>;
 
         #[method_id(@__retain_semantics Other temporaryDirectoryURLWithError:_)]
-        pub unsafe fn temporaryDirectoryURLWithError(&self) -> Result<Id<NSURL>, Id<NSError>>;
+        pub unsafe fn temporaryDirectoryURLWithError(
+            &self,
+        ) -> Result<Retained<NSURL>, Retained<NSError>>;
 
         #[cfg(feature = "NSFileProviderItem")]
         #[method(writePlaceholderAtURL:withMetadata:error:_)]
         pub unsafe fn writePlaceholderAtURL_withMetadata_error(
             placeholder_url: &NSURL,
             metadata: &NSFileProviderItem,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other placeholderURLForURL:)]
-        pub unsafe fn placeholderURLForURL(url: &NSURL) -> Id<NSURL>;
+        pub unsafe fn placeholderURLForURL(url: &NSURL) -> Retained<NSURL>;
 
         #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
         #[method(addDomain:completionHandler:)]
@@ -159,7 +161,7 @@ extern_methods!(
         pub unsafe fn globalProgressForKind(
             &self,
             kind: &NSProgressFileOperationKind,
-        ) -> Id<NSProgress>;
+        ) -> Retained<NSProgress>;
     }
 );
 
@@ -167,7 +169,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderManager {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -182,7 +184,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other enumeratorForMaterializedItems)]
         pub unsafe fn enumeratorForMaterializedItems(
             &self,
-        ) -> Id<ProtocolObject<dyn NSFileProviderEnumerator>>;
+        ) -> Retained<ProtocolObject<dyn NSFileProviderEnumerator>>;
     }
 );
 
@@ -195,7 +197,7 @@ extern_protocol!(
     pub unsafe trait NSFileProviderPendingSetEnumerator: NSFileProviderEnumerator {
         #[cfg(feature = "NSFileProviderDomain")]
         #[method_id(@__retain_semantics Other domainVersion)]
-        unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion>>;
+        unsafe fn domainVersion(&self) -> Option<Retained<NSFileProviderDomainVersion>>;
 
         #[method(refreshInterval)]
         unsafe fn refreshInterval(&self) -> NSTimeInterval;
@@ -215,7 +217,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other enumeratorForPendingItems)]
         pub unsafe fn enumeratorForPendingItems(
             &self,
-        ) -> Id<ProtocolObject<dyn NSFileProviderPendingSetEnumerator>>;
+        ) -> Retained<ProtocolObject<dyn NSFileProviderPendingSetEnumerator>>;
     }
 );
 

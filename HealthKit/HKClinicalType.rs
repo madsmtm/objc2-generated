@@ -51,7 +51,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other clinicalTypeForIdentifier:)]
         pub unsafe fn clinicalTypeForIdentifier(
             identifier: &HKClinicalTypeIdentifier,
-        ) -> Option<Id<HKClinicalType>>;
+        ) -> Option<Retained<HKClinicalType>>;
     }
 );
 
@@ -90,7 +90,7 @@ extern_methods!(
     #[cfg(feature = "HKObjectType")]
     unsafe impl HKClinicalType {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -99,6 +99,6 @@ extern_methods!(
     #[cfg(feature = "HKObjectType")]
     unsafe impl HKClinicalType {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

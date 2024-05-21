@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl DOMHTMLModElement {
         #[deprecated]
         #[method_id(@__retain_semantics Other cite)]
-        pub unsafe fn cite(&self) -> Id<NSString>;
+        pub unsafe fn cite(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setCite:)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other dateTime)]
-        pub unsafe fn dateTime(&self) -> Id<NSString>;
+        pub unsafe fn dateTime(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setDateTime:)]
@@ -98,7 +98,7 @@ extern_methods!(
     unsafe impl DOMHTMLModElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -113,6 +113,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLModElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

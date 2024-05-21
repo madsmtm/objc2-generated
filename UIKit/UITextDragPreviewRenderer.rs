@@ -25,7 +25,7 @@ extern_methods!(
             this: Allocated<Self>,
             layout_manager: &NSLayoutManager,
             range: NSRange,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSLayoutManager")]
         #[method_id(@__retain_semantics Init initWithLayoutManager:range:unifyRects:)]
@@ -34,21 +34,21 @@ extern_methods!(
             layout_manager: &NSLayoutManager,
             range: NSRange,
             unify_rects: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSLayoutManager")]
         #[method_id(@__retain_semantics Other layoutManager)]
-        pub unsafe fn layoutManager(&self) -> Id<NSLayoutManager>;
+        pub unsafe fn layoutManager(&self) -> Retained<NSLayoutManager>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Id<UIImage>;
+        pub unsafe fn image(&self) -> Retained<UIImage>;
 
         #[method(firstLineRect)]
         pub unsafe fn firstLineRect(&self) -> CGRect;

@@ -26,7 +26,7 @@ unsafe impl NSSecureCoding for MPMediaQuerySection {}
 extern_methods!(
     unsafe impl MPMediaQuerySection {
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method(range)]
         pub unsafe fn range(&self) -> NSRange;
@@ -37,9 +37,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPMediaQuerySection {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

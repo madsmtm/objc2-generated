@@ -25,11 +25,11 @@ extern_category!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other webPlugInContainerSelectionColor)]
-        unsafe fn webPlugInContainerSelectionColor(&self) -> Option<Id<NSColor>>;
+        unsafe fn webPlugInContainerSelectionColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "WebFrame")]
         #[method_id(@__retain_semantics Other webFrame)]
-        unsafe fn webFrame(&self) -> Option<Id<WebFrame>>;
+        unsafe fn webFrame(&self) -> Option<Retained<WebFrame>>;
     }
 
     unsafe impl NSObjectWebPlugInContainer for NSObject {}

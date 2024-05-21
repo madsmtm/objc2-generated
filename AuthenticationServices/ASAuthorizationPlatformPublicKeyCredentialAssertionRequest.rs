@@ -46,7 +46,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other allowedCredentials)]
         pub unsafe fn allowedCredentials(
             &self,
-        ) -> Id<NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor>>;
+        ) -> Retained<NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor>>;
 
         #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
         #[method(setAllowedCredentials:)]
@@ -59,7 +59,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other largeBlob)]
         pub unsafe fn largeBlob(
             &self,
-        ) -> Option<Id<ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput>>;
+        ) -> Option<Retained<ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput>>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput")]
         #[method(setLargeBlob:)]
@@ -69,10 +69,10 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 

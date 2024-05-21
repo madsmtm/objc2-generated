@@ -14,16 +14,19 @@ extern_protocol!(
         unsafe fn initWithParameterDictionary_error(
             this: Allocated<Self>,
             parameters: &NSDictionary<NSString, AnyObject>,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method(setWeightData:error:_)]
-        unsafe fn setWeightData_error(&self, weights: &NSArray<NSData>) -> Result<(), Id<NSError>>;
+        unsafe fn setWeightData_error(
+            &self,
+            weights: &NSArray<NSData>,
+        ) -> Result<(), Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other outputShapesForInputShapes:error:_)]
         unsafe fn outputShapesForInputShapes_error(
             &self,
             input_shapes: &NSArray<NSArray<NSNumber>>,
-        ) -> Result<Id<NSArray<NSArray<NSNumber>>>, Id<NSError>>;
+        ) -> Result<Retained<NSArray<NSArray<NSNumber>>>, Retained<NSError>>;
 
         #[cfg(feature = "MLMultiArray")]
         #[method(evaluateOnCPUWithInputs:outputs:error:_)]
@@ -31,7 +34,7 @@ extern_protocol!(
             &self,
             inputs: &NSArray<MLMultiArray>,
             outputs: &NSArray<MLMultiArray>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
@@ -42,7 +45,7 @@ extern_protocol!(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             inputs: &NSArray<ProtocolObject<dyn MTLTexture>>,
             outputs: &NSArray<ProtocolObject<dyn MTLTexture>>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
     }
 
     unsafe impl ProtocolType for dyn MLCustomLayer {}

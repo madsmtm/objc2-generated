@@ -102,7 +102,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other mainParticipantConfiguration)]
         pub unsafe fn mainParticipantConfiguration(
             &self,
-        ) -> Id<AEAssessmentParticipantConfiguration>;
+        ) -> Retained<AEAssessmentParticipantConfiguration>;
 
         #[cfg(all(
             feature = "AEAssessmentApplication",
@@ -111,7 +111,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other configurationsByApplication)]
         pub unsafe fn configurationsByApplication(
             &self,
-        ) -> Id<NSDictionary<AEAssessmentApplication, AEAssessmentParticipantConfiguration>>;
+        ) -> Retained<NSDictionary<AEAssessmentApplication, AEAssessmentParticipantConfiguration>>;
 
         #[cfg(all(
             feature = "AEAssessmentApplication",
@@ -134,9 +134,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AEAssessmentConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

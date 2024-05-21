@@ -79,7 +79,7 @@ extern_methods!(
             target: Option<&AnyObject>,
             action: Option<Sel>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSImage", feature = "NSToolbar"))]
         #[method_id(@__retain_semantics Other groupWithItemIdentifier:images:selectionMode:labels:target:action:)]
@@ -91,10 +91,10 @@ extern_methods!(
             target: Option<&AnyObject>,
             action: Option<Sel>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other subitems)]
-        pub unsafe fn subitems(&self) -> Id<NSArray<NSToolbarItem>>;
+        pub unsafe fn subitems(&self) -> Retained<NSArray<NSToolbarItem>>;
 
         #[method(setSubitems:)]
         pub unsafe fn setSubitems(&self, subitems: &NSArray<NSToolbarItem>);
@@ -137,7 +137,7 @@ extern_methods!(
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -146,9 +146,9 @@ extern_methods!(
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSToolbarItemGroup {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

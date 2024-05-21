@@ -28,10 +28,10 @@ extern_methods!(
         pub unsafe fn initWithName_error(
             this: Allocated<Self>,
             name: &NSString,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(maximumNameLength)]
         pub unsafe fn maximumNameLength() -> NSUInteger;
@@ -43,9 +43,9 @@ extern_methods!(
     #[cfg(feature = "VZLinuxRosettaCachingOptions")]
     unsafe impl VZLinuxRosettaAbstractSocketCachingOptions {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

@@ -52,7 +52,7 @@ unsafe impl NSSecureCoding for MLModelConfiguration {}
 extern_methods!(
     unsafe impl MLModelConfiguration {
         #[method_id(@__retain_semantics Other modelDisplayName)]
-        pub unsafe fn modelDisplayName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn modelDisplayName(&self) -> Option<Retained<NSString>>;
 
         #[method(setModelDisplayName:)]
         pub unsafe fn setModelDisplayName(&self, model_display_name: Option<&NSString>);
@@ -65,7 +65,7 @@ extern_methods!(
 
         #[cfg(feature = "MLOptimizationHints")]
         #[method_id(@__retain_semantics Other optimizationHints)]
-        pub unsafe fn optimizationHints(&self) -> Id<MLOptimizationHints>;
+        pub unsafe fn optimizationHints(&self) -> Retained<MLOptimizationHints>;
 
         #[cfg(feature = "MLOptimizationHints")]
         #[method(setOptimizationHints:)]
@@ -77,10 +77,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLModelConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -99,7 +99,9 @@ extern_methods!(
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other preferredMetalDevice)]
-        pub unsafe fn preferredMetalDevice(&self) -> Option<Id<ProtocolObject<dyn MTLDevice>>>;
+        pub unsafe fn preferredMetalDevice(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
@@ -116,7 +118,9 @@ extern_methods!(
     unsafe impl MLModelConfiguration {
         #[cfg(all(feature = "MLKey", feature = "MLParameterKey"))]
         #[method_id(@__retain_semantics Other parameters)]
-        pub unsafe fn parameters(&self) -> Option<Id<NSDictionary<MLParameterKey, AnyObject>>>;
+        pub unsafe fn parameters(
+            &self,
+        ) -> Option<Retained<NSDictionary<MLParameterKey, AnyObject>>>;
 
         #[cfg(all(feature = "MLKey", feature = "MLParameterKey"))]
         #[method(setParameters:)]

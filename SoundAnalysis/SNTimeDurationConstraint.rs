@@ -42,18 +42,18 @@ extern_methods!(
         pub unsafe fn r#type(&self) -> SNTimeDurationConstraintType;
 
         #[method_id(@__retain_semantics Other enumeratedDurations)]
-        pub unsafe fn enumeratedDurations(&self) -> Id<NSArray<NSValue>>;
+        pub unsafe fn enumeratedDurations(&self) -> Retained<NSArray<NSValue>>;
 
         #[method_id(@__retain_semantics Init initWithEnumeratedDurations:)]
         pub unsafe fn initWithEnumeratedDurations(
             this: Allocated<Self>,
             enumerated_durations: &NSArray<NSValue>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

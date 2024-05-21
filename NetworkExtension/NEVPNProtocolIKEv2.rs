@@ -226,10 +226,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEVPNIKEv2SecurityAssociationParameters {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -271,7 +271,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other serverCertificateIssuerCommonName)]
-        pub unsafe fn serverCertificateIssuerCommonName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn serverCertificateIssuerCommonName(&self) -> Option<Retained<NSString>>;
 
         #[method(setServerCertificateIssuerCommonName:)]
         pub unsafe fn setServerCertificateIssuerCommonName(
@@ -280,7 +280,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other serverCertificateCommonName)]
-        pub unsafe fn serverCertificateCommonName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn serverCertificateCommonName(&self) -> Option<Retained<NSString>>;
 
         #[method(setServerCertificateCommonName:)]
         pub unsafe fn setServerCertificateCommonName(
@@ -306,12 +306,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other IKESecurityAssociationParameters)]
         pub unsafe fn IKESecurityAssociationParameters(
             &self,
-        ) -> Id<NEVPNIKEv2SecurityAssociationParameters>;
+        ) -> Retained<NEVPNIKEv2SecurityAssociationParameters>;
 
         #[method_id(@__retain_semantics Other childSecurityAssociationParameters)]
         pub unsafe fn childSecurityAssociationParameters(
             &self,
-        ) -> Id<NEVPNIKEv2SecurityAssociationParameters>;
+        ) -> Retained<NEVPNIKEv2SecurityAssociationParameters>;
 
         #[method(disableMOBIKE)]
         pub unsafe fn disableMOBIKE(&self) -> bool;
@@ -374,9 +374,9 @@ extern_methods!(
     #[cfg(all(feature = "NEVPNProtocol", feature = "NEVPNProtocolIPSec"))]
     unsafe impl NEVPNProtocolIKEv2 {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

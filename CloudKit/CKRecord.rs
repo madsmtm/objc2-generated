@@ -70,16 +70,16 @@ unsafe impl NSSecureCoding for CKRecord {}
 extern_methods!(
     unsafe impl CKRecord {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithRecordType:)]
         pub unsafe fn initWithRecordType(
             this: Allocated<Self>,
             record_type: &CKRecordType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Init initWithRecordType:recordID:)]
@@ -87,7 +87,7 @@ extern_methods!(
             this: Allocated<Self>,
             record_type: &CKRecordType,
             record_id: &CKRecordID,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithRecordType:zoneID:)]
@@ -95,37 +95,37 @@ extern_methods!(
             this: Allocated<Self>,
             record_type: &CKRecordType,
             zone_id: &CKRecordZoneID,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other recordType)]
-        pub unsafe fn recordType(&self) -> Id<CKRecordType>;
+        pub unsafe fn recordType(&self) -> Retained<CKRecordType>;
 
         #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other recordID)]
-        pub unsafe fn recordID(&self) -> Id<CKRecordID>;
+        pub unsafe fn recordID(&self) -> Retained<CKRecordID>;
 
         #[method_id(@__retain_semantics Other recordChangeTag)]
-        pub unsafe fn recordChangeTag(&self) -> Option<Id<NSString>>;
+        pub unsafe fn recordChangeTag(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other creatorUserRecordID)]
-        pub unsafe fn creatorUserRecordID(&self) -> Option<Id<CKRecordID>>;
+        pub unsafe fn creatorUserRecordID(&self) -> Option<Retained<CKRecordID>>;
 
         #[method_id(@__retain_semantics Other creationDate)]
-        pub unsafe fn creationDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other lastModifiedUserRecordID)]
-        pub unsafe fn lastModifiedUserRecordID(&self) -> Option<Id<CKRecordID>>;
+        pub unsafe fn lastModifiedUserRecordID(&self) -> Option<Retained<CKRecordID>>;
 
         #[method_id(@__retain_semantics Other modificationDate)]
-        pub unsafe fn modificationDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn modificationDate(&self) -> Option<Retained<NSDate>>;
 
         #[method_id(@__retain_semantics Other objectForKey:)]
         pub unsafe fn objectForKey(
             &self,
             key: &CKRecordFieldKey,
-        ) -> Option<Id<ProtocolObject<dyn CKRecordValue>>>;
+        ) -> Option<Retained<ProtocolObject<dyn CKRecordValue>>>;
 
         #[method(setObject:forKey:)]
         pub unsafe fn setObject_forKey(
@@ -135,16 +135,16 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other allKeys)]
-        pub unsafe fn allKeys(&self) -> Id<NSArray<CKRecordFieldKey>>;
+        pub unsafe fn allKeys(&self) -> Retained<NSArray<CKRecordFieldKey>>;
 
         #[method_id(@__retain_semantics Other allTokens)]
-        pub unsafe fn allTokens(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn allTokens(&self) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
         pub unsafe fn objectForKeyedSubscript(
             &self,
             key: &CKRecordFieldKey,
-        ) -> Option<Id<ProtocolObject<dyn CKRecordValue>>>;
+        ) -> Option<Retained<ProtocolObject<dyn CKRecordValue>>>;
 
         #[method(setObject:forKeyedSubscript:)]
         pub unsafe fn setObject_forKeyedSubscript(
@@ -154,18 +154,18 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other changedKeys)]
-        pub unsafe fn changedKeys(&self) -> Id<NSArray<CKRecordFieldKey>>;
+        pub unsafe fn changedKeys(&self) -> Retained<NSArray<CKRecordFieldKey>>;
 
         #[method(encodeSystemFieldsWithCoder:)]
         pub unsafe fn encodeSystemFieldsWithCoder(&self, coder: &NSCoder);
 
         #[cfg(feature = "CKReference")]
         #[method_id(@__retain_semantics Other share)]
-        pub unsafe fn share(&self) -> Option<Id<CKReference>>;
+        pub unsafe fn share(&self) -> Option<Retained<CKReference>>;
 
         #[cfg(feature = "CKReference")]
         #[method_id(@__retain_semantics Other parent)]
-        pub unsafe fn parent(&self) -> Option<Id<CKReference>>;
+        pub unsafe fn parent(&self) -> Option<Retained<CKReference>>;
 
         #[cfg(feature = "CKReference")]
         #[method(setParent:)]
@@ -217,7 +217,7 @@ extern_protocol!(
         unsafe fn objectForKey(
             &self,
             key: &CKRecordFieldKey,
-        ) -> Option<Id<ProtocolObject<dyn CKRecordValue>>>;
+        ) -> Option<Retained<ProtocolObject<dyn CKRecordValue>>>;
 
         #[method(setObject:forKey:)]
         unsafe fn setObject_forKey(
@@ -230,7 +230,7 @@ extern_protocol!(
         unsafe fn objectForKeyedSubscript(
             &self,
             key: &CKRecordFieldKey,
-        ) -> Option<Id<ProtocolObject<dyn CKRecordValue>>>;
+        ) -> Option<Retained<ProtocolObject<dyn CKRecordValue>>>;
 
         #[method(setObject:forKeyedSubscript:)]
         unsafe fn setObject_forKeyedSubscript(
@@ -240,10 +240,10 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other allKeys)]
-        unsafe fn allKeys(&self) -> Id<NSArray<CKRecordFieldKey>>;
+        unsafe fn allKeys(&self) -> Retained<NSArray<CKRecordFieldKey>>;
 
         #[method_id(@__retain_semantics Other changedKeys)]
-        unsafe fn changedKeys(&self) -> Id<NSArray<CKRecordFieldKey>>;
+        unsafe fn changedKeys(&self) -> Retained<NSArray<CKRecordFieldKey>>;
     }
 
     unsafe impl ProtocolType for dyn CKRecordKeyValueSetting {}
@@ -253,7 +253,9 @@ extern_methods!(
     /// CKRecordKeyValueSettingConformance
     unsafe impl CKRecord {
         #[method_id(@__retain_semantics Other encryptedValues)]
-        pub unsafe fn encryptedValues(&self) -> Id<ProtocolObject<dyn CKRecordKeyValueSetting>>;
+        pub unsafe fn encryptedValues(
+            &self,
+        ) -> Retained<ProtocolObject<dyn CKRecordKeyValueSetting>>;
     }
 );
 

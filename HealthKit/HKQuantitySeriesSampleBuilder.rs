@@ -31,21 +31,21 @@ extern_methods!(
             quantity_type: &HKQuantityType,
             start_date: &NSDate,
             device: Option<&HKDevice>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other quantityType)]
-        pub unsafe fn quantityType(&self) -> Id<HKQuantityType>;
+        pub unsafe fn quantityType(&self) -> Retained<HKQuantityType>;
 
         #[method_id(@__retain_semantics Other startDate)]
-        pub unsafe fn startDate(&self) -> Id<NSDate>;
+        pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "HKDevice")]
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Option<Id<HKDevice>>;
+        pub unsafe fn device(&self) -> Option<Retained<HKDevice>>;
 
         #[cfg(feature = "HKQuantity")]
         #[method(insertQuantity:dateInterval:error:_)]
@@ -53,7 +53,7 @@ extern_methods!(
             &self,
             quantity: &HKQuantity,
             date_interval: &NSDateInterval,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "HKQuantity")]
         #[method(insertQuantity:date:error:_)]
@@ -61,7 +61,7 @@ extern_methods!(
             &self,
             quantity: &HKQuantity,
             date: &NSDate,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(
             feature = "HKObject",
@@ -99,6 +99,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKQuantitySeriesSampleBuilder {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

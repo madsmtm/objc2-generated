@@ -31,10 +31,10 @@ extern_methods!(
             this: Allocated<Self>,
             data: &NSData,
             protocol_family: libc::sa_family_t,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Id<NSData>;
+        pub unsafe fn data(&self) -> Retained<NSData>;
 
         #[cfg(feature = "libc")]
         #[method(protocolFamily)]
@@ -46,7 +46,7 @@ extern_methods!(
 
         #[cfg(feature = "NEFlowMetaData")]
         #[method_id(@__retain_semantics Other metadata)]
-        pub unsafe fn metadata(&self) -> Option<Id<NEFlowMetaData>>;
+        pub unsafe fn metadata(&self) -> Option<Retained<NEFlowMetaData>>;
     }
 );
 
@@ -54,9 +54,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEPacket {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -26,7 +26,7 @@ unsafe impl NSSecureCoding for SFAcousticFeature {}
 extern_methods!(
     unsafe impl SFAcousticFeature {
         #[method_id(@__retain_semantics Other acousticFeatureValuePerFrame)]
-        pub unsafe fn acousticFeatureValuePerFrame(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn acousticFeatureValuePerFrame(&self) -> Retained<NSArray<NSNumber>>;
 
         #[method(frameDuration)]
         pub unsafe fn frameDuration(&self) -> NSTimeInterval;
@@ -37,10 +37,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFAcousticFeature {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -65,16 +65,16 @@ unsafe impl NSSecureCoding for SFVoiceAnalytics {}
 extern_methods!(
     unsafe impl SFVoiceAnalytics {
         #[method_id(@__retain_semantics Other jitter)]
-        pub unsafe fn jitter(&self) -> Id<SFAcousticFeature>;
+        pub unsafe fn jitter(&self) -> Retained<SFAcousticFeature>;
 
         #[method_id(@__retain_semantics Other shimmer)]
-        pub unsafe fn shimmer(&self) -> Id<SFAcousticFeature>;
+        pub unsafe fn shimmer(&self) -> Retained<SFAcousticFeature>;
 
         #[method_id(@__retain_semantics Other pitch)]
-        pub unsafe fn pitch(&self) -> Id<SFAcousticFeature>;
+        pub unsafe fn pitch(&self) -> Retained<SFAcousticFeature>;
 
         #[method_id(@__retain_semantics Other voicing)]
-        pub unsafe fn voicing(&self) -> Id<SFAcousticFeature>;
+        pub unsafe fn voicing(&self) -> Retained<SFAcousticFeature>;
     }
 );
 
@@ -82,9 +82,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFVoiceAnalytics {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

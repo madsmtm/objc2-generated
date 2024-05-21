@@ -28,11 +28,11 @@ extern_methods!(
     #[cfg(feature = "VZPlatformConfiguration")]
     unsafe impl VZGenericPlatformConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZGenericMachineIdentifier")]
         #[method_id(@__retain_semantics Other machineIdentifier)]
-        pub unsafe fn machineIdentifier(&self) -> Id<VZGenericMachineIdentifier>;
+        pub unsafe fn machineIdentifier(&self) -> Retained<VZGenericMachineIdentifier>;
 
         #[cfg(feature = "VZGenericMachineIdentifier")]
         #[method(setMachineIdentifier:)]
@@ -45,6 +45,6 @@ extern_methods!(
     #[cfg(feature = "VZPlatformConfiguration")]
     unsafe impl VZGenericPlatformConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

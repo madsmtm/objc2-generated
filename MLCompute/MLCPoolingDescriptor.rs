@@ -70,11 +70,11 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -83,7 +83,7 @@ extern_methods!(
             pooling_type: MLCPoolingType,
             kernel_size: NSUInteger,
             stride: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -93,7 +93,7 @@ extern_methods!(
             strides: &NSArray<NSNumber>,
             padding_policy: MLCPaddingPolicy,
             padding_sizes: Option<&NSArray<NSNumber>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -104,7 +104,7 @@ extern_methods!(
             dilation_rates: &NSArray<NSNumber>,
             padding_policy: MLCPaddingPolicy,
             padding_sizes: Option<&NSArray<NSNumber>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -115,7 +115,7 @@ extern_methods!(
             padding_policy: MLCPaddingPolicy,
             padding_sizes: Option<&NSArray<NSNumber>>,
             count_includes_padding: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -127,7 +127,7 @@ extern_methods!(
             padding_policy: MLCPaddingPolicy,
             padding_sizes: Option<&NSArray<NSNumber>>,
             count_includes_padding: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -137,7 +137,7 @@ extern_methods!(
             strides: &NSArray<NSNumber>,
             padding_policy: MLCPaddingPolicy,
             padding_sizes: Option<&NSArray<NSNumber>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -148,6 +148,6 @@ extern_methods!(
             dilation_rates: &NSArray<NSNumber>,
             padding_policy: MLCPaddingPolicy,
             padding_sizes: Option<&NSArray<NSNumber>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

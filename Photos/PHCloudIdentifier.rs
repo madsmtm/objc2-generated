@@ -29,16 +29,16 @@ extern_methods!(
     unsafe impl PHCloudIdentifier {
         #[deprecated]
         #[method_id(@__retain_semantics Other notFoundIdentifier)]
-        pub unsafe fn notFoundIdentifier() -> Id<PHCloudIdentifier>;
+        pub unsafe fn notFoundIdentifier() -> Retained<PHCloudIdentifier>;
 
         #[method_id(@__retain_semantics Other stringValue)]
-        pub unsafe fn stringValue(&self) -> Id<NSString>;
+        pub unsafe fn stringValue(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Init initWithStringValue:)]
         pub unsafe fn initWithStringValue(
             this: Allocated<Self>,
             string_value: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -46,10 +46,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHCloudIdentifier {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -72,10 +72,10 @@ unsafe impl NSObjectProtocol for PHCloudIdentifierMapping {}
 extern_methods!(
     unsafe impl PHCloudIdentifierMapping {
         #[method_id(@__retain_semantics Other cloudIdentifier)]
-        pub unsafe fn cloudIdentifier(&self) -> Option<Id<PHCloudIdentifier>>;
+        pub unsafe fn cloudIdentifier(&self) -> Option<Retained<PHCloudIdentifier>>;
 
         #[method_id(@__retain_semantics Other error)]
-        pub unsafe fn error(&self) -> Option<Id<NSError>>;
+        pub unsafe fn error(&self) -> Option<Retained<NSError>>;
     }
 );
 
@@ -83,10 +83,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHCloudIdentifierMapping {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -109,10 +109,10 @@ unsafe impl NSObjectProtocol for PHLocalIdentifierMapping {}
 extern_methods!(
     unsafe impl PHLocalIdentifierMapping {
         #[method_id(@__retain_semantics Other localIdentifier)]
-        pub unsafe fn localIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other error)]
-        pub unsafe fn error(&self) -> Option<Id<NSError>>;
+        pub unsafe fn error(&self) -> Option<Retained<NSError>>;
     }
 );
 
@@ -120,10 +120,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHLocalIdentifierMapping {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -141,27 +141,27 @@ extern_methods!(
         pub unsafe fn localIdentifierMappingsForCloudIdentifiers(
             &self,
             cloud_identifiers: &NSArray<PHCloudIdentifier>,
-        ) -> Id<NSDictionary<PHCloudIdentifier, PHLocalIdentifierMapping>>;
+        ) -> Retained<NSDictionary<PHCloudIdentifier, PHLocalIdentifierMapping>>;
 
         #[method_id(@__retain_semantics Other cloudIdentifierMappingsForLocalIdentifiers:)]
         pub unsafe fn cloudIdentifierMappingsForLocalIdentifiers(
             &self,
             local_identifiers: &NSArray<NSString>,
-        ) -> Id<NSDictionary<NSString, PHCloudIdentifierMapping>>;
+        ) -> Retained<NSDictionary<NSString, PHCloudIdentifierMapping>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other localIdentifiersForCloudIdentifiers:)]
         pub unsafe fn localIdentifiersForCloudIdentifiers(
             &self,
             cloud_identifiers: &NSArray<PHCloudIdentifier>,
-        ) -> Id<NSArray<NSString>>;
+        ) -> Retained<NSArray<NSString>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other cloudIdentifiersForLocalIdentifiers:)]
         pub unsafe fn cloudIdentifiersForLocalIdentifiers(
             &self,
             local_identifiers: &NSArray<NSString>,
-        ) -> Id<NSArray<PHCloudIdentifier>>;
+        ) -> Retained<NSArray<PHCloudIdentifier>>;
     }
 );
 

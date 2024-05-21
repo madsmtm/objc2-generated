@@ -39,7 +39,7 @@ extern_methods!(
     unsafe impl DOMCSSValue {
         #[deprecated]
         #[method_id(@__retain_semantics Other cssText)]
-        pub unsafe fn cssText(&self) -> Id<NSString>;
+        pub unsafe fn cssText(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setCssText:)]
@@ -57,7 +57,7 @@ extern_methods!(
     unsafe impl DOMCSSValue {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -66,6 +66,6 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCSSValue {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

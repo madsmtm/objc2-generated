@@ -74,7 +74,9 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UICalendarView {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn UICalendarViewDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn UICalendarViewDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -84,46 +86,46 @@ extern_methods!(
 
         #[cfg(feature = "UICalendarSelection")]
         #[method_id(@__retain_semantics Other selectionBehavior)]
-        pub unsafe fn selectionBehavior(&self) -> Option<Id<UICalendarSelection>>;
+        pub unsafe fn selectionBehavior(&self) -> Option<Retained<UICalendarSelection>>;
 
         #[cfg(feature = "UICalendarSelection")]
         #[method(setSelectionBehavior:)]
         pub unsafe fn setSelectionBehavior(&self, selection_behavior: Option<&UICalendarSelection>);
 
         #[method_id(@__retain_semantics Other locale)]
-        pub unsafe fn locale(&self) -> Id<NSLocale>;
+        pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: &NSLocale);
 
         #[method_id(@__retain_semantics Other calendar)]
-        pub unsafe fn calendar(&self) -> Id<NSCalendar>;
+        pub unsafe fn calendar(&self) -> Retained<NSCalendar>;
 
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: &NSCalendar);
 
         #[method_id(@__retain_semantics Other timeZone)]
-        pub unsafe fn timeZone(&self) -> Option<Id<NSTimeZone>>;
+        pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
         #[cfg(feature = "UIFontDescriptor")]
         #[method_id(@__retain_semantics Other fontDesign)]
-        pub unsafe fn fontDesign(&self) -> Id<UIFontDescriptorSystemDesign>;
+        pub unsafe fn fontDesign(&self) -> Retained<UIFontDescriptorSystemDesign>;
 
         #[cfg(feature = "UIFontDescriptor")]
         #[method(setFontDesign:)]
         pub unsafe fn setFontDesign(&self, font_design: &UIFontDescriptorSystemDesign);
 
         #[method_id(@__retain_semantics Other availableDateRange)]
-        pub unsafe fn availableDateRange(&self) -> Id<NSDateInterval>;
+        pub unsafe fn availableDateRange(&self) -> Retained<NSDateInterval>;
 
         #[method(setAvailableDateRange:)]
         pub unsafe fn setAvailableDateRange(&self, available_date_range: &NSDateInterval);
 
         #[method_id(@__retain_semantics Other visibleDateComponents)]
-        pub unsafe fn visibleDateComponents(&self) -> Id<NSDateComponents>;
+        pub unsafe fn visibleDateComponents(&self) -> Retained<NSDateComponents>;
 
         #[method(setVisibleDateComponents:)]
         pub unsafe fn setVisibleDateComponents(&self, visible_date_components: &NSDateComponents);
@@ -155,10 +157,13 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UICalendarView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -167,10 +172,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UICalendarView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -187,7 +192,7 @@ extern_protocol!(
             &self,
             calendar_view: &UICalendarView,
             date_components: &NSDateComponents,
-        ) -> Option<Id<UICalendarViewDecoration>>;
+        ) -> Option<Retained<UICalendarViewDecoration>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]

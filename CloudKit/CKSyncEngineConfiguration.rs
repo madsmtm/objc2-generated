@@ -34,17 +34,17 @@ extern_methods!(
             database: &CKDatabase,
             state_serialization: Option<&CKSyncEngineStateSerialization>,
             delegate: &ProtocolObject<dyn CKSyncEngineDelegate>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKDatabase")]
         #[method_id(@__retain_semantics Other database)]
-        pub unsafe fn database(&self) -> Id<CKDatabase>;
+        pub unsafe fn database(&self) -> Retained<CKDatabase>;
 
         #[cfg(feature = "CKDatabase")]
         #[method(setDatabase:)]
@@ -52,7 +52,8 @@ extern_methods!(
 
         #[cfg(feature = "CKSyncEngineState")]
         #[method_id(@__retain_semantics Other stateSerialization)]
-        pub unsafe fn stateSerialization(&self) -> Option<Id<CKSyncEngineStateSerialization>>;
+        pub unsafe fn stateSerialization(&self)
+            -> Option<Retained<CKSyncEngineStateSerialization>>;
 
         #[cfg(feature = "CKSyncEngineState")]
         #[method(setStateSerialization:)]
@@ -63,7 +64,8 @@ extern_methods!(
 
         #[cfg(feature = "CKSyncEngine")]
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn CKSyncEngineDelegate>>>;
+        pub unsafe fn delegate(&self)
+            -> Option<Retained<ProtocolObject<dyn CKSyncEngineDelegate>>>;
 
         #[cfg(feature = "CKSyncEngine")]
         #[method(setDelegate:)]
@@ -80,7 +82,7 @@ extern_methods!(
 
         #[cfg(feature = "CKSubscription")]
         #[method_id(@__retain_semantics Other subscriptionID)]
-        pub unsafe fn subscriptionID(&self) -> Option<Id<CKSubscriptionID>>;
+        pub unsafe fn subscriptionID(&self) -> Option<Retained<CKSubscriptionID>>;
 
         #[cfg(feature = "CKSubscription")]
         #[method(setSubscriptionID:)]

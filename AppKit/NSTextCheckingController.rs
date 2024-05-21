@@ -24,14 +24,14 @@ extern_methods!(
         pub unsafe fn initWithClient(
             this: Allocated<Self>,
             client: &ProtocolObject<dyn NSTextCheckingClient>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSTextCheckingClient", feature = "NSTextInputClient"))]
         #[method_id(@__retain_semantics Other client)]
-        pub unsafe fn client(&self) -> Id<ProtocolObject<dyn NSTextCheckingClient>>;
+        pub unsafe fn client(&self) -> Retained<ProtocolObject<dyn NSTextCheckingClient>>;
 
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
@@ -82,7 +82,7 @@ extern_methods!(
         pub unsafe fn updateCandidates(&self);
 
         #[method_id(@__retain_semantics Other validAnnotations)]
-        pub unsafe fn validAnnotations(&self) -> Id<NSArray<NSAttributedStringKey>>;
+        pub unsafe fn validAnnotations(&self) -> Retained<NSArray<NSAttributedStringKey>>;
 
         #[cfg(feature = "NSMenu")]
         #[method_id(@__retain_semantics Other menuAtIndex:clickedOnSelection:effectiveRange:)]
@@ -92,7 +92,7 @@ extern_methods!(
             clicked_on_selection: bool,
             effective_range: NSRangePointer,
             mtm: MainThreadMarker,
-        ) -> Option<Id<NSMenu>>;
+        ) -> Option<Retained<NSMenu>>;
 
         #[method(spellCheckerDocumentTag)]
         pub unsafe fn spellCheckerDocumentTag(&self) -> NSInteger;
@@ -106,6 +106,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextCheckingController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -32,7 +32,7 @@ extern_methods!(
             identifier: &NSTouchBarItemIdentifier,
             items: &NSArray<NSTouchBarItem>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSUserInterfaceCompression")]
         #[method_id(@__retain_semantics Other groupItemWithIdentifier:items:allowedCompressionOptions:)]
@@ -41,24 +41,24 @@ extern_methods!(
             items: &NSArray<NSTouchBarItem>,
             allowed_compression_options: &NSUserInterfaceCompressionOptions,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other alertStyleGroupItemWithIdentifier:)]
         pub unsafe fn alertStyleGroupItemWithIdentifier(
             identifier: &NSTouchBarItemIdentifier,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSTouchBar")]
         #[method_id(@__retain_semantics Other groupTouchBar)]
-        pub unsafe fn groupTouchBar(&self) -> Id<NSTouchBar>;
+        pub unsafe fn groupTouchBar(&self) -> Retained<NSTouchBar>;
 
         #[cfg(feature = "NSTouchBar")]
         #[method(setGroupTouchBar:)]
         pub unsafe fn setGroupTouchBar(&self, group_touch_bar: &NSTouchBar);
 
         #[method_id(@__retain_semantics Other customizationLabel)]
-        pub unsafe fn customizationLabel(&self) -> Id<NSString>;
+        pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
@@ -88,13 +88,15 @@ extern_methods!(
 
         #[cfg(feature = "NSUserInterfaceCompression")]
         #[method_id(@__retain_semantics Other effectiveCompressionOptions)]
-        pub unsafe fn effectiveCompressionOptions(&self) -> Id<NSUserInterfaceCompressionOptions>;
+        pub unsafe fn effectiveCompressionOptions(
+            &self,
+        ) -> Retained<NSUserInterfaceCompressionOptions>;
 
         #[cfg(feature = "NSUserInterfaceCompression")]
         #[method_id(@__retain_semantics Other prioritizedCompressionOptions)]
         pub unsafe fn prioritizedCompressionOptions(
             &self,
-        ) -> Id<NSArray<NSUserInterfaceCompressionOptions>>;
+        ) -> Retained<NSArray<NSUserInterfaceCompressionOptions>>;
 
         #[cfg(feature = "NSUserInterfaceCompression")]
         #[method(setPrioritizedCompressionOptions:)]
@@ -113,13 +115,16 @@ extern_methods!(
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -128,6 +133,6 @@ extern_methods!(
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSGroupTouchBarItem {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

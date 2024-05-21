@@ -21,11 +21,11 @@ extern_methods!(
     unsafe impl UIFeedbackGenerator {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other feedbackGeneratorForView:)]
-        pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Id<Self>;
+        pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(prepare)]
         pub unsafe fn prepare(&self);
@@ -36,7 +36,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIFeedbackGenerator {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

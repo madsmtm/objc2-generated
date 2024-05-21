@@ -8,7 +8,7 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait UIAccessibilityIdentification: NSObjectProtocol {
         #[method_id(@__retain_semantics Other accessibilityIdentifier)]
-        unsafe fn accessibilityIdentifier(&self) -> Option<Id<NSString>>;
+        unsafe fn accessibilityIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(setAccessibilityIdentifier:)]
         unsafe fn setAccessibilityIdentifier(&self, accessibility_identifier: Option<&NSString>);

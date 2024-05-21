@@ -34,13 +34,13 @@ extern_methods!(
     #[cfg(feature = "UIPreviewParameters")]
     unsafe impl UIDragPreviewParameters {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithTextLineRects:)]
         pub unsafe fn initWithTextLineRects(
             this: Allocated<Self>,
             text_line_rects: &NSArray<NSValue>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -49,6 +49,6 @@ extern_methods!(
     #[cfg(feature = "UIPreviewParameters")]
     unsafe impl UIDragPreviewParameters {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -26,11 +26,11 @@ unsafe impl NSSecureCoding for SFTranscription {}
 extern_methods!(
     unsafe impl SFTranscription {
         #[method_id(@__retain_semantics Other formattedString)]
-        pub unsafe fn formattedString(&self) -> Id<NSString>;
+        pub unsafe fn formattedString(&self) -> Retained<NSString>;
 
         #[cfg(feature = "SFTranscriptionSegment")]
         #[method_id(@__retain_semantics Other segments)]
-        pub unsafe fn segments(&self) -> Id<NSArray<SFTranscriptionSegment>>;
+        pub unsafe fn segments(&self) -> Retained<NSArray<SFTranscriptionSegment>>;
 
         #[deprecated = "speakingRate is moved to SFSpeechRecognitionMetadata"]
         #[method(speakingRate)]
@@ -46,9 +46,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFTranscription {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

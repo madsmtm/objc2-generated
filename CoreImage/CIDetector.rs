@@ -25,11 +25,11 @@ extern_methods!(
             r#type: &NSString,
             context: Option<&CIContext>,
             options: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Option<Id<CIDetector>>;
+        ) -> Option<Retained<CIDetector>>;
 
         #[cfg(all(feature = "CIFeature", feature = "CIImage"))]
         #[method_id(@__retain_semantics Other featuresInImage:)]
-        pub unsafe fn featuresInImage(&self, image: &CIImage) -> Id<NSArray<CIFeature>>;
+        pub unsafe fn featuresInImage(&self, image: &CIImage) -> Retained<NSArray<CIFeature>>;
 
         #[cfg(all(feature = "CIFeature", feature = "CIImage"))]
         #[method_id(@__retain_semantics Other featuresInImage:options:)]
@@ -37,7 +37,7 @@ extern_methods!(
             &self,
             image: &CIImage,
             options: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<NSArray<CIFeature>>;
+        ) -> Retained<NSArray<CIFeature>>;
     }
 );
 
@@ -45,10 +45,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIDetector {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

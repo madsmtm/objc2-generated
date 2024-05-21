@@ -25,19 +25,19 @@ extern_methods!(
         pub unsafe fn runWorkflowAtURL_withInput_error(
             file_url: &NSURL,
             input: Option<&AnyObject>,
-        ) -> Result<Id<AnyObject>, Id<NSError>>;
+        ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             file_url: &NSURL,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method(writeToURL:error:_)]
-        pub unsafe fn writeToURL_error(&self, file_url: &NSURL) -> Result<(), Id<NSError>>;
+        pub unsafe fn writeToURL_error(&self, file_url: &NSURL) -> Result<(), Retained<NSError>>;
 
         #[method(setValue:forVariableWithName:)]
         pub unsafe fn setValue_forVariableWithName(
@@ -50,7 +50,7 @@ extern_methods!(
         pub unsafe fn valueForVariableWithName(
             &self,
             variable_name: &NSString,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "AMAction")]
         #[method(addAction:)]
@@ -72,20 +72,20 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other fileURL)]
-        pub unsafe fn fileURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn fileURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "AMAction")]
         #[method_id(@__retain_semantics Other actions)]
-        pub unsafe fn actions(&self) -> Id<NSArray<AMAction>>;
+        pub unsafe fn actions(&self) -> Retained<NSArray<AMAction>>;
 
         #[method_id(@__retain_semantics Other input)]
-        pub unsafe fn input(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn input(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setInput:)]
         pub unsafe fn setInput(&self, input: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other output)]
-        pub unsafe fn output(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn output(&self) -> Option<Retained<AnyObject>>;
     }
 );
 
@@ -93,6 +93,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AMWorkflow {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

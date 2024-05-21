@@ -19,15 +19,15 @@ unsafe impl NSObjectProtocol for CLBackgroundActivitySession {}
 extern_methods!(
     unsafe impl CLBackgroundActivitySession {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
 
         #[method_id(@__retain_semantics Other backgroundActivitySession)]
-        pub unsafe fn backgroundActivitySession() -> Id<Self>;
+        pub unsafe fn backgroundActivitySession() -> Retained<Self>;
     }
 );

@@ -17,7 +17,7 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other localizedTitlesForItem:)]
-        unsafe fn localizedTitlesForItem(&self, item: &AnyObject) -> Id<NSArray<NSString>>;
+        unsafe fn localizedTitlesForItem(&self, item: &AnyObject) -> Retained<NSArray<NSString>>;
 
         #[optional]
         #[method(performActionForItem:)]

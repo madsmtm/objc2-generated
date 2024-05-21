@@ -11,11 +11,11 @@ extern_protocol!(
         unsafe fn showsLargeContentViewer(&self) -> bool;
 
         #[method_id(@__retain_semantics Other largeContentTitle)]
-        unsafe fn largeContentTitle(&self) -> Option<Id<NSString>>;
+        unsafe fn largeContentTitle(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other largeContentImage)]
-        unsafe fn largeContentImage(&self) -> Option<Id<UIImage>>;
+        unsafe fn largeContentImage(&self) -> Option<Retained<UIImage>>;
 
         #[method(scalesLargeContentImage)]
         unsafe fn scalesLargeContentImage(&self) -> bool;
@@ -39,14 +39,14 @@ extern_methods!(
         pub unsafe fn setShowsLargeContentViewer(&self, shows_large_content_viewer: bool);
 
         #[method_id(@__retain_semantics Other largeContentTitle)]
-        pub unsafe fn largeContentTitle(&self) -> Option<Id<NSString>>;
+        pub unsafe fn largeContentTitle(&self) -> Option<Retained<NSString>>;
 
         #[method(setLargeContentTitle:)]
         pub unsafe fn setLargeContentTitle(&self, large_content_title: Option<&NSString>);
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other largeContentImage)]
-        pub unsafe fn largeContentImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn largeContentImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setLargeContentImage:)]
@@ -92,16 +92,18 @@ extern_methods!(
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: Option<&ProtocolObject<dyn UILargeContentViewerInteractionDelegate>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UILargeContentViewerInteractionDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UILargeContentViewerInteractionDelegate>>>;
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[method_id(@__retain_semantics Other gestureRecognizerForExclusionRelationship)]
-        pub unsafe fn gestureRecognizerForExclusionRelationship(&self) -> Id<UIGestureRecognizer>;
+        pub unsafe fn gestureRecognizerForExclusionRelationship(
+            &self,
+        ) -> Retained<UIGestureRecognizer>;
 
         #[method(isEnabled)]
         pub unsafe fn isEnabled(mtm: MainThreadMarker) -> bool;
@@ -112,10 +114,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UILargeContentViewerInteraction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -138,7 +140,7 @@ extern_protocol!(
             &self,
             interaction: &UILargeContentViewerInteraction,
             point: CGPoint,
-        ) -> Option<Id<ProtocolObject<dyn UILargeContentViewerItem>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UILargeContentViewerItem>>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
@@ -146,7 +148,7 @@ extern_protocol!(
         unsafe fn viewControllerForLargeContentViewerInteraction(
             &self,
             interaction: &UILargeContentViewerInteraction,
-        ) -> Id<UIViewController>;
+        ) -> Retained<UIViewController>;
     }
 
     unsafe impl ProtocolType for dyn UILargeContentViewerInteractionDelegate {}

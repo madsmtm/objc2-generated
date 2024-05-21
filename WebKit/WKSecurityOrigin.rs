@@ -20,13 +20,13 @@ unsafe impl NSObjectProtocol for WKSecurityOrigin {}
 extern_methods!(
     unsafe impl WKSecurityOrigin {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other protocol)]
-        pub unsafe fn protocol(&self) -> Id<NSString>;
+        pub unsafe fn protocol(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other host)]
-        pub unsafe fn host(&self) -> Id<NSString>;
+        pub unsafe fn host(&self) -> Retained<NSString>;
 
         #[method(port)]
         pub unsafe fn port(&self) -> NSInteger;
@@ -37,6 +37,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKSecurityOrigin {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

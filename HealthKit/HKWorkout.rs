@@ -247,20 +247,20 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other date)]
-        pub unsafe fn date(&self) -> Id<NSDate>;
+        pub unsafe fn date(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other dateInterval)]
-        pub unsafe fn dateInterval(&self) -> Id<NSDateInterval>;
+        pub unsafe fn dateInterval(&self) -> Retained<NSDateInterval>;
 
         #[method_id(@__retain_semantics Other metadata)]
-        pub unsafe fn metadata(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other workoutEventWithType:date:)]
         pub unsafe fn workoutEventWithType_date(
             r#type: HKWorkoutEventType,
             date: &NSDate,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other workoutEventWithType:date:metadata:)]
@@ -268,17 +268,17 @@ extern_methods!(
             r#type: HKWorkoutEventType,
             date: &NSDate,
             metadata: &NSDictionary<NSString, AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other workoutEventWithType:dateInterval:metadata:)]
         pub unsafe fn workoutEventWithType_dateInterval_metadata(
             r#type: HKWorkoutEventType,
             date_interval: &NSDateInterval,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -286,7 +286,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKWorkoutEvent {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -319,11 +319,11 @@ extern_methods!(
         pub unsafe fn workoutActivityType(&self) -> HKWorkoutActivityType;
 
         #[method_id(@__retain_semantics Other workoutEvents)]
-        pub unsafe fn workoutEvents(&self) -> Option<Id<NSArray<HKWorkoutEvent>>>;
+        pub unsafe fn workoutEvents(&self) -> Option<Retained<NSArray<HKWorkoutEvent>>>;
 
         #[cfg(feature = "HKWorkoutActivity")]
         #[method_id(@__retain_semantics Other workoutActivities)]
-        pub unsafe fn workoutActivities(&self) -> Id<NSArray<HKWorkoutActivity>>;
+        pub unsafe fn workoutActivities(&self) -> Retained<NSArray<HKWorkoutActivity>>;
 
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
@@ -331,33 +331,33 @@ extern_methods!(
         #[cfg(feature = "HKQuantity")]
         #[deprecated = "Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierActiveEnergyBurned"]
         #[method_id(@__retain_semantics Other totalEnergyBurned)]
-        pub unsafe fn totalEnergyBurned(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn totalEnergyBurned(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         #[deprecated = "Use statisticsForType: passing the HKQuantityType for the desired distance type"]
         #[method_id(@__retain_semantics Other totalDistance)]
-        pub unsafe fn totalDistance(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn totalDistance(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         #[deprecated = "Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount"]
         #[method_id(@__retain_semantics Other totalSwimmingStrokeCount)]
-        pub unsafe fn totalSwimmingStrokeCount(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn totalSwimmingStrokeCount(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         #[deprecated = "Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierFlightClimbed"]
         #[method_id(@__retain_semantics Other totalFlightsClimbed)]
-        pub unsafe fn totalFlightsClimbed(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn totalFlightsClimbed(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKStatistics"))]
         #[method_id(@__retain_semantics Other allStatistics)]
-        pub unsafe fn allStatistics(&self) -> Id<NSDictionary<HKQuantityType, HKStatistics>>;
+        pub unsafe fn allStatistics(&self) -> Retained<NSDictionary<HKQuantityType, HKStatistics>>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKStatistics"))]
         #[method_id(@__retain_semantics Other statisticsForType:)]
         pub unsafe fn statisticsForType(
             &self,
             quantity_type: &HKQuantityType,
-        ) -> Option<Id<HKStatistics>>;
+        ) -> Option<Retained<HKStatistics>>;
 
         #[deprecated = "Use HKWorkoutBuilder"]
         #[method_id(@__retain_semantics Other workoutWithActivityType:startDate:endDate:)]
@@ -365,7 +365,7 @@ extern_methods!(
             workout_activity_type: HKWorkoutActivityType,
             start_date: &NSDate,
             end_date: &NSDate,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "HKQuantity")]
         #[deprecated = "Use HKWorkoutBuilder"]
@@ -378,7 +378,7 @@ extern_methods!(
             total_energy_burned: Option<&HKQuantity>,
             total_distance: Option<&HKQuantity>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKDevice", feature = "HKQuantity"))]
         #[deprecated = "Use HKWorkoutBuilder"]
@@ -392,7 +392,7 @@ extern_methods!(
             total_distance: Option<&HKQuantity>,
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "HKQuantity")]
         #[deprecated = "Use HKWorkoutBuilder"]
@@ -405,7 +405,7 @@ extern_methods!(
             total_energy_burned: Option<&HKQuantity>,
             total_distance: Option<&HKQuantity>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKDevice", feature = "HKQuantity"))]
         #[deprecated = "Use HKWorkoutBuilder"]
@@ -419,7 +419,7 @@ extern_methods!(
             total_distance: Option<&HKQuantity>,
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKDevice", feature = "HKQuantity"))]
         #[deprecated = "Use HKWorkoutBuilder"]
@@ -434,7 +434,7 @@ extern_methods!(
             total_swimming_stroke_count: Option<&HKQuantity>,
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKDevice", feature = "HKQuantity"))]
         #[deprecated = "Use HKWorkoutBuilder"]
@@ -449,7 +449,7 @@ extern_methods!(
             total_flights_climbed: Option<&HKQuantity>,
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -458,7 +458,7 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKWorkout {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -467,7 +467,7 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKWorkout {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

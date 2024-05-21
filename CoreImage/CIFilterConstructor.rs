@@ -9,7 +9,7 @@ extern_protocol!(
     pub unsafe trait CIFilterConstructor {
         #[cfg(feature = "CIFilter")]
         #[method_id(@__retain_semantics Other filterWithName:)]
-        unsafe fn filterWithName(&self, name: &NSString) -> Option<Id<CIFilter>>;
+        unsafe fn filterWithName(&self, name: &NSString) -> Option<Retained<CIFilter>>;
     }
 
     unsafe impl ProtocolType for dyn CIFilterConstructor {}

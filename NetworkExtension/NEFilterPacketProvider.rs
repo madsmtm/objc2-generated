@@ -24,10 +24,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterPacketContext {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -73,7 +73,10 @@ extern_methods!(
     unsafe impl NEFilterPacketProvider {
         #[cfg(feature = "NEPacket")]
         #[method_id(@__retain_semantics Other delayCurrentPacket:)]
-        pub unsafe fn delayCurrentPacket(&self, context: &NEFilterPacketContext) -> Id<NEPacket>;
+        pub unsafe fn delayCurrentPacket(
+            &self,
+            context: &NEFilterPacketContext,
+        ) -> Retained<NEPacket>;
 
         #[cfg(feature = "NEPacket")]
         #[method(allowPacket:)]
@@ -86,9 +89,9 @@ extern_methods!(
     #[cfg(all(feature = "NEFilterProvider", feature = "NEProvider"))]
     unsafe impl NEFilterPacketProvider {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

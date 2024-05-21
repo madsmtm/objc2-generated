@@ -34,10 +34,10 @@ extern_methods!(
         pub unsafe fn initWithAccessibilityContainer(
             this: Allocated<Self>,
             container: &AnyObject,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other accessibilityContainer)]
-        pub unsafe fn accessibilityContainer(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn accessibilityContainer(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setAccessibilityContainer:)]
         pub unsafe fn setAccessibilityContainer(&self, accessibility_container: Option<&AnyObject>);
@@ -49,19 +49,19 @@ extern_methods!(
         pub unsafe fn setIsAccessibilityElement(&self, is_accessibility_element: bool);
 
         #[method_id(@__retain_semantics Other accessibilityLabel)]
-        pub unsafe fn accessibilityLabel(&self) -> Option<Id<NSString>>;
+        pub unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
 
         #[method(setAccessibilityLabel:)]
         pub unsafe fn setAccessibilityLabel(&self, accessibility_label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other accessibilityHint)]
-        pub unsafe fn accessibilityHint(&self) -> Option<Id<NSString>>;
+        pub unsafe fn accessibilityHint(&self) -> Option<Retained<NSString>>;
 
         #[method(setAccessibilityHint:)]
         pub unsafe fn setAccessibilityHint(&self, accessibility_hint: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other accessibilityValue)]
-        pub unsafe fn accessibilityValue(&self) -> Option<Id<NSString>>;
+        pub unsafe fn accessibilityValue(&self) -> Option<Retained<NSString>>;
 
         #[method(setAccessibilityValue:)]
         pub unsafe fn setAccessibilityValue(&self, accessibility_value: Option<&NSString>);
@@ -96,9 +96,9 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIAccessibilityElement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

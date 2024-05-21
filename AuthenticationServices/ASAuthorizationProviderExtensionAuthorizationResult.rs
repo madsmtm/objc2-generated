@@ -23,19 +23,19 @@ extern_methods!(
         pub unsafe fn initWithHTTPAuthorizationHeaders(
             this: Allocated<Self>,
             http_authorization_headers: &NSDictionary<NSString, NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithHTTPResponse:httpBody:)]
         pub unsafe fn initWithHTTPResponse_httpBody(
             this: Allocated<Self>,
             http_response: &NSHTTPURLResponse,
             http_body: Option<&NSData>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other httpAuthorizationHeaders)]
         pub unsafe fn httpAuthorizationHeaders(
             &self,
-        ) -> Option<Id<NSDictionary<NSString, NSString>>>;
+        ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
         #[method(setHttpAuthorizationHeaders:)]
         pub unsafe fn setHttpAuthorizationHeaders(
@@ -44,19 +44,19 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other httpResponse)]
-        pub unsafe fn httpResponse(&self) -> Option<Id<NSHTTPURLResponse>>;
+        pub unsafe fn httpResponse(&self) -> Option<Retained<NSHTTPURLResponse>>;
 
         #[method(setHttpResponse:)]
         pub unsafe fn setHttpResponse(&self, http_response: Option<&NSHTTPURLResponse>);
 
         #[method_id(@__retain_semantics Other httpBody)]
-        pub unsafe fn httpBody(&self) -> Option<Id<NSData>>;
+        pub unsafe fn httpBody(&self) -> Option<Retained<NSData>>;
 
         #[method(setHttpBody:)]
         pub unsafe fn setHttpBody(&self, http_body: Option<&NSData>);
 
         #[method_id(@__retain_semantics Other privateKeys)]
-        pub unsafe fn privateKeys(&self) -> Id<NSArray>;
+        pub unsafe fn privateKeys(&self) -> Retained<NSArray>;
 
         #[method(setPrivateKeys:)]
         pub unsafe fn setPrivateKeys(&self, private_keys: &NSArray);
@@ -67,9 +67,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAuthorizationProviderExtensionAuthorizationResult {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

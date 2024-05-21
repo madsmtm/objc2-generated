@@ -46,20 +46,20 @@ extern_methods!(
             style: NSTableViewRowActionStyle,
             title: &NSString,
             handler: &block2::Block<dyn Fn(NonNull<NSTableViewRowAction>, NSInteger)>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(style)]
         pub unsafe fn style(&self) -> NSTableViewRowActionStyle;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
+        pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         #[method(setBackgroundColor:)]
@@ -67,7 +67,7 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         #[method(setImage:)]
@@ -79,9 +79,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTableViewRowAction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

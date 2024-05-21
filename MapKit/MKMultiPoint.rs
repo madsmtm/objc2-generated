@@ -48,8 +48,10 @@ extern_methods!(
         pub unsafe fn locationAtPointIndex(&self, index: NSUInteger) -> CGFloat;
 
         #[method_id(@__retain_semantics Other locationsAtPointIndexes:)]
-        pub unsafe fn locationsAtPointIndexes(&self, indexes: &NSIndexSet)
-            -> Id<NSArray<NSNumber>>;
+        pub unsafe fn locationsAtPointIndexes(
+            &self,
+            indexes: &NSIndexSet,
+        ) -> Retained<NSArray<NSNumber>>;
     }
 );
 
@@ -58,9 +60,9 @@ extern_methods!(
     #[cfg(feature = "MKShape")]
     unsafe impl MKMultiPoint {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

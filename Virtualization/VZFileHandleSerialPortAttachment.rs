@@ -25,22 +25,22 @@ extern_methods!(
     #[cfg(feature = "VZSerialPortAttachment")]
     unsafe impl VZFileHandleSerialPortAttachment {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithFileHandleForReading:fileHandleForWriting:)]
         pub unsafe fn initWithFileHandleForReading_fileHandleForWriting(
             this: Allocated<Self>,
             file_handle_for_reading: Option<&NSFileHandle>,
             file_handle_for_writing: Option<&NSFileHandle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other fileHandleForReading)]
-        pub unsafe fn fileHandleForReading(&self) -> Option<Id<NSFileHandle>>;
+        pub unsafe fn fileHandleForReading(&self) -> Option<Retained<NSFileHandle>>;
 
         #[method_id(@__retain_semantics Other fileHandleForWriting)]
-        pub unsafe fn fileHandleForWriting(&self) -> Option<Id<NSFileHandle>>;
+        pub unsafe fn fileHandleForWriting(&self) -> Option<Retained<NSFileHandle>>;
     }
 );

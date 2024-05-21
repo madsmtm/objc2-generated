@@ -32,11 +32,11 @@ extern_methods!(
     unsafe impl HKQuantitySample {
         #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other quantityType)]
-        pub unsafe fn quantityType(&self) -> Id<HKQuantityType>;
+        pub unsafe fn quantityType(&self) -> Retained<HKQuantityType>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other quantity)]
-        pub unsafe fn quantity(&self) -> Id<HKQuantity>;
+        pub unsafe fn quantity(&self) -> Retained<HKQuantity>;
 
         #[method(count)]
         pub unsafe fn count(&self) -> NSInteger;
@@ -48,7 +48,7 @@ extern_methods!(
             quantity: &HKQuantity,
             start_date: &NSDate,
             end_date: &NSDate,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other quantitySampleWithType:quantity:startDate:endDate:metadata:)]
@@ -58,7 +58,7 @@ extern_methods!(
             start_date: &NSDate,
             end_date: &NSDate,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKDevice", feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other quantitySampleWithType:quantity:startDate:endDate:device:metadata:)]
@@ -69,7 +69,7 @@ extern_methods!(
             end_date: &NSDate,
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -78,7 +78,7 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKQuantitySample {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -87,7 +87,7 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKQuantitySample {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

@@ -20,13 +20,13 @@ unsafe impl NSObjectProtocol for UILocalizedIndexedCollation {}
 extern_methods!(
     unsafe impl UILocalizedIndexedCollation {
         #[method_id(@__retain_semantics Other currentCollation)]
-        pub unsafe fn currentCollation(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn currentCollation(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other sectionTitles)]
-        pub unsafe fn sectionTitles(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn sectionTitles(&self) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other sectionIndexTitles)]
-        pub unsafe fn sectionIndexTitles(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn sectionIndexTitles(&self) -> Retained<NSArray<NSString>>;
 
         #[method(sectionForSectionIndexTitleAtIndex:)]
         pub unsafe fn sectionForSectionIndexTitleAtIndex(
@@ -46,7 +46,7 @@ extern_methods!(
             &self,
             array: &NSArray,
             selector: Sel,
-        ) -> Id<NSArray>;
+        ) -> Retained<NSArray>;
     }
 );
 
@@ -54,9 +54,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UILocalizedIndexedCollation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

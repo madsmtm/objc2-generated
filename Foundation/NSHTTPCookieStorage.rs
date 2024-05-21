@@ -44,17 +44,17 @@ unsafe impl NSObjectProtocol for NSHTTPCookieStorage {}
 extern_methods!(
     unsafe impl NSHTTPCookieStorage {
         #[method_id(@__retain_semantics Other sharedHTTPCookieStorage)]
-        pub unsafe fn sharedHTTPCookieStorage() -> Id<NSHTTPCookieStorage>;
+        pub unsafe fn sharedHTTPCookieStorage() -> Retained<NSHTTPCookieStorage>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other sharedCookieStorageForGroupContainerIdentifier:)]
         pub unsafe fn sharedCookieStorageForGroupContainerIdentifier(
             identifier: &NSString,
-        ) -> Id<NSHTTPCookieStorage>;
+        ) -> Retained<NSHTTPCookieStorage>;
 
         #[cfg(all(feature = "NSArray", feature = "NSHTTPCookie"))]
         #[method_id(@__retain_semantics Other cookies)]
-        pub unsafe fn cookies(&self) -> Option<Id<NSArray<NSHTTPCookie>>>;
+        pub unsafe fn cookies(&self) -> Option<Retained<NSArray<NSHTTPCookie>>>;
 
         #[cfg(feature = "NSHTTPCookie")]
         #[method(setCookie:)]
@@ -70,7 +70,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSArray", feature = "NSHTTPCookie", feature = "NSURL"))]
         #[method_id(@__retain_semantics Other cookiesForURL:)]
-        pub unsafe fn cookiesForURL(&self, url: &NSURL) -> Option<Id<NSArray<NSHTTPCookie>>>;
+        pub unsafe fn cookiesForURL(&self, url: &NSURL) -> Option<Retained<NSArray<NSHTTPCookie>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSHTTPCookie", feature = "NSURL"))]
         #[method(setCookies:forURL:mainDocumentURL:)]
@@ -96,7 +96,7 @@ extern_methods!(
         pub unsafe fn sortedCookiesUsingDescriptors(
             &self,
             sort_order: &NSArray<NSSortDescriptor>,
-        ) -> Id<NSArray<NSHTTPCookie>>;
+        ) -> Retained<NSArray<NSHTTPCookie>>;
     }
 );
 
@@ -104,10 +104,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSHTTPCookieStorage {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

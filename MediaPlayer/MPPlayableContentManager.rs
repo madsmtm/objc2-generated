@@ -25,7 +25,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn MPPlayableContentDataSource>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MPPlayableContentDataSource>>>;
 
         #[cfg(feature = "MPPlayableContentDataSource")]
         #[deprecated = "Use CarPlay framework"]
@@ -38,7 +38,9 @@ extern_methods!(
         #[cfg(feature = "MPPlayableContentDelegate")]
         #[deprecated = "Use CarPlay framework"]
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn MPPlayableContentDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn MPPlayableContentDelegate>>>;
 
         #[cfg(feature = "MPPlayableContentDelegate")]
         #[deprecated = "Use CarPlay framework"]
@@ -51,11 +53,11 @@ extern_methods!(
         #[cfg(feature = "MPPlayableContentManagerContext")]
         #[deprecated = "Use CarPlay framework"]
         #[method_id(@__retain_semantics Other context)]
-        pub unsafe fn context(&self) -> Id<MPPlayableContentManagerContext>;
+        pub unsafe fn context(&self) -> Retained<MPPlayableContentManagerContext>;
 
         #[deprecated = "Use CarPlay framework"]
         #[method_id(@__retain_semantics Other nowPlayingIdentifiers)]
-        pub unsafe fn nowPlayingIdentifiers(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn nowPlayingIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         #[deprecated = "Use CarPlay framework"]
         #[method(setNowPlayingIdentifiers:)]
@@ -63,7 +65,7 @@ extern_methods!(
 
         #[deprecated = "Use CarPlay framework"]
         #[method_id(@__retain_semantics Other sharedContentManager)]
-        pub unsafe fn sharedContentManager() -> Id<Self>;
+        pub unsafe fn sharedContentManager() -> Retained<Self>;
 
         #[deprecated = "Use CarPlay framework"]
         #[method(reloadData)]
@@ -83,9 +85,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPPlayableContentManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

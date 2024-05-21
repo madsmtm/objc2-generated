@@ -58,10 +58,10 @@ extern_methods!(
         pub unsafe fn dataType(&self) -> MLMultiArrayDataType;
 
         #[method_id(@__retain_semantics Other shape)]
-        pub unsafe fn shape(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn shape(&self) -> Retained<NSArray<NSNumber>>;
 
         #[method_id(@__retain_semantics Other strides)]
-        pub unsafe fn strides(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn strides(&self) -> Retained<NSArray<NSNumber>>;
 
         #[method(count)]
         pub unsafe fn count(&self) -> NSInteger;
@@ -72,10 +72,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLMultiArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -87,7 +87,7 @@ extern_methods!(
             this: Allocated<Self>,
             shape: &NSArray<NSNumber>,
             data_type: MLMultiArrayDataType,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithDataPointer:shape:dataType:strides:deallocator:error:_)]
@@ -98,7 +98,7 @@ extern_methods!(
             data_type: MLMultiArrayDataType,
             strides: &NSArray<NSNumber>,
             deallocator: Option<&block2::Block<dyn Fn(NonNull<c_void>)>>,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
     }
 );
 
@@ -131,7 +131,7 @@ extern_methods!(
             multi_arrays: &NSArray<MLMultiArray>,
             axis: NSInteger,
             data_type: MLMultiArrayDataType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -139,10 +139,11 @@ extern_methods!(
     /// NSNumberDataAccess
     unsafe impl MLMultiArray {
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
-        pub unsafe fn objectAtIndexedSubscript(&self, idx: NSInteger) -> Id<NSNumber>;
+        pub unsafe fn objectAtIndexedSubscript(&self, idx: NSInteger) -> Retained<NSNumber>;
 
         #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
-        pub unsafe fn objectForKeyedSubscript(&self, key: &NSArray<NSNumber>) -> Id<NSNumber>;
+        pub unsafe fn objectForKeyedSubscript(&self, key: &NSArray<NSNumber>)
+            -> Retained<NSNumber>;
 
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(&self, obj: &NSNumber, idx: NSInteger);

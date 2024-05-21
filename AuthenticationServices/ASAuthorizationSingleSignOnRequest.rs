@@ -55,7 +55,7 @@ extern_methods!(
     ))]
     unsafe impl ASAuthorizationSingleSignOnRequest {
         #[method_id(@__retain_semantics Other authorizationOptions)]
-        pub unsafe fn authorizationOptions(&self) -> Id<NSArray<NSURLQueryItem>>;
+        pub unsafe fn authorizationOptions(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         #[method(setAuthorizationOptions:)]
         pub unsafe fn setAuthorizationOptions(
@@ -79,9 +79,9 @@ extern_methods!(
     ))]
     unsafe impl ASAuthorizationSingleSignOnRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

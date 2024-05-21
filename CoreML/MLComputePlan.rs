@@ -20,10 +20,10 @@ unsafe impl NSObjectProtocol for MLComputePlan {}
 extern_methods!(
     unsafe impl MLComputePlan {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(feature = "MLModelConfiguration", feature = "block2"))]
         #[method(loadContentsOfURL:configuration:completionHandler:)]
@@ -53,7 +53,7 @@ extern_methods!(
         pub unsafe fn estimatedCostOfMLProgramOperation(
             &self,
             operation: &MLModelStructureProgramOperation,
-        ) -> Option<Id<MLComputePlanCost>>;
+        ) -> Option<Retained<MLComputePlanCost>>;
 
         #[cfg(all(
             feature = "MLComputePlanDeviceUsage",
@@ -63,7 +63,7 @@ extern_methods!(
         pub unsafe fn computeDeviceUsageForNeuralNetworkLayer(
             &self,
             layer: &MLModelStructureNeuralNetworkLayer,
-        ) -> Option<Id<MLComputePlanDeviceUsage>>;
+        ) -> Option<Retained<MLComputePlanDeviceUsage>>;
 
         #[cfg(all(
             feature = "MLComputePlanDeviceUsage",
@@ -73,10 +73,10 @@ extern_methods!(
         pub unsafe fn computeDeviceUsageForMLProgramOperation(
             &self,
             operation: &MLModelStructureProgramOperation,
-        ) -> Option<Id<MLComputePlanDeviceUsage>>;
+        ) -> Option<Retained<MLComputePlanDeviceUsage>>;
 
         #[cfg(feature = "MLModelStructure")]
         #[method_id(@__retain_semantics Other modelStructure)]
-        pub unsafe fn modelStructure(&self) -> Id<MLModelStructure>;
+        pub unsafe fn modelStructure(&self) -> Retained<MLModelStructure>;
     }
 );

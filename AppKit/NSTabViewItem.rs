@@ -41,38 +41,39 @@ extern_methods!(
     unsafe impl NSTabViewItem {
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other tabViewItemWithViewController:)]
-        pub unsafe fn tabViewItemWithViewController(view_controller: &NSViewController)
-            -> Id<Self>;
+        pub unsafe fn tabViewItemWithViewController(
+            view_controller: &NSViewController,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: Option<&AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn identifier(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&AnyObject>);
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other color)]
-        pub unsafe fn color(&self) -> Id<NSColor>;
+        pub unsafe fn color(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &NSColor);
 
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Id<NSString>;
+        pub unsafe fn label(&self) -> Retained<NSString>;
 
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         #[method(setImage:)]
@@ -80,7 +81,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
+        pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setView:)]
@@ -88,7 +89,10 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other viewController)]
-        pub unsafe fn viewController(&self, mtm: MainThreadMarker) -> Option<Id<NSViewController>>;
+        pub unsafe fn viewController(
+            &self,
+            mtm: MainThreadMarker,
+        ) -> Option<Retained<NSViewController>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method(setViewController:)]
@@ -99,18 +103,21 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSTabView", feature = "NSView"))]
         #[method_id(@__retain_semantics Other tabView)]
-        pub unsafe fn tabView(&self, mtm: MainThreadMarker) -> Option<Id<NSTabView>>;
+        pub unsafe fn tabView(&self, mtm: MainThreadMarker) -> Option<Retained<NSTabView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other initialFirstResponder)]
-        pub unsafe fn initialFirstResponder(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
+        pub unsafe fn initialFirstResponder(
+            &self,
+            mtm: MainThreadMarker,
+        ) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setInitialFirstResponder:)]
         pub unsafe fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
 
         #[method_id(@__retain_semantics Other toolTip)]
-        pub unsafe fn toolTip(&self) -> Option<Id<NSString>>;
+        pub unsafe fn toolTip(&self) -> Option<Retained<NSString>>;
 
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
@@ -127,9 +134,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTabViewItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

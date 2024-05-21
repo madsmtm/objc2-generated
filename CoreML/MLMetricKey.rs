@@ -34,18 +34,18 @@ extern_methods!(
     #[cfg(feature = "MLKey")]
     unsafe impl MLMetricKey {
         #[method_id(@__retain_semantics Other lossValue)]
-        pub unsafe fn lossValue() -> Id<MLMetricKey>;
+        pub unsafe fn lossValue() -> Retained<MLMetricKey>;
 
         #[method_id(@__retain_semantics Other epochIndex)]
-        pub unsafe fn epochIndex() -> Id<MLMetricKey>;
+        pub unsafe fn epochIndex() -> Retained<MLMetricKey>;
 
         #[method_id(@__retain_semantics Other miniBatchIndex)]
-        pub unsafe fn miniBatchIndex() -> Id<MLMetricKey>;
+        pub unsafe fn miniBatchIndex() -> Retained<MLMetricKey>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -28,14 +28,14 @@ extern_methods!(
         pub unsafe fn changeDetailsForObject(
             &self,
             object: &PHObject,
-        ) -> Option<Id<PHObjectChangeDetails>>;
+        ) -> Option<Retained<PHObjectChangeDetails>>;
 
         #[cfg(feature = "PHFetchResult")]
         #[method_id(@__retain_semantics Other changeDetailsForFetchResult:)]
         pub unsafe fn changeDetailsForFetchResult(
             &self,
             object: &PHFetchResult,
-        ) -> Option<Id<PHFetchResultChangeDetails>>;
+        ) -> Option<Retained<PHFetchResultChangeDetails>>;
     }
 );
 
@@ -43,10 +43,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHChange {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -77,10 +77,10 @@ unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHObjectChangeDetails<Objec
 extern_methods!(
     unsafe impl<ObjectType: Message> PHObjectChangeDetails<ObjectType> {
         #[method_id(@__retain_semantics Other objectBeforeChanges)]
-        pub unsafe fn objectBeforeChanges(&self) -> Id<ObjectType>;
+        pub unsafe fn objectBeforeChanges(&self) -> Retained<ObjectType>;
 
         #[method_id(@__retain_semantics Other objectAfterChanges)]
-        pub unsafe fn objectAfterChanges(&self) -> Option<Id<ObjectType>>;
+        pub unsafe fn objectAfterChanges(&self) -> Option<Retained<ObjectType>>;
 
         #[method(assetContentChanged)]
         pub unsafe fn assetContentChanged(&self) -> bool;
@@ -94,10 +94,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> PHObjectChangeDetails<ObjectType> {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -129,32 +129,32 @@ extern_methods!(
     unsafe impl<ObjectType: Message> PHFetchResultChangeDetails<ObjectType> {
         #[cfg(feature = "PHFetchResult")]
         #[method_id(@__retain_semantics Other fetchResultBeforeChanges)]
-        pub unsafe fn fetchResultBeforeChanges(&self) -> Id<PHFetchResult<ObjectType>>;
+        pub unsafe fn fetchResultBeforeChanges(&self) -> Retained<PHFetchResult<ObjectType>>;
 
         #[cfg(feature = "PHFetchResult")]
         #[method_id(@__retain_semantics Other fetchResultAfterChanges)]
-        pub unsafe fn fetchResultAfterChanges(&self) -> Id<PHFetchResult<ObjectType>>;
+        pub unsafe fn fetchResultAfterChanges(&self) -> Retained<PHFetchResult<ObjectType>>;
 
         #[method(hasIncrementalChanges)]
         pub unsafe fn hasIncrementalChanges(&self) -> bool;
 
         #[method_id(@__retain_semantics Other removedIndexes)]
-        pub unsafe fn removedIndexes(&self) -> Option<Id<NSIndexSet>>;
+        pub unsafe fn removedIndexes(&self) -> Option<Retained<NSIndexSet>>;
 
         #[method_id(@__retain_semantics Other removedObjects)]
-        pub unsafe fn removedObjects(&self) -> Id<NSArray<ObjectType>>;
+        pub unsafe fn removedObjects(&self) -> Retained<NSArray<ObjectType>>;
 
         #[method_id(@__retain_semantics Other insertedIndexes)]
-        pub unsafe fn insertedIndexes(&self) -> Option<Id<NSIndexSet>>;
+        pub unsafe fn insertedIndexes(&self) -> Option<Retained<NSIndexSet>>;
 
         #[method_id(@__retain_semantics Other insertedObjects)]
-        pub unsafe fn insertedObjects(&self) -> Id<NSArray<ObjectType>>;
+        pub unsafe fn insertedObjects(&self) -> Retained<NSArray<ObjectType>>;
 
         #[method_id(@__retain_semantics Other changedIndexes)]
-        pub unsafe fn changedIndexes(&self) -> Option<Id<NSIndexSet>>;
+        pub unsafe fn changedIndexes(&self) -> Option<Retained<NSIndexSet>>;
 
         #[method_id(@__retain_semantics Other changedObjects)]
-        pub unsafe fn changedObjects(&self) -> Id<NSArray<ObjectType>>;
+        pub unsafe fn changedObjects(&self) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(feature = "block2")]
         #[method(enumerateMovesWithBlock:)]
@@ -172,7 +172,7 @@ extern_methods!(
             from_result: &PHFetchResult<ObjectType>,
             to_result: &PHFetchResult<ObjectType>,
             changed_objects: &NSArray<ObjectType>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -180,9 +180,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> PHFetchResultChangeDetails<ObjectType> {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

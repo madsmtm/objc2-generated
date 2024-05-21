@@ -32,10 +32,11 @@ extern_methods!(
     unsafe impl MXDiskWriteExceptionDiagnostic {
         #[cfg(feature = "MXCallStackTree")]
         #[method_id(@__retain_semantics Other callStackTree)]
-        pub unsafe fn callStackTree(&self) -> Id<MXCallStackTree>;
+        pub unsafe fn callStackTree(&self) -> Retained<MXCallStackTree>;
 
         #[method_id(@__retain_semantics Other totalWritesCaused)]
-        pub unsafe fn totalWritesCaused(&self) -> Id<NSMeasurement<NSUnitInformationStorage>>;
+        pub unsafe fn totalWritesCaused(&self)
+            -> Retained<NSMeasurement<NSUnitInformationStorage>>;
     }
 );
 
@@ -44,9 +45,9 @@ extern_methods!(
     #[cfg(feature = "MXDiagnostic")]
     unsafe impl MXDiskWriteExceptionDiagnostic {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

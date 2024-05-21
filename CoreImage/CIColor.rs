@@ -31,13 +31,14 @@ extern_methods!(
             g: CGFloat,
             b: CGFloat,
             a: CGFloat,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other colorWithRed:green:blue:)]
-        pub unsafe fn colorWithRed_green_blue(r: CGFloat, g: CGFloat, b: CGFloat) -> Id<Self>;
+        pub unsafe fn colorWithRed_green_blue(r: CGFloat, g: CGFloat, b: CGFloat)
+            -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other colorWithString:)]
-        pub unsafe fn colorWithString(representation: &NSString) -> Id<Self>;
+        pub unsafe fn colorWithString(representation: &NSString) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithRed:green:blue:alpha:)]
         pub unsafe fn initWithRed_green_blue_alpha(
@@ -46,7 +47,7 @@ extern_methods!(
             g: CGFloat,
             b: CGFloat,
             a: CGFloat,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithRed:green:blue:)]
         pub unsafe fn initWithRed_green_blue(
@@ -54,7 +55,7 @@ extern_methods!(
             r: CGFloat,
             g: CGFloat,
             b: CGFloat,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(numberOfComponents)]
         pub unsafe fn numberOfComponents(&self) -> usize;
@@ -75,37 +76,37 @@ extern_methods!(
         pub unsafe fn blue(&self) -> CGFloat;
 
         #[method_id(@__retain_semantics Other stringRepresentation)]
-        pub unsafe fn stringRepresentation(&self) -> Id<NSString>;
+        pub unsafe fn stringRepresentation(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other blackColor)]
-        pub unsafe fn blackColor() -> Id<CIColor>;
+        pub unsafe fn blackColor() -> Retained<CIColor>;
 
         #[method_id(@__retain_semantics Other whiteColor)]
-        pub unsafe fn whiteColor() -> Id<CIColor>;
+        pub unsafe fn whiteColor() -> Retained<CIColor>;
 
         #[method_id(@__retain_semantics Other grayColor)]
-        pub unsafe fn grayColor() -> Id<CIColor>;
+        pub unsafe fn grayColor() -> Retained<CIColor>;
 
         #[method_id(@__retain_semantics Other redColor)]
-        pub unsafe fn redColor() -> Id<CIColor>;
+        pub unsafe fn redColor() -> Retained<CIColor>;
 
         #[method_id(@__retain_semantics Other greenColor)]
-        pub unsafe fn greenColor() -> Id<CIColor>;
+        pub unsafe fn greenColor() -> Retained<CIColor>;
 
         #[method_id(@__retain_semantics Other blueColor)]
-        pub unsafe fn blueColor() -> Id<CIColor>;
+        pub unsafe fn blueColor() -> Retained<CIColor>;
 
         #[method_id(@__retain_semantics Other cyanColor)]
-        pub unsafe fn cyanColor() -> Id<CIColor>;
+        pub unsafe fn cyanColor() -> Retained<CIColor>;
 
         #[method_id(@__retain_semantics Other magentaColor)]
-        pub unsafe fn magentaColor() -> Id<CIColor>;
+        pub unsafe fn magentaColor() -> Retained<CIColor>;
 
         #[method_id(@__retain_semantics Other yellowColor)]
-        pub unsafe fn yellowColor() -> Id<CIColor>;
+        pub unsafe fn yellowColor() -> Retained<CIColor>;
 
         #[method_id(@__retain_semantics Other clearColor)]
-        pub unsafe fn clearColor() -> Id<CIColor>;
+        pub unsafe fn clearColor() -> Retained<CIColor>;
     }
 );
 
@@ -113,9 +114,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIColor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

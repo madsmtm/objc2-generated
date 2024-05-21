@@ -71,12 +71,12 @@ extern_methods!(
             health_store: &HKHealthStore,
             configuration: &HKWorkoutConfiguration,
             device: Option<&HKDevice>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn HKLiveWorkoutBuilderDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn HKLiveWorkoutBuilderDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -86,7 +86,7 @@ extern_methods!(
 
         #[cfg(feature = "HKWorkoutSession")]
         #[method_id(@__retain_semantics Other workoutSession)]
-        pub unsafe fn workoutSession(&self) -> Option<Id<HKWorkoutSession>>;
+        pub unsafe fn workoutSession(&self) -> Option<Retained<HKWorkoutSession>>;
 
         #[method(shouldCollectWorkoutEvents)]
         pub unsafe fn shouldCollectWorkoutEvents(&self) -> bool;
@@ -96,7 +96,7 @@ extern_methods!(
 
         #[cfg(feature = "HKLiveWorkoutDataSource")]
         #[method_id(@__retain_semantics Other dataSource)]
-        pub unsafe fn dataSource(&self) -> Option<Id<HKLiveWorkoutDataSource>>;
+        pub unsafe fn dataSource(&self) -> Option<Retained<HKLiveWorkoutDataSource>>;
 
         #[cfg(feature = "HKLiveWorkoutDataSource")]
         #[method(setDataSource:)]
@@ -107,7 +107,7 @@ extern_methods!(
 
         #[cfg(feature = "HKWorkoutActivity")]
         #[method_id(@__retain_semantics Other currentWorkoutActivity)]
-        pub unsafe fn currentWorkoutActivity(&self) -> Option<Id<HKWorkoutActivity>>;
+        pub unsafe fn currentWorkoutActivity(&self) -> Option<Retained<HKWorkoutActivity>>;
     }
 );
 
@@ -116,7 +116,7 @@ extern_methods!(
     #[cfg(feature = "HKWorkoutBuilder")]
     unsafe impl HKLiveWorkoutBuilder {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -125,6 +125,6 @@ extern_methods!(
     #[cfg(feature = "HKWorkoutBuilder")]
     unsafe impl HKLiveWorkoutBuilder {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

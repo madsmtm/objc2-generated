@@ -27,130 +27,130 @@ extern_methods!(
         #[cfg(feature = "MLCActivationDescriptor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptor)]
-        pub unsafe fn descriptor(&self) -> Id<MLCActivationDescriptor>;
+        pub unsafe fn descriptor(&self) -> Retained<MLCActivationDescriptor>;
 
         #[cfg(feature = "MLCActivationDescriptor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithDescriptor:)]
-        pub unsafe fn layerWithDescriptor(descriptor: &MLCActivationDescriptor) -> Id<Self>;
+        pub unsafe fn layerWithDescriptor(descriptor: &MLCActivationDescriptor) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other reluLayer)]
-        pub unsafe fn reluLayer() -> Id<MLCActivationLayer>;
+        pub unsafe fn reluLayer() -> Retained<MLCActivationLayer>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other relu6Layer)]
-        pub unsafe fn relu6Layer() -> Id<MLCActivationLayer>;
+        pub unsafe fn relu6Layer() -> Retained<MLCActivationLayer>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other leakyReLULayer)]
-        pub unsafe fn leakyReLULayer() -> Id<MLCActivationLayer>;
+        pub unsafe fn leakyReLULayer() -> Retained<MLCActivationLayer>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other leakyReLULayerWithNegativeSlope:)]
-        pub unsafe fn leakyReLULayerWithNegativeSlope(negative_slope: c_float) -> Id<Self>;
+        pub unsafe fn leakyReLULayerWithNegativeSlope(negative_slope: c_float) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other linearLayerWithScale:bias:)]
-        pub unsafe fn linearLayerWithScale_bias(scale: c_float, bias: c_float) -> Id<Self>;
+        pub unsafe fn linearLayerWithScale_bias(scale: c_float, bias: c_float) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other sigmoidLayer)]
-        pub unsafe fn sigmoidLayer() -> Id<MLCActivationLayer>;
+        pub unsafe fn sigmoidLayer() -> Retained<MLCActivationLayer>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other hardSigmoidLayer)]
-        pub unsafe fn hardSigmoidLayer() -> Id<MLCActivationLayer>;
+        pub unsafe fn hardSigmoidLayer() -> Retained<MLCActivationLayer>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other tanhLayer)]
-        pub unsafe fn tanhLayer() -> Id<MLCActivationLayer>;
+        pub unsafe fn tanhLayer() -> Retained<MLCActivationLayer>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other absoluteLayer)]
-        pub unsafe fn absoluteLayer() -> Id<MLCActivationLayer>;
+        pub unsafe fn absoluteLayer() -> Retained<MLCActivationLayer>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other softPlusLayer)]
-        pub unsafe fn softPlusLayer() -> Id<MLCActivationLayer>;
+        pub unsafe fn softPlusLayer() -> Retained<MLCActivationLayer>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other softPlusLayerWithBeta:)]
-        pub unsafe fn softPlusLayerWithBeta(beta: c_float) -> Id<Self>;
+        pub unsafe fn softPlusLayerWithBeta(beta: c_float) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other softSignLayer)]
-        pub unsafe fn softSignLayer() -> Id<MLCActivationLayer>;
+        pub unsafe fn softSignLayer() -> Retained<MLCActivationLayer>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other eluLayer)]
-        pub unsafe fn eluLayer() -> Id<MLCActivationLayer>;
+        pub unsafe fn eluLayer() -> Retained<MLCActivationLayer>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other eluLayerWithA:)]
-        pub unsafe fn eluLayerWithA(a: c_float) -> Id<Self>;
+        pub unsafe fn eluLayerWithA(a: c_float) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other relunLayerWithA:b:)]
-        pub unsafe fn relunLayerWithA_b(a: c_float, b: c_float) -> Id<Self>;
+        pub unsafe fn relunLayerWithA_b(a: c_float, b: c_float) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other logSigmoidLayer)]
-        pub unsafe fn logSigmoidLayer() -> Id<MLCActivationLayer>;
+        pub unsafe fn logSigmoidLayer() -> Retained<MLCActivationLayer>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other seluLayer)]
-        pub unsafe fn seluLayer() -> Id<MLCActivationLayer>;
+        pub unsafe fn seluLayer() -> Retained<MLCActivationLayer>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other celuLayer)]
-        pub unsafe fn celuLayer() -> Id<MLCActivationLayer>;
+        pub unsafe fn celuLayer() -> Retained<MLCActivationLayer>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other celuLayerWithA:)]
-        pub unsafe fn celuLayerWithA(a: c_float) -> Id<Self>;
+        pub unsafe fn celuLayerWithA(a: c_float) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other hardShrinkLayer)]
-        pub unsafe fn hardShrinkLayer() -> Id<MLCActivationLayer>;
+        pub unsafe fn hardShrinkLayer() -> Retained<MLCActivationLayer>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other hardShrinkLayerWithA:)]
-        pub unsafe fn hardShrinkLayerWithA(a: c_float) -> Id<Self>;
+        pub unsafe fn hardShrinkLayerWithA(a: c_float) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other softShrinkLayer)]
-        pub unsafe fn softShrinkLayer() -> Id<MLCActivationLayer>;
+        pub unsafe fn softShrinkLayer() -> Retained<MLCActivationLayer>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other softShrinkLayerWithA:)]
-        pub unsafe fn softShrinkLayerWithA(a: c_float) -> Id<Self>;
+        pub unsafe fn softShrinkLayerWithA(a: c_float) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other tanhShrinkLayer)]
-        pub unsafe fn tanhShrinkLayer() -> Id<MLCActivationLayer>;
+        pub unsafe fn tanhShrinkLayer() -> Retained<MLCActivationLayer>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other thresholdLayerWithThreshold:replacement:)]
         pub unsafe fn thresholdLayerWithThreshold_replacement(
             threshold: c_float,
             replacement: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other geluLayer)]
-        pub unsafe fn geluLayer() -> Id<MLCActivationLayer>;
+        pub unsafe fn geluLayer() -> Retained<MLCActivationLayer>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other hardSwishLayer)]
-        pub unsafe fn hardSwishLayer() -> Id<MLCActivationLayer>;
+        pub unsafe fn hardSwishLayer() -> Retained<MLCActivationLayer>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other clampLayerWithMinValue:maxValue:)]
         pub unsafe fn clampLayerWithMinValue_maxValue(
             min_value: c_float,
             max_value: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -160,10 +160,10 @@ extern_methods!(
     unsafe impl MLCActivationLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

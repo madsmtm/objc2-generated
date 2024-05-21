@@ -70,10 +70,13 @@ extern_methods!(
     #[cfg(feature = "UIBarItem")]
     unsafe impl UITabBarItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Init initWithTitle:image:tag:)]
@@ -82,7 +85,7 @@ extern_methods!(
             title: Option<&NSString>,
             image: Option<&UIImage>,
             tag: NSInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Init initWithTitle:image:selectedImage:)]
@@ -91,25 +94,25 @@ extern_methods!(
             title: Option<&NSString>,
             image: Option<&UIImage>,
             selected_image: Option<&UIImage>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithTabBarSystemItem:tag:)]
         pub unsafe fn initWithTabBarSystemItem_tag(
             this: Allocated<Self>,
             system_item: UITabBarSystemItem,
             tag: NSInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other selectedImage)]
-        pub unsafe fn selectedImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn selectedImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setSelectedImage:)]
         pub unsafe fn setSelectedImage(&self, selected_image: Option<&UIImage>);
 
         #[method_id(@__retain_semantics Other badgeValue)]
-        pub unsafe fn badgeValue(&self) -> Option<Id<NSString>>;
+        pub unsafe fn badgeValue(&self) -> Option<Retained<NSString>>;
 
         #[method(setBadgeValue:)]
         pub unsafe fn setBadgeValue(&self, badge_value: Option<&NSString>);
@@ -126,12 +129,12 @@ extern_methods!(
         #[cfg(feature = "UIImage")]
         #[deprecated]
         #[method_id(@__retain_semantics Other finishedSelectedImage)]
-        pub unsafe fn finishedSelectedImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn finishedSelectedImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[deprecated]
         #[method_id(@__retain_semantics Other finishedUnselectedImage)]
-        pub unsafe fn finishedUnselectedImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn finishedUnselectedImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIGeometry")]
         #[method(titlePositionAdjustment)]
@@ -143,7 +146,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other badgeColor)]
-        pub unsafe fn badgeColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn badgeColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setBadgeColor:)]
@@ -162,11 +165,11 @@ extern_methods!(
         pub unsafe fn badgeTextAttributesForState(
             &self,
             state: UIControlState,
-        ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
         #[method_id(@__retain_semantics Other standardAppearance)]
-        pub unsafe fn standardAppearance(&self) -> Option<Id<UITabBarAppearance>>;
+        pub unsafe fn standardAppearance(&self) -> Option<Retained<UITabBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
         #[method(setStandardAppearance:)]
@@ -177,7 +180,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
         #[method_id(@__retain_semantics Other scrollEdgeAppearance)]
-        pub unsafe fn scrollEdgeAppearance(&self) -> Option<Id<UITabBarAppearance>>;
+        pub unsafe fn scrollEdgeAppearance(&self) -> Option<Retained<UITabBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
         #[method(setScrollEdgeAppearance:)]
@@ -193,7 +196,7 @@ extern_methods!(
     #[cfg(feature = "UIBarItem")]
     unsafe impl UITabBarItem {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

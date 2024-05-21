@@ -28,22 +28,25 @@ extern_methods!(
     #[cfg(feature = "VZBootLoader")]
     unsafe impl VZLinuxBootLoader {
         #[method_id(@__retain_semantics Init initWithKernelURL:)]
-        pub unsafe fn initWithKernelURL(this: Allocated<Self>, kernel_url: &NSURL) -> Id<Self>;
+        pub unsafe fn initWithKernelURL(
+            this: Allocated<Self>,
+            kernel_url: &NSURL,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other kernelURL)]
-        pub unsafe fn kernelURL(&self) -> Id<NSURL>;
+        pub unsafe fn kernelURL(&self) -> Retained<NSURL>;
 
         #[method(setKernelURL:)]
         pub unsafe fn setKernelURL(&self, kernel_url: &NSURL);
 
         #[method_id(@__retain_semantics Other commandLine)]
-        pub unsafe fn commandLine(&self) -> Id<NSString>;
+        pub unsafe fn commandLine(&self) -> Retained<NSString>;
 
         #[method(setCommandLine:)]
         pub unsafe fn setCommandLine(&self, command_line: &NSString);
 
         #[method_id(@__retain_semantics Other initialRamdiskURL)]
-        pub unsafe fn initialRamdiskURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn initialRamdiskURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setInitialRamdiskURL:)]
         pub unsafe fn setInitialRamdiskURL(&self, initial_ramdisk_url: Option<&NSURL>);
@@ -55,9 +58,9 @@ extern_methods!(
     #[cfg(feature = "VZBootLoader")]
     unsafe impl VZLinuxBootLoader {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

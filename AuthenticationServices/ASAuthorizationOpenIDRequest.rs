@@ -54,7 +54,7 @@ extern_methods!(
     unsafe impl ASAuthorizationOpenIDRequest {
         #[cfg(feature = "ASAuthorization")]
         #[method_id(@__retain_semantics Other requestedScopes)]
-        pub unsafe fn requestedScopes(&self) -> Option<Id<NSArray<ASAuthorizationScope>>>;
+        pub unsafe fn requestedScopes(&self) -> Option<Retained<NSArray<ASAuthorizationScope>>>;
 
         #[cfg(feature = "ASAuthorization")]
         #[method(setRequestedScopes:)]
@@ -64,19 +64,19 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other state)]
-        pub unsafe fn state(&self) -> Option<Id<NSString>>;
+        pub unsafe fn state(&self) -> Option<Retained<NSString>>;
 
         #[method(setState:)]
         pub unsafe fn setState(&self, state: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other nonce)]
-        pub unsafe fn nonce(&self) -> Option<Id<NSString>>;
+        pub unsafe fn nonce(&self) -> Option<Retained<NSString>>;
 
         #[method(setNonce:)]
         pub unsafe fn setNonce(&self, nonce: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other requestedOperation)]
-        pub unsafe fn requestedOperation(&self) -> Id<ASAuthorizationOpenIDOperation>;
+        pub unsafe fn requestedOperation(&self) -> Retained<ASAuthorizationOpenIDOperation>;
 
         #[method(setRequestedOperation:)]
         pub unsafe fn setRequestedOperation(
@@ -91,9 +91,9 @@ extern_methods!(
     #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationOpenIDRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

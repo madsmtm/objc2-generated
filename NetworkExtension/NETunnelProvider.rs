@@ -88,11 +88,11 @@ extern_methods!(
 
         #[cfg(feature = "NEVPNProtocol")]
         #[method_id(@__retain_semantics Other protocolConfiguration)]
-        pub unsafe fn protocolConfiguration(&self) -> Id<NEVPNProtocol>;
+        pub unsafe fn protocolConfiguration(&self) -> Retained<NEVPNProtocol>;
 
         #[cfg(feature = "NEAppRule")]
         #[method_id(@__retain_semantics Other appRules)]
-        pub unsafe fn appRules(&self) -> Option<Id<NSArray<NEAppRule>>>;
+        pub unsafe fn appRules(&self) -> Option<Retained<NSArray<NEAppRule>>>;
 
         #[method(routingMethod)]
         pub unsafe fn routingMethod(&self) -> NETunnelProviderRoutingMethod;
@@ -110,9 +110,9 @@ extern_methods!(
     #[cfg(feature = "NEProvider")]
     unsafe impl NETunnelProvider {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

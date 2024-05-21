@@ -92,7 +92,7 @@ extern_methods!(
 
         #[cfg(feature = "NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
-        pub unsafe fn locale(&self) -> Id<NSLocale>;
+        pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
         #[method(setLocale:)]
@@ -104,36 +104,36 @@ extern_methods!(
             components: &NSPersonNameComponents,
             name_format_style: NSPersonNameComponentsFormatterStyle,
             name_options: NSPersonNameComponentsFormatterOptions,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSPersonNameComponents", feature = "NSString"))]
         #[method_id(@__retain_semantics Other stringFromPersonNameComponents:)]
         pub unsafe fn stringFromPersonNameComponents(
             &self,
             components: &NSPersonNameComponents,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSAttributedString", feature = "NSPersonNameComponents"))]
         #[method_id(@__retain_semantics Other annotatedStringFromPersonNameComponents:)]
         pub unsafe fn annotatedStringFromPersonNameComponents(
             &self,
             components: &NSPersonNameComponents,
-        ) -> Id<NSAttributedString>;
+        ) -> Retained<NSAttributedString>;
 
         #[cfg(all(feature = "NSPersonNameComponents", feature = "NSString"))]
         #[method_id(@__retain_semantics Other personNameComponentsFromString:)]
         pub unsafe fn personNameComponentsFromString(
             &self,
             string: &NSString,
-        ) -> Option<Id<NSPersonNameComponents>>;
+        ) -> Option<Retained<NSPersonNameComponents>>;
 
         #[cfg(feature = "NSString")]
         #[method(getObjectValue:forString:errorDescription:)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,
-            obj: Option<&mut Option<Id<AnyObject>>>,
+            obj: Option<&mut Option<Retained<AnyObject>>>,
             string: &NSString,
-            error: Option<&mut Option<Id<NSString>>>,
+            error: Option<&mut Option<Retained<NSString>>>,
         ) -> bool;
     }
 );
@@ -143,10 +143,10 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSPersonNameComponentsFormatter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

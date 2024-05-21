@@ -70,18 +70,18 @@ extern_methods!(
         pub unsafe fn readingIntentWithURL_options(
             url: &NSURL,
             options: NSFileCoordinatorReadingOptions,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other writingIntentWithURL:options:)]
         pub unsafe fn writingIntentWithURL_options(
             url: &NSURL,
             options: NSFileCoordinatorWritingOptions,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL>;
+        pub unsafe fn URL(&self) -> Retained<NSURL>;
     }
 );
 
@@ -89,10 +89,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileAccessIntent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -120,18 +120,18 @@ extern_methods!(
 
         #[cfg(all(feature = "NSArray", feature = "NSFilePresenter"))]
         #[method_id(@__retain_semantics Other filePresenters)]
-        pub unsafe fn filePresenters() -> Id<NSArray<ProtocolObject<dyn NSFilePresenter>>>;
+        pub unsafe fn filePresenters() -> Retained<NSArray<ProtocolObject<dyn NSFilePresenter>>>;
 
         #[cfg(feature = "NSFilePresenter")]
         #[method_id(@__retain_semantics Init initWithFilePresenter:)]
         pub unsafe fn initWithFilePresenter(
             this: Allocated<Self>,
             file_presenter_or_nil: Option<&ProtocolObject<dyn NSFilePresenter>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other purposeIdentifier)]
-        pub unsafe fn purposeIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn purposeIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setPurposeIdentifier:)]
@@ -157,7 +157,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             options: NSFileCoordinatorReadingOptions,
-            out_error: Option<&mut Option<Id<NSError>>>,
+            out_error: Option<&mut Option<Retained<NSError>>>,
             reader: &block2::Block<dyn Fn(NonNull<NSURL>) + '_>,
         );
 
@@ -167,7 +167,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             options: NSFileCoordinatorWritingOptions,
-            out_error: Option<&mut Option<Id<NSError>>>,
+            out_error: Option<&mut Option<Retained<NSError>>>,
             writer: &block2::Block<dyn Fn(NonNull<NSURL>) + '_>,
         );
 
@@ -179,7 +179,7 @@ extern_methods!(
             reading_options: NSFileCoordinatorReadingOptions,
             writing_url: &NSURL,
             writing_options: NSFileCoordinatorWritingOptions,
-            out_error: Option<&mut Option<Id<NSError>>>,
+            out_error: Option<&mut Option<Retained<NSError>>>,
             reader_writer: &block2::Block<dyn Fn(NonNull<NSURL>, NonNull<NSURL>) + '_>,
         );
 
@@ -191,7 +191,7 @@ extern_methods!(
             options1: NSFileCoordinatorWritingOptions,
             url2: &NSURL,
             options2: NSFileCoordinatorWritingOptions,
-            out_error: Option<&mut Option<Id<NSError>>>,
+            out_error: Option<&mut Option<Retained<NSError>>>,
             writer: &block2::Block<dyn Fn(NonNull<NSURL>, NonNull<NSURL>) + '_>,
         );
 
@@ -208,7 +208,7 @@ extern_methods!(
             reading_options: NSFileCoordinatorReadingOptions,
             writing_ur_ls: &NSArray<NSURL>,
             writing_options: NSFileCoordinatorWritingOptions,
-            out_error: Option<&mut Option<Id<NSError>>>,
+            out_error: Option<&mut Option<Retained<NSError>>>,
             batch_accessor: &block2::Block<dyn Fn(NonNull<block2::Block<dyn Fn()>>) + '_>,
         );
 
@@ -237,9 +237,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileCoordinator {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

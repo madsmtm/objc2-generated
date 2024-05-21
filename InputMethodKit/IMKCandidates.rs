@@ -54,7 +54,7 @@ extern_methods!(
             this: Allocated<Self>,
             server: Option<&IMKServer>,
             panel_type: IMKCandidatePanelType,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "IMKServer")]
         #[method_id(@__retain_semantics Init initWithServer:panelType:styleType:)]
@@ -63,7 +63,7 @@ extern_methods!(
             server: Option<&IMKServer>,
             panel_type: IMKCandidatePanelType,
             style: IMKStyleType,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method(panelType)]
         pub unsafe fn panelType(&self) -> IMKCandidatePanelType;
@@ -100,13 +100,13 @@ extern_methods!(
         pub unsafe fn setSelectionKeys(&self, key_codes: Option<&NSArray>);
 
         #[method_id(@__retain_semantics Other selectionKeys)]
-        pub unsafe fn selectionKeys(&self) -> Option<Id<NSArray>>;
+        pub unsafe fn selectionKeys(&self) -> Option<Retained<NSArray>>;
 
         #[method(setAttributes:)]
         pub unsafe fn setAttributes(&self, attributes: Option<&NSDictionary>);
 
         #[method_id(@__retain_semantics Other attributes)]
-        pub unsafe fn attributes(&self) -> Option<Id<NSDictionary>>;
+        pub unsafe fn attributes(&self) -> Option<Retained<NSDictionary>>;
 
         #[method(setDismissesAutomatically:)]
         pub unsafe fn setDismissesAutomatically(&self, flag: bool);
@@ -157,7 +157,7 @@ extern_methods!(
         ) -> NSInteger;
 
         #[method_id(@__retain_semantics Other selectedCandidateString)]
-        pub unsafe fn selectedCandidateString(&self) -> Option<Id<NSAttributedString>>;
+        pub unsafe fn selectedCandidateString(&self) -> Option<Retained<NSAttributedString>>;
 
         #[method(candidateIdentifierAtLineNumber:)]
         pub unsafe fn candidateIdentifierAtLineNumber(&self, line_number: NSInteger) -> NSInteger;
@@ -178,10 +178,13 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl IMKCandidates {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -190,6 +193,6 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl IMKCandidates {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

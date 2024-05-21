@@ -23,7 +23,7 @@ extern_methods!(
         pub unsafe fn isForMainFrame(&self) -> bool;
 
         #[method_id(@__retain_semantics Other response)]
-        pub unsafe fn response(&self) -> Id<NSURLResponse>;
+        pub unsafe fn response(&self) -> Retained<NSURLResponse>;
 
         #[method(canShowMIMEType)]
         pub unsafe fn canShowMIMEType(&self) -> bool;
@@ -34,9 +34,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKNavigationResponse {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

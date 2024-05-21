@@ -28,7 +28,7 @@ extern_methods!(
         pub unsafe fn initWithOptions(
             this: Allocated<Self>,
             options: &MKMapSnapshotOptions,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKMapSnapshot", feature = "block2"))]
         #[method(startWithCompletionHandler:)]
@@ -49,9 +49,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKMapSnapshotter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

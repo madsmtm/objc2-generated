@@ -30,7 +30,7 @@ extern_methods!(
         pub unsafe fn initWithRequest(
             this: Allocated<Self>,
             request: &MKDirectionsRequest,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
         #[method(calculateDirectionsWithCompletionHandler:)]
@@ -55,9 +55,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKDirections {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -27,14 +27,14 @@ extern_methods!(
     unsafe impl EKRecurrenceDayOfWeek {
         #[cfg(feature = "EKTypes")]
         #[method_id(@__retain_semantics Other dayOfWeek:)]
-        pub unsafe fn dayOfWeek(day_of_the_week: EKWeekday) -> Id<Self>;
+        pub unsafe fn dayOfWeek(day_of_the_week: EKWeekday) -> Retained<Self>;
 
         #[cfg(feature = "EKTypes")]
         #[method_id(@__retain_semantics Other dayOfWeek:weekNumber:)]
         pub unsafe fn dayOfWeek_weekNumber(
             day_of_the_week: EKWeekday,
             week_number: NSInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "EKTypes")]
         #[method_id(@__retain_semantics Init initWithDayOfTheWeek:weekNumber:)]
@@ -42,7 +42,7 @@ extern_methods!(
             this: Allocated<Self>,
             day_of_the_week: EKWeekday,
             week_number: NSInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "EKTypes")]
         #[method(dayOfTheWeek)]
@@ -57,9 +57,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EKRecurrenceDayOfWeek {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -56,12 +56,12 @@ extern_methods!(
         pub unsafe fn initWithOptions(
             this: Allocated<Self>,
             options: NSPointerFunctionsOptions,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other pointerFunctionsWithOptions:)]
         pub unsafe fn pointerFunctionsWithOptions(
             options: NSPointerFunctionsOptions,
-        ) -> Id<NSPointerFunctions>;
+        ) -> Retained<NSPointerFunctions>;
 
         #[method(hashFunction)]
         pub unsafe fn hashFunction(
@@ -200,9 +200,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPointerFunctions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

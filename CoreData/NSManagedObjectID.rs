@@ -27,17 +27,17 @@ extern_methods!(
     unsafe impl NSManagedObjectID {
         #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entity)]
-        pub unsafe fn entity(&self) -> Id<NSEntityDescription>;
+        pub unsafe fn entity(&self) -> Retained<NSEntityDescription>;
 
         #[cfg(feature = "NSPersistentStore")]
         #[method_id(@__retain_semantics Other persistentStore)]
-        pub unsafe fn persistentStore(&self) -> Option<Id<NSPersistentStore>>;
+        pub unsafe fn persistentStore(&self) -> Option<Retained<NSPersistentStore>>;
 
         #[method(isTemporaryID)]
         pub unsafe fn isTemporaryID(&self) -> bool;
 
         #[method_id(@__retain_semantics Other URIRepresentation)]
-        pub unsafe fn URIRepresentation(&self) -> Id<NSURL>;
+        pub unsafe fn URIRepresentation(&self) -> Retained<NSURL>;
     }
 );
 
@@ -45,9 +45,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSManagedObjectID {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

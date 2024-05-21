@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl DOMHTMLMetaElement {
         #[deprecated]
         #[method_id(@__retain_semantics Other content)]
-        pub unsafe fn content(&self) -> Id<NSString>;
+        pub unsafe fn content(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setContent:)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other httpEquiv)]
-        pub unsafe fn httpEquiv(&self) -> Id<NSString>;
+        pub unsafe fn httpEquiv(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setHttpEquiv:)]
@@ -86,7 +86,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setName:)]
@@ -94,7 +94,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other scheme)]
-        pub unsafe fn scheme(&self) -> Id<NSString>;
+        pub unsafe fn scheme(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setScheme:)]
@@ -114,7 +114,7 @@ extern_methods!(
     unsafe impl DOMHTMLMetaElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -129,6 +129,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLMetaElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -54,10 +54,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLPipelineBufferDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -79,7 +79,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             buffer_index: NSUInteger,
-        ) -> Id<MTLPipelineBufferDescriptor>;
+        ) -> Retained<MTLPipelineBufferDescriptor>;
 
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -94,9 +94,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLPipelineBufferDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

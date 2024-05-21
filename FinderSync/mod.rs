@@ -39,10 +39,10 @@ unsafe impl NSObjectProtocol for FIFinderSyncController {}
 extern_methods!(
     unsafe impl FIFinderSyncController {
         #[method_id(@__retain_semantics Other defaultController)]
-        pub unsafe fn defaultController() -> Id<Self>;
+        pub unsafe fn defaultController() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other directoryURLs)]
-        pub unsafe fn directoryURLs(&self) -> Id<NSSet<NSURL>>;
+        pub unsafe fn directoryURLs(&self) -> Retained<NSSet<NSURL>>;
 
         #[method(setDirectoryURLs:)]
         pub unsafe fn setDirectoryURLs(&self, directory_ur_ls: Option<&NSSet<NSURL>>);
@@ -60,13 +60,16 @@ extern_methods!(
         pub unsafe fn setBadgeIdentifier_forURL(&self, badge_id: &NSString, url: &NSURL);
 
         #[method_id(@__retain_semantics Other targetedURL)]
-        pub unsafe fn targetedURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn targetedURL(&self) -> Option<Retained<NSURL>>;
 
         #[method_id(@__retain_semantics Other selectedItemURLs)]
-        pub unsafe fn selectedItemURLs(&self) -> Option<Id<NSArray<NSURL>>>;
+        pub unsafe fn selectedItemURLs(&self) -> Option<Retained<NSArray<NSURL>>>;
 
         #[method_id(@__retain_semantics Other lastUsedDateForItemWithURL:)]
-        pub unsafe fn lastUsedDateForItemWithURL(&self, item_url: &NSURL) -> Option<Id<NSDate>>;
+        pub unsafe fn lastUsedDateForItemWithURL(
+            &self,
+            item_url: &NSURL,
+        ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "block2")]
         #[method(setLastUsedDate:forItemWithURL:completion:)]
@@ -78,7 +81,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other tagDataForItemWithURL:)]
-        pub unsafe fn tagDataForItemWithURL(&self, item_url: &NSURL) -> Option<Id<NSData>>;
+        pub unsafe fn tagDataForItemWithURL(&self, item_url: &NSURL) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "block2")]
         #[method(setTagData:forItemWithURL:completion:)]
@@ -101,10 +104,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl FIFinderSyncController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -140,7 +143,7 @@ extern_protocol!(
             &self,
             menu: FIMenuKind,
             mtm: MainThreadMarker,
-        ) -> Option<Id<NSMenu>>;
+        ) -> Option<Retained<NSMenu>>;
 
         #[optional]
         #[method(beginObservingDirectoryAtURL:)]
@@ -156,23 +159,23 @@ extern_protocol!(
 
         #[optional]
         #[method_id(@__retain_semantics Other toolbarItemName)]
-        unsafe fn toolbarItemName(&self) -> Id<NSString>;
+        unsafe fn toolbarItemName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[optional]
         #[method_id(@__retain_semantics Other toolbarItemImage)]
-        unsafe fn toolbarItemImage(&self) -> Id<NSImage>;
+        unsafe fn toolbarItemImage(&self) -> Retained<NSImage>;
 
         #[optional]
         #[method_id(@__retain_semantics Other toolbarItemToolTip)]
-        unsafe fn toolbarItemToolTip(&self) -> Id<NSString>;
+        unsafe fn toolbarItemToolTip(&self) -> Retained<NSString>;
 
         #[optional]
         #[method_id(@__retain_semantics Other supportedServiceNamesForItemWithURL:)]
         unsafe fn supportedServiceNamesForItemWithURL(
             &self,
             item_url: &NSURL,
-        ) -> Id<NSArray<NSFileProviderServiceName>>;
+        ) -> Retained<NSArray<NSFileProviderServiceName>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other makeListenerEndpointForServiceName:itemURL:andReturnError:_)]
@@ -180,7 +183,7 @@ extern_protocol!(
             &self,
             service_name: &NSFileProviderServiceName,
             item_url: &NSURL,
-        ) -> Result<Id<NSXPCListenerEndpoint>, Id<NSError>>;
+        ) -> Result<Retained<NSXPCListenerEndpoint>, Retained<NSError>>;
 
         #[cfg(feature = "block2")]
         #[optional]
@@ -224,9 +227,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl FIFinderSync {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

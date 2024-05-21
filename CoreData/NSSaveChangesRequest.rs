@@ -35,23 +35,23 @@ extern_methods!(
             updated_objects: Option<&NSSet<NSManagedObject>>,
             deleted_objects: Option<&NSSet<NSManagedObject>>,
             locked_objects: Option<&NSSet<NSManagedObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other insertedObjects)]
-        pub unsafe fn insertedObjects(&self) -> Option<Id<NSSet<NSManagedObject>>>;
+        pub unsafe fn insertedObjects(&self) -> Option<Retained<NSSet<NSManagedObject>>>;
 
         #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other updatedObjects)]
-        pub unsafe fn updatedObjects(&self) -> Option<Id<NSSet<NSManagedObject>>>;
+        pub unsafe fn updatedObjects(&self) -> Option<Retained<NSSet<NSManagedObject>>>;
 
         #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other deletedObjects)]
-        pub unsafe fn deletedObjects(&self) -> Option<Id<NSSet<NSManagedObject>>>;
+        pub unsafe fn deletedObjects(&self) -> Option<Retained<NSSet<NSManagedObject>>>;
 
         #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other lockedObjects)]
-        pub unsafe fn lockedObjects(&self) -> Option<Id<NSSet<NSManagedObject>>>;
+        pub unsafe fn lockedObjects(&self) -> Option<Retained<NSSet<NSManagedObject>>>;
     }
 );
 
@@ -60,9 +60,9 @@ extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSSaveChangesRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

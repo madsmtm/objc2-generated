@@ -22,11 +22,11 @@ unsafe impl NSObjectProtocol for MTLLinkedFunctions {}
 extern_methods!(
     unsafe impl MTLLinkedFunctions {
         #[method_id(@__retain_semantics Other linkedFunctions)]
-        pub fn linkedFunctions() -> Id<MTLLinkedFunctions>;
+        pub fn linkedFunctions() -> Retained<MTLLinkedFunctions>;
 
         #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other functions)]
-        pub fn functions(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>>>;
+        pub fn functions(&self) -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
         #[cfg(feature = "MTLLibrary")]
         #[method(setFunctions:)]
@@ -34,7 +34,8 @@ extern_methods!(
 
         #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other binaryFunctions)]
-        pub fn binaryFunctions(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>>>;
+        pub fn binaryFunctions(&self)
+            -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
         #[cfg(feature = "MTLLibrary")]
         #[method(setBinaryFunctions:)]
@@ -47,7 +48,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other groups)]
         pub fn groups(
             &self,
-        ) -> Option<Id<NSDictionary<NSString, NSArray<ProtocolObject<dyn MTLFunction>>>>>;
+        ) -> Option<Retained<NSDictionary<NSString, NSArray<ProtocolObject<dyn MTLFunction>>>>>;
 
         #[cfg(feature = "MTLLibrary")]
         #[method(setGroups:)]
@@ -58,7 +59,9 @@ extern_methods!(
 
         #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other privateFunctions)]
-        pub fn privateFunctions(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>>>;
+        pub fn privateFunctions(
+            &self,
+        ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
         #[cfg(feature = "MTLLibrary")]
         #[method(setPrivateFunctions:)]
@@ -73,16 +76,16 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLLinkedFunctions {
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Allocated<Self>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub fn new() -> Id<Self>;
+        pub fn new() -> Retained<Self>;
     }
 );
 
-impl DefaultId for MTLLinkedFunctions {
+impl DefaultRetained for MTLLinkedFunctions {
     #[inline]
-    fn default_id() -> Id<Self> {
+    fn default_id() -> Retained<Self> {
         Self::new()
     }
 }

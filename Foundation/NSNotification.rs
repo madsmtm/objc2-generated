@@ -30,14 +30,14 @@ extern_methods!(
     unsafe impl NSNotification {
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSNotificationName>;
+        pub unsafe fn name(&self) -> Retained<NSNotificationName>;
 
         #[method_id(@__retain_semantics Other object)]
-        pub unsafe fn object(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn object(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
+        pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Init initWithName:object:userInfo:)]
@@ -46,11 +46,14 @@ extern_methods!(
             name: &NSNotificationName,
             object: Option<&AnyObject>,
             user_info: Option<&NSDictionary>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -62,7 +65,7 @@ extern_methods!(
         pub unsafe fn notificationWithName_object(
             a_name: &NSNotificationName,
             an_object: Option<&AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other notificationWithName:object:userInfo:)]
@@ -70,7 +73,7 @@ extern_methods!(
             a_name: &NSNotificationName,
             an_object: Option<&AnyObject>,
             a_user_info: Option<&NSDictionary>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -93,7 +96,7 @@ unsafe impl NSObjectProtocol for NSNotificationCenter {}
 extern_methods!(
     unsafe impl NSNotificationCenter {
         #[method_id(@__retain_semantics Other defaultCenter)]
-        pub unsafe fn defaultCenter() -> Id<NSNotificationCenter>;
+        pub unsafe fn defaultCenter() -> Retained<NSNotificationCenter>;
 
         #[cfg(feature = "NSString")]
         #[method(addObserver:selector:name:object:)]
@@ -145,7 +148,7 @@ extern_methods!(
             obj: Option<&AnyObject>,
             queue: Option<&NSOperationQueue>,
             block: &block2::Block<dyn Fn(NonNull<NSNotification>)>,
-        ) -> Id<NSObject>;
+        ) -> Retained<NSObject>;
     }
 );
 
@@ -153,9 +156,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSNotificationCenter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

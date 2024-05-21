@@ -32,10 +32,10 @@ extern_methods!(
     unsafe impl HKCorrelation {
         #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other correlationType)]
-        pub unsafe fn correlationType(&self) -> Id<HKCorrelationType>;
+        pub unsafe fn correlationType(&self) -> Retained<HKCorrelationType>;
 
         #[method_id(@__retain_semantics Other objects)]
-        pub unsafe fn objects(&self) -> Id<NSSet<HKSample>>;
+        pub unsafe fn objects(&self) -> Retained<NSSet<HKSample>>;
 
         #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other correlationWithType:startDate:endDate:objects:)]
@@ -44,7 +44,7 @@ extern_methods!(
             start_date: &NSDate,
             end_date: &NSDate,
             objects: &NSSet<HKSample>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other correlationWithType:startDate:endDate:objects:metadata:)]
@@ -54,7 +54,7 @@ extern_methods!(
             end_date: &NSDate,
             objects: &NSSet<HKSample>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKDevice", feature = "HKObjectType"))]
         #[method_id(@__retain_semantics Other correlationWithType:startDate:endDate:objects:device:metadata:)]
@@ -65,11 +65,14 @@ extern_methods!(
             objects: &NSSet<HKSample>,
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other objectsForType:)]
-        pub unsafe fn objectsForType(&self, object_type: &HKObjectType) -> Id<NSSet<HKSample>>;
+        pub unsafe fn objectsForType(
+            &self,
+            object_type: &HKObjectType,
+        ) -> Retained<NSSet<HKSample>>;
     }
 );
 
@@ -78,7 +81,7 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKCorrelation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -87,6 +90,6 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKCorrelation {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

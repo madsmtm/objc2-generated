@@ -49,10 +49,10 @@ unsafe impl NSSecureCoding for CKReference {}
 extern_methods!(
     unsafe impl CKReference {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Init initWithRecordID:action:)]
@@ -60,7 +60,7 @@ extern_methods!(
             this: Allocated<Self>,
             record_id: &CKRecordID,
             action: CKReferenceAction,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Init initWithRecord:action:)]
@@ -68,13 +68,13 @@ extern_methods!(
             this: Allocated<Self>,
             record: &CKRecord,
             action: CKReferenceAction,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(referenceAction)]
         pub unsafe fn referenceAction(&self) -> CKReferenceAction;
 
         #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other recordID)]
-        pub unsafe fn recordID(&self) -> Id<CKRecordID>;
+        pub unsafe fn recordID(&self) -> Retained<CKRecordID>;
     }
 );

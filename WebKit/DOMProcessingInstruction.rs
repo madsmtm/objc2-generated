@@ -64,11 +64,11 @@ extern_methods!(
     unsafe impl DOMProcessingInstruction {
         #[deprecated]
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Id<NSString>;
+        pub unsafe fn target(&self) -> Retained<NSString>;
 
         #[cfg(feature = "DOMStyleSheet")]
         #[method_id(@__retain_semantics Other sheet)]
-        pub unsafe fn sheet(&self) -> Option<Id<DOMStyleSheet>>;
+        pub unsafe fn sheet(&self) -> Option<Retained<DOMStyleSheet>>;
     }
 );
 
@@ -83,7 +83,7 @@ extern_methods!(
     unsafe impl DOMProcessingInstruction {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -97,6 +97,6 @@ extern_methods!(
     ))]
     unsafe impl DOMProcessingInstruction {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

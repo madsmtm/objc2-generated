@@ -58,15 +58,15 @@ extern_methods!(
         #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other relatedNode)]
-        pub unsafe fn relatedNode(&self) -> Option<Id<DOMNode>>;
+        pub unsafe fn relatedNode(&self) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other prevValue)]
-        pub unsafe fn prevValue(&self) -> Id<NSString>;
+        pub unsafe fn prevValue(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other attrName)]
-        pub unsafe fn attrName(&self) -> Id<NSString>;
+        pub unsafe fn attrName(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(attrChange)]
@@ -98,7 +98,7 @@ extern_methods!(
     unsafe impl DOMMutationEvent {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -111,7 +111,7 @@ extern_methods!(
     ))]
     unsafe impl DOMMutationEvent {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

@@ -68,33 +68,36 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSNib")]
         #[method_id(@__retain_semantics Other nibName)]
-        pub unsafe fn nibName(&self) -> Option<Id<NSNibName>>;
+        pub unsafe fn nibName(&self) -> Option<Retained<NSNibName>>;
 
         #[method_id(@__retain_semantics Other nibBundle)]
-        pub unsafe fn nibBundle(&self) -> Option<Id<NSBundle>>;
+        pub unsafe fn nibBundle(&self) -> Option<Retained<NSBundle>>;
 
         #[method_id(@__retain_semantics Other representedObject)]
-        pub unsafe fn representedObject(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn representedObject(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setRepresentedObject:)]
         pub unsafe fn setRepresentedObject(&self, represented_object: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "NSView")]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Id<NSView>;
+        pub unsafe fn view(&self) -> Retained<NSView>;
 
         #[cfg(feature = "NSView")]
         #[method(setView:)]
@@ -102,7 +105,7 @@ extern_methods!(
 
         #[cfg(feature = "NSView")]
         #[method_id(@__retain_semantics Other viewIfLoaded)]
-        pub unsafe fn viewIfLoaded(&self) -> Option<Id<NSView>>;
+        pub unsafe fn viewIfLoaded(&self) -> Option<Retained<NSView>>;
 
         #[method(loadView)]
         pub unsafe fn loadView(&self);
@@ -164,7 +167,7 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -173,7 +176,7 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSViewController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -195,10 +198,12 @@ extern_methods!(
         pub unsafe fn dismissController(&self, sender: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other presentedViewControllers)]
-        pub unsafe fn presentedViewControllers(&self) -> Option<Id<NSArray<NSViewController>>>;
+        pub unsafe fn presentedViewControllers(
+            &self,
+        ) -> Option<Retained<NSArray<NSViewController>>>;
 
         #[method_id(@__retain_semantics Other presentingViewController)]
-        pub unsafe fn presentingViewController(&self) -> Option<Id<NSViewController>>;
+        pub unsafe fn presentingViewController(&self) -> Option<Retained<NSViewController>>;
     }
 );
 
@@ -252,10 +257,10 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSViewController {
         #[method_id(@__retain_semantics Other parentViewController)]
-        pub unsafe fn parentViewController(&self) -> Option<Id<NSViewController>>;
+        pub unsafe fn parentViewController(&self) -> Option<Retained<NSViewController>>;
 
         #[method_id(@__retain_semantics Other childViewControllers)]
-        pub unsafe fn childViewControllers(&self) -> Id<NSArray<NSViewController>>;
+        pub unsafe fn childViewControllers(&self) -> Retained<NSArray<NSViewController>>;
 
         #[method(setChildViewControllers:)]
         pub unsafe fn setChildViewControllers(
@@ -320,7 +325,7 @@ extern_methods!(
     unsafe impl NSViewController {
         #[cfg(feature = "NSStoryboard")]
         #[method_id(@__retain_semantics Other storyboard)]
-        pub unsafe fn storyboard(&self) -> Option<Id<NSStoryboard>>;
+        pub unsafe fn storyboard(&self) -> Option<Retained<NSStoryboard>>;
     }
 );
 
@@ -329,11 +334,11 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSViewController {
         #[method_id(@__retain_semantics Other extensionContext)]
-        pub unsafe fn extensionContext(&self) -> Option<Id<NSExtensionContext>>;
+        pub unsafe fn extensionContext(&self) -> Option<Retained<NSExtensionContext>>;
 
         #[cfg(feature = "NSView")]
         #[method_id(@__retain_semantics Other sourceItemView)]
-        pub unsafe fn sourceItemView(&self) -> Option<Id<NSView>>;
+        pub unsafe fn sourceItemView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
         #[method(setSourceItemView:)]

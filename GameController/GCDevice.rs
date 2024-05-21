@@ -8,15 +8,15 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait GCDevice: NSObjectProtocol {
         #[method_id(@__retain_semantics Other vendorName)]
-        unsafe fn vendorName(&self) -> Option<Id<NSString>>;
+        unsafe fn vendorName(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other productCategory)]
-        unsafe fn productCategory(&self) -> Id<NSString>;
+        unsafe fn productCategory(&self) -> Retained<NSString>;
 
         #[cfg(feature = "GCPhysicalInputProfile")]
         #[deprecated = "Use the physicalInputProfile property on GCController instead.  For GCKeyboard, use the keyboardInput property.  For GCMouse, use the mouseInput property."]
         #[method_id(@__retain_semantics Other physicalInputProfile)]
-        unsafe fn physicalInputProfile(&self) -> Id<GCPhysicalInputProfile>;
+        unsafe fn physicalInputProfile(&self) -> Retained<GCPhysicalInputProfile>;
     }
 
     unsafe impl ProtocolType for dyn GCDevice {}

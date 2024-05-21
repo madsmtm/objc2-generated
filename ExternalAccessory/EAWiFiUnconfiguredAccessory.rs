@@ -40,19 +40,19 @@ unsafe impl NSObjectProtocol for EAWiFiUnconfiguredAccessory {}
 extern_methods!(
     unsafe impl EAWiFiUnconfiguredAccessory {
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other manufacturer)]
-        pub unsafe fn manufacturer(&self) -> Id<NSString>;
+        pub unsafe fn manufacturer(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other model)]
-        pub unsafe fn model(&self) -> Id<NSString>;
+        pub unsafe fn model(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other ssid)]
-        pub unsafe fn ssid(&self) -> Id<NSString>;
+        pub unsafe fn ssid(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other macAddress)]
-        pub unsafe fn macAddress(&self) -> Id<NSString>;
+        pub unsafe fn macAddress(&self) -> Retained<NSString>;
 
         #[method(properties)]
         pub unsafe fn properties(&self) -> EAWiFiUnconfiguredAccessoryProperties;
@@ -63,9 +63,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EAWiFiUnconfiguredAccessory {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -97,7 +97,7 @@ extern_methods!(
         pub unsafe fn videoBounds(&self) -> NSRect;
 
         #[method_id(@__retain_semantics Other contentOverlayView)]
-        pub unsafe fn contentOverlayView(&self) -> Option<Id<NSView>>;
+        pub unsafe fn contentOverlayView(&self) -> Option<Retained<NSView>>;
 
         #[method(updatesNowPlayingInfoCenter)]
         pub unsafe fn updatesNowPlayingInfoCenter(&self) -> bool;
@@ -106,7 +106,8 @@ extern_methods!(
         pub unsafe fn setUpdatesNowPlayingInfoCenter(&self, updates_now_playing_info_center: bool);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn AVPlayerViewDelegate>>>;
+        pub unsafe fn delegate(&self)
+            -> Option<Retained<ProtocolObject<dyn AVPlayerViewDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -116,7 +117,7 @@ extern_methods!(
 
         #[cfg(feature = "AVPlaybackSpeed")]
         #[method_id(@__retain_semantics Other speeds)]
-        pub unsafe fn speeds(&self) -> Id<NSArray<AVPlaybackSpeed>>;
+        pub unsafe fn speeds(&self) -> Retained<NSArray<AVPlaybackSpeed>>;
 
         #[cfg(feature = "AVPlaybackSpeed")]
         #[method(setSpeeds:)]
@@ -124,7 +125,7 @@ extern_methods!(
 
         #[cfg(feature = "AVPlaybackSpeed")]
         #[method_id(@__retain_semantics Other selectedSpeed)]
-        pub unsafe fn selectedSpeed(&self) -> Option<Id<AVPlaybackSpeed>>;
+        pub unsafe fn selectedSpeed(&self) -> Option<Retained<AVPlaybackSpeed>>;
 
         #[cfg(feature = "AVPlaybackSpeed")]
         #[method(selectSpeed:)]
@@ -174,10 +175,13 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -187,7 +191,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -197,7 +201,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -219,7 +223,7 @@ extern_methods!(
         pub unsafe fn setShowsSharingServiceButton(&self, shows_sharing_service_button: bool);
 
         #[method_id(@__retain_semantics Other actionPopUpButtonMenu)]
-        pub unsafe fn actionPopUpButtonMenu(&self) -> Option<Id<NSMenu>>;
+        pub unsafe fn actionPopUpButtonMenu(&self) -> Option<Retained<NSMenu>>;
 
         #[method(setActionPopUpButtonMenu:)]
         pub unsafe fn setActionPopUpButtonMenu(&self, action_pop_up_button_menu: Option<&NSMenu>);
@@ -303,7 +307,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other pictureInPictureDelegate)]
         pub unsafe fn pictureInPictureDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn AVPlayerViewPictureInPictureDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn AVPlayerViewPictureInPictureDelegate>>>;
 
         #[method(setPictureInPictureDelegate:)]
         pub unsafe fn setPictureInPictureDelegate(

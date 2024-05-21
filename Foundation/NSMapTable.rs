@@ -91,7 +91,7 @@ extern_methods!(
             key_options: NSPointerFunctionsOptions,
             value_options: NSPointerFunctionsOptions,
             initial_capacity: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
         #[method_id(@__retain_semantics Init initWithKeyPointerFunctions:valuePointerFunctions:capacity:)]
@@ -100,53 +100,53 @@ extern_methods!(
             key_functions: &NSPointerFunctions,
             value_functions: &NSPointerFunctions,
             initial_capacity: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
         #[method_id(@__retain_semantics Other mapTableWithKeyOptions:valueOptions:)]
         pub unsafe fn mapTableWithKeyOptions_valueOptions(
             key_options: NSPointerFunctionsOptions,
             value_options: NSPointerFunctionsOptions,
-        ) -> Id<NSMapTable<KeyType, ObjectType>>;
+        ) -> Retained<NSMapTable<KeyType, ObjectType>>;
 
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other mapTableWithStrongToStrongObjects)]
-        pub unsafe fn mapTableWithStrongToStrongObjects() -> Id<AnyObject>;
+        pub unsafe fn mapTableWithStrongToStrongObjects() -> Retained<AnyObject>;
 
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other mapTableWithWeakToStrongObjects)]
-        pub unsafe fn mapTableWithWeakToStrongObjects() -> Id<AnyObject>;
+        pub unsafe fn mapTableWithWeakToStrongObjects() -> Retained<AnyObject>;
 
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other mapTableWithStrongToWeakObjects)]
-        pub unsafe fn mapTableWithStrongToWeakObjects() -> Id<AnyObject>;
+        pub unsafe fn mapTableWithStrongToWeakObjects() -> Retained<AnyObject>;
 
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other mapTableWithWeakToWeakObjects)]
-        pub unsafe fn mapTableWithWeakToWeakObjects() -> Id<AnyObject>;
+        pub unsafe fn mapTableWithWeakToWeakObjects() -> Retained<AnyObject>;
 
         #[method_id(@__retain_semantics Other strongToStrongObjectsMapTable)]
-        pub unsafe fn strongToStrongObjectsMapTable() -> Id<NSMapTable<KeyType, ObjectType>>;
+        pub unsafe fn strongToStrongObjectsMapTable() -> Retained<NSMapTable<KeyType, ObjectType>>;
 
         #[method_id(@__retain_semantics Other weakToStrongObjectsMapTable)]
-        pub unsafe fn weakToStrongObjectsMapTable() -> Id<NSMapTable<KeyType, ObjectType>>;
+        pub unsafe fn weakToStrongObjectsMapTable() -> Retained<NSMapTable<KeyType, ObjectType>>;
 
         #[method_id(@__retain_semantics Other strongToWeakObjectsMapTable)]
-        pub unsafe fn strongToWeakObjectsMapTable() -> Id<NSMapTable<KeyType, ObjectType>>;
+        pub unsafe fn strongToWeakObjectsMapTable() -> Retained<NSMapTable<KeyType, ObjectType>>;
 
         #[method_id(@__retain_semantics Other weakToWeakObjectsMapTable)]
-        pub unsafe fn weakToWeakObjectsMapTable() -> Id<NSMapTable<KeyType, ObjectType>>;
+        pub unsafe fn weakToWeakObjectsMapTable() -> Retained<NSMapTable<KeyType, ObjectType>>;
 
         #[cfg(feature = "NSPointerFunctions")]
         #[method_id(@__retain_semantics Other keyPointerFunctions)]
-        pub unsafe fn keyPointerFunctions(&self) -> Id<NSPointerFunctions>;
+        pub unsafe fn keyPointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
         #[cfg(feature = "NSPointerFunctions")]
         #[method_id(@__retain_semantics Other valuePointerFunctions)]
-        pub unsafe fn valuePointerFunctions(&self) -> Id<NSPointerFunctions>;
+        pub unsafe fn valuePointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
         #[method_id(@__retain_semantics Other objectForKey:)]
-        pub unsafe fn objectForKey(&self, a_key: Option<&KeyType>) -> Option<Id<ObjectType>>;
+        pub unsafe fn objectForKey(&self, a_key: Option<&KeyType>) -> Option<Retained<ObjectType>>;
 
         #[method(removeObjectForKey:)]
         pub unsafe fn removeObjectForKey(&self, a_key: Option<&KeyType>);
@@ -163,18 +163,20 @@ extern_methods!(
 
         #[cfg(feature = "NSEnumerator")]
         #[method_id(@__retain_semantics Other keyEnumerator)]
-        pub unsafe fn keyEnumerator(&self) -> Id<NSEnumerator<KeyType>>;
+        pub unsafe fn keyEnumerator(&self) -> Retained<NSEnumerator<KeyType>>;
 
         #[cfg(feature = "NSEnumerator")]
         #[method_id(@__retain_semantics Other objectEnumerator)]
-        pub unsafe fn objectEnumerator(&self) -> Option<Id<NSEnumerator<ObjectType>>>;
+        pub unsafe fn objectEnumerator(&self) -> Option<Retained<NSEnumerator<ObjectType>>>;
 
         #[method(removeAllObjects)]
         pub unsafe fn removeAllObjects(&self);
 
         #[cfg(feature = "NSDictionary")]
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
-        pub unsafe fn dictionaryRepresentation(&self) -> Id<NSDictionary<KeyType, ObjectType>>;
+        pub unsafe fn dictionaryRepresentation(
+            &self,
+        ) -> Retained<NSDictionary<KeyType, ObjectType>>;
     }
 );
 
@@ -182,10 +184,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

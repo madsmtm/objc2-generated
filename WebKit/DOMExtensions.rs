@@ -20,7 +20,7 @@ extern_methods!(
         pub unsafe fn boundingBox(&self) -> NSRect;
 
         #[method_id(@__retain_semantics Other lineBoxRects)]
-        pub unsafe fn lineBoxRects(&self) -> Option<Id<NSArray>>;
+        pub unsafe fn lineBoxRects(&self) -> Option<Retained<NSArray>>;
     }
 );
 
@@ -36,7 +36,7 @@ extern_methods!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
     }
 );
 
@@ -56,13 +56,13 @@ extern_methods!(
             &self,
             markup_string: Option<&NSString>,
             base_url: Option<&NSURL>,
-        ) -> Option<Id<DOMDocumentFragment>>;
+        ) -> Option<Retained<DOMDocumentFragment>>;
 
         #[cfg(feature = "DOMDocumentFragment")]
         #[method_id(@__retain_semantics Other createDocumentFragmentWithText:)]
         pub unsafe fn createDocumentFragmentWithText(
             &self,
             text: Option<&NSString>,
-        ) -> Option<Id<DOMDocumentFragment>>;
+        ) -> Option<Retained<DOMDocumentFragment>>;
     }
 );

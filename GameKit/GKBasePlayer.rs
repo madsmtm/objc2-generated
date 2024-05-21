@@ -21,10 +21,10 @@ extern_methods!(
     unsafe impl GKBasePlayer {
         #[deprecated = "Use either the gamePlayerID or teamPlayerID property to identify a player."]
         #[method_id(@__retain_semantics Other playerID)]
-        pub unsafe fn playerID(&self) -> Option<Id<NSString>>;
+        pub unsafe fn playerID(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other displayName)]
-        pub unsafe fn displayName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
     }
 );
 
@@ -32,9 +32,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKBasePlayer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

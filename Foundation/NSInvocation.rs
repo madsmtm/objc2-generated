@@ -20,11 +20,13 @@ extern_methods!(
     unsafe impl NSInvocation {
         #[cfg(feature = "NSMethodSignature")]
         #[method_id(@__retain_semantics Other invocationWithMethodSignature:)]
-        pub unsafe fn invocationWithMethodSignature(sig: &NSMethodSignature) -> Id<NSInvocation>;
+        pub unsafe fn invocationWithMethodSignature(
+            sig: &NSMethodSignature,
+        ) -> Retained<NSInvocation>;
 
         #[cfg(feature = "NSMethodSignature")]
         #[method_id(@__retain_semantics Other methodSignature)]
-        pub unsafe fn methodSignature(&self) -> Id<NSMethodSignature>;
+        pub unsafe fn methodSignature(&self) -> Retained<NSMethodSignature>;
 
         #[method(retainArguments)]
         pub unsafe fn retainArguments(&self);
@@ -33,7 +35,7 @@ extern_methods!(
         pub unsafe fn argumentsRetained(&self) -> bool;
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -79,9 +81,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInvocation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

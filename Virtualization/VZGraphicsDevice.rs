@@ -20,13 +20,13 @@ unsafe impl NSObjectProtocol for VZGraphicsDevice {}
 extern_methods!(
     unsafe impl VZGraphicsDevice {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZGraphicsDisplay")]
         #[method_id(@__retain_semantics Other displays)]
-        pub unsafe fn displays(&self) -> Id<NSArray<VZGraphicsDisplay>>;
+        pub unsafe fn displays(&self) -> Retained<NSArray<VZGraphicsDisplay>>;
     }
 );

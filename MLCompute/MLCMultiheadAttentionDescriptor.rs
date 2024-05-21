@@ -24,11 +24,11 @@ extern_methods!(
     unsafe impl MLCMultiheadAttentionDescriptor {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated]
         #[method(modelDimension)]
@@ -73,13 +73,13 @@ extern_methods!(
             has_biases: bool,
             has_attention_biases: bool,
             adds_zero_attention: bool,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithModelDimension:headCount:)]
         pub unsafe fn descriptorWithModelDimension_headCount(
             model_dimension: NSUInteger,
             head_count: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

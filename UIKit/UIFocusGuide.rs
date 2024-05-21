@@ -37,7 +37,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other preferredFocusEnvironments)]
         pub unsafe fn preferredFocusEnvironments(
             &self,
-        ) -> Id<NSArray<ProtocolObject<dyn UIFocusEnvironment>>>;
+        ) -> Retained<NSArray<ProtocolObject<dyn UIFocusEnvironment>>>;
 
         #[cfg(feature = "UIFocus")]
         #[method(setPreferredFocusEnvironments:)]
@@ -49,7 +49,7 @@ extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other preferredFocusedView)]
-        pub unsafe fn preferredFocusedView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn preferredFocusedView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated]
@@ -63,9 +63,9 @@ extern_methods!(
     #[cfg(feature = "UILayoutGuide")]
     unsafe impl UIFocusGuide {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

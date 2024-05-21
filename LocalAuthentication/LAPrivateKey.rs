@@ -20,12 +20,12 @@ extern_methods!(
     unsafe impl LAPrivateKey {
         #[cfg(feature = "LAPublicKey")]
         #[method_id(@__retain_semantics Other publicKey)]
-        pub unsafe fn publicKey(&self) -> Id<LAPublicKey>;
+        pub unsafe fn publicKey(&self) -> Retained<LAPublicKey>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

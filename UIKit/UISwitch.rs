@@ -124,7 +124,7 @@ extern_methods!(
     unsafe impl UISwitch {
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other onTintColor)]
-        pub unsafe fn onTintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn onTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setOnTintColor:)]
@@ -132,7 +132,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other thumbTintColor)]
-        pub unsafe fn thumbTintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn thumbTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setThumbTintColor:)]
@@ -140,7 +140,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other onImage)]
-        pub unsafe fn onImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn onImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setOnImage:)]
@@ -148,14 +148,14 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other offImage)]
-        pub unsafe fn offImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn offImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setOffImage:)]
         pub unsafe fn setOffImage(&self, off_image: Option<&UIImage>);
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -176,10 +176,13 @@ extern_methods!(
         pub unsafe fn setOn(&self, on: bool);
 
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method(setOn:animated:)]
         pub unsafe fn setOn_animated(&self, on: bool, animated: bool);
@@ -196,7 +199,7 @@ extern_methods!(
             this: Allocated<Self>,
             frame: CGRect,
             primary_action: Option<&UIAction>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -205,9 +208,9 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISwitch {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

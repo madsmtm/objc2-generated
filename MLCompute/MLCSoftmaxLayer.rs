@@ -36,7 +36,7 @@ extern_methods!(
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithOperation:)]
-        pub unsafe fn layerWithOperation(operation: MLCSoftmaxOperation) -> Id<Self>;
+        pub unsafe fn layerWithOperation(operation: MLCSoftmaxOperation) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -44,7 +44,7 @@ extern_methods!(
         pub unsafe fn layerWithOperation_dimension(
             operation: MLCSoftmaxOperation,
             dimension: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -54,10 +54,10 @@ extern_methods!(
     unsafe impl MLCSoftmaxLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

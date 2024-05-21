@@ -82,22 +82,22 @@ unsafe impl NSObjectProtocol for GKLeaderboard {}
 extern_methods!(
     unsafe impl GKLeaderboard {
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other groupIdentifier)]
-        pub unsafe fn groupIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn groupIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other baseLeaderboardID)]
-        pub unsafe fn baseLeaderboardID(&self) -> Id<NSString>;
+        pub unsafe fn baseLeaderboardID(&self) -> Retained<NSString>;
 
         #[method(type)]
         pub unsafe fn r#type(&self) -> GKLeaderboardType;
 
         #[method_id(@__retain_semantics Other startDate)]
-        pub unsafe fn startDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
         #[method_id(@__retain_semantics Other nextStartDate)]
-        pub unsafe fn nextStartDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn nextStartDate(&self) -> Option<Retained<NSDate>>;
 
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
@@ -176,7 +176,7 @@ extern_methods!(
     unsafe impl GKLeaderboard {
         #[deprecated]
         #[method_id(@__retain_semantics Other category)]
-        pub unsafe fn category(&self) -> Option<Id<NSString>>;
+        pub unsafe fn category(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method(setCategory:)]
@@ -187,7 +187,7 @@ extern_methods!(
         pub unsafe fn initWithPlayerIDs(
             this: Allocated<Self>,
             player_i_ds: Option<&NSArray<NSString>>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "block2")]
         #[deprecated]
@@ -226,7 +226,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method(setIdentifier:)]
@@ -243,7 +243,7 @@ extern_methods!(
         #[cfg(feature = "GKScore")]
         #[deprecated]
         #[method_id(@__retain_semantics Other scores)]
-        pub unsafe fn scores(&self) -> Option<Id<NSArray<GKScore>>>;
+        pub unsafe fn scores(&self) -> Option<Retained<NSArray<GKScore>>>;
 
         #[deprecated]
         #[method(maxRange)]
@@ -252,7 +252,7 @@ extern_methods!(
         #[cfg(feature = "GKScore")]
         #[deprecated]
         #[method_id(@__retain_semantics Other localPlayerScore)]
-        pub unsafe fn localPlayerScore(&self) -> Option<Id<GKScore>>;
+        pub unsafe fn localPlayerScore(&self) -> Option<Retained<GKScore>>;
 
         #[deprecated]
         #[method(isLoading)]
@@ -264,7 +264,7 @@ extern_methods!(
         pub unsafe fn initWithPlayers(
             this: Allocated<Self>,
             players: &NSArray<GKPlayer>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "GKScore", feature = "block2"))]
         #[deprecated]

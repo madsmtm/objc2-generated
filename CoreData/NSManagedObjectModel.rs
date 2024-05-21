@@ -28,41 +28,45 @@ extern_methods!(
         #[method_id(@__retain_semantics Other mergedModelFromBundles:)]
         pub unsafe fn mergedModelFromBundles(
             bundles: Option<&NSArray<NSBundle>>,
-        ) -> Option<Id<NSManagedObjectModel>>;
+        ) -> Option<Retained<NSManagedObjectModel>>;
 
         #[method_id(@__retain_semantics Other modelByMergingModels:)]
         pub unsafe fn modelByMergingModels(
             models: Option<&NSArray<NSManagedObjectModel>>,
-        ) -> Option<Id<NSManagedObjectModel>>;
+        ) -> Option<Retained<NSManagedObjectModel>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
-        pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL)
-            -> Option<Id<Self>>;
+        pub unsafe fn initWithContentsOfURL(
+            this: Allocated<Self>,
+            url: &NSURL,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entitiesByName)]
-        pub unsafe fn entitiesByName(&self) -> Id<NSDictionary<NSString, NSEntityDescription>>;
+        pub unsafe fn entitiesByName(
+            &self,
+        ) -> Retained<NSDictionary<NSString, NSEntityDescription>>;
 
         #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entities)]
-        pub unsafe fn entities(&self) -> Id<NSArray<NSEntityDescription>>;
+        pub unsafe fn entities(&self) -> Retained<NSArray<NSEntityDescription>>;
 
         #[cfg(feature = "NSEntityDescription")]
         #[method(setEntities:)]
         pub unsafe fn setEntities(&self, entities: &NSArray<NSEntityDescription>);
 
         #[method_id(@__retain_semantics Other configurations)]
-        pub unsafe fn configurations(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn configurations(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entitiesForConfiguration:)]
         pub unsafe fn entitiesForConfiguration(
             &self,
             configuration: Option<&NSString>,
-        ) -> Option<Id<NSArray<NSEntityDescription>>>;
+        ) -> Option<Retained<NSArray<NSEntityDescription>>>;
 
         #[cfg(feature = "NSEntityDescription")]
         #[method(setEntities:forConfiguration:)]
@@ -85,7 +89,7 @@ extern_methods!(
         pub unsafe fn fetchRequestTemplateForName(
             &self,
             name: &NSString,
-        ) -> Option<Id<NSFetchRequest>>;
+        ) -> Option<Retained<NSFetchRequest>>;
 
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         #[method_id(@__retain_semantics Other fetchRequestFromTemplateWithName:substitutionVariables:)]
@@ -93,11 +97,12 @@ extern_methods!(
             &self,
             name: &NSString,
             variables: &NSDictionary<NSString, AnyObject>,
-        ) -> Option<Id<NSFetchRequest>>;
+        ) -> Option<Retained<NSFetchRequest>>;
 
         #[method_id(@__retain_semantics Other localizationDictionary)]
-        pub unsafe fn localizationDictionary(&self)
-            -> Option<Id<NSDictionary<NSString, NSString>>>;
+        pub unsafe fn localizationDictionary(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
         #[method(setLocalizationDictionary:)]
         pub unsafe fn setLocalizationDictionary(
@@ -109,22 +114,22 @@ extern_methods!(
         pub unsafe fn mergedModelFromBundles_forStoreMetadata(
             bundles: Option<&NSArray<NSBundle>>,
             metadata: &NSDictionary<NSString, AnyObject>,
-        ) -> Option<Id<NSManagedObjectModel>>;
+        ) -> Option<Retained<NSManagedObjectModel>>;
 
         #[method_id(@__retain_semantics Other modelByMergingModels:forStoreMetadata:)]
         pub unsafe fn modelByMergingModels_forStoreMetadata(
             models: &NSArray<NSManagedObjectModel>,
             metadata: &NSDictionary<NSString, AnyObject>,
-        ) -> Option<Id<NSManagedObjectModel>>;
+        ) -> Option<Retained<NSManagedObjectModel>>;
 
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         #[method_id(@__retain_semantics Other fetchRequestTemplatesByName)]
         pub unsafe fn fetchRequestTemplatesByName(
             &self,
-        ) -> Id<NSDictionary<NSString, NSFetchRequest>>;
+        ) -> Retained<NSDictionary<NSString, NSFetchRequest>>;
 
         #[method_id(@__retain_semantics Other versionIdentifiers)]
-        pub unsafe fn versionIdentifiers(&self) -> Id<NSSet>;
+        pub unsafe fn versionIdentifiers(&self) -> Retained<NSSet>;
 
         #[method(setVersionIdentifiers:)]
         pub unsafe fn setVersionIdentifiers(&self, version_identifiers: &NSSet);
@@ -137,15 +142,15 @@ extern_methods!(
         ) -> bool;
 
         #[method_id(@__retain_semantics Other entityVersionHashesByName)]
-        pub unsafe fn entityVersionHashesByName(&self) -> Id<NSDictionary<NSString, NSData>>;
+        pub unsafe fn entityVersionHashesByName(&self) -> Retained<NSDictionary<NSString, NSData>>;
 
         #[method_id(@__retain_semantics Other versionChecksum)]
-        pub unsafe fn versionChecksum(&self) -> Id<NSString>;
+        pub unsafe fn versionChecksum(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other checksumsForVersionedModelAtURL:error:_)]
         pub unsafe fn checksumsForVersionedModelAtURL_error(
             model_url: &NSURL,
-        ) -> Result<Id<NSDictionary<NSString, NSString>>, Id<NSError>>;
+        ) -> Result<Retained<NSDictionary<NSString, NSString>>, Retained<NSError>>;
     }
 );
 
@@ -153,6 +158,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSManagedObjectModel {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

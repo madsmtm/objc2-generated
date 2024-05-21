@@ -20,16 +20,16 @@ unsafe impl NSObjectProtocol for UIMenuSystem {}
 extern_methods!(
     unsafe impl UIMenuSystem {
         #[method_id(@__retain_semantics Other mainSystem)]
-        pub unsafe fn mainSystem(mtm: MainThreadMarker) -> Id<UIMenuSystem>;
+        pub unsafe fn mainSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
 
         #[method_id(@__retain_semantics Other contextSystem)]
-        pub unsafe fn contextSystem(mtm: MainThreadMarker) -> Id<UIMenuSystem>;
+        pub unsafe fn contextSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(setNeedsRebuild)]
         pub unsafe fn setNeedsRebuild(&self);

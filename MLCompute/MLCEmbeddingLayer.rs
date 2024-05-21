@@ -27,17 +27,17 @@ extern_methods!(
         #[cfg(feature = "MLCEmbeddingDescriptor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptor)]
-        pub unsafe fn descriptor(&self) -> Id<MLCEmbeddingDescriptor>;
+        pub unsafe fn descriptor(&self) -> Retained<MLCEmbeddingDescriptor>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other weights)]
-        pub unsafe fn weights(&self) -> Id<MLCTensor>;
+        pub unsafe fn weights(&self) -> Retained<MLCTensor>;
 
         #[cfg(feature = "MLCTensorParameter")]
         #[deprecated]
         #[method_id(@__retain_semantics Other weightsParameter)]
-        pub unsafe fn weightsParameter(&self) -> Id<MLCTensorParameter>;
+        pub unsafe fn weightsParameter(&self) -> Retained<MLCTensorParameter>;
 
         #[cfg(all(feature = "MLCEmbeddingDescriptor", feature = "MLCTensor"))]
         #[deprecated]
@@ -45,7 +45,7 @@ extern_methods!(
         pub unsafe fn layerWithDescriptor_weights(
             descriptor: &MLCEmbeddingDescriptor,
             weights: &MLCTensor,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -55,10 +55,10 @@ extern_methods!(
     unsafe impl MLCEmbeddingLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

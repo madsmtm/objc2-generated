@@ -59,14 +59,14 @@ extern_methods!(
         pub unsafe fn kind(&self) -> CLSProgressReportingCapabilityKind;
 
         #[method_id(@__retain_semantics Other details)]
-        pub unsafe fn details(&self) -> Option<Id<NSString>>;
+        pub unsafe fn details(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Init initWithKind:details:)]
         pub unsafe fn initWithKind_details(
             this: Allocated<Self>,
             kind: CLSProgressReportingCapabilityKind,
             details: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -75,9 +75,9 @@ extern_methods!(
     #[cfg(feature = "CLSObject")]
     unsafe impl CLSProgressReportingCapability {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

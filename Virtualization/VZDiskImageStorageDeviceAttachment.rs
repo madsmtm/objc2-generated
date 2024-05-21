@@ -71,7 +71,7 @@ extern_methods!(
             this: Allocated<Self>,
             url: &NSURL,
             read_only: bool,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Init initWithURL:readOnly:cachingMode:synchronizationMode:error:_)]
         pub unsafe fn initWithURL_readOnly_cachingMode_synchronizationMode_error(
@@ -80,10 +80,10 @@ extern_methods!(
             read_only: bool,
             caching_mode: VZDiskImageCachingMode,
             synchronization_mode: VZDiskImageSynchronizationMode,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL>;
+        pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         #[method(isReadOnly)]
         pub unsafe fn isReadOnly(&self) -> bool;
@@ -101,9 +101,9 @@ extern_methods!(
     #[cfg(feature = "VZStorageDeviceAttachment")]
     unsafe impl VZDiskImageStorageDeviceAttachment {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

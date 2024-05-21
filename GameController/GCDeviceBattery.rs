@@ -48,7 +48,7 @@ extern_methods!(
         pub unsafe fn batteryState(&self) -> GCDeviceBatteryState;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -56,6 +56,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCDeviceBattery {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -31,10 +31,10 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other monitoredIdentifiers)]
-        pub unsafe fn monitoredIdentifiers(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn monitoredIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "CLCondition")]
         #[method(addConditionForMonitoring:identifier:)]
@@ -61,12 +61,12 @@ extern_methods!(
         pub unsafe fn monitoringRecordForIdentifier(
             &self,
             identifier: &NSString,
-        ) -> Option<Id<CLMonitoringRecord>>;
+        ) -> Option<Retained<CLMonitoringRecord>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

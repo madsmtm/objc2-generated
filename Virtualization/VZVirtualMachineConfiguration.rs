@@ -23,7 +23,7 @@ extern_methods!(
     unsafe impl VZVirtualMachineConfiguration {
         #[cfg(feature = "VZBootLoader")]
         #[method_id(@__retain_semantics Other bootLoader)]
-        pub unsafe fn bootLoader(&self) -> Option<Id<VZBootLoader>>;
+        pub unsafe fn bootLoader(&self) -> Option<Retained<VZBootLoader>>;
 
         #[cfg(feature = "VZBootLoader")]
         #[method(setBootLoader:)]
@@ -43,7 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "VZPlatformConfiguration")]
         #[method_id(@__retain_semantics Other platform)]
-        pub unsafe fn platform(&self) -> Id<VZPlatformConfiguration>;
+        pub unsafe fn platform(&self) -> Retained<VZPlatformConfiguration>;
 
         #[cfg(feature = "VZPlatformConfiguration")]
         #[method(setPlatform:)]
@@ -51,7 +51,7 @@ extern_methods!(
 
         #[cfg(feature = "VZAudioDeviceConfiguration")]
         #[method_id(@__retain_semantics Other audioDevices)]
-        pub unsafe fn audioDevices(&self) -> Id<NSArray<VZAudioDeviceConfiguration>>;
+        pub unsafe fn audioDevices(&self) -> Retained<NSArray<VZAudioDeviceConfiguration>>;
 
         #[cfg(feature = "VZAudioDeviceConfiguration")]
         #[method(setAudioDevices:)]
@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "VZConsoleDeviceConfiguration")]
         #[method_id(@__retain_semantics Other consoleDevices)]
-        pub unsafe fn consoleDevices(&self) -> Id<NSArray<VZConsoleDeviceConfiguration>>;
+        pub unsafe fn consoleDevices(&self) -> Retained<NSArray<VZConsoleDeviceConfiguration>>;
 
         #[cfg(feature = "VZConsoleDeviceConfiguration")]
         #[method(setConsoleDevices:)]
@@ -72,7 +72,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other directorySharingDevices)]
         pub unsafe fn directorySharingDevices(
             &self,
-        ) -> Id<NSArray<VZDirectorySharingDeviceConfiguration>>;
+        ) -> Retained<NSArray<VZDirectorySharingDeviceConfiguration>>;
 
         #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
         #[method(setDirectorySharingDevices:)]
@@ -83,7 +83,7 @@ extern_methods!(
 
         #[cfg(feature = "VZEntropyDeviceConfiguration")]
         #[method_id(@__retain_semantics Other entropyDevices)]
-        pub unsafe fn entropyDevices(&self) -> Id<NSArray<VZEntropyDeviceConfiguration>>;
+        pub unsafe fn entropyDevices(&self) -> Retained<NSArray<VZEntropyDeviceConfiguration>>;
 
         #[cfg(feature = "VZEntropyDeviceConfiguration")]
         #[method(setEntropyDevices:)]
@@ -96,7 +96,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other memoryBalloonDevices)]
         pub unsafe fn memoryBalloonDevices(
             &self,
-        ) -> Id<NSArray<VZMemoryBalloonDeviceConfiguration>>;
+        ) -> Retained<NSArray<VZMemoryBalloonDeviceConfiguration>>;
 
         #[cfg(feature = "VZMemoryBalloonDeviceConfiguration")]
         #[method(setMemoryBalloonDevices:)]
@@ -107,7 +107,7 @@ extern_methods!(
 
         #[cfg(feature = "VZNetworkDeviceConfiguration")]
         #[method_id(@__retain_semantics Other networkDevices)]
-        pub unsafe fn networkDevices(&self) -> Id<NSArray<VZNetworkDeviceConfiguration>>;
+        pub unsafe fn networkDevices(&self) -> Retained<NSArray<VZNetworkDeviceConfiguration>>;
 
         #[cfg(feature = "VZNetworkDeviceConfiguration")]
         #[method(setNetworkDevices:)]
@@ -118,7 +118,7 @@ extern_methods!(
 
         #[cfg(feature = "VZSerialPortConfiguration")]
         #[method_id(@__retain_semantics Other serialPorts)]
-        pub unsafe fn serialPorts(&self) -> Id<NSArray<VZSerialPortConfiguration>>;
+        pub unsafe fn serialPorts(&self) -> Retained<NSArray<VZSerialPortConfiguration>>;
 
         #[cfg(feature = "VZSerialPortConfiguration")]
         #[method(setSerialPorts:)]
@@ -126,7 +126,7 @@ extern_methods!(
 
         #[cfg(feature = "VZSocketDeviceConfiguration")]
         #[method_id(@__retain_semantics Other socketDevices)]
-        pub unsafe fn socketDevices(&self) -> Id<NSArray<VZSocketDeviceConfiguration>>;
+        pub unsafe fn socketDevices(&self) -> Retained<NSArray<VZSocketDeviceConfiguration>>;
 
         #[cfg(feature = "VZSocketDeviceConfiguration")]
         #[method(setSocketDevices:)]
@@ -137,7 +137,7 @@ extern_methods!(
 
         #[cfg(feature = "VZStorageDeviceConfiguration")]
         #[method_id(@__retain_semantics Other storageDevices)]
-        pub unsafe fn storageDevices(&self) -> Id<NSArray<VZStorageDeviceConfiguration>>;
+        pub unsafe fn storageDevices(&self) -> Retained<NSArray<VZStorageDeviceConfiguration>>;
 
         #[cfg(feature = "VZStorageDeviceConfiguration")]
         #[method(setStorageDevices:)]
@@ -148,7 +148,7 @@ extern_methods!(
 
         #[cfg(feature = "VZKeyboardConfiguration")]
         #[method_id(@__retain_semantics Other keyboards)]
-        pub unsafe fn keyboards(&self) -> Id<NSArray<VZKeyboardConfiguration>>;
+        pub unsafe fn keyboards(&self) -> Retained<NSArray<VZKeyboardConfiguration>>;
 
         #[cfg(feature = "VZKeyboardConfiguration")]
         #[method(setKeyboards:)]
@@ -156,7 +156,7 @@ extern_methods!(
 
         #[cfg(feature = "VZPointingDeviceConfiguration")]
         #[method_id(@__retain_semantics Other pointingDevices)]
-        pub unsafe fn pointingDevices(&self) -> Id<NSArray<VZPointingDeviceConfiguration>>;
+        pub unsafe fn pointingDevices(&self) -> Retained<NSArray<VZPointingDeviceConfiguration>>;
 
         #[cfg(feature = "VZPointingDeviceConfiguration")]
         #[method(setPointingDevices:)]
@@ -167,7 +167,7 @@ extern_methods!(
 
         #[cfg(feature = "VZGraphicsDeviceConfiguration")]
         #[method_id(@__retain_semantics Other graphicsDevices)]
-        pub unsafe fn graphicsDevices(&self) -> Id<NSArray<VZGraphicsDeviceConfiguration>>;
+        pub unsafe fn graphicsDevices(&self) -> Retained<NSArray<VZGraphicsDeviceConfiguration>>;
 
         #[cfg(feature = "VZGraphicsDeviceConfiguration")]
         #[method(setGraphicsDevices:)]
@@ -182,10 +182,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VZVirtualMachineConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -193,10 +193,10 @@ extern_methods!(
     /// VZVirtualMachineConfigurationValidation
     unsafe impl VZVirtualMachineConfiguration {
         #[method(validateWithError:_)]
-        pub unsafe fn validateWithError(&self) -> Result<(), Id<NSError>>;
+        pub unsafe fn validateWithError(&self) -> Result<(), Retained<NSError>>;
 
         #[method(validateSaveRestoreSupportWithError:_)]
-        pub unsafe fn validateSaveRestoreSupportWithError(&self) -> Result<(), Id<NSError>>;
+        pub unsafe fn validateSaveRestoreSupportWithError(&self) -> Result<(), Retained<NSError>>;
 
         #[method(minimumAllowedMemorySize)]
         pub unsafe fn minimumAllowedMemorySize() -> u64;

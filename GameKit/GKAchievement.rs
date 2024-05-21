@@ -41,7 +41,7 @@ extern_methods!(
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Init initWithIdentifier:player:)]
@@ -49,7 +49,7 @@ extern_methods!(
             this: Allocated<Self>,
             identifier: Option<&NSString>,
             player: &GKPlayer,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(reportAchievements:withCompletionHandler:)]
@@ -59,7 +59,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
@@ -74,7 +74,7 @@ extern_methods!(
         pub unsafe fn isCompleted(&self) -> bool;
 
         #[method_id(@__retain_semantics Other lastReportedDate)]
-        pub unsafe fn lastReportedDate(&self) -> Id<NSDate>;
+        pub unsafe fn lastReportedDate(&self) -> Retained<NSDate>;
 
         #[method(showsCompletionBanner)]
         pub unsafe fn showsCompletionBanner(&self) -> bool;
@@ -84,7 +84,7 @@ extern_methods!(
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other player)]
-        pub unsafe fn player(&self) -> Option<Id<GKPlayer>>;
+        pub unsafe fn player(&self) -> Option<Retained<GKPlayer>>;
     }
 );
 
@@ -92,10 +92,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKAchievement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -125,10 +125,10 @@ extern_methods!(
             this: Allocated<Self>,
             identifier: Option<&NSString>,
             player_id: &NSString,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other playerID)]
-        pub unsafe fn playerID(&self) -> Option<Id<NSString>>;
+        pub unsafe fn playerID(&self) -> Option<Retained<NSString>>;
     }
 );

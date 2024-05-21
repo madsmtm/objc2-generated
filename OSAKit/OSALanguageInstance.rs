@@ -21,18 +21,21 @@ extern_methods!(
     unsafe impl OSALanguageInstance {
         #[cfg(feature = "OSALanguage")]
         #[method_id(@__retain_semantics Other languageInstanceWithLanguage:)]
-        pub unsafe fn languageInstanceWithLanguage(language: &OSALanguage) -> Id<Self>;
+        pub unsafe fn languageInstanceWithLanguage(language: &OSALanguage) -> Retained<Self>;
 
         #[cfg(feature = "OSALanguage")]
         #[method_id(@__retain_semantics Init initWithLanguage:)]
-        pub unsafe fn initWithLanguage(this: Allocated<Self>, language: &OSALanguage) -> Id<Self>;
+        pub unsafe fn initWithLanguage(
+            this: Allocated<Self>,
+            language: &OSALanguage,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "OSALanguage")]
         #[method_id(@__retain_semantics Other language)]
-        pub unsafe fn language(&self) -> Id<OSALanguage>;
+        pub unsafe fn language(&self) -> Retained<OSALanguage>;
 
         #[method_id(@__retain_semantics Other defaultTarget)]
-        pub unsafe fn defaultTarget(&self) -> Option<Id<NSAppleEventDescriptor>>;
+        pub unsafe fn defaultTarget(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
         #[method(setDefaultTarget:)]
         pub unsafe fn setDefaultTarget(&self, default_target: Option<&NSAppleEventDescriptor>);
@@ -41,7 +44,7 @@ extern_methods!(
         pub unsafe fn richTextFromDescriptor(
             &self,
             descriptor: &NSAppleEventDescriptor,
-        ) -> Option<Id<NSAttributedString>>;
+        ) -> Option<Retained<NSAttributedString>>;
     }
 );
 
@@ -49,9 +52,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSALanguageInstance {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

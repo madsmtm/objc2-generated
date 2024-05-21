@@ -35,30 +35,30 @@ extern_methods!(
         pub unsafe fn initWithOptions(
             this: Allocated<Self>,
             options: NSPointerFunctionsOptions,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
         #[method_id(@__retain_semantics Init initWithPointerFunctions:)]
         pub unsafe fn initWithPointerFunctions(
             this: Allocated<Self>,
             functions: &NSPointerFunctions,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
         #[method_id(@__retain_semantics Other pointerArrayWithOptions:)]
         pub unsafe fn pointerArrayWithOptions(
             options: NSPointerFunctionsOptions,
-        ) -> Id<NSPointerArray>;
+        ) -> Retained<NSPointerArray>;
 
         #[cfg(feature = "NSPointerFunctions")]
         #[method_id(@__retain_semantics Other pointerArrayWithPointerFunctions:)]
         pub unsafe fn pointerArrayWithPointerFunctions(
             functions: &NSPointerFunctions,
-        ) -> Id<NSPointerArray>;
+        ) -> Retained<NSPointerArray>;
 
         #[cfg(feature = "NSPointerFunctions")]
         #[method_id(@__retain_semantics Other pointerFunctions)]
-        pub unsafe fn pointerFunctions(&self) -> Id<NSPointerFunctions>;
+        pub unsafe fn pointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
         #[method(pointerAtIndex:)]
         pub unsafe fn pointerAtIndex(&self, index: NSUInteger) -> *mut c_void;
@@ -94,10 +94,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPointerArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -106,20 +106,20 @@ extern_methods!(
     unsafe impl NSPointerArray {
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other pointerArrayWithStrongObjects)]
-        pub unsafe fn pointerArrayWithStrongObjects() -> Id<AnyObject>;
+        pub unsafe fn pointerArrayWithStrongObjects() -> Retained<AnyObject>;
 
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other pointerArrayWithWeakObjects)]
-        pub unsafe fn pointerArrayWithWeakObjects() -> Id<AnyObject>;
+        pub unsafe fn pointerArrayWithWeakObjects() -> Retained<AnyObject>;
 
         #[method_id(@__retain_semantics Other strongObjectsPointerArray)]
-        pub unsafe fn strongObjectsPointerArray() -> Id<NSPointerArray>;
+        pub unsafe fn strongObjectsPointerArray() -> Retained<NSPointerArray>;
 
         #[method_id(@__retain_semantics Other weakObjectsPointerArray)]
-        pub unsafe fn weakObjectsPointerArray() -> Id<NSPointerArray>;
+        pub unsafe fn weakObjectsPointerArray() -> Retained<NSPointerArray>;
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other allObjects)]
-        pub unsafe fn allObjects(&self) -> Id<NSArray>;
+        pub unsafe fn allObjects(&self) -> Retained<NSArray>;
     }
 );

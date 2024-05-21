@@ -40,22 +40,25 @@ extern_methods!(
         pub unsafe fn initWithContent(
             this: Allocated<Self>,
             content: Option<&AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other content)]
-        pub unsafe fn content(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn content(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setContent:)]
         pub unsafe fn setContent(&self, content: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other selection)]
-        pub unsafe fn selection(&self) -> Id<AnyObject>;
+        pub unsafe fn selection(&self) -> Retained<AnyObject>;
 
         #[method_id(@__retain_semantics Other selectedObjects)]
-        pub unsafe fn selectedObjects(&self) -> Id<NSArray>;
+        pub unsafe fn selectedObjects(&self) -> Retained<NSArray>;
 
         #[method(automaticallyPreparesContent)]
         pub unsafe fn automaticallyPreparesContent(&self) -> bool;
@@ -73,7 +76,7 @@ extern_methods!(
         pub unsafe fn setObjectClass(&self, object_class: Option<&AnyClass>);
 
         #[method_id(@__retain_semantics New newObject)]
-        pub unsafe fn newObject(&self) -> Id<AnyObject>;
+        pub unsafe fn newObject(&self) -> Retained<AnyObject>;
 
         #[method(addObject:)]
         pub unsafe fn addObject(&self, object: &AnyObject);
@@ -113,7 +116,7 @@ extern_methods!(
     #[cfg(feature = "NSController")]
     unsafe impl NSObjectController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -122,7 +125,7 @@ extern_methods!(
     #[cfg(feature = "NSController")]
     unsafe impl NSObjectController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -133,7 +136,7 @@ extern_methods!(
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
-        pub unsafe fn managedObjectContext(&self) -> Option<Id<NSManagedObjectContext>>;
+        pub unsafe fn managedObjectContext(&self) -> Option<Retained<NSManagedObjectContext>>;
 
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
@@ -144,13 +147,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other entityName)]
-        pub unsafe fn entityName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn entityName(&self) -> Option<Retained<NSString>>;
 
         #[method(setEntityName:)]
         pub unsafe fn setEntityName(&self, entity_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other fetchPredicate)]
-        pub unsafe fn fetchPredicate(&self) -> Option<Id<NSPredicate>>;
+        pub unsafe fn fetchPredicate(&self) -> Option<Retained<NSPredicate>>;
 
         #[method(setFetchPredicate:)]
         pub unsafe fn setFetchPredicate(&self, fetch_predicate: Option<&NSPredicate>);
@@ -162,7 +165,7 @@ extern_methods!(
             &self,
             fetch_request: Option<&NSFetchRequest>,
             merge: bool,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(fetch:)]
         pub unsafe fn fetch(&self, sender: Option<&AnyObject>);
@@ -176,6 +179,6 @@ extern_methods!(
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other defaultFetchRequest)]
-        pub unsafe fn defaultFetchRequest(&self) -> Id<NSFetchRequest>;
+        pub unsafe fn defaultFetchRequest(&self) -> Retained<NSFetchRequest>;
     }
 );

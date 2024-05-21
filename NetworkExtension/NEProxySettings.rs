@@ -30,10 +30,10 @@ extern_methods!(
             this: Allocated<Self>,
             address: &NSString,
             port: NSInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other address)]
-        pub unsafe fn address(&self) -> Id<NSString>;
+        pub unsafe fn address(&self) -> Retained<NSString>;
 
         #[method(port)]
         pub unsafe fn port(&self) -> NSInteger;
@@ -45,13 +45,13 @@ extern_methods!(
         pub unsafe fn setAuthenticationRequired(&self, authentication_required: bool);
 
         #[method_id(@__retain_semantics Other username)]
-        pub unsafe fn username(&self) -> Option<Id<NSString>>;
+        pub unsafe fn username(&self) -> Option<Retained<NSString>>;
 
         #[method(setUsername:)]
         pub unsafe fn setUsername(&self, username: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other password)]
-        pub unsafe fn password(&self) -> Option<Id<NSString>>;
+        pub unsafe fn password(&self) -> Option<Retained<NSString>>;
 
         #[method(setPassword:)]
         pub unsafe fn setPassword(&self, password: Option<&NSString>);
@@ -62,10 +62,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEProxyServer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -99,7 +99,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other proxyAutoConfigurationURL)]
-        pub unsafe fn proxyAutoConfigurationURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn proxyAutoConfigurationURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setProxyAutoConfigurationURL:)]
         pub unsafe fn setProxyAutoConfigurationURL(
@@ -108,7 +108,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other proxyAutoConfigurationJavaScript)]
-        pub unsafe fn proxyAutoConfigurationJavaScript(&self) -> Option<Id<NSString>>;
+        pub unsafe fn proxyAutoConfigurationJavaScript(&self) -> Option<Retained<NSString>>;
 
         #[method(setProxyAutoConfigurationJavaScript:)]
         pub unsafe fn setProxyAutoConfigurationJavaScript(
@@ -123,7 +123,7 @@ extern_methods!(
         pub unsafe fn setHTTPEnabled(&self, http_enabled: bool);
 
         #[method_id(@__retain_semantics Other HTTPServer)]
-        pub unsafe fn HTTPServer(&self) -> Option<Id<NEProxyServer>>;
+        pub unsafe fn HTTPServer(&self) -> Option<Retained<NEProxyServer>>;
 
         #[method(setHTTPServer:)]
         pub unsafe fn setHTTPServer(&self, http_server: Option<&NEProxyServer>);
@@ -135,7 +135,7 @@ extern_methods!(
         pub unsafe fn setHTTPSEnabled(&self, https_enabled: bool);
 
         #[method_id(@__retain_semantics Other HTTPSServer)]
-        pub unsafe fn HTTPSServer(&self) -> Option<Id<NEProxyServer>>;
+        pub unsafe fn HTTPSServer(&self) -> Option<Retained<NEProxyServer>>;
 
         #[method(setHTTPSServer:)]
         pub unsafe fn setHTTPSServer(&self, https_server: Option<&NEProxyServer>);
@@ -147,13 +147,13 @@ extern_methods!(
         pub unsafe fn setExcludeSimpleHostnames(&self, exclude_simple_hostnames: bool);
 
         #[method_id(@__retain_semantics Other exceptionList)]
-        pub unsafe fn exceptionList(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn exceptionList(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setExceptionList:)]
         pub unsafe fn setExceptionList(&self, exception_list: Option<&NSArray<NSString>>);
 
         #[method_id(@__retain_semantics Other matchDomains)]
-        pub unsafe fn matchDomains(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn matchDomains(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setMatchDomains:)]
         pub unsafe fn setMatchDomains(&self, match_domains: Option<&NSArray<NSString>>);
@@ -164,9 +164,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEProxySettings {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

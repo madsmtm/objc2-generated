@@ -12,16 +12,16 @@ extern_methods!(
         #[method_id(@__retain_semantics Other predicateForGroupsWithIdentifiers:)]
         pub unsafe fn predicateForGroupsWithIdentifiers(
             identifiers: &NSArray<NSString>,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other predicateForSubgroupsInGroupWithIdentifier:)]
         pub unsafe fn predicateForSubgroupsInGroupWithIdentifier(
             parent_group_identifier: &NSString,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other predicateForGroupsInContainerWithIdentifier:)]
         pub unsafe fn predicateForGroupsInContainerWithIdentifier(
             container_identifier: &NSString,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
     }
 );

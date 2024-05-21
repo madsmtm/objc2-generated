@@ -19,17 +19,17 @@ unsafe impl NSObjectProtocol for VZVirtioConsolePortArray {}
 extern_methods!(
     unsafe impl VZVirtioConsolePortArray {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZVirtioConsolePort")]
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             port_index: NSUInteger,
-        ) -> Option<Id<VZVirtioConsolePort>>;
+        ) -> Option<Retained<VZVirtioConsolePort>>;
 
         #[method(maximumPortCount)]
         pub unsafe fn maximumPortCount(&self) -> u32;

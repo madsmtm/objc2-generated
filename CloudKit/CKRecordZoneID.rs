@@ -26,22 +26,22 @@ unsafe impl NSSecureCoding for CKRecordZoneID {}
 extern_methods!(
     unsafe impl CKRecordZoneID {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithZoneName:ownerName:)]
         pub unsafe fn initWithZoneName_ownerName(
             this: Allocated<Self>,
             zone_name: &NSString,
             owner_name: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other zoneName)]
-        pub unsafe fn zoneName(&self) -> Id<NSString>;
+        pub unsafe fn zoneName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other ownerName)]
-        pub unsafe fn ownerName(&self) -> Id<NSString>;
+        pub unsafe fn ownerName(&self) -> Retained<NSString>;
     }
 );

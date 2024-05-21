@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for NSThread {}
 extern_methods!(
     unsafe impl NSThread {
         #[method_id(@__retain_semantics Other currentThread)]
-        pub fn currentThread() -> Id<NSThread>;
+        pub fn currentThread() -> Retained<NSThread>;
 
         #[cfg(feature = "block2")]
         #[method(detachNewThreadWithBlock:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "NSDictionary")]
         #[method_id(@__retain_semantics Other threadDictionary)]
-        pub unsafe fn threadDictionary(&self) -> Id<NSMutableDictionary>;
+        pub unsafe fn threadDictionary(&self) -> Retained<NSMutableDictionary>;
 
         #[cfg(feature = "NSDate")]
         #[method(sleepUntilDate:)]
@@ -72,15 +72,15 @@ extern_methods!(
 
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
         #[method_id(@__retain_semantics Other callStackReturnAddresses)]
-        pub unsafe fn callStackReturnAddresses() -> Id<NSArray<NSNumber>>;
+        pub unsafe fn callStackReturnAddresses() -> Retained<NSArray<NSNumber>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other callStackSymbols)]
-        pub unsafe fn callStackSymbols() -> Id<NSArray<NSString>>;
+        pub unsafe fn callStackSymbols() -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub fn name(&self) -> Option<Id<NSString>>;
+        pub fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setName:)]
@@ -99,10 +99,10 @@ extern_methods!(
         pub fn isMainThread_class() -> bool;
 
         #[method_id(@__retain_semantics Other mainThread)]
-        pub fn mainThread() -> Id<NSThread>;
+        pub fn mainThread() -> Retained<NSThread>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Allocated<Self>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithTarget:selector:object:)]
         pub unsafe fn initWithTarget_selector_object(
@@ -110,14 +110,14 @@ extern_methods!(
             target: &AnyObject,
             selector: Sel,
             argument: Option<&AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithBlock:)]
         pub unsafe fn initWithBlock(
             this: Allocated<Self>,
             block: &block2::Block<dyn Fn()>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(isExecuting)]
         pub unsafe fn isExecuting(&self) -> bool;
@@ -143,13 +143,13 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSThread {
         #[method_id(@__retain_semantics New new)]
-        pub fn new() -> Id<Self>;
+        pub fn new() -> Retained<Self>;
     }
 );
 
-impl DefaultId for NSThread {
+impl DefaultRetained for NSThread {
     #[inline]
-    fn default_id() -> Id<Self> {
+    fn default_id() -> Retained<Self> {
         Self::new()
     }
 }

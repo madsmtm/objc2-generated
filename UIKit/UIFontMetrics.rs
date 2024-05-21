@@ -24,25 +24,25 @@ unsafe impl NSObjectProtocol for UIFontMetrics {}
 extern_methods!(
     unsafe impl UIFontMetrics {
         #[method_id(@__retain_semantics Other defaultMetrics)]
-        pub unsafe fn defaultMetrics() -> Id<UIFontMetrics>;
+        pub unsafe fn defaultMetrics() -> Retained<UIFontMetrics>;
 
         #[cfg(feature = "UIFontDescriptor")]
         #[method_id(@__retain_semantics Other metricsForTextStyle:)]
-        pub unsafe fn metricsForTextStyle(text_style: &UIFontTextStyle) -> Id<Self>;
+        pub unsafe fn metricsForTextStyle(text_style: &UIFontTextStyle) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIFontDescriptor")]
         #[method_id(@__retain_semantics Init initForTextStyle:)]
         pub unsafe fn initForTextStyle(
             this: Allocated<Self>,
             text_style: &UIFontTextStyle,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIFont")]
         #[method_id(@__retain_semantics Other scaledFontForFont:)]
-        pub unsafe fn scaledFontForFont(&self, font: &UIFont) -> Id<UIFont>;
+        pub unsafe fn scaledFontForFont(&self, font: &UIFont) -> Retained<UIFont>;
 
         #[cfg(feature = "UIFont")]
         #[method_id(@__retain_semantics Other scaledFontForFont:maximumPointSize:)]
@@ -50,7 +50,7 @@ extern_methods!(
             &self,
             font: &UIFont,
             maximum_point_size: CGFloat,
-        ) -> Id<UIFont>;
+        ) -> Retained<UIFont>;
 
         #[cfg(all(feature = "UIFont", feature = "UITraitCollection"))]
         #[method_id(@__retain_semantics Other scaledFontForFont:compatibleWithTraitCollection:)]
@@ -58,7 +58,7 @@ extern_methods!(
             &self,
             font: &UIFont,
             trait_collection: Option<&UITraitCollection>,
-        ) -> Id<UIFont>;
+        ) -> Retained<UIFont>;
 
         #[cfg(all(feature = "UIFont", feature = "UITraitCollection"))]
         #[method_id(@__retain_semantics Other scaledFontForFont:maximumPointSize:compatibleWithTraitCollection:)]
@@ -67,7 +67,7 @@ extern_methods!(
             font: &UIFont,
             maximum_point_size: CGFloat,
             trait_collection: Option<&UITraitCollection>,
-        ) -> Id<UIFont>;
+        ) -> Retained<UIFont>;
 
         #[method(scaledValueForValue:)]
         pub unsafe fn scaledValueForValue(&self, value: CGFloat) -> CGFloat;
@@ -86,6 +86,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIFontMetrics {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

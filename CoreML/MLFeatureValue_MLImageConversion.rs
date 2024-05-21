@@ -27,7 +27,7 @@ extern_methods!(
             pixels_high: NSInteger,
             pixel_format_type: OSType,
             options: Option<&NSDictionary<MLFeatureValueImageOption, AnyObject>>,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "MLImageConstraint")]
         #[method_id(@__retain_semantics Other featureValueWithImageAtURL:constraint:options:error:_)]
@@ -35,6 +35,6 @@ extern_methods!(
             url: &NSURL,
             constraint: &MLImageConstraint,
             options: Option<&NSDictionary<MLFeatureValueImageOption, AnyObject>>,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
     }
 );

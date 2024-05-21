@@ -162,7 +162,7 @@ unsafe impl RefEncode for MTLCounterResultStatistic {
 extern_protocol!(
     pub unsafe trait MTLCounter: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other name)]
-        unsafe fn name(&self) -> Id<NSString>;
+        unsafe fn name(&self) -> Retained<NSString>;
     }
 
     unsafe impl ProtocolType for dyn MTLCounter {}
@@ -171,10 +171,10 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait MTLCounterSet: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other name)]
-        unsafe fn name(&self) -> Id<NSString>;
+        unsafe fn name(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other counters)]
-        unsafe fn counters(&self) -> Id<NSArray<ProtocolObject<dyn MTLCounter>>>;
+        unsafe fn counters(&self) -> Retained<NSArray<ProtocolObject<dyn MTLCounter>>>;
     }
 
     unsafe impl ProtocolType for dyn MTLCounterSet {}
@@ -197,13 +197,13 @@ unsafe impl NSObjectProtocol for MTLCounterSampleBufferDescriptor {}
 extern_methods!(
     unsafe impl MTLCounterSampleBufferDescriptor {
         #[method_id(@__retain_semantics Other counterSet)]
-        pub unsafe fn counterSet(&self) -> Option<Id<ProtocolObject<dyn MTLCounterSet>>>;
+        pub unsafe fn counterSet(&self) -> Option<Retained<ProtocolObject<dyn MTLCounterSet>>>;
 
         #[method(setCounterSet:)]
         pub unsafe fn setCounterSet(&self, counter_set: Option<&ProtocolObject<dyn MTLCounterSet>>);
 
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Id<NSString>;
+        pub unsafe fn label(&self) -> Retained<NSString>;
 
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
@@ -228,10 +228,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLCounterSampleBufferDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -239,16 +239,16 @@ extern_protocol!(
     pub unsafe trait MTLCounterSampleBuffer: NSObjectProtocol + IsRetainable {
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
-        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
+        unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[method_id(@__retain_semantics Other label)]
-        unsafe fn label(&self) -> Id<NSString>;
+        unsafe fn label(&self) -> Retained<NSString>;
 
         #[method(sampleCount)]
         unsafe fn sampleCount(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other resolveCounterRange:)]
-        unsafe fn resolveCounterRange(&self, range: NSRange) -> Option<Id<NSData>>;
+        unsafe fn resolveCounterRange(&self, range: NSRange) -> Option<Retained<NSData>>;
     }
 
     unsafe impl ProtocolType for dyn MTLCounterSampleBuffer {}

@@ -193,10 +193,13 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIControl {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Init initWithFrame:primaryAction:)]
@@ -204,7 +207,7 @@ extern_methods!(
             this: Allocated<Self>,
             frame: CGRect,
             primary_action: Option<&UIAction>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
@@ -328,7 +331,7 @@ extern_methods!(
         pub unsafe fn performPrimaryAction(&self);
 
         #[method_id(@__retain_semantics Other allTargets)]
-        pub unsafe fn allTargets(&self) -> Id<NSSet>;
+        pub unsafe fn allTargets(&self) -> Retained<NSSet>;
 
         #[method(allControlEvents)]
         pub unsafe fn allControlEvents(&self) -> UIControlEvents;
@@ -338,7 +341,7 @@ extern_methods!(
             &self,
             target: Option<&AnyObject>,
             control_event: UIControlEvents,
-        ) -> Option<Id<NSArray<NSString>>>;
+        ) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement", feature = "block2"))]
         #[method(enumerateEventHandlers:)]
@@ -368,7 +371,7 @@ extern_methods!(
 
         #[cfg(feature = "UIContextMenuInteraction")]
         #[method_id(@__retain_semantics Other contextMenuInteraction)]
-        pub unsafe fn contextMenuInteraction(&self) -> Option<Id<UIContextMenuInteraction>>;
+        pub unsafe fn contextMenuInteraction(&self) -> Option<Retained<UIContextMenuInteraction>>;
 
         #[method(isContextMenuInteractionEnabled)]
         pub unsafe fn isContextMenuInteractionEnabled(&self) -> bool;
@@ -393,14 +396,14 @@ extern_methods!(
         ) -> CGPoint;
 
         #[method_id(@__retain_semantics Other toolTip)]
-        pub unsafe fn toolTip(&self) -> Option<Id<NSString>>;
+        pub unsafe fn toolTip(&self) -> Option<Retained<NSString>>;
 
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
         #[cfg(feature = "UIToolTipInteraction")]
         #[method_id(@__retain_semantics Other toolTipInteraction)]
-        pub unsafe fn toolTipInteraction(&self) -> Option<Id<UIToolTipInteraction>>;
+        pub unsafe fn toolTipInteraction(&self) -> Option<Retained<UIToolTipInteraction>>;
 
         #[method(isSymbolAnimationEnabled)]
         pub unsafe fn isSymbolAnimationEnabled(&self) -> bool;
@@ -415,10 +418,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIControl {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -434,7 +437,7 @@ extern_methods!(
             &self,
             interaction: &UIContextMenuInteraction,
             location: CGPoint,
-        ) -> Option<Id<UIContextMenuConfiguration>>;
+        ) -> Option<Retained<UIContextMenuConfiguration>>;
 
         #[cfg(all(
             feature = "UIContextMenuConfiguration",
@@ -446,7 +449,7 @@ extern_methods!(
             &self,
             interaction: &UIContextMenuInteraction,
             configuration: &UIContextMenuConfiguration,
-        ) -> Option<Id<UITargetedPreview>>;
+        ) -> Option<Retained<UITargetedPreview>>;
 
         #[cfg(all(
             feature = "UIContextMenuConfiguration",
@@ -458,7 +461,7 @@ extern_methods!(
             &self,
             interaction: &UIContextMenuInteraction,
             configuration: &UIContextMenuConfiguration,
-        ) -> Option<Id<UITargetedPreview>>;
+        ) -> Option<Retained<UITargetedPreview>>;
 
         #[cfg(all(
             feature = "UIContextMenuConfiguration",

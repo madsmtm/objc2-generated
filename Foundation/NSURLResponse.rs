@@ -39,26 +39,26 @@ extern_methods!(
             mime_type: Option<&NSString>,
             length: NSInteger,
             name: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other MIMEType)]
-        pub unsafe fn MIMEType(&self) -> Option<Id<NSString>>;
+        pub unsafe fn MIMEType(&self) -> Option<Retained<NSString>>;
 
         #[method(expectedContentLength)]
         pub unsafe fn expectedContentLength(&self) -> c_longlong;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other textEncodingName)]
-        pub unsafe fn textEncodingName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn textEncodingName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other suggestedFilename)]
-        pub unsafe fn suggestedFilename(&self) -> Option<Id<NSString>>;
+        pub unsafe fn suggestedFilename(&self) -> Option<Retained<NSString>>;
     }
 );
 
@@ -66,10 +66,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLResponse {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -109,22 +109,25 @@ extern_methods!(
             status_code: NSInteger,
             http_version: Option<&NSString>,
             header_fields: Option<&NSDictionary<NSString, NSString>>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method(statusCode)]
         pub unsafe fn statusCode(&self) -> NSInteger;
 
         #[cfg(feature = "NSDictionary")]
         #[method_id(@__retain_semantics Other allHeaderFields)]
-        pub unsafe fn allHeaderFields(&self) -> Id<NSDictionary>;
+        pub unsafe fn allHeaderFields(&self) -> Retained<NSDictionary>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other valueForHTTPHeaderField:)]
-        pub unsafe fn valueForHTTPHeaderField(&self, field: &NSString) -> Option<Id<NSString>>;
+        pub unsafe fn valueForHTTPHeaderField(
+            &self,
+            field: &NSString,
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other localizedStringForStatusCode:)]
-        pub unsafe fn localizedStringForStatusCode(status_code: NSInteger) -> Id<NSString>;
+        pub unsafe fn localizedStringForStatusCode(status_code: NSInteger) -> Retained<NSString>;
     }
 );
 
@@ -139,7 +142,7 @@ extern_methods!(
             mime_type: Option<&NSString>,
             length: NSInteger,
             name: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -147,9 +150,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSHTTPURLResponse {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

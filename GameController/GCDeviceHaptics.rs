@@ -59,10 +59,10 @@ unsafe impl NSObjectProtocol for GCDeviceHaptics {}
 extern_methods!(
     unsafe impl GCDeviceHaptics {
         #[method_id(@__retain_semantics Other supportedLocalities)]
-        pub unsafe fn supportedLocalities(&self) -> Id<NSSet<GCHapticsLocality>>;
+        pub unsafe fn supportedLocalities(&self) -> Retained<NSSet<GCHapticsLocality>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -70,6 +70,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCDeviceHaptics {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

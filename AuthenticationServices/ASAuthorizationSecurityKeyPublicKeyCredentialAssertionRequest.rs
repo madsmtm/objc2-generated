@@ -46,7 +46,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other allowedCredentials)]
         pub unsafe fn allowedCredentials(
             &self,
-        ) -> Id<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>>;
+        ) -> Retained<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>>;
 
         #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
         #[method(setAllowedCredentials:)]
@@ -56,7 +56,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other appID)]
-        pub unsafe fn appID(&self) -> Option<Id<NSString>>;
+        pub unsafe fn appID(&self) -> Option<Retained<NSString>>;
 
         #[method(setAppID:)]
         pub unsafe fn setAppID(&self, app_id: Option<&NSString>);
@@ -68,10 +68,10 @@ extern_methods!(
     #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 

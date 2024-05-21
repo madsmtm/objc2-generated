@@ -41,7 +41,7 @@ unsafe impl NSObjectProtocol for GCControllerElement {}
 extern_methods!(
     unsafe impl GCControllerElement {
         #[method_id(@__retain_semantics Other collection)]
-        pub unsafe fn collection(&self) -> Option<Id<GCControllerElement>>;
+        pub unsafe fn collection(&self) -> Option<Retained<GCControllerElement>>;
 
         #[method(isAnalog)]
         pub unsafe fn isAnalog(&self) -> bool;
@@ -59,31 +59,31 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other sfSymbolsName)]
-        pub unsafe fn sfSymbolsName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn sfSymbolsName(&self) -> Option<Retained<NSString>>;
 
         #[method(setSfSymbolsName:)]
         pub unsafe fn setSfSymbolsName(&self, sf_symbols_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other localizedName)]
-        pub unsafe fn localizedName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localizedName(&self) -> Option<Retained<NSString>>;
 
         #[method(setLocalizedName:)]
         pub unsafe fn setLocalizedName(&self, localized_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other unmappedSfSymbolsName)]
-        pub unsafe fn unmappedSfSymbolsName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn unmappedSfSymbolsName(&self) -> Option<Retained<NSString>>;
 
         #[method(setUnmappedSfSymbolsName:)]
         pub unsafe fn setUnmappedSfSymbolsName(&self, unmapped_sf_symbols_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other unmappedLocalizedName)]
-        pub unsafe fn unmappedLocalizedName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn unmappedLocalizedName(&self) -> Option<Retained<NSString>>;
 
         #[method(setUnmappedLocalizedName:)]
         pub unsafe fn setUnmappedLocalizedName(&self, unmapped_localized_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other aliases)]
-        pub unsafe fn aliases(&self) -> Id<NSSet<NSString>>;
+        pub unsafe fn aliases(&self) -> Retained<NSSet<NSString>>;
     }
 );
 
@@ -91,9 +91,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCControllerElement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

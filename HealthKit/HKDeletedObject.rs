@@ -24,13 +24,13 @@ unsafe impl NSSecureCoding for HKDeletedObject {}
 extern_methods!(
     unsafe impl HKDeletedObject {
         #[method_id(@__retain_semantics Other UUID)]
-        pub unsafe fn UUID(&self) -> Id<NSUUID>;
+        pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         #[method_id(@__retain_semantics Other metadata)]
-        pub unsafe fn metadata(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -38,6 +38,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKDeletedObject {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -45,7 +45,7 @@ unsafe impl NSObjectProtocol for UIEditMenuConfiguration {}
 extern_methods!(
     unsafe impl UIEditMenuConfiguration {
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<ProtocolObject<dyn NSCopying>>;
+        pub unsafe fn identifier(&self) -> Retained<ProtocolObject<dyn NSCopying>>;
 
         #[method(sourcePoint)]
         pub unsafe fn sourcePoint(&self) -> CGPoint;
@@ -64,13 +64,13 @@ extern_methods!(
             identifier: Option<&ProtocolObject<dyn NSCopying>>,
             source_point: CGPoint,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -94,13 +94,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIEditMenuInteractionDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIEditMenuInteractionDelegate>>>;
 
         #[method_id(@__retain_semantics Init initWithDelegate:)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: Option<&ProtocolObject<dyn UIEditMenuInteractionDelegate>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(presentEditMenuWithConfiguration:)]
         pub unsafe fn presentEditMenuWithConfiguration(
@@ -122,10 +122,10 @@ extern_methods!(
         pub unsafe fn locationInView(&self, view: Option<&UIView>) -> CGPoint;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -155,7 +155,7 @@ extern_protocol!(
             interaction: &UIEditMenuInteraction,
             configuration: &UIEditMenuConfiguration,
             suggested_actions: &NSArray<UIMenuElement>,
-        ) -> Option<Id<UIMenu>>;
+        ) -> Option<Retained<UIMenu>>;
 
         #[optional]
         #[method(editMenuInteraction:targetRectForConfiguration:)]

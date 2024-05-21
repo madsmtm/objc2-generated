@@ -24,16 +24,16 @@ unsafe impl NSSecureCoding for ILCommunication {}
 extern_methods!(
     unsafe impl ILCommunication {
         #[method_id(@__retain_semantics Other sender)]
-        pub unsafe fn sender(&self) -> Option<Id<NSString>>;
+        pub unsafe fn sender(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other dateReceived)]
-        pub unsafe fn dateReceived(&self) -> Id<NSDate>;
+        pub unsafe fn dateReceived(&self) -> Retained<NSDate>;
 
         #[method(isEqualToCommunication:)]
         pub unsafe fn isEqualToCommunication(&self, communication: &ILCommunication) -> bool;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -41,6 +41,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ILCommunication {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

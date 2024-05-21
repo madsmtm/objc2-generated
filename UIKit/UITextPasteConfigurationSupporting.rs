@@ -11,7 +11,8 @@ extern_protocol!(
     {
         #[cfg(feature = "UITextPasteDelegate")]
         #[method_id(@__retain_semantics Other pasteDelegate)]
-        unsafe fn pasteDelegate(&self) -> Option<Id<ProtocolObject<dyn UITextPasteDelegate>>>;
+        unsafe fn pasteDelegate(&self)
+            -> Option<Retained<ProtocolObject<dyn UITextPasteDelegate>>>;
 
         #[cfg(feature = "UITextPasteDelegate")]
         #[method(setPasteDelegate:)]

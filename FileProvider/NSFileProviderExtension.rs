@@ -24,21 +24,21 @@ extern_methods!(
         pub unsafe fn itemForIdentifier_error(
             &self,
             identifier: &NSFileProviderItemIdentifier,
-        ) -> Result<Id<NSFileProviderItem>, Id<NSError>>;
+        ) -> Result<Retained<NSFileProviderItem>, Retained<NSError>>;
 
         #[cfg(feature = "NSFileProviderItem")]
         #[method_id(@__retain_semantics Other URLForItemWithPersistentIdentifier:)]
         pub unsafe fn URLForItemWithPersistentIdentifier(
             &self,
             identifier: &NSFileProviderItemIdentifier,
-        ) -> Option<Id<NSURL>>;
+        ) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSFileProviderItem")]
         #[method_id(@__retain_semantics Other persistentIdentifierForItemAtURL:)]
         pub unsafe fn persistentIdentifierForItemAtURL(
             &self,
             url: &NSURL,
-        ) -> Option<Id<NSFileProviderItemIdentifier>>;
+        ) -> Option<Retained<NSFileProviderItemIdentifier>>;
 
         #[cfg(feature = "block2")]
         #[method(providePlaceholderAtURL:completionHandler:)]
@@ -68,10 +68,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderExtension {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -83,18 +83,18 @@ extern_methods!(
         pub unsafe fn writePlaceholderAtURL_withMetadata_error(
             placeholder_url: &NSURL,
             metadata: &NSDictionary<NSURLResourceKey, AnyObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other placeholderURLForURL:)]
-        pub unsafe fn placeholderURLForURL(url: &NSURL) -> Id<NSURL>;
+        pub unsafe fn placeholderURLForURL(url: &NSURL) -> Retained<NSURL>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other providerIdentifier)]
-        pub unsafe fn providerIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn providerIdentifier(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other documentStorageURL)]
-        pub unsafe fn documentStorageURL(&self) -> Id<NSURL>;
+        pub unsafe fn documentStorageURL(&self) -> Retained<NSURL>;
     }
 );

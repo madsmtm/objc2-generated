@@ -20,13 +20,13 @@ unsafe impl NSObjectProtocol for NWTLSParameters {}
 extern_methods!(
     unsafe impl NWTLSParameters {
         #[method_id(@__retain_semantics Other TLSSessionID)]
-        pub unsafe fn TLSSessionID(&self) -> Option<Id<NSData>>;
+        pub unsafe fn TLSSessionID(&self) -> Option<Retained<NSData>>;
 
         #[method(setTLSSessionID:)]
         pub unsafe fn setTLSSessionID(&self, tls_session_id: Option<&NSData>);
 
         #[method_id(@__retain_semantics Other SSLCipherSuites)]
-        pub unsafe fn SSLCipherSuites(&self) -> Option<Id<NSSet<NSNumber>>>;
+        pub unsafe fn SSLCipherSuites(&self) -> Option<Retained<NSSet<NSNumber>>>;
 
         #[method(setSSLCipherSuites:)]
         pub unsafe fn setSSLCipherSuites(&self, ssl_cipher_suites: Option<&NSSet<NSNumber>>);
@@ -49,9 +49,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NWTLSParameters {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

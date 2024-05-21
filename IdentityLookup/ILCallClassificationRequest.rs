@@ -32,10 +32,10 @@ extern_methods!(
     unsafe impl ILCallClassificationRequest {
         #[cfg(all(feature = "ILCallCommunication", feature = "ILCommunication"))]
         #[method_id(@__retain_semantics Other callCommunications)]
-        pub unsafe fn callCommunications(&self) -> Id<NSArray<ILCallCommunication>>;
+        pub unsafe fn callCommunications(&self) -> Retained<NSArray<ILCallCommunication>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -44,6 +44,6 @@ extern_methods!(
     #[cfg(feature = "ILClassificationRequest")]
     unsafe impl ILCallClassificationRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -49,7 +49,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CMAccelerometer", feature = "CMLogItem"))]
         #[method_id(@__retain_semantics Other accelerometerData)]
-        pub unsafe fn accelerometerData(&self) -> Option<Id<CMAccelerometerData>>;
+        pub unsafe fn accelerometerData(&self) -> Option<Retained<CMAccelerometerData>>;
 
         #[method(startAccelerometerUpdates)]
         pub unsafe fn startAccelerometerUpdates(&self);
@@ -79,7 +79,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CMGyro", feature = "CMLogItem"))]
         #[method_id(@__retain_semantics Other gyroData)]
-        pub unsafe fn gyroData(&self) -> Option<Id<CMGyroData>>;
+        pub unsafe fn gyroData(&self) -> Option<Retained<CMGyroData>>;
 
         #[method(startGyroUpdates)]
         pub unsafe fn startGyroUpdates(&self);
@@ -112,7 +112,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CMLogItem", feature = "CMMagnetometer"))]
         #[method_id(@__retain_semantics Other magnetometerData)]
-        pub unsafe fn magnetometerData(&self) -> Option<Id<CMMagnetometerData>>;
+        pub unsafe fn magnetometerData(&self) -> Option<Retained<CMMagnetometerData>>;
 
         #[method(startMagnetometerUpdates)]
         pub unsafe fn startMagnetometerUpdates(&self);
@@ -153,7 +153,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem"))]
         #[method_id(@__retain_semantics Other deviceMotion)]
-        pub unsafe fn deviceMotion(&self) -> Option<Id<CMDeviceMotion>>;
+        pub unsafe fn deviceMotion(&self) -> Option<Retained<CMDeviceMotion>>;
 
         #[method(startDeviceMotionUpdates)]
         pub unsafe fn startDeviceMotionUpdates(&self);
@@ -202,9 +202,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMMotionManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

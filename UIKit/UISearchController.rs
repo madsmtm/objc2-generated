@@ -180,22 +180,25 @@ extern_methods!(
         pub unsafe fn initWithSearchResultsController(
             this: Allocated<Self>,
             search_results_controller: Option<&UIViewController>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other searchResultsUpdater)]
         pub unsafe fn searchResultsUpdater(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UISearchResultsUpdating>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UISearchResultsUpdating>>>;
 
         #[method(setSearchResultsUpdater:)]
         pub unsafe fn setSearchResultsUpdater(
@@ -210,8 +213,9 @@ extern_methods!(
         pub unsafe fn setActive(&self, active: bool);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self)
-            -> Option<Id<ProtocolObject<dyn UISearchControllerDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn UISearchControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -249,11 +253,11 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other searchResultsController)]
-        pub unsafe fn searchResultsController(&self) -> Option<Id<UIViewController>>;
+        pub unsafe fn searchResultsController(&self) -> Option<Retained<UIViewController>>;
 
         #[cfg(all(feature = "UISearchBar", feature = "UIView"))]
         #[method_id(@__retain_semantics Other searchBar)]
-        pub unsafe fn searchBar(&self) -> Id<UISearchBar>;
+        pub unsafe fn searchBar(&self) -> Retained<UISearchBar>;
 
         #[cfg(feature = "UINavigationItem")]
         #[method(searchBarPlacement)]
@@ -304,7 +308,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other searchSuggestions)]
         pub unsafe fn searchSuggestions(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn UISearchSuggestion>>>>;
+        ) -> Option<Retained<NSArray<ProtocolObject<dyn UISearchSuggestion>>>>;
 
         #[cfg(feature = "UISearchSuggestion")]
         #[method(setSearchSuggestions:)]
@@ -325,7 +329,7 @@ extern_methods!(
         #[cfg(all(feature = "UIScrollView", feature = "UIView"))]
         #[deprecated = "Use -[UIViewController setContentScrollView:forEdge:] on the searchResultsController instead."]
         #[method_id(@__retain_semantics Other searchControllerObservedScrollView)]
-        pub unsafe fn searchControllerObservedScrollView(&self) -> Option<Id<UIScrollView>>;
+        pub unsafe fn searchControllerObservedScrollView(&self) -> Option<Retained<UIScrollView>>;
 
         #[cfg(all(feature = "UIScrollView", feature = "UIView"))]
         #[deprecated = "Use -[UIViewController setContentScrollView:forEdge:] on the searchResultsController instead."]
@@ -342,9 +346,9 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UISearchController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

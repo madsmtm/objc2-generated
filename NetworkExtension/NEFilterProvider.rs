@@ -41,7 +41,7 @@ extern_methods!(
 
         #[cfg(feature = "NEFilterProviderConfiguration")]
         #[method_id(@__retain_semantics Other filterConfiguration)]
-        pub unsafe fn filterConfiguration(&self) -> Id<NEFilterProviderConfiguration>;
+        pub unsafe fn filterConfiguration(&self) -> Retained<NEFilterProviderConfiguration>;
 
         #[method(handleReport:)]
         pub unsafe fn handleReport(&self, report: &NEFilterReport);
@@ -53,10 +53,10 @@ extern_methods!(
     #[cfg(feature = "NEProvider")]
     unsafe impl NEFilterProvider {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -115,10 +115,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterVerdict {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -153,24 +153,24 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other needRulesVerdict)]
-        pub unsafe fn needRulesVerdict() -> Id<NEFilterNewFlowVerdict>;
+        pub unsafe fn needRulesVerdict() -> Retained<NEFilterNewFlowVerdict>;
 
         #[method_id(@__retain_semantics Other allowVerdict)]
-        pub unsafe fn allowVerdict() -> Id<NEFilterNewFlowVerdict>;
+        pub unsafe fn allowVerdict() -> Retained<NEFilterNewFlowVerdict>;
 
         #[method_id(@__retain_semantics Other dropVerdict)]
-        pub unsafe fn dropVerdict() -> Id<NEFilterNewFlowVerdict>;
+        pub unsafe fn dropVerdict() -> Retained<NEFilterNewFlowVerdict>;
 
         #[method_id(@__retain_semantics Other remediateVerdictWithRemediationURLMapKey:remediationButtonTextMapKey:)]
         pub unsafe fn remediateVerdictWithRemediationURLMapKey_remediationButtonTextMapKey(
             remediation_url_map_key: &NSString,
             remediation_button_text_map_key: &NSString,
-        ) -> Id<NEFilterNewFlowVerdict>;
+        ) -> Retained<NEFilterNewFlowVerdict>;
 
         #[method_id(@__retain_semantics Other URLAppendStringVerdictWithMapKey:)]
         pub unsafe fn URLAppendStringVerdictWithMapKey(
             url_append_map_key: &NSString,
-        ) -> Id<NEFilterNewFlowVerdict>;
+        ) -> Retained<NEFilterNewFlowVerdict>;
 
         #[method_id(@__retain_semantics Other filterDataVerdictWithFilterInbound:peekInboundBytes:filterOutbound:peekOutboundBytes:)]
         pub unsafe fn filterDataVerdictWithFilterInbound_peekInboundBytes_filterOutbound_peekOutboundBytes(
@@ -178,10 +178,10 @@ extern_methods!(
             peek_inbound_bytes: NSUInteger,
             filter_outbound: bool,
             peek_outbound_bytes: NSUInteger,
-        ) -> Id<NEFilterNewFlowVerdict>;
+        ) -> Retained<NEFilterNewFlowVerdict>;
 
         #[method_id(@__retain_semantics Other pauseVerdict)]
-        pub unsafe fn pauseVerdict() -> Id<NEFilterNewFlowVerdict>;
+        pub unsafe fn pauseVerdict() -> Retained<NEFilterNewFlowVerdict>;
     }
 );
 
@@ -189,10 +189,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterNewFlowVerdict {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -218,14 +218,17 @@ unsafe impl NSSecureCoding for NEFilterControlVerdict {}
 extern_methods!(
     unsafe impl NEFilterControlVerdict {
         #[method_id(@__retain_semantics Other allowVerdictWithUpdateRules:)]
-        pub unsafe fn allowVerdictWithUpdateRules(update_rules: bool)
-            -> Id<NEFilterControlVerdict>;
+        pub unsafe fn allowVerdictWithUpdateRules(
+            update_rules: bool,
+        ) -> Retained<NEFilterControlVerdict>;
 
         #[method_id(@__retain_semantics Other dropVerdictWithUpdateRules:)]
-        pub unsafe fn dropVerdictWithUpdateRules(update_rules: bool) -> Id<NEFilterControlVerdict>;
+        pub unsafe fn dropVerdictWithUpdateRules(
+            update_rules: bool,
+        ) -> Retained<NEFilterControlVerdict>;
 
         #[method_id(@__retain_semantics Other updateRules)]
-        pub unsafe fn updateRules() -> Id<NEFilterControlVerdict>;
+        pub unsafe fn updateRules() -> Retained<NEFilterControlVerdict>;
     }
 );
 
@@ -233,10 +236,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterControlVerdict {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -310,7 +313,7 @@ extern_methods!(
     unsafe impl NEFilterReport {
         #[cfg(feature = "NEFilterFlow")]
         #[method_id(@__retain_semantics Other flow)]
-        pub unsafe fn flow(&self) -> Option<Id<NEFilterFlow>>;
+        pub unsafe fn flow(&self) -> Option<Retained<NEFilterFlow>>;
 
         #[method(action)]
         pub unsafe fn action(&self) -> NEFilterAction;
@@ -330,9 +333,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterReport {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

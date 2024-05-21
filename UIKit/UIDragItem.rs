@@ -23,19 +23,19 @@ extern_methods!(
         pub unsafe fn initWithItemProvider(
             this: Allocated<Self>,
             item_provider: &NSItemProvider,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other itemProvider)]
-        pub unsafe fn itemProvider(&self) -> Id<NSItemProvider>;
+        pub unsafe fn itemProvider(&self) -> Retained<NSItemProvider>;
 
         #[method_id(@__retain_semantics Other localObject)]
-        pub unsafe fn localObject(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn localObject(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setLocalObject:)]
         pub unsafe fn setLocalObject(&self, local_object: Option<&AnyObject>);

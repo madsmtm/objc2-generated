@@ -19,14 +19,14 @@ unsafe impl NSObjectProtocol for NSScriptCoercionHandler {}
 extern_methods!(
     unsafe impl NSScriptCoercionHandler {
         #[method_id(@__retain_semantics Other sharedCoercionHandler)]
-        pub unsafe fn sharedCoercionHandler() -> Id<NSScriptCoercionHandler>;
+        pub unsafe fn sharedCoercionHandler() -> Retained<NSScriptCoercionHandler>;
 
         #[method_id(@__retain_semantics Other coerceValue:toClass:)]
         pub unsafe fn coerceValue_toClass(
             &self,
             value: &AnyObject,
             to_class: &AnyClass,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[method(registerCoercer:selector:toConvertFromClass:toClass:)]
         pub unsafe fn registerCoercer_selector_toConvertFromClass_toClass(
@@ -43,9 +43,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScriptCoercionHandler {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

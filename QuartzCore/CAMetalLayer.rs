@@ -11,11 +11,11 @@ extern_protocol!(
     #[cfg(feature = "objc2-metal")]
     pub unsafe trait CAMetalDrawable: MTLDrawable {
         #[method_id(@__retain_semantics Other texture)]
-        unsafe fn texture(&self) -> Id<ProtocolObject<dyn MTLTexture>>;
+        unsafe fn texture(&self) -> Retained<ProtocolObject<dyn MTLTexture>>;
 
         #[cfg(feature = "CALayer")]
         #[method_id(@__retain_semantics Other layer)]
-        unsafe fn layer(&self) -> Id<CAMetalLayer>;
+        unsafe fn layer(&self) -> Retained<CAMetalLayer>;
     }
 
     #[cfg(feature = "objc2-metal")]
@@ -52,7 +52,7 @@ extern_methods!(
     unsafe impl CAMetalLayer {
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Option<Id<ProtocolObject<dyn MTLDevice>>>;
+        pub unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
         #[cfg(feature = "objc2-metal")]
         #[method(setDevice:)]
@@ -60,7 +60,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other preferredDevice)]
-        pub unsafe fn preferredDevice(&self) -> Option<Id<ProtocolObject<dyn MTLDevice>>>;
+        pub unsafe fn preferredDevice(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
         #[cfg(feature = "objc2-metal")]
         #[method(pixelFormat)]
@@ -84,7 +84,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other nextDrawable)]
-        pub unsafe fn nextDrawable(&self) -> Option<Id<ProtocolObject<dyn CAMetalDrawable>>>;
+        pub unsafe fn nextDrawable(&self) -> Option<Retained<ProtocolObject<dyn CAMetalDrawable>>>;
 
         #[method(maximumDrawableCount)]
         pub unsafe fn maximumDrawableCount(&self) -> NSUInteger;
@@ -109,7 +109,7 @@ extern_methods!(
 
         #[cfg(feature = "CAEDRMetadata")]
         #[method_id(@__retain_semantics Other EDRMetadata)]
-        pub unsafe fn EDRMetadata(&self) -> Option<Id<CAEDRMetadata>>;
+        pub unsafe fn EDRMetadata(&self) -> Option<Retained<CAEDRMetadata>>;
 
         #[cfg(feature = "CAEDRMetadata")]
         #[method(setEDRMetadata:)]
@@ -128,7 +128,7 @@ extern_methods!(
         pub unsafe fn setAllowsNextDrawableTimeout(&self, allows_next_drawable_timeout: bool);
 
         #[method_id(@__retain_semantics Other developerHUDProperties)]
-        pub unsafe fn developerHUDProperties(&self) -> Option<Id<NSDictionary>>;
+        pub unsafe fn developerHUDProperties(&self) -> Option<Retained<NSDictionary>>;
 
         #[method(setDeveloperHUDProperties:)]
         pub unsafe fn setDeveloperHUDProperties(
@@ -143,13 +143,13 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAMetalLayer {
         #[method_id(@__retain_semantics Other layer)]
-        pub unsafe fn layer() -> Id<Self>;
+        pub unsafe fn layer() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithLayer:)]
-        pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Id<Self>;
+        pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
 );
 
@@ -158,6 +158,6 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAMetalLayer {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

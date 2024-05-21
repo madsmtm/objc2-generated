@@ -24,21 +24,21 @@ unsafe impl NSObjectProtocol for MLComputePlanDeviceUsage {}
 extern_methods!(
     unsafe impl MLComputePlanDeviceUsage {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "MLComputeDeviceProtocol")]
         #[method_id(@__retain_semantics Other supportedComputeDevices)]
         pub unsafe fn supportedComputeDevices(
             &self,
-        ) -> Id<NSArray<ProtocolObject<dyn MLComputeDeviceProtocol>>>;
+        ) -> Retained<NSArray<ProtocolObject<dyn MLComputeDeviceProtocol>>>;
 
         #[cfg(feature = "MLComputeDeviceProtocol")]
         #[method_id(@__retain_semantics Other preferredComputeDevice)]
         pub unsafe fn preferredComputeDevice(
             &self,
-        ) -> Id<ProtocolObject<dyn MLComputeDeviceProtocol>>;
+        ) -> Retained<ProtocolObject<dyn MLComputeDeviceProtocol>>;
     }
 );

@@ -26,12 +26,14 @@ unsafe impl NSSecureCoding for UIBarAppearance {}
 extern_methods!(
     unsafe impl UIBarAppearance {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIDevice")]
         #[method_id(@__retain_semantics Init initWithIdiom:)]
-        pub unsafe fn initWithIdiom(this: Allocated<Self>, idiom: UIUserInterfaceIdiom)
-            -> Id<Self>;
+        pub unsafe fn initWithIdiom(
+            this: Allocated<Self>,
+            idiom: UIUserInterfaceIdiom,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIDevice")]
         #[method(idiom)]
@@ -41,13 +43,13 @@ extern_methods!(
         pub unsafe fn initWithBarAppearance(
             this: Allocated<Self>,
             bar_appearance: &UIBarAppearance,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method_id(@__retain_semantics CopyOrMutCopy copy)]
-        pub unsafe fn copy(&self) -> Id<Self>;
+        pub unsafe fn copy(&self) -> Retained<Self>;
 
         #[method(configureWithDefaultBackground)]
         pub unsafe fn configureWithDefaultBackground(&self);
@@ -60,7 +62,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBlurEffect", feature = "UIVisualEffect"))]
         #[method_id(@__retain_semantics Other backgroundEffect)]
-        pub unsafe fn backgroundEffect(&self) -> Option<Id<UIBlurEffect>>;
+        pub unsafe fn backgroundEffect(&self) -> Option<Retained<UIBlurEffect>>;
 
         #[cfg(all(feature = "UIBlurEffect", feature = "UIVisualEffect"))]
         #[method(setBackgroundEffect:)]
@@ -68,7 +70,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setBackgroundColor:)]
@@ -76,7 +78,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other backgroundImage)]
-        pub unsafe fn backgroundImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn backgroundImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setBackgroundImage:)]
@@ -95,7 +97,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other shadowColor)]
-        pub unsafe fn shadowColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn shadowColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setShadowColor:)]
@@ -103,7 +105,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other shadowImage)]
-        pub unsafe fn shadowImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn shadowImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setShadowImage:)]
@@ -115,6 +117,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIBarAppearance {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

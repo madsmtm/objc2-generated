@@ -14,20 +14,20 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait UIAppearance: NSObjectProtocol + IsMainThreadOnly {
         #[method_id(@__retain_semantics Other appearance)]
-        unsafe fn appearance(mtm: MainThreadMarker) -> Id<Self>;
+        unsafe fn appearance(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other appearanceWhenContainedInInstancesOfClasses:)]
         unsafe fn appearanceWhenContainedInInstancesOfClasses(
             container_types: &NSArray<TodoClass>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UITraitCollection")]
         #[method_id(@__retain_semantics Other appearanceForTraitCollection:)]
         unsafe fn appearanceForTraitCollection(
             r#trait: &UITraitCollection,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UITraitCollection")]
         #[method_id(@__retain_semantics Other appearanceForTraitCollection:whenContainedInInstancesOfClasses:)]
@@ -35,7 +35,7 @@ extern_protocol!(
             r#trait: &UITraitCollection,
             container_types: &NSArray<TodoClass>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 
     unsafe impl ProtocolType for dyn UIAppearance {}

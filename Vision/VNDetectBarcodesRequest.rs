@@ -30,17 +30,17 @@ extern_methods!(
         #[cfg(feature = "VNTypes")]
         #[deprecated]
         #[method_id(@__retain_semantics Other supportedSymbologies)]
-        pub unsafe fn supportedSymbologies() -> Id<NSArray<VNBarcodeSymbology>>;
+        pub unsafe fn supportedSymbologies() -> Retained<NSArray<VNBarcodeSymbology>>;
 
         #[cfg(feature = "VNTypes")]
         #[method_id(@__retain_semantics Other supportedSymbologiesAndReturnError:_)]
         pub unsafe fn supportedSymbologiesAndReturnError(
             &self,
-        ) -> Result<Id<NSArray<VNBarcodeSymbology>>, Id<NSError>>;
+        ) -> Result<Retained<NSArray<VNBarcodeSymbology>>, Retained<NSError>>;
 
         #[cfg(feature = "VNTypes")]
         #[method_id(@__retain_semantics Other symbologies)]
-        pub unsafe fn symbologies(&self) -> Id<NSArray<VNBarcodeSymbology>>;
+        pub unsafe fn symbologies(&self) -> Retained<NSArray<VNBarcodeSymbology>>;
 
         #[cfg(feature = "VNTypes")]
         #[method(setSymbologies:)]
@@ -54,7 +54,7 @@ extern_methods!(
 
         #[cfg(feature = "VNObservation")]
         #[method_id(@__retain_semantics Other results)]
-        pub unsafe fn results(&self) -> Option<Id<NSArray<VNBarcodeObservation>>>;
+        pub unsafe fn results(&self) -> Option<Retained<NSArray<VNBarcodeObservation>>>;
     }
 );
 
@@ -63,14 +63,14 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectBarcodesRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -79,7 +79,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectBarcodesRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

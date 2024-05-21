@@ -31,7 +31,7 @@ extern_methods!(
             name: Option<&NSString>,
             session_role: &UISceneSessionRole,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UISceneDefinitions")]
         #[method_id(@__retain_semantics Init initWithName:sessionRole:)]
@@ -39,14 +39,14 @@ extern_methods!(
             this: Allocated<Self>,
             name: Option<&NSString>,
             session_role: &UISceneSessionRole,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UISceneDefinitions")]
         #[method_id(@__retain_semantics Other role)]
-        pub unsafe fn role(&self) -> Id<UISceneSessionRole>;
+        pub unsafe fn role(&self) -> Retained<UISceneSessionRole>;
 
         #[method(sceneClass)]
         pub unsafe fn sceneClass(&self) -> Option<&'static AnyClass>;
@@ -62,7 +62,7 @@ extern_methods!(
 
         #[cfg(feature = "UIStoryboard")]
         #[method_id(@__retain_semantics Other storyboard)]
-        pub unsafe fn storyboard(&self) -> Option<Id<UIStoryboard>>;
+        pub unsafe fn storyboard(&self) -> Option<Retained<UIStoryboard>>;
 
         #[cfg(feature = "UIStoryboard")]
         #[method(setStoryboard:)]
@@ -74,10 +74,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UISceneConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -100,27 +100,27 @@ unsafe impl NSSecureCoding for UISceneSession {}
 extern_methods!(
     unsafe impl UISceneSession {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
         #[method_id(@__retain_semantics Other scene)]
-        pub unsafe fn scene(&self) -> Option<Id<UIScene>>;
+        pub unsafe fn scene(&self) -> Option<Retained<UIScene>>;
 
         #[cfg(feature = "UISceneDefinitions")]
         #[method_id(@__retain_semantics Other role)]
-        pub unsafe fn role(&self) -> Id<UISceneSessionRole>;
+        pub unsafe fn role(&self) -> Retained<UISceneSessionRole>;
 
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration(&self) -> Id<UISceneConfiguration>;
+        pub unsafe fn configuration(&self) -> Retained<UISceneConfiguration>;
 
         #[method_id(@__retain_semantics Other persistentIdentifier)]
-        pub unsafe fn persistentIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn persistentIdentifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other stateRestorationActivity)]
-        pub unsafe fn stateRestorationActivity(&self) -> Option<Id<NSUserActivity>>;
+        pub unsafe fn stateRestorationActivity(&self) -> Option<Retained<NSUserActivity>>;
 
         #[method(setStateRestorationActivity:)]
         pub unsafe fn setStateRestorationActivity(
@@ -129,7 +129,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary<NSString, AnyObject>>);

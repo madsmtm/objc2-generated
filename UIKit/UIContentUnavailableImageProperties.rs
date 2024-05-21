@@ -30,8 +30,9 @@ extern_methods!(
             feature = "UIImageSymbolConfiguration"
         ))]
         #[method_id(@__retain_semantics Other preferredSymbolConfiguration)]
-        pub unsafe fn preferredSymbolConfiguration(&self)
-            -> Option<Id<UIImageSymbolConfiguration>>;
+        pub unsafe fn preferredSymbolConfiguration(
+            &self,
+        ) -> Option<Retained<UIImageSymbolConfiguration>>;
 
         #[cfg(all(
             feature = "UIImageConfiguration",
@@ -45,7 +46,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other tintColor)]
-        pub unsafe fn tintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setTintColor:)]
@@ -78,9 +79,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIContentUnavailableImageProperties {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

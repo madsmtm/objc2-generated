@@ -41,7 +41,7 @@ extern_protocol!(
             &self,
             controller: &UIPresentationController,
             style: UIModalPresentationStyle,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[cfg(all(
             feature = "UIViewController",
@@ -118,11 +118,11 @@ extern_methods!(
     unsafe impl UIPresentationController {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[method_id(@__retain_semantics Other presentingViewController)]
-        pub unsafe fn presentingViewController(&self) -> Id<UIViewController>;
+        pub unsafe fn presentingViewController(&self) -> Retained<UIViewController>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[method_id(@__retain_semantics Other presentedViewController)]
-        pub unsafe fn presentedViewController(&self) -> Id<UIViewController>;
+        pub unsafe fn presentedViewController(&self) -> Retained<UIViewController>;
 
         #[cfg(feature = "UIViewController")]
         #[method(presentationStyle)]
@@ -130,12 +130,12 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other containerView)]
-        pub unsafe fn containerView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn containerView(&self) -> Option<Retained<UIView>>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIAdaptivePresentationControllerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIAdaptivePresentationControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -149,10 +149,10 @@ extern_methods!(
             this: Allocated<Self>,
             presented_view_controller: &UIViewController,
             presenting_view_controller: Option<&UIViewController>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIViewController")]
         #[method(adaptivePresentationStyle)]
@@ -173,7 +173,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other presentedView)]
-        pub unsafe fn presentedView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn presentedView(&self) -> Option<Retained<UIView>>;
 
         #[method(frameOfPresentedViewInContainerView)]
         pub unsafe fn frameOfPresentedViewInContainerView(&self) -> CGRect;
@@ -199,7 +199,7 @@ extern_methods!(
         #[cfg(feature = "UITraitCollection")]
         #[deprecated = "Use the traitOverrides property instead"]
         #[method_id(@__retain_semantics Other overrideTraitCollection)]
-        pub unsafe fn overrideTraitCollection(&self) -> Option<Id<UITraitCollection>>;
+        pub unsafe fn overrideTraitCollection(&self) -> Option<Retained<UITraitCollection>>;
 
         #[cfg(feature = "UITraitCollection")]
         #[deprecated = "Use the traitOverrides property instead"]
@@ -215,7 +215,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPresentationController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -223,7 +223,7 @@ extern_methods!(
     unsafe impl UIPresentationController {
         #[cfg(feature = "UITraitCollection")]
         #[method_id(@__retain_semantics Other traitOverrides)]
-        pub unsafe fn traitOverrides(&self) -> Id<ProtocolObject<dyn UITraitOverrides>>;
+        pub unsafe fn traitOverrides(&self) -> Retained<ProtocolObject<dyn UITraitOverrides>>;
     }
 );
 

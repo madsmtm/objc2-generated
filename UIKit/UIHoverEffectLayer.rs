@@ -45,7 +45,7 @@ extern_methods!(
     unsafe impl UIHoverEffectLayer {
         #[cfg(feature = "UIHoverStyle")]
         #[method_id(@__retain_semantics Other hoverStyle)]
-        pub unsafe fn hoverStyle(&self) -> Id<UIHoverStyle>;
+        pub unsafe fn hoverStyle(&self) -> Retained<UIHoverStyle>;
 
         #[cfg(feature = "UIHoverStyle")]
         #[method(setHoverStyle:)]
@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other containerView)]
-        pub unsafe fn containerView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn containerView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(setContainerView:)]
@@ -65,7 +65,7 @@ extern_methods!(
             this: Allocated<Self>,
             container_view: &UIView,
             style: Option<&UIHoverStyle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -75,13 +75,13 @@ extern_methods!(
     #[cfg(not(target_os = "watchos"))]
     unsafe impl UIHoverEffectLayer {
         #[method_id(@__retain_semantics Other layer)]
-        pub unsafe fn layer(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn layer(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithLayer:)]
-        pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Id<Self>;
+        pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
 );
 
@@ -91,6 +91,6 @@ extern_methods!(
     #[cfg(not(target_os = "watchos"))]
     unsafe impl UIHoverEffectLayer {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

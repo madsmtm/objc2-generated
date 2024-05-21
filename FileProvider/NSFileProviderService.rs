@@ -8,12 +8,12 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait NSFileProviderServiceSource {
         #[method_id(@__retain_semantics Other serviceName)]
-        unsafe fn serviceName(&self) -> Id<NSFileProviderServiceName>;
+        unsafe fn serviceName(&self) -> Retained<NSFileProviderServiceName>;
 
         #[method_id(@__retain_semantics Other makeListenerEndpointAndReturnError:_)]
         unsafe fn makeListenerEndpointAndReturnError(
             &self,
-        ) -> Result<Id<NSXPCListenerEndpoint>, Id<NSError>>;
+        ) -> Result<Retained<NSXPCListenerEndpoint>, Retained<NSError>>;
 
         #[optional]
         #[method(isRestricted)]
@@ -32,7 +32,10 @@ extern_methods!(
         pub unsafe fn supportedServiceSourcesForItemIdentifier_error(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
-        ) -> Result<Id<NSArray<ProtocolObject<dyn NSFileProviderServiceSource>>>, Id<NSError>>;
+        ) -> Result<
+            Retained<NSArray<ProtocolObject<dyn NSFileProviderServiceSource>>>,
+            Retained<NSError>,
+        >;
     }
 );
 

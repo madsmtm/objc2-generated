@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl NSExtensionItem {
         #[cfg(feature = "NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedTitle)]
-        pub unsafe fn attributedTitle(&self) -> Option<Id<NSAttributedString>>;
+        pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "NSAttributedString")]
         #[method(setAttributedTitle:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedContentText)]
-        pub unsafe fn attributedContentText(&self) -> Option<Id<NSAttributedString>>;
+        pub unsafe fn attributedContentText(&self) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "NSAttributedString")]
         #[method(setAttributedContentText:)]
@@ -48,7 +48,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSArray", feature = "NSItemProvider"))]
         #[method_id(@__retain_semantics Other attachments)]
-        pub unsafe fn attachments(&self) -> Option<Id<NSArray<NSItemProvider>>>;
+        pub unsafe fn attachments(&self) -> Option<Retained<NSArray<NSItemProvider>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSItemProvider"))]
         #[method(setAttachments:)]
@@ -56,7 +56,7 @@ extern_methods!(
 
         #[cfg(feature = "NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
+        pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSDictionary")]
         #[method(setUserInfo:)]
@@ -68,10 +68,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSExtensionItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

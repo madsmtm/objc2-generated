@@ -64,7 +64,7 @@ extern_methods!(
         #[cfg(feature = "HKQuantity")]
         #[deprecated]
         #[method_id(@__retain_semantics Other sum)]
-        pub unsafe fn sum(&self) -> Id<HKQuantity>;
+        pub unsafe fn sum(&self) -> Retained<HKQuantity>;
     }
 );
 
@@ -84,7 +84,7 @@ extern_methods!(
             quantity: &HKQuantity,
             start_date: &NSDate,
             end_date: &NSDate,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other quantitySampleWithType:quantity:startDate:endDate:metadata:)]
@@ -94,7 +94,7 @@ extern_methods!(
             start_date: &NSDate,
             end_date: &NSDate,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKDevice", feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other quantitySampleWithType:quantity:startDate:endDate:device:metadata:)]
@@ -105,7 +105,7 @@ extern_methods!(
             end_date: &NSDate,
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -119,7 +119,7 @@ extern_methods!(
     ))]
     unsafe impl HKCumulativeQuantitySeriesSample {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -133,6 +133,6 @@ extern_methods!(
     ))]
     unsafe impl HKCumulativeQuantitySeriesSample {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -28,30 +28,30 @@ extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     unsafe impl VNDetectHumanBodyPose3DRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "VNTypes")]
         #[method_id(@__retain_semantics Other supportedJointNamesAndReturnError:_)]
         pub unsafe fn supportedJointNamesAndReturnError(
             &self,
-        ) -> Result<Id<NSArray<VNHumanBodyPose3DObservationJointName>>, Id<NSError>>;
+        ) -> Result<Retained<NSArray<VNHumanBodyPose3DObservationJointName>>, Retained<NSError>>;
 
         #[cfg(feature = "VNTypes")]
         #[method_id(@__retain_semantics Other supportedJointsGroupNamesAndReturnError:_)]
         pub unsafe fn supportedJointsGroupNamesAndReturnError(
             &self,
-        ) -> Result<Id<NSArray<VNHumanBodyPose3DObservationJointsGroupName>>, Id<NSError>>;
+        ) -> Result<Retained<NSArray<VNHumanBodyPose3DObservationJointsGroupName>>, Retained<NSError>>;
 
         #[cfg(feature = "VNObservation")]
         #[method_id(@__retain_semantics Other results)]
-        pub unsafe fn results(&self) -> Option<Id<NSArray<VNHumanBodyPose3DObservation>>>;
+        pub unsafe fn results(&self) -> Option<Retained<NSArray<VNHumanBodyPose3DObservation>>>;
     }
 );
 
@@ -60,7 +60,7 @@ extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     unsafe impl VNDetectHumanBodyPose3DRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

@@ -22,21 +22,24 @@ unsafe impl NSObjectProtocol for MKLookAroundSceneRequest {}
 extern_methods!(
     unsafe impl MKLookAroundSceneRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method_id(@__retain_semantics Init initWithCoordinate:)]
         pub unsafe fn initWithCoordinate(
             this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MKMapItem")]
         #[method_id(@__retain_semantics Init initWithMapItem:)]
-        pub unsafe fn initWithMapItem(this: Allocated<Self>, map_item: &MKMapItem) -> Id<Self>;
+        pub unsafe fn initWithMapItem(
+            this: Allocated<Self>,
+            map_item: &MKMapItem,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method(coordinate)]
@@ -44,7 +47,7 @@ extern_methods!(
 
         #[cfg(feature = "MKMapItem")]
         #[method_id(@__retain_semantics Other mapItem)]
-        pub unsafe fn mapItem(&self) -> Option<Id<MKMapItem>>;
+        pub unsafe fn mapItem(&self) -> Option<Retained<MKMapItem>>;
 
         #[method(isCancelled)]
         pub unsafe fn isCancelled(&self) -> bool;

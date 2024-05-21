@@ -29,15 +29,15 @@ extern_methods!(
         #[cfg(feature = "MLCTensorDescriptor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptor)]
-        pub unsafe fn descriptor(&self) -> Id<MLCTensorDescriptor>;
+        pub unsafe fn descriptor(&self) -> Retained<MLCTensorDescriptor>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Option<Id<NSData>>;
+        pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Id<NSString>;
+        pub unsafe fn label(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setLabel:)]
@@ -46,30 +46,33 @@ extern_methods!(
         #[cfg(feature = "MLCDevice")]
         #[deprecated]
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Option<Id<MLCDevice>>;
+        pub unsafe fn device(&self) -> Option<Retained<MLCDevice>>;
 
         #[cfg(feature = "MLCTensorData")]
         #[deprecated]
         #[method_id(@__retain_semantics Other optimizerData)]
-        pub unsafe fn optimizerData(&self) -> Id<NSArray<MLCTensorData>>;
+        pub unsafe fn optimizerData(&self) -> Retained<NSArray<MLCTensorData>>;
 
         #[cfg(feature = "MLCTensorOptimizerDeviceData")]
         #[deprecated]
         #[method_id(@__retain_semantics Other optimizerDeviceData)]
-        pub unsafe fn optimizerDeviceData(&self) -> Id<NSArray<MLCTensorOptimizerDeviceData>>;
+        pub unsafe fn optimizerDeviceData(&self)
+            -> Retained<NSArray<MLCTensorOptimizerDeviceData>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTensorDescriptor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithDescriptor:)]
-        pub unsafe fn tensorWithDescriptor(tensor_descriptor: &MLCTensorDescriptor) -> Id<Self>;
+        pub unsafe fn tensorWithDescriptor(
+            tensor_descriptor: &MLCTensorDescriptor,
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensorDescriptor", feature = "MLCTypes"))]
         #[deprecated]
@@ -77,7 +80,7 @@ extern_methods!(
         pub unsafe fn tensorWithDescriptor_randomInitializerType(
             tensor_descriptor: &MLCTensorDescriptor,
             random_initializer_type: MLCRandomInitializerType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTensorDescriptor")]
         #[deprecated]
@@ -85,7 +88,7 @@ extern_methods!(
         pub unsafe fn tensorWithDescriptor_fillWithData(
             tensor_descriptor: &MLCTensorDescriptor,
             fill_data: &NSNumber,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensorData", feature = "MLCTensorDescriptor"))]
         #[deprecated]
@@ -93,11 +96,11 @@ extern_methods!(
         pub unsafe fn tensorWithDescriptor_data(
             tensor_descriptor: &MLCTensorDescriptor,
             data: &MLCTensorData,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithShape:)]
-        pub unsafe fn tensorWithShape(shape: &NSArray<NSNumber>) -> Id<Self>;
+        pub unsafe fn tensorWithShape(shape: &NSArray<NSNumber>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -105,7 +108,7 @@ extern_methods!(
         pub unsafe fn tensorWithShape_randomInitializerType(
             shape: &NSArray<NSNumber>,
             random_initializer_type: MLCRandomInitializerType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -114,7 +117,7 @@ extern_methods!(
             shape: &NSArray<NSNumber>,
             random_initializer_type: MLCRandomInitializerType,
             data_type: MLCDataType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -122,7 +125,7 @@ extern_methods!(
         pub unsafe fn tensorWithShape_dataType(
             shape: &NSArray<NSNumber>,
             data_type: MLCDataType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensorData", feature = "MLCTypes"))]
         #[deprecated]
@@ -131,7 +134,7 @@ extern_methods!(
             shape: &NSArray<NSNumber>,
             data: &MLCTensorData,
             data_type: MLCDataType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -140,7 +143,7 @@ extern_methods!(
             shape: &NSArray<NSNumber>,
             fill_data: &NSNumber,
             data_type: MLCDataType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithWidth:height:featureChannelCount:batchSize:)]
@@ -149,7 +152,7 @@ extern_methods!(
             height: NSUInteger,
             feature_channel_count: NSUInteger,
             batch_size: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -161,7 +164,7 @@ extern_methods!(
             batch_size: NSUInteger,
             fill_data: c_float,
             data_type: MLCDataType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -172,7 +175,7 @@ extern_methods!(
             feature_channel_count: NSUInteger,
             batch_size: NSUInteger,
             random_initializer_type: MLCRandomInitializerType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTensorData")]
         #[deprecated]
@@ -183,7 +186,7 @@ extern_methods!(
             feature_channel_count: NSUInteger,
             batch_size: NSUInteger,
             data: &MLCTensorData,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensorData", feature = "MLCTypes"))]
         #[deprecated]
@@ -195,7 +198,7 @@ extern_methods!(
             batch_size: NSUInteger,
             data: &MLCTensorData,
             data_type: MLCDataType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithSequenceLength:featureChannelCount:batchSize:)]
@@ -203,7 +206,7 @@ extern_methods!(
             sequence_length: NSUInteger,
             feature_channel_count: NSUInteger,
             batch_size: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -213,7 +216,7 @@ extern_methods!(
             feature_channel_count: NSUInteger,
             batch_size: NSUInteger,
             random_initializer_type: MLCRandomInitializerType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTensorData")]
         #[deprecated]
@@ -223,7 +226,7 @@ extern_methods!(
             feature_channel_count: NSUInteger,
             batch_size: NSUInteger,
             data: Option<&MLCTensorData>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -234,7 +237,7 @@ extern_methods!(
             feature_channel_count: NSUInteger,
             batch_size: NSUInteger,
             random_initializer_type: MLCRandomInitializerType,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTensorData")]
         #[deprecated]
@@ -245,7 +248,7 @@ extern_methods!(
             feature_channel_count: NSUInteger,
             batch_size: NSUInteger,
             data: Option<&MLCTensorData>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated]
         #[method(hasValidNumerics)]
@@ -293,7 +296,7 @@ extern_methods!(
             r#type: MLCDataType,
             scale: c_float,
             bias: NSInteger,
-        ) -> Option<Id<MLCTensor>>;
+        ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTypes")]
         #[method_id(@__retain_semantics Other tensorByQuantizingToType:scale:bias:axis:)]
@@ -303,7 +306,7 @@ extern_methods!(
             scale: &MLCTensor,
             bias: &MLCTensor,
             axis: NSInteger,
-        ) -> Option<Id<MLCTensor>>;
+        ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTypes")]
         #[method_id(@__retain_semantics Other tensorByDequantizingToType:scale:bias:)]
@@ -312,7 +315,7 @@ extern_methods!(
             r#type: MLCDataType,
             scale: &MLCTensor,
             bias: &MLCTensor,
-        ) -> Option<Id<MLCTensor>>;
+        ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTypes")]
         #[method_id(@__retain_semantics Other tensorByDequantizingToType:scale:bias:axis:)]
@@ -322,6 +325,6 @@ extern_methods!(
             scale: &MLCTensor,
             bias: &MLCTensor,
             axis: NSInteger,
-        ) -> Option<Id<MLCTensor>>;
+        ) -> Option<Retained<MLCTensor>>;
     }
 );

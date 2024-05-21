@@ -70,19 +70,19 @@ extern_methods!(
         pub unsafe fn setUseExtendedAuthentication(&self, use_extended_authentication: bool);
 
         #[method_id(@__retain_semantics Other sharedSecretReference)]
-        pub unsafe fn sharedSecretReference(&self) -> Option<Id<NSData>>;
+        pub unsafe fn sharedSecretReference(&self) -> Option<Retained<NSData>>;
 
         #[method(setSharedSecretReference:)]
         pub unsafe fn setSharedSecretReference(&self, shared_secret_reference: Option<&NSData>);
 
         #[method_id(@__retain_semantics Other localIdentifier)]
-        pub unsafe fn localIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(setLocalIdentifier:)]
         pub unsafe fn setLocalIdentifier(&self, local_identifier: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other remoteIdentifier)]
-        pub unsafe fn remoteIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn remoteIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(setRemoteIdentifier:)]
         pub unsafe fn setRemoteIdentifier(&self, remote_identifier: Option<&NSString>);
@@ -94,9 +94,9 @@ extern_methods!(
     #[cfg(feature = "NEVPNProtocol")]
     unsafe impl NEVPNProtocolIPSec {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

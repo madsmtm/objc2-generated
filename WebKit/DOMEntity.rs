@@ -58,15 +58,15 @@ extern_methods!(
     unsafe impl DOMEntity {
         #[deprecated]
         #[method_id(@__retain_semantics Other publicId)]
-        pub unsafe fn publicId(&self) -> Id<NSString>;
+        pub unsafe fn publicId(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other systemId)]
-        pub unsafe fn systemId(&self) -> Id<NSString>;
+        pub unsafe fn systemId(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other notationName)]
-        pub unsafe fn notationName(&self) -> Id<NSString>;
+        pub unsafe fn notationName(&self) -> Retained<NSString>;
     }
 );
 
@@ -80,7 +80,7 @@ extern_methods!(
     unsafe impl DOMEntity {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -93,6 +93,6 @@ extern_methods!(
     ))]
     unsafe impl DOMEntity {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -46,7 +46,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other credentialParameters)]
         pub unsafe fn credentialParameters(
             &self,
-        ) -> Id<NSArray<ASAuthorizationPublicKeyCredentialParameters>>;
+        ) -> Retained<NSArray<ASAuthorizationPublicKeyCredentialParameters>>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialParameters")]
         #[method(setCredentialParameters:)]
@@ -59,7 +59,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other excludedCredentials)]
         pub unsafe fn excludedCredentials(
             &self,
-        ) -> Id<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>>;
+        ) -> Retained<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>>;
 
         #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
         #[method(setExcludedCredentials:)]
@@ -72,7 +72,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other residentKeyPreference)]
         pub unsafe fn residentKeyPreference(
             &self,
-        ) -> Id<ASAuthorizationPublicKeyCredentialResidentKeyPreference>;
+        ) -> Retained<ASAuthorizationPublicKeyCredentialResidentKeyPreference>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         #[method(setResidentKeyPreference:)]
@@ -82,10 +82,10 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 

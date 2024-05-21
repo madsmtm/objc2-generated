@@ -45,34 +45,34 @@ unsafe impl NSObjectProtocol for OSALanguage {}
 extern_methods!(
     unsafe impl OSALanguage {
         #[method_id(@__retain_semantics Other availableLanguages)]
-        pub unsafe fn availableLanguages() -> Id<NSArray<OSALanguage>>;
+        pub unsafe fn availableLanguages() -> Retained<NSArray<OSALanguage>>;
 
         #[method_id(@__retain_semantics Other languageForName:)]
-        pub unsafe fn languageForName(name: &NSString) -> Option<Id<OSALanguage>>;
+        pub unsafe fn languageForName(name: &NSString) -> Option<Retained<OSALanguage>>;
 
         #[method_id(@__retain_semantics Other languageForScriptDataDescriptor:)]
         pub unsafe fn languageForScriptDataDescriptor(
             descriptor: &NSAppleEventDescriptor,
-        ) -> Option<Id<OSALanguage>>;
+        ) -> Option<Retained<OSALanguage>>;
 
         #[method_id(@__retain_semantics Other defaultLanguage)]
-        pub unsafe fn defaultLanguage() -> Option<Id<OSALanguage>>;
+        pub unsafe fn defaultLanguage() -> Option<Retained<OSALanguage>>;
 
         #[method(setDefaultLanguage:)]
         pub unsafe fn setDefaultLanguage(default_language: &OSALanguage);
 
         #[cfg(feature = "OSALanguageInstance")]
         #[method_id(@__retain_semantics Other sharedLanguageInstance)]
-        pub unsafe fn sharedLanguageInstance(&self) -> Id<OSALanguageInstance>;
+        pub unsafe fn sharedLanguageInstance(&self) -> Retained<OSALanguageInstance>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other info)]
-        pub unsafe fn info(&self) -> Option<Id<NSString>>;
+        pub unsafe fn info(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other version)]
-        pub unsafe fn version(&self) -> Option<Id<NSString>>;
+        pub unsafe fn version(&self) -> Option<Retained<NSString>>;
 
         #[method(type)]
         pub unsafe fn r#type(&self) -> OSType;
@@ -95,9 +95,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSALanguage {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

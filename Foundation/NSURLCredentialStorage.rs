@@ -23,7 +23,7 @@ unsafe impl NSObjectProtocol for NSURLCredentialStorage {}
 extern_methods!(
     unsafe impl NSURLCredentialStorage {
         #[method_id(@__retain_semantics Other sharedCredentialStorage)]
-        pub unsafe fn sharedCredentialStorage() -> Id<NSURLCredentialStorage>;
+        pub unsafe fn sharedCredentialStorage() -> Retained<NSURLCredentialStorage>;
 
         #[cfg(all(
             feature = "NSDictionary",
@@ -35,7 +35,7 @@ extern_methods!(
         pub unsafe fn credentialsForProtectionSpace(
             &self,
             space: &NSURLProtectionSpace,
-        ) -> Option<Id<NSDictionary<NSString, NSURLCredential>>>;
+        ) -> Option<Retained<NSDictionary<NSString, NSURLCredential>>>;
 
         #[cfg(all(
             feature = "NSDictionary",
@@ -46,7 +46,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other allCredentials)]
         pub unsafe fn allCredentials(
             &self,
-        ) -> Id<NSDictionary<NSURLProtectionSpace, NSDictionary<NSString, NSURLCredential>>>;
+        ) -> Retained<NSDictionary<NSURLProtectionSpace, NSDictionary<NSString, NSURLCredential>>>;
 
         #[cfg(all(feature = "NSURLCredential", feature = "NSURLProtectionSpace"))]
         #[method(setCredential:forProtectionSpace:)]
@@ -83,7 +83,7 @@ extern_methods!(
         pub unsafe fn defaultCredentialForProtectionSpace(
             &self,
             space: &NSURLProtectionSpace,
-        ) -> Option<Id<NSURLCredential>>;
+        ) -> Option<Retained<NSURLCredential>>;
 
         #[cfg(all(feature = "NSURLCredential", feature = "NSURLProtectionSpace"))]
         #[method(setDefaultCredential:forProtectionSpace:)]
@@ -99,10 +99,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLCredentialStorage {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

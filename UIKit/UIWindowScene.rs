@@ -31,7 +31,7 @@ extern_methods!(
     unsafe impl UIWindowScene {
         #[cfg(feature = "UIScreen")]
         #[method_id(@__retain_semantics Other screen)]
-        pub unsafe fn screen(&self) -> Id<UIScreen>;
+        pub unsafe fn screen(&self) -> Retained<UIScreen>;
 
         #[cfg(feature = "UIOrientation")]
         #[method(interfaceOrientation)]
@@ -39,11 +39,11 @@ extern_methods!(
 
         #[cfg(feature = "UIView")]
         #[method_id(@__retain_semantics Other coordinateSpace)]
-        pub unsafe fn coordinateSpace(&self) -> Id<ProtocolObject<dyn UICoordinateSpace>>;
+        pub unsafe fn coordinateSpace(&self) -> Retained<ProtocolObject<dyn UICoordinateSpace>>;
 
         #[cfg(feature = "UITraitCollection")]
         #[method_id(@__retain_semantics Other traitCollection)]
-        pub unsafe fn traitCollection(&self) -> Id<UITraitCollection>;
+        pub unsafe fn traitCollection(&self) -> Retained<UITraitCollection>;
 
         #[cfg(all(feature = "UIWindowSceneGeometryPreferences", feature = "block2"))]
         #[method(requestGeometryUpdateWithPreferences:errorHandler:)]
@@ -55,24 +55,24 @@ extern_methods!(
 
         #[cfg(feature = "UIWindowSceneGeometry")]
         #[method_id(@__retain_semantics Other effectiveGeometry)]
-        pub unsafe fn effectiveGeometry(&self) -> Id<UIWindowSceneGeometry>;
+        pub unsafe fn effectiveGeometry(&self) -> Retained<UIWindowSceneGeometry>;
 
         #[method_id(@__retain_semantics Other sizeRestrictions)]
-        pub unsafe fn sizeRestrictions(&self) -> Option<Id<UISceneSizeRestrictions>>;
+        pub unsafe fn sizeRestrictions(&self) -> Option<Retained<UISceneSizeRestrictions>>;
 
         #[cfg(all(feature = "UIView", feature = "UIWindow"))]
         #[method_id(@__retain_semantics Other windows)]
-        pub unsafe fn windows(&self) -> Id<NSArray<UIWindow>>;
+        pub unsafe fn windows(&self) -> Retained<NSArray<UIWindow>>;
 
         #[cfg(all(feature = "UIView", feature = "UIWindow"))]
         #[method_id(@__retain_semantics Other keyWindow)]
-        pub unsafe fn keyWindow(&self) -> Option<Id<UIWindow>>;
+        pub unsafe fn keyWindow(&self) -> Option<Retained<UIWindow>>;
 
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
         #[method_id(@__retain_semantics Other activityItemsConfigurationSource)]
         pub unsafe fn activityItemsConfigurationSource(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIActivityItemsConfigurationProviding>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIActivityItemsConfigurationProviding>>>;
 
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
         #[method(setActivityItemsConfigurationSource:)]
@@ -85,7 +85,7 @@ extern_methods!(
 
         #[cfg(feature = "UISceneWindowingBehaviors")]
         #[method_id(@__retain_semantics Other windowingBehaviors)]
-        pub unsafe fn windowingBehaviors(&self) -> Option<Id<UISceneWindowingBehaviors>>;
+        pub unsafe fn windowingBehaviors(&self) -> Option<Retained<UISceneWindowingBehaviors>>;
 
         #[method(isFullScreen)]
         pub unsafe fn isFullScreen(&self) -> bool;
@@ -97,10 +97,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
     unsafe impl UIWindowScene {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "UISceneOptions", feature = "UISceneSession"))]
         #[method_id(@__retain_semantics Init initWithSession:connectionOptions:)]
@@ -108,7 +108,7 @@ extern_methods!(
             this: Allocated<Self>,
             session: &UISceneSession,
             connection_options: &UISceneConnectionOptions,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -117,7 +117,7 @@ extern_methods!(
     unsafe impl UIWindowScene {
         #[cfg(feature = "UITraitCollection")]
         #[method_id(@__retain_semantics Other traitOverrides)]
-        pub unsafe fn traitOverrides(&self) -> Id<ProtocolObject<dyn UITraitOverrides>>;
+        pub unsafe fn traitOverrides(&self) -> Retained<ProtocolObject<dyn UITraitOverrides>>;
     }
 );
 
@@ -141,7 +141,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "UIWindow"))]
         #[optional]
         #[method_id(@__retain_semantics Other window)]
-        unsafe fn window(&self) -> Option<Id<UIWindow>>;
+        unsafe fn window(&self) -> Option<Retained<UIWindow>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "UIWindow"))]
         #[optional]
@@ -268,10 +268,10 @@ extern_methods!(
     #[cfg(feature = "UISceneOptions")]
     unsafe impl UIWindowSceneDestructionRequestOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -290,10 +290,10 @@ unsafe impl NSObjectProtocol for UISceneSizeRestrictions {}
 extern_methods!(
     unsafe impl UISceneSizeRestrictions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(minimumSize)]
         pub unsafe fn minimumSize(&self) -> CGSize;

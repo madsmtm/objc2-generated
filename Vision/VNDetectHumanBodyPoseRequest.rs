@@ -329,13 +329,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other availableJointNames)]
         pub unsafe fn availableJointNames(
             &self,
-        ) -> Id<NSArray<VNHumanBodyPoseObservationJointName>>;
+        ) -> Retained<NSArray<VNHumanBodyPoseObservationJointName>>;
 
         #[cfg(feature = "VNTypes")]
         #[method_id(@__retain_semantics Other availableJointsGroupNames)]
         pub unsafe fn availableJointsGroupNames(
             &self,
-        ) -> Id<NSArray<VNHumanBodyPoseObservationJointsGroupName>>;
+        ) -> Retained<NSArray<VNHumanBodyPoseObservationJointsGroupName>>;
 
         #[cfg(all(
             feature = "VNDetectedPoint",
@@ -346,7 +346,7 @@ extern_methods!(
         pub unsafe fn recognizedPointForJointName_error(
             &self,
             joint_name: &VNHumanBodyPoseObservationJointName,
-        ) -> Result<Id<VNRecognizedPoint>, Id<NSError>>;
+        ) -> Result<Retained<VNRecognizedPoint>, Retained<NSError>>;
 
         #[cfg(all(
             feature = "VNDetectedPoint",
@@ -358,8 +358,8 @@ extern_methods!(
             &self,
             joints_group_name: &VNHumanBodyPoseObservationJointsGroupName,
         ) -> Result<
-            Id<NSDictionary<VNHumanBodyPoseObservationJointName, VNRecognizedPoint>>,
-            Id<NSError>,
+            Retained<NSDictionary<VNHumanBodyPoseObservationJointName, VNRecognizedPoint>>,
+            Retained<NSError>,
         >;
     }
 );
@@ -369,10 +369,10 @@ extern_methods!(
     #[cfg(feature = "VNObservation")]
     unsafe impl VNHumanBodyPoseObservation {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -403,30 +403,30 @@ extern_methods!(
         #[method_id(@__retain_semantics Other supportedJointNamesForRevision:error:_)]
         pub unsafe fn supportedJointNamesForRevision_error(
             revision: NSUInteger,
-        ) -> Result<Id<NSArray<VNHumanBodyPoseObservationJointName>>, Id<NSError>>;
+        ) -> Result<Retained<NSArray<VNHumanBodyPoseObservationJointName>>, Retained<NSError>>;
 
         #[cfg(feature = "VNTypes")]
         #[method_id(@__retain_semantics Other supportedJointNamesAndReturnError:_)]
         pub unsafe fn supportedJointNamesAndReturnError(
             &self,
-        ) -> Result<Id<NSArray<VNHumanBodyPoseObservationJointName>>, Id<NSError>>;
+        ) -> Result<Retained<NSArray<VNHumanBodyPoseObservationJointName>>, Retained<NSError>>;
 
         #[cfg(feature = "VNTypes")]
         #[deprecated]
         #[method_id(@__retain_semantics Other supportedJointsGroupNamesForRevision:error:_)]
         pub unsafe fn supportedJointsGroupNamesForRevision_error(
             revision: NSUInteger,
-        ) -> Result<Id<NSArray<VNHumanBodyPoseObservationJointsGroupName>>, Id<NSError>>;
+        ) -> Result<Retained<NSArray<VNHumanBodyPoseObservationJointsGroupName>>, Retained<NSError>>;
 
         #[cfg(feature = "VNTypes")]
         #[method_id(@__retain_semantics Other supportedJointsGroupNamesAndReturnError:_)]
         pub unsafe fn supportedJointsGroupNamesAndReturnError(
             &self,
-        ) -> Result<Id<NSArray<VNHumanBodyPoseObservationJointsGroupName>>, Id<NSError>>;
+        ) -> Result<Retained<NSArray<VNHumanBodyPoseObservationJointsGroupName>>, Retained<NSError>>;
 
         #[cfg(feature = "VNObservation")]
         #[method_id(@__retain_semantics Other results)]
-        pub unsafe fn results(&self) -> Option<Id<NSArray<VNHumanBodyPoseObservation>>>;
+        pub unsafe fn results(&self) -> Option<Retained<NSArray<VNHumanBodyPoseObservation>>>;
     }
 );
 
@@ -435,14 +435,14 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectHumanBodyPoseRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -451,7 +451,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectHumanBodyPoseRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

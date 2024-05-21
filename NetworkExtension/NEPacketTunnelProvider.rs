@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "NEPacketTunnelFlow")]
         #[method_id(@__retain_semantics Other packetFlow)]
-        pub unsafe fn packetFlow(&self) -> Id<NEPacketTunnelFlow>;
+        pub unsafe fn packetFlow(&self) -> Retained<NEPacketTunnelFlow>;
 
         #[cfg(all(
             feature = "NWEndpoint",
@@ -59,7 +59,7 @@ extern_methods!(
             enable_tls: bool,
             tls_parameters: Option<&NWTLSParameters>,
             delegate: Option<&AnyObject>,
-        ) -> Id<NWTCPConnection>;
+        ) -> Retained<NWTCPConnection>;
 
         #[cfg(all(
             feature = "NWEndpoint",
@@ -71,7 +71,7 @@ extern_methods!(
             &self,
             remote_endpoint: &NWEndpoint,
             local_endpoint: Option<&NWHostEndpoint>,
-        ) -> Id<NWUDPSession>;
+        ) -> Retained<NWUDPSession>;
     }
 );
 
@@ -80,9 +80,9 @@ extern_methods!(
     #[cfg(all(feature = "NEProvider", feature = "NETunnelProvider"))]
     unsafe impl NEPacketTunnelProvider {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

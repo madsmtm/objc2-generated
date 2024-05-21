@@ -25,7 +25,7 @@ extern_methods!(
             feature = "UIView"
         ))]
         #[method_id(@__retain_semantics Other cursorView)]
-        pub unsafe fn cursorView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn cursorView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -34,7 +34,7 @@ extern_methods!(
             feature = "UIView"
         ))]
         #[method_id(@__retain_semantics Other textInput)]
-        pub unsafe fn textInput(&self) -> Option<Id<UIView>>;
+        pub unsafe fn textInput(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -48,7 +48,7 @@ extern_methods!(
             this: Allocated<Self>,
             cursor_view: Option<&UIView>,
             text_input: Option<&UIView>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method(setCursorVisible:animated:)]
         pub unsafe fn setCursorVisible_animated(&self, visible: bool, animated: bool);
@@ -70,7 +70,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -78,6 +78,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextCursorDropPositionAnimator {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

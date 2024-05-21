@@ -28,31 +28,31 @@ unsafe impl NSSecureCoding for CNPostalAddress {}
 extern_methods!(
     unsafe impl CNPostalAddress {
         #[method_id(@__retain_semantics Other street)]
-        pub unsafe fn street(&self) -> Id<NSString>;
+        pub unsafe fn street(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other subLocality)]
-        pub unsafe fn subLocality(&self) -> Id<NSString>;
+        pub unsafe fn subLocality(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other city)]
-        pub unsafe fn city(&self) -> Id<NSString>;
+        pub unsafe fn city(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other subAdministrativeArea)]
-        pub unsafe fn subAdministrativeArea(&self) -> Id<NSString>;
+        pub unsafe fn subAdministrativeArea(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other state)]
-        pub unsafe fn state(&self) -> Id<NSString>;
+        pub unsafe fn state(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other postalCode)]
-        pub unsafe fn postalCode(&self) -> Id<NSString>;
+        pub unsafe fn postalCode(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other country)]
-        pub unsafe fn country(&self) -> Id<NSString>;
+        pub unsafe fn country(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other ISOCountryCode)]
-        pub unsafe fn ISOCountryCode(&self) -> Id<NSString>;
+        pub unsafe fn ISOCountryCode(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other localizedStringForKey:)]
-        pub unsafe fn localizedStringForKey(key: &NSString) -> Id<NSString>;
+        pub unsafe fn localizedStringForKey(key: &NSString) -> Retained<NSString>;
     }
 );
 
@@ -60,10 +60,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNPostalAddress {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

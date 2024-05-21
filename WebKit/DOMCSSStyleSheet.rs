@@ -51,16 +51,16 @@ extern_methods!(
         #[cfg(feature = "DOMCSSRule")]
         #[deprecated]
         #[method_id(@__retain_semantics Other ownerRule)]
-        pub unsafe fn ownerRule(&self) -> Option<Id<DOMCSSRule>>;
+        pub unsafe fn ownerRule(&self) -> Option<Retained<DOMCSSRule>>;
 
         #[cfg(feature = "DOMCSSRuleList")]
         #[deprecated]
         #[method_id(@__retain_semantics Other cssRules)]
-        pub unsafe fn cssRules(&self) -> Option<Id<DOMCSSRuleList>>;
+        pub unsafe fn cssRules(&self) -> Option<Retained<DOMCSSRuleList>>;
 
         #[cfg(feature = "DOMCSSRuleList")]
         #[method_id(@__retain_semantics Other rules)]
-        pub unsafe fn rules(&self) -> Option<Id<DOMCSSRuleList>>;
+        pub unsafe fn rules(&self) -> Option<Retained<DOMCSSRuleList>>;
 
         #[method(insertRule:index:)]
         pub unsafe fn insertRule_index(&self, rule: Option<&NSString>, index: c_uint) -> c_uint;
@@ -92,7 +92,7 @@ extern_methods!(
     unsafe impl DOMCSSStyleSheet {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -105,7 +105,7 @@ extern_methods!(
     ))]
     unsafe impl DOMCSSStyleSheet {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

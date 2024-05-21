@@ -54,10 +54,10 @@ extern_methods!(
         pub unsafe fn numberOfSections(&self) -> NSInteger;
 
         #[method_id(@__retain_semantics Other sectionIdentifiers)]
-        pub unsafe fn sectionIdentifiers(&self) -> Id<NSArray<SectionIdentifierType>>;
+        pub unsafe fn sectionIdentifiers(&self) -> Retained<NSArray<SectionIdentifierType>>;
 
         #[method_id(@__retain_semantics Other itemIdentifiers)]
-        pub unsafe fn itemIdentifiers(&self) -> Id<NSArray<ItemIdentifierType>>;
+        pub unsafe fn itemIdentifiers(&self) -> Retained<NSArray<ItemIdentifierType>>;
 
         #[method(numberOfItemsInSection:)]
         pub unsafe fn numberOfItemsInSection(
@@ -69,13 +69,13 @@ extern_methods!(
         pub unsafe fn itemIdentifiersInSectionWithIdentifier(
             &self,
             section_identifier: &SectionIdentifierType,
-        ) -> Id<NSArray<ItemIdentifierType>>;
+        ) -> Retained<NSArray<ItemIdentifierType>>;
 
         #[method_id(@__retain_semantics Other sectionIdentifierForSectionContainingItemIdentifier:)]
         pub unsafe fn sectionIdentifierForSectionContainingItemIdentifier(
             &self,
             item_identifier: &ItemIdentifierType,
-        ) -> Option<Id<SectionIdentifierType>>;
+        ) -> Option<Retained<SectionIdentifierType>>;
 
         #[method(indexOfItemIdentifier:)]
         pub unsafe fn indexOfItemIdentifier(
@@ -190,10 +190,10 @@ extern_methods!(
         NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
     {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -246,15 +246,15 @@ extern_methods!(
         NSCollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
     {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other snapshot)]
         pub unsafe fn snapshot(
             &self,
-        ) -> Id<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
+        ) -> Retained<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
 
         #[method(applySnapshot:animatingDifferences:)]
         pub unsafe fn applySnapshot_animatingDifferences(
@@ -267,13 +267,13 @@ extern_methods!(
         pub unsafe fn itemIdentifierForIndexPath(
             &self,
             index_path: &NSIndexPath,
-        ) -> Option<Id<ItemIdentifierType>>;
+        ) -> Option<Retained<ItemIdentifierType>>;
 
         #[method_id(@__retain_semantics Other indexPathForItemIdentifier:)]
         pub unsafe fn indexPathForItemIdentifier(
             &self,
             identifier: &ItemIdentifierType,
-        ) -> Option<Id<NSIndexPath>>;
+        ) -> Option<Retained<NSIndexPath>>;
 
         #[cfg(all(
             feature = "NSCollectionView",

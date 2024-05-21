@@ -58,8 +58,10 @@ extern_methods!(
     #[cfg(feature = "CKRecord")]
     unsafe impl CKShare {
         #[method_id(@__retain_semantics Init initWithRootRecord:)]
-        pub unsafe fn initWithRootRecord(this: Allocated<Self>, root_record: &CKRecord)
-            -> Id<Self>;
+        pub unsafe fn initWithRootRecord(
+            this: Allocated<Self>,
+            root_record: &CKRecord,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Init initWithRootRecord:shareID:)]
@@ -67,17 +69,17 @@ extern_methods!(
             this: Allocated<Self>,
             root_record: &CKRecord,
             share_id: &CKRecordID,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithRecordZoneID:)]
         pub unsafe fn initWithRecordZoneID(
             this: Allocated<Self>,
             record_zone_id: &CKRecordZoneID,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "CKShareParticipant")]
         #[method(publicPermission)]
@@ -88,19 +90,19 @@ extern_methods!(
         pub unsafe fn setPublicPermission(&self, public_permission: CKShareParticipantPermission);
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "CKShareParticipant")]
         #[method_id(@__retain_semantics Other participants)]
-        pub unsafe fn participants(&self) -> Id<NSArray<CKShareParticipant>>;
+        pub unsafe fn participants(&self) -> Retained<NSArray<CKShareParticipant>>;
 
         #[cfg(feature = "CKShareParticipant")]
         #[method_id(@__retain_semantics Other owner)]
-        pub unsafe fn owner(&self) -> Id<CKShareParticipant>;
+        pub unsafe fn owner(&self) -> Retained<CKShareParticipant>;
 
         #[cfg(feature = "CKShareParticipant")]
         #[method_id(@__retain_semantics Other currentUserParticipant)]
-        pub unsafe fn currentUserParticipant(&self) -> Option<Id<CKShareParticipant>>;
+        pub unsafe fn currentUserParticipant(&self) -> Option<Retained<CKShareParticipant>>;
 
         #[cfg(feature = "CKShareParticipant")]
         #[method(addParticipant:)]
@@ -111,16 +113,16 @@ extern_methods!(
         pub unsafe fn removeParticipant(&self, participant: &CKShareParticipant);
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithRecordType:)]
         pub unsafe fn initWithRecordType(
             this: Allocated<Self>,
             record_type: &CKRecordType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Init initWithRecordType:recordID:)]
@@ -128,7 +130,7 @@ extern_methods!(
             this: Allocated<Self>,
             record_type: &CKRecordType,
             record_id: &CKRecordID,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithRecordType:zoneID:)]
@@ -136,6 +138,6 @@ extern_methods!(
             this: Allocated<Self>,
             record_type: &CKRecordType,
             zone_id: &CKRecordZoneID,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

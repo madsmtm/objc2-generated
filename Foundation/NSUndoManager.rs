@@ -57,7 +57,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "NSString"))]
         #[method_id(@__retain_semantics Other runLoopModes)]
-        pub unsafe fn runLoopModes(&self) -> Id<NSArray<NSRunLoopMode>>;
+        pub unsafe fn runLoopModes(&self) -> Retained<NSArray<NSRunLoopMode>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "NSString"))]
         #[method(setRunLoopModes:)]
@@ -105,7 +105,8 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other prepareWithInvocationTarget:)]
-        pub unsafe fn prepareWithInvocationTarget(&self, target: &AnyObject) -> Id<AnyObject>;
+        pub unsafe fn prepareWithInvocationTarget(&self, target: &AnyObject)
+            -> Retained<AnyObject>;
 
         #[cfg(feature = "block2")]
         #[method(registerUndoWithTarget:handler:)]
@@ -126,11 +127,11 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other undoActionName)]
-        pub unsafe fn undoActionName(&self) -> Id<NSString>;
+        pub unsafe fn undoActionName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other redoActionName)]
-        pub unsafe fn redoActionName(&self) -> Id<NSString>;
+        pub unsafe fn redoActionName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setActionName:)]
@@ -138,21 +139,25 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other undoMenuItemTitle)]
-        pub unsafe fn undoMenuItemTitle(&self) -> Id<NSString>;
+        pub unsafe fn undoMenuItemTitle(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other redoMenuItemTitle)]
-        pub unsafe fn redoMenuItemTitle(&self) -> Id<NSString>;
+        pub unsafe fn redoMenuItemTitle(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other undoMenuTitleForUndoActionName:)]
-        pub unsafe fn undoMenuTitleForUndoActionName(&self, action_name: &NSString)
-            -> Id<NSString>;
+        pub unsafe fn undoMenuTitleForUndoActionName(
+            &self,
+            action_name: &NSString,
+        ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other redoMenuTitleForUndoActionName:)]
-        pub unsafe fn redoMenuTitleForUndoActionName(&self, action_name: &NSString)
-            -> Id<NSString>;
+        pub unsafe fn redoMenuTitleForUndoActionName(
+            &self,
+            action_name: &NSString,
+        ) -> Retained<NSString>;
     }
 );
 
@@ -160,10 +165,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUndoManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

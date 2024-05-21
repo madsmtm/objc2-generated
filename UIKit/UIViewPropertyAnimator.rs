@@ -31,7 +31,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other timingParameters)]
         pub unsafe fn timingParameters(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UITimingCurveProvider>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UITimingCurveProvider>>>;
 
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
@@ -75,7 +75,7 @@ extern_methods!(
             this: Allocated<Self>,
             duration: NSTimeInterval,
             parameters: &ProtocolObject<dyn UITimingCurveProvider>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIView", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithDuration:curve:animations:)]
@@ -84,7 +84,7 @@ extern_methods!(
             duration: NSTimeInterval,
             curve: UIViewAnimationCurve,
             animations: Option<&block2::Block<dyn Fn()>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithDuration:controlPoint1:controlPoint2:animations:)]
@@ -94,7 +94,7 @@ extern_methods!(
             point1: CGPoint,
             point2: CGPoint,
             animations: Option<&block2::Block<dyn Fn()>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithDuration:dampingRatio:animations:)]
@@ -103,7 +103,7 @@ extern_methods!(
             duration: NSTimeInterval,
             ratio: CGFloat,
             animations: Option<&block2::Block<dyn Fn()>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIView", feature = "UIViewAnimating", feature = "block2"))]
         #[method_id(@__retain_semantics Other runningPropertyAnimatorWithDuration:delay:options:animations:completion:)]
@@ -114,7 +114,7 @@ extern_methods!(
             animations: &block2::Block<dyn Fn()>,
             completion: Option<&block2::Block<dyn Fn(UIViewAnimatingPosition)>>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(addAnimations:delayFactor:)]
@@ -149,9 +149,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIViewPropertyAnimator {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

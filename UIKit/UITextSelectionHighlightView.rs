@@ -12,7 +12,7 @@ extern_protocol!(
     {
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other selectionRects)]
-        unsafe fn selectionRects(&self) -> Id<NSArray<UITextSelectionRect>>;
+        unsafe fn selectionRects(&self) -> Retained<NSArray<UITextSelectionRect>>;
 
         #[cfg(feature = "UITextInput")]
         #[method(setSelectionRects:)]

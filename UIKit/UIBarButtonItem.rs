@@ -121,10 +121,13 @@ extern_methods!(
     #[cfg(feature = "UIBarItem")]
     unsafe impl UIBarButtonItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Init initWithImage:style:target:action:)]
@@ -134,7 +137,7 @@ extern_methods!(
             style: UIBarButtonItemStyle,
             target: Option<&AnyObject>,
             action: Option<Sel>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Init initWithImage:landscapeImagePhone:style:target:action:)]
@@ -145,7 +148,7 @@ extern_methods!(
             style: UIBarButtonItemStyle,
             target: Option<&AnyObject>,
             action: Option<Sel>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithTitle:style:target:action:)]
         pub unsafe fn initWithTitle_style_target_action(
@@ -154,7 +157,7 @@ extern_methods!(
             style: UIBarButtonItemStyle,
             target: Option<&AnyObject>,
             action: Option<Sel>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithBarButtonSystemItem:target:action:)]
         pub unsafe fn initWithBarButtonSystemItem_target_action(
@@ -162,11 +165,14 @@ extern_methods!(
             system_item: UIBarButtonSystemItem,
             target: Option<&AnyObject>,
             action: Option<Sel>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Init initWithCustomView:)]
-        pub unsafe fn initWithCustomView(this: Allocated<Self>, custom_view: &UIView) -> Id<Self>;
+        pub unsafe fn initWithCustomView(
+            this: Allocated<Self>,
+            custom_view: &UIView,
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Init initWithBarButtonSystemItem:primaryAction:)]
@@ -174,14 +180,14 @@ extern_methods!(
             this: Allocated<Self>,
             system_item: UIBarButtonSystemItem,
             primary_action: Option<&UIAction>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Init initWithPrimaryAction:)]
         pub unsafe fn initWithPrimaryAction(
             this: Allocated<Self>,
             primary_action: Option<&UIAction>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Init initWithBarButtonSystemItem:menu:)]
@@ -189,7 +195,7 @@ extern_methods!(
             this: Allocated<Self>,
             system_item: UIBarButtonSystemItem,
             menu: Option<&UIMenu>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Init initWithTitle:menu:)]
@@ -197,7 +203,7 @@ extern_methods!(
             this: Allocated<Self>,
             title: Option<&NSString>,
             menu: Option<&UIMenu>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIImage", feature = "UIMenu", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Init initWithImage:menu:)]
@@ -205,7 +211,7 @@ extern_methods!(
             this: Allocated<Self>,
             image: Option<&UIImage>,
             menu: Option<&UIMenu>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenu", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Init initWithPrimaryAction:menu:)]
@@ -213,7 +219,7 @@ extern_methods!(
             this: Allocated<Self>,
             primary_action: Option<&UIAction>,
             menu: Option<&UIMenu>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenu", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Init initWithBarButtonSystemItem:primaryAction:menu:)]
@@ -222,7 +228,7 @@ extern_methods!(
             system_item: UIBarButtonSystemItem,
             primary_action: Option<&UIAction>,
             menu: Option<&UIMenu>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIImage", feature = "UIMenu", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Init initWithTitle:image:target:action:menu:)]
@@ -233,13 +239,16 @@ extern_methods!(
             target: Option<&AnyObject>,
             action: Option<Sel>,
             menu: Option<&UIMenu>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other fixedSpaceItemOfWidth:)]
-        pub unsafe fn fixedSpaceItemOfWidth(width: CGFloat, mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn fixedSpaceItemOfWidth(
+            width: CGFloat,
+            mtm: MainThreadMarker,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other flexibleSpaceItem)]
-        pub unsafe fn flexibleSpaceItem(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn flexibleSpaceItem(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(style)]
         pub unsafe fn style(&self) -> UIBarButtonItemStyle;
@@ -254,14 +263,14 @@ extern_methods!(
         pub unsafe fn setWidth(&self, width: CGFloat);
 
         #[method_id(@__retain_semantics Other possibleTitles)]
-        pub unsafe fn possibleTitles(&self) -> Option<Id<NSSet<NSString>>>;
+        pub unsafe fn possibleTitles(&self) -> Option<Retained<NSSet<NSString>>>;
 
         #[method(setPossibleTitles:)]
         pub unsafe fn setPossibleTitles(&self, possible_titles: Option<&NSSet<NSString>>);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other customView)]
-        pub unsafe fn customView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn customView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(setCustomView:)]
@@ -274,14 +283,14 @@ extern_methods!(
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Other primaryAction)]
-        pub unsafe fn primaryAction(&self) -> Option<Id<UIAction>>;
+        pub unsafe fn primaryAction(&self) -> Option<Retained<UIAction>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method(setPrimaryAction:)]
@@ -289,7 +298,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Other menu)]
-        pub unsafe fn menu(&self) -> Option<Id<UIMenu>>;
+        pub unsafe fn menu(&self) -> Option<Retained<UIMenu>>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         #[method(setMenu:)]
@@ -335,7 +344,7 @@ extern_methods!(
 
         #[cfg(feature = "UIMenuElement")]
         #[method_id(@__retain_semantics Other menuRepresentation)]
-        pub unsafe fn menuRepresentation(&self) -> Option<Id<UIMenuElement>>;
+        pub unsafe fn menuRepresentation(&self) -> Option<Retained<UIMenuElement>>;
 
         #[cfg(feature = "UIMenuElement")]
         #[method(setMenuRepresentation:)]
@@ -343,14 +352,14 @@ extern_methods!(
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         #[method_id(@__retain_semantics Other creatingFixedGroup)]
-        pub unsafe fn creatingFixedGroup(&self) -> Id<UIBarButtonItemGroup>;
+        pub unsafe fn creatingFixedGroup(&self) -> Retained<UIBarButtonItemGroup>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         #[method_id(@__retain_semantics Other creatingMovableGroupWithCustomizationIdentifier:)]
         pub unsafe fn creatingMovableGroupWithCustomizationIdentifier(
             &self,
             customization_identifier: &NSString,
-        ) -> Id<UIBarButtonItemGroup>;
+        ) -> Retained<UIBarButtonItemGroup>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         #[method_id(@__retain_semantics Other creatingOptionalGroupWithCustomizationIdentifier:inDefaultCustomization:)]
@@ -358,7 +367,7 @@ extern_methods!(
             &self,
             customization_identifier: &NSString,
             in_default_customization: bool,
-        ) -> Id<UIBarButtonItemGroup>;
+        ) -> Retained<UIBarButtonItemGroup>;
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIControl", feature = "UIImage"))]
         #[method(setBackgroundImage:forState:barMetrics:)]
@@ -375,7 +384,7 @@ extern_methods!(
             &self,
             state: UIControlState,
             bar_metrics: UIBarMetrics,
-        ) -> Option<Id<UIImage>>;
+        ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIControl", feature = "UIImage"))]
         #[method(setBackgroundImage:forState:style:barMetrics:)]
@@ -394,11 +403,11 @@ extern_methods!(
             state: UIControlState,
             style: UIBarButtonItemStyle,
             bar_metrics: UIBarMetrics,
-        ) -> Option<Id<UIImage>>;
+        ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other tintColor)]
-        pub unsafe fn tintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setTintColor:)]
@@ -449,7 +458,7 @@ extern_methods!(
             &self,
             state: UIControlState,
             bar_metrics: UIBarMetrics,
-        ) -> Option<Id<UIImage>>;
+        ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIGeometry"))]
         #[method(setBackButtonTitlePositionAdjustment:forBarMetrics:)]
@@ -488,7 +497,7 @@ extern_methods!(
     #[cfg(feature = "UIBarItem")]
     unsafe impl UIBarButtonItem {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

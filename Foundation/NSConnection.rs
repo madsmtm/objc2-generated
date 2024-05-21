@@ -22,16 +22,16 @@ extern_methods!(
         #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "NSValue"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other statistics)]
-        pub unsafe fn statistics(&self) -> Id<NSDictionary<NSString, NSNumber>>;
+        pub unsafe fn statistics(&self) -> Retained<NSDictionary<NSString, NSNumber>>;
 
         #[cfg(feature = "NSArray")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other allConnections)]
-        pub unsafe fn allConnections() -> Id<NSArray<NSConnection>>;
+        pub unsafe fn allConnections() -> Retained<NSArray<NSConnection>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other defaultConnection)]
-        pub unsafe fn defaultConnection() -> Id<NSConnection>;
+        pub unsafe fn defaultConnection() -> Retained<NSConnection>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSXPCConnection instead"]
@@ -39,7 +39,7 @@ extern_methods!(
         pub unsafe fn connectionWithRegisteredName_host(
             name: &NSString,
             host_name: Option<&NSString>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSPortNameServer", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
@@ -48,7 +48,7 @@ extern_methods!(
             name: &NSString,
             host_name: Option<&NSString>,
             server: &NSPortNameServer,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSDistantObject", feature = "NSProxy", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
@@ -56,7 +56,7 @@ extern_methods!(
         pub unsafe fn rootProxyForConnectionWithRegisteredName_host(
             name: &NSString,
             host_name: Option<&NSString>,
-        ) -> Option<Id<NSDistantObject>>;
+        ) -> Option<Retained<NSDistantObject>>;
 
         #[cfg(all(
             feature = "NSDistantObject",
@@ -70,7 +70,7 @@ extern_methods!(
             name: &NSString,
             host_name: Option<&NSString>,
             server: &NSPortNameServer,
-        ) -> Option<Id<NSDistantObject>>;
+        ) -> Option<Retained<NSDistantObject>>;
 
         #[cfg(all(feature = "NSPortNameServer", feature = "NSString"))]
         #[method_id(@__retain_semantics Other serviceConnectionWithName:rootObject:usingNameServer:)]
@@ -78,14 +78,14 @@ extern_methods!(
             name: &NSString,
             root: &AnyObject,
             server: &NSPortNameServer,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other serviceConnectionWithName:rootObject:)]
         pub unsafe fn serviceConnectionWithName_rootObject(
             name: &NSString,
             root: &AnyObject,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSDate")]
         #[deprecated = "Use NSXPCConnection instead"]
@@ -109,7 +109,7 @@ extern_methods!(
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other rootObject)]
-        pub unsafe fn rootObject(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn rootObject(&self) -> Option<Retained<AnyObject>>;
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(setRootObject:)]
@@ -117,7 +117,8 @@ extern_methods!(
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSConnectionDelegate>>>;
+        pub unsafe fn delegate(&self)
+            -> Option<Retained<ProtocolObject<dyn NSConnectionDelegate>>>;
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(setDelegate:)]
@@ -144,7 +145,7 @@ extern_methods!(
         #[cfg(all(feature = "NSDistantObject", feature = "NSProxy"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other rootProxy)]
-        pub unsafe fn rootProxy(&self) -> Id<NSDistantObject>;
+        pub unsafe fn rootProxy(&self) -> Retained<NSDistantObject>;
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(invalidate)]
@@ -163,7 +164,7 @@ extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other requestModes)]
-        pub unsafe fn requestModes(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn requestModes(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSXPCConnection instead"]
@@ -185,11 +186,11 @@ extern_methods!(
         pub unsafe fn connectionWithReceivePort_sendPort(
             receive_port: Option<&NSPort>,
             send_port: Option<&NSPort>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other currentConversation)]
-        pub unsafe fn currentConversation() -> Option<Id<AnyObject>>;
+        pub unsafe fn currentConversation() -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSPort")]
         #[deprecated = "Use NSXPCConnection instead"]
@@ -198,17 +199,17 @@ extern_methods!(
             this: Allocated<Self>,
             receive_port: Option<&NSPort>,
             send_port: Option<&NSPort>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSPort")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other sendPort)]
-        pub unsafe fn sendPort(&self) -> Id<NSPort>;
+        pub unsafe fn sendPort(&self) -> Retained<NSPort>;
 
         #[cfg(feature = "NSPort")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other receivePort)]
-        pub unsafe fn receivePort(&self) -> Id<NSPort>;
+        pub unsafe fn receivePort(&self) -> Retained<NSPort>;
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(enableMultipleThreads)]
@@ -235,12 +236,12 @@ extern_methods!(
         #[cfg(feature = "NSArray")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other remoteObjects)]
-        pub unsafe fn remoteObjects(&self) -> Id<NSArray>;
+        pub unsafe fn remoteObjects(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "NSArray")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other localObjects)]
-        pub unsafe fn localObjects(&self) -> Id<NSArray>;
+        pub unsafe fn localObjects(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "NSArray")]
         #[method(dispatchWithComponents:)]
@@ -252,10 +253,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSConnection {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -294,7 +295,7 @@ extern_protocol!(
         #[deprecated = "Use NSXPCConnection instead"]
         #[optional]
         #[method_id(@__retain_semantics Other authenticationDataForComponents:)]
-        unsafe fn authenticationDataForComponents(&self, components: &NSArray) -> Id<NSData>;
+        unsafe fn authenticationDataForComponents(&self, components: &NSArray) -> Retained<NSData>;
 
         #[cfg(all(feature = "NSArray", feature = "NSData"))]
         #[deprecated = "Use NSXPCConnection instead"]
@@ -309,7 +310,10 @@ extern_protocol!(
         #[deprecated = "Use NSXPCConnection instead"]
         #[optional]
         #[method_id(@__retain_semantics Other createConversationForConnection:)]
-        unsafe fn createConversationForConnection(&self, conn: &NSConnection) -> Id<AnyObject>;
+        unsafe fn createConversationForConnection(
+            &self,
+            conn: &NSConnection,
+        ) -> Retained<AnyObject>;
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[optional]
@@ -352,15 +356,15 @@ extern_methods!(
         #[cfg(feature = "NSInvocation")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other invocation)]
-        pub unsafe fn invocation(&self) -> Id<NSInvocation>;
+        pub unsafe fn invocation(&self) -> Retained<NSInvocation>;
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other connection)]
-        pub unsafe fn connection(&self) -> Id<NSConnection>;
+        pub unsafe fn connection(&self) -> Retained<NSConnection>;
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other conversation)]
-        pub unsafe fn conversation(&self) -> Id<AnyObject>;
+        pub unsafe fn conversation(&self) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSException")]
         #[deprecated = "Use NSXPCConnection instead"]
@@ -373,9 +377,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDistantObjectRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

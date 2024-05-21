@@ -24,13 +24,13 @@ unsafe impl NSSecureCoding for MLNumericConstraint {}
 extern_methods!(
     unsafe impl MLNumericConstraint {
         #[method_id(@__retain_semantics Other minNumber)]
-        pub unsafe fn minNumber(&self) -> Id<NSNumber>;
+        pub unsafe fn minNumber(&self) -> Retained<NSNumber>;
 
         #[method_id(@__retain_semantics Other maxNumber)]
-        pub unsafe fn maxNumber(&self) -> Id<NSNumber>;
+        pub unsafe fn maxNumber(&self) -> Retained<NSNumber>;
 
         #[method_id(@__retain_semantics Other enumeratedNumbers)]
-        pub unsafe fn enumeratedNumbers(&self) -> Option<Id<NSSet<NSNumber>>>;
+        pub unsafe fn enumeratedNumbers(&self) -> Option<Retained<NSSet<NSNumber>>>;
     }
 );
 
@@ -38,9 +38,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLNumericConstraint {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

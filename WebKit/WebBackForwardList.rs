@@ -41,25 +41,25 @@ extern_methods!(
         #[cfg(feature = "WebHistoryItem")]
         #[deprecated]
         #[method_id(@__retain_semantics Other backItem)]
-        pub unsafe fn backItem(&self) -> Option<Id<WebHistoryItem>>;
+        pub unsafe fn backItem(&self) -> Option<Retained<WebHistoryItem>>;
 
         #[cfg(feature = "WebHistoryItem")]
         #[deprecated]
         #[method_id(@__retain_semantics Other currentItem)]
-        pub unsafe fn currentItem(&self) -> Option<Id<WebHistoryItem>>;
+        pub unsafe fn currentItem(&self) -> Option<Retained<WebHistoryItem>>;
 
         #[cfg(feature = "WebHistoryItem")]
         #[deprecated]
         #[method_id(@__retain_semantics Other forwardItem)]
-        pub unsafe fn forwardItem(&self) -> Option<Id<WebHistoryItem>>;
+        pub unsafe fn forwardItem(&self) -> Option<Retained<WebHistoryItem>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other backListWithLimit:)]
-        pub unsafe fn backListWithLimit(&self, limit: c_int) -> Option<Id<NSArray>>;
+        pub unsafe fn backListWithLimit(&self, limit: c_int) -> Option<Retained<NSArray>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other forwardListWithLimit:)]
-        pub unsafe fn forwardListWithLimit(&self, limit: c_int) -> Option<Id<NSArray>>;
+        pub unsafe fn forwardListWithLimit(&self, limit: c_int) -> Option<Retained<NSArray>>;
 
         #[deprecated]
         #[method(capacity)]
@@ -85,7 +85,7 @@ extern_methods!(
         #[cfg(feature = "WebHistoryItem")]
         #[deprecated]
         #[method_id(@__retain_semantics Other itemAtIndex:)]
-        pub unsafe fn itemAtIndex(&self, index: c_int) -> Option<Id<WebHistoryItem>>;
+        pub unsafe fn itemAtIndex(&self, index: c_int) -> Option<Retained<WebHistoryItem>>;
     }
 );
 
@@ -93,10 +93,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebBackForwardList {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

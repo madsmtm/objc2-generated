@@ -39,7 +39,7 @@ extern_methods!(
         pub unsafe fn endGrouping();
 
         #[method_id(@__retain_semantics Other currentContext)]
-        pub unsafe fn currentContext() -> Id<NSAnimationContext>;
+        pub unsafe fn currentContext() -> Retained<NSAnimationContext>;
 
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
@@ -70,9 +70,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAnimationContext {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

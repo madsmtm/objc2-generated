@@ -20,37 +20,37 @@ unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionKerberosMapping
 extern_methods!(
     unsafe impl ASAuthorizationProviderExtensionKerberosMapping {
         #[method_id(@__retain_semantics Other ticketKeyPath)]
-        pub unsafe fn ticketKeyPath(&self) -> Option<Id<NSString>>;
+        pub unsafe fn ticketKeyPath(&self) -> Option<Retained<NSString>>;
 
         #[method(setTicketKeyPath:)]
         pub unsafe fn setTicketKeyPath(&self, ticket_key_path: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other messageBufferKeyName)]
-        pub unsafe fn messageBufferKeyName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn messageBufferKeyName(&self) -> Option<Retained<NSString>>;
 
         #[method(setMessageBufferKeyName:)]
         pub unsafe fn setMessageBufferKeyName(&self, message_buffer_key_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other realmKeyName)]
-        pub unsafe fn realmKeyName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn realmKeyName(&self) -> Option<Retained<NSString>>;
 
         #[method(setRealmKeyName:)]
         pub unsafe fn setRealmKeyName(&self, realm_key_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other serviceNameKeyName)]
-        pub unsafe fn serviceNameKeyName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn serviceNameKeyName(&self) -> Option<Retained<NSString>>;
 
         #[method(setServiceNameKeyName:)]
         pub unsafe fn setServiceNameKeyName(&self, service_name_key_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other clientNameKeyName)]
-        pub unsafe fn clientNameKeyName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn clientNameKeyName(&self) -> Option<Retained<NSString>>;
 
         #[method(setClientNameKeyName:)]
         pub unsafe fn setClientNameKeyName(&self, client_name_key_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other encryptionKeyTypeKeyName)]
-        pub unsafe fn encryptionKeyTypeKeyName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn encryptionKeyTypeKeyName(&self) -> Option<Retained<NSString>>;
 
         #[method(setEncryptionKeyTypeKeyName:)]
         pub unsafe fn setEncryptionKeyTypeKeyName(
@@ -59,7 +59,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other sessionKeyKeyName)]
-        pub unsafe fn sessionKeyKeyName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn sessionKeyKeyName(&self) -> Option<Retained<NSString>>;
 
         #[method(setSessionKeyKeyName:)]
         pub unsafe fn setSessionKeyKeyName(&self, session_key_key_name: Option<&NSString>);
@@ -70,10 +70,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAuthorizationProviderExtensionKerberosMapping {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -140,10 +140,10 @@ unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionLoginConfigurat
 extern_methods!(
     unsafe impl ASAuthorizationProviderExtensionLoginConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithClientID:issuer:tokenEndpointURL:jwksEndpointURL:audience:)]
         pub unsafe fn initWithClientID_issuer_tokenEndpointURL_jwksEndpointURL_audience(
@@ -153,7 +153,7 @@ extern_methods!(
             token_endpoint_url: &NSURL,
             jwks_endpoint_url: &NSURL,
             audience: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(configurationWithOpenIDConfigurationURL:clientID:issuer:completion:)]
@@ -167,7 +167,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other invalidCredentialPredicate)]
-        pub unsafe fn invalidCredentialPredicate(&self) -> Option<Id<NSString>>;
+        pub unsafe fn invalidCredentialPredicate(&self) -> Option<Retained<NSString>>;
 
         #[method(setInvalidCredentialPredicate:)]
         pub unsafe fn setInvalidCredentialPredicate(
@@ -176,37 +176,37 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other accountDisplayName)]
-        pub unsafe fn accountDisplayName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn accountDisplayName(&self) -> Option<Retained<NSString>>;
 
         #[method(setAccountDisplayName:)]
         pub unsafe fn setAccountDisplayName(&self, account_display_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other clientID)]
-        pub unsafe fn clientID(&self) -> Id<NSString>;
+        pub unsafe fn clientID(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other issuer)]
-        pub unsafe fn issuer(&self) -> Id<NSString>;
+        pub unsafe fn issuer(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other audience)]
-        pub unsafe fn audience(&self) -> Id<NSString>;
+        pub unsafe fn audience(&self) -> Retained<NSString>;
 
         #[method(setAudience:)]
         pub unsafe fn setAudience(&self, audience: &NSString);
 
         #[method_id(@__retain_semantics Other tokenEndpointURL)]
-        pub unsafe fn tokenEndpointURL(&self) -> Id<NSURL>;
+        pub unsafe fn tokenEndpointURL(&self) -> Retained<NSURL>;
 
         #[method(setTokenEndpointURL:)]
         pub unsafe fn setTokenEndpointURL(&self, token_endpoint_url: &NSURL);
 
         #[method_id(@__retain_semantics Other jwksEndpointURL)]
-        pub unsafe fn jwksEndpointURL(&self) -> Id<NSURL>;
+        pub unsafe fn jwksEndpointURL(&self) -> Retained<NSURL>;
 
         #[method(setJwksEndpointURL:)]
         pub unsafe fn setJwksEndpointURL(&self, jwks_endpoint_url: &NSURL);
 
         #[method_id(@__retain_semantics Other jwksTrustedRootCertificates)]
-        pub unsafe fn jwksTrustedRootCertificates(&self) -> Id<NSArray>;
+        pub unsafe fn jwksTrustedRootCertificates(&self) -> Retained<NSArray>;
 
         #[method(setJwksTrustedRootCertificates:)]
         pub unsafe fn setJwksTrustedRootCertificates(
@@ -215,7 +215,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other deviceContext)]
-        pub unsafe fn deviceContext(&self) -> Option<Id<NSData>>;
+        pub unsafe fn deviceContext(&self) -> Option<Retained<NSData>>;
 
         #[method(setDeviceContext:)]
         pub unsafe fn setDeviceContext(&self, device_context: Option<&NSData>);
@@ -232,25 +232,25 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other nonceEndpointURL)]
-        pub unsafe fn nonceEndpointURL(&self) -> Id<NSURL>;
+        pub unsafe fn nonceEndpointURL(&self) -> Retained<NSURL>;
 
         #[method(setNonceEndpointURL:)]
         pub unsafe fn setNonceEndpointURL(&self, nonce_endpoint_url: &NSURL);
 
         #[method_id(@__retain_semantics Other nonceResponseKeypath)]
-        pub unsafe fn nonceResponseKeypath(&self) -> Id<NSString>;
+        pub unsafe fn nonceResponseKeypath(&self) -> Retained<NSString>;
 
         #[method(setNonceResponseKeypath:)]
         pub unsafe fn setNonceResponseKeypath(&self, nonce_response_keypath: &NSString);
 
         #[method_id(@__retain_semantics Other serverNonceClaimName)]
-        pub unsafe fn serverNonceClaimName(&self) -> Id<NSString>;
+        pub unsafe fn serverNonceClaimName(&self) -> Retained<NSString>;
 
         #[method(setServerNonceClaimName:)]
         pub unsafe fn setServerNonceClaimName(&self, server_nonce_claim_name: &NSString);
 
         #[method_id(@__retain_semantics Other customNonceRequestValues)]
-        pub unsafe fn customNonceRequestValues(&self) -> Id<NSArray<NSURLQueryItem>>;
+        pub unsafe fn customNonceRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         #[method(setCustomNonceRequestValues:)]
         pub unsafe fn setCustomNonceRequestValues(
@@ -262,22 +262,22 @@ extern_methods!(
         pub unsafe fn setCustomAssertionRequestHeaderClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(setCustomAssertionRequestBodyClaims:returningError:_)]
         pub unsafe fn setCustomAssertionRequestBodyClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other additionalScopes)]
-        pub unsafe fn additionalScopes(&self) -> Id<NSString>;
+        pub unsafe fn additionalScopes(&self) -> Retained<NSString>;
 
         #[method(setAdditionalScopes:)]
         pub unsafe fn setAdditionalScopes(&self, additional_scopes: &NSString);
 
         #[method_id(@__retain_semantics Other additionalAuthorizationScopes)]
-        pub unsafe fn additionalAuthorizationScopes(&self) -> Option<Id<NSString>>;
+        pub unsafe fn additionalAuthorizationScopes(&self) -> Option<Retained<NSString>>;
 
         #[method(setAdditionalAuthorizationScopes:)]
         pub unsafe fn setAdditionalAuthorizationScopes(
@@ -295,7 +295,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other previousRefreshTokenClaimName)]
-        pub unsafe fn previousRefreshTokenClaimName(&self) -> Id<NSString>;
+        pub unsafe fn previousRefreshTokenClaimName(&self) -> Retained<NSString>;
 
         #[method(setPreviousRefreshTokenClaimName:)]
         pub unsafe fn setPreviousRefreshTokenClaimName(
@@ -304,7 +304,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other customRequestJWTParameterName)]
-        pub unsafe fn customRequestJWTParameterName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn customRequestJWTParameterName(&self) -> Option<Retained<NSString>>;
 
         #[method(setCustomRequestJWTParameterName:)]
         pub unsafe fn setCustomRequestJWTParameterName(
@@ -313,7 +313,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other customLoginRequestValues)]
-        pub unsafe fn customLoginRequestValues(&self) -> Id<NSArray<NSURLQueryItem>>;
+        pub unsafe fn customLoginRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         #[method(setCustomLoginRequestValues:)]
         pub unsafe fn setCustomLoginRequestValues(
@@ -325,16 +325,16 @@ extern_methods!(
         pub unsafe fn setCustomLoginRequestHeaderClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(setCustomLoginRequestBodyClaims:returningError:_)]
         pub unsafe fn setCustomLoginRequestBodyClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other uniqueIdentifierClaimName)]
-        pub unsafe fn uniqueIdentifierClaimName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn uniqueIdentifierClaimName(&self) -> Option<Retained<NSString>>;
 
         #[method(setUniqueIdentifierClaimName:)]
         pub unsafe fn setUniqueIdentifierClaimName(
@@ -343,13 +343,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other groupRequestClaimName)]
-        pub unsafe fn groupRequestClaimName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn groupRequestClaimName(&self) -> Option<Retained<NSString>>;
 
         #[method(setGroupRequestClaimName:)]
         pub unsafe fn setGroupRequestClaimName(&self, group_request_claim_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other groupResponseClaimName)]
-        pub unsafe fn groupResponseClaimName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn groupResponseClaimName(&self) -> Option<Retained<NSString>>;
 
         #[method(setGroupResponseClaimName:)]
         pub unsafe fn setGroupResponseClaimName(
@@ -360,7 +360,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other kerberosTicketMappings)]
         pub unsafe fn kerberosTicketMappings(
             &self,
-        ) -> Id<NSArray<ASAuthorizationProviderExtensionKerberosMapping>>;
+        ) -> Retained<NSArray<ASAuthorizationProviderExtensionKerberosMapping>>;
 
         #[method(setKerberosTicketMappings:)]
         pub unsafe fn setKerberosTicketMappings(
@@ -369,13 +369,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other refreshEndpointURL)]
-        pub unsafe fn refreshEndpointURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn refreshEndpointURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setRefreshEndpointURL:)]
         pub unsafe fn setRefreshEndpointURL(&self, refresh_endpoint_url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other customRefreshRequestValues)]
-        pub unsafe fn customRefreshRequestValues(&self) -> Id<NSArray<NSURLQueryItem>>;
+        pub unsafe fn customRefreshRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         #[method(setCustomRefreshRequestValues:)]
         pub unsafe fn setCustomRefreshRequestValues(
@@ -387,13 +387,13 @@ extern_methods!(
         pub unsafe fn setCustomRefreshRequestHeaderClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(setCustomRefreshRequestBodyClaims:returningError:_)]
         pub unsafe fn setCustomRefreshRequestBodyClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(federationType)]
         pub unsafe fn federationType(&self) -> ASAuthorizationProviderExtensionFederationType;
@@ -405,19 +405,19 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other federationRequestURN)]
-        pub unsafe fn federationRequestURN(&self) -> Option<Id<NSString>>;
+        pub unsafe fn federationRequestURN(&self) -> Option<Retained<NSString>>;
 
         #[method(setFederationRequestURN:)]
         pub unsafe fn setFederationRequestURN(&self, federation_request_urn: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other federationMEXURL)]
-        pub unsafe fn federationMEXURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn federationMEXURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setFederationMEXURL:)]
         pub unsafe fn setFederationMEXURL(&self, federation_mexurl: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other federationUserPreauthenticationURL)]
-        pub unsafe fn federationUserPreauthenticationURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn federationUserPreauthenticationURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setFederationUserPreauthenticationURL:)]
         pub unsafe fn setFederationUserPreauthenticationURL(
@@ -426,7 +426,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other federationMEXURLKeypath)]
-        pub unsafe fn federationMEXURLKeypath(&self) -> Option<Id<NSString>>;
+        pub unsafe fn federationMEXURLKeypath(&self) -> Option<Retained<NSString>>;
 
         #[method(setFederationMEXURLKeypath:)]
         pub unsafe fn setFederationMEXURLKeypath(
@@ -435,7 +435,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other federationPredicate)]
-        pub unsafe fn federationPredicate(&self) -> Option<Id<NSString>>;
+        pub unsafe fn federationPredicate(&self) -> Option<Retained<NSString>>;
 
         #[method(setFederationPredicate:)]
         pub unsafe fn setFederationPredicate(&self, federation_predicate: Option<&NSString>);
@@ -443,7 +443,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other customFederationUserPreauthenticationRequestValues)]
         pub unsafe fn customFederationUserPreauthenticationRequestValues(
             &self,
-        ) -> Id<NSArray<NSURLQueryItem>>;
+        ) -> Retained<NSArray<NSURLQueryItem>>;
 
         #[method(setCustomFederationUserPreauthenticationRequestValues:)]
         pub unsafe fn setCustomFederationUserPreauthenticationRequestValues(
@@ -452,7 +452,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other loginRequestEncryptionAPVPrefix)]
-        pub unsafe fn loginRequestEncryptionAPVPrefix(&self) -> Option<Id<NSData>>;
+        pub unsafe fn loginRequestEncryptionAPVPrefix(&self) -> Option<Retained<NSData>>;
 
         #[method(setLoginRequestEncryptionAPVPrefix:)]
         pub unsafe fn setLoginRequestEncryptionAPVPrefix(
@@ -461,13 +461,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other keyEndpointURL)]
-        pub unsafe fn keyEndpointURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn keyEndpointURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setKeyEndpointURL:)]
         pub unsafe fn setKeyEndpointURL(&self, key_endpoint_url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other customKeyExchangeRequestValues)]
-        pub unsafe fn customKeyExchangeRequestValues(&self) -> Id<NSArray<NSURLQueryItem>>;
+        pub unsafe fn customKeyExchangeRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         #[method(setCustomKeyExchangeRequestValues:)]
         pub unsafe fn setCustomKeyExchangeRequestValues(
@@ -479,16 +479,16 @@ extern_methods!(
         pub unsafe fn setCustomKeyExchangeRequestHeaderClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(setCustomKeyExchangeRequestBodyClaims:returningError:_)]
         pub unsafe fn setCustomKeyExchangeRequestBodyClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other customKeyRequestValues)]
-        pub unsafe fn customKeyRequestValues(&self) -> Id<NSArray<NSURLQueryItem>>;
+        pub unsafe fn customKeyRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         #[method(setCustomKeyRequestValues:)]
         pub unsafe fn setCustomKeyRequestValues(
@@ -500,12 +500,12 @@ extern_methods!(
         pub unsafe fn setCustomKeyRequestHeaderClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(setCustomKeyRequestBodyClaims:returningError:_)]
         pub unsafe fn setCustomKeyRequestBodyClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
     }
 );

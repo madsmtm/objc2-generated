@@ -15,11 +15,11 @@ extern_protocol!(
 
         #[optional]
         #[method_id(@__retain_semantics Other title)]
-        unsafe fn title(&self) -> Option<Id<NSString>>;
+        unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other subtitle)]
-        unsafe fn subtitle(&self) -> Option<Id<NSString>>;
+        unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "objc2-core-location")]
         #[optional]

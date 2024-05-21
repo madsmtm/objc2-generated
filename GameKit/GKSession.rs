@@ -28,12 +28,12 @@ extern_methods!(
             session_id: Option<&NSString>,
             name: Option<&NSString>,
             mode: GKSessionMode,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "GKPublicProtocols")]
         #[deprecated]
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn GKSessionDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn GKSessionDelegate>>>;
 
         #[cfg(feature = "GKPublicProtocols")]
         #[deprecated]
@@ -42,11 +42,11 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other sessionID)]
-        pub unsafe fn sessionID(&self) -> Option<Id<NSString>>;
+        pub unsafe fn sessionID(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other displayName)]
-        pub unsafe fn displayName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "GKPublicConstants")]
         #[deprecated]
@@ -55,7 +55,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other peerID)]
-        pub unsafe fn peerID(&self) -> Option<Id<NSString>>;
+        pub unsafe fn peerID(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method(isAvailable)]
@@ -75,8 +75,10 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other displayNameForPeer:)]
-        pub unsafe fn displayNameForPeer(&self, peer_id: Option<&NSString>)
-            -> Option<Id<NSString>>;
+        pub unsafe fn displayNameForPeer(
+            &self,
+            peer_id: Option<&NSString>,
+        ) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method(setDataReceiveHandler:withContext:)]
@@ -116,7 +118,7 @@ extern_methods!(
         pub unsafe fn peersWithConnectionState(
             &self,
             state: GKPeerConnectionState,
-        ) -> Option<Id<NSArray>>;
+        ) -> Option<Retained<NSArray>>;
     }
 );
 
@@ -124,9 +126,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKSession {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

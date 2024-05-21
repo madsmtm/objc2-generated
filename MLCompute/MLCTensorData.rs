@@ -29,25 +29,25 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other dataWithBytesNoCopy:length:)]
         pub unsafe fn dataWithBytesNoCopy_length(
             bytes: NonNull<c_void>,
             length: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other dataWithImmutableBytesNoCopy:length:)]
         pub unsafe fn dataWithImmutableBytesNoCopy_length(
             bytes: NonNull<c_void>,
             length: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Other dataWithBytesNoCopy:length:deallocator:)]
@@ -55,6 +55,6 @@ extern_methods!(
             bytes: NonNull<c_void>,
             length: NSUInteger,
             deallocator: &block2::Block<dyn Fn(NonNull<c_void>, NSUInteger)>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

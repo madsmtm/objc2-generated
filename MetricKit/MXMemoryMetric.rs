@@ -31,11 +31,13 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXMemoryMetric {
         #[method_id(@__retain_semantics Other peakMemoryUsage)]
-        pub unsafe fn peakMemoryUsage(&self) -> Id<NSMeasurement<NSUnitInformationStorage>>;
+        pub unsafe fn peakMemoryUsage(&self) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
 
         #[cfg(feature = "MXAverage")]
         #[method_id(@__retain_semantics Other averageSuspendedMemory)]
-        pub unsafe fn averageSuspendedMemory(&self) -> Id<MXAverage<NSUnitInformationStorage>>;
+        pub unsafe fn averageSuspendedMemory(
+            &self,
+        ) -> Retained<MXAverage<NSUnitInformationStorage>>;
     }
 );
 
@@ -44,9 +46,9 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXMemoryMetric {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

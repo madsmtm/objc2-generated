@@ -22,13 +22,13 @@ unsafe impl NSObjectProtocol for VZStorageDeviceConfiguration {}
 extern_methods!(
     unsafe impl VZStorageDeviceConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZStorageDeviceAttachment")]
         #[method_id(@__retain_semantics Other attachment)]
-        pub unsafe fn attachment(&self) -> Id<VZStorageDeviceAttachment>;
+        pub unsafe fn attachment(&self) -> Retained<VZStorageDeviceAttachment>;
     }
 );

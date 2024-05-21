@@ -78,104 +78,106 @@ unsafe impl NSSecureCoding for CNContact {}
 extern_methods!(
     unsafe impl CNContact {
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[method(contactType)]
         pub unsafe fn contactType(&self) -> CNContactType;
 
         #[method_id(@__retain_semantics Other namePrefix)]
-        pub unsafe fn namePrefix(&self) -> Id<NSString>;
+        pub unsafe fn namePrefix(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other givenName)]
-        pub unsafe fn givenName(&self) -> Id<NSString>;
+        pub unsafe fn givenName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other middleName)]
-        pub unsafe fn middleName(&self) -> Id<NSString>;
+        pub unsafe fn middleName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other familyName)]
-        pub unsafe fn familyName(&self) -> Id<NSString>;
+        pub unsafe fn familyName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other previousFamilyName)]
-        pub unsafe fn previousFamilyName(&self) -> Id<NSString>;
+        pub unsafe fn previousFamilyName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other nameSuffix)]
-        pub unsafe fn nameSuffix(&self) -> Id<NSString>;
+        pub unsafe fn nameSuffix(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other nickname)]
-        pub unsafe fn nickname(&self) -> Id<NSString>;
+        pub unsafe fn nickname(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other organizationName)]
-        pub unsafe fn organizationName(&self) -> Id<NSString>;
+        pub unsafe fn organizationName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other departmentName)]
-        pub unsafe fn departmentName(&self) -> Id<NSString>;
+        pub unsafe fn departmentName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other jobTitle)]
-        pub unsafe fn jobTitle(&self) -> Id<NSString>;
+        pub unsafe fn jobTitle(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other phoneticGivenName)]
-        pub unsafe fn phoneticGivenName(&self) -> Id<NSString>;
+        pub unsafe fn phoneticGivenName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other phoneticMiddleName)]
-        pub unsafe fn phoneticMiddleName(&self) -> Id<NSString>;
+        pub unsafe fn phoneticMiddleName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other phoneticFamilyName)]
-        pub unsafe fn phoneticFamilyName(&self) -> Id<NSString>;
+        pub unsafe fn phoneticFamilyName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other phoneticOrganizationName)]
-        pub unsafe fn phoneticOrganizationName(&self) -> Id<NSString>;
+        pub unsafe fn phoneticOrganizationName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other note)]
-        pub unsafe fn note(&self) -> Id<NSString>;
+        pub unsafe fn note(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other imageData)]
-        pub unsafe fn imageData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn imageData(&self) -> Option<Retained<NSData>>;
 
         #[method_id(@__retain_semantics Other thumbnailImageData)]
-        pub unsafe fn thumbnailImageData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn thumbnailImageData(&self) -> Option<Retained<NSData>>;
 
         #[method(imageDataAvailable)]
         pub unsafe fn imageDataAvailable(&self) -> bool;
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNPhoneNumber"))]
         #[method_id(@__retain_semantics Other phoneNumbers)]
-        pub unsafe fn phoneNumbers(&self) -> Id<NSArray<CNLabeledValue<CNPhoneNumber>>>;
+        pub unsafe fn phoneNumbers(&self) -> Retained<NSArray<CNLabeledValue<CNPhoneNumber>>>;
 
         #[cfg(feature = "CNLabeledValue")]
         #[method_id(@__retain_semantics Other emailAddresses)]
-        pub unsafe fn emailAddresses(&self) -> Id<NSArray<CNLabeledValue<NSString>>>;
+        pub unsafe fn emailAddresses(&self) -> Retained<NSArray<CNLabeledValue<NSString>>>;
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNPostalAddress"))]
         #[method_id(@__retain_semantics Other postalAddresses)]
-        pub unsafe fn postalAddresses(&self) -> Id<NSArray<CNLabeledValue<CNPostalAddress>>>;
+        pub unsafe fn postalAddresses(&self) -> Retained<NSArray<CNLabeledValue<CNPostalAddress>>>;
 
         #[cfg(feature = "CNLabeledValue")]
         #[method_id(@__retain_semantics Other urlAddresses)]
-        pub unsafe fn urlAddresses(&self) -> Id<NSArray<CNLabeledValue<NSString>>>;
+        pub unsafe fn urlAddresses(&self) -> Retained<NSArray<CNLabeledValue<NSString>>>;
 
         #[cfg(all(feature = "CNContactRelation", feature = "CNLabeledValue"))]
         #[method_id(@__retain_semantics Other contactRelations)]
-        pub unsafe fn contactRelations(&self) -> Id<NSArray<CNLabeledValue<CNContactRelation>>>;
+        pub unsafe fn contactRelations(
+            &self,
+        ) -> Retained<NSArray<CNLabeledValue<CNContactRelation>>>;
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNSocialProfile"))]
         #[method_id(@__retain_semantics Other socialProfiles)]
-        pub unsafe fn socialProfiles(&self) -> Id<NSArray<CNLabeledValue<CNSocialProfile>>>;
+        pub unsafe fn socialProfiles(&self) -> Retained<NSArray<CNLabeledValue<CNSocialProfile>>>;
 
         #[cfg(all(feature = "CNInstantMessageAddress", feature = "CNLabeledValue"))]
         #[method_id(@__retain_semantics Other instantMessageAddresses)]
         pub unsafe fn instantMessageAddresses(
             &self,
-        ) -> Id<NSArray<CNLabeledValue<CNInstantMessageAddress>>>;
+        ) -> Retained<NSArray<CNLabeledValue<CNInstantMessageAddress>>>;
 
         #[method_id(@__retain_semantics Other birthday)]
-        pub unsafe fn birthday(&self) -> Option<Id<NSDateComponents>>;
+        pub unsafe fn birthday(&self) -> Option<Retained<NSDateComponents>>;
 
         #[method_id(@__retain_semantics Other nonGregorianBirthday)]
-        pub unsafe fn nonGregorianBirthday(&self) -> Option<Id<NSDateComponents>>;
+        pub unsafe fn nonGregorianBirthday(&self) -> Option<Retained<NSDateComponents>>;
 
         #[cfg(feature = "CNLabeledValue")]
         #[method_id(@__retain_semantics Other dates)]
-        pub unsafe fn dates(&self) -> Id<NSArray<CNLabeledValue<NSDateComponents>>>;
+        pub unsafe fn dates(&self) -> Retained<NSArray<CNLabeledValue<NSDateComponents>>>;
 
         #[method(isKeyAvailable:)]
         pub unsafe fn isKeyAvailable(&self, key: &NSString) -> bool;
@@ -187,14 +189,15 @@ extern_methods!(
         ) -> bool;
 
         #[method_id(@__retain_semantics Other localizedStringForKey:)]
-        pub unsafe fn localizedStringForKey(key: &NSString) -> Id<NSString>;
+        pub unsafe fn localizedStringForKey(key: &NSString) -> Retained<NSString>;
 
         #[cfg(feature = "block2")]
         #[method(comparatorForNameSortOrder:)]
         pub unsafe fn comparatorForNameSortOrder(sort_order: CNContactSortOrder) -> NSComparator;
 
         #[method_id(@__retain_semantics Other descriptorForAllComparatorKeys)]
-        pub unsafe fn descriptorForAllComparatorKeys() -> Id<ProtocolObject<dyn CNKeyDescriptor>>;
+        pub unsafe fn descriptorForAllComparatorKeys(
+        ) -> Retained<ProtocolObject<dyn CNKeyDescriptor>>;
 
         #[method(isUnifiedWithContactWithIdentifier:)]
         pub unsafe fn isUnifiedWithContactWithIdentifier(
@@ -208,10 +211,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNContact {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

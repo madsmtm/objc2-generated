@@ -34,10 +34,10 @@ extern_methods!(
     #[cfg(feature = "CMLogItem")]
     unsafe impl CMAltitudeData {
         #[method_id(@__retain_semantics Other relativeAltitude)]
-        pub unsafe fn relativeAltitude(&self) -> Id<NSNumber>;
+        pub unsafe fn relativeAltitude(&self) -> Retained<NSNumber>;
 
         #[method_id(@__retain_semantics Other pressure)]
-        pub unsafe fn pressure(&self) -> Id<NSNumber>;
+        pub unsafe fn pressure(&self) -> Retained<NSNumber>;
     }
 );
 
@@ -46,9 +46,9 @@ extern_methods!(
     #[cfg(feature = "CMLogItem")]
     unsafe impl CMAltitudeData {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

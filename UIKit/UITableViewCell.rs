@@ -264,17 +264,20 @@ extern_methods!(
             this: Allocated<Self>,
             style: UITableViewCellStyle,
             reuse_identifier: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(
             feature = "UICellConfigurationState",
             feature = "UIViewConfigurationState"
         ))]
         #[method_id(@__retain_semantics Other configurationState)]
-        pub unsafe fn configurationState(&self) -> Id<UICellConfigurationState>;
+        pub unsafe fn configurationState(&self) -> Retained<UICellConfigurationState>;
 
         #[method(setNeedsUpdateConfiguration)]
         pub unsafe fn setNeedsUpdateConfiguration(&self);
@@ -309,13 +312,13 @@ extern_methods!(
 
         #[cfg(feature = "UIListContentConfiguration")]
         #[method_id(@__retain_semantics Other defaultContentConfiguration)]
-        pub unsafe fn defaultContentConfiguration(&self) -> Id<UIListContentConfiguration>;
+        pub unsafe fn defaultContentConfiguration(&self) -> Retained<UIListContentConfiguration>;
 
         #[cfg(feature = "UIContentConfiguration")]
         #[method_id(@__retain_semantics Other contentConfiguration)]
         pub unsafe fn contentConfiguration(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIContentConfiguration>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIContentConfiguration>>>;
 
         #[cfg(feature = "UIContentConfiguration")]
         #[method(setContentConfiguration:)]
@@ -334,30 +337,31 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other contentView)]
-        pub unsafe fn contentView(&self) -> Id<UIView>;
+        pub unsafe fn contentView(&self) -> Retained<UIView>;
 
         #[cfg(feature = "UIImageView")]
         #[deprecated = "Use UIListContentConfiguration instead, this property will be deprecated in a future release."]
         #[method_id(@__retain_semantics Other imageView)]
-        pub unsafe fn imageView(&self) -> Option<Id<UIImageView>>;
+        pub unsafe fn imageView(&self) -> Option<Retained<UIImageView>>;
 
         #[cfg(feature = "UILabel")]
         #[deprecated = "Use UIListContentConfiguration instead, this property will be deprecated in a future release."]
         #[method_id(@__retain_semantics Other textLabel)]
-        pub unsafe fn textLabel(&self) -> Option<Id<UILabel>>;
+        pub unsafe fn textLabel(&self) -> Option<Retained<UILabel>>;
 
         #[cfg(feature = "UILabel")]
         #[deprecated = "Use UIListContentConfiguration instead, this property will be deprecated in a future release."]
         #[method_id(@__retain_semantics Other detailTextLabel)]
-        pub unsafe fn detailTextLabel(&self) -> Option<Id<UILabel>>;
+        pub unsafe fn detailTextLabel(&self) -> Option<Retained<UILabel>>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         #[method_id(@__retain_semantics Other defaultBackgroundConfiguration)]
-        pub unsafe fn defaultBackgroundConfiguration(&self) -> Id<UIBackgroundConfiguration>;
+        pub unsafe fn defaultBackgroundConfiguration(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         #[method_id(@__retain_semantics Other backgroundConfiguration)]
-        pub unsafe fn backgroundConfiguration(&self) -> Option<Id<UIBackgroundConfiguration>>;
+        pub unsafe fn backgroundConfiguration(&self)
+            -> Option<Retained<UIBackgroundConfiguration>>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         #[method(setBackgroundConfiguration:)]
@@ -376,19 +380,19 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other backgroundView)]
-        pub unsafe fn backgroundView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn backgroundView(&self) -> Option<Retained<UIView>>;
 
         #[method(setBackgroundView:)]
         pub unsafe fn setBackgroundView(&self, background_view: Option<&UIView>);
 
         #[method_id(@__retain_semantics Other selectedBackgroundView)]
-        pub unsafe fn selectedBackgroundView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn selectedBackgroundView(&self) -> Option<Retained<UIView>>;
 
         #[method(setSelectedBackgroundView:)]
         pub unsafe fn setSelectedBackgroundView(&self, selected_background_view: Option<&UIView>);
 
         #[method_id(@__retain_semantics Other multipleSelectionBackgroundView)]
-        pub unsafe fn multipleSelectionBackgroundView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn multipleSelectionBackgroundView(&self) -> Option<Retained<UIView>>;
 
         #[method(setMultipleSelectionBackgroundView:)]
         pub unsafe fn setMultipleSelectionBackgroundView(
@@ -397,7 +401,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other reuseIdentifier)]
-        pub unsafe fn reuseIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn reuseIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(prepareForReuse)]
         pub unsafe fn prepareForReuse(&self);
@@ -448,7 +452,7 @@ extern_methods!(
         pub unsafe fn setAccessoryType(&self, accessory_type: UITableViewCellAccessoryType);
 
         #[method_id(@__retain_semantics Other accessoryView)]
-        pub unsafe fn accessoryView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn accessoryView(&self) -> Option<Retained<UIView>>;
 
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&UIView>);
@@ -463,7 +467,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other editingAccessoryView)]
-        pub unsafe fn editingAccessoryView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn editingAccessoryView(&self) -> Option<Retained<UIView>>;
 
         #[method(setEditingAccessoryView:)]
         pub unsafe fn setEditingAccessoryView(&self, editing_accessory_view: Option<&UIView>);
@@ -531,7 +535,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITableViewCell {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
     }
 );
 
@@ -540,10 +544,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITableViewCell {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -557,11 +561,11 @@ extern_methods!(
             this: Allocated<Self>,
             frame: CGRect,
             reuse_identifier: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other text)]
-        pub unsafe fn text(&self) -> Option<Id<NSString>>;
+        pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method(setText:)]
@@ -570,7 +574,7 @@ extern_methods!(
         #[cfg(feature = "UIFont")]
         #[deprecated]
         #[method_id(@__retain_semantics Other font)]
-        pub unsafe fn font(&self) -> Option<Id<UIFont>>;
+        pub unsafe fn font(&self) -> Option<Retained<UIFont>>;
 
         #[cfg(feature = "UIFont")]
         #[deprecated]
@@ -600,7 +604,7 @@ extern_methods!(
         #[cfg(feature = "UIColor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other textColor)]
-        pub unsafe fn textColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn textColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[deprecated]
@@ -610,7 +614,7 @@ extern_methods!(
         #[cfg(feature = "UIColor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other selectedTextColor)]
-        pub unsafe fn selectedTextColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn selectedTextColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[deprecated]
@@ -620,7 +624,7 @@ extern_methods!(
         #[cfg(feature = "UIImage")]
         #[deprecated]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[deprecated]
@@ -630,7 +634,7 @@ extern_methods!(
         #[cfg(feature = "UIImage")]
         #[deprecated]
         #[method_id(@__retain_semantics Other selectedImage)]
-        pub unsafe fn selectedImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn selectedImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[deprecated]
@@ -647,7 +651,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
         #[method(setTarget:)]

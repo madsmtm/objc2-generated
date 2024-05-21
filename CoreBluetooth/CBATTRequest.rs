@@ -20,21 +20,21 @@ unsafe impl NSObjectProtocol for CBATTRequest {}
 extern_methods!(
     unsafe impl CBATTRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CBCentral", feature = "CBPeer"))]
         #[method_id(@__retain_semantics Other central)]
-        pub unsafe fn central(&self) -> Id<CBCentral>;
+        pub unsafe fn central(&self) -> Retained<CBCentral>;
 
         #[cfg(all(feature = "CBAttribute", feature = "CBCharacteristic"))]
         #[method_id(@__retain_semantics Other characteristic)]
-        pub unsafe fn characteristic(&self) -> Id<CBCharacteristic>;
+        pub unsafe fn characteristic(&self) -> Retained<CBCharacteristic>;
 
         #[method(offset)]
         pub unsafe fn offset(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Option<Id<NSData>>;
+        pub unsafe fn value(&self) -> Option<Retained<NSData>>;
 
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: Option<&NSData>);
@@ -45,6 +45,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CBATTRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

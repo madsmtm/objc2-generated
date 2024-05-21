@@ -24,13 +24,13 @@ extern_methods!(
         pub unsafe fn r#type(&self) -> PHAssetResourceType;
 
         #[method_id(@__retain_semantics Other assetLocalIdentifier)]
-        pub unsafe fn assetLocalIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn assetLocalIdentifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other uniformTypeIdentifier)]
-        pub unsafe fn uniformTypeIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn uniformTypeIdentifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other originalFilename)]
-        pub unsafe fn originalFilename(&self) -> Id<NSString>;
+        pub unsafe fn originalFilename(&self) -> Retained<NSString>;
 
         #[method(pixelWidth)]
         pub unsafe fn pixelWidth(&self) -> NSInteger;
@@ -40,13 +40,14 @@ extern_methods!(
 
         #[cfg(all(feature = "PHAsset", feature = "PHObject"))]
         #[method_id(@__retain_semantics Other assetResourcesForAsset:)]
-        pub unsafe fn assetResourcesForAsset(asset: &PHAsset) -> Id<NSArray<PHAssetResource>>;
+        pub unsafe fn assetResourcesForAsset(asset: &PHAsset)
+            -> Retained<NSArray<PHAssetResource>>;
 
         #[cfg(feature = "PHLivePhoto")]
         #[method_id(@__retain_semantics Other assetResourcesForLivePhoto:)]
         pub unsafe fn assetResourcesForLivePhoto(
             live_photo: &PHLivePhoto,
-        ) -> Id<NSArray<PHAssetResource>>;
+        ) -> Retained<NSArray<PHAssetResource>>;
     }
 );
 
@@ -54,9 +55,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHAssetResource {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

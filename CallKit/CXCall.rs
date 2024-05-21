@@ -20,7 +20,7 @@ unsafe impl NSObjectProtocol for CXCall {}
 extern_methods!(
     unsafe impl CXCall {
         #[method_id(@__retain_semantics Other UUID)]
-        pub unsafe fn UUID(&self) -> Id<NSUUID>;
+        pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         #[method(isOutgoing)]
         pub unsafe fn isOutgoing(&self) -> bool;
@@ -35,7 +35,7 @@ extern_methods!(
         pub unsafe fn hasEnded(&self) -> bool;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(isEqualToCall:)]
         pub unsafe fn isEqualToCall(&self, call: &CXCall) -> bool;
@@ -46,6 +46,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXCall {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

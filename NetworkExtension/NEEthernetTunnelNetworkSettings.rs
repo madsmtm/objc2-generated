@@ -60,10 +60,10 @@ extern_methods!(
             address: &NSString,
             ethernet_address: &NSString,
             mtu: NSInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other ethernetAddress)]
-        pub unsafe fn ethernetAddress(&self) -> Id<NSString>;
+        pub unsafe fn ethernetAddress(&self) -> Retained<NSString>;
     }
 );
 
@@ -78,7 +78,7 @@ extern_methods!(
         pub unsafe fn initWithTunnelRemoteAddress(
             this: Allocated<Self>,
             address: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -90,9 +90,9 @@ extern_methods!(
     ))]
     unsafe impl NEEthernetTunnelNetworkSettings {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

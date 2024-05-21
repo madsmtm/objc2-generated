@@ -23,13 +23,13 @@ extern_protocol!(
         unsafe fn presentationIndexPathForDataSourceIndexPath(
             &self,
             data_source_index_path: Option<&NSIndexPath>,
-        ) -> Option<Id<NSIndexPath>>;
+        ) -> Option<Retained<NSIndexPath>>;
 
         #[method_id(@__retain_semantics Other dataSourceIndexPathForPresentationIndexPath:)]
         unsafe fn dataSourceIndexPathForPresentationIndexPath(
             &self,
             presentation_index_path: Option<&NSIndexPath>,
-        ) -> Option<Id<NSIndexPath>>;
+        ) -> Option<Retained<NSIndexPath>>;
 
         #[cfg(feature = "block2")]
         #[method(performUsingPresentationValues:)]

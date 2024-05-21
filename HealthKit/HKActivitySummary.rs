@@ -29,7 +29,7 @@ extern_methods!(
         pub unsafe fn dateComponentsForCalendar(
             &self,
             calendar: &NSCalendar,
-        ) -> Id<NSDateComponents>;
+        ) -> Retained<NSDateComponents>;
 
         #[cfg(feature = "HKCharacteristicValues")]
         #[method(activityMoveMode)]
@@ -41,7 +41,7 @@ extern_methods!(
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other activeEnergyBurned)]
-        pub unsafe fn activeEnergyBurned(&self) -> Id<HKQuantity>;
+        pub unsafe fn activeEnergyBurned(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         #[method(setActiveEnergyBurned:)]
@@ -49,7 +49,7 @@ extern_methods!(
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other appleMoveTime)]
-        pub unsafe fn appleMoveTime(&self) -> Id<HKQuantity>;
+        pub unsafe fn appleMoveTime(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         #[method(setAppleMoveTime:)]
@@ -57,7 +57,7 @@ extern_methods!(
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other appleExerciseTime)]
-        pub unsafe fn appleExerciseTime(&self) -> Id<HKQuantity>;
+        pub unsafe fn appleExerciseTime(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         #[method(setAppleExerciseTime:)]
@@ -65,7 +65,7 @@ extern_methods!(
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other appleStandHours)]
-        pub unsafe fn appleStandHours(&self) -> Id<HKQuantity>;
+        pub unsafe fn appleStandHours(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         #[method(setAppleStandHours:)]
@@ -73,7 +73,7 @@ extern_methods!(
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other activeEnergyBurnedGoal)]
-        pub unsafe fn activeEnergyBurnedGoal(&self) -> Id<HKQuantity>;
+        pub unsafe fn activeEnergyBurnedGoal(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         #[method(setActiveEnergyBurnedGoal:)]
@@ -81,7 +81,7 @@ extern_methods!(
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other appleMoveTimeGoal)]
-        pub unsafe fn appleMoveTimeGoal(&self) -> Id<HKQuantity>;
+        pub unsafe fn appleMoveTimeGoal(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         #[method(setAppleMoveTimeGoal:)]
@@ -90,7 +90,7 @@ extern_methods!(
         #[cfg(feature = "HKQuantity")]
         #[deprecated]
         #[method_id(@__retain_semantics Other appleExerciseTimeGoal)]
-        pub unsafe fn appleExerciseTimeGoal(&self) -> Id<HKQuantity>;
+        pub unsafe fn appleExerciseTimeGoal(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         #[deprecated]
@@ -99,7 +99,7 @@ extern_methods!(
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other exerciseTimeGoal)]
-        pub unsafe fn exerciseTimeGoal(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn exerciseTimeGoal(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         #[method(setExerciseTimeGoal:)]
@@ -108,7 +108,7 @@ extern_methods!(
         #[cfg(feature = "HKQuantity")]
         #[deprecated]
         #[method_id(@__retain_semantics Other appleStandHoursGoal)]
-        pub unsafe fn appleStandHoursGoal(&self) -> Id<HKQuantity>;
+        pub unsafe fn appleStandHoursGoal(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         #[deprecated]
@@ -117,7 +117,7 @@ extern_methods!(
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other standHoursGoal)]
-        pub unsafe fn standHoursGoal(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn standHoursGoal(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         #[method(setStandHoursGoal:)]
@@ -129,10 +129,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKActivitySummary {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

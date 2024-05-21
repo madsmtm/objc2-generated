@@ -25,7 +25,7 @@ extern_methods!(
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UIFieldBehavior {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(addItem:)]
         pub unsafe fn addItem(&self, item: &ProtocolObject<dyn UIDynamicItem>);
@@ -34,7 +34,7 @@ extern_methods!(
         pub unsafe fn removeItem(&self, item: &ProtocolObject<dyn UIDynamicItem>);
 
         #[method_id(@__retain_semantics Other items)]
-        pub unsafe fn items(&self) -> Id<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
+        pub unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
 
         #[method(position)]
         pub unsafe fn position(&self) -> CGPoint;
@@ -44,7 +44,7 @@ extern_methods!(
 
         #[cfg(feature = "UIRegion")]
         #[method_id(@__retain_semantics Other region)]
-        pub unsafe fn region(&self) -> Id<UIRegion>;
+        pub unsafe fn region(&self) -> Retained<UIRegion>;
 
         #[cfg(feature = "UIRegion")]
         #[method(setRegion:)]
@@ -87,51 +87,51 @@ extern_methods!(
         pub unsafe fn setAnimationSpeed(&self, animation_speed: CGFloat);
 
         #[method_id(@__retain_semantics Other dragField)]
-        pub unsafe fn dragField(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn dragField(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other vortexField)]
-        pub unsafe fn vortexField(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn vortexField(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other radialGravityFieldWithPosition:)]
         pub unsafe fn radialGravityFieldWithPosition(
             position: CGPoint,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other linearGravityFieldWithVector:)]
         pub unsafe fn linearGravityFieldWithVector(
             direction: CGVector,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other velocityFieldWithVector:)]
         pub unsafe fn velocityFieldWithVector(
             direction: CGVector,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other noiseFieldWithSmoothness:animationSpeed:)]
         pub unsafe fn noiseFieldWithSmoothness_animationSpeed(
             smoothness: CGFloat,
             speed: CGFloat,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other turbulenceFieldWithSmoothness:animationSpeed:)]
         pub unsafe fn turbulenceFieldWithSmoothness_animationSpeed(
             smoothness: CGFloat,
             speed: CGFloat,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other springField)]
-        pub unsafe fn springField(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn springField(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other electricField)]
-        pub unsafe fn electricField(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn electricField(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other magneticField)]
-        pub unsafe fn magneticField(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn magneticField(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Other fieldWithEvaluationBlock:)]
@@ -147,7 +147,7 @@ extern_methods!(
                 ) -> CGVector,
             >,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -156,6 +156,6 @@ extern_methods!(
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UIFieldBehavior {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

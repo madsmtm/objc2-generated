@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl DOMHTMLBaseFontElement {
         #[deprecated]
         #[method_id(@__retain_semantics Other color)]
-        pub unsafe fn color(&self) -> Id<NSString>;
+        pub unsafe fn color(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setColor:)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other face)]
-        pub unsafe fn face(&self) -> Id<NSString>;
+        pub unsafe fn face(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setFace:)]
@@ -86,7 +86,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other size)]
-        pub unsafe fn size(&self) -> Id<NSString>;
+        pub unsafe fn size(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setSize:)]
@@ -106,7 +106,7 @@ extern_methods!(
     unsafe impl DOMHTMLBaseFontElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -121,6 +121,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLBaseFontElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -49,29 +49,29 @@ unsafe impl NSObjectProtocol for SKPaymentTransaction {}
 extern_methods!(
     unsafe impl SKPaymentTransaction {
         #[method_id(@__retain_semantics Other error)]
-        pub unsafe fn error(&self) -> Option<Id<NSError>>;
+        pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other originalTransaction)]
-        pub unsafe fn originalTransaction(&self) -> Option<Id<SKPaymentTransaction>>;
+        pub unsafe fn originalTransaction(&self) -> Option<Retained<SKPaymentTransaction>>;
 
         #[cfg(feature = "SKPayment")]
         #[method_id(@__retain_semantics Other payment)]
-        pub unsafe fn payment(&self) -> Id<SKPayment>;
+        pub unsafe fn payment(&self) -> Retained<SKPayment>;
 
         #[cfg(feature = "SKDownload")]
         #[deprecated = "Hosted content is no longer supported"]
         #[method_id(@__retain_semantics Other downloads)]
-        pub unsafe fn downloads(&self) -> Id<NSArray<SKDownload>>;
+        pub unsafe fn downloads(&self) -> Retained<NSArray<SKDownload>>;
 
         #[method_id(@__retain_semantics Other transactionDate)]
-        pub unsafe fn transactionDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn transactionDate(&self) -> Option<Retained<NSDate>>;
 
         #[method_id(@__retain_semantics Other transactionIdentifier)]
-        pub unsafe fn transactionIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn transactionIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other transactionReceipt)]
-        pub unsafe fn transactionReceipt(&self) -> Option<Id<NSData>>;
+        pub unsafe fn transactionReceipt(&self) -> Option<Retained<NSData>>;
 
         #[method(transactionState)]
         pub unsafe fn transactionState(&self) -> SKPaymentTransactionState;
@@ -82,9 +82,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPaymentTransaction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -129,7 +129,7 @@ extern_methods!(
             domain: &NSErrorDomain,
             code: NSInteger,
             dict: Option<&NSDictionary<NSErrorUserInfoKey, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other errorWithDomain:code:userInfo:)]
@@ -137,45 +137,45 @@ extern_methods!(
             domain: &NSErrorDomain,
             code: NSInteger,
             dict: Option<&NSDictionary<NSErrorUserInfoKey, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other domain)]
-        pub fn domain(&self) -> Id<NSErrorDomain>;
+        pub fn domain(&self) -> Retained<NSErrorDomain>;
 
         #[method(code)]
         pub fn code(&self) -> NSInteger;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub fn userInfo(&self) -> Id<NSDictionary<NSErrorUserInfoKey, AnyObject>>;
+        pub fn userInfo(&self) -> Retained<NSDictionary<NSErrorUserInfoKey, AnyObject>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other localizedDescription)]
-        pub fn localizedDescription(&self) -> Id<NSString>;
+        pub fn localizedDescription(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other localizedFailureReason)]
-        pub unsafe fn localizedFailureReason(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localizedFailureReason(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other localizedRecoverySuggestion)]
-        pub unsafe fn localizedRecoverySuggestion(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localizedRecoverySuggestion(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other localizedRecoveryOptions)]
-        pub unsafe fn localizedRecoveryOptions(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn localizedRecoveryOptions(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method_id(@__retain_semantics Other recoveryAttempter)]
-        pub unsafe fn recoveryAttempter(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn recoveryAttempter(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other helpAnchor)]
-        pub unsafe fn helpAnchor(&self) -> Option<Id<NSString>>;
+        pub unsafe fn helpAnchor(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other underlyingErrors)]
-        pub unsafe fn underlyingErrors(&self) -> Id<NSArray<NSError>>;
+        pub unsafe fn underlyingErrors(&self) -> Retained<NSArray<NSError>>;
 
         #[cfg(all(feature = "NSString", feature = "block2"))]
         #[method(setUserInfoValueProviderForDomain:provider:)]
@@ -202,7 +202,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSError {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 

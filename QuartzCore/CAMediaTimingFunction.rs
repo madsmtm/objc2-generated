@@ -27,7 +27,7 @@ unsafe impl NSSecureCoding for CAMediaTimingFunction {}
 extern_methods!(
     unsafe impl CAMediaTimingFunction {
         #[method_id(@__retain_semantics Other functionWithName:)]
-        pub unsafe fn functionWithName(name: &CAMediaTimingFunctionName) -> Id<Self>;
+        pub unsafe fn functionWithName(name: &CAMediaTimingFunctionName) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other functionWithControlPoints::::)]
         pub unsafe fn functionWithControlPoints(
@@ -35,7 +35,7 @@ extern_methods!(
             c1y: c_float,
             c2x: c_float,
             c2y: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithControlPoints::::)]
         pub unsafe fn initWithControlPoints(
@@ -44,7 +44,7 @@ extern_methods!(
             c1y: c_float,
             c2x: c_float,
             c2y: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -52,10 +52,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CAMediaTimingFunction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

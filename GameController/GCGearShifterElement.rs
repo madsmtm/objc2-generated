@@ -23,11 +23,15 @@ extern_methods!(
     unsafe impl GCGearShifterElement {
         #[cfg(feature = "GCSwitchPositionInput")]
         #[method_id(@__retain_semantics Other patternInput)]
-        pub unsafe fn patternInput(&self) -> Option<Id<ProtocolObject<dyn GCSwitchPositionInput>>>;
+        pub unsafe fn patternInput(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn GCSwitchPositionInput>>>;
 
         #[cfg(feature = "GCRelativeInput")]
         #[method_id(@__retain_semantics Other sequentialInput)]
-        pub unsafe fn sequentialInput(&self) -> Option<Id<ProtocolObject<dyn GCRelativeInput>>>;
+        pub unsafe fn sequentialInput(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn GCRelativeInput>>>;
     }
 );
 
@@ -35,9 +39,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCGearShifterElement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

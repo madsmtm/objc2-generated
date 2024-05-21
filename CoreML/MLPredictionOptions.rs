@@ -28,7 +28,7 @@ extern_methods!(
         pub unsafe fn setUsesCPUOnly(&self, uses_cpu_only: bool);
 
         #[method_id(@__retain_semantics Other outputBackings)]
-        pub unsafe fn outputBackings(&self) -> Id<NSDictionary<NSString, AnyObject>>;
+        pub unsafe fn outputBackings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[method(setOutputBackings:)]
         pub unsafe fn setOutputBackings(&self, output_backings: &NSDictionary<NSString, AnyObject>);
@@ -39,9 +39,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLPredictionOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

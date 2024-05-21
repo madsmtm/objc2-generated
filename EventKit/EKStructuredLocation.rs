@@ -32,21 +32,21 @@ extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKStructuredLocation {
         #[method_id(@__retain_semantics Other locationWithTitle:)]
-        pub unsafe fn locationWithTitle(title: &NSString) -> Id<Self>;
+        pub unsafe fn locationWithTitle(title: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "objc2-map-kit")]
         #[method_id(@__retain_semantics Other locationWithMapItem:)]
-        pub unsafe fn locationWithMapItem(map_item: &MKMapItem) -> Id<Self>;
+        pub unsafe fn locationWithMapItem(map_item: &MKMapItem) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "objc2-core-location")]
         #[method_id(@__retain_semantics Other geoLocation)]
-        pub unsafe fn geoLocation(&self) -> Option<Id<CLLocation>>;
+        pub unsafe fn geoLocation(&self) -> Option<Retained<CLLocation>>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method(setGeoLocation:)]
@@ -65,9 +65,9 @@ extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKStructuredLocation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

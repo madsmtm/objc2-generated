@@ -98,11 +98,11 @@ extern_methods!(
     unsafe impl UIScreen {
         #[deprecated = "Use UIApplication.shared.openSessions to find open sessions with scenes from other screens"]
         #[method_id(@__retain_semantics Other screens)]
-        pub fn screens(mtm: MainThreadMarker) -> Id<NSArray<UIScreen>>;
+        pub fn screens(mtm: MainThreadMarker) -> Retained<NSArray<UIScreen>>;
 
         #[deprecated = "Use a UIScreen instance found through context instead: i.e, view.window.windowScene.screen"]
         #[method_id(@__retain_semantics Other mainScreen)]
-        pub fn mainScreen(mtm: MainThreadMarker) -> Id<UIScreen>;
+        pub fn mainScreen(mtm: MainThreadMarker) -> Retained<UIScreen>;
 
         #[method(bounds)]
         pub fn bounds(&self) -> CGRect;
@@ -112,15 +112,15 @@ extern_methods!(
 
         #[cfg(feature = "UIScreenMode")]
         #[method_id(@__retain_semantics Other availableModes)]
-        pub fn availableModes(&self) -> Id<NSArray<UIScreenMode>>;
+        pub fn availableModes(&self) -> Retained<NSArray<UIScreenMode>>;
 
         #[cfg(feature = "UIScreenMode")]
         #[method_id(@__retain_semantics Other preferredMode)]
-        pub fn preferredMode(&self) -> Option<Id<UIScreenMode>>;
+        pub fn preferredMode(&self) -> Option<Retained<UIScreenMode>>;
 
         #[cfg(feature = "UIScreenMode")]
         #[method_id(@__retain_semantics Other currentMode)]
-        pub fn currentMode(&self) -> Option<Id<UIScreenMode>>;
+        pub fn currentMode(&self) -> Option<Retained<UIScreenMode>>;
 
         #[cfg(feature = "UIScreenMode")]
         #[method(setCurrentMode:)]
@@ -137,7 +137,7 @@ extern_methods!(
         pub unsafe fn overscanCompensationInsets(&self) -> UIEdgeInsets;
 
         #[method_id(@__retain_semantics Other mirroredScreen)]
-        pub fn mirroredScreen(&self) -> Option<Id<UIScreen>>;
+        pub fn mirroredScreen(&self) -> Option<Retained<UIScreen>>;
 
         #[deprecated = "Use the sceneCaptureState in UITraitCollection instead."]
         #[method(isCaptured)]
@@ -157,11 +157,13 @@ extern_methods!(
 
         #[cfg(feature = "UIView")]
         #[method_id(@__retain_semantics Other coordinateSpace)]
-        pub fn coordinateSpace(&self) -> Id<ProtocolObject<dyn UICoordinateSpace>>;
+        pub fn coordinateSpace(&self) -> Retained<ProtocolObject<dyn UICoordinateSpace>>;
 
         #[cfg(feature = "UIView")]
         #[method_id(@__retain_semantics Other fixedCoordinateSpace)]
-        pub unsafe fn fixedCoordinateSpace(&self) -> Id<ProtocolObject<dyn UICoordinateSpace>>;
+        pub unsafe fn fixedCoordinateSpace(
+            &self,
+        ) -> Retained<ProtocolObject<dyn UICoordinateSpace>>;
 
         #[method(nativeBounds)]
         pub fn nativeBounds(&self) -> CGRect;
@@ -176,7 +178,7 @@ extern_methods!(
             &self,
             target: &AnyObject,
             sel: Sel,
-        ) -> Option<Id<CADisplayLink>>;
+        ) -> Option<Retained<CADisplayLink>>;
 
         #[method(maximumFramesPerSecond)]
         pub fn maximumFramesPerSecond(&self) -> NSInteger;
@@ -193,12 +195,12 @@ extern_methods!(
         #[cfg(feature = "UIFocus")]
         #[deprecated = "Use -[UIWindowScene focusSystem].focusedItem instead"]
         #[method_id(@__retain_semantics Other focusedItem)]
-        pub unsafe fn focusedItem(&self) -> Option<Id<ProtocolObject<dyn UIFocusItem>>>;
+        pub unsafe fn focusedItem(&self) -> Option<Retained<ProtocolObject<dyn UIFocusItem>>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated = "Use -[UIWindowScene focusSystem].focusedItem instead"]
         #[method_id(@__retain_semantics Other focusedView)]
-        pub unsafe fn focusedView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn focusedView(&self) -> Option<Retained<UIView>>;
 
         #[deprecated = "Use -[UIWindowScene focusSystem] != nil instead"]
         #[method(supportsFocus)]
@@ -214,10 +216,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIScreen {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -226,6 +228,9 @@ extern_methods!(
     unsafe impl UIScreen {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other snapshotViewAfterScreenUpdates:)]
-        pub unsafe fn snapshotViewAfterScreenUpdates(&self, after_updates: bool) -> Id<UIView>;
+        pub unsafe fn snapshotViewAfterScreenUpdates(
+            &self,
+            after_updates: bool,
+        ) -> Retained<UIView>;
     }
 );

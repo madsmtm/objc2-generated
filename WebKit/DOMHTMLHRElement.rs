@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl DOMHTMLHRElement {
         #[deprecated]
         #[method_id(@__retain_semantics Other align)]
-        pub unsafe fn align(&self) -> Id<NSString>;
+        pub unsafe fn align(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setAlign:)]
@@ -86,7 +86,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other size)]
-        pub unsafe fn size(&self) -> Id<NSString>;
+        pub unsafe fn size(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setSize:)]
@@ -94,7 +94,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other width)]
-        pub unsafe fn width(&self) -> Id<NSString>;
+        pub unsafe fn width(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setWidth:)]
@@ -114,7 +114,7 @@ extern_methods!(
     unsafe impl DOMHTMLHRElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -129,6 +129,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLHRElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

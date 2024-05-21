@@ -28,21 +28,21 @@ extern_methods!(
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &CKSyncEngineConfiguration,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKDatabase")]
         #[method_id(@__retain_semantics Other database)]
-        pub unsafe fn database(&self) -> Id<CKDatabase>;
+        pub unsafe fn database(&self) -> Retained<CKDatabase>;
 
         #[cfg(feature = "CKSyncEngineState")]
         #[method_id(@__retain_semantics Other state)]
-        pub unsafe fn state(&self) -> Id<CKSyncEngineState>;
+        pub unsafe fn state(&self) -> Retained<CKSyncEngineState>;
 
         #[cfg(feature = "block2")]
         #[method(fetchChangesWithCompletionHandler:)]
@@ -99,7 +99,7 @@ extern_protocol!(
             &self,
             sync_engine: &CKSyncEngine,
             context: &CKSyncEngineSendChangesContext,
-        ) -> Option<Id<CKSyncEngineRecordZoneChangeBatch>>;
+        ) -> Option<Retained<CKSyncEngineRecordZoneChangeBatch>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other syncEngine:nextFetchChangesOptionsForContext:)]
@@ -107,7 +107,7 @@ extern_protocol!(
             &self,
             sync_engine: &CKSyncEngine,
             context: &CKSyncEngineFetchChangesContext,
-        ) -> Id<CKSyncEngineFetchChangesOptions>;
+        ) -> Retained<CKSyncEngineFetchChangesOptions>;
     }
 
     unsafe impl ProtocolType for dyn CKSyncEngineDelegate {}
@@ -134,14 +134,14 @@ unsafe impl NSObjectProtocol for CKSyncEngineFetchChangesOptions {}
 extern_methods!(
     unsafe impl CKSyncEngineFetchChangesOptions {
         #[method_id(@__retain_semantics Other scope)]
-        pub unsafe fn scope(&self) -> Id<CKSyncEngineFetchChangesScope>;
+        pub unsafe fn scope(&self) -> Retained<CKSyncEngineFetchChangesScope>;
 
         #[method(setScope:)]
         pub unsafe fn setScope(&self, scope: &CKSyncEngineFetchChangesScope);
 
         #[cfg(feature = "CKOperationGroup")]
         #[method_id(@__retain_semantics Other operationGroup)]
-        pub unsafe fn operationGroup(&self) -> Id<CKOperationGroup>;
+        pub unsafe fn operationGroup(&self) -> Retained<CKOperationGroup>;
 
         #[cfg(feature = "CKOperationGroup")]
         #[method(setOperationGroup:)]
@@ -149,7 +149,7 @@ extern_methods!(
 
         #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other prioritizedZoneIDs)]
-        pub unsafe fn prioritizedZoneIDs(&self) -> Id<NSArray<CKRecordZoneID>>;
+        pub unsafe fn prioritizedZoneIDs(&self) -> Retained<NSArray<CKRecordZoneID>>;
 
         #[cfg(feature = "CKRecordZoneID")]
         #[method(setPrioritizedZoneIDs:)]
@@ -159,7 +159,7 @@ extern_methods!(
         pub unsafe fn initWithScope(
             this: Allocated<Self>,
             scope: Option<&CKSyncEngineFetchChangesScope>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -167,10 +167,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKSyncEngineFetchChangesOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -196,25 +196,25 @@ extern_methods!(
     unsafe impl CKSyncEngineFetchChangesScope {
         #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other zoneIDs)]
-        pub unsafe fn zoneIDs(&self) -> Option<Id<NSSet<CKRecordZoneID>>>;
+        pub unsafe fn zoneIDs(&self) -> Option<Retained<NSSet<CKRecordZoneID>>>;
 
         #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other excludedZoneIDs)]
-        pub unsafe fn excludedZoneIDs(&self) -> Id<NSSet<CKRecordZoneID>>;
+        pub unsafe fn excludedZoneIDs(&self) -> Retained<NSSet<CKRecordZoneID>>;
 
         #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithZoneIDs:)]
         pub unsafe fn initWithZoneIDs(
             this: Allocated<Self>,
             zone_i_ds: Option<&NSSet<CKRecordZoneID>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithExcludedZoneIDs:)]
         pub unsafe fn initWithExcludedZoneIDs(
             this: Allocated<Self>,
             zone_i_ds: &NSSet<CKRecordZoneID>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
         #[method(containsZoneID:)]
@@ -226,10 +226,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKSyncEngineFetchChangesScope {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -254,14 +254,14 @@ unsafe impl NSObjectProtocol for CKSyncEngineSendChangesOptions {}
 extern_methods!(
     unsafe impl CKSyncEngineSendChangesOptions {
         #[method_id(@__retain_semantics Other scope)]
-        pub unsafe fn scope(&self) -> Id<CKSyncEngineSendChangesScope>;
+        pub unsafe fn scope(&self) -> Retained<CKSyncEngineSendChangesScope>;
 
         #[method(setScope:)]
         pub unsafe fn setScope(&self, scope: &CKSyncEngineSendChangesScope);
 
         #[cfg(feature = "CKOperationGroup")]
         #[method_id(@__retain_semantics Other operationGroup)]
-        pub unsafe fn operationGroup(&self) -> Id<CKOperationGroup>;
+        pub unsafe fn operationGroup(&self) -> Retained<CKOperationGroup>;
 
         #[cfg(feature = "CKOperationGroup")]
         #[method(setOperationGroup:)]
@@ -271,7 +271,7 @@ extern_methods!(
         pub unsafe fn initWithScope(
             this: Allocated<Self>,
             scope: Option<&CKSyncEngineSendChangesScope>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -279,10 +279,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKSyncEngineSendChangesOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -308,36 +308,36 @@ extern_methods!(
     unsafe impl CKSyncEngineSendChangesScope {
         #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other zoneIDs)]
-        pub unsafe fn zoneIDs(&self) -> Option<Id<NSSet<CKRecordZoneID>>>;
+        pub unsafe fn zoneIDs(&self) -> Option<Retained<NSSet<CKRecordZoneID>>>;
 
         #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other excludedZoneIDs)]
-        pub unsafe fn excludedZoneIDs(&self) -> Id<NSSet<CKRecordZoneID>>;
+        pub unsafe fn excludedZoneIDs(&self) -> Retained<NSSet<CKRecordZoneID>>;
 
         #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other recordIDs)]
-        pub unsafe fn recordIDs(&self) -> Option<Id<NSSet<CKRecordID>>>;
+        pub unsafe fn recordIDs(&self) -> Option<Retained<NSSet<CKRecordID>>>;
 
         #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithZoneIDs:)]
         pub unsafe fn initWithZoneIDs(
             this: Allocated<Self>,
             zone_i_ds: Option<&NSSet<CKRecordZoneID>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithExcludedZoneIDs:)]
         pub unsafe fn initWithExcludedZoneIDs(
             this: Allocated<Self>,
             excluded_zone_i_ds: &NSSet<CKRecordZoneID>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Init initWithRecordIDs:)]
         pub unsafe fn initWithRecordIDs(
             this: Allocated<Self>,
             record_i_ds: Option<&NSSet<CKRecordID>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
         #[method(containsRecordID:)]
@@ -356,10 +356,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKSyncEngineSendChangesScope {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -401,16 +401,16 @@ unsafe impl NSObjectProtocol for CKSyncEngineFetchChangesContext {}
 extern_methods!(
     unsafe impl CKSyncEngineFetchChangesContext {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method(reason)]
         pub unsafe fn reason(&self) -> CKSyncEngineSyncReason;
 
         #[method_id(@__retain_semantics Other options)]
-        pub unsafe fn options(&self) -> Id<CKSyncEngineFetchChangesOptions>;
+        pub unsafe fn options(&self) -> Retained<CKSyncEngineFetchChangesOptions>;
     }
 );
 
@@ -433,15 +433,15 @@ unsafe impl NSObjectProtocol for CKSyncEngineSendChangesContext {}
 extern_methods!(
     unsafe impl CKSyncEngineSendChangesContext {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method(reason)]
         pub unsafe fn reason(&self) -> CKSyncEngineSyncReason;
 
         #[method_id(@__retain_semantics Other options)]
-        pub unsafe fn options(&self) -> Id<CKSyncEngineSendChangesOptions>;
+        pub unsafe fn options(&self) -> Retained<CKSyncEngineSendChangesOptions>;
     }
 );

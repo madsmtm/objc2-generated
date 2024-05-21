@@ -45,10 +45,10 @@ unsafe impl NSObjectProtocol for MPRemoteCommand {}
 extern_methods!(
     unsafe impl MPRemoteCommand {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
@@ -72,7 +72,7 @@ extern_methods!(
             handler: &block2::Block<
                 dyn Fn(NonNull<MPRemoteCommandEvent>) -> MPRemoteCommandHandlerStatus,
             >,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
     }
 );
 
@@ -92,7 +92,7 @@ unsafe impl NSObjectProtocol for MPSkipIntervalCommand {}
 extern_methods!(
     unsafe impl MPSkipIntervalCommand {
         #[method_id(@__retain_semantics Other preferredIntervals)]
-        pub unsafe fn preferredIntervals(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn preferredIntervals(&self) -> Retained<NSArray<NSNumber>>;
 
         #[method(setPreferredIntervals:)]
         pub unsafe fn setPreferredIntervals(&self, preferred_intervals: &NSArray<NSNumber>);
@@ -103,10 +103,10 @@ extern_methods!(
     /// Methods declared on superclass `MPRemoteCommand`
     unsafe impl MPSkipIntervalCommand {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -132,13 +132,13 @@ extern_methods!(
         pub unsafe fn setActive(&self, active: bool);
 
         #[method_id(@__retain_semantics Other localizedTitle)]
-        pub unsafe fn localizedTitle(&self) -> Id<NSString>;
+        pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
         #[method(setLocalizedTitle:)]
         pub unsafe fn setLocalizedTitle(&self, localized_title: &NSString);
 
         #[method_id(@__retain_semantics Other localizedShortTitle)]
-        pub unsafe fn localizedShortTitle(&self) -> Id<NSString>;
+        pub unsafe fn localizedShortTitle(&self) -> Retained<NSString>;
 
         #[method(setLocalizedShortTitle:)]
         pub unsafe fn setLocalizedShortTitle(&self, localized_short_title: &NSString);
@@ -149,10 +149,10 @@ extern_methods!(
     /// Methods declared on superclass `MPRemoteCommand`
     unsafe impl MPFeedbackCommand {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -189,10 +189,10 @@ extern_methods!(
     /// Methods declared on superclass `MPRemoteCommand`
     unsafe impl MPRatingCommand {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -212,7 +212,7 @@ unsafe impl NSObjectProtocol for MPChangePlaybackRateCommand {}
 extern_methods!(
     unsafe impl MPChangePlaybackRateCommand {
         #[method_id(@__retain_semantics Other supportedPlaybackRates)]
-        pub unsafe fn supportedPlaybackRates(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn supportedPlaybackRates(&self) -> Retained<NSArray<NSNumber>>;
 
         #[method(setSupportedPlaybackRates:)]
         pub unsafe fn setSupportedPlaybackRates(
@@ -226,10 +226,10 @@ extern_methods!(
     /// Methods declared on superclass `MPRemoteCommand`
     unsafe impl MPChangePlaybackRateCommand {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -254,10 +254,10 @@ extern_methods!(
     /// Methods declared on superclass `MPRemoteCommand`
     unsafe impl MPChangePlaybackPositionCommand {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -290,10 +290,10 @@ extern_methods!(
     /// Methods declared on superclass `MPRemoteCommand`
     unsafe impl MPChangeShuffleModeCommand {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -326,9 +326,9 @@ extern_methods!(
     /// Methods declared on superclass `MPRemoteCommand`
     unsafe impl MPChangeRepeatModeCommand {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

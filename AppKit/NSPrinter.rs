@@ -48,22 +48,22 @@ unsafe impl NSObjectProtocol for NSPrinter {}
 extern_methods!(
     unsafe impl NSPrinter {
         #[method_id(@__retain_semantics Other printerNames)]
-        pub unsafe fn printerNames() -> Id<NSArray<NSString>>;
+        pub unsafe fn printerNames() -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other printerTypes)]
-        pub unsafe fn printerTypes() -> Id<NSArray<NSPrinterTypeName>>;
+        pub unsafe fn printerTypes() -> Retained<NSArray<NSPrinterTypeName>>;
 
         #[method_id(@__retain_semantics Other printerWithName:)]
-        pub unsafe fn printerWithName(name: &NSString) -> Option<Id<NSPrinter>>;
+        pub unsafe fn printerWithName(name: &NSString) -> Option<Retained<NSPrinter>>;
 
         #[method_id(@__retain_semantics Other printerWithType:)]
-        pub unsafe fn printerWithType(r#type: &NSPrinterTypeName) -> Option<Id<NSPrinter>>;
+        pub unsafe fn printerWithType(r#type: &NSPrinterTypeName) -> Option<Retained<NSPrinter>>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSPrinterTypeName>;
+        pub unsafe fn r#type(&self) -> Retained<NSPrinterTypeName>;
 
         #[method(languageLevel)]
         pub unsafe fn languageLevel(&self) -> NSInteger;
@@ -75,7 +75,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other deviceDescription)]
         pub unsafe fn deviceDescription(
             &self,
-        ) -> Id<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
+        ) -> Retained<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
     }
 );
 
@@ -83,10 +83,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPrinter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -137,7 +137,7 @@ extern_methods!(
             &self,
             key: Option<&NSString>,
             table: &NSString,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other stringListForKey:inTable:)]
@@ -145,7 +145,7 @@ extern_methods!(
             &self,
             key: Option<&NSString>,
             table: &NSString,
-        ) -> Option<Id<NSArray>>;
+        ) -> Option<Retained<NSArray>>;
 
         #[deprecated]
         #[method(imageRectForPaper:)]
@@ -173,18 +173,18 @@ extern_methods!(
             name: &NSString,
             domain: Option<&NSString>,
             flag: bool,
-        ) -> Option<Id<NSPrinter>>;
+        ) -> Option<Retained<NSPrinter>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other domain)]
-        pub unsafe fn domain(&self) -> Id<NSString>;
+        pub unsafe fn domain(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other host)]
-        pub unsafe fn host(&self) -> Id<NSString>;
+        pub unsafe fn host(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other note)]
-        pub unsafe fn note(&self) -> Id<NSString>;
+        pub unsafe fn note(&self) -> Retained<NSString>;
     }
 );

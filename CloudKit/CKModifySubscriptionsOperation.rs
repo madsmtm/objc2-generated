@@ -25,7 +25,7 @@ extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKModifySubscriptionsOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKSubscription")]
         #[method_id(@__retain_semantics Init initWithSubscriptionsToSave:subscriptionIDsToDelete:)]
@@ -33,11 +33,11 @@ extern_methods!(
             this: Allocated<Self>,
             subscriptions_to_save: Option<&NSArray<CKSubscription>>,
             subscription_i_ds_to_delete: Option<&NSArray<CKSubscriptionID>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKSubscription")]
         #[method_id(@__retain_semantics Other subscriptionsToSave)]
-        pub unsafe fn subscriptionsToSave(&self) -> Option<Id<NSArray<CKSubscription>>>;
+        pub unsafe fn subscriptionsToSave(&self) -> Option<Retained<NSArray<CKSubscription>>>;
 
         #[cfg(feature = "CKSubscription")]
         #[method(setSubscriptionsToSave:)]
@@ -48,7 +48,8 @@ extern_methods!(
 
         #[cfg(feature = "CKSubscription")]
         #[method_id(@__retain_semantics Other subscriptionIDsToDelete)]
-        pub unsafe fn subscriptionIDsToDelete(&self) -> Option<Id<NSArray<CKSubscriptionID>>>;
+        pub unsafe fn subscriptionIDsToDelete(&self)
+            -> Option<Retained<NSArray<CKSubscriptionID>>>;
 
         #[cfg(feature = "CKSubscription")]
         #[method(setSubscriptionIDsToDelete:)]
@@ -119,6 +120,6 @@ extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKModifySubscriptionsOperation {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

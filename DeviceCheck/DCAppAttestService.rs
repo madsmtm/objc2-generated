@@ -20,7 +20,7 @@ unsafe impl NSObjectProtocol for DCAppAttestService {}
 extern_methods!(
     unsafe impl DCAppAttestService {
         #[method_id(@__retain_semantics Other sharedService)]
-        pub unsafe fn sharedService() -> Id<DCAppAttestService>;
+        pub unsafe fn sharedService() -> Retained<DCAppAttestService>;
 
         #[method(isSupported)]
         pub unsafe fn isSupported(&self) -> bool;
@@ -56,9 +56,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl DCAppAttestService {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

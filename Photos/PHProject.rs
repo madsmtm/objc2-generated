@@ -28,7 +28,7 @@ extern_methods!(
     #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
     unsafe impl PHProject {
         #[method_id(@__retain_semantics Other projectExtensionData)]
-        pub unsafe fn projectExtensionData(&self) -> Id<NSData>;
+        pub unsafe fn projectExtensionData(&self) -> Retained<NSData>;
 
         #[method(hasProjectPreview)]
         pub unsafe fn hasProjectPreview(&self) -> bool;
@@ -40,9 +40,9 @@ extern_methods!(
     #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
     unsafe impl PHProject {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -52,7 +52,7 @@ extern_methods!(
             an_object: Option<&ObjectType>,
             r#type: NSCollectionChangeType,
             index: NSUInteger,
-        ) -> Id<NSOrderedCollectionChange<ObjectType>>;
+        ) -> Retained<NSOrderedCollectionChange<ObjectType>>;
 
         #[method_id(@__retain_semantics Other changeWithObject:type:index:associatedIndex:)]
         pub unsafe fn changeWithObject_type_index_associatedIndex(
@@ -60,10 +60,10 @@ extern_methods!(
             r#type: NSCollectionChangeType,
             index: NSUInteger,
             associated_index: NSUInteger,
-        ) -> Id<NSOrderedCollectionChange<ObjectType>>;
+        ) -> Retained<NSOrderedCollectionChange<ObjectType>>;
 
         #[method_id(@__retain_semantics Other object)]
-        pub unsafe fn object(&self) -> Option<Id<ObjectType>>;
+        pub unsafe fn object(&self) -> Option<Retained<ObjectType>>;
 
         #[method(changeType)]
         pub unsafe fn changeType(&self) -> NSCollectionChangeType;
@@ -75,7 +75,7 @@ extern_methods!(
         pub unsafe fn associatedIndex(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithObject:type:index:)]
         pub unsafe fn initWithObject_type_index(
@@ -83,7 +83,7 @@ extern_methods!(
             an_object: Option<&ObjectType>,
             r#type: NSCollectionChangeType,
             index: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithObject:type:index:associatedIndex:)]
         pub unsafe fn initWithObject_type_index_associatedIndex(
@@ -92,7 +92,7 @@ extern_methods!(
             r#type: NSCollectionChangeType,
             index: NSUInteger,
             associated_index: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -100,6 +100,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

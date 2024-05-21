@@ -28,18 +28,18 @@ extern_methods!(
         pub unsafe fn objectType(&self) -> PHObjectType;
 
         #[method_id(@__retain_semantics Other insertedLocalIdentifiers)]
-        pub unsafe fn insertedLocalIdentifiers(&self) -> Id<NSSet<NSString>>;
+        pub unsafe fn insertedLocalIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
         #[method_id(@__retain_semantics Other updatedLocalIdentifiers)]
-        pub unsafe fn updatedLocalIdentifiers(&self) -> Id<NSSet<NSString>>;
+        pub unsafe fn updatedLocalIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
         #[method_id(@__retain_semantics Other deletedLocalIdentifiers)]
-        pub unsafe fn deletedLocalIdentifiers(&self) -> Id<NSSet<NSString>>;
+        pub unsafe fn deletedLocalIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

@@ -69,19 +69,19 @@ extern_protocol!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other string)]
-        unsafe fn string(&self) -> Option<Id<NSString>>;
+        unsafe fn string(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other attributedString)]
-        unsafe fn attributedString(&self) -> Option<Id<NSAttributedString>>;
+        unsafe fn attributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other selectedString)]
-        unsafe fn selectedString(&self) -> Option<Id<NSString>>;
+        unsafe fn selectedString(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other selectedAttributedString)]
-        unsafe fn selectedAttributedString(&self) -> Option<Id<NSAttributedString>>;
+        unsafe fn selectedAttributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         #[deprecated]
         #[method(selectAll)]
@@ -132,11 +132,11 @@ extern_protocol!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other documentSource)]
-        unsafe fn documentSource(&self) -> Option<Id<NSString>>;
+        unsafe fn documentSource(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other title)]
-        unsafe fn title(&self) -> Option<Id<NSString>>;
+        unsafe fn title(&self) -> Option<Retained<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn WebDocumentRepresentation {}

@@ -28,10 +28,10 @@ extern_methods!(
         pub unsafe fn initWithFileHandle(
             this: Allocated<Self>,
             file_handle: &NSFileHandle,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other fileHandle)]
-        pub unsafe fn fileHandle(&self) -> Id<NSFileHandle>;
+        pub unsafe fn fileHandle(&self) -> Retained<NSFileHandle>;
 
         #[method(maximumTransmissionUnit)]
         pub unsafe fn maximumTransmissionUnit(&self) -> NSInteger;
@@ -46,9 +46,9 @@ extern_methods!(
     #[cfg(feature = "VZNetworkDeviceAttachment")]
     unsafe impl VZFileHandleNetworkDeviceAttachment {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl DOMHTMLInputElement {
         #[deprecated]
         #[method_id(@__retain_semantics Other accept)]
-        pub unsafe fn accept(&self) -> Id<NSString>;
+        pub unsafe fn accept(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setAccept:)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other alt)]
-        pub unsafe fn alt(&self) -> Id<NSString>;
+        pub unsafe fn alt(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setAlt:)]
@@ -117,11 +117,11 @@ extern_methods!(
         #[cfg(feature = "DOMHTMLFormElement")]
         #[deprecated]
         #[method_id(@__retain_semantics Other form)]
-        pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement>>;
+        pub unsafe fn form(&self) -> Option<Retained<DOMHTMLFormElement>>;
 
         #[cfg(feature = "DOMFileList")]
         #[method_id(@__retain_semantics Other files)]
-        pub unsafe fn files(&self) -> Option<Id<DOMFileList>>;
+        pub unsafe fn files(&self) -> Option<Retained<DOMFileList>>;
 
         #[cfg(feature = "DOMFileList")]
         #[method(setFiles:)]
@@ -149,7 +149,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setName:)]
@@ -165,7 +165,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other size)]
-        pub unsafe fn size(&self) -> Id<NSString>;
+        pub unsafe fn size(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setSize:)]
@@ -173,7 +173,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other src)]
-        pub unsafe fn src(&self) -> Id<NSString>;
+        pub unsafe fn src(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setSrc:)]
@@ -181,7 +181,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSString>;
+        pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setType:)]
@@ -189,7 +189,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other defaultValue)]
-        pub unsafe fn defaultValue(&self) -> Id<NSString>;
+        pub unsafe fn defaultValue(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setDefaultValue:)]
@@ -197,7 +197,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Id<NSString>;
+        pub unsafe fn value(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setValue:)]
@@ -220,7 +220,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other align)]
-        pub unsafe fn align(&self) -> Id<NSString>;
+        pub unsafe fn align(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setAlign:)]
@@ -228,7 +228,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other useMap)]
-        pub unsafe fn useMap(&self) -> Id<NSString>;
+        pub unsafe fn useMap(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setUseMap:)]
@@ -236,17 +236,17 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other accessKey)]
-        pub unsafe fn accessKey(&self) -> Id<NSString>;
+        pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setAccessKey:)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other altDisplayString)]
-        pub unsafe fn altDisplayString(&self) -> Id<NSString>;
+        pub unsafe fn altDisplayString(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other absoluteImageURL)]
-        pub unsafe fn absoluteImageURL(&self) -> Id<NSURL>;
+        pub unsafe fn absoluteImageURL(&self) -> Retained<NSURL>;
 
         #[deprecated]
         #[method(select)]
@@ -273,7 +273,7 @@ extern_methods!(
     unsafe impl DOMHTMLInputElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -288,6 +288,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLInputElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

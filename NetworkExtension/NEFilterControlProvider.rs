@@ -27,7 +27,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other remediationMap)]
         pub unsafe fn remediationMap(
             &self,
-        ) -> Option<Id<NSDictionary<NSString, NSDictionary<NSString, NSObject>>>>;
+        ) -> Option<Retained<NSDictionary<NSString, NSDictionary<NSString, NSObject>>>>;
 
         #[method(setRemediationMap:)]
         pub unsafe fn setRemediationMap(
@@ -36,7 +36,9 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other URLAppendStringMap)]
-        pub unsafe fn URLAppendStringMap(&self) -> Option<Id<NSDictionary<NSString, NSString>>>;
+        pub unsafe fn URLAppendStringMap(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
         #[method(setURLAppendStringMap:)]
         pub unsafe fn setURLAppendStringMap(
@@ -70,9 +72,9 @@ extern_methods!(
     #[cfg(all(feature = "NEFilterProvider", feature = "NEProvider"))]
     unsafe impl NEFilterControlProvider {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

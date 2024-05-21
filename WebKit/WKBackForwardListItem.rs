@@ -20,16 +20,16 @@ unsafe impl NSObjectProtocol for WKBackForwardListItem {}
 extern_methods!(
     unsafe impl WKBackForwardListItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL>;
+        pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other initialURL)]
-        pub unsafe fn initialURL(&self) -> Id<NSURL>;
+        pub unsafe fn initialURL(&self) -> Retained<NSURL>;
     }
 );
 
@@ -37,6 +37,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKBackForwardListItem {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

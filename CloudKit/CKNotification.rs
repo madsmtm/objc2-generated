@@ -31,10 +31,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKNotificationID {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -80,35 +80,35 @@ unsafe impl NSObjectProtocol for CKNotification {}
 extern_methods!(
     unsafe impl CKNotification {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other notificationFromRemoteNotificationDictionary:)]
         pub unsafe fn notificationFromRemoteNotificationDictionary(
             notification_dictionary: &NSDictionary,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method(notificationType)]
         pub unsafe fn notificationType(&self) -> CKNotificationType;
 
         #[method_id(@__retain_semantics Other notificationID)]
-        pub unsafe fn notificationID(&self) -> Option<Id<CKNotificationID>>;
+        pub unsafe fn notificationID(&self) -> Option<Retained<CKNotificationID>>;
 
         #[method_id(@__retain_semantics Other containerIdentifier)]
-        pub unsafe fn containerIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn containerIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other subscriptionOwnerUserRecordID)]
-        pub unsafe fn subscriptionOwnerUserRecordID(&self) -> Option<Id<CKRecordID>>;
+        pub unsafe fn subscriptionOwnerUserRecordID(&self) -> Option<Retained<CKRecordID>>;
 
         #[method(isPruned)]
         pub unsafe fn isPruned(&self) -> bool;
 
         #[cfg(feature = "CKSubscription")]
         #[method_id(@__retain_semantics Other subscriptionID)]
-        pub unsafe fn subscriptionID(&self) -> Option<Id<CKSubscriptionID>>;
+        pub unsafe fn subscriptionID(&self) -> Option<Retained<CKSubscriptionID>>;
     }
 );
 
@@ -117,52 +117,52 @@ extern_methods!(
     unsafe impl CKNotification {
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[method_id(@__retain_semantics Other alertBody)]
-        pub unsafe fn alertBody(&self) -> Option<Id<NSString>>;
+        pub unsafe fn alertBody(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[method_id(@__retain_semantics Other alertLocalizationKey)]
-        pub unsafe fn alertLocalizationKey(&self) -> Option<Id<NSString>>;
+        pub unsafe fn alertLocalizationKey(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[method_id(@__retain_semantics Other alertLocalizationArgs)]
-        pub unsafe fn alertLocalizationArgs(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn alertLocalizationArgs(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other titleLocalizationKey)]
-        pub unsafe fn titleLocalizationKey(&self) -> Option<Id<NSString>>;
+        pub unsafe fn titleLocalizationKey(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other titleLocalizationArgs)]
-        pub unsafe fn titleLocalizationArgs(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn titleLocalizationArgs(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method_id(@__retain_semantics Other subtitle)]
-        pub unsafe fn subtitle(&self) -> Option<Id<NSString>>;
+        pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other subtitleLocalizationKey)]
-        pub unsafe fn subtitleLocalizationKey(&self) -> Option<Id<NSString>>;
+        pub unsafe fn subtitleLocalizationKey(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other subtitleLocalizationArgs)]
-        pub unsafe fn subtitleLocalizationArgs(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn subtitleLocalizationArgs(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[method_id(@__retain_semantics Other alertActionLocalizationKey)]
-        pub unsafe fn alertActionLocalizationKey(&self) -> Option<Id<NSString>>;
+        pub unsafe fn alertActionLocalizationKey(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[method_id(@__retain_semantics Other alertLaunchImage)]
-        pub unsafe fn alertLaunchImage(&self) -> Option<Id<NSString>>;
+        pub unsafe fn alertLaunchImage(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[method_id(@__retain_semantics Other badge)]
-        pub unsafe fn badge(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn badge(&self) -> Option<Retained<NSNumber>>;
 
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[method_id(@__retain_semantics Other soundName)]
-        pub unsafe fn soundName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn soundName(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other category)]
-        pub unsafe fn category(&self) -> Option<Id<NSString>>;
+        pub unsafe fn category(&self) -> Option<Retained<NSString>>;
     }
 );
 
@@ -210,11 +210,11 @@ extern_methods!(
         pub unsafe fn queryNotificationReason(&self) -> CKQueryNotificationReason;
 
         #[method_id(@__retain_semantics Other recordFields)]
-        pub unsafe fn recordFields(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        pub unsafe fn recordFields(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other recordID)]
-        pub unsafe fn recordID(&self) -> Option<Id<CKRecordID>>;
+        pub unsafe fn recordID(&self) -> Option<Retained<CKRecordID>>;
 
         #[cfg(feature = "CKDatabase")]
         #[method(databaseScope)]
@@ -226,15 +226,15 @@ extern_methods!(
     /// Methods declared on superclass `CKNotification`
     unsafe impl CKQueryNotification {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other notificationFromRemoteNotificationDictionary:)]
         pub unsafe fn notificationFromRemoteNotificationDictionary(
             notification_dictionary: &NSDictionary,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -259,7 +259,7 @@ extern_methods!(
     unsafe impl CKRecordZoneNotification {
         #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other recordZoneID)]
-        pub unsafe fn recordZoneID(&self) -> Option<Id<CKRecordZoneID>>;
+        pub unsafe fn recordZoneID(&self) -> Option<Retained<CKRecordZoneID>>;
 
         #[cfg(feature = "CKDatabase")]
         #[method(databaseScope)]
@@ -271,15 +271,15 @@ extern_methods!(
     /// Methods declared on superclass `CKNotification`
     unsafe impl CKRecordZoneNotification {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other notificationFromRemoteNotificationDictionary:)]
         pub unsafe fn notificationFromRemoteNotificationDictionary(
             notification_dictionary: &NSDictionary,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -312,14 +312,14 @@ extern_methods!(
     /// Methods declared on superclass `CKNotification`
     unsafe impl CKDatabaseNotification {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other notificationFromRemoteNotificationDictionary:)]
         pub unsafe fn notificationFromRemoteNotificationDictionary(
             notification_dictionary: &NSDictionary,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
     }
 );

@@ -20,15 +20,17 @@ unsafe impl NSObjectProtocol for CKSystemSharingUIObserver {}
 extern_methods!(
     unsafe impl CKSystemSharingUIObserver {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKContainer")]
         #[method_id(@__retain_semantics Init initWithContainer:)]
-        pub unsafe fn initWithContainer(this: Allocated<Self>, container: &CKContainer)
-            -> Id<Self>;
+        pub unsafe fn initWithContainer(
+            this: Allocated<Self>,
+            container: &CKContainer,
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "CKRecord",

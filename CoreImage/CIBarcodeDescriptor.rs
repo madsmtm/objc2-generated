@@ -31,10 +31,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIBarcodeDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -83,7 +83,7 @@ unsafe impl NSSecureCoding for CIQRCodeDescriptor {}
 extern_methods!(
     unsafe impl CIQRCodeDescriptor {
         #[method_id(@__retain_semantics Other errorCorrectedPayload)]
-        pub unsafe fn errorCorrectedPayload(&self) -> Id<NSData>;
+        pub unsafe fn errorCorrectedPayload(&self) -> Retained<NSData>;
 
         #[method(symbolVersion)]
         pub unsafe fn symbolVersion(&self) -> NSInteger;
@@ -101,7 +101,7 @@ extern_methods!(
             symbol_version: NSInteger,
             mask_pattern: u8,
             error_correction_level: CIQRCodeErrorCorrectionLevel,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other descriptorWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:)]
         pub unsafe fn descriptorWithPayload_symbolVersion_maskPattern_errorCorrectionLevel(
@@ -109,7 +109,7 @@ extern_methods!(
             symbol_version: NSInteger,
             mask_pattern: u8,
             error_correction_level: CIQRCodeErrorCorrectionLevel,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -117,10 +117,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIQRCodeDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -146,7 +146,7 @@ unsafe impl NSSecureCoding for CIAztecCodeDescriptor {}
 extern_methods!(
     unsafe impl CIAztecCodeDescriptor {
         #[method_id(@__retain_semantics Other errorCorrectedPayload)]
-        pub unsafe fn errorCorrectedPayload(&self) -> Id<NSData>;
+        pub unsafe fn errorCorrectedPayload(&self) -> Retained<NSData>;
 
         #[method(isCompact)]
         pub unsafe fn isCompact(&self) -> bool;
@@ -164,7 +164,7 @@ extern_methods!(
             is_compact: bool,
             layer_count: NSInteger,
             data_codeword_count: NSInteger,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other descriptorWithPayload:isCompact:layerCount:dataCodewordCount:)]
         pub unsafe fn descriptorWithPayload_isCompact_layerCount_dataCodewordCount(
@@ -172,7 +172,7 @@ extern_methods!(
             is_compact: bool,
             layer_count: NSInteger,
             data_codeword_count: NSInteger,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -180,10 +180,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIAztecCodeDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -209,7 +209,7 @@ unsafe impl NSSecureCoding for CIPDF417CodeDescriptor {}
 extern_methods!(
     unsafe impl CIPDF417CodeDescriptor {
         #[method_id(@__retain_semantics Other errorCorrectedPayload)]
-        pub unsafe fn errorCorrectedPayload(&self) -> Id<NSData>;
+        pub unsafe fn errorCorrectedPayload(&self) -> Retained<NSData>;
 
         #[method(isCompact)]
         pub unsafe fn isCompact(&self) -> bool;
@@ -227,7 +227,7 @@ extern_methods!(
             is_compact: bool,
             row_count: NSInteger,
             column_count: NSInteger,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other descriptorWithPayload:isCompact:rowCount:columnCount:)]
         pub unsafe fn descriptorWithPayload_isCompact_rowCount_columnCount(
@@ -235,7 +235,7 @@ extern_methods!(
             is_compact: bool,
             row_count: NSInteger,
             column_count: NSInteger,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -243,10 +243,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIPDF417CodeDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -293,7 +293,7 @@ unsafe impl NSSecureCoding for CIDataMatrixCodeDescriptor {}
 extern_methods!(
     unsafe impl CIDataMatrixCodeDescriptor {
         #[method_id(@__retain_semantics Other errorCorrectedPayload)]
-        pub unsafe fn errorCorrectedPayload(&self) -> Id<NSData>;
+        pub unsafe fn errorCorrectedPayload(&self) -> Retained<NSData>;
 
         #[method(rowCount)]
         pub unsafe fn rowCount(&self) -> NSInteger;
@@ -311,7 +311,7 @@ extern_methods!(
             row_count: NSInteger,
             column_count: NSInteger,
             ecc_version: CIDataMatrixCodeECCVersion,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other descriptorWithPayload:rowCount:columnCount:eccVersion:)]
         pub unsafe fn descriptorWithPayload_rowCount_columnCount_eccVersion(
@@ -319,7 +319,7 @@ extern_methods!(
             row_count: NSInteger,
             column_count: NSInteger,
             ecc_version: CIDataMatrixCodeECCVersion,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -327,10 +327,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIDataMatrixCodeDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -339,7 +339,7 @@ extern_category!(
     #[doc(alias = "CIBarcodeDescriptor")]
     pub unsafe trait NSUserActivityCIBarcodeDescriptor {
         #[method_id(@__retain_semantics Other detectedBarcodeDescriptor)]
-        unsafe fn detectedBarcodeDescriptor(&self) -> Option<Id<CIBarcodeDescriptor>>;
+        unsafe fn detectedBarcodeDescriptor(&self) -> Option<Retained<CIBarcodeDescriptor>>;
     }
 
     unsafe impl NSUserActivityCIBarcodeDescriptor for NSUserActivity {}

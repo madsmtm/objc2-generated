@@ -32,13 +32,13 @@ extern_methods!(
     unsafe impl MXCPUExceptionDiagnostic {
         #[cfg(feature = "MXCallStackTree")]
         #[method_id(@__retain_semantics Other callStackTree)]
-        pub unsafe fn callStackTree(&self) -> Id<MXCallStackTree>;
+        pub unsafe fn callStackTree(&self) -> Retained<MXCallStackTree>;
 
         #[method_id(@__retain_semantics Other totalCPUTime)]
-        pub unsafe fn totalCPUTime(&self) -> Id<NSMeasurement<NSUnitDuration>>;
+        pub unsafe fn totalCPUTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
 
         #[method_id(@__retain_semantics Other totalSampledTime)]
-        pub unsafe fn totalSampledTime(&self) -> Id<NSMeasurement<NSUnitDuration>>;
+        pub unsafe fn totalSampledTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
     }
 );
 
@@ -47,9 +47,9 @@ extern_methods!(
     #[cfg(feature = "MXDiagnostic")]
     unsafe impl MXCPUExceptionDiagnostic {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

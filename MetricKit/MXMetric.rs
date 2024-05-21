@@ -24,14 +24,14 @@ unsafe impl NSSecureCoding for MXMetric {}
 extern_methods!(
     unsafe impl MXMetric {
         #[method_id(@__retain_semantics Other JSONRepresentation)]
-        pub unsafe fn JSONRepresentation(&self) -> Id<NSData>;
+        pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other DictionaryRepresentation)]
-        pub unsafe fn DictionaryRepresentation(&self) -> Id<NSDictionary>;
+        pub unsafe fn DictionaryRepresentation(&self) -> Retained<NSDictionary>;
 
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
-        pub unsafe fn dictionaryRepresentation(&self) -> Id<NSDictionary>;
+        pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }
 );
 
@@ -39,9 +39,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXMetric {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

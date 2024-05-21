@@ -106,7 +106,7 @@ extern_methods!(
         pub unsafe fn delegate(
             &self,
             mtm: MainThreadMarker,
-        ) -> Option<Id<ProtocolObject<dyn NSSharingServiceDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSSharingServiceDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -115,54 +115,56 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Id<NSImage>;
+        pub unsafe fn image(&self) -> Retained<NSImage>;
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other alternateImage)]
-        pub unsafe fn alternateImage(&self) -> Option<Id<NSImage>>;
+        pub unsafe fn alternateImage(&self) -> Option<Retained<NSImage>>;
 
         #[method_id(@__retain_semantics Other menuItemTitle)]
-        pub unsafe fn menuItemTitle(&self) -> Id<NSString>;
+        pub unsafe fn menuItemTitle(&self) -> Retained<NSString>;
 
         #[method(setMenuItemTitle:)]
         pub unsafe fn setMenuItemTitle(&self, menu_item_title: &NSString);
 
         #[method_id(@__retain_semantics Other recipients)]
-        pub unsafe fn recipients(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn recipients(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setRecipients:)]
         pub unsafe fn setRecipients(&self, recipients: Option<&NSArray<NSString>>);
 
         #[method_id(@__retain_semantics Other subject)]
-        pub unsafe fn subject(&self) -> Option<Id<NSString>>;
+        pub unsafe fn subject(&self) -> Option<Retained<NSString>>;
 
         #[method(setSubject:)]
         pub unsafe fn setSubject(&self, subject: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other messageBody)]
-        pub unsafe fn messageBody(&self) -> Option<Id<NSString>>;
+        pub unsafe fn messageBody(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other permanentLink)]
-        pub unsafe fn permanentLink(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn permanentLink(&self) -> Option<Retained<NSURL>>;
 
         #[method_id(@__retain_semantics Other accountName)]
-        pub unsafe fn accountName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn accountName(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other attachmentFileURLs)]
-        pub unsafe fn attachmentFileURLs(&self) -> Option<Id<NSArray<NSURL>>>;
+        pub unsafe fn attachmentFileURLs(&self) -> Option<Retained<NSArray<NSURL>>>;
 
         #[deprecated = "Use -[NSSharingServicePicker standardShareMenuItem] instead."]
         #[method_id(@__retain_semantics Other sharingServicesForItems:)]
-        pub unsafe fn sharingServicesForItems(items: &NSArray) -> Id<NSArray<NSSharingService>>;
+        pub unsafe fn sharingServicesForItems(
+            items: &NSArray,
+        ) -> Retained<NSArray<NSSharingService>>;
 
         #[method_id(@__retain_semantics Other sharingServiceNamed:)]
         pub unsafe fn sharingServiceNamed(
             service_name: &NSSharingServiceName,
-        ) -> Option<Id<NSSharingService>>;
+        ) -> Option<Retained<NSSharingService>>;
 
         #[cfg(all(feature = "NSImage", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithTitle:image:alternateImage:handler:)]
@@ -172,10 +174,10 @@ extern_methods!(
             image: &NSImage,
             alternate_image: Option<&NSImage>,
             block: &block2::Block<dyn Fn()>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(canPerformWithItems:)]
         pub unsafe fn canPerformWithItems(&self, items: Option<&NSArray>) -> bool;
@@ -189,7 +191,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSharingService {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -257,7 +259,7 @@ extern_protocol!(
             sharing_service: &NSSharingService,
             item: &AnyObject,
             content_rect: NonNull<NSRect>,
-        ) -> Option<Id<NSImage>>;
+        ) -> Option<Retained<NSImage>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[optional]
@@ -267,7 +269,7 @@ extern_protocol!(
             sharing_service: &NSSharingService,
             items: &NSArray,
             sharing_content_scope: NonNull<NSSharingContentScope>,
-        ) -> Option<Id<NSWindow>>;
+        ) -> Option<Retained<NSWindow>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -277,7 +279,7 @@ extern_protocol!(
             sharing_service: &NSSharingService,
             positioning_rect: NonNull<NSRect>,
             preferred_edge: NonNull<NSRectEdge>,
-        ) -> Option<Id<NSView>>;
+        ) -> Option<Retained<NSView>>;
     }
 
     unsafe impl ProtocolType for dyn NSSharingServiceDelegate {}
@@ -345,7 +347,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSSharingServicePickerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSSharingServicePickerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -354,10 +356,10 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Init initWithItems:)]
-        pub unsafe fn initWithItems(this: Allocated<Self>, items: &NSArray) -> Id<Self>;
+        pub unsafe fn initWithItems(this: Allocated<Self>, items: &NSArray) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(showRelativeToRect:ofView:preferredEdge:)]
@@ -373,7 +375,7 @@ extern_methods!(
 
         #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other standardShareMenuItem)]
-        pub unsafe fn standardShareMenuItem(&self, mtm: MainThreadMarker) -> Id<NSMenuItem>;
+        pub unsafe fn standardShareMenuItem(&self, mtm: MainThreadMarker) -> Retained<NSMenuItem>;
     }
 );
 
@@ -381,7 +383,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSharingServicePicker {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -394,7 +396,7 @@ extern_protocol!(
             sharing_service_picker: &NSSharingServicePicker,
             items: &NSArray,
             proposed_services: &NSArray<NSSharingService>,
-        ) -> Id<NSArray<NSSharingService>>;
+        ) -> Retained<NSArray<NSSharingService>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other sharingServicePicker:delegateForSharingService:)]
@@ -403,7 +405,7 @@ extern_protocol!(
             sharing_service_picker: &NSSharingServicePicker,
             sharing_service: &NSSharingService,
             mtm: MainThreadMarker,
-        ) -> Option<Id<ProtocolObject<dyn NSSharingServiceDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSSharingServiceDelegate>>>;
 
         #[optional]
         #[method(sharingServicePicker:didChooseSharingService:)]

@@ -46,34 +46,34 @@ extern_methods!(
 
         #[cfg(feature = "NSTreeNode")]
         #[method_id(@__retain_semantics Other arrangedObjects)]
-        pub unsafe fn arrangedObjects(&self) -> Id<NSTreeNode>;
+        pub unsafe fn arrangedObjects(&self) -> Retained<NSTreeNode>;
 
         #[method_id(@__retain_semantics Other childrenKeyPath)]
-        pub unsafe fn childrenKeyPath(&self) -> Option<Id<NSString>>;
+        pub unsafe fn childrenKeyPath(&self) -> Option<Retained<NSString>>;
 
         #[method(setChildrenKeyPath:)]
         pub unsafe fn setChildrenKeyPath(&self, children_key_path: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other countKeyPath)]
-        pub unsafe fn countKeyPath(&self) -> Option<Id<NSString>>;
+        pub unsafe fn countKeyPath(&self) -> Option<Retained<NSString>>;
 
         #[method(setCountKeyPath:)]
         pub unsafe fn setCountKeyPath(&self, count_key_path: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other leafKeyPath)]
-        pub unsafe fn leafKeyPath(&self) -> Option<Id<NSString>>;
+        pub unsafe fn leafKeyPath(&self) -> Option<Retained<NSString>>;
 
         #[method(setLeafKeyPath:)]
         pub unsafe fn setLeafKeyPath(&self, leaf_key_path: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other sortDescriptors)]
-        pub unsafe fn sortDescriptors(&self) -> Id<NSArray<NSSortDescriptor>>;
+        pub unsafe fn sortDescriptors(&self) -> Retained<NSArray<NSSortDescriptor>>;
 
         #[method(setSortDescriptors:)]
         pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
 
         #[method_id(@__retain_semantics Other content)]
-        pub unsafe fn content(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn content(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setContent:)]
         pub unsafe fn setContent(&self, content: Option<&AnyObject>);
@@ -153,19 +153,19 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other selectedObjects)]
-        pub unsafe fn selectedObjects(&self) -> Id<NSArray>;
+        pub unsafe fn selectedObjects(&self) -> Retained<NSArray>;
 
         #[method(setSelectionIndexPaths:)]
         pub unsafe fn setSelectionIndexPaths(&self, index_paths: &NSArray<NSIndexPath>) -> bool;
 
         #[method_id(@__retain_semantics Other selectionIndexPaths)]
-        pub unsafe fn selectionIndexPaths(&self) -> Id<NSArray<NSIndexPath>>;
+        pub unsafe fn selectionIndexPaths(&self) -> Retained<NSArray<NSIndexPath>>;
 
         #[method(setSelectionIndexPath:)]
         pub unsafe fn setSelectionIndexPath(&self, index_path: Option<&NSIndexPath>) -> bool;
 
         #[method_id(@__retain_semantics Other selectionIndexPath)]
-        pub unsafe fn selectionIndexPath(&self) -> Option<Id<NSIndexPath>>;
+        pub unsafe fn selectionIndexPath(&self) -> Option<Retained<NSIndexPath>>;
 
         #[method(addSelectionIndexPaths:)]
         pub unsafe fn addSelectionIndexPaths(&self, index_paths: &NSArray<NSIndexPath>) -> bool;
@@ -175,7 +175,7 @@ extern_methods!(
 
         #[cfg(feature = "NSTreeNode")]
         #[method_id(@__retain_semantics Other selectedNodes)]
-        pub unsafe fn selectedNodes(&self) -> Id<NSArray<NSTreeNode>>;
+        pub unsafe fn selectedNodes(&self) -> Retained<NSArray<NSTreeNode>>;
 
         #[cfg(feature = "NSTreeNode")]
         #[method(moveNode:toIndexPath:)]
@@ -191,15 +191,18 @@ extern_methods!(
 
         #[cfg(feature = "NSTreeNode")]
         #[method_id(@__retain_semantics Other childrenKeyPathForNode:)]
-        pub unsafe fn childrenKeyPathForNode(&self, node: &NSTreeNode) -> Option<Id<NSString>>;
+        pub unsafe fn childrenKeyPathForNode(
+            &self,
+            node: &NSTreeNode,
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSTreeNode")]
         #[method_id(@__retain_semantics Other countKeyPathForNode:)]
-        pub unsafe fn countKeyPathForNode(&self, node: &NSTreeNode) -> Option<Id<NSString>>;
+        pub unsafe fn countKeyPathForNode(&self, node: &NSTreeNode) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSTreeNode")]
         #[method_id(@__retain_semantics Other leafKeyPathForNode:)]
-        pub unsafe fn leafKeyPathForNode(&self, node: &NSTreeNode) -> Option<Id<NSString>>;
+        pub unsafe fn leafKeyPathForNode(&self, node: &NSTreeNode) -> Option<Retained<NSString>>;
     }
 );
 
@@ -211,10 +214,13 @@ extern_methods!(
         pub unsafe fn initWithContent(
             this: Allocated<Self>,
             content: Option<&AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -223,7 +229,7 @@ extern_methods!(
     #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     unsafe impl NSTreeController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -232,6 +238,6 @@ extern_methods!(
     #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     unsafe impl NSTreeController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

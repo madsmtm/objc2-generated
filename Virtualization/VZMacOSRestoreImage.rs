@@ -20,10 +20,10 @@ unsafe impl NSObjectProtocol for VZMacOSRestoreImage {}
 extern_methods!(
     unsafe impl VZMacOSRestoreImage {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(loadFileURL:completionHandler:)]
@@ -42,10 +42,10 @@ extern_methods!(
         pub unsafe fn isSupported(&self) -> bool;
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL>;
+        pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         #[method_id(@__retain_semantics Other buildVersion)]
-        pub unsafe fn buildVersion(&self) -> Id<NSString>;
+        pub unsafe fn buildVersion(&self) -> Retained<NSString>;
 
         #[method(operatingSystemVersion)]
         pub unsafe fn operatingSystemVersion(&self) -> NSOperatingSystemVersion;
@@ -54,6 +54,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other mostFeaturefulSupportedConfiguration)]
         pub unsafe fn mostFeaturefulSupportedConfiguration(
             &self,
-        ) -> Option<Id<VZMacOSConfigurationRequirements>>;
+        ) -> Option<Retained<VZMacOSConfigurationRequirements>>;
     }
 );

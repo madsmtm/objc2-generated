@@ -64,17 +64,17 @@ unsafe impl NSObjectProtocol for SKProductDiscount {}
 extern_methods!(
     unsafe impl SKProductDiscount {
         #[method_id(@__retain_semantics Other price)]
-        pub unsafe fn price(&self) -> Id<NSDecimalNumber>;
+        pub unsafe fn price(&self) -> Retained<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other priceLocale)]
-        pub unsafe fn priceLocale(&self) -> Id<NSLocale>;
+        pub unsafe fn priceLocale(&self) -> Retained<NSLocale>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "SKProduct")]
         #[method_id(@__retain_semantics Other subscriptionPeriod)]
-        pub unsafe fn subscriptionPeriod(&self) -> Id<SKProductSubscriptionPeriod>;
+        pub unsafe fn subscriptionPeriod(&self) -> Retained<SKProductSubscriptionPeriod>;
 
         #[method(numberOfPeriods)]
         pub unsafe fn numberOfPeriods(&self) -> NSUInteger;
@@ -91,9 +91,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKProductDiscount {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

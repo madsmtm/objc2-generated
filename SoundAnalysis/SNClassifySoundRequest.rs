@@ -30,22 +30,22 @@ extern_methods!(
 
         #[cfg(feature = "SNTimeDurationConstraint")]
         #[method_id(@__retain_semantics Other windowDurationConstraint)]
-        pub unsafe fn windowDurationConstraint(&self) -> Id<SNTimeDurationConstraint>;
+        pub unsafe fn windowDurationConstraint(&self) -> Retained<SNTimeDurationConstraint>;
 
         #[method_id(@__retain_semantics Other knownClassifications)]
-        pub unsafe fn knownClassifications(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn knownClassifications(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "SNTypes")]
         #[method_id(@__retain_semantics Init initWithClassifierIdentifier:error:_)]
         pub unsafe fn initWithClassifierIdentifier_error(
             this: Allocated<Self>,
             classifier_identifier: &SNClassifierIdentifier,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

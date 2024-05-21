@@ -356,28 +356,30 @@ extern_category!(
     /// Category on [`NSValue`].
     pub unsafe trait NSValueUIGeometryExtensions {
         #[method_id(@__retain_semantics Other valueWithCGPoint:)]
-        unsafe fn valueWithCGPoint(point: CGPoint) -> Id<NSValue>;
+        unsafe fn valueWithCGPoint(point: CGPoint) -> Retained<NSValue>;
 
         #[method_id(@__retain_semantics Other valueWithCGVector:)]
-        unsafe fn valueWithCGVector(vector: CGVector) -> Id<NSValue>;
+        unsafe fn valueWithCGVector(vector: CGVector) -> Retained<NSValue>;
 
         #[method_id(@__retain_semantics Other valueWithCGSize:)]
-        unsafe fn valueWithCGSize(size: CGSize) -> Id<NSValue>;
+        unsafe fn valueWithCGSize(size: CGSize) -> Retained<NSValue>;
 
         #[method_id(@__retain_semantics Other valueWithCGRect:)]
-        unsafe fn valueWithCGRect(rect: CGRect) -> Id<NSValue>;
+        unsafe fn valueWithCGRect(rect: CGRect) -> Retained<NSValue>;
 
         #[method_id(@__retain_semantics Other valueWithCGAffineTransform:)]
-        unsafe fn valueWithCGAffineTransform(transform: CGAffineTransform) -> Id<NSValue>;
+        unsafe fn valueWithCGAffineTransform(transform: CGAffineTransform) -> Retained<NSValue>;
 
         #[method_id(@__retain_semantics Other valueWithUIEdgeInsets:)]
-        unsafe fn valueWithUIEdgeInsets(insets: UIEdgeInsets) -> Id<NSValue>;
+        unsafe fn valueWithUIEdgeInsets(insets: UIEdgeInsets) -> Retained<NSValue>;
 
         #[method_id(@__retain_semantics Other valueWithDirectionalEdgeInsets:)]
-        unsafe fn valueWithDirectionalEdgeInsets(insets: NSDirectionalEdgeInsets) -> Id<NSValue>;
+        unsafe fn valueWithDirectionalEdgeInsets(
+            insets: NSDirectionalEdgeInsets,
+        ) -> Retained<NSValue>;
 
         #[method_id(@__retain_semantics Other valueWithUIOffset:)]
-        unsafe fn valueWithUIOffset(insets: UIOffset) -> Id<NSValue>;
+        unsafe fn valueWithUIOffset(insets: UIOffset) -> Retained<NSValue>;
 
         #[method(CGPointValue)]
         unsafe fn CGPointValue(&self) -> CGPoint;

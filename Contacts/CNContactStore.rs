@@ -78,7 +78,7 @@ extern_methods!(
             &self,
             predicate: &NSPredicate,
             keys: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
-        ) -> Result<Id<NSArray<CNContact>>, Id<NSError>>;
+        ) -> Result<Retained<NSArray<CNContact>>, Retained<NSError>>;
 
         #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other unifiedContactWithIdentifier:keysToFetch:error:_)]
@@ -86,14 +86,14 @@ extern_methods!(
             &self,
             identifier: &NSString,
             keys: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
-        ) -> Result<Id<CNContact>, Id<NSError>>;
+        ) -> Result<Retained<CNContact>, Retained<NSError>>;
 
         #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other unifiedMeContactWithKeysToFetch:error:_)]
         pub unsafe fn unifiedMeContactWithKeysToFetch_error(
             &self,
             keys: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
-        ) -> Result<Id<CNContact>, Id<NSError>>;
+        ) -> Result<Retained<CNContact>, Retained<NSError>>;
 
         #[cfg(all(
             feature = "CNContact",
@@ -105,7 +105,7 @@ extern_methods!(
         pub unsafe fn enumeratorForContactFetchRequest_error(
             &self,
             request: &CNContactFetchRequest,
-        ) -> Result<Id<CNFetchResult<NSEnumerator<CNContact>>>, Id<NSError>>;
+        ) -> Result<Retained<CNFetchResult<NSEnumerator<CNContact>>>, Retained<NSError>>;
 
         #[cfg(all(
             feature = "CNChangeHistoryEvent",
@@ -117,7 +117,7 @@ extern_methods!(
         pub unsafe fn enumeratorForChangeHistoryFetchRequest_error(
             &self,
             request: &CNChangeHistoryFetchRequest,
-        ) -> Result<Id<CNFetchResult<NSEnumerator<CNChangeHistoryEvent>>>, Id<NSError>>;
+        ) -> Result<Retained<CNFetchResult<NSEnumerator<CNChangeHistoryEvent>>>, Retained<NSError>>;
 
         #[cfg(all(
             feature = "CNContact",
@@ -129,7 +129,7 @@ extern_methods!(
         pub unsafe fn enumerateContactsWithFetchRequest_error_usingBlock(
             &self,
             fetch_request: &CNContactFetchRequest,
-            error: Option<&mut Option<Id<NSError>>>,
+            error: Option<&mut Option<Retained<NSError>>>,
             block: &block2::Block<dyn Fn(NonNull<CNContact>, NonNull<Bool>) + '_>,
         ) -> bool;
 
@@ -138,27 +138,27 @@ extern_methods!(
         pub unsafe fn groupsMatchingPredicate_error(
             &self,
             predicate: Option<&NSPredicate>,
-        ) -> Result<Id<NSArray<CNGroup>>, Id<NSError>>;
+        ) -> Result<Retained<NSArray<CNGroup>>, Retained<NSError>>;
 
         #[cfg(feature = "CNContainer")]
         #[method_id(@__retain_semantics Other containersMatchingPredicate:error:_)]
         pub unsafe fn containersMatchingPredicate_error(
             &self,
             predicate: Option<&NSPredicate>,
-        ) -> Result<Id<NSArray<CNContainer>>, Id<NSError>>;
+        ) -> Result<Retained<NSArray<CNContainer>>, Retained<NSError>>;
 
         #[cfg(feature = "CNSaveRequest")]
         #[method(executeSaveRequest:error:_)]
         pub unsafe fn executeSaveRequest_error(
             &self,
             save_request: &CNSaveRequest,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other currentHistoryToken)]
-        pub unsafe fn currentHistoryToken(&self) -> Option<Id<NSData>>;
+        pub unsafe fn currentHistoryToken(&self) -> Option<Retained<NSData>>;
 
         #[method_id(@__retain_semantics Other defaultContainerIdentifier)]
-        pub unsafe fn defaultContainerIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn defaultContainerIdentifier(&self) -> Option<Retained<NSString>>;
     }
 );
 
@@ -166,10 +166,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNContactStore {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

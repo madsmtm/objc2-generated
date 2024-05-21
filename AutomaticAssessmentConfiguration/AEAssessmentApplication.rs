@@ -22,10 +22,10 @@ unsafe impl NSObjectProtocol for AEAssessmentApplication {}
 extern_methods!(
     unsafe impl AEAssessmentApplication {
         #[method_id(@__retain_semantics Other bundleIdentifier)]
-        pub unsafe fn bundleIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other teamIdentifier)]
-        pub unsafe fn teamIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn teamIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(requiresSignatureValidation)]
         pub unsafe fn requiresSignatureValidation(&self) -> bool;
@@ -37,19 +37,19 @@ extern_methods!(
         pub unsafe fn initWithBundleIdentifier(
             this: Allocated<Self>,
             bundle_identifier: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithBundleIdentifier:teamIdentifier:)]
         pub unsafe fn initWithBundleIdentifier_teamIdentifier(
             this: Allocated<Self>,
             bundle_identifier: &NSString,
             team_identifier: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

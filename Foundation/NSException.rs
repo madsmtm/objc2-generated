@@ -112,7 +112,7 @@ extern_methods!(
             name: &NSExceptionName,
             reason: Option<&NSString>,
             user_info: Option<&NSDictionary>,
-        ) -> Id<NSException>;
+        ) -> Retained<NSException>;
 
         #[cfg(all(
             feature = "NSDictionary",
@@ -125,27 +125,27 @@ extern_methods!(
             a_name: &NSExceptionName,
             a_reason: Option<&NSString>,
             a_user_info: Option<&NSDictionary>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
         #[method_id(@__retain_semantics Other name)]
-        pub fn name(&self) -> Id<NSExceptionName>;
+        pub fn name(&self) -> Retained<NSExceptionName>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other reason)]
-        pub fn reason(&self) -> Option<Id<NSString>>;
+        pub fn reason(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub fn userInfo(&self) -> Option<Id<NSDictionary>>;
+        pub fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
         #[method_id(@__retain_semantics Other callStackReturnAddresses)]
-        pub unsafe fn callStackReturnAddresses(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn callStackReturnAddresses(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other callStackSymbols)]
-        pub unsafe fn callStackSymbols(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn callStackSymbols(&self) -> Retained<NSArray<NSString>>;
     }
 );
 
@@ -153,7 +153,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSException {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -192,7 +192,7 @@ unsafe impl NSObjectProtocol for NSAssertionHandler {}
 extern_methods!(
     unsafe impl NSAssertionHandler {
         #[method_id(@__retain_semantics Other currentHandler)]
-        pub unsafe fn currentHandler() -> Id<NSAssertionHandler>;
+        pub unsafe fn currentHandler() -> Retained<NSAssertionHandler>;
     }
 );
 
@@ -200,9 +200,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAssertionHandler {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

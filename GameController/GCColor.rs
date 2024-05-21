@@ -26,7 +26,7 @@ unsafe impl NSSecureCoding for GCColor {}
 extern_methods!(
     unsafe impl GCColor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithRed:green:blue:)]
         pub unsafe fn initWithRed_green_blue(
@@ -34,7 +34,7 @@ extern_methods!(
             red: c_float,
             green: c_float,
             blue: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(red)]
         pub unsafe fn red(&self) -> c_float;
@@ -51,6 +51,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCColor {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -9,7 +9,7 @@ extern_protocol!(
     pub unsafe trait GCDevicePhysicalInput: GCDevicePhysicalInputState {
         #[cfg(feature = "GCDevice")]
         #[method_id(@__retain_semantics Other device)]
-        unsafe fn device(&self) -> Option<Id<ProtocolObject<dyn GCDevice>>>;
+        unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn GCDevice>>>;
 
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         #[method(elementValueDidChangeHandler)]
@@ -37,7 +37,7 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other capture)]
-        unsafe fn capture(&self) -> Id<ProtocolObject<dyn GCDevicePhysicalInputState>>;
+        unsafe fn capture(&self) -> Retained<ProtocolObject<dyn GCDevicePhysicalInputState>>;
 
         #[cfg(feature = "block2")]
         #[method(inputStateAvailableHandler)]
@@ -62,7 +62,7 @@ extern_protocol!(
 
         #[cfg(feature = "GCDevicePhysicalInputStateDiff")]
         #[method_id(@__retain_semantics Other nextInputState)]
-        unsafe fn nextInputState(&self) -> Option<Id<TodoProtocols>>;
+        unsafe fn nextInputState(&self) -> Option<Retained<TodoProtocols>>;
     }
 
     #[cfg(feature = "GCDevicePhysicalInputState")]

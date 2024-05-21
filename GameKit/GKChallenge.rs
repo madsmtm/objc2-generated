@@ -62,23 +62,23 @@ extern_methods!(
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other issuingPlayer)]
-        pub unsafe fn issuingPlayer(&self) -> Option<Id<GKPlayer>>;
+        pub unsafe fn issuingPlayer(&self) -> Option<Retained<GKPlayer>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other receivingPlayer)]
-        pub unsafe fn receivingPlayer(&self) -> Option<Id<GKPlayer>>;
+        pub unsafe fn receivingPlayer(&self) -> Option<Retained<GKPlayer>>;
 
         #[method(state)]
         pub unsafe fn state(&self) -> GKChallengeState;
 
         #[method_id(@__retain_semantics Other issueDate)]
-        pub unsafe fn issueDate(&self) -> Id<NSDate>;
+        pub unsafe fn issueDate(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other completionDate)]
-        pub unsafe fn completionDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn completionDate(&self) -> Option<Retained<NSDate>>;
 
         #[method_id(@__retain_semantics Other message)]
-        pub unsafe fn message(&self) -> Option<Id<NSString>>;
+        pub unsafe fn message(&self) -> Option<Retained<NSString>>;
     }
 );
 
@@ -86,10 +86,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKChallenge {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -98,11 +98,11 @@ extern_methods!(
     unsafe impl GKChallenge {
         #[deprecated]
         #[method_id(@__retain_semantics Other issuingPlayerID)]
-        pub unsafe fn issuingPlayerID(&self) -> Option<Id<NSString>>;
+        pub unsafe fn issuingPlayerID(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other receivingPlayerID)]
-        pub unsafe fn receivingPlayerID(&self) -> Option<Id<NSString>>;
+        pub unsafe fn receivingPlayerID(&self) -> Option<Retained<NSString>>;
     }
 );
 
@@ -128,11 +128,11 @@ extern_methods!(
         #[cfg(feature = "GKScore")]
         #[deprecated]
         #[method_id(@__retain_semantics Other score)]
-        pub unsafe fn score(&self) -> Option<Id<GKScore>>;
+        pub unsafe fn score(&self) -> Option<Retained<GKScore>>;
 
         #[cfg(feature = "GKLeaderboardEntry")]
         #[method_id(@__retain_semantics Other leaderboardEntry)]
-        pub unsafe fn leaderboardEntry(&self) -> Option<Id<GKLeaderboardEntry>>;
+        pub unsafe fn leaderboardEntry(&self) -> Option<Retained<GKLeaderboardEntry>>;
     }
 );
 
@@ -140,10 +140,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKScoreChallenge {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -168,7 +168,7 @@ extern_methods!(
     unsafe impl GKAchievementChallenge {
         #[cfg(feature = "GKAchievement")]
         #[method_id(@__retain_semantics Other achievement)]
-        pub unsafe fn achievement(&self) -> Option<Id<GKAchievement>>;
+        pub unsafe fn achievement(&self) -> Option<Retained<GKAchievement>>;
     }
 );
 
@@ -176,10 +176,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKAchievementChallenge {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -303,7 +303,7 @@ extern_methods!(
             players: Option<&NSArray<GKPlayer>>,
             completion_handler: GKChallengeComposeCompletionBlock,
             mtm: MainThreadMarker,
-        ) -> Id<NSViewController>;
+        ) -> Retained<NSViewController>;
 
         #[cfg(all(
             feature = "GKBasePlayer",
@@ -319,7 +319,7 @@ extern_methods!(
             players: Option<&NSArray<GKPlayer>>,
             completion_handler: GKChallengeComposeHandler,
             mtm: MainThreadMarker,
-        ) -> Id<NSViewController>;
+        ) -> Retained<NSViewController>;
     }
 );
 
@@ -342,7 +342,7 @@ extern_methods!(
             players: Option<&NSArray<GKPlayer>>,
             completion_handler: GKChallengeComposeCompletionBlock,
             mtm: MainThreadMarker,
-        ) -> Id<NSViewController>;
+        ) -> Retained<NSViewController>;
 
         #[cfg(all(
             feature = "GKBasePlayer",
@@ -358,7 +358,7 @@ extern_methods!(
             players: Option<&NSArray<GKPlayer>>,
             completion_handler: GKChallengeComposeHandler,
             mtm: MainThreadMarker,
-        ) -> Id<NSViewController>;
+        ) -> Retained<NSViewController>;
     }
 );
 
@@ -381,7 +381,7 @@ extern_methods!(
             players: &NSArray<GKPlayer>,
             completion_handler: GKChallengeComposeCompletionBlock,
             mtm: MainThreadMarker,
-        ) -> Id<NSViewController>;
+        ) -> Retained<NSViewController>;
 
         #[cfg(all(
             feature = "GKBasePlayer",
@@ -397,7 +397,7 @@ extern_methods!(
             players: &NSArray<GKPlayer>,
             completion_handler: GKChallengeComposeHandler,
             mtm: MainThreadMarker,
-        ) -> Id<NSViewController>;
+        ) -> Retained<NSViewController>;
     }
 );
 

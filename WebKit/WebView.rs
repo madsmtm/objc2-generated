@@ -129,7 +129,7 @@ extern_methods!(
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other MIMETypesShownAsHTML)]
-        pub unsafe fn MIMETypesShownAsHTML(mtm: MainThreadMarker) -> Option<Id<NSArray>>;
+        pub unsafe fn MIMETypesShownAsHTML(mtm: MainThreadMarker) -> Option<Retained<NSArray>>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(setMIMETypesShownAsHTML:)]
@@ -140,14 +140,14 @@ extern_methods!(
         pub unsafe fn URLFromPasteboard(
             pasteboard: Option<&NSPasteboard>,
             mtm: MainThreadMarker,
-        ) -> Option<Id<NSURL>>;
+        ) -> Option<Retained<NSURL>>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other URLTitleFromPasteboard:)]
         pub unsafe fn URLTitleFromPasteboard(
             pasteboard: Option<&NSPasteboard>,
             mtm: MainThreadMarker,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(registerURLSchemeAsLocal:)]
@@ -160,7 +160,7 @@ extern_methods!(
             frame: NSRect,
             frame_name: Option<&NSString>,
             group_name: Option<&NSString>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(close)]
@@ -177,7 +177,7 @@ extern_methods!(
         #[cfg(feature = "WebUIDelegate")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other UIDelegate)]
-        pub unsafe fn UIDelegate(&self) -> Option<Id<ProtocolObject<dyn WebUIDelegate>>>;
+        pub unsafe fn UIDelegate(&self) -> Option<Retained<ProtocolObject<dyn WebUIDelegate>>>;
 
         #[cfg(feature = "WebUIDelegate")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
@@ -189,7 +189,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other resourceLoadDelegate)]
         pub unsafe fn resourceLoadDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn WebResourceLoadDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn WebResourceLoadDelegate>>>;
 
         #[cfg(feature = "WebResourceLoadDelegate")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
@@ -204,7 +204,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other downloadDelegate)]
         pub unsafe fn downloadDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn WebDownloadDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn WebDownloadDelegate>>>;
 
         #[cfg(feature = "WebDownload")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
@@ -219,7 +219,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other frameLoadDelegate)]
         pub unsafe fn frameLoadDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn WebFrameLoadDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn WebFrameLoadDelegate>>>;
 
         #[cfg(feature = "WebFrameLoadDelegate")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
@@ -232,7 +232,9 @@ extern_methods!(
         #[cfg(feature = "WebPolicyDelegate")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other policyDelegate)]
-        pub unsafe fn policyDelegate(&self) -> Option<Id<ProtocolObject<dyn WebPolicyDelegate>>>;
+        pub unsafe fn policyDelegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn WebPolicyDelegate>>>;
 
         #[cfg(feature = "WebPolicyDelegate")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
@@ -245,17 +247,17 @@ extern_methods!(
         #[cfg(feature = "WebFrame")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other mainFrame)]
-        pub unsafe fn mainFrame(&self) -> Option<Id<WebFrame>>;
+        pub unsafe fn mainFrame(&self) -> Option<Retained<WebFrame>>;
 
         #[cfg(feature = "WebFrame")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other selectedFrame)]
-        pub unsafe fn selectedFrame(&self) -> Option<Id<WebFrame>>;
+        pub unsafe fn selectedFrame(&self) -> Option<Retained<WebFrame>>;
 
         #[cfg(feature = "WebBackForwardList")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other backForwardList)]
-        pub unsafe fn backForwardList(&self) -> Option<Id<WebBackForwardList>>;
+        pub unsafe fn backForwardList(&self) -> Option<Retained<WebBackForwardList>>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(setMaintainsBackForwardList:)]
@@ -284,7 +286,7 @@ extern_methods!(
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other applicationNameForUserAgent)]
-        pub unsafe fn applicationNameForUserAgent(&self) -> Id<NSString>;
+        pub unsafe fn applicationNameForUserAgent(&self) -> Retained<NSString>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(setApplicationNameForUserAgent:)]
@@ -295,7 +297,7 @@ extern_methods!(
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other customUserAgent)]
-        pub unsafe fn customUserAgent(&self) -> Id<NSString>;
+        pub unsafe fn customUserAgent(&self) -> Retained<NSString>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(setCustomUserAgent:)]
@@ -303,7 +305,7 @@ extern_methods!(
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other userAgentForURL:)]
-        pub unsafe fn userAgentForURL(&self, url: Option<&NSURL>) -> Option<Id<NSString>>;
+        pub unsafe fn userAgentForURL(&self, url: Option<&NSURL>) -> Option<Retained<NSString>>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(supportsTextEncoding)]
@@ -311,7 +313,7 @@ extern_methods!(
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other customTextEncodingName)]
-        pub unsafe fn customTextEncodingName(&self) -> Id<NSString>;
+        pub unsafe fn customTextEncodingName(&self) -> Retained<NSString>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(setCustomTextEncodingName:)]
@@ -322,7 +324,7 @@ extern_methods!(
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other mediaStyle)]
-        pub unsafe fn mediaStyle(&self) -> Id<NSString>;
+        pub unsafe fn mediaStyle(&self) -> Retained<NSString>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(setMediaStyle:)]
@@ -333,17 +335,17 @@ extern_methods!(
         pub unsafe fn stringByEvaluatingJavaScriptFromString(
             &self,
             script: Option<&NSString>,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "WebScriptObject")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other windowScriptObject)]
-        pub unsafe fn windowScriptObject(&self) -> Option<Id<WebScriptObject>>;
+        pub unsafe fn windowScriptObject(&self) -> Option<Retained<WebScriptObject>>;
 
         #[cfg(feature = "WebPreferences")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other preferences)]
-        pub unsafe fn preferences(&self) -> Option<Id<WebPreferences>>;
+        pub unsafe fn preferences(&self) -> Option<Retained<WebPreferences>>;
 
         #[cfg(feature = "WebPreferences")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
@@ -352,7 +354,7 @@ extern_methods!(
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other preferencesIdentifier)]
-        pub unsafe fn preferencesIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn preferencesIdentifier(&self) -> Retained<NSString>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(setPreferencesIdentifier:)]
@@ -360,7 +362,7 @@ extern_methods!(
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other hostWindow)]
-        pub unsafe fn hostWindow(&self) -> Option<Id<NSWindow>>;
+        pub unsafe fn hostWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(setHostWindow:)]
@@ -387,7 +389,7 @@ extern_methods!(
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other groupName)]
-        pub unsafe fn groupName(&self) -> Id<NSString>;
+        pub unsafe fn groupName(&self) -> Retained<NSString>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(setGroupName:)]
@@ -403,11 +405,11 @@ extern_methods!(
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other elementAtPoint:)]
-        pub unsafe fn elementAtPoint(&self, point: NSPoint) -> Option<Id<NSDictionary>>;
+        pub unsafe fn elementAtPoint(&self, point: NSPoint) -> Option<Retained<NSDictionary>>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other pasteboardTypesForSelection)]
-        pub unsafe fn pasteboardTypesForSelection(&self) -> Id<NSArray>;
+        pub unsafe fn pasteboardTypesForSelection(&self) -> Retained<NSArray>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(writeSelectionWithPasteboardTypes:toPasteboard:)]
@@ -422,7 +424,7 @@ extern_methods!(
         pub unsafe fn pasteboardTypesForElement(
             &self,
             element: Option<&NSDictionary>,
-        ) -> Option<Id<NSArray>>;
+        ) -> Option<Retained<NSArray>>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(writeElement:withPasteboardTypes:toPasteboard:)]
@@ -459,7 +461,7 @@ extern_methods!(
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other mainFrameURL)]
-        pub unsafe fn mainFrameURL(&self) -> Id<NSString>;
+        pub unsafe fn mainFrameURL(&self) -> Retained<NSString>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(setMainFrameURL:)]
@@ -473,15 +475,15 @@ extern_methods!(
         ))]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other mainFrameDocument)]
-        pub unsafe fn mainFrameDocument(&self) -> Option<Id<DOMDocument>>;
+        pub unsafe fn mainFrameDocument(&self) -> Option<Retained<DOMDocument>>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other mainFrameTitle)]
-        pub unsafe fn mainFrameTitle(&self) -> Id<NSString>;
+        pub unsafe fn mainFrameTitle(&self) -> Retained<NSString>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other mainFrameIcon)]
-        pub unsafe fn mainFrameIcon(&self) -> Option<Id<NSImage>>;
+        pub unsafe fn mainFrameIcon(&self) -> Option<Retained<NSImage>>;
     }
 );
 
@@ -491,10 +493,13 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl WebView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -504,7 +509,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl WebView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -514,7 +519,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl WebView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -631,7 +636,7 @@ extern_methods!(
             &self,
             element: Option<&DOMElement>,
             pseudo_element: Option<&NSString>,
-        ) -> Option<Id<DOMCSSStyleDeclaration>>;
+        ) -> Option<Retained<DOMCSSStyleDeclaration>>;
     }
 );
 
@@ -647,7 +652,8 @@ extern_methods!(
         ))]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other editableDOMRangeForPoint:)]
-        pub unsafe fn editableDOMRangeForPoint(&self, point: NSPoint) -> Option<Id<DOMRange>>;
+        pub unsafe fn editableDOMRangeForPoint(&self, point: NSPoint)
+            -> Option<Retained<DOMRange>>;
 
         #[cfg(all(
             feature = "DOMObject",
@@ -669,7 +675,7 @@ extern_methods!(
         ))]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other selectedDOMRange)]
-        pub unsafe fn selectedDOMRange(&self) -> Option<Id<DOMRange>>;
+        pub unsafe fn selectedDOMRange(&self) -> Option<Retained<DOMRange>>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(selectionAffinity)]
@@ -694,7 +700,7 @@ extern_methods!(
         ))]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other typingStyle)]
-        pub unsafe fn typingStyle(&self) -> Option<Id<DOMCSSStyleDeclaration>>;
+        pub unsafe fn typingStyle(&self) -> Option<Retained<DOMCSSStyleDeclaration>>;
 
         #[cfg(all(
             feature = "DOMCSSStyleDeclaration",
@@ -730,12 +736,14 @@ extern_methods!(
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other undoManager)]
-        pub unsafe fn undoManager(&self) -> Option<Id<NSUndoManager>>;
+        pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
 
         #[cfg(feature = "WebEditingDelegate")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other editingDelegate)]
-        pub unsafe fn editingDelegate(&self) -> Option<Id<ProtocolObject<dyn WebEditingDelegate>>>;
+        pub unsafe fn editingDelegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn WebEditingDelegate>>>;
 
         #[cfg(feature = "WebEditingDelegate")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
@@ -755,7 +763,7 @@ extern_methods!(
         pub unsafe fn styleDeclarationWithText(
             &self,
             text: Option<&NSString>,
-        ) -> Option<Id<DOMCSSStyleDeclaration>>;
+        ) -> Option<Retained<DOMCSSStyleDeclaration>>;
     }
 );
 

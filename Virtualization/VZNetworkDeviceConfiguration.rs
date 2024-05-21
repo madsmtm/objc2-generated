@@ -22,14 +22,14 @@ unsafe impl NSObjectProtocol for VZNetworkDeviceConfiguration {}
 extern_methods!(
     unsafe impl VZNetworkDeviceConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZMACAddress")]
         #[method_id(@__retain_semantics Other MACAddress)]
-        pub unsafe fn MACAddress(&self) -> Id<VZMACAddress>;
+        pub unsafe fn MACAddress(&self) -> Retained<VZMACAddress>;
 
         #[cfg(feature = "VZMACAddress")]
         #[method(setMACAddress:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "VZNetworkDeviceAttachment")]
         #[method_id(@__retain_semantics Other attachment)]
-        pub unsafe fn attachment(&self) -> Option<Id<VZNetworkDeviceAttachment>>;
+        pub unsafe fn attachment(&self) -> Option<Retained<VZNetworkDeviceAttachment>>;
 
         #[cfg(feature = "VZNetworkDeviceAttachment")]
         #[method(setAttachment:)]

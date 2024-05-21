@@ -34,16 +34,20 @@ extern_methods!(
     #[cfg(feature = "VNGeometry")]
     unsafe impl VNDetectedPoint {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithX:y:)]
-        pub unsafe fn initWithX_y(this: Allocated<Self>, x: c_double, y: c_double) -> Id<Self>;
+        pub unsafe fn initWithX_y(
+            this: Allocated<Self>,
+            x: c_double,
+            y: c_double,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithLocation:)]
-        pub unsafe fn initWithLocation(this: Allocated<Self>, location: CGPoint) -> Id<Self>;
+        pub unsafe fn initWithLocation(this: Allocated<Self>, location: CGPoint) -> Retained<Self>;
 
         #[cfg(feature = "VNTypes")]
         #[method(confidence)]
@@ -81,7 +85,7 @@ extern_methods!(
     unsafe impl VNRecognizedPoint {
         #[cfg(feature = "VNTypes")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<VNRecognizedPointKey>;
+        pub unsafe fn identifier(&self) -> Retained<VNRecognizedPointKey>;
     }
 );
 
@@ -90,15 +94,19 @@ extern_methods!(
     #[cfg(feature = "VNGeometry")]
     unsafe impl VNRecognizedPoint {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithX:y:)]
-        pub unsafe fn initWithX_y(this: Allocated<Self>, x: c_double, y: c_double) -> Id<Self>;
+        pub unsafe fn initWithX_y(
+            this: Allocated<Self>,
+            x: c_double,
+            y: c_double,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithLocation:)]
-        pub unsafe fn initWithLocation(this: Allocated<Self>, location: CGPoint) -> Id<Self>;
+        pub unsafe fn initWithLocation(this: Allocated<Self>, location: CGPoint) -> Retained<Self>;
     }
 );

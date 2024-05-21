@@ -173,7 +173,7 @@ extern_protocol!(
             sender: Option<&WebView>,
             request: Option<&NSURLRequest>,
             mtm: MainThreadMarker,
-        ) -> Option<Id<WebView>>;
+        ) -> Option<Retained<WebView>>;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
@@ -192,7 +192,7 @@ extern_protocol!(
             sender: Option<&WebView>,
             request: Option<&NSURLRequest>,
             mtm: MainThreadMarker,
-        ) -> Option<Id<WebView>>;
+        ) -> Option<Retained<WebView>>;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
@@ -231,7 +231,7 @@ extern_protocol!(
             &self,
             sender: Option<&WebView>,
             mtm: MainThreadMarker,
-        ) -> Option<Id<NSResponder>>;
+        ) -> Option<Retained<NSResponder>>;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
@@ -256,7 +256,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webViewStatusText:)]
-        unsafe fn webViewStatusText(&self, sender: Option<&WebView>) -> Option<Id<NSString>>;
+        unsafe fn webViewStatusText(&self, sender: Option<&WebView>) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
@@ -349,7 +349,7 @@ extern_protocol!(
             prompt: Option<&NSString>,
             default_text: Option<&NSString>,
             frame: Option<&WebFrame>,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
@@ -407,7 +407,7 @@ extern_protocol!(
             sender: Option<&WebView>,
             element: Option<&NSDictionary>,
             default_menu_items: Option<&NSArray>,
-        ) -> Option<Id<NSArray>>;
+        ) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
@@ -555,7 +555,7 @@ extern_protocol!(
             sender: Option<&WebView>,
             prompt: Option<&NSString>,
             default_text: Option<&NSString>,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]

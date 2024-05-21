@@ -27,7 +27,7 @@ extern_methods!(
     unsafe impl CKFetchRecordChangesOperation {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "CKServerChangeToken"))]
         #[deprecated]
@@ -36,12 +36,12 @@ extern_methods!(
             this: Allocated<Self>,
             record_zone_id: &CKRecordZoneID,
             previous_server_change_token: Option<&CKServerChangeToken>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
         #[deprecated]
         #[method_id(@__retain_semantics Other recordZoneID)]
-        pub unsafe fn recordZoneID(&self) -> Option<Id<CKRecordZoneID>>;
+        pub unsafe fn recordZoneID(&self) -> Option<Retained<CKRecordZoneID>>;
 
         #[cfg(feature = "CKRecordZoneID")]
         #[deprecated]
@@ -51,7 +51,7 @@ extern_methods!(
         #[cfg(feature = "CKServerChangeToken")]
         #[deprecated]
         #[method_id(@__retain_semantics Other previousServerChangeToken)]
-        pub unsafe fn previousServerChangeToken(&self) -> Option<Id<CKServerChangeToken>>;
+        pub unsafe fn previousServerChangeToken(&self) -> Option<Retained<CKServerChangeToken>>;
 
         #[cfg(feature = "CKServerChangeToken")]
         #[deprecated]
@@ -72,7 +72,7 @@ extern_methods!(
         #[cfg(feature = "CKRecord")]
         #[deprecated]
         #[method_id(@__retain_semantics Other desiredKeys)]
-        pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
+        pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
         #[deprecated]
@@ -135,6 +135,6 @@ extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordChangesOperation {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

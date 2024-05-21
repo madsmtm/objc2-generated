@@ -26,10 +26,13 @@ unsafe impl NSSecureCoding for NSShadow {}
 extern_methods!(
     unsafe impl NSShadow {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method(shadowOffset)]
         pub unsafe fn shadowOffset(&self) -> CGSize;
@@ -44,7 +47,7 @@ extern_methods!(
         pub unsafe fn setShadowBlurRadius(&self, shadow_blur_radius: CGFloat);
 
         #[method_id(@__retain_semantics Other shadowColor)]
-        pub unsafe fn shadowColor(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn shadowColor(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setShadowColor:)]
         pub unsafe fn setShadowColor(&self, shadow_color: Option<&AnyObject>);
@@ -55,6 +58,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSShadow {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

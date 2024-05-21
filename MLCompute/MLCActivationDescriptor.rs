@@ -41,16 +41,18 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithType:)]
-        pub unsafe fn descriptorWithType(activation_type: MLCActivationType) -> Option<Id<Self>>;
+        pub unsafe fn descriptorWithType(
+            activation_type: MLCActivationType,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -58,7 +60,7 @@ extern_methods!(
         pub unsafe fn descriptorWithType_a(
             activation_type: MLCActivationType,
             a: c_float,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -67,7 +69,7 @@ extern_methods!(
             activation_type: MLCActivationType,
             a: c_float,
             b: c_float,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -77,6 +79,6 @@ extern_methods!(
             a: c_float,
             b: c_float,
             c: c_float,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
     }
 );

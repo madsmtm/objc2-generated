@@ -20,15 +20,15 @@ unsafe impl NSObjectProtocol for UIScreenshotService {}
 extern_methods!(
     unsafe impl UIScreenshotService {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIScreenshotServiceDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIScreenshotServiceDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -42,7 +42,7 @@ extern_methods!(
             feature = "UIWindowScene"
         ))]
         #[method_id(@__retain_semantics Other windowScene)]
-        pub unsafe fn windowScene(&self) -> Option<Id<UIWindowScene>>;
+        pub unsafe fn windowScene(&self) -> Option<Retained<UIWindowScene>>;
     }
 );
 
@@ -55,7 +55,7 @@ extern_methods!(
     ))]
     unsafe impl UIWindowScene {
         #[method_id(@__retain_semantics Other screenshotService)]
-        pub unsafe fn screenshotService(&self) -> Option<Id<UIScreenshotService>>;
+        pub unsafe fn screenshotService(&self) -> Option<Retained<UIScreenshotService>>;
     }
 );
 

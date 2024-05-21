@@ -31,7 +31,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other templateViews)]
-        pub unsafe fn templateViews(&self, mtm: MainThreadMarker) -> Id<NSArray<NSView>>;
+        pub unsafe fn templateViews(&self, mtm: MainThreadMarker) -> Retained<NSArray<NSView>>;
 
         #[method(setPredicate:)]
         pub unsafe fn setPredicate(&self, predicate: &NSPredicate);
@@ -40,13 +40,13 @@ extern_methods!(
         pub unsafe fn predicateWithSubpredicates(
             &self,
             subpredicates: Option<&NSArray<NSPredicate>>,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other displayableSubpredicatesOfPredicate:)]
         pub unsafe fn displayableSubpredicatesOfPredicate(
             &self,
             predicate: &NSPredicate,
-        ) -> Option<Id<NSArray<NSPredicate>>>;
+        ) -> Option<Retained<NSArray<NSPredicate>>>;
 
         #[method_id(@__retain_semantics Init initWithLeftExpressions:rightExpressions:modifier:operators:options:)]
         pub unsafe fn initWithLeftExpressions_rightExpressions_modifier_operators_options(
@@ -56,7 +56,7 @@ extern_methods!(
             modifier: NSComparisonPredicateModifier,
             operators: &NSArray<NSNumber>,
             options: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
@@ -68,19 +68,19 @@ extern_methods!(
             modifier: NSComparisonPredicateModifier,
             operators: &NSArray<NSNumber>,
             options: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCompoundTypes:)]
         pub unsafe fn initWithCompoundTypes(
             this: Allocated<Self>,
             compound_types: &NSArray<NSNumber>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other leftExpressions)]
-        pub unsafe fn leftExpressions(&self) -> Option<Id<NSArray<NSExpression>>>;
+        pub unsafe fn leftExpressions(&self) -> Option<Retained<NSArray<NSExpression>>>;
 
         #[method_id(@__retain_semantics Other rightExpressions)]
-        pub unsafe fn rightExpressions(&self) -> Option<Id<NSArray<NSExpression>>>;
+        pub unsafe fn rightExpressions(&self) -> Option<Retained<NSArray<NSExpression>>>;
 
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
@@ -91,13 +91,13 @@ extern_methods!(
         pub unsafe fn modifier(&self) -> NSComparisonPredicateModifier;
 
         #[method_id(@__retain_semantics Other operators)]
-        pub unsafe fn operators(&self) -> Option<Id<NSArray<NSNumber>>>;
+        pub unsafe fn operators(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[method(options)]
         pub unsafe fn options(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other compoundTypes)]
-        pub unsafe fn compoundTypes(&self) -> Option<Id<NSArray<NSNumber>>>;
+        pub unsafe fn compoundTypes(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
@@ -105,7 +105,7 @@ extern_methods!(
         pub unsafe fn templatesWithAttributeKeyPaths_inEntityDescription(
             key_paths: &NSArray<NSString>,
             entity_description: &NSEntityDescription,
-        ) -> Id<NSArray<NSPredicateEditorRowTemplate>>;
+        ) -> Retained<NSArray<NSPredicateEditorRowTemplate>>;
     }
 );
 
@@ -113,9 +113,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPredicateEditorRowTemplate {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

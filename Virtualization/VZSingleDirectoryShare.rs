@@ -28,11 +28,11 @@ extern_methods!(
         pub unsafe fn initWithDirectory(
             this: Allocated<Self>,
             directory: &VZSharedDirectory,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "VZSharedDirectory")]
         #[method_id(@__retain_semantics Other directory)]
-        pub unsafe fn directory(&self) -> Id<VZSharedDirectory>;
+        pub unsafe fn directory(&self) -> Retained<VZSharedDirectory>;
     }
 );
 
@@ -41,9 +41,9 @@ extern_methods!(
     #[cfg(feature = "VZDirectoryShare")]
     unsafe impl VZSingleDirectoryShare {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

@@ -23,7 +23,7 @@ unsafe impl UIActivityItemsConfigurationReading for UIActivityItemsConfiguration
 extern_methods!(
     unsafe impl UIActivityItemsConfiguration {
         #[method_id(@__retain_semantics Other localObject)]
-        pub unsafe fn localObject(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn localObject(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setLocalObject:)]
         pub unsafe fn setLocalObject(&self, local_object: Option<&AnyObject>);
@@ -32,7 +32,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other supportedInteractions)]
         pub unsafe fn supportedInteractions(
             &self,
-        ) -> Id<NSArray<UIActivityItemsConfigurationInteraction>>;
+        ) -> Retained<NSArray<UIActivityItemsConfigurationInteraction>>;
 
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
         #[method(setSupportedInteractions:)]
@@ -128,30 +128,30 @@ extern_methods!(
         pub unsafe fn activityItemsConfigurationWithObjects(
             objects: &NSArray<ProtocolObject<dyn NSItemProviderWriting>>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other activityItemsConfigurationWithItemProviders:)]
         pub unsafe fn activityItemsConfigurationWithItemProviders(
             item_providers: &NSArray<NSItemProvider>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithObjects:)]
         pub unsafe fn initWithObjects(
             this: Allocated<Self>,
             objects: &NSArray<ProtocolObject<dyn NSItemProviderWriting>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithItemProviders:)]
         pub unsafe fn initWithItemProviders(
             this: Allocated<Self>,
             item_providers: &NSArray<NSItemProvider>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

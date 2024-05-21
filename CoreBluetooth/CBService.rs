@@ -26,17 +26,17 @@ extern_methods!(
     unsafe impl CBService {
         #[cfg(all(feature = "CBPeer", feature = "CBPeripheral"))]
         #[method_id(@__retain_semantics Other peripheral)]
-        pub unsafe fn peripheral(&self) -> Option<Id<CBPeripheral>>;
+        pub unsafe fn peripheral(&self) -> Option<Retained<CBPeripheral>>;
 
         #[method(isPrimary)]
         pub unsafe fn isPrimary(&self) -> bool;
 
         #[method_id(@__retain_semantics Other includedServices)]
-        pub unsafe fn includedServices(&self) -> Option<Id<NSArray<CBService>>>;
+        pub unsafe fn includedServices(&self) -> Option<Retained<NSArray<CBService>>>;
 
         #[cfg(feature = "CBCharacteristic")]
         #[method_id(@__retain_semantics Other characteristics)]
-        pub unsafe fn characteristics(&self) -> Option<Id<NSArray<CBCharacteristic>>>;
+        pub unsafe fn characteristics(&self) -> Option<Retained<NSArray<CBCharacteristic>>>;
     }
 );
 
@@ -45,7 +45,7 @@ extern_methods!(
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBService {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -54,7 +54,7 @@ extern_methods!(
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBService {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -78,14 +78,14 @@ extern_methods!(
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBMutableService {
         #[method_id(@__retain_semantics Other includedServices)]
-        pub unsafe fn includedServices(&self) -> Option<Id<NSArray<CBService>>>;
+        pub unsafe fn includedServices(&self) -> Option<Retained<NSArray<CBService>>>;
 
         #[method(setIncludedServices:)]
         pub unsafe fn setIncludedServices(&self, included_services: Option<&NSArray<CBService>>);
 
         #[cfg(feature = "CBCharacteristic")]
         #[method_id(@__retain_semantics Other characteristics)]
-        pub unsafe fn characteristics(&self) -> Option<Id<NSArray<CBCharacteristic>>>;
+        pub unsafe fn characteristics(&self) -> Option<Retained<NSArray<CBCharacteristic>>>;
 
         #[cfg(feature = "CBCharacteristic")]
         #[method(setCharacteristics:)]
@@ -100,7 +100,7 @@ extern_methods!(
             this: Allocated<Self>,
             uuid: &CBUUID,
             is_primary: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -109,7 +109,7 @@ extern_methods!(
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBMutableService {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -118,6 +118,6 @@ extern_methods!(
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBMutableService {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

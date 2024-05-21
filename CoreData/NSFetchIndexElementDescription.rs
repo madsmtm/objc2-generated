@@ -48,14 +48,14 @@ extern_methods!(
             this: Allocated<Self>,
             property: &NSPropertyDescription,
             collation_type: NSFetchIndexElementType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSPropertyDescription")]
         #[method_id(@__retain_semantics Other property)]
-        pub unsafe fn property(&self) -> Option<Id<NSPropertyDescription>>;
+        pub unsafe fn property(&self) -> Option<Retained<NSPropertyDescription>>;
 
         #[method_id(@__retain_semantics Other propertyName)]
-        pub unsafe fn propertyName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn propertyName(&self) -> Option<Retained<NSString>>;
 
         #[method(collationType)]
         pub unsafe fn collationType(&self) -> NSFetchIndexElementType;
@@ -71,7 +71,7 @@ extern_methods!(
 
         #[cfg(feature = "NSFetchIndexDescription")]
         #[method_id(@__retain_semantics Other indexDescription)]
-        pub unsafe fn indexDescription(&self) -> Option<Id<NSFetchIndexDescription>>;
+        pub unsafe fn indexDescription(&self) -> Option<Retained<NSFetchIndexDescription>>;
     }
 );
 
@@ -79,9 +79,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFetchIndexElementDescription {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

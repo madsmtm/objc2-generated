@@ -158,7 +158,7 @@ extern_methods!(
             target: Option<&AnyObject>,
             action: Option<Sel>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other buttonWithTitle:target:action:)]
         pub unsafe fn buttonWithTitle_target_action(
@@ -166,7 +166,7 @@ extern_methods!(
             target: Option<&AnyObject>,
             action: Option<Sel>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other buttonWithImage:target:action:)]
@@ -175,7 +175,7 @@ extern_methods!(
             target: Option<&AnyObject>,
             action: Option<Sel>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other checkboxWithTitle:target:action:)]
         pub unsafe fn checkboxWithTitle_target_action(
@@ -183,7 +183,7 @@ extern_methods!(
             target: Option<&AnyObject>,
             action: Option<Sel>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other radioButtonWithTitle:target:action:)]
         pub unsafe fn radioButtonWithTitle_target_action(
@@ -191,7 +191,7 @@ extern_methods!(
             target: Option<&AnyObject>,
             action: Option<Sel>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -205,10 +205,13 @@ extern_methods!(
     ))]
     unsafe impl NSStatusBarButton {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -222,7 +225,7 @@ extern_methods!(
     ))]
     unsafe impl NSStatusBarButton {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -236,6 +239,6 @@ extern_methods!(
     ))]
     unsafe impl NSStatusBarButton {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

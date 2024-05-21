@@ -8,7 +8,7 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait AXChart: NSObjectProtocol {
         #[method_id(@__retain_semantics Other accessibilityChartDescriptor)]
-        unsafe fn accessibilityChartDescriptor(&self) -> Option<Id<AXChartDescriptor>>;
+        unsafe fn accessibilityChartDescriptor(&self) -> Option<Retained<AXChartDescriptor>>;
 
         #[method(setAccessibilityChartDescriptor:)]
         unsafe fn setAccessibilityChartDescriptor(
@@ -23,13 +23,13 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait AXDataAxisDescriptor: NSCopying {
         #[method_id(@__retain_semantics Other title)]
-        unsafe fn title(&self) -> Id<NSString>;
+        unsafe fn title(&self) -> Retained<NSString>;
 
         #[method(setTitle:)]
         unsafe fn setTitle(&self, title: &NSString);
 
         #[method_id(@__retain_semantics Other attributedTitle)]
-        unsafe fn attributedTitle(&self) -> Id<NSAttributedString>;
+        unsafe fn attributedTitle(&self) -> Retained<NSAttributedString>;
 
         #[method(setAttributedTitle:)]
         unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
@@ -106,7 +106,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other gridlinePositions)]
-        pub unsafe fn gridlinePositions(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn gridlinePositions(&self) -> Retained<NSArray<NSNumber>>;
 
         #[method(setGridlinePositions:)]
         pub unsafe fn setGridlinePositions(&self, gridline_positions: &NSArray<NSNumber>);
@@ -120,7 +120,7 @@ extern_methods!(
             upper_bound: c_double,
             gridline_positions: Option<&NSArray<NSNumber>>,
             value_description_provider: &block2::Block<dyn Fn(c_double) -> NonNull<NSString>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithAttributedTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:)]
@@ -131,13 +131,13 @@ extern_methods!(
             upper_bound: c_double,
             gridline_positions: Option<&NSArray<NSNumber>>,
             value_description_provider: &block2::Block<dyn Fn(c_double) -> NonNull<NSString>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -160,7 +160,7 @@ unsafe impl NSObjectProtocol for AXCategoricalDataAxisDescriptor {}
 extern_methods!(
     unsafe impl AXCategoricalDataAxisDescriptor {
         #[method_id(@__retain_semantics Other categoryOrder)]
-        pub unsafe fn categoryOrder(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn categoryOrder(&self) -> Retained<NSArray<NSString>>;
 
         #[method(setCategoryOrder:)]
         pub unsafe fn setCategoryOrder(&self, category_order: &NSArray<NSString>);
@@ -170,20 +170,20 @@ extern_methods!(
             this: Allocated<Self>,
             title: &NSString,
             category_order: &NSArray<NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithAttributedTitle:categoryOrder:)]
         pub unsafe fn initWithAttributedTitle_categoryOrder(
             this: Allocated<Self>,
             attributed_title: &NSAttributedString,
             category_order: &NSArray<NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -210,22 +210,22 @@ extern_methods!(
         pub unsafe fn setNumber(&self, number: c_double);
 
         #[method_id(@__retain_semantics Other category)]
-        pub unsafe fn category(&self) -> Id<NSString>;
+        pub unsafe fn category(&self) -> Retained<NSString>;
 
         #[method(setCategory:)]
         pub unsafe fn setCategory(&self, category: &NSString);
 
         #[method_id(@__retain_semantics Other valueWithNumber:)]
-        pub unsafe fn valueWithNumber(number: c_double) -> Id<Self>;
+        pub unsafe fn valueWithNumber(number: c_double) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other valueWithCategory:)]
-        pub unsafe fn valueWithCategory(category: &NSString) -> Id<Self>;
+        pub unsafe fn valueWithCategory(category: &NSString) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -246,31 +246,31 @@ unsafe impl NSObjectProtocol for AXDataPoint {}
 extern_methods!(
     unsafe impl AXDataPoint {
         #[method_id(@__retain_semantics Other xValue)]
-        pub unsafe fn xValue(&self) -> Id<AXDataPointValue>;
+        pub unsafe fn xValue(&self) -> Retained<AXDataPointValue>;
 
         #[method(setXValue:)]
         pub unsafe fn setXValue(&self, x_value: &AXDataPointValue);
 
         #[method_id(@__retain_semantics Other yValue)]
-        pub unsafe fn yValue(&self) -> Option<Id<AXDataPointValue>>;
+        pub unsafe fn yValue(&self) -> Option<Retained<AXDataPointValue>>;
 
         #[method(setYValue:)]
         pub unsafe fn setYValue(&self, y_value: Option<&AXDataPointValue>);
 
         #[method_id(@__retain_semantics Other additionalValues)]
-        pub unsafe fn additionalValues(&self) -> Id<NSArray<AXDataPointValue>>;
+        pub unsafe fn additionalValues(&self) -> Retained<NSArray<AXDataPointValue>>;
 
         #[method(setAdditionalValues:)]
         pub unsafe fn setAdditionalValues(&self, additional_values: &NSArray<AXDataPointValue>);
 
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Option<Id<NSString>>;
+        pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other attributedLabel)]
-        pub unsafe fn attributedLabel(&self) -> Option<Id<NSAttributedString>>;
+        pub unsafe fn attributedLabel(&self) -> Option<Retained<NSAttributedString>>;
 
         #[method(setAttributedLabel:)]
         pub unsafe fn setAttributedLabel(&self, attributed_label: Option<&NSAttributedString>);
@@ -280,7 +280,7 @@ extern_methods!(
             this: Allocated<Self>,
             x_value: &AXDataPointValue,
             y_value: Option<&AXDataPointValue>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithX:y:additionalValues:)]
         pub unsafe fn initWithX_y_additionalValues(
@@ -288,7 +288,7 @@ extern_methods!(
             x_value: &AXDataPointValue,
             y_value: Option<&AXDataPointValue>,
             additional_values: Option<&NSArray<AXDataPointValue>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithX:y:additionalValues:label:)]
         pub unsafe fn initWithX_y_additionalValues_label(
@@ -297,13 +297,13 @@ extern_methods!(
             y_value: Option<&AXDataPointValue>,
             additional_values: Option<&NSArray<AXDataPointValue>>,
             label: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -324,13 +324,13 @@ unsafe impl NSObjectProtocol for AXDataSeriesDescriptor {}
 extern_methods!(
     unsafe impl AXDataSeriesDescriptor {
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other attributedName)]
-        pub unsafe fn attributedName(&self) -> Id<NSAttributedString>;
+        pub unsafe fn attributedName(&self) -> Retained<NSAttributedString>;
 
         #[method(setAttributedName:)]
         pub unsafe fn setAttributedName(&self, attributed_name: &NSAttributedString);
@@ -342,7 +342,7 @@ extern_methods!(
         pub unsafe fn setIsContinuous(&self, is_continuous: bool);
 
         #[method_id(@__retain_semantics Other dataPoints)]
-        pub unsafe fn dataPoints(&self) -> Id<NSArray<AXDataPoint>>;
+        pub unsafe fn dataPoints(&self) -> Retained<NSArray<AXDataPoint>>;
 
         #[method(setDataPoints:)]
         pub unsafe fn setDataPoints(&self, data_points: &NSArray<AXDataPoint>);
@@ -353,7 +353,7 @@ extern_methods!(
             name: &NSString,
             is_continuous: bool,
             data_points: &NSArray<AXDataPoint>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithAttributedName:isContinuous:dataPoints:)]
         pub unsafe fn initWithAttributedName_isContinuous_dataPoints(
@@ -361,13 +361,13 @@ extern_methods!(
             attributed_name: &NSAttributedString,
             is_continuous: bool,
             data_points: &NSArray<AXDataPoint>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -409,19 +409,19 @@ unsafe impl NSObjectProtocol for AXChartDescriptor {}
 extern_methods!(
     unsafe impl AXChartDescriptor {
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other attributedTitle)]
-        pub unsafe fn attributedTitle(&self) -> Option<Id<NSAttributedString>>;
+        pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
         #[method_id(@__retain_semantics Other summary)]
-        pub unsafe fn summary(&self) -> Option<Id<NSString>>;
+        pub unsafe fn summary(&self) -> Option<Retained<NSString>>;
 
         #[method(setSummary:)]
         pub unsafe fn setSummary(&self, summary: Option<&NSString>);
@@ -442,19 +442,19 @@ extern_methods!(
         pub unsafe fn setContentFrame(&self, content_frame: CGRect);
 
         #[method_id(@__retain_semantics Other series)]
-        pub unsafe fn series(&self) -> Id<NSArray<AXDataSeriesDescriptor>>;
+        pub unsafe fn series(&self) -> Retained<NSArray<AXDataSeriesDescriptor>>;
 
         #[method(setSeries:)]
         pub unsafe fn setSeries(&self, series: &NSArray<AXDataSeriesDescriptor>);
 
         #[method_id(@__retain_semantics Other xAxis)]
-        pub unsafe fn xAxis(&self) -> Id<ProtocolObject<dyn AXDataAxisDescriptor>>;
+        pub unsafe fn xAxis(&self) -> Retained<ProtocolObject<dyn AXDataAxisDescriptor>>;
 
         #[method(setXAxis:)]
         pub unsafe fn setXAxis(&self, x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>);
 
         #[method_id(@__retain_semantics Other yAxis)]
-        pub unsafe fn yAxis(&self) -> Option<Id<AXNumericDataAxisDescriptor>>;
+        pub unsafe fn yAxis(&self) -> Option<Retained<AXNumericDataAxisDescriptor>>;
 
         #[method(setYAxis:)]
         pub unsafe fn setYAxis(&self, y_axis: Option<&AXNumericDataAxisDescriptor>);
@@ -462,7 +462,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other additionalAxes)]
         pub unsafe fn additionalAxes(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>>>;
+        ) -> Option<Retained<NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>>>;
 
         #[method(setAdditionalAxes:)]
         pub unsafe fn setAdditionalAxes(
@@ -478,7 +478,7 @@ extern_methods!(
             x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>,
             y_axis: Option<&AXNumericDataAxisDescriptor>,
             series: &NSArray<AXDataSeriesDescriptor>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithAttributedTitle:summary:xAxisDescriptor:yAxisDescriptor:series:)]
         pub unsafe fn initWithAttributedTitle_summary_xAxisDescriptor_yAxisDescriptor_series(
@@ -488,7 +488,7 @@ extern_methods!(
             x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>,
             y_axis: &AXNumericDataAxisDescriptor,
             series: &NSArray<AXDataSeriesDescriptor>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithTitle:summary:xAxisDescriptor:yAxisDescriptor:additionalAxes:series:)]
         pub unsafe fn initWithTitle_summary_xAxisDescriptor_yAxisDescriptor_additionalAxes_series(
@@ -499,7 +499,7 @@ extern_methods!(
             y_axis: Option<&AXNumericDataAxisDescriptor>,
             additional_axes: Option<&NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>>,
             series: &NSArray<AXDataSeriesDescriptor>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithAttributedTitle:summary:xAxisDescriptor:yAxisDescriptor:additionalAxes:series:)]
         pub unsafe fn initWithAttributedTitle_summary_xAxisDescriptor_yAxisDescriptor_additionalAxes_series(
@@ -510,13 +510,13 @@ extern_methods!(
             y_axis: Option<&AXNumericDataAxisDescriptor>,
             additional_axes: Option<&NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>>,
             series: &NSArray<AXDataSeriesDescriptor>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -549,9 +549,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AXLiveAudioGraph {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

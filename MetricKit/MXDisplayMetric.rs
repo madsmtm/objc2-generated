@@ -34,7 +34,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other averagePixelLuminance)]
         pub unsafe fn averagePixelLuminance(
             &self,
-        ) -> Option<Id<MXAverage<MXUnitAveragePixelLuminance>>>;
+        ) -> Option<Retained<MXAverage<MXUnitAveragePixelLuminance>>>;
     }
 );
 
@@ -43,9 +43,9 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXDisplayMetric {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -31,11 +31,11 @@ extern_methods!(
             this: Allocated<Self>,
             rules: &NSArray<NEFilterRule>,
             default_action: NEFilterAction,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NEFilterRule")]
         #[method_id(@__retain_semantics Other rules)]
-        pub unsafe fn rules(&self) -> Id<NSArray<NEFilterRule>>;
+        pub unsafe fn rules(&self) -> Retained<NSArray<NEFilterRule>>;
 
         #[cfg(feature = "NEFilterProvider")]
         #[method(defaultAction)]
@@ -47,9 +47,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterSettings {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

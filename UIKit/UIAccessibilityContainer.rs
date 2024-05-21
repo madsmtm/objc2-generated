@@ -17,7 +17,7 @@ extern_category!(
             &self,
             index: NSInteger,
             mtm: MainThreadMarker,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[method(indexOfAccessibilityElement:)]
         unsafe fn indexOfAccessibilityElement(
@@ -27,7 +27,7 @@ extern_category!(
         ) -> NSInteger;
 
         #[method_id(@__retain_semantics Other accessibilityElements)]
-        unsafe fn accessibilityElements(&self, mtm: MainThreadMarker) -> Option<Id<NSArray>>;
+        unsafe fn accessibilityElements(&self, mtm: MainThreadMarker) -> Option<Retained<NSArray>>;
 
         #[method(setAccessibilityElements:)]
         unsafe fn setAccessibilityElements(
@@ -52,7 +52,7 @@ extern_category!(
         );
 
         #[method_id(@__retain_semantics Other automationElements)]
-        unsafe fn automationElements(&self, mtm: MainThreadMarker) -> Option<Id<NSArray>>;
+        unsafe fn automationElements(&self, mtm: MainThreadMarker) -> Option<Retained<NSArray>>;
 
         #[method(setAutomationElements:)]
         unsafe fn setAutomationElements(
@@ -88,7 +88,7 @@ extern_protocol!(
             &self,
             row: NSUInteger,
             column: NSUInteger,
-        ) -> Option<Id<ProtocolObject<dyn UIAccessibilityContainerDataTableCell>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIAccessibilityContainerDataTableCell>>>;
 
         #[method(accessibilityRowCount)]
         unsafe fn accessibilityRowCount(&self) -> NSUInteger;
@@ -101,14 +101,14 @@ extern_protocol!(
         unsafe fn accessibilityHeaderElementsForRow(
             &self,
             row: NSUInteger,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn UIAccessibilityContainerDataTableCell>>>>;
+        ) -> Option<Retained<NSArray<ProtocolObject<dyn UIAccessibilityContainerDataTableCell>>>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityHeaderElementsForColumn:)]
         unsafe fn accessibilityHeaderElementsForColumn(
             &self,
             column: NSUInteger,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn UIAccessibilityContainerDataTableCell>>>>;
+        ) -> Option<Retained<NSArray<ProtocolObject<dyn UIAccessibilityContainerDataTableCell>>>>;
     }
 
     unsafe impl ProtocolType for dyn UIAccessibilityContainerDataTable {}

@@ -35,13 +35,13 @@ extern_methods!(
     unsafe impl UNNotificationResponse {
         #[cfg(feature = "UNNotification")]
         #[method_id(@__retain_semantics Other notification)]
-        pub unsafe fn notification(&self) -> Id<UNNotification>;
+        pub unsafe fn notification(&self) -> Retained<UNNotification>;
 
         #[method_id(@__retain_semantics Other actionIdentifier)]
-        pub unsafe fn actionIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn actionIdentifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -49,7 +49,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNNotificationResponse {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -75,7 +75,7 @@ unsafe impl NSSecureCoding for UNTextInputNotificationResponse {}
 extern_methods!(
     unsafe impl UNTextInputNotificationResponse {
         #[method_id(@__retain_semantics Other userText)]
-        pub unsafe fn userText(&self) -> Id<NSString>;
+        pub unsafe fn userText(&self) -> Retained<NSString>;
     }
 );
 
@@ -83,7 +83,7 @@ extern_methods!(
     /// Methods declared on superclass `UNNotificationResponse`
     unsafe impl UNTextInputNotificationResponse {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -91,6 +91,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNTextInputNotificationResponse {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

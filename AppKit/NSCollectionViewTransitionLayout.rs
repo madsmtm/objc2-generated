@@ -36,17 +36,17 @@ extern_methods!(
         pub unsafe fn setTransitionProgress(&self, transition_progress: CGFloat);
 
         #[method_id(@__retain_semantics Other currentLayout)]
-        pub unsafe fn currentLayout(&self) -> Id<NSCollectionViewLayout>;
+        pub unsafe fn currentLayout(&self) -> Retained<NSCollectionViewLayout>;
 
         #[method_id(@__retain_semantics Other nextLayout)]
-        pub unsafe fn nextLayout(&self) -> Id<NSCollectionViewLayout>;
+        pub unsafe fn nextLayout(&self) -> Retained<NSCollectionViewLayout>;
 
         #[method_id(@__retain_semantics Init initWithCurrentLayout:nextLayout:)]
         pub unsafe fn initWithCurrentLayout_nextLayout(
             this: Allocated<Self>,
             current_layout: &NSCollectionViewLayout,
             new_layout: &NSCollectionViewLayout,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(updateValue:forAnimatedKey:)]
         pub unsafe fn updateValue_forAnimatedKey(
@@ -68,9 +68,9 @@ extern_methods!(
     #[cfg(feature = "NSCollectionViewLayout")]
     unsafe impl NSCollectionViewTransitionLayout {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

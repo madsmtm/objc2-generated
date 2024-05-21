@@ -220,10 +220,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLBufferLayoutDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -245,7 +245,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             index: NSUInteger,
-        ) -> Id<MTLBufferLayoutDescriptor>;
+        ) -> Retained<MTLBufferLayoutDescriptor>;
 
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -260,10 +260,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLBufferLayoutDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -307,10 +307,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAttributeDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -332,7 +332,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             index: NSUInteger,
-        ) -> Id<MTLAttributeDescriptor>;
+        ) -> Retained<MTLAttributeDescriptor>;
 
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -347,10 +347,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAttributeDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -371,13 +371,13 @@ unsafe impl NSObjectProtocol for MTLStageInputOutputDescriptor {}
 extern_methods!(
     unsafe impl MTLStageInputOutputDescriptor {
         #[method_id(@__retain_semantics Other stageInputOutputDescriptor)]
-        pub fn stageInputOutputDescriptor() -> Id<MTLStageInputOutputDescriptor>;
+        pub fn stageInputOutputDescriptor() -> Retained<MTLStageInputOutputDescriptor>;
 
         #[method_id(@__retain_semantics Other layouts)]
-        pub fn layouts(&self) -> Id<MTLBufferLayoutDescriptorArray>;
+        pub fn layouts(&self) -> Retained<MTLBufferLayoutDescriptorArray>;
 
         #[method_id(@__retain_semantics Other attributes)]
-        pub fn attributes(&self) -> Id<MTLAttributeDescriptorArray>;
+        pub fn attributes(&self) -> Retained<MTLAttributeDescriptorArray>;
 
         #[method(indexType)]
         pub fn indexType(&self) -> MTLIndexType;
@@ -400,9 +400,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLStageInputOutputDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

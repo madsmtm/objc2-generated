@@ -20,11 +20,11 @@ unsafe impl NSObjectProtocol for HKLiveWorkoutDataSource {}
 extern_methods!(
     unsafe impl HKLiveWorkoutDataSource {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other typesToCollect)]
-        pub unsafe fn typesToCollect(&self) -> Id<NSSet<HKQuantityType>>;
+        pub unsafe fn typesToCollect(&self) -> Retained<NSSet<HKQuantityType>>;
 
         #[cfg(all(feature = "HKHealthStore", feature = "HKWorkoutConfiguration"))]
         #[method_id(@__retain_semantics Init initWithHealthStore:workoutConfiguration:)]
@@ -32,7 +32,7 @@ extern_methods!(
             this: Allocated<Self>,
             health_store: &HKHealthStore,
             configuration: Option<&HKWorkoutConfiguration>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "HKObjectType")]
         #[method(enableCollectionForType:predicate:)]
@@ -52,6 +52,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKLiveWorkoutDataSource {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

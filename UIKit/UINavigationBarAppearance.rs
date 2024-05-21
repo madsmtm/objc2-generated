@@ -36,7 +36,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other titleTextAttributes)]
         pub unsafe fn titleTextAttributes(
             &self,
-        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[method(setTitleTextAttributes:)]
         pub unsafe fn setTitleTextAttributes(
@@ -55,7 +55,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other largeTitleTextAttributes)]
         pub unsafe fn largeTitleTextAttributes(
             &self,
-        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[method(setLargeTitleTextAttributes:)]
         pub unsafe fn setLargeTitleTextAttributes(
@@ -65,7 +65,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
         #[method_id(@__retain_semantics Other buttonAppearance)]
-        pub unsafe fn buttonAppearance(&self) -> Id<UIBarButtonItemAppearance>;
+        pub unsafe fn buttonAppearance(&self) -> Retained<UIBarButtonItemAppearance>;
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
         #[method(setButtonAppearance:)]
@@ -73,7 +73,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
         #[method_id(@__retain_semantics Other doneButtonAppearance)]
-        pub unsafe fn doneButtonAppearance(&self) -> Id<UIBarButtonItemAppearance>;
+        pub unsafe fn doneButtonAppearance(&self) -> Retained<UIBarButtonItemAppearance>;
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
         #[method(setDoneButtonAppearance:)]
@@ -84,7 +84,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
         #[method_id(@__retain_semantics Other backButtonAppearance)]
-        pub unsafe fn backButtonAppearance(&self) -> Id<UIBarButtonItemAppearance>;
+        pub unsafe fn backButtonAppearance(&self) -> Retained<UIBarButtonItemAppearance>;
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
         #[method(setBackButtonAppearance:)]
@@ -95,11 +95,11 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other backIndicatorImage)]
-        pub unsafe fn backIndicatorImage(&self) -> Id<UIImage>;
+        pub unsafe fn backIndicatorImage(&self) -> Retained<UIImage>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other backIndicatorTransitionMaskImage)]
-        pub unsafe fn backIndicatorTransitionMaskImage(&self) -> Id<UIImage>;
+        pub unsafe fn backIndicatorTransitionMaskImage(&self) -> Retained<UIImage>;
 
         #[cfg(feature = "UIImage")]
         #[method(setBackIndicatorImage:transitionMaskImage:)]
@@ -116,21 +116,23 @@ extern_methods!(
     #[cfg(feature = "UIBarAppearance")]
     unsafe impl UINavigationBarAppearance {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIDevice")]
         #[method_id(@__retain_semantics Init initWithIdiom:)]
-        pub unsafe fn initWithIdiom(this: Allocated<Self>, idiom: UIUserInterfaceIdiom)
-            -> Id<Self>;
+        pub unsafe fn initWithIdiom(
+            this: Allocated<Self>,
+            idiom: UIUserInterfaceIdiom,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithBarAppearance:)]
         pub unsafe fn initWithBarAppearance(
             this: Allocated<Self>,
             bar_appearance: &UIBarAppearance,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     }
 );
 
@@ -139,6 +141,6 @@ extern_methods!(
     #[cfg(feature = "UIBarAppearance")]
     unsafe impl UINavigationBarAppearance {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

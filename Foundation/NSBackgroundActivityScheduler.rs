@@ -43,11 +43,14 @@ extern_methods!(
     unsafe impl NSBackgroundActivityScheduler {
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
-        pub unsafe fn initWithIdentifier(this: Allocated<Self>, identifier: &NSString) -> Id<Self>;
+        pub unsafe fn initWithIdentifier(
+            this: Allocated<Self>,
+            identifier: &NSString,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSObjCRuntime")]
         #[method(qualityOfService)]
@@ -98,9 +101,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSBackgroundActivityScheduler {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

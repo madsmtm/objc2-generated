@@ -26,7 +26,7 @@ extern_methods!(
             request: &NSURLRequest,
             delegate: Option<&AnyObject>,
             start_immediately: bool,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSURLRequest")]
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
@@ -35,7 +35,7 @@ extern_methods!(
             this: Allocated<Self>,
             request: &NSURLRequest,
             delegate: Option<&AnyObject>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSURLRequest")]
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
@@ -43,15 +43,15 @@ extern_methods!(
         pub unsafe fn connectionWithRequest_delegate(
             request: &NSURLRequest,
             delegate: Option<&AnyObject>,
-        ) -> Option<Id<NSURLConnection>>;
+        ) -> Option<Retained<NSURLConnection>>;
 
         #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other originalRequest)]
-        pub unsafe fn originalRequest(&self) -> Id<NSURLRequest>;
+        pub unsafe fn originalRequest(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other currentRequest)]
-        pub unsafe fn currentRequest(&self) -> Id<NSURLRequest>;
+        pub unsafe fn currentRequest(&self) -> Retained<NSURLRequest>;
 
         #[method(start)]
         pub unsafe fn start(&self);
@@ -89,10 +89,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLConnection {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -161,7 +161,7 @@ extern_protocol!(
             connection: &NSURLConnection,
             request: &NSURLRequest,
             response: Option<&NSURLResponse>,
-        ) -> Option<Id<NSURLRequest>>;
+        ) -> Option<Retained<NSURLRequest>>;
 
         #[cfg(feature = "NSURLResponse")]
         #[optional]
@@ -184,7 +184,7 @@ extern_protocol!(
             &self,
             connection: &NSURLConnection,
             request: &NSURLRequest,
-        ) -> Option<Id<NSInputStream>>;
+        ) -> Option<Retained<NSInputStream>>;
 
         #[optional]
         #[method(connection:didSendBodyData:totalBytesWritten:totalBytesExpectedToWrite:)]
@@ -203,7 +203,7 @@ extern_protocol!(
             &self,
             connection: &NSURLConnection,
             cached_response: &NSCachedURLResponse,
-        ) -> Option<Id<NSCachedURLResponse>>;
+        ) -> Option<Retained<NSCachedURLResponse>>;
 
         #[optional]
         #[method(connectionDidFinishLoading:)]
@@ -259,8 +259,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sendSynchronousRequest:returningResponse:error:_)]
         pub unsafe fn sendSynchronousRequest_returningResponse_error(
             request: &NSURLRequest,
-            response: Option<&mut Option<Id<NSURLResponse>>>,
-        ) -> Result<Id<NSData>, Id<NSError>>;
+            response: Option<&mut Option<Retained<NSURLResponse>>>,
+        ) -> Result<Retained<NSData>, Retained<NSError>>;
     }
 );
 

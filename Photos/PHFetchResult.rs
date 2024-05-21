@@ -39,10 +39,10 @@ extern_methods!(
         pub unsafe fn count(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other objectAtIndex:)]
-        pub unsafe fn objectAtIndex(&self, index: NSUInteger) -> Id<ObjectType>;
+        pub unsafe fn objectAtIndex(&self, index: NSUInteger) -> Retained<ObjectType>;
 
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
-        pub unsafe fn objectAtIndexedSubscript(&self, idx: NSUInteger) -> Id<ObjectType>;
+        pub unsafe fn objectAtIndexedSubscript(&self, idx: NSUInteger) -> Retained<ObjectType>;
 
         #[method(containsObject:)]
         pub unsafe fn containsObject(&self, an_object: &ObjectType) -> bool;
@@ -58,13 +58,16 @@ extern_methods!(
         ) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other firstObject)]
-        pub unsafe fn firstObject(&self) -> Option<Id<ObjectType>>;
+        pub unsafe fn firstObject(&self) -> Option<Retained<ObjectType>>;
 
         #[method_id(@__retain_semantics Other lastObject)]
-        pub unsafe fn lastObject(&self) -> Option<Id<ObjectType>>;
+        pub unsafe fn lastObject(&self) -> Option<Retained<ObjectType>>;
 
         #[method_id(@__retain_semantics Other objectsAtIndexes:)]
-        pub unsafe fn objectsAtIndexes(&self, indexes: &NSIndexSet) -> Id<NSArray<ObjectType>>;
+        pub unsafe fn objectsAtIndexes(
+            &self,
+            indexes: &NSIndexSet,
+        ) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(feature = "block2")]
         #[method(enumerateObjectsUsingBlock:)]
@@ -101,9 +104,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> PHFetchResult<ObjectType> {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

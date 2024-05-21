@@ -29,17 +29,17 @@ extern_methods!(
             this: Allocated<Self>,
             name: &NSString,
             elements: Option<&NSArray<NSFetchIndexElementDescription>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 
         #[cfg(feature = "NSFetchIndexElementDescription")]
         #[method_id(@__retain_semantics Other elements)]
-        pub unsafe fn elements(&self) -> Id<NSArray<NSFetchIndexElementDescription>>;
+        pub unsafe fn elements(&self) -> Retained<NSArray<NSFetchIndexElementDescription>>;
 
         #[cfg(feature = "NSFetchIndexElementDescription")]
         #[method(setElements:)]
@@ -47,10 +47,10 @@ extern_methods!(
 
         #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entity)]
-        pub unsafe fn entity(&self) -> Option<Id<NSEntityDescription>>;
+        pub unsafe fn entity(&self) -> Option<Retained<NSEntityDescription>>;
 
         #[method_id(@__retain_semantics Other partialIndexPredicate)]
-        pub unsafe fn partialIndexPredicate(&self) -> Option<Id<NSPredicate>>;
+        pub unsafe fn partialIndexPredicate(&self) -> Option<Retained<NSPredicate>>;
 
         #[method(setPartialIndexPredicate:)]
         pub unsafe fn setPartialIndexPredicate(
@@ -64,9 +64,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFetchIndexDescription {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -35,7 +35,7 @@ extern_methods!(
             client_data_hash: &NSData,
             credential_id: &NSData,
             attestation_object: &NSData,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other credentialWithRelyingParty:clientDataHash:credentialID:attestationObject:)]
         pub unsafe fn credentialWithRelyingParty_clientDataHash_credentialID_attestationObject(
@@ -43,19 +43,19 @@ extern_methods!(
             client_data_hash: &NSData,
             credential_id: &NSData,
             attestation_object: &NSData,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other relyingParty)]
-        pub unsafe fn relyingParty(&self) -> Id<NSString>;
+        pub unsafe fn relyingParty(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other clientDataHash)]
-        pub unsafe fn clientDataHash(&self) -> Id<NSData>;
+        pub unsafe fn clientDataHash(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other credentialID)]
-        pub unsafe fn credentialID(&self) -> Id<NSData>;
+        pub unsafe fn credentialID(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other attestationObject)]
-        pub unsafe fn attestationObject(&self) -> Id<NSData>;
+        pub unsafe fn attestationObject(&self) -> Retained<NSData>;
     }
 );
 
@@ -63,9 +63,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASPasskeyRegistrationCredential {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

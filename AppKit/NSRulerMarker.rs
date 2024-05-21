@@ -36,17 +36,17 @@ extern_methods!(
             location: CGFloat,
             image: &NSImage,
             image_origin: NSPoint,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSRulerView", feature = "NSView"))]
         #[method_id(@__retain_semantics Other ruler)]
-        pub unsafe fn ruler(&self, mtm: MainThreadMarker) -> Option<Id<NSRulerView>>;
+        pub unsafe fn ruler(&self, mtm: MainThreadMarker) -> Option<Retained<NSRulerView>>;
 
         #[method(markerLocation)]
         pub unsafe fn markerLocation(&self) -> CGFloat;
@@ -56,7 +56,7 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Id<NSImage>;
+        pub unsafe fn image(&self) -> Retained<NSImage>;
 
         #[cfg(feature = "NSImage")]
         #[method(setImage:)]
@@ -84,7 +84,7 @@ extern_methods!(
         pub unsafe fn isDragging(&self) -> bool;
 
         #[method_id(@__retain_semantics Other representedObject)]
-        pub unsafe fn representedObject(&self) -> Option<Id<ProtocolObject<dyn NSCopying>>>;
+        pub unsafe fn representedObject(&self) -> Option<Retained<ProtocolObject<dyn NSCopying>>>;
 
         #[method(setRepresentedObject:)]
         pub unsafe fn setRepresentedObject(
@@ -112,6 +112,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSRulerMarker {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

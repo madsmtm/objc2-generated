@@ -34,10 +34,10 @@ extern_methods!(
     #[cfg(feature = "CMLogItem")]
     unsafe impl CMAmbientPressureData {
         #[method_id(@__retain_semantics Other pressure)]
-        pub unsafe fn pressure(&self) -> Id<NSMeasurement<NSUnitPressure>>;
+        pub unsafe fn pressure(&self) -> Retained<NSMeasurement<NSUnitPressure>>;
 
         #[method_id(@__retain_semantics Other temperature)]
-        pub unsafe fn temperature(&self) -> Id<NSMeasurement<NSUnitTemperature>>;
+        pub unsafe fn temperature(&self) -> Retained<NSMeasurement<NSUnitTemperature>>;
     }
 );
 
@@ -46,9 +46,9 @@ extern_methods!(
     #[cfg(feature = "CMLogItem")]
     unsafe impl CMAmbientPressureData {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

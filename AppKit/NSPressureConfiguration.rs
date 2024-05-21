@@ -27,7 +27,7 @@ extern_methods!(
         pub unsafe fn initWithPressureBehavior(
             this: Allocated<Self>,
             pressure_behavior: NSPressureBehavior,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(set)]
         pub unsafe fn set(&self);
@@ -38,10 +38,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPressureConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -50,7 +50,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSView {
         #[method_id(@__retain_semantics Other pressureConfiguration)]
-        pub unsafe fn pressureConfiguration(&self) -> Option<Id<NSPressureConfiguration>>;
+        pub unsafe fn pressureConfiguration(&self) -> Option<Retained<NSPressureConfiguration>>;
 
         #[method(setPressureConfiguration:)]
         pub unsafe fn setPressureConfiguration(

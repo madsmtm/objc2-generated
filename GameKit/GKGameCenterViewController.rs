@@ -92,10 +92,13 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -105,7 +108,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl GKGameCenterViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -115,7 +118,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl GKGameCenterViewController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -126,7 +129,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other gameCenterDelegate)]
         pub unsafe fn gameCenterDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn GKGameCenterControllerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn GKGameCenterControllerDelegate>>>;
 
         #[method(setGameCenterDelegate:)]
         pub unsafe fn setGameCenterDelegate(
@@ -138,7 +141,7 @@ extern_methods!(
         pub unsafe fn initWithState(
             this: Allocated<Self>,
             state: GKGameCenterViewControllerState,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "GKLeaderboard")]
         #[method_id(@__retain_semantics Init initWithLeaderboardID:playerScope:timeScope:)]
@@ -147,7 +150,7 @@ extern_methods!(
             leaderboard_id: &NSString,
             player_scope: GKLeaderboardPlayerScope,
             time_scope: GKLeaderboardTimeScope,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "GKLeaderboard")]
         #[method_id(@__retain_semantics Init initWithLeaderboard:playerScope:)]
@@ -155,13 +158,13 @@ extern_methods!(
             this: Allocated<Self>,
             leaderboard: &GKLeaderboard,
             player_scope: GKLeaderboardPlayerScope,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithAchievementID:)]
         pub unsafe fn initWithAchievementID(
             this: Allocated<Self>,
             achievement_id: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -193,7 +196,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other leaderboardIdentifier)]
-        pub unsafe fn leaderboardIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn leaderboardIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method(setLeaderboardIdentifier:)]
@@ -201,7 +204,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other leaderboardCategory)]
-        pub unsafe fn leaderboardCategory(&self) -> Option<Id<NSString>>;
+        pub unsafe fn leaderboardCategory(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method(setLeaderboardCategory:)]

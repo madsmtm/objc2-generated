@@ -53,25 +53,25 @@ extern_methods!(
         pub unsafe fn initWithServers(
             this: Allocated<Self>,
             servers: &NSArray<NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other servers)]
-        pub unsafe fn servers(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn servers(&self) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other searchDomains)]
-        pub unsafe fn searchDomains(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn searchDomains(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setSearchDomains:)]
         pub unsafe fn setSearchDomains(&self, search_domains: Option<&NSArray<NSString>>);
 
         #[method_id(@__retain_semantics Other domainName)]
-        pub unsafe fn domainName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn domainName(&self) -> Option<Retained<NSString>>;
 
         #[method(setDomainName:)]
         pub unsafe fn setDomainName(&self, domain_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other matchDomains)]
-        pub unsafe fn matchDomains(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn matchDomains(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setMatchDomains:)]
         pub unsafe fn setMatchDomains(&self, match_domains: Option<&NSArray<NSString>>);
@@ -88,10 +88,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEDNSSettings {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -117,13 +117,13 @@ unsafe impl NSSecureCoding for NEDNSOverTLSSettings {}
 extern_methods!(
     unsafe impl NEDNSOverTLSSettings {
         #[method_id(@__retain_semantics Other serverName)]
-        pub unsafe fn serverName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn serverName(&self) -> Option<Retained<NSString>>;
 
         #[method(setServerName:)]
         pub unsafe fn setServerName(&self, server_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other identityReference)]
-        pub unsafe fn identityReference(&self) -> Option<Id<NSData>>;
+        pub unsafe fn identityReference(&self) -> Option<Retained<NSData>>;
 
         #[method(setIdentityReference:)]
         pub unsafe fn setIdentityReference(&self, identity_reference: Option<&NSData>);
@@ -137,7 +137,7 @@ extern_methods!(
         pub unsafe fn initWithServers(
             this: Allocated<Self>,
             servers: &NSArray<NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -145,10 +145,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEDNSOverTLSSettings {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -174,13 +174,13 @@ unsafe impl NSSecureCoding for NEDNSOverHTTPSSettings {}
 extern_methods!(
     unsafe impl NEDNSOverHTTPSSettings {
         #[method_id(@__retain_semantics Other serverURL)]
-        pub unsafe fn serverURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn serverURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setServerURL:)]
         pub unsafe fn setServerURL(&self, server_url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other identityReference)]
-        pub unsafe fn identityReference(&self) -> Option<Id<NSData>>;
+        pub unsafe fn identityReference(&self) -> Option<Retained<NSData>>;
 
         #[method(setIdentityReference:)]
         pub unsafe fn setIdentityReference(&self, identity_reference: Option<&NSData>);
@@ -194,7 +194,7 @@ extern_methods!(
         pub unsafe fn initWithServers(
             this: Allocated<Self>,
             servers: &NSArray<NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -202,9 +202,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEDNSOverHTTPSSettings {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

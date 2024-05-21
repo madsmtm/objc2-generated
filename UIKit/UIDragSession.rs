@@ -9,7 +9,7 @@ extern_protocol!(
     pub unsafe trait UIDragDropSession: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "UIDragItem")]
         #[method_id(@__retain_semantics Other items)]
-        unsafe fn items(&self) -> Id<NSArray<UIDragItem>>;
+        unsafe fn items(&self) -> Retained<NSArray<UIDragItem>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(locationInView:)]
@@ -37,7 +37,7 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait UIDragSession: UIDragDropSession + IsMainThreadOnly {
         #[method_id(@__retain_semantics Other localContext)]
-        unsafe fn localContext(&self) -> Option<Id<AnyObject>>;
+        unsafe fn localContext(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setLocalContext:)]
         unsafe fn setLocalContext(&self, local_context: Option<&AnyObject>);
@@ -70,7 +70,7 @@ extern_protocol!(
         NSProgressReporting + UIDragDropSession + IsMainThreadOnly
     {
         #[method_id(@__retain_semantics Other localDragSession)]
-        unsafe fn localDragSession(&self) -> Option<Id<ProtocolObject<dyn UIDragSession>>>;
+        unsafe fn localDragSession(&self) -> Option<Retained<ProtocolObject<dyn UIDragSession>>>;
 
         #[method(progressIndicatorStyle)]
         unsafe fn progressIndicatorStyle(&self) -> UIDropSessionProgressIndicatorStyle;
@@ -89,7 +89,7 @@ extern_protocol!(
             completion: &block2::Block<
                 dyn Fn(NonNull<NSArray<ProtocolObject<dyn NSItemProviderReading>>>),
             >,
-        ) -> Id<NSProgress>;
+        ) -> Retained<NSProgress>;
     }
 
     unsafe impl ProtocolType for dyn UIDropSession {}

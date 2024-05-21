@@ -20,28 +20,28 @@ unsafe impl NSObjectProtocol for AVPlaybackSpeed {}
 extern_methods!(
     unsafe impl AVPlaybackSpeed {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other systemDefaultSpeeds)]
-        pub unsafe fn systemDefaultSpeeds() -> Id<NSArray<AVPlaybackSpeed>>;
+        pub unsafe fn systemDefaultSpeeds() -> Retained<NSArray<AVPlaybackSpeed>>;
 
         #[method_id(@__retain_semantics Init initWithRate:localizedName:)]
         pub unsafe fn initWithRate_localizedName(
             this: Allocated<Self>,
             rate: c_float,
             localized_name: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(rate)]
         pub unsafe fn rate(&self) -> c_float;
 
         #[method_id(@__retain_semantics Other localizedName)]
-        pub unsafe fn localizedName(&self) -> Id<NSString>;
+        pub unsafe fn localizedName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other localizedNumericName)]
-        pub unsafe fn localizedNumericName(&self) -> Id<NSString>;
+        pub unsafe fn localizedNumericName(&self) -> Retained<NSString>;
     }
 );

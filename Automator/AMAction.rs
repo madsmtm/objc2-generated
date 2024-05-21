@@ -47,28 +47,28 @@ extern_methods!(
             this: Allocated<Self>,
             dict: Option<&NSDictionary<NSString, AnyObject>>,
             archived: bool,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             file_url: &NSURL,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(ignoresInput)]
         pub unsafe fn ignoresInput(&self) -> bool;
 
         #[method_id(@__retain_semantics Other selectedInputType)]
-        pub unsafe fn selectedInputType(&self) -> Option<Id<NSString>>;
+        pub unsafe fn selectedInputType(&self) -> Option<Retained<NSString>>;
 
         #[method(setSelectedInputType:)]
         pub unsafe fn setSelectedInputType(&self, selected_input_type: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other selectedOutputType)]
-        pub unsafe fn selectedOutputType(&self) -> Option<Id<NSString>>;
+        pub unsafe fn selectedOutputType(&self) -> Option<Retained<NSString>>;
 
         #[method(setSelectedOutputType:)]
         pub unsafe fn setSelectedOutputType(&self, selected_output_type: Option<&NSString>);
@@ -85,14 +85,14 @@ extern_methods!(
             &self,
             input: Option<&AnyObject>,
             an_action: Option<&AMAction>,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
-        ) -> Option<Id<AnyObject>>;
+            error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
+        ) -> Option<Retained<AnyObject>>;
 
         #[method_id(@__retain_semantics Other runWithInput:error:_)]
         pub unsafe fn runWithInput_error(
             &self,
             input: Option<&AnyObject>,
-        ) -> Result<Id<AnyObject>, Id<NSError>>;
+        ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[method(runAsynchronouslyWithInput:)]
         pub unsafe fn runAsynchronouslyWithInput(&self, input: Option<&AnyObject>);
@@ -111,7 +111,7 @@ extern_methods!(
         pub unsafe fn finishRunningWithError(&self, error: Option<&NSError>);
 
         #[method_id(@__retain_semantics Other output)]
-        pub unsafe fn output(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn output(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setOutput:)]
         pub unsafe fn setOutput(&self, output: Option<&AnyObject>);
@@ -152,9 +152,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AMAction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

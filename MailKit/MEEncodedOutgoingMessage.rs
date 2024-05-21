@@ -29,10 +29,10 @@ extern_methods!(
             raw_data: &NSData,
             is_signed: bool,
             is_encrypted: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other rawData)]
-        pub unsafe fn rawData(&self) -> Id<NSData>;
+        pub unsafe fn rawData(&self) -> Retained<NSData>;
 
         #[method(isSigned)]
         pub unsafe fn isSigned(&self) -> bool;
@@ -46,9 +46,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MEEncodedOutgoingMessage {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

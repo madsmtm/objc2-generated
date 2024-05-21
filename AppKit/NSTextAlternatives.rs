@@ -28,13 +28,13 @@ extern_methods!(
             this: Allocated<Self>,
             primary_string: &NSString,
             alternative_strings: &NSArray<NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other primaryString)]
-        pub unsafe fn primaryString(&self) -> Id<NSString>;
+        pub unsafe fn primaryString(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other alternativeStrings)]
-        pub unsafe fn alternativeStrings(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn alternativeStrings(&self) -> Retained<NSArray<NSString>>;
 
         #[method(noteSelectedAlternativeString:)]
         pub unsafe fn noteSelectedAlternativeString(&self, alternative_string: &NSString);
@@ -45,10 +45,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextAlternatives {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

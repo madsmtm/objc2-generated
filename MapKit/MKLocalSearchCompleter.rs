@@ -67,7 +67,7 @@ unsafe impl NSObjectProtocol for MKLocalSearchCompleter {}
 extern_methods!(
     unsafe impl MKLocalSearchCompleter {
         #[method_id(@__retain_semantics Other queryFragment)]
-        pub unsafe fn queryFragment(&self) -> Id<NSString>;
+        pub unsafe fn queryFragment(&self) -> Retained<NSString>;
 
         #[method(setQueryFragment:)]
         pub unsafe fn setQueryFragment(&self, query_fragment: &NSString);
@@ -96,7 +96,7 @@ extern_methods!(
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
-        pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
+        pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         #[method(setPointOfInterestFilter:)]
@@ -108,7 +108,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn MKLocalSearchCompleterDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MKLocalSearchCompleterDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -117,7 +117,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other results)]
-        pub unsafe fn results(&self) -> Id<NSArray<MKLocalSearchCompletion>>;
+        pub unsafe fn results(&self) -> Retained<NSArray<MKLocalSearchCompletion>>;
 
         #[method(isSearching)]
         pub unsafe fn isSearching(&self) -> bool;
@@ -131,10 +131,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKLocalSearchCompleter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -171,16 +171,16 @@ unsafe impl NSObjectProtocol for MKLocalSearchCompletion {}
 extern_methods!(
     unsafe impl MKLocalSearchCompletion {
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other titleHighlightRanges)]
-        pub unsafe fn titleHighlightRanges(&self) -> Id<NSArray<NSValue>>;
+        pub unsafe fn titleHighlightRanges(&self) -> Retained<NSArray<NSValue>>;
 
         #[method_id(@__retain_semantics Other subtitle)]
-        pub unsafe fn subtitle(&self) -> Id<NSString>;
+        pub unsafe fn subtitle(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other subtitleHighlightRanges)]
-        pub unsafe fn subtitleHighlightRanges(&self) -> Id<NSArray<NSValue>>;
+        pub unsafe fn subtitleHighlightRanges(&self) -> Retained<NSArray<NSValue>>;
     }
 );
 
@@ -188,10 +188,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKLocalSearchCompletion {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -202,6 +202,6 @@ extern_methods!(
         pub unsafe fn initWithCompletion(
             this: Allocated<Self>,
             completion: &MKLocalSearchCompletion,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

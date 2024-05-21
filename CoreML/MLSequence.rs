@@ -29,19 +29,19 @@ extern_methods!(
 
         #[cfg(feature = "MLFeatureType")]
         #[method_id(@__retain_semantics Other emptySequenceWithType:)]
-        pub unsafe fn emptySequenceWithType(r#type: MLFeatureType) -> Id<Self>;
+        pub unsafe fn emptySequenceWithType(r#type: MLFeatureType) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other sequenceWithStringArray:)]
-        pub unsafe fn sequenceWithStringArray(string_values: &NSArray<NSString>) -> Id<Self>;
+        pub unsafe fn sequenceWithStringArray(string_values: &NSArray<NSString>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other stringValues)]
-        pub unsafe fn stringValues(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn stringValues(&self) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other sequenceWithInt64Array:)]
-        pub unsafe fn sequenceWithInt64Array(int64_values: &NSArray<NSNumber>) -> Id<Self>;
+        pub unsafe fn sequenceWithInt64Array(int64_values: &NSArray<NSNumber>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other int64Values)]
-        pub unsafe fn int64Values(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn int64Values(&self) -> Retained<NSArray<NSNumber>>;
     }
 );
 
@@ -49,9 +49,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLSequence {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

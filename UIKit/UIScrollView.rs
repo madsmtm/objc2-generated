@@ -226,14 +226,15 @@ extern_methods!(
 
         #[cfg(feature = "UILayoutGuide")]
         #[method_id(@__retain_semantics Other contentLayoutGuide)]
-        pub unsafe fn contentLayoutGuide(&self) -> Id<UILayoutGuide>;
+        pub unsafe fn contentLayoutGuide(&self) -> Retained<UILayoutGuide>;
 
         #[cfg(feature = "UILayoutGuide")]
         #[method_id(@__retain_semantics Other frameLayoutGuide)]
-        pub unsafe fn frameLayoutGuide(&self) -> Id<UILayoutGuide>;
+        pub unsafe fn frameLayoutGuide(&self) -> Retained<UILayoutGuide>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn UIScrollViewDelegate>>>;
+        pub unsafe fn delegate(&self)
+            -> Option<Retained<ProtocolObject<dyn UIScrollViewDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -472,16 +473,16 @@ extern_methods!(
 
         #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
         #[method_id(@__retain_semantics Other panGestureRecognizer)]
-        pub unsafe fn panGestureRecognizer(&self) -> Id<UIPanGestureRecognizer>;
+        pub unsafe fn panGestureRecognizer(&self) -> Retained<UIPanGestureRecognizer>;
 
         #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPinchGestureRecognizer"))]
         #[method_id(@__retain_semantics Other pinchGestureRecognizer)]
-        pub unsafe fn pinchGestureRecognizer(&self) -> Option<Id<UIPinchGestureRecognizer>>;
+        pub unsafe fn pinchGestureRecognizer(&self) -> Option<Retained<UIPinchGestureRecognizer>>;
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[deprecated = "Configuring the panGestureRecognizer for indirect scrolling automatically supports directional presses now, so this property is no longer useful."]
         #[method_id(@__retain_semantics Other directionalPressGestureRecognizer)]
-        pub unsafe fn directionalPressGestureRecognizer(&self) -> Id<UIGestureRecognizer>;
+        pub unsafe fn directionalPressGestureRecognizer(&self) -> Retained<UIGestureRecognizer>;
 
         #[method(keyboardDismissMode)]
         pub unsafe fn keyboardDismissMode(&self) -> UIScrollViewKeyboardDismissMode;
@@ -494,7 +495,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIControl", feature = "UIRefreshControl"))]
         #[method_id(@__retain_semantics Other refreshControl)]
-        pub unsafe fn refreshControl(&self) -> Option<Id<UIRefreshControl>>;
+        pub unsafe fn refreshControl(&self) -> Option<Retained<UIRefreshControl>>;
 
         #[cfg(all(feature = "UIControl", feature = "UIRefreshControl"))]
         #[method(setRefreshControl:)]
@@ -513,10 +514,13 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIScrollView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -525,10 +529,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIScrollView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -589,7 +593,7 @@ extern_protocol!(
         unsafe fn viewForZoomingInScrollView(
             &self,
             scroll_view: &UIScrollView,
-        ) -> Option<Id<UIView>>;
+        ) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]

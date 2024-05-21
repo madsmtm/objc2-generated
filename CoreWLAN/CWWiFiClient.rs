@@ -71,55 +71,56 @@ unsafe impl NSObjectProtocol for CWWiFiClient {}
 extern_methods!(
     unsafe impl CWWiFiClient {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other sharedWiFiClient)]
-        pub unsafe fn sharedWiFiClient() -> Id<CWWiFiClient>;
+        pub unsafe fn sharedWiFiClient() -> Retained<CWWiFiClient>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CWInterface")]
         #[method_id(@__retain_semantics Other interface)]
-        pub unsafe fn interface(&self) -> Option<Id<CWInterface>>;
+        pub unsafe fn interface(&self) -> Option<Retained<CWInterface>>;
 
         #[method_id(@__retain_semantics Other interfaceNames)]
-        pub unsafe fn interfaceNames(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn interfaceNames(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[deprecated = "Use -[CWWiFiClient interfaceNames] instead"]
         #[method_id(@__retain_semantics Other interfaceNames)]
-        pub unsafe fn interfaceNames_class() -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn interfaceNames_class() -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(feature = "CWInterface")]
         #[method_id(@__retain_semantics Other interfaceWithName:)]
         pub unsafe fn interfaceWithName(
             &self,
             interface_name: Option<&NSString>,
-        ) -> Option<Id<CWInterface>>;
+        ) -> Option<Retained<CWInterface>>;
 
         #[cfg(feature = "CWInterface")]
         #[method_id(@__retain_semantics Other interfaces)]
-        pub unsafe fn interfaces(&self) -> Option<Id<NSArray<CWInterface>>>;
+        pub unsafe fn interfaces(&self) -> Option<Retained<NSArray<CWInterface>>>;
 
         #[cfg(feature = "CoreWLANTypes")]
         #[method(startMonitoringEventWithType:error:_)]
         pub unsafe fn startMonitoringEventWithType_error(
             &self,
             r#type: CWEventType,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "CoreWLANTypes")]
         #[method(stopMonitoringEventWithType:error:_)]
         pub unsafe fn stopMonitoringEventWithType_error(
             &self,
             r#type: CWEventType,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(stopMonitoringAllEventsAndReturnError:_)]
-        pub unsafe fn stopMonitoringAllEventsAndReturnError(&self) -> Result<(), Id<NSError>>;
+        pub unsafe fn stopMonitoringAllEventsAndReturnError(&self)
+            -> Result<(), Retained<NSError>>;
     }
 );
 
@@ -127,6 +128,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWWiFiClient {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

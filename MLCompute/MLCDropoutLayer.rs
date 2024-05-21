@@ -34,7 +34,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithRate:seed:)]
-        pub unsafe fn layerWithRate_seed(rate: c_float, seed: NSUInteger) -> Id<Self>;
+        pub unsafe fn layerWithRate_seed(rate: c_float, seed: NSUInteger) -> Retained<Self>;
     }
 );
 
@@ -44,10 +44,10 @@ extern_methods!(
     unsafe impl MLCDropoutLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

@@ -62,7 +62,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UITabBarController {
         #[method_id(@__retain_semantics Other viewControllers)]
-        pub unsafe fn viewControllers(&self) -> Option<Id<NSArray<UIViewController>>>;
+        pub unsafe fn viewControllers(&self) -> Option<Retained<NSArray<UIViewController>>>;
 
         #[method(setViewControllers:)]
         pub unsafe fn setViewControllers(
@@ -78,7 +78,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other selectedViewController)]
-        pub unsafe fn selectedViewController(&self) -> Option<Id<UIViewController>>;
+        pub unsafe fn selectedViewController(&self) -> Option<Retained<UIViewController>>;
 
         #[method(setSelectedViewController:)]
         pub unsafe fn setSelectedViewController(
@@ -94,10 +94,12 @@ extern_methods!(
 
         #[cfg(feature = "UINavigationController")]
         #[method_id(@__retain_semantics Other moreNavigationController)]
-        pub unsafe fn moreNavigationController(&self) -> Id<UINavigationController>;
+        pub unsafe fn moreNavigationController(&self) -> Retained<UINavigationController>;
 
         #[method_id(@__retain_semantics Other customizableViewControllers)]
-        pub unsafe fn customizableViewControllers(&self) -> Option<Id<NSArray<UIViewController>>>;
+        pub unsafe fn customizableViewControllers(
+            &self,
+        ) -> Option<Retained<NSArray<UIViewController>>>;
 
         #[method(setCustomizableViewControllers:)]
         pub unsafe fn setCustomizableViewControllers(
@@ -107,11 +109,12 @@ extern_methods!(
 
         #[cfg(all(feature = "UITabBar", feature = "UIView"))]
         #[method_id(@__retain_semantics Other tabBar)]
-        pub unsafe fn tabBar(&self) -> Id<UITabBar>;
+        pub unsafe fn tabBar(&self) -> Retained<UITabBar>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self)
-            -> Option<Id<ProtocolObject<dyn UITabBarControllerDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn UITabBarControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -130,10 +133,13 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -142,10 +148,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UITabBarController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -235,7 +241,7 @@ extern_protocol!(
             &self,
             tab_bar_controller: &UITabBarController,
             animation_controller: &ProtocolObject<dyn UIViewControllerAnimatedTransitioning>,
-        ) -> Option<Id<ProtocolObject<dyn UIViewControllerInteractiveTransitioning>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIViewControllerInteractiveTransitioning>>>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -249,7 +255,7 @@ extern_protocol!(
             tab_bar_controller: &UITabBarController,
             from_vc: &UIViewController,
             to_vc: &UIViewController,
-        ) -> Option<Id<ProtocolObject<dyn UIViewControllerAnimatedTransitioning>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIViewControllerAnimatedTransitioning>>>;
     }
 
     unsafe impl ProtocolType for dyn UITabBarControllerDelegate {}
@@ -261,19 +267,19 @@ extern_methods!(
     unsafe impl UIViewController {
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
         #[method_id(@__retain_semantics Other tabBarItem)]
-        pub unsafe fn tabBarItem(&self) -> Option<Id<UITabBarItem>>;
+        pub unsafe fn tabBarItem(&self) -> Option<Retained<UITabBarItem>>;
 
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
         #[method(setTabBarItem:)]
         pub unsafe fn setTabBarItem(&self, tab_bar_item: Option<&UITabBarItem>);
 
         #[method_id(@__retain_semantics Other tabBarController)]
-        pub unsafe fn tabBarController(&self) -> Option<Id<UITabBarController>>;
+        pub unsafe fn tabBarController(&self) -> Option<Retained<UITabBarController>>;
 
         #[cfg(all(feature = "UIScrollView", feature = "UIView"))]
         #[deprecated = "Use -setContentScrollView:forEdge: instead."]
         #[method_id(@__retain_semantics Other tabBarObservedScrollView)]
-        pub unsafe fn tabBarObservedScrollView(&self) -> Option<Id<UIScrollView>>;
+        pub unsafe fn tabBarObservedScrollView(&self) -> Option<Retained<UIScrollView>>;
 
         #[cfg(all(feature = "UIScrollView", feature = "UIView"))]
         #[deprecated = "Use -setContentScrollView:forEdge: instead."]

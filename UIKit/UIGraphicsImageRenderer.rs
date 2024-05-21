@@ -85,7 +85,9 @@ extern_methods!(
 
         #[cfg(feature = "UITraitCollection")]
         #[method_id(@__retain_semantics Other formatForTraitCollection:)]
-        pub unsafe fn formatForTraitCollection(trait_collection: &UITraitCollection) -> Id<Self>;
+        pub unsafe fn formatForTraitCollection(
+            trait_collection: &UITraitCollection,
+        ) -> Retained<Self>;
     }
 );
 
@@ -95,10 +97,10 @@ extern_methods!(
     unsafe impl UIGraphicsImageRendererFormat {
         #[deprecated]
         #[method_id(@__retain_semantics Other defaultFormat)]
-        pub unsafe fn defaultFormat() -> Id<Self>;
+        pub unsafe fn defaultFormat() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other preferredFormat)]
-        pub unsafe fn preferredFormat() -> Id<Self>;
+        pub unsafe fn preferredFormat() -> Retained<Self>;
     }
 );
 
@@ -107,10 +109,10 @@ extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsImageRendererFormat {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -135,7 +137,7 @@ extern_methods!(
     unsafe impl UIGraphicsImageRendererContext {
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other currentImage)]
-        pub unsafe fn currentImage(&self) -> Id<UIImage>;
+        pub unsafe fn currentImage(&self) -> Retained<UIImage>;
     }
 );
 
@@ -144,10 +146,10 @@ extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsImageRendererContext {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -171,35 +173,35 @@ extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsImageRenderer {
         #[method_id(@__retain_semantics Init initWithSize:)]
-        pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Id<Self>;
+        pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithSize:format:)]
         pub unsafe fn initWithSize_format(
             this: Allocated<Self>,
             size: CGSize,
             format: &UIGraphicsImageRendererFormat,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithBounds:format:)]
         pub unsafe fn initWithBounds_format(
             this: Allocated<Self>,
             bounds: CGRect,
             format: &UIGraphicsImageRendererFormat,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
         #[method_id(@__retain_semantics Other imageWithActions:)]
         pub unsafe fn imageWithActions(
             &self,
             actions: UIGraphicsImageDrawingActions,
-        ) -> Id<UIImage>;
+        ) -> Retained<UIImage>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Other PNGDataWithActions:)]
         pub unsafe fn PNGDataWithActions(
             &self,
             actions: UIGraphicsImageDrawingActions,
-        ) -> Id<NSData>;
+        ) -> Retained<NSData>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Other JPEGDataWithCompressionQuality:actions:)]
@@ -207,7 +209,7 @@ extern_methods!(
             &self,
             compression_quality: CGFloat,
             actions: UIGraphicsImageDrawingActions,
-        ) -> Id<NSData>;
+        ) -> Retained<NSData>;
     }
 );
 
@@ -216,7 +218,7 @@ extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsImageRenderer {
         #[method_id(@__retain_semantics Init initWithBounds:)]
-        pub unsafe fn initWithBounds(this: Allocated<Self>, bounds: CGRect) -> Id<Self>;
+        pub unsafe fn initWithBounds(this: Allocated<Self>, bounds: CGRect) -> Retained<Self>;
     }
 );
 
@@ -225,9 +227,9 @@ extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsImageRenderer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

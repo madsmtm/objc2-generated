@@ -64,7 +64,7 @@ extern_methods!(
     unsafe impl DOMKeyboardEvent {
         #[deprecated]
         #[method_id(@__retain_semantics Other keyIdentifier)]
-        pub unsafe fn keyIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn keyIdentifier(&self) -> Retained<NSString>;
 
         #[method(location)]
         pub unsafe fn location(&self) -> c_uint;
@@ -185,7 +185,7 @@ extern_methods!(
     unsafe impl DOMKeyboardEvent {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -199,6 +199,6 @@ extern_methods!(
     ))]
     unsafe impl DOMKeyboardEvent {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

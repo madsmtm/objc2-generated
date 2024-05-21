@@ -119,62 +119,62 @@ unsafe impl NSObjectProtocol for PHPickerFilter {}
 extern_methods!(
     unsafe impl PHPickerFilter {
         #[method_id(@__retain_semantics Other imagesFilter)]
-        pub unsafe fn imagesFilter() -> Id<PHPickerFilter>;
+        pub unsafe fn imagesFilter() -> Retained<PHPickerFilter>;
 
         #[method_id(@__retain_semantics Other videosFilter)]
-        pub unsafe fn videosFilter() -> Id<PHPickerFilter>;
+        pub unsafe fn videosFilter() -> Retained<PHPickerFilter>;
 
         #[method_id(@__retain_semantics Other livePhotosFilter)]
-        pub unsafe fn livePhotosFilter() -> Id<PHPickerFilter>;
+        pub unsafe fn livePhotosFilter() -> Retained<PHPickerFilter>;
 
         #[method_id(@__retain_semantics Other depthEffectPhotosFilter)]
-        pub unsafe fn depthEffectPhotosFilter() -> Id<PHPickerFilter>;
+        pub unsafe fn depthEffectPhotosFilter() -> Retained<PHPickerFilter>;
 
         #[method_id(@__retain_semantics Other burstsFilter)]
-        pub unsafe fn burstsFilter() -> Id<PHPickerFilter>;
+        pub unsafe fn burstsFilter() -> Retained<PHPickerFilter>;
 
         #[method_id(@__retain_semantics Other panoramasFilter)]
-        pub unsafe fn panoramasFilter() -> Id<PHPickerFilter>;
+        pub unsafe fn panoramasFilter() -> Retained<PHPickerFilter>;
 
         #[method_id(@__retain_semantics Other screenshotsFilter)]
-        pub unsafe fn screenshotsFilter() -> Id<PHPickerFilter>;
+        pub unsafe fn screenshotsFilter() -> Retained<PHPickerFilter>;
 
         #[method_id(@__retain_semantics Other screenRecordingsFilter)]
-        pub unsafe fn screenRecordingsFilter() -> Id<PHPickerFilter>;
+        pub unsafe fn screenRecordingsFilter() -> Retained<PHPickerFilter>;
 
         #[method_id(@__retain_semantics Other cinematicVideosFilter)]
-        pub unsafe fn cinematicVideosFilter() -> Id<PHPickerFilter>;
+        pub unsafe fn cinematicVideosFilter() -> Retained<PHPickerFilter>;
 
         #[method_id(@__retain_semantics Other slomoVideosFilter)]
-        pub unsafe fn slomoVideosFilter() -> Id<PHPickerFilter>;
+        pub unsafe fn slomoVideosFilter() -> Retained<PHPickerFilter>;
 
         #[method_id(@__retain_semantics Other timelapseVideosFilter)]
-        pub unsafe fn timelapseVideosFilter() -> Id<PHPickerFilter>;
+        pub unsafe fn timelapseVideosFilter() -> Retained<PHPickerFilter>;
 
         #[cfg(feature = "objc2-photos")]
         #[method_id(@__retain_semantics Other playbackStyleFilter:)]
         pub unsafe fn playbackStyleFilter(
             playback_style: PHAssetPlaybackStyle,
-        ) -> Id<PHPickerFilter>;
+        ) -> Retained<PHPickerFilter>;
 
         #[method_id(@__retain_semantics Other anyFilterMatchingSubfilters:)]
         pub unsafe fn anyFilterMatchingSubfilters(
             subfilters: &NSArray<PHPickerFilter>,
-        ) -> Id<PHPickerFilter>;
+        ) -> Retained<PHPickerFilter>;
 
         #[method_id(@__retain_semantics Other allFilterMatchingSubfilters:)]
         pub unsafe fn allFilterMatchingSubfilters(
             subfilters: &NSArray<PHPickerFilter>,
-        ) -> Id<PHPickerFilter>;
+        ) -> Retained<PHPickerFilter>;
 
         #[method_id(@__retain_semantics Other notFilterOfSubfilter:)]
-        pub unsafe fn notFilterOfSubfilter(subfilter: &PHPickerFilter) -> Id<PHPickerFilter>;
+        pub unsafe fn notFilterOfSubfilter(subfilter: &PHPickerFilter) -> Retained<PHPickerFilter>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -219,10 +219,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHPickerUpdateConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -266,13 +266,13 @@ extern_methods!(
         pub unsafe fn setSelectionLimit(&self, selection_limit: NSInteger);
 
         #[method_id(@__retain_semantics Other filter)]
-        pub unsafe fn filter(&self) -> Option<Id<PHPickerFilter>>;
+        pub unsafe fn filter(&self) -> Option<Retained<PHPickerFilter>>;
 
         #[method(setFilter:)]
         pub unsafe fn setFilter(&self, filter: Option<&PHPickerFilter>);
 
         #[method_id(@__retain_semantics Other preselectedAssetIdentifiers)]
-        pub unsafe fn preselectedAssetIdentifiers(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn preselectedAssetIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         #[method(setPreselectedAssetIdentifiers:)]
         pub unsafe fn setPreselectedAssetIdentifiers(
@@ -310,10 +310,10 @@ extern_methods!(
         pub unsafe fn initWithPhotoLibrary(
             this: Allocated<Self>,
             photo_library: &PHPhotoLibrary,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -321,7 +321,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHPickerConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -340,16 +340,16 @@ unsafe impl NSObjectProtocol for PHPickerResult {}
 extern_methods!(
     unsafe impl PHPickerResult {
         #[method_id(@__retain_semantics Other itemProvider)]
-        pub unsafe fn itemProvider(&self) -> Id<NSItemProvider>;
+        pub unsafe fn itemProvider(&self) -> Retained<NSItemProvider>;
 
         #[method_id(@__retain_semantics Other assetIdentifier)]
-        pub unsafe fn assetIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn assetIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -410,12 +410,12 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl PHPickerViewController {
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration(&self) -> Id<PHPickerConfiguration>;
+        pub unsafe fn configuration(&self) -> Retained<PHPickerConfiguration>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn PHPickerViewControllerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn PHPickerViewControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -427,7 +427,7 @@ extern_methods!(
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &PHPickerConfiguration,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(updatePickerUsingConfiguration:)]
         pub unsafe fn updatePickerUsingConfiguration(
@@ -455,19 +455,22 @@ extern_methods!(
         pub unsafe fn zoomOut(&self);
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );

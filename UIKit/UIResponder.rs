@@ -168,7 +168,7 @@ unsafe impl UIResponderStandardEditActions for UIResponder {}
 extern_methods!(
     unsafe impl UIResponder {
         #[method_id(@__retain_semantics Other nextResponder)]
-        pub unsafe fn nextResponder(&self) -> Option<Id<UIResponder>>;
+        pub unsafe fn nextResponder(&self) -> Option<Retained<UIResponder>>;
 
         #[method(canBecomeFirstResponder)]
         pub unsafe fn canBecomeFirstResponder(&self) -> bool;
@@ -285,7 +285,7 @@ extern_methods!(
             &self,
             action: Sel,
             sender: Option<&AnyObject>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "UIMenuBuilder")]
         #[method(buildMenuWithBuilder:)]
@@ -296,7 +296,7 @@ extern_methods!(
         pub unsafe fn validateCommand(&self, command: &UICommand);
 
         #[method_id(@__retain_semantics Other undoManager)]
-        pub unsafe fn undoManager(&self) -> Option<Id<NSUndoManager>>;
+        pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
 
         #[method(editingInteractionConfiguration)]
         pub unsafe fn editingInteractionConfiguration(&self) -> UIEditingInteractionConfiguration;
@@ -307,10 +307,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIResponder {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -323,7 +323,7 @@ extern_methods!(
             feature = "UIMenuElement"
         ))]
         #[method_id(@__retain_semantics Other keyCommands)]
-        pub unsafe fn keyCommands(&self) -> Option<Id<NSArray<UIKeyCommand>>>;
+        pub unsafe fn keyCommands(&self) -> Option<Retained<NSArray<UIKeyCommand>>>;
     }
 );
 
@@ -332,30 +332,32 @@ extern_methods!(
     unsafe impl UIResponder {
         #[cfg(feature = "UIView")]
         #[method_id(@__retain_semantics Other inputView)]
-        pub unsafe fn inputView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn inputView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UIView")]
         #[method_id(@__retain_semantics Other inputAccessoryView)]
-        pub unsafe fn inputAccessoryView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn inputAccessoryView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other inputAssistantItem)]
-        pub unsafe fn inputAssistantItem(&self) -> Id<UITextInputAssistantItem>;
+        pub unsafe fn inputAssistantItem(&self) -> Retained<UITextInputAssistantItem>;
 
         #[cfg(all(feature = "UIInputViewController", feature = "UIViewController"))]
         #[method_id(@__retain_semantics Other inputViewController)]
-        pub unsafe fn inputViewController(&self) -> Option<Id<UIInputViewController>>;
+        pub unsafe fn inputViewController(&self) -> Option<Retained<UIInputViewController>>;
 
         #[cfg(all(feature = "UIInputViewController", feature = "UIViewController"))]
         #[method_id(@__retain_semantics Other inputAccessoryViewController)]
-        pub unsafe fn inputAccessoryViewController(&self) -> Option<Id<UIInputViewController>>;
+        pub unsafe fn inputAccessoryViewController(
+            &self,
+        ) -> Option<Retained<UIInputViewController>>;
 
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other textInputMode)]
-        pub unsafe fn textInputMode(&self) -> Option<Id<UITextInputMode>>;
+        pub unsafe fn textInputMode(&self) -> Option<Retained<UITextInputMode>>;
 
         #[method_id(@__retain_semantics Other textInputContextIdentifier)]
-        pub unsafe fn textInputContextIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn textInputContextIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(clearTextInputContextIdentifier:)]
         pub unsafe fn clearTextInputContextIdentifier(identifier: &NSString, mtm: MainThreadMarker);
@@ -453,7 +455,7 @@ extern_methods!(
     /// ActivityContinuation
     unsafe impl UIResponder {
         #[method_id(@__retain_semantics Other userActivity)]
-        pub unsafe fn userActivity(&self) -> Option<Id<NSUserActivity>>;
+        pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
 
         #[method(setUserActivity:)]
         pub unsafe fn setUserActivity(&self, user_activity: Option<&NSUserActivity>);

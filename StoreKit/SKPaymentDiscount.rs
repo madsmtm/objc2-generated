@@ -31,22 +31,22 @@ extern_methods!(
             nonce: &NSUUID,
             signature: &NSString,
             timestamp: &NSNumber,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other keyIdentifier)]
-        pub unsafe fn keyIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn keyIdentifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other nonce)]
-        pub unsafe fn nonce(&self) -> Id<NSUUID>;
+        pub unsafe fn nonce(&self) -> Retained<NSUUID>;
 
         #[method_id(@__retain_semantics Other signature)]
-        pub unsafe fn signature(&self) -> Id<NSString>;
+        pub unsafe fn signature(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other timestamp)]
-        pub unsafe fn timestamp(&self) -> Id<NSNumber>;
+        pub unsafe fn timestamp(&self) -> Retained<NSNumber>;
     }
 );
 
@@ -54,9 +54,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPaymentDiscount {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

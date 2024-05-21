@@ -26,15 +26,15 @@ unsafe impl NSSecureCoding for MLKey {}
 extern_methods!(
     unsafe impl MLKey {
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other scope)]
-        pub unsafe fn scope(&self) -> Option<Id<NSString>>;
+        pub unsafe fn scope(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

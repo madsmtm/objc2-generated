@@ -53,19 +53,19 @@ unsafe impl NSSecureCoding for NEPrivateLTENetwork {}
 extern_methods!(
     unsafe impl NEPrivateLTENetwork {
         #[method_id(@__retain_semantics Other mobileCountryCode)]
-        pub unsafe fn mobileCountryCode(&self) -> Id<NSString>;
+        pub unsafe fn mobileCountryCode(&self) -> Retained<NSString>;
 
         #[method(setMobileCountryCode:)]
         pub unsafe fn setMobileCountryCode(&self, mobile_country_code: &NSString);
 
         #[method_id(@__retain_semantics Other mobileNetworkCode)]
-        pub unsafe fn mobileNetworkCode(&self) -> Id<NSString>;
+        pub unsafe fn mobileNetworkCode(&self) -> Retained<NSString>;
 
         #[method(setMobileNetworkCode:)]
         pub unsafe fn setMobileNetworkCode(&self, mobile_network_code: &NSString);
 
         #[method_id(@__retain_semantics Other trackingAreaCode)]
-        pub unsafe fn trackingAreaCode(&self) -> Option<Id<NSString>>;
+        pub unsafe fn trackingAreaCode(&self) -> Option<Retained<NSString>>;
 
         #[method(setTrackingAreaCode:)]
         pub unsafe fn setTrackingAreaCode(&self, tracking_area_code: Option<&NSString>);
@@ -76,10 +76,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEPrivateLTENetwork {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -98,13 +98,13 @@ unsafe impl NSObjectProtocol for NEAppPushManager {}
 extern_methods!(
     unsafe impl NEAppPushManager {
         #[method_id(@__retain_semantics Other matchSSIDs)]
-        pub unsafe fn matchSSIDs(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn matchSSIDs(&self) -> Retained<NSArray<NSString>>;
 
         #[method(setMatchSSIDs:)]
         pub unsafe fn setMatchSSIDs(&self, match_ssi_ds: &NSArray<NSString>);
 
         #[method_id(@__retain_semantics Other matchPrivateLTENetworks)]
-        pub unsafe fn matchPrivateLTENetworks(&self) -> Id<NSArray<NEPrivateLTENetwork>>;
+        pub unsafe fn matchPrivateLTENetworks(&self) -> Retained<NSArray<NEPrivateLTENetwork>>;
 
         #[method(setMatchPrivateLTENetworks:)]
         pub unsafe fn setMatchPrivateLTENetworks(
@@ -113,7 +113,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other providerConfiguration)]
-        pub unsafe fn providerConfiguration(&self) -> Id<NSDictionary<NSString, AnyObject>>;
+        pub unsafe fn providerConfiguration(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[method(setProviderConfiguration:)]
         pub unsafe fn setProviderConfiguration(
@@ -122,7 +122,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other providerBundleIdentifier)]
-        pub unsafe fn providerBundleIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn providerBundleIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(setProviderBundleIdentifier:)]
         pub unsafe fn setProviderBundleIdentifier(
@@ -131,7 +131,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NEAppPushDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NEAppPushDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NEAppPushDelegate>>);
@@ -166,7 +166,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other localizedDescription)]
-        pub unsafe fn localizedDescription(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         #[method(setLocalizedDescription:)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
@@ -186,10 +186,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEAppPushManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

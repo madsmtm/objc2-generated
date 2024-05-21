@@ -52,17 +52,17 @@ unsafe impl NSSecureCoding for UIListSeparatorConfiguration {}
 extern_methods!(
     unsafe impl UIListSeparatorConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "UICollectionLayoutList")]
         #[method_id(@__retain_semantics Init initWithListAppearance:)]
         pub unsafe fn initWithListAppearance(
             this: Allocated<Self>,
             list_appearance: UICollectionLayoutListAppearance,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(topSeparatorVisibility)]
         pub unsafe fn topSeparatorVisibility(&self) -> UIListSeparatorVisibility;
@@ -103,7 +103,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other color)]
-        pub unsafe fn color(&self) -> Id<UIColor>;
+        pub unsafe fn color(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
         #[method(setColor:)]
@@ -111,7 +111,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other multipleSelectionColor)]
-        pub unsafe fn multipleSelectionColor(&self) -> Id<UIColor>;
+        pub unsafe fn multipleSelectionColor(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
         #[method(setMultipleSelectionColor:)]
@@ -119,7 +119,7 @@ extern_methods!(
 
         #[cfg(feature = "UIVisualEffect")]
         #[method_id(@__retain_semantics Other visualEffect)]
-        pub unsafe fn visualEffect(&self) -> Option<Id<UIVisualEffect>>;
+        pub unsafe fn visualEffect(&self) -> Option<Retained<UIVisualEffect>>;
 
         #[cfg(feature = "UIVisualEffect")]
         #[method(setVisualEffect:)]

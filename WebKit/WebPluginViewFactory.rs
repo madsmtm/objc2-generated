@@ -38,7 +38,7 @@ extern_protocol!(
         unsafe fn plugInViewWithArguments(
             arguments: Option<&NSDictionary>,
             mtm: MainThreadMarker,
-        ) -> Option<Id<NSView>>;
+        ) -> Option<Retained<NSView>>;
     }
 
     unsafe impl ProtocolType for dyn WebPlugInViewFactory {}

@@ -21,19 +21,19 @@ extern_methods!(
     unsafe impl CNContactVCardSerialization {
         #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other descriptorForRequiredKeys)]
-        pub unsafe fn descriptorForRequiredKeys() -> Id<ProtocolObject<dyn CNKeyDescriptor>>;
+        pub unsafe fn descriptorForRequiredKeys() -> Retained<ProtocolObject<dyn CNKeyDescriptor>>;
 
         #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other dataWithContacts:error:_)]
         pub unsafe fn dataWithContacts_error(
             contacts: &NSArray<CNContact>,
-        ) -> Result<Id<NSData>, Id<NSError>>;
+        ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other contactsWithData:error:_)]
         pub unsafe fn contactsWithData_error(
             data: &NSData,
-        ) -> Result<Id<NSArray<CNContact>>, Id<NSError>>;
+        ) -> Result<Retained<NSArray<CNContact>>, Retained<NSError>>;
     }
 );
 
@@ -41,9 +41,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNContactVCardSerialization {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

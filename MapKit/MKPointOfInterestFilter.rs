@@ -26,24 +26,24 @@ unsafe impl NSSecureCoding for MKPointOfInterestFilter {}
 extern_methods!(
     unsafe impl MKPointOfInterestFilter {
         #[method_id(@__retain_semantics Other filterIncludingAllCategories)]
-        pub unsafe fn filterIncludingAllCategories() -> Id<MKPointOfInterestFilter>;
+        pub unsafe fn filterIncludingAllCategories() -> Retained<MKPointOfInterestFilter>;
 
         #[method_id(@__retain_semantics Other filterExcludingAllCategories)]
-        pub unsafe fn filterExcludingAllCategories() -> Id<MKPointOfInterestFilter>;
+        pub unsafe fn filterExcludingAllCategories() -> Retained<MKPointOfInterestFilter>;
 
         #[cfg(feature = "MKPointOfInterestCategory")]
         #[method_id(@__retain_semantics Init initIncludingCategories:)]
         pub unsafe fn initIncludingCategories(
             this: Allocated<Self>,
             categories: &NSArray<MKPointOfInterestCategory>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MKPointOfInterestCategory")]
         #[method_id(@__retain_semantics Init initExcludingCategories:)]
         pub unsafe fn initExcludingCategories(
             this: Allocated<Self>,
             categories: &NSArray<MKPointOfInterestCategory>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MKPointOfInterestCategory")]
         #[method(includesCategory:)]
@@ -59,9 +59,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKPointOfInterestFilter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

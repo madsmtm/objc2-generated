@@ -51,10 +51,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIImageReaderConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -73,23 +73,23 @@ unsafe impl NSObjectProtocol for UIImageReader {}
 extern_methods!(
     unsafe impl UIImageReader {
         #[method_id(@__retain_semantics Other defaultReader)]
-        pub unsafe fn defaultReader() -> Id<UIImageReader>;
+        pub unsafe fn defaultReader() -> Retained<UIImageReader>;
 
         #[method_id(@__retain_semantics Other readerWithConfiguration:)]
         pub unsafe fn readerWithConfiguration(
             configuration: &UIImageReaderConfiguration,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration(&self) -> Id<UIImageReaderConfiguration>;
+        pub unsafe fn configuration(&self) -> Retained<UIImageReaderConfiguration>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other imageWithContentsOfFileURL:)]
-        pub unsafe fn imageWithContentsOfFileURL(&self, url: &NSURL) -> Id<UIImage>;
+        pub unsafe fn imageWithContentsOfFileURL(&self, url: &NSURL) -> Retained<UIImage>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other imageWithData:)]
-        pub unsafe fn imageWithData(&self, data: &NSData) -> Id<UIImage>;
+        pub unsafe fn imageWithData(&self, data: &NSData) -> Retained<UIImage>;
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
         #[method(imageWithContentsOfFileURL:completion:)]
@@ -113,9 +113,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIImageReader {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

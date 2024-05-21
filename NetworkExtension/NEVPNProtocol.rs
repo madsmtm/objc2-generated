@@ -26,37 +26,37 @@ unsafe impl NSSecureCoding for NEVPNProtocol {}
 extern_methods!(
     unsafe impl NEVPNProtocol {
         #[method_id(@__retain_semantics Other serverAddress)]
-        pub unsafe fn serverAddress(&self) -> Option<Id<NSString>>;
+        pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
 
         #[method(setServerAddress:)]
         pub unsafe fn setServerAddress(&self, server_address: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other username)]
-        pub unsafe fn username(&self) -> Option<Id<NSString>>;
+        pub unsafe fn username(&self) -> Option<Retained<NSString>>;
 
         #[method(setUsername:)]
         pub unsafe fn setUsername(&self, username: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other passwordReference)]
-        pub unsafe fn passwordReference(&self) -> Option<Id<NSData>>;
+        pub unsafe fn passwordReference(&self) -> Option<Retained<NSData>>;
 
         #[method(setPasswordReference:)]
         pub unsafe fn setPasswordReference(&self, password_reference: Option<&NSData>);
 
         #[method_id(@__retain_semantics Other identityReference)]
-        pub unsafe fn identityReference(&self) -> Option<Id<NSData>>;
+        pub unsafe fn identityReference(&self) -> Option<Retained<NSData>>;
 
         #[method(setIdentityReference:)]
         pub unsafe fn setIdentityReference(&self, identity_reference: Option<&NSData>);
 
         #[method_id(@__retain_semantics Other identityData)]
-        pub unsafe fn identityData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn identityData(&self) -> Option<Retained<NSData>>;
 
         #[method(setIdentityData:)]
         pub unsafe fn setIdentityData(&self, identity_data: Option<&NSData>);
 
         #[method_id(@__retain_semantics Other identityDataPassword)]
-        pub unsafe fn identityDataPassword(&self) -> Option<Id<NSString>>;
+        pub unsafe fn identityDataPassword(&self) -> Option<Retained<NSString>>;
 
         #[method(setIdentityDataPassword:)]
         pub unsafe fn setIdentityDataPassword(&self, identity_data_password: Option<&NSString>);
@@ -69,7 +69,7 @@ extern_methods!(
 
         #[cfg(feature = "NEProxySettings")]
         #[method_id(@__retain_semantics Other proxySettings)]
-        pub unsafe fn proxySettings(&self) -> Option<Id<NEProxySettings>>;
+        pub unsafe fn proxySettings(&self) -> Option<Retained<NEProxySettings>>;
 
         #[cfg(feature = "NEProxySettings")]
         #[method(setProxySettings:)]
@@ -117,9 +117,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEVPNProtocol {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

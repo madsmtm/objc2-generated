@@ -157,13 +157,19 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISegmentedControl {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithItems:)]
-        pub unsafe fn initWithItems(this: Allocated<Self>, items: Option<&NSArray>) -> Id<Self>;
+        pub unsafe fn initWithItems(
+            this: Allocated<Self>,
+            items: Option<&NSArray>,
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Init initWithFrame:actions:)]
@@ -171,7 +177,7 @@ extern_methods!(
             this: Allocated<Self>,
             frame: CGRect,
             actions: &NSArray<UIAction>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method(insertSegmentWithAction:atIndex:animated:)]
@@ -188,7 +194,10 @@ extern_methods!(
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Other actionForSegmentAtIndex:)]
-        pub unsafe fn actionForSegmentAtIndex(&self, segment: NSUInteger) -> Option<Id<UIAction>>;
+        pub unsafe fn actionForSegmentAtIndex(
+            &self,
+            segment: NSUInteger,
+        ) -> Option<Retained<UIAction>>;
 
         #[cfg(feature = "UIAction")]
         #[method(segmentIndexForActionIdentifier:)]
@@ -257,7 +266,10 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other titleForSegmentAtIndex:)]
-        pub unsafe fn titleForSegmentAtIndex(&self, segment: NSUInteger) -> Option<Id<NSString>>;
+        pub unsafe fn titleForSegmentAtIndex(
+            &self,
+            segment: NSUInteger,
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setImage:forSegmentAtIndex:)]
@@ -269,7 +281,10 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other imageForSegmentAtIndex:)]
-        pub unsafe fn imageForSegmentAtIndex(&self, segment: NSUInteger) -> Option<Id<UIImage>>;
+        pub unsafe fn imageForSegmentAtIndex(
+            &self,
+            segment: NSUInteger,
+        ) -> Option<Retained<UIImage>>;
 
         #[method(setWidth:forSegmentAtIndex:)]
         pub unsafe fn setWidth_forSegmentAtIndex(&self, width: CGFloat, segment: NSUInteger);
@@ -301,7 +316,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other selectedSegmentTintColor)]
-        pub unsafe fn selectedSegmentTintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn selectedSegmentTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setSelectedSegmentTintColor:)]
@@ -325,7 +340,7 @@ extern_methods!(
             &self,
             state: UIControlState,
             bar_metrics: UIBarMetrics,
-        ) -> Option<Id<UIImage>>;
+        ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
         #[method(setDividerImage:forLeftSegmentState:rightSegmentState:barMetrics:)]
@@ -344,7 +359,7 @@ extern_methods!(
             left_state: UIControlState,
             right_state: UIControlState,
             bar_metrics: UIBarMetrics,
-        ) -> Option<Id<UIImage>>;
+        ) -> Option<Retained<UIImage>>;
 
         #[method(setTitleTextAttributes:forState:)]
         pub unsafe fn setTitleTextAttributes_forState(
@@ -357,7 +372,7 @@ extern_methods!(
         pub unsafe fn titleTextAttributesForState(
             &self,
             state: UIControlState,
-        ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIGeometry"))]
         #[method(setContentPositionAdjustment:forSegmentType:barMetrics:)]
@@ -388,7 +403,7 @@ extern_methods!(
             this: Allocated<Self>,
             frame: CGRect,
             primary_action: Option<&UIAction>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -397,10 +412,10 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISegmentedControl {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

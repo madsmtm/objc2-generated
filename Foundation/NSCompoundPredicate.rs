@@ -56,35 +56,38 @@ extern_methods!(
             this: Allocated<Self>,
             r#type: NSCompoundPredicateType,
             subpredicates: &NSArray<NSPredicate>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method(compoundPredicateType)]
         pub unsafe fn compoundPredicateType(&self) -> NSCompoundPredicateType;
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other subpredicates)]
-        pub unsafe fn subpredicates(&self) -> Id<NSArray>;
+        pub unsafe fn subpredicates(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other andPredicateWithSubpredicates:)]
         pub unsafe fn andPredicateWithSubpredicates(
             subpredicates: &NSArray<NSPredicate>,
-        ) -> Id<NSCompoundPredicate>;
+        ) -> Retained<NSCompoundPredicate>;
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other orPredicateWithSubpredicates:)]
         pub unsafe fn orPredicateWithSubpredicates(
             subpredicates: &NSArray<NSPredicate>,
-        ) -> Id<NSCompoundPredicate>;
+        ) -> Retained<NSCompoundPredicate>;
 
         #[method_id(@__retain_semantics Other notPredicateWithSubpredicate:)]
         pub unsafe fn notPredicateWithSubpredicate(
             predicate: &NSPredicate,
-        ) -> Id<NSCompoundPredicate>;
+        ) -> Retained<NSCompoundPredicate>;
     }
 );
 
@@ -93,9 +96,9 @@ extern_methods!(
     #[cfg(feature = "NSPredicate")]
     unsafe impl NSCompoundPredicate {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

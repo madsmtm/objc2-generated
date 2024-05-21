@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl CWConfiguration {
         #[cfg(feature = "CWNetworkProfile")]
         #[method_id(@__retain_semantics Other networkProfiles)]
-        pub unsafe fn networkProfiles(&self) -> Id<NSOrderedSet<CWNetworkProfile>>;
+        pub unsafe fn networkProfiles(&self) -> Retained<NSOrderedSet<CWNetworkProfile>>;
 
         #[method(requireAdministratorForAssociation)]
         pub unsafe fn requireAdministratorForAssociation(&self) -> bool;
@@ -44,19 +44,21 @@ extern_methods!(
         pub unsafe fn rememberJoinedNetworks(&self) -> bool;
 
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration() -> Id<Self>;
+        pub unsafe fn configuration() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &CWConfiguration,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationWithConfiguration:)]
-        pub unsafe fn configurationWithConfiguration(configuration: &CWConfiguration) -> Id<Self>;
+        pub unsafe fn configurationWithConfiguration(
+            configuration: &CWConfiguration,
+        ) -> Retained<Self>;
 
         #[method(isEqualToConfiguration:)]
         pub unsafe fn isEqualToConfiguration(&self, configuration: &CWConfiguration) -> bool;
@@ -67,7 +69,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -96,7 +98,7 @@ extern_methods!(
     unsafe impl CWMutableConfiguration {
         #[cfg(feature = "CWNetworkProfile")]
         #[method_id(@__retain_semantics Other networkProfiles)]
-        pub unsafe fn networkProfiles(&self) -> Id<NSOrderedSet<CWNetworkProfile>>;
+        pub unsafe fn networkProfiles(&self) -> Retained<NSOrderedSet<CWNetworkProfile>>;
 
         #[cfg(feature = "CWNetworkProfile")]
         #[method(setNetworkProfiles:)]
@@ -140,19 +142,21 @@ extern_methods!(
     /// Methods declared on superclass `CWConfiguration`
     unsafe impl CWMutableConfiguration {
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration() -> Id<Self>;
+        pub unsafe fn configuration() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &CWConfiguration,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationWithConfiguration:)]
-        pub unsafe fn configurationWithConfiguration(configuration: &CWConfiguration) -> Id<Self>;
+        pub unsafe fn configurationWithConfiguration(
+            configuration: &CWConfiguration,
+        ) -> Retained<Self>;
     }
 );
 
@@ -160,6 +164,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWMutableConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

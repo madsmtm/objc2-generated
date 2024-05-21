@@ -25,7 +25,7 @@ extern_methods!(
             this: Allocated<Self>,
             my_peer_id: &MCPeerID,
             service_type: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(startBrowsingForPeers)]
         pub unsafe fn startBrowsingForPeers(&self);
@@ -46,7 +46,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn MCNearbyServiceBrowserDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MCNearbyServiceBrowserDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -56,10 +56,10 @@ extern_methods!(
 
         #[cfg(feature = "MCPeerID")]
         #[method_id(@__retain_semantics Other myPeerID)]
-        pub unsafe fn myPeerID(&self) -> Id<MCPeerID>;
+        pub unsafe fn myPeerID(&self) -> Retained<MCPeerID>;
 
         #[method_id(@__retain_semantics Other serviceType)]
-        pub unsafe fn serviceType(&self) -> Id<NSString>;
+        pub unsafe fn serviceType(&self) -> Retained<NSString>;
     }
 );
 
@@ -67,10 +67,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MCNearbyServiceBrowser {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

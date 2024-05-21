@@ -49,7 +49,7 @@ extern_methods!(
             &self,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(
             feature = "NSEntityMapping",
@@ -62,7 +62,7 @@ extern_methods!(
             s_instance: &NSManagedObject,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSEntityMapping", feature = "NSMigrationManager"))]
         #[method(endInstanceCreationForEntityMapping:manager:error:_)]
@@ -70,7 +70,7 @@ extern_methods!(
             &self,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(
             feature = "NSEntityMapping",
@@ -83,7 +83,7 @@ extern_methods!(
             d_instance: &NSManagedObject,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSEntityMapping", feature = "NSMigrationManager"))]
         #[method(endRelationshipCreationForEntityMapping:manager:error:_)]
@@ -91,7 +91,7 @@ extern_methods!(
             &self,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSEntityMapping", feature = "NSMigrationManager"))]
         #[method(performCustomValidationForEntityMapping:manager:error:_)]
@@ -99,7 +99,7 @@ extern_methods!(
             &self,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSEntityMapping", feature = "NSMigrationManager"))]
         #[method(endEntityMapping:manager:error:_)]
@@ -107,7 +107,7 @@ extern_methods!(
             &self,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
     }
 );
 
@@ -115,9 +115,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSEntityMigrationPolicy {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

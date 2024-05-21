@@ -20,7 +20,7 @@ extern_methods!(
     unsafe impl NSExtensionContext {
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other inputItems)]
-        pub unsafe fn inputItems(&self) -> Id<NSArray>;
+        pub unsafe fn inputItems(&self) -> Retained<NSArray>;
 
         #[cfg(all(feature = "NSArray", feature = "block2"))]
         #[method(completeRequestReturningItems:completionHandler:)]
@@ -48,10 +48,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSExtensionContext {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

@@ -45,7 +45,7 @@ extern_methods!(
             this: Allocated<Self>,
             texture: &ProtocolObject<dyn MTLTexture>,
             command_buffer: Option<&ProtocolObject<dyn MTLCommandBuffer>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-metal"))]
         #[method_id(@__retain_semantics Init initWithWidth:height:pixelFormat:commandBuffer:mtlTextureProvider:)]
@@ -56,7 +56,7 @@ extern_methods!(
             pixel_format: MTLPixelFormat,
             command_buffer: Option<&ProtocolObject<dyn MTLCommandBuffer>>,
             block: Option<&block2::Block<dyn Fn() -> NonNull<ProtocolObject<dyn MTLTexture>>>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithGLTexture:target:width:height:)]
         pub unsafe fn initWithGLTexture_target_width_height(
@@ -65,7 +65,7 @@ extern_methods!(
             target: c_uint,
             width: NSUInteger,
             height: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CIImage")]
         #[method_id(@__retain_semantics Init initWithBitmapData:width:height:bytesPerRow:format:)]
@@ -76,7 +76,7 @@ extern_methods!(
             height: NSUInteger,
             bytes_per_row: NSUInteger,
             format: CIFormat,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(width)]
         pub unsafe fn width(&self) -> NSUInteger;
@@ -110,7 +110,7 @@ extern_methods!(
 
         #[cfg(feature = "CIKernel")]
         #[method_id(@__retain_semantics Other blendKernel)]
-        pub unsafe fn blendKernel(&self) -> Option<Id<CIBlendKernel>>;
+        pub unsafe fn blendKernel(&self) -> Option<Retained<CIBlendKernel>>;
 
         #[cfg(feature = "CIKernel")]
         #[method(setBlendKernel:)]
@@ -131,10 +131,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIRenderDestination {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -170,10 +170,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIRenderInfo {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -194,7 +194,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other waitUntilCompletedAndReturnError:_)]
         pub unsafe fn waitUntilCompletedAndReturnError(
             &self,
-        ) -> Result<Id<CIRenderInfo>, Id<NSError>>;
+        ) -> Result<Retained<CIRenderInfo>, Retained<NSError>>;
     }
 );
 
@@ -202,10 +202,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIRenderTask {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -221,7 +221,7 @@ extern_methods!(
             from_rect: CGRect,
             destination: &CIRenderDestination,
             at_point: CGPoint,
-        ) -> Result<Id<CIRenderTask>, Id<NSError>>;
+        ) -> Result<Retained<CIRenderTask>, Retained<NSError>>;
 
         #[cfg(feature = "CIImage")]
         #[method_id(@__retain_semantics Other startTaskToRender:toDestination:error:_)]
@@ -229,7 +229,7 @@ extern_methods!(
             &self,
             image: &CIImage,
             destination: &CIRenderDestination,
-        ) -> Result<Id<CIRenderTask>, Id<NSError>>;
+        ) -> Result<Retained<CIRenderTask>, Retained<NSError>>;
 
         #[cfg(feature = "CIImage")]
         #[method(prepareRender:fromRect:toDestination:atPoint:error:_)]
@@ -239,12 +239,12 @@ extern_methods!(
             from_rect: CGRect,
             destination: &CIRenderDestination,
             at_point: CGPoint,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other startTaskToClear:error:_)]
         pub unsafe fn startTaskToClear_error(
             &self,
             destination: &CIRenderDestination,
-        ) -> Result<Id<CIRenderTask>, Id<NSError>>;
+        ) -> Result<Retained<CIRenderTask>, Retained<NSError>>;
     }
 );

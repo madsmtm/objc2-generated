@@ -28,14 +28,14 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name: &NSNibName,
             bundle: Option<&NSBundle>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithNibData:bundle:)]
         pub unsafe fn initWithNibData_bundle(
             this: Allocated<Self>,
             nib_data: &NSData,
             bundle: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -43,10 +43,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSNib {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -58,7 +58,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
             nib_file_url: Option<&NSURL>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated]
         #[method(instantiateNibWithExternalNameTable:)]
@@ -72,7 +72,7 @@ extern_methods!(
         pub unsafe fn instantiateNibWithOwner_topLevelObjects(
             &self,
             owner: Option<&AnyObject>,
-            top_level_objects: Option<&mut Option<Id<NSArray>>>,
+            top_level_objects: Option<&mut Option<Retained<NSArray>>>,
         ) -> bool;
     }
 );

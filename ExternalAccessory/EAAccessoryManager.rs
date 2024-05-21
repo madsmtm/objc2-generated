@@ -62,7 +62,7 @@ unsafe impl NSObjectProtocol for EAAccessoryManager {}
 extern_methods!(
     unsafe impl EAAccessoryManager {
         #[method_id(@__retain_semantics Other sharedAccessoryManager)]
-        pub unsafe fn sharedAccessoryManager() -> Id<EAAccessoryManager>;
+        pub unsafe fn sharedAccessoryManager() -> Retained<EAAccessoryManager>;
 
         #[cfg(feature = "block2")]
         #[method(showBluetoothAccessoryPickerWithNameFilter:completion:)]
@@ -80,7 +80,7 @@ extern_methods!(
 
         #[cfg(feature = "EAAccessory")]
         #[method_id(@__retain_semantics Other connectedAccessories)]
-        pub unsafe fn connectedAccessories(&self) -> Id<NSArray<EAAccessory>>;
+        pub unsafe fn connectedAccessories(&self) -> Retained<NSArray<EAAccessory>>;
     }
 );
 
@@ -88,9 +88,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EAAccessoryManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -30,7 +30,7 @@ extern_methods!(
     unsafe impl DOMStyleSheet {
         #[deprecated]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSString>;
+        pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(disabled)]
@@ -43,24 +43,24 @@ extern_methods!(
         #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other ownerNode)]
-        pub unsafe fn ownerNode(&self) -> Option<Id<DOMNode>>;
+        pub unsafe fn ownerNode(&self) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other parentStyleSheet)]
-        pub unsafe fn parentStyleSheet(&self) -> Option<Id<DOMStyleSheet>>;
+        pub unsafe fn parentStyleSheet(&self) -> Option<Retained<DOMStyleSheet>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other href)]
-        pub unsafe fn href(&self) -> Id<NSString>;
+        pub unsafe fn href(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[cfg(feature = "DOMMediaList")]
         #[deprecated]
         #[method_id(@__retain_semantics Other media)]
-        pub unsafe fn media(&self) -> Option<Id<DOMMediaList>>;
+        pub unsafe fn media(&self) -> Option<Retained<DOMMediaList>>;
     }
 );
 
@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl DOMStyleSheet {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -79,6 +79,6 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMStyleSheet {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

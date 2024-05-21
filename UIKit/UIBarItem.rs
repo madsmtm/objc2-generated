@@ -25,10 +25,13 @@ unsafe impl UIAppearance for UIBarItem {}
 extern_methods!(
     unsafe impl UIBarItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
@@ -37,14 +40,14 @@ extern_methods!(
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setImage:)]
@@ -52,7 +55,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other landscapeImagePhone)]
-        pub unsafe fn landscapeImagePhone(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn landscapeImagePhone(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setLandscapeImagePhone:)]
@@ -60,7 +63,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other largeContentSizeImage)]
-        pub unsafe fn largeContentSizeImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn largeContentSizeImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setLargeContentSizeImage:)]
@@ -115,7 +118,7 @@ extern_methods!(
         pub unsafe fn titleTextAttributesForState(
             &self,
             state: UIControlState,
-        ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
     }
 );
 
@@ -123,6 +126,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIBarItem {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

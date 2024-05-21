@@ -93,42 +93,42 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other url)]
-        pub unsafe fn url(&self) -> Id<NSURL>;
+        pub unsafe fn url(&self) -> Retained<NSURL>;
 
         #[method_id(@__retain_semantics Other requestedOperation)]
         pub unsafe fn requestedOperation(
             &self,
-        ) -> Id<ASAuthorizationProviderAuthorizationOperation>;
+        ) -> Retained<ASAuthorizationProviderAuthorizationOperation>;
 
         #[method_id(@__retain_semantics Other httpHeaders)]
-        pub unsafe fn httpHeaders(&self) -> Id<NSDictionary<NSString, NSString>>;
+        pub unsafe fn httpHeaders(&self) -> Retained<NSDictionary<NSString, NSString>>;
 
         #[method_id(@__retain_semantics Other httpBody)]
-        pub unsafe fn httpBody(&self) -> Id<NSData>;
+        pub unsafe fn httpBody(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other realm)]
-        pub unsafe fn realm(&self) -> Id<NSString>;
+        pub unsafe fn realm(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other extensionData)]
-        pub unsafe fn extensionData(&self) -> Id<NSDictionary>;
+        pub unsafe fn extensionData(&self) -> Retained<NSDictionary>;
 
         #[method_id(@__retain_semantics Other callerBundleIdentifier)]
-        pub unsafe fn callerBundleIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn callerBundleIdentifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other authorizationOptions)]
-        pub unsafe fn authorizationOptions(&self) -> Id<NSDictionary>;
+        pub unsafe fn authorizationOptions(&self) -> Retained<NSDictionary>;
 
         #[method(isCallerManaged)]
         pub unsafe fn isCallerManaged(&self) -> bool;
 
         #[method_id(@__retain_semantics Other callerTeamIdentifier)]
-        pub unsafe fn callerTeamIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn callerTeamIdentifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other localizedCallerDisplayName)]
-        pub unsafe fn localizedCallerDisplayName(&self) -> Id<NSString>;
+        pub unsafe fn localizedCallerDisplayName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other callerAuditToken)]
-        pub unsafe fn callerAuditToken(&self) -> Id<NSData>;
+        pub unsafe fn callerAuditToken(&self) -> Retained<NSData>;
 
         #[method(isUserInterfaceEnabled)]
         pub unsafe fn isUserInterfaceEnabled(&self) -> bool;
@@ -137,7 +137,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other loginManager)]
         pub unsafe fn loginManager(
             &self,
-        ) -> Option<Id<ASAuthorizationProviderExtensionLoginManager>>;
+        ) -> Option<Retained<ASAuthorizationProviderExtensionLoginManager>>;
     }
 );
 
@@ -145,9 +145,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAuthorizationProviderExtensionAuthorizationRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

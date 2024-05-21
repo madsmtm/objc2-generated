@@ -48,7 +48,7 @@ extern_methods!(
     unsafe impl VNTrackingRequest {
         #[cfg(feature = "VNObservation")]
         #[method_id(@__retain_semantics Other inputObservation)]
-        pub unsafe fn inputObservation(&self) -> Id<VNDetectedObjectObservation>;
+        pub unsafe fn inputObservation(&self) -> Retained<VNDetectedObjectObservation>;
 
         #[cfg(feature = "VNObservation")]
         #[method(setInputObservation:)]
@@ -67,14 +67,14 @@ extern_methods!(
         pub unsafe fn setLastFrame(&self, last_frame: bool);
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -83,6 +83,6 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNTrackingRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -54,14 +54,14 @@ extern_methods!(
             this: Allocated<Self>,
             starting_color: &NSColor,
             ending_color: &NSColor,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Init initWithColors:)]
         pub unsafe fn initWithColors(
             this: Allocated<Self>,
             color_array: &NSArray<NSColor>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSColor", feature = "NSColorSpace"))]
         #[method_id(@__retain_semantics Init initWithColors:atLocations:colorSpace:)]
@@ -70,10 +70,13 @@ extern_methods!(
             color_array: &NSArray<NSColor>,
             locations: *mut CGFloat,
             color_space: &NSColorSpace,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method(drawFromPoint:toPoint:options:)]
         pub unsafe fn drawFromPoint_toPoint_options(
@@ -117,7 +120,7 @@ extern_methods!(
 
         #[cfg(feature = "NSColorSpace")]
         #[method_id(@__retain_semantics Other colorSpace)]
-        pub unsafe fn colorSpace(&self) -> Id<NSColorSpace>;
+        pub unsafe fn colorSpace(&self) -> Retained<NSColorSpace>;
 
         #[method(numberOfColorStops)]
         pub unsafe fn numberOfColorStops(&self) -> NSInteger;
@@ -126,14 +129,14 @@ extern_methods!(
         #[method(getColor:location:atIndex:)]
         pub unsafe fn getColor_location_atIndex(
             &self,
-            color: Option<&mut Id<NSColor>>,
+            color: Option<&mut Retained<NSColor>>,
             location: *mut CGFloat,
             index: NSInteger,
         );
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other interpolatedColorAtLocation:)]
-        pub unsafe fn interpolatedColorAtLocation(&self, location: CGFloat) -> Id<NSColor>;
+        pub unsafe fn interpolatedColorAtLocation(&self, location: CGFloat) -> Retained<NSColor>;
     }
 );
 
@@ -141,9 +144,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGradient {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

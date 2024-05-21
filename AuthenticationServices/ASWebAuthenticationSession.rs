@@ -58,7 +58,7 @@ extern_methods!(
             url: &NSURL,
             callback_url_scheme: Option<&NSString>,
             completion_handler: ASWebAuthenticationSessionCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "ASWebAuthenticationSessionCallback", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithURL:callback:completionHandler:)]
@@ -67,12 +67,12 @@ extern_methods!(
             url: &NSURL,
             callback: &ASWebAuthenticationSessionCallback,
             completion_handler: ASWebAuthenticationSessionCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other presentationContextProvider)]
         pub unsafe fn presentationContextProvider(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn ASWebAuthenticationPresentationContextProviding>>>;
+        ) -> Option<Retained<ProtocolObject<dyn ASWebAuthenticationPresentationContextProviding>>>;
 
         #[method(setPresentationContextProvider:)]
         pub unsafe fn setPresentationContextProvider(
@@ -92,8 +92,9 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other additionalHeaderFields)]
-        pub unsafe fn additionalHeaderFields(&self)
-            -> Option<Id<NSDictionary<NSString, NSString>>>;
+        pub unsafe fn additionalHeaderFields(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
         #[method(setAdditionalHeaderFields:)]
         pub unsafe fn setAdditionalHeaderFields(
@@ -111,10 +112,10 @@ extern_methods!(
         pub unsafe fn cancel(&self);
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -129,7 +130,7 @@ extern_protocol!(
             &self,
             session: &ASWebAuthenticationSession,
             mtm: MainThreadMarker,
-        ) -> Id<ASPresentationAnchor>;
+        ) -> Retained<ASPresentationAnchor>;
     }
 
     unsafe impl ProtocolType for dyn ASWebAuthenticationPresentationContextProviding {}

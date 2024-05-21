@@ -43,7 +43,8 @@ unsafe impl NSObjectProtocol for NSMediaLibraryBrowserController {}
 extern_methods!(
     unsafe impl NSMediaLibraryBrowserController {
         #[method_id(@__retain_semantics Other sharedMediaLibraryBrowserController)]
-        pub unsafe fn sharedMediaLibraryBrowserController() -> Id<NSMediaLibraryBrowserController>;
+        pub unsafe fn sharedMediaLibraryBrowserController(
+        ) -> Retained<NSMediaLibraryBrowserController>;
 
         #[method(isVisible)]
         pub unsafe fn isVisible(&self) -> bool;
@@ -72,9 +73,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMediaLibraryBrowserController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -27,26 +27,26 @@ extern_methods!(
         #[method_id(@__retain_semantics Other inputDescriptionsByName)]
         pub unsafe fn inputDescriptionsByName(
             &self,
-        ) -> Id<NSDictionary<NSString, MLFeatureDescription>>;
+        ) -> Retained<NSDictionary<NSString, MLFeatureDescription>>;
 
         #[cfg(feature = "MLFeatureDescription")]
         #[method_id(@__retain_semantics Other outputDescriptionsByName)]
         pub unsafe fn outputDescriptionsByName(
             &self,
-        ) -> Id<NSDictionary<NSString, MLFeatureDescription>>;
+        ) -> Retained<NSDictionary<NSString, MLFeatureDescription>>;
 
         #[method_id(@__retain_semantics Other predictedFeatureName)]
-        pub unsafe fn predictedFeatureName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn predictedFeatureName(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other predictedProbabilitiesName)]
-        pub unsafe fn predictedProbabilitiesName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn predictedProbabilitiesName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MLModelMetadataKeys")]
         #[method_id(@__retain_semantics Other metadata)]
-        pub unsafe fn metadata(&self) -> Id<NSDictionary<MLModelMetadataKey, AnyObject>>;
+        pub unsafe fn metadata(&self) -> Retained<NSDictionary<MLModelMetadataKey, AnyObject>>;
 
         #[method_id(@__retain_semantics Other classLabels)]
-        pub unsafe fn classLabels(&self) -> Option<Id<NSArray<AnyObject>>>;
+        pub unsafe fn classLabels(&self) -> Option<Retained<NSArray<AnyObject>>>;
     }
 );
 
@@ -54,10 +54,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLModelDescription {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -71,7 +71,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other trainingInputDescriptionsByName)]
         pub unsafe fn trainingInputDescriptionsByName(
             &self,
-        ) -> Id<NSDictionary<NSString, MLFeatureDescription>>;
+        ) -> Retained<NSDictionary<NSString, MLFeatureDescription>>;
     }
 );
 
@@ -86,6 +86,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other parameterDescriptionsByKey)]
         pub unsafe fn parameterDescriptionsByKey(
             &self,
-        ) -> Id<NSDictionary<MLParameterKey, MLParameterDescription>>;
+        ) -> Retained<NSDictionary<MLParameterKey, MLParameterDescription>>;
     }
 );

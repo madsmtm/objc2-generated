@@ -26,7 +26,7 @@ extern_methods!(
             my_peer_id: &MCPeerID,
             info: Option<&NSDictionary<NSString, NSString>>,
             service_type: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(startAdvertisingPeer)]
         pub unsafe fn startAdvertisingPeer(&self);
@@ -37,7 +37,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn MCNearbyServiceAdvertiserDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MCNearbyServiceAdvertiserDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -47,13 +47,13 @@ extern_methods!(
 
         #[cfg(feature = "MCPeerID")]
         #[method_id(@__retain_semantics Other myPeerID)]
-        pub unsafe fn myPeerID(&self) -> Id<MCPeerID>;
+        pub unsafe fn myPeerID(&self) -> Retained<MCPeerID>;
 
         #[method_id(@__retain_semantics Other discoveryInfo)]
-        pub unsafe fn discoveryInfo(&self) -> Option<Id<NSDictionary<NSString, NSString>>>;
+        pub unsafe fn discoveryInfo(&self) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
         #[method_id(@__retain_semantics Other serviceType)]
-        pub unsafe fn serviceType(&self) -> Id<NSString>;
+        pub unsafe fn serviceType(&self) -> Retained<NSString>;
     }
 );
 
@@ -61,10 +61,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MCNearbyServiceAdvertiser {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

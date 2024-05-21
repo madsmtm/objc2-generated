@@ -12,18 +12,20 @@ extern_protocol!(
         unsafe fn handlerForComposeSession(
             &self,
             session: &MEComposeSession,
-        ) -> Id<ProtocolObject<dyn MEComposeSessionHandler>>;
+        ) -> Retained<ProtocolObject<dyn MEComposeSessionHandler>>;
 
         #[cfg(feature = "MEMessageActionHandler")]
         #[optional]
         #[method_id(@__retain_semantics Other handlerForMessageActions)]
-        unsafe fn handlerForMessageActions(&self)
-            -> Id<ProtocolObject<dyn MEMessageActionHandler>>;
+        unsafe fn handlerForMessageActions(
+            &self,
+        ) -> Retained<ProtocolObject<dyn MEMessageActionHandler>>;
 
         #[cfg(feature = "MEContentBlocker")]
         #[optional]
         #[method_id(@__retain_semantics Other handlerForContentBlocker)]
-        unsafe fn handlerForContentBlocker(&self) -> Id<ProtocolObject<dyn MEContentBlocker>>;
+        unsafe fn handlerForContentBlocker(&self)
+            -> Retained<ProtocolObject<dyn MEContentBlocker>>;
 
         #[cfg(all(
             feature = "MEMessageDecoder",
@@ -34,7 +36,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other handlerForMessageSecurity)]
         unsafe fn handlerForMessageSecurity(
             &self,
-        ) -> Id<ProtocolObject<dyn MEMessageSecurityHandler>>;
+        ) -> Retained<ProtocolObject<dyn MEMessageSecurityHandler>>;
     }
 
     unsafe impl ProtocolType for dyn MEExtension {}

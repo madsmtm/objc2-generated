@@ -19,6 +19,6 @@ extern_methods!(
                 dyn Fn(NonNull<NSFileProviderItemIdentifier>, *mut NSData, *mut NSError),
             >,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
-        ) -> Id<NSProgress>;
+        ) -> Retained<NSProgress>;
     }
 );

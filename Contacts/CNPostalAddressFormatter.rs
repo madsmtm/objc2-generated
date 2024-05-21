@@ -46,7 +46,7 @@ extern_methods!(
         pub unsafe fn stringFromPostalAddress_style(
             postal_address: &CNPostalAddress,
             style: CNPostalAddressFormatterStyle,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(feature = "CNPostalAddress")]
         #[method_id(@__retain_semantics Other attributedStringFromPostalAddress:style:withDefaultAttributes:)]
@@ -54,7 +54,7 @@ extern_methods!(
             postal_address: &CNPostalAddress,
             style: CNPostalAddressFormatterStyle,
             attributes: &NSDictionary,
-        ) -> Id<NSAttributedString>;
+        ) -> Retained<NSAttributedString>;
 
         #[method(style)]
         pub unsafe fn style(&self) -> CNPostalAddressFormatterStyle;
@@ -67,7 +67,7 @@ extern_methods!(
         pub unsafe fn stringFromPostalAddress(
             &self,
             postal_address: &CNPostalAddress,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(feature = "CNPostalAddress")]
         #[method_id(@__retain_semantics Other attributedStringFromPostalAddress:withDefaultAttributes:)]
@@ -75,7 +75,7 @@ extern_methods!(
             &self,
             postal_address: &CNPostalAddress,
             attributes: &NSDictionary,
-        ) -> Id<NSAttributedString>;
+        ) -> Retained<NSAttributedString>;
     }
 );
 
@@ -83,10 +83,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNPostalAddressFormatter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

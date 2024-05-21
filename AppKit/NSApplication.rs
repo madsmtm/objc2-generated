@@ -326,10 +326,12 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSApplication {
         #[method_id(@__retain_semantics Other sharedApplication)]
-        pub fn sharedApplication(mtm: MainThreadMarker) -> Id<NSApplication>;
+        pub fn sharedApplication(mtm: MainThreadMarker) -> Retained<NSApplication>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSApplicationDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn NSApplicationDelegate>>>;
 
         #[method(setDelegate:)]
         pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSApplicationDelegate>>);
@@ -345,15 +347,18 @@ extern_methods!(
 
         #[cfg(feature = "NSWindow")]
         #[method_id(@__retain_semantics Other windowWithWindowNumber:)]
-        pub unsafe fn windowWithWindowNumber(&self, window_num: NSInteger) -> Option<Id<NSWindow>>;
+        pub unsafe fn windowWithWindowNumber(
+            &self,
+            window_num: NSInteger,
+        ) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "NSWindow")]
         #[method_id(@__retain_semantics Other mainWindow)]
-        pub unsafe fn mainWindow(&self) -> Option<Id<NSWindow>>;
+        pub unsafe fn mainWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "NSWindow")]
         #[method_id(@__retain_semantics Other keyWindow)]
-        pub fn keyWindow(&self) -> Option<Id<NSWindow>>;
+        pub fn keyWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
@@ -414,7 +419,7 @@ extern_methods!(
 
         #[cfg(feature = "NSWindow")]
         #[method_id(@__retain_semantics Other modalWindow)]
-        pub unsafe fn modalWindow(&self) -> Option<Id<NSWindow>>;
+        pub unsafe fn modalWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "NSWindow")]
         #[method(beginModalSessionForWindow:)]
@@ -448,7 +453,7 @@ extern_methods!(
 
         #[cfg(feature = "NSWindow")]
         #[method_id(@__retain_semantics Other windows)]
-        pub fn windows(&self) -> Id<NSArray<NSWindow>>;
+        pub fn windows(&self) -> Retained<NSArray<NSWindow>>;
 
         #[method(setWindowsNeedUpdate:)]
         pub unsafe fn setWindowsNeedUpdate(&self, need_update: bool);
@@ -458,7 +463,7 @@ extern_methods!(
 
         #[cfg(feature = "NSMenu")]
         #[method_id(@__retain_semantics Other mainMenu)]
-        pub unsafe fn mainMenu(&self) -> Option<Id<NSMenu>>;
+        pub unsafe fn mainMenu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
         #[method(setMainMenu:)]
@@ -466,7 +471,7 @@ extern_methods!(
 
         #[cfg(feature = "NSMenu")]
         #[method_id(@__retain_semantics Other helpMenu)]
-        pub unsafe fn helpMenu(&self) -> Option<Id<NSMenu>>;
+        pub unsafe fn helpMenu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
         #[method(setHelpMenu:)]
@@ -474,7 +479,7 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other applicationIconImage)]
-        pub unsafe fn applicationIconImage(&self) -> Option<Id<NSImage>>;
+        pub unsafe fn applicationIconImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         #[method(setApplicationIconImage:)]
@@ -491,7 +496,7 @@ extern_methods!(
 
         #[cfg(feature = "NSDockTile")]
         #[method_id(@__retain_semantics Other dockTile)]
-        pub unsafe fn dockTile(&self) -> Id<NSDockTile>;
+        pub unsafe fn dockTile(&self) -> Retained<NSDockTile>;
 
         #[method(reportException:)]
         pub unsafe fn reportException(&self, exception: &NSException);
@@ -538,10 +543,13 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSApplication {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -550,7 +558,7 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSApplication {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -560,7 +568,7 @@ extern_methods!(
     unsafe impl NSApplication {
         #[cfg(feature = "NSAppearance")]
         #[method_id(@__retain_semantics Other appearance)]
-        pub unsafe fn appearance(&self) -> Option<Id<NSAppearance>>;
+        pub unsafe fn appearance(&self) -> Option<Retained<NSAppearance>>;
 
         #[cfg(feature = "NSAppearance")]
         #[method(setAppearance:)]
@@ -568,7 +576,7 @@ extern_methods!(
 
         #[cfg(feature = "NSAppearance")]
         #[method_id(@__retain_semantics Other effectiveAppearance)]
-        pub fn effectiveAppearance(&self) -> Id<NSAppearance>;
+        pub fn effectiveAppearance(&self) -> Retained<NSAppearance>;
     }
 );
 
@@ -589,7 +597,7 @@ extern_methods!(
 
         #[cfg(feature = "NSEvent")]
         #[method_id(@__retain_semantics Other currentEvent)]
-        pub fn currentEvent(&self) -> Option<Id<NSEvent>>;
+        pub fn currentEvent(&self) -> Option<Retained<NSEvent>>;
 
         #[cfg(feature = "NSEvent")]
         #[method_id(@__retain_semantics Other nextEventMatchingMask:untilDate:inMode:dequeue:)]
@@ -599,7 +607,7 @@ extern_methods!(
             expiration: Option<&NSDate>,
             mode: &NSRunLoopMode,
             deq_flag: bool,
-        ) -> Option<Id<NSEvent>>;
+        ) -> Option<Retained<NSEvent>>;
 
         #[cfg(feature = "NSEvent")]
         #[method(discardEventsMatchingMask:beforeEvent:)]
@@ -624,7 +632,7 @@ extern_methods!(
         ) -> bool;
 
         #[method_id(@__retain_semantics Other targetForAction:)]
-        pub unsafe fn targetForAction(&self, action: Sel) -> Option<Id<AnyObject>>;
+        pub unsafe fn targetForAction(&self, action: Sel) -> Option<Retained<AnyObject>>;
 
         #[method_id(@__retain_semantics Other targetForAction:to:from:)]
         pub unsafe fn targetForAction_to_from(
@@ -632,7 +640,7 @@ extern_methods!(
             action: Sel,
             target: Option<&AnyObject>,
             sender: Option<&AnyObject>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[method(tryToPerform:with:)]
         pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&AnyObject>) -> bool;
@@ -643,7 +651,7 @@ extern_methods!(
             &self,
             send_type: Option<&NSPasteboardType>,
             return_type: Option<&NSPasteboardType>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
     }
 );
 
@@ -653,7 +661,7 @@ extern_methods!(
     unsafe impl NSApplication {
         #[cfg(feature = "NSMenu")]
         #[method_id(@__retain_semantics Other windowsMenu)]
-        pub unsafe fn windowsMenu(&self) -> Option<Id<NSMenu>>;
+        pub unsafe fn windowsMenu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
         #[method(setWindowsMenu:)]
@@ -832,7 +840,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSMenu", feature = "NSResponder"))]
         #[optional]
         #[method_id(@__retain_semantics Other applicationDockMenu:)]
-        unsafe fn applicationDockMenu(&self, sender: &NSApplication) -> Option<Id<NSMenu>>;
+        unsafe fn applicationDockMenu(&self, sender: &NSApplication) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSResponder")]
         #[optional]
@@ -841,7 +849,7 @@ extern_protocol!(
             &self,
             application: &NSApplication,
             error: &NSError,
-        ) -> Id<NSError>;
+        ) -> Retained<NSError>;
 
         #[cfg(feature = "NSResponder")]
         #[optional]
@@ -1031,7 +1039,7 @@ extern_methods!(
     unsafe impl NSApplication {
         #[cfg(feature = "NSMenu")]
         #[method_id(@__retain_semantics Other servicesMenu)]
-        pub unsafe fn servicesMenu(&self) -> Option<Id<NSMenu>>;
+        pub unsafe fn servicesMenu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
         #[method(setServicesMenu:)]
@@ -1072,7 +1080,7 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSApplication {
         #[method_id(@__retain_semantics Other servicesProvider)]
-        pub unsafe fn servicesProvider(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn servicesProvider(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setServicesProvider:)]
         pub unsafe fn setServicesProvider(&self, services_provider: Option<&AnyObject>);
@@ -1368,11 +1376,11 @@ extern_methods!(
             &self,
             selector: Sel,
             flag: bool,
-        ) -> Option<Id<NSWindow>>;
+        ) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "NSGraphicsContext")]
         #[deprecated = "This method always returns nil. If you need access to the current drawing context, use [NSGraphicsContext currentContext] inside of a draw operation."]
         #[method_id(@__retain_semantics Other context)]
-        pub unsafe fn context(&self) -> Option<Id<NSGraphicsContext>>;
+        pub unsafe fn context(&self) -> Option<Retained<NSGraphicsContext>>;
     }
 );

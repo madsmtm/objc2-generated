@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl UIPointerStyle {
         #[cfg(feature = "UIPointerAccessory")]
         #[method_id(@__retain_semantics Other accessories)]
-        pub unsafe fn accessories(&self) -> Id<NSArray<UIPointerAccessory>>;
+        pub unsafe fn accessories(&self) -> Retained<NSArray<UIPointerAccessory>>;
 
         #[cfg(feature = "UIPointerAccessory")]
         #[method(setAccessories:)]
@@ -39,26 +39,26 @@ extern_methods!(
         pub unsafe fn styleWithEffect_shape(
             effect: &UIPointerEffect,
             shape: Option<&UIPointerShape>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIGeometry")]
         #[method_id(@__retain_semantics Other styleWithShape:constrainedAxes:)]
         pub unsafe fn styleWithShape_constrainedAxes(
             shape: &UIPointerShape,
             axes: UIAxis,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other hiddenPointerStyle)]
-        pub unsafe fn hiddenPointerStyle(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn hiddenPointerStyle(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other systemPointerStyle)]
-        pub unsafe fn systemPointerStyle(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn systemPointerStyle(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -68,10 +68,13 @@ extern_methods!(
     unsafe impl UIPointerStyle {
         #[cfg(feature = "UIShape")]
         #[method_id(@__retain_semantics Other styleWithShape:)]
-        pub unsafe fn styleWithShape(shape: Option<&UIShape>, mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn styleWithShape(
+            shape: Option<&UIShape>,
+            mtm: MainThreadMarker,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other automaticStyle)]
-        pub unsafe fn automaticStyle(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn automaticStyle(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -96,17 +99,17 @@ extern_methods!(
     unsafe impl UIPointerEffect {
         #[cfg(feature = "UITargetedPreview")]
         #[method_id(@__retain_semantics Other preview)]
-        pub unsafe fn preview(&self) -> Id<UITargetedPreview>;
+        pub unsafe fn preview(&self) -> Retained<UITargetedPreview>;
 
         #[cfg(feature = "UITargetedPreview")]
         #[method_id(@__retain_semantics Other effectWithPreview:)]
-        pub unsafe fn effectWithPreview(preview: &UITargetedPreview) -> Id<Self>;
+        pub unsafe fn effectWithPreview(preview: &UITargetedPreview) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -137,13 +140,13 @@ extern_methods!(
     unsafe impl UIPointerHighlightEffect {
         #[cfg(feature = "UITargetedPreview")]
         #[method_id(@__retain_semantics Other effectWithPreview:)]
-        pub unsafe fn effectWithPreview(preview: &UITargetedPreview) -> Id<Self>;
+        pub unsafe fn effectWithPreview(preview: &UITargetedPreview) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -174,13 +177,13 @@ extern_methods!(
     unsafe impl UIPointerLiftEffect {
         #[cfg(feature = "UITargetedPreview")]
         #[method_id(@__retain_semantics Other effectWithPreview:)]
-        pub unsafe fn effectWithPreview(preview: &UITargetedPreview) -> Id<Self>;
+        pub unsafe fn effectWithPreview(preview: &UITargetedPreview) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -250,13 +253,13 @@ extern_methods!(
     unsafe impl UIPointerHoverEffect {
         #[cfg(feature = "UITargetedPreview")]
         #[method_id(@__retain_semantics Other effectWithPreview:)]
-        pub unsafe fn effectWithPreview(preview: &UITargetedPreview) -> Id<Self>;
+        pub unsafe fn effectWithPreview(preview: &UITargetedPreview) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -278,17 +281,17 @@ extern_methods!(
     unsafe impl UIPointerShape {
         #[cfg(feature = "UIBezierPath")]
         #[method_id(@__retain_semantics Other shapeWithPath:)]
-        pub unsafe fn shapeWithPath(path: &UIBezierPath, mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn shapeWithPath(path: &UIBezierPath, mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other shapeWithRoundedRect:)]
-        pub unsafe fn shapeWithRoundedRect(rect: CGRect, mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn shapeWithRoundedRect(rect: CGRect, mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other shapeWithRoundedRect:cornerRadius:)]
         pub unsafe fn shapeWithRoundedRect_cornerRadius(
             rect: CGRect,
             corner_radius: CGFloat,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIGeometry")]
         #[method_id(@__retain_semantics Other beamWithPreferredLength:axis:)]
@@ -296,12 +299,12 @@ extern_methods!(
             length: CGFloat,
             axis: UIAxis,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

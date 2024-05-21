@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[method_id(@__retain_semantics Other keySpecifier)]
-        pub unsafe fn keySpecifier(&self) -> Id<NSScriptObjectSpecifier>;
+        pub unsafe fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
     }
 );
 
@@ -66,11 +66,14 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            in_coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -79,10 +82,10 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSCloneCommand {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -122,11 +125,14 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            in_coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -135,10 +141,10 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSCloseCommand {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -175,11 +181,14 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            in_coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -188,10 +197,10 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSCountCommand {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -219,11 +228,11 @@ extern_methods!(
     unsafe impl NSCreateCommand {
         #[cfg(all(feature = "NSClassDescription", feature = "NSScriptClassDescription"))]
         #[method_id(@__retain_semantics Other createClassDescription)]
-        pub unsafe fn createClassDescription(&self) -> Id<NSScriptClassDescription>;
+        pub unsafe fn createClassDescription(&self) -> Retained<NSScriptClassDescription>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other resolvedKeyDictionary)]
-        pub unsafe fn resolvedKeyDictionary(&self) -> Id<NSDictionary<NSString, AnyObject>>;
+        pub unsafe fn resolvedKeyDictionary(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
     }
 );
 
@@ -236,11 +245,14 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            in_coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -249,10 +261,10 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSCreateCommand {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -284,7 +296,7 @@ extern_methods!(
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[method_id(@__retain_semantics Other keySpecifier)]
-        pub unsafe fn keySpecifier(&self) -> Id<NSScriptObjectSpecifier>;
+        pub unsafe fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
     }
 );
 
@@ -297,11 +309,14 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            in_coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -310,10 +325,10 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSDeleteCommand {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -350,11 +365,14 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            in_coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -363,10 +381,10 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSExistsCommand {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -403,11 +421,14 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            in_coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -416,10 +437,10 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSGetCommand {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -451,7 +472,7 @@ extern_methods!(
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[method_id(@__retain_semantics Other keySpecifier)]
-        pub unsafe fn keySpecifier(&self) -> Id<NSScriptObjectSpecifier>;
+        pub unsafe fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
     }
 );
 
@@ -464,11 +485,14 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            in_coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -477,10 +501,10 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSMoveCommand {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -520,11 +544,14 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            in_coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -533,10 +560,10 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSQuitCommand {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -568,7 +595,7 @@ extern_methods!(
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[method_id(@__retain_semantics Other keySpecifier)]
-        pub unsafe fn keySpecifier(&self) -> Id<NSScriptObjectSpecifier>;
+        pub unsafe fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
     }
 );
 
@@ -581,11 +608,14 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            in_coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -594,9 +624,9 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSSetCommand {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

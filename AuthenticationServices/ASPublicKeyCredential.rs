@@ -9,10 +9,10 @@ extern_protocol!(
     #[cfg(feature = "ASAuthorizationCredential")]
     pub unsafe trait ASPublicKeyCredential: ASAuthorizationCredential {
         #[method_id(@__retain_semantics Other rawClientDataJSON)]
-        unsafe fn rawClientDataJSON(&self) -> Id<NSData>;
+        unsafe fn rawClientDataJSON(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other credentialID)]
-        unsafe fn credentialID(&self) -> Id<NSData>;
+        unsafe fn credentialID(&self) -> Retained<NSData>;
     }
 
     #[cfg(feature = "ASAuthorizationCredential")]

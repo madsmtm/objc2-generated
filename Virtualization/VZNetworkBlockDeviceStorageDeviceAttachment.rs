@@ -32,19 +32,19 @@ extern_methods!(
             timeout: NSTimeInterval,
             forced_read_only: bool,
             synchronization_mode: VZDiskSynchronizationMode,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Init initWithURL:error:_)]
         pub unsafe fn initWithURL_error(
             this: Allocated<Self>,
             url: &NSURL,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method(validateURL:error:_)]
-        pub unsafe fn validateURL_error(url: &NSURL) -> Result<(), Id<NSError>>;
+        pub unsafe fn validateURL_error(url: &NSURL) -> Result<(), Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL>;
+        pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         #[method(timeout)]
         pub unsafe fn timeout(&self) -> NSTimeInterval;
@@ -59,7 +59,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn VZNetworkBlockDeviceStorageDeviceAttachmentDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn VZNetworkBlockDeviceStorageDeviceAttachmentDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -76,10 +76,10 @@ extern_methods!(
     #[cfg(feature = "VZStorageDeviceAttachment")]
     unsafe impl VZNetworkBlockDeviceStorageDeviceAttachment {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 

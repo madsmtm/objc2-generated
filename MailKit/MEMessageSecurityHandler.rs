@@ -41,7 +41,7 @@ extern_protocol!(
             &self,
             message_signers: &NSArray<MEMessageSigner>,
             mtm: MainThreadMarker,
-        ) -> Option<Id<MEExtensionViewController>>;
+        ) -> Option<Retained<MEExtensionViewController>>;
 
         #[cfg(all(feature = "MEExtensionViewController", feature = "objc2-app-kit"))]
         #[method_id(@__retain_semantics Other extensionViewControllerForMessageContext:)]
@@ -49,7 +49,7 @@ extern_protocol!(
             &self,
             context: &NSData,
             mtm: MainThreadMarker,
-        ) -> Option<Id<MEExtensionViewController>>;
+        ) -> Option<Retained<MEExtensionViewController>>;
 
         #[cfg(all(
             feature = "MEExtensionViewController",

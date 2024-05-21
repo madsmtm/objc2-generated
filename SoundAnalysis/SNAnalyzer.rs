@@ -20,7 +20,7 @@ unsafe impl NSObjectProtocol for SNAudioStreamAnalyzer {}
 extern_methods!(
     unsafe impl SNAudioStreamAnalyzer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "SNRequest", feature = "SNResult"))]
         #[method(addRequest:withObserver:error:_)]
@@ -28,7 +28,7 @@ extern_methods!(
             &self,
             request: &ProtocolObject<dyn SNRequest>,
             observer: &ProtocolObject<dyn SNResultsObserving>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "SNRequest")]
         #[method(removeRequest:)]
@@ -46,7 +46,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SNAudioStreamAnalyzer {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -68,10 +68,10 @@ extern_methods!(
         pub unsafe fn initWithURL_error(
             this: Allocated<Self>,
             url: &NSURL,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "SNRequest", feature = "SNResult"))]
         #[method(addRequest:withObserver:error:_)]
@@ -79,7 +79,7 @@ extern_methods!(
             &self,
             request: &ProtocolObject<dyn SNRequest>,
             observer: &ProtocolObject<dyn SNResultsObserving>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "SNRequest")]
         #[method(removeRequest:)]
@@ -107,6 +107,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SNAudioFileAnalyzer {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

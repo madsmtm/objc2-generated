@@ -81,10 +81,12 @@ extern_methods!(
 
         #[cfg(feature = "HKWorkoutConfiguration")]
         #[method_id(@__retain_semantics Other workoutConfiguration)]
-        pub unsafe fn workoutConfiguration(&self) -> Id<HKWorkoutConfiguration>;
+        pub unsafe fn workoutConfiguration(&self) -> Retained<HKWorkoutConfiguration>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn HKWorkoutSessionDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn HKWorkoutSessionDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -99,14 +101,14 @@ extern_methods!(
         pub unsafe fn r#type(&self) -> HKWorkoutSessionType;
 
         #[method_id(@__retain_semantics Other startDate)]
-        pub unsafe fn startDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
         #[method_id(@__retain_semantics Other endDate)]
-        pub unsafe fn endDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "HKWorkoutActivity")]
         #[method_id(@__retain_semantics Other currentActivity)]
-        pub unsafe fn currentActivity(&self) -> Id<HKWorkoutActivity>;
+        pub unsafe fn currentActivity(&self) -> Retained<HKWorkoutActivity>;
 
         #[cfg(all(feature = "HKWorkout", feature = "HKWorkoutConfiguration"))]
         #[deprecated]
@@ -115,7 +117,7 @@ extern_methods!(
             this: Allocated<Self>,
             activity_type: HKWorkoutActivityType,
             location_type: HKWorkoutSessionLocationType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "HKWorkoutConfiguration")]
         #[deprecated]
@@ -123,7 +125,7 @@ extern_methods!(
         pub unsafe fn initWithConfiguration_error(
             this: Allocated<Self>,
             workout_configuration: &HKWorkoutConfiguration,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "HKHealthStore", feature = "HKWorkoutConfiguration"))]
         #[method_id(@__retain_semantics Init initWithHealthStore:configuration:error:_)]
@@ -131,10 +133,10 @@ extern_methods!(
             this: Allocated<Self>,
             health_store: &HKHealthStore,
             workout_configuration: &HKWorkoutConfiguration,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(prepare)]
         pub unsafe fn prepare(&self);
@@ -156,7 +158,7 @@ extern_methods!(
 
         #[cfg(all(feature = "HKLiveWorkoutBuilder", feature = "HKWorkoutBuilder"))]
         #[method_id(@__retain_semantics Other associatedWorkoutBuilder)]
-        pub unsafe fn associatedWorkoutBuilder(&self) -> Id<HKLiveWorkoutBuilder>;
+        pub unsafe fn associatedWorkoutBuilder(&self) -> Retained<HKLiveWorkoutBuilder>;
 
         #[cfg(feature = "HKWorkoutConfiguration")]
         #[method(beginNewActivityWithConfiguration:date:metadata:)]
@@ -198,7 +200,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKWorkoutSession {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

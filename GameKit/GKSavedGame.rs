@@ -22,13 +22,13 @@ unsafe impl NSObjectProtocol for GKSavedGame {}
 extern_methods!(
     unsafe impl GKSavedGame {
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other deviceName)]
-        pub unsafe fn deviceName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn deviceName(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other modificationDate)]
-        pub unsafe fn modificationDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn modificationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "block2")]
         #[method(loadDataWithCompletionHandler:)]
@@ -43,10 +43,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKSavedGame {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

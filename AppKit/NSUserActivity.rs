@@ -19,7 +19,7 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSResponder {
         #[method_id(@__retain_semantics Other userActivity)]
-        pub unsafe fn userActivity(&self) -> Option<Id<NSUserActivity>>;
+        pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
 
         #[method(setUserActivity:)]
         pub unsafe fn setUserActivity(&self, user_activity: Option<&NSUserActivity>);
@@ -37,7 +37,7 @@ extern_methods!(
     #[cfg(feature = "NSDocument")]
     unsafe impl NSDocument {
         #[method_id(@__retain_semantics Other userActivity)]
-        pub unsafe fn userActivity(&self) -> Option<Id<NSUserActivity>>;
+        pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
 
         #[method(setUserActivity:)]
         pub unsafe fn setUserActivity(&self, user_activity: Option<&NSUserActivity>);

@@ -22,13 +22,13 @@ unsafe impl NSObjectProtocol for PHFetchOptions {}
 extern_methods!(
     unsafe impl PHFetchOptions {
         #[method_id(@__retain_semantics Other predicate)]
-        pub unsafe fn predicate(&self) -> Option<Id<NSPredicate>>;
+        pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
         #[method(setPredicate:)]
         pub unsafe fn setPredicate(&self, predicate: Option<&NSPredicate>);
 
         #[method_id(@__retain_semantics Other sortDescriptors)]
-        pub unsafe fn sortDescriptors(&self) -> Option<Id<NSArray<NSSortDescriptor>>>;
+        pub unsafe fn sortDescriptors(&self) -> Option<Retained<NSArray<NSSortDescriptor>>>;
 
         #[method(setSortDescriptors:)]
         pub unsafe fn setSortDescriptors(
@@ -80,9 +80,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHFetchOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

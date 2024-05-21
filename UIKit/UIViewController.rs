@@ -147,14 +147,17 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "UIView")]
         #[method_id(@__retain_semantics Other view)]
-        pub fn view(&self) -> Option<Id<UIView>>;
+        pub fn view(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UIView")]
         #[method(setView:)]
@@ -168,7 +171,7 @@ extern_methods!(
 
         #[cfg(feature = "UIView")]
         #[method_id(@__retain_semantics Other viewIfLoaded)]
-        pub unsafe fn viewIfLoaded(&self) -> Option<Id<UIView>>;
+        pub unsafe fn viewIfLoaded(&self) -> Option<Retained<UIView>>;
 
         #[deprecated]
         #[method(viewWillUnload)]
@@ -186,16 +189,16 @@ extern_methods!(
 
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[method_id(@__retain_semantics Other nibName)]
-        pub unsafe fn nibName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn nibName(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[method_id(@__retain_semantics Other nibBundle)]
-        pub unsafe fn nibBundle(&self) -> Option<Id<NSBundle>>;
+        pub unsafe fn nibBundle(&self) -> Option<Retained<NSBundle>>;
 
         #[cfg(feature = "UIStoryboard")]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[method_id(@__retain_semantics Other storyboard)]
-        pub unsafe fn storyboard(&self) -> Option<Id<UIStoryboard>>;
+        pub unsafe fn storyboard(&self) -> Option<Retained<UIStoryboard>>;
 
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[method(performSegueWithIdentifier:sender:)]
@@ -246,7 +249,7 @@ extern_methods!(
         pub unsafe fn allowedChildViewControllersForUnwindingFromSource(
             &self,
             source: &UIStoryboardUnwindSegueSource,
-        ) -> Id<NSArray<UIViewController>>;
+        ) -> Retained<NSArray<UIViewController>>;
 
         #[cfg(feature = "UIStoryboardSegue")]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
@@ -254,7 +257,7 @@ extern_methods!(
         pub unsafe fn childViewControllerContainingSegueSource(
             &self,
             source: &UIStoryboardUnwindSegueSource,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other viewControllerForUnwindSegueAction:fromViewController:withSender:)]
@@ -263,7 +266,7 @@ extern_methods!(
             action: Sel,
             from_view_controller: &UIViewController,
             sender: Option<&AnyObject>,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[cfg(feature = "UIStoryboardSegue")]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
@@ -282,7 +285,7 @@ extern_methods!(
             to_view_controller: &UIViewController,
             from_view_controller: &UIViewController,
             identifier: Option<&NSString>,
-        ) -> Option<Id<UIStoryboardSegue>>;
+        ) -> Option<Retained<UIStoryboardSegue>>;
 
         #[method(viewWillAppear:)]
         pub unsafe fn viewWillAppear(&self, animated: bool);
@@ -306,7 +309,7 @@ extern_methods!(
         pub unsafe fn viewDidLayoutSubviews(&self);
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -315,17 +318,17 @@ extern_methods!(
         pub unsafe fn didReceiveMemoryWarning(&self);
 
         #[method_id(@__retain_semantics Other parentViewController)]
-        pub unsafe fn parentViewController(&self) -> Option<Id<UIViewController>>;
+        pub unsafe fn parentViewController(&self) -> Option<Retained<UIViewController>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other modalViewController)]
-        pub unsafe fn modalViewController(&self) -> Option<Id<UIViewController>>;
+        pub unsafe fn modalViewController(&self) -> Option<Retained<UIViewController>>;
 
         #[method_id(@__retain_semantics Other presentedViewController)]
-        pub unsafe fn presentedViewController(&self) -> Option<Id<UIViewController>>;
+        pub unsafe fn presentedViewController(&self) -> Option<Retained<UIViewController>>;
 
         #[method_id(@__retain_semantics Other presentingViewController)]
-        pub unsafe fn presentingViewController(&self) -> Option<Id<UIViewController>>;
+        pub unsafe fn presentingViewController(&self) -> Option<Retained<UIViewController>>;
 
         #[method(definesPresentationContext)]
         pub unsafe fn definesPresentationContext(&self) -> bool;
@@ -349,13 +352,13 @@ extern_methods!(
         pub unsafe fn setRestoresFocusAfterTransition(&self, restores_focus_after_transition: bool);
 
         #[method_id(@__retain_semantics Other focusGroupIdentifier)]
-        pub unsafe fn focusGroupIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn focusGroupIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(setFocusGroupIdentifier:)]
         pub unsafe fn setFocusGroupIdentifier(&self, focus_group_identifier: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other interactionActivityTrackingBaseName)]
-        pub unsafe fn interactionActivityTrackingBaseName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn interactionActivityTrackingBaseName(&self) -> Option<Retained<NSString>>;
 
         #[method(setInteractionActivityTrackingBaseName:)]
         pub unsafe fn setInteractionActivityTrackingBaseName(
@@ -483,7 +486,7 @@ extern_methods!(
         pub unsafe fn contentScrollViewForEdge(
             &self,
             edge: NSDirectionalRectEdge,
-        ) -> Option<Id<UIScrollView>>;
+        ) -> Option<Retained<UIScrollView>>;
 
         #[method(preferredContentSize)]
         pub unsafe fn preferredContentSize(&self) -> CGSize;
@@ -513,7 +516,7 @@ extern_methods!(
             &self,
             action: Sel,
             sender: Option<&AnyObject>,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[method(showViewController:sender:)]
         pub unsafe fn showViewController_sender(
@@ -554,10 +557,10 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -596,12 +599,12 @@ extern_methods!(
         #[cfg(feature = "UIView")]
         #[deprecated = "Header views are animated along with the rest of the view hierarchy"]
         #[method_id(@__retain_semantics Other rotatingHeaderView)]
-        pub unsafe fn rotatingHeaderView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn rotatingHeaderView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UIView")]
         #[deprecated = "Footer views are animated along with the rest of the view hierarchy"]
         #[method_id(@__retain_semantics Other rotatingFooterView)]
-        pub unsafe fn rotatingFooterView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn rotatingFooterView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UIOrientation")]
         #[deprecated]
@@ -677,7 +680,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method_id(@__retain_semantics Other editButtonItem)]
-        pub unsafe fn editButtonItem(&self) -> Id<UIBarButtonItem>;
+        pub unsafe fn editButtonItem(&self) -> Retained<UIBarButtonItem>;
     }
 );
 
@@ -688,7 +691,8 @@ extern_methods!(
         #[cfg(feature = "UISearchDisplayController")]
         #[deprecated]
         #[method_id(@__retain_semantics Other searchDisplayController)]
-        pub unsafe fn searchDisplayController(&self) -> Option<Id<UISearchDisplayController>>;
+        pub unsafe fn searchDisplayController(&self)
+            -> Option<Retained<UISearchDisplayController>>;
     }
 );
 
@@ -701,7 +705,7 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIViewController {
         #[method_id(@__retain_semantics Other childViewControllers)]
-        pub unsafe fn childViewControllers(&self) -> Id<NSArray<UIViewController>>;
+        pub unsafe fn childViewControllers(&self) -> Retained<NSArray<UIViewController>>;
 
         #[method(addChildViewController:)]
         pub unsafe fn addChildViewController(&self, child_controller: &UIViewController);
@@ -729,11 +733,15 @@ extern_methods!(
 
         #[deprecated = "Has no effect on visionOS"]
         #[method_id(@__retain_semantics Other childViewControllerForStatusBarStyle)]
-        pub unsafe fn childViewControllerForStatusBarStyle(&self) -> Option<Id<UIViewController>>;
+        pub unsafe fn childViewControllerForStatusBarStyle(
+            &self,
+        ) -> Option<Retained<UIViewController>>;
 
         #[deprecated = "Has no effect on visionOS"]
         #[method_id(@__retain_semantics Other childViewControllerForStatusBarHidden)]
-        pub unsafe fn childViewControllerForStatusBarHidden(&self) -> Option<Id<UIViewController>>;
+        pub unsafe fn childViewControllerForStatusBarHidden(
+            &self,
+        ) -> Option<Retained<UIViewController>>;
 
         #[cfg(feature = "UITraitCollection")]
         #[deprecated = "Use the traitOverrides property on the child view controller instead"]
@@ -750,12 +758,12 @@ extern_methods!(
         pub unsafe fn overrideTraitCollectionForChildViewController(
             &self,
             child_view_controller: &UIViewController,
-        ) -> Option<Id<UITraitCollection>>;
+        ) -> Option<Retained<UITraitCollection>>;
 
         #[method_id(@__retain_semantics Other childViewControllerForUserInterfaceStyle)]
         pub unsafe fn childViewControllerForUserInterfaceStyle(
             &self,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
     }
 );
 
@@ -789,7 +797,7 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIViewController {
         #[method_id(@__retain_semantics Other restorationIdentifier)]
-        pub unsafe fn restorationIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn restorationIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(setRestorationIdentifier:)]
         pub unsafe fn setRestorationIdentifier(&self, restoration_identifier: Option<&NSString>);
@@ -833,7 +841,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other transitioningDelegate)]
         pub unsafe fn transitioningDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIViewControllerTransitioningDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIViewControllerTransitioningDelegate>>>;
 
         #[cfg(feature = "UIViewControllerTransitioning")]
         #[method(setTransitioningDelegate:)]
@@ -853,12 +861,12 @@ extern_methods!(
         #[cfg(feature = "NSLayoutConstraint")]
         #[deprecated = "Use view.safeAreaLayoutGuide.topAnchor instead of topLayoutGuide.bottomAnchor"]
         #[method_id(@__retain_semantics Other topLayoutGuide)]
-        pub unsafe fn topLayoutGuide(&self) -> Id<ProtocolObject<dyn UILayoutSupport>>;
+        pub unsafe fn topLayoutGuide(&self) -> Retained<ProtocolObject<dyn UILayoutSupport>>;
 
         #[cfg(feature = "NSLayoutConstraint")]
         #[deprecated = "Use view.safeAreaLayoutGuide.bottomAnchor instead of bottomLayoutGuide.topAnchor"]
         #[method_id(@__retain_semantics Other bottomLayoutGuide)]
-        pub unsafe fn bottomLayoutGuide(&self) -> Id<ProtocolObject<dyn UILayoutSupport>>;
+        pub unsafe fn bottomLayoutGuide(&self) -> Retained<ProtocolObject<dyn UILayoutSupport>>;
 
         #[cfg(feature = "UIGeometry")]
         #[method(additionalSafeAreaInsets)]
@@ -925,7 +933,7 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIViewController {
         #[method_id(@__retain_semantics Other extensionContext)]
-        pub unsafe fn extensionContext(&self) -> Option<Id<NSExtensionContext>>;
+        pub unsafe fn extensionContext(&self) -> Option<Retained<NSExtensionContext>>;
     }
 );
 
@@ -938,7 +946,7 @@ extern_methods!(
     unsafe impl UIViewController {
         #[cfg(feature = "UIPresentationController")]
         #[method_id(@__retain_semantics Other presentationController)]
-        pub unsafe fn presentationController(&self) -> Option<Id<UIPresentationController>>;
+        pub unsafe fn presentationController(&self) -> Option<Retained<UIPresentationController>>;
 
         #[cfg(all(
             feature = "UIPresentationController",
@@ -947,7 +955,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sheetPresentationController)]
         pub unsafe fn sheetPresentationController(
             &self,
-        ) -> Option<Id<UISheetPresentationController>>;
+        ) -> Option<Retained<UISheetPresentationController>>;
 
         #[cfg(all(
             feature = "UIPopoverPresentationController",
@@ -956,11 +964,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other popoverPresentationController)]
         pub unsafe fn popoverPresentationController(
             &self,
-        ) -> Option<Id<UIPopoverPresentationController>>;
+        ) -> Option<Retained<UIPopoverPresentationController>>;
 
         #[cfg(feature = "UIPresentationController")]
         #[method_id(@__retain_semantics Other activePresentationController)]
-        pub unsafe fn activePresentationController(&self) -> Option<Id<UIPresentationController>>;
+        pub unsafe fn activePresentationController(
+            &self,
+        ) -> Option<Retained<UIPresentationController>>;
 
         #[method(isModalInPresentation)]
         pub unsafe fn isModalInPresentation(&self) -> bool;
@@ -979,16 +989,18 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other previewingGestureRecognizerForFailureRelationship)]
         unsafe fn previewingGestureRecognizerForFailureRelationship(
             &self,
-        ) -> Id<UIGestureRecognizer>;
+        ) -> Retained<UIGestureRecognizer>;
 
         #[deprecated = "UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction."]
         #[method_id(@__retain_semantics Other delegate)]
-        unsafe fn delegate(&self) -> Id<ProtocolObject<dyn UIViewControllerPreviewingDelegate>>;
+        unsafe fn delegate(
+            &self,
+        ) -> Retained<ProtocolObject<dyn UIViewControllerPreviewingDelegate>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated = "UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction."]
         #[method_id(@__retain_semantics Other sourceView)]
-        unsafe fn sourceView(&self) -> Id<UIView>;
+        unsafe fn sourceView(&self) -> Retained<UIView>;
 
         #[deprecated = "UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction."]
         #[method(sourceRect)]
@@ -1013,7 +1025,7 @@ extern_protocol!(
             &self,
             previewing_context: &ProtocolObject<dyn UIViewControllerPreviewing>,
             location: CGPoint,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[cfg(feature = "UIResponder")]
         #[deprecated = "UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction."]
@@ -1039,7 +1051,7 @@ extern_methods!(
             &self,
             delegate: &ProtocolObject<dyn UIViewControllerPreviewingDelegate>,
             source_view: &UIView,
-        ) -> Id<ProtocolObject<dyn UIViewControllerPreviewing>>;
+        ) -> Retained<ProtocolObject<dyn UIViewControllerPreviewing>>;
 
         #[deprecated = "UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction."]
         #[method(unregisterForPreviewingWithContext:)]
@@ -1057,7 +1069,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other childViewControllerForScreenEdgesDeferringSystemGestures)]
         pub unsafe fn childViewControllerForScreenEdgesDeferringSystemGestures(
             &self,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[cfg(feature = "UIGeometry")]
         #[method(preferredScreenEdgesDeferringSystemGestures)]
@@ -1075,7 +1087,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other childViewControllerForHomeIndicatorAutoHidden)]
         pub unsafe fn childViewControllerForHomeIndicatorAutoHidden(
             &self,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[method(prefersHomeIndicatorAutoHidden)]
         pub unsafe fn prefersHomeIndicatorAutoHidden(&self) -> bool;
@@ -1090,7 +1102,9 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIViewController {
         #[method_id(@__retain_semantics Other childViewControllerForPointerLock)]
-        pub unsafe fn childViewControllerForPointerLock(&self) -> Option<Id<UIViewController>>;
+        pub unsafe fn childViewControllerForPointerLock(
+            &self,
+        ) -> Option<Retained<UIViewController>>;
 
         #[method(prefersPointerLocked)]
         pub unsafe fn prefersPointerLocked(&self) -> bool;
@@ -1107,7 +1121,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other contentUnavailableConfiguration)]
         pub unsafe fn contentUnavailableConfiguration(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIContentConfiguration>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIContentConfiguration>>>;
 
         #[cfg(feature = "UIContentConfiguration")]
         #[method(setContentUnavailableConfiguration:)]
@@ -1120,7 +1134,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other contentUnavailableConfigurationState)]
         pub unsafe fn contentUnavailableConfigurationState(
             &self,
-        ) -> Id<UIContentUnavailableConfigurationState>;
+        ) -> Retained<UIContentUnavailableConfigurationState>;
 
         #[method(setNeedsUpdateContentUnavailableConfiguration)]
         pub unsafe fn setNeedsUpdateContentUnavailableConfiguration(&self);
@@ -1141,7 +1155,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other previewActionItems)]
         pub unsafe fn previewActionItems(
             &self,
-        ) -> Id<NSArray<ProtocolObject<dyn UIPreviewActionItem>>>;
+        ) -> Retained<NSArray<ProtocolObject<dyn UIPreviewActionItem>>>;
     }
 );
 
@@ -1150,7 +1164,7 @@ extern_methods!(
     unsafe impl UIViewController {
         #[cfg(feature = "UITraitCollection")]
         #[method_id(@__retain_semantics Other traitOverrides)]
-        pub unsafe fn traitOverrides(&self) -> Id<ProtocolObject<dyn UITraitOverrides>>;
+        pub unsafe fn traitOverrides(&self) -> Retained<ProtocolObject<dyn UITraitOverrides>>;
 
         #[method(updateTraitsIfNeeded)]
         pub unsafe fn updateTraitsIfNeeded(&self);
@@ -1190,7 +1204,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other childViewControllerForPreferredContainerBackgroundStyle)]
         pub unsafe fn childViewControllerForPreferredContainerBackgroundStyle(
             &self,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[method(setNeedsUpdateOfPreferredContainerBackgroundStyle)]
         pub unsafe fn setNeedsUpdateOfPreferredContainerBackgroundStyle(&self);
@@ -1200,7 +1214,7 @@ extern_methods!(
 extern_protocol!(
     pub unsafe trait UIPreviewActionItem: NSObjectProtocol + IsMainThreadOnly {
         #[method_id(@__retain_semantics Other title)]
-        unsafe fn title(&self) -> Id<NSString>;
+        unsafe fn title(&self) -> Retained<NSString>;
     }
 
     unsafe impl ProtocolType for dyn UIPreviewActionItem {}
@@ -1269,7 +1283,7 @@ extern_methods!(
             style: UIPreviewActionStyle,
             handler: &block2::Block<dyn Fn(NonNull<UIPreviewAction>, NonNull<UIViewController>)>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -1277,10 +1291,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPreviewAction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -1310,7 +1324,7 @@ extern_methods!(
             style: UIPreviewActionStyle,
             actions: &NSArray<UIPreviewAction>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -1318,9 +1332,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPreviewActionGroup {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

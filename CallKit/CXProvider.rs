@@ -171,13 +171,13 @@ extern_methods!(
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &CXProviderConfiguration,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CXCallUpdate", feature = "block2"))]
         #[method(reportNewIncomingCallWithUUID:update:completion:)]
@@ -223,7 +223,7 @@ extern_methods!(
 
         #[cfg(feature = "CXProviderConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration(&self) -> Id<CXProviderConfiguration>;
+        pub unsafe fn configuration(&self) -> Retained<CXProviderConfiguration>;
 
         #[cfg(feature = "CXProviderConfiguration")]
         #[method(setConfiguration:)]
@@ -234,7 +234,7 @@ extern_methods!(
 
         #[cfg(feature = "CXTransaction")]
         #[method_id(@__retain_semantics Other pendingTransactions)]
-        pub unsafe fn pendingTransactions(&self) -> Id<NSArray<CXTransaction>>;
+        pub unsafe fn pendingTransactions(&self) -> Retained<NSArray<CXTransaction>>;
 
         #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
         #[method_id(@__retain_semantics Other pendingCallActionsOfClass:withCallUUID:)]
@@ -242,6 +242,6 @@ extern_methods!(
             &self,
             call_action_class: &AnyClass,
             call_uuid: &NSUUID,
-        ) -> Id<NSArray<CXCallAction>>;
+        ) -> Retained<NSArray<CXCallAction>>;
     }
 );

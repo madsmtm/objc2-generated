@@ -138,15 +138,15 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "UIWindow"))]
         #[method_id(@__retain_semantics Other window)]
-        pub fn window(&self) -> Option<Id<UIWindow>>;
+        pub fn window(&self) -> Option<Retained<UIWindow>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other view)]
-        pub fn view(&self) -> Option<Id<UIView>>;
+        pub fn view(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[method_id(@__retain_semantics Other gestureRecognizers)]
-        pub unsafe fn gestureRecognizers(&self) -> Option<Id<NSArray<UIGestureRecognizer>>>;
+        pub unsafe fn gestureRecognizers(&self) -> Option<Retained<NSArray<UIGestureRecognizer>>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(locationInView:)]
@@ -182,7 +182,7 @@ extern_methods!(
         pub fn altitudeAngle(&self) -> CGFloat;
 
         #[method_id(@__retain_semantics Other estimationUpdateIndex)]
-        pub unsafe fn estimationUpdateIndex(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn estimationUpdateIndex(&self) -> Option<Retained<NSNumber>>;
 
         #[method(estimatedProperties)]
         pub unsafe fn estimatedProperties(&self) -> UITouchProperties;
@@ -199,9 +199,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITouch {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

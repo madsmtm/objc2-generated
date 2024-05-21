@@ -19,7 +19,7 @@ extern_category!(
             &self,
             index: NSUInteger,
             key: &NSString,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other valueWithName:inPropertyWithKey:)]
@@ -27,7 +27,7 @@ extern_category!(
             &self,
             name: &NSString,
             key: &NSString,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other valueWithUniqueID:inPropertyWithKey:)]
@@ -35,7 +35,7 @@ extern_category!(
             &self,
             unique_id: &AnyObject,
             key: &NSString,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
         #[method(insertValue:atIndex:inPropertyWithKey:)]
@@ -69,7 +69,7 @@ extern_category!(
             &self,
             value: Option<&AnyObject>,
             key: &NSString,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
     }
 
     unsafe impl NSObjectNSScriptKeyValueCoding for NSObject {}

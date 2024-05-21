@@ -56,22 +56,22 @@ extern_methods!(
     unsafe impl HKDiscreteQuantitySample {
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other minimumQuantity)]
-        pub unsafe fn minimumQuantity(&self) -> Id<HKQuantity>;
+        pub unsafe fn minimumQuantity(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other averageQuantity)]
-        pub unsafe fn averageQuantity(&self) -> Id<HKQuantity>;
+        pub unsafe fn averageQuantity(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other maximumQuantity)]
-        pub unsafe fn maximumQuantity(&self) -> Id<HKQuantity>;
+        pub unsafe fn maximumQuantity(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other mostRecentQuantity)]
-        pub unsafe fn mostRecentQuantity(&self) -> Id<HKQuantity>;
+        pub unsafe fn mostRecentQuantity(&self) -> Retained<HKQuantity>;
 
         #[method_id(@__retain_semantics Other mostRecentQuantityDateInterval)]
-        pub unsafe fn mostRecentQuantityDateInterval(&self) -> Id<NSDateInterval>;
+        pub unsafe fn mostRecentQuantityDateInterval(&self) -> Retained<NSDateInterval>;
     }
 );
 
@@ -90,7 +90,7 @@ extern_methods!(
             quantity: &HKQuantity,
             start_date: &NSDate,
             end_date: &NSDate,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other quantitySampleWithType:quantity:startDate:endDate:metadata:)]
@@ -100,7 +100,7 @@ extern_methods!(
             start_date: &NSDate,
             end_date: &NSDate,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKDevice", feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other quantitySampleWithType:quantity:startDate:endDate:device:metadata:)]
@@ -111,7 +111,7 @@ extern_methods!(
             end_date: &NSDate,
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -124,7 +124,7 @@ extern_methods!(
     ))]
     unsafe impl HKDiscreteQuantitySample {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -137,7 +137,7 @@ extern_methods!(
     ))]
     unsafe impl HKDiscreteQuantitySample {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

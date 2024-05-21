@@ -25,16 +25,16 @@ extern_methods!(
         pub unsafe fn sourceIdentifier(&self) -> u8;
 
         #[method_id(@__retain_semantics Other destinationURL)]
-        pub unsafe fn destinationURL(&self) -> Id<NSURL>;
+        pub unsafe fn destinationURL(&self) -> Retained<NSURL>;
 
         #[method_id(@__retain_semantics Other reportEndpoint)]
-        pub unsafe fn reportEndpoint(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn reportEndpoint(&self) -> Option<Retained<NSURL>>;
 
         #[method_id(@__retain_semantics Other sourceDescription)]
-        pub unsafe fn sourceDescription(&self) -> Id<NSString>;
+        pub unsafe fn sourceDescription(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other purchaser)]
-        pub unsafe fn purchaser(&self) -> Id<NSString>;
+        pub unsafe fn purchaser(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Init initWithSourceIdentifier:destinationURL:sourceDescription:purchaser:)]
         pub unsafe fn initWithSourceIdentifier_destinationURL_sourceDescription_purchaser(
@@ -43,12 +43,12 @@ extern_methods!(
             destination_url: &NSURL,
             source_description: &NSString,
             purchaser: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

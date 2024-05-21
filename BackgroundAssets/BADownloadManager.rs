@@ -69,16 +69,18 @@ unsafe impl NSObjectProtocol for BADownloadManager {}
 extern_methods!(
     unsafe impl BADownloadManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other sharedManager)]
-        pub unsafe fn sharedManager() -> Id<BADownloadManager>;
+        pub unsafe fn sharedManager() -> Retained<BADownloadManager>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn BADownloadManagerDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn BADownloadManagerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -88,7 +90,9 @@ extern_methods!(
 
         #[cfg(feature = "BADownload")]
         #[method_id(@__retain_semantics Other fetchCurrentDownloads:_)]
-        pub unsafe fn fetchCurrentDownloads(&self) -> Result<Id<NSArray<BADownload>>, Id<NSError>>;
+        pub unsafe fn fetchCurrentDownloads(
+            &self,
+        ) -> Result<Retained<NSArray<BADownload>>, Retained<NSError>>;
 
         #[cfg(all(feature = "BADownload", feature = "block2"))]
         #[method(fetchCurrentDownloadsWithCompletionHandler:)]
@@ -102,7 +106,7 @@ extern_methods!(
         pub unsafe fn scheduleDownload_error(
             &self,
             download: &BADownload,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "block2")]
         #[method(performWithExclusiveControl:)]
@@ -124,11 +128,13 @@ extern_methods!(
         pub unsafe fn startForegroundDownload_error(
             &self,
             download: &BADownload,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "BADownload")]
         #[method(cancelDownload:error:_)]
-        pub unsafe fn cancelDownload_error(&self, download: &BADownload)
-            -> Result<(), Id<NSError>>;
+        pub unsafe fn cancelDownload_error(
+            &self,
+            download: &BADownload,
+        ) -> Result<(), Retained<NSError>>;
     }
 );

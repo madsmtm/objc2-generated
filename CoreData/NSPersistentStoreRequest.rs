@@ -43,7 +43,7 @@ extern_methods!(
     unsafe impl NSPersistentStoreRequest {
         #[cfg(feature = "NSPersistentStore")]
         #[method_id(@__retain_semantics Other affectedStores)]
-        pub unsafe fn affectedStores(&self) -> Option<Id<NSArray<NSPersistentStore>>>;
+        pub unsafe fn affectedStores(&self) -> Option<Retained<NSArray<NSPersistentStore>>>;
 
         #[cfg(feature = "NSPersistentStore")]
         #[method(setAffectedStores:)]
@@ -61,9 +61,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPersistentStoreRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -19,7 +19,7 @@ extern_protocol!(
         unsafe fn printerPickerControllerParentViewController(
             &self,
             printer_picker_controller: &UIPrinterPickerController,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[cfg(feature = "UIPrinter")]
         #[optional]
@@ -88,16 +88,16 @@ extern_methods!(
         pub unsafe fn printerPickerControllerWithInitiallySelectedPrinter(
             printer: Option<&UIPrinter>,
             mtm: MainThreadMarker,
-        ) -> Id<UIPrinterPickerController>;
+        ) -> Retained<UIPrinterPickerController>;
 
         #[cfg(feature = "UIPrinter")]
         #[method_id(@__retain_semantics Other selectedPrinter)]
-        pub unsafe fn selectedPrinter(&self) -> Option<Id<UIPrinter>>;
+        pub unsafe fn selectedPrinter(&self) -> Option<Retained<UIPrinter>>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIPrinterPickerControllerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIPrinterPickerControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -141,9 +141,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrinterPickerController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

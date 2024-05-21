@@ -35,7 +35,7 @@ extern_protocol!(
             >,
             item_strings: &NSArray<NSAttributedString>,
             text_range: &UITextRange,
-        ) -> Id<NSAttributedString>;
+        ) -> Retained<NSAttributedString>;
 
         #[cfg(all(
             feature = "UIPasteConfigurationSupporting",
@@ -51,7 +51,7 @@ extern_protocol!(
             >,
             attributed_string: &NSAttributedString,
             text_range: &UITextRange,
-        ) -> Id<UITextRange>;
+        ) -> Retained<UITextRange>;
 
         #[cfg(all(
             feature = "UIPasteConfigurationSupporting",
@@ -76,13 +76,15 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait UITextPasteItem: NSObjectProtocol + IsMainThreadOnly {
         #[method_id(@__retain_semantics Other itemProvider)]
-        unsafe fn itemProvider(&self) -> Id<NSItemProvider>;
+        unsafe fn itemProvider(&self) -> Retained<NSItemProvider>;
 
         #[method_id(@__retain_semantics Other localObject)]
-        unsafe fn localObject(&self) -> Option<Id<AnyObject>>;
+        unsafe fn localObject(&self) -> Option<Retained<AnyObject>>;
 
         #[method_id(@__retain_semantics Other defaultAttributes)]
-        unsafe fn defaultAttributes(&self) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
+        unsafe fn defaultAttributes(
+            &self,
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[method(setStringResult:)]
         unsafe fn setStringResult(&self, string: &NSString);

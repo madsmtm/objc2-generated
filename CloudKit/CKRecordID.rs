@@ -30,14 +30,16 @@ unsafe impl NSSecureCoding for CKRecordID {}
 extern_methods!(
     unsafe impl CKRecordID {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithRecordName:)]
-        pub unsafe fn initWithRecordName(this: Allocated<Self>, record_name: &NSString)
-            -> Id<Self>;
+        pub unsafe fn initWithRecordName(
+            this: Allocated<Self>,
+            record_name: &NSString,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithRecordName:zoneID:)]
@@ -45,13 +47,13 @@ extern_methods!(
             this: Allocated<Self>,
             record_name: &NSString,
             zone_id: &CKRecordZoneID,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other recordName)]
-        pub unsafe fn recordName(&self) -> Id<NSString>;
+        pub unsafe fn recordName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other zoneID)]
-        pub unsafe fn zoneID(&self) -> Id<CKRecordZoneID>;
+        pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;
     }
 );

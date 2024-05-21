@@ -24,22 +24,22 @@ unsafe impl NSSecureCoding for WKWebsiteDataStore {}
 extern_methods!(
     unsafe impl WKWebsiteDataStore {
         #[method_id(@__retain_semantics Other defaultDataStore)]
-        pub unsafe fn defaultDataStore() -> Id<WKWebsiteDataStore>;
+        pub unsafe fn defaultDataStore() -> Retained<WKWebsiteDataStore>;
 
         #[method_id(@__retain_semantics Other nonPersistentDataStore)]
-        pub unsafe fn nonPersistentDataStore() -> Id<WKWebsiteDataStore>;
+        pub unsafe fn nonPersistentDataStore() -> Retained<WKWebsiteDataStore>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(&self) -> Id<Self>;
+        pub unsafe fn new(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(isPersistent)]
         pub unsafe fn isPersistent(&self) -> bool;
 
         #[method_id(@__retain_semantics Other allWebsiteDataTypes)]
-        pub unsafe fn allWebsiteDataTypes() -> Id<NSSet<NSString>>;
+        pub unsafe fn allWebsiteDataTypes() -> Retained<NSSet<NSString>>;
 
         #[cfg(all(feature = "WKWebsiteDataRecord", feature = "block2"))]
         #[method(fetchDataRecordsOfTypes:completionHandler:)]
@@ -69,13 +69,13 @@ extern_methods!(
 
         #[cfg(feature = "WKHTTPCookieStore")]
         #[method_id(@__retain_semantics Other httpCookieStore)]
-        pub unsafe fn httpCookieStore(&self) -> Id<WKHTTPCookieStore>;
+        pub unsafe fn httpCookieStore(&self) -> Retained<WKHTTPCookieStore>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSUUID>>;
+        pub unsafe fn identifier(&self) -> Option<Retained<NSUUID>>;
 
         #[method_id(@__retain_semantics Other dataStoreForIdentifier:)]
-        pub unsafe fn dataStoreForIdentifier(identifier: &NSUUID) -> Id<WKWebsiteDataStore>;
+        pub unsafe fn dataStoreForIdentifier(identifier: &NSUUID) -> Retained<WKWebsiteDataStore>;
 
         #[cfg(feature = "block2")]
         #[method(removeDataStoreForIdentifier:completionHandler:)]
@@ -96,6 +96,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKWebsiteDataStore {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new_class() -> Id<Self>;
+        pub unsafe fn new_class() -> Retained<Self>;
     }
 );

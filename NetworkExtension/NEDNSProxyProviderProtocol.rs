@@ -34,8 +34,9 @@ extern_methods!(
     #[cfg(feature = "NEVPNProtocol")]
     unsafe impl NEDNSProxyProviderProtocol {
         #[method_id(@__retain_semantics Other providerConfiguration)]
-        pub unsafe fn providerConfiguration(&self)
-            -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        pub unsafe fn providerConfiguration(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[method(setProviderConfiguration:)]
         pub unsafe fn setProviderConfiguration(
@@ -44,7 +45,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other providerBundleIdentifier)]
-        pub unsafe fn providerBundleIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn providerBundleIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(setProviderBundleIdentifier:)]
         pub unsafe fn setProviderBundleIdentifier(
@@ -59,9 +60,9 @@ extern_methods!(
     #[cfg(feature = "NEVPNProtocol")]
     unsafe impl NEDNSProxyProviderProtocol {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -75,10 +75,13 @@ extern_methods!(
             this: Allocated<Self>,
             duration: NSTimeInterval,
             animation_curve: NSAnimationCurve,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method(startAnimation)]
         pub unsafe fn startAnimation(&self);
@@ -126,7 +129,7 @@ extern_methods!(
         pub unsafe fn currentValue(&self) -> c_float;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSAnimationDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSAnimationDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -135,7 +138,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other progressMarks)]
-        pub unsafe fn progressMarks(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn progressMarks(&self) -> Retained<NSArray<NSNumber>>;
 
         #[method(setProgressMarks:)]
         pub unsafe fn setProgressMarks(&self, progress_marks: &NSArray<NSNumber>);
@@ -167,7 +170,7 @@ extern_methods!(
         pub unsafe fn clearStopAnimation(&self);
 
         #[method_id(@__retain_semantics Other runLoopModesForAnimating)]
-        pub unsafe fn runLoopModesForAnimating(&self) -> Option<Id<NSArray<NSRunLoopMode>>>;
+        pub unsafe fn runLoopModesForAnimating(&self) -> Option<Retained<NSArray<NSRunLoopMode>>>;
     }
 );
 
@@ -175,10 +178,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAnimation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -269,12 +272,12 @@ extern_methods!(
         pub unsafe fn initWithViewAnimations(
             this: Allocated<Self>,
             view_animations: &NSArray<NSDictionary<NSViewAnimationKey, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other viewAnimations)]
         pub unsafe fn viewAnimations(
             &self,
-        ) -> Id<NSArray<NSDictionary<NSViewAnimationKey, AnyObject>>>;
+        ) -> Retained<NSArray<NSDictionary<NSViewAnimationKey, AnyObject>>>;
 
         #[method(setViewAnimations:)]
         pub unsafe fn setViewAnimations(
@@ -292,10 +295,13 @@ extern_methods!(
             this: Allocated<Self>,
             duration: NSTimeInterval,
             animation_curve: NSAnimationCurve,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -303,10 +309,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSViewAnimation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -315,10 +321,10 @@ pub type NSAnimatablePropertyKey = NSString;
 extern_protocol!(
     pub unsafe trait NSAnimatablePropertyContainer {
         #[method_id(@__retain_semantics Other animator)]
-        unsafe fn animator(&self) -> Id<Self>;
+        unsafe fn animator(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other animations)]
-        unsafe fn animations(&self) -> Id<NSDictionary<NSAnimatablePropertyKey, AnyObject>>;
+        unsafe fn animations(&self) -> Retained<NSDictionary<NSAnimatablePropertyKey, AnyObject>>;
 
         #[method(setAnimations:)]
         unsafe fn setAnimations(
@@ -327,10 +333,15 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other animationForKey:)]
-        unsafe fn animationForKey(&self, key: &NSAnimatablePropertyKey) -> Option<Id<AnyObject>>;
+        unsafe fn animationForKey(
+            &self,
+            key: &NSAnimatablePropertyKey,
+        ) -> Option<Retained<AnyObject>>;
 
         #[method_id(@__retain_semantics Other defaultAnimationForKey:)]
-        unsafe fn defaultAnimationForKey(key: &NSAnimatablePropertyKey) -> Option<Id<AnyObject>>;
+        unsafe fn defaultAnimationForKey(
+            key: &NSAnimatablePropertyKey,
+        ) -> Option<Retained<AnyObject>>;
     }
 
     unsafe impl ProtocolType for dyn NSAnimatablePropertyContainer {}

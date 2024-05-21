@@ -29,14 +29,14 @@ unsafe impl NSObjectProtocol for NSRunLoop {}
 extern_methods!(
     unsafe impl NSRunLoop {
         #[method_id(@__retain_semantics Other currentRunLoop)]
-        pub unsafe fn currentRunLoop() -> Id<NSRunLoop>;
+        pub unsafe fn currentRunLoop() -> Retained<NSRunLoop>;
 
         #[method_id(@__retain_semantics Other mainRunLoop)]
-        pub unsafe fn mainRunLoop() -> Id<NSRunLoop>;
+        pub unsafe fn mainRunLoop() -> Retained<NSRunLoop>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
         #[method_id(@__retain_semantics Other currentMode)]
-        pub unsafe fn currentMode(&self) -> Option<Id<NSRunLoopMode>>;
+        pub unsafe fn currentMode(&self) -> Option<Retained<NSRunLoopMode>>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString", feature = "NSTimer"))]
         #[method(addTimer:forMode:)]
@@ -52,7 +52,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDate", feature = "NSObjCRuntime", feature = "NSString"))]
         #[method_id(@__retain_semantics Other limitDateForMode:)]
-        pub unsafe fn limitDateForMode(&self, mode: &NSRunLoopMode) -> Option<Id<NSDate>>;
+        pub unsafe fn limitDateForMode(&self, mode: &NSRunLoopMode) -> Option<Retained<NSDate>>;
 
         #[cfg(all(feature = "NSDate", feature = "NSObjCRuntime", feature = "NSString"))]
         #[method(acceptInputForMode:beforeDate:)]
@@ -68,10 +68,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSRunLoop {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

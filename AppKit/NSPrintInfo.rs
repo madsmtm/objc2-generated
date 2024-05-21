@@ -208,7 +208,7 @@ unsafe impl NSObjectProtocol for NSPrintInfo {}
 extern_methods!(
     unsafe impl NSPrintInfo {
         #[method_id(@__retain_semantics Other sharedPrintInfo)]
-        pub unsafe fn sharedPrintInfo() -> Id<NSPrintInfo>;
+        pub unsafe fn sharedPrintInfo() -> Retained<NSPrintInfo>;
 
         #[method(setSharedPrintInfo:)]
         pub unsafe fn setSharedPrintInfo(shared_print_info: &NSPrintInfo);
@@ -217,22 +217,22 @@ extern_methods!(
         pub unsafe fn initWithDictionary(
             this: Allocated<Self>,
             attributes: &NSDictionary<NSPrintInfoAttributeKey, AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other dictionary)]
         pub unsafe fn dictionary(
             &self,
-        ) -> Id<NSMutableDictionary<NSPrintInfoAttributeKey, AnyObject>>;
+        ) -> Retained<NSMutableDictionary<NSPrintInfoAttributeKey, AnyObject>>;
 
         #[cfg(feature = "NSPrinter")]
         #[method_id(@__retain_semantics Other paperName)]
-        pub unsafe fn paperName(&self) -> Option<Id<NSPrinterPaperName>>;
+        pub unsafe fn paperName(&self) -> Option<Retained<NSPrinterPaperName>>;
 
         #[cfg(feature = "NSPrinter")]
         #[method(setPaperName:)]
@@ -308,14 +308,14 @@ extern_methods!(
         pub unsafe fn setVerticalPagination(&self, vertical_pagination: NSPrintingPaginationMode);
 
         #[method_id(@__retain_semantics Other jobDisposition)]
-        pub unsafe fn jobDisposition(&self) -> Id<NSPrintJobDispositionValue>;
+        pub unsafe fn jobDisposition(&self) -> Retained<NSPrintJobDispositionValue>;
 
         #[method(setJobDisposition:)]
         pub unsafe fn setJobDisposition(&self, job_disposition: &NSPrintJobDispositionValue);
 
         #[cfg(feature = "NSPrinter")]
         #[method_id(@__retain_semantics Other printer)]
-        pub unsafe fn printer(&self) -> Id<NSPrinter>;
+        pub unsafe fn printer(&self) -> Retained<NSPrinter>;
 
         #[cfg(feature = "NSPrinter")]
         #[method(setPrinter:)]
@@ -328,16 +328,16 @@ extern_methods!(
         pub unsafe fn imageablePageBounds(&self) -> NSRect;
 
         #[method_id(@__retain_semantics Other localizedPaperName)]
-        pub unsafe fn localizedPaperName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localizedPaperName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSPrinter")]
         #[method_id(@__retain_semantics Other defaultPrinter)]
-        pub unsafe fn defaultPrinter() -> Option<Id<NSPrinter>>;
+        pub unsafe fn defaultPrinter() -> Option<Retained<NSPrinter>>;
 
         #[method_id(@__retain_semantics Other printSettings)]
         pub unsafe fn printSettings(
             &self,
-        ) -> Id<NSMutableDictionary<NSPrintInfoSettingKey, AnyObject>>;
+        ) -> Retained<NSMutableDictionary<NSPrintInfoSettingKey, AnyObject>>;
 
         #[method(PMPrintSession)]
         pub unsafe fn PMPrintSession(&self) -> NonNull<c_void>;
@@ -370,7 +370,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPrintInfo {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

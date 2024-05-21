@@ -41,23 +41,24 @@ extern_methods!(
             feature = "GCDeviceCursor"
         ))]
         #[method_id(@__retain_semantics Other scroll)]
-        pub unsafe fn scroll(&self) -> Id<GCDeviceCursor>;
+        pub unsafe fn scroll(&self) -> Retained<GCDeviceCursor>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other leftButton)]
-        pub unsafe fn leftButton(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn leftButton(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other rightButton)]
-        pub unsafe fn rightButton(&self) -> Option<Id<GCControllerButtonInput>>;
+        pub unsafe fn rightButton(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other middleButton)]
-        pub unsafe fn middleButton(&self) -> Option<Id<GCControllerButtonInput>>;
+        pub unsafe fn middleButton(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other auxiliaryButtons)]
-        pub unsafe fn auxiliaryButtons(&self) -> Option<Id<NSArray<GCControllerButtonInput>>>;
+        pub unsafe fn auxiliaryButtons(&self)
+            -> Option<Retained<NSArray<GCControllerButtonInput>>>;
     }
 );
 
@@ -66,9 +67,9 @@ extern_methods!(
     #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl GCMouseInput {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

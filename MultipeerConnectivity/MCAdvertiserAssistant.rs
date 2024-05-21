@@ -26,7 +26,7 @@ extern_methods!(
             service_type: &NSString,
             info: Option<&NSDictionary<NSString, NSString>>,
             session: &MCSession,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(start)]
         pub unsafe fn start(&self);
@@ -37,7 +37,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn MCAdvertiserAssistantDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MCAdvertiserAssistantDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -47,13 +47,13 @@ extern_methods!(
 
         #[cfg(feature = "MCSession")]
         #[method_id(@__retain_semantics Other session)]
-        pub unsafe fn session(&self) -> Id<MCSession>;
+        pub unsafe fn session(&self) -> Retained<MCSession>;
 
         #[method_id(@__retain_semantics Other discoveryInfo)]
-        pub unsafe fn discoveryInfo(&self) -> Option<Id<NSDictionary<NSString, NSString>>>;
+        pub unsafe fn discoveryInfo(&self) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
         #[method_id(@__retain_semantics Other serviceType)]
-        pub unsafe fn serviceType(&self) -> Id<NSString>;
+        pub unsafe fn serviceType(&self) -> Retained<NSString>;
     }
 );
 
@@ -61,10 +61,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MCAdvertiserAssistant {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

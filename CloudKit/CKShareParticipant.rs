@@ -123,14 +123,14 @@ unsafe impl NSSecureCoding for CKShareParticipant {}
 extern_methods!(
     unsafe impl CKShareParticipant {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKUserIdentity")]
         #[method_id(@__retain_semantics Other userIdentity)]
-        pub unsafe fn userIdentity(&self) -> Id<CKUserIdentity>;
+        pub unsafe fn userIdentity(&self) -> Retained<CKUserIdentity>;
 
         #[method(role)]
         pub unsafe fn role(&self) -> CKShareParticipantRole;

@@ -51,14 +51,14 @@ extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     unsafe impl VNTrackOpticalFlowRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(computationAccuracy)]
         pub unsafe fn computationAccuracy(&self) -> VNTrackOpticalFlowRequestComputationAccuracy;
@@ -83,7 +83,7 @@ extern_methods!(
 
         #[cfg(feature = "VNObservation")]
         #[method_id(@__retain_semantics Other results)]
-        pub unsafe fn results(&self) -> Option<Id<NSArray<VNPixelBufferObservation>>>;
+        pub unsafe fn results(&self) -> Option<Retained<NSArray<VNPixelBufferObservation>>>;
     }
 );
 
@@ -92,7 +92,7 @@ extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     unsafe impl VNTrackOpticalFlowRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

@@ -57,16 +57,16 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLFunctionConstantValues {
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Allocated<Self>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub fn new() -> Id<Self>;
+        pub fn new() -> Retained<Self>;
     }
 );
 
-impl DefaultId for MTLFunctionConstantValues {
+impl DefaultRetained for MTLFunctionConstantValues {
     #[inline]
-    fn default_id() -> Id<Self> {
+    fn default_id() -> Retained<Self> {
         Self::new()
     }
 }

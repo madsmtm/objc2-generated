@@ -51,7 +51,7 @@ extern_methods!(
         #[cfg(feature = "DOMAbstractView")]
         #[deprecated]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Option<Id<DOMAbstractView>>;
+        pub unsafe fn view(&self) -> Option<Retained<DOMAbstractView>>;
 
         #[deprecated]
         #[method(detail)]
@@ -103,7 +103,7 @@ extern_methods!(
     unsafe impl DOMUIEvent {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -116,7 +116,7 @@ extern_methods!(
     ))]
     unsafe impl DOMUIEvent {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

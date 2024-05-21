@@ -31,16 +31,20 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAppRunTimeMetric {
         #[method_id(@__retain_semantics Other cumulativeForegroundTime)]
-        pub unsafe fn cumulativeForegroundTime(&self) -> Id<NSMeasurement<NSUnitDuration>>;
+        pub unsafe fn cumulativeForegroundTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
 
         #[method_id(@__retain_semantics Other cumulativeBackgroundTime)]
-        pub unsafe fn cumulativeBackgroundTime(&self) -> Id<NSMeasurement<NSUnitDuration>>;
+        pub unsafe fn cumulativeBackgroundTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
 
         #[method_id(@__retain_semantics Other cumulativeBackgroundAudioTime)]
-        pub unsafe fn cumulativeBackgroundAudioTime(&self) -> Id<NSMeasurement<NSUnitDuration>>;
+        pub unsafe fn cumulativeBackgroundAudioTime(
+            &self,
+        ) -> Retained<NSMeasurement<NSUnitDuration>>;
 
         #[method_id(@__retain_semantics Other cumulativeBackgroundLocationTime)]
-        pub unsafe fn cumulativeBackgroundLocationTime(&self) -> Id<NSMeasurement<NSUnitDuration>>;
+        pub unsafe fn cumulativeBackgroundLocationTime(
+            &self,
+        ) -> Retained<NSMeasurement<NSUnitDuration>>;
     }
 );
 
@@ -49,9 +53,9 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAppRunTimeMetric {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

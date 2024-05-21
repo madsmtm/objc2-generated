@@ -145,7 +145,7 @@ extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other failureReason)]
-        pub unsafe fn failureReason(&self) -> Option<Id<NSString>>;
+        pub unsafe fn failureReason(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method(addClient:)]
@@ -166,12 +166,12 @@ extern_methods!(
         #[cfg(feature = "NSData")]
         #[deprecated]
         #[method_id(@__retain_semantics Other resourceData)]
-        pub unsafe fn resourceData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn resourceData(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSData")]
         #[deprecated]
         #[method_id(@__retain_semantics Other availableResourceData)]
-        pub unsafe fn availableResourceData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn availableResourceData(&self) -> Option<Retained<NSData>>;
 
         #[deprecated]
         #[method(expectedResourceDataSize)]
@@ -199,7 +199,7 @@ extern_methods!(
         #[cfg(feature = "NSURL")]
         #[deprecated]
         #[method_id(@__retain_semantics Other cachedHandleForURL:)]
-        pub unsafe fn cachedHandleForURL(an_url: Option<&NSURL>) -> Option<Id<NSURLHandle>>;
+        pub unsafe fn cachedHandleForURL(an_url: Option<&NSURL>) -> Option<Retained<NSURLHandle>>;
 
         #[cfg(feature = "NSURL")]
         #[deprecated]
@@ -208,7 +208,7 @@ extern_methods!(
             this: Allocated<Self>,
             an_url: Option<&NSURL>,
             will_cache: bool,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated]
@@ -216,7 +216,7 @@ extern_methods!(
         pub unsafe fn propertyForKey(
             &self,
             property_key: Option<&NSString>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated]
@@ -224,7 +224,7 @@ extern_methods!(
         pub unsafe fn propertyForKeyIfAvailable(
             &self,
             property_key: Option<&NSString>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated]
@@ -243,7 +243,7 @@ extern_methods!(
         #[cfg(feature = "NSData")]
         #[deprecated]
         #[method_id(@__retain_semantics Other loadInForeground)]
-        pub unsafe fn loadInForeground(&self) -> Option<Id<NSData>>;
+        pub unsafe fn loadInForeground(&self) -> Option<Retained<NSData>>;
 
         #[deprecated]
         #[method(beginLoadInBackground)]
@@ -259,9 +259,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLHandle {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

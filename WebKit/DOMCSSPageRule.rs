@@ -50,7 +50,7 @@ extern_methods!(
     unsafe impl DOMCSSPageRule {
         #[deprecated]
         #[method_id(@__retain_semantics Other selectorText)]
-        pub unsafe fn selectorText(&self) -> Id<NSString>;
+        pub unsafe fn selectorText(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setSelectorText:)]
@@ -59,7 +59,7 @@ extern_methods!(
         #[cfg(feature = "DOMCSSStyleDeclaration")]
         #[deprecated]
         #[method_id(@__retain_semantics Other style)]
-        pub unsafe fn style(&self) -> Option<Id<DOMCSSStyleDeclaration>>;
+        pub unsafe fn style(&self) -> Option<Retained<DOMCSSStyleDeclaration>>;
     }
 );
 
@@ -73,7 +73,7 @@ extern_methods!(
     unsafe impl DOMCSSPageRule {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -86,6 +86,6 @@ extern_methods!(
     ))]
     unsafe impl DOMCSSPageRule {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -24,10 +24,10 @@ unsafe impl NSObjectProtocol for MLModelStructure {}
 extern_methods!(
     unsafe impl MLModelStructure {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(loadContentsOfURL:completionHandler:)]
@@ -45,14 +45,14 @@ extern_methods!(
 
         #[cfg(feature = "MLModelStructureNeuralNetwork")]
         #[method_id(@__retain_semantics Other neuralNetwork)]
-        pub unsafe fn neuralNetwork(&self) -> Option<Id<MLModelStructureNeuralNetwork>>;
+        pub unsafe fn neuralNetwork(&self) -> Option<Retained<MLModelStructureNeuralNetwork>>;
 
         #[cfg(feature = "MLModelStructureProgram")]
         #[method_id(@__retain_semantics Other program)]
-        pub unsafe fn program(&self) -> Option<Id<MLModelStructureProgram>>;
+        pub unsafe fn program(&self) -> Option<Retained<MLModelStructureProgram>>;
 
         #[cfg(feature = "MLModelStructurePipeline")]
         #[method_id(@__retain_semantics Other pipeline)]
-        pub unsafe fn pipeline(&self) -> Option<Id<MLModelStructurePipeline>>;
+        pub unsafe fn pipeline(&self) -> Option<Retained<MLModelStructurePipeline>>;
     }
 );

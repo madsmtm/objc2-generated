@@ -20,11 +20,11 @@ unsafe impl NSObjectProtocol for HKStatisticsCollection {}
 extern_methods!(
     unsafe impl HKStatisticsCollection {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKStatistics")]
         #[method_id(@__retain_semantics Other statisticsForDate:)]
-        pub unsafe fn statisticsForDate(&self, date: &NSDate) -> Option<Id<HKStatistics>>;
+        pub unsafe fn statisticsForDate(&self, date: &NSDate) -> Option<Retained<HKStatistics>>;
 
         #[cfg(all(feature = "HKStatistics", feature = "block2"))]
         #[method(enumerateStatisticsFromDate:toDate:withBlock:)]
@@ -37,11 +37,11 @@ extern_methods!(
 
         #[cfg(feature = "HKStatistics")]
         #[method_id(@__retain_semantics Other statistics)]
-        pub unsafe fn statistics(&self) -> Id<NSArray<HKStatistics>>;
+        pub unsafe fn statistics(&self) -> Retained<NSArray<HKStatistics>>;
 
         #[cfg(feature = "HKSource")]
         #[method_id(@__retain_semantics Other sources)]
-        pub unsafe fn sources(&self) -> Id<NSSet<HKSource>>;
+        pub unsafe fn sources(&self) -> Retained<NSSet<HKSource>>;
     }
 );
 
@@ -49,7 +49,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKStatisticsCollection {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -73,14 +73,14 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKStatisticsCollectionQuery {
         #[method_id(@__retain_semantics Other anchorDate)]
-        pub unsafe fn anchorDate(&self) -> Id<NSDate>;
+        pub unsafe fn anchorDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "HKStatistics")]
         #[method(options)]
         pub unsafe fn options(&self) -> HKStatisticsOptions;
 
         #[method_id(@__retain_semantics Other intervalComponents)]
-        pub unsafe fn intervalComponents(&self) -> Id<NSDateComponents>;
+        pub unsafe fn intervalComponents(&self) -> Retained<NSDateComponents>;
 
         #[cfg(feature = "block2")]
         #[method(initialResultsHandler)]
@@ -143,7 +143,7 @@ extern_methods!(
             options: HKStatisticsOptions,
             anchor_date: &NSDate,
             interval_components: &NSDateComponents,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -152,7 +152,7 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKStatisticsCollectionQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -161,6 +161,6 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKStatisticsCollectionQuery {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

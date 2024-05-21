@@ -34,29 +34,32 @@ unsafe impl NSObjectProtocol for NSUserDefaults {}
 extern_methods!(
     unsafe impl NSUserDefaults {
         #[method_id(@__retain_semantics Other standardUserDefaults)]
-        pub unsafe fn standardUserDefaults() -> Id<NSUserDefaults>;
+        pub unsafe fn standardUserDefaults() -> Retained<NSUserDefaults>;
 
         #[method(resetStandardUserDefaults)]
         pub unsafe fn resetStandardUserDefaults();
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithSuiteName:)]
         pub unsafe fn initWithSuiteName(
             this: Allocated<Self>,
             suitename: Option<&NSString>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use -init instead"]
         #[method_id(@__retain_semantics Init initWithUser:)]
-        pub unsafe fn initWithUser(this: Allocated<Self>, username: &NSString) -> Option<Id<Self>>;
+        pub unsafe fn initWithUser(
+            this: Allocated<Self>,
+            username: &NSString,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other objectForKey:)]
-        pub unsafe fn objectForKey(&self, default_name: &NSString) -> Option<Id<AnyObject>>;
+        pub unsafe fn objectForKey(&self, default_name: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
         #[method(setObject:forKey:)]
@@ -68,29 +71,29 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringForKey:)]
-        pub unsafe fn stringForKey(&self, default_name: &NSString) -> Option<Id<NSString>>;
+        pub unsafe fn stringForKey(&self, default_name: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other arrayForKey:)]
-        pub unsafe fn arrayForKey(&self, default_name: &NSString) -> Option<Id<NSArray>>;
+        pub unsafe fn arrayForKey(&self, default_name: &NSString) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other dictionaryForKey:)]
         pub unsafe fn dictionaryForKey(
             &self,
             default_name: &NSString,
-        ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
         #[method_id(@__retain_semantics Other dataForKey:)]
-        pub unsafe fn dataForKey(&self, default_name: &NSString) -> Option<Id<NSData>>;
+        pub unsafe fn dataForKey(&self, default_name: &NSString) -> Option<Retained<NSData>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other stringArrayForKey:)]
         pub unsafe fn stringArrayForKey(
             &self,
             default_name: &NSString,
-        ) -> Option<Id<NSArray<NSString>>>;
+        ) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(feature = "NSString")]
         #[method(integerForKey:)]
@@ -110,7 +113,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
         #[method_id(@__retain_semantics Other URLForKey:)]
-        pub unsafe fn URLForKey(&self, default_name: &NSString) -> Option<Id<NSURL>>;
+        pub unsafe fn URLForKey(&self, default_name: &NSString) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSString")]
         #[method(setInteger:forKey:)]
@@ -149,18 +152,20 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
-        pub unsafe fn dictionaryRepresentation(&self) -> Id<NSDictionary<NSString, AnyObject>>;
+        pub unsafe fn dictionaryRepresentation(
+            &self,
+        ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other volatileDomainNames)]
-        pub unsafe fn volatileDomainNames(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn volatileDomainNames(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other volatileDomainForName:)]
         pub unsafe fn volatileDomainForName(
             &self,
             domain_name: &NSString,
-        ) -> Id<NSDictionary<NSString, AnyObject>>;
+        ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setVolatileDomain:forName:)]
@@ -177,14 +182,14 @@ extern_methods!(
         #[cfg(feature = "NSArray")]
         #[deprecated = "Not recommended"]
         #[method_id(@__retain_semantics Other persistentDomainNames)]
-        pub unsafe fn persistentDomainNames(&self) -> Id<NSArray>;
+        pub unsafe fn persistentDomainNames(&self) -> Retained<NSArray>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other persistentDomainForName:)]
         pub unsafe fn persistentDomainForName(
             &self,
             domain_name: &NSString,
-        ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setPersistentDomain:forName:)]
@@ -219,7 +224,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUserDefaults {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

@@ -20,36 +20,38 @@ unsafe impl NSObjectProtocol for UIFocusDebugger {}
 extern_methods!(
     unsafe impl UIFocusDebugger {
         #[method_id(@__retain_semantics Other help)]
-        pub unsafe fn help(mtm: MainThreadMarker) -> Id<ProtocolObject<dyn UIFocusDebuggerOutput>>;
+        pub unsafe fn help(
+            mtm: MainThreadMarker,
+        ) -> Retained<ProtocolObject<dyn UIFocusDebuggerOutput>>;
 
         #[method_id(@__retain_semantics Other status)]
         pub unsafe fn status(
             mtm: MainThreadMarker,
-        ) -> Id<ProtocolObject<dyn UIFocusDebuggerOutput>>;
+        ) -> Retained<ProtocolObject<dyn UIFocusDebuggerOutput>>;
 
         #[cfg(feature = "UIFocus")]
         #[method_id(@__retain_semantics Other checkFocusabilityForItem:)]
         pub unsafe fn checkFocusabilityForItem(
             item: &ProtocolObject<dyn UIFocusItem>,
-        ) -> Id<ProtocolObject<dyn UIFocusDebuggerOutput>>;
+        ) -> Retained<ProtocolObject<dyn UIFocusDebuggerOutput>>;
 
         #[cfg(feature = "UIFocus")]
         #[method_id(@__retain_semantics Other simulateFocusUpdateRequestFromEnvironment:)]
         pub unsafe fn simulateFocusUpdateRequestFromEnvironment(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
-        ) -> Id<ProtocolObject<dyn UIFocusDebuggerOutput>>;
+        ) -> Retained<ProtocolObject<dyn UIFocusDebuggerOutput>>;
 
         #[cfg(feature = "UIFocus")]
         #[method_id(@__retain_semantics Other focusGroupsForEnvironment:)]
         pub unsafe fn focusGroupsForEnvironment(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
-        ) -> Id<ProtocolObject<dyn UIFocusDebuggerOutput>>;
+        ) -> Retained<ProtocolObject<dyn UIFocusDebuggerOutput>>;
 
         #[cfg(feature = "UIFocus")]
         #[method_id(@__retain_semantics Other preferredFocusEnvironmentsForEnvironment:)]
         pub unsafe fn preferredFocusEnvironmentsForEnvironment(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
-        ) -> Id<ProtocolObject<dyn UIFocusDebuggerOutput>>;
+        ) -> Retained<ProtocolObject<dyn UIFocusDebuggerOutput>>;
     }
 );
 
@@ -57,10 +59,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIFocusDebugger {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

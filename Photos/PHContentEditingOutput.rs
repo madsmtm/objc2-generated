@@ -26,33 +26,33 @@ extern_methods!(
         pub unsafe fn initWithContentEditingInput(
             this: Allocated<Self>,
             content_editing_input: &PHContentEditingInput,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "PHAdjustmentData")]
         #[method_id(@__retain_semantics Other adjustmentData)]
-        pub unsafe fn adjustmentData(&self) -> Option<Id<PHAdjustmentData>>;
+        pub unsafe fn adjustmentData(&self) -> Option<Retained<PHAdjustmentData>>;
 
         #[cfg(feature = "PHAdjustmentData")]
         #[method(setAdjustmentData:)]
         pub unsafe fn setAdjustmentData(&self, adjustment_data: Option<&PHAdjustmentData>);
 
         #[method_id(@__retain_semantics Other renderedContentURL)]
-        pub unsafe fn renderedContentURL(&self) -> Id<NSURL>;
+        pub unsafe fn renderedContentURL(&self) -> Retained<NSURL>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         #[method_id(@__retain_semantics Other defaultRenderedContentType)]
-        pub unsafe fn defaultRenderedContentType(&self) -> Option<Id<UTType>>;
+        pub unsafe fn defaultRenderedContentType(&self) -> Option<Retained<UTType>>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         #[method_id(@__retain_semantics Other supportedRenderedContentTypes)]
-        pub unsafe fn supportedRenderedContentTypes(&self) -> Id<NSArray<UTType>>;
+        pub unsafe fn supportedRenderedContentTypes(&self) -> Retained<NSArray<UTType>>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         #[method_id(@__retain_semantics Other renderedContentURLForType:error:_)]
         pub unsafe fn renderedContentURLForType_error(
             &self,
             r#type: &UTType,
-        ) -> Result<Id<NSURL>, Id<NSError>>;
+        ) -> Result<Retained<NSURL>, Retained<NSError>>;
     }
 );
 
@@ -60,9 +60,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHContentEditingOutput {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

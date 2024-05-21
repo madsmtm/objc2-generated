@@ -20,7 +20,7 @@ unsafe impl NSObjectProtocol for DCDevice {}
 extern_methods!(
     unsafe impl DCDevice {
         #[method_id(@__retain_semantics Other currentDevice)]
-        pub unsafe fn currentDevice() -> Id<DCDevice>;
+        pub unsafe fn currentDevice() -> Retained<DCDevice>;
 
         #[method(isSupported)]
         pub unsafe fn isSupported(&self) -> bool;
@@ -38,9 +38,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl DCDevice {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -24,11 +24,11 @@ extern_methods!(
         pub unsafe fn initWithTextContentManager(
             this: Allocated<Self>,
             text_content_manager: Option<&NSTextContentManager>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSTextContentManager")]
         #[method_id(@__retain_semantics Other textContentManager)]
-        pub unsafe fn textContentManager(&self) -> Option<Id<NSTextContentManager>>;
+        pub unsafe fn textContentManager(&self) -> Option<Retained<NSTextContentManager>>;
 
         #[cfg(feature = "NSTextContentManager")]
         #[method(setTextContentManager:)]
@@ -39,17 +39,17 @@ extern_methods!(
 
         #[cfg(feature = "NSTextRange")]
         #[method_id(@__retain_semantics Other elementRange)]
-        pub unsafe fn elementRange(&self) -> Option<Id<NSTextRange>>;
+        pub unsafe fn elementRange(&self) -> Option<Retained<NSTextRange>>;
 
         #[cfg(feature = "NSTextRange")]
         #[method(setElementRange:)]
         pub unsafe fn setElementRange(&self, element_range: Option<&NSTextRange>);
 
         #[method_id(@__retain_semantics Other childElements)]
-        pub unsafe fn childElements(&self) -> Id<NSArray<NSTextElement>>;
+        pub unsafe fn childElements(&self) -> Retained<NSArray<NSTextElement>>;
 
         #[method_id(@__retain_semantics Other parentElement)]
-        pub unsafe fn parentElement(&self) -> Option<Id<NSTextElement>>;
+        pub unsafe fn parentElement(&self) -> Option<Retained<NSTextElement>>;
 
         #[method(isRepresentedElement)]
         pub unsafe fn isRepresentedElement(&self) -> bool;
@@ -60,10 +60,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextElement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -86,18 +86,18 @@ extern_methods!(
         pub unsafe fn initWithAttributedString(
             this: Allocated<Self>,
             attributed_string: Option<&NSAttributedString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other attributedString)]
-        pub unsafe fn attributedString(&self) -> Id<NSAttributedString>;
+        pub unsafe fn attributedString(&self) -> Retained<NSAttributedString>;
 
         #[cfg(feature = "NSTextRange")]
         #[method_id(@__retain_semantics Other paragraphContentRange)]
-        pub unsafe fn paragraphContentRange(&self) -> Option<Id<NSTextRange>>;
+        pub unsafe fn paragraphContentRange(&self) -> Option<Retained<NSTextRange>>;
 
         #[cfg(feature = "NSTextRange")]
         #[method_id(@__retain_semantics Other paragraphSeparatorRange)]
-        pub unsafe fn paragraphSeparatorRange(&self) -> Option<Id<NSTextRange>>;
+        pub unsafe fn paragraphSeparatorRange(&self) -> Option<Retained<NSTextRange>>;
     }
 );
 
@@ -109,7 +109,7 @@ extern_methods!(
         pub unsafe fn initWithTextContentManager(
             this: Allocated<Self>,
             text_content_manager: Option<&NSTextContentManager>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -117,9 +117,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextParagraph {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

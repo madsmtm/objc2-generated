@@ -25,30 +25,30 @@ extern_methods!(
     unsafe impl SKPayment {
         #[cfg(feature = "SKProduct")]
         #[method_id(@__retain_semantics Other paymentWithProduct:)]
-        pub unsafe fn paymentWithProduct(product: &SKProduct) -> Id<Self>;
+        pub unsafe fn paymentWithProduct(product: &SKProduct) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other paymentWithProductIdentifier:)]
-        pub unsafe fn paymentWithProductIdentifier(identifier: &NSString) -> Id<AnyObject>;
+        pub unsafe fn paymentWithProductIdentifier(identifier: &NSString) -> Retained<AnyObject>;
 
         #[method_id(@__retain_semantics Other productIdentifier)]
-        pub unsafe fn productIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn productIdentifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other requestData)]
-        pub unsafe fn requestData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn requestData(&self) -> Option<Retained<NSData>>;
 
         #[method(quantity)]
         pub unsafe fn quantity(&self) -> NSInteger;
 
         #[method_id(@__retain_semantics Other applicationUsername)]
-        pub unsafe fn applicationUsername(&self) -> Option<Id<NSString>>;
+        pub unsafe fn applicationUsername(&self) -> Option<Retained<NSString>>;
 
         #[method(simulatesAskToBuyInSandbox)]
         pub unsafe fn simulatesAskToBuyInSandbox(&self) -> bool;
 
         #[cfg(feature = "SKPaymentDiscount")]
         #[method_id(@__retain_semantics Other paymentDiscount)]
-        pub unsafe fn paymentDiscount(&self) -> Option<Id<SKPaymentDiscount>>;
+        pub unsafe fn paymentDiscount(&self) -> Option<Retained<SKPaymentDiscount>>;
     }
 );
 
@@ -56,10 +56,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPayment {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -83,21 +83,21 @@ unsafe impl NSObjectProtocol for SKMutablePayment {}
 extern_methods!(
     unsafe impl SKMutablePayment {
         #[method_id(@__retain_semantics Other applicationUsername)]
-        pub unsafe fn applicationUsername(&self) -> Option<Id<NSString>>;
+        pub unsafe fn applicationUsername(&self) -> Option<Retained<NSString>>;
 
         #[method(setApplicationUsername:)]
         pub unsafe fn setApplicationUsername(&self, application_username: Option<&NSString>);
 
         #[cfg(feature = "SKPaymentDiscount")]
         #[method_id(@__retain_semantics Other paymentDiscount)]
-        pub unsafe fn paymentDiscount(&self) -> Option<Id<SKPaymentDiscount>>;
+        pub unsafe fn paymentDiscount(&self) -> Option<Retained<SKPaymentDiscount>>;
 
         #[cfg(feature = "SKPaymentDiscount")]
         #[method(setPaymentDiscount:)]
         pub unsafe fn setPaymentDiscount(&self, payment_discount: Option<&SKPaymentDiscount>);
 
         #[method_id(@__retain_semantics Other productIdentifier)]
-        pub unsafe fn productIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn productIdentifier(&self) -> Retained<NSString>;
 
         #[method(setProductIdentifier:)]
         pub unsafe fn setProductIdentifier(&self, product_identifier: &NSString);
@@ -109,7 +109,7 @@ extern_methods!(
         pub unsafe fn setQuantity(&self, quantity: NSInteger);
 
         #[method_id(@__retain_semantics Other requestData)]
-        pub unsafe fn requestData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn requestData(&self) -> Option<Retained<NSData>>;
 
         #[method(setRequestData:)]
         pub unsafe fn setRequestData(&self, request_data: Option<&NSData>);
@@ -127,7 +127,7 @@ extern_methods!(
     unsafe impl SKMutablePayment {
         #[cfg(feature = "SKProduct")]
         #[method_id(@__retain_semantics Other paymentWithProduct:)]
-        pub unsafe fn paymentWithProduct(product: &SKProduct) -> Id<Self>;
+        pub unsafe fn paymentWithProduct(product: &SKProduct) -> Retained<Self>;
     }
 );
 
@@ -135,9 +135,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKMutablePayment {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

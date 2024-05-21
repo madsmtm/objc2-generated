@@ -28,10 +28,10 @@ extern_methods!(
     #[cfg(feature = "VZConsolePortConfiguration")]
     unsafe impl VZVirtioConsolePortConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -49,6 +49,6 @@ extern_methods!(
     #[cfg(feature = "VZConsolePortConfiguration")]
     unsafe impl VZVirtioConsolePortConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

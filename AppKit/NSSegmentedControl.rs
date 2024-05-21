@@ -187,7 +187,7 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other imageForSegment:)]
-        pub unsafe fn imageForSegment(&self, segment: NSInteger) -> Option<Id<NSImage>>;
+        pub unsafe fn imageForSegment(&self, segment: NSInteger) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSCell")]
         #[method(setImageScaling:forSegment:)]
@@ -205,7 +205,7 @@ extern_methods!(
         pub unsafe fn setLabel_forSegment(&self, label: &NSString, segment: NSInteger);
 
         #[method_id(@__retain_semantics Other labelForSegment:)]
-        pub unsafe fn labelForSegment(&self, segment: NSInteger) -> Option<Id<NSString>>;
+        pub unsafe fn labelForSegment(&self, segment: NSInteger) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSMenu")]
         #[method(setMenu:forSegment:)]
@@ -213,7 +213,7 @@ extern_methods!(
 
         #[cfg(feature = "NSMenu")]
         #[method_id(@__retain_semantics Other menuForSegment:)]
-        pub unsafe fn menuForSegment(&self, segment: NSInteger) -> Option<Id<NSMenu>>;
+        pub unsafe fn menuForSegment(&self, segment: NSInteger) -> Option<Retained<NSMenu>>;
 
         #[method(setSelected:forSegment:)]
         pub unsafe fn setSelected_forSegment(&self, selected: bool, segment: NSInteger);
@@ -231,7 +231,7 @@ extern_methods!(
         pub unsafe fn setToolTip_forSegment(&self, tool_tip: Option<&NSString>, segment: NSInteger);
 
         #[method_id(@__retain_semantics Other toolTipForSegment:)]
-        pub unsafe fn toolTipForSegment(&self, segment: NSInteger) -> Option<Id<NSString>>;
+        pub unsafe fn toolTipForSegment(&self, segment: NSInteger) -> Option<Retained<NSString>>;
 
         #[method(setTag:forSegment:)]
         pub unsafe fn setTag_forSegment(&self, tag: NSInteger, segment: NSInteger);
@@ -272,7 +272,7 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other selectedSegmentBezelColor)]
-        pub unsafe fn selectedSegmentBezelColor(&self) -> Option<Id<NSColor>>;
+        pub unsafe fn selectedSegmentBezelColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         #[method(setSelectedSegmentBezelColor:)]
@@ -318,7 +318,9 @@ extern_methods!(
 
         #[cfg(feature = "NSUserInterfaceCompression")]
         #[method_id(@__retain_semantics Other activeCompressionOptions)]
-        pub unsafe fn activeCompressionOptions(&self) -> Id<NSUserInterfaceCompressionOptions>;
+        pub unsafe fn activeCompressionOptions(
+            &self,
+        ) -> Retained<NSUserInterfaceCompressionOptions>;
     }
 );
 
@@ -327,10 +329,13 @@ extern_methods!(
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSegmentedControl {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -339,7 +344,7 @@ extern_methods!(
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSegmentedControl {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -348,7 +353,7 @@ extern_methods!(
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSegmentedControl {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -363,7 +368,7 @@ extern_methods!(
             target: Option<&AnyObject>,
             action: Option<Sel>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other segmentedControlWithImages:trackingMode:target:action:)]
@@ -373,6 +378,6 @@ extern_methods!(
             target: Option<&AnyObject>,
             action: Option<Sel>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

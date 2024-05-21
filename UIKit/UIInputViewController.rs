@@ -9,19 +9,19 @@ extern_protocol!(
     #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
     pub unsafe trait UITextDocumentProxy: UIKeyInput + IsMainThreadOnly {
         #[method_id(@__retain_semantics Other documentContextBeforeInput)]
-        unsafe fn documentContextBeforeInput(&self) -> Option<Id<NSString>>;
+        unsafe fn documentContextBeforeInput(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other documentContextAfterInput)]
-        unsafe fn documentContextAfterInput(&self) -> Option<Id<NSString>>;
+        unsafe fn documentContextAfterInput(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other selectedText)]
-        unsafe fn selectedText(&self) -> Option<Id<NSString>>;
+        unsafe fn selectedText(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other documentInputMode)]
-        unsafe fn documentInputMode(&self) -> Option<Id<UITextInputMode>>;
+        unsafe fn documentInputMode(&self) -> Option<Retained<UITextInputMode>>;
 
         #[method_id(@__retain_semantics Other documentIdentifier)]
-        unsafe fn documentIdentifier(&self) -> Id<NSUUID>;
+        unsafe fn documentIdentifier(&self) -> Retained<NSUUID>;
 
         #[method(adjustTextPositionByCharacterOffset:)]
         unsafe fn adjustTextPositionByCharacterOffset(&self, offset: NSInteger);
@@ -99,7 +99,7 @@ extern_methods!(
     unsafe impl UIInputViewController {
         #[cfg(all(feature = "UIInputView", feature = "UIView"))]
         #[method_id(@__retain_semantics Other inputView)]
-        pub unsafe fn inputView(&self) -> Option<Id<UIInputView>>;
+        pub unsafe fn inputView(&self) -> Option<Retained<UIInputView>>;
 
         #[cfg(all(feature = "UIInputView", feature = "UIView"))]
         #[method(setInputView:)]
@@ -107,10 +107,11 @@ extern_methods!(
 
         #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
         #[method_id(@__retain_semantics Other textDocumentProxy)]
-        pub unsafe fn textDocumentProxy(&self) -> Id<ProtocolObject<dyn UITextDocumentProxy>>;
+        pub unsafe fn textDocumentProxy(&self)
+            -> Retained<ProtocolObject<dyn UITextDocumentProxy>>;
 
         #[method_id(@__retain_semantics Other primaryLanguage)]
-        pub unsafe fn primaryLanguage(&self) -> Option<Id<NSString>>;
+        pub unsafe fn primaryLanguage(&self) -> Option<Retained<NSString>>;
 
         #[method(setPrimaryLanguage:)]
         pub unsafe fn setPrimaryLanguage(&self, primary_language: Option<&NSString>);
@@ -155,10 +156,13 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -167,9 +171,9 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIInputViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

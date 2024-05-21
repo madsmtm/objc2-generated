@@ -51,7 +51,7 @@ unsafe impl NSObjectProtocol for NEDNSProxyManager {}
 extern_methods!(
     unsafe impl NEDNSProxyManager {
         #[method_id(@__retain_semantics Other sharedManager)]
-        pub unsafe fn sharedManager() -> Id<NEDNSProxyManager>;
+        pub unsafe fn sharedManager() -> Retained<NEDNSProxyManager>;
 
         #[cfg(feature = "block2")]
         #[method(loadFromPreferencesWithCompletionHandler:)]
@@ -75,14 +75,14 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other localizedDescription)]
-        pub unsafe fn localizedDescription(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         #[method(setLocalizedDescription:)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
 
         #[cfg(all(feature = "NEDNSProxyProviderProtocol", feature = "NEVPNProtocol"))]
         #[method_id(@__retain_semantics Other providerProtocol)]
-        pub unsafe fn providerProtocol(&self) -> Option<Id<NEDNSProxyProviderProtocol>>;
+        pub unsafe fn providerProtocol(&self) -> Option<Retained<NEDNSProxyProviderProtocol>>;
 
         #[cfg(all(feature = "NEDNSProxyProviderProtocol", feature = "NEVPNProtocol"))]
         #[method(setProviderProtocol:)]
@@ -103,9 +103,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEDNSProxyManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

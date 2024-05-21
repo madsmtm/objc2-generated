@@ -51,16 +51,19 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             url: &NSURL,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
-        ) -> Option<Id<Self>>;
+            error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithSource:)]
-        pub unsafe fn initWithSource(this: Allocated<Self>, source: &NSString) -> Option<Id<Self>>;
+        pub unsafe fn initWithSource(
+            this: Allocated<Self>,
+            source: &NSString,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other source)]
-        pub unsafe fn source(&self) -> Option<Id<NSString>>;
+        pub unsafe fn source(&self) -> Option<Retained<NSString>>;
 
         #[method(isCompiled)]
         pub unsafe fn isCompiled(&self) -> bool;
@@ -69,7 +72,7 @@ extern_methods!(
         #[method(compileAndReturnError:)]
         pub unsafe fn compileAndReturnError(
             &self,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
+            error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> bool;
 
         #[cfg(all(
@@ -80,8 +83,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other executeAndReturnError:)]
         pub unsafe fn executeAndReturnError(
             &self,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
-        ) -> Id<NSAppleEventDescriptor>;
+            error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
+        ) -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(all(
             feature = "NSAppleEventDescriptor",
@@ -92,8 +95,8 @@ extern_methods!(
         pub unsafe fn executeAppleEvent_error(
             &self,
             event: &NSAppleEventDescriptor,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
-        ) -> Id<NSAppleEventDescriptor>;
+            error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
+        ) -> Retained<NSAppleEventDescriptor>;
     }
 );
 
@@ -101,9 +104,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAppleScript {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

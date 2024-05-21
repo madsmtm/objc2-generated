@@ -14,7 +14,7 @@ extern_protocol!(
             identifier: &NSString,
             parent_context: &CLSContext,
             parent_identifier_path: &NSArray<NSString>,
-        ) -> Option<Id<CLSContext>>;
+        ) -> Option<Retained<CLSContext>>;
     }
 
     unsafe impl ProtocolType for dyn CLSDataStoreDelegate {}
@@ -35,22 +35,23 @@ unsafe impl NSObjectProtocol for CLSDataStore {}
 extern_methods!(
     unsafe impl CLSDataStore {
         #[method_id(@__retain_semantics Other shared)]
-        pub unsafe fn shared() -> Id<CLSDataStore>;
+        pub unsafe fn shared() -> Retained<CLSDataStore>;
 
         #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
         #[method_id(@__retain_semantics Other mainAppContext)]
-        pub unsafe fn mainAppContext(&self) -> Id<CLSContext>;
+        pub unsafe fn mainAppContext(&self) -> Retained<CLSContext>;
 
         #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
         #[method_id(@__retain_semantics Other activeContext)]
-        pub unsafe fn activeContext(&self) -> Option<Id<CLSContext>>;
+        pub unsafe fn activeContext(&self) -> Option<Retained<CLSContext>>;
 
         #[cfg(all(feature = "CLSActivity", feature = "CLSObject"))]
         #[method_id(@__retain_semantics Other runningActivity)]
-        pub unsafe fn runningActivity(&self) -> Option<Id<CLSActivity>>;
+        pub unsafe fn runningActivity(&self) -> Option<Retained<CLSActivity>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn CLSDataStoreDelegate>>>;
+        pub unsafe fn delegate(&self)
+            -> Option<Retained<ProtocolObject<dyn CLSDataStoreDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -59,10 +60,10 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(saveWithCompletion:)]

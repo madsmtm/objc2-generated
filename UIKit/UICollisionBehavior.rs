@@ -101,7 +101,7 @@ extern_methods!(
         pub unsafe fn initWithItems(
             this: Allocated<Self>,
             items: &NSArray<ProtocolObject<dyn UIDynamicItem>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(addItem:)]
         pub unsafe fn addItem(&self, item: &ProtocolObject<dyn UIDynamicItem>);
@@ -110,7 +110,7 @@ extern_methods!(
         pub unsafe fn removeItem(&self, item: &ProtocolObject<dyn UIDynamicItem>);
 
         #[method_id(@__retain_semantics Other items)]
-        pub unsafe fn items(&self) -> Id<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
+        pub unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
 
         #[method(collisionMode)]
         pub unsafe fn collisionMode(&self) -> UICollisionBehaviorMode;
@@ -155,7 +155,7 @@ extern_methods!(
         pub unsafe fn boundaryWithIdentifier(
             &self,
             identifier: &ProtocolObject<dyn NSCopying>,
-        ) -> Option<Id<UIBezierPath>>;
+        ) -> Option<Retained<UIBezierPath>>;
 
         #[method(removeBoundaryWithIdentifier:)]
         pub unsafe fn removeBoundaryWithIdentifier(
@@ -166,7 +166,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other boundaryIdentifiers)]
         pub unsafe fn boundaryIdentifiers(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn NSCopying>>>>;
+        ) -> Option<Retained<NSArray<ProtocolObject<dyn NSCopying>>>>;
 
         #[method(removeAllBoundaries)]
         pub unsafe fn removeAllBoundaries(&self);
@@ -174,7 +174,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other collisionDelegate)]
         pub unsafe fn collisionDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UICollisionBehaviorDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UICollisionBehaviorDelegate>>>;
 
         #[method(setCollisionDelegate:)]
         pub unsafe fn setCollisionDelegate(
@@ -189,9 +189,9 @@ extern_methods!(
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UICollisionBehavior {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

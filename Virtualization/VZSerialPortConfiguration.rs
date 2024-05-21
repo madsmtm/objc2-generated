@@ -22,14 +22,14 @@ unsafe impl NSObjectProtocol for VZSerialPortConfiguration {}
 extern_methods!(
     unsafe impl VZSerialPortConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZSerialPortAttachment")]
         #[method_id(@__retain_semantics Other attachment)]
-        pub unsafe fn attachment(&self) -> Option<Id<VZSerialPortAttachment>>;
+        pub unsafe fn attachment(&self) -> Option<Retained<VZSerialPortAttachment>>;
 
         #[cfg(feature = "VZSerialPortAttachment")]
         #[method(setAttachment:)]

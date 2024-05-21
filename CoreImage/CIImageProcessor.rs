@@ -26,7 +26,7 @@ extern_methods!(
             inputs: Option<&NSArray<ProtocolObject<dyn CIImageProcessorInput>>>,
             arguments: Option<&NSDictionary<NSString, AnyObject>>,
             output: &ProtocolObject<dyn CIImageProcessorOutput>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(roiForInput:arguments:outputRect:)]
         pub unsafe fn roiForInput_arguments_outputRect(
@@ -41,7 +41,7 @@ extern_methods!(
             input: c_int,
             arguments: Option<&NSDictionary<NSString, AnyObject>>,
             output_rect: CGRect,
-        ) -> Id<NSArray<CIVector>>;
+        ) -> Retained<NSArray<CIVector>>;
 
         #[cfg(feature = "CIImage")]
         #[method(formatForInputAtIndex:)]
@@ -63,7 +63,7 @@ extern_methods!(
             extent: CGRect,
             inputs: Option<&NSArray<CIImage>>,
             args: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Result<Id<CIImage>, Id<NSError>>;
+        ) -> Result<Retained<CIImage>, Retained<NSError>>;
     }
 );
 
@@ -71,10 +71,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIImageProcessorKernel {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -95,7 +95,7 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other metalTexture)]
-        unsafe fn metalTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
+        unsafe fn metalTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(digest)]
         unsafe fn digest(&self) -> u64;
@@ -127,11 +127,13 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other metalTexture)]
-        unsafe fn metalTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
+        unsafe fn metalTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other metalCommandBuffer)]
-        unsafe fn metalCommandBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLCommandBuffer>>>;
+        unsafe fn metalCommandBuffer(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn MTLCommandBuffer>>>;
 
         #[method(digest)]
         unsafe fn digest(&self) -> u64;

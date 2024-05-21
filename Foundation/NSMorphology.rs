@@ -311,10 +311,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMorphology {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -342,10 +342,10 @@ unsafe impl NSSecureCoding for NSMorphologyPronoun {}
 extern_methods!(
     unsafe impl NSMorphologyPronoun {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithPronoun:morphology:dependentMorphology:)]
@@ -354,17 +354,17 @@ extern_methods!(
             pronoun: &NSString,
             morphology: &NSMorphology,
             dependent_morphology: Option<&NSMorphology>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other pronoun)]
-        pub unsafe fn pronoun(&self) -> Id<NSString>;
+        pub unsafe fn pronoun(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other morphology)]
-        pub unsafe fn morphology(&self) -> Id<NSMorphology>;
+        pub unsafe fn morphology(&self) -> Retained<NSMorphology>;
 
         #[method_id(@__retain_semantics Other dependentMorphology)]
-        pub unsafe fn dependentMorphology(&self) -> Option<Id<NSMorphology>>;
+        pub unsafe fn dependentMorphology(&self) -> Option<Retained<NSMorphology>>;
     }
 );
 
@@ -377,7 +377,7 @@ extern_methods!(
         pub unsafe fn customPronounForLanguage(
             &self,
             language: &NSString,
-        ) -> Option<Id<NSMorphologyCustomPronoun>>;
+        ) -> Option<Retained<NSMorphologyCustomPronoun>>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[deprecated = "Use NSTermOfAddress instead"]
@@ -386,7 +386,7 @@ extern_methods!(
             &self,
             features: Option<&NSMorphologyCustomPronoun>,
             language: &NSString,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
     }
 );
 
@@ -422,12 +422,12 @@ extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method_id(@__retain_semantics Other requiredKeysForLanguage:)]
-        pub unsafe fn requiredKeysForLanguage(language: &NSString) -> Id<NSArray<NSString>>;
+        pub unsafe fn requiredKeysForLanguage(language: &NSString) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method_id(@__retain_semantics Other subjectForm)]
-        pub unsafe fn subjectForm(&self) -> Option<Id<NSString>>;
+        pub unsafe fn subjectForm(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
@@ -437,7 +437,7 @@ extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method_id(@__retain_semantics Other objectForm)]
-        pub unsafe fn objectForm(&self) -> Option<Id<NSString>>;
+        pub unsafe fn objectForm(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
@@ -447,7 +447,7 @@ extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method_id(@__retain_semantics Other possessiveForm)]
-        pub unsafe fn possessiveForm(&self) -> Option<Id<NSString>>;
+        pub unsafe fn possessiveForm(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
@@ -457,7 +457,7 @@ extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method_id(@__retain_semantics Other possessiveAdjectiveForm)]
-        pub unsafe fn possessiveAdjectiveForm(&self) -> Option<Id<NSString>>;
+        pub unsafe fn possessiveAdjectiveForm(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
@@ -470,7 +470,7 @@ extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method_id(@__retain_semantics Other reflexiveForm)]
-        pub unsafe fn reflexiveForm(&self) -> Option<Id<NSString>>;
+        pub unsafe fn reflexiveForm(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
@@ -483,10 +483,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMorphologyCustomPronoun {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -497,6 +497,6 @@ extern_methods!(
         pub unsafe fn isUnspecified(&self) -> bool;
 
         #[method_id(@__retain_semantics Other userMorphology)]
-        pub unsafe fn userMorphology() -> Id<NSMorphology>;
+        pub unsafe fn userMorphology() -> Retained<NSMorphology>;
     }
 );

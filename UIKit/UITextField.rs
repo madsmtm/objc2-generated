@@ -209,20 +209,20 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITextField {
         #[method_id(@__retain_semantics Other text)]
-        pub unsafe fn text(&self) -> Option<Id<NSString>>;
+        pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         #[method(setText:)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other attributedText)]
-        pub unsafe fn attributedText(&self) -> Option<Id<NSAttributedString>>;
+        pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         #[method(setAttributedText:)]
         pub unsafe fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other textColor)]
-        pub unsafe fn textColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn textColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setTextColor:)]
@@ -230,7 +230,7 @@ extern_methods!(
 
         #[cfg(feature = "UIFont")]
         #[method_id(@__retain_semantics Other font)]
-        pub unsafe fn font(&self) -> Option<Id<UIFont>>;
+        pub unsafe fn font(&self) -> Option<Retained<UIFont>>;
 
         #[cfg(feature = "UIFont")]
         #[method(setFont:)]
@@ -253,7 +253,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultTextAttributes)]
         pub unsafe fn defaultTextAttributes(
             &self,
-        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[method(setDefaultTextAttributes:)]
         pub unsafe fn setDefaultTextAttributes(
@@ -262,13 +262,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other placeholder)]
-        pub unsafe fn placeholder(&self) -> Option<Id<NSString>>;
+        pub unsafe fn placeholder(&self) -> Option<Retained<NSString>>;
 
         #[method(setPlaceholder:)]
         pub unsafe fn setPlaceholder(&self, placeholder: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other attributedPlaceholder)]
-        pub unsafe fn attributedPlaceholder(&self) -> Option<Id<NSAttributedString>>;
+        pub unsafe fn attributedPlaceholder(&self) -> Option<Retained<NSAttributedString>>;
 
         #[method(setAttributedPlaceholder:)]
         pub unsafe fn setAttributedPlaceholder(
@@ -295,7 +295,7 @@ extern_methods!(
         pub unsafe fn setMinimumFontSize(&self, minimum_font_size: CGFloat);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn UITextFieldDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UITextFieldDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -305,7 +305,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other background)]
-        pub unsafe fn background(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn background(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setBackground:)]
@@ -313,7 +313,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other disabledBackground)]
-        pub unsafe fn disabledBackground(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn disabledBackground(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setDisabledBackground:)]
@@ -331,7 +331,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other typingAttributes)]
         pub unsafe fn typingAttributes(
             &self,
-        ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         #[method(setTypingAttributes:)]
         pub unsafe fn setTypingAttributes(
@@ -346,7 +346,7 @@ extern_methods!(
         pub unsafe fn setClearButtonMode(&self, clear_button_mode: UITextFieldViewMode);
 
         #[method_id(@__retain_semantics Other leftView)]
-        pub unsafe fn leftView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn leftView(&self) -> Option<Retained<UIView>>;
 
         #[method(setLeftView:)]
         pub unsafe fn setLeftView(&self, left_view: Option<&UIView>);
@@ -358,7 +358,7 @@ extern_methods!(
         pub unsafe fn setLeftViewMode(&self, left_view_mode: UITextFieldViewMode);
 
         #[method_id(@__retain_semantics Other rightView)]
-        pub unsafe fn rightView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn rightView(&self) -> Option<Retained<UIView>>;
 
         #[method(setRightView:)]
         pub unsafe fn setRightView(&self, right_view: Option<&UIView>);
@@ -398,13 +398,13 @@ extern_methods!(
         pub unsafe fn drawPlaceholderInRect(&self, rect: CGRect);
 
         #[method_id(@__retain_semantics Other inputView)]
-        pub unsafe fn inputView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn inputView(&self) -> Option<Retained<UIView>>;
 
         #[method(setInputView:)]
         pub unsafe fn setInputView(&self, input_view: Option<&UIView>);
 
         #[method_id(@__retain_semantics Other inputAccessoryView)]
-        pub unsafe fn inputAccessoryView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn inputAccessoryView(&self) -> Option<Retained<UIView>>;
 
         #[method(setInputAccessoryView:)]
         pub unsafe fn setInputAccessoryView(&self, input_accessory_view: Option<&UIView>);
@@ -422,10 +422,13 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITextField {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Init initWithFrame:primaryAction:)]
@@ -433,7 +436,7 @@ extern_methods!(
             this: Allocated<Self>,
             frame: CGRect,
             primary_action: Option<&UIAction>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -442,10 +445,10 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITextField {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -490,7 +493,7 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITextField {
         #[method_id(@__retain_semantics Other interactionState)]
-        pub unsafe fn interactionState(&self) -> Id<AnyObject>;
+        pub unsafe fn interactionState(&self) -> Retained<AnyObject>;
 
         #[method(setInteractionState:)]
         pub unsafe fn setInteractionState(&self, interaction_state: &AnyObject);
@@ -576,7 +579,7 @@ extern_protocol!(
             text_field: &UITextField,
             range: NSRange,
             suggested_actions: &NSArray<UIMenuElement>,
-        ) -> Option<Id<UIMenu>>;
+        ) -> Option<Retained<UIMenu>>;
 
         #[cfg(all(
             feature = "UIControl",

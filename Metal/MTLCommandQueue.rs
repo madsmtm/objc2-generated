@@ -8,31 +8,31 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait MTLCommandQueue: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other label)]
-        fn label(&self) -> Option<Id<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
 
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
-        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "MTLCommandBuffer")]
         #[method_id(@__retain_semantics Other commandBuffer)]
-        fn commandBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLCommandBuffer>>>;
+        fn commandBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLCommandBuffer>>>;
 
         #[cfg(feature = "MTLCommandBuffer")]
         #[method_id(@__retain_semantics Other commandBufferWithDescriptor:)]
         unsafe fn commandBufferWithDescriptor(
             &self,
             descriptor: &MTLCommandBufferDescriptor,
-        ) -> Option<Id<ProtocolObject<dyn MTLCommandBuffer>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MTLCommandBuffer>>>;
 
         #[cfg(feature = "MTLCommandBuffer")]
         #[method_id(@__retain_semantics Other commandBufferWithUnretainedReferences)]
         unsafe fn commandBufferWithUnretainedReferences(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLCommandBuffer>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MTLCommandBuffer>>>;
 
         #[deprecated = "Use MTLCaptureScope instead"]
         #[method(insertDebugCaptureBoundary)]

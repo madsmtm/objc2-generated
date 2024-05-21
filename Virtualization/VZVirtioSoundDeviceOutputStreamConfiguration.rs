@@ -28,11 +28,11 @@ extern_methods!(
     #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
     unsafe impl VZVirtioSoundDeviceOutputStreamConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZAudioOutputStreamSink")]
         #[method_id(@__retain_semantics Other sink)]
-        pub unsafe fn sink(&self) -> Option<Id<VZAudioOutputStreamSink>>;
+        pub unsafe fn sink(&self) -> Option<Retained<VZAudioOutputStreamSink>>;
 
         #[cfg(feature = "VZAudioOutputStreamSink")]
         #[method(setSink:)]
@@ -45,6 +45,6 @@ extern_methods!(
     #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
     unsafe impl VZVirtioSoundDeviceOutputStreamConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

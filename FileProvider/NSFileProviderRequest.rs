@@ -26,11 +26,11 @@ extern_methods!(
         pub unsafe fn isFileViewerRequest(&self) -> bool;
 
         #[method_id(@__retain_semantics Other requestingExecutable)]
-        pub unsafe fn requestingExecutable(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn requestingExecutable(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSFileProviderDomain")]
         #[method_id(@__retain_semantics Other domainVersion)]
-        pub unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion>>;
+        pub unsafe fn domainVersion(&self) -> Option<Retained<NSFileProviderDomainVersion>>;
     }
 );
 
@@ -38,9 +38,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

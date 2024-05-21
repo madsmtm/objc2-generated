@@ -37,7 +37,7 @@ extern_methods!(
             client_data_hash: &NSData,
             authenticator_data: &NSData,
             credential_id: &NSData,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other credentialWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:)]
         pub unsafe fn credentialWithUserHandle_relyingParty_signature_clientDataHash_authenticatorData_credentialID(
@@ -47,25 +47,25 @@ extern_methods!(
             client_data_hash: &NSData,
             authenticator_data: &NSData,
             credential_id: &NSData,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other userHandle)]
-        pub unsafe fn userHandle(&self) -> Id<NSData>;
+        pub unsafe fn userHandle(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other relyingParty)]
-        pub unsafe fn relyingParty(&self) -> Id<NSString>;
+        pub unsafe fn relyingParty(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other signature)]
-        pub unsafe fn signature(&self) -> Id<NSData>;
+        pub unsafe fn signature(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other clientDataHash)]
-        pub unsafe fn clientDataHash(&self) -> Id<NSData>;
+        pub unsafe fn clientDataHash(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other authenticatorData)]
-        pub unsafe fn authenticatorData(&self) -> Id<NSData>;
+        pub unsafe fn authenticatorData(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other credentialID)]
-        pub unsafe fn credentialID(&self) -> Id<NSData>;
+        pub unsafe fn credentialID(&self) -> Retained<NSData>;
     }
 );
 
@@ -73,9 +73,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASPasskeyAssertionCredential {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

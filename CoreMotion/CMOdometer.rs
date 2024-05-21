@@ -53,10 +53,10 @@ unsafe impl NSSecureCoding for CMOdometerData {}
 extern_methods!(
     unsafe impl CMOdometerData {
         #[method_id(@__retain_semantics Other startDate)]
-        pub unsafe fn startDate(&self) -> Id<NSDate>;
+        pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other endDate)]
-        pub unsafe fn endDate(&self) -> Id<NSDate>;
+        pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method(deltaDistance)]
@@ -75,7 +75,7 @@ extern_methods!(
         pub unsafe fn speedAccuracy(&self) -> CLLocationSpeedAccuracy;
 
         #[method_id(@__retain_semantics Other gpsDate)]
-        pub unsafe fn gpsDate(&self) -> Id<NSDate>;
+        pub unsafe fn gpsDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method(deltaAltitude)]
@@ -89,10 +89,10 @@ extern_methods!(
         pub unsafe fn originDevice(&self) -> CMOdometerOriginDevice;
 
         #[method_id(@__retain_semantics Other slope)]
-        pub unsafe fn slope(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn slope(&self) -> Option<Retained<NSNumber>>;
 
         #[method_id(@__retain_semantics Other maxAbsSlope)]
-        pub unsafe fn maxAbsSlope(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn maxAbsSlope(&self) -> Option<Retained<NSNumber>>;
     }
 );
 
@@ -100,9 +100,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMOdometerData {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

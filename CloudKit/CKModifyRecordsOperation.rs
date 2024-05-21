@@ -43,7 +43,7 @@ extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKModifyRecordsOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID"))]
         #[method_id(@__retain_semantics Init initWithRecordsToSave:recordIDsToDelete:)]
@@ -51,11 +51,11 @@ extern_methods!(
             this: Allocated<Self>,
             records: Option<&NSArray<CKRecord>>,
             record_i_ds: Option<&NSArray<CKRecordID>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Other recordsToSave)]
-        pub unsafe fn recordsToSave(&self) -> Option<Id<NSArray<CKRecord>>>;
+        pub unsafe fn recordsToSave(&self) -> Option<Retained<NSArray<CKRecord>>>;
 
         #[cfg(feature = "CKRecord")]
         #[method(setRecordsToSave:)]
@@ -63,7 +63,7 @@ extern_methods!(
 
         #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other recordIDsToDelete)]
-        pub unsafe fn recordIDsToDelete(&self) -> Option<Id<NSArray<CKRecordID>>>;
+        pub unsafe fn recordIDsToDelete(&self) -> Option<Retained<NSArray<CKRecordID>>>;
 
         #[cfg(feature = "CKRecordID")]
         #[method(setRecordIDsToDelete:)]
@@ -79,7 +79,7 @@ extern_methods!(
         pub unsafe fn setSavePolicy(&self, save_policy: CKRecordSavePolicy);
 
         #[method_id(@__retain_semantics Other clientChangeTokenData)]
-        pub unsafe fn clientChangeTokenData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn clientChangeTokenData(&self) -> Option<Retained<NSData>>;
 
         #[method(setClientChangeTokenData:)]
         pub unsafe fn setClientChangeTokenData(&self, client_change_token_data: Option<&NSData>);
@@ -176,6 +176,6 @@ extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKModifyRecordsOperation {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

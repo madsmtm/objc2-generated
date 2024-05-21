@@ -28,27 +28,27 @@ extern_methods!(
     #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
     unsafe impl VZVirtioFileSystemDeviceConfiguration {
         #[method_id(@__retain_semantics Init initWithTag:)]
-        pub unsafe fn initWithTag(this: Allocated<Self>, tag: &NSString) -> Id<Self>;
+        pub unsafe fn initWithTag(this: Allocated<Self>, tag: &NSString) -> Retained<Self>;
 
         #[method(validateTag:error:_)]
-        pub unsafe fn validateTag_error(tag: &NSString) -> Result<(), Id<NSError>>;
+        pub unsafe fn validateTag_error(tag: &NSString) -> Result<(), Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other tag)]
-        pub unsafe fn tag(&self) -> Id<NSString>;
+        pub unsafe fn tag(&self) -> Retained<NSString>;
 
         #[method(setTag:)]
         pub unsafe fn setTag(&self, tag: &NSString);
 
         #[cfg(feature = "VZDirectoryShare")]
         #[method_id(@__retain_semantics Other share)]
-        pub unsafe fn share(&self) -> Option<Id<VZDirectoryShare>>;
+        pub unsafe fn share(&self) -> Option<Retained<VZDirectoryShare>>;
 
         #[cfg(feature = "VZDirectoryShare")]
         #[method(setShare:)]
         pub unsafe fn setShare(&self, share: Option<&VZDirectoryShare>);
 
         #[method_id(@__retain_semantics Other macOSGuestAutomountTag)]
-        pub unsafe fn macOSGuestAutomountTag() -> Id<NSString>;
+        pub unsafe fn macOSGuestAutomountTag() -> Retained<NSString>;
     }
 );
 
@@ -57,9 +57,9 @@ extern_methods!(
     #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
     unsafe impl VZVirtioFileSystemDeviceConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

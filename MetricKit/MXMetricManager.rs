@@ -21,14 +21,14 @@ extern_methods!(
     unsafe impl MXMetricManager {
         #[cfg(feature = "MXMetricPayload")]
         #[method_id(@__retain_semantics Other pastPayloads)]
-        pub unsafe fn pastPayloads(&self) -> Id<NSArray<MXMetricPayload>>;
+        pub unsafe fn pastPayloads(&self) -> Retained<NSArray<MXMetricPayload>>;
 
         #[cfg(feature = "MXDiagnosticPayload")]
         #[method_id(@__retain_semantics Other pastDiagnosticPayloads)]
-        pub unsafe fn pastDiagnosticPayloads(&self) -> Id<NSArray<MXDiagnosticPayload>>;
+        pub unsafe fn pastDiagnosticPayloads(&self) -> Retained<NSArray<MXDiagnosticPayload>>;
 
         #[method_id(@__retain_semantics Other sharedManager)]
-        pub unsafe fn sharedManager() -> Id<MXMetricManager>;
+        pub unsafe fn sharedManager() -> Retained<MXMetricManager>;
 
         #[method(addSubscriber:)]
         pub unsafe fn addSubscriber(
@@ -48,10 +48,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXMetricManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

@@ -32,10 +32,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCSensitivityAnalysis {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -79,7 +79,7 @@ unsafe impl NSObjectProtocol for SCSensitivityAnalyzer {}
 extern_methods!(
     unsafe impl SCSensitivityAnalyzer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(analysisPolicy)]
         pub unsafe fn analysisPolicy(&self) -> SCSensitivityAnalysisPolicy;
@@ -98,7 +98,7 @@ extern_methods!(
             &self,
             file_url: &NSURL,
             completion_handler: &block2::Block<dyn Fn(*mut SCSensitivityAnalysis, *mut NSError)>,
-        ) -> Id<NSProgress>;
+        ) -> Retained<NSProgress>;
     }
 );
 
@@ -106,6 +106,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCSensitivityAnalyzer {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -29,11 +29,11 @@ extern_methods!(
     unsafe impl NSOrthography {
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other dominantScript)]
-        pub unsafe fn dominantScript(&self) -> Id<NSString>;
+        pub unsafe fn dominantScript(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other languageMap)]
-        pub unsafe fn languageMap(&self) -> Id<NSDictionary<NSString, NSArray<NSString>>>;
+        pub unsafe fn languageMap(&self) -> Retained<NSDictionary<NSString, NSArray<NSString>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Init initWithDominantScript:languageMap:)]
@@ -41,11 +41,14 @@ extern_methods!(
             this: Allocated<Self>,
             script: &NSString,
             map: &NSDictionary<NSString, NSArray<NSString>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -53,10 +56,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSOrthography {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -65,28 +68,33 @@ extern_methods!(
     unsafe impl NSOrthography {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other languagesForScript:)]
-        pub unsafe fn languagesForScript(&self, script: &NSString)
-            -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn languagesForScript(
+            &self,
+            script: &NSString,
+        ) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other dominantLanguageForScript:)]
-        pub unsafe fn dominantLanguageForScript(&self, script: &NSString) -> Option<Id<NSString>>;
+        pub unsafe fn dominantLanguageForScript(
+            &self,
+            script: &NSString,
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other dominantLanguage)]
-        pub unsafe fn dominantLanguage(&self) -> Id<NSString>;
+        pub unsafe fn dominantLanguage(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other allScripts)]
-        pub unsafe fn allScripts(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn allScripts(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other allLanguages)]
-        pub unsafe fn allLanguages(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn allLanguages(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other defaultOrthographyForLanguage:)]
-        pub unsafe fn defaultOrthographyForLanguage(language: &NSString) -> Id<Self>;
+        pub unsafe fn defaultOrthographyForLanguage(language: &NSString) -> Retained<Self>;
     }
 );
 
@@ -98,6 +106,6 @@ extern_methods!(
         pub unsafe fn orthographyWithDominantScript_languageMap(
             script: &NSString,
             map: &NSDictionary<NSString, NSArray<NSString>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

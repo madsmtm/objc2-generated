@@ -19,7 +19,9 @@ unsafe impl NSObjectProtocol for NSSpellServer {}
 extern_methods!(
     unsafe impl NSSpellServer {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSSpellServerDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn NSSpellServerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -52,10 +54,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSpellServer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -96,7 +98,7 @@ extern_protocol!(
             sender: &NSSpellServer,
             word: &NSString,
             language: &NSString,
-        ) -> Option<Id<NSArray<NSString>>>;
+        ) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(feature = "NSString")]
         #[optional]
@@ -127,7 +129,7 @@ extern_protocol!(
             range: NSRange,
             string: &NSString,
             language: &NSString,
-        ) -> Option<Id<NSArray<NSString>>>;
+        ) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(all(
             feature = "NSArray",
@@ -142,7 +144,7 @@ extern_protocol!(
             sender: &NSSpellServer,
             string_to_check: &NSString,
             language: Option<&NSString>,
-            details: Option<&mut Option<Id<NSArray<NSDictionary<NSString, AnyObject>>>>>,
+            details: Option<&mut Option<Retained<NSArray<NSDictionary<NSString, AnyObject>>>>>,
         ) -> NSRange;
 
         #[cfg(all(
@@ -163,7 +165,7 @@ extern_protocol!(
             options: Option<&NSDictionary<NSString, AnyObject>>,
             orthography: Option<&NSOrthography>,
             word_count: NonNull<NSInteger>,
-        ) -> Option<Id<NSArray<NSTextCheckingResult>>>;
+        ) -> Option<Retained<NSArray<NSTextCheckingResult>>>;
 
         #[cfg(feature = "NSString")]
         #[optional]

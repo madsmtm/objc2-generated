@@ -36,7 +36,7 @@ extern_methods!(
             training_data: &ProtocolObject<dyn MLBatchProvider>,
             configuration: Option<&MLModelConfiguration>,
             completion_handler: &block2::Block<dyn Fn(NonNull<MLUpdateContext>)>,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(
             feature = "MLBatchProvider",
@@ -48,7 +48,7 @@ extern_methods!(
             model_url: &NSURL,
             training_data: &ProtocolObject<dyn MLBatchProvider>,
             completion_handler: &block2::Block<dyn Fn(NonNull<MLUpdateContext>)>,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(
             feature = "MLBatchProvider",
@@ -61,7 +61,7 @@ extern_methods!(
             training_data: &ProtocolObject<dyn MLBatchProvider>,
             configuration: Option<&MLModelConfiguration>,
             progress_handlers: &MLUpdateProgressHandlers,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "MLBatchProvider", feature = "MLUpdateProgressHandlers"))]
         #[method_id(@__retain_semantics Other updateTaskForModelAtURL:trainingData:progressHandlers:error:_)]
@@ -69,7 +69,7 @@ extern_methods!(
             model_url: &NSURL,
             training_data: &ProtocolObject<dyn MLBatchProvider>,
             progress_handlers: &MLUpdateProgressHandlers,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "MLKey", feature = "MLParameterKey"))]
         #[method(resumeWithParameters:)]
@@ -79,9 +79,9 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -23,7 +23,7 @@ extern_methods!(
     unsafe impl CAMetalDisplayLinkUpdate {
         #[cfg(all(feature = "CAMetalLayer", feature = "objc2-metal"))]
         #[method_id(@__retain_semantics Other drawable)]
-        pub unsafe fn drawable(&self) -> Id<ProtocolObject<dyn CAMetalDrawable>>;
+        pub unsafe fn drawable(&self) -> Retained<ProtocolObject<dyn CAMetalDrawable>>;
 
         #[method(targetTimestamp)]
         pub unsafe fn targetTimestamp(&self) -> CFTimeInterval;
@@ -37,10 +37,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CAMetalDisplayLinkUpdate {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -73,7 +73,10 @@ extern_methods!(
     unsafe impl CAMetalDisplayLink {
         #[cfg(all(feature = "CALayer", feature = "CAMetalLayer"))]
         #[method_id(@__retain_semantics Init initWithMetalLayer:)]
-        pub unsafe fn initWithMetalLayer(this: Allocated<Self>, layer: &CAMetalLayer) -> Id<Self>;
+        pub unsafe fn initWithMetalLayer(
+            this: Allocated<Self>,
+            layer: &CAMetalLayer,
+        ) -> Retained<Self>;
 
         #[method(addToRunLoop:forMode:)]
         pub unsafe fn addToRunLoop_forMode(&self, runloop: &NSRunLoop, mode: &NSRunLoopMode);
@@ -85,8 +88,9 @@ extern_methods!(
         pub unsafe fn invalidate(&self);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self)
-            -> Option<Id<ProtocolObject<dyn CAMetalDisplayLinkDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn CAMetalDisplayLinkDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -123,9 +127,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CAMetalDisplayLink {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

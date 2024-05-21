@@ -66,7 +66,7 @@ unsafe impl NSObjectProtocol for MTLCaptureDescriptor {}
 extern_methods!(
     unsafe impl MTLCaptureDescriptor {
         #[method_id(@__retain_semantics Other captureObject)]
-        pub unsafe fn captureObject(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn captureObject(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setCaptureObject:)]
         pub unsafe fn setCaptureObject(&self, capture_object: Option<&AnyObject>);
@@ -78,7 +78,7 @@ extern_methods!(
         pub fn setDestination(&self, destination: MTLCaptureDestination);
 
         #[method_id(@__retain_semantics Other outputURL)]
-        pub fn outputURL(&self) -> Option<Id<NSURL>>;
+        pub fn outputURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setOutputURL:)]
         pub fn setOutputURL(&self, output_url: Option<&NSURL>);
@@ -89,16 +89,16 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLCaptureDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Allocated<Self>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub fn new() -> Id<Self>;
+        pub fn new() -> Retained<Self>;
     }
 );
 
-impl DefaultId for MTLCaptureDescriptor {
+impl DefaultRetained for MTLCaptureDescriptor {
     #[inline]
-    fn default_id() -> Id<Self> {
+    fn default_id() -> Retained<Self> {
         Self::new()
     }
 }
@@ -118,24 +118,24 @@ unsafe impl NSObjectProtocol for MTLCaptureManager {}
 extern_methods!(
     unsafe impl MTLCaptureManager {
         #[method_id(@__retain_semantics Other sharedCaptureManager)]
-        pub unsafe fn sharedCaptureManager() -> Id<MTLCaptureManager>;
+        pub unsafe fn sharedCaptureManager() -> Retained<MTLCaptureManager>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "MTLCaptureScope", feature = "MTLDevice"))]
         #[method_id(@__retain_semantics New newCaptureScopeWithDevice:)]
         pub fn newCaptureScopeWithDevice(
             &self,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Id<ProtocolObject<dyn MTLCaptureScope>>;
+        ) -> Retained<ProtocolObject<dyn MTLCaptureScope>>;
 
         #[cfg(all(feature = "MTLCaptureScope", feature = "MTLCommandQueue"))]
         #[method_id(@__retain_semantics New newCaptureScopeWithCommandQueue:)]
         pub fn newCaptureScopeWithCommandQueue(
             &self,
             command_queue: &ProtocolObject<dyn MTLCommandQueue>,
-        ) -> Id<ProtocolObject<dyn MTLCaptureScope>>;
+        ) -> Retained<ProtocolObject<dyn MTLCaptureScope>>;
 
         #[method(supportsDestination:)]
         pub fn supportsDestination(&self, destination: MTLCaptureDestination) -> bool;
@@ -144,7 +144,7 @@ extern_methods!(
         pub fn startCaptureWithDescriptor_error(
             &self,
             descriptor: &MTLCaptureDescriptor,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "MTLDevice")]
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
@@ -169,7 +169,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLCaptureScope")]
         #[method_id(@__retain_semantics Other defaultCaptureScope)]
-        pub fn defaultCaptureScope(&self) -> Option<Id<ProtocolObject<dyn MTLCaptureScope>>>;
+        pub fn defaultCaptureScope(&self) -> Option<Retained<ProtocolObject<dyn MTLCaptureScope>>>;
 
         #[cfg(feature = "MTLCaptureScope")]
         #[method(setDefaultCaptureScope:)]
@@ -187,6 +187,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLCaptureManager {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

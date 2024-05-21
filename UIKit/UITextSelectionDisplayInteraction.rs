@@ -15,7 +15,7 @@ extern_protocol!(
         unsafe fn selectionContainerViewBelowTextForSelectionDisplayInteraction(
             &self,
             interaction: &UITextSelectionDisplayInteraction,
-        ) -> Option<Id<UIView>>;
+        ) -> Option<Retained<UIView>>;
     }
 
     unsafe impl ProtocolType for dyn UITextSelectionDisplayInteractionDelegate {}
@@ -46,12 +46,12 @@ extern_methods!(
 
         #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
         #[method_id(@__retain_semantics Other textInput)]
-        pub unsafe fn textInput(&self) -> Option<Id<ProtocolObject<dyn UITextInput>>>;
+        pub unsafe fn textInput(&self) -> Option<Retained<ProtocolObject<dyn UITextInput>>>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UITextSelectionDisplayInteractionDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UITextSelectionDisplayInteractionDelegate>>>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -59,7 +59,7 @@ extern_methods!(
             feature = "UIView"
         ))]
         #[method_id(@__retain_semantics Other cursorView)]
-        pub unsafe fn cursorView(&self) -> Id<UIView>;
+        pub unsafe fn cursorView(&self) -> Retained<UIView>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -75,7 +75,7 @@ extern_methods!(
             feature = "UIView"
         ))]
         #[method_id(@__retain_semantics Other highlightView)]
-        pub unsafe fn highlightView(&self) -> Id<UIView>;
+        pub unsafe fn highlightView(&self) -> Retained<UIView>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -91,7 +91,7 @@ extern_methods!(
             feature = "UIView"
         ))]
         #[method_id(@__retain_semantics Other handleViews)]
-        pub unsafe fn handleViews(&self) -> Id<NSArray<UIView>>;
+        pub unsafe fn handleViews(&self) -> Retained<NSArray<UIView>>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -107,7 +107,7 @@ extern_methods!(
             this: Allocated<Self>,
             text_input: &ProtocolObject<dyn UITextInput>,
             delegate: &ProtocolObject<dyn UITextSelectionDisplayInteractionDelegate>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(layoutManagedSubviews)]
         pub unsafe fn layoutManagedSubviews(&self);
@@ -116,9 +116,9 @@ extern_methods!(
         pub unsafe fn setNeedsSelectionUpdate(&self);
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

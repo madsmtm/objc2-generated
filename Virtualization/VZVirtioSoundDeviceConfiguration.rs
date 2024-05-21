@@ -28,11 +28,11 @@ extern_methods!(
     #[cfg(feature = "VZAudioDeviceConfiguration")]
     unsafe impl VZVirtioSoundDeviceConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
         #[method_id(@__retain_semantics Other streams)]
-        pub unsafe fn streams(&self) -> Id<NSArray<VZVirtioSoundDeviceStreamConfiguration>>;
+        pub unsafe fn streams(&self) -> Retained<NSArray<VZVirtioSoundDeviceStreamConfiguration>>;
 
         #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
         #[method(setStreams:)]
@@ -45,6 +45,6 @@ extern_methods!(
     #[cfg(feature = "VZAudioDeviceConfiguration")]
     unsafe impl VZVirtioSoundDeviceConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -24,14 +24,17 @@ extern_methods!(
     unsafe impl NSDistributedLock {
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other lockWithPath:)]
-        pub unsafe fn lockWithPath(path: &NSString) -> Option<Id<NSDistributedLock>>;
+        pub unsafe fn lockWithPath(path: &NSString) -> Option<Retained<NSDistributedLock>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithPath:)]
-        pub unsafe fn initWithPath(this: Allocated<Self>, path: &NSString) -> Option<Id<Self>>;
+        pub unsafe fn initWithPath(
+            this: Allocated<Self>,
+            path: &NSString,
+        ) -> Option<Retained<Self>>;
 
         #[method(tryLock)]
         pub unsafe fn tryLock(&self) -> bool;
@@ -44,7 +47,7 @@ extern_methods!(
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other lockDate)]
-        pub unsafe fn lockDate(&self) -> Id<NSDate>;
+        pub unsafe fn lockDate(&self) -> Retained<NSDate>;
     }
 );
 
@@ -52,6 +55,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDistributedLock {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -63,13 +63,13 @@ unsafe impl NSObjectProtocol for NLTokenizer {}
 extern_methods!(
     unsafe impl NLTokenizer {
         #[method_id(@__retain_semantics Init initWithUnit:)]
-        pub unsafe fn initWithUnit(this: Allocated<Self>, unit: NLTokenUnit) -> Id<Self>;
+        pub unsafe fn initWithUnit(this: Allocated<Self>, unit: NLTokenUnit) -> Retained<Self>;
 
         #[method(unit)]
         pub unsafe fn unit(&self) -> NLTokenUnit;
 
         #[method_id(@__retain_semantics Other string)]
-        pub unsafe fn string(&self) -> Option<Id<NSString>>;
+        pub unsafe fn string(&self) -> Option<Retained<NSString>>;
 
         #[method(setString:)]
         pub unsafe fn setString(&self, string: Option<&NSString>);
@@ -85,7 +85,7 @@ extern_methods!(
         pub unsafe fn tokenRangeForRange(&self, range: NSRange) -> NSRange;
 
         #[method_id(@__retain_semantics Other tokensForRange:)]
-        pub unsafe fn tokensForRange(&self, range: NSRange) -> Id<NSArray<NSValue>>;
+        pub unsafe fn tokensForRange(&self, range: NSRange) -> Retained<NSArray<NSValue>>;
 
         #[cfg(feature = "block2")]
         #[method(enumerateTokensInRange:usingBlock:)]
@@ -101,9 +101,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NLTokenizer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

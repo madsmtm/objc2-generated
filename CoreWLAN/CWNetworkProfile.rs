@@ -28,31 +28,31 @@ unsafe impl NSSecureCoding for CWNetworkProfile {}
 extern_methods!(
     unsafe impl CWNetworkProfile {
         #[method_id(@__retain_semantics Other ssid)]
-        pub unsafe fn ssid(&self) -> Option<Id<NSString>>;
+        pub unsafe fn ssid(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other ssidData)]
-        pub unsafe fn ssidData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn ssidData(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "CoreWLANTypes")]
         #[method(security)]
         pub unsafe fn security(&self) -> CWSecurity;
 
         #[method_id(@__retain_semantics Other networkProfile)]
-        pub unsafe fn networkProfile() -> Id<Self>;
+        pub unsafe fn networkProfile() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithNetworkProfile:)]
         pub unsafe fn initWithNetworkProfile(
             this: Allocated<Self>,
             network_profile: &CWNetworkProfile,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other networkProfileWithNetworkProfile:)]
         pub unsafe fn networkProfileWithNetworkProfile(
             network_profile: &CWNetworkProfile,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(isEqualToNetworkProfile:)]
         pub unsafe fn isEqualToNetworkProfile(&self, network_profile: &CWNetworkProfile) -> bool;
@@ -63,7 +63,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWNetworkProfile {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -91,7 +91,7 @@ unsafe impl NSSecureCoding for CWMutableNetworkProfile {}
 extern_methods!(
     unsafe impl CWMutableNetworkProfile {
         #[method_id(@__retain_semantics Other ssidData)]
-        pub unsafe fn ssidData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn ssidData(&self) -> Option<Retained<NSData>>;
 
         #[method(setSsidData:)]
         pub unsafe fn setSsidData(&self, ssid_data: Option<&NSData>);
@@ -110,21 +110,21 @@ extern_methods!(
     /// Methods declared on superclass `CWNetworkProfile`
     unsafe impl CWMutableNetworkProfile {
         #[method_id(@__retain_semantics Other networkProfile)]
-        pub unsafe fn networkProfile() -> Id<Self>;
+        pub unsafe fn networkProfile() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithNetworkProfile:)]
         pub unsafe fn initWithNetworkProfile(
             this: Allocated<Self>,
             network_profile: &CWNetworkProfile,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other networkProfileWithNetworkProfile:)]
         pub unsafe fn networkProfileWithNetworkProfile(
             network_profile: &CWNetworkProfile,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -132,6 +132,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWMutableNetworkProfile {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

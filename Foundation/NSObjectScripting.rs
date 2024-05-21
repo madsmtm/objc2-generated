@@ -13,11 +13,12 @@ extern_category!(
         unsafe fn scriptingValueForSpecifier(
             &self,
             object_specifier: &NSScriptObjectSpecifier,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other scriptingProperties)]
-        unsafe fn scriptingProperties(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        unsafe fn scriptingProperties(&self)
+            -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setScriptingProperties:)]
@@ -33,7 +34,7 @@ extern_category!(
             value: &AnyObject,
             key: &NSString,
             properties: &NSDictionary<NSString, AnyObject>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics New newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:)]
@@ -43,7 +44,7 @@ extern_category!(
             key: &NSString,
             contents_value: Option<&AnyObject>,
             properties: &NSDictionary<NSString, AnyObject>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
     }
 
     unsafe impl NSObjectNSScripting for NSObject {}

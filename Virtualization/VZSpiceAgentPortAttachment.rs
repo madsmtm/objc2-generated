@@ -25,7 +25,7 @@ extern_methods!(
     #[cfg(feature = "VZSerialPortAttachment")]
     unsafe impl VZSpiceAgentPortAttachment {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(sharesClipboard)]
         pub unsafe fn sharesClipboard(&self) -> bool;
@@ -34,7 +34,7 @@ extern_methods!(
         pub unsafe fn setSharesClipboard(&self, shares_clipboard: bool);
 
         #[method_id(@__retain_semantics Other spiceAgentPortName)]
-        pub unsafe fn spiceAgentPortName() -> Id<NSString>;
+        pub unsafe fn spiceAgentPortName() -> Retained<NSString>;
     }
 );
 
@@ -43,6 +43,6 @@ extern_methods!(
     #[cfg(feature = "VZSerialPortAttachment")]
     unsafe impl VZSpiceAgentPortAttachment {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

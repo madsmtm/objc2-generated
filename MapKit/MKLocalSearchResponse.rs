@@ -23,7 +23,7 @@ extern_methods!(
     unsafe impl MKLocalSearchResponse {
         #[cfg(feature = "MKMapItem")]
         #[method_id(@__retain_semantics Other mapItems)]
-        pub unsafe fn mapItems(&self) -> Id<NSArray<MKMapItem>>;
+        pub unsafe fn mapItems(&self) -> Retained<NSArray<MKMapItem>>;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(boundingRegion)]
@@ -35,9 +35,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKLocalSearchResponse {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

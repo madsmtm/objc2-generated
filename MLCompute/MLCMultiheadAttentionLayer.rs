@@ -28,32 +28,32 @@ extern_methods!(
         #[cfg(feature = "MLCMultiheadAttentionDescriptor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptor)]
-        pub unsafe fn descriptor(&self) -> Id<MLCMultiheadAttentionDescriptor>;
+        pub unsafe fn descriptor(&self) -> Retained<MLCMultiheadAttentionDescriptor>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other weights)]
-        pub unsafe fn weights(&self) -> Id<NSArray<MLCTensor>>;
+        pub unsafe fn weights(&self) -> Retained<NSArray<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other biases)]
-        pub unsafe fn biases(&self) -> Option<Id<NSArray<MLCTensor>>>;
+        pub unsafe fn biases(&self) -> Option<Retained<NSArray<MLCTensor>>>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other attentionBiases)]
-        pub unsafe fn attentionBiases(&self) -> Option<Id<NSArray<MLCTensor>>>;
+        pub unsafe fn attentionBiases(&self) -> Option<Retained<NSArray<MLCTensor>>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         #[deprecated]
         #[method_id(@__retain_semantics Other weightsParameters)]
-        pub unsafe fn weightsParameters(&self) -> Id<NSArray<MLCTensorParameter>>;
+        pub unsafe fn weightsParameters(&self) -> Retained<NSArray<MLCTensorParameter>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         #[deprecated]
         #[method_id(@__retain_semantics Other biasesParameters)]
-        pub unsafe fn biasesParameters(&self) -> Option<Id<NSArray<MLCTensorParameter>>>;
+        pub unsafe fn biasesParameters(&self) -> Option<Retained<NSArray<MLCTensorParameter>>>;
 
         #[cfg(all(feature = "MLCMultiheadAttentionDescriptor", feature = "MLCTensor"))]
         #[deprecated]
@@ -63,7 +63,7 @@ extern_methods!(
             weights: &NSArray<MLCTensor>,
             biases: Option<&NSArray<MLCTensor>>,
             attention_biases: Option<&NSArray<MLCTensor>>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -73,10 +73,10 @@ extern_methods!(
     unsafe impl MLCMultiheadAttentionLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl DOMHTMLParagraphElement {
         #[deprecated]
         #[method_id(@__retain_semantics Other align)]
-        pub unsafe fn align(&self) -> Id<NSString>;
+        pub unsafe fn align(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setAlign:)]
@@ -90,7 +90,7 @@ extern_methods!(
     unsafe impl DOMHTMLParagraphElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -105,6 +105,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLParagraphElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

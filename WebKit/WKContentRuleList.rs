@@ -20,7 +20,7 @@ unsafe impl NSObjectProtocol for WKContentRuleList {}
 extern_methods!(
     unsafe impl WKContentRuleList {
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
     }
 );
 
@@ -28,9 +28,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKContentRuleList {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

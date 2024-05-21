@@ -86,16 +86,16 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MKPinAnnotationView {
         #[method_id(@__retain_semantics Other redPinColor)]
-        pub unsafe fn redPinColor(mtm: MainThreadMarker) -> Id<NSColor>;
+        pub unsafe fn redPinColor(mtm: MainThreadMarker) -> Retained<NSColor>;
 
         #[method_id(@__retain_semantics Other greenPinColor)]
-        pub unsafe fn greenPinColor(mtm: MainThreadMarker) -> Id<NSColor>;
+        pub unsafe fn greenPinColor(mtm: MainThreadMarker) -> Retained<NSColor>;
 
         #[method_id(@__retain_semantics Other purplePinColor)]
-        pub unsafe fn purplePinColor(mtm: MainThreadMarker) -> Id<NSColor>;
+        pub unsafe fn purplePinColor(mtm: MainThreadMarker) -> Retained<NSColor>;
 
         #[method_id(@__retain_semantics Other pinTintColor)]
-        pub unsafe fn pinTintColor(&self) -> Option<Id<NSColor>>;
+        pub unsafe fn pinTintColor(&self) -> Option<Retained<NSColor>>;
 
         #[method(setPinTintColor:)]
         pub unsafe fn setPinTintColor(&self, pin_tint_color: Option<&NSColor>);
@@ -129,11 +129,13 @@ extern_methods!(
             this: Allocated<Self>,
             annotation: Option<&ProtocolObject<dyn MKAnnotation>>,
             reuse_identifier: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder)
-            -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            a_decoder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -143,7 +145,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MKPinAnnotationView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }
 );
 
@@ -153,7 +155,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MKPinAnnotationView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -163,6 +165,6 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MKPinAnnotationView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

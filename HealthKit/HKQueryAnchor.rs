@@ -26,10 +26,10 @@ unsafe impl NSSecureCoding for HKQueryAnchor {}
 extern_methods!(
     unsafe impl HKQueryAnchor {
         #[method_id(@__retain_semantics Other anchorFromValue:)]
-        pub unsafe fn anchorFromValue(value: NSUInteger) -> Id<Self>;
+        pub unsafe fn anchorFromValue(value: NSUInteger) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -37,6 +37,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKQueryAnchor {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -28,7 +28,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other anchorBoxes)]
-        pub unsafe fn anchorBoxes(&self) -> Id<NSData>;
+        pub unsafe fn anchorBoxes(&self) -> Retained<NSData>;
 
         #[deprecated]
         #[method(shouldRescore)]
@@ -102,17 +102,17 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithAnchorBoxes:anchorBoxCount:)]
         pub unsafe fn descriptorWithAnchorBoxes_anchorBoxCount(
             anchor_boxes: &NSData,
             anchor_box_count: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

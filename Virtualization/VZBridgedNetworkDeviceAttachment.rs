@@ -28,11 +28,11 @@ extern_methods!(
         pub unsafe fn initWithInterface(
             this: Allocated<Self>,
             interface: &VZBridgedNetworkInterface,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "VZBridgedNetworkInterface")]
         #[method_id(@__retain_semantics Other interface)]
-        pub unsafe fn interface(&self) -> Id<VZBridgedNetworkInterface>;
+        pub unsafe fn interface(&self) -> Retained<VZBridgedNetworkInterface>;
     }
 );
 
@@ -41,9 +41,9 @@ extern_methods!(
     #[cfg(feature = "VZNetworkDeviceAttachment")]
     unsafe impl VZBridgedNetworkDeviceAttachment {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

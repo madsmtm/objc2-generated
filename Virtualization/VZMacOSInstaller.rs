@@ -20,10 +20,10 @@ unsafe impl NSObjectProtocol for VZMacOSInstaller {}
 extern_methods!(
     unsafe impl VZMacOSInstaller {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZVirtualMachine")]
         #[method_id(@__retain_semantics Init initWithVirtualMachine:restoreImageURL:)]
@@ -31,7 +31,7 @@ extern_methods!(
             this: Allocated<Self>,
             virtual_machine: &VZVirtualMachine,
             restore_image_file_url: &NSURL,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(installWithCompletionHandler:)]
@@ -41,13 +41,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other progress)]
-        pub unsafe fn progress(&self) -> Id<NSProgress>;
+        pub unsafe fn progress(&self) -> Retained<NSProgress>;
 
         #[cfg(feature = "VZVirtualMachine")]
         #[method_id(@__retain_semantics Other virtualMachine)]
-        pub unsafe fn virtualMachine(&self) -> Id<VZVirtualMachine>;
+        pub unsafe fn virtualMachine(&self) -> Retained<VZVirtualMachine>;
 
         #[method_id(@__retain_semantics Other restoreImageURL)]
-        pub unsafe fn restoreImageURL(&self) -> Id<NSURL>;
+        pub unsafe fn restoreImageURL(&self) -> Retained<NSURL>;
     }
 );

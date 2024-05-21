@@ -41,7 +41,7 @@ unsafe impl NSObjectProtocol for UICalendarViewDecoration {}
 extern_methods!(
     unsafe impl UICalendarViewDecoration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "UIColor", feature = "UIImage"))]
         #[method_id(@__retain_semantics Init initWithImage:color:size:)]
@@ -50,14 +50,14 @@ extern_methods!(
             image: Option<&UIImage>,
             color: Option<&UIColor>,
             size: UICalendarViewDecorationSize,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithCustomViewProvider:)]
         pub unsafe fn initWithCustomViewProvider(
             this: Allocated<Self>,
             custom_view_provider: &block2::Block<dyn Fn() -> NonNull<UIView>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other decorationWithColor:size:)]
@@ -65,14 +65,14 @@ extern_methods!(
             color: Option<&UIColor>,
             size: UICalendarViewDecorationSize,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other decorationWithImage:)]
         pub unsafe fn decorationWithImage(
             image: Option<&UIImage>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIColor", feature = "UIImage"))]
         #[method_id(@__retain_semantics Other decorationWithImage:color:size:)]
@@ -81,14 +81,14 @@ extern_methods!(
             color: Option<&UIColor>,
             size: UICalendarViewDecorationSize,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "block2"))]
         #[method_id(@__retain_semantics Other decorationWithCustomViewProvider:)]
         pub unsafe fn decorationWithCustomViewProvider(
             custom_view_provider: &block2::Block<dyn Fn() -> NonNull<UIView>>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -96,6 +96,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICalendarViewDecoration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -66,16 +66,16 @@ unsafe impl NSSecureCoding for NSAffineTransform {}
 extern_methods!(
     unsafe impl NSAffineTransform {
         #[method_id(@__retain_semantics Other transform)]
-        pub unsafe fn transform() -> Id<NSAffineTransform>;
+        pub unsafe fn transform() -> Retained<NSAffineTransform>;
 
         #[method_id(@__retain_semantics Init initWithTransform:)]
         pub unsafe fn initWithTransform(
             this: Allocated<Self>,
             transform: &NSAffineTransform,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSGeometry")]
         #[method(translateXBy:yBy:)]
@@ -128,6 +128,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAffineTransform {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

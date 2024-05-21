@@ -82,7 +82,7 @@ extern_methods!(
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other dependencies)]
-        pub unsafe fn dependencies(&self) -> Id<NSArray<NSOperation>>;
+        pub unsafe fn dependencies(&self) -> Retained<NSArray<NSOperation>>;
 
         #[method(queuePriority)]
         pub unsafe fn queuePriority(&self) -> NSOperationQueuePriority;
@@ -119,7 +119,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setName:)]
@@ -131,10 +131,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -159,7 +159,7 @@ extern_methods!(
     unsafe impl NSBlockOperation {
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Other blockOperationWithBlock:)]
-        pub unsafe fn blockOperationWithBlock(block: &block2::Block<dyn Fn()>) -> Id<Self>;
+        pub unsafe fn blockOperationWithBlock(block: &block2::Block<dyn Fn()>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(addExecutionBlock:)]
@@ -171,10 +171,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSBlockOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -199,18 +199,21 @@ extern_methods!(
             target: &AnyObject,
             sel: Sel,
             arg: Option<&AnyObject>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSInvocation")]
         #[method_id(@__retain_semantics Init initWithInvocation:)]
-        pub unsafe fn initWithInvocation(this: Allocated<Self>, inv: &NSInvocation) -> Id<Self>;
+        pub unsafe fn initWithInvocation(
+            this: Allocated<Self>,
+            inv: &NSInvocation,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSInvocation")]
         #[method_id(@__retain_semantics Other invocation)]
-        pub unsafe fn invocation(&self) -> Id<NSInvocation>;
+        pub unsafe fn invocation(&self) -> Retained<NSInvocation>;
 
         #[method_id(@__retain_semantics Other result)]
-        pub unsafe fn result(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn result(&self) -> Option<Retained<AnyObject>>;
     }
 );
 
@@ -218,10 +221,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInvocationOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -260,7 +263,7 @@ extern_methods!(
     unsafe impl NSOperationQueue {
         #[cfg(feature = "NSProgress")]
         #[method_id(@__retain_semantics Other progress)]
-        pub unsafe fn progress(&self) -> Id<NSProgress>;
+        pub unsafe fn progress(&self) -> Retained<NSProgress>;
 
         #[method(addOperation:)]
         pub unsafe fn addOperation(&self, op: &NSOperation);
@@ -298,7 +301,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setName:)]
@@ -319,10 +322,10 @@ extern_methods!(
         pub unsafe fn waitUntilAllOperationsAreFinished(&self);
 
         #[method_id(@__retain_semantics Other currentQueue)]
-        pub unsafe fn currentQueue() -> Option<Id<NSOperationQueue>>;
+        pub unsafe fn currentQueue() -> Option<Retained<NSOperationQueue>>;
 
         #[method_id(@__retain_semantics Other mainQueue)]
-        pub unsafe fn mainQueue() -> Id<NSOperationQueue>;
+        pub unsafe fn mainQueue() -> Retained<NSOperationQueue>;
     }
 );
 
@@ -330,10 +333,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSOperationQueue {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -343,7 +346,7 @@ extern_methods!(
         #[cfg(feature = "NSArray")]
         #[deprecated = "access to operations is inherently a race condition, it should not be used. For barrier style behaviors please use addBarrierBlock: instead"]
         #[method_id(@__retain_semantics Other operations)]
-        pub unsafe fn operations(&self) -> Id<NSArray<NSOperation>>;
+        pub unsafe fn operations(&self) -> Retained<NSArray<NSOperation>>;
 
         #[deprecated]
         #[method(operationCount)]

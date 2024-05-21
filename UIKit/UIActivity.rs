@@ -125,14 +125,14 @@ extern_methods!(
         pub unsafe fn activityCategory() -> UIActivityCategory;
 
         #[method_id(@__retain_semantics Other activityType)]
-        pub unsafe fn activityType(&self) -> Option<Id<UIActivityType>>;
+        pub unsafe fn activityType(&self) -> Option<Retained<UIActivityType>>;
 
         #[method_id(@__retain_semantics Other activityTitle)]
-        pub unsafe fn activityTitle(&self) -> Option<Id<NSString>>;
+        pub unsafe fn activityTitle(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other activityImage)]
-        pub unsafe fn activityImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn activityImage(&self) -> Option<Retained<UIImage>>;
 
         #[method(canPerformWithActivityItems:)]
         pub unsafe fn canPerformWithActivityItems(&self, activity_items: &NSArray) -> bool;
@@ -145,7 +145,7 @@ extern_methods!(
         pub unsafe fn activityViewController(
             &self,
             mtm: MainThreadMarker,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[method(performActivity)]
         pub unsafe fn performActivity(&self);
@@ -159,9 +159,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIActivity {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

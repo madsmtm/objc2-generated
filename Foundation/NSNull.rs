@@ -32,7 +32,7 @@ unsafe impl NSSecureCoding for NSNull {}
 extern_methods!(
     unsafe impl NSNull {
         #[method_id(@__retain_semantics Other null)]
-        pub unsafe fn null() -> Id<NSNull>;
+        pub unsafe fn null() -> Retained<NSNull>;
     }
 );
 
@@ -40,9 +40,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSNull {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

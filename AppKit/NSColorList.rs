@@ -28,23 +28,24 @@ unsafe impl NSSecureCoding for NSColorList {}
 extern_methods!(
     unsafe impl NSColorList {
         #[method_id(@__retain_semantics Other availableColorLists)]
-        pub unsafe fn availableColorLists() -> Id<NSArray<NSColorList>>;
+        pub unsafe fn availableColorLists() -> Retained<NSArray<NSColorList>>;
 
         #[method_id(@__retain_semantics Other colorListNamed:)]
-        pub unsafe fn colorListNamed(name: &NSColorListName) -> Option<Id<NSColorList>>;
+        pub unsafe fn colorListNamed(name: &NSColorListName) -> Option<Retained<NSColorList>>;
 
         #[method_id(@__retain_semantics Init initWithName:)]
-        pub unsafe fn initWithName(this: Allocated<Self>, name: &NSColorListName) -> Id<Self>;
+        pub unsafe fn initWithName(this: Allocated<Self>, name: &NSColorListName)
+            -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithName:fromFile:)]
         pub unsafe fn initWithName_fromFile(
             this: Allocated<Self>,
             name: &NSColorListName,
             path: Option<&NSString>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSColorListName>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSColorListName>>;
 
         #[cfg(feature = "NSColor")]
         #[method(setColor:forKey:)]
@@ -64,16 +65,17 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other colorWithKey:)]
-        pub unsafe fn colorWithKey(&self, key: &NSColorName) -> Option<Id<NSColor>>;
+        pub unsafe fn colorWithKey(&self, key: &NSColorName) -> Option<Retained<NSColor>>;
 
         #[method_id(@__retain_semantics Other allKeys)]
-        pub unsafe fn allKeys(&self) -> Id<NSArray<NSColorName>>;
+        pub unsafe fn allKeys(&self) -> Retained<NSArray<NSColorName>>;
 
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
 
         #[method(writeToURL:error:_)]
-        pub unsafe fn writeToURL_error(&self, url: Option<&NSURL>) -> Result<(), Id<NSError>>;
+        pub unsafe fn writeToURL_error(&self, url: Option<&NSURL>)
+            -> Result<(), Retained<NSError>>;
 
         #[deprecated = "Use -writeToURL:error: instead"]
         #[method(writeToFile:)]
@@ -88,10 +90,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSColorList {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

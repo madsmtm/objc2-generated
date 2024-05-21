@@ -39,10 +39,10 @@ unsafe impl NSObjectProtocol for SKOverlayConfiguration {}
 extern_methods!(
     unsafe impl SKOverlayConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -62,38 +62,38 @@ unsafe impl NSObjectProtocol for SKOverlayAppConfiguration {}
 extern_methods!(
     unsafe impl SKOverlayAppConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithAppIdentifier:position:)]
         pub unsafe fn initWithAppIdentifier_position(
             this: Allocated<Self>,
             app_identifier: &NSString,
             position: SKOverlayPosition,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other appIdentifier)]
-        pub unsafe fn appIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn appIdentifier(&self) -> Retained<NSString>;
 
         #[method(setAppIdentifier:)]
         pub unsafe fn setAppIdentifier(&self, app_identifier: &NSString);
 
         #[method_id(@__retain_semantics Other campaignToken)]
-        pub unsafe fn campaignToken(&self) -> Option<Id<NSString>>;
+        pub unsafe fn campaignToken(&self) -> Option<Retained<NSString>>;
 
         #[method(setCampaignToken:)]
         pub unsafe fn setCampaignToken(&self, campaign_token: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other providerToken)]
-        pub unsafe fn providerToken(&self) -> Option<Id<NSString>>;
+        pub unsafe fn providerToken(&self) -> Option<Retained<NSString>>;
 
         #[method(setProviderToken:)]
         pub unsafe fn setProviderToken(&self, provider_token: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other customProductPageIdentifier)]
-        pub unsafe fn customProductPageIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn customProductPageIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(setCustomProductPageIdentifier:)]
         pub unsafe fn setCustomProductPageIdentifier(
@@ -102,7 +102,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other latestReleaseID)]
-        pub unsafe fn latestReleaseID(&self) -> Option<Id<NSString>>;
+        pub unsafe fn latestReleaseID(&self) -> Option<Retained<NSString>>;
 
         #[method(setLatestReleaseID:)]
         pub unsafe fn setLatestReleaseID(&self, latest_release_id: Option<&NSString>);
@@ -123,7 +123,7 @@ extern_methods!(
         pub unsafe fn setAdditionalValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
 
         #[method_id(@__retain_semantics Other additionalValueForKey:)]
-        pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Id<AnyObject>>;
+        pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "SKAdImpression")]
         #[method(setAdImpression:)]
@@ -147,31 +147,31 @@ unsafe impl NSObjectProtocol for SKOverlayAppClipConfiguration {}
 extern_methods!(
     unsafe impl SKOverlayAppClipConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithPosition:)]
         pub unsafe fn initWithPosition(
             this: Allocated<Self>,
             position: SKOverlayPosition,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other campaignToken)]
-        pub unsafe fn campaignToken(&self) -> Option<Id<NSString>>;
+        pub unsafe fn campaignToken(&self) -> Option<Retained<NSString>>;
 
         #[method(setCampaignToken:)]
         pub unsafe fn setCampaignToken(&self, campaign_token: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other providerToken)]
-        pub unsafe fn providerToken(&self) -> Option<Id<NSString>>;
+        pub unsafe fn providerToken(&self) -> Option<Retained<NSString>>;
 
         #[method(setProviderToken:)]
         pub unsafe fn setProviderToken(&self, provider_token: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other customProductPageIdentifier)]
-        pub unsafe fn customProductPageIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn customProductPageIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(setCustomProductPageIdentifier:)]
         pub unsafe fn setCustomProductPageIdentifier(
@@ -180,7 +180,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other latestReleaseID)]
-        pub unsafe fn latestReleaseID(&self) -> Option<Id<NSString>>;
+        pub unsafe fn latestReleaseID(&self) -> Option<Retained<NSString>>;
 
         #[method(setLatestReleaseID:)]
         pub unsafe fn setLatestReleaseID(&self, latest_release_id: Option<&NSString>);
@@ -195,6 +195,6 @@ extern_methods!(
         pub unsafe fn setAdditionalValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
 
         #[method_id(@__retain_semantics Other additionalValueForKey:)]
-        pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Id<AnyObject>>;
+        pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
     }
 );

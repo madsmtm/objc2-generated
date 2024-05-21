@@ -58,7 +58,7 @@ extern_methods!(
     unsafe impl MTLIntersectionFunctionTableDescriptor {
         #[method_id(@__retain_semantics Other intersectionFunctionTableDescriptor)]
         pub unsafe fn intersectionFunctionTableDescriptor(
-        ) -> Id<MTLIntersectionFunctionTableDescriptor>;
+        ) -> Retained<MTLIntersectionFunctionTableDescriptor>;
 
         #[method(functionCount)]
         pub unsafe fn functionCount(&self) -> NSUInteger;
@@ -72,16 +72,16 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLIntersectionFunctionTableDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Allocated<Self>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub fn new() -> Id<Self>;
+        pub fn new() -> Retained<Self>;
     }
 );
 
-impl DefaultId for MTLIntersectionFunctionTableDescriptor {
+impl DefaultRetained for MTLIntersectionFunctionTableDescriptor {
     #[inline]
-    fn default_id() -> Id<Self> {
+    fn default_id() -> Retained<Self> {
         Self::new()
     }
 }

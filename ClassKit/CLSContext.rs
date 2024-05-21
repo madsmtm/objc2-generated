@@ -117,19 +117,19 @@ extern_methods!(
     #[cfg(feature = "CLSObject")]
     unsafe impl CLSContext {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other identifierPath)]
-        pub unsafe fn identifierPath(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn identifierPath(&self) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other universalLinkURL)]
-        pub unsafe fn universalLinkURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn universalLinkURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setUniversalLinkURL:)]
         pub unsafe fn setUniversalLinkURL(&self, universal_link_url: Option<&NSURL>);
@@ -138,13 +138,13 @@ extern_methods!(
         pub unsafe fn r#type(&self) -> CLSContextType;
 
         #[method_id(@__retain_semantics Other customTypeName)]
-        pub unsafe fn customTypeName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn customTypeName(&self) -> Option<Retained<NSString>>;
 
         #[method(setCustomTypeName:)]
         pub unsafe fn setCustomTypeName(&self, custom_type_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -156,7 +156,7 @@ extern_methods!(
         pub unsafe fn setDisplayOrder(&self, display_order: NSInteger);
 
         #[method_id(@__retain_semantics Other topic)]
-        pub unsafe fn topic(&self) -> Option<Id<CLSContextTopic>>;
+        pub unsafe fn topic(&self) -> Option<Retained<CLSContextTopic>>;
 
         #[method(setTopic:)]
         pub unsafe fn setTopic(&self, topic: Option<&CLSContextTopic>);
@@ -183,10 +183,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other progressReportingCapabilities)]
         pub unsafe fn progressReportingCapabilities(
             &self,
-        ) -> Id<NSSet<CLSProgressReportingCapability>>;
+        ) -> Retained<NSSet<CLSProgressReportingCapability>>;
 
         #[method_id(@__retain_semantics Other summary)]
-        pub unsafe fn summary(&self) -> Option<Id<NSString>>;
+        pub unsafe fn summary(&self) -> Option<Retained<NSString>>;
 
         #[method(setSummary:)]
         pub unsafe fn setSummary(&self, summary: Option<&NSString>);
@@ -197,7 +197,7 @@ extern_methods!(
             r#type: CLSContextType,
             identifier: &NSString,
             title: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
@@ -228,7 +228,7 @@ extern_methods!(
     #[cfg(feature = "CLSObject")]
     unsafe impl CLSContext {
         #[method_id(@__retain_semantics Other parent)]
-        pub unsafe fn parent(&self) -> Option<Id<CLSContext>>;
+        pub unsafe fn parent(&self) -> Option<Retained<CLSContext>>;
 
         #[method(removeFromParent)]
         pub unsafe fn removeFromParent(&self);
@@ -245,7 +245,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other navigationChildContexts)]
-        pub unsafe fn navigationChildContexts(&self) -> Id<NSArray<CLSContext>>;
+        pub unsafe fn navigationChildContexts(&self) -> Retained<NSArray<CLSContext>>;
 
         #[method(addNavigationChildContext:)]
         pub unsafe fn addNavigationChildContext(&self, child: &CLSContext);

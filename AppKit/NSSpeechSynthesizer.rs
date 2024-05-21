@@ -201,7 +201,7 @@ extern_methods!(
         pub unsafe fn initWithVoice(
             this: Allocated<Self>,
             voice: Option<&NSSpeechSynthesizerVoiceName>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method(startSpeakingString:)]
@@ -233,7 +233,7 @@ extern_methods!(
         pub unsafe fn delegate(
             &self,
             mtm: MainThreadMarker,
-        ) -> Option<Id<ProtocolObject<dyn NSSpeechSynthesizerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSSpeechSynthesizerDelegate>>>;
 
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method(setDelegate:)]
@@ -244,7 +244,7 @@ extern_methods!(
 
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method_id(@__retain_semantics Other voice)]
-        pub unsafe fn voice(&self) -> Option<Id<NSSpeechSynthesizerVoiceName>>;
+        pub unsafe fn voice(&self) -> Option<Retained<NSSpeechSynthesizerVoiceName>>;
 
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method(setVoice:)]
@@ -277,20 +277,20 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other phonemesFromText:)]
-        pub unsafe fn phonemesFromText(&self, text: &NSString) -> Id<NSString>;
+        pub unsafe fn phonemesFromText(&self, text: &NSString) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other objectForProperty:error:_)]
         pub unsafe fn objectForProperty_error(
             &self,
             property: &NSSpeechPropertyKey,
-        ) -> Result<Id<AnyObject>, Id<NSError>>;
+        ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[method(setObject:forProperty:error:_)]
         pub unsafe fn setObject_forProperty_error(
             &self,
             object: Option<&AnyObject>,
             property: &NSSpeechPropertyKey,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method(isAnyApplicationSpeaking)]
@@ -298,17 +298,17 @@ extern_methods!(
 
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method_id(@__retain_semantics Other defaultVoice)]
-        pub unsafe fn defaultVoice() -> Id<NSSpeechSynthesizerVoiceName>;
+        pub unsafe fn defaultVoice() -> Retained<NSSpeechSynthesizerVoiceName>;
 
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method_id(@__retain_semantics Other availableVoices)]
-        pub unsafe fn availableVoices() -> Id<NSArray<NSSpeechSynthesizerVoiceName>>;
+        pub unsafe fn availableVoices() -> Retained<NSArray<NSSpeechSynthesizerVoiceName>>;
 
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method_id(@__retain_semantics Other attributesForVoice:)]
         pub unsafe fn attributesForVoice(
             voice: &NSSpeechSynthesizerVoiceName,
-        ) -> Id<NSDictionary<NSVoiceAttributeKey, AnyObject>>;
+        ) -> Retained<NSDictionary<NSVoiceAttributeKey, AnyObject>>;
     }
 );
 
@@ -316,10 +316,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSpeechSynthesizer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

@@ -62,11 +62,11 @@ extern_methods!(
             this: Allocated<Self>,
             content_size: NSSize,
             edge: NSRectEdge,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSWindow")]
         #[method_id(@__retain_semantics Other parentWindow)]
-        pub unsafe fn parentWindow(&self) -> Option<Id<NSWindow>>;
+        pub unsafe fn parentWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "NSWindow")]
         #[method(setParentWindow:)]
@@ -74,7 +74,7 @@ extern_methods!(
 
         #[cfg(feature = "NSView")]
         #[method_id(@__retain_semantics Other contentView)]
-        pub unsafe fn contentView(&self) -> Option<Id<NSView>>;
+        pub unsafe fn contentView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
         #[method(setContentView:)]
@@ -87,7 +87,7 @@ extern_methods!(
         pub unsafe fn setPreferredEdge(&self, preferred_edge: NSRectEdge);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSDrawerDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSDrawerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSDrawerDelegate>>);
@@ -153,10 +153,13 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSDrawer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -165,7 +168,7 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSDrawer {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -175,7 +178,7 @@ extern_methods!(
     unsafe impl NSWindow {
         #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[method_id(@__retain_semantics Other drawers)]
-        pub unsafe fn drawers(&self) -> Option<Id<NSArray<NSDrawer>>>;
+        pub unsafe fn drawers(&self) -> Option<Retained<NSArray<NSDrawer>>>;
     }
 );
 

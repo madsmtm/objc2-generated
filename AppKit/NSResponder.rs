@@ -22,13 +22,16 @@ unsafe impl NSObjectProtocol for NSResponder {}
 extern_methods!(
     unsafe impl NSResponder {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other nextResponder)]
-        pub unsafe fn nextResponder(&self) -> Option<Id<NSResponder>>;
+        pub unsafe fn nextResponder(&self) -> Option<Retained<NSResponder>>;
 
         #[method(setNextResponder:)]
         pub unsafe fn setNextResponder(&self, next_responder: Option<&NSResponder>);
@@ -46,7 +49,7 @@ extern_methods!(
             &self,
             send_type: Option<&NSPasteboardType>,
             return_type: Option<&NSPasteboardType>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSEvent")]
         #[method(mouseDown:)]
@@ -197,7 +200,7 @@ extern_methods!(
 
         #[cfg(feature = "NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
-        pub unsafe fn menu(&self) -> Option<Id<NSMenu>>;
+        pub unsafe fn menu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
         #[method(setMenu:)]
@@ -230,7 +233,7 @@ extern_methods!(
             &self,
             action: Sel,
             sender: Option<&AnyObject>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
     }
 );
 
@@ -238,7 +241,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSResponder {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -641,7 +644,7 @@ extern_methods!(
     /// NSUndoSupport
     unsafe impl NSResponder {
         #[method_id(@__retain_semantics Other undoManager)]
-        pub unsafe fn undoManager(&self) -> Option<Id<NSUndoManager>>;
+        pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
     }
 );
 
@@ -676,7 +679,7 @@ extern_methods!(
         pub unsafe fn presentError(&self, error: &NSError) -> bool;
 
         #[method_id(@__retain_semantics Other willPresentError:)]
-        pub unsafe fn willPresentError(&self, error: &NSError) -> Id<NSError>;
+        pub unsafe fn willPresentError(&self, error: &NSError) -> Retained<NSError>;
     }
 );
 

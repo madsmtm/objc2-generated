@@ -69,10 +69,10 @@ extern_methods!(
         pub unsafe fn state(&self) -> BADownloadState;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other uniqueIdentifier)]
-        pub unsafe fn uniqueIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn uniqueIdentifier(&self) -> Retained<NSString>;
 
         #[method(priority)]
         pub unsafe fn priority(&self) -> BADownloaderPriority;
@@ -81,12 +81,12 @@ extern_methods!(
         pub unsafe fn isEssential(&self) -> bool;
 
         #[method_id(@__retain_semantics CopyOrMutCopy copyAsNonEssential)]
-        pub unsafe fn copyAsNonEssential(&self) -> Id<Self>;
+        pub unsafe fn copyAsNonEssential(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

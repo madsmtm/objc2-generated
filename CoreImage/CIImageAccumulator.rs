@@ -24,7 +24,7 @@ extern_methods!(
         pub unsafe fn imageAccumulatorWithExtent_format(
             extent: CGRect,
             format: CIFormat,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "CIImage")]
         #[method_id(@__retain_semantics Init initWithExtent:format:)]
@@ -32,7 +32,7 @@ extern_methods!(
             this: Allocated<Self>,
             extent: CGRect,
             format: CIFormat,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method(extent)]
         pub unsafe fn extent(&self) -> CGRect;
@@ -43,7 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "CIImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Id<CIImage>;
+        pub unsafe fn image(&self) -> Retained<CIImage>;
 
         #[cfg(feature = "CIImage")]
         #[method(setImage:)]
@@ -62,9 +62,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIImageAccumulator {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

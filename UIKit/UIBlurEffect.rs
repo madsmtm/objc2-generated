@@ -94,7 +94,7 @@ extern_methods!(
         pub unsafe fn effectWithStyle(
             style: UIBlurEffectStyle,
             mtm: MainThreadMarker,
-        ) -> Id<UIBlurEffect>;
+        ) -> Retained<UIBlurEffect>;
     }
 );
 
@@ -103,9 +103,9 @@ extern_methods!(
     #[cfg(feature = "UIVisualEffect")]
     unsafe impl UIBlurEffect {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

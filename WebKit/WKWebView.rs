@@ -128,13 +128,13 @@ extern_methods!(
     unsafe impl WKWebView {
         #[cfg(feature = "WKWebViewConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration(&self) -> Id<WKWebViewConfiguration>;
+        pub unsafe fn configuration(&self) -> Retained<WKWebViewConfiguration>;
 
         #[cfg(feature = "WKNavigationDelegate")]
         #[method_id(@__retain_semantics Other navigationDelegate)]
         pub unsafe fn navigationDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn WKNavigationDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn WKNavigationDelegate>>>;
 
         #[cfg(feature = "WKNavigationDelegate")]
         #[method(setNavigationDelegate:)]
@@ -145,7 +145,7 @@ extern_methods!(
 
         #[cfg(feature = "WKUIDelegate")]
         #[method_id(@__retain_semantics Other UIDelegate)]
-        pub unsafe fn UIDelegate(&self) -> Option<Id<ProtocolObject<dyn WKUIDelegate>>>;
+        pub unsafe fn UIDelegate(&self) -> Option<Retained<ProtocolObject<dyn WKUIDelegate>>>;
 
         #[cfg(feature = "WKUIDelegate")]
         #[method(setUIDelegate:)]
@@ -153,7 +153,7 @@ extern_methods!(
 
         #[cfg(feature = "WKBackForwardList")]
         #[method_id(@__retain_semantics Other backForwardList)]
-        pub unsafe fn backForwardList(&self) -> Id<WKBackForwardList>;
+        pub unsafe fn backForwardList(&self) -> Retained<WKBackForwardList>;
 
         #[cfg(feature = "WKWebViewConfiguration")]
         #[method_id(@__retain_semantics Init initWithFrame:configuration:)]
@@ -161,14 +161,17 @@ extern_methods!(
             this: Allocated<Self>,
             frame: CGRect,
             configuration: &WKWebViewConfiguration,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other loadRequest:)]
-        pub unsafe fn loadRequest(&self, request: &NSURLRequest) -> Option<Id<WKNavigation>>;
+        pub unsafe fn loadRequest(&self, request: &NSURLRequest) -> Option<Retained<WKNavigation>>;
 
         #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other loadFileURL:allowingReadAccessToURL:)]
@@ -176,7 +179,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             read_access_url: &NSURL,
-        ) -> Option<Id<WKNavigation>>;
+        ) -> Option<Retained<WKNavigation>>;
 
         #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other loadHTMLString:baseURL:)]
@@ -184,7 +187,7 @@ extern_methods!(
             &self,
             string: &NSString,
             base_url: Option<&NSURL>,
-        ) -> Option<Id<WKNavigation>>;
+        ) -> Option<Retained<WKNavigation>>;
 
         #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other loadData:MIMEType:characterEncodingName:baseURL:)]
@@ -194,20 +197,20 @@ extern_methods!(
             mime_type: &NSString,
             character_encoding_name: &NSString,
             base_url: &NSURL,
-        ) -> Option<Id<WKNavigation>>;
+        ) -> Option<Retained<WKNavigation>>;
 
         #[cfg(all(feature = "WKBackForwardListItem", feature = "WKNavigation"))]
         #[method_id(@__retain_semantics Other goToBackForwardListItem:)]
         pub unsafe fn goToBackForwardListItem(
             &self,
             item: &WKBackForwardListItem,
-        ) -> Option<Id<WKNavigation>>;
+        ) -> Option<Retained<WKNavigation>>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[method(isLoading)]
         pub unsafe fn isLoading(&self) -> bool;
@@ -226,19 +229,19 @@ extern_methods!(
 
         #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other goBack)]
-        pub unsafe fn goBack(&self) -> Option<Id<WKNavigation>>;
+        pub unsafe fn goBack(&self) -> Option<Retained<WKNavigation>>;
 
         #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other goForward)]
-        pub unsafe fn goForward(&self) -> Option<Id<WKNavigation>>;
+        pub unsafe fn goForward(&self) -> Option<Retained<WKNavigation>>;
 
         #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other reload)]
-        pub unsafe fn reload(&self) -> Option<Id<WKNavigation>>;
+        pub unsafe fn reload(&self) -> Option<Retained<WKNavigation>>;
 
         #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other reloadFromOrigin)]
-        pub unsafe fn reloadFromOrigin(&self) -> Option<Id<WKNavigation>>;
+        pub unsafe fn reloadFromOrigin(&self) -> Option<Retained<WKNavigation>>;
 
         #[method(stopLoading)]
         pub unsafe fn stopLoading(&self);
@@ -400,7 +403,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other customUserAgent)]
-        pub unsafe fn customUserAgent(&self) -> Option<Id<NSString>>;
+        pub unsafe fn customUserAgent(&self) -> Option<Retained<NSString>>;
 
         #[method(setCustomUserAgent:)]
         pub unsafe fn setCustomUserAgent(&self, custom_user_agent: Option<&NSString>);
@@ -469,13 +472,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other mediaType)]
-        pub unsafe fn mediaType(&self) -> Option<Id<NSString>>;
+        pub unsafe fn mediaType(&self) -> Option<Retained<NSString>>;
 
         #[method(setMediaType:)]
         pub unsafe fn setMediaType(&self, media_type: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other interactionState)]
-        pub unsafe fn interactionState(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn interactionState(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setInteractionState:)]
         pub unsafe fn setInteractionState(&self, interaction_state: Option<&AnyObject>);
@@ -487,7 +490,7 @@ extern_methods!(
             request: &NSURLRequest,
             response: &NSURLResponse,
             data: &NSData,
-        ) -> Id<WKNavigation>;
+        ) -> Retained<WKNavigation>;
 
         #[cfg(feature = "WKNavigation")]
         #[deprecated]
@@ -497,7 +500,7 @@ extern_methods!(
             request: &NSURLRequest,
             response: &NSURLResponse,
             data: &NSData,
-        ) -> Id<WKNavigation>;
+        ) -> Retained<WKNavigation>;
 
         #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other loadFileRequest:allowingReadAccessToURL:)]
@@ -505,7 +508,7 @@ extern_methods!(
             &self,
             request: &NSURLRequest,
             read_access_url: &NSURL,
-        ) -> Id<WKNavigation>;
+        ) -> Retained<WKNavigation>;
 
         #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other loadSimulatedRequest:responseHTMLString:)]
@@ -513,7 +516,7 @@ extern_methods!(
             &self,
             request: &NSURLRequest,
             string: &NSString,
-        ) -> Id<WKNavigation>;
+        ) -> Retained<WKNavigation>;
 
         #[cfg(feature = "WKNavigation")]
         #[deprecated]
@@ -522,19 +525,19 @@ extern_methods!(
             &self,
             request: &NSURLRequest,
             string: &NSString,
-        ) -> Id<WKNavigation>;
+        ) -> Retained<WKNavigation>;
 
         #[method_id(@__retain_semantics Other printOperationWithPrintInfo:)]
         pub unsafe fn printOperationWithPrintInfo(
             &self,
             print_info: &NSPrintInfo,
-        ) -> Id<NSPrintOperation>;
+        ) -> Retained<NSPrintOperation>;
 
         #[method_id(@__retain_semantics Other themeColor)]
-        pub unsafe fn themeColor(&self) -> Option<Id<NSColor>>;
+        pub unsafe fn themeColor(&self) -> Option<Retained<NSColor>>;
 
         #[method_id(@__retain_semantics Other underPageBackgroundColor)]
-        pub unsafe fn underPageBackgroundColor(&self) -> Id<NSColor>;
+        pub unsafe fn underPageBackgroundColor(&self) -> Retained<NSColor>;
 
         #[method(setUnderPageBackgroundColor:)]
         pub unsafe fn setUnderPageBackgroundColor(
@@ -572,7 +575,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl WKWebView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }
 );
 
@@ -582,7 +585,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl WKWebView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -592,7 +595,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl WKWebView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -640,6 +643,6 @@ extern_methods!(
     unsafe impl WKWebView {
         #[deprecated]
         #[method_id(@__retain_semantics Other certificateChain)]
-        pub unsafe fn certificateChain(&self) -> Id<NSArray>;
+        pub unsafe fn certificateChain(&self) -> Retained<NSArray>;
     }
 );

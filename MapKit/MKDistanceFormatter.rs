@@ -72,14 +72,15 @@ extern_methods!(
     unsafe impl MKDistanceFormatter {
         #[cfg(feature = "objc2-core-location")]
         #[method_id(@__retain_semantics Other stringFromDistance:)]
-        pub unsafe fn stringFromDistance(&self, distance: CLLocationDistance) -> Id<NSString>;
+        pub unsafe fn stringFromDistance(&self, distance: CLLocationDistance)
+            -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method(distanceFromString:)]
         pub unsafe fn distanceFromString(&self, distance: &NSString) -> CLLocationDistance;
 
         #[method_id(@__retain_semantics Other locale)]
-        pub unsafe fn locale(&self) -> Id<NSLocale>;
+        pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
@@ -102,9 +103,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKDistanceFormatter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

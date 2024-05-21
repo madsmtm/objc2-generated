@@ -20,18 +20,18 @@ unsafe impl NSObjectProtocol for VZBridgedNetworkInterface {}
 extern_methods!(
     unsafe impl VZBridgedNetworkInterface {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other networkInterfaces)]
-        pub unsafe fn networkInterfaces() -> Id<NSArray<VZBridgedNetworkInterface>>;
+        pub unsafe fn networkInterfaces() -> Retained<NSArray<VZBridgedNetworkInterface>>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other localizedDisplayName)]
-        pub unsafe fn localizedDisplayName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localizedDisplayName(&self) -> Option<Retained<NSString>>;
     }
 );

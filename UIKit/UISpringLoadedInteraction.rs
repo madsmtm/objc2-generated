@@ -46,10 +46,10 @@ unsafe impl UIInteraction for UISpringLoadedInteraction {}
 extern_methods!(
     unsafe impl UISpringLoadedInteraction {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithInteractionBehavior:interactionEffect:activationHandler:)]
@@ -63,7 +63,7 @@ extern_methods!(
                     NonNull<ProtocolObject<dyn UISpringLoadedInteractionContext>>,
                 ),
             >,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithActivationHandler:)]
@@ -75,17 +75,17 @@ extern_methods!(
                     NonNull<ProtocolObject<dyn UISpringLoadedInteractionContext>>,
                 ),
             >,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other interactionBehavior)]
         pub unsafe fn interactionBehavior(
             &self,
-        ) -> Id<ProtocolObject<dyn UISpringLoadedInteractionBehavior>>;
+        ) -> Retained<ProtocolObject<dyn UISpringLoadedInteractionBehavior>>;
 
         #[method_id(@__retain_semantics Other interactionEffect)]
         pub unsafe fn interactionEffect(
             &self,
-        ) -> Id<ProtocolObject<dyn UISpringLoadedInteractionEffect>>;
+        ) -> Retained<ProtocolObject<dyn UISpringLoadedInteractionEffect>>;
     }
 );
 
@@ -132,14 +132,14 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other targetView)]
-        unsafe fn targetView(&self) -> Option<Id<UIView>>;
+        unsafe fn targetView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(setTargetView:)]
         unsafe fn setTargetView(&self, target_view: Option<&UIView>);
 
         #[method_id(@__retain_semantics Other targetItem)]
-        unsafe fn targetItem(&self) -> Option<Id<AnyObject>>;
+        unsafe fn targetItem(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setTargetItem:)]
         unsafe fn setTargetItem(&self, target_item: Option<&AnyObject>);

@@ -25,19 +25,19 @@ extern_methods!(
             send_port: Option<&NSPort>,
             reply_port: Option<&NSPort>,
             components: Option<&NSArray>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other components)]
-        pub unsafe fn components(&self) -> Option<Id<NSArray>>;
+        pub unsafe fn components(&self) -> Option<Retained<NSArray>>;
 
         #[cfg(feature = "NSPort")]
         #[method_id(@__retain_semantics Other receivePort)]
-        pub unsafe fn receivePort(&self) -> Option<Id<NSPort>>;
+        pub unsafe fn receivePort(&self) -> Option<Retained<NSPort>>;
 
         #[cfg(feature = "NSPort")]
         #[method_id(@__retain_semantics Other sendPort)]
-        pub unsafe fn sendPort(&self) -> Option<Id<NSPort>>;
+        pub unsafe fn sendPort(&self) -> Option<Retained<NSPort>>;
 
         #[cfg(feature = "NSDate")]
         #[method(sendBeforeDate:)]
@@ -55,9 +55,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPortMessage {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

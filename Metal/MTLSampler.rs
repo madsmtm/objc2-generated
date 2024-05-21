@@ -196,7 +196,7 @@ extern_methods!(
         pub fn setSupportArgumentBuffers(&self, support_argument_buffers: bool);
 
         #[method_id(@__retain_semantics Other label)]
-        pub fn label(&self) -> Option<Id<NSString>>;
+        pub fn label(&self) -> Option<Retained<NSString>>;
 
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
@@ -207,16 +207,16 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLSamplerDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Allocated<Self>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub fn new() -> Id<Self>;
+        pub fn new() -> Retained<Self>;
     }
 );
 
-impl DefaultId for MTLSamplerDescriptor {
+impl DefaultRetained for MTLSamplerDescriptor {
     #[inline]
-    fn default_id() -> Id<Self> {
+    fn default_id() -> Retained<Self> {
         Self::new()
     }
 }
@@ -224,11 +224,11 @@ impl DefaultId for MTLSamplerDescriptor {
 extern_protocol!(
     pub unsafe trait MTLSamplerState: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other label)]
-        fn label(&self) -> Option<Id<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
-        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "MTLTypes")]
         #[method(gpuResourceID)]

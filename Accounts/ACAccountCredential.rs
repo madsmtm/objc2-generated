@@ -26,7 +26,7 @@ extern_methods!(
             this: Allocated<Self>,
             token: Option<&NSString>,
             secret: Option<&NSString>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[method_id(@__retain_semantics Init initWithOAuth2Token:refreshToken:expiryDate:)]
@@ -35,11 +35,11 @@ extern_methods!(
             token: Option<&NSString>,
             refresh_token: Option<&NSString>,
             expiry_date: Option<&NSDate>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[method_id(@__retain_semantics Other oauthToken)]
-        pub unsafe fn oauthToken(&self) -> Id<NSString>;
+        pub unsafe fn oauthToken(&self) -> Retained<NSString>;
 
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[method(setOauthToken:)]
@@ -51,9 +51,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ACAccountCredential {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

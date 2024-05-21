@@ -24,64 +24,64 @@ unsafe impl NSSecureCoding for NSCursor {}
 extern_methods!(
     unsafe impl NSCursor {
         #[method_id(@__retain_semantics Other currentCursor)]
-        pub unsafe fn currentCursor() -> Id<NSCursor>;
+        pub unsafe fn currentCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other currentSystemCursor)]
-        pub unsafe fn currentSystemCursor() -> Option<Id<NSCursor>>;
+        pub unsafe fn currentSystemCursor() -> Option<Retained<NSCursor>>;
 
         #[method_id(@__retain_semantics Other arrowCursor)]
-        pub fn arrowCursor() -> Id<NSCursor>;
+        pub fn arrowCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other IBeamCursor)]
-        pub fn IBeamCursor() -> Id<NSCursor>;
+        pub fn IBeamCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other pointingHandCursor)]
-        pub fn pointingHandCursor() -> Id<NSCursor>;
+        pub fn pointingHandCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other closedHandCursor)]
-        pub fn closedHandCursor() -> Id<NSCursor>;
+        pub fn closedHandCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other openHandCursor)]
-        pub fn openHandCursor() -> Id<NSCursor>;
+        pub fn openHandCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other resizeLeftCursor)]
-        pub fn resizeLeftCursor() -> Id<NSCursor>;
+        pub fn resizeLeftCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other resizeRightCursor)]
-        pub fn resizeRightCursor() -> Id<NSCursor>;
+        pub fn resizeRightCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other resizeLeftRightCursor)]
-        pub fn resizeLeftRightCursor() -> Id<NSCursor>;
+        pub fn resizeLeftRightCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other resizeUpCursor)]
-        pub fn resizeUpCursor() -> Id<NSCursor>;
+        pub fn resizeUpCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other resizeDownCursor)]
-        pub fn resizeDownCursor() -> Id<NSCursor>;
+        pub fn resizeDownCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other resizeUpDownCursor)]
-        pub fn resizeUpDownCursor() -> Id<NSCursor>;
+        pub fn resizeUpDownCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other crosshairCursor)]
-        pub fn crosshairCursor() -> Id<NSCursor>;
+        pub fn crosshairCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other disappearingItemCursor)]
-        pub fn disappearingItemCursor() -> Id<NSCursor>;
+        pub fn disappearingItemCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other operationNotAllowedCursor)]
-        pub fn operationNotAllowedCursor() -> Id<NSCursor>;
+        pub fn operationNotAllowedCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other dragLinkCursor)]
-        pub fn dragLinkCursor() -> Id<NSCursor>;
+        pub fn dragLinkCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other dragCopyCursor)]
-        pub fn dragCopyCursor() -> Id<NSCursor>;
+        pub fn dragCopyCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other contextualMenuCursor)]
-        pub fn contextualMenuCursor() -> Id<NSCursor>;
+        pub fn contextualMenuCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other IBeamCursorForVerticalLayout)]
-        pub fn IBeamCursorForVerticalLayout() -> Id<NSCursor>;
+        pub fn IBeamCursorForVerticalLayout() -> Retained<NSCursor>;
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Init initWithImage:hotSpot:)]
@@ -89,10 +89,10 @@ extern_methods!(
             this: Allocated<Self>,
             new_image: &NSImage,
             point: NSPoint,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method(hide)]
         pub unsafe fn hide();
@@ -108,7 +108,7 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Id<NSImage>;
+        pub unsafe fn image(&self) -> Retained<NSImage>;
 
         #[method(hotSpot)]
         pub unsafe fn hotSpot(&self) -> NSPoint;
@@ -128,10 +128,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCursor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -150,7 +150,7 @@ extern_methods!(
             fg: Option<&NSColor>,
             bg: Option<&NSColor>,
             hot_spot: NSPoint,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated = "setOnMouseExited is unused and should not be called"]
         #[method(setOnMouseExited:)]

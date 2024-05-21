@@ -28,7 +28,7 @@ extern_methods!(
         #[cfg(feature = "MLCOptimizer")]
         #[deprecated]
         #[method_id(@__retain_semantics Other optimizer)]
-        pub unsafe fn optimizer(&self) -> Option<Id<MLCOptimizer>>;
+        pub unsafe fn optimizer(&self) -> Option<Retained<MLCOptimizer>>;
 
         #[deprecated]
         #[method(deviceMemorySize)]
@@ -41,7 +41,7 @@ extern_methods!(
             graph_objects: &NSArray<MLCGraph>,
             loss_layer: Option<&MLCLayer>,
             optimizer: Option<&MLCOptimizer>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
@@ -108,7 +108,10 @@ extern_methods!(
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other gradientTensorForInput:)]
-        pub unsafe fn gradientTensorForInput(&self, input: &MLCTensor) -> Option<Id<MLCTensor>>;
+        pub unsafe fn gradientTensorForInput(
+            &self,
+            input: &MLCTensor,
+        ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
         #[deprecated]
@@ -116,7 +119,7 @@ extern_methods!(
         pub unsafe fn sourceGradientTensorsForLayer(
             &self,
             layer: &MLCLayer,
-        ) -> Id<NSArray<MLCTensor>>;
+        ) -> Retained<NSArray<MLCTensor>>;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
         #[deprecated]
@@ -124,7 +127,7 @@ extern_methods!(
         pub unsafe fn resultGradientTensorsForLayer(
             &self,
             layer: &MLCLayer,
-        ) -> Id<NSArray<MLCTensor>>;
+        ) -> Retained<NSArray<MLCTensor>>;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
         #[deprecated]
@@ -133,7 +136,7 @@ extern_methods!(
             &self,
             parameter: &MLCTensor,
             layer: &MLCLayer,
-        ) -> Option<Id<NSData>>;
+        ) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
@@ -141,7 +144,7 @@ extern_methods!(
         pub unsafe fn allocateUserGradientForTensor(
             &self,
             tensor: &MLCTensor,
-        ) -> Option<Id<MLCTensor>>;
+        ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(all(
             feature = "MLCTensor",
@@ -275,7 +278,7 @@ extern_methods!(
     unsafe impl MLCTrainingGraph {
         #[deprecated]
         #[method_id(@__retain_semantics Other graph)]
-        pub unsafe fn graph() -> Id<Self>;
+        pub unsafe fn graph() -> Retained<Self>;
     }
 );
 
@@ -284,9 +287,9 @@ extern_methods!(
     #[cfg(feature = "MLCGraph")]
     unsafe impl MLCTrainingGraph {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

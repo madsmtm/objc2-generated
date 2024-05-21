@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl DOMHTMLAnchorElement {
         #[deprecated]
         #[method_id(@__retain_semantics Other charset)]
-        pub unsafe fn charset(&self) -> Id<NSString>;
+        pub unsafe fn charset(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setCharset:)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other coords)]
-        pub unsafe fn coords(&self) -> Id<NSString>;
+        pub unsafe fn coords(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setCoords:)]
@@ -86,7 +86,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other hreflang)]
-        pub unsafe fn hreflang(&self) -> Id<NSString>;
+        pub unsafe fn hreflang(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setHreflang:)]
@@ -94,7 +94,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setName:)]
@@ -102,7 +102,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other rel)]
-        pub unsafe fn rel(&self) -> Id<NSString>;
+        pub unsafe fn rel(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setRel:)]
@@ -110,7 +110,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other rev)]
-        pub unsafe fn rev(&self) -> Id<NSString>;
+        pub unsafe fn rev(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setRev:)]
@@ -118,7 +118,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other shape)]
-        pub unsafe fn shape(&self) -> Id<NSString>;
+        pub unsafe fn shape(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setShape:)]
@@ -126,7 +126,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Id<NSString>;
+        pub unsafe fn target(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setTarget:)]
@@ -134,7 +134,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSString>;
+        pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setType:)]
@@ -142,46 +142,46 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other accessKey)]
-        pub unsafe fn accessKey(&self) -> Id<NSString>;
+        pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setAccessKey:)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other text)]
-        pub unsafe fn text(&self) -> Id<NSString>;
+        pub unsafe fn text(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other absoluteLinkURL)]
-        pub unsafe fn absoluteLinkURL(&self) -> Id<NSURL>;
+        pub unsafe fn absoluteLinkURL(&self) -> Retained<NSURL>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other href)]
-        pub unsafe fn href(&self) -> Id<NSString>;
+        pub unsafe fn href(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setHref:)]
         pub unsafe fn setHref(&self, href: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other protocol)]
-        pub unsafe fn protocol(&self) -> Id<NSString>;
+        pub unsafe fn protocol(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other host)]
-        pub unsafe fn host(&self) -> Id<NSString>;
+        pub unsafe fn host(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other hostname)]
-        pub unsafe fn hostname(&self) -> Id<NSString>;
+        pub unsafe fn hostname(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other port)]
-        pub unsafe fn port(&self) -> Id<NSString>;
+        pub unsafe fn port(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other pathname)]
-        pub unsafe fn pathname(&self) -> Id<NSString>;
+        pub unsafe fn pathname(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other search)]
-        pub unsafe fn search(&self) -> Id<NSString>;
+        pub unsafe fn search(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other hashName)]
-        pub unsafe fn hashName(&self) -> Id<NSString>;
+        pub unsafe fn hashName(&self) -> Retained<NSString>;
     }
 );
 
@@ -197,7 +197,7 @@ extern_methods!(
     unsafe impl DOMHTMLAnchorElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -212,6 +212,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLAnchorElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

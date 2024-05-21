@@ -95,14 +95,17 @@ extern_methods!(
     unsafe impl NSDateComponentsFormatter {
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringForObjectValue:)]
-        pub unsafe fn stringForObjectValue(&self, obj: Option<&AnyObject>) -> Option<Id<NSString>>;
+        pub unsafe fn stringForObjectValue(
+            &self,
+            obj: Option<&AnyObject>,
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSCalendar", feature = "NSString"))]
         #[method_id(@__retain_semantics Other stringFromDateComponents:)]
         pub unsafe fn stringFromDateComponents(
             &self,
             components: &NSDateComponents,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
         #[method_id(@__retain_semantics Other stringFromDate:toDate:)]
@@ -110,18 +113,21 @@ extern_methods!(
             &self,
             start_date: &NSDate,
             end_date: &NSDate,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
         #[method_id(@__retain_semantics Other stringFromTimeInterval:)]
-        pub unsafe fn stringFromTimeInterval(&self, ti: NSTimeInterval) -> Option<Id<NSString>>;
+        pub unsafe fn stringFromTimeInterval(
+            &self,
+            ti: NSTimeInterval,
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSCalendar", feature = "NSString"))]
         #[method_id(@__retain_semantics Other localizedStringFromDateComponents:unitsStyle:)]
         pub unsafe fn localizedStringFromDateComponents_unitsStyle(
             components: &NSDateComponents,
             units_style: NSDateComponentsFormatterUnitsStyle,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[method(unitsStyle)]
         pub unsafe fn unitsStyle(&self) -> NSDateComponentsFormatterUnitsStyle;
@@ -150,7 +156,7 @@ extern_methods!(
 
         #[cfg(feature = "NSCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
-        pub unsafe fn calendar(&self) -> Option<Id<NSCalendar>>;
+        pub unsafe fn calendar(&self) -> Option<Retained<NSCalendar>>;
 
         #[cfg(feature = "NSCalendar")]
         #[method(setCalendar:)]
@@ -158,7 +164,7 @@ extern_methods!(
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other referenceDate)]
-        pub unsafe fn referenceDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn referenceDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
         #[method(setReferenceDate:)]
@@ -204,9 +210,9 @@ extern_methods!(
         #[method(getObjectValue:forString:errorDescription:)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,
-            obj: Option<&mut Option<Id<AnyObject>>>,
+            obj: Option<&mut Option<Retained<AnyObject>>>,
             string: &NSString,
-            error: Option<&mut Option<Id<NSString>>>,
+            error: Option<&mut Option<Retained<NSString>>>,
         ) -> bool;
     }
 );
@@ -216,9 +222,9 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSDateComponentsFormatter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

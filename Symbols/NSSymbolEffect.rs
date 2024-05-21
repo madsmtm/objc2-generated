@@ -26,37 +26,37 @@ unsafe impl NSSecureCoding for NSSymbolEffectOptions {}
 extern_methods!(
     unsafe impl NSSymbolEffectOptions {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other options)]
-        pub unsafe fn options() -> Id<Self>;
+        pub unsafe fn options() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other optionsWithRepeating)]
-        pub unsafe fn optionsWithRepeating_class() -> Id<Self>;
+        pub unsafe fn optionsWithRepeating_class() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other optionsWithRepeating)]
-        pub unsafe fn optionsWithRepeating(&self) -> Id<Self>;
+        pub unsafe fn optionsWithRepeating(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other optionsWithNonRepeating)]
-        pub unsafe fn optionsWithNonRepeating_class() -> Id<Self>;
+        pub unsafe fn optionsWithNonRepeating_class() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other optionsWithNonRepeating)]
-        pub unsafe fn optionsWithNonRepeating(&self) -> Id<Self>;
+        pub unsafe fn optionsWithNonRepeating(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other optionsWithRepeatCount:)]
-        pub unsafe fn optionsWithRepeatCount_class(count: NSInteger) -> Id<Self>;
+        pub unsafe fn optionsWithRepeatCount_class(count: NSInteger) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other optionsWithRepeatCount:)]
-        pub unsafe fn optionsWithRepeatCount(&self, count: NSInteger) -> Id<Self>;
+        pub unsafe fn optionsWithRepeatCount(&self, count: NSInteger) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other optionsWithSpeed:)]
-        pub unsafe fn optionsWithSpeed_class(speed: c_double) -> Id<Self>;
+        pub unsafe fn optionsWithSpeed_class(speed: c_double) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other optionsWithSpeed:)]
-        pub unsafe fn optionsWithSpeed(&self, speed: c_double) -> Id<Self>;
+        pub unsafe fn optionsWithSpeed(&self, speed: c_double) -> Retained<Self>;
     }
 );
 
@@ -81,10 +81,10 @@ unsafe impl NSSecureCoding for NSSymbolEffect {}
 extern_methods!(
     unsafe impl NSSymbolEffect {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -110,13 +110,13 @@ unsafe impl NSSecureCoding for NSSymbolPulseEffect {}
 extern_methods!(
     unsafe impl NSSymbolPulseEffect {
         #[method_id(@__retain_semantics Other effect)]
-        pub unsafe fn effect() -> Id<Self>;
+        pub unsafe fn effect() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other effectWithByLayer)]
-        pub unsafe fn effectWithByLayer(&self) -> Id<Self>;
+        pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other effectWithWholeSymbol)]
-        pub unsafe fn effectWithWholeSymbol(&self) -> Id<Self>;
+        pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
 );
 
@@ -124,10 +124,10 @@ extern_methods!(
     /// Methods declared on superclass `NSSymbolEffect`
     unsafe impl NSSymbolPulseEffect {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -153,19 +153,19 @@ unsafe impl NSSecureCoding for NSSymbolBounceEffect {}
 extern_methods!(
     unsafe impl NSSymbolBounceEffect {
         #[method_id(@__retain_semantics Other effect)]
-        pub unsafe fn effect() -> Id<Self>;
+        pub unsafe fn effect() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other bounceUpEffect)]
-        pub unsafe fn bounceUpEffect() -> Id<Self>;
+        pub unsafe fn bounceUpEffect() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other bounceDownEffect)]
-        pub unsafe fn bounceDownEffect() -> Id<Self>;
+        pub unsafe fn bounceDownEffect() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other effectWithByLayer)]
-        pub unsafe fn effectWithByLayer(&self) -> Id<Self>;
+        pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other effectWithWholeSymbol)]
-        pub unsafe fn effectWithWholeSymbol(&self) -> Id<Self>;
+        pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
 );
 
@@ -173,10 +173,10 @@ extern_methods!(
     /// Methods declared on superclass `NSSymbolEffect`
     unsafe impl NSSymbolBounceEffect {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -202,25 +202,25 @@ unsafe impl NSSecureCoding for NSSymbolVariableColorEffect {}
 extern_methods!(
     unsafe impl NSSymbolVariableColorEffect {
         #[method_id(@__retain_semantics Other effect)]
-        pub unsafe fn effect() -> Id<Self>;
+        pub unsafe fn effect() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other effectWithIterative)]
-        pub unsafe fn effectWithIterative(&self) -> Id<Self>;
+        pub unsafe fn effectWithIterative(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other effectWithCumulative)]
-        pub unsafe fn effectWithCumulative(&self) -> Id<Self>;
+        pub unsafe fn effectWithCumulative(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other effectWithReversing)]
-        pub unsafe fn effectWithReversing(&self) -> Id<Self>;
+        pub unsafe fn effectWithReversing(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other effectWithNonReversing)]
-        pub unsafe fn effectWithNonReversing(&self) -> Id<Self>;
+        pub unsafe fn effectWithNonReversing(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other effectWithHideInactiveLayers)]
-        pub unsafe fn effectWithHideInactiveLayers(&self) -> Id<Self>;
+        pub unsafe fn effectWithHideInactiveLayers(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other effectWithDimInactiveLayers)]
-        pub unsafe fn effectWithDimInactiveLayers(&self) -> Id<Self>;
+        pub unsafe fn effectWithDimInactiveLayers(&self) -> Retained<Self>;
     }
 );
 
@@ -228,10 +228,10 @@ extern_methods!(
     /// Methods declared on superclass `NSSymbolEffect`
     unsafe impl NSSymbolVariableColorEffect {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -257,19 +257,19 @@ unsafe impl NSSecureCoding for NSSymbolScaleEffect {}
 extern_methods!(
     unsafe impl NSSymbolScaleEffect {
         #[method_id(@__retain_semantics Other effect)]
-        pub unsafe fn effect() -> Id<Self>;
+        pub unsafe fn effect() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other scaleUpEffect)]
-        pub unsafe fn scaleUpEffect() -> Id<Self>;
+        pub unsafe fn scaleUpEffect() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other scaleDownEffect)]
-        pub unsafe fn scaleDownEffect() -> Id<Self>;
+        pub unsafe fn scaleDownEffect() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other effectWithByLayer)]
-        pub unsafe fn effectWithByLayer(&self) -> Id<Self>;
+        pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other effectWithWholeSymbol)]
-        pub unsafe fn effectWithWholeSymbol(&self) -> Id<Self>;
+        pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
 );
 
@@ -277,10 +277,10 @@ extern_methods!(
     /// Methods declared on superclass `NSSymbolEffect`
     unsafe impl NSSymbolScaleEffect {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -306,19 +306,19 @@ unsafe impl NSSecureCoding for NSSymbolAppearEffect {}
 extern_methods!(
     unsafe impl NSSymbolAppearEffect {
         #[method_id(@__retain_semantics Other effect)]
-        pub unsafe fn effect() -> Id<Self>;
+        pub unsafe fn effect() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other appearUpEffect)]
-        pub unsafe fn appearUpEffect() -> Id<Self>;
+        pub unsafe fn appearUpEffect() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other appearDownEffect)]
-        pub unsafe fn appearDownEffect() -> Id<Self>;
+        pub unsafe fn appearDownEffect() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other effectWithByLayer)]
-        pub unsafe fn effectWithByLayer(&self) -> Id<Self>;
+        pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other effectWithWholeSymbol)]
-        pub unsafe fn effectWithWholeSymbol(&self) -> Id<Self>;
+        pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
 );
 
@@ -326,10 +326,10 @@ extern_methods!(
     /// Methods declared on superclass `NSSymbolEffect`
     unsafe impl NSSymbolAppearEffect {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -355,19 +355,19 @@ unsafe impl NSSecureCoding for NSSymbolDisappearEffect {}
 extern_methods!(
     unsafe impl NSSymbolDisappearEffect {
         #[method_id(@__retain_semantics Other effect)]
-        pub unsafe fn effect() -> Id<Self>;
+        pub unsafe fn effect() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other disappearUpEffect)]
-        pub unsafe fn disappearUpEffect() -> Id<Self>;
+        pub unsafe fn disappearUpEffect() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other disappearDownEffect)]
-        pub unsafe fn disappearDownEffect() -> Id<Self>;
+        pub unsafe fn disappearDownEffect() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other effectWithByLayer)]
-        pub unsafe fn effectWithByLayer(&self) -> Id<Self>;
+        pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other effectWithWholeSymbol)]
-        pub unsafe fn effectWithWholeSymbol(&self) -> Id<Self>;
+        pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
 );
 
@@ -375,10 +375,10 @@ extern_methods!(
     /// Methods declared on superclass `NSSymbolEffect`
     unsafe impl NSSymbolDisappearEffect {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -403,10 +403,10 @@ unsafe impl NSSecureCoding for NSSymbolContentTransition {}
 extern_methods!(
     unsafe impl NSSymbolContentTransition {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -432,22 +432,22 @@ unsafe impl NSSecureCoding for NSSymbolReplaceContentTransition {}
 extern_methods!(
     unsafe impl NSSymbolReplaceContentTransition {
         #[method_id(@__retain_semantics Other transition)]
-        pub unsafe fn transition() -> Id<Self>;
+        pub unsafe fn transition() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other replaceDownUpTransition)]
-        pub unsafe fn replaceDownUpTransition() -> Id<Self>;
+        pub unsafe fn replaceDownUpTransition() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other replaceUpUpTransition)]
-        pub unsafe fn replaceUpUpTransition() -> Id<Self>;
+        pub unsafe fn replaceUpUpTransition() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other replaceOffUpTransition)]
-        pub unsafe fn replaceOffUpTransition() -> Id<Self>;
+        pub unsafe fn replaceOffUpTransition() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other transitionWithByLayer)]
-        pub unsafe fn transitionWithByLayer(&self) -> Id<Self>;
+        pub unsafe fn transitionWithByLayer(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other transitionWithWholeSymbol)]
-        pub unsafe fn transitionWithWholeSymbol(&self) -> Id<Self>;
+        pub unsafe fn transitionWithWholeSymbol(&self) -> Retained<Self>;
     }
 );
 
@@ -455,10 +455,10 @@ extern_methods!(
     /// Methods declared on superclass `NSSymbolContentTransition`
     unsafe impl NSSymbolReplaceContentTransition {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -484,7 +484,7 @@ unsafe impl NSSecureCoding for NSSymbolAutomaticContentTransition {}
 extern_methods!(
     unsafe impl NSSymbolAutomaticContentTransition {
         #[method_id(@__retain_semantics Other transition)]
-        pub unsafe fn transition() -> Id<Self>;
+        pub unsafe fn transition() -> Retained<Self>;
     }
 );
 
@@ -492,9 +492,9 @@ extern_methods!(
     /// Methods declared on superclass `NSSymbolContentTransition`
     unsafe impl NSSymbolAutomaticContentTransition {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

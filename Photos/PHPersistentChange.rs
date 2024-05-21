@@ -24,20 +24,20 @@ unsafe impl NSObjectProtocol for PHPersistentChange {}
 extern_methods!(
     unsafe impl PHPersistentChange {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "PHPersistentChangeToken")]
         #[method_id(@__retain_semantics Other changeToken)]
-        pub unsafe fn changeToken(&self) -> Id<PHPersistentChangeToken>;
+        pub unsafe fn changeToken(&self) -> Retained<PHPersistentChangeToken>;
 
         #[cfg(all(feature = "PHPersistentObjectChangeDetails", feature = "PhotosTypes"))]
         #[method_id(@__retain_semantics Other changeDetailsForObjectType:error:_)]
         pub unsafe fn changeDetailsForObjectType_error(
             &self,
             object_type: PHObjectType,
-        ) -> Result<Id<PHPersistentObjectChangeDetails>, Id<NSError>>;
+        ) -> Result<Retained<PHPersistentObjectChangeDetails>, Retained<NSError>>;
     }
 );

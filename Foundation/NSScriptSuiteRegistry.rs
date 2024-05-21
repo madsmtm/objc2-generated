@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for NSScriptSuiteRegistry {}
 extern_methods!(
     unsafe impl NSScriptSuiteRegistry {
         #[method_id(@__retain_semantics Other sharedScriptSuiteRegistry)]
-        pub unsafe fn sharedScriptSuiteRegistry() -> Id<NSScriptSuiteRegistry>;
+        pub unsafe fn sharedScriptSuiteRegistry() -> Retained<NSScriptSuiteRegistry>;
 
         #[method(setSharedScriptSuiteRegistry:)]
         pub unsafe fn setSharedScriptSuiteRegistry(registry: &NSScriptSuiteRegistry);
@@ -49,7 +49,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other suiteNames)]
-        pub unsafe fn suiteNames(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn suiteNames(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(appleEventCodeForSuite:)]
@@ -57,7 +57,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSBundle", feature = "NSString"))]
         #[method_id(@__retain_semantics Other bundleForSuite:)]
-        pub unsafe fn bundleForSuite(&self, suite_name: &NSString) -> Option<Id<NSBundle>>;
+        pub unsafe fn bundleForSuite(&self, suite_name: &NSString) -> Option<Retained<NSBundle>>;
 
         #[cfg(all(
             feature = "NSClassDescription",
@@ -69,7 +69,7 @@ extern_methods!(
         pub unsafe fn classDescriptionsInSuite(
             &self,
             suite_name: &NSString,
-        ) -> Option<Id<NSDictionary<NSString, NSScriptClassDescription>>>;
+        ) -> Option<Retained<NSDictionary<NSString, NSScriptClassDescription>>>;
 
         #[cfg(all(
             feature = "NSDictionary",
@@ -80,21 +80,21 @@ extern_methods!(
         pub unsafe fn commandDescriptionsInSuite(
             &self,
             suite_name: &NSString,
-        ) -> Option<Id<NSDictionary<NSString, NSScriptCommandDescription>>>;
+        ) -> Option<Retained<NSDictionary<NSString, NSScriptCommandDescription>>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other suiteForAppleEventCode:)]
         pub unsafe fn suiteForAppleEventCode(
             &self,
             apple_event_code: FourCharCode,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSClassDescription", feature = "NSScriptClassDescription"))]
         #[method_id(@__retain_semantics Other classDescriptionWithAppleEventCode:)]
         pub unsafe fn classDescriptionWithAppleEventCode(
             &self,
             apple_event_code: FourCharCode,
-        ) -> Option<Id<NSScriptClassDescription>>;
+        ) -> Option<Retained<NSScriptClassDescription>>;
 
         #[cfg(feature = "NSScriptCommandDescription")]
         #[method_id(@__retain_semantics Other commandDescriptionWithAppleEventClass:andAppleEventCode:)]
@@ -102,11 +102,11 @@ extern_methods!(
             &self,
             apple_event_class_code: FourCharCode,
             apple_event_id_code: FourCharCode,
-        ) -> Option<Id<NSScriptCommandDescription>>;
+        ) -> Option<Retained<NSScriptCommandDescription>>;
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
         #[method_id(@__retain_semantics Other aeteResource:)]
-        pub unsafe fn aeteResource(&self, language_name: &NSString) -> Option<Id<NSData>>;
+        pub unsafe fn aeteResource(&self, language_name: &NSString) -> Option<Retained<NSData>>;
     }
 );
 
@@ -114,9 +114,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScriptSuiteRegistry {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

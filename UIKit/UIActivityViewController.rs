@@ -63,17 +63,20 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIActivityViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "UIActivity")]
         #[method_id(@__retain_semantics Init initWithActivityItems:applicationActivities:)]
@@ -81,7 +84,7 @@ extern_methods!(
             this: Allocated<Self>,
             activity_items: &NSArray,
             application_activities: Option<&NSArray<UIActivity>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
         #[deprecated]
@@ -111,7 +114,7 @@ extern_methods!(
 
         #[cfg(feature = "UIActivity")]
         #[method_id(@__retain_semantics Other excludedActivityTypes)]
-        pub unsafe fn excludedActivityTypes(&self) -> Option<Id<NSArray<UIActivityType>>>;
+        pub unsafe fn excludedActivityTypes(&self) -> Option<Retained<NSArray<UIActivityType>>>;
 
         #[cfg(feature = "UIActivity")]
         #[method(setExcludedActivityTypes:)]
@@ -133,7 +136,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIActivityViewController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -146,6 +149,6 @@ extern_methods!(
         pub unsafe fn initWithActivityItemsConfiguration(
             this: Allocated<Self>,
             activity_items_configuration: &ProtocolObject<dyn UIActivityItemsConfigurationReading>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

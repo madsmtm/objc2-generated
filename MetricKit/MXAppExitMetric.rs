@@ -47,10 +47,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXForegroundExitData {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -108,10 +108,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXBackgroundExitData {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -141,10 +141,10 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAppExitMetric {
         #[method_id(@__retain_semantics Other foregroundExitData)]
-        pub unsafe fn foregroundExitData(&self) -> Id<MXForegroundExitData>;
+        pub unsafe fn foregroundExitData(&self) -> Retained<MXForegroundExitData>;
 
         #[method_id(@__retain_semantics Other backgroundExitData)]
-        pub unsafe fn backgroundExitData(&self) -> Id<MXBackgroundExitData>;
+        pub unsafe fn backgroundExitData(&self) -> Retained<MXBackgroundExitData>;
     }
 );
 
@@ -153,9 +153,9 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAppExitMetric {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

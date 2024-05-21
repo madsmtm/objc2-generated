@@ -65,7 +65,7 @@ extern_protocol!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other participantID)]
-        unsafe fn participantID(&self) -> Id<NSString>;
+        unsafe fn participantID(&self) -> Retained<NSString>;
 
         #[cfg(feature = "GKVoiceChatService")]
         #[deprecated]

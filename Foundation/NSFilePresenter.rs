@@ -8,16 +8,16 @@ extern_protocol!(
     pub unsafe trait NSFilePresenter: NSObjectProtocol {
         #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other presentedItemURL)]
-        unsafe fn presentedItemURL(&self) -> Option<Id<NSURL>>;
+        unsafe fn presentedItemURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSOperation")]
         #[method_id(@__retain_semantics Other presentedItemOperationQueue)]
-        unsafe fn presentedItemOperationQueue(&self) -> Id<NSOperationQueue>;
+        unsafe fn presentedItemOperationQueue(&self) -> Retained<NSOperationQueue>;
 
         #[cfg(feature = "NSURL")]
         #[optional]
         #[method_id(@__retain_semantics Other primaryPresentedItemURL)]
-        unsafe fn primaryPresentedItemURL(&self) -> Option<Id<NSURL>>;
+        unsafe fn primaryPresentedItemURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "block2")]
         #[optional]
@@ -79,7 +79,9 @@ extern_protocol!(
         #[cfg(all(feature = "NSSet", feature = "NSString", feature = "NSURL"))]
         #[optional]
         #[method_id(@__retain_semantics Other observedPresentedItemUbiquityAttributes)]
-        unsafe fn observedPresentedItemUbiquityAttributes(&self) -> Id<NSSet<NSURLResourceKey>>;
+        unsafe fn observedPresentedItemUbiquityAttributes(
+            &self,
+        ) -> Retained<NSSet<NSURLResourceKey>>;
 
         #[cfg(feature = "NSFileVersion")]
         #[optional]

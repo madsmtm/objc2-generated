@@ -23,10 +23,10 @@ extern_methods!(
     unsafe impl UIGraphicsRendererFormat {
         #[deprecated]
         #[method_id(@__retain_semantics Other defaultFormat)]
-        pub unsafe fn defaultFormat() -> Id<Self>;
+        pub unsafe fn defaultFormat() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other preferredFormat)]
-        pub unsafe fn preferredFormat() -> Id<Self>;
+        pub unsafe fn preferredFormat() -> Retained<Self>;
 
         #[method(bounds)]
         pub unsafe fn bounds(&self) -> CGRect;
@@ -37,10 +37,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIGraphicsRendererFormat {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -59,7 +59,7 @@ unsafe impl NSObjectProtocol for UIGraphicsRendererContext {}
 extern_methods!(
     unsafe impl UIGraphicsRendererContext {
         #[method_id(@__retain_semantics Other format)]
-        pub unsafe fn format(&self) -> Id<UIGraphicsRendererFormat>;
+        pub unsafe fn format(&self) -> Retained<UIGraphicsRendererFormat>;
 
         #[method(fillRect:)]
         pub unsafe fn fillRect(&self, rect: CGRect);
@@ -76,10 +76,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIGraphicsRendererContext {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -98,17 +98,17 @@ unsafe impl NSObjectProtocol for UIGraphicsRenderer {}
 extern_methods!(
     unsafe impl UIGraphicsRenderer {
         #[method_id(@__retain_semantics Init initWithBounds:)]
-        pub unsafe fn initWithBounds(this: Allocated<Self>, bounds: CGRect) -> Id<Self>;
+        pub unsafe fn initWithBounds(this: Allocated<Self>, bounds: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithBounds:format:)]
         pub unsafe fn initWithBounds_format(
             this: Allocated<Self>,
             bounds: CGRect,
             format: &UIGraphicsRendererFormat,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other format)]
-        pub unsafe fn format(&self) -> Id<UIGraphicsRendererFormat>;
+        pub unsafe fn format(&self) -> Retained<UIGraphicsRendererFormat>;
 
         #[method(allowsImageOutput)]
         pub unsafe fn allowsImageOutput(&self) -> bool;
@@ -119,9 +119,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIGraphicsRenderer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

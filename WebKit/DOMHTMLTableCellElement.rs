@@ -74,7 +74,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other align)]
-        pub unsafe fn align(&self) -> Id<NSString>;
+        pub unsafe fn align(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setAlign:)]
@@ -82,7 +82,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other axis)]
-        pub unsafe fn axis(&self) -> Id<NSString>;
+        pub unsafe fn axis(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setAxis:)]
@@ -90,7 +90,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other bgColor)]
-        pub unsafe fn bgColor(&self) -> Id<NSString>;
+        pub unsafe fn bgColor(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setBgColor:)]
@@ -98,7 +98,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other ch)]
-        pub unsafe fn ch(&self) -> Id<NSString>;
+        pub unsafe fn ch(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setCh:)]
@@ -106,7 +106,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other chOff)]
-        pub unsafe fn chOff(&self) -> Id<NSString>;
+        pub unsafe fn chOff(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setChOff:)]
@@ -130,7 +130,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other headers)]
-        pub unsafe fn headers(&self) -> Id<NSString>;
+        pub unsafe fn headers(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setHeaders:)]
@@ -138,7 +138,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other height)]
-        pub unsafe fn height(&self) -> Id<NSString>;
+        pub unsafe fn height(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setHeight:)]
@@ -154,7 +154,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other vAlign)]
-        pub unsafe fn vAlign(&self) -> Id<NSString>;
+        pub unsafe fn vAlign(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setVAlign:)]
@@ -162,7 +162,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other width)]
-        pub unsafe fn width(&self) -> Id<NSString>;
+        pub unsafe fn width(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setWidth:)]
@@ -170,7 +170,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other abbr)]
-        pub unsafe fn abbr(&self) -> Id<NSString>;
+        pub unsafe fn abbr(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setAbbr:)]
@@ -178,7 +178,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other scope)]
-        pub unsafe fn scope(&self) -> Id<NSString>;
+        pub unsafe fn scope(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setScope:)]
@@ -198,7 +198,7 @@ extern_methods!(
     unsafe impl DOMHTMLTableCellElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -213,6 +213,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTableCellElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

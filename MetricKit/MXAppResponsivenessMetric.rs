@@ -32,7 +32,9 @@ extern_methods!(
     unsafe impl MXAppResponsivenessMetric {
         #[cfg(feature = "MXHistogram")]
         #[method_id(@__retain_semantics Other histogrammedApplicationHangTime)]
-        pub unsafe fn histogrammedApplicationHangTime(&self) -> Id<MXHistogram<NSUnitDuration>>;
+        pub unsafe fn histogrammedApplicationHangTime(
+            &self,
+        ) -> Retained<MXHistogram<NSUnitDuration>>;
     }
 );
 
@@ -41,9 +43,9 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAppResponsivenessMetric {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

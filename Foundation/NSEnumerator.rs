@@ -25,7 +25,7 @@ unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSEnumerator<ObjectType> {}
 extern_methods!(
     unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
         #[method_id(@__retain_semantics Other nextObject)]
-        pub fn nextObject(&mut self) -> Option<Id<ObjectType>>;
+        pub fn nextObject(&mut self) -> Option<Retained<ObjectType>>;
     }
 );
 
@@ -33,10 +33,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -45,6 +45,6 @@ extern_methods!(
     unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other allObjects)]
-        pub fn allObjects(&self) -> Id<NSArray<ObjectType>>;
+        pub fn allObjects(&self) -> Retained<NSArray<ObjectType>>;
     }
 );

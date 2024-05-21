@@ -40,26 +40,32 @@ extern_methods!(
     #[cfg(feature = "NSCell")]
     unsafe impl NSBrowserCell {
         #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Id<Self>;
+        pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
-        pub unsafe fn initImageCell(this: Allocated<Self>, image: Option<&NSImage>) -> Id<Self>;
+        pub unsafe fn initImageCell(
+            this: Allocated<Self>,
+            image: Option<&NSImage>,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other branchImage)]
-        pub unsafe fn branchImage(mtm: MainThreadMarker) -> Option<Id<NSImage>>;
+        pub unsafe fn branchImage(mtm: MainThreadMarker) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other highlightedBranchImage)]
-        pub unsafe fn highlightedBranchImage(mtm: MainThreadMarker) -> Option<Id<NSImage>>;
+        pub unsafe fn highlightedBranchImage(mtm: MainThreadMarker) -> Option<Retained<NSImage>>;
 
         #[cfg(all(feature = "NSColor", feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other highlightColorInView:)]
-        pub unsafe fn highlightColorInView(&self, control_view: &NSView) -> Option<Id<NSColor>>;
+        pub unsafe fn highlightColorInView(
+            &self,
+            control_view: &NSView,
+        ) -> Option<Retained<NSColor>>;
 
         #[method(isLeaf)]
         pub unsafe fn isLeaf(&self) -> bool;
@@ -81,7 +87,7 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         #[method(setImage:)]
@@ -89,7 +95,7 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other alternateImage)]
-        pub unsafe fn alternateImage(&self) -> Option<Id<NSImage>>;
+        pub unsafe fn alternateImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         #[method(setAlternateImage:)]
@@ -102,7 +108,7 @@ extern_methods!(
     #[cfg(feature = "NSCell")]
     unsafe impl NSBrowserCell {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -111,6 +117,6 @@ extern_methods!(
     #[cfg(feature = "NSCell")]
     unsafe impl NSBrowserCell {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

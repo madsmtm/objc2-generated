@@ -9,18 +9,21 @@ extern_protocol!(
     pub unsafe trait UIMenuBuilder: IsMainThreadOnly {
         #[cfg(feature = "UIMenuSystem")]
         #[method_id(@__retain_semantics Other system)]
-        unsafe fn system(&self) -> Id<UIMenuSystem>;
+        unsafe fn system(&self) -> Retained<UIMenuSystem>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Other menuForIdentifier:)]
-        unsafe fn menuForIdentifier(&self, identifier: &UIMenuIdentifier) -> Option<Id<UIMenu>>;
+        unsafe fn menuForIdentifier(
+            &self,
+            identifier: &UIMenuIdentifier,
+        ) -> Option<Retained<UIMenu>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Other actionForIdentifier:)]
         unsafe fn actionForIdentifier(
             &self,
             identifier: &UIActionIdentifier,
-        ) -> Option<Id<UIAction>>;
+        ) -> Option<Retained<UIAction>>;
 
         #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Other commandForAction:propertyList:)]
@@ -28,7 +31,7 @@ extern_protocol!(
             &self,
             action: Sel,
             property_list: Option<&AnyObject>,
-        ) -> Option<Id<UICommand>>;
+        ) -> Option<Retained<UICommand>>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         #[method(replaceMenuForIdentifier:withMenu:)]

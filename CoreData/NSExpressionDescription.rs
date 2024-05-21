@@ -31,7 +31,7 @@ extern_methods!(
     #[cfg(feature = "NSPropertyDescription")]
     unsafe impl NSExpressionDescription {
         #[method_id(@__retain_semantics Other expression)]
-        pub unsafe fn expression(&self) -> Option<Id<NSExpression>>;
+        pub unsafe fn expression(&self) -> Option<Retained<NSExpression>>;
 
         #[method(setExpression:)]
         pub unsafe fn setExpression(&self, expression: Option<&NSExpression>);
@@ -51,9 +51,9 @@ extern_methods!(
     #[cfg(feature = "NSPropertyDescription")]
     unsafe impl NSExpressionDescription {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

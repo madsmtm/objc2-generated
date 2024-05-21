@@ -52,15 +52,15 @@ extern_protocol!(
         unsafe fn viewControllerForKey(
             &self,
             key: &UITransitionContextViewControllerKey,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other viewForKey:)]
-        unsafe fn viewForKey(&self, key: &UITransitionContextViewKey) -> Option<Id<UIView>>;
+        unsafe fn viewForKey(&self, key: &UITransitionContextViewKey) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other containerView)]
-        unsafe fn containerView(&self) -> Id<UIView>;
+        unsafe fn containerView(&self) -> Retained<UIView>;
 
         #[method(targetTransform)]
         unsafe fn targetTransform(&self) -> CGAffineTransform;
@@ -144,6 +144,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other transitionCoordinator)]
         pub unsafe fn transitionCoordinator(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIViewControllerTransitionCoordinator>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIViewControllerTransitionCoordinator>>>;
     }
 );

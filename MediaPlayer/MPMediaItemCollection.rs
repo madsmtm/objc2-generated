@@ -34,22 +34,22 @@ extern_methods!(
         #[method_id(@__retain_semantics Other collectionWithItems:)]
         pub unsafe fn collectionWithItems(
             items: &NSArray<MPMediaItem>,
-        ) -> Id<MPMediaItemCollection>;
+        ) -> Retained<MPMediaItemCollection>;
 
         #[cfg(feature = "MPMediaItem")]
         #[method_id(@__retain_semantics Init initWithItems:)]
         pub unsafe fn initWithItems(
             this: Allocated<Self>,
             items: &NSArray<MPMediaItem>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MPMediaItem")]
         #[method_id(@__retain_semantics Other items)]
-        pub unsafe fn items(&self) -> Id<NSArray<MPMediaItem>>;
+        pub unsafe fn items(&self) -> Retained<NSArray<MPMediaItem>>;
 
         #[cfg(feature = "MPMediaItem")]
         #[method_id(@__retain_semantics Other representativeItem)]
-        pub unsafe fn representativeItem(&self) -> Option<Id<MPMediaItem>>;
+        pub unsafe fn representativeItem(&self) -> Option<Retained<MPMediaItem>>;
 
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
@@ -65,9 +65,9 @@ extern_methods!(
     #[cfg(feature = "MPMediaEntity")]
     unsafe impl MPMediaItemCollection {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

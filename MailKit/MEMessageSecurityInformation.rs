@@ -25,28 +25,28 @@ extern_methods!(
     unsafe impl MEMessageSecurityInformation {
         #[cfg(feature = "MEMessageSigner")]
         #[method_id(@__retain_semantics Other signers)]
-        pub unsafe fn signers(&self) -> Id<NSArray<MEMessageSigner>>;
+        pub unsafe fn signers(&self) -> Retained<NSArray<MEMessageSigner>>;
 
         #[method(isEncrypted)]
         pub unsafe fn isEncrypted(&self) -> bool;
 
         #[method_id(@__retain_semantics Other signingError)]
-        pub unsafe fn signingError(&self) -> Option<Id<NSError>>;
+        pub unsafe fn signingError(&self) -> Option<Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other encryptionError)]
-        pub unsafe fn encryptionError(&self) -> Option<Id<NSError>>;
+        pub unsafe fn encryptionError(&self) -> Option<Retained<NSError>>;
 
         #[method(shouldBlockRemoteContent)]
         pub unsafe fn shouldBlockRemoteContent(&self) -> bool;
 
         #[method_id(@__retain_semantics Other localizedRemoteContentBlockingReason)]
-        pub unsafe fn localizedRemoteContentBlockingReason(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localizedRemoteContentBlockingReason(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MEMessageSigner")]
         #[method_id(@__retain_semantics Init initWithSigners:isEncrypted:signingError:encryptionError:)]
@@ -56,7 +56,7 @@ extern_methods!(
             is_encrypted: bool,
             signing_error: Option<&NSError>,
             encryption_error: Option<&NSError>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MEMessageSigner")]
         #[method_id(@__retain_semantics Init initWithSigners:isEncrypted:signingError:encryptionError:shouldBlockRemoteContent:localizedRemoteContentBlockingReason:)]
@@ -68,6 +68,6 @@ extern_methods!(
             encryption_error: Option<&NSError>,
             should_block_remote_content: bool,
             localized_remote_content_blocking_reason: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

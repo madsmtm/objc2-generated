@@ -39,21 +39,23 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other fetchEventsAfterDate:)]
-        pub unsafe fn fetchEventsAfterDate(date: &NSDate) -> Id<Self>;
+        pub unsafe fn fetchEventsAfterDate(date: &NSDate) -> Retained<Self>;
 
         #[cfg(feature = "NSPersistentCloudKitContainerEvent")]
         #[method_id(@__retain_semantics Other fetchEventsAfterEvent:)]
         pub unsafe fn fetchEventsAfterEvent(
             event: Option<&NSPersistentCloudKitContainerEvent>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchEventsMatchingFetchRequest:)]
-        pub unsafe fn fetchEventsMatchingFetchRequest(fetch_request: &NSFetchRequest) -> Id<Self>;
+        pub unsafe fn fetchEventsMatchingFetchRequest(
+            fetch_request: &NSFetchRequest,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequestForEvents)]
-        pub unsafe fn fetchRequestForEvents() -> Id<NSFetchRequest>;
+        pub unsafe fn fetchRequestForEvents() -> Retained<NSFetchRequest>;
     }
 );
 
@@ -62,9 +64,9 @@ extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSPersistentCloudKitContainerEventRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

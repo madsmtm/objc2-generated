@@ -26,7 +26,7 @@ unsafe impl NSObjectProtocol for NSHelpManager {}
 extern_methods!(
     unsafe impl NSHelpManager {
         #[method_id(@__retain_semantics Other sharedHelpManager)]
-        pub unsafe fn sharedHelpManager(mtm: MainThreadMarker) -> Id<NSHelpManager>;
+        pub unsafe fn sharedHelpManager(mtm: MainThreadMarker) -> Retained<NSHelpManager>;
 
         #[method(isContextHelpModeActive)]
         pub unsafe fn isContextHelpModeActive(mtm: MainThreadMarker) -> bool;
@@ -51,7 +51,7 @@ extern_methods!(
         pub unsafe fn contextHelpForObject(
             &self,
             object: &AnyObject,
-        ) -> Option<Id<NSAttributedString>>;
+        ) -> Option<Retained<NSAttributedString>>;
 
         #[method(showContextHelpForObject:locationHint:)]
         pub unsafe fn showContextHelpForObject_locationHint(
@@ -79,10 +79,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSHelpManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -101,7 +101,7 @@ extern_category!(
         unsafe fn contextHelpForKey(
             &self,
             key: &NSHelpManagerContextHelpKey,
-        ) -> Option<Id<NSAttributedString>>;
+        ) -> Option<Retained<NSAttributedString>>;
     }
 
     unsafe impl NSBundleHelpExtension for NSBundle {}

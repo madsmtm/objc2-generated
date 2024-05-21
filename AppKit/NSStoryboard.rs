@@ -28,29 +28,29 @@ unsafe impl NSObjectProtocol for NSStoryboard {}
 extern_methods!(
     unsafe impl NSStoryboard {
         #[method_id(@__retain_semantics Other mainStoryboard)]
-        pub unsafe fn mainStoryboard() -> Option<Id<NSStoryboard>>;
+        pub unsafe fn mainStoryboard() -> Option<Retained<NSStoryboard>>;
 
         #[method_id(@__retain_semantics Other storyboardWithName:bundle:)]
         pub unsafe fn storyboardWithName_bundle(
             name: &NSStoryboardName,
             storyboard_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other instantiateInitialController)]
-        pub unsafe fn instantiateInitialController(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn instantiateInitialController(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Other instantiateInitialControllerWithCreator:)]
         pub unsafe fn instantiateInitialControllerWithCreator(
             &self,
             block: NSStoryboardControllerCreator,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[method_id(@__retain_semantics Other instantiateControllerWithIdentifier:)]
         pub unsafe fn instantiateControllerWithIdentifier(
             &self,
             identifier: &NSStoryboardSceneIdentifier,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Other instantiateControllerWithIdentifier:creator:)]
@@ -58,7 +58,7 @@ extern_methods!(
             &self,
             identifier: &NSStoryboardSceneIdentifier,
             block: NSStoryboardControllerCreator,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
     }
 );
 
@@ -66,9 +66,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSStoryboard {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

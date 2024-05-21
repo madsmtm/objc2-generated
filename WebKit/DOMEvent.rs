@@ -39,17 +39,17 @@ extern_methods!(
     unsafe impl DOMEvent {
         #[deprecated]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSString>;
+        pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[cfg(feature = "DOMEventTarget")]
         #[deprecated]
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<ProtocolObject<dyn DOMEventTarget>>>;
+        pub unsafe fn target(&self) -> Option<Retained<ProtocolObject<dyn DOMEventTarget>>>;
 
         #[cfg(feature = "DOMEventTarget")]
         #[deprecated]
         #[method_id(@__retain_semantics Other currentTarget)]
-        pub unsafe fn currentTarget(&self) -> Option<Id<ProtocolObject<dyn DOMEventTarget>>>;
+        pub unsafe fn currentTarget(&self) -> Option<Retained<ProtocolObject<dyn DOMEventTarget>>>;
 
         #[deprecated]
         #[method(eventPhase)]
@@ -69,7 +69,7 @@ extern_methods!(
 
         #[cfg(feature = "DOMEventTarget")]
         #[method_id(@__retain_semantics Other srcElement)]
-        pub unsafe fn srcElement(&self) -> Option<Id<ProtocolObject<dyn DOMEventTarget>>>;
+        pub unsafe fn srcElement(&self) -> Option<Retained<ProtocolObject<dyn DOMEventTarget>>>;
 
         #[method(returnValue)]
         pub unsafe fn returnValue(&self) -> bool;
@@ -107,7 +107,7 @@ extern_methods!(
     unsafe impl DOMEvent {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -116,7 +116,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMEvent {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

@@ -93,19 +93,19 @@ unsafe impl NSProgressReporting for UIDocument {}
 extern_methods!(
     unsafe impl UIDocument {
         #[method_id(@__retain_semantics Init initWithFileURL:)]
-        pub unsafe fn initWithFileURL(this: Allocated<Self>, url: &NSURL) -> Id<Self>;
+        pub unsafe fn initWithFileURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other fileURL)]
-        pub unsafe fn fileURL(&self) -> Id<NSURL>;
+        pub unsafe fn fileURL(&self) -> Retained<NSURL>;
 
         #[method_id(@__retain_semantics Other localizedName)]
-        pub unsafe fn localizedName(&self) -> Id<NSString>;
+        pub unsafe fn localizedName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other fileType)]
-        pub unsafe fn fileType(&self) -> Option<Id<NSString>>;
+        pub unsafe fn fileType(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other fileModificationDate)]
-        pub unsafe fn fileModificationDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn fileModificationDate(&self) -> Option<Retained<NSDate>>;
 
         #[method(setFileModificationDate:)]
         pub unsafe fn setFileModificationDate(&self, file_modification_date: Option<&NSDate>);
@@ -114,7 +114,7 @@ extern_methods!(
         pub unsafe fn documentState(&self) -> UIDocumentState;
 
         #[method_id(@__retain_semantics Other progress)]
-        pub unsafe fn progress(&self) -> Option<Id<NSProgress>>;
+        pub unsafe fn progress(&self) -> Option<Retained<NSProgress>>;
 
         #[cfg(feature = "block2")]
         #[method(openWithCompletionHandler:)]
@@ -135,13 +135,13 @@ extern_methods!(
             &self,
             contents: &AnyObject,
             type_name: Option<&NSString>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other contentsForType:error:_)]
         pub unsafe fn contentsForType_error(
             &self,
             type_name: &NSString,
-        ) -> Result<Id<AnyObject>, Id<NSError>>;
+        ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[method(disableEditing)]
         pub unsafe fn disableEditing(&self);
@@ -150,7 +150,7 @@ extern_methods!(
         pub unsafe fn enableEditing(&self);
 
         #[method_id(@__retain_semantics Other undoManager)]
-        pub unsafe fn undoManager(&self) -> Option<Id<NSUndoManager>>;
+        pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
 
         #[method(setUndoManager:)]
         pub unsafe fn setUndoManager(&self, undo_manager: Option<&NSUndoManager>);
@@ -165,7 +165,7 @@ extern_methods!(
         pub unsafe fn changeCountTokenForSaveOperation(
             &self,
             save_operation: UIDocumentSaveOperation,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
 
         #[method(updateChangeCountWithToken:forSaveOperation:)]
         pub unsafe fn updateChangeCountWithToken_forSaveOperation(
@@ -191,14 +191,14 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other savingFileType)]
-        pub unsafe fn savingFileType(&self) -> Option<Id<NSString>>;
+        pub unsafe fn savingFileType(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other fileNameExtensionForType:saveOperation:)]
         pub unsafe fn fileNameExtensionForType_saveOperation(
             &self,
             type_name: Option<&NSString>,
             save_operation: UIDocumentSaveOperation,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[method(writeContents:andAttributes:safelyToURL:forSaveOperation:error:_)]
         pub unsafe fn writeContents_andAttributes_safelyToURL_forSaveOperation_error(
@@ -207,7 +207,7 @@ extern_methods!(
             additional_file_attributes: Option<&NSDictionary>,
             url: &NSURL,
             save_operation: UIDocumentSaveOperation,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(writeContents:toURL:forSaveOperation:originalContentsURL:error:_)]
         pub unsafe fn writeContents_toURL_forSaveOperation_originalContentsURL_error(
@@ -216,17 +216,17 @@ extern_methods!(
             url: &NSURL,
             save_operation: UIDocumentSaveOperation,
             original_contents_url: Option<&NSURL>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other fileAttributesToWriteToURL:forSaveOperation:error:_)]
         pub unsafe fn fileAttributesToWriteToURL_forSaveOperation_error(
             &self,
             url: &NSURL,
             save_operation: UIDocumentSaveOperation,
-        ) -> Result<Id<NSDictionary>, Id<NSError>>;
+        ) -> Result<Retained<NSDictionary>, Retained<NSError>>;
 
         #[method(readFromURL:error:_)]
-        pub unsafe fn readFromURL_error(&self, url: &NSURL) -> Result<(), Id<NSError>>;
+        pub unsafe fn readFromURL_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "block2")]
         #[method(performAsynchronousFileAccessUsingBlock:)]
@@ -262,10 +262,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDocument {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -284,7 +284,7 @@ extern_methods!(
     /// ActivityContinuation
     unsafe impl UIDocument {
         #[method_id(@__retain_semantics Other userActivity)]
-        pub unsafe fn userActivity(&self) -> Option<Id<NSUserActivity>>;
+        pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
 
         #[method(setUserActivity:)]
         pub unsafe fn setUserActivity(&self, user_activity: Option<&NSUserActivity>);

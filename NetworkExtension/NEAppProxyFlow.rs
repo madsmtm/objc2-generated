@@ -74,10 +74,10 @@ extern_methods!(
 
         #[cfg(feature = "NEFlowMetaData")]
         #[method_id(@__retain_semantics Other metaData)]
-        pub unsafe fn metaData(&self) -> Id<NEFlowMetaData>;
+        pub unsafe fn metaData(&self) -> Retained<NEFlowMetaData>;
 
         #[method_id(@__retain_semantics Other remoteHostname)]
-        pub unsafe fn remoteHostname(&self) -> Option<Id<NSString>>;
+        pub unsafe fn remoteHostname(&self) -> Option<Retained<NSString>>;
 
         #[method(isBound)]
         pub unsafe fn isBound(&self) -> bool;
@@ -88,9 +88,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEAppProxyFlow {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

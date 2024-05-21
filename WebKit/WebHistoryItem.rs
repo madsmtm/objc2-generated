@@ -36,19 +36,19 @@ extern_methods!(
             url_string: Option<&NSString>,
             title: Option<&NSString>,
             time: NSTimeInterval,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other originalURLString)]
-        pub unsafe fn originalURLString(&self) -> Id<NSString>;
+        pub unsafe fn originalURLString(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other URLString)]
-        pub unsafe fn URLString(&self) -> Id<NSString>;
+        pub unsafe fn URLString(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(lastVisitedTimeInterval)]
@@ -56,7 +56,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other alternateTitle)]
-        pub unsafe fn alternateTitle(&self) -> Id<NSString>;
+        pub unsafe fn alternateTitle(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setAlternateTitle:)]
@@ -66,7 +66,7 @@ extern_methods!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[method_id(@__retain_semantics Other icon)]
-        pub unsafe fn icon(&self) -> Option<Id<NSImage>>;
+        pub unsafe fn icon(&self) -> Option<Retained<NSImage>>;
     }
 );
 
@@ -74,9 +74,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebHistoryItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

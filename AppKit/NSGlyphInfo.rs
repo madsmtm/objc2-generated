@@ -26,7 +26,7 @@ unsafe impl NSSecureCoding for NSGlyphInfo {}
 extern_methods!(
     unsafe impl NSGlyphInfo {
         #[method_id(@__retain_semantics Other baseString)]
-        pub unsafe fn baseString(&self) -> Id<NSString>;
+        pub unsafe fn baseString(&self) -> Retained<NSString>;
     }
 );
 
@@ -34,10 +34,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGlyphInfo {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -71,7 +71,7 @@ extern_methods!(
             glyph_name: &NSString,
             font: &NSFont,
             string: &NSString,
-        ) -> Option<Id<NSGlyphInfo>>;
+        ) -> Option<Retained<NSGlyphInfo>>;
 
         #[cfg(feature = "NSFont")]
         #[method_id(@__retain_semantics Other glyphInfoWithGlyph:forFont:baseString:)]
@@ -79,17 +79,17 @@ extern_methods!(
             glyph: NSGlyph,
             font: &NSFont,
             string: &NSString,
-        ) -> Option<Id<NSGlyphInfo>>;
+        ) -> Option<Retained<NSGlyphInfo>>;
 
         #[method_id(@__retain_semantics Other glyphInfoWithCharacterIdentifier:collection:baseString:)]
         pub unsafe fn glyphInfoWithCharacterIdentifier_collection_baseString(
             cid: NSUInteger,
             character_collection: NSCharacterCollection,
             string: &NSString,
-        ) -> Option<Id<NSGlyphInfo>>;
+        ) -> Option<Retained<NSGlyphInfo>>;
 
         #[method_id(@__retain_semantics Other glyphName)]
-        pub unsafe fn glyphName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn glyphName(&self) -> Option<Retained<NSString>>;
 
         #[method(characterIdentifier)]
         pub unsafe fn characterIdentifier(&self) -> NSUInteger;

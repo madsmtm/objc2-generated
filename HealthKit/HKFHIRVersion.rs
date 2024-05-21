@@ -36,24 +36,24 @@ extern_methods!(
 
         #[cfg(feature = "HKFHIRRelease")]
         #[method_id(@__retain_semantics Other FHIRRelease)]
-        pub unsafe fn FHIRRelease(&self) -> Id<HKFHIRRelease>;
+        pub unsafe fn FHIRRelease(&self) -> Retained<HKFHIRRelease>;
 
         #[method_id(@__retain_semantics Other stringRepresentation)]
-        pub unsafe fn stringRepresentation(&self) -> Id<NSString>;
+        pub unsafe fn stringRepresentation(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other versionFromVersionString:error:_)]
         pub unsafe fn versionFromVersionString_error(
             version_string: &NSString,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other primaryDSTU2Version)]
-        pub unsafe fn primaryDSTU2Version() -> Id<Self>;
+        pub unsafe fn primaryDSTU2Version() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other primaryR4Version)]
-        pub unsafe fn primaryR4Version() -> Id<Self>;
+        pub unsafe fn primaryR4Version() -> Retained<Self>;
     }
 );
 
@@ -61,6 +61,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKFHIRVersion {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

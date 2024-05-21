@@ -19,14 +19,14 @@ unsafe impl NSObjectProtocol for VZNetworkDevice {}
 extern_methods!(
     unsafe impl VZNetworkDevice {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZNetworkDeviceAttachment")]
         #[method_id(@__retain_semantics Other attachment)]
-        pub unsafe fn attachment(&self) -> Option<Id<VZNetworkDeviceAttachment>>;
+        pub unsafe fn attachment(&self) -> Option<Retained<VZNetworkDeviceAttachment>>;
 
         #[cfg(feature = "VZNetworkDeviceAttachment")]
         #[method(setAttachment:)]

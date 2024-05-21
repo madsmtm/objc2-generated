@@ -31,13 +31,16 @@ extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSPDFImageRep {
         #[method_id(@__retain_semantics Other imageRepWithData:)]
-        pub unsafe fn imageRepWithData(pdf_data: &NSData) -> Option<Id<Self>>;
+        pub unsafe fn imageRepWithData(pdf_data: &NSData) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithData:)]
-        pub unsafe fn initWithData(this: Allocated<Self>, pdf_data: &NSData) -> Option<Id<Self>>;
+        pub unsafe fn initWithData(
+            this: Allocated<Self>,
+            pdf_data: &NSData,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other PDFRepresentation)]
-        pub unsafe fn PDFRepresentation(&self) -> Id<NSData>;
+        pub unsafe fn PDFRepresentation(&self) -> Retained<NSData>;
 
         #[method(bounds)]
         pub unsafe fn bounds(&self) -> NSRect;
@@ -58,10 +61,13 @@ extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSPDFImageRep {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -70,6 +76,6 @@ extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSPDFImageRep {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

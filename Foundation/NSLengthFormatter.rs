@@ -62,7 +62,7 @@ extern_methods!(
     unsafe impl NSLengthFormatter {
         #[cfg(feature = "NSNumberFormatter")]
         #[method_id(@__retain_semantics Other numberFormatter)]
-        pub unsafe fn numberFormatter(&self) -> Id<NSNumberFormatter>;
+        pub unsafe fn numberFormatter(&self) -> Retained<NSNumberFormatter>;
 
         #[cfg(feature = "NSNumberFormatter")]
         #[method(setNumberFormatter:)]
@@ -86,11 +86,11 @@ extern_methods!(
             &self,
             value: c_double,
             unit: NSLengthFormatterUnit,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringFromMeters:)]
-        pub unsafe fn stringFromMeters(&self, number_in_meters: c_double) -> Id<NSString>;
+        pub unsafe fn stringFromMeters(&self, number_in_meters: c_double) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other unitStringFromValue:unit:)]
@@ -98,7 +98,7 @@ extern_methods!(
             &self,
             value: c_double,
             unit: NSLengthFormatterUnit,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other unitStringFromMeters:usedUnit:)]
@@ -106,15 +106,15 @@ extern_methods!(
             &self,
             number_in_meters: c_double,
             unitp: *mut NSLengthFormatterUnit,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(getObjectValue:forString:errorDescription:)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,
-            obj: Option<&mut Option<Id<AnyObject>>>,
+            obj: Option<&mut Option<Retained<AnyObject>>>,
             string: &NSString,
-            error: Option<&mut Option<Id<NSString>>>,
+            error: Option<&mut Option<Retained<NSString>>>,
         ) -> bool;
     }
 );
@@ -124,9 +124,9 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSLengthFormatter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

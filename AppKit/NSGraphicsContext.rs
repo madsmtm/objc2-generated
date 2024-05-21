@@ -73,20 +73,20 @@ extern_methods!(
         #[method_id(@__retain_semantics Other graphicsContextWithAttributes:)]
         pub unsafe fn graphicsContextWithAttributes(
             attributes: &NSDictionary<NSGraphicsContextAttributeKey, AnyObject>,
-        ) -> Option<Id<NSGraphicsContext>>;
+        ) -> Option<Retained<NSGraphicsContext>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method_id(@__retain_semantics Other graphicsContextWithWindow:)]
-        pub unsafe fn graphicsContextWithWindow(window: &NSWindow) -> Id<NSGraphicsContext>;
+        pub unsafe fn graphicsContextWithWindow(window: &NSWindow) -> Retained<NSGraphicsContext>;
 
         #[cfg(all(feature = "NSBitmapImageRep", feature = "NSImageRep"))]
         #[method_id(@__retain_semantics Other graphicsContextWithBitmapImageRep:)]
         pub unsafe fn graphicsContextWithBitmapImageRep(
             bitmap_rep: &NSBitmapImageRep,
-        ) -> Option<Id<NSGraphicsContext>>;
+        ) -> Option<Retained<NSGraphicsContext>>;
 
         #[method_id(@__retain_semantics Other currentContext)]
-        pub unsafe fn currentContext() -> Option<Id<NSGraphicsContext>>;
+        pub unsafe fn currentContext() -> Option<Retained<NSGraphicsContext>>;
 
         #[method(setCurrentContext:)]
         pub unsafe fn setCurrentContext(current_context: Option<&NSGraphicsContext>);
@@ -103,7 +103,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(
             &self,
-        ) -> Option<Id<NSDictionary<NSGraphicsContextAttributeKey, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSGraphicsContextAttributeKey, AnyObject>>>;
 
         #[method(isDrawingToScreen)]
         pub unsafe fn isDrawingToScreen(&self) -> bool;
@@ -126,10 +126,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGraphicsContext {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -181,7 +181,7 @@ extern_methods!(
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other CIContext)]
-        pub unsafe fn CIContext(&self) -> Option<Id<CIContext>>;
+        pub unsafe fn CIContext(&self) -> Option<Retained<CIContext>>;
     }
 );
 
@@ -194,7 +194,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other focusStack)]
-        pub unsafe fn focusStack(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn focusStack(&self) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
         #[method(setFocusStack:)]
@@ -205,7 +205,7 @@ extern_methods!(
         pub unsafe fn graphicsContextWithGraphicsPort_flipped(
             graphics_port: NonNull<c_void>,
             initial_flipped_state: bool,
-        ) -> Id<NSGraphicsContext>;
+        ) -> Retained<NSGraphicsContext>;
 
         #[deprecated]
         #[method(graphicsPort)]

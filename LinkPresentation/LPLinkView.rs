@@ -60,24 +60,24 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl LPLinkView {
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method(encodeWithCoder:)]
         pub unsafe fn encodeWithCoder(&self, coder: &NSCoder);
 
         #[method_id(@__retain_semantics Init initWithURL:)]
-        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Id<Self>;
+        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "LPLinkMetadata")]
         #[method_id(@__retain_semantics Init initWithMetadata:)]
         pub unsafe fn initWithMetadata(
             this: Allocated<Self>,
             metadata: &LPLinkMetadata,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "LPLinkMetadata")]
         #[method_id(@__retain_semantics Other metadata)]
-        pub unsafe fn metadata(&self) -> Id<LPLinkMetadata>;
+        pub unsafe fn metadata(&self) -> Retained<LPLinkMetadata>;
 
         #[cfg(feature = "LPLinkMetadata")]
         #[method(setMetadata:)]
@@ -91,7 +91,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl LPLinkView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }
 );
 
@@ -101,7 +101,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl LPLinkView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -111,6 +111,6 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl LPLinkView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

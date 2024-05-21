@@ -31,13 +31,13 @@ unsafe impl NSObjectProtocol for GCRacingWheel {}
 extern_methods!(
     unsafe impl GCRacingWheel {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other connectedRacingWheels)]
-        pub unsafe fn connectedRacingWheels() -> Id<NSSet<GCRacingWheel>>;
+        pub unsafe fn connectedRacingWheels() -> Retained<NSSet<GCRacingWheel>>;
 
         #[method(acquireDeviceWithError:_)]
-        pub unsafe fn acquireDeviceWithError(&self) -> Result<(), Id<NSError>>;
+        pub unsafe fn acquireDeviceWithError(&self) -> Result<(), Retained<NSError>>;
 
         #[method(relinquishDevice)]
         pub unsafe fn relinquishDevice(&self);
@@ -47,13 +47,13 @@ extern_methods!(
 
         #[cfg(feature = "GCRacingWheelInput")]
         #[method_id(@__retain_semantics Other wheelInput)]
-        pub unsafe fn wheelInput(&self) -> Id<GCRacingWheelInput>;
+        pub unsafe fn wheelInput(&self) -> Retained<GCRacingWheelInput>;
 
         #[method(isSnapshot)]
         pub unsafe fn isSnapshot(&self) -> bool;
 
         #[method_id(@__retain_semantics Other capture)]
-        pub unsafe fn capture(&self) -> Id<GCRacingWheel>;
+        pub unsafe fn capture(&self) -> Retained<GCRacingWheel>;
     }
 );
 
@@ -61,6 +61,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCRacingWheel {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

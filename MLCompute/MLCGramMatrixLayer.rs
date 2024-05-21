@@ -30,7 +30,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithScale:)]
-        pub unsafe fn layerWithScale(scale: c_float) -> Id<Self>;
+        pub unsafe fn layerWithScale(scale: c_float) -> Retained<Self>;
     }
 );
 
@@ -40,10 +40,10 @@ extern_methods!(
     unsafe impl MLCGramMatrixLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

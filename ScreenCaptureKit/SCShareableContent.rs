@@ -43,20 +43,20 @@ unsafe impl NSObjectProtocol for SCRunningApplication {}
 extern_methods!(
     unsafe impl SCRunningApplication {
         #[method_id(@__retain_semantics Other bundleIdentifier)]
-        pub unsafe fn bundleIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other applicationName)]
-        pub unsafe fn applicationName(&self) -> Id<NSString>;
+        pub unsafe fn applicationName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "libc")]
         #[method(processID)]
         pub unsafe fn processID(&self) -> libc::pid_t;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -78,13 +78,13 @@ extern_methods!(
         pub unsafe fn frame(&self) -> CGRect;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method(windowLayer)]
         pub unsafe fn windowLayer(&self) -> NSInteger;
 
         #[method_id(@__retain_semantics Other owningApplication)]
-        pub unsafe fn owningApplication(&self) -> Option<Id<SCRunningApplication>>;
+        pub unsafe fn owningApplication(&self) -> Option<Retained<SCRunningApplication>>;
 
         #[method(isOnScreen)]
         pub unsafe fn isOnScreen(&self) -> bool;
@@ -93,10 +93,10 @@ extern_methods!(
         pub unsafe fn isActive(&self) -> bool;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -124,10 +124,10 @@ extern_methods!(
         pub unsafe fn frame(&self) -> CGRect;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -160,10 +160,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCShareableContentInfo {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -219,21 +219,21 @@ extern_methods!(
 
         #[cfg(feature = "SCStream")]
         #[method_id(@__retain_semantics Other infoForFilter:)]
-        pub unsafe fn infoForFilter(filter: &SCContentFilter) -> Id<SCShareableContentInfo>;
+        pub unsafe fn infoForFilter(filter: &SCContentFilter) -> Retained<SCShareableContentInfo>;
 
         #[method_id(@__retain_semantics Other windows)]
-        pub unsafe fn windows(&self) -> Id<NSArray<SCWindow>>;
+        pub unsafe fn windows(&self) -> Retained<NSArray<SCWindow>>;
 
         #[method_id(@__retain_semantics Other displays)]
-        pub unsafe fn displays(&self) -> Id<NSArray<SCDisplay>>;
+        pub unsafe fn displays(&self) -> Retained<NSArray<SCDisplay>>;
 
         #[method_id(@__retain_semantics Other applications)]
-        pub unsafe fn applications(&self) -> Id<NSArray<SCRunningApplication>>;
+        pub unsafe fn applications(&self) -> Retained<NSArray<SCRunningApplication>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

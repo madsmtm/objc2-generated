@@ -21,7 +21,7 @@ extern_protocol!(
             &self,
             scrubber: &NSScrubber,
             index: NSInteger,
-        ) -> Id<NSScrubberItemView>;
+        ) -> Retained<NSScrubberItemView>;
     }
 
     unsafe impl ProtocolType for dyn NSScrubberDataSource {}
@@ -134,17 +134,20 @@ unsafe impl NSObjectProtocol for NSScrubberSelectionStyle {}
 extern_methods!(
     unsafe impl NSScrubberSelectionStyle {
         #[method_id(@__retain_semantics Other outlineOverlayStyle)]
-        pub unsafe fn outlineOverlayStyle(mtm: MainThreadMarker) -> Id<NSScrubberSelectionStyle>;
+        pub unsafe fn outlineOverlayStyle(
+            mtm: MainThreadMarker,
+        ) -> Retained<NSScrubberSelectionStyle>;
 
         #[method_id(@__retain_semantics Other roundedBackgroundStyle)]
-        pub unsafe fn roundedBackgroundStyle(mtm: MainThreadMarker)
-            -> Id<NSScrubberSelectionStyle>;
+        pub unsafe fn roundedBackgroundStyle(
+            mtm: MainThreadMarker,
+        ) -> Retained<NSScrubberSelectionStyle>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(all(
             feature = "NSResponder",
@@ -152,7 +155,7 @@ extern_methods!(
             feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other makeSelectionView)]
-        pub unsafe fn makeSelectionView(&self) -> Option<Id<NSScrubberSelectionView>>;
+        pub unsafe fn makeSelectionView(&self) -> Option<Retained<NSScrubberSelectionView>>;
     }
 );
 
@@ -160,7 +163,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScrubberSelectionStyle {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -217,7 +220,9 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSScrubber {
         #[method_id(@__retain_semantics Other dataSource)]
-        pub unsafe fn dataSource(&self) -> Option<Id<ProtocolObject<dyn NSScrubberDataSource>>>;
+        pub unsafe fn dataSource(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn NSScrubberDataSource>>>;
 
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
@@ -226,14 +231,14 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSScrubberDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSScrubberDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSScrubberDelegate>>);
 
         #[cfg(feature = "NSScrubberLayout")]
         #[method_id(@__retain_semantics Other scrubberLayout)]
-        pub unsafe fn scrubberLayout(&self) -> Id<NSScrubberLayout>;
+        pub unsafe fn scrubberLayout(&self) -> Retained<NSScrubberLayout>;
 
         #[cfg(feature = "NSScrubberLayout")]
         #[method(setScrubberLayout:)]
@@ -276,7 +281,8 @@ extern_methods!(
         pub unsafe fn setFloatsSelectionViews(&self, floats_selection_views: bool);
 
         #[method_id(@__retain_semantics Other selectionBackgroundStyle)]
-        pub unsafe fn selectionBackgroundStyle(&self) -> Option<Id<NSScrubberSelectionStyle>>;
+        pub unsafe fn selectionBackgroundStyle(&self)
+            -> Option<Retained<NSScrubberSelectionStyle>>;
 
         #[method(setSelectionBackgroundStyle:)]
         pub unsafe fn setSelectionBackgroundStyle(
@@ -285,7 +291,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other selectionOverlayStyle)]
-        pub unsafe fn selectionOverlayStyle(&self) -> Option<Id<NSScrubberSelectionStyle>>;
+        pub unsafe fn selectionOverlayStyle(&self) -> Option<Retained<NSScrubberSelectionStyle>>;
 
         #[method(setSelectionOverlayStyle:)]
         pub unsafe fn setSelectionOverlayStyle(
@@ -310,23 +316,23 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor>>;
+        pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[method_id(@__retain_semantics Other backgroundView)]
-        pub unsafe fn backgroundView(&self) -> Option<Id<NSView>>;
+        pub unsafe fn backgroundView(&self) -> Option<Retained<NSView>>;
 
         #[method(setBackgroundView:)]
         pub unsafe fn setBackgroundView(&self, background_view: Option<&NSView>);
 
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method(reloadData)]
         pub unsafe fn reloadData(&self);
@@ -362,7 +368,7 @@ extern_methods!(
         pub unsafe fn itemViewForItemAtIndex(
             &self,
             index: NSInteger,
-        ) -> Option<Id<NSScrubberItemView>>;
+        ) -> Option<Retained<NSScrubberItemView>>;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         #[method(registerClass:forItemIdentifier:)]
@@ -389,7 +395,7 @@ extern_methods!(
             &self,
             item_identifier: &NSUserInterfaceItemIdentifier,
             owner: Option<&AnyObject>,
-        ) -> Option<Id<NSScrubberItemView>>;
+        ) -> Option<Retained<NSScrubberItemView>>;
     }
 );
 
@@ -398,7 +404,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSScrubber {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -407,6 +413,6 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSScrubber {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

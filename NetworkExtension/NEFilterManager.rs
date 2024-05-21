@@ -74,7 +74,7 @@ unsafe impl NSObjectProtocol for NEFilterManager {}
 extern_methods!(
     unsafe impl NEFilterManager {
         #[method_id(@__retain_semantics Other sharedManager)]
-        pub unsafe fn sharedManager() -> Id<NEFilterManager>;
+        pub unsafe fn sharedManager() -> Retained<NEFilterManager>;
 
         #[cfg(feature = "block2")]
         #[method(loadFromPreferencesWithCompletionHandler:)]
@@ -98,14 +98,16 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other localizedDescription)]
-        pub unsafe fn localizedDescription(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         #[method(setLocalizedDescription:)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
 
         #[cfg(feature = "NEFilterProviderConfiguration")]
         #[method_id(@__retain_semantics Other providerConfiguration)]
-        pub unsafe fn providerConfiguration(&self) -> Option<Id<NEFilterProviderConfiguration>>;
+        pub unsafe fn providerConfiguration(
+            &self,
+        ) -> Option<Retained<NEFilterProviderConfiguration>>;
 
         #[cfg(feature = "NEFilterProviderConfiguration")]
         #[method(setProviderConfiguration:)]
@@ -132,9 +134,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

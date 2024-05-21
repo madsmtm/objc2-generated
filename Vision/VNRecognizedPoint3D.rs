@@ -34,13 +34,13 @@ extern_methods!(
     #[cfg(feature = "VNGeometry")]
     unsafe impl VNRecognizedPoint3D {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VNTypes")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<VNRecognizedPointKey>;
+        pub unsafe fn identifier(&self) -> Retained<VNRecognizedPointKey>;
     }
 );

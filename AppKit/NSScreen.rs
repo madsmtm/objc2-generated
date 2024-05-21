@@ -20,13 +20,13 @@ unsafe impl NSObjectProtocol for NSScreen {}
 extern_methods!(
     unsafe impl NSScreen {
         #[method_id(@__retain_semantics Other screens)]
-        pub fn screens(mtm: MainThreadMarker) -> Id<NSArray<NSScreen>>;
+        pub fn screens(mtm: MainThreadMarker) -> Retained<NSArray<NSScreen>>;
 
         #[method_id(@__retain_semantics Other mainScreen)]
-        pub fn mainScreen(mtm: MainThreadMarker) -> Option<Id<NSScreen>>;
+        pub fn mainScreen(mtm: MainThreadMarker) -> Option<Retained<NSScreen>>;
 
         #[method_id(@__retain_semantics Other deepestScreen)]
-        pub unsafe fn deepestScreen(mtm: MainThreadMarker) -> Option<Id<NSScreen>>;
+        pub unsafe fn deepestScreen(mtm: MainThreadMarker) -> Option<Retained<NSScreen>>;
 
         #[method(screensHaveSeparateSpaces)]
         pub unsafe fn screensHaveSeparateSpaces(mtm: MainThreadMarker) -> bool;
@@ -43,11 +43,13 @@ extern_methods!(
 
         #[cfg(feature = "NSGraphics")]
         #[method_id(@__retain_semantics Other deviceDescription)]
-        pub fn deviceDescription(&self) -> Id<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
+        pub fn deviceDescription(
+            &self,
+        ) -> Retained<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
 
         #[cfg(feature = "NSColorSpace")]
         #[method_id(@__retain_semantics Other colorSpace)]
-        pub unsafe fn colorSpace(&self) -> Option<Id<NSColorSpace>>;
+        pub unsafe fn colorSpace(&self) -> Option<Retained<NSColorSpace>>;
 
         #[cfg(feature = "NSGraphics")]
         #[method(supportedWindowDepths)]
@@ -74,7 +76,7 @@ extern_methods!(
         pub fn backingScaleFactor(&self) -> CGFloat;
 
         #[method_id(@__retain_semantics Other localizedName)]
-        pub unsafe fn localizedName(&self) -> Id<NSString>;
+        pub unsafe fn localizedName(&self) -> Retained<NSString>;
 
         #[method(safeAreaInsets)]
         pub unsafe fn safeAreaInsets(&self) -> NSEdgeInsets;
@@ -91,10 +93,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScreen {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

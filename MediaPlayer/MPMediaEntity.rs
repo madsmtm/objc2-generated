@@ -41,10 +41,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
-        pub unsafe fn objectForKeyedSubscript(&self, key: &AnyObject) -> Option<Id<AnyObject>>;
+        pub unsafe fn objectForKeyedSubscript(
+            &self,
+            key: &AnyObject,
+        ) -> Option<Retained<AnyObject>>;
 
         #[method_id(@__retain_semantics Other valueForProperty:)]
-        pub unsafe fn valueForProperty(&self, property: &NSString) -> Option<Id<AnyObject>>;
+        pub unsafe fn valueForProperty(&self, property: &NSString) -> Option<Retained<AnyObject>>;
 
         #[method(persistentID)]
         pub unsafe fn persistentID(&self) -> MPMediaEntityPersistentID;
@@ -55,9 +58,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPMediaEntity {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

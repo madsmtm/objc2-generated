@@ -104,16 +104,16 @@ unsafe impl NSObjectProtocol for MTKTextureLoader {}
 extern_methods!(
     unsafe impl MTKTextureLoader {
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
+        pub unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(newTextureWithContentsOfURL:options:completionHandler:)]
@@ -195,14 +195,14 @@ extern_methods!(
             &self,
             url: &NSURL,
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
-        ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
+        ) -> Result<Retained<ProtocolObject<dyn MTLTexture>>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics New newTextureWithData:options:error:_)]
         pub unsafe fn newTextureWithData_options_error(
             &self,
             data: &NSData,
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
-        ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
+        ) -> Result<Retained<ProtocolObject<dyn MTLTexture>>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics New newTextureWithName:scaleFactor:bundle:options:error:_)]
         pub unsafe fn newTextureWithName_scaleFactor_bundle_options_error(
@@ -211,7 +211,7 @@ extern_methods!(
             scale_factor: CGFloat,
             bundle: Option<&NSBundle>,
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
-        ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
+        ) -> Result<Retained<ProtocolObject<dyn MTLTexture>>, Retained<NSError>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
@@ -223,7 +223,7 @@ extern_methods!(
             display_gamut: NSDisplayGamut,
             bundle: Option<&NSBundle>,
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
-        ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
+        ) -> Result<Retained<ProtocolObject<dyn MTLTexture>>, Retained<NSError>>;
     }
 );
 
@@ -231,6 +231,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTKTextureLoader {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

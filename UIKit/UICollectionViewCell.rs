@@ -95,7 +95,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UICollectionReusableView {
         #[method_id(@__retain_semantics Other reuseIdentifier)]
-        pub unsafe fn reuseIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn reuseIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(prepareForReuse)]
         pub unsafe fn prepareForReuse(&self);
@@ -128,7 +128,7 @@ extern_methods!(
         pub unsafe fn preferredLayoutAttributesFittingAttributes(
             &self,
             layout_attributes: &UICollectionViewLayoutAttributes,
-        ) -> Id<UICollectionViewLayoutAttributes>;
+        ) -> Retained<UICollectionViewLayoutAttributes>;
     }
 );
 
@@ -137,10 +137,13 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UICollectionReusableView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -149,10 +152,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UICollectionReusableView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -236,7 +239,7 @@ extern_methods!(
             feature = "UIViewConfigurationState"
         ))]
         #[method_id(@__retain_semantics Other configurationState)]
-        pub unsafe fn configurationState(&self) -> Id<UICellConfigurationState>;
+        pub unsafe fn configurationState(&self) -> Retained<UICellConfigurationState>;
 
         #[method(setNeedsUpdateConfiguration)]
         pub unsafe fn setNeedsUpdateConfiguration(&self);
@@ -273,7 +276,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other contentConfiguration)]
         pub unsafe fn contentConfiguration(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIContentConfiguration>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIContentConfiguration>>>;
 
         #[cfg(feature = "UIContentConfiguration")]
         #[method(setContentConfiguration:)]
@@ -292,7 +295,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other contentView)]
-        pub unsafe fn contentView(&self) -> Id<UIView>;
+        pub unsafe fn contentView(&self) -> Retained<UIView>;
 
         #[method(isSelected)]
         pub unsafe fn isSelected(&self) -> bool;
@@ -311,11 +314,12 @@ extern_methods!(
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         #[method_id(@__retain_semantics Other defaultBackgroundConfiguration)]
-        pub unsafe fn defaultBackgroundConfiguration(&self) -> Id<UIBackgroundConfiguration>;
+        pub unsafe fn defaultBackgroundConfiguration(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         #[method_id(@__retain_semantics Other backgroundConfiguration)]
-        pub unsafe fn backgroundConfiguration(&self) -> Option<Id<UIBackgroundConfiguration>>;
+        pub unsafe fn backgroundConfiguration(&self)
+            -> Option<Retained<UIBackgroundConfiguration>>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         #[method(setBackgroundConfiguration:)]
@@ -334,13 +338,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other backgroundView)]
-        pub unsafe fn backgroundView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn backgroundView(&self) -> Option<Retained<UIView>>;
 
         #[method(setBackgroundView:)]
         pub unsafe fn setBackgroundView(&self, background_view: Option<&UIView>);
 
         #[method_id(@__retain_semantics Other selectedBackgroundView)]
-        pub unsafe fn selectedBackgroundView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn selectedBackgroundView(&self) -> Option<Retained<UIView>>;
 
         #[method(setSelectedBackgroundView:)]
         pub unsafe fn setSelectedBackgroundView(&self, selected_background_view: Option<&UIView>);
@@ -352,10 +356,13 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UICollectionViewCell {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -364,9 +371,9 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UICollectionViewCell {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

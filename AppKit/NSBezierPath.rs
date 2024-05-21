@@ -115,20 +115,20 @@ unsafe impl NSSecureCoding for NSBezierPath {}
 extern_methods!(
     unsafe impl NSBezierPath {
         #[method_id(@__retain_semantics Other bezierPath)]
-        pub unsafe fn bezierPath() -> Id<NSBezierPath>;
+        pub unsafe fn bezierPath() -> Retained<NSBezierPath>;
 
         #[method_id(@__retain_semantics Other bezierPathWithRect:)]
-        pub unsafe fn bezierPathWithRect(rect: NSRect) -> Id<NSBezierPath>;
+        pub unsafe fn bezierPathWithRect(rect: NSRect) -> Retained<NSBezierPath>;
 
         #[method_id(@__retain_semantics Other bezierPathWithOvalInRect:)]
-        pub unsafe fn bezierPathWithOvalInRect(rect: NSRect) -> Id<NSBezierPath>;
+        pub unsafe fn bezierPathWithOvalInRect(rect: NSRect) -> Retained<NSBezierPath>;
 
         #[method_id(@__retain_semantics Other bezierPathWithRoundedRect:xRadius:yRadius:)]
         pub unsafe fn bezierPathWithRoundedRect_xRadius_yRadius(
             rect: NSRect,
             x_radius: CGFloat,
             y_radius: CGFloat,
-        ) -> Id<NSBezierPath>;
+        ) -> Retained<NSBezierPath>;
 
         #[method(fillRect:)]
         pub unsafe fn fillRect(rect: NSRect);
@@ -290,10 +290,10 @@ extern_methods!(
         pub unsafe fn setClip(&self);
 
         #[method_id(@__retain_semantics Other bezierPathByFlatteningPath)]
-        pub unsafe fn bezierPathByFlatteningPath(&self) -> Id<NSBezierPath>;
+        pub unsafe fn bezierPathByFlatteningPath(&self) -> Retained<NSBezierPath>;
 
         #[method_id(@__retain_semantics Other bezierPathByReversingPath)]
-        pub unsafe fn bezierPathByReversingPath(&self) -> Id<NSBezierPath>;
+        pub unsafe fn bezierPathByReversingPath(&self) -> Retained<NSBezierPath>;
 
         #[method(transformUsingAffineTransform:)]
         pub unsafe fn transformUsingAffineTransform(&self, transform: &NSAffineTransform);
@@ -386,10 +386,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSBezierPath {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

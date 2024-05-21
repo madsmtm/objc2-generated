@@ -63,7 +63,7 @@ extern_methods!(
         pub unsafe fn confidence(&self) -> CMHighFrequencyHeartRateDataConfidence;
 
         #[method_id(@__retain_semantics Other date)]
-        pub unsafe fn date(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn date(&self) -> Option<Retained<NSDate>>;
     }
 );
 
@@ -72,9 +72,9 @@ extern_methods!(
     #[cfg(feature = "CMLogItem")]
     unsafe impl CMHighFrequencyHeartRateData {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

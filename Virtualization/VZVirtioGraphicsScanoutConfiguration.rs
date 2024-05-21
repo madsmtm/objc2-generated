@@ -32,7 +32,7 @@ extern_methods!(
             this: Allocated<Self>,
             width_in_pixels: NSInteger,
             height_in_pixels: NSInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(widthInPixels)]
         pub unsafe fn widthInPixels(&self) -> NSInteger;
@@ -53,9 +53,9 @@ extern_methods!(
     #[cfg(feature = "VZGraphicsDisplayConfiguration")]
     unsafe impl VZVirtioGraphicsScanoutConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

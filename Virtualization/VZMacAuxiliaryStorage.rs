@@ -38,13 +38,13 @@ unsafe impl NSObjectProtocol for VZMacAuxiliaryStorage {}
 extern_methods!(
     unsafe impl VZMacAuxiliaryStorage {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithURL:)]
-        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Id<Self>;
+        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "VZMacHardwareModel")]
         #[method_id(@__retain_semantics Init initCreatingStorageAtURL:hardwareModel:options:error:_)]
@@ -53,10 +53,10 @@ extern_methods!(
             url: &NSURL,
             hardware_model: &VZMacHardwareModel,
             options: VZMacAuxiliaryStorageInitializationOptions,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL>;
+        pub unsafe fn URL(&self) -> Retained<NSURL>;
     }
 );
 
@@ -65,6 +65,6 @@ extern_methods!(
     unsafe impl VZMacAuxiliaryStorage {
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
-        pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL) -> Id<Self>;
+        pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
     }
 );

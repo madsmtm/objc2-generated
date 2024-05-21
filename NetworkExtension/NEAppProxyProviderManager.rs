@@ -39,7 +39,7 @@ extern_methods!(
     #[cfg(all(feature = "NETunnelProviderManager", feature = "NEVPNManager"))]
     unsafe impl NEAppProxyProviderManager {
         #[method_id(@__retain_semantics Other forPerAppVPN)]
-        pub unsafe fn forPerAppVPN() -> Id<Self>;
+        pub unsafe fn forPerAppVPN() -> Retained<Self>;
     }
 );
 
@@ -48,9 +48,9 @@ extern_methods!(
     #[cfg(all(feature = "NETunnelProviderManager", feature = "NEVPNManager"))]
     unsafe impl NEAppProxyProviderManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

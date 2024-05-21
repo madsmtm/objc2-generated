@@ -31,10 +31,10 @@ extern_methods!(
             file_handle: &NSFileHandle,
             read_only: bool,
             synchronization_mode: VZDiskSynchronizationMode,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other fileHandle)]
-        pub unsafe fn fileHandle(&self) -> Id<NSFileHandle>;
+        pub unsafe fn fileHandle(&self) -> Retained<NSFileHandle>;
 
         #[method(isReadOnly)]
         pub unsafe fn isReadOnly(&self) -> bool;
@@ -50,9 +50,9 @@ extern_methods!(
     #[cfg(feature = "VZStorageDeviceAttachment")]
     unsafe impl VZDiskBlockDeviceStorageDeviceAttachment {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

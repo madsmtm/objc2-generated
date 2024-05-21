@@ -100,24 +100,24 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLHeapDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
 extern_protocol!(
     pub unsafe trait MTLHeap: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other label)]
-        fn label(&self) -> Option<Id<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
 
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
-        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "MTLResource")]
         #[method(storageMode)]
@@ -153,14 +153,14 @@ extern_protocol!(
             &self,
             length: NSUInteger,
             options: MTLResourceOptions,
-        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method_id(@__retain_semantics New newTextureWithDescriptor:)]
         fn newTextureWithDescriptor(
             &self,
             descriptor: &MTLTextureDescriptor,
-        ) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(feature = "MTLResource")]
         #[method(setPurgeableState:)]
@@ -176,7 +176,7 @@ extern_protocol!(
             length: NSUInteger,
             options: MTLResourceOptions,
             offset: NSUInteger,
-        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method_id(@__retain_semantics New newTextureWithDescriptor:offset:)]
@@ -184,21 +184,21 @@ extern_protocol!(
             &self,
             descriptor: &MTLTextureDescriptor,
             offset: NSUInteger,
-        ) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
         #[method_id(@__retain_semantics New newAccelerationStructureWithSize:)]
         unsafe fn newAccelerationStructureWithSize(
             &self,
             size: NSUInteger,
-        ) -> Option<Id<ProtocolObject<dyn MTLAccelerationStructure>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MTLAccelerationStructure>>>;
 
         #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
         #[method_id(@__retain_semantics New newAccelerationStructureWithDescriptor:)]
         unsafe fn newAccelerationStructureWithDescriptor(
             &self,
             descriptor: &MTLAccelerationStructureDescriptor,
-        ) -> Option<Id<ProtocolObject<dyn MTLAccelerationStructure>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MTLAccelerationStructure>>>;
 
         #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
         #[method_id(@__retain_semantics New newAccelerationStructureWithSize:offset:)]
@@ -206,7 +206,7 @@ extern_protocol!(
             &self,
             size: NSUInteger,
             offset: NSUInteger,
-        ) -> Option<Id<ProtocolObject<dyn MTLAccelerationStructure>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MTLAccelerationStructure>>>;
 
         #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
         #[method_id(@__retain_semantics New newAccelerationStructureWithDescriptor:offset:)]
@@ -214,7 +214,7 @@ extern_protocol!(
             &self,
             descriptor: &MTLAccelerationStructureDescriptor,
             offset: NSUInteger,
-        ) -> Option<Id<ProtocolObject<dyn MTLAccelerationStructure>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MTLAccelerationStructure>>>;
     }
 
     unsafe impl ProtocolType for dyn MTLHeap {}

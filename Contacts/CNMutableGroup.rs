@@ -37,7 +37,7 @@ extern_methods!(
     #[cfg(feature = "CNGroup")]
     unsafe impl CNMutableGroup {
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
@@ -49,9 +49,9 @@ extern_methods!(
     #[cfg(feature = "CNGroup")]
     unsafe impl CNMutableGroup {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

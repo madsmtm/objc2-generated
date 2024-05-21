@@ -59,27 +59,27 @@ extern_methods!(
     #[cfg(feature = "UIMenuElement")]
     unsafe impl UIAction {
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         #[method_id(@__retain_semantics Other discoverabilityTitle)]
-        pub unsafe fn discoverabilityTitle(&self) -> Option<Id<NSString>>;
+        pub unsafe fn discoverabilityTitle(&self) -> Option<Retained<NSString>>;
 
         #[method(setDiscoverabilityTitle:)]
         pub unsafe fn setDiscoverabilityTitle(&self, discoverability_title: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<UIActionIdentifier>;
+        pub unsafe fn identifier(&self) -> Retained<UIActionIdentifier>;
 
         #[method(attributes)]
         pub unsafe fn attributes(&self) -> UIMenuElementAttributes;
@@ -94,14 +94,14 @@ extern_methods!(
         pub unsafe fn setState(&self, state: UIMenuElementState);
 
         #[method_id(@__retain_semantics Other sender)]
-        pub unsafe fn sender(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn sender(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Other actionWithHandler:)]
         pub unsafe fn actionWithHandler(
             handler: UIActionHandler,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
         #[method_id(@__retain_semantics Other actionWithTitle:image:identifier:handler:)]
@@ -111,13 +111,13 @@ extern_methods!(
             identifier: Option<&UIActionIdentifier>,
             handler: UIActionHandler,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -126,7 +126,10 @@ extern_methods!(
     #[cfg(feature = "UIMenuElement")]
     unsafe impl UIAction {
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -143,6 +146,6 @@ extern_methods!(
         pub unsafe fn captureTextFromCameraActionForResponder_identifier(
             responder: &UIResponder,
             identifier: Option<&UIActionIdentifier>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

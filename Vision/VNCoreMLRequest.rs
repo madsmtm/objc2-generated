@@ -22,21 +22,25 @@ unsafe impl NSObjectProtocol for VNCoreMLModel {}
 extern_methods!(
     unsafe impl VNCoreMLModel {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-ml")]
         #[method_id(@__retain_semantics Other modelForMLModel:error:_)]
-        pub unsafe fn modelForMLModel_error(model: &MLModel) -> Result<Id<Self>, Id<NSError>>;
+        pub unsafe fn modelForMLModel_error(
+            model: &MLModel,
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other inputImageFeatureName)]
-        pub unsafe fn inputImageFeatureName(&self) -> Id<NSString>;
+        pub unsafe fn inputImageFeatureName(&self) -> Retained<NSString>;
 
         #[method(setInputImageFeatureName:)]
         pub unsafe fn setInputImageFeatureName(&self, input_image_feature_name: &NSString);
 
         #[cfg(feature = "objc2-core-ml")]
         #[method_id(@__retain_semantics Other featureProvider)]
-        pub unsafe fn featureProvider(&self) -> Option<Id<ProtocolObject<dyn MLFeatureProvider>>>;
+        pub unsafe fn featureProvider(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn MLFeatureProvider>>>;
 
         #[cfg(feature = "objc2-core-ml")]
         #[method(setFeatureProvider:)]
@@ -51,7 +55,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNCoreMLModel {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -78,7 +82,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNCoreMLRequest {
         #[method_id(@__retain_semantics Other model)]
-        pub unsafe fn model(&self) -> Id<VNCoreMLModel>;
+        pub unsafe fn model(&self) -> Retained<VNCoreMLModel>;
 
         #[cfg(feature = "VNTypes")]
         #[method(imageCropAndScaleOption)]
@@ -92,7 +96,8 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Init initWithModel:)]
-        pub unsafe fn initWithModel(this: Allocated<Self>, model: &VNCoreMLModel) -> Id<Self>;
+        pub unsafe fn initWithModel(this: Allocated<Self>, model: &VNCoreMLModel)
+            -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithModel:completionHandler:)]
@@ -100,17 +105,17 @@ extern_methods!(
             this: Allocated<Self>,
             model: &VNCoreMLModel,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -119,7 +124,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNCoreMLRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

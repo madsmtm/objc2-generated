@@ -13,7 +13,7 @@ extern_protocol!(
             &self,
             interaction: &UIFindInteraction,
             view: &UIView,
-        ) -> Option<Id<UIFindSession>>;
+        ) -> Option<Retained<UIFindSession>>;
 
         #[cfg(feature = "UIFindSession")]
         #[optional]
@@ -59,16 +59,16 @@ extern_methods!(
 
         #[cfg(feature = "UIFindSession")]
         #[method_id(@__retain_semantics Other activeFindSession)]
-        pub unsafe fn activeFindSession(&self) -> Option<Id<UIFindSession>>;
+        pub unsafe fn activeFindSession(&self) -> Option<Retained<UIFindSession>>;
 
         #[method_id(@__retain_semantics Other searchText)]
-        pub unsafe fn searchText(&self) -> Option<Id<NSString>>;
+        pub unsafe fn searchText(&self) -> Option<Retained<NSString>>;
 
         #[method(setSearchText:)]
         pub unsafe fn setSearchText(&self, search_text: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other replacementText)]
-        pub unsafe fn replacementText(&self) -> Option<Id<NSString>>;
+        pub unsafe fn replacementText(&self) -> Option<Retained<NSString>>;
 
         #[method(setReplacementText:)]
         pub unsafe fn setReplacementText(&self, replacement_text: Option<&NSString>);
@@ -89,13 +89,15 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn UIFindInteractionDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn UIFindInteractionDelegate>>>;
 
         #[method_id(@__retain_semantics Init initWithSessionDelegate:)]
         pub unsafe fn initWithSessionDelegate(
             this: Allocated<Self>,
             session_delegate: &ProtocolObject<dyn UIFindInteractionDelegate>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(presentFindNavigatorShowingReplace:)]
         pub unsafe fn presentFindNavigatorShowingReplace(&self, showing_replace: bool);
@@ -113,9 +115,9 @@ extern_methods!(
         pub unsafe fn updateResultCount(&self);
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

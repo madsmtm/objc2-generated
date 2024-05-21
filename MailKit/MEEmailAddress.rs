@@ -26,18 +26,21 @@ unsafe impl NSSecureCoding for MEEmailAddress {}
 extern_methods!(
     unsafe impl MEEmailAddress {
         #[method_id(@__retain_semantics Other rawString)]
-        pub unsafe fn rawString(&self) -> Id<NSString>;
+        pub unsafe fn rawString(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other addressString)]
-        pub unsafe fn addressString(&self) -> Option<Id<NSString>>;
+        pub unsafe fn addressString(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithRawString:)]
-        pub unsafe fn initWithRawString(this: Allocated<Self>, raw_string: &NSString) -> Id<Self>;
+        pub unsafe fn initWithRawString(
+            this: Allocated<Self>,
+            raw_string: &NSString,
+        ) -> Retained<Self>;
     }
 );

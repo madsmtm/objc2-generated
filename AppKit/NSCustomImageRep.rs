@@ -37,7 +37,7 @@ extern_methods!(
             size: NSSize,
             drawing_handler_should_be_called_with_flipped_context: bool,
             drawing_handler: &block2::Block<dyn Fn(NSRect) -> Bool>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(drawingHandler)]
@@ -48,13 +48,13 @@ extern_methods!(
             this: Allocated<Self>,
             selector: Sel,
             delegate: &AnyObject,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(drawSelector)]
         pub unsafe fn drawSelector(&self) -> Option<Sel>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
     }
 );
 
@@ -63,10 +63,13 @@ extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCustomImageRep {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -75,6 +78,6 @@ extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCustomImageRep {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

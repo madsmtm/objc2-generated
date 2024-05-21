@@ -24,35 +24,35 @@ unsafe impl NSObjectProtocol for UISceneConnectionOptions {}
 extern_methods!(
     unsafe impl UISceneConnectionOptions {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIOpenURLContext")]
         #[method_id(@__retain_semantics Other URLContexts)]
-        pub unsafe fn URLContexts(&self) -> Id<NSSet<UIOpenURLContext>>;
+        pub unsafe fn URLContexts(&self) -> Retained<NSSet<UIOpenURLContext>>;
 
         #[method_id(@__retain_semantics Other sourceApplication)]
-        pub unsafe fn sourceApplication(&self) -> Option<Id<NSString>>;
+        pub unsafe fn sourceApplication(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other handoffUserActivityType)]
-        pub unsafe fn handoffUserActivityType(&self) -> Option<Id<NSString>>;
+        pub unsafe fn handoffUserActivityType(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other userActivities)]
-        pub unsafe fn userActivities(&self) -> Id<NSSet<NSUserActivity>>;
+        pub unsafe fn userActivities(&self) -> Retained<NSSet<NSUserActivity>>;
 
         #[cfg(feature = "objc2-user-notifications")]
         #[method_id(@__retain_semantics Other notificationResponse)]
-        pub unsafe fn notificationResponse(&self) -> Option<Id<UNNotificationResponse>>;
+        pub unsafe fn notificationResponse(&self) -> Option<Retained<UNNotificationResponse>>;
 
         #[cfg(feature = "UIApplicationShortcutItem")]
         #[method_id(@__retain_semantics Other shortcutItem)]
-        pub unsafe fn shortcutItem(&self) -> Option<Id<UIApplicationShortcutItem>>;
+        pub unsafe fn shortcutItem(&self) -> Option<Retained<UIApplicationShortcutItem>>;
 
         #[cfg(feature = "objc2-cloud-kit")]
         #[method_id(@__retain_semantics Other cloudKitShareMetadata)]
-        pub unsafe fn cloudKitShareMetadata(&self) -> Option<Id<CKShareMetadata>>;
+        pub unsafe fn cloudKitShareMetadata(&self) -> Option<Retained<CKShareMetadata>>;
     }
 );
 
@@ -71,23 +71,23 @@ unsafe impl NSObjectProtocol for UISceneOpenURLOptions {}
 extern_methods!(
     unsafe impl UISceneOpenURLOptions {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other sourceApplication)]
-        pub unsafe fn sourceApplication(&self) -> Option<Id<NSString>>;
+        pub unsafe fn sourceApplication(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other annotation)]
-        pub unsafe fn annotation(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn annotation(&self) -> Option<Retained<AnyObject>>;
 
         #[method(openInPlace)]
         pub unsafe fn openInPlace(&self) -> bool;
 
         #[cfg(feature = "UIEventAttribution")]
         #[method_id(@__retain_semantics Other eventAttribution)]
-        pub unsafe fn eventAttribution(&self) -> Option<Id<UIEventAttribution>>;
+        pub unsafe fn eventAttribution(&self) -> Option<Retained<UIEventAttribution>>;
     }
 );
 
@@ -113,7 +113,7 @@ extern_methods!(
 
         #[cfg(feature = "UIEventAttribution")]
         #[method_id(@__retain_semantics Other eventAttribution)]
-        pub unsafe fn eventAttribution(&self) -> Option<Id<UIEventAttribution>>;
+        pub unsafe fn eventAttribution(&self) -> Option<Retained<UIEventAttribution>>;
 
         #[cfg(feature = "UIEventAttribution")]
         #[method(setEventAttribution:)]
@@ -125,10 +125,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UISceneOpenExternalURLOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -171,7 +171,7 @@ extern_methods!(
     unsafe impl UISceneActivationRequestOptions {
         #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
         #[method_id(@__retain_semantics Other requestingScene)]
-        pub unsafe fn requestingScene(&self) -> Option<Id<UIScene>>;
+        pub unsafe fn requestingScene(&self) -> Option<Retained<UIScene>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
         #[method(setRequestingScene:)]
@@ -192,10 +192,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UISceneActivationRequestOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -219,9 +219,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UISceneDestructionRequestOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

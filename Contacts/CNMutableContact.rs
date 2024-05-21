@@ -43,104 +43,104 @@ extern_methods!(
         pub unsafe fn setContactType(&self, contact_type: CNContactType);
 
         #[method_id(@__retain_semantics Other namePrefix)]
-        pub unsafe fn namePrefix(&self) -> Id<NSString>;
+        pub unsafe fn namePrefix(&self) -> Retained<NSString>;
 
         #[method(setNamePrefix:)]
         pub unsafe fn setNamePrefix(&self, name_prefix: &NSString);
 
         #[method_id(@__retain_semantics Other givenName)]
-        pub unsafe fn givenName(&self) -> Id<NSString>;
+        pub unsafe fn givenName(&self) -> Retained<NSString>;
 
         #[method(setGivenName:)]
         pub unsafe fn setGivenName(&self, given_name: &NSString);
 
         #[method_id(@__retain_semantics Other middleName)]
-        pub unsafe fn middleName(&self) -> Id<NSString>;
+        pub unsafe fn middleName(&self) -> Retained<NSString>;
 
         #[method(setMiddleName:)]
         pub unsafe fn setMiddleName(&self, middle_name: &NSString);
 
         #[method_id(@__retain_semantics Other familyName)]
-        pub unsafe fn familyName(&self) -> Id<NSString>;
+        pub unsafe fn familyName(&self) -> Retained<NSString>;
 
         #[method(setFamilyName:)]
         pub unsafe fn setFamilyName(&self, family_name: &NSString);
 
         #[method_id(@__retain_semantics Other previousFamilyName)]
-        pub unsafe fn previousFamilyName(&self) -> Id<NSString>;
+        pub unsafe fn previousFamilyName(&self) -> Retained<NSString>;
 
         #[method(setPreviousFamilyName:)]
         pub unsafe fn setPreviousFamilyName(&self, previous_family_name: &NSString);
 
         #[method_id(@__retain_semantics Other nameSuffix)]
-        pub unsafe fn nameSuffix(&self) -> Id<NSString>;
+        pub unsafe fn nameSuffix(&self) -> Retained<NSString>;
 
         #[method(setNameSuffix:)]
         pub unsafe fn setNameSuffix(&self, name_suffix: &NSString);
 
         #[method_id(@__retain_semantics Other nickname)]
-        pub unsafe fn nickname(&self) -> Id<NSString>;
+        pub unsafe fn nickname(&self) -> Retained<NSString>;
 
         #[method(setNickname:)]
         pub unsafe fn setNickname(&self, nickname: &NSString);
 
         #[method_id(@__retain_semantics Other organizationName)]
-        pub unsafe fn organizationName(&self) -> Id<NSString>;
+        pub unsafe fn organizationName(&self) -> Retained<NSString>;
 
         #[method(setOrganizationName:)]
         pub unsafe fn setOrganizationName(&self, organization_name: &NSString);
 
         #[method_id(@__retain_semantics Other departmentName)]
-        pub unsafe fn departmentName(&self) -> Id<NSString>;
+        pub unsafe fn departmentName(&self) -> Retained<NSString>;
 
         #[method(setDepartmentName:)]
         pub unsafe fn setDepartmentName(&self, department_name: &NSString);
 
         #[method_id(@__retain_semantics Other jobTitle)]
-        pub unsafe fn jobTitle(&self) -> Id<NSString>;
+        pub unsafe fn jobTitle(&self) -> Retained<NSString>;
 
         #[method(setJobTitle:)]
         pub unsafe fn setJobTitle(&self, job_title: &NSString);
 
         #[method_id(@__retain_semantics Other phoneticGivenName)]
-        pub unsafe fn phoneticGivenName(&self) -> Id<NSString>;
+        pub unsafe fn phoneticGivenName(&self) -> Retained<NSString>;
 
         #[method(setPhoneticGivenName:)]
         pub unsafe fn setPhoneticGivenName(&self, phonetic_given_name: &NSString);
 
         #[method_id(@__retain_semantics Other phoneticMiddleName)]
-        pub unsafe fn phoneticMiddleName(&self) -> Id<NSString>;
+        pub unsafe fn phoneticMiddleName(&self) -> Retained<NSString>;
 
         #[method(setPhoneticMiddleName:)]
         pub unsafe fn setPhoneticMiddleName(&self, phonetic_middle_name: &NSString);
 
         #[method_id(@__retain_semantics Other phoneticFamilyName)]
-        pub unsafe fn phoneticFamilyName(&self) -> Id<NSString>;
+        pub unsafe fn phoneticFamilyName(&self) -> Retained<NSString>;
 
         #[method(setPhoneticFamilyName:)]
         pub unsafe fn setPhoneticFamilyName(&self, phonetic_family_name: &NSString);
 
         #[method_id(@__retain_semantics Other phoneticOrganizationName)]
-        pub unsafe fn phoneticOrganizationName(&self) -> Id<NSString>;
+        pub unsafe fn phoneticOrganizationName(&self) -> Retained<NSString>;
 
         #[method(setPhoneticOrganizationName:)]
         pub unsafe fn setPhoneticOrganizationName(&self, phonetic_organization_name: &NSString);
 
         #[method_id(@__retain_semantics Other note)]
-        pub unsafe fn note(&self) -> Id<NSString>;
+        pub unsafe fn note(&self) -> Retained<NSString>;
 
         #[method(setNote:)]
         pub unsafe fn setNote(&self, note: &NSString);
 
         #[method_id(@__retain_semantics Other imageData)]
-        pub unsafe fn imageData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn imageData(&self) -> Option<Retained<NSData>>;
 
         #[method(setImageData:)]
         pub unsafe fn setImageData(&self, image_data: Option<&NSData>);
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNPhoneNumber"))]
         #[method_id(@__retain_semantics Other phoneNumbers)]
-        pub unsafe fn phoneNumbers(&self) -> Id<NSArray<CNLabeledValue<CNPhoneNumber>>>;
+        pub unsafe fn phoneNumbers(&self) -> Retained<NSArray<CNLabeledValue<CNPhoneNumber>>>;
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNPhoneNumber"))]
         #[method(setPhoneNumbers:)]
@@ -151,7 +151,7 @@ extern_methods!(
 
         #[cfg(feature = "CNLabeledValue")]
         #[method_id(@__retain_semantics Other emailAddresses)]
-        pub unsafe fn emailAddresses(&self) -> Id<NSArray<CNLabeledValue<NSString>>>;
+        pub unsafe fn emailAddresses(&self) -> Retained<NSArray<CNLabeledValue<NSString>>>;
 
         #[cfg(feature = "CNLabeledValue")]
         #[method(setEmailAddresses:)]
@@ -159,7 +159,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNPostalAddress"))]
         #[method_id(@__retain_semantics Other postalAddresses)]
-        pub unsafe fn postalAddresses(&self) -> Id<NSArray<CNLabeledValue<CNPostalAddress>>>;
+        pub unsafe fn postalAddresses(&self) -> Retained<NSArray<CNLabeledValue<CNPostalAddress>>>;
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNPostalAddress"))]
         #[method(setPostalAddresses:)]
@@ -170,7 +170,7 @@ extern_methods!(
 
         #[cfg(feature = "CNLabeledValue")]
         #[method_id(@__retain_semantics Other urlAddresses)]
-        pub unsafe fn urlAddresses(&self) -> Id<NSArray<CNLabeledValue<NSString>>>;
+        pub unsafe fn urlAddresses(&self) -> Retained<NSArray<CNLabeledValue<NSString>>>;
 
         #[cfg(feature = "CNLabeledValue")]
         #[method(setUrlAddresses:)]
@@ -178,7 +178,9 @@ extern_methods!(
 
         #[cfg(all(feature = "CNContactRelation", feature = "CNLabeledValue"))]
         #[method_id(@__retain_semantics Other contactRelations)]
-        pub unsafe fn contactRelations(&self) -> Id<NSArray<CNLabeledValue<CNContactRelation>>>;
+        pub unsafe fn contactRelations(
+            &self,
+        ) -> Retained<NSArray<CNLabeledValue<CNContactRelation>>>;
 
         #[cfg(all(feature = "CNContactRelation", feature = "CNLabeledValue"))]
         #[method(setContactRelations:)]
@@ -189,7 +191,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNSocialProfile"))]
         #[method_id(@__retain_semantics Other socialProfiles)]
-        pub unsafe fn socialProfiles(&self) -> Id<NSArray<CNLabeledValue<CNSocialProfile>>>;
+        pub unsafe fn socialProfiles(&self) -> Retained<NSArray<CNLabeledValue<CNSocialProfile>>>;
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNSocialProfile"))]
         #[method(setSocialProfiles:)]
@@ -202,7 +204,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other instantMessageAddresses)]
         pub unsafe fn instantMessageAddresses(
             &self,
-        ) -> Id<NSArray<CNLabeledValue<CNInstantMessageAddress>>>;
+        ) -> Retained<NSArray<CNLabeledValue<CNInstantMessageAddress>>>;
 
         #[cfg(all(feature = "CNInstantMessageAddress", feature = "CNLabeledValue"))]
         #[method(setInstantMessageAddresses:)]
@@ -212,13 +214,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other birthday)]
-        pub unsafe fn birthday(&self) -> Option<Id<NSDateComponents>>;
+        pub unsafe fn birthday(&self) -> Option<Retained<NSDateComponents>>;
 
         #[method(setBirthday:)]
         pub unsafe fn setBirthday(&self, birthday: Option<&NSDateComponents>);
 
         #[method_id(@__retain_semantics Other nonGregorianBirthday)]
-        pub unsafe fn nonGregorianBirthday(&self) -> Option<Id<NSDateComponents>>;
+        pub unsafe fn nonGregorianBirthday(&self) -> Option<Retained<NSDateComponents>>;
 
         #[method(setNonGregorianBirthday:)]
         pub unsafe fn setNonGregorianBirthday(
@@ -228,7 +230,7 @@ extern_methods!(
 
         #[cfg(feature = "CNLabeledValue")]
         #[method_id(@__retain_semantics Other dates)]
-        pub unsafe fn dates(&self) -> Id<NSArray<CNLabeledValue<NSDateComponents>>>;
+        pub unsafe fn dates(&self) -> Retained<NSArray<CNLabeledValue<NSDateComponents>>>;
 
         #[cfg(feature = "CNLabeledValue")]
         #[method(setDates:)]
@@ -241,9 +243,9 @@ extern_methods!(
     #[cfg(feature = "CNContact")]
     unsafe impl CNMutableContact {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -26,7 +26,7 @@ extern_methods!(
             object_id: &NSManagedObjectID,
             values: &NSDictionary<NSString, AnyObject>,
             version: u64,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(updateWithValues:version:)]
         pub unsafe fn updateWithValues_version(
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "NSManagedObjectID")]
         #[method_id(@__retain_semantics Other objectID)]
-        pub unsafe fn objectID(&self) -> Id<NSManagedObjectID>;
+        pub unsafe fn objectID(&self) -> Retained<NSManagedObjectID>;
 
         #[method(version)]
         pub unsafe fn version(&self) -> u64;
@@ -47,7 +47,7 @@ extern_methods!(
         pub unsafe fn valueForPropertyDescription(
             &self,
             prop: &NSPropertyDescription,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
     }
 );
 
@@ -55,9 +55,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSIncrementalStoreNode {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

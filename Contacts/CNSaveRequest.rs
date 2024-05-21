@@ -68,7 +68,7 @@ extern_methods!(
         pub unsafe fn removeMember_fromGroup(&self, contact: &CNContact, group: &CNGroup);
 
         #[method_id(@__retain_semantics Other transactionAuthor)]
-        pub unsafe fn transactionAuthor(&self) -> Option<Id<NSString>>;
+        pub unsafe fn transactionAuthor(&self) -> Option<Retained<NSString>>;
 
         #[method(setTransactionAuthor:)]
         pub unsafe fn setTransactionAuthor(&self, transaction_author: Option<&NSString>);
@@ -85,9 +85,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNSaveRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

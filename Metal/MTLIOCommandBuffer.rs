@@ -121,7 +121,7 @@ extern_protocol!(
         unsafe fn signalEvent_value(&self, event: &ProtocolObject<dyn MTLSharedEvent>, value: u64);
 
         #[method_id(@__retain_semantics Other label)]
-        unsafe fn label(&self) -> Option<Id<NSString>>;
+        unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         #[method(setLabel:)]
         unsafe fn setLabel(&self, label: Option<&NSString>);
@@ -130,7 +130,7 @@ extern_protocol!(
         unsafe fn status(&self) -> MTLIOStatus;
 
         #[method_id(@__retain_semantics Other error)]
-        unsafe fn error(&self) -> Option<Id<NSError>>;
+        unsafe fn error(&self) -> Option<Retained<NSError>>;
     }
 
     unsafe impl ProtocolType for dyn MTLIOCommandBuffer {}

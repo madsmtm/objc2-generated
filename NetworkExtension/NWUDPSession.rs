@@ -50,18 +50,18 @@ extern_methods!(
         pub unsafe fn initWithUpgradeForSession(
             this: Allocated<Self>,
             session: &NWUDPSession,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(state)]
         pub unsafe fn state(&self) -> NWUDPSessionState;
 
         #[cfg(feature = "NWEndpoint")]
         #[method_id(@__retain_semantics Other endpoint)]
-        pub unsafe fn endpoint(&self) -> Id<NWEndpoint>;
+        pub unsafe fn endpoint(&self) -> Retained<NWEndpoint>;
 
         #[cfg(feature = "NWEndpoint")]
         #[method_id(@__retain_semantics Other resolvedEndpoint)]
-        pub unsafe fn resolvedEndpoint(&self) -> Option<Id<NWEndpoint>>;
+        pub unsafe fn resolvedEndpoint(&self) -> Option<Retained<NWEndpoint>>;
 
         #[method(isViable)]
         pub unsafe fn isViable(&self) -> bool;
@@ -71,7 +71,7 @@ extern_methods!(
 
         #[cfg(feature = "NWPath")]
         #[method_id(@__retain_semantics Other currentPath)]
-        pub unsafe fn currentPath(&self) -> Option<Id<NWPath>>;
+        pub unsafe fn currentPath(&self) -> Option<Retained<NWPath>>;
 
         #[method(tryNextResolvedEndpoint)]
         pub unsafe fn tryNextResolvedEndpoint(&self);
@@ -112,9 +112,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NWUDPSession {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

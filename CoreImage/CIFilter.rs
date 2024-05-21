@@ -403,10 +403,10 @@ extern_methods!(
     unsafe impl CIFilter {
         #[cfg(feature = "CIImage")]
         #[method_id(@__retain_semantics Other outputImage)]
-        pub unsafe fn outputImage(&self) -> Option<Id<CIImage>>;
+        pub unsafe fn outputImage(&self) -> Option<Retained<CIImage>>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
@@ -418,16 +418,16 @@ extern_methods!(
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[method_id(@__retain_semantics Other inputKeys)]
-        pub unsafe fn inputKeys(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn inputKeys(&self) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other outputKeys)]
-        pub unsafe fn outputKeys(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn outputKeys(&self) -> Retained<NSArray<NSString>>;
 
         #[method(setDefaults)]
         pub unsafe fn setDefaults(&self);
 
         #[method_id(@__retain_semantics Other attributes)]
-        pub unsafe fn attributes(&self) -> Id<NSDictionary<NSString, AnyObject>>;
+        pub unsafe fn attributes(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "CIImage", feature = "CIKernel"))]
         #[method_id(@__retain_semantics Other apply:arguments:options:)]
@@ -436,7 +436,7 @@ extern_methods!(
             k: &CIKernel,
             args: Option<&NSArray>,
             dict: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Option<Id<CIImage>>;
+        ) -> Option<Retained<CIImage>>;
     }
 );
 
@@ -444,10 +444,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIFilter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -455,11 +455,11 @@ extern_protocol!(
     pub unsafe trait CIFilterProtocol {
         #[cfg(feature = "CIImage")]
         #[method_id(@__retain_semantics Other outputImage)]
-        unsafe fn outputImage(&self) -> Option<Id<CIImage>>;
+        unsafe fn outputImage(&self) -> Option<Retained<CIImage>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other customAttributes)]
-        unsafe fn customAttributes() -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        unsafe fn customAttributes() -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
     }
 
     unsafe impl ProtocolType for dyn CIFilterProtocol {
@@ -471,21 +471,23 @@ extern_methods!(
     /// CIFilterRegistry
     unsafe impl CIFilter {
         #[method_id(@__retain_semantics Other filterWithName:)]
-        pub unsafe fn filterWithName(name: &NSString) -> Option<Id<CIFilter>>;
+        pub unsafe fn filterWithName(name: &NSString) -> Option<Retained<CIFilter>>;
 
         #[method_id(@__retain_semantics Other filterWithName:withInputParameters:)]
         pub unsafe fn filterWithName_withInputParameters(
             name: &NSString,
             params: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Option<Id<CIFilter>>;
+        ) -> Option<Retained<CIFilter>>;
 
         #[method_id(@__retain_semantics Other filterNamesInCategory:)]
-        pub unsafe fn filterNamesInCategory(category: Option<&NSString>) -> Id<NSArray<NSString>>;
+        pub unsafe fn filterNamesInCategory(
+            category: Option<&NSString>,
+        ) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other filterNamesInCategories:)]
         pub unsafe fn filterNamesInCategories(
             categories: Option<&NSArray<NSString>>,
-        ) -> Id<NSArray<NSString>>;
+        ) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "CIFilterConstructor")]
         #[method(registerFilterName:constructor:classAttributes:)]
@@ -496,20 +498,22 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other localizedNameForFilterName:)]
-        pub unsafe fn localizedNameForFilterName(filter_name: &NSString) -> Option<Id<NSString>>;
+        pub unsafe fn localizedNameForFilterName(
+            filter_name: &NSString,
+        ) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other localizedNameForCategory:)]
-        pub unsafe fn localizedNameForCategory(category: &NSString) -> Id<NSString>;
+        pub unsafe fn localizedNameForCategory(category: &NSString) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other localizedDescriptionForFilterName:)]
         pub unsafe fn localizedDescriptionForFilterName(
             filter_name: &NSString,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other localizedReferenceDocumentationForFilterName:)]
         pub unsafe fn localizedReferenceDocumentationForFilterName(
             filter_name: &NSString,
-        ) -> Option<Id<NSURL>>;
+        ) -> Option<Retained<NSURL>>;
     }
 );
 
@@ -521,6 +525,6 @@ extern_methods!(
         pub unsafe fn serializedXMPFromFilters_inputImageExtent(
             filters: &NSArray<CIFilter>,
             extent: CGRect,
-        ) -> Option<Id<NSData>>;
+        ) -> Option<Retained<NSData>>;
     }
 );

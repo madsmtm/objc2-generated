@@ -28,7 +28,7 @@ extern_methods!(
             source_controller: &AnyObject,
             destination_controller: &AnyObject,
             perform_handler: &block2::Block<dyn Fn()>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithIdentifier:source:destination:)]
         pub unsafe fn initWithIdentifier_source_destination(
@@ -36,16 +36,16 @@ extern_methods!(
             identifier: &NSStoryboardSegueIdentifier,
             source_controller: &AnyObject,
             destination_controller: &AnyObject,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSStoryboardSegueIdentifier>>;
+        pub unsafe fn identifier(&self) -> Option<Retained<NSStoryboardSegueIdentifier>>;
 
         #[method_id(@__retain_semantics Other sourceController)]
-        pub unsafe fn sourceController(&self) -> Id<AnyObject>;
+        pub unsafe fn sourceController(&self) -> Retained<AnyObject>;
 
         #[method_id(@__retain_semantics Other destinationController)]
-        pub unsafe fn destinationController(&self) -> Id<AnyObject>;
+        pub unsafe fn destinationController(&self) -> Retained<AnyObject>;
 
         #[method(perform)]
         pub unsafe fn perform(&self);
@@ -56,10 +56,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSStoryboardSegue {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

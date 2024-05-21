@@ -580,7 +580,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method_id(@__retain_semantics Other window)]
-        pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Id<NSWindow>>;
+        pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Retained<NSWindow>>;
 
         #[method(windowNumber)]
         pub unsafe fn windowNumber(&self) -> NSInteger;
@@ -588,7 +588,7 @@ extern_methods!(
         #[cfg(feature = "NSGraphicsContext")]
         #[deprecated = "This method always returns nil. If you need access to the current drawing context, use [NSGraphicsContext currentContext] inside of a draw operation."]
         #[method_id(@__retain_semantics Other context)]
-        pub unsafe fn context(&self) -> Option<Id<NSGraphicsContext>>;
+        pub unsafe fn context(&self) -> Option<Retained<NSGraphicsContext>>;
 
         #[method(clickCount)]
         pub unsafe fn clickCount(&self) -> NSInteger;
@@ -630,16 +630,16 @@ extern_methods!(
         pub unsafe fn isDirectionInvertedFromDevice(&self) -> bool;
 
         #[method_id(@__retain_semantics Other characters)]
-        pub unsafe fn characters(&self) -> Option<Id<NSString>>;
+        pub unsafe fn characters(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other charactersIgnoringModifiers)]
-        pub unsafe fn charactersIgnoringModifiers(&self) -> Option<Id<NSString>>;
+        pub unsafe fn charactersIgnoringModifiers(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other charactersByApplyingModifiers:)]
         pub unsafe fn charactersByApplyingModifiers(
             &self,
             modifiers: NSEventModifierFlags,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[method(isARepeat)]
         pub unsafe fn isARepeat(&self) -> bool;
@@ -655,7 +655,7 @@ extern_methods!(
 
         #[cfg(feature = "NSTrackingArea")]
         #[method_id(@__retain_semantics Other trackingArea)]
-        pub unsafe fn trackingArea(&self) -> Option<Id<NSTrackingArea>>;
+        pub unsafe fn trackingArea(&self) -> Option<Retained<NSTrackingArea>>;
 
         #[method(subtype)]
         pub unsafe fn subtype(&self) -> NSEventSubtype;
@@ -670,7 +670,7 @@ extern_methods!(
         pub unsafe fn eventRef(&self) -> *mut c_void;
 
         #[method_id(@__retain_semantics Other eventWithEventRef:)]
-        pub unsafe fn eventWithEventRef(event_ref: NonNull<c_void>) -> Option<Id<NSEvent>>;
+        pub unsafe fn eventWithEventRef(event_ref: NonNull<c_void>) -> Option<Retained<NSEvent>>;
 
         #[method(isMouseCoalescingEnabled)]
         pub unsafe fn isMouseCoalescingEnabled() -> bool;
@@ -706,7 +706,7 @@ extern_methods!(
         pub unsafe fn tangentialPressure(&self) -> c_float;
 
         #[method_id(@__retain_semantics Other vendorDefined)]
-        pub unsafe fn vendorDefined(&self) -> Id<AnyObject>;
+        pub unsafe fn vendorDefined(&self) -> Retained<AnyObject>;
 
         #[method(vendorID)]
         pub unsafe fn vendorID(&self) -> NSUInteger;
@@ -744,19 +744,22 @@ extern_methods!(
             &self,
             phase: NSTouchPhase,
             view: Option<&NSView>,
-        ) -> Id<NSSet<NSTouch>>;
+        ) -> Retained<NSSet<NSTouch>>;
 
         #[cfg(feature = "NSTouch")]
         #[method_id(@__retain_semantics Other allTouches)]
-        pub unsafe fn allTouches(&self) -> Id<NSSet<NSTouch>>;
+        pub unsafe fn allTouches(&self) -> Retained<NSSet<NSTouch>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSTouch", feature = "NSView"))]
         #[method_id(@__retain_semantics Other touchesForView:)]
-        pub unsafe fn touchesForView(&self, view: &NSView) -> Id<NSSet<NSTouch>>;
+        pub unsafe fn touchesForView(&self, view: &NSView) -> Retained<NSSet<NSTouch>>;
 
         #[cfg(feature = "NSTouch")]
         #[method_id(@__retain_semantics Other coalescedTouchesForTouch:)]
-        pub unsafe fn coalescedTouchesForTouch(&self, touch: &NSTouch) -> Id<NSArray<NSTouch>>;
+        pub unsafe fn coalescedTouchesForTouch(
+            &self,
+            touch: &NSTouch,
+        ) -> Retained<NSArray<NSTouch>>;
 
         #[method(phase)]
         pub unsafe fn phase(&self) -> NSEventPhase;
@@ -807,7 +810,7 @@ extern_methods!(
             e_num: NSInteger,
             c_num: NSInteger,
             pressure: c_float,
-        ) -> Option<Id<NSEvent>>;
+        ) -> Option<Retained<NSEvent>>;
 
         #[cfg(feature = "NSGraphicsContext")]
         #[method_id(@__retain_semantics Other keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:)]
@@ -822,7 +825,7 @@ extern_methods!(
             ukeys: &NSString,
             flag: bool,
             code: c_ushort,
-        ) -> Option<Id<NSEvent>>;
+        ) -> Option<Retained<NSEvent>>;
 
         #[cfg(feature = "NSGraphicsContext")]
         #[method_id(@__retain_semantics Other enterExitEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:)]
@@ -836,7 +839,7 @@ extern_methods!(
             e_num: NSInteger,
             t_num: NSInteger,
             data: *mut c_void,
-        ) -> Option<Id<NSEvent>>;
+        ) -> Option<Retained<NSEvent>>;
 
         #[cfg(feature = "NSGraphicsContext")]
         #[method_id(@__retain_semantics Other otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:)]
@@ -850,7 +853,7 @@ extern_methods!(
             subtype: c_short,
             d1: NSInteger,
             d2: NSInteger,
-        ) -> Option<Id<NSEvent>>;
+        ) -> Option<Retained<NSEvent>>;
 
         #[method(mouseLocation)]
         pub unsafe fn mouseLocation() -> NSPoint;
@@ -875,14 +878,14 @@ extern_methods!(
         pub unsafe fn addGlobalMonitorForEventsMatchingMask_handler(
             mask: NSEventMask,
             block: &block2::Block<dyn Fn(NonNull<NSEvent>)>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Other addLocalMonitorForEventsMatchingMask:handler:)]
         pub unsafe fn addLocalMonitorForEventsMatchingMask_handler(
             mask: NSEventMask,
             block: &block2::Block<dyn Fn(NonNull<NSEvent>) -> *mut NSEvent>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[method(removeMonitor:)]
         pub unsafe fn removeMonitor(event_monitor: &AnyObject);
@@ -893,10 +896,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSEvent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

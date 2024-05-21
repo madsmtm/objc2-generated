@@ -26,24 +26,24 @@ unsafe impl NSSecureCoding for CKUserIdentity {}
 extern_methods!(
     unsafe impl CKUserIdentity {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
         #[method_id(@__retain_semantics Other lookupInfo)]
-        pub unsafe fn lookupInfo(&self) -> Option<Id<CKUserIdentityLookupInfo>>;
+        pub unsafe fn lookupInfo(&self) -> Option<Retained<CKUserIdentityLookupInfo>>;
 
         #[method_id(@__retain_semantics Other nameComponents)]
-        pub unsafe fn nameComponents(&self) -> Option<Id<NSPersonNameComponents>>;
+        pub unsafe fn nameComponents(&self) -> Option<Retained<NSPersonNameComponents>>;
 
         #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other userRecordID)]
-        pub unsafe fn userRecordID(&self) -> Option<Id<CKRecordID>>;
+        pub unsafe fn userRecordID(&self) -> Option<Retained<CKRecordID>>;
 
         #[method_id(@__retain_semantics Other contactIdentifiers)]
-        pub unsafe fn contactIdentifiers(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn contactIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         #[method(hasiCloudAccount)]
         pub unsafe fn hasiCloudAccount(&self) -> bool;

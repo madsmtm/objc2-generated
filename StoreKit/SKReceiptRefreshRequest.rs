@@ -28,10 +28,12 @@ extern_methods!(
         pub unsafe fn initWithReceiptProperties(
             this: Allocated<Self>,
             properties: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other receiptProperties)]
-        pub unsafe fn receiptProperties(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        pub unsafe fn receiptProperties(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
     }
 );
 
@@ -40,10 +42,10 @@ extern_methods!(
     #[cfg(feature = "SKRequest")]
     unsafe impl SKReceiptRefreshRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

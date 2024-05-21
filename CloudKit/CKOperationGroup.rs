@@ -55,17 +55,17 @@ unsafe impl NSSecureCoding for CKOperationGroup {}
 extern_methods!(
     unsafe impl CKOperationGroup {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other operationGroupID)]
-        pub unsafe fn operationGroupID(&self) -> Id<NSString>;
+        pub unsafe fn operationGroupID(&self) -> Retained<NSString>;
 
         #[cfg(feature = "CKOperation")]
         #[method_id(@__retain_semantics Other defaultConfiguration)]
-        pub unsafe fn defaultConfiguration(&self) -> Id<CKOperationConfiguration>;
+        pub unsafe fn defaultConfiguration(&self) -> Retained<CKOperationConfiguration>;
 
         #[cfg(feature = "CKOperation")]
         #[method(setDefaultConfiguration:)]
@@ -75,7 +75,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -107,6 +107,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKOperationGroup {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

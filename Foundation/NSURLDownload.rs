@@ -29,7 +29,7 @@ extern_methods!(
             this: Allocated<Self>,
             request: &NSURLRequest,
             delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
@@ -39,7 +39,7 @@ extern_methods!(
             resume_data: &NSData,
             delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
             path: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(cancel)]
         pub unsafe fn cancel(&self);
@@ -50,11 +50,11 @@ extern_methods!(
 
         #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other request)]
-        pub unsafe fn request(&self) -> Id<NSURLRequest>;
+        pub unsafe fn request(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other resumeData)]
-        pub unsafe fn resumeData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn resumeData(&self) -> Option<Retained<NSData>>;
 
         #[method(deletesFileUponFailure)]
         pub unsafe fn deletesFileUponFailure(&self) -> bool;
@@ -68,10 +68,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLDownload {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -89,7 +89,7 @@ extern_protocol!(
             download: &NSURLDownload,
             request: &NSURLRequest,
             redirect_response: Option<&NSURLResponse>,
-        ) -> Option<Id<NSURLRequest>>;
+        ) -> Option<Retained<NSURLRequest>>;
 
         #[cfg(feature = "NSURLProtectionSpace")]
         #[optional]

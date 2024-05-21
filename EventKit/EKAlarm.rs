@@ -28,10 +28,10 @@ extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKAlarm {
         #[method_id(@__retain_semantics Other alarmWithAbsoluteDate:)]
-        pub unsafe fn alarmWithAbsoluteDate(date: &NSDate) -> Id<EKAlarm>;
+        pub unsafe fn alarmWithAbsoluteDate(date: &NSDate) -> Retained<EKAlarm>;
 
         #[method_id(@__retain_semantics Other alarmWithRelativeOffset:)]
-        pub unsafe fn alarmWithRelativeOffset(offset: NSTimeInterval) -> Id<EKAlarm>;
+        pub unsafe fn alarmWithRelativeOffset(offset: NSTimeInterval) -> Retained<EKAlarm>;
 
         #[method(relativeOffset)]
         pub unsafe fn relativeOffset(&self) -> NSTimeInterval;
@@ -40,14 +40,14 @@ extern_methods!(
         pub unsafe fn setRelativeOffset(&self, relative_offset: NSTimeInterval);
 
         #[method_id(@__retain_semantics Other absoluteDate)]
-        pub unsafe fn absoluteDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn absoluteDate(&self) -> Option<Retained<NSDate>>;
 
         #[method(setAbsoluteDate:)]
         pub unsafe fn setAbsoluteDate(&self, absolute_date: Option<&NSDate>);
 
         #[cfg(feature = "EKStructuredLocation")]
         #[method_id(@__retain_semantics Other structuredLocation)]
-        pub unsafe fn structuredLocation(&self) -> Option<Id<EKStructuredLocation>>;
+        pub unsafe fn structuredLocation(&self) -> Option<Retained<EKStructuredLocation>>;
 
         #[cfg(feature = "EKStructuredLocation")]
         #[method(setStructuredLocation:)]
@@ -69,20 +69,20 @@ extern_methods!(
         pub unsafe fn r#type(&self) -> EKAlarmType;
 
         #[method_id(@__retain_semantics Other emailAddress)]
-        pub unsafe fn emailAddress(&self) -> Option<Id<NSString>>;
+        pub unsafe fn emailAddress(&self) -> Option<Retained<NSString>>;
 
         #[method(setEmailAddress:)]
         pub unsafe fn setEmailAddress(&self, email_address: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other soundName)]
-        pub unsafe fn soundName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn soundName(&self) -> Option<Retained<NSString>>;
 
         #[method(setSoundName:)]
         pub unsafe fn setSoundName(&self, sound_name: Option<&NSString>);
 
         #[deprecated]
         #[method_id(@__retain_semantics Other url)]
-        pub unsafe fn url(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
         #[deprecated]
         #[method(setUrl:)]
@@ -95,9 +95,9 @@ extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKAlarm {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

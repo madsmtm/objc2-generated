@@ -33,14 +33,14 @@ extern_methods!(
         pub unsafe fn mediaSubtypes(&self) -> PHAssetMediaSubtype;
 
         #[method_id(@__retain_semantics Other creationDate)]
-        pub unsafe fn creationDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method_id(@__retain_semantics Other location)]
-        pub unsafe fn location(&self) -> Option<Id<CLLocation>>;
+        pub unsafe fn location(&self) -> Option<Retained<CLLocation>>;
 
         #[method_id(@__retain_semantics Other uniformTypeIdentifier)]
-        pub unsafe fn uniformTypeIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn uniformTypeIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "PhotosTypes")]
         #[method(playbackStyle)]
@@ -48,22 +48,22 @@ extern_methods!(
 
         #[cfg(feature = "PHAdjustmentData")]
         #[method_id(@__retain_semantics Other adjustmentData)]
-        pub unsafe fn adjustmentData(&self) -> Option<Id<PHAdjustmentData>>;
+        pub unsafe fn adjustmentData(&self) -> Option<Retained<PHAdjustmentData>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other displaySizeImage)]
-        pub unsafe fn displaySizeImage(&self) -> Option<Id<NSImage>>;
+        pub unsafe fn displaySizeImage(&self) -> Option<Retained<NSImage>>;
 
         #[method_id(@__retain_semantics Other fullSizeImageURL)]
-        pub unsafe fn fullSizeImageURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn fullSizeImageURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(fullSizeImageOrientation)]
         pub unsafe fn fullSizeImageOrientation(&self) -> c_int;
 
         #[cfg(feature = "PHLivePhoto")]
         #[method_id(@__retain_semantics Other livePhoto)]
-        pub unsafe fn livePhoto(&self) -> Option<Id<PHLivePhoto>>;
+        pub unsafe fn livePhoto(&self) -> Option<Retained<PHLivePhoto>>;
     }
 );
 
@@ -71,9 +71,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHContentEditingInput {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

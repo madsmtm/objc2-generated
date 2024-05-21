@@ -25,7 +25,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIPointerInteractionDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIPointerInteractionDelegate>>>;
 
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
@@ -37,7 +37,7 @@ extern_methods!(
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: Option<&ProtocolObject<dyn UIPointerInteractionDelegate>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
@@ -48,10 +48,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPointerInteraction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -67,7 +67,7 @@ extern_protocol!(
             interaction: &UIPointerInteraction,
             request: &UIPointerRegionRequest,
             default_region: &UIPointerRegion,
-        ) -> Option<Id<UIPointerRegion>>;
+        ) -> Option<Retained<UIPointerRegion>>;
 
         #[cfg(all(
             feature = "UIHoverStyle",
@@ -80,7 +80,7 @@ extern_protocol!(
             &self,
             interaction: &UIPointerInteraction,
             region: &UIPointerRegion,
-        ) -> Option<Id<UIPointerStyle>>;
+        ) -> Option<Retained<UIPointerStyle>>;
 
         #[cfg(feature = "UIPointerRegion")]
         #[optional]
@@ -133,10 +133,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPointerRegionRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

@@ -43,16 +43,16 @@ extern_methods!(
     #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput")]
         #[method_id(@__retain_semantics Other largeBlob)]
         pub unsafe fn largeBlob(
             &self,
-        ) -> Option<Id<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput>>;
+        ) -> Option<Retained<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput>>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput")]
         #[method(setLargeBlob:)]

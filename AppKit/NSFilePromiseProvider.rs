@@ -23,7 +23,7 @@ unsafe impl NSPasteboardWriting for NSFilePromiseProvider {}
 extern_methods!(
     unsafe impl NSFilePromiseProvider {
         #[method_id(@__retain_semantics Other fileType)]
-        pub unsafe fn fileType(&self) -> Id<NSString>;
+        pub unsafe fn fileType(&self) -> Retained<NSString>;
 
         #[method(setFileType:)]
         pub unsafe fn setFileType(&self, file_type: &NSString);
@@ -31,7 +31,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSFilePromiseProviderDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSFilePromiseProviderDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -40,7 +40,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn userInfo(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&AnyObject>);
@@ -50,10 +50,10 @@ extern_methods!(
             this: Allocated<Self>,
             file_type: &NSString,
             delegate: &ProtocolObject<dyn NSFilePromiseProviderDelegate>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -61,7 +61,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFilePromiseProvider {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -73,7 +73,7 @@ extern_protocol!(
             file_promise_provider: &NSFilePromiseProvider,
             file_type: &NSString,
             mtm: MainThreadMarker,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(feature = "block2")]
         #[method(filePromiseProvider:writePromiseToURL:completionHandler:)]
@@ -90,7 +90,7 @@ extern_protocol!(
             &self,
             file_promise_provider: &NSFilePromiseProvider,
             mtm: MainThreadMarker,
-        ) -> Id<NSOperationQueue>;
+        ) -> Retained<NSOperationQueue>;
     }
 
     unsafe impl ProtocolType for dyn NSFilePromiseProviderDelegate {}

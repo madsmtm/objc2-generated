@@ -35,7 +35,7 @@ extern_methods!(
         pub unsafe fn dimension(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other dimensions)]
-        pub unsafe fn dimensions(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn dimensions(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -43,14 +43,14 @@ extern_methods!(
         pub unsafe fn layerWithReductionType_dimension(
             reduction_type: MLCReductionType,
             dimension: NSUInteger,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
         #[method_id(@__retain_semantics Other layerWithReductionType:dimensions:)]
         pub unsafe fn layerWithReductionType_dimensions(
             reduction_type: MLCReductionType,
             dimensions: &NSArray<NSNumber>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -60,10 +60,10 @@ extern_methods!(
     unsafe impl MLCReductionLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

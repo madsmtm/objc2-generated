@@ -29,7 +29,7 @@ extern_methods!(
         pub unsafe fn geoJSONObjectsWithData_error(
             &self,
             data: &NSData,
-        ) -> Result<Id<NSArray<ProtocolObject<dyn MKGeoJSONObject>>>, Id<NSError>>;
+        ) -> Result<Retained<NSArray<ProtocolObject<dyn MKGeoJSONObject>>>, Retained<NSError>>;
     }
 );
 
@@ -37,10 +37,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKGeoJSONDecoder {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -61,14 +61,14 @@ unsafe impl NSObjectProtocol for MKGeoJSONFeature {}
 extern_methods!(
     unsafe impl MKGeoJSONFeature {
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other properties)]
-        pub unsafe fn properties(&self) -> Option<Id<NSData>>;
+        pub unsafe fn properties(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "MKShape")]
         #[method_id(@__retain_semantics Other geometry)]
-        pub unsafe fn geometry(&self) -> Id<NSArray<MKShape>>;
+        pub unsafe fn geometry(&self) -> Retained<NSArray<MKShape>>;
     }
 );
 
@@ -76,10 +76,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKGeoJSONFeature {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

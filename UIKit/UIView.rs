@@ -356,10 +356,13 @@ extern_methods!(
         pub fn layerClass(mtm: MainThreadMarker) -> &'static AnyClass;
 
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method(isUserInteractionEnabled)]
         pub unsafe fn isUserInteractionEnabled(&self) -> bool;
@@ -376,7 +379,7 @@ extern_methods!(
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other layer)]
-        pub fn layer(&self) -> Id<CALayer>;
+        pub fn layer(&self) -> Retained<CALayer>;
 
         #[method(canBecomeFocused)]
         pub unsafe fn canBecomeFocused(&self) -> bool;
@@ -385,7 +388,7 @@ extern_methods!(
         pub unsafe fn isFocused(&self) -> bool;
 
         #[method_id(@__retain_semantics Other focusGroupIdentifier)]
-        pub unsafe fn focusGroupIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn focusGroupIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(setFocusGroupIdentifier:)]
         pub unsafe fn setFocusGroupIdentifier(&self, focus_group_identifier: Option<&NSString>);
@@ -400,7 +403,7 @@ extern_methods!(
 
         #[cfg(feature = "UIFocusEffect")]
         #[method_id(@__retain_semantics Other focusEffect)]
-        pub unsafe fn focusEffect(&self) -> Option<Id<UIFocusEffect>>;
+        pub unsafe fn focusEffect(&self) -> Option<Retained<UIFocusEffect>>;
 
         #[cfg(feature = "UIFocusEffect")]
         #[method(setFocusEffect:)]
@@ -443,10 +446,10 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -512,7 +515,7 @@ extern_methods!(
             &self,
             point: CGPoint,
             event: Option<&UIEvent>,
-        ) -> Option<Id<UIView>>;
+        ) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UIEvent")]
         #[method(pointInside:withEvent:)]
@@ -560,14 +563,14 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIView {
         #[method_id(@__retain_semantics Other superview)]
-        pub fn superview(&self) -> Option<Id<UIView>>;
+        pub fn superview(&self) -> Option<Retained<UIView>>;
 
         #[method_id(@__retain_semantics Other subviews)]
-        pub fn subviews(&self) -> Id<NSArray<UIView>>;
+        pub fn subviews(&self) -> Retained<NSArray<UIView>>;
 
         #[cfg(feature = "UIWindow")]
         #[method_id(@__retain_semantics Other window)]
-        pub fn window(&self) -> Option<Id<UIWindow>>;
+        pub fn window(&self) -> Option<Retained<UIWindow>>;
 
         #[method(removeFromSuperview)]
         pub unsafe fn removeFromSuperview(&self);
@@ -620,7 +623,7 @@ extern_methods!(
         pub unsafe fn isDescendantOfView(&self, view: &UIView) -> bool;
 
         #[method_id(@__retain_semantics Other viewWithTag:)]
-        pub unsafe fn viewWithTag(&self, tag: NSInteger) -> Option<Id<UIView>>;
+        pub unsafe fn viewWithTag(&self, tag: NSInteger) -> Option<Retained<UIView>>;
 
         #[method(setNeedsLayout)]
         pub unsafe fn setNeedsLayout(&self);
@@ -680,15 +683,15 @@ extern_methods!(
 
         #[cfg(feature = "UILayoutGuide")]
         #[method_id(@__retain_semantics Other layoutMarginsGuide)]
-        pub unsafe fn layoutMarginsGuide(&self) -> Id<UILayoutGuide>;
+        pub unsafe fn layoutMarginsGuide(&self) -> Retained<UILayoutGuide>;
 
         #[cfg(feature = "UILayoutGuide")]
         #[method_id(@__retain_semantics Other readableContentGuide)]
-        pub unsafe fn readableContentGuide(&self) -> Id<UILayoutGuide>;
+        pub unsafe fn readableContentGuide(&self) -> Retained<UILayoutGuide>;
 
         #[cfg(feature = "UILayoutGuide")]
         #[method_id(@__retain_semantics Other safeAreaLayoutGuide)]
-        pub unsafe fn safeAreaLayoutGuide(&self) -> Id<UILayoutGuide>;
+        pub unsafe fn safeAreaLayoutGuide(&self) -> Retained<UILayoutGuide>;
 
         #[cfg(all(
             feature = "UIKeyboardLayoutGuide",
@@ -696,7 +699,7 @@ extern_methods!(
             feature = "UITrackingLayoutGuide"
         ))]
         #[method_id(@__retain_semantics Other keyboardLayoutGuide)]
-        pub unsafe fn keyboardLayoutGuide(&self) -> Id<UIKeyboardLayoutGuide>;
+        pub unsafe fn keyboardLayoutGuide(&self) -> Retained<UIKeyboardLayoutGuide>;
     }
 );
 
@@ -721,7 +724,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub fn backgroundColor(&self) -> Option<Id<UIColor>>;
+        pub fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setBackgroundColor:)]
@@ -766,14 +769,14 @@ extern_methods!(
         pub unsafe fn setContentStretch(&self, content_stretch: CGRect);
 
         #[method_id(@__retain_semantics Other maskView)]
-        pub unsafe fn maskView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn maskView(&self) -> Option<Retained<UIView>>;
 
         #[method(setMaskView:)]
         pub unsafe fn setMaskView(&self, mask_view: Option<&UIView>);
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other tintColor)]
-        pub unsafe fn tintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setTintColor:)]
@@ -944,7 +947,7 @@ extern_methods!(
     unsafe impl UIView {
         #[cfg(feature = "UIGestureRecognizer")]
         #[method_id(@__retain_semantics Other gestureRecognizers)]
-        pub fn gestureRecognizers(&self) -> Option<Id<NSArray<UIGestureRecognizer>>>;
+        pub fn gestureRecognizers(&self) -> Option<Retained<NSArray<UIGestureRecognizer>>>;
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[method(setGestureRecognizers:)]
@@ -984,7 +987,7 @@ extern_methods!(
 
         #[cfg(feature = "UIMotionEffect")]
         #[method_id(@__retain_semantics Other motionEffects)]
-        pub unsafe fn motionEffects(&self) -> Id<NSArray<UIMotionEffect>>;
+        pub unsafe fn motionEffects(&self) -> Retained<NSArray<UIMotionEffect>>;
 
         #[cfg(feature = "UIMotionEffect")]
         #[method(setMotionEffects:)]
@@ -1017,7 +1020,7 @@ extern_methods!(
     unsafe impl UIView {
         #[cfg(feature = "NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraints)]
-        pub unsafe fn constraints(&self) -> Id<NSArray<NSLayoutConstraint>>;
+        pub unsafe fn constraints(&self) -> Retained<NSArray<NSLayoutConstraint>>;
 
         #[cfg(feature = "NSLayoutConstraint")]
         #[method(addConstraint:)]
@@ -1093,13 +1096,13 @@ extern_methods!(
 
         #[deprecated = "Override -viewForFirstBaselineLayout or -viewForLastBaselineLayout as appropriate, instead"]
         #[method_id(@__retain_semantics Other viewForBaselineLayout)]
-        pub unsafe fn viewForBaselineLayout(&self) -> Id<UIView>;
+        pub unsafe fn viewForBaselineLayout(&self) -> Retained<UIView>;
 
         #[method_id(@__retain_semantics Other viewForFirstBaselineLayout)]
-        pub unsafe fn viewForFirstBaselineLayout(&self) -> Id<UIView>;
+        pub unsafe fn viewForFirstBaselineLayout(&self) -> Retained<UIView>;
 
         #[method_id(@__retain_semantics Other viewForLastBaselineLayout)]
-        pub unsafe fn viewForLastBaselineLayout(&self) -> Id<UIView>;
+        pub unsafe fn viewForLastBaselineLayout(&self) -> Retained<UIView>;
 
         #[method(intrinsicContentSize)]
         pub unsafe fn intrinsicContentSize(&self) -> CGSize;
@@ -1171,7 +1174,7 @@ extern_methods!(
     unsafe impl UIView {
         #[cfg(feature = "UILayoutGuide")]
         #[method_id(@__retain_semantics Other layoutGuides)]
-        pub unsafe fn layoutGuides(&self) -> Id<NSArray<UILayoutGuide>>;
+        pub unsafe fn layoutGuides(&self) -> Retained<NSArray<UILayoutGuide>>;
 
         #[cfg(feature = "UILayoutGuide")]
         #[method(addLayoutGuide:)]
@@ -1189,51 +1192,51 @@ extern_methods!(
     unsafe impl UIView {
         #[cfg(feature = "NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other leadingAnchor)]
-        pub unsafe fn leadingAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
+        pub unsafe fn leadingAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other trailingAnchor)]
-        pub unsafe fn trailingAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
+        pub unsafe fn trailingAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other leftAnchor)]
-        pub unsafe fn leftAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
+        pub unsafe fn leftAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other rightAnchor)]
-        pub unsafe fn rightAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
+        pub unsafe fn rightAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other topAnchor)]
-        pub unsafe fn topAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
+        pub unsafe fn topAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other bottomAnchor)]
-        pub unsafe fn bottomAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
+        pub unsafe fn bottomAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other widthAnchor)]
-        pub unsafe fn widthAnchor(&self) -> Id<NSLayoutDimension>;
+        pub unsafe fn widthAnchor(&self) -> Retained<NSLayoutDimension>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other heightAnchor)]
-        pub unsafe fn heightAnchor(&self) -> Id<NSLayoutDimension>;
+        pub unsafe fn heightAnchor(&self) -> Retained<NSLayoutDimension>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other centerXAnchor)]
-        pub unsafe fn centerXAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
+        pub unsafe fn centerXAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other centerYAnchor)]
-        pub unsafe fn centerYAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
+        pub unsafe fn centerYAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other firstBaselineAnchor)]
-        pub unsafe fn firstBaselineAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
+        pub unsafe fn firstBaselineAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other lastBaselineAnchor)]
-        pub unsafe fn lastBaselineAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
+        pub unsafe fn lastBaselineAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
     }
 );
 
@@ -1246,7 +1249,7 @@ extern_methods!(
         pub unsafe fn constraintsAffectingLayoutForAxis(
             &self,
             axis: UILayoutConstraintAxis,
-        ) -> Id<NSArray<NSLayoutConstraint>>;
+        ) -> Retained<NSArray<NSLayoutConstraint>>;
 
         #[method(hasAmbiguousLayout)]
         pub unsafe fn hasAmbiguousLayout(&self) -> bool;
@@ -1265,7 +1268,7 @@ extern_methods!(
         pub unsafe fn constraintsAffectingLayoutForAxis(
             &self,
             axis: UILayoutConstraintAxis,
-        ) -> Id<NSArray<NSLayoutConstraint>>;
+        ) -> Retained<NSArray<NSLayoutConstraint>>;
 
         #[method(hasAmbiguousLayout)]
         pub unsafe fn hasAmbiguousLayout(&self) -> bool;
@@ -1277,7 +1280,7 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIView {
         #[method_id(@__retain_semantics Other restorationIdentifier)]
-        pub unsafe fn restorationIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn restorationIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(setRestorationIdentifier:)]
         pub unsafe fn setRestorationIdentifier(&self, restoration_identifier: Option<&NSString>);
@@ -1298,7 +1301,7 @@ extern_methods!(
         pub unsafe fn snapshotViewAfterScreenUpdates(
             &self,
             after_updates: bool,
-        ) -> Option<Id<UIView>>;
+        ) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UIGeometry")]
         #[method_id(@__retain_semantics Other resizableSnapshotViewFromRect:afterScreenUpdates:withCapInsets:)]
@@ -1307,7 +1310,7 @@ extern_methods!(
             rect: CGRect,
             after_updates: bool,
             cap_insets: UIEdgeInsets,
-        ) -> Option<Id<UIView>>;
+        ) -> Option<Retained<UIView>>;
 
         #[method(drawViewHierarchyInRect:afterScreenUpdates:)]
         pub unsafe fn drawViewHierarchyInRect_afterScreenUpdates(
@@ -1413,7 +1416,7 @@ extern_methods!(
     unsafe impl UIView {
         #[cfg(feature = "UIContentSizeCategory")]
         #[method_id(@__retain_semantics Other minimumContentSizeCategory)]
-        pub unsafe fn minimumContentSizeCategory(&self) -> Option<Id<UIContentSizeCategory>>;
+        pub unsafe fn minimumContentSizeCategory(&self) -> Option<Retained<UIContentSizeCategory>>;
 
         #[cfg(feature = "UIContentSizeCategory")]
         #[method(setMinimumContentSizeCategory:)]
@@ -1424,7 +1427,7 @@ extern_methods!(
 
         #[cfg(feature = "UIContentSizeCategory")]
         #[method_id(@__retain_semantics Other maximumContentSizeCategory)]
-        pub unsafe fn maximumContentSizeCategory(&self) -> Option<Id<UIContentSizeCategory>>;
+        pub unsafe fn maximumContentSizeCategory(&self) -> Option<Retained<UIContentSizeCategory>>;
 
         #[cfg(feature = "UIContentSizeCategory")]
         #[method(setMaximumContentSizeCategory:)]
@@ -1434,7 +1437,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other appliedContentSizeCategoryLimitsDescription)]
-        pub unsafe fn appliedContentSizeCategoryLimitsDescription(&self) -> Id<NSString>;
+        pub unsafe fn appliedContentSizeCategoryLimitsDescription(&self) -> Retained<NSString>;
     }
 );
 
@@ -1443,7 +1446,7 @@ extern_methods!(
     unsafe impl UIView {
         #[cfg(feature = "UITraitCollection")]
         #[method_id(@__retain_semantics Other traitOverrides)]
-        pub unsafe fn traitOverrides(&self) -> Id<ProtocolObject<dyn UITraitOverrides>>;
+        pub unsafe fn traitOverrides(&self) -> Retained<ProtocolObject<dyn UITraitOverrides>>;
 
         #[method(updateTraitsIfNeeded)]
         pub unsafe fn updateTraitsIfNeeded(&self);

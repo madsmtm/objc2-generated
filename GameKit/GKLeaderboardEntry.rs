@@ -21,7 +21,7 @@ extern_methods!(
     unsafe impl GKLeaderboardEntry {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other player)]
-        pub unsafe fn player(&self) -> Id<GKPlayer>;
+        pub unsafe fn player(&self) -> Retained<GKPlayer>;
 
         #[method(rank)]
         pub unsafe fn rank(&self) -> NSInteger;
@@ -30,16 +30,16 @@ extern_methods!(
         pub unsafe fn score(&self) -> NSInteger;
 
         #[method_id(@__retain_semantics Other formattedScore)]
-        pub unsafe fn formattedScore(&self) -> Id<NSString>;
+        pub unsafe fn formattedScore(&self) -> Retained<NSString>;
 
         #[method(context)]
         pub unsafe fn context(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other date)]
-        pub unsafe fn date(&self) -> Id<NSDate>;
+        pub unsafe fn date(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -47,6 +47,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKLeaderboardEntry {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

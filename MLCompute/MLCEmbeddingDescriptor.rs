@@ -24,31 +24,31 @@ extern_methods!(
     unsafe impl MLCEmbeddingDescriptor {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other embeddingCount)]
-        pub unsafe fn embeddingCount(&self) -> Id<NSNumber>;
+        pub unsafe fn embeddingCount(&self) -> Retained<NSNumber>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other embeddingDimension)]
-        pub unsafe fn embeddingDimension(&self) -> Id<NSNumber>;
+        pub unsafe fn embeddingDimension(&self) -> Retained<NSNumber>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other paddingIndex)]
-        pub unsafe fn paddingIndex(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn paddingIndex(&self) -> Option<Retained<NSNumber>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other maximumNorm)]
-        pub unsafe fn maximumNorm(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn maximumNorm(&self) -> Option<Retained<NSNumber>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other pNorm)]
-        pub unsafe fn pNorm(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn pNorm(&self) -> Option<Retained<NSNumber>>;
 
         #[deprecated]
         #[method(scalesGradientByFrequency)]
@@ -59,7 +59,7 @@ extern_methods!(
         pub unsafe fn descriptorWithEmbeddingCount_embeddingDimension(
             embedding_count: &NSNumber,
             embedding_dimension: &NSNumber,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithEmbeddingCount:embeddingDimension:paddingIndex:maximumNorm:pNorm:scalesGradientByFrequency:)]
@@ -70,6 +70,6 @@ extern_methods!(
             maximum_norm: Option<&NSNumber>,
             p_norm: Option<&NSNumber>,
             scales_gradient_by_frequency: bool,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
     }
 );

@@ -11,7 +11,7 @@ extern_protocol!(
     {
         #[cfg(feature = "UIPasteConfiguration")]
         #[method_id(@__retain_semantics Other pasteConfiguration)]
-        unsafe fn pasteConfiguration(&self) -> Option<Id<UIPasteConfiguration>>;
+        unsafe fn pasteConfiguration(&self) -> Option<Retained<UIPasteConfiguration>>;
 
         #[cfg(feature = "UIPasteConfiguration")]
         #[method(setPasteConfiguration:)]

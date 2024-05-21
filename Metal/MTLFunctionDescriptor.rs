@@ -42,23 +42,23 @@ unsafe impl NSObjectProtocol for MTLFunctionDescriptor {}
 extern_methods!(
     unsafe impl MTLFunctionDescriptor {
         #[method_id(@__retain_semantics Other functionDescriptor)]
-        pub fn functionDescriptor() -> Id<MTLFunctionDescriptor>;
+        pub fn functionDescriptor() -> Retained<MTLFunctionDescriptor>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub fn name(&self) -> Option<Id<NSString>>;
+        pub fn name(&self) -> Option<Retained<NSString>>;
 
         #[method(setName:)]
         pub fn setName(&self, name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other specializedName)]
-        pub fn specializedName(&self) -> Option<Id<NSString>>;
+        pub fn specializedName(&self) -> Option<Retained<NSString>>;
 
         #[method(setSpecializedName:)]
         pub fn setSpecializedName(&self, specialized_name: Option<&NSString>);
 
         #[cfg(feature = "MTLFunctionConstantValues")]
         #[method_id(@__retain_semantics Other constantValues)]
-        pub fn constantValues(&self) -> Option<Id<MTLFunctionConstantValues>>;
+        pub fn constantValues(&self) -> Option<Retained<MTLFunctionConstantValues>>;
 
         #[cfg(feature = "MTLFunctionConstantValues")]
         #[method(setConstantValues:)]
@@ -74,7 +74,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other binaryArchives)]
         pub unsafe fn binaryArchives(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
+        ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
 
         #[cfg(feature = "MTLBinaryArchive")]
         #[method(setBinaryArchives:)]
@@ -89,16 +89,16 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLFunctionDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Allocated<Self>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub fn new() -> Id<Self>;
+        pub fn new() -> Retained<Self>;
     }
 );
 
-impl DefaultId for MTLFunctionDescriptor {
+impl DefaultRetained for MTLFunctionDescriptor {
     #[inline]
-    fn default_id() -> Id<Self> {
+    fn default_id() -> Retained<Self> {
         Self::new()
     }
 }
@@ -126,9 +126,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLIntersectionFunctionDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

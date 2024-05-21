@@ -24,38 +24,38 @@ unsafe impl NSObjectProtocol for NSPersistentContainer {}
 extern_methods!(
     unsafe impl NSPersistentContainer {
         #[method_id(@__retain_semantics Other persistentContainerWithName:)]
-        pub unsafe fn persistentContainerWithName(name: &NSString) -> Id<Self>;
+        pub unsafe fn persistentContainerWithName(name: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectModel")]
         #[method_id(@__retain_semantics Other persistentContainerWithName:managedObjectModel:)]
         pub unsafe fn persistentContainerWithName_managedObjectModel(
             name: &NSString,
             model: &NSManagedObjectModel,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other defaultDirectoryURL)]
-        pub unsafe fn defaultDirectoryURL() -> Id<NSURL>;
+        pub unsafe fn defaultDirectoryURL() -> Retained<NSURL>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other viewContext)]
-        pub unsafe fn viewContext(&self) -> Id<NSManagedObjectContext>;
+        pub unsafe fn viewContext(&self) -> Retained<NSManagedObjectContext>;
 
         #[cfg(feature = "NSManagedObjectModel")]
         #[method_id(@__retain_semantics Other managedObjectModel)]
-        pub unsafe fn managedObjectModel(&self) -> Id<NSManagedObjectModel>;
+        pub unsafe fn managedObjectModel(&self) -> Retained<NSManagedObjectModel>;
 
         #[cfg(feature = "NSPersistentStoreCoordinator")]
         #[method_id(@__retain_semantics Other persistentStoreCoordinator)]
-        pub unsafe fn persistentStoreCoordinator(&self) -> Id<NSPersistentStoreCoordinator>;
+        pub unsafe fn persistentStoreCoordinator(&self) -> Retained<NSPersistentStoreCoordinator>;
 
         #[cfg(feature = "NSPersistentStoreDescription")]
         #[method_id(@__retain_semantics Other persistentStoreDescriptions)]
         pub unsafe fn persistentStoreDescriptions(
             &self,
-        ) -> Id<NSArray<NSPersistentStoreDescription>>;
+        ) -> Retained<NSArray<NSPersistentStoreDescription>>;
 
         #[cfg(feature = "NSPersistentStoreDescription")]
         #[method(setPersistentStoreDescriptions:)]
@@ -65,7 +65,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Init initWithName:)]
-        pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Id<Self>;
+        pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectModel")]
         #[method_id(@__retain_semantics Init initWithName:managedObjectModel:)]
@@ -73,7 +73,7 @@ extern_methods!(
             this: Allocated<Self>,
             name: &NSString,
             model: &NSManagedObjectModel,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSPersistentStoreDescription", feature = "block2"))]
         #[method(loadPersistentStoresWithCompletionHandler:)]
@@ -84,7 +84,7 @@ extern_methods!(
 
         #[cfg(feature = "NSManagedObjectContext")]
         #[method_id(@__retain_semantics New newBackgroundContext)]
-        pub unsafe fn newBackgroundContext(&self) -> Id<NSManagedObjectContext>;
+        pub unsafe fn newBackgroundContext(&self) -> Retained<NSManagedObjectContext>;
 
         #[cfg(all(feature = "NSManagedObjectContext", feature = "block2"))]
         #[method(performBackgroundTask:)]
@@ -99,9 +99,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPersistentContainer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

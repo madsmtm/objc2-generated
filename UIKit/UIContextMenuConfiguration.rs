@@ -53,10 +53,12 @@ unsafe impl NSObjectProtocol for UIContextMenuConfiguration {}
 extern_methods!(
     unsafe impl UIContextMenuConfiguration {
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<ProtocolObject<dyn NSCopying>>;
+        pub unsafe fn identifier(&self) -> Retained<ProtocolObject<dyn NSCopying>>;
 
         #[method_id(@__retain_semantics Other secondaryItemIdentifiers)]
-        pub unsafe fn secondaryItemIdentifiers(&self) -> Id<NSSet<ProtocolObject<dyn NSCopying>>>;
+        pub unsafe fn secondaryItemIdentifiers(
+            &self,
+        ) -> Retained<NSSet<ProtocolObject<dyn NSCopying>>>;
 
         #[method(setSecondaryItemIdentifiers:)]
         pub unsafe fn setSecondaryItemIdentifiers(
@@ -92,7 +94,7 @@ extern_methods!(
             preview_provider: UIContextMenuContentPreviewProvider,
             action_provider: UIContextMenuActionProvider,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -100,9 +102,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIContextMenuConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

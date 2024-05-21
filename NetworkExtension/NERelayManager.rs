@@ -51,7 +51,7 @@ unsafe impl NSObjectProtocol for NERelayManager {}
 extern_methods!(
     unsafe impl NERelayManager {
         #[method_id(@__retain_semantics Other sharedManager)]
-        pub unsafe fn sharedManager() -> Id<NERelayManager>;
+        pub unsafe fn sharedManager() -> Retained<NERelayManager>;
 
         #[cfg(feature = "block2")]
         #[method(loadFromPreferencesWithCompletionHandler:)]
@@ -75,7 +75,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other localizedDescription)]
-        pub unsafe fn localizedDescription(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         #[method(setLocalizedDescription:)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
@@ -88,27 +88,27 @@ extern_methods!(
 
         #[cfg(feature = "NERelay")]
         #[method_id(@__retain_semantics Other relays)]
-        pub unsafe fn relays(&self) -> Option<Id<NSArray<NERelay>>>;
+        pub unsafe fn relays(&self) -> Option<Retained<NSArray<NERelay>>>;
 
         #[cfg(feature = "NERelay")]
         #[method(setRelays:)]
         pub unsafe fn setRelays(&self, relays: Option<&NSArray<NERelay>>);
 
         #[method_id(@__retain_semantics Other matchDomains)]
-        pub unsafe fn matchDomains(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn matchDomains(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setMatchDomains:)]
         pub unsafe fn setMatchDomains(&self, match_domains: Option<&NSArray<NSString>>);
 
         #[method_id(@__retain_semantics Other excludedDomains)]
-        pub unsafe fn excludedDomains(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn excludedDomains(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setExcludedDomains:)]
         pub unsafe fn setExcludedDomains(&self, excluded_domains: Option<&NSArray<NSString>>);
 
         #[cfg(feature = "NEOnDemandRule")]
         #[method_id(@__retain_semantics Other onDemandRules)]
-        pub unsafe fn onDemandRules(&self) -> Option<Id<NSArray<NEOnDemandRule>>>;
+        pub unsafe fn onDemandRules(&self) -> Option<Retained<NSArray<NEOnDemandRule>>>;
 
         #[cfg(feature = "NEOnDemandRule")]
         #[method(setOnDemandRules:)]
@@ -128,9 +128,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NERelayManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

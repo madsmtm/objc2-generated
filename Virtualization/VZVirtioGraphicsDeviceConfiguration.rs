@@ -28,14 +28,14 @@ extern_methods!(
     #[cfg(feature = "VZGraphicsDeviceConfiguration")]
     unsafe impl VZVirtioGraphicsDeviceConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(
             feature = "VZGraphicsDisplayConfiguration",
             feature = "VZVirtioGraphicsScanoutConfiguration"
         ))]
         #[method_id(@__retain_semantics Other scanouts)]
-        pub unsafe fn scanouts(&self) -> Id<NSArray<VZVirtioGraphicsScanoutConfiguration>>;
+        pub unsafe fn scanouts(&self) -> Retained<NSArray<VZVirtioGraphicsScanoutConfiguration>>;
 
         #[cfg(all(
             feature = "VZGraphicsDisplayConfiguration",
@@ -51,6 +51,6 @@ extern_methods!(
     #[cfg(feature = "VZGraphicsDeviceConfiguration")]
     unsafe impl VZVirtioGraphicsDeviceConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

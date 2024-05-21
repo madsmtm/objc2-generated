@@ -26,13 +26,13 @@ unsafe impl NSSecureCoding for VNPoint {}
 extern_methods!(
     unsafe impl VNPoint {
         #[method_id(@__retain_semantics Other zeroPoint)]
-        pub unsafe fn zeroPoint() -> Id<VNPoint>;
+        pub unsafe fn zeroPoint() -> Retained<VNPoint>;
 
         #[method_id(@__retain_semantics Other pointByApplyingVector:toPoint:)]
         pub unsafe fn pointByApplyingVector_toPoint(
             vector: &VNVector,
             point: &VNPoint,
-        ) -> Id<VNPoint>;
+        ) -> Retained<VNPoint>;
 
         #[deprecated]
         #[method(distanceBetweenPoint:point:)]
@@ -42,10 +42,14 @@ extern_methods!(
         pub unsafe fn distanceToPoint(&self, point: &VNPoint) -> c_double;
 
         #[method_id(@__retain_semantics Init initWithX:y:)]
-        pub unsafe fn initWithX_y(this: Allocated<Self>, x: c_double, y: c_double) -> Id<Self>;
+        pub unsafe fn initWithX_y(
+            this: Allocated<Self>,
+            x: c_double,
+            y: c_double,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithLocation:)]
-        pub unsafe fn initWithLocation(this: Allocated<Self>, location: CGPoint) -> Id<Self>;
+        pub unsafe fn initWithLocation(this: Allocated<Self>, location: CGPoint) -> Retained<Self>;
 
         #[method(location)]
         pub unsafe fn location(&self) -> CGPoint;
@@ -62,10 +66,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNPoint {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -90,7 +94,7 @@ unsafe impl NSSecureCoding for VNPoint3D {}
 extern_methods!(
     unsafe impl VNPoint3D {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -98,7 +102,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNPoint3D {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -123,25 +127,28 @@ unsafe impl NSSecureCoding for VNVector {}
 extern_methods!(
     unsafe impl VNVector {
         #[method_id(@__retain_semantics Other zeroVector)]
-        pub unsafe fn zeroVector() -> Id<VNVector>;
+        pub unsafe fn zeroVector() -> Retained<VNVector>;
 
         #[method_id(@__retain_semantics Other unitVectorForVector:)]
-        pub unsafe fn unitVectorForVector(vector: &VNVector) -> Id<VNVector>;
+        pub unsafe fn unitVectorForVector(vector: &VNVector) -> Retained<VNVector>;
 
         #[method_id(@__retain_semantics Other vectorByMultiplyingVector:byScalar:)]
         pub unsafe fn vectorByMultiplyingVector_byScalar(
             vector: &VNVector,
             scalar: c_double,
-        ) -> Id<VNVector>;
+        ) -> Retained<VNVector>;
 
         #[method_id(@__retain_semantics Other vectorByAddingVector:toVector:)]
-        pub unsafe fn vectorByAddingVector_toVector(v1: &VNVector, v2: &VNVector) -> Id<VNVector>;
+        pub unsafe fn vectorByAddingVector_toVector(
+            v1: &VNVector,
+            v2: &VNVector,
+        ) -> Retained<VNVector>;
 
         #[method_id(@__retain_semantics Other vectorBySubtractingVector:fromVector:)]
         pub unsafe fn vectorBySubtractingVector_fromVector(
             v1: &VNVector,
             v2: &VNVector,
-        ) -> Id<VNVector>;
+        ) -> Retained<VNVector>;
 
         #[method(dotProductOfVector:vector:)]
         pub unsafe fn dotProductOfVector_vector(v1: &VNVector, v2: &VNVector) -> c_double;
@@ -151,21 +158,21 @@ extern_methods!(
             this: Allocated<Self>,
             x: c_double,
             y: c_double,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithR:theta:)]
         pub unsafe fn initWithR_theta(
             this: Allocated<Self>,
             r: c_double,
             theta: c_double,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithVectorHead:tail:)]
         pub unsafe fn initWithVectorHead_tail(
             this: Allocated<Self>,
             head: &VNPoint,
             tail: &VNPoint,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(x)]
         pub unsafe fn x(&self) -> c_double;
@@ -191,10 +198,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNVector {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -219,21 +226,21 @@ unsafe impl NSSecureCoding for VNCircle {}
 extern_methods!(
     unsafe impl VNCircle {
         #[method_id(@__retain_semantics Other zeroCircle)]
-        pub unsafe fn zeroCircle() -> Id<VNCircle>;
+        pub unsafe fn zeroCircle() -> Retained<VNCircle>;
 
         #[method_id(@__retain_semantics Init initWithCenter:radius:)]
         pub unsafe fn initWithCenter_radius(
             this: Allocated<Self>,
             center: &VNPoint,
             radius: c_double,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCenter:diameter:)]
         pub unsafe fn initWithCenter_diameter(
             this: Allocated<Self>,
             center: &VNPoint,
             diameter: c_double,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(containsPoint:)]
         pub unsafe fn containsPoint(&self, point: &VNPoint) -> bool;
@@ -246,7 +253,7 @@ extern_methods!(
         ) -> bool;
 
         #[method_id(@__retain_semantics Other center)]
-        pub unsafe fn center(&self) -> Id<VNPoint>;
+        pub unsafe fn center(&self) -> Retained<VNPoint>;
 
         #[method(radius)]
         pub unsafe fn radius(&self) -> c_double;
@@ -260,10 +267,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNCircle {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -287,25 +294,25 @@ unsafe impl VNRequestRevisionProviding for VNContour {}
 extern_methods!(
     unsafe impl VNContour {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other indexPath)]
-        pub unsafe fn indexPath(&self) -> Id<NSIndexPath>;
+        pub unsafe fn indexPath(&self) -> Retained<NSIndexPath>;
 
         #[method(childContourCount)]
         pub unsafe fn childContourCount(&self) -> NSInteger;
 
         #[method_id(@__retain_semantics Other childContours)]
-        pub unsafe fn childContours(&self) -> Id<NSArray<VNContour>>;
+        pub unsafe fn childContours(&self) -> Retained<NSArray<VNContour>>;
 
         #[method_id(@__retain_semantics Other childContourAtIndex:error:_)]
         pub unsafe fn childContourAtIndex_error(
             &self,
             child_contour_index: NSUInteger,
-        ) -> Result<Id<VNContour>, Id<NSError>>;
+        ) -> Result<Retained<VNContour>, Retained<NSError>>;
 
         #[method(pointCount)]
         pub unsafe fn pointCount(&self) -> NSInteger;
@@ -317,6 +324,6 @@ extern_methods!(
         pub unsafe fn polygonApproximationWithEpsilon_error(
             &self,
             epsilon: c_float,
-        ) -> Result<Id<VNContour>, Id<NSError>>;
+        ) -> Result<Retained<VNContour>, Retained<NSError>>;
     }
 );

@@ -28,7 +28,7 @@ extern_methods!(
         pub unsafe fn limit(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other sortDescriptors)]
-        pub unsafe fn sortDescriptors(&self) -> Option<Id<NSArray<NSSortDescriptor>>>;
+        pub unsafe fn sortDescriptors(&self) -> Option<Retained<NSArray<NSSortDescriptor>>>;
 
         #[method(includeDocumentData)]
         pub unsafe fn includeDocumentData(&self) -> bool;
@@ -56,7 +56,7 @@ extern_methods!(
                     *mut NSError,
                 ),
             >,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -65,7 +65,7 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKDocumentQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -74,6 +74,6 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKDocumentQuery {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

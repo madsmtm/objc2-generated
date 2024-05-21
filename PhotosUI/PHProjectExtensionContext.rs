@@ -24,11 +24,11 @@ extern_methods!(
     unsafe impl PHProjectExtensionContext {
         #[cfg(feature = "objc2-photos")]
         #[method_id(@__retain_semantics Other photoLibrary)]
-        pub unsafe fn photoLibrary(&self) -> Id<PHPhotoLibrary>;
+        pub unsafe fn photoLibrary(&self) -> Retained<PHPhotoLibrary>;
 
         #[cfg(feature = "objc2-photos")]
         #[method_id(@__retain_semantics Other project)]
-        pub unsafe fn project(&self) -> Id<PHProject>;
+        pub unsafe fn project(&self) -> Retained<PHProject>;
 
         #[cfg(feature = "objc2-photos")]
         #[method(showEditorForAsset:)]
@@ -40,7 +40,7 @@ extern_methods!(
             &self,
             existing_project_info: Option<&PHProjectInfo>,
             completion: &block2::Block<dyn Fn(*mut PHProjectInfo)>,
-        ) -> Id<NSProgress>;
+        ) -> Retained<NSProgress>;
     }
 );
 
@@ -48,9 +48,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHProjectExtensionContext {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

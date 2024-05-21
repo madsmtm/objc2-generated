@@ -66,7 +66,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn EAWiFiUnconfiguredAccessoryBrowserDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn EAWiFiUnconfiguredAccessoryBrowserDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -76,7 +76,9 @@ extern_methods!(
 
         #[cfg(feature = "EAWiFiUnconfiguredAccessory")]
         #[method_id(@__retain_semantics Other unconfiguredAccessories)]
-        pub unsafe fn unconfiguredAccessories(&self) -> Id<NSSet<EAWiFiUnconfiguredAccessory>>;
+        pub unsafe fn unconfiguredAccessories(
+            &self,
+        ) -> Retained<NSSet<EAWiFiUnconfiguredAccessory>>;
 
         #[method(startSearchingForUnconfiguredAccessoriesMatchingPredicate:)]
         pub unsafe fn startSearchingForUnconfiguredAccessoriesMatchingPredicate(
@@ -93,10 +95,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EAWiFiUnconfiguredAccessoryBrowser {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

@@ -89,7 +89,7 @@ extern_protocol!(
             configuration: &WKWebViewConfiguration,
             navigation_action: &WKNavigationAction,
             window_features: &WKWindowFeatures,
-        ) -> Option<Id<WKWebView>>;
+        ) -> Option<Retained<WKWebView>>;
 
         #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]

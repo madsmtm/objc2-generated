@@ -31,27 +31,27 @@ extern_methods!(
     #[cfg(feature = "CNFetchRequest")]
     unsafe impl CNContactFetchRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Init initWithKeysToFetch:)]
         pub unsafe fn initWithKeysToFetch(
             this: Allocated<Self>,
             keys_to_fetch: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other predicate)]
-        pub unsafe fn predicate(&self) -> Option<Id<NSPredicate>>;
+        pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
         #[method(setPredicate:)]
         pub unsafe fn setPredicate(&self, predicate: Option<&NSPredicate>);
 
         #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other keysToFetch)]
-        pub unsafe fn keysToFetch(&self) -> Id<NSArray<ProtocolObject<dyn CNKeyDescriptor>>>;
+        pub unsafe fn keysToFetch(&self) -> Retained<NSArray<ProtocolObject<dyn CNKeyDescriptor>>>;
 
         #[cfg(feature = "CNContact")]
         #[method(setKeysToFetch:)]

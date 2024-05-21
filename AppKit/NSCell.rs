@@ -205,24 +205,27 @@ unsafe impl NSUserInterfaceItemIdentification for NSCell {}
 extern_methods!(
     unsafe impl NSCell {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Id<Self>;
+        pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
-        pub unsafe fn initImageCell(this: Allocated<Self>, image: Option<&NSImage>) -> Id<Self>;
+        pub unsafe fn initImageCell(
+            this: Allocated<Self>,
+            image: Option<&NSImage>,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method(prefersTrackingUntilMouseUp)]
         pub unsafe fn prefersTrackingUntilMouseUp(mtm: MainThreadMarker) -> bool;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other controlView)]
-        pub unsafe fn controlView(&self) -> Option<Id<NSView>>;
+        pub unsafe fn controlView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setControlView:)]
@@ -241,7 +244,7 @@ extern_methods!(
         pub unsafe fn setState(&self, state: NSControlStateValue);
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -259,7 +262,7 @@ extern_methods!(
         pub unsafe fn setTag(&self, tag: NSInteger);
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -335,23 +338,23 @@ extern_methods!(
 
         #[cfg(feature = "NSFont")]
         #[method_id(@__retain_semantics Other font)]
-        pub unsafe fn font(&self) -> Option<Id<NSFont>>;
+        pub unsafe fn font(&self) -> Option<Retained<NSFont>>;
 
         #[cfg(feature = "NSFont")]
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);
 
         #[method_id(@__retain_semantics Other keyEquivalent)]
-        pub unsafe fn keyEquivalent(&self) -> Id<NSString>;
+        pub unsafe fn keyEquivalent(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other formatter)]
-        pub unsafe fn formatter(&self) -> Option<Id<NSFormatter>>;
+        pub unsafe fn formatter(&self) -> Option<Retained<NSFormatter>>;
 
         #[method(setFormatter:)]
         pub unsafe fn setFormatter(&self, formatter: Option<&NSFormatter>);
 
         #[method_id(@__retain_semantics Other objectValue)]
-        pub unsafe fn objectValue(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn objectValue(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setObjectValue:)]
         pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
@@ -360,7 +363,7 @@ extern_methods!(
         pub unsafe fn hasValidObjectValue(&self) -> bool;
 
         #[method_id(@__retain_semantics Other stringValue)]
-        pub unsafe fn stringValue(&self) -> Id<NSString>;
+        pub unsafe fn stringValue(&self) -> Retained<NSString>;
 
         #[method(setStringValue:)]
         pub unsafe fn setStringValue(&self, string_value: &NSString);
@@ -412,7 +415,7 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         #[method(setImage:)]
@@ -425,7 +428,7 @@ extern_methods!(
         pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
         #[method_id(@__retain_semantics Other representedObject)]
-        pub unsafe fn representedObject(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn representedObject(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setRepresentedObject:)]
         pub unsafe fn setRepresentedObject(&self, represented_object: Option<&AnyObject>);
@@ -457,14 +460,14 @@ extern_methods!(
             &self,
             cell_frame: NSRect,
             control_view: &NSView,
-        ) -> Option<Id<NSColor>>;
+        ) -> Option<Retained<NSColor>>;
 
         #[method(calcDrawInfo:)]
         pub unsafe fn calcDrawInfo(&self, rect: NSRect);
 
         #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
         #[method_id(@__retain_semantics Other setUpFieldEditorAttributes:)]
-        pub unsafe fn setUpFieldEditorAttributes(&self, text_obj: &NSText) -> Id<NSText>;
+        pub unsafe fn setUpFieldEditorAttributes(&self, text_obj: &NSText) -> Retained<NSText>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawInteriorWithFrame:inView:)]
@@ -572,7 +575,7 @@ extern_methods!(
 
         #[cfg(feature = "NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
-        pub unsafe fn menu(&self) -> Option<Id<NSMenu>>;
+        pub unsafe fn menu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
         #[method(setMenu:)]
@@ -590,11 +593,11 @@ extern_methods!(
             event: &NSEvent,
             cell_frame: NSRect,
             view: &NSView,
-        ) -> Option<Id<NSMenu>>;
+        ) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
         #[method_id(@__retain_semantics Other defaultMenu)]
-        pub unsafe fn defaultMenu(mtm: MainThreadMarker) -> Option<Id<NSMenu>>;
+        pub unsafe fn defaultMenu(mtm: MainThreadMarker) -> Option<Retained<NSMenu>>;
 
         #[method(sendsActionOnEndEditing)]
         pub unsafe fn sendsActionOnEndEditing(&self) -> bool;
@@ -648,7 +651,10 @@ extern_methods!(
             feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other fieldEditorForView:)]
-        pub unsafe fn fieldEditorForView(&self, control_view: &NSView) -> Option<Id<NSTextView>>;
+        pub unsafe fn fieldEditorForView(
+            &self,
+            control_view: &NSView,
+        ) -> Option<Retained<NSTextView>>;
 
         #[method(usesSingleLineMode)]
         pub unsafe fn usesSingleLineMode(&self) -> bool;
@@ -666,7 +672,7 @@ extern_methods!(
             &self,
             frame: NSRect,
             view: &NSView,
-        ) -> Id<NSArray<NSDraggingImageComponent>>;
+        ) -> Retained<NSArray<NSDraggingImageComponent>>;
     }
 );
 
@@ -674,7 +680,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCell {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -736,7 +742,7 @@ extern_methods!(
     /// NSCellAttributedStringMethods
     unsafe impl NSCell {
         #[method_id(@__retain_semantics Other attributedStringValue)]
-        pub unsafe fn attributedStringValue(&self) -> Id<NSAttributedString>;
+        pub unsafe fn attributedStringValue(&self) -> Retained<NSAttributedString>;
 
         #[method(setAttributedStringValue:)]
         pub unsafe fn setAttributedStringValue(&self, attributed_string_value: &NSAttributedString);
@@ -936,7 +942,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other mnemonic)]
-        pub unsafe fn mnemonic(&self) -> Id<NSString>;
+        pub unsafe fn mnemonic(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setTitleWithMnemonic:)]

@@ -39,44 +39,44 @@ extern_methods!(
         pub unsafe fn doubleValue(&self) -> c_double;
 
         #[method_id(@__retain_semantics Other stringValue)]
-        pub unsafe fn stringValue(&self) -> Id<NSString>;
+        pub unsafe fn stringValue(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MLMultiArray")]
         #[method_id(@__retain_semantics Other multiArrayValue)]
-        pub unsafe fn multiArrayValue(&self) -> Option<Id<MLMultiArray>>;
+        pub unsafe fn multiArrayValue(&self) -> Option<Retained<MLMultiArray>>;
 
         #[method_id(@__retain_semantics Other dictionaryValue)]
-        pub unsafe fn dictionaryValue(&self) -> Id<NSDictionary<AnyObject, NSNumber>>;
+        pub unsafe fn dictionaryValue(&self) -> Retained<NSDictionary<AnyObject, NSNumber>>;
 
         #[cfg(feature = "MLSequence")]
         #[method_id(@__retain_semantics Other sequenceValue)]
-        pub unsafe fn sequenceValue(&self) -> Option<Id<MLSequence>>;
+        pub unsafe fn sequenceValue(&self) -> Option<Retained<MLSequence>>;
 
         #[method_id(@__retain_semantics Other featureValueWithInt64:)]
-        pub unsafe fn featureValueWithInt64(value: i64) -> Id<Self>;
+        pub unsafe fn featureValueWithInt64(value: i64) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other featureValueWithDouble:)]
-        pub unsafe fn featureValueWithDouble(value: c_double) -> Id<Self>;
+        pub unsafe fn featureValueWithDouble(value: c_double) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other featureValueWithString:)]
-        pub unsafe fn featureValueWithString(value: &NSString) -> Id<Self>;
+        pub unsafe fn featureValueWithString(value: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "MLMultiArray")]
         #[method_id(@__retain_semantics Other featureValueWithMultiArray:)]
-        pub unsafe fn featureValueWithMultiArray(value: &MLMultiArray) -> Id<Self>;
+        pub unsafe fn featureValueWithMultiArray(value: &MLMultiArray) -> Retained<Self>;
 
         #[cfg(feature = "MLSequence")]
         #[method_id(@__retain_semantics Other featureValueWithSequence:)]
-        pub unsafe fn featureValueWithSequence(sequence: &MLSequence) -> Id<Self>;
+        pub unsafe fn featureValueWithSequence(sequence: &MLSequence) -> Retained<Self>;
 
         #[cfg(feature = "MLFeatureType")]
         #[method_id(@__retain_semantics Other undefinedFeatureValueWithType:)]
-        pub unsafe fn undefinedFeatureValueWithType(r#type: MLFeatureType) -> Id<Self>;
+        pub unsafe fn undefinedFeatureValueWithType(r#type: MLFeatureType) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other featureValueWithDictionary:error:_)]
         pub unsafe fn featureValueWithDictionary_error(
             value: &NSDictionary<AnyObject, NSNumber>,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method(isEqualToFeatureValue:)]
         pub unsafe fn isEqualToFeatureValue(&self, value: &MLFeatureValue) -> bool;
@@ -87,9 +87,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLFeatureValue {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -13,7 +13,7 @@ extern_protocol!(
             this: Allocated<Self>,
             model_description: &MLModelDescription,
             parameters: &NSDictionary<NSString, AnyObject>,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "MLFeatureProvider", feature = "MLPredictionOptions"))]
         #[method_id(@__retain_semantics Other predictionFromFeatures:options:error:_)]
@@ -21,7 +21,7 @@ extern_protocol!(
             &self,
             input: &ProtocolObject<dyn MLFeatureProvider>,
             options: &MLPredictionOptions,
-        ) -> Result<Id<ProtocolObject<dyn MLFeatureProvider>>, Id<NSError>>;
+        ) -> Result<Retained<ProtocolObject<dyn MLFeatureProvider>>, Retained<NSError>>;
 
         #[cfg(all(feature = "MLBatchProvider", feature = "MLPredictionOptions"))]
         #[optional]
@@ -30,7 +30,7 @@ extern_protocol!(
             &self,
             input_batch: &ProtocolObject<dyn MLBatchProvider>,
             options: &MLPredictionOptions,
-        ) -> Result<Id<ProtocolObject<dyn MLBatchProvider>>, Id<NSError>>;
+        ) -> Result<Retained<ProtocolObject<dyn MLBatchProvider>>, Retained<NSError>>;
     }
 
     unsafe impl ProtocolType for dyn MLCustomModel {}

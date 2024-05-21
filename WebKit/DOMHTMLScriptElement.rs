@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl DOMHTMLScriptElement {
         #[deprecated]
         #[method_id(@__retain_semantics Other text)]
-        pub unsafe fn text(&self) -> Id<NSString>;
+        pub unsafe fn text(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setText:)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other htmlFor)]
-        pub unsafe fn htmlFor(&self) -> Id<NSString>;
+        pub unsafe fn htmlFor(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setHtmlFor:)]
@@ -86,7 +86,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other event)]
-        pub unsafe fn event(&self) -> Id<NSString>;
+        pub unsafe fn event(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setEvent:)]
@@ -94,7 +94,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other charset)]
-        pub unsafe fn charset(&self) -> Id<NSString>;
+        pub unsafe fn charset(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setCharset:)]
@@ -110,7 +110,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other src)]
-        pub unsafe fn src(&self) -> Id<NSString>;
+        pub unsafe fn src(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setSrc:)]
@@ -118,7 +118,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSString>;
+        pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setType:)]
@@ -138,7 +138,7 @@ extern_methods!(
     unsafe impl DOMHTMLScriptElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -153,6 +153,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLScriptElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -92,37 +92,39 @@ extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl<ResultType: Message> NSFetchRequest<ResultType> {
         #[method_id(@__retain_semantics Other fetchRequestWithEntityName:)]
-        pub unsafe fn fetchRequestWithEntityName(entity_name: &NSString) -> Id<Self>;
+        pub unsafe fn fetchRequestWithEntityName(entity_name: &NSString) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithEntityName:)]
-        pub unsafe fn initWithEntityName(this: Allocated<Self>, entity_name: &NSString)
-            -> Id<Self>;
+        pub unsafe fn initWithEntityName(
+            this: Allocated<Self>,
+            entity_name: &NSString,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other execute:_)]
-        pub unsafe fn execute(&self) -> Result<Id<NSArray<ResultType>>, Id<NSError>>;
+        pub unsafe fn execute(&self) -> Result<Retained<NSArray<ResultType>>, Retained<NSError>>;
 
         #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entity)]
-        pub unsafe fn entity(&self) -> Option<Id<NSEntityDescription>>;
+        pub unsafe fn entity(&self) -> Option<Retained<NSEntityDescription>>;
 
         #[cfg(feature = "NSEntityDescription")]
         #[method(setEntity:)]
         pub unsafe fn setEntity(&self, entity: Option<&NSEntityDescription>);
 
         #[method_id(@__retain_semantics Other entityName)]
-        pub unsafe fn entityName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn entityName(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other predicate)]
-        pub unsafe fn predicate(&self) -> Option<Id<NSPredicate>>;
+        pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
         #[method(setPredicate:)]
         pub unsafe fn setPredicate(&self, predicate: Option<&NSPredicate>);
 
         #[method_id(@__retain_semantics Other sortDescriptors)]
-        pub unsafe fn sortDescriptors(&self) -> Option<Id<NSArray<NSSortDescriptor>>>;
+        pub unsafe fn sortDescriptors(&self) -> Option<Retained<NSArray<NSSortDescriptor>>>;
 
         #[method(setSortDescriptors:)]
         pub unsafe fn setSortDescriptors(
@@ -138,7 +140,7 @@ extern_methods!(
 
         #[cfg(feature = "NSPersistentStore")]
         #[method_id(@__retain_semantics Other affectedStores)]
-        pub unsafe fn affectedStores(&self) -> Option<Id<NSArray<NSPersistentStore>>>;
+        pub unsafe fn affectedStores(&self) -> Option<Retained<NSArray<NSPersistentStore>>>;
 
         #[cfg(feature = "NSPersistentStore")]
         #[method(setAffectedStores:)]
@@ -172,7 +174,9 @@ extern_methods!(
         pub unsafe fn setReturnsObjectsAsFaults(&self, returns_objects_as_faults: bool);
 
         #[method_id(@__retain_semantics Other relationshipKeyPathsForPrefetching)]
-        pub unsafe fn relationshipKeyPathsForPrefetching(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn relationshipKeyPathsForPrefetching(
+            &self,
+        ) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setRelationshipKeyPathsForPrefetching:)]
         pub unsafe fn setRelationshipKeyPathsForPrefetching(
@@ -193,7 +197,7 @@ extern_methods!(
         pub unsafe fn setReturnsDistinctResults(&self, returns_distinct_results: bool);
 
         #[method_id(@__retain_semantics Other propertiesToFetch)]
-        pub unsafe fn propertiesToFetch(&self) -> Option<Id<NSArray>>;
+        pub unsafe fn propertiesToFetch(&self) -> Option<Retained<NSArray>>;
 
         #[method(setPropertiesToFetch:)]
         pub unsafe fn setPropertiesToFetch(&self, properties_to_fetch: Option<&NSArray>);
@@ -220,13 +224,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other propertiesToGroupBy)]
-        pub unsafe fn propertiesToGroupBy(&self) -> Option<Id<NSArray>>;
+        pub unsafe fn propertiesToGroupBy(&self) -> Option<Retained<NSArray>>;
 
         #[method(setPropertiesToGroupBy:)]
         pub unsafe fn setPropertiesToGroupBy(&self, properties_to_group_by: Option<&NSArray>);
 
         #[method_id(@__retain_semantics Other havingPredicate)]
-        pub unsafe fn havingPredicate(&self) -> Option<Id<NSPredicate>>;
+        pub unsafe fn havingPredicate(&self) -> Option<Retained<NSPredicate>>;
 
         #[method(setHavingPredicate:)]
         pub unsafe fn setHavingPredicate(&self, having_predicate: Option<&NSPredicate>);
@@ -238,7 +242,7 @@ extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl<ResultType: Message> NSFetchRequest<ResultType> {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -284,7 +288,7 @@ extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
         #[method_id(@__retain_semantics Other fetchRequest)]
-        pub unsafe fn fetchRequest(&self) -> Id<NSFetchRequest<ResultType>>;
+        pub unsafe fn fetchRequest(&self) -> Retained<NSFetchRequest<ResultType>>;
 
         #[cfg(all(feature = "NSPersistentStoreResult", feature = "block2"))]
         #[method(completionBlock)]
@@ -304,7 +308,7 @@ extern_methods!(
             this: Allocated<Self>,
             request: &NSFetchRequest<ResultType>,
             blk: Option<&block2::Block<dyn Fn(NonNull<NSAsynchronousFetchResult<ResultType>>)>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -313,9 +317,9 @@ extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

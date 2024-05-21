@@ -28,10 +28,10 @@ extern_methods!(
     #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[method_id(@__retain_semantics Other local)]
-        pub unsafe fn local() -> Id<GKLocalPlayer>;
+        pub unsafe fn local() -> Retained<GKLocalPlayer>;
 
         #[method_id(@__retain_semantics Other localPlayer)]
-        pub unsafe fn localPlayer() -> Id<GKLocalPlayer>;
+        pub unsafe fn localPlayer() -> Retained<GKLocalPlayer>;
 
         #[method(isAuthenticated)]
         pub unsafe fn isAuthenticated(&self) -> bool;
@@ -94,7 +94,9 @@ extern_methods!(
     #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[method_id(@__retain_semantics Other anonymousGuestPlayerWithIdentifier:)]
-        pub unsafe fn anonymousGuestPlayerWithIdentifier(guest_identifier: &NSString) -> Id<Self>;
+        pub unsafe fn anonymousGuestPlayerWithIdentifier(
+            guest_identifier: &NSString,
+        ) -> Retained<Self>;
     }
 );
 
@@ -103,10 +105,10 @@ extern_methods!(
     #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -232,7 +234,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other friends)]
-        pub unsafe fn friends(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn friends(&self) -> Option<Retained<NSArray<NSString>>>;
     }
 );
 
@@ -318,6 +320,6 @@ extern_methods!(
         pub unsafe fn presentFriendRequestCreatorFromWindow_error(
             &self,
             window: Option<&NSWindow>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
     }
 );

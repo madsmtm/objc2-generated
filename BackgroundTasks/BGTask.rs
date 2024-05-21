@@ -20,7 +20,7 @@ unsafe impl NSObjectProtocol for BGTask {}
 extern_methods!(
     unsafe impl BGTask {
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "block2")]
         #[method(expirationHandler)]
@@ -34,10 +34,10 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(&self) -> Id<Self>;
+        pub unsafe fn new(&self) -> Retained<Self>;
 
         #[method(setTaskCompletedWithSuccess:)]
         pub unsafe fn setTaskCompletedWithSuccess(&self, success: bool);
@@ -48,7 +48,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl BGTask {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new_class() -> Id<Self>;
+        pub unsafe fn new_class() -> Retained<Self>;
     }
 );
 
@@ -73,7 +73,7 @@ extern_methods!(
     /// Methods declared on superclass `BGTask`
     unsafe impl BGProcessingTask {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -81,7 +81,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl BGProcessingTask {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -106,7 +106,7 @@ extern_methods!(
     /// Methods declared on superclass `BGTask`
     unsafe impl BGHealthResearchTask {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -114,7 +114,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl BGHealthResearchTask {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -139,7 +139,7 @@ extern_methods!(
     /// Methods declared on superclass `BGTask`
     unsafe impl BGAppRefreshTask {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -147,6 +147,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl BGAppRefreshTask {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

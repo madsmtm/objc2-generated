@@ -33,7 +33,7 @@ extern_protocol!(
             identifier_components: &NSArray<NSString>,
             coder: &NSCoder,
             mtm: MainThreadMarker,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
     }
 
     unsafe impl ProtocolType for dyn UIViewControllerRestoration {}
@@ -47,7 +47,7 @@ extern_protocol!(
             &self,
             idx: &NSIndexPath,
             view: &UIView,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other indexPathForElementWithModelIdentifier:inView:)]
@@ -55,7 +55,7 @@ extern_protocol!(
             &self,
             identifier: &NSString,
             view: &UIView,
-        ) -> Option<Id<NSIndexPath>>;
+        ) -> Option<Retained<NSIndexPath>>;
     }
 
     unsafe impl ProtocolType for dyn UIDataSourceModelAssociation {}
@@ -65,7 +65,9 @@ extern_protocol!(
     pub unsafe trait UIStateRestoring: NSObjectProtocol + IsMainThreadOnly {
         #[optional]
         #[method_id(@__retain_semantics Other restorationParent)]
-        unsafe fn restorationParent(&self) -> Option<Id<ProtocolObject<dyn UIStateRestoring>>>;
+        unsafe fn restorationParent(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn UIStateRestoring>>>;
 
         #[optional]
         #[method(objectRestorationClass)]
@@ -94,7 +96,7 @@ extern_protocol!(
             identifier_components: &NSArray<NSString>,
             coder: &NSCoder,
             mtm: MainThreadMarker,
-        ) -> Option<Id<ProtocolObject<dyn UIStateRestoring>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIStateRestoring>>>;
     }
 
     unsafe impl ProtocolType for dyn UIObjectRestoration {}

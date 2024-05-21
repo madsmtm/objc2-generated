@@ -31,22 +31,22 @@ extern_methods!(
             mime_type: Option<&NSString>,
             text_encoding_name: Option<&NSString>,
             frame_name: Option<&NSString>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Id<NSData>;
+        pub unsafe fn data(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[method_id(@__retain_semantics Other MIMEType)]
-        pub unsafe fn MIMEType(&self) -> Id<NSString>;
+        pub unsafe fn MIMEType(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other textEncodingName)]
-        pub unsafe fn textEncodingName(&self) -> Id<NSString>;
+        pub unsafe fn textEncodingName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other frameName)]
-        pub unsafe fn frameName(&self) -> Id<NSString>;
+        pub unsafe fn frameName(&self) -> Retained<NSString>;
     }
 );
 
@@ -54,9 +54,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebResource {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

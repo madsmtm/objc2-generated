@@ -25,7 +25,7 @@ extern_category!(
         unsafe fn webPlugInSetIsSelected(&self, is_selected: bool);
 
         #[method_id(@__retain_semantics Other objectForWebScript)]
-        unsafe fn objectForWebScript(&self) -> Option<Id<AnyObject>>;
+        unsafe fn objectForWebScript(&self) -> Option<Retained<AnyObject>>;
 
         #[method(webPlugInMainResourceDidReceiveResponse:)]
         unsafe fn webPlugInMainResourceDidReceiveResponse(&self, response: Option<&NSURLResponse>);

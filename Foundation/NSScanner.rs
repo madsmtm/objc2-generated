@@ -23,7 +23,7 @@ extern_methods!(
     unsafe impl NSScanner {
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other string)]
-        pub unsafe fn string(&self) -> Id<NSString>;
+        pub unsafe fn string(&self) -> Retained<NSString>;
 
         #[method(scanLocation)]
         pub unsafe fn scanLocation(&self) -> NSUInteger;
@@ -33,7 +33,7 @@ extern_methods!(
 
         #[cfg(feature = "NSCharacterSet")]
         #[method_id(@__retain_semantics Other charactersToBeSkipped)]
-        pub unsafe fn charactersToBeSkipped(&self) -> Option<Id<NSCharacterSet>>;
+        pub unsafe fn charactersToBeSkipped(&self) -> Option<Retained<NSCharacterSet>>;
 
         #[cfg(feature = "NSCharacterSet")]
         #[method(setCharactersToBeSkipped:)]
@@ -49,14 +49,14 @@ extern_methods!(
         pub unsafe fn setCaseSensitive(&self, case_sensitive: bool);
 
         #[method_id(@__retain_semantics Other locale)]
-        pub unsafe fn locale(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn locale(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&AnyObject>);
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
-        pub unsafe fn initWithString(this: Allocated<Self>, string: &NSString) -> Id<Self>;
+        pub unsafe fn initWithString(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
     }
 );
 
@@ -64,10 +64,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScanner {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -109,7 +109,7 @@ extern_methods!(
         pub unsafe fn scanString_intoString(
             &self,
             string: &NSString,
-            result: Option<&mut Option<Id<NSString>>>,
+            result: Option<&mut Option<Retained<NSString>>>,
         ) -> bool;
 
         #[cfg(all(feature = "NSCharacterSet", feature = "NSString"))]
@@ -117,7 +117,7 @@ extern_methods!(
         pub unsafe fn scanCharactersFromSet_intoString(
             &self,
             set: &NSCharacterSet,
-            result: Option<&mut Option<Id<NSString>>>,
+            result: Option<&mut Option<Retained<NSString>>>,
         ) -> bool;
 
         #[cfg(feature = "NSString")]
@@ -125,7 +125,7 @@ extern_methods!(
         pub unsafe fn scanUpToString_intoString(
             &self,
             string: &NSString,
-            result: Option<&mut Option<Id<NSString>>>,
+            result: Option<&mut Option<Retained<NSString>>>,
         ) -> bool;
 
         #[cfg(all(feature = "NSCharacterSet", feature = "NSString"))]
@@ -133,7 +133,7 @@ extern_methods!(
         pub unsafe fn scanUpToCharactersFromSet_intoString(
             &self,
             set: &NSCharacterSet,
-            result: Option<&mut Option<Id<NSString>>>,
+            result: Option<&mut Option<Retained<NSString>>>,
         ) -> bool;
 
         #[method(isAtEnd)]
@@ -141,10 +141,10 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other scannerWithString:)]
-        pub unsafe fn scannerWithString(string: &NSString) -> Id<Self>;
+        pub unsafe fn scannerWithString(string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other localizedScannerWithString:)]
-        pub unsafe fn localizedScannerWithString(string: &NSString) -> Id<AnyObject>;
+        pub unsafe fn localizedScannerWithString(string: &NSString) -> Retained<AnyObject>;
     }
 );

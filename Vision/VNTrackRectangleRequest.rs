@@ -32,7 +32,7 @@ extern_methods!(
         pub unsafe fn initWithRectangleObservation(
             this: Allocated<Self>,
             observation: &VNRectangleObservation,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNObservation", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithRectangleObservation:completionHandler:)]
@@ -40,17 +40,17 @@ extern_methods!(
             this: Allocated<Self>,
             observation: &VNRectangleObservation,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -59,7 +59,7 @@ extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
     unsafe impl VNTrackRectangleRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

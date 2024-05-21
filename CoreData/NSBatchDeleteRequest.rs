@@ -28,21 +28,21 @@ extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSBatchDeleteRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSFetchRequest")]
         #[method_id(@__retain_semantics Init initWithFetchRequest:)]
         pub unsafe fn initWithFetchRequest(
             this: Allocated<Self>,
             fetch: &NSFetchRequest,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectID")]
         #[method_id(@__retain_semantics Init initWithObjectIDs:)]
         pub unsafe fn initWithObjectIDs(
             this: Allocated<Self>,
             objects: &NSArray<NSManagedObjectID>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSPersistentStoreResult")]
         #[method(resultType)]
@@ -54,7 +54,7 @@ extern_methods!(
 
         #[cfg(feature = "NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequest)]
-        pub unsafe fn fetchRequest(&self) -> Id<NSFetchRequest>;
+        pub unsafe fn fetchRequest(&self) -> Retained<NSFetchRequest>;
     }
 );
 
@@ -63,6 +63,6 @@ extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSBatchDeleteRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

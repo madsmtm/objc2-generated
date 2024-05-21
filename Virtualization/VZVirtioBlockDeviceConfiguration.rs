@@ -32,15 +32,15 @@ extern_methods!(
         pub unsafe fn initWithAttachment(
             this: Allocated<Self>,
             attachment: &VZStorageDeviceAttachment,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(validateBlockDeviceIdentifier:error:_)]
         pub unsafe fn validateBlockDeviceIdentifier_error(
             block_device_identifier: &NSString,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other blockDeviceIdentifier)]
-        pub unsafe fn blockDeviceIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn blockDeviceIdentifier(&self) -> Retained<NSString>;
 
         #[method(setBlockDeviceIdentifier:)]
         pub unsafe fn setBlockDeviceIdentifier(&self, block_device_identifier: &NSString);
@@ -52,9 +52,9 @@ extern_methods!(
     #[cfg(feature = "VZStorageDeviceConfiguration")]
     unsafe impl VZVirtioBlockDeviceConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

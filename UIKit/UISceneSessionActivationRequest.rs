@@ -23,14 +23,14 @@ extern_methods!(
     unsafe impl UISceneSessionActivationRequest {
         #[cfg(feature = "UISceneDefinitions")]
         #[method_id(@__retain_semantics Other role)]
-        pub unsafe fn role(&self) -> Id<UISceneSessionRole>;
+        pub unsafe fn role(&self) -> Retained<UISceneSessionRole>;
 
         #[cfg(feature = "UISceneSession")]
         #[method_id(@__retain_semantics Other session)]
-        pub unsafe fn session(&self, mtm: MainThreadMarker) -> Option<Id<UISceneSession>>;
+        pub unsafe fn session(&self, mtm: MainThreadMarker) -> Option<Retained<UISceneSession>>;
 
         #[method_id(@__retain_semantics Other userActivity)]
-        pub unsafe fn userActivity(&self) -> Option<Id<NSUserActivity>>;
+        pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
 
         #[method(setUserActivity:)]
         pub unsafe fn setUserActivity(&self, user_activity: Option<&NSUserActivity>);
@@ -40,27 +40,27 @@ extern_methods!(
         pub unsafe fn options(
             &self,
             mtm: MainThreadMarker,
-        ) -> Option<Id<UISceneActivationRequestOptions>>;
+        ) -> Option<Retained<UISceneActivationRequestOptions>>;
 
         #[cfg(feature = "UISceneOptions")]
         #[method(setOptions:)]
         pub unsafe fn setOptions(&self, options: Option<&UISceneActivationRequestOptions>);
 
         #[method_id(@__retain_semantics Other request)]
-        pub unsafe fn request() -> Id<Self>;
+        pub unsafe fn request() -> Retained<Self>;
 
         #[cfg(feature = "UISceneDefinitions")]
         #[method_id(@__retain_semantics Other requestWithRole:)]
-        pub unsafe fn requestWithRole(role: &UISceneSessionRole) -> Id<Self>;
+        pub unsafe fn requestWithRole(role: &UISceneSessionRole) -> Retained<Self>;
 
         #[cfg(feature = "UISceneSession")]
         #[method_id(@__retain_semantics Other requestWithSession:)]
-        pub unsafe fn requestWithSession(session: &UISceneSession) -> Id<Self>;
+        pub unsafe fn requestWithSession(session: &UISceneSession) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

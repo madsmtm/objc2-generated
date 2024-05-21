@@ -36,7 +36,7 @@ extern_methods!(
             update_handler: &block2::Block<
                 dyn Fn(NonNull<HKObserverQuery>, HKObserverQueryCompletionHandler, *mut NSError),
             >,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "HKObjectType",
@@ -55,7 +55,7 @@ extern_methods!(
                     *mut NSError,
                 ),
             >,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -64,7 +64,7 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKObserverQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -73,6 +73,6 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKObserverQuery {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -25,16 +25,16 @@ extern_methods!(
     #[cfg(feature = "CKOperation")]
     unsafe impl CKFetchShareMetadataOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithShareURLs:)]
         pub unsafe fn initWithShareURLs(
             this: Allocated<Self>,
             share_ur_ls: &NSArray<NSURL>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other shareURLs)]
-        pub unsafe fn shareURLs(&self) -> Option<Id<NSArray<NSURL>>>;
+        pub unsafe fn shareURLs(&self) -> Option<Retained<NSArray<NSURL>>>;
 
         #[method(setShareURLs:)]
         pub unsafe fn setShareURLs(&self, share_ur_ls: Option<&NSArray<NSURL>>);
@@ -47,7 +47,7 @@ extern_methods!(
 
         #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Other rootRecordDesiredKeys)]
-        pub unsafe fn rootRecordDesiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
+        pub unsafe fn rootRecordDesiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
         #[method(setRootRecordDesiredKeys:)]
@@ -91,6 +91,6 @@ extern_methods!(
     #[cfg(feature = "CKOperation")]
     unsafe impl CKFetchShareMetadataOperation {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

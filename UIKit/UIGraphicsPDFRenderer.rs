@@ -32,7 +32,7 @@ extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsPDFRendererFormat {
         #[method_id(@__retain_semantics Other documentInfo)]
-        pub unsafe fn documentInfo(&self) -> Id<NSDictionary<NSString, AnyObject>>;
+        pub unsafe fn documentInfo(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[method(setDocumentInfo:)]
         pub unsafe fn setDocumentInfo(&self, document_info: &NSDictionary<NSString, AnyObject>);
@@ -45,10 +45,10 @@ extern_methods!(
     unsafe impl UIGraphicsPDFRendererFormat {
         #[deprecated]
         #[method_id(@__retain_semantics Other defaultFormat)]
-        pub unsafe fn defaultFormat() -> Id<Self>;
+        pub unsafe fn defaultFormat() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other preferredFormat)]
-        pub unsafe fn preferredFormat() -> Id<Self>;
+        pub unsafe fn preferredFormat() -> Retained<Self>;
     }
 );
 
@@ -57,10 +57,10 @@ extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsPDFRendererFormat {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -112,10 +112,10 @@ extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsPDFRendererContext {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -143,7 +143,7 @@ extern_methods!(
             this: Allocated<Self>,
             bounds: CGRect,
             format: &UIGraphicsPDFRendererFormat,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(writePDFToURL:withActions:error:_)]
@@ -151,12 +151,14 @@ extern_methods!(
             &self,
             url: &NSURL,
             actions: UIGraphicsPDFDrawingActions,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Other PDFDataWithActions:)]
-        pub unsafe fn PDFDataWithActions(&self, actions: UIGraphicsPDFDrawingActions)
-            -> Id<NSData>;
+        pub unsafe fn PDFDataWithActions(
+            &self,
+            actions: UIGraphicsPDFDrawingActions,
+        ) -> Retained<NSData>;
     }
 );
 
@@ -165,7 +167,7 @@ extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsPDFRenderer {
         #[method_id(@__retain_semantics Init initWithBounds:)]
-        pub unsafe fn initWithBounds(this: Allocated<Self>, bounds: CGRect) -> Id<Self>;
+        pub unsafe fn initWithBounds(this: Allocated<Self>, bounds: CGRect) -> Retained<Self>;
     }
 );
 
@@ -174,9 +176,9 @@ extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsPDFRenderer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

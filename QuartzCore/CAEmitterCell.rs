@@ -27,16 +27,16 @@ unsafe impl NSSecureCoding for CAEmitterCell {}
 extern_methods!(
     unsafe impl CAEmitterCell {
         #[method_id(@__retain_semantics Other emitterCell)]
-        pub unsafe fn emitterCell() -> Id<Self>;
+        pub unsafe fn emitterCell() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other defaultValueForKey:)]
-        pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Id<AnyObject>>;
+        pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[method(shouldArchiveValueForKey:)]
         pub unsafe fn shouldArchiveValueForKey(&self, key: &NSString) -> bool;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -192,7 +192,7 @@ extern_methods!(
         pub unsafe fn setAlphaSpeed(&self, alpha_speed: c_float);
 
         #[method_id(@__retain_semantics Other contents)]
-        pub unsafe fn contents(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn contents(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setContents:)]
         pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
@@ -210,13 +210,13 @@ extern_methods!(
         pub unsafe fn setContentsScale(&self, contents_scale: CGFloat);
 
         #[method_id(@__retain_semantics Other minificationFilter)]
-        pub unsafe fn minificationFilter(&self) -> Id<NSString>;
+        pub unsafe fn minificationFilter(&self) -> Retained<NSString>;
 
         #[method(setMinificationFilter:)]
         pub unsafe fn setMinificationFilter(&self, minification_filter: &NSString);
 
         #[method_id(@__retain_semantics Other magnificationFilter)]
-        pub unsafe fn magnificationFilter(&self) -> Id<NSString>;
+        pub unsafe fn magnificationFilter(&self) -> Retained<NSString>;
 
         #[method(setMagnificationFilter:)]
         pub unsafe fn setMagnificationFilter(&self, magnification_filter: &NSString);
@@ -228,13 +228,13 @@ extern_methods!(
         pub unsafe fn setMinificationFilterBias(&self, minification_filter_bias: c_float);
 
         #[method_id(@__retain_semantics Other emitterCells)]
-        pub unsafe fn emitterCells(&self) -> Option<Id<NSArray<CAEmitterCell>>>;
+        pub unsafe fn emitterCells(&self) -> Option<Retained<NSArray<CAEmitterCell>>>;
 
         #[method(setEmitterCells:)]
         pub unsafe fn setEmitterCells(&self, emitter_cells: Option<&NSArray<CAEmitterCell>>);
 
         #[method_id(@__retain_semantics Other style)]
-        pub unsafe fn style(&self) -> Option<Id<NSDictionary>>;
+        pub unsafe fn style(&self) -> Option<Retained<NSDictionary>>;
 
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: Option<&NSDictionary>);
@@ -245,9 +245,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CAEmitterCell {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

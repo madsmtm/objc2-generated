@@ -24,31 +24,31 @@ unsafe impl NSSecureCoding for MXSignpostRecord {}
 extern_methods!(
     unsafe impl MXSignpostRecord {
         #[method_id(@__retain_semantics Other subsystem)]
-        pub unsafe fn subsystem(&self) -> Id<NSString>;
+        pub unsafe fn subsystem(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other category)]
-        pub unsafe fn category(&self) -> Id<NSString>;
+        pub unsafe fn category(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other beginTimeStamp)]
-        pub unsafe fn beginTimeStamp(&self) -> Id<NSDate>;
+        pub unsafe fn beginTimeStamp(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other endTimeStamp)]
-        pub unsafe fn endTimeStamp(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn endTimeStamp(&self) -> Option<Retained<NSDate>>;
 
         #[method_id(@__retain_semantics Other duration)]
-        pub unsafe fn duration(&self) -> Option<Id<NSMeasurement<NSUnitDuration>>>;
+        pub unsafe fn duration(&self) -> Option<Retained<NSMeasurement<NSUnitDuration>>>;
 
         #[method(isInterval)]
         pub unsafe fn isInterval(&self) -> bool;
 
         #[method_id(@__retain_semantics Other JSONRepresentation)]
-        pub unsafe fn JSONRepresentation(&self) -> Id<NSData>;
+        pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
-        pub unsafe fn dictionaryRepresentation(&self) -> Id<NSDictionary>;
+        pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }
 );
 
@@ -56,9 +56,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXSignpostRecord {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

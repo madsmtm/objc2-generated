@@ -173,7 +173,9 @@ extern_methods!(
     ))]
     unsafe impl NSOutlineView {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSOutlineViewDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn NSOutlineViewDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -182,7 +184,9 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other dataSource)]
-        pub unsafe fn dataSource(&self) -> Option<Id<ProtocolObject<dyn NSOutlineViewDataSource>>>;
+        pub unsafe fn dataSource(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn NSOutlineViewDataSource>>>;
 
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
@@ -192,7 +196,7 @@ extern_methods!(
 
         #[cfg(feature = "NSTableColumn")]
         #[method_id(@__retain_semantics Other outlineTableColumn)]
-        pub unsafe fn outlineTableColumn(&self) -> Option<Id<NSTableColumn>>;
+        pub unsafe fn outlineTableColumn(&self) -> Option<Retained<NSTableColumn>>;
 
         #[cfg(feature = "NSTableColumn")]
         #[method(setOutlineTableColumn:)]
@@ -209,7 +213,7 @@ extern_methods!(
             &self,
             index: NSInteger,
             item: Option<&AnyObject>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[method(expandItem:expandChildren:)]
         pub unsafe fn expandItem_expandChildren(
@@ -242,13 +246,14 @@ extern_methods!(
         pub unsafe fn reloadItem(&self, item: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other parentForItem:)]
-        pub unsafe fn parentForItem(&self, item: Option<&AnyObject>) -> Option<Id<AnyObject>>;
+        pub unsafe fn parentForItem(&self, item: Option<&AnyObject>)
+            -> Option<Retained<AnyObject>>;
 
         #[method(childIndexForItem:)]
         pub unsafe fn childIndexForItem(&self, item: &AnyObject) -> NSInteger;
 
         #[method_id(@__retain_semantics Other itemAtRow:)]
-        pub unsafe fn itemAtRow(&self, row: NSInteger) -> Option<Id<AnyObject>>;
+        pub unsafe fn itemAtRow(&self, row: NSInteger) -> Option<Retained<AnyObject>>;
 
         #[method(rowForItem:)]
         pub unsafe fn rowForItem(&self, item: Option<&AnyObject>) -> NSInteger;
@@ -366,10 +371,13 @@ extern_methods!(
     ))]
     unsafe impl NSOutlineView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -383,7 +391,7 @@ extern_methods!(
     ))]
     unsafe impl NSOutlineView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -397,7 +405,7 @@ extern_methods!(
     ))]
     unsafe impl NSOutlineView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -430,7 +438,7 @@ extern_protocol!(
             outline_view: &NSOutlineView,
             index: NSInteger,
             item: Option<&AnyObject>,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
 
         #[cfg(all(
             feature = "NSControl",
@@ -460,7 +468,7 @@ extern_protocol!(
             outline_view: &NSOutlineView,
             table_column: Option<&NSTableColumn>,
             item: Option<&AnyObject>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(
             feature = "NSControl",
@@ -491,7 +499,7 @@ extern_protocol!(
             &self,
             outline_view: &NSOutlineView,
             object: &AnyObject,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(
             feature = "NSControl",
@@ -505,7 +513,7 @@ extern_protocol!(
             &self,
             outline_view: &NSOutlineView,
             item: Option<&AnyObject>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(
             feature = "NSControl",
@@ -534,7 +542,7 @@ extern_protocol!(
             &self,
             outline_view: &NSOutlineView,
             item: &AnyObject,
-        ) -> Option<Id<ProtocolObject<dyn NSPasteboardWriting>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSPasteboardWriting>>>;
 
         #[cfg(all(
             feature = "NSControl",
@@ -651,7 +659,7 @@ extern_protocol!(
             outline_view: &NSOutlineView,
             drop_destination: &NSURL,
             items: &NSArray,
-        ) -> Id<NSArray<NSString>>;
+        ) -> Retained<NSArray<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn NSOutlineViewDataSource {}
@@ -673,7 +681,7 @@ extern_protocol!(
             outline_view: &NSOutlineView,
             table_column: Option<&NSTableColumn>,
             item: &AnyObject,
-        ) -> Option<Id<NSView>>;
+        ) -> Option<Retained<NSView>>;
 
         #[cfg(all(
             feature = "NSResponder",
@@ -687,7 +695,7 @@ extern_protocol!(
             &self,
             outline_view: &NSOutlineView,
             item: &AnyObject,
-        ) -> Option<Id<NSTableRowView>>;
+        ) -> Option<Retained<NSTableRowView>>;
 
         #[cfg(all(
             feature = "NSResponder",
@@ -771,7 +779,7 @@ extern_protocol!(
             &self,
             outline_view: &NSOutlineView,
             proposed_selection_indexes: &NSIndexSet,
-        ) -> Id<NSIndexSet>;
+        ) -> Retained<NSIndexSet>;
 
         #[cfg(all(
             feature = "NSResponder",
@@ -846,7 +854,7 @@ extern_protocol!(
             table_column: Option<&NSTableColumn>,
             item: &AnyObject,
             mouse_location: NSPoint,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSTableView", feature = "NSView"))]
         #[optional]
@@ -869,7 +877,7 @@ extern_protocol!(
             &self,
             outline_view: &NSOutlineView,
             item: &AnyObject,
-        ) -> Option<Id<NSTintConfiguration>>;
+        ) -> Option<Retained<NSTintConfiguration>>;
 
         #[cfg(all(
             feature = "NSResponder",
@@ -884,7 +892,7 @@ extern_protocol!(
             outline_view: &NSOutlineView,
             table_column: Option<&NSTableColumn>,
             item: &AnyObject,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSTableView", feature = "NSView"))]
         #[optional]
@@ -895,7 +903,7 @@ extern_protocol!(
             start_item: &AnyObject,
             end_item: &AnyObject,
             search_string: &NSString,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(
             feature = "NSEvent",
@@ -958,7 +966,7 @@ extern_protocol!(
             outline_view: &NSOutlineView,
             table_column: Option<&NSTableColumn>,
             item: &AnyObject,
-        ) -> Option<Id<NSCell>>;
+        ) -> Option<Retained<NSCell>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSTableView", feature = "NSView"))]
         #[optional]

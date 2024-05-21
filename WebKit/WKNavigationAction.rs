@@ -51,13 +51,13 @@ extern_methods!(
     unsafe impl WKNavigationAction {
         #[cfg(feature = "WKFrameInfo")]
         #[method_id(@__retain_semantics Other targetFrame)]
-        pub unsafe fn targetFrame(&self) -> Option<Id<WKFrameInfo>>;
+        pub unsafe fn targetFrame(&self) -> Option<Retained<WKFrameInfo>>;
 
         #[method(navigationType)]
         pub unsafe fn navigationType(&self) -> WKNavigationType;
 
         #[method_id(@__retain_semantics Other request)]
-        pub unsafe fn request(&self) -> Id<NSURLRequest>;
+        pub unsafe fn request(&self) -> Retained<NSURLRequest>;
 
         #[method(shouldPerformDownload)]
         pub unsafe fn shouldPerformDownload(&self) -> bool;
@@ -76,9 +76,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKNavigationAction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

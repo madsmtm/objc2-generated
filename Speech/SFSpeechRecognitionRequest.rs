@@ -34,14 +34,14 @@ extern_methods!(
         pub unsafe fn setShouldReportPartialResults(&self, should_report_partial_results: bool);
 
         #[method_id(@__retain_semantics Other contextualStrings)]
-        pub unsafe fn contextualStrings(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn contextualStrings(&self) -> Retained<NSArray<NSString>>;
 
         #[method(setContextualStrings:)]
         pub unsafe fn setContextualStrings(&self, contextual_strings: &NSArray<NSString>);
 
         #[deprecated = "Not used anymore"]
         #[method_id(@__retain_semantics Other interactionIdentifier)]
-        pub unsafe fn interactionIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn interactionIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Not used anymore"]
         #[method(setInteractionIdentifier:)]
@@ -63,7 +63,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other customizedLanguageModel)]
         pub unsafe fn customizedLanguageModel(
             &self,
-        ) -> Option<Id<SFSpeechLanguageModelConfiguration>>;
+        ) -> Option<Retained<SFSpeechLanguageModelConfiguration>>;
 
         #[cfg(feature = "SFSpeechLanguageModel")]
         #[method(setCustomizedLanguageModel:)]
@@ -78,10 +78,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFSpeechRecognitionRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -101,13 +101,13 @@ unsafe impl NSObjectProtocol for SFSpeechURLRecognitionRequest {}
 extern_methods!(
     unsafe impl SFSpeechURLRecognitionRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithURL:)]
-        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Id<Self>;
+        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL>;
+        pub unsafe fn URL(&self) -> Retained<NSURL>;
     }
 );
 
@@ -115,7 +115,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFSpeechURLRecognitionRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -143,9 +143,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFSpeechAudioBufferRecognitionRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

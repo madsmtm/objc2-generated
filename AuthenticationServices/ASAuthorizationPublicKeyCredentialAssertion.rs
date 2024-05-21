@@ -14,13 +14,13 @@ extern_protocol!(
         ASPublicKeyCredential
     {
         #[method_id(@__retain_semantics Other rawAuthenticatorData)]
-        unsafe fn rawAuthenticatorData(&self) -> Id<NSData>;
+        unsafe fn rawAuthenticatorData(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other userID)]
-        unsafe fn userID(&self) -> Id<NSData>;
+        unsafe fn userID(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other signature)]
-        unsafe fn signature(&self) -> Id<NSData>;
+        unsafe fn signature(&self) -> Retained<NSData>;
     }
 
     #[cfg(all(

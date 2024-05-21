@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl DOMHTMLAppletElement {
         #[deprecated]
         #[method_id(@__retain_semantics Other align)]
-        pub unsafe fn align(&self) -> Id<NSString>;
+        pub unsafe fn align(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setAlign:)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other alt)]
-        pub unsafe fn alt(&self) -> Id<NSString>;
+        pub unsafe fn alt(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setAlt:)]
@@ -86,7 +86,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other archive)]
-        pub unsafe fn archive(&self) -> Id<NSString>;
+        pub unsafe fn archive(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setArchive:)]
@@ -94,7 +94,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other code)]
-        pub unsafe fn code(&self) -> Id<NSString>;
+        pub unsafe fn code(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setCode:)]
@@ -102,7 +102,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other codeBase)]
-        pub unsafe fn codeBase(&self) -> Id<NSString>;
+        pub unsafe fn codeBase(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setCodeBase:)]
@@ -110,7 +110,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other height)]
-        pub unsafe fn height(&self) -> Id<NSString>;
+        pub unsafe fn height(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setHeight:)]
@@ -126,7 +126,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setName:)]
@@ -134,7 +134,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other object)]
-        pub unsafe fn object(&self) -> Id<NSString>;
+        pub unsafe fn object(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setObject:)]
@@ -150,7 +150,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other width)]
-        pub unsafe fn width(&self) -> Id<NSString>;
+        pub unsafe fn width(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setWidth:)]
@@ -170,7 +170,7 @@ extern_methods!(
     unsafe impl DOMHTMLAppletElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -185,6 +185,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLAppletElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

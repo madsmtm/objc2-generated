@@ -34,7 +34,7 @@ extern_methods!(
             health_store: &HKHealthStore,
             device: Option<&HKDevice>,
             start_date: &NSDate,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(addHeartbeatWithTimeIntervalSinceSeriesStartDate:precededByGap:completion:)]
@@ -73,7 +73,7 @@ extern_methods!(
     #[cfg(feature = "HKSeriesBuilder")]
     unsafe impl HKHeartbeatSeriesBuilder {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -82,6 +82,6 @@ extern_methods!(
     #[cfg(feature = "HKSeriesBuilder")]
     unsafe impl HKHeartbeatSeriesBuilder {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

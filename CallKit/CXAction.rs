@@ -26,20 +26,22 @@ unsafe impl NSSecureCoding for CXAction {}
 extern_methods!(
     unsafe impl CXAction {
         #[method_id(@__retain_semantics Other UUID)]
-        pub unsafe fn UUID(&self) -> Id<NSUUID>;
+        pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         #[method(isComplete)]
         pub unsafe fn isComplete(&self) -> bool;
 
         #[method_id(@__retain_semantics Other timeoutDate)]
-        pub unsafe fn timeoutDate(&self) -> Id<NSDate>;
+        pub unsafe fn timeoutDate(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder)
-            -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            a_decoder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method(fulfill)]
         pub unsafe fn fulfill(&self);
@@ -53,6 +55,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXAction {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

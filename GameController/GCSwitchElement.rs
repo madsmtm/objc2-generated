@@ -9,7 +9,7 @@ extern_protocol!(
     pub unsafe trait GCSwitchElement: GCPhysicalInputElement {
         #[cfg(feature = "GCSwitchPositionInput")]
         #[method_id(@__retain_semantics Other positionInput)]
-        unsafe fn positionInput(&self) -> Id<ProtocolObject<dyn GCSwitchPositionInput>>;
+        unsafe fn positionInput(&self) -> Retained<ProtocolObject<dyn GCSwitchPositionInput>>;
     }
 
     #[cfg(feature = "GCPhysicalInputElement")]

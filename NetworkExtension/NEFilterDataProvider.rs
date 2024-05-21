@@ -43,7 +43,8 @@ extern_methods!(
     unsafe impl NEFilterDataProvider {
         #[cfg(feature = "NEFilterFlow")]
         #[method_id(@__retain_semantics Other handleNewFlow:)]
-        pub unsafe fn handleNewFlow(&self, flow: &NEFilterFlow) -> Id<NEFilterNewFlowVerdict>;
+        pub unsafe fn handleNewFlow(&self, flow: &NEFilterFlow)
+            -> Retained<NEFilterNewFlowVerdict>;
 
         #[cfg(feature = "NEFilterFlow")]
         #[method_id(@__retain_semantics Other handleInboundDataFromFlow:readBytesStartOffset:readBytes:)]
@@ -52,7 +53,7 @@ extern_methods!(
             flow: &NEFilterFlow,
             offset: NSUInteger,
             read_bytes: &NSData,
-        ) -> Id<NEFilterDataVerdict>;
+        ) -> Retained<NEFilterDataVerdict>;
 
         #[cfg(feature = "NEFilterFlow")]
         #[method_id(@__retain_semantics Other handleOutboundDataFromFlow:readBytesStartOffset:readBytes:)]
@@ -61,28 +62,28 @@ extern_methods!(
             flow: &NEFilterFlow,
             offset: NSUInteger,
             read_bytes: &NSData,
-        ) -> Id<NEFilterDataVerdict>;
+        ) -> Retained<NEFilterDataVerdict>;
 
         #[cfg(feature = "NEFilterFlow")]
         #[method_id(@__retain_semantics Other handleInboundDataCompleteForFlow:)]
         pub unsafe fn handleInboundDataCompleteForFlow(
             &self,
             flow: &NEFilterFlow,
-        ) -> Id<NEFilterDataVerdict>;
+        ) -> Retained<NEFilterDataVerdict>;
 
         #[cfg(feature = "NEFilterFlow")]
         #[method_id(@__retain_semantics Other handleOutboundDataCompleteForFlow:)]
         pub unsafe fn handleOutboundDataCompleteForFlow(
             &self,
             flow: &NEFilterFlow,
-        ) -> Id<NEFilterDataVerdict>;
+        ) -> Retained<NEFilterDataVerdict>;
 
         #[cfg(feature = "NEFilterFlow")]
         #[method_id(@__retain_semantics Other handleRemediationForFlow:)]
         pub unsafe fn handleRemediationForFlow(
             &self,
             flow: &NEFilterFlow,
-        ) -> Id<NEFilterRemediationVerdict>;
+        ) -> Retained<NEFilterRemediationVerdict>;
 
         #[method(handleRulesChanged)]
         pub unsafe fn handleRulesChanged(&self);
@@ -115,10 +116,10 @@ extern_methods!(
     #[cfg(all(feature = "NEFilterProvider", feature = "NEProvider"))]
     unsafe impl NEFilterDataProvider {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -160,28 +161,28 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other allowVerdict)]
-        pub unsafe fn allowVerdict() -> Id<NEFilterDataVerdict>;
+        pub unsafe fn allowVerdict() -> Retained<NEFilterDataVerdict>;
 
         #[method_id(@__retain_semantics Other dropVerdict)]
-        pub unsafe fn dropVerdict() -> Id<NEFilterDataVerdict>;
+        pub unsafe fn dropVerdict() -> Retained<NEFilterDataVerdict>;
 
         #[method_id(@__retain_semantics Other remediateVerdictWithRemediationURLMapKey:remediationButtonTextMapKey:)]
         pub unsafe fn remediateVerdictWithRemediationURLMapKey_remediationButtonTextMapKey(
             remediation_url_map_key: Option<&NSString>,
             remediation_button_text_map_key: Option<&NSString>,
-        ) -> Id<NEFilterDataVerdict>;
+        ) -> Retained<NEFilterDataVerdict>;
 
         #[method_id(@__retain_semantics Other dataVerdictWithPassBytes:peekBytes:)]
         pub unsafe fn dataVerdictWithPassBytes_peekBytes(
             pass_bytes: NSUInteger,
             peek_bytes: NSUInteger,
-        ) -> Id<NEFilterDataVerdict>;
+        ) -> Retained<NEFilterDataVerdict>;
 
         #[method_id(@__retain_semantics Other needRulesVerdict)]
-        pub unsafe fn needRulesVerdict() -> Id<NEFilterDataVerdict>;
+        pub unsafe fn needRulesVerdict() -> Retained<NEFilterDataVerdict>;
 
         #[method_id(@__retain_semantics Other pauseVerdict)]
-        pub unsafe fn pauseVerdict() -> Id<NEFilterDataVerdict>;
+        pub unsafe fn pauseVerdict() -> Retained<NEFilterDataVerdict>;
     }
 );
 
@@ -190,10 +191,10 @@ extern_methods!(
     #[cfg(feature = "NEFilterProvider")]
     unsafe impl NEFilterDataVerdict {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -226,13 +227,13 @@ extern_methods!(
     #[cfg(feature = "NEFilterProvider")]
     unsafe impl NEFilterRemediationVerdict {
         #[method_id(@__retain_semantics Other allowVerdict)]
-        pub unsafe fn allowVerdict() -> Id<NEFilterRemediationVerdict>;
+        pub unsafe fn allowVerdict() -> Retained<NEFilterRemediationVerdict>;
 
         #[method_id(@__retain_semantics Other dropVerdict)]
-        pub unsafe fn dropVerdict() -> Id<NEFilterRemediationVerdict>;
+        pub unsafe fn dropVerdict() -> Retained<NEFilterRemediationVerdict>;
 
         #[method_id(@__retain_semantics Other needRulesVerdict)]
-        pub unsafe fn needRulesVerdict() -> Id<NEFilterRemediationVerdict>;
+        pub unsafe fn needRulesVerdict() -> Retained<NEFilterRemediationVerdict>;
     }
 );
 
@@ -241,9 +242,9 @@ extern_methods!(
     #[cfg(feature = "NEFilterProvider")]
     unsafe impl NEFilterRemediationVerdict {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

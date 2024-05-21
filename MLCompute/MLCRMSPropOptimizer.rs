@@ -49,7 +49,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other optimizerWithDescriptor:)]
         pub unsafe fn optimizerWithDescriptor(
             optimizer_descriptor: &MLCOptimizerDescriptor,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCOptimizerDescriptor")]
         #[deprecated = "Use Metal Performance Shaders Graph or BNNS instead."]
@@ -60,7 +60,7 @@ extern_methods!(
             alpha: c_float,
             epsilon: c_float,
             is_centered: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -70,10 +70,10 @@ extern_methods!(
     unsafe impl MLCRMSPropOptimizer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

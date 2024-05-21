@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl DOMHTMLHtmlElement {
         #[deprecated]
         #[method_id(@__retain_semantics Other version)]
-        pub unsafe fn version(&self) -> Id<NSString>;
+        pub unsafe fn version(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setVersion:)]
@@ -90,7 +90,7 @@ extern_methods!(
     unsafe impl DOMHTMLHtmlElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -105,6 +105,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLHtmlElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

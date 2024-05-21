@@ -80,38 +80,38 @@ extern_methods!(
             response: Option<&NSURLResponse>,
             error: Option<&NSError>,
             sender: &ProtocolObject<dyn NSURLAuthenticationChallengeSender>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithAuthenticationChallenge:sender:)]
         pub unsafe fn initWithAuthenticationChallenge_sender(
             this: Allocated<Self>,
             challenge: &NSURLAuthenticationChallenge,
             sender: &ProtocolObject<dyn NSURLAuthenticationChallengeSender>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSURLProtectionSpace")]
         #[method_id(@__retain_semantics Other protectionSpace)]
-        pub unsafe fn protectionSpace(&self) -> Id<NSURLProtectionSpace>;
+        pub unsafe fn protectionSpace(&self) -> Retained<NSURLProtectionSpace>;
 
         #[cfg(feature = "NSURLCredential")]
         #[method_id(@__retain_semantics Other proposedCredential)]
-        pub unsafe fn proposedCredential(&self) -> Option<Id<NSURLCredential>>;
+        pub unsafe fn proposedCredential(&self) -> Option<Retained<NSURLCredential>>;
 
         #[method(previousFailureCount)]
         pub unsafe fn previousFailureCount(&self) -> NSInteger;
 
         #[cfg(feature = "NSURLResponse")]
         #[method_id(@__retain_semantics Other failureResponse)]
-        pub unsafe fn failureResponse(&self) -> Option<Id<NSURLResponse>>;
+        pub unsafe fn failureResponse(&self) -> Option<Retained<NSURLResponse>>;
 
         #[cfg(feature = "NSError")]
         #[method_id(@__retain_semantics Other error)]
-        pub unsafe fn error(&self) -> Option<Id<NSError>>;
+        pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other sender)]
         pub unsafe fn sender(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSURLAuthenticationChallengeSender>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSURLAuthenticationChallengeSender>>>;
     }
 );
 
@@ -119,9 +119,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLAuthenticationChallenge {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

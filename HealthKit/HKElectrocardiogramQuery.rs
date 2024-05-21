@@ -29,7 +29,7 @@ extern_methods!(
         pub unsafe fn quantityForLead(
             &self,
             lead: HKElectrocardiogramLead,
-        ) -> Option<Id<HKQuantity>>;
+        ) -> Option<Retained<HKQuantity>>;
     }
 );
 
@@ -37,10 +37,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKElectrocardiogramVoltageMeasurement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -81,7 +81,7 @@ extern_methods!(
                     *mut NSError,
                 ),
             >,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -90,7 +90,7 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKElectrocardiogramQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -99,6 +99,6 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKElectrocardiogramQuery {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -49,10 +49,10 @@ extern_methods!(
             this: Allocated<Self>,
             identifier: &NSString,
             r#type: ASCredentialServiceIdentifierType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[method(type)]
         pub unsafe fn r#type(&self) -> ASCredentialServiceIdentifierType;
@@ -63,9 +63,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASCredentialServiceIdentifier {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

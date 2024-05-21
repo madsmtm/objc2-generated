@@ -40,16 +40,18 @@ extern_methods!(
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: &ProtocolObject<dyn UIDragInteractionDelegate>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn UIDragInteractionDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn UIDragInteractionDelegate>>>;
 
         #[method(allowsSimultaneousRecognitionDuringLift)]
         pub unsafe fn allowsSimultaneousRecognitionDuringLift(&self) -> bool;
@@ -79,7 +81,7 @@ extern_protocol!(
             &self,
             interaction: &UIDragInteraction,
             session: &ProtocolObject<dyn UIDragSession>,
-        ) -> Id<NSArray<UIDragItem>>;
+        ) -> Retained<NSArray<UIDragItem>>;
 
         #[cfg(all(
             feature = "UIDragItem",
@@ -94,7 +96,7 @@ extern_protocol!(
             interaction: &UIDragInteraction,
             item: &UIDragItem,
             session: &ProtocolObject<dyn UIDragSession>,
-        ) -> Option<Id<UITargetedDragPreview>>;
+        ) -> Option<Retained<UITargetedDragPreview>>;
 
         #[cfg(feature = "UIDragSession")]
         #[optional]
@@ -188,7 +190,7 @@ extern_protocol!(
             interaction: &UIDragInteraction,
             session: &ProtocolObject<dyn UIDragSession>,
             point: CGPoint,
-        ) -> Id<NSArray<UIDragItem>>;
+        ) -> Retained<NSArray<UIDragItem>>;
 
         #[cfg(feature = "UIDragSession")]
         #[optional]
@@ -198,7 +200,7 @@ extern_protocol!(
             interaction: &UIDragInteraction,
             sessions: &NSArray<ProtocolObject<dyn UIDragSession>>,
             point: CGPoint,
-        ) -> Option<Id<ProtocolObject<dyn UIDragSession>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIDragSession>>>;
 
         #[cfg(all(feature = "UIDragItem", feature = "UIDragSession"))]
         #[optional]
@@ -223,7 +225,7 @@ extern_protocol!(
             interaction: &UIDragInteraction,
             item: &UIDragItem,
             default_preview: &UITargetedDragPreview,
-        ) -> Option<Id<UITargetedDragPreview>>;
+        ) -> Option<Retained<UITargetedDragPreview>>;
 
         #[cfg(feature = "UIDragItem")]
         #[optional]

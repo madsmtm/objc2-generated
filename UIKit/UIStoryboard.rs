@@ -34,12 +34,13 @@ extern_methods!(
             name: &NSString,
             storyboard_bundle_or_nil: Option<&NSBundle>,
             mtm: MainThreadMarker,
-        ) -> Id<UIStoryboard>;
+        ) -> Retained<UIStoryboard>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[method_id(@__retain_semantics Other instantiateInitialViewController)]
-        pub unsafe fn instantiateInitialViewController(&self) -> Option<Id<UIViewController>>;
+        pub unsafe fn instantiateInitialViewController(&self)
+            -> Option<Retained<UIViewController>>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -50,7 +51,7 @@ extern_methods!(
         pub unsafe fn instantiateInitialViewControllerWithCreator(
             &self,
             block: UIStoryboardViewControllerCreator,
-        ) -> Option<Id<UIViewController>>;
+        ) -> Option<Retained<UIViewController>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
@@ -58,7 +59,7 @@ extern_methods!(
         pub unsafe fn instantiateViewControllerWithIdentifier(
             &self,
             identifier: &NSString,
-        ) -> Id<UIViewController>;
+        ) -> Retained<UIViewController>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -70,7 +71,7 @@ extern_methods!(
             &self,
             identifier: &NSString,
             block: UIStoryboardViewControllerCreator,
-        ) -> Id<UIViewController>;
+        ) -> Retained<UIViewController>;
     }
 );
 
@@ -78,9 +79,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIStoryboard {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

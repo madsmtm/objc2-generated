@@ -35,7 +35,7 @@ extern_methods!(
         #[cfg(feature = "DOMStyleSheet")]
         #[deprecated]
         #[method_id(@__retain_semantics Other item:)]
-        pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMStyleSheet>>;
+        pub unsafe fn item(&self, index: c_uint) -> Option<Retained<DOMStyleSheet>>;
     }
 );
 
@@ -45,7 +45,7 @@ extern_methods!(
     unsafe impl DOMStyleSheetList {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -54,6 +54,6 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMStyleSheetList {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

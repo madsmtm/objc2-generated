@@ -14,7 +14,7 @@ extern_protocol!(
         ASPublicKeyCredential
     {
         #[method_id(@__retain_semantics Other rawAttestationObject)]
-        unsafe fn rawAttestationObject(&self) -> Option<Id<NSData>>;
+        unsafe fn rawAttestationObject(&self) -> Option<Retained<NSData>>;
     }
 
     #[cfg(all(

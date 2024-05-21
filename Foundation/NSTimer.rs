@@ -24,7 +24,7 @@ extern_methods!(
             ti: NSTimeInterval,
             invocation: &NSInvocation,
             yes_or_no: bool,
-        ) -> Id<NSTimer>;
+        ) -> Retained<NSTimer>;
 
         #[cfg(all(feature = "NSDate", feature = "NSInvocation"))]
         #[method_id(@__retain_semantics Other scheduledTimerWithTimeInterval:invocation:repeats:)]
@@ -32,7 +32,7 @@ extern_methods!(
             ti: NSTimeInterval,
             invocation: &NSInvocation,
             yes_or_no: bool,
-        ) -> Id<NSTimer>;
+        ) -> Retained<NSTimer>;
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other timerWithTimeInterval:target:selector:userInfo:repeats:)]
@@ -42,7 +42,7 @@ extern_methods!(
             a_selector: Sel,
             user_info: Option<&AnyObject>,
             yes_or_no: bool,
-        ) -> Id<NSTimer>;
+        ) -> Retained<NSTimer>;
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:)]
@@ -52,7 +52,7 @@ extern_methods!(
             a_selector: Sel,
             user_info: Option<&AnyObject>,
             yes_or_no: bool,
-        ) -> Id<NSTimer>;
+        ) -> Retained<NSTimer>;
 
         #[cfg(all(feature = "NSDate", feature = "block2"))]
         #[method_id(@__retain_semantics Other timerWithTimeInterval:repeats:block:)]
@@ -60,7 +60,7 @@ extern_methods!(
             interval: NSTimeInterval,
             repeats: bool,
             block: &block2::Block<dyn Fn(NonNull<NSTimer>)>,
-        ) -> Id<NSTimer>;
+        ) -> Retained<NSTimer>;
 
         #[cfg(all(feature = "NSDate", feature = "block2"))]
         #[method_id(@__retain_semantics Other scheduledTimerWithTimeInterval:repeats:block:)]
@@ -68,7 +68,7 @@ extern_methods!(
             interval: NSTimeInterval,
             repeats: bool,
             block: &block2::Block<dyn Fn(NonNull<NSTimer>)>,
-        ) -> Id<NSTimer>;
+        ) -> Retained<NSTimer>;
 
         #[cfg(all(feature = "NSDate", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithFireDate:interval:repeats:block:)]
@@ -78,7 +78,7 @@ extern_methods!(
             interval: NSTimeInterval,
             repeats: bool,
             block: &block2::Block<dyn Fn(NonNull<NSTimer>)>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Init initWithFireDate:interval:target:selector:userInfo:repeats:)]
@@ -90,14 +90,14 @@ extern_methods!(
             s: Sel,
             ui: Option<&AnyObject>,
             rep: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(fire)]
         pub unsafe fn fire(&self);
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other fireDate)]
-        pub unsafe fn fireDate(&self) -> Id<NSDate>;
+        pub unsafe fn fireDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "NSDate")]
         #[method(setFireDate:)]
@@ -122,7 +122,7 @@ extern_methods!(
         pub unsafe fn isValid(&self) -> bool;
 
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn userInfo(&self) -> Option<Retained<AnyObject>>;
     }
 );
 
@@ -130,9 +130,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTimer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

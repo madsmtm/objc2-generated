@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl DOMHTMLBodyElement {
         #[deprecated]
         #[method_id(@__retain_semantics Other aLink)]
-        pub unsafe fn aLink(&self) -> Id<NSString>;
+        pub unsafe fn aLink(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setALink:)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other background)]
-        pub unsafe fn background(&self) -> Id<NSString>;
+        pub unsafe fn background(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setBackground:)]
@@ -86,7 +86,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other bgColor)]
-        pub unsafe fn bgColor(&self) -> Id<NSString>;
+        pub unsafe fn bgColor(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setBgColor:)]
@@ -94,7 +94,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other link)]
-        pub unsafe fn link(&self) -> Id<NSString>;
+        pub unsafe fn link(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setLink:)]
@@ -102,7 +102,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other text)]
-        pub unsafe fn text(&self) -> Id<NSString>;
+        pub unsafe fn text(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setText:)]
@@ -110,7 +110,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other vLink)]
-        pub unsafe fn vLink(&self) -> Id<NSString>;
+        pub unsafe fn vLink(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setVLink:)]
@@ -130,7 +130,7 @@ extern_methods!(
     unsafe impl DOMHTMLBodyElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -145,6 +145,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLBodyElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

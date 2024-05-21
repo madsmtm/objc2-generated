@@ -55,7 +55,7 @@ extern_methods!(
     ))]
     unsafe impl HKCDADocumentSample {
         #[method_id(@__retain_semantics Other document)]
-        pub unsafe fn document(&self) -> Option<Id<HKCDADocument>>;
+        pub unsafe fn document(&self) -> Option<Retained<HKCDADocument>>;
 
         #[method_id(@__retain_semantics Other CDADocumentSampleWithData:startDate:endDate:metadata:validationError:_)]
         pub unsafe fn CDADocumentSampleWithData_startDate_endDate_metadata_validationError(
@@ -63,7 +63,7 @@ extern_methods!(
             start_date: &NSDate,
             end_date: &NSDate,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
     }
 );
 
@@ -76,7 +76,7 @@ extern_methods!(
     ))]
     unsafe impl HKCDADocumentSample {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -89,7 +89,7 @@ extern_methods!(
     ))]
     unsafe impl HKCDADocumentSample {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -108,19 +108,19 @@ unsafe impl NSObjectProtocol for HKCDADocument {}
 extern_methods!(
     unsafe impl HKCDADocument {
         #[method_id(@__retain_semantics Other documentData)]
-        pub unsafe fn documentData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn documentData(&self) -> Option<Retained<NSData>>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other patientName)]
-        pub unsafe fn patientName(&self) -> Id<NSString>;
+        pub unsafe fn patientName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other authorName)]
-        pub unsafe fn authorName(&self) -> Id<NSString>;
+        pub unsafe fn authorName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other custodianName)]
-        pub unsafe fn custodianName(&self) -> Id<NSString>;
+        pub unsafe fn custodianName(&self) -> Retained<NSString>;
     }
 );
 
@@ -128,10 +128,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKCDADocument {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

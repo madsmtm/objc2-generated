@@ -140,18 +140,18 @@ extern_methods!(
         pub unsafe fn initWithDataSource(
             this: Allocated<Self>,
             data_source: &ProtocolObject<dyn NSTextSelectionDataSource>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other textSelectionDataSource)]
         pub unsafe fn textSelectionDataSource(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSTextSelectionDataSource>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSTextSelectionDataSource>>>;
 
         #[method(allowsNonContiguousRanges)]
         pub unsafe fn allowsNonContiguousRanges(&self) -> bool;
@@ -180,7 +180,7 @@ extern_methods!(
             destination: NSTextSelectionNavigationDestination,
             extending: bool,
             confined: bool,
-        ) -> Option<Id<NSTextSelection>>;
+        ) -> Option<Retained<NSTextSelection>>;
 
         #[cfg(all(feature = "NSTextRange", feature = "NSTextSelection"))]
         #[method_id(@__retain_semantics Other textSelectionsInteractingAtPoint:inContainerAtLocation:anchors:modifiers:selecting:bounds:)]
@@ -192,7 +192,7 @@ extern_methods!(
             modifiers: NSTextSelectionNavigationModifier,
             selecting: bool,
             bounds: CGRect,
-        ) -> Id<NSArray<NSTextSelection>>;
+        ) -> Retained<NSArray<NSTextSelection>>;
 
         #[cfg(feature = "NSTextSelection")]
         #[method_id(@__retain_semantics Other textSelectionForSelectionGranularity:enclosingTextSelection:)]
@@ -200,7 +200,7 @@ extern_methods!(
             &self,
             selection_granularity: NSTextSelectionGranularity,
             text_selection: &NSTextSelection,
-        ) -> Id<NSTextSelection>;
+        ) -> Retained<NSTextSelection>;
 
         #[cfg(all(feature = "NSTextRange", feature = "NSTextSelection"))]
         #[method_id(@__retain_semantics Other textSelectionForSelectionGranularity:enclosingPoint:inContainerAtLocation:)]
@@ -209,7 +209,7 @@ extern_methods!(
             selection_granularity: NSTextSelectionGranularity,
             point: CGPoint,
             location: &ProtocolObject<dyn NSTextLocation>,
-        ) -> Option<Id<NSTextSelection>>;
+        ) -> Option<Retained<NSTextSelection>>;
 
         #[cfg(all(feature = "NSTextRange", feature = "NSTextSelection"))]
         #[method_id(@__retain_semantics Other resolvedInsertionLocationForTextSelection:writingDirection:)]
@@ -217,7 +217,7 @@ extern_methods!(
             &self,
             text_selection: &NSTextSelection,
             writing_direction: NSTextSelectionNavigationWritingDirection,
-        ) -> Option<Id<ProtocolObject<dyn NSTextLocation>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSTextLocation>>>;
 
         #[cfg(all(feature = "NSTextRange", feature = "NSTextSelection"))]
         #[method_id(@__retain_semantics Other deletionRangesForTextSelection:direction:destination:allowsDecomposition:)]
@@ -227,7 +227,7 @@ extern_methods!(
             direction: NSTextSelectionNavigationDirection,
             destination: NSTextSelectionNavigationDestination,
             allows_decomposition: bool,
-        ) -> Id<NSArray<NSTextRange>>;
+        ) -> Retained<NSArray<NSTextRange>>;
     }
 );
 
@@ -235,7 +235,7 @@ extern_protocol!(
     pub unsafe trait NSTextSelectionDataSource: NSObjectProtocol {
         #[cfg(feature = "NSTextRange")]
         #[method_id(@__retain_semantics Other documentRange)]
-        unsafe fn documentRange(&self) -> Id<NSTextRange>;
+        unsafe fn documentRange(&self) -> Retained<NSTextRange>;
 
         #[cfg(all(feature = "NSTextRange", feature = "block2"))]
         #[method(enumerateSubstringsFromLocation:options:usingBlock:)]
@@ -254,7 +254,7 @@ extern_protocol!(
             &self,
             selection_granularity: NSTextSelectionGranularity,
             location: &ProtocolObject<dyn NSTextLocation>,
-        ) -> Option<Id<NSTextRange>>;
+        ) -> Option<Retained<NSTextRange>>;
 
         #[cfg(feature = "NSTextRange")]
         #[method_id(@__retain_semantics Other locationFromLocation:withOffset:)]
@@ -262,7 +262,7 @@ extern_protocol!(
             &self,
             location: &ProtocolObject<dyn NSTextLocation>,
             offset: NSInteger,
-        ) -> Option<Id<ProtocolObject<dyn NSTextLocation>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSTextLocation>>>;
 
         #[cfg(feature = "NSTextRange")]
         #[method(offsetFromLocation:toLocation:)]
@@ -296,7 +296,7 @@ extern_protocol!(
             &self,
             point: CGPoint,
             location: &ProtocolObject<dyn NSTextLocation>,
-        ) -> Option<Id<NSTextRange>>;
+        ) -> Option<Retained<NSTextRange>>;
 
         #[cfg(all(feature = "NSTextRange", feature = "block2"))]
         #[optional]

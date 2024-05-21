@@ -33,13 +33,13 @@ extern_methods!(
             contents: Option<&NSAttributedString>,
             marker_attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
             children: Option<&NSArray<NSTextListElement>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithAttributedString:)]
         pub unsafe fn initWithAttributedString(
             this: Allocated<Self>,
             attributed_string: Option<&NSAttributedString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSTextList")]
         #[method_id(@__retain_semantics Other textListElementWithContents:markerAttributes:textList:childElements:)]
@@ -48,7 +48,7 @@ extern_methods!(
             marker_attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
             text_list: &NSTextList,
             children: Option<&NSArray<NSTextListElement>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSTextList")]
         #[method_id(@__retain_semantics Other textListElementWithChildElements:textList:nestingLevel:)]
@@ -56,28 +56,28 @@ extern_methods!(
             children: &NSArray<NSTextListElement>,
             text_list: &NSTextList,
             nesting_level: NSInteger,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSTextList")]
         #[method_id(@__retain_semantics Other textList)]
-        pub unsafe fn textList(&self) -> Id<NSTextList>;
+        pub unsafe fn textList(&self) -> Retained<NSTextList>;
 
         #[method_id(@__retain_semantics Other contents)]
-        pub unsafe fn contents(&self) -> Option<Id<NSAttributedString>>;
+        pub unsafe fn contents(&self) -> Option<Retained<NSAttributedString>>;
 
         #[method_id(@__retain_semantics Other markerAttributes)]
         pub unsafe fn markerAttributes(
             &self,
-        ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         #[method_id(@__retain_semantics Other attributedString)]
-        pub unsafe fn attributedString(&self) -> Id<NSAttributedString>;
+        pub unsafe fn attributedString(&self) -> Retained<NSAttributedString>;
 
         #[method_id(@__retain_semantics Other childElements)]
-        pub unsafe fn childElements(&self) -> Id<NSArray<NSTextListElement>>;
+        pub unsafe fn childElements(&self) -> Retained<NSArray<NSTextListElement>>;
 
         #[method_id(@__retain_semantics Other parentElement)]
-        pub unsafe fn parentElement(&self) -> Option<Id<NSTextListElement>>;
+        pub unsafe fn parentElement(&self) -> Option<Retained<NSTextListElement>>;
     }
 );
 
@@ -90,7 +90,7 @@ extern_methods!(
         pub unsafe fn initWithTextContentManager(
             this: Allocated<Self>,
             text_content_manager: Option<&NSTextContentManager>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -99,9 +99,9 @@ extern_methods!(
     #[cfg(feature = "NSTextElement")]
     unsafe impl NSTextListElement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

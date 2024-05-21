@@ -8,12 +8,14 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait MLFeatureProvider {
         #[method_id(@__retain_semantics Other featureNames)]
-        unsafe fn featureNames(&self) -> Id<NSSet<NSString>>;
+        unsafe fn featureNames(&self) -> Retained<NSSet<NSString>>;
 
         #[cfg(feature = "MLFeatureValue")]
         #[method_id(@__retain_semantics Other featureValueForName:)]
-        unsafe fn featureValueForName(&self, feature_name: &NSString)
-            -> Option<Id<MLFeatureValue>>;
+        unsafe fn featureValueForName(
+            &self,
+            feature_name: &NSString,
+        ) -> Option<Retained<MLFeatureValue>>;
     }
 
     unsafe impl ProtocolType for dyn MLFeatureProvider {}

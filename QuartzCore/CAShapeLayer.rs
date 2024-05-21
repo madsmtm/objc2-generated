@@ -43,7 +43,7 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAShapeLayer {
         #[method_id(@__retain_semantics Other fillRule)]
-        pub unsafe fn fillRule(&self) -> Id<CAShapeLayerFillRule>;
+        pub unsafe fn fillRule(&self) -> Retained<CAShapeLayerFillRule>;
 
         #[method(setFillRule:)]
         pub unsafe fn setFillRule(&self, fill_rule: &CAShapeLayerFillRule);
@@ -73,13 +73,13 @@ extern_methods!(
         pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
 
         #[method_id(@__retain_semantics Other lineCap)]
-        pub unsafe fn lineCap(&self) -> Id<CAShapeLayerLineCap>;
+        pub unsafe fn lineCap(&self) -> Retained<CAShapeLayerLineCap>;
 
         #[method(setLineCap:)]
         pub unsafe fn setLineCap(&self, line_cap: &CAShapeLayerLineCap);
 
         #[method_id(@__retain_semantics Other lineJoin)]
-        pub unsafe fn lineJoin(&self) -> Id<CAShapeLayerLineJoin>;
+        pub unsafe fn lineJoin(&self) -> Retained<CAShapeLayerLineJoin>;
 
         #[method(setLineJoin:)]
         pub unsafe fn setLineJoin(&self, line_join: &CAShapeLayerLineJoin);
@@ -91,7 +91,7 @@ extern_methods!(
         pub unsafe fn setLineDashPhase(&self, line_dash_phase: CGFloat);
 
         #[method_id(@__retain_semantics Other lineDashPattern)]
-        pub unsafe fn lineDashPattern(&self) -> Option<Id<NSArray<NSNumber>>>;
+        pub unsafe fn lineDashPattern(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[method(setLineDashPattern:)]
         pub unsafe fn setLineDashPattern(&self, line_dash_pattern: Option<&NSArray<NSNumber>>);
@@ -103,13 +103,13 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAShapeLayer {
         #[method_id(@__retain_semantics Other layer)]
-        pub unsafe fn layer() -> Id<Self>;
+        pub unsafe fn layer() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithLayer:)]
-        pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Id<Self>;
+        pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
 );
 
@@ -118,7 +118,7 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAShapeLayer {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

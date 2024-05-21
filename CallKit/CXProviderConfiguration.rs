@@ -23,16 +23,16 @@ extern_methods!(
     unsafe impl CXProviderConfiguration {
         #[deprecated = "No longer supported"]
         #[method_id(@__retain_semantics Other localizedName)]
-        pub unsafe fn localizedName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localizedName(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other ringtoneSound)]
-        pub unsafe fn ringtoneSound(&self) -> Option<Id<NSString>>;
+        pub unsafe fn ringtoneSound(&self) -> Option<Retained<NSString>>;
 
         #[method(setRingtoneSound:)]
         pub unsafe fn setRingtoneSound(&self, ringtone_sound: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other iconTemplateImageData)]
-        pub unsafe fn iconTemplateImageData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn iconTemplateImageData(&self) -> Option<Retained<NSData>>;
 
         #[method(setIconTemplateImageData:)]
         pub unsafe fn setIconTemplateImageData(&self, icon_template_image_data: Option<&NSData>);
@@ -62,20 +62,20 @@ extern_methods!(
         pub unsafe fn setSupportsVideo(&self, supports_video: bool);
 
         #[method_id(@__retain_semantics Other supportedHandleTypes)]
-        pub unsafe fn supportedHandleTypes(&self) -> Id<NSSet<NSNumber>>;
+        pub unsafe fn supportedHandleTypes(&self) -> Retained<NSSet<NSNumber>>;
 
         #[method(setSupportedHandleTypes:)]
         pub unsafe fn setSupportedHandleTypes(&self, supported_handle_types: &NSSet<NSNumber>);
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithLocalizedName:)]
         pub unsafe fn initWithLocalizedName(
             this: Allocated<Self>,
             localized_name: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -83,6 +83,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXProviderConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

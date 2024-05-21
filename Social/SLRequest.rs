@@ -54,11 +54,11 @@ extern_methods!(
             request_method: SLRequestMethod,
             url: Option<&NSURL>,
             parameters: Option<&NSDictionary>,
-        ) -> Option<Id<SLRequest>>;
+        ) -> Option<Retained<SLRequest>>;
 
         #[cfg(feature = "objc2-accounts")]
         #[method_id(@__retain_semantics Other account)]
-        pub unsafe fn account(&self) -> Option<Id<ACAccount>>;
+        pub unsafe fn account(&self) -> Option<Retained<ACAccount>>;
 
         #[cfg(feature = "objc2-accounts")]
         #[method(setAccount:)]
@@ -68,10 +68,10 @@ extern_methods!(
         pub unsafe fn requestMethod(&self) -> SLRequestMethod;
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[method_id(@__retain_semantics Other parameters)]
-        pub unsafe fn parameters(&self) -> Option<Id<NSDictionary>>;
+        pub unsafe fn parameters(&self) -> Option<Retained<NSDictionary>>;
 
         #[method(addMultipartData:withName:type:filename:)]
         pub unsafe fn addMultipartData_withName_type_filename(
@@ -91,7 +91,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other preparedURLRequest)]
-        pub unsafe fn preparedURLRequest(&self) -> Option<Id<NSURLRequest>>;
+        pub unsafe fn preparedURLRequest(&self) -> Option<Retained<NSURLRequest>>;
 
         #[cfg(feature = "block2")]
         #[method(performRequestWithHandler:)]
@@ -103,9 +103,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SLRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

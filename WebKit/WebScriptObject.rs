@@ -10,13 +10,13 @@ extern_category!(
     #[doc(alias = "WebScripting")]
     pub unsafe trait NSObjectWebScripting {
         #[method_id(@__retain_semantics Other webScriptNameForSelector:)]
-        unsafe fn webScriptNameForSelector(selector: Option<Sel>) -> Option<Id<NSString>>;
+        unsafe fn webScriptNameForSelector(selector: Option<Sel>) -> Option<Retained<NSString>>;
 
         #[method(isSelectorExcludedFromWebScript:)]
         unsafe fn isSelectorExcludedFromWebScript(selector: Option<Sel>) -> bool;
 
         #[method_id(@__retain_semantics Other webScriptNameForKey:)]
-        unsafe fn webScriptNameForKey(name: *mut c_char) -> Option<Id<NSString>>;
+        unsafe fn webScriptNameForKey(name: *mut c_char) -> Option<Retained<NSString>>;
 
         #[method(isKeyExcludedFromWebScript:)]
         unsafe fn isKeyExcludedFromWebScript(name: *mut c_char) -> bool;
@@ -26,13 +26,13 @@ extern_category!(
             &self,
             name: Option<&NSString>,
             arguments: Option<&NSArray>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[method_id(@__retain_semantics Other invokeDefaultMethodWithArguments:)]
         unsafe fn invokeDefaultMethodWithArguments(
             &self,
             arguments: Option<&NSArray>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[method(finalizeForWebScript)]
         unsafe fn finalizeForWebScript(&self);
@@ -66,11 +66,14 @@ extern_methods!(
             &self,
             name: Option<&NSString>,
             arguments: Option<&NSArray>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other evaluateWebScript:)]
-        pub unsafe fn evaluateWebScript(&self, script: Option<&NSString>) -> Option<Id<AnyObject>>;
+        pub unsafe fn evaluateWebScript(
+            &self,
+            script: Option<&NSString>,
+        ) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
         #[method(removeWebScriptKey:)]
@@ -78,11 +81,11 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other stringRepresentation)]
-        pub unsafe fn stringRepresentation(&self) -> Option<Id<NSString>>;
+        pub unsafe fn stringRepresentation(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other webScriptValueAtIndex:)]
-        pub unsafe fn webScriptValueAtIndex(&self, index: c_uint) -> Option<Id<AnyObject>>;
+        pub unsafe fn webScriptValueAtIndex(&self, index: c_uint) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
         #[method(setWebScriptValueAtIndex:value:)]
@@ -102,10 +105,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebScriptObject {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -130,7 +133,7 @@ extern_methods!(
     unsafe impl WebUndefined {
         #[deprecated]
         #[method_id(@__retain_semantics Other undefined)]
-        pub unsafe fn undefined() -> Option<Id<WebUndefined>>;
+        pub unsafe fn undefined() -> Option<Retained<WebUndefined>>;
     }
 );
 
@@ -138,9 +141,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebUndefined {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -45,20 +45,20 @@ unsafe impl NSObjectProtocol for BGTaskScheduler {}
 extern_methods!(
     unsafe impl BGTaskScheduler {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other sharedScheduler)]
-        pub unsafe fn sharedScheduler() -> Id<BGTaskScheduler>;
+        pub unsafe fn sharedScheduler() -> Retained<BGTaskScheduler>;
 
         #[cfg(feature = "BGTaskRequest")]
         #[method(submitTaskRequest:error:_)]
         pub unsafe fn submitTaskRequest_error(
             &self,
             task_request: &BGTaskRequest,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(cancelTaskRequestWithIdentifier:)]
         pub unsafe fn cancelTaskRequestWithIdentifier(&self, identifier: &NSString);

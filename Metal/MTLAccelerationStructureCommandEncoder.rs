@@ -191,8 +191,9 @@ extern_methods!(
     unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
         #[cfg(feature = "MTLCounters")]
         #[method_id(@__retain_semantics Other sampleBuffer)]
-        pub unsafe fn sampleBuffer(&self)
-            -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
+        pub unsafe fn sampleBuffer(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
         #[cfg(feature = "MTLCounters")]
         #[method(setSampleBuffer:)]
@@ -222,10 +223,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -247,7 +248,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
-        ) -> Id<MTLAccelerationStructurePassSampleBufferAttachmentDescriptor>;
+        ) -> Retained<MTLAccelerationStructurePassSampleBufferAttachmentDescriptor>;
 
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -262,10 +263,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -287,12 +288,12 @@ extern_methods!(
     unsafe impl MTLAccelerationStructurePassDescriptor {
         #[method_id(@__retain_semantics Other accelerationStructurePassDescriptor)]
         pub unsafe fn accelerationStructurePassDescriptor(
-        ) -> Id<MTLAccelerationStructurePassDescriptor>;
+        ) -> Retained<MTLAccelerationStructurePassDescriptor>;
 
         #[method_id(@__retain_semantics Other sampleBufferAttachments)]
         pub unsafe fn sampleBufferAttachments(
             &self,
-        ) -> Id<MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray>;
+        ) -> Retained<MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray>;
     }
 );
 
@@ -300,9 +301,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAccelerationStructurePassDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -27,10 +27,13 @@ extern_methods!(
             this: Allocated<Self>,
             bar_button_items: &NSArray<UIBarButtonItem>,
             representative_item: Option<&UIBarButtonItem>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method_id(@__retain_semantics Other fixedGroupWithRepresentativeItem:items:)]
@@ -38,7 +41,7 @@ extern_methods!(
             representative_item: Option<&UIBarButtonItem>,
             items: &NSArray<UIBarButtonItem>,
             mtm: MainThreadMarker,
-        ) -> Id<UIBarButtonItemGroup>;
+        ) -> Retained<UIBarButtonItemGroup>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method_id(@__retain_semantics Other movableGroupWithCustomizationIdentifier:representativeItem:items:)]
@@ -47,7 +50,7 @@ extern_methods!(
             representative_item: Option<&UIBarButtonItem>,
             items: &NSArray<UIBarButtonItem>,
             mtm: MainThreadMarker,
-        ) -> Id<UIBarButtonItemGroup>;
+        ) -> Retained<UIBarButtonItemGroup>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method_id(@__retain_semantics Other optionalGroupWithCustomizationIdentifier:inDefaultCustomization:representativeItem:items:)]
@@ -57,11 +60,11 @@ extern_methods!(
             representative_item: Option<&UIBarButtonItem>,
             items: &NSArray<UIBarButtonItem>,
             mtm: MainThreadMarker,
-        ) -> Id<UIBarButtonItemGroup>;
+        ) -> Retained<UIBarButtonItemGroup>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method_id(@__retain_semantics Other barButtonItems)]
-        pub unsafe fn barButtonItems(&self) -> Id<NSArray<UIBarButtonItem>>;
+        pub unsafe fn barButtonItems(&self) -> Retained<NSArray<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method(setBarButtonItems:)]
@@ -69,7 +72,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method_id(@__retain_semantics Other representativeItem)]
-        pub unsafe fn representativeItem(&self) -> Option<Id<UIBarButtonItem>>;
+        pub unsafe fn representativeItem(&self) -> Option<Retained<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method(setRepresentativeItem:)]
@@ -86,7 +89,7 @@ extern_methods!(
 
         #[cfg(feature = "UIMenuElement")]
         #[method_id(@__retain_semantics Other menuRepresentation)]
-        pub unsafe fn menuRepresentation(&self) -> Option<Id<UIMenuElement>>;
+        pub unsafe fn menuRepresentation(&self) -> Option<Retained<UIMenuElement>>;
 
         #[cfg(feature = "UIMenuElement")]
         #[method(setMenuRepresentation:)]
@@ -104,10 +107,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIBarButtonItemGroup {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -116,6 +119,6 @@ extern_methods!(
     #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
     unsafe impl UIBarButtonItem {
         #[method_id(@__retain_semantics Other buttonGroup)]
-        pub unsafe fn buttonGroup(&self) -> Option<Id<UIBarButtonItemGroup>>;
+        pub unsafe fn buttonGroup(&self) -> Option<Retained<UIBarButtonItemGroup>>;
     }
 );

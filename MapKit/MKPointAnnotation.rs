@@ -30,14 +30,14 @@ extern_methods!(
     #[cfg(feature = "MKShape")]
     unsafe impl MKPointAnnotation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method_id(@__retain_semantics Init initWithCoordinate:)]
         pub unsafe fn initWithCoordinate(
             this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method_id(@__retain_semantics Init initWithCoordinate:title:subtitle:)]
@@ -46,7 +46,7 @@ extern_methods!(
             coordinate: CLLocationCoordinate2D,
             title: Option<&NSString>,
             subtitle: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method(coordinate)]
@@ -63,6 +63,6 @@ extern_methods!(
     #[cfg(feature = "MKShape")]
     unsafe impl MKPointAnnotation {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

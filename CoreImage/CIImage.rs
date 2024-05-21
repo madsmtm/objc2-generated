@@ -236,79 +236,79 @@ extern_methods!(
             size: CGSize,
             flipped: bool,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
-        ) -> Id<CIImage>;
+        ) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other imageWithMTLTexture:options:)]
         pub unsafe fn imageWithMTLTexture_options(
             texture: &ProtocolObject<dyn MTLTexture>,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
-        ) -> Option<Id<CIImage>>;
+        ) -> Option<Retained<CIImage>>;
 
         #[method_id(@__retain_semantics Other imageWithContentsOfURL:)]
-        pub unsafe fn imageWithContentsOfURL(url: &NSURL) -> Option<Id<CIImage>>;
+        pub unsafe fn imageWithContentsOfURL(url: &NSURL) -> Option<Retained<CIImage>>;
 
         #[method_id(@__retain_semantics Other imageWithContentsOfURL:options:)]
         pub unsafe fn imageWithContentsOfURL_options(
             url: &NSURL,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
-        ) -> Option<Id<CIImage>>;
+        ) -> Option<Retained<CIImage>>;
 
         #[method_id(@__retain_semantics Other imageWithData:)]
-        pub unsafe fn imageWithData(data: &NSData) -> Option<Id<CIImage>>;
+        pub unsafe fn imageWithData(data: &NSData) -> Option<Retained<CIImage>>;
 
         #[method_id(@__retain_semantics Other imageWithData:options:)]
         pub unsafe fn imageWithData_options(
             data: &NSData,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
-        ) -> Option<Id<CIImage>>;
+        ) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIColor")]
         #[method_id(@__retain_semantics Other imageWithColor:)]
-        pub unsafe fn imageWithColor(color: &CIColor) -> Id<CIImage>;
+        pub unsafe fn imageWithColor(color: &CIColor) -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other emptyImage)]
-        pub unsafe fn emptyImage() -> Id<CIImage>;
+        pub unsafe fn emptyImage() -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other blackImage)]
-        pub unsafe fn blackImage() -> Id<CIImage>;
+        pub unsafe fn blackImage() -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other whiteImage)]
-        pub unsafe fn whiteImage() -> Id<CIImage>;
+        pub unsafe fn whiteImage() -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other grayImage)]
-        pub unsafe fn grayImage() -> Id<CIImage>;
+        pub unsafe fn grayImage() -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other redImage)]
-        pub unsafe fn redImage() -> Id<CIImage>;
+        pub unsafe fn redImage() -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other greenImage)]
-        pub unsafe fn greenImage() -> Id<CIImage>;
+        pub unsafe fn greenImage() -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other blueImage)]
-        pub unsafe fn blueImage() -> Id<CIImage>;
+        pub unsafe fn blueImage() -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other cyanImage)]
-        pub unsafe fn cyanImage() -> Id<CIImage>;
+        pub unsafe fn cyanImage() -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other magentaImage)]
-        pub unsafe fn magentaImage() -> Id<CIImage>;
+        pub unsafe fn magentaImage() -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other yellowImage)]
-        pub unsafe fn yellowImage() -> Id<CIImage>;
+        pub unsafe fn yellowImage() -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other clearImage)]
-        pub unsafe fn clearImage() -> Id<CIImage>;
+        pub unsafe fn clearImage() -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Init initWithData:)]
-        pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Option<Id<Self>>;
+        pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithData:options:)]
         pub unsafe fn initWithData_options(
             this: Allocated<Self>,
             data: &NSData,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
         #[method_id(@__retain_semantics Init initWithTexture:size:flipped:options:)]
@@ -318,7 +318,7 @@ extern_methods!(
             size: CGSize,
             flipped: bool,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Init initWithMTLTexture:options:)]
@@ -326,87 +326,95 @@ extern_methods!(
             this: Allocated<Self>,
             texture: &ProtocolObject<dyn MTLTexture>,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
-        pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL)
-            -> Option<Id<Self>>;
+        pub unsafe fn initWithContentsOfURL(
+            this: Allocated<Self>,
+            url: &NSURL,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithContentsOfURL:options:)]
         pub unsafe fn initWithContentsOfURL_options(
             this: Allocated<Self>,
             url: &NSURL,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "CIColor")]
         #[method_id(@__retain_semantics Init initWithColor:)]
-        pub unsafe fn initWithColor(this: Allocated<Self>, color: &CIColor) -> Id<Self>;
+        pub unsafe fn initWithColor(this: Allocated<Self>, color: &CIColor) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other imageByApplyingOrientation:)]
-        pub unsafe fn imageByApplyingOrientation(&self, orientation: c_int) -> Id<CIImage>;
+        pub unsafe fn imageByApplyingOrientation(&self, orientation: c_int) -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other imageByCompositingOverImage:)]
-        pub unsafe fn imageByCompositingOverImage(&self, dest: &CIImage) -> Id<CIImage>;
+        pub unsafe fn imageByCompositingOverImage(&self, dest: &CIImage) -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other imageByCroppingToRect:)]
-        pub unsafe fn imageByCroppingToRect(&self, rect: CGRect) -> Id<CIImage>;
+        pub unsafe fn imageByCroppingToRect(&self, rect: CGRect) -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other imageByClampingToExtent)]
-        pub unsafe fn imageByClampingToExtent(&self) -> Id<CIImage>;
+        pub unsafe fn imageByClampingToExtent(&self) -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other imageByClampingToRect:)]
-        pub unsafe fn imageByClampingToRect(&self, rect: CGRect) -> Id<CIImage>;
+        pub unsafe fn imageByClampingToRect(&self, rect: CGRect) -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other imageByApplyingFilter:withInputParameters:)]
         pub unsafe fn imageByApplyingFilter_withInputParameters(
             &self,
             filter_name: &NSString,
             params: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<CIImage>;
+        ) -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other imageByApplyingFilter:)]
-        pub unsafe fn imageByApplyingFilter(&self, filter_name: &NSString) -> Id<CIImage>;
+        pub unsafe fn imageByApplyingFilter(&self, filter_name: &NSString) -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other imageByPremultiplyingAlpha)]
-        pub unsafe fn imageByPremultiplyingAlpha(&self) -> Id<CIImage>;
+        pub unsafe fn imageByPremultiplyingAlpha(&self) -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other imageByUnpremultiplyingAlpha)]
-        pub unsafe fn imageByUnpremultiplyingAlpha(&self) -> Id<CIImage>;
+        pub unsafe fn imageByUnpremultiplyingAlpha(&self) -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other imageBySettingAlphaOneInExtent:)]
-        pub unsafe fn imageBySettingAlphaOneInExtent(&self, extent: CGRect) -> Id<CIImage>;
+        pub unsafe fn imageBySettingAlphaOneInExtent(&self, extent: CGRect) -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other imageByApplyingGaussianBlurWithSigma:)]
-        pub unsafe fn imageByApplyingGaussianBlurWithSigma(&self, sigma: c_double) -> Id<CIImage>;
+        pub unsafe fn imageByApplyingGaussianBlurWithSigma(
+            &self,
+            sigma: c_double,
+        ) -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other imageBySettingProperties:)]
-        pub unsafe fn imageBySettingProperties(&self, properties: &NSDictionary) -> Id<CIImage>;
+        pub unsafe fn imageBySettingProperties(
+            &self,
+            properties: &NSDictionary,
+        ) -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other imageBySamplingLinear)]
-        pub unsafe fn imageBySamplingLinear(&self) -> Id<CIImage>;
+        pub unsafe fn imageBySamplingLinear(&self) -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other imageBySamplingNearest)]
-        pub unsafe fn imageBySamplingNearest(&self) -> Id<CIImage>;
+        pub unsafe fn imageBySamplingNearest(&self) -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other imageByInsertingIntermediate)]
-        pub unsafe fn imageByInsertingIntermediate(&self) -> Id<CIImage>;
+        pub unsafe fn imageByInsertingIntermediate(&self) -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other imageByInsertingIntermediate:)]
-        pub unsafe fn imageByInsertingIntermediate_(&self, cache: bool) -> Id<CIImage>;
+        pub unsafe fn imageByInsertingIntermediate_(&self, cache: bool) -> Retained<CIImage>;
 
         #[method(extent)]
         pub unsafe fn extent(&self) -> CGRect;
 
         #[method_id(@__retain_semantics Other properties)]
-        pub unsafe fn properties(&self) -> Id<NSDictionary<NSString, AnyObject>>;
+        pub unsafe fn properties(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "CIFilterShape")]
         #[method_id(@__retain_semantics Other definition)]
-        pub unsafe fn definition(&self) -> Id<CIFilterShape>;
+        pub unsafe fn definition(&self) -> Retained<CIFilterShape>;
 
         #[method_id(@__retain_semantics Other url)]
-        pub unsafe fn url(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
         #[method(regionOfInterestForImage:inRect:)]
         pub unsafe fn regionOfInterestForImage_inRect(
@@ -421,10 +429,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIImage {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -456,14 +464,14 @@ extern_methods!(
     unsafe impl CIImage {
         #[cfg(feature = "CIFilter")]
         #[method_id(@__retain_semantics Other autoAdjustmentFilters)]
-        pub unsafe fn autoAdjustmentFilters(&self) -> Id<NSArray<CIFilter>>;
+        pub unsafe fn autoAdjustmentFilters(&self) -> Retained<NSArray<CIFilter>>;
 
         #[cfg(feature = "CIFilter")]
         #[method_id(@__retain_semantics Other autoAdjustmentFiltersWithOptions:)]
         pub unsafe fn autoAdjustmentFiltersWithOptions(
             &self,
             options: Option<&NSDictionary<CIImageAutoAdjustmentOption, AnyObject>>,
-        ) -> Id<NSArray<CIFilter>>;
+        ) -> Retained<NSArray<CIFilter>>;
     }
 );
 
@@ -471,9 +479,9 @@ extern_methods!(
     /// LabConversion
     unsafe impl CIImage {
         #[method_id(@__retain_semantics Other imageByConvertingWorkingSpaceToLab)]
-        pub unsafe fn imageByConvertingWorkingSpaceToLab(&self) -> Id<CIImage>;
+        pub unsafe fn imageByConvertingWorkingSpaceToLab(&self) -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other imageByConvertingLabToWorkingSpace)]
-        pub unsafe fn imageByConvertingLabToWorkingSpace(&self) -> Id<CIImage>;
+        pub unsafe fn imageByConvertingLabToWorkingSpace(&self) -> Retained<CIImage>;
     }
 );

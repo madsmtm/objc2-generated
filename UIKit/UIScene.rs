@@ -28,10 +28,10 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIScene {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "UISceneOptions", feature = "UISceneSession"))]
         #[method_id(@__retain_semantics Init initWithSession:connectionOptions:)]
@@ -39,14 +39,14 @@ extern_methods!(
             this: Allocated<Self>,
             session: &UISceneSession,
             connection_options: &UISceneConnectionOptions,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UISceneSession")]
         #[method_id(@__retain_semantics Other session)]
-        pub unsafe fn session(&self) -> Id<UISceneSession>;
+        pub unsafe fn session(&self) -> Retained<UISceneSession>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn UISceneDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UISceneDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UISceneDelegate>>);
@@ -65,20 +65,20 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other subtitle)]
-        pub unsafe fn subtitle(&self) -> Id<NSString>;
+        pub unsafe fn subtitle(&self) -> Retained<NSString>;
 
         #[method(setSubtitle:)]
         pub unsafe fn setSubtitle(&self, subtitle: &NSString);
 
         #[cfg(feature = "UISceneActivationConditions")]
         #[method_id(@__retain_semantics Other activationConditions)]
-        pub unsafe fn activationConditions(&self) -> Id<UISceneActivationConditions>;
+        pub unsafe fn activationConditions(&self) -> Retained<UISceneActivationConditions>;
 
         #[cfg(feature = "UISceneActivationConditions")]
         #[method(setActivationConditions:)]
@@ -145,7 +145,7 @@ extern_protocol!(
         unsafe fn stateRestorationActivityForScene(
             &self,
             scene: &UIScene,
-        ) -> Option<Id<NSUserActivity>>;
+        ) -> Option<Retained<NSUserActivity>>;
 
         #[cfg(feature = "UIResponder")]
         #[optional]

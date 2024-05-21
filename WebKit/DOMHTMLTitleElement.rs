@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl DOMHTMLTitleElement {
         #[deprecated]
         #[method_id(@__retain_semantics Other text)]
-        pub unsafe fn text(&self) -> Id<NSString>;
+        pub unsafe fn text(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setText:)]
@@ -90,7 +90,7 @@ extern_methods!(
     unsafe impl DOMHTMLTitleElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -105,6 +105,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTitleElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

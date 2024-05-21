@@ -36,37 +36,37 @@ extern_methods!(
         #[cfg(feature = "objc2-metal")]
         #[deprecated]
         #[method_id(@__retain_semantics Other gpuDevices)]
-        pub unsafe fn gpuDevices(&self) -> Id<NSArray<ProtocolObject<dyn MTLDevice>>>;
+        pub unsafe fn gpuDevices(&self) -> Retained<NSArray<ProtocolObject<dyn MTLDevice>>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other cpuDevice)]
-        pub unsafe fn cpuDevice() -> Id<Self>;
+        pub unsafe fn cpuDevice() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other gpuDevice)]
-        pub unsafe fn gpuDevice() -> Option<Id<Self>>;
+        pub unsafe fn gpuDevice() -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other aneDevice)]
-        pub unsafe fn aneDevice() -> Option<Id<Self>>;
+        pub unsafe fn aneDevice() -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
         #[method_id(@__retain_semantics Other deviceWithType:)]
-        pub unsafe fn deviceWithType(r#type: MLCDeviceType) -> Option<Id<Self>>;
+        pub unsafe fn deviceWithType(r#type: MLCDeviceType) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
         #[method_id(@__retain_semantics Other deviceWithType:selectsMultipleComputeDevices:)]
         pub unsafe fn deviceWithType_selectsMultipleComputeDevices(
             r#type: MLCDeviceType,
             selects_multiple_compute_devices: bool,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-metal")]
         #[deprecated]
         #[method_id(@__retain_semantics Other deviceWithGPUDevices:)]
         pub unsafe fn deviceWithGPUDevices(
             gpus: &NSArray<ProtocolObject<dyn MTLDevice>>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -74,9 +74,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLCDevice {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

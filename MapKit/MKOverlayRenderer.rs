@@ -24,11 +24,11 @@ extern_methods!(
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method_id(@__retain_semantics Other overlay)]
-        pub unsafe fn overlay(&self) -> Id<ProtocolObject<dyn MKOverlay>>;
+        pub unsafe fn overlay(&self) -> Retained<ProtocolObject<dyn MKOverlay>>;
 
         #[cfg(feature = "MKGeometry")]
         #[method(pointForMapPoint:)]
@@ -84,10 +84,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKOverlayRenderer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

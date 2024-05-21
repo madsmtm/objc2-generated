@@ -451,7 +451,7 @@ extern_methods!(
             style: NSWindowStyleMask,
             backing_store_type: NSBackingStoreType,
             flag: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSGraphics", feature = "NSScreen"))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
@@ -462,19 +462,19 @@ extern_methods!(
             backing_store_type: NSBackingStoreType,
             flag: bool,
             screen: Option<&NSScreen>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub fn title(&self) -> Id<NSString>;
+        pub fn title(&self) -> Retained<NSString>;
 
         #[method(setTitle:)]
         pub fn setTitle(&self, title: &NSString);
 
         #[method_id(@__retain_semantics Other subtitle)]
-        pub unsafe fn subtitle(&self) -> Id<NSString>;
+        pub unsafe fn subtitle(&self) -> Retained<NSString>;
 
         #[method(setSubtitle:)]
         pub unsafe fn setSubtitle(&self, subtitle: &NSString);
@@ -501,7 +501,7 @@ extern_methods!(
         pub unsafe fn contentLayoutRect(&self) -> NSRect;
 
         #[method_id(@__retain_semantics Other contentLayoutGuide)]
-        pub unsafe fn contentLayoutGuide(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn contentLayoutGuide(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(
             feature = "NSTitlebarAccessoryViewController",
@@ -510,7 +510,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other titlebarAccessoryViewControllers)]
         pub unsafe fn titlebarAccessoryViewControllers(
             &self,
-        ) -> Id<NSArray<NSTitlebarAccessoryViewController>>;
+        ) -> Retained<NSArray<NSTitlebarAccessoryViewController>>;
 
         #[cfg(all(
             feature = "NSTitlebarAccessoryViewController",
@@ -547,13 +547,13 @@ extern_methods!(
         pub unsafe fn removeTitlebarAccessoryViewControllerAtIndex(&self, index: NSInteger);
 
         #[method_id(@__retain_semantics Other representedURL)]
-        pub unsafe fn representedURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn representedURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setRepresentedURL:)]
         pub unsafe fn setRepresentedURL(&self, represented_url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other representedFilename)]
-        pub unsafe fn representedFilename(&self) -> Id<NSString>;
+        pub unsafe fn representedFilename(&self) -> Retained<NSString>;
 
         #[method(setRepresentedFilename:)]
         pub unsafe fn setRepresentedFilename(&self, represented_filename: &NSString);
@@ -569,14 +569,14 @@ extern_methods!(
 
         #[cfg(feature = "NSView")]
         #[method_id(@__retain_semantics Other contentView)]
-        pub fn contentView(&self) -> Option<Id<NSView>>;
+        pub fn contentView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
         #[method(setContentView:)]
         pub fn setContentView(&self, content_view: Option<&NSView>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSWindowDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSWindowDelegate>>>;
 
         #[method(setDelegate:)]
         pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSWindowDelegate>>);
@@ -596,7 +596,7 @@ extern_methods!(
             &self,
             create_flag: bool,
             object: Option<&AnyObject>,
-        ) -> Option<Id<NSText>>;
+        ) -> Option<Retained<NSText>>;
 
         #[method(endEditingFor:)]
         pub unsafe fn endEditingFor(&self, object: Option<&AnyObject>);
@@ -693,7 +693,7 @@ extern_methods!(
         pub fn makeFirstResponder(&self, responder: Option<&NSResponder>) -> bool;
 
         #[method_id(@__retain_semantics Other firstResponder)]
-        pub fn firstResponder(&self) -> Option<Id<NSResponder>>;
+        pub fn firstResponder(&self) -> Option<Retained<NSResponder>>;
 
         #[cfg(feature = "NSEvent")]
         #[method(resizeFlags)]
@@ -732,11 +732,11 @@ extern_methods!(
             &self,
             send_type: Option<&NSPasteboardType>,
             return_type: Option<&NSPasteboardType>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
+        pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         #[method(setBackgroundColor:)]
@@ -817,21 +817,21 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other miniwindowImage)]
-        pub unsafe fn miniwindowImage(&self) -> Option<Id<NSImage>>;
+        pub unsafe fn miniwindowImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         #[method(setMiniwindowImage:)]
         pub unsafe fn setMiniwindowImage(&self, miniwindow_image: Option<&NSImage>);
 
         #[method_id(@__retain_semantics Other miniwindowTitle)]
-        pub unsafe fn miniwindowTitle(&self) -> Id<NSString>;
+        pub unsafe fn miniwindowTitle(&self) -> Retained<NSString>;
 
         #[method(setMiniwindowTitle:)]
         pub unsafe fn setMiniwindowTitle(&self, miniwindow_title: Option<&NSString>);
 
         #[cfg(feature = "NSDockTile")]
         #[method_id(@__retain_semantics Other dockTile)]
-        pub unsafe fn dockTile(&self) -> Id<NSDockTile>;
+        pub unsafe fn dockTile(&self) -> Retained<NSDockTile>;
 
         #[method(isDocumentEdited)]
         pub fn isDocumentEdited(&self) -> bool;
@@ -928,10 +928,10 @@ extern_methods!(
         pub unsafe fn performZoom(&self, sender: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other dataWithEPSInsideRect:)]
-        pub unsafe fn dataWithEPSInsideRect(&self, rect: NSRect) -> Id<NSData>;
+        pub unsafe fn dataWithEPSInsideRect(&self, rect: NSRect) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other dataWithPDFInsideRect:)]
-        pub unsafe fn dataWithPDFInsideRect(&self, rect: NSRect) -> Id<NSData>;
+        pub unsafe fn dataWithPDFInsideRect(&self, rect: NSRect) -> Retained<NSData>;
 
         #[method(print:)]
         pub unsafe fn print(&self, sender: Option<&AnyObject>);
@@ -975,11 +975,11 @@ extern_methods!(
 
         #[cfg(feature = "NSScreen")]
         #[method_id(@__retain_semantics Other screen)]
-        pub fn screen(&self) -> Option<Id<NSScreen>>;
+        pub fn screen(&self) -> Option<Retained<NSScreen>>;
 
         #[cfg(feature = "NSScreen")]
         #[method_id(@__retain_semantics Other deepestScreen)]
-        pub unsafe fn deepestScreen(&self) -> Option<Id<NSScreen>>;
+        pub unsafe fn deepestScreen(&self) -> Option<Retained<NSScreen>>;
 
         #[method(hasShadow)]
         pub fn hasShadow(&self) -> bool;
@@ -1054,7 +1054,7 @@ extern_methods!(
         pub fn toggleFullScreen(&self, sender: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other stringWithSavedFrame)]
-        pub unsafe fn stringWithSavedFrame(&self) -> Id<NSWindowPersistableFrameDescriptor>;
+        pub unsafe fn stringWithSavedFrame(&self) -> Retained<NSWindowPersistableFrameDescriptor>;
 
         #[method(setFrameFromString:)]
         pub unsafe fn setFrameFromString(&self, string: &NSWindowPersistableFrameDescriptor);
@@ -1076,7 +1076,7 @@ extern_methods!(
         pub unsafe fn setFrameAutosaveName(&self, name: &NSWindowFrameAutosaveName) -> bool;
 
         #[method_id(@__retain_semantics Other frameAutosaveName)]
-        pub unsafe fn frameAutosaveName(&self) -> Id<NSWindowFrameAutosaveName>;
+        pub unsafe fn frameAutosaveName(&self) -> Retained<NSWindowFrameAutosaveName>;
 
         #[method(removeFrameUsingName:)]
         pub unsafe fn removeFrameUsingName(name: &NSWindowFrameAutosaveName, mtm: MainThreadMarker);
@@ -1121,11 +1121,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other deviceDescription)]
         pub unsafe fn deviceDescription(
             &self,
-        ) -> Id<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
+        ) -> Retained<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
 
         #[cfg(feature = "NSWindowController")]
         #[method_id(@__retain_semantics Other windowController)]
-        pub unsafe fn windowController(&self) -> Option<Id<NSWindowController>>;
+        pub unsafe fn windowController(&self) -> Option<Retained<NSWindowController>>;
 
         #[cfg(feature = "NSWindowController")]
         #[method(setWindowController:)]
@@ -1159,16 +1159,16 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other sheets)]
-        pub unsafe fn sheets(&self) -> Id<NSArray<NSWindow>>;
+        pub unsafe fn sheets(&self) -> Retained<NSArray<NSWindow>>;
 
         #[method_id(@__retain_semantics Other attachedSheet)]
-        pub unsafe fn attachedSheet(&self) -> Option<Id<NSWindow>>;
+        pub unsafe fn attachedSheet(&self) -> Option<Retained<NSWindow>>;
 
         #[method(isSheet)]
         pub unsafe fn isSheet(&self) -> bool;
 
         #[method_id(@__retain_semantics Other sheetParent)]
-        pub unsafe fn sheetParent(&self) -> Option<Id<NSWindow>>;
+        pub unsafe fn sheetParent(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(all(feature = "NSButton", feature = "NSControl", feature = "NSView"))]
         #[method_id(@__retain_semantics Other standardWindowButton:forStyleMask:)]
@@ -1176,11 +1176,11 @@ extern_methods!(
             b: NSWindowButton,
             style_mask: NSWindowStyleMask,
             mtm: MainThreadMarker,
-        ) -> Option<Id<NSButton>>;
+        ) -> Option<Retained<NSButton>>;
 
         #[cfg(all(feature = "NSButton", feature = "NSControl", feature = "NSView"))]
         #[method_id(@__retain_semantics Other standardWindowButton:)]
-        pub fn standardWindowButton(&self, b: NSWindowButton) -> Option<Id<NSButton>>;
+        pub fn standardWindowButton(&self, b: NSWindowButton) -> Option<Retained<NSButton>>;
 
         #[cfg(feature = "NSGraphics")]
         #[method(addChildWindow:ordered:)]
@@ -1194,17 +1194,17 @@ extern_methods!(
         pub unsafe fn removeChildWindow(&self, child_win: &NSWindow);
 
         #[method_id(@__retain_semantics Other childWindows)]
-        pub unsafe fn childWindows(&self) -> Option<Id<NSArray<NSWindow>>>;
+        pub unsafe fn childWindows(&self) -> Option<Retained<NSArray<NSWindow>>>;
 
         #[method_id(@__retain_semantics Other parentWindow)]
-        pub unsafe fn parentWindow(&self) -> Option<Id<NSWindow>>;
+        pub unsafe fn parentWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[method(setParentWindow:)]
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
 
         #[cfg(feature = "NSAppearance")]
         #[method_id(@__retain_semantics Other appearanceSource)]
-        pub unsafe fn appearanceSource(&self) -> Option<Id<NSObject>>;
+        pub unsafe fn appearanceSource(&self) -> Option<Retained<NSObject>>;
 
         #[cfg(feature = "NSAppearance")]
         #[method(setAppearanceSource:)]
@@ -1212,7 +1212,7 @@ extern_methods!(
 
         #[cfg(feature = "NSColorSpace")]
         #[method_id(@__retain_semantics Other colorSpace)]
-        pub unsafe fn colorSpace(&self) -> Option<Id<NSColorSpace>>;
+        pub unsafe fn colorSpace(&self) -> Option<Retained<NSColorSpace>>;
 
         #[cfg(feature = "NSColorSpace")]
         #[method(setColorSpace:)]
@@ -1226,7 +1226,7 @@ extern_methods!(
         pub unsafe fn windowNumbersWithOptions(
             options: NSWindowNumberListOptions,
             mtm: MainThreadMarker,
-        ) -> Option<Id<NSArray<NSNumber>>>;
+        ) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[method(windowNumberAtPoint:belowWindowWithWindowNumber:)]
         pub unsafe fn windowNumberAtPoint_belowWindowWithWindowNumber(
@@ -1249,7 +1249,7 @@ extern_methods!(
 
         #[cfg(feature = "NSViewController")]
         #[method_id(@__retain_semantics Other contentViewController)]
-        pub unsafe fn contentViewController(&self) -> Option<Id<NSViewController>>;
+        pub unsafe fn contentViewController(&self) -> Option<Retained<NSViewController>>;
 
         #[cfg(feature = "NSViewController")]
         #[method(setContentViewController:)]
@@ -1262,7 +1262,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSEvent")]
         #[method(performWindowDragWithEvent:)]
@@ -1270,7 +1270,7 @@ extern_methods!(
 
         #[cfg(feature = "NSView")]
         #[method_id(@__retain_semantics Other initialFirstResponder)]
-        pub unsafe fn initialFirstResponder(&self) -> Option<Id<NSView>>;
+        pub unsafe fn initialFirstResponder(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
         #[method(setInitialFirstResponder:)]
@@ -1295,7 +1295,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
         #[method_id(@__retain_semantics Other defaultButtonCell)]
-        pub unsafe fn defaultButtonCell(&self) -> Option<Id<NSButtonCell>>;
+        pub unsafe fn defaultButtonCell(&self) -> Option<Retained<NSButtonCell>>;
 
         #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
         #[method(setDefaultButtonCell:)]
@@ -1318,7 +1318,7 @@ extern_methods!(
 
         #[cfg(feature = "NSToolbar")]
         #[method_id(@__retain_semantics Other toolbar)]
-        pub unsafe fn toolbar(&self) -> Option<Id<NSToolbar>>;
+        pub unsafe fn toolbar(&self) -> Option<Retained<NSToolbar>>;
 
         #[cfg(feature = "NSToolbar")]
         #[method(setToolbar:)]
@@ -1358,7 +1358,7 @@ extern_methods!(
         pub fn setTabbingMode(&self, tabbing_mode: NSWindowTabbingMode);
 
         #[method_id(@__retain_semantics Other tabbingIdentifier)]
-        pub fn tabbingIdentifier(&self) -> Id<NSWindowTabbingIdentifier>;
+        pub fn tabbingIdentifier(&self) -> Retained<NSWindowTabbingIdentifier>;
 
         #[method(setTabbingIdentifier:)]
         pub fn setTabbingIdentifier(&self, tabbing_identifier: &NSWindowTabbingIdentifier);
@@ -1382,7 +1382,7 @@ extern_methods!(
         pub unsafe fn toggleTabOverview(&self, sender: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other tabbedWindows)]
-        pub unsafe fn tabbedWindows(&self) -> Option<Id<NSArray<NSWindow>>>;
+        pub unsafe fn tabbedWindows(&self) -> Option<Retained<NSArray<NSWindow>>>;
 
         #[cfg(feature = "NSGraphics")]
         #[method(addTabbedWindow:ordered:)]
@@ -1394,11 +1394,11 @@ extern_methods!(
 
         #[cfg(feature = "NSWindowTab")]
         #[method_id(@__retain_semantics Other tab)]
-        pub unsafe fn tab(&self) -> Id<NSWindowTab>;
+        pub unsafe fn tab(&self) -> Retained<NSWindowTab>;
 
         #[cfg(feature = "NSWindowTabGroup")]
         #[method_id(@__retain_semantics Other tabGroup)]
-        pub fn tabGroup(&self) -> Option<Id<NSWindowTabGroup>>;
+        pub fn tabGroup(&self) -> Option<Retained<NSWindowTabGroup>>;
 
         #[cfg(feature = "block2")]
         #[method(transferWindowSharingToWindow:completionHandler:)]
@@ -1422,7 +1422,7 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSWindow {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -1431,7 +1431,7 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSWindow {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -1451,7 +1451,7 @@ extern_methods!(
 
         #[cfg(feature = "NSEvent")]
         #[method_id(@__retain_semantics Other nextEventMatchingMask:)]
-        pub unsafe fn nextEventMatchingMask(&self, mask: NSEventMask) -> Option<Id<NSEvent>>;
+        pub unsafe fn nextEventMatchingMask(&self, mask: NSEventMask) -> Option<Retained<NSEvent>>;
 
         #[cfg(feature = "NSEvent")]
         #[method_id(@__retain_semantics Other nextEventMatchingMask:untilDate:inMode:dequeue:)]
@@ -1461,7 +1461,7 @@ extern_methods!(
             expiration: Option<&NSDate>,
             mode: &NSRunLoopMode,
             deq_flag: bool,
-        ) -> Option<Id<NSEvent>>;
+        ) -> Option<Retained<NSEvent>>;
 
         #[cfg(feature = "NSEvent")]
         #[method(discardEventsMatchingMask:beforeEvent:)]
@@ -1481,7 +1481,7 @@ extern_methods!(
 
         #[cfg(feature = "NSEvent")]
         #[method_id(@__retain_semantics Other currentEvent)]
-        pub unsafe fn currentEvent(&self) -> Option<Id<NSEvent>>;
+        pub unsafe fn currentEvent(&self) -> Option<Retained<NSEvent>>;
 
         #[method(acceptsMouseMovedEvents)]
         pub unsafe fn acceptsMouseMovedEvents(&self) -> bool;
@@ -1559,7 +1559,7 @@ extern_methods!(
         pub unsafe fn initWithWindowRef(
             this: Allocated<Self>,
             window_ref: NonNull<c_void>,
-        ) -> Option<Id<NSWindow>>;
+        ) -> Option<Retained<NSWindow>>;
 
         #[method(windowRef)]
         pub unsafe fn windowRef(&self) -> NonNull<c_void>;
@@ -1586,7 +1586,7 @@ extern_protocol!(
             &self,
             sender: &NSWindow,
             client: Option<&AnyObject>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSResponder")]
         #[optional]
@@ -1613,7 +1613,7 @@ extern_protocol!(
         unsafe fn windowWillReturnUndoManager(
             &self,
             window: &NSWindow,
-        ) -> Option<Id<NSUndoManager>>;
+        ) -> Option<Retained<NSUndoManager>>;
 
         #[cfg(feature = "NSResponder")]
         #[optional]
@@ -1669,7 +1669,7 @@ extern_protocol!(
         unsafe fn customWindowsToEnterFullScreenForWindow(
             &self,
             window: &NSWindow,
-        ) -> Option<Id<NSArray<NSWindow>>>;
+        ) -> Option<Retained<NSArray<NSWindow>>>;
 
         #[cfg(feature = "NSResponder")]
         #[optional]
@@ -1691,7 +1691,7 @@ extern_protocol!(
         unsafe fn customWindowsToExitFullScreenForWindow(
             &self,
             window: &NSWindow,
-        ) -> Option<Id<NSArray<NSWindow>>>;
+        ) -> Option<Retained<NSArray<NSWindow>>>;
 
         #[cfg(feature = "NSResponder")]
         #[optional]
@@ -1709,7 +1709,7 @@ extern_protocol!(
             &self,
             window: &NSWindow,
             screen: &NSScreen,
-        ) -> Option<Id<NSArray<NSWindow>>>;
+        ) -> Option<Retained<NSArray<NSWindow>>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSScreen"))]
         #[optional]
@@ -1752,7 +1752,7 @@ extern_protocol!(
         unsafe fn previewRepresentableActivityItemsForWindow(
             &self,
             window: &NSWindow,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn NSPreviewRepresentableActivityItem>>>>;
+        ) -> Option<Retained<NSArray<ProtocolObject<dyn NSPreviewRepresentableActivityItem>>>>;
 
         #[optional]
         #[method(windowDidResize:)]
@@ -2096,7 +2096,7 @@ extern_methods!(
         #[cfg(feature = "NSGraphicsContext")]
         #[deprecated = "Add instances of NSView to display content in a window."]
         #[method_id(@__retain_semantics Other graphicsContext)]
-        pub unsafe fn graphicsContext(&self) -> Option<Id<NSGraphicsContext>>;
+        pub unsafe fn graphicsContext(&self) -> Option<Retained<NSGraphicsContext>>;
 
         #[deprecated = "This property does not do anything and should not be used"]
         #[method(isOneShot)]

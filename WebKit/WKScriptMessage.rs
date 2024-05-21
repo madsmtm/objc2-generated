@@ -23,23 +23,23 @@ unsafe impl NSObjectProtocol for WKScriptMessage {}
 extern_methods!(
     unsafe impl WKScriptMessage {
         #[method_id(@__retain_semantics Other body)]
-        pub unsafe fn body(&self) -> Id<AnyObject>;
+        pub unsafe fn body(&self) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other webView)]
-        pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Id<WKWebView>>;
+        pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Retained<WKWebView>>;
 
         #[cfg(feature = "WKFrameInfo")]
         #[method_id(@__retain_semantics Other frameInfo)]
-        pub unsafe fn frameInfo(&self) -> Id<WKFrameInfo>;
+        pub unsafe fn frameInfo(&self) -> Retained<WKFrameInfo>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "WKContentWorld")]
         #[method_id(@__retain_semantics Other world)]
-        pub unsafe fn world(&self) -> Id<WKContentWorld>;
+        pub unsafe fn world(&self) -> Retained<WKContentWorld>;
     }
 );
 
@@ -47,9 +47,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKScriptMessage {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

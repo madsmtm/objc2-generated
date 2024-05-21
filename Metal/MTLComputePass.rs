@@ -23,8 +23,9 @@ extern_methods!(
     unsafe impl MTLComputePassSampleBufferAttachmentDescriptor {
         #[cfg(feature = "MTLCounters")]
         #[method_id(@__retain_semantics Other sampleBuffer)]
-        pub unsafe fn sampleBuffer(&self)
-            -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
+        pub unsafe fn sampleBuffer(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
         #[cfg(feature = "MTLCounters")]
         #[method(setSampleBuffer:)]
@@ -54,10 +55,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLComputePassSampleBufferAttachmentDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -79,7 +80,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
-        ) -> Id<MTLComputePassSampleBufferAttachmentDescriptor>;
+        ) -> Retained<MTLComputePassSampleBufferAttachmentDescriptor>;
 
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -94,10 +95,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLComputePassSampleBufferAttachmentDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -118,7 +119,7 @@ unsafe impl NSObjectProtocol for MTLComputePassDescriptor {}
 extern_methods!(
     unsafe impl MTLComputePassDescriptor {
         #[method_id(@__retain_semantics Other computePassDescriptor)]
-        pub unsafe fn computePassDescriptor() -> Id<MTLComputePassDescriptor>;
+        pub unsafe fn computePassDescriptor() -> Retained<MTLComputePassDescriptor>;
 
         #[cfg(feature = "MTLCommandBuffer")]
         #[method(dispatchType)]
@@ -131,7 +132,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sampleBufferAttachments)]
         pub unsafe fn sampleBufferAttachments(
             &self,
-        ) -> Id<MTLComputePassSampleBufferAttachmentDescriptorArray>;
+        ) -> Retained<MTLComputePassSampleBufferAttachmentDescriptorArray>;
     }
 );
 
@@ -139,9 +140,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLComputePassDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

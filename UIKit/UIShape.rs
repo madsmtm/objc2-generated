@@ -32,7 +32,7 @@ extern_protocol!(
         unsafe fn resolvedShapeInContext(
             &self,
             context: &UIShapeResolutionContext,
-        ) -> Id<UIResolvedShape>;
+        ) -> Retained<UIResolvedShape>;
     }
 
     unsafe impl ProtocolType for dyn UIShapeProvider {}
@@ -57,22 +57,22 @@ unsafe impl UIShapeProvider for UIShape {}
 extern_methods!(
     unsafe impl UIShape {
         #[method_id(@__retain_semantics Other rectShape)]
-        pub unsafe fn rectShape() -> Id<UIShape>;
+        pub unsafe fn rectShape() -> Retained<UIShape>;
 
         #[method_id(@__retain_semantics Other capsuleShape)]
-        pub unsafe fn capsuleShape() -> Id<UIShape>;
+        pub unsafe fn capsuleShape() -> Retained<UIShape>;
 
         #[method_id(@__retain_semantics Other circleShape)]
-        pub unsafe fn circleShape() -> Id<UIShape>;
+        pub unsafe fn circleShape() -> Retained<UIShape>;
 
         #[method_id(@__retain_semantics Other rectShapeWithCornerRadius:)]
-        pub unsafe fn rectShapeWithCornerRadius(corner_radius: CGFloat) -> Id<Self>;
+        pub unsafe fn rectShapeWithCornerRadius(corner_radius: CGFloat) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other rectShapeWithCornerRadius:cornerCurve:)]
         pub unsafe fn rectShapeWithCornerRadius_cornerCurve(
             corner_radius: CGFloat,
             corner_curve: UICornerCurve,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIGeometry")]
         #[method_id(@__retain_semantics Other rectShapeWithCornerRadius:cornerCurve:maskedCorners:)]
@@ -80,16 +80,16 @@ extern_methods!(
             corner_radius: CGFloat,
             corner_curve: UICornerCurve,
             masked_corners: UIRectCorner,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other fixedRectShapeWithRect:)]
-        pub unsafe fn fixedRectShapeWithRect(rect: CGRect) -> Id<Self>;
+        pub unsafe fn fixedRectShapeWithRect(rect: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other fixedRectShapeWithRect:cornerRadius:)]
         pub unsafe fn fixedRectShapeWithRect_cornerRadius(
             rect: CGRect,
             corner_radius: CGFloat,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIGeometry")]
         #[method_id(@__retain_semantics Other fixedRectShapeWithRect:cornerRadius:cornerCurve:maskedCorners:)]
@@ -98,34 +98,35 @@ extern_methods!(
             corner_radius: CGFloat,
             corner_curve: UICornerCurve,
             masked_corners: UIRectCorner,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIBezierPath")]
         #[method_id(@__retain_semantics Other shapeWithBezierPath:)]
-        pub unsafe fn shapeWithBezierPath(path: &UIBezierPath) -> Id<Self>;
+        pub unsafe fn shapeWithBezierPath(path: &UIBezierPath) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other shapeWithProvider:)]
-        pub unsafe fn shapeWithProvider(provider: &ProtocolObject<dyn UIShapeProvider>)
-            -> Id<Self>;
+        pub unsafe fn shapeWithProvider(
+            provider: &ProtocolObject<dyn UIShapeProvider>,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIGeometry")]
         #[method_id(@__retain_semantics Other shapeByApplyingInsets:)]
-        pub unsafe fn shapeByApplyingInsets(&self, insets: UIEdgeInsets) -> Id<UIShape>;
+        pub unsafe fn shapeByApplyingInsets(&self, insets: UIEdgeInsets) -> Retained<UIShape>;
 
         #[method_id(@__retain_semantics Other shapeByApplyingInset:)]
-        pub unsafe fn shapeByApplyingInset(&self, inset: CGFloat) -> Id<UIShape>;
+        pub unsafe fn shapeByApplyingInset(&self, inset: CGFloat) -> Retained<UIShape>;
 
         #[method_id(@__retain_semantics Other resolvedShapeInContext:)]
         pub unsafe fn resolvedShapeInContext(
             &self,
             context: &UIShapeResolutionContext,
-        ) -> Id<UIResolvedShape>;
+        ) -> Retained<UIResolvedShape>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -146,27 +147,30 @@ unsafe impl NSObjectProtocol for UIResolvedShape {}
 extern_methods!(
     unsafe impl UIResolvedShape {
         #[method_id(@__retain_semantics Other shape)]
-        pub unsafe fn shape(&self) -> Id<UIShape>;
+        pub unsafe fn shape(&self) -> Retained<UIShape>;
 
         #[method(boundingRect)]
         pub unsafe fn boundingRect(&self) -> CGRect;
 
         #[cfg(feature = "UIBezierPath")]
         #[method_id(@__retain_semantics Other path)]
-        pub unsafe fn path(&self) -> Id<UIBezierPath>;
+        pub unsafe fn path(&self) -> Retained<UIBezierPath>;
 
         #[cfg(feature = "UIGeometry")]
         #[method_id(@__retain_semantics Other shapeByApplyingInsets:)]
-        pub unsafe fn shapeByApplyingInsets(&self, insets: UIEdgeInsets) -> Id<UIResolvedShape>;
+        pub unsafe fn shapeByApplyingInsets(
+            &self,
+            insets: UIEdgeInsets,
+        ) -> Retained<UIResolvedShape>;
 
         #[method_id(@__retain_semantics Other shapeByApplyingInset:)]
-        pub unsafe fn shapeByApplyingInset(&self, inset: CGFloat) -> Id<UIResolvedShape>;
+        pub unsafe fn shapeByApplyingInset(&self, inset: CGFloat) -> Retained<UIResolvedShape>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -185,12 +189,12 @@ unsafe impl NSObjectProtocol for UIShapeResolutionContext {}
 extern_methods!(
     unsafe impl UIShapeResolutionContext {
         #[method_id(@__retain_semantics Other contentShape)]
-        pub unsafe fn contentShape(&self) -> Id<UIResolvedShape>;
+        pub unsafe fn contentShape(&self) -> Retained<UIResolvedShape>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

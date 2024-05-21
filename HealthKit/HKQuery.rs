@@ -21,18 +21,18 @@ extern_methods!(
     unsafe impl HKQuery {
         #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other objectType)]
-        pub unsafe fn objectType(&self) -> Option<Id<HKObjectType>>;
+        pub unsafe fn objectType(&self) -> Option<Retained<HKObjectType>>;
 
         #[cfg(feature = "HKObjectType")]
         #[deprecated]
         #[method_id(@__retain_semantics Other sampleType)]
-        pub unsafe fn sampleType(&self) -> Option<Id<HKSampleType>>;
+        pub unsafe fn sampleType(&self) -> Option<Retained<HKSampleType>>;
 
         #[method_id(@__retain_semantics Other predicate)]
-        pub unsafe fn predicate(&self) -> Option<Id<NSPredicate>>;
+        pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -40,7 +40,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKQuery {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -68,57 +68,62 @@ extern_methods!(
     /// HKObjectPredicates
     unsafe impl HKQuery {
         #[method_id(@__retain_semantics Other predicateForObjectsWithMetadataKey:)]
-        pub unsafe fn predicateForObjectsWithMetadataKey(key: &NSString) -> Id<NSPredicate>;
+        pub unsafe fn predicateForObjectsWithMetadataKey(key: &NSString) -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other predicateForObjectsWithMetadataKey:allowedValues:)]
         pub unsafe fn predicateForObjectsWithMetadataKey_allowedValues(
             key: &NSString,
             allowed_values: &NSArray,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other predicateForObjectsWithMetadataKey:operatorType:value:)]
         pub unsafe fn predicateForObjectsWithMetadataKey_operatorType_value(
             key: &NSString,
             operator_type: NSPredicateOperatorType,
             value: &AnyObject,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "HKSource")]
         #[method_id(@__retain_semantics Other predicateForObjectsFromSource:)]
-        pub unsafe fn predicateForObjectsFromSource(source: &HKSource) -> Id<NSPredicate>;
+        pub unsafe fn predicateForObjectsFromSource(source: &HKSource) -> Retained<NSPredicate>;
 
         #[cfg(feature = "HKSource")]
         #[method_id(@__retain_semantics Other predicateForObjectsFromSources:)]
-        pub unsafe fn predicateForObjectsFromSources(sources: &NSSet<HKSource>) -> Id<NSPredicate>;
+        pub unsafe fn predicateForObjectsFromSources(
+            sources: &NSSet<HKSource>,
+        ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "HKSourceRevision")]
         #[method_id(@__retain_semantics Other predicateForObjectsFromSourceRevisions:)]
         pub unsafe fn predicateForObjectsFromSourceRevisions(
             source_revisions: &NSSet<HKSourceRevision>,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "HKDevice")]
         #[method_id(@__retain_semantics Other predicateForObjectsFromDevices:)]
-        pub unsafe fn predicateForObjectsFromDevices(devices: &NSSet<HKDevice>) -> Id<NSPredicate>;
+        pub unsafe fn predicateForObjectsFromDevices(
+            devices: &NSSet<HKDevice>,
+        ) -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other predicateForObjectsWithDeviceProperty:allowedValues:)]
         pub unsafe fn predicateForObjectsWithDeviceProperty_allowedValues(
             key: &NSString,
             allowed_values: &NSSet<NSString>,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other predicateForObjectWithUUID:)]
-        pub unsafe fn predicateForObjectWithUUID(uuid: &NSUUID) -> Id<NSPredicate>;
+        pub unsafe fn predicateForObjectWithUUID(uuid: &NSUUID) -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other predicateForObjectsWithUUIDs:)]
-        pub unsafe fn predicateForObjectsWithUUIDs(uui_ds: &NSSet<NSUUID>) -> Id<NSPredicate>;
+        pub unsafe fn predicateForObjectsWithUUIDs(uui_ds: &NSSet<NSUUID>)
+            -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other predicateForObjectsWithNoCorrelation)]
-        pub unsafe fn predicateForObjectsWithNoCorrelation() -> Id<NSPredicate>;
+        pub unsafe fn predicateForObjectsWithNoCorrelation() -> Retained<NSPredicate>;
 
         #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKWorkout"))]
         #[method_id(@__retain_semantics Other predicateForObjectsFromWorkout:)]
-        pub unsafe fn predicateForObjectsFromWorkout(workout: &HKWorkout) -> Id<NSPredicate>;
+        pub unsafe fn predicateForObjectsFromWorkout(workout: &HKWorkout) -> Retained<NSPredicate>;
 
         #[cfg(all(
             feature = "HKElectrocardiogram",
@@ -128,7 +133,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other predicateForObjectsAssociatedWithElectrocardiogram:)]
         pub unsafe fn predicateForObjectsAssociatedWithElectrocardiogram(
             electrocardiogram: &HKElectrocardiogram,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
     }
 );
 
@@ -140,7 +145,7 @@ extern_methods!(
             start_date: Option<&NSDate>,
             end_date: Option<&NSDate>,
             options: HKQueryOptions,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
     }
 );
 
@@ -152,7 +157,7 @@ extern_methods!(
         pub unsafe fn predicateForQuantitySamplesWithOperatorType_quantity(
             operator_type: NSPredicateOperatorType,
             quantity: &HKQuantity,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
     }
 );
 
@@ -163,12 +168,12 @@ extern_methods!(
         pub unsafe fn predicateForCategorySamplesWithOperatorType_value(
             operator_type: NSPredicateOperatorType,
             value: NSInteger,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other predicateForCategorySamplesEqualToValues:)]
         pub unsafe fn predicateForCategorySamplesEqualToValues(
             values: &NSSet<NSNumber>,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
     }
 );
 
@@ -179,13 +184,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithWorkoutActivityType:)]
         pub unsafe fn predicateForWorkoutsWithWorkoutActivityType(
             workout_activity_type: HKWorkoutActivityType,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:duration:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_duration(
             operator_type: NSPredicateOperatorType,
             duration: NSTimeInterval,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "HKQuantity")]
         #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierActiveEnergyBurned"]
@@ -193,7 +198,7 @@ extern_methods!(
         pub unsafe fn predicateForWorkoutsWithOperatorType_totalEnergyBurned(
             operator_type: NSPredicateOperatorType,
             total_energy_burned: &HKQuantity,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "HKQuantity")]
         #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for the desired distance type"]
@@ -201,7 +206,7 @@ extern_methods!(
         pub unsafe fn predicateForWorkoutsWithOperatorType_totalDistance(
             operator_type: NSPredicateOperatorType,
             total_distance: &HKQuantity,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "HKQuantity")]
         #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity:"]
@@ -209,7 +214,7 @@ extern_methods!(
         pub unsafe fn predicateForWorkoutsWithOperatorType_totalSwimmingStrokeCount(
             operator_type: NSPredicateOperatorType,
             total_swimming_stroke_count: &HKQuantity,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "HKQuantity")]
         #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount"]
@@ -217,7 +222,7 @@ extern_methods!(
         pub unsafe fn predicateForWorkoutsWithOperatorType_totalFlightsClimbed(
             operator_type: NSPredicateOperatorType,
             total_flights_climbed: &HKQuantity,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:quantityType:sumQuantity:)]
@@ -225,7 +230,7 @@ extern_methods!(
             operator_type: NSPredicateOperatorType,
             quantity_type: &HKQuantityType,
             sum_quantity: &HKQuantity,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:quantityType:minimumQuantity:)]
@@ -233,7 +238,7 @@ extern_methods!(
             operator_type: NSPredicateOperatorType,
             quantity_type: &HKQuantityType,
             minimum_quantity: &HKQuantity,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:quantityType:maximumQuantity:)]
@@ -241,7 +246,7 @@ extern_methods!(
             operator_type: NSPredicateOperatorType,
             quantity_type: &HKQuantityType,
             maximum_quantity: &HKQuantity,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:quantityType:averageQuantity:)]
@@ -249,7 +254,7 @@ extern_methods!(
             operator_type: NSPredicateOperatorType,
             quantity_type: &HKQuantityType,
             average_quantity: &HKQuantity,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
     }
 );
 
@@ -260,20 +265,20 @@ extern_methods!(
         #[method_id(@__retain_semantics Other predicateForWorkoutActivitiesWithWorkoutActivityType:)]
         pub unsafe fn predicateForWorkoutActivitiesWithWorkoutActivityType(
             workout_activity_type: HKWorkoutActivityType,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other predicateForWorkoutActivitiesWithOperatorType:duration:)]
         pub unsafe fn predicateForWorkoutActivitiesWithOperatorType_duration(
             operator_type: NSPredicateOperatorType,
             duration: NSTimeInterval,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other predicateForWorkoutActivitiesWithStartDate:endDate:options:)]
         pub unsafe fn predicateForWorkoutActivitiesWithStartDate_endDate_options(
             start_date: Option<&NSDate>,
             end_date: Option<&NSDate>,
             options: HKQueryOptions,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity:)]
@@ -281,7 +286,7 @@ extern_methods!(
             operator_type: NSPredicateOperatorType,
             quantity_type: &HKQuantityType,
             sum_quantity: &HKQuantity,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other predicateForWorkoutActivitiesWithOperatorType:quantityType:minimumQuantity:)]
@@ -289,7 +294,7 @@ extern_methods!(
             operator_type: NSPredicateOperatorType,
             quantity_type: &HKQuantityType,
             minimum_quantity: &HKQuantity,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other predicateForWorkoutActivitiesWithOperatorType:quantityType:maximumQuantity:)]
@@ -297,7 +302,7 @@ extern_methods!(
             operator_type: NSPredicateOperatorType,
             quantity_type: &HKQuantityType,
             maximum_quantity: &HKQuantity,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:)]
@@ -305,12 +310,12 @@ extern_methods!(
             operator_type: NSPredicateOperatorType,
             quantity_type: &HKQuantityType,
             average_quantity: &HKQuantity,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithActivityPredicate:)]
         pub unsafe fn predicateForWorkoutsWithActivityPredicate(
             activity_predicate: &NSPredicate,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
     }
 );
 
@@ -320,13 +325,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other predicateForActivitySummaryWithDateComponents:)]
         pub unsafe fn predicateForActivitySummaryWithDateComponents(
             date_components: &NSDateComponents,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other predicateForActivitySummariesBetweenStartDateComponents:endDateComponents:)]
         pub unsafe fn predicateForActivitySummariesBetweenStartDateComponents_endDateComponents(
             start_date_components: &NSDateComponents,
             end_date_components: &NSDateComponents,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
     }
 );
 
@@ -337,7 +342,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other predicateForClinicalRecordsWithFHIRResourceType:)]
         pub unsafe fn predicateForClinicalRecordsWithFHIRResourceType(
             resource_type: &HKFHIRResourceType,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(all(feature = "HKFHIRResource", feature = "HKSource"))]
         #[method_id(@__retain_semantics Other predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:)]
@@ -345,7 +350,7 @@ extern_methods!(
             source: &HKSource,
             resource_type: &HKFHIRResourceType,
             identifier: &NSString,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
     }
 );
 
@@ -356,13 +361,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other predicateForElectrocardiogramsWithClassification:)]
         pub unsafe fn predicateForElectrocardiogramsWithClassification(
             classification: HKElectrocardiogramClassification,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "HKElectrocardiogram")]
         #[method_id(@__retain_semantics Other predicateForElectrocardiogramsWithSymptomsStatus:)]
         pub unsafe fn predicateForElectrocardiogramsWithSymptomsStatus(
             symptoms_status: HKElectrocardiogramSymptomsStatus,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
     }
 );
 
@@ -372,6 +377,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other predicateForVerifiableClinicalRecordsWithRelevantDateWithinDateInterval:)]
         pub unsafe fn predicateForVerifiableClinicalRecordsWithRelevantDateWithinDateInterval(
             date_interval: &NSDateInterval,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
     }
 );

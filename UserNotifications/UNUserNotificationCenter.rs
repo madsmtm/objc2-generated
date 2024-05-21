@@ -52,7 +52,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UNUserNotificationCenterDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UNUserNotificationCenterDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -64,10 +64,10 @@ extern_methods!(
         pub unsafe fn supportsContentExtensions(&self) -> bool;
 
         #[method_id(@__retain_semantics Other currentNotificationCenter)]
-        pub unsafe fn currentNotificationCenter() -> Id<UNUserNotificationCenter>;
+        pub unsafe fn currentNotificationCenter() -> Retained<UNUserNotificationCenter>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(requestAuthorizationWithOptions:completionHandler:)]
@@ -149,7 +149,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNUserNotificationCenter {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

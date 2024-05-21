@@ -113,25 +113,28 @@ extern_methods!(
 
         #[cfg(feature = "NEHotspotNetwork")]
         #[method_id(@__retain_semantics Other network)]
-        pub unsafe fn network(&self) -> Option<Id<NEHotspotNetwork>>;
+        pub unsafe fn network(&self) -> Option<Retained<NEHotspotNetwork>>;
 
         #[cfg(feature = "NEHotspotNetwork")]
         #[method_id(@__retain_semantics Other networkList)]
-        pub unsafe fn networkList(&self) -> Option<Id<NSArray<NEHotspotNetwork>>>;
+        pub unsafe fn networkList(&self) -> Option<Retained<NSArray<NEHotspotNetwork>>>;
 
         #[method_id(@__retain_semantics Other createResponse:)]
         pub unsafe fn createResponse(
             &self,
             result: NEHotspotHelperResult,
-        ) -> Id<NEHotspotHelperResponse>;
+        ) -> Retained<NEHotspotHelperResponse>;
 
         #[cfg(all(feature = "NWEndpoint", feature = "NWTCPConnection"))]
         #[method_id(@__retain_semantics Other createTCPConnection:)]
-        pub unsafe fn createTCPConnection(&self, endpoint: &NWEndpoint) -> Id<NWTCPConnection>;
+        pub unsafe fn createTCPConnection(
+            &self,
+            endpoint: &NWEndpoint,
+        ) -> Retained<NWTCPConnection>;
 
         #[cfg(all(feature = "NWEndpoint", feature = "NWUDPSession"))]
         #[method_id(@__retain_semantics Other createUDPSession:)]
-        pub unsafe fn createUDPSession(&self, endpoint: &NWEndpoint) -> Id<NWUDPSession>;
+        pub unsafe fn createUDPSession(&self, endpoint: &NWEndpoint) -> Retained<NWUDPSession>;
     }
 );
 
@@ -139,10 +142,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEHotspotHelperCommand {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -177,10 +180,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEHotspotHelperResponse {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -206,7 +209,7 @@ extern_methods!(
         pub unsafe fn logoff(network: &NEHotspotNetwork) -> bool;
 
         #[method_id(@__retain_semantics Other supportedNetworkInterfaces)]
-        pub unsafe fn supportedNetworkInterfaces() -> Option<Id<NSArray>>;
+        pub unsafe fn supportedNetworkInterfaces() -> Option<Retained<NSArray>>;
     }
 );
 
@@ -214,10 +217,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEHotspotHelper {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

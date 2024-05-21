@@ -24,14 +24,18 @@ unsafe impl NSSecureCoding for UISceneActivationConditions {}
 extern_methods!(
     unsafe impl UISceneActivationConditions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder)
-            -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            a_decoder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other canActivateForTargetContentIdentifierPredicate)]
-        pub unsafe fn canActivateForTargetContentIdentifierPredicate(&self) -> Id<NSPredicate>;
+        pub unsafe fn canActivateForTargetContentIdentifierPredicate(
+            &self,
+        ) -> Retained<NSPredicate>;
 
         #[method(setCanActivateForTargetContentIdentifierPredicate:)]
         pub unsafe fn setCanActivateForTargetContentIdentifierPredicate(
@@ -42,7 +46,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other prefersToActivateForTargetContentIdentifierPredicate)]
         pub unsafe fn prefersToActivateForTargetContentIdentifierPredicate(
             &self,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[method(setPrefersToActivateForTargetContentIdentifierPredicate:)]
         pub unsafe fn setPrefersToActivateForTargetContentIdentifierPredicate(
@@ -56,7 +60,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UISceneActivationConditions {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -65,7 +69,7 @@ extern_category!(
     #[doc(alias = "UISceneActivationConditions")]
     pub unsafe trait NSUserActivityUISceneActivationConditions {
         #[method_id(@__retain_semantics Other targetContentIdentifier)]
-        unsafe fn targetContentIdentifier(&self) -> Option<Id<NSString>>;
+        unsafe fn targetContentIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(setTargetContentIdentifier:)]
         unsafe fn setTargetContentIdentifier(&self, target_content_identifier: Option<&NSString>);

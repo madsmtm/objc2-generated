@@ -32,16 +32,16 @@ extern_methods!(
         pub unsafe fn predicateWithFormat_argumentArray(
             predicate_format: &NSString,
             arguments: Option<&NSArray>,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other predicateFromMetadataQueryString:)]
         pub unsafe fn predicateFromMetadataQueryString(
             query_string: &NSString,
-        ) -> Option<Id<NSPredicate>>;
+        ) -> Option<Retained<NSPredicate>>;
 
         #[method_id(@__retain_semantics Other predicateWithValue:)]
-        pub unsafe fn predicateWithValue(value: bool) -> Id<NSPredicate>;
+        pub unsafe fn predicateWithValue(value: bool) -> Retained<NSPredicate>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "block2"))]
         #[method_id(@__retain_semantics Other predicateWithBlock:)]
@@ -49,18 +49,18 @@ extern_methods!(
             block: &block2::Block<
                 dyn Fn(*mut AnyObject, *mut NSDictionary<NSString, AnyObject>) -> Bool,
             >,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other predicateFormat)]
-        pub unsafe fn predicateFormat(&self) -> Id<NSString>;
+        pub unsafe fn predicateFormat(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other predicateWithSubstitutionVariables:)]
         pub unsafe fn predicateWithSubstitutionVariables(
             &self,
             variables: &NSDictionary<NSString, AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(evaluateWithObject:)]
         pub unsafe fn evaluateWithObject(&self, object: Option<&AnyObject>) -> bool;
@@ -82,10 +82,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPredicate {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -97,7 +97,7 @@ extern_methods!(
         pub unsafe fn filteredArrayUsingPredicate(
             &self,
             predicate: &NSPredicate,
-        ) -> Id<NSArray<ObjectType>>;
+        ) -> Retained<NSArray<ObjectType>>;
     }
 );
 
@@ -118,7 +118,7 @@ extern_methods!(
         pub unsafe fn filteredSetUsingPredicate(
             &self,
             predicate: &NSPredicate,
-        ) -> Id<NSSet<ObjectType>>;
+        ) -> Retained<NSSet<ObjectType>>;
     }
 );
 
@@ -139,7 +139,7 @@ extern_methods!(
         pub unsafe fn filteredOrderedSetUsingPredicate(
             &self,
             p: &NSPredicate,
-        ) -> Id<NSOrderedSet<ObjectType>>;
+        ) -> Retained<NSOrderedSet<ObjectType>>;
     }
 );
 

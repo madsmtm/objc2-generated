@@ -26,7 +26,7 @@ extern_methods!(
             name: &NSString,
             bundle_or_nil: Option<&NSBundle>,
             mtm: MainThreadMarker,
-        ) -> Id<UINib>;
+        ) -> Retained<UINib>;
 
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[method_id(@__retain_semantics Other nibWithData:bundle:)]
@@ -34,7 +34,7 @@ extern_methods!(
             data: &NSData,
             bundle_or_nil: Option<&NSBundle>,
             mtm: MainThreadMarker,
-        ) -> Id<UINib>;
+        ) -> Retained<UINib>;
 
         #[cfg(feature = "UINibLoading")]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
@@ -43,7 +43,7 @@ extern_methods!(
             &self,
             owner_or_nil: Option<&AnyObject>,
             options_or_nil: Option<&NSDictionary<UINibOptionsKey, AnyObject>>,
-        ) -> Id<NSArray>;
+        ) -> Retained<NSArray>;
     }
 );
 
@@ -51,9 +51,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UINib {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

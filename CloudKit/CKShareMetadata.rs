@@ -26,21 +26,21 @@ unsafe impl NSSecureCoding for CKShareMetadata {}
 extern_methods!(
     unsafe impl CKShareMetadata {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other containerIdentifier)]
-        pub unsafe fn containerIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn containerIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKShare"))]
         #[method_id(@__retain_semantics Other share)]
-        pub unsafe fn share(&self) -> Id<CKShare>;
+        pub unsafe fn share(&self) -> Retained<CKShare>;
 
         #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other hierarchicalRootRecordID)]
-        pub unsafe fn hierarchicalRootRecordID(&self) -> Option<Id<CKRecordID>>;
+        pub unsafe fn hierarchicalRootRecordID(&self) -> Option<Retained<CKRecordID>>;
 
         #[cfg(feature = "CKShareParticipant")]
         #[method(participantRole)]
@@ -56,11 +56,11 @@ extern_methods!(
 
         #[cfg(feature = "CKUserIdentity")]
         #[method_id(@__retain_semantics Other ownerIdentity)]
-        pub unsafe fn ownerIdentity(&self) -> Id<CKUserIdentity>;
+        pub unsafe fn ownerIdentity(&self) -> Retained<CKUserIdentity>;
 
         #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Other rootRecord)]
-        pub unsafe fn rootRecord(&self) -> Option<Id<CKRecord>>;
+        pub unsafe fn rootRecord(&self) -> Option<Retained<CKRecord>>;
 
         #[cfg(feature = "CKShareParticipant")]
         #[deprecated]
@@ -70,6 +70,6 @@ extern_methods!(
         #[cfg(feature = "CKRecordID")]
         #[deprecated]
         #[method_id(@__retain_semantics Other rootRecordID)]
-        pub unsafe fn rootRecordID(&self) -> Id<CKRecordID>;
+        pub unsafe fn rootRecordID(&self) -> Retained<CKRecordID>;
     }
 );

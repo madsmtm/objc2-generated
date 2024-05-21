@@ -68,7 +68,7 @@ extern_methods!(
         pub unsafe fn setAttributeType(&self, attribute_type: NSAttributeType);
 
         #[method_id(@__retain_semantics Other attributeValueClassName)]
-        pub unsafe fn attributeValueClassName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn attributeValueClassName(&self) -> Option<Retained<NSString>>;
 
         #[method(setAttributeValueClassName:)]
         pub unsafe fn setAttributeValueClassName(
@@ -77,16 +77,16 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other defaultValue)]
-        pub unsafe fn defaultValue(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn defaultValue(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setDefaultValue:)]
         pub unsafe fn setDefaultValue(&self, default_value: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other versionHash)]
-        pub unsafe fn versionHash(&self) -> Id<NSData>;
+        pub unsafe fn versionHash(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other valueTransformerName)]
-        pub unsafe fn valueTransformerName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn valueTransformerName(&self) -> Option<Retained<NSString>>;
 
         #[method(setValueTransformerName:)]
         pub unsafe fn setValueTransformerName(&self, value_transformer_name: Option<&NSString>);
@@ -122,9 +122,9 @@ extern_methods!(
     #[cfg(feature = "NSPropertyDescription")]
     unsafe impl NSAttributeDescription {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

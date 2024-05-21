@@ -41,7 +41,7 @@ unsafe impl NSObjectProtocol for WKUserScript {}
 extern_methods!(
     unsafe impl WKUserScript {
         #[method_id(@__retain_semantics Other source)]
-        pub unsafe fn source(&self) -> Id<NSString>;
+        pub unsafe fn source(&self) -> Retained<NSString>;
 
         #[method(injectionTime)]
         pub unsafe fn injectionTime(&self) -> WKUserScriptInjectionTime;
@@ -55,7 +55,7 @@ extern_methods!(
             source: &NSString,
             injection_time: WKUserScriptInjectionTime,
             for_main_frame_only: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "WKContentWorld")]
         #[method_id(@__retain_semantics Init initWithSource:injectionTime:forMainFrameOnly:inContentWorld:)]
@@ -65,7 +65,7 @@ extern_methods!(
             injection_time: WKUserScriptInjectionTime,
             for_main_frame_only: bool,
             content_world: &WKContentWorld,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -73,9 +73,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKUserScript {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

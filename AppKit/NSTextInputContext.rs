@@ -22,21 +22,23 @@ unsafe impl NSObjectProtocol for NSTextInputContext {}
 extern_methods!(
     unsafe impl NSTextInputContext {
         #[method_id(@__retain_semantics Other currentInputContext)]
-        pub unsafe fn currentInputContext(mtm: MainThreadMarker) -> Option<Id<NSTextInputContext>>;
+        pub unsafe fn currentInputContext(
+            mtm: MainThreadMarker,
+        ) -> Option<Retained<NSTextInputContext>>;
 
         #[cfg(feature = "NSTextInputClient")]
         #[method_id(@__retain_semantics Init initWithClient:)]
         pub unsafe fn initWithClient(
             this: Allocated<Self>,
             client: &ProtocolObject<dyn NSTextInputClient>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSTextInputClient")]
         #[method_id(@__retain_semantics Other client)]
-        pub unsafe fn client(&self) -> Id<ProtocolObject<dyn NSTextInputClient>>;
+        pub unsafe fn client(&self) -> Retained<ProtocolObject<dyn NSTextInputClient>>;
 
         #[method(acceptsGlyphInfo)]
         pub unsafe fn acceptsGlyphInfo(&self) -> bool;
@@ -45,7 +47,7 @@ extern_methods!(
         pub unsafe fn setAcceptsGlyphInfo(&self, accepts_glyph_info: bool);
 
         #[method_id(@__retain_semantics Other allowedInputSourceLocales)]
-        pub unsafe fn allowedInputSourceLocales(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn allowedInputSourceLocales(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setAllowedInputSourceLocales:)]
         pub unsafe fn setAllowedInputSourceLocales(
@@ -78,10 +80,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other keyboardInputSources)]
         pub unsafe fn keyboardInputSources(
             &self,
-        ) -> Option<Id<NSArray<NSTextInputSourceIdentifier>>>;
+        ) -> Option<Retained<NSArray<NSTextInputSourceIdentifier>>>;
 
         #[method_id(@__retain_semantics Other selectedKeyboardInputSource)]
-        pub fn selectedKeyboardInputSource(&self) -> Option<Id<NSTextInputSourceIdentifier>>;
+        pub fn selectedKeyboardInputSource(&self) -> Option<Retained<NSTextInputSourceIdentifier>>;
 
         #[method(setSelectedKeyboardInputSource:)]
         pub unsafe fn setSelectedKeyboardInputSource(
@@ -93,7 +95,7 @@ extern_methods!(
         pub unsafe fn localizedNameForInputSource(
             input_source_identifier: &NSTextInputSourceIdentifier,
             mtm: MainThreadMarker,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
     }
 );
 
@@ -101,7 +103,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextInputContext {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

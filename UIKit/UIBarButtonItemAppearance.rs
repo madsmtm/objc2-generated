@@ -20,15 +20,15 @@ unsafe impl NSObjectProtocol for UIBarButtonItemStateAppearance {}
 extern_methods!(
     unsafe impl UIBarButtonItemStateAppearance {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other titleTextAttributes)]
         pub unsafe fn titleTextAttributes(
             &self,
-        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[method(setTitleTextAttributes:)]
         pub unsafe fn setTitleTextAttributes(
@@ -46,7 +46,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other backgroundImage)]
-        pub unsafe fn backgroundImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn backgroundImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setBackgroundImage:)]
@@ -86,34 +86,36 @@ unsafe impl NSSecureCoding for UIBarButtonItemAppearance {}
 extern_methods!(
     unsafe impl UIBarButtonItemAppearance {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIBarButtonItem")]
         #[method_id(@__retain_semantics Init initWithStyle:)]
-        pub unsafe fn initWithStyle(this: Allocated<Self>, style: UIBarButtonItemStyle)
-            -> Id<Self>;
+        pub unsafe fn initWithStyle(
+            this: Allocated<Self>,
+            style: UIBarButtonItemStyle,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method_id(@__retain_semantics CopyOrMutCopy copy)]
-        pub unsafe fn copy(&self) -> Id<Self>;
+        pub unsafe fn copy(&self) -> Retained<Self>;
 
         #[cfg(feature = "UIBarButtonItem")]
         #[method(configureWithDefaultForStyle:)]
         pub unsafe fn configureWithDefaultForStyle(&self, style: UIBarButtonItemStyle);
 
         #[method_id(@__retain_semantics Other normal)]
-        pub unsafe fn normal(&self) -> Id<UIBarButtonItemStateAppearance>;
+        pub unsafe fn normal(&self) -> Retained<UIBarButtonItemStateAppearance>;
 
         #[method_id(@__retain_semantics Other highlighted)]
-        pub unsafe fn highlighted(&self) -> Id<UIBarButtonItemStateAppearance>;
+        pub unsafe fn highlighted(&self) -> Retained<UIBarButtonItemStateAppearance>;
 
         #[method_id(@__retain_semantics Other disabled)]
-        pub unsafe fn disabled(&self) -> Id<UIBarButtonItemStateAppearance>;
+        pub unsafe fn disabled(&self) -> Retained<UIBarButtonItemStateAppearance>;
 
         #[method_id(@__retain_semantics Other focused)]
-        pub unsafe fn focused(&self) -> Id<UIBarButtonItemStateAppearance>;
+        pub unsafe fn focused(&self) -> Retained<UIBarButtonItemStateAppearance>;
     }
 );
 
@@ -121,6 +123,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIBarButtonItemAppearance {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

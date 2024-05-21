@@ -20,27 +20,27 @@ unsafe impl NSObjectProtocol for ASAuthorizationWebBrowserPlatformPublicKeyCrede
 extern_methods!(
     unsafe impl ASAuthorizationWebBrowserPlatformPublicKeyCredential {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other customTitle)]
-        pub unsafe fn customTitle(&self) -> Option<Id<NSString>>;
+        pub unsafe fn customTitle(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other relyingParty)]
-        pub unsafe fn relyingParty(&self) -> Id<NSString>;
+        pub unsafe fn relyingParty(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other credentialID)]
-        pub unsafe fn credentialID(&self) -> Id<NSData>;
+        pub unsafe fn credentialID(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other userHandle)]
-        pub unsafe fn userHandle(&self) -> Id<NSData>;
+        pub unsafe fn userHandle(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other providerName)]
-        pub unsafe fn providerName(&self) -> Id<NSString>;
+        pub unsafe fn providerName(&self) -> Retained<NSString>;
     }
 );

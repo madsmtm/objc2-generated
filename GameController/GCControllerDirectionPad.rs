@@ -40,27 +40,27 @@ extern_methods!(
 
         #[cfg(feature = "GCControllerAxisInput")]
         #[method_id(@__retain_semantics Other xAxis)]
-        pub unsafe fn xAxis(&self) -> Id<GCControllerAxisInput>;
+        pub unsafe fn xAxis(&self) -> Retained<GCControllerAxisInput>;
 
         #[cfg(feature = "GCControllerAxisInput")]
         #[method_id(@__retain_semantics Other yAxis)]
-        pub unsafe fn yAxis(&self) -> Id<GCControllerAxisInput>;
+        pub unsafe fn yAxis(&self) -> Retained<GCControllerAxisInput>;
 
         #[cfg(feature = "GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other up)]
-        pub unsafe fn up(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn up(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(feature = "GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other down)]
-        pub unsafe fn down(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn down(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(feature = "GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other left)]
-        pub unsafe fn left(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn left(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(feature = "GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other right)]
-        pub unsafe fn right(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn right(&self) -> Retained<GCControllerButtonInput>;
 
         #[method(setValueForXAxis:yAxis:)]
         pub unsafe fn setValueForXAxis_yAxis(&self, x_axis: c_float, y_axis: c_float);
@@ -72,9 +72,9 @@ extern_methods!(
     #[cfg(feature = "GCControllerElement")]
     unsafe impl GCControllerDirectionPad {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

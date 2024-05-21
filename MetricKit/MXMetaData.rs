@@ -24,19 +24,19 @@ unsafe impl NSSecureCoding for MXMetaData {}
 extern_methods!(
     unsafe impl MXMetaData {
         #[method_id(@__retain_semantics Other regionFormat)]
-        pub unsafe fn regionFormat(&self) -> Id<NSString>;
+        pub unsafe fn regionFormat(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other osVersion)]
-        pub unsafe fn osVersion(&self) -> Id<NSString>;
+        pub unsafe fn osVersion(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other deviceType)]
-        pub unsafe fn deviceType(&self) -> Id<NSString>;
+        pub unsafe fn deviceType(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other applicationBuildVersion)]
-        pub unsafe fn applicationBuildVersion(&self) -> Id<NSString>;
+        pub unsafe fn applicationBuildVersion(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other platformArchitecture)]
-        pub unsafe fn platformArchitecture(&self) -> Id<NSString>;
+        pub unsafe fn platformArchitecture(&self) -> Retained<NSString>;
 
         #[method(lowPowerModeEnabled)]
         pub unsafe fn lowPowerModeEnabled(&self) -> bool;
@@ -49,14 +49,14 @@ extern_methods!(
         pub unsafe fn pid(&self) -> libc::pid_t;
 
         #[method_id(@__retain_semantics Other JSONRepresentation)]
-        pub unsafe fn JSONRepresentation(&self) -> Id<NSData>;
+        pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other DictionaryRepresentation)]
-        pub unsafe fn DictionaryRepresentation(&self) -> Id<NSDictionary>;
+        pub unsafe fn DictionaryRepresentation(&self) -> Retained<NSDictionary>;
 
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
-        pub unsafe fn dictionaryRepresentation(&self) -> Id<NSDictionary>;
+        pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }
 );
 
@@ -64,9 +64,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXMetaData {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

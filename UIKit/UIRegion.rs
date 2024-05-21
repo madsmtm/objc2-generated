@@ -24,25 +24,25 @@ unsafe impl NSObjectProtocol for UIRegion {}
 extern_methods!(
     unsafe impl UIRegion {
         #[method_id(@__retain_semantics Other infiniteRegion)]
-        pub unsafe fn infiniteRegion(mtm: MainThreadMarker) -> Id<UIRegion>;
+        pub unsafe fn infiniteRegion(mtm: MainThreadMarker) -> Retained<UIRegion>;
 
         #[method_id(@__retain_semantics Init initWithRadius:)]
-        pub unsafe fn initWithRadius(this: Allocated<Self>, radius: CGFloat) -> Id<Self>;
+        pub unsafe fn initWithRadius(this: Allocated<Self>, radius: CGFloat) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithSize:)]
-        pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Id<Self>;
+        pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other inverseRegion)]
-        pub unsafe fn inverseRegion(&self) -> Id<Self>;
+        pub unsafe fn inverseRegion(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other regionByUnionWithRegion:)]
-        pub unsafe fn regionByUnionWithRegion(&self, region: &UIRegion) -> Id<Self>;
+        pub unsafe fn regionByUnionWithRegion(&self, region: &UIRegion) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other regionByDifferenceFromRegion:)]
-        pub unsafe fn regionByDifferenceFromRegion(&self, region: &UIRegion) -> Id<Self>;
+        pub unsafe fn regionByDifferenceFromRegion(&self, region: &UIRegion) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other regionByIntersectionWithRegion:)]
-        pub unsafe fn regionByIntersectionWithRegion(&self, region: &UIRegion) -> Id<Self>;
+        pub unsafe fn regionByIntersectionWithRegion(&self, region: &UIRegion) -> Retained<Self>;
 
         #[method(containsPoint:)]
         pub unsafe fn containsPoint(&self, point: CGPoint) -> bool;
@@ -53,9 +53,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIRegion {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

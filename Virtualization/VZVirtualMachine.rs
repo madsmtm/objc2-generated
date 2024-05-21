@@ -55,17 +55,17 @@ unsafe impl NSObjectProtocol for VZVirtualMachine {}
 extern_methods!(
     unsafe impl VZVirtualMachine {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZVirtualMachineConfiguration")]
         #[method_id(@__retain_semantics Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &VZVirtualMachineConfiguration,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(isSupported)]
         pub unsafe fn isSupported() -> bool;
@@ -75,7 +75,9 @@ extern_methods!(
 
         #[cfg(feature = "VZVirtualMachineDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn VZVirtualMachineDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn VZVirtualMachineDelegate>>>;
 
         #[cfg(feature = "VZVirtualMachineDelegate")]
         #[method(setDelegate:)]
@@ -101,27 +103,28 @@ extern_methods!(
 
         #[cfg(feature = "VZConsoleDevice")]
         #[method_id(@__retain_semantics Other consoleDevices)]
-        pub unsafe fn consoleDevices(&self) -> Id<NSArray<VZConsoleDevice>>;
+        pub unsafe fn consoleDevices(&self) -> Retained<NSArray<VZConsoleDevice>>;
 
         #[cfg(feature = "VZDirectorySharingDevice")]
         #[method_id(@__retain_semantics Other directorySharingDevices)]
-        pub unsafe fn directorySharingDevices(&self) -> Id<NSArray<VZDirectorySharingDevice>>;
+        pub unsafe fn directorySharingDevices(&self)
+            -> Retained<NSArray<VZDirectorySharingDevice>>;
 
         #[cfg(feature = "VZGraphicsDevice")]
         #[method_id(@__retain_semantics Other graphicsDevices)]
-        pub unsafe fn graphicsDevices(&self) -> Id<NSArray<VZGraphicsDevice>>;
+        pub unsafe fn graphicsDevices(&self) -> Retained<NSArray<VZGraphicsDevice>>;
 
         #[cfg(feature = "VZMemoryBalloonDevice")]
         #[method_id(@__retain_semantics Other memoryBalloonDevices)]
-        pub unsafe fn memoryBalloonDevices(&self) -> Id<NSArray<VZMemoryBalloonDevice>>;
+        pub unsafe fn memoryBalloonDevices(&self) -> Retained<NSArray<VZMemoryBalloonDevice>>;
 
         #[cfg(feature = "VZNetworkDevice")]
         #[method_id(@__retain_semantics Other networkDevices)]
-        pub unsafe fn networkDevices(&self) -> Id<NSArray<VZNetworkDevice>>;
+        pub unsafe fn networkDevices(&self) -> Retained<NSArray<VZNetworkDevice>>;
 
         #[cfg(feature = "VZSocketDevice")]
         #[method_id(@__retain_semantics Other socketDevices)]
-        pub unsafe fn socketDevices(&self) -> Id<NSArray<VZSocketDevice>>;
+        pub unsafe fn socketDevices(&self) -> Retained<NSArray<VZSocketDevice>>;
 
         #[cfg(feature = "block2")]
         #[method(startWithCompletionHandler:)]
@@ -176,6 +179,6 @@ extern_methods!(
         );
 
         #[method(requestStopWithError:_)]
-        pub unsafe fn requestStopWithError(&self) -> Result<(), Id<NSError>>;
+        pub unsafe fn requestStopWithError(&self) -> Result<(), Retained<NSError>>;
     }
 );

@@ -25,10 +25,10 @@ extern_methods!(
     unsafe impl CBDescriptor {
         #[cfg(feature = "CBCharacteristic")]
         #[method_id(@__retain_semantics Other characteristic)]
-        pub unsafe fn characteristic(&self) -> Option<Id<CBCharacteristic>>;
+        pub unsafe fn characteristic(&self) -> Option<Retained<CBCharacteristic>>;
 
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn value(&self) -> Option<Retained<AnyObject>>;
     }
 );
 
@@ -37,7 +37,7 @@ extern_methods!(
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -46,7 +46,7 @@ extern_methods!(
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBDescriptor {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -75,7 +75,7 @@ extern_methods!(
             this: Allocated<Self>,
             uuid: &CBUUID,
             value: Option<&AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -84,7 +84,7 @@ extern_methods!(
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBMutableDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -93,6 +93,6 @@ extern_methods!(
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBMutableDescriptor {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

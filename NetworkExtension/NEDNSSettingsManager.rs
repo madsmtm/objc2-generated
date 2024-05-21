@@ -51,7 +51,7 @@ unsafe impl NSObjectProtocol for NEDNSSettingsManager {}
 extern_methods!(
     unsafe impl NEDNSSettingsManager {
         #[method_id(@__retain_semantics Other sharedManager)]
-        pub unsafe fn sharedManager() -> Id<NEDNSSettingsManager>;
+        pub unsafe fn sharedManager() -> Retained<NEDNSSettingsManager>;
 
         #[cfg(feature = "block2")]
         #[method(loadFromPreferencesWithCompletionHandler:)]
@@ -75,14 +75,14 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other localizedDescription)]
-        pub unsafe fn localizedDescription(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         #[method(setLocalizedDescription:)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
 
         #[cfg(feature = "NEDNSSettings")]
         #[method_id(@__retain_semantics Other dnsSettings)]
-        pub unsafe fn dnsSettings(&self) -> Option<Id<NEDNSSettings>>;
+        pub unsafe fn dnsSettings(&self) -> Option<Retained<NEDNSSettings>>;
 
         #[cfg(feature = "NEDNSSettings")]
         #[method(setDnsSettings:)]
@@ -90,7 +90,7 @@ extern_methods!(
 
         #[cfg(feature = "NEOnDemandRule")]
         #[method_id(@__retain_semantics Other onDemandRules)]
-        pub unsafe fn onDemandRules(&self) -> Option<Id<NSArray<NEOnDemandRule>>>;
+        pub unsafe fn onDemandRules(&self) -> Option<Retained<NSArray<NEOnDemandRule>>>;
 
         #[cfg(feature = "NEOnDemandRule")]
         #[method(setOnDemandRules:)]
@@ -105,9 +105,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEDNSSettingsManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

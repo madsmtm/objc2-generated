@@ -25,7 +25,7 @@ extern_methods!(
             this: Allocated<Self>,
             name: &NSString,
             handler: Option<&block2::Block<dyn Fn() -> Bool>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithName:target:selector:)]
         pub unsafe fn initWithName_target_selector(
@@ -33,10 +33,10 @@ extern_methods!(
             name: &NSString,
             target: &NSObject,
             selector: Sel,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
@@ -50,7 +50,7 @@ extern_methods!(
         pub unsafe fn setHandler(&self, handler: Option<&block2::Block<dyn Fn() -> Bool>>);
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<NSObject>>;
+        pub unsafe fn target(&self) -> Option<Retained<NSObject>>;
 
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&NSObject>);
@@ -67,9 +67,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAccessibilityCustomAction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -36,11 +36,11 @@ extern_methods!(
         pub unsafe fn circleWithCenterCoordinate_radius(
             coord: CLLocationCoordinate2D,
             radius: CLLocationDistance,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MKGeometry")]
         #[method_id(@__retain_semantics Other circleWithMapRect:)]
-        pub unsafe fn circleWithMapRect(map_rect: MKMapRect) -> Id<Self>;
+        pub unsafe fn circleWithMapRect(map_rect: MKMapRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method(coordinate)]
@@ -61,9 +61,9 @@ extern_methods!(
     #[cfg(feature = "MKShape")]
     unsafe impl MKCircle {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

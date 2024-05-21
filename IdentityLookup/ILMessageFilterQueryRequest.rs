@@ -24,18 +24,18 @@ unsafe impl NSSecureCoding for ILMessageFilterQueryRequest {}
 extern_methods!(
     unsafe impl ILMessageFilterQueryRequest {
         #[method_id(@__retain_semantics Other sender)]
-        pub unsafe fn sender(&self) -> Option<Id<NSString>>;
+        pub unsafe fn sender(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other messageBody)]
-        pub unsafe fn messageBody(&self) -> Option<Id<NSString>>;
+        pub unsafe fn messageBody(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other receiverISOCountryCode)]
-        pub unsafe fn receiverISOCountryCode(&self) -> Option<Id<NSString>>;
+        pub unsafe fn receiverISOCountryCode(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

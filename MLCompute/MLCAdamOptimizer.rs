@@ -53,7 +53,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other optimizerWithDescriptor:)]
         pub unsafe fn optimizerWithDescriptor(
             optimizer_descriptor: &MLCOptimizerDescriptor,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCOptimizerDescriptor")]
         #[deprecated]
@@ -64,7 +64,7 @@ extern_methods!(
             beta2: c_float,
             epsilon: c_float,
             time_step: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCOptimizerDescriptor")]
         #[method_id(@__retain_semantics Other optimizerWithDescriptor:beta1:beta2:epsilon:usesAMSGrad:timeStep:)]
@@ -75,7 +75,7 @@ extern_methods!(
             epsilon: c_float,
             uses_ams_grad: bool,
             time_step: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -85,10 +85,10 @@ extern_methods!(
     unsafe impl MLCAdamOptimizer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

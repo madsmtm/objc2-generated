@@ -58,13 +58,16 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSControl {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -120,25 +123,25 @@ extern_methods!(
         pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
         #[method_id(@__retain_semantics Other formatter)]
-        pub unsafe fn formatter(&self) -> Option<Id<NSFormatter>>;
+        pub unsafe fn formatter(&self) -> Option<Retained<NSFormatter>>;
 
         #[method(setFormatter:)]
         pub unsafe fn setFormatter(&self, formatter: Option<&NSFormatter>);
 
         #[method_id(@__retain_semantics Other objectValue)]
-        pub unsafe fn objectValue(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn objectValue(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setObjectValue:)]
         pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other stringValue)]
-        pub unsafe fn stringValue(&self) -> Id<NSString>;
+        pub unsafe fn stringValue(&self) -> Retained<NSString>;
 
         #[method(setStringValue:)]
         pub unsafe fn setStringValue(&self, string_value: &NSString);
 
         #[method_id(@__retain_semantics Other attributedStringValue)]
-        pub unsafe fn attributedStringValue(&self) -> Id<NSAttributedString>;
+        pub unsafe fn attributedStringValue(&self) -> Retained<NSAttributedString>;
 
         #[method(setAttributedStringValue:)]
         pub unsafe fn setAttributedStringValue(&self, attributed_string_value: &NSAttributedString);
@@ -208,7 +211,7 @@ extern_methods!(
 
         #[cfg(feature = "NSFont")]
         #[method_id(@__retain_semantics Other font)]
-        pub unsafe fn font(&self) -> Option<Id<NSFont>>;
+        pub unsafe fn font(&self) -> Option<Retained<NSFont>>;
 
         #[cfg(feature = "NSFont")]
         #[method(setFont:)]
@@ -263,7 +266,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSControl {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -272,7 +275,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSControl {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -282,7 +285,7 @@ extern_methods!(
     unsafe impl NSControl {
         #[cfg(feature = "NSText")]
         #[method_id(@__retain_semantics Other currentEditor)]
-        pub unsafe fn currentEditor(&self) -> Option<Id<NSText>>;
+        pub unsafe fn currentEditor(&self) -> Option<Retained<NSText>>;
 
         #[method(abortEditing)]
         pub unsafe fn abortEditing(&self) -> bool;
@@ -410,7 +413,7 @@ extern_protocol!(
             words: &NSArray<NSString>,
             char_range: NSRange,
             index: NonNull<NSInteger>,
-        ) -> Id<NSArray<NSString>>;
+        ) -> Retained<NSArray<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn NSControlTextEditingDelegate {}
@@ -449,7 +452,7 @@ extern_methods!(
 
         #[cfg(feature = "NSCell")]
         #[method_id(@__retain_semantics Other cell)]
-        pub unsafe fn cell(&self) -> Option<Id<NSCell>>;
+        pub unsafe fn cell(&self) -> Option<Retained<NSCell>>;
 
         #[cfg(feature = "NSCell")]
         #[method(setCell:)]
@@ -457,7 +460,7 @@ extern_methods!(
 
         #[cfg(feature = "NSCell")]
         #[method_id(@__retain_semantics Other selectedCell)]
-        pub unsafe fn selectedCell(&self) -> Option<Id<NSCell>>;
+        pub unsafe fn selectedCell(&self) -> Option<Retained<NSCell>>;
 
         #[method(selectedTag)]
         pub unsafe fn selectedTag(&self) -> NSInteger;

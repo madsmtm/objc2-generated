@@ -195,16 +195,16 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexBufferLayoutDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Allocated<Self>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub fn new() -> Id<Self>;
+        pub fn new() -> Retained<Self>;
     }
 );
 
-impl DefaultId for MTLVertexBufferLayoutDescriptor {
+impl DefaultRetained for MTLVertexBufferLayoutDescriptor {
     #[inline]
-    fn default_id() -> Id<Self> {
+    fn default_id() -> Retained<Self> {
         Self::new()
     }
 }
@@ -227,7 +227,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             index: NSUInteger,
-        ) -> Id<MTLVertexBufferLayoutDescriptor>;
+        ) -> Retained<MTLVertexBufferLayoutDescriptor>;
 
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -242,10 +242,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexBufferLayoutDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -289,16 +289,16 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexAttributeDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Allocated<Self>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub fn new() -> Id<Self>;
+        pub fn new() -> Retained<Self>;
     }
 );
 
-impl DefaultId for MTLVertexAttributeDescriptor {
+impl DefaultRetained for MTLVertexAttributeDescriptor {
     #[inline]
-    fn default_id() -> Id<Self> {
+    fn default_id() -> Retained<Self> {
         Self::new()
     }
 }
@@ -321,7 +321,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             index: NSUInteger,
-        ) -> Id<MTLVertexAttributeDescriptor>;
+        ) -> Retained<MTLVertexAttributeDescriptor>;
 
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -336,10 +336,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexAttributeDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -360,13 +360,13 @@ unsafe impl NSObjectProtocol for MTLVertexDescriptor {}
 extern_methods!(
     unsafe impl MTLVertexDescriptor {
         #[method_id(@__retain_semantics Other vertexDescriptor)]
-        pub fn vertexDescriptor() -> Id<MTLVertexDescriptor>;
+        pub fn vertexDescriptor() -> Retained<MTLVertexDescriptor>;
 
         #[method_id(@__retain_semantics Other layouts)]
-        pub fn layouts(&self) -> Id<MTLVertexBufferLayoutDescriptorArray>;
+        pub fn layouts(&self) -> Retained<MTLVertexBufferLayoutDescriptorArray>;
 
         #[method_id(@__retain_semantics Other attributes)]
-        pub fn attributes(&self) -> Id<MTLVertexAttributeDescriptorArray>;
+        pub fn attributes(&self) -> Retained<MTLVertexAttributeDescriptorArray>;
 
         #[method(reset)]
         pub fn reset(&self);
@@ -377,9 +377,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

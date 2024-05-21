@@ -92,7 +92,7 @@ extern_methods!(
         #[cfg(feature = "DOMEventTarget")]
         #[deprecated]
         #[method_id(@__retain_semantics Other relatedTarget)]
-        pub unsafe fn relatedTarget(&self) -> Option<Id<ProtocolObject<dyn DOMEventTarget>>>;
+        pub unsafe fn relatedTarget(&self) -> Option<Retained<ProtocolObject<dyn DOMEventTarget>>>;
 
         #[method(offsetX)]
         pub unsafe fn offsetX(&self) -> c_int;
@@ -108,11 +108,11 @@ extern_methods!(
 
         #[cfg(feature = "DOMNode")]
         #[method_id(@__retain_semantics Other fromElement)]
-        pub unsafe fn fromElement(&self) -> Option<Id<DOMNode>>;
+        pub unsafe fn fromElement(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[method_id(@__retain_semantics Other toElement)]
-        pub unsafe fn toElement(&self) -> Option<Id<DOMNode>>;
+        pub unsafe fn toElement(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(all(feature = "DOMAbstractView", feature = "DOMEventTarget"))]
         #[method(initMouseEvent:canBubble:cancelable:view:detail:screenX:screenY:clientX:clientY:ctrlKey:altKey:shiftKey:metaKey:button:relatedTarget:)]
@@ -148,7 +148,7 @@ extern_methods!(
     unsafe impl DOMMouseEvent {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -162,7 +162,7 @@ extern_methods!(
     ))]
     unsafe impl DOMMouseEvent {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

@@ -35,7 +35,7 @@ extern_methods!(
         #[cfg(feature = "DOMCSSRule")]
         #[deprecated]
         #[method_id(@__retain_semantics Other item:)]
-        pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMCSSRule>>;
+        pub unsafe fn item(&self, index: c_uint) -> Option<Retained<DOMCSSRule>>;
     }
 );
 
@@ -45,7 +45,7 @@ extern_methods!(
     unsafe impl DOMCSSRuleList {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -54,6 +54,6 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCSSRuleList {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -9,13 +9,13 @@ extern_protocol!(
     pub unsafe trait ASCredentialIdentity: NSObjectProtocol {
         #[cfg(feature = "ASCredentialServiceIdentifier")]
         #[method_id(@__retain_semantics Other serviceIdentifier)]
-        unsafe fn serviceIdentifier(&self) -> Id<ASCredentialServiceIdentifier>;
+        unsafe fn serviceIdentifier(&self) -> Retained<ASCredentialServiceIdentifier>;
 
         #[method_id(@__retain_semantics Other user)]
-        unsafe fn user(&self) -> Id<NSString>;
+        unsafe fn user(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other recordIdentifier)]
-        unsafe fn recordIdentifier(&self) -> Option<Id<NSString>>;
+        unsafe fn recordIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(rank)]
         unsafe fn rank(&self) -> NSInteger;

@@ -56,10 +56,10 @@ extern_methods!(
         pub unsafe fn prescriptionType(&self) -> HKVisionPrescriptionType;
 
         #[method_id(@__retain_semantics Other dateIssued)]
-        pub unsafe fn dateIssued(&self) -> Id<NSDate>;
+        pub unsafe fn dateIssued(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other expirationDate)]
-        pub unsafe fn expirationDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn expirationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "HKDevice")]
         #[method_id(@__retain_semantics Other prescriptionWithType:dateIssued:expirationDate:device:metadata:)]
@@ -69,12 +69,12 @@ extern_methods!(
             expiration_date: Option<&NSDate>,
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

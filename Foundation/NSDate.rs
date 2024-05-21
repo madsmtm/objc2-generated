@@ -42,17 +42,20 @@ extern_methods!(
         pub unsafe fn timeIntervalSinceReferenceDate(&self) -> NSTimeInterval;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithTimeIntervalSinceReferenceDate:)]
         pub unsafe fn initWithTimeIntervalSinceReferenceDate(
             this: Allocated<Self>,
             ti: NSTimeInterval,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -60,7 +63,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDate {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -78,16 +81,16 @@ extern_methods!(
 
         #[deprecated = "Use dateByAddingTimeInterval instead"]
         #[method_id(@__retain_semantics Other addTimeInterval:)]
-        pub unsafe fn addTimeInterval(&self, seconds: NSTimeInterval) -> Id<AnyObject>;
+        pub unsafe fn addTimeInterval(&self, seconds: NSTimeInterval) -> Retained<AnyObject>;
 
         #[method_id(@__retain_semantics Other dateByAddingTimeInterval:)]
-        pub unsafe fn dateByAddingTimeInterval(&self, ti: NSTimeInterval) -> Id<Self>;
+        pub unsafe fn dateByAddingTimeInterval(&self, ti: NSTimeInterval) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other earlierDate:)]
-        pub unsafe fn earlierDate(&self, another_date: &NSDate) -> Id<NSDate>;
+        pub unsafe fn earlierDate(&self, another_date: &NSDate) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other laterDate:)]
-        pub unsafe fn laterDate(&self, another_date: &NSDate) -> Id<NSDate>;
+        pub unsafe fn laterDate(&self, another_date: &NSDate) -> Retained<NSDate>;
 
         #[cfg(feature = "NSObjCRuntime")]
         #[method(compare:)]
@@ -98,11 +101,14 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other description)]
-        pub unsafe fn description(&self) -> Id<NSString>;
+        pub unsafe fn description(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
-        pub unsafe fn descriptionWithLocale(&self, locale: Option<&AnyObject>) -> Id<NSString>;
+        pub unsafe fn descriptionWithLocale(
+            &self,
+            locale: Option<&AnyObject>,
+        ) -> Retained<NSString>;
 
         #[method(timeIntervalSinceReferenceDate)]
         pub unsafe fn timeIntervalSinceReferenceDate_class() -> NSTimeInterval;
@@ -113,49 +119,49 @@ extern_methods!(
     /// NSDateCreation
     unsafe impl NSDate {
         #[method_id(@__retain_semantics Other date)]
-        pub unsafe fn date() -> Id<Self>;
+        pub unsafe fn date() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other dateWithTimeIntervalSinceNow:)]
-        pub unsafe fn dateWithTimeIntervalSinceNow(secs: NSTimeInterval) -> Id<Self>;
+        pub unsafe fn dateWithTimeIntervalSinceNow(secs: NSTimeInterval) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other dateWithTimeIntervalSinceReferenceDate:)]
-        pub unsafe fn dateWithTimeIntervalSinceReferenceDate(ti: NSTimeInterval) -> Id<Self>;
+        pub unsafe fn dateWithTimeIntervalSinceReferenceDate(ti: NSTimeInterval) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other dateWithTimeIntervalSince1970:)]
-        pub unsafe fn dateWithTimeIntervalSince1970(secs: NSTimeInterval) -> Id<Self>;
+        pub unsafe fn dateWithTimeIntervalSince1970(secs: NSTimeInterval) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other dateWithTimeInterval:sinceDate:)]
         pub unsafe fn dateWithTimeInterval_sinceDate(
             secs_to_be_added: NSTimeInterval,
             date: &NSDate,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other distantFuture)]
-        pub unsafe fn distantFuture() -> Id<NSDate>;
+        pub unsafe fn distantFuture() -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other distantPast)]
-        pub unsafe fn distantPast() -> Id<NSDate>;
+        pub unsafe fn distantPast() -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other now)]
-        pub unsafe fn now() -> Id<NSDate>;
+        pub unsafe fn now() -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Init initWithTimeIntervalSinceNow:)]
         pub unsafe fn initWithTimeIntervalSinceNow(
             this: Allocated<Self>,
             secs: NSTimeInterval,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithTimeIntervalSince1970:)]
         pub unsafe fn initWithTimeIntervalSince1970(
             this: Allocated<Self>,
             secs: NSTimeInterval,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithTimeInterval:sinceDate:)]
         pub unsafe fn initWithTimeInterval_sinceDate(
             this: Allocated<Self>,
             secs_to_be_added: NSTimeInterval,
             date: &NSDate,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

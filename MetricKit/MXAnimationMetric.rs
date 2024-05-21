@@ -31,7 +31,7 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAnimationMetric {
         #[method_id(@__retain_semantics Other scrollHitchTimeRatio)]
-        pub unsafe fn scrollHitchTimeRatio(&self) -> Id<NSMeasurement<NSUnit>>;
+        pub unsafe fn scrollHitchTimeRatio(&self) -> Retained<NSMeasurement<NSUnit>>;
     }
 );
 
@@ -40,9 +40,9 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAnimationMetric {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

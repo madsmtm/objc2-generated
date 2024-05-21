@@ -117,7 +117,7 @@ extern_methods!(
     unsafe impl MTLRenderPassAttachmentDescriptor {
         #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method_id(@__retain_semantics Other texture)]
-        pub fn texture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
+        pub fn texture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(setTexture:)]
@@ -143,7 +143,7 @@ extern_methods!(
 
         #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method_id(@__retain_semantics Other resolveTexture)]
-        pub fn resolveTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
+        pub fn resolveTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(setResolveTexture:)]
@@ -191,10 +191,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPassAttachmentDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -227,16 +227,16 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPassColorAttachmentDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Allocated<Self>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub fn new() -> Id<Self>;
+        pub fn new() -> Retained<Self>;
     }
 );
 
-impl DefaultId for MTLRenderPassColorAttachmentDescriptor {
+impl DefaultRetained for MTLRenderPassColorAttachmentDescriptor {
     #[inline]
-    fn default_id() -> Id<Self> {
+    fn default_id() -> Retained<Self> {
         Self::new()
     }
 }
@@ -297,10 +297,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPassDepthAttachmentDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -361,10 +361,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPassStencilAttachmentDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -386,7 +386,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
-        ) -> Id<MTLRenderPassColorAttachmentDescriptor>;
+        ) -> Retained<MTLRenderPassColorAttachmentDescriptor>;
 
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -401,10 +401,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPassColorAttachmentDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -426,7 +426,7 @@ extern_methods!(
     unsafe impl MTLRenderPassSampleBufferAttachmentDescriptor {
         #[cfg(feature = "MTLCounters")]
         #[method_id(@__retain_semantics Other sampleBuffer)]
-        pub fn sampleBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
+        pub fn sampleBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
         #[cfg(feature = "MTLCounters")]
         #[method(setSampleBuffer:)]
@@ -468,10 +468,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPassSampleBufferAttachmentDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -493,7 +493,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
-        ) -> Id<MTLRenderPassSampleBufferAttachmentDescriptor>;
+        ) -> Retained<MTLRenderPassSampleBufferAttachmentDescriptor>;
 
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -508,10 +508,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPassSampleBufferAttachmentDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -532,13 +532,13 @@ unsafe impl NSObjectProtocol for MTLRenderPassDescriptor {}
 extern_methods!(
     unsafe impl MTLRenderPassDescriptor {
         #[method_id(@__retain_semantics Other renderPassDescriptor)]
-        pub fn renderPassDescriptor() -> Id<MTLRenderPassDescriptor>;
+        pub fn renderPassDescriptor() -> Retained<MTLRenderPassDescriptor>;
 
         #[method_id(@__retain_semantics Other colorAttachments)]
-        pub fn colorAttachments(&self) -> Id<MTLRenderPassColorAttachmentDescriptorArray>;
+        pub fn colorAttachments(&self) -> Retained<MTLRenderPassColorAttachmentDescriptorArray>;
 
         #[method_id(@__retain_semantics Other depthAttachment)]
-        pub fn depthAttachment(&self) -> Id<MTLRenderPassDepthAttachmentDescriptor>;
+        pub fn depthAttachment(&self) -> Retained<MTLRenderPassDepthAttachmentDescriptor>;
 
         #[method(setDepthAttachment:)]
         pub fn setDepthAttachment(
@@ -547,7 +547,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other stencilAttachment)]
-        pub fn stencilAttachment(&self) -> Id<MTLRenderPassStencilAttachmentDescriptor>;
+        pub fn stencilAttachment(&self) -> Retained<MTLRenderPassStencilAttachmentDescriptor>;
 
         #[method(setStencilAttachment:)]
         pub fn setStencilAttachment(
@@ -557,7 +557,7 @@ extern_methods!(
 
         #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other visibilityResultBuffer)]
-        pub fn visibilityResultBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn visibilityResultBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setVisibilityResultBuffer:)]
@@ -634,7 +634,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other rasterizationRateMap)]
         pub fn rasterizationRateMap(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLRasterizationRateMap>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MTLRasterizationRateMap>>>;
 
         #[cfg(feature = "MTLRasterizationRate")]
         #[method(setRasterizationRateMap:)]
@@ -646,7 +646,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sampleBufferAttachments)]
         pub fn sampleBufferAttachments(
             &self,
-        ) -> Id<MTLRenderPassSampleBufferAttachmentDescriptorArray>;
+        ) -> Retained<MTLRenderPassSampleBufferAttachmentDescriptorArray>;
     }
 );
 
@@ -654,10 +654,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPassDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

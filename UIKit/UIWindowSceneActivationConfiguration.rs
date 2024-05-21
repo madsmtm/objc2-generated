@@ -20,7 +20,7 @@ unsafe impl NSObjectProtocol for UIWindowSceneActivationConfiguration {}
 extern_methods!(
     unsafe impl UIWindowSceneActivationConfiguration {
         #[method_id(@__retain_semantics Other userActivity)]
-        pub unsafe fn userActivity(&self) -> Id<NSUserActivity>;
+        pub unsafe fn userActivity(&self) -> Retained<NSUserActivity>;
 
         #[cfg(all(
             feature = "UISceneOptions",
@@ -30,7 +30,7 @@ extern_methods!(
         pub unsafe fn options(
             &self,
             mtm: MainThreadMarker,
-        ) -> Option<Id<UIWindowSceneActivationRequestOptions>>;
+        ) -> Option<Retained<UIWindowSceneActivationRequestOptions>>;
 
         #[cfg(all(
             feature = "UISceneOptions",
@@ -41,7 +41,7 @@ extern_methods!(
 
         #[cfg(feature = "UITargetedPreview")]
         #[method_id(@__retain_semantics Other preview)]
-        pub unsafe fn preview(&self, mtm: MainThreadMarker) -> Option<Id<UITargetedPreview>>;
+        pub unsafe fn preview(&self, mtm: MainThreadMarker) -> Option<Retained<UITargetedPreview>>;
 
         #[cfg(feature = "UITargetedPreview")]
         #[method(setPreview:)]
@@ -51,12 +51,12 @@ extern_methods!(
         pub unsafe fn initWithUserActivity(
             this: Allocated<Self>,
             user_activity: &NSUserActivity,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -73,7 +73,7 @@ extern_methods!(
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other lapLength)]
-        pub unsafe fn lapLength(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn lapLength(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         #[method(setLapLength:)]
@@ -85,9 +85,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKWorkoutConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

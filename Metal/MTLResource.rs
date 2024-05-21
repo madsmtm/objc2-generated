@@ -124,14 +124,14 @@ unsafe impl RefEncode for MTLResourceOptions {
 extern_protocol!(
     pub unsafe trait MTLResource: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other label)]
-        fn label(&self) -> Option<Id<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
 
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
-        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[method(cpuCacheMode)]
         fn cpuCacheMode(&self) -> MTLCPUCacheMode;
@@ -150,7 +150,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLHeap")]
         #[method_id(@__retain_semantics Other heap)]
-        fn heap(&self) -> Option<Id<ProtocolObject<dyn MTLHeap>>>;
+        fn heap(&self) -> Option<Retained<ProtocolObject<dyn MTLHeap>>>;
 
         #[method(heapOffset)]
         fn heapOffset(&self) -> NSUInteger;

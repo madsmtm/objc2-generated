@@ -28,29 +28,29 @@ unsafe impl NSObjectProtocol for NSDataAsset {}
 extern_methods!(
     unsafe impl NSDataAsset {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithName:)]
         pub unsafe fn initWithName(
             this: Allocated<Self>,
             name: &NSDataAssetName,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithName:bundle:)]
         pub unsafe fn initWithName_bundle(
             this: Allocated<Self>,
             name: &NSDataAssetName,
             bundle: &NSBundle,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSDataAssetName>;
+        pub unsafe fn name(&self) -> Retained<NSDataAssetName>;
 
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Id<NSData>;
+        pub unsafe fn data(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other typeIdentifier)]
-        pub unsafe fn typeIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn typeIdentifier(&self) -> Retained<NSString>;
     }
 );
 
@@ -58,6 +58,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDataAsset {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

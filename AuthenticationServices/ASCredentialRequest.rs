@@ -33,7 +33,7 @@ extern_protocol!(
 
         #[cfg(feature = "ASCredentialIdentity")]
         #[method_id(@__retain_semantics Other credentialIdentity)]
-        unsafe fn credentialIdentity(&self) -> Id<ProtocolObject<dyn ASCredentialIdentity>>;
+        unsafe fn credentialIdentity(&self) -> Retained<ProtocolObject<dyn ASCredentialIdentity>>;
     }
 
     unsafe impl ProtocolType for dyn ASCredentialRequest {}

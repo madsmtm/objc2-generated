@@ -11,7 +11,7 @@ extern_category!(
     pub unsafe trait NSUserActivityMKMapItem {
         #[cfg(feature = "MKMapItem")]
         #[method_id(@__retain_semantics Other mapItem)]
-        unsafe fn mapItem(&self) -> Option<Id<MKMapItem>>;
+        unsafe fn mapItem(&self) -> Option<Retained<MKMapItem>>;
 
         #[cfg(feature = "MKMapItem")]
         #[method(setMapItem:)]

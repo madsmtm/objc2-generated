@@ -102,13 +102,14 @@ extern_methods!(
         pub unsafe fn invalidateRestorableState(&self);
 
         #[method_id(@__retain_semantics Other restorableStateKeyPaths)]
-        pub unsafe fn restorableStateKeyPaths(mtm: MainThreadMarker) -> Id<NSArray<NSString>>;
+        pub unsafe fn restorableStateKeyPaths(mtm: MainThreadMarker)
+            -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other allowedClassesForRestorableStateKeyPath:)]
         pub unsafe fn allowedClassesForRestorableStateKeyPath(
             key_path: &NSString,
             mtm: MainThreadMarker,
-        ) -> Id<NSArray<TodoClass>>;
+        ) -> Retained<NSArray<TodoClass>>;
     }
 );
 
@@ -159,12 +160,13 @@ extern_methods!(
         pub unsafe fn invalidateRestorableState(&self);
 
         #[method_id(@__retain_semantics Other restorableStateKeyPaths)]
-        pub unsafe fn restorableStateKeyPaths(mtm: MainThreadMarker) -> Id<NSArray<NSString>>;
+        pub unsafe fn restorableStateKeyPaths(mtm: MainThreadMarker)
+            -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other allowedClassesForRestorableStateKeyPath:)]
         pub unsafe fn allowedClassesForRestorableStateKeyPath(
             key_path: &NSString,
             mtm: MainThreadMarker,
-        ) -> Id<NSArray<TodoClass>>;
+        ) -> Retained<NSArray<TodoClass>>;
     }
 );

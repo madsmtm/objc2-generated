@@ -48,14 +48,14 @@ unsafe impl NSSecureCoding for ASWebAuthenticationSessionRequest {}
 extern_methods!(
     unsafe impl ASWebAuthenticationSessionRequest {
         #[method_id(@__retain_semantics Other UUID)]
-        pub unsafe fn UUID(&self) -> Id<NSUUID>;
+        pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL>;
+        pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         #[deprecated = "Use `callback` to match all callback types."]
         #[method_id(@__retain_semantics Other callbackURLScheme)]
-        pub unsafe fn callbackURLScheme(&self) -> Option<Id<NSString>>;
+        pub unsafe fn callbackURLScheme(&self) -> Option<Retained<NSString>>;
 
         #[method(shouldUseEphemeralSession)]
         pub unsafe fn shouldUseEphemeralSession(&self) -> bool;
@@ -63,7 +63,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn ASWebAuthenticationSessionRequestDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn ASWebAuthenticationSessionRequestDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -72,18 +72,19 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other additionalHeaderFields)]
-        pub unsafe fn additionalHeaderFields(&self)
-            -> Option<Id<NSDictionary<NSString, NSString>>>;
+        pub unsafe fn additionalHeaderFields(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
         #[cfg(feature = "ASWebAuthenticationSessionCallback")]
         #[method_id(@__retain_semantics Other callback)]
-        pub unsafe fn callback(&self) -> Option<Id<ASWebAuthenticationSessionCallback>>;
+        pub unsafe fn callback(&self) -> Option<Retained<ASWebAuthenticationSessionCallback>>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(cancelWithError:)]
         pub unsafe fn cancelWithError(&self, error: &NSError);

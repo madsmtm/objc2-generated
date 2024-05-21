@@ -35,7 +35,7 @@ extern_methods!(
             this: Allocated<Self>,
             request: &NSURLRequest,
             delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
         #[method_id(@__retain_semantics Init initWithResumeData:delegate:path:)]
@@ -44,7 +44,7 @@ extern_methods!(
             resume_data: &NSData,
             delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
             path: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -52,10 +52,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebDownload {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -71,7 +71,7 @@ extern_protocol!(
             &self,
             download: Option<&WebDownload>,
             mtm: MainThreadMarker,
-        ) -> Option<Id<NSWindow>>;
+        ) -> Option<Retained<NSWindow>>;
     }
 
     unsafe impl ProtocolType for dyn WebDownloadDelegate {}

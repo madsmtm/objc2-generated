@@ -58,29 +58,29 @@ extern_methods!(
     unsafe impl DOMDocumentType {
         #[deprecated]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "DOMNamedNodeMap")]
         #[deprecated]
         #[method_id(@__retain_semantics Other entities)]
-        pub unsafe fn entities(&self) -> Option<Id<DOMNamedNodeMap>>;
+        pub unsafe fn entities(&self) -> Option<Retained<DOMNamedNodeMap>>;
 
         #[cfg(feature = "DOMNamedNodeMap")]
         #[deprecated]
         #[method_id(@__retain_semantics Other notations)]
-        pub unsafe fn notations(&self) -> Option<Id<DOMNamedNodeMap>>;
+        pub unsafe fn notations(&self) -> Option<Retained<DOMNamedNodeMap>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other publicId)]
-        pub unsafe fn publicId(&self) -> Id<NSString>;
+        pub unsafe fn publicId(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other systemId)]
-        pub unsafe fn systemId(&self) -> Id<NSString>;
+        pub unsafe fn systemId(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other internalSubset)]
-        pub unsafe fn internalSubset(&self) -> Id<NSString>;
+        pub unsafe fn internalSubset(&self) -> Retained<NSString>;
     }
 );
 
@@ -94,7 +94,7 @@ extern_methods!(
     unsafe impl DOMDocumentType {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -107,6 +107,6 @@ extern_methods!(
     ))]
     unsafe impl DOMDocumentType {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

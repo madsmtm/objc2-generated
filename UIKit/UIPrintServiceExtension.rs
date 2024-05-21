@@ -24,22 +24,22 @@ unsafe impl NSSecureCoding for UIPrinterDestination {}
 extern_methods!(
     unsafe impl UIPrinterDestination {
         #[method_id(@__retain_semantics Init initWithURL:)]
-        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Id<Self>;
+        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL>;
+        pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: &NSURL);
 
         #[method_id(@__retain_semantics Other displayName)]
-        pub unsafe fn displayName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
         #[method(setDisplayName:)]
         pub unsafe fn setDisplayName(&self, display_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other txtRecord)]
-        pub unsafe fn txtRecord(&self) -> Option<Id<NSData>>;
+        pub unsafe fn txtRecord(&self) -> Option<Retained<NSData>>;
 
         #[method(setTxtRecord:)]
         pub unsafe fn setTxtRecord(&self, txt_record: Option<&NSData>);
@@ -50,10 +50,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrinterDestination {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -76,7 +76,7 @@ extern_methods!(
         pub unsafe fn printerDestinationsForPrintInfo(
             &self,
             print_info: &UIPrintInfo,
-        ) -> Id<NSArray<UIPrinterDestination>>;
+        ) -> Retained<NSArray<UIPrinterDestination>>;
     }
 );
 
@@ -84,9 +84,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrintServiceExtension {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

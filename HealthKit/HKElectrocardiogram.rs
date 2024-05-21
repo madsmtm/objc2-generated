@@ -104,14 +104,14 @@ extern_methods!(
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other samplingFrequency)]
-        pub unsafe fn samplingFrequency(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn samplingFrequency(&self) -> Option<Retained<HKQuantity>>;
 
         #[method(classification)]
         pub unsafe fn classification(&self) -> HKElectrocardiogramClassification;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other averageHeartRate)]
-        pub unsafe fn averageHeartRate(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn averageHeartRate(&self) -> Option<Retained<HKQuantity>>;
 
         #[method(symptomsStatus)]
         pub unsafe fn symptomsStatus(&self) -> HKElectrocardiogramSymptomsStatus;
@@ -123,7 +123,7 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKElectrocardiogram {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -132,7 +132,7 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKElectrocardiogram {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

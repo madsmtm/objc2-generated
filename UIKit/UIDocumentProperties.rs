@@ -23,13 +23,13 @@ unsafe impl NSObjectProtocol for UIDocumentProperties {}
 extern_methods!(
     unsafe impl UIDocumentProperties {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithURL:)]
-        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Id<Self>;
+        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "objc2-link-presentation")]
         #[cfg(not(target_os = "watchos"))]
@@ -37,12 +37,12 @@ extern_methods!(
         pub unsafe fn initWithMetadata(
             this: Allocated<Self>,
             metadata: &LPLinkMetadata,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-link-presentation")]
         #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other metadata)]
-        pub unsafe fn metadata(&self) -> Id<LPLinkMetadata>;
+        pub unsafe fn metadata(&self) -> Retained<LPLinkMetadata>;
 
         #[cfg(feature = "objc2-link-presentation")]
         #[cfg(not(target_os = "watchos"))]

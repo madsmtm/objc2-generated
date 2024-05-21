@@ -25,7 +25,7 @@ extern_methods!(
         pub unsafe fn rect(&self) -> CGRect;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSObject>>;
+        pub unsafe fn identifier(&self) -> Option<Retained<NSObject>>;
 
         #[cfg(feature = "UIGeometry")]
         #[method(latchingAxes)]
@@ -40,12 +40,12 @@ extern_methods!(
             rect: CGRect,
             identifier: Option<&NSObject>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

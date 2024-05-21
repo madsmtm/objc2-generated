@@ -63,10 +63,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLCredential {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -80,7 +80,7 @@ extern_methods!(
             user: &NSString,
             password: &NSString,
             persistence: NSURLCredentialPersistence,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other credentialWithUser:password:persistence:)]
@@ -88,15 +88,15 @@ extern_methods!(
             user: &NSString,
             password: &NSString,
             persistence: NSURLCredentialPersistence,
-        ) -> Id<NSURLCredential>;
+        ) -> Retained<NSURLCredential>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other user)]
-        pub unsafe fn user(&self) -> Option<Id<NSString>>;
+        pub unsafe fn user(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other password)]
-        pub unsafe fn password(&self) -> Option<Id<NSString>>;
+        pub unsafe fn password(&self) -> Option<Retained<NSString>>;
 
         #[method(hasPassword)]
         pub unsafe fn hasPassword(&self) -> bool;
@@ -108,7 +108,7 @@ extern_methods!(
     unsafe impl NSURLCredential {
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other certificates)]
-        pub unsafe fn certificates(&self) -> Id<NSArray>;
+        pub unsafe fn certificates(&self) -> Retained<NSArray>;
     }
 );
 

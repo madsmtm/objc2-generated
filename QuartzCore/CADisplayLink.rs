@@ -23,7 +23,7 @@ extern_methods!(
         pub unsafe fn displayLinkWithTarget_selector(
             target: &AnyObject,
             sel: Sel,
-        ) -> Id<CADisplayLink>;
+        ) -> Retained<CADisplayLink>;
 
         #[method(addToRunLoop:forMode:)]
         pub unsafe fn addToRunLoop_forMode(&self, runloop: &NSRunLoop, mode: &NSRunLoopMode);
@@ -82,9 +82,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CADisplayLink {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

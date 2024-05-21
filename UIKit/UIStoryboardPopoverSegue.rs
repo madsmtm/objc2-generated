@@ -28,7 +28,7 @@ extern_methods!(
         #[cfg(feature = "UIPopoverController")]
         #[deprecated = "Access destinationViewController.popoverPresentationController from your segue's performHandler or override of -perform"]
         #[method_id(@__retain_semantics Other popoverController)]
-        pub unsafe fn popoverController(&self) -> Id<UIPopoverController>;
+        pub unsafe fn popoverController(&self) -> Retained<UIPopoverController>;
     }
 );
 
@@ -47,7 +47,7 @@ extern_methods!(
             source: &UIViewController,
             destination: &UIViewController,
             perform_handler: &block2::Block<dyn Fn()>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
@@ -57,11 +57,11 @@ extern_methods!(
             identifier: Option<&NSString>,
             source: &UIViewController,
             destination: &UIViewController,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -70,6 +70,6 @@ extern_methods!(
     #[cfg(feature = "UIStoryboardSegue")]
     unsafe impl UIStoryboardPopoverSegue {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

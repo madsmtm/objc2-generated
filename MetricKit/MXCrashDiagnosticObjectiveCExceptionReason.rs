@@ -24,28 +24,28 @@ unsafe impl NSSecureCoding for MXCrashDiagnosticObjectiveCExceptionReason {}
 extern_methods!(
     unsafe impl MXCrashDiagnosticObjectiveCExceptionReason {
         #[method_id(@__retain_semantics Other composedMessage)]
-        pub unsafe fn composedMessage(&self) -> Id<NSString>;
+        pub unsafe fn composedMessage(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other formatString)]
-        pub unsafe fn formatString(&self) -> Id<NSString>;
+        pub unsafe fn formatString(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other arguments)]
-        pub unsafe fn arguments(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn arguments(&self) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other exceptionType)]
-        pub unsafe fn exceptionType(&self) -> Id<NSString>;
+        pub unsafe fn exceptionType(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other className)]
-        pub unsafe fn className(&self) -> Id<NSString>;
+        pub unsafe fn className(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other exceptionName)]
-        pub unsafe fn exceptionName(&self) -> Id<NSString>;
+        pub unsafe fn exceptionName(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other JSONRepresentation)]
-        pub unsafe fn JSONRepresentation(&self) -> Id<NSData>;
+        pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
-        pub unsafe fn dictionaryRepresentation(&self) -> Id<NSDictionary>;
+        pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }
 );
 
@@ -53,9 +53,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXCrashDiagnosticObjectiveCExceptionReason {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

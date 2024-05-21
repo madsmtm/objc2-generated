@@ -27,7 +27,7 @@ extern_methods!(
     unsafe impl MLCUpsampleLayer {
         #[deprecated]
         #[method_id(@__retain_semantics Other shape)]
-        pub unsafe fn shape(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn shape(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -40,7 +40,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithShape:)]
-        pub unsafe fn layerWithShape(shape: &NSArray<NSNumber>) -> Option<Id<Self>>;
+        pub unsafe fn layerWithShape(shape: &NSArray<NSNumber>) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -49,7 +49,7 @@ extern_methods!(
             shape: &NSArray<NSNumber>,
             sample_mode: MLCSampleMode,
             aligns_corners: bool,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -59,10 +59,10 @@ extern_methods!(
     unsafe impl MLCUpsampleLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

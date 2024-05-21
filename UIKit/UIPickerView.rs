@@ -74,7 +74,9 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIPickerView {
         #[method_id(@__retain_semantics Other dataSource)]
-        pub unsafe fn dataSource(&self) -> Option<Id<ProtocolObject<dyn UIPickerViewDataSource>>>;
+        pub unsafe fn dataSource(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn UIPickerViewDataSource>>>;
 
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
@@ -83,7 +85,8 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn UIPickerViewDelegate>>>;
+        pub unsafe fn delegate(&self)
+            -> Option<Retained<ProtocolObject<dyn UIPickerViewDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -113,7 +116,7 @@ extern_methods!(
             &self,
             row: NSInteger,
             component: NSInteger,
-        ) -> Option<Id<UIView>>;
+        ) -> Option<Retained<UIView>>;
 
         #[method(reloadAllComponents)]
         pub unsafe fn reloadAllComponents(&self);
@@ -139,10 +142,13 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIPickerView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -151,10 +157,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIPickerView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -204,7 +210,7 @@ extern_protocol!(
             picker_view: &UIPickerView,
             row: NSInteger,
             component: NSInteger,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
@@ -214,7 +220,7 @@ extern_protocol!(
             picker_view: &UIPickerView,
             row: NSInteger,
             component: NSInteger,
-        ) -> Option<Id<NSAttributedString>>;
+        ) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
@@ -225,7 +231,7 @@ extern_protocol!(
             row: NSInteger,
             component: NSInteger,
             view: Option<&UIView>,
-        ) -> Id<UIView>;
+        ) -> Retained<UIView>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]

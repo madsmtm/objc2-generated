@@ -143,13 +143,16 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISearchBar {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "UIInterface")]
         #[method(barStyle)]
@@ -161,7 +164,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBarCommon")]
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn UISearchBarDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UISearchBarDelegate>>>;
 
         #[cfg(feature = "UIBarCommon")]
         #[method(setDelegate:)]
@@ -171,19 +174,19 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other text)]
-        pub unsafe fn text(&self) -> Option<Id<NSString>>;
+        pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         #[method(setText:)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other prompt)]
-        pub unsafe fn prompt(&self) -> Option<Id<NSString>>;
+        pub unsafe fn prompt(&self) -> Option<Retained<NSString>>;
 
         #[method(setPrompt:)]
         pub unsafe fn setPrompt(&self, prompt: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other placeholder)]
-        pub unsafe fn placeholder(&self) -> Option<Id<NSString>>;
+        pub unsafe fn placeholder(&self) -> Option<Retained<NSString>>;
 
         #[method(setPlaceholder:)]
         pub unsafe fn setPlaceholder(&self, placeholder: Option<&NSString>);
@@ -200,7 +203,7 @@ extern_methods!(
             feature = "UITextField"
         ))]
         #[method_id(@__retain_semantics Other searchTextField)]
-        pub unsafe fn searchTextField(&self) -> Id<UISearchTextField>;
+        pub unsafe fn searchTextField(&self) -> Retained<UISearchTextField>;
 
         #[method(showsCancelButton)]
         pub unsafe fn showsCancelButton(&self) -> bool;
@@ -229,11 +232,11 @@ extern_methods!(
 
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other inputAssistantItem)]
-        pub unsafe fn inputAssistantItem(&self) -> Id<UITextInputAssistantItem>;
+        pub unsafe fn inputAssistantItem(&self) -> Retained<UITextInputAssistantItem>;
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other tintColor)]
-        pub unsafe fn tintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setTintColor:)]
@@ -241,7 +244,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other barTintColor)]
-        pub unsafe fn barTintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn barTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setBarTintColor:)]
@@ -260,7 +263,7 @@ extern_methods!(
         pub unsafe fn setTranslucent(&self, translucent: bool);
 
         #[method_id(@__retain_semantics Other scopeButtonTitles)]
-        pub unsafe fn scopeButtonTitles(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn scopeButtonTitles(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setScopeButtonTitles:)]
         pub unsafe fn setScopeButtonTitles(&self, scope_button_titles: Option<&NSArray<NSString>>);
@@ -281,7 +284,7 @@ extern_methods!(
         pub unsafe fn setShowsScopeBar_animated(&self, show: bool, animate: bool);
 
         #[method_id(@__retain_semantics Other inputAccessoryView)]
-        pub unsafe fn inputAccessoryView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn inputAccessoryView(&self) -> Option<Retained<UIView>>;
 
         #[method(setInputAccessoryView:)]
         pub unsafe fn setInputAccessoryView(&self, input_accessory_view: Option<&UIView>);
@@ -294,7 +297,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other backgroundImage)]
-        pub unsafe fn backgroundImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn backgroundImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setBackgroundImage:)]
@@ -302,7 +305,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other scopeBarBackgroundImage)]
-        pub unsafe fn scopeBarBackgroundImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn scopeBarBackgroundImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setScopeBarBackgroundImage:)]
@@ -326,7 +329,7 @@ extern_methods!(
             &self,
             bar_position: UIBarPosition,
             bar_metrics: UIBarMetrics,
-        ) -> Option<Id<UIImage>>;
+        ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
         #[method(setSearchFieldBackgroundImage:forState:)]
@@ -341,7 +344,7 @@ extern_methods!(
         pub unsafe fn searchFieldBackgroundImageForState(
             &self,
             state: UIControlState,
-        ) -> Option<Id<UIImage>>;
+        ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
         #[method(setImage:forSearchBarIcon:state:)]
@@ -358,7 +361,7 @@ extern_methods!(
             &self,
             icon: UISearchBarIcon,
             state: UIControlState,
-        ) -> Option<Id<UIImage>>;
+        ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
         #[method(setScopeBarButtonBackgroundImage:forState:)]
@@ -373,7 +376,7 @@ extern_methods!(
         pub unsafe fn scopeBarButtonBackgroundImageForState(
             &self,
             state: UIControlState,
-        ) -> Option<Id<UIImage>>;
+        ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
         #[method(setScopeBarButtonDividerImage:forLeftSegmentState:rightSegmentState:)]
@@ -390,7 +393,7 @@ extern_methods!(
             &self,
             left_state: UIControlState,
             right_state: UIControlState,
-        ) -> Option<Id<UIImage>>;
+        ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIControl")]
         #[method(setScopeBarButtonTitleTextAttributes:forState:)]
@@ -405,7 +408,7 @@ extern_methods!(
         pub unsafe fn scopeBarButtonTitleTextAttributesForState(
             &self,
             state: UIControlState,
-        ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         #[cfg(feature = "UIGeometry")]
         #[method(searchFieldBackgroundPositionAdjustment)]
@@ -454,7 +457,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISearchBar {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

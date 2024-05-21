@@ -182,10 +182,13 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIButton {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Init initWithFrame:primaryAction:)]
@@ -193,10 +196,13 @@ extern_methods!(
             this: Allocated<Self>,
             frame: CGRect,
             primary_action: Option<&UIAction>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other buttonWithType:)]
-        pub unsafe fn buttonWithType(button_type: UIButtonType, mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn buttonWithType(
+            button_type: UIButtonType,
+            mtm: MainThreadMarker,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other systemButtonWithImage:target:action:)]
@@ -205,14 +211,14 @@ extern_methods!(
             target: Option<&AnyObject>,
             action: Option<Sel>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Other systemButtonWithPrimaryAction:)]
         pub unsafe fn systemButtonWithPrimaryAction(
             primary_action: Option<&UIAction>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Other buttonWithType:primaryAction:)]
@@ -220,7 +226,7 @@ extern_methods!(
             button_type: UIButtonType,
             primary_action: Option<&UIAction>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "UIAction",
@@ -231,11 +237,11 @@ extern_methods!(
         pub unsafe fn buttonWithConfiguration_primaryAction(
             configuration: &UIButtonConfiguration,
             primary_action: Option<&UIAction>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIButtonConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration(&self) -> Option<Id<UIButtonConfiguration>>;
+        pub unsafe fn configuration(&self) -> Option<Retained<UIButtonConfiguration>>;
 
         #[cfg(feature = "UIButtonConfiguration")]
         #[method(setConfiguration:)]
@@ -269,7 +275,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other tintColor)]
-        pub unsafe fn tintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setTintColor:)]
@@ -317,7 +323,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Other menu)]
-        pub unsafe fn menu(&self) -> Option<Id<UIMenu>>;
+        pub unsafe fn menu(&self) -> Option<Retained<UIMenu>>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         #[method(setMenu:)]
@@ -389,24 +395,30 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other titleForState:)]
-        pub unsafe fn titleForState(&self, state: UIControlState) -> Option<Id<NSString>>;
+        pub unsafe fn titleForState(&self, state: UIControlState) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other titleColorForState:)]
-        pub unsafe fn titleColorForState(&self, state: UIControlState) -> Option<Id<UIColor>>;
+        pub unsafe fn titleColorForState(&self, state: UIControlState)
+            -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other titleShadowColorForState:)]
-        pub unsafe fn titleShadowColorForState(&self, state: UIControlState)
-            -> Option<Id<UIColor>>;
+        pub unsafe fn titleShadowColorForState(
+            &self,
+            state: UIControlState,
+        ) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other imageForState:)]
-        pub unsafe fn imageForState(&self, state: UIControlState) -> Option<Id<UIImage>>;
+        pub unsafe fn imageForState(&self, state: UIControlState) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other backgroundImageForState:)]
-        pub unsafe fn backgroundImageForState(&self, state: UIControlState) -> Option<Id<UIImage>>;
+        pub unsafe fn backgroundImageForState(
+            &self,
+            state: UIControlState,
+        ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(
             feature = "UIImageConfiguration",
@@ -416,32 +428,32 @@ extern_methods!(
         pub unsafe fn preferredSymbolConfigurationForImageInState(
             &self,
             state: UIControlState,
-        ) -> Option<Id<UIImageSymbolConfiguration>>;
+        ) -> Option<Retained<UIImageSymbolConfiguration>>;
 
         #[method_id(@__retain_semantics Other attributedTitleForState:)]
         pub unsafe fn attributedTitleForState(
             &self,
             state: UIControlState,
-        ) -> Option<Id<NSAttributedString>>;
+        ) -> Option<Retained<NSAttributedString>>;
 
         #[method_id(@__retain_semantics Other currentTitle)]
-        pub unsafe fn currentTitle(&self) -> Option<Id<NSString>>;
+        pub unsafe fn currentTitle(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other currentTitleColor)]
-        pub unsafe fn currentTitleColor(&self) -> Id<UIColor>;
+        pub unsafe fn currentTitleColor(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other currentTitleShadowColor)]
-        pub unsafe fn currentTitleShadowColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn currentTitleShadowColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other currentImage)]
-        pub unsafe fn currentImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn currentImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other currentBackgroundImage)]
-        pub unsafe fn currentBackgroundImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn currentBackgroundImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(all(
             feature = "UIImageConfiguration",
@@ -450,22 +462,22 @@ extern_methods!(
         #[method_id(@__retain_semantics Other currentPreferredSymbolConfiguration)]
         pub unsafe fn currentPreferredSymbolConfiguration(
             &self,
-        ) -> Option<Id<UIImageSymbolConfiguration>>;
+        ) -> Option<Retained<UIImageSymbolConfiguration>>;
 
         #[method_id(@__retain_semantics Other currentAttributedTitle)]
-        pub unsafe fn currentAttributedTitle(&self) -> Option<Id<NSAttributedString>>;
+        pub unsafe fn currentAttributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "UILabel")]
         #[method_id(@__retain_semantics Other titleLabel)]
-        pub unsafe fn titleLabel(&self) -> Option<Id<UILabel>>;
+        pub unsafe fn titleLabel(&self) -> Option<Retained<UILabel>>;
 
         #[cfg(feature = "UIImageView")]
         #[method_id(@__retain_semantics Other imageView)]
-        pub unsafe fn imageView(&self) -> Option<Id<UIImageView>>;
+        pub unsafe fn imageView(&self) -> Option<Retained<UIImageView>>;
 
         #[cfg(feature = "UILabel")]
         #[method_id(@__retain_semantics Other subtitleLabel)]
-        pub unsafe fn subtitleLabel(&self) -> Option<Id<UILabel>>;
+        pub unsafe fn subtitleLabel(&self) -> Option<Retained<UILabel>>;
     }
 );
 
@@ -474,10 +486,10 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIButton {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -487,7 +499,7 @@ extern_methods!(
         #[cfg(feature = "UIFont")]
         #[deprecated = "Specify an attributed title with a custom font"]
         #[method_id(@__retain_semantics Other font)]
-        pub unsafe fn font(&self) -> Id<UIFont>;
+        pub unsafe fn font(&self) -> Retained<UIFont>;
 
         #[cfg(feature = "UIFont")]
         #[deprecated = "Specify an attributed title with a custom font"]

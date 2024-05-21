@@ -32,20 +32,20 @@ extern_methods!(
             configuration_name: Option<&NSString>,
             url: &NSURL,
             options: Option<&NSDictionary>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(load:_)]
-        pub unsafe fn load(&self) -> Result<(), Id<NSError>>;
+        pub unsafe fn load(&self) -> Result<(), Retained<NSError>>;
 
         #[method(save:_)]
-        pub unsafe fn save(&self) -> Result<(), Id<NSError>>;
+        pub unsafe fn save(&self) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSAtomicStoreCacheNode", feature = "NSManagedObject"))]
         #[method_id(@__retain_semantics New newCacheNodeForManagedObject:)]
         pub unsafe fn newCacheNodeForManagedObject(
             &self,
             managed_object: &NSManagedObject,
-        ) -> Id<NSAtomicStoreCacheNode>;
+        ) -> Retained<NSAtomicStoreCacheNode>;
 
         #[cfg(all(feature = "NSAtomicStoreCacheNode", feature = "NSManagedObject"))]
         #[method(updateCacheNode:fromManagedObject:)]
@@ -57,7 +57,7 @@ extern_methods!(
 
         #[cfg(feature = "NSAtomicStoreCacheNode")]
         #[method_id(@__retain_semantics Other cacheNodes)]
-        pub unsafe fn cacheNodes(&self) -> Id<NSSet<NSAtomicStoreCacheNode>>;
+        pub unsafe fn cacheNodes(&self) -> Retained<NSSet<NSAtomicStoreCacheNode>>;
 
         #[cfg(feature = "NSAtomicStoreCacheNode")]
         #[method(addCacheNodes:)]
@@ -72,7 +72,7 @@ extern_methods!(
         pub unsafe fn cacheNodeForObjectID(
             &self,
             object_id: &NSManagedObjectID,
-        ) -> Option<Id<NSAtomicStoreCacheNode>>;
+        ) -> Option<Retained<NSAtomicStoreCacheNode>>;
 
         #[cfg(all(feature = "NSEntityDescription", feature = "NSManagedObjectID"))]
         #[method_id(@__retain_semantics Other objectIDForEntity:referenceObject:)]
@@ -80,21 +80,21 @@ extern_methods!(
             &self,
             entity: &NSEntityDescription,
             data: &AnyObject,
-        ) -> Id<NSManagedObjectID>;
+        ) -> Retained<NSManagedObjectID>;
 
         #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics New newReferenceObjectForManagedObject:)]
         pub unsafe fn newReferenceObjectForManagedObject(
             &self,
             managed_object: &NSManagedObject,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSManagedObjectID")]
         #[method_id(@__retain_semantics Other referenceObjectForObjectID:)]
         pub unsafe fn referenceObjectForObjectID(
             &self,
             object_id: &NSManagedObjectID,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
     }
 );
 
@@ -103,7 +103,7 @@ extern_methods!(
     #[cfg(feature = "NSPersistentStore")]
     unsafe impl NSAtomicStore {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -112,6 +112,6 @@ extern_methods!(
     #[cfg(feature = "NSPersistentStore")]
     unsafe impl NSAtomicStore {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

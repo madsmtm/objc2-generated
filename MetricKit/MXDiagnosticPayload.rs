@@ -27,37 +27,39 @@ extern_methods!(
         #[method_id(@__retain_semantics Other cpuExceptionDiagnostics)]
         pub unsafe fn cpuExceptionDiagnostics(
             &self,
-        ) -> Option<Id<NSArray<MXCPUExceptionDiagnostic>>>;
+        ) -> Option<Retained<NSArray<MXCPUExceptionDiagnostic>>>;
 
         #[cfg(all(feature = "MXDiagnostic", feature = "MXDiskWriteExceptionDiagnostic"))]
         #[method_id(@__retain_semantics Other diskWriteExceptionDiagnostics)]
         pub unsafe fn diskWriteExceptionDiagnostics(
             &self,
-        ) -> Option<Id<NSArray<MXDiskWriteExceptionDiagnostic>>>;
+        ) -> Option<Retained<NSArray<MXDiskWriteExceptionDiagnostic>>>;
 
         #[cfg(all(feature = "MXDiagnostic", feature = "MXHangDiagnostic"))]
         #[method_id(@__retain_semantics Other hangDiagnostics)]
-        pub unsafe fn hangDiagnostics(&self) -> Option<Id<NSArray<MXHangDiagnostic>>>;
+        pub unsafe fn hangDiagnostics(&self) -> Option<Retained<NSArray<MXHangDiagnostic>>>;
 
         #[cfg(all(feature = "MXAppLaunchDiagnostic", feature = "MXDiagnostic"))]
         #[method_id(@__retain_semantics Other appLaunchDiagnostics)]
-        pub unsafe fn appLaunchDiagnostics(&self) -> Option<Id<NSArray<MXAppLaunchDiagnostic>>>;
+        pub unsafe fn appLaunchDiagnostics(
+            &self,
+        ) -> Option<Retained<NSArray<MXAppLaunchDiagnostic>>>;
 
         #[cfg(all(feature = "MXCrashDiagnostic", feature = "MXDiagnostic"))]
         #[method_id(@__retain_semantics Other crashDiagnostics)]
-        pub unsafe fn crashDiagnostics(&self) -> Option<Id<NSArray<MXCrashDiagnostic>>>;
+        pub unsafe fn crashDiagnostics(&self) -> Option<Retained<NSArray<MXCrashDiagnostic>>>;
 
         #[method_id(@__retain_semantics Other timeStampBegin)]
-        pub unsafe fn timeStampBegin(&self) -> Id<NSDate>;
+        pub unsafe fn timeStampBegin(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other timeStampEnd)]
-        pub unsafe fn timeStampEnd(&self) -> Id<NSDate>;
+        pub unsafe fn timeStampEnd(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other JSONRepresentation)]
-        pub unsafe fn JSONRepresentation(&self) -> Id<NSData>;
+        pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
-        pub unsafe fn dictionaryRepresentation(&self) -> Id<NSDictionary>;
+        pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }
 );
 
@@ -65,9 +67,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXDiagnosticPayload {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

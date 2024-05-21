@@ -115,7 +115,7 @@ extern_methods!(
             protocol: Option<&NSString>,
             realm: Option<&NSString>,
             authentication_method: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithProxyHost:port:type:realm:authenticationMethod:)]
@@ -126,11 +126,11 @@ extern_methods!(
             r#type: Option<&NSString>,
             realm: Option<&NSString>,
             authentication_method: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other realm)]
-        pub unsafe fn realm(&self) -> Option<Id<NSString>>;
+        pub unsafe fn realm(&self) -> Option<Retained<NSString>>;
 
         #[method(receivesCredentialSecurely)]
         pub unsafe fn receivesCredentialSecurely(&self) -> bool;
@@ -140,22 +140,22 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other host)]
-        pub unsafe fn host(&self) -> Id<NSString>;
+        pub unsafe fn host(&self) -> Retained<NSString>;
 
         #[method(port)]
         pub unsafe fn port(&self) -> NSInteger;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other proxyType)]
-        pub unsafe fn proxyType(&self) -> Option<Id<NSString>>;
+        pub unsafe fn proxyType(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other protocol)]
-        pub unsafe fn protocol(&self) -> Option<Id<NSString>>;
+        pub unsafe fn protocol(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other authenticationMethod)]
-        pub unsafe fn authenticationMethod(&self) -> Id<NSString>;
+        pub unsafe fn authenticationMethod(&self) -> Retained<NSString>;
     }
 );
 
@@ -163,10 +163,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLProtectionSpace {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -175,7 +175,7 @@ extern_methods!(
     unsafe impl NSURLProtectionSpace {
         #[cfg(all(feature = "NSArray", feature = "NSData"))]
         #[method_id(@__retain_semantics Other distinguishedNames)]
-        pub unsafe fn distinguishedNames(&self) -> Option<Id<NSArray<NSData>>>;
+        pub unsafe fn distinguishedNames(&self) -> Option<Retained<NSArray<NSData>>>;
     }
 );
 

@@ -27,14 +27,14 @@ unsafe impl NSTextLayoutOrientationProvider for NSTextContainer {}
 extern_methods!(
     unsafe impl NSTextContainer {
         #[method_id(@__retain_semantics Init initWithSize:)]
-        pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Id<Self>;
+        pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSLayoutManager")]
         #[method_id(@__retain_semantics Other layoutManager)]
-        pub unsafe fn layoutManager(&self) -> Option<Id<NSLayoutManager>>;
+        pub unsafe fn layoutManager(&self) -> Option<Retained<NSLayoutManager>>;
 
         #[cfg(feature = "NSLayoutManager")]
         #[method(setLayoutManager:)]
@@ -46,7 +46,7 @@ extern_methods!(
 
         #[cfg(feature = "NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other textLayoutManager)]
-        pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager>>;
+        pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[method(size)]
         pub unsafe fn size(&self) -> CGSize;
@@ -56,7 +56,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBezierPath")]
         #[method_id(@__retain_semantics Other exclusionPaths)]
-        pub unsafe fn exclusionPaths(&self) -> Id<NSArray<UIBezierPath>>;
+        pub unsafe fn exclusionPaths(&self) -> Retained<NSArray<UIBezierPath>>;
 
         #[cfg(feature = "UIBezierPath")]
         #[method(setExclusionPaths:)]
@@ -113,9 +113,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextContainer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

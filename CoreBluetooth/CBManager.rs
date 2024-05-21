@@ -69,7 +69,7 @@ unsafe impl NSObjectProtocol for CBManager {}
 extern_methods!(
     unsafe impl CBManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(state)]
         pub unsafe fn state(&self) -> CBManagerState;
@@ -87,6 +87,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CBManager {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

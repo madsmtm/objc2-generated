@@ -13,7 +13,7 @@ extern_category!(
         unsafe fn isClassKitDeepLink(&self) -> bool;
 
         #[method_id(@__retain_semantics Other contextIdentifierPath)]
-        unsafe fn contextIdentifierPath(&self) -> Option<Id<NSArray<NSString>>>;
+        unsafe fn contextIdentifierPath(&self) -> Option<Retained<NSArray<NSString>>>;
     }
 
     unsafe impl NSUserActivityCLSDeepLinks for NSUserActivity {}

@@ -116,7 +116,7 @@ extern_protocol!(
             navigation_item: &UINavigationItem,
             title: &NSString,
             selected_range: NonNull<NSRange>,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[optional]
         #[method(navigationItem:shouldEndRenamingWithTitle:)]
@@ -147,41 +147,44 @@ unsafe impl NSObjectProtocol for UINavigationItem {}
 extern_methods!(
     unsafe impl UINavigationItem {
         #[method_id(@__retain_semantics Init initWithTitle:)]
-        pub unsafe fn initWithTitle(this: Allocated<Self>, title: &NSString) -> Id<Self>;
+        pub unsafe fn initWithTitle(this: Allocated<Self>, title: &NSString) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other titleView)]
-        pub unsafe fn titleView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn titleView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(setTitleView:)]
         pub unsafe fn setTitleView(&self, title_view: Option<&UIView>);
 
         #[method_id(@__retain_semantics Other prompt)]
-        pub unsafe fn prompt(&self) -> Option<Id<NSString>>;
+        pub unsafe fn prompt(&self) -> Option<Retained<NSString>>;
 
         #[method(setPrompt:)]
         pub unsafe fn setPrompt(&self, prompt: Option<&NSString>);
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method_id(@__retain_semantics Other backBarButtonItem)]
-        pub unsafe fn backBarButtonItem(&self) -> Option<Id<UIBarButtonItem>>;
+        pub unsafe fn backBarButtonItem(&self) -> Option<Retained<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method(setBackBarButtonItem:)]
         pub unsafe fn setBackBarButtonItem(&self, back_bar_button_item: Option<&UIBarButtonItem>);
 
         #[method_id(@__retain_semantics Other backButtonTitle)]
-        pub unsafe fn backButtonTitle(&self) -> Option<Id<NSString>>;
+        pub unsafe fn backButtonTitle(&self) -> Option<Retained<NSString>>;
 
         #[method(setBackButtonTitle:)]
         pub unsafe fn setBackButtonTitle(&self, back_button_title: Option<&NSString>);
@@ -206,7 +209,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Other backAction)]
-        pub unsafe fn backAction(&self) -> Option<Id<UIAction>>;
+        pub unsafe fn backAction(&self) -> Option<Retained<UIAction>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method(setBackAction:)]
@@ -230,7 +233,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other renameDelegate)]
         pub unsafe fn renameDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UINavigationItemRenameDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UINavigationItemRenameDelegate>>>;
 
         #[method(setRenameDelegate:)]
         pub unsafe fn setRenameDelegate(
@@ -240,7 +243,7 @@ extern_methods!(
 
         #[cfg(feature = "UIDocumentProperties")]
         #[method_id(@__retain_semantics Other documentProperties)]
-        pub unsafe fn documentProperties(&self) -> Option<Id<UIDocumentProperties>>;
+        pub unsafe fn documentProperties(&self) -> Option<Retained<UIDocumentProperties>>;
 
         #[cfg(feature = "UIDocumentProperties")]
         #[method(setDocumentProperties:)]
@@ -251,7 +254,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method_id(@__retain_semantics Other leftBarButtonItems)]
-        pub unsafe fn leftBarButtonItems(&self) -> Option<Id<NSArray<UIBarButtonItem>>>;
+        pub unsafe fn leftBarButtonItems(&self) -> Option<Retained<NSArray<UIBarButtonItem>>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method(setLeftBarButtonItems:)]
@@ -262,7 +265,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method_id(@__retain_semantics Other rightBarButtonItems)]
-        pub unsafe fn rightBarButtonItems(&self) -> Option<Id<NSArray<UIBarButtonItem>>>;
+        pub unsafe fn rightBarButtonItems(&self) -> Option<Retained<NSArray<UIBarButtonItem>>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method(setRightBarButtonItems:)]
@@ -298,7 +301,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method_id(@__retain_semantics Other leftBarButtonItem)]
-        pub unsafe fn leftBarButtonItem(&self) -> Option<Id<UIBarButtonItem>>;
+        pub unsafe fn leftBarButtonItem(&self) -> Option<Retained<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method(setLeftBarButtonItem:)]
@@ -306,7 +309,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method_id(@__retain_semantics Other rightBarButtonItem)]
-        pub unsafe fn rightBarButtonItem(&self) -> Option<Id<UIBarButtonItem>>;
+        pub unsafe fn rightBarButtonItem(&self) -> Option<Retained<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[method(setRightBarButtonItem:)]
@@ -329,7 +332,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other customizationIdentifier)]
-        pub unsafe fn customizationIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn customizationIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(setCustomizationIdentifier:)]
         pub unsafe fn setCustomizationIdentifier(
@@ -339,7 +342,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         #[method_id(@__retain_semantics Other leadingItemGroups)]
-        pub unsafe fn leadingItemGroups(&self) -> Id<NSArray<UIBarButtonItemGroup>>;
+        pub unsafe fn leadingItemGroups(&self) -> Retained<NSArray<UIBarButtonItemGroup>>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         #[method(setLeadingItemGroups:)]
@@ -350,7 +353,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         #[method_id(@__retain_semantics Other centerItemGroups)]
-        pub unsafe fn centerItemGroups(&self) -> Id<NSArray<UIBarButtonItemGroup>>;
+        pub unsafe fn centerItemGroups(&self) -> Retained<NSArray<UIBarButtonItemGroup>>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         #[method(setCenterItemGroups:)]
@@ -361,7 +364,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         #[method_id(@__retain_semantics Other trailingItemGroups)]
-        pub unsafe fn trailingItemGroups(&self) -> Id<NSArray<UIBarButtonItemGroup>>;
+        pub unsafe fn trailingItemGroups(&self) -> Retained<NSArray<UIBarButtonItemGroup>>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         #[method(setTrailingItemGroups:)]
@@ -372,7 +375,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         #[method_id(@__retain_semantics Other pinnedTrailingGroup)]
-        pub unsafe fn pinnedTrailingGroup(&self) -> Option<Id<UIBarButtonItemGroup>>;
+        pub unsafe fn pinnedTrailingGroup(&self) -> Option<Retained<UIBarButtonItemGroup>>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         #[method(setPinnedTrailingGroup:)]
@@ -383,7 +386,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIDeferredMenuElement", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Other additionalOverflowItems)]
-        pub unsafe fn additionalOverflowItems(&self) -> Option<Id<UIDeferredMenuElement>>;
+        pub unsafe fn additionalOverflowItems(&self) -> Option<Retained<UIDeferredMenuElement>>;
 
         #[cfg(all(feature = "UIDeferredMenuElement", feature = "UIMenuElement"))]
         #[method(setAdditionalOverflowItems:)]
@@ -396,7 +399,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other overflowPresentationSource)]
         pub unsafe fn overflowPresentationSource(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIPopoverPresentationControllerSourceItem>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIPopoverPresentationControllerSourceItem>>>;
 
         #[method(largeTitleDisplayMode)]
         pub unsafe fn largeTitleDisplayMode(&self) -> UINavigationItemLargeTitleDisplayMode;
@@ -419,7 +422,7 @@ extern_methods!(
             feature = "UIViewController"
         ))]
         #[method_id(@__retain_semantics Other searchController)]
-        pub unsafe fn searchController(&self) -> Option<Id<UISearchController>>;
+        pub unsafe fn searchController(&self) -> Option<Retained<UISearchController>>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -449,7 +452,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         #[method_id(@__retain_semantics Other standardAppearance)]
-        pub unsafe fn standardAppearance(&self) -> Option<Id<UINavigationBarAppearance>>;
+        pub unsafe fn standardAppearance(&self) -> Option<Retained<UINavigationBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         #[method(setStandardAppearance:)]
@@ -460,7 +463,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         #[method_id(@__retain_semantics Other compactAppearance)]
-        pub unsafe fn compactAppearance(&self) -> Option<Id<UINavigationBarAppearance>>;
+        pub unsafe fn compactAppearance(&self) -> Option<Retained<UINavigationBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         #[method(setCompactAppearance:)]
@@ -471,7 +474,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         #[method_id(@__retain_semantics Other scrollEdgeAppearance)]
-        pub unsafe fn scrollEdgeAppearance(&self) -> Option<Id<UINavigationBarAppearance>>;
+        pub unsafe fn scrollEdgeAppearance(&self) -> Option<Retained<UINavigationBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         #[method(setScrollEdgeAppearance:)]
@@ -482,7 +485,9 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         #[method_id(@__retain_semantics Other compactScrollEdgeAppearance)]
-        pub unsafe fn compactScrollEdgeAppearance(&self) -> Option<Id<UINavigationBarAppearance>>;
+        pub unsafe fn compactScrollEdgeAppearance(
+            &self,
+        ) -> Option<Retained<UINavigationBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         #[method(setCompactScrollEdgeAppearance:)]
@@ -497,9 +502,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UINavigationItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

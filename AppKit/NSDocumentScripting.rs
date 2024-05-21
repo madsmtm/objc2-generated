@@ -10,7 +10,7 @@ extern_methods!(
     #[cfg(feature = "NSDocument")]
     unsafe impl NSDocument {
         #[method_id(@__retain_semantics Other lastComponentOfFileName)]
-        pub unsafe fn lastComponentOfFileName(&self) -> Id<NSString>;
+        pub unsafe fn lastComponentOfFileName(&self) -> Retained<NSString>;
 
         #[method(setLastComponentOfFileName:)]
         pub unsafe fn setLastComponentOfFileName(&self, last_component_of_file_name: &NSString);
@@ -19,21 +19,21 @@ extern_methods!(
         pub unsafe fn handleSaveScriptCommand(
             &self,
             command: &NSScriptCommand,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[method_id(@__retain_semantics Other handleCloseScriptCommand:)]
         pub unsafe fn handleCloseScriptCommand(
             &self,
             command: &NSCloseCommand,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[method_id(@__retain_semantics Other handlePrintScriptCommand:)]
         pub unsafe fn handlePrintScriptCommand(
             &self,
             command: &NSScriptCommand,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[method_id(@__retain_semantics Other objectSpecifier)]
-        pub unsafe fn objectSpecifier(&self) -> Id<NSScriptObjectSpecifier>;
+        pub unsafe fn objectSpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
     }
 );

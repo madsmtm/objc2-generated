@@ -26,10 +26,10 @@ unsafe impl NSObjectProtocol for MLNeuralEngineComputeDevice {}
 extern_methods!(
     unsafe impl MLNeuralEngineComputeDevice {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method(totalCoreCount)]
         pub unsafe fn totalCoreCount(&self) -> NSInteger;

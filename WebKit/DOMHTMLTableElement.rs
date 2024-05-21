@@ -71,7 +71,7 @@ extern_methods!(
         #[cfg(feature = "DOMHTMLTableCaptionElement")]
         #[deprecated]
         #[method_id(@__retain_semantics Other caption)]
-        pub unsafe fn caption(&self) -> Option<Id<DOMHTMLTableCaptionElement>>;
+        pub unsafe fn caption(&self) -> Option<Retained<DOMHTMLTableCaptionElement>>;
 
         #[cfg(feature = "DOMHTMLTableCaptionElement")]
         #[deprecated]
@@ -81,7 +81,7 @@ extern_methods!(
         #[cfg(feature = "DOMHTMLTableSectionElement")]
         #[deprecated]
         #[method_id(@__retain_semantics Other tHead)]
-        pub unsafe fn tHead(&self) -> Option<Id<DOMHTMLTableSectionElement>>;
+        pub unsafe fn tHead(&self) -> Option<Retained<DOMHTMLTableSectionElement>>;
 
         #[cfg(feature = "DOMHTMLTableSectionElement")]
         #[deprecated]
@@ -91,7 +91,7 @@ extern_methods!(
         #[cfg(feature = "DOMHTMLTableSectionElement")]
         #[deprecated]
         #[method_id(@__retain_semantics Other tFoot)]
-        pub unsafe fn tFoot(&self) -> Option<Id<DOMHTMLTableSectionElement>>;
+        pub unsafe fn tFoot(&self) -> Option<Retained<DOMHTMLTableSectionElement>>;
 
         #[cfg(feature = "DOMHTMLTableSectionElement")]
         #[deprecated]
@@ -101,16 +101,16 @@ extern_methods!(
         #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
         #[method_id(@__retain_semantics Other rows)]
-        pub unsafe fn rows(&self) -> Option<Id<DOMHTMLCollection>>;
+        pub unsafe fn rows(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
         #[method_id(@__retain_semantics Other tBodies)]
-        pub unsafe fn tBodies(&self) -> Option<Id<DOMHTMLCollection>>;
+        pub unsafe fn tBodies(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other align)]
-        pub unsafe fn align(&self) -> Id<NSString>;
+        pub unsafe fn align(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setAlign:)]
@@ -118,7 +118,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other bgColor)]
-        pub unsafe fn bgColor(&self) -> Id<NSString>;
+        pub unsafe fn bgColor(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setBgColor:)]
@@ -126,7 +126,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other border)]
-        pub unsafe fn border(&self) -> Id<NSString>;
+        pub unsafe fn border(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setBorder:)]
@@ -134,7 +134,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other cellPadding)]
-        pub unsafe fn cellPadding(&self) -> Id<NSString>;
+        pub unsafe fn cellPadding(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setCellPadding:)]
@@ -142,7 +142,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other cellSpacing)]
-        pub unsafe fn cellSpacing(&self) -> Id<NSString>;
+        pub unsafe fn cellSpacing(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setCellSpacing:)]
@@ -150,7 +150,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other frameBorders)]
-        pub unsafe fn frameBorders(&self) -> Id<NSString>;
+        pub unsafe fn frameBorders(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setFrameBorders:)]
@@ -158,7 +158,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other rules)]
-        pub unsafe fn rules(&self) -> Id<NSString>;
+        pub unsafe fn rules(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setRules:)]
@@ -166,7 +166,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other summary)]
-        pub unsafe fn summary(&self) -> Id<NSString>;
+        pub unsafe fn summary(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setSummary:)]
@@ -174,7 +174,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other width)]
-        pub unsafe fn width(&self) -> Id<NSString>;
+        pub unsafe fn width(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setWidth:)]
@@ -182,7 +182,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other createTHead)]
-        pub unsafe fn createTHead(&self) -> Option<Id<DOMHTMLElement>>;
+        pub unsafe fn createTHead(&self) -> Option<Retained<DOMHTMLElement>>;
 
         #[deprecated]
         #[method(deleteTHead)]
@@ -190,7 +190,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other createTFoot)]
-        pub unsafe fn createTFoot(&self) -> Option<Id<DOMHTMLElement>>;
+        pub unsafe fn createTFoot(&self) -> Option<Retained<DOMHTMLElement>>;
 
         #[deprecated]
         #[method(deleteTFoot)]
@@ -198,7 +198,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other createCaption)]
-        pub unsafe fn createCaption(&self) -> Option<Id<DOMHTMLElement>>;
+        pub unsafe fn createCaption(&self) -> Option<Retained<DOMHTMLElement>>;
 
         #[deprecated]
         #[method(deleteCaption)]
@@ -206,7 +206,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other insertRow:)]
-        pub unsafe fn insertRow(&self, index: c_int) -> Option<Id<DOMHTMLElement>>;
+        pub unsafe fn insertRow(&self, index: c_int) -> Option<Retained<DOMHTMLElement>>;
 
         #[deprecated]
         #[method(deleteRow:)]
@@ -226,7 +226,7 @@ extern_methods!(
     unsafe impl DOMHTMLTableElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -241,6 +241,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTableElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -32,7 +32,7 @@ extern_protocol!(
     pub unsafe trait UITextSearchAggregator: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other allFoundRanges)]
-        unsafe fn allFoundRanges(&self) -> Id<NSOrderedSet<UITextRange>>;
+        unsafe fn allFoundRanges(&self) -> Retained<NSOrderedSet<UITextRange>>;
 
         #[cfg(feature = "UITextInput")]
         #[method(foundRange:forSearchString:inDocument:)]
@@ -65,7 +65,7 @@ extern_protocol!(
     pub unsafe trait UITextSearching: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other selectedTextRange)]
-        unsafe fn selectedTextRange(&self) -> Option<Id<UITextRange>>;
+        unsafe fn selectedTextRange(&self) -> Option<Retained<UITextRange>>;
 
         #[cfg(feature = "UITextInput")]
         #[method(compareFoundRange:toRange:inDocument:)]
@@ -151,7 +151,9 @@ extern_protocol!(
 
         #[optional]
         #[method_id(@__retain_semantics Other selectedTextSearchDocument)]
-        unsafe fn selectedTextSearchDocument(&self) -> Option<Id<UITextSearchDocumentIdentifier>>;
+        unsafe fn selectedTextSearchDocument(
+            &self,
+        ) -> Option<Retained<UITextSearchDocumentIdentifier>>;
 
         #[optional]
         #[method(compareOrderFromDocument:toDocument:)]

@@ -40,7 +40,7 @@ extern_methods!(
             cell_class: &AnyClass,
             configuration_handler: UICollectionViewCellRegistrationConfigurationHandler,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "UICollectionViewCell",
@@ -54,14 +54,14 @@ extern_methods!(
         pub unsafe fn registrationWithCellNib_configurationHandler(
             cell_nib: &UINib,
             configuration_handler: UICollectionViewCellRegistrationConfigurationHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(cellClass)]
         pub unsafe fn cellClass(&self) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "UINib")]
         #[method_id(@__retain_semantics Other cellNib)]
-        pub unsafe fn cellNib(&self) -> Option<Id<UINib>>;
+        pub unsafe fn cellNib(&self) -> Option<Retained<UINib>>;
 
         #[cfg(all(
             feature = "UICollectionViewCell",
@@ -80,10 +80,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICollectionViewCellRegistration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -123,7 +123,7 @@ extern_methods!(
             element_kind: &NSString,
             configuration_handler: UICollectionViewSupplementaryRegistrationConfigurationHandler,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "UICollectionViewCell",
@@ -138,17 +138,17 @@ extern_methods!(
             supplementary_nib: &UINib,
             element_kind: &NSString,
             configuration_handler: UICollectionViewSupplementaryRegistrationConfigurationHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(supplementaryClass)]
         pub unsafe fn supplementaryClass(&self) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "UINib")]
         #[method_id(@__retain_semantics Other supplementaryNib)]
-        pub unsafe fn supplementaryNib(&self) -> Option<Id<UINib>>;
+        pub unsafe fn supplementaryNib(&self) -> Option<Retained<UINib>>;
 
         #[method_id(@__retain_semantics Other elementKind)]
-        pub unsafe fn elementKind(&self) -> Id<NSString>;
+        pub unsafe fn elementKind(&self) -> Retained<NSString>;
 
         #[cfg(all(
             feature = "UICollectionViewCell",
@@ -167,9 +167,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICollectionViewSupplementaryRegistration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

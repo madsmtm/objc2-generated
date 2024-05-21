@@ -32,7 +32,7 @@ extern_methods!(
         pub unsafe fn sortDescriptorWithKey_ascending(
             key: Option<&NSString>,
             ascending: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other sortDescriptorWithKey:ascending:selector:)]
@@ -40,7 +40,7 @@ extern_methods!(
             key: Option<&NSString>,
             ascending: bool,
             selector: Option<Sel>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithKey:ascending:)]
@@ -48,7 +48,7 @@ extern_methods!(
             this: Allocated<Self>,
             key: Option<&NSString>,
             ascending: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithKey:ascending:selector:)]
@@ -57,15 +57,18 @@ extern_methods!(
             key: Option<&NSString>,
             ascending: bool,
             selector: Option<Sel>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other key)]
-        pub unsafe fn key(&self) -> Option<Id<NSString>>;
+        pub unsafe fn key(&self) -> Option<Retained<NSString>>;
 
         #[method(ascending)]
         pub unsafe fn ascending(&self) -> bool;
@@ -82,7 +85,7 @@ extern_methods!(
             key: Option<&NSString>,
             ascending: bool,
             cmptr: NSComparator,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithKey:ascending:comparator:)]
@@ -91,7 +94,7 @@ extern_methods!(
             key: Option<&NSString>,
             ascending: bool,
             cmptr: NSComparator,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
         #[method(comparator)]
@@ -106,7 +109,7 @@ extern_methods!(
         ) -> NSComparisonResult;
 
         #[method_id(@__retain_semantics Other reversedSortDescriptor)]
-        pub unsafe fn reversedSortDescriptor(&self) -> Id<AnyObject>;
+        pub unsafe fn reversedSortDescriptor(&self) -> Retained<AnyObject>;
     }
 );
 
@@ -114,10 +117,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSortDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -130,7 +133,7 @@ extern_methods!(
         pub unsafe fn sortedArrayUsingDescriptors(
             &self,
             sort_descriptors: &NSArray<NSSortDescriptor>,
-        ) -> Id<NSArray<ObjectType>>;
+        ) -> Retained<NSArray<ObjectType>>;
     }
 );
 
@@ -142,7 +145,7 @@ extern_methods!(
         pub unsafe fn sortedArrayUsingDescriptors(
             &self,
             sort_descriptors: &NSArray<NSSortDescriptor>,
-        ) -> Id<NSArray<ObjectType>>;
+        ) -> Retained<NSArray<ObjectType>>;
     }
 );
 
@@ -164,7 +167,7 @@ extern_methods!(
         pub unsafe fn sortedArrayUsingDescriptors(
             &self,
             sort_descriptors: &NSArray<NSSortDescriptor>,
-        ) -> Id<NSArray<ObjectType>>;
+        ) -> Retained<NSArray<ObjectType>>;
     }
 );
 

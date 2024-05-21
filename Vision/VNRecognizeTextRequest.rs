@@ -54,21 +54,21 @@ extern_methods!(
         pub unsafe fn supportedRecognitionLanguagesForTextRecognitionLevel_revision_error(
             recognition_level: VNRequestTextRecognitionLevel,
             request_revision: NSUInteger,
-        ) -> Result<Id<NSArray<NSString>>, Id<NSError>>;
+        ) -> Result<Retained<NSArray<NSString>>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other supportedRecognitionLanguagesAndReturnError:_)]
         pub unsafe fn supportedRecognitionLanguagesAndReturnError(
             &self,
-        ) -> Result<Id<NSArray<NSString>>, Id<NSError>>;
+        ) -> Result<Retained<NSArray<NSString>>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other recognitionLanguages)]
-        pub unsafe fn recognitionLanguages(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn recognitionLanguages(&self) -> Retained<NSArray<NSString>>;
 
         #[method(setRecognitionLanguages:)]
         pub unsafe fn setRecognitionLanguages(&self, recognition_languages: &NSArray<NSString>);
 
         #[method_id(@__retain_semantics Other customWords)]
-        pub unsafe fn customWords(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn customWords(&self) -> Retained<NSArray<NSString>>;
 
         #[method(setCustomWords:)]
         pub unsafe fn setCustomWords(&self, custom_words: &NSArray<NSString>);
@@ -99,7 +99,7 @@ extern_methods!(
 
         #[cfg(feature = "VNObservation")]
         #[method_id(@__retain_semantics Other results)]
-        pub unsafe fn results(&self) -> Option<Id<NSArray<VNRecognizedTextObservation>>>;
+        pub unsafe fn results(&self) -> Option<Retained<NSArray<VNRecognizedTextObservation>>>;
     }
 );
 
@@ -108,14 +108,14 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNRecognizeTextRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -124,7 +124,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNRecognizeTextRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

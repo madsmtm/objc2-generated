@@ -48,7 +48,7 @@ extern_methods!(
 
         #[cfg(feature = "CLLocation")]
         #[method_id(@__retain_semantics Other location)]
-        pub unsafe fn location(&self) -> Option<Id<CLLocation>>;
+        pub unsafe fn location(&self) -> Option<Retained<CLLocation>>;
     }
 );
 
@@ -56,10 +56,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLUpdate {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -78,10 +78,10 @@ unsafe impl NSObjectProtocol for CLLocationUpdater {}
 extern_methods!(
     unsafe impl CLLocationUpdater {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method(resume)]
         pub unsafe fn resume(&self);

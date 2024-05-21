@@ -28,11 +28,11 @@ extern_methods!(
     #[cfg(feature = "VZBootLoader")]
     unsafe impl VZEFIBootLoader {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZEFIVariableStore")]
         #[method_id(@__retain_semantics Other variableStore)]
-        pub unsafe fn variableStore(&self) -> Option<Id<VZEFIVariableStore>>;
+        pub unsafe fn variableStore(&self) -> Option<Retained<VZEFIVariableStore>>;
 
         #[cfg(feature = "VZEFIVariableStore")]
         #[method(setVariableStore:)]
@@ -45,6 +45,6 @@ extern_methods!(
     #[cfg(feature = "VZBootLoader")]
     unsafe impl VZEFIBootLoader {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

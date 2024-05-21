@@ -78,27 +78,32 @@ extern_methods!(
         #[method_id(@__retain_semantics Other splitViewItemWithViewController:)]
         pub unsafe fn splitViewItemWithViewController(
             view_controller: &NSViewController,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other sidebarWithViewController:)]
-        pub unsafe fn sidebarWithViewController(view_controller: &NSViewController) -> Id<Self>;
+        pub unsafe fn sidebarWithViewController(
+            view_controller: &NSViewController,
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other contentListWithViewController:)]
-        pub unsafe fn contentListWithViewController(view_controller: &NSViewController)
-            -> Id<Self>;
+        pub unsafe fn contentListWithViewController(
+            view_controller: &NSViewController,
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other inspectorWithViewController:)]
-        pub unsafe fn inspectorWithViewController(view_controller: &NSViewController) -> Id<Self>;
+        pub unsafe fn inspectorWithViewController(
+            view_controller: &NSViewController,
+        ) -> Retained<Self>;
 
         #[method(behavior)]
         pub unsafe fn behavior(&self) -> NSSplitViewItemBehavior;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other viewController)]
-        pub unsafe fn viewController(&self, mtm: MainThreadMarker) -> Id<NSViewController>;
+        pub unsafe fn viewController(&self, mtm: MainThreadMarker) -> Retained<NSViewController>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method(setViewController:)]
@@ -192,9 +197,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSplitViewItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

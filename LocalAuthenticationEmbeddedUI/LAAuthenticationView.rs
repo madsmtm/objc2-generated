@@ -61,23 +61,24 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl LAAuthenticationView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithContext:)]
-        pub unsafe fn initWithContext(this: Allocated<Self>, context: &LAContext) -> Id<Self>;
+        pub unsafe fn initWithContext(this: Allocated<Self>, context: &LAContext)
+            -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithContext:controlSize:)]
         pub unsafe fn initWithContext_controlSize(
             this: Allocated<Self>,
             context: &LAContext,
             control_size: NSControlSize,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other context)]
-        pub unsafe fn context(&self) -> Id<LAContext>;
+        pub unsafe fn context(&self) -> Retained<LAContext>;
 
         #[method(controlSize)]
         pub unsafe fn controlSize(&self) -> NSControlSize;
@@ -90,7 +91,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl LAAuthenticationView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -100,6 +101,6 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl LAAuthenticationView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

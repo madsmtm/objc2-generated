@@ -55,7 +55,7 @@ unsafe impl NSObjectProtocol for NEVPNManager {}
 extern_methods!(
     unsafe impl NEVPNManager {
         #[method_id(@__retain_semantics Other sharedManager)]
-        pub unsafe fn sharedManager() -> Id<NEVPNManager>;
+        pub unsafe fn sharedManager() -> Retained<NEVPNManager>;
 
         #[cfg(feature = "block2")]
         #[method(loadFromPreferencesWithCompletionHandler:)]
@@ -80,7 +80,7 @@ extern_methods!(
 
         #[cfg(feature = "NEOnDemandRule")]
         #[method_id(@__retain_semantics Other onDemandRules)]
-        pub unsafe fn onDemandRules(&self) -> Option<Id<NSArray<NEOnDemandRule>>>;
+        pub unsafe fn onDemandRules(&self) -> Option<Retained<NSArray<NEOnDemandRule>>>;
 
         #[cfg(feature = "NEOnDemandRule")]
         #[method(setOnDemandRules:)]
@@ -93,7 +93,7 @@ extern_methods!(
         pub unsafe fn setOnDemandEnabled(&self, on_demand_enabled: bool);
 
         #[method_id(@__retain_semantics Other localizedDescription)]
-        pub unsafe fn localizedDescription(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         #[method(setLocalizedDescription:)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
@@ -101,7 +101,7 @@ extern_methods!(
         #[cfg(feature = "NEVPNProtocol")]
         #[deprecated]
         #[method_id(@__retain_semantics Other protocol)]
-        pub unsafe fn protocol(&self) -> Option<Id<NEVPNProtocol>>;
+        pub unsafe fn protocol(&self) -> Option<Retained<NEVPNProtocol>>;
 
         #[cfg(feature = "NEVPNProtocol")]
         #[deprecated]
@@ -110,7 +110,7 @@ extern_methods!(
 
         #[cfg(feature = "NEVPNProtocol")]
         #[method_id(@__retain_semantics Other protocolConfiguration)]
-        pub unsafe fn protocolConfiguration(&self) -> Option<Id<NEVPNProtocol>>;
+        pub unsafe fn protocolConfiguration(&self) -> Option<Retained<NEVPNProtocol>>;
 
         #[cfg(feature = "NEVPNProtocol")]
         #[method(setProtocolConfiguration:)]
@@ -121,7 +121,7 @@ extern_methods!(
 
         #[cfg(feature = "NEVPNConnection")]
         #[method_id(@__retain_semantics Other connection)]
-        pub unsafe fn connection(&self) -> Id<NEVPNConnection>;
+        pub unsafe fn connection(&self) -> Retained<NEVPNConnection>;
 
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
@@ -135,9 +135,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEVPNManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -21,19 +21,19 @@ extern_methods!(
     unsafe impl UIFocusSystem {
         #[cfg(feature = "UIFocus")]
         #[method_id(@__retain_semantics Other focusedItem)]
-        pub unsafe fn focusedItem(&self) -> Option<Id<ProtocolObject<dyn UIFocusItem>>>;
+        pub unsafe fn focusedItem(&self) -> Option<Retained<ProtocolObject<dyn UIFocusItem>>>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIFocus")]
         #[method_id(@__retain_semantics Other focusSystemForEnvironment:)]
         pub unsafe fn focusSystemForEnvironment(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
-        ) -> Option<Id<UIFocusSystem>>;
+        ) -> Option<Retained<UIFocusSystem>>;
 
         #[cfg(feature = "UIFocus")]
         #[method(requestFocusUpdateToEnvironment:)]
@@ -71,6 +71,6 @@ extern_methods!(
     ))]
     unsafe impl UIWindowScene {
         #[method_id(@__retain_semantics Other focusSystem)]
-        pub unsafe fn focusSystem(&self) -> Option<Id<UIFocusSystem>>;
+        pub unsafe fn focusSystem(&self) -> Option<Retained<UIFocusSystem>>;
     }
 );

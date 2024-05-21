@@ -71,26 +71,28 @@ extern_methods!(
             this: Allocated<Self>,
             frame_rect: CGRect,
             device: Option<&ProtocolObject<dyn MTLDevice>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn MTKViewDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn MTKViewDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn MTKViewDelegate>>);
 
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Option<Id<ProtocolObject<dyn MTLDevice>>>;
+        pub unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
         #[method(setDevice:)]
         pub unsafe fn setDevice(&self, device: Option<&ProtocolObject<dyn MTLDevice>>);
 
         #[cfg(feature = "objc2-quartz-core")]
         #[method_id(@__retain_semantics Other currentDrawable)]
-        pub unsafe fn currentDrawable(&self) -> Option<Id<ProtocolObject<dyn CAMetalDrawable>>>;
+        pub unsafe fn currentDrawable(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn CAMetalDrawable>>>;
 
         #[method(framebufferOnly)]
         pub unsafe fn framebufferOnly(&self) -> bool;
@@ -165,16 +167,22 @@ extern_methods!(
         pub unsafe fn setClearStencil(&self, clear_stencil: u32);
 
         #[method_id(@__retain_semantics Other depthStencilTexture)]
-        pub unsafe fn depthStencilTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
+        pub unsafe fn depthStencilTexture(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[method_id(@__retain_semantics Other multisampleColorTexture)]
-        pub unsafe fn multisampleColorTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
+        pub unsafe fn multisampleColorTexture(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(releaseDrawables)]
         pub unsafe fn releaseDrawables(&self);
 
         #[method_id(@__retain_semantics Other currentRenderPassDescriptor)]
-        pub unsafe fn currentRenderPassDescriptor(&self) -> Option<Id<MTLRenderPassDescriptor>>;
+        pub unsafe fn currentRenderPassDescriptor(
+            &self,
+        ) -> Option<Retained<MTLRenderPassDescriptor>>;
 
         #[method(preferredFramesPerSecond)]
         pub unsafe fn preferredFramesPerSecond(&self) -> NSInteger;
@@ -204,7 +212,7 @@ extern_methods!(
         pub unsafe fn preferredDrawableSize(&self) -> CGSize;
 
         #[method_id(@__retain_semantics Other preferredDevice)]
-        pub unsafe fn preferredDevice(&self) -> Option<Id<ProtocolObject<dyn MTLDevice>>>;
+        pub unsafe fn preferredDevice(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
         #[method(isPaused)]
         pub unsafe fn isPaused(&self) -> bool;
@@ -223,7 +231,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MTKView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }
 );
 
@@ -233,7 +241,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MTKView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -243,7 +251,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MTKView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

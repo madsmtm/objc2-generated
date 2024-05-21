@@ -28,32 +28,37 @@ unsafe impl NSUserInterfaceValidations for NSDocumentController {}
 extern_methods!(
     unsafe impl NSDocumentController {
         #[method_id(@__retain_semantics Other sharedDocumentController)]
-        pub unsafe fn sharedDocumentController(mtm: MainThreadMarker) -> Id<NSDocumentController>;
+        pub unsafe fn sharedDocumentController(
+            mtm: MainThreadMarker,
+        ) -> Retained<NSDocumentController>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSDocument")]
         #[method_id(@__retain_semantics Other documents)]
-        pub unsafe fn documents(&self) -> Id<NSArray<NSDocument>>;
+        pub unsafe fn documents(&self) -> Retained<NSArray<NSDocument>>;
 
         #[cfg(feature = "NSDocument")]
         #[method_id(@__retain_semantics Other currentDocument)]
-        pub unsafe fn currentDocument(&self) -> Option<Id<NSDocument>>;
+        pub unsafe fn currentDocument(&self) -> Option<Retained<NSDocument>>;
 
         #[method_id(@__retain_semantics Other currentDirectory)]
-        pub unsafe fn currentDirectory(&self) -> Option<Id<NSString>>;
+        pub unsafe fn currentDirectory(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSDocument")]
         #[method_id(@__retain_semantics Other documentForURL:)]
-        pub unsafe fn documentForURL(&self, url: &NSURL) -> Option<Id<NSDocument>>;
+        pub unsafe fn documentForURL(&self, url: &NSURL) -> Option<Retained<NSDocument>>;
 
         #[cfg(all(feature = "NSDocument", feature = "NSResponder", feature = "NSWindow"))]
         #[method_id(@__retain_semantics Other documentForWindow:)]
-        pub unsafe fn documentForWindow(&self, window: &NSWindow) -> Option<Id<NSDocument>>;
+        pub unsafe fn documentForWindow(&self, window: &NSWindow) -> Option<Retained<NSDocument>>;
 
         #[cfg(feature = "NSDocument")]
         #[method(addDocument:)]
@@ -71,20 +76,20 @@ extern_methods!(
         pub unsafe fn openUntitledDocumentAndDisplay_error(
             &self,
             display_document: bool,
-        ) -> Result<Id<NSDocument>, Id<NSError>>;
+        ) -> Result<Retained<NSDocument>, Retained<NSError>>;
 
         #[cfg(feature = "NSDocument")]
         #[method_id(@__retain_semantics Other makeUntitledDocumentOfType:error:_)]
         pub unsafe fn makeUntitledDocumentOfType_error(
             &self,
             type_name: &NSString,
-        ) -> Result<Id<NSDocument>, Id<NSError>>;
+        ) -> Result<Retained<NSDocument>, Retained<NSError>>;
 
         #[method(openDocument:)]
         pub unsafe fn openDocument(&self, sender: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other URLsFromRunningOpenPanel)]
-        pub unsafe fn URLsFromRunningOpenPanel(&self) -> Option<Id<NSArray<NSURL>>>;
+        pub unsafe fn URLsFromRunningOpenPanel(&self) -> Option<Retained<NSArray<NSURL>>>;
 
         #[cfg(all(
             feature = "NSOpenPanel",
@@ -138,7 +143,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             type_name: &NSString,
-        ) -> Result<Id<NSDocument>, Id<NSError>>;
+        ) -> Result<Retained<NSDocument>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSDocument", feature = "block2"))]
         #[method(reopenDocumentForURL:withContentsOfURL:display:completionHandler:)]
@@ -157,7 +162,7 @@ extern_methods!(
             url_or_nil: Option<&NSURL>,
             contents_url: &NSURL,
             type_name: &NSString,
-        ) -> Result<Id<NSDocument>, Id<NSError>>;
+        ) -> Result<Retained<NSDocument>, Retained<NSError>>;
 
         #[method(autosavingDelay)]
         pub unsafe fn autosavingDelay(&self) -> NSTimeInterval;
@@ -196,14 +201,14 @@ extern_methods!(
             url: &NSURL,
             duplicate_by_copying: bool,
             display_name_or_nil: Option<&NSString>,
-        ) -> Result<Id<NSDocument>, Id<NSError>>;
+        ) -> Result<Retained<NSDocument>, Retained<NSError>>;
 
         #[method(allowsAutomaticShareMenu)]
         pub unsafe fn allowsAutomaticShareMenu(&self) -> bool;
 
         #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other standardShareMenuItem)]
-        pub unsafe fn standardShareMenuItem(&self) -> Id<NSMenuItem>;
+        pub unsafe fn standardShareMenuItem(&self) -> Retained<NSMenuItem>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method(presentError:modalForWindow:delegate:didPresentSelector:contextInfo:)]
@@ -220,7 +225,7 @@ extern_methods!(
         pub unsafe fn presentError(&self, error: &NSError) -> bool;
 
         #[method_id(@__retain_semantics Other willPresentError:)]
-        pub unsafe fn willPresentError(&self, error: &NSError) -> Id<NSError>;
+        pub unsafe fn willPresentError(&self, error: &NSError) -> Retained<NSError>;
 
         #[method(maximumRecentDocumentCount)]
         pub unsafe fn maximumRecentDocumentCount(&self) -> NSUInteger;
@@ -236,19 +241,19 @@ extern_methods!(
         pub unsafe fn noteNewRecentDocumentURL(&self, url: &NSURL);
 
         #[method_id(@__retain_semantics Other recentDocumentURLs)]
-        pub unsafe fn recentDocumentURLs(&self) -> Id<NSArray<NSURL>>;
+        pub unsafe fn recentDocumentURLs(&self) -> Retained<NSArray<NSURL>>;
 
         #[method_id(@__retain_semantics Other defaultType)]
-        pub unsafe fn defaultType(&self) -> Option<Id<NSString>>;
+        pub unsafe fn defaultType(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other typeForContentsOfURL:error:_)]
         pub unsafe fn typeForContentsOfURL_error(
             &self,
             url: &NSURL,
-        ) -> Result<Id<NSString>, Id<NSError>>;
+        ) -> Result<Retained<NSString>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other documentClassNames)]
-        pub unsafe fn documentClassNames(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn documentClassNames(&self) -> Retained<NSArray<NSString>>;
 
         #[method(documentClassForType:)]
         pub unsafe fn documentClassForType(
@@ -257,7 +262,8 @@ extern_methods!(
         ) -> Option<&'static AnyClass>;
 
         #[method_id(@__retain_semantics Other displayNameForType:)]
-        pub unsafe fn displayNameForType(&self, type_name: &NSString) -> Option<Id<NSString>>;
+        pub unsafe fn displayNameForType(&self, type_name: &NSString)
+            -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSUserInterfaceValidation")]
         #[method(validateUserInterfaceItem:)]
@@ -272,7 +278,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDocumentController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -285,7 +291,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             display_document: bool,
-        ) -> Result<Id<AnyObject>, Id<NSError>>;
+        ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[deprecated = "Use -reopenDocumentForURL:withContentsOfURL:display:completionHandler: instead"]
         #[method(reopenDocumentForURL:withContentsOfURL:error:_)]
@@ -293,26 +299,32 @@ extern_methods!(
             &self,
             url: Option<&NSURL>,
             contents_url: &NSURL,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other fileExtensionsFromType:)]
-        pub unsafe fn fileExtensionsFromType(&self, type_name: &NSString) -> Option<Id<NSArray>>;
+        pub unsafe fn fileExtensionsFromType(
+            &self,
+            type_name: &NSString,
+        ) -> Option<Retained<NSArray>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other typeFromFileExtension:)]
         pub unsafe fn typeFromFileExtension(
             &self,
             file_name_extension_or_hfs_file_type: &NSString,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other documentForFileName:)]
-        pub unsafe fn documentForFileName(&self, file_name: &NSString) -> Option<Id<AnyObject>>;
+        pub unsafe fn documentForFileName(
+            &self,
+            file_name: &NSString,
+        ) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other fileNamesFromRunningOpenPanel)]
-        pub unsafe fn fileNamesFromRunningOpenPanel(&self) -> Option<Id<NSArray>>;
+        pub unsafe fn fileNamesFromRunningOpenPanel(&self) -> Option<Retained<NSArray>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other makeDocumentWithContentsOfFile:ofType:)]
@@ -320,7 +332,7 @@ extern_methods!(
             &self,
             file_name: &NSString,
             r#type: &NSString,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other makeDocumentWithContentsOfURL:ofType:)]
@@ -328,12 +340,14 @@ extern_methods!(
             &self,
             url: &NSURL,
             r#type: Option<&NSString>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other makeUntitledDocumentOfType:)]
-        pub unsafe fn makeUntitledDocumentOfType(&self, r#type: &NSString)
-            -> Option<Id<AnyObject>>;
+        pub unsafe fn makeUntitledDocumentOfType(
+            &self,
+            r#type: &NSString,
+        ) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other openDocumentWithContentsOfFile:display:)]
@@ -341,7 +355,7 @@ extern_methods!(
             &self,
             file_name: &NSString,
             display: bool,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other openDocumentWithContentsOfURL:display:)]
@@ -349,7 +363,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             display: bool,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other openUntitledDocumentOfType:display:)]
@@ -357,7 +371,7 @@ extern_methods!(
             &self,
             r#type: &NSString,
             display: bool,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
         #[method(setShouldCreateUI:)]

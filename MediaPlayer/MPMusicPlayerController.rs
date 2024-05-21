@@ -106,20 +106,20 @@ unsafe impl NSObjectProtocol for MPMusicPlayerController {}
 extern_methods!(
     unsafe impl MPMusicPlayerController {
         #[method_id(@__retain_semantics Other applicationMusicPlayer)]
-        pub unsafe fn applicationMusicPlayer() -> Id<MPMusicPlayerController>;
+        pub unsafe fn applicationMusicPlayer() -> Retained<MPMusicPlayerController>;
 
         #[cfg(feature = "MPMusicPlayerApplicationController")]
         #[method_id(@__retain_semantics Other applicationQueuePlayer)]
-        pub unsafe fn applicationQueuePlayer() -> Id<MPMusicPlayerApplicationController>;
+        pub unsafe fn applicationQueuePlayer() -> Retained<MPMusicPlayerApplicationController>;
 
         #[method_id(@__retain_semantics Other systemMusicPlayer)]
-        pub unsafe fn systemMusicPlayer() -> Id<MPMusicPlayerController>;
+        pub unsafe fn systemMusicPlayer() -> Retained<MPMusicPlayerController>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(playbackState)]
         pub unsafe fn playbackState(&self) -> MPMusicPlaybackState;
@@ -146,7 +146,7 @@ extern_methods!(
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
         #[method_id(@__retain_semantics Other nowPlayingItem)]
-        pub unsafe fn nowPlayingItem(&self) -> Option<Id<MPMediaItem>>;
+        pub unsafe fn nowPlayingItem(&self) -> Option<Retained<MPMediaItem>>;
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
         #[method(setNowPlayingItem:)]
@@ -202,7 +202,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other iPodMusicPlayer)]
-        pub unsafe fn iPodMusicPlayer() -> Id<MPMusicPlayerController>;
+        pub unsafe fn iPodMusicPlayer() -> Retained<MPMusicPlayerController>;
     }
 );
 

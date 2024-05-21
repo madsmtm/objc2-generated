@@ -102,7 +102,9 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl PHLivePhotoView {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn PHLivePhotoViewDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn PHLivePhotoViewDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -112,7 +114,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-photos")]
         #[method_id(@__retain_semantics Other livePhoto)]
-        pub unsafe fn livePhoto(&self) -> Option<Id<PHLivePhoto>>;
+        pub unsafe fn livePhoto(&self) -> Option<Retained<PHLivePhoto>>;
 
         #[cfg(feature = "objc2-photos")]
         #[method(setLivePhoto:)]
@@ -152,7 +154,7 @@ extern_methods!(
         pub unsafe fn stopPlaybackAnimated(&self, animated: bool);
 
         #[method_id(@__retain_semantics Other livePhotoBadgeView)]
-        pub unsafe fn livePhotoBadgeView(&self) -> Option<Id<NSView>>;
+        pub unsafe fn livePhotoBadgeView(&self) -> Option<Retained<NSView>>;
     }
 );
 
@@ -162,10 +164,13 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl PHLivePhotoView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -175,7 +180,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl PHLivePhotoView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -185,7 +190,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl PHLivePhotoView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

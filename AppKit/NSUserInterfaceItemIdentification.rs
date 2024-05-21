@@ -11,7 +11,7 @@ pub type NSUserInterfaceItemIdentifier = NSString;
 extern_protocol!(
     pub unsafe trait NSUserInterfaceItemIdentification {
         #[method_id(@__retain_semantics Other identifier)]
-        unsafe fn identifier(&self) -> Option<Id<NSUserInterfaceItemIdentifier>>;
+        unsafe fn identifier(&self) -> Option<Retained<NSUserInterfaceItemIdentifier>>;
 
         #[method(setIdentifier:)]
         unsafe fn setIdentifier(&self, identifier: Option<&NSUserInterfaceItemIdentifier>);

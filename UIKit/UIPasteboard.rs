@@ -94,19 +94,19 @@ unsafe impl NSObjectProtocol for UIPasteboard {}
 extern_methods!(
     unsafe impl UIPasteboard {
         #[method_id(@__retain_semantics Other generalPasteboard)]
-        pub unsafe fn generalPasteboard() -> Id<UIPasteboard>;
+        pub unsafe fn generalPasteboard() -> Retained<UIPasteboard>;
 
         #[method_id(@__retain_semantics Other pasteboardWithName:create:)]
         pub unsafe fn pasteboardWithName_create(
             pasteboard_name: &UIPasteboardName,
             create: bool,
-        ) -> Option<Id<UIPasteboard>>;
+        ) -> Option<Retained<UIPasteboard>>;
 
         #[method_id(@__retain_semantics Other pasteboardWithUniqueName)]
-        pub unsafe fn pasteboardWithUniqueName() -> Id<UIPasteboard>;
+        pub unsafe fn pasteboardWithUniqueName() -> Retained<UIPasteboard>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<UIPasteboardName>;
+        pub unsafe fn name(&self) -> Retained<UIPasteboardName>;
 
         #[method(removePasteboardWithName:)]
         pub unsafe fn removePasteboardWithName(pasteboard_name: &UIPasteboardName);
@@ -122,7 +122,7 @@ extern_methods!(
         pub unsafe fn changeCount(&self) -> NSInteger;
 
         #[method_id(@__retain_semantics Other itemProviders)]
-        pub unsafe fn itemProviders(&self) -> Id<NSArray<NSItemProvider>>;
+        pub unsafe fn itemProviders(&self) -> Retained<NSArray<NSItemProvider>>;
 
         #[method(setItemProviders:)]
         pub unsafe fn setItemProviders(&self, item_providers: &NSArray<NSItemProvider>);
@@ -150,7 +150,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other pasteboardTypes)]
-        pub unsafe fn pasteboardTypes(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn pasteboardTypes(&self) -> Retained<NSArray<NSString>>;
 
         #[method(containsPasteboardTypes:)]
         pub unsafe fn containsPasteboardTypes(&self, pasteboard_types: &NSArray<NSString>) -> bool;
@@ -159,13 +159,13 @@ extern_methods!(
         pub unsafe fn dataForPasteboardType(
             &self,
             pasteboard_type: &NSString,
-        ) -> Option<Id<NSData>>;
+        ) -> Option<Retained<NSData>>;
 
         #[method_id(@__retain_semantics Other valueForPasteboardType:)]
         pub unsafe fn valueForPasteboardType(
             &self,
             pasteboard_type: &NSString,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[method(setValue:forPasteboardType:)]
         pub unsafe fn setValue_forPasteboardType(
@@ -184,7 +184,7 @@ extern_methods!(
         pub unsafe fn pasteboardTypesForItemSet(
             &self,
             item_set: Option<&NSIndexSet>,
-        ) -> Option<Id<NSArray<NSArray<NSString>>>>;
+        ) -> Option<Retained<NSArray<NSArray<NSString>>>>;
 
         #[method(containsPasteboardTypes:inItemSet:)]
         pub unsafe fn containsPasteboardTypes_inItemSet(
@@ -197,24 +197,24 @@ extern_methods!(
         pub unsafe fn itemSetWithPasteboardTypes(
             &self,
             pasteboard_types: &NSArray<NSString>,
-        ) -> Option<Id<NSIndexSet>>;
+        ) -> Option<Retained<NSIndexSet>>;
 
         #[method_id(@__retain_semantics Other valuesForPasteboardType:inItemSet:)]
         pub unsafe fn valuesForPasteboardType_inItemSet(
             &self,
             pasteboard_type: &NSString,
             item_set: Option<&NSIndexSet>,
-        ) -> Option<Id<NSArray>>;
+        ) -> Option<Retained<NSArray>>;
 
         #[method_id(@__retain_semantics Other dataForPasteboardType:inItemSet:)]
         pub unsafe fn dataForPasteboardType_inItemSet(
             &self,
             pasteboard_type: &NSString,
             item_set: Option<&NSIndexSet>,
-        ) -> Option<Id<NSArray<NSData>>>;
+        ) -> Option<Retained<NSArray<NSData>>>;
 
         #[method_id(@__retain_semantics Other items)]
-        pub unsafe fn items(&self) -> Id<NSArray<NSDictionary<NSString, AnyObject>>>;
+        pub unsafe fn items(&self) -> Retained<NSArray<NSDictionary<NSString, AnyObject>>>;
 
         #[method(setItems:)]
         pub unsafe fn setItems(&self, items: &NSArray<NSDictionary<NSString, AnyObject>>);
@@ -230,32 +230,32 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other string)]
-        pub unsafe fn string(&self) -> Option<Id<NSString>>;
+        pub unsafe fn string(&self) -> Option<Retained<NSString>>;
 
         #[method(setString:)]
         pub unsafe fn setString(&self, string: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other strings)]
-        pub unsafe fn strings(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn strings(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setStrings:)]
         pub unsafe fn setStrings(&self, strings: Option<&NSArray<NSString>>);
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other URLs)]
-        pub unsafe fn URLs(&self) -> Option<Id<NSArray<NSURL>>>;
+        pub unsafe fn URLs(&self) -> Option<Retained<NSArray<NSURL>>>;
 
         #[method(setURLs:)]
         pub unsafe fn setURLs(&self, ur_ls: Option<&NSArray<NSURL>>);
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setImage:)]
@@ -263,7 +263,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other images)]
-        pub unsafe fn images(&self) -> Option<Id<NSArray<UIImage>>>;
+        pub unsafe fn images(&self) -> Option<Retained<NSArray<UIImage>>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setImages:)]
@@ -271,7 +271,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other color)]
-        pub unsafe fn color(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn color(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setColor:)]
@@ -279,7 +279,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other colors)]
-        pub unsafe fn colors(&self) -> Option<Id<NSArray<UIColor>>>;
+        pub unsafe fn colors(&self) -> Option<Retained<NSArray<UIColor>>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setColors:)]
@@ -348,10 +348,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPasteboard {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

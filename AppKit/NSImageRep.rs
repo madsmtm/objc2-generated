@@ -50,10 +50,13 @@ unsafe impl NSObjectProtocol for NSImageRep {}
 extern_methods!(
     unsafe impl NSImageRep {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method(draw)]
         pub unsafe fn draw(&self) -> bool;
@@ -96,7 +99,7 @@ extern_methods!(
 
         #[cfg(feature = "NSGraphics")]
         #[method_id(@__retain_semantics Other colorSpaceName)]
-        pub unsafe fn colorSpaceName(&self) -> Id<NSColorSpaceName>;
+        pub unsafe fn colorSpaceName(&self) -> Retained<NSColorSpaceName>;
 
         #[cfg(feature = "NSGraphics")]
         #[method(setColorSpaceName:)]
@@ -133,7 +136,7 @@ extern_methods!(
         pub unsafe fn unregisterImageRepClass(image_rep_class: &AnyClass);
 
         #[method_id(@__retain_semantics Other registeredImageRepClasses)]
-        pub unsafe fn registeredImageRepClasses() -> Id<NSArray<TodoClass>>;
+        pub unsafe fn registeredImageRepClasses() -> Retained<NSArray<TodoClass>>;
 
         #[deprecated = "Use +imageRepClassForType: instead"]
         #[method(imageRepClassForFileType:)]
@@ -157,27 +160,27 @@ extern_methods!(
 
         #[deprecated = "Use +imageUnfilteredTypes instead"]
         #[method_id(@__retain_semantics Other imageUnfilteredFileTypes)]
-        pub unsafe fn imageUnfilteredFileTypes() -> Id<NSArray<NSString>>;
+        pub unsafe fn imageUnfilteredFileTypes() -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[deprecated = "Use +imageUnfilteredTypes instead"]
         #[method_id(@__retain_semantics Other imageUnfilteredPasteboardTypes)]
-        pub unsafe fn imageUnfilteredPasteboardTypes() -> Id<NSArray<NSPasteboardType>>;
+        pub unsafe fn imageUnfilteredPasteboardTypes() -> Retained<NSArray<NSPasteboardType>>;
 
         #[deprecated = "Use +imageTypes instead"]
         #[method_id(@__retain_semantics Other imageFileTypes)]
-        pub unsafe fn imageFileTypes() -> Id<NSArray<NSString>>;
+        pub unsafe fn imageFileTypes() -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[deprecated = "Use +imageTypes instead"]
         #[method_id(@__retain_semantics Other imagePasteboardTypes)]
-        pub unsafe fn imagePasteboardTypes() -> Id<NSArray<NSPasteboardType>>;
+        pub unsafe fn imagePasteboardTypes() -> Retained<NSArray<NSPasteboardType>>;
 
         #[method_id(@__retain_semantics Other imageUnfilteredTypes)]
-        pub unsafe fn imageUnfilteredTypes() -> Id<NSArray<NSString>>;
+        pub unsafe fn imageUnfilteredTypes() -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other imageTypes)]
-        pub unsafe fn imageTypes() -> Id<NSArray<NSString>>;
+        pub unsafe fn imageTypes() -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[method(canInitWithPasteboard:)]
@@ -186,26 +189,32 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imageRepsWithContentsOfFile:)]
         pub unsafe fn imageRepsWithContentsOfFile(
             filename: &NSString,
-        ) -> Option<Id<NSArray<NSImageRep>>>;
+        ) -> Option<Retained<NSArray<NSImageRep>>>;
 
         #[method_id(@__retain_semantics Other imageRepWithContentsOfFile:)]
-        pub unsafe fn imageRepWithContentsOfFile(filename: &NSString) -> Option<Id<NSImageRep>>;
+        pub unsafe fn imageRepWithContentsOfFile(
+            filename: &NSString,
+        ) -> Option<Retained<NSImageRep>>;
 
         #[method_id(@__retain_semantics Other imageRepsWithContentsOfURL:)]
-        pub unsafe fn imageRepsWithContentsOfURL(url: &NSURL) -> Option<Id<NSArray<NSImageRep>>>;
+        pub unsafe fn imageRepsWithContentsOfURL(
+            url: &NSURL,
+        ) -> Option<Retained<NSArray<NSImageRep>>>;
 
         #[method_id(@__retain_semantics Other imageRepWithContentsOfURL:)]
-        pub unsafe fn imageRepWithContentsOfURL(url: &NSURL) -> Option<Id<NSImageRep>>;
+        pub unsafe fn imageRepWithContentsOfURL(url: &NSURL) -> Option<Retained<NSImageRep>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Other imageRepsWithPasteboard:)]
         pub unsafe fn imageRepsWithPasteboard(
             pasteboard: &NSPasteboard,
-        ) -> Option<Id<NSArray<NSImageRep>>>;
+        ) -> Option<Retained<NSArray<NSImageRep>>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Other imageRepWithPasteboard:)]
-        pub unsafe fn imageRepWithPasteboard(pasteboard: &NSPasteboard) -> Option<Id<NSImageRep>>;
+        pub unsafe fn imageRepWithPasteboard(
+            pasteboard: &NSPasteboard,
+        ) -> Option<Retained<NSImageRep>>;
     }
 );
 
@@ -213,7 +222,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSImageRep {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

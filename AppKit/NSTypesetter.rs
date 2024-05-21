@@ -47,7 +47,7 @@ extern_methods!(
 
         #[cfg(feature = "NSFont")]
         #[method_id(@__retain_semantics Other substituteFontForFont:)]
-        pub unsafe fn substituteFontForFont(&self, original_font: &NSFont) -> Id<NSFont>;
+        pub unsafe fn substituteFontForFont(&self, original_font: &NSFont) -> Retained<NSFont>;
 
         #[cfg(all(feature = "NSParagraphStyle", feature = "NSText"))]
         #[method_id(@__retain_semantics Other textTabForGlyphLocation:writingDirection:maxLocation:)]
@@ -56,7 +56,7 @@ extern_methods!(
             glyph_location: CGFloat,
             direction: NSWritingDirection,
             max_location: CGFloat,
-        ) -> Option<Id<NSTextTab>>;
+        ) -> Option<Retained<NSTextTab>>;
 
         #[method(bidiProcessingEnabled)]
         pub unsafe fn bidiProcessingEnabled(&self) -> bool;
@@ -65,7 +65,7 @@ extern_methods!(
         pub unsafe fn setBidiProcessingEnabled(&self, bidi_processing_enabled: bool);
 
         #[method_id(@__retain_semantics Other attributedString)]
-        pub unsafe fn attributedString(&self) -> Option<Id<NSAttributedString>>;
+        pub unsafe fn attributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         #[method(setAttributedString:)]
         pub unsafe fn setAttributedString(&self, attributed_string: Option<&NSAttributedString>);
@@ -140,23 +140,23 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attributesForExtraLineFragment)]
         pub unsafe fn attributesForExtraLineFragment(
             &self,
-        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(feature = "NSLayoutManager")]
         #[method_id(@__retain_semantics Other layoutManager)]
-        pub unsafe fn layoutManager(&self) -> Option<Id<NSLayoutManager>>;
+        pub unsafe fn layoutManager(&self) -> Option<Retained<NSLayoutManager>>;
 
         #[cfg(feature = "NSTextContainer")]
         #[method_id(@__retain_semantics Other textContainers)]
-        pub unsafe fn textContainers(&self) -> Option<Id<NSArray<NSTextContainer>>>;
+        pub unsafe fn textContainers(&self) -> Option<Retained<NSArray<NSTextContainer>>>;
 
         #[cfg(feature = "NSTextContainer")]
         #[method_id(@__retain_semantics Other currentTextContainer)]
-        pub unsafe fn currentTextContainer(&self) -> Option<Id<NSTextContainer>>;
+        pub unsafe fn currentTextContainer(&self) -> Option<Retained<NSTextContainer>>;
 
         #[cfg(feature = "NSParagraphStyle")]
         #[method_id(@__retain_semantics Other currentParagraphStyle)]
-        pub unsafe fn currentParagraphStyle(&self) -> Option<Id<NSParagraphStyle>>;
+        pub unsafe fn currentParagraphStyle(&self) -> Option<Retained<NSParagraphStyle>>;
 
         #[method(setHardInvalidation:forGlyphRange:)]
         pub unsafe fn setHardInvalidation_forGlyphRange(&self, flag: bool, glyph_range: NSRange);
@@ -198,13 +198,13 @@ extern_methods!(
         ) -> CGFloat;
 
         #[method_id(@__retain_semantics Other sharedSystemTypesetter)]
-        pub unsafe fn sharedSystemTypesetter() -> Id<NSTypesetter>;
+        pub unsafe fn sharedSystemTypesetter() -> Retained<NSTypesetter>;
 
         #[cfg(feature = "NSLayoutManager")]
         #[method_id(@__retain_semantics Other sharedSystemTypesetterForBehavior:)]
         pub unsafe fn sharedSystemTypesetterForBehavior(
             behavior: NSTypesetterBehavior,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSLayoutManager")]
         #[method(defaultTypesetterBehavior)]
@@ -216,10 +216,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTypesetter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

@@ -74,7 +74,7 @@ extern_methods!(
             network_endpoint: &NWHostEndpoint,
             destination_prefix: NSUInteger,
             protocol: NENetworkRuleProtocol,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NWEndpoint", feature = "NWHostEndpoint"))]
         #[method_id(@__retain_semantics Init initWithDestinationHost:protocol:)]
@@ -82,7 +82,7 @@ extern_methods!(
             this: Allocated<Self>,
             host_endpoint: &NWHostEndpoint,
             protocol: NENetworkRuleProtocol,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NWEndpoint", feature = "NWHostEndpoint"))]
         #[method_id(@__retain_semantics Init initWithRemoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:)]
@@ -94,18 +94,18 @@ extern_methods!(
             local_prefix: NSUInteger,
             protocol: NENetworkRuleProtocol,
             direction: NETrafficDirection,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NWEndpoint", feature = "NWHostEndpoint"))]
         #[method_id(@__retain_semantics Other matchRemoteEndpoint)]
-        pub unsafe fn matchRemoteEndpoint(&self) -> Option<Id<NWHostEndpoint>>;
+        pub unsafe fn matchRemoteEndpoint(&self) -> Option<Retained<NWHostEndpoint>>;
 
         #[method(matchRemotePrefix)]
         pub unsafe fn matchRemotePrefix(&self) -> NSUInteger;
 
         #[cfg(all(feature = "NWEndpoint", feature = "NWHostEndpoint"))]
         #[method_id(@__retain_semantics Other matchLocalNetwork)]
-        pub unsafe fn matchLocalNetwork(&self) -> Option<Id<NWHostEndpoint>>;
+        pub unsafe fn matchLocalNetwork(&self) -> Option<Retained<NWHostEndpoint>>;
 
         #[method(matchLocalPrefix)]
         pub unsafe fn matchLocalPrefix(&self) -> NSUInteger;
@@ -122,9 +122,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NENetworkRule {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

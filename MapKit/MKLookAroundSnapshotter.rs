@@ -20,10 +20,10 @@ unsafe impl NSObjectProtocol for MKLookAroundSnapshotter {}
 extern_methods!(
     unsafe impl MKLookAroundSnapshotter {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "MKLookAroundScene", feature = "MKLookAroundSnapshotOptions"))]
         #[method_id(@__retain_semantics Init initWithScene:options:)]
@@ -31,7 +31,7 @@ extern_methods!(
             this: Allocated<Self>,
             scene: &MKLookAroundScene,
             options: &MKLookAroundSnapshotOptions,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKLookAroundSnapshot", feature = "block2"))]
         #[method(getSnapshotWithCompletionHandler:)]

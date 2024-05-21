@@ -47,7 +47,7 @@ extern_methods!(
             this: Allocated<Self>,
             center: CLLocationCoordinate2D,
             radius: CLLocationDistance,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -56,9 +56,9 @@ extern_methods!(
     #[cfg(feature = "CLCondition")]
     unsafe impl CLCircularGeographicCondition {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

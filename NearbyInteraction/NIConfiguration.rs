@@ -27,13 +27,14 @@ extern_methods!(
     unsafe impl NIDiscoveryToken {
         #[cfg(feature = "NIDeviceCapability")]
         #[method_id(@__retain_semantics Other deviceCapabilities)]
-        pub unsafe fn deviceCapabilities(&self) -> Id<ProtocolObject<dyn NIDeviceCapability>>;
+        pub unsafe fn deviceCapabilities(&self)
+            -> Retained<ProtocolObject<dyn NIDeviceCapability>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -58,10 +59,10 @@ unsafe impl NSSecureCoding for NIConfiguration {}
 extern_methods!(
     unsafe impl NIConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -87,13 +88,13 @@ unsafe impl NSSecureCoding for NINearbyPeerConfiguration {}
 extern_methods!(
     unsafe impl NINearbyPeerConfiguration {
         #[method_id(@__retain_semantics Other peerDiscoveryToken)]
-        pub unsafe fn peerDiscoveryToken(&self) -> Id<NIDiscoveryToken>;
+        pub unsafe fn peerDiscoveryToken(&self) -> Retained<NIDiscoveryToken>;
 
         #[method_id(@__retain_semantics Init initWithPeerToken:)]
         pub unsafe fn initWithPeerToken(
             this: Allocated<Self>,
             peer_token: &NIDiscoveryToken,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(isCameraAssistanceEnabled)]
         pub unsafe fn isCameraAssistanceEnabled(&self) -> bool;
@@ -111,10 +112,10 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -140,7 +141,7 @@ unsafe impl NSSecureCoding for NINearbyAccessoryConfiguration {}
 extern_methods!(
     unsafe impl NINearbyAccessoryConfiguration {
         #[method_id(@__retain_semantics Other accessoryDiscoveryToken)]
-        pub unsafe fn accessoryDiscoveryToken(&self) -> Id<NIDiscoveryToken>;
+        pub unsafe fn accessoryDiscoveryToken(&self) -> Retained<NIDiscoveryToken>;
 
         #[method(isCameraAssistanceEnabled)]
         pub unsafe fn isCameraAssistanceEnabled(&self) -> bool;
@@ -152,19 +153,19 @@ extern_methods!(
         pub unsafe fn initWithData_error(
             this: Allocated<Self>,
             data: &NSData,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Init initWithAccessoryData:bluetoothPeerIdentifier:error:_)]
         pub unsafe fn initWithAccessoryData_bluetoothPeerIdentifier_error(
             this: Allocated<Self>,
             accessory_data: &NSData,
             identifier: &NSUUID,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

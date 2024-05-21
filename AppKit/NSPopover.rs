@@ -80,20 +80,23 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSPopover {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPopoverDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSPopoverDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSPopoverDelegate>>);
 
         #[cfg(feature = "NSAppearance")]
         #[method_id(@__retain_semantics Other appearance)]
-        pub unsafe fn appearance(&self) -> Option<Id<NSAppearance>>;
+        pub unsafe fn appearance(&self) -> Option<Retained<NSAppearance>>;
 
         #[cfg(feature = "NSAppearance")]
         #[method(setAppearance:)]
@@ -101,7 +104,7 @@ extern_methods!(
 
         #[cfg(feature = "NSAppearance")]
         #[method_id(@__retain_semantics Other effectiveAppearance)]
-        pub unsafe fn effectiveAppearance(&self) -> Id<NSAppearance>;
+        pub unsafe fn effectiveAppearance(&self) -> Retained<NSAppearance>;
 
         #[method(behavior)]
         pub unsafe fn behavior(&self) -> NSPopoverBehavior;
@@ -117,7 +120,7 @@ extern_methods!(
 
         #[cfg(feature = "NSViewController")]
         #[method_id(@__retain_semantics Other contentViewController)]
-        pub unsafe fn contentViewController(&self) -> Option<Id<NSViewController>>;
+        pub unsafe fn contentViewController(&self) -> Option<Retained<NSViewController>>;
 
         #[cfg(feature = "NSViewController")]
         #[method(setContentViewController:)]
@@ -176,7 +179,7 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSPopover {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -231,7 +234,10 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[optional]
         #[method_id(@__retain_semantics Other detachableWindowForPopover:)]
-        unsafe fn detachableWindowForPopover(&self, popover: &NSPopover) -> Option<Id<NSWindow>>;
+        unsafe fn detachableWindowForPopover(
+            &self,
+            popover: &NSPopover,
+        ) -> Option<Retained<NSWindow>>;
 
         #[optional]
         #[method(popoverWillShow:)]

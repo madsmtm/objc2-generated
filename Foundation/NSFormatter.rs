@@ -74,7 +74,10 @@ extern_methods!(
     unsafe impl NSFormatter {
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringForObjectValue:)]
-        pub unsafe fn stringForObjectValue(&self, obj: Option<&AnyObject>) -> Option<Id<NSString>>;
+        pub unsafe fn stringForObjectValue(
+            &self,
+            obj: Option<&AnyObject>,
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(
             feature = "NSAttributedString",
@@ -86,19 +89,22 @@ extern_methods!(
             &self,
             obj: &AnyObject,
             attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
-        ) -> Option<Id<NSAttributedString>>;
+        ) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other editingStringForObjectValue:)]
-        pub unsafe fn editingStringForObjectValue(&self, obj: &AnyObject) -> Option<Id<NSString>>;
+        pub unsafe fn editingStringForObjectValue(
+            &self,
+            obj: &AnyObject,
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(getObjectValue:forString:errorDescription:)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,
-            obj: Option<&mut Option<Id<AnyObject>>>,
+            obj: Option<&mut Option<Retained<AnyObject>>>,
             string: &NSString,
-            error: Option<&mut Option<Id<NSString>>>,
+            error: Option<&mut Option<Retained<NSString>>>,
         ) -> bool;
 
         #[cfg(feature = "NSString")]
@@ -106,19 +112,19 @@ extern_methods!(
         pub unsafe fn isPartialStringValid_newEditingString_errorDescription(
             &self,
             partial_string: &NSString,
-            new_string: Option<&mut Option<Id<NSString>>>,
-            error: Option<&mut Option<Id<NSString>>>,
+            new_string: Option<&mut Option<Retained<NSString>>>,
+            error: Option<&mut Option<Retained<NSString>>>,
         ) -> bool;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
         #[method(isPartialStringValid:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:)]
         pub unsafe fn isPartialStringValid_proposedSelectedRange_originalString_originalSelectedRange_errorDescription(
             &self,
-            partial_string_ptr: &mut Id<NSString>,
+            partial_string_ptr: &mut Retained<NSString>,
             proposed_sel_range_ptr: NSRangePointer,
             orig_string: &NSString,
             orig_sel_range: NSRange,
-            error: Option<&mut Option<Id<NSString>>>,
+            error: Option<&mut Option<Retained<NSString>>>,
         ) -> bool;
     }
 );
@@ -127,9 +133,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFormatter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

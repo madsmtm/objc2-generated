@@ -20,20 +20,20 @@ unsafe impl NSObjectProtocol for VZSharedDirectory {}
 extern_methods!(
     unsafe impl VZSharedDirectory {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithURL:readOnly:)]
         pub unsafe fn initWithURL_readOnly(
             this: Allocated<Self>,
             url: &NSURL,
             read_only: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL>;
+        pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         #[method(isReadOnly)]
         pub unsafe fn isReadOnly(&self) -> bool;

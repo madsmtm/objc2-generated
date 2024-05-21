@@ -27,14 +27,14 @@ unsafe impl NSObjectProtocol for VNRequest {}
 extern_methods!(
     unsafe impl VNRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(preferBackgroundProcessing)]
         pub unsafe fn preferBackgroundProcessing(&self) -> bool;
@@ -52,7 +52,7 @@ extern_methods!(
 
         #[cfg(feature = "VNObservation")]
         #[method_id(@__retain_semantics Other results)]
-        pub unsafe fn results(&self) -> Option<Id<NSArray<VNObservation>>>;
+        pub unsafe fn results(&self) -> Option<Retained<NSArray<VNObservation>>>;
 
         #[cfg(feature = "block2")]
         #[method(completionHandler)]
@@ -65,7 +65,7 @@ extern_methods!(
         pub unsafe fn setRevision(&self, revision: NSUInteger);
 
         #[method_id(@__retain_semantics Other supportedRevisions)]
-        pub unsafe fn supportedRevisions() -> Id<NSIndexSet>;
+        pub unsafe fn supportedRevisions() -> Retained<NSIndexSet>;
 
         #[method(defaultRevision)]
         pub unsafe fn defaultRevision() -> NSUInteger;
@@ -82,7 +82,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -95,8 +95,10 @@ extern_methods!(
         pub unsafe fn supportedComputeStageDevicesAndReturnError(
             &self,
         ) -> Result<
-            Id<NSDictionary<VNComputeStage, NSArray<ProtocolObject<dyn MLComputeDeviceProtocol>>>>,
-            Id<NSError>,
+            Retained<
+                NSDictionary<VNComputeStage, NSArray<ProtocolObject<dyn MLComputeDeviceProtocol>>>,
+            >,
+            Retained<NSError>,
         >;
 
         #[cfg(all(feature = "VNTypes", feature = "objc2-core-ml"))]
@@ -104,7 +106,7 @@ extern_methods!(
         pub unsafe fn computeDeviceForComputeStage(
             &self,
             compute_stage: &VNComputeStage,
-        ) -> Option<Id<ProtocolObject<dyn MLComputeDeviceProtocol>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MLComputeDeviceProtocol>>>;
 
         #[cfg(all(feature = "VNTypes", feature = "objc2-core-ml"))]
         #[method(setComputeDevice:forComputeStage:)]
@@ -145,14 +147,14 @@ extern_methods!(
     /// Methods declared on superclass `VNRequest`
     unsafe impl VNImageBasedRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -160,7 +162,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNImageBasedRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

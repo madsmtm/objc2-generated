@@ -51,10 +51,10 @@ unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionLoginManager {}
 extern_methods!(
     unsafe impl ASAuthorizationProviderExtensionLoginManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method(isDeviceRegistered)]
         pub unsafe fn isDeviceRegistered(&self) -> bool;
@@ -63,14 +63,14 @@ extern_methods!(
         pub unsafe fn isUserRegistered(&self) -> bool;
 
         #[method_id(@__retain_semantics Other registrationToken)]
-        pub unsafe fn registrationToken(&self) -> Option<Id<NSString>>;
+        pub unsafe fn registrationToken(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other extensionData)]
-        pub unsafe fn extensionData(&self) -> Id<NSDictionary>;
+        pub unsafe fn extensionData(&self) -> Retained<NSDictionary>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other loginUserName)]
-        pub unsafe fn loginUserName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn loginUserName(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method(setLoginUserName:)]
@@ -80,17 +80,17 @@ extern_methods!(
         #[method_id(@__retain_semantics Other userLoginConfiguration)]
         pub unsafe fn userLoginConfiguration(
             &self,
-        ) -> Option<Id<ASAuthorizationProviderExtensionUserLoginConfiguration>>;
+        ) -> Option<Retained<ASAuthorizationProviderExtensionUserLoginConfiguration>>;
 
         #[cfg(feature = "ASAuthorizationProviderExtensionUserLoginConfiguration")]
         #[method(saveUserLoginConfiguration:error:_)]
         pub unsafe fn saveUserLoginConfiguration_error(
             &self,
             user_login_configuration: &ASAuthorizationProviderExtensionUserLoginConfiguration,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other ssoTokens)]
-        pub unsafe fn ssoTokens(&self) -> Option<Id<NSDictionary>>;
+        pub unsafe fn ssoTokens(&self) -> Option<Retained<NSDictionary>>;
 
         #[method(setSsoTokens:)]
         pub unsafe fn setSsoTokens(&self, sso_tokens: Option<&NSDictionary>);
@@ -99,14 +99,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other loginConfiguration)]
         pub unsafe fn loginConfiguration(
             &self,
-        ) -> Option<Id<ASAuthorizationProviderExtensionLoginConfiguration>>;
+        ) -> Option<Retained<ASAuthorizationProviderExtensionLoginConfiguration>>;
 
         #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
         #[method(saveLoginConfiguration:error:_)]
         pub unsafe fn saveLoginConfiguration_error(
             &self,
             login_configuration: &ASAuthorizationProviderExtensionLoginConfiguration,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "block2")]
         #[method(userNeedsReauthenticationWithCompletion:)]

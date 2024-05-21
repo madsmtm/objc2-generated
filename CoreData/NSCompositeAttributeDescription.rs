@@ -31,7 +31,7 @@ extern_methods!(
     #[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
     unsafe impl NSCompositeAttributeDescription {
         #[method_id(@__retain_semantics Other elements)]
-        pub unsafe fn elements(&self) -> Id<NSArray<NSAttributeDescription>>;
+        pub unsafe fn elements(&self) -> Retained<NSArray<NSAttributeDescription>>;
 
         #[method(setElements:)]
         pub unsafe fn setElements(&self, elements: &NSArray<NSAttributeDescription>);
@@ -43,9 +43,9 @@ extern_methods!(
     #[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
     unsafe impl NSCompositeAttributeDescription {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

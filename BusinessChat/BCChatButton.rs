@@ -72,11 +72,17 @@ extern_methods!(
     unsafe impl BCChatButton {
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithStyle:)]
-        pub unsafe fn initWithStyle(this: Allocated<Self>, style: BCChatButtonStyle) -> Id<Self>;
+        pub unsafe fn initWithStyle(
+            this: Allocated<Self>,
+            style: BCChatButtonStyle,
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -85,7 +91,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl BCChatButton {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }
 );
 
@@ -94,7 +100,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl BCChatButton {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -103,6 +109,6 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl BCChatButton {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

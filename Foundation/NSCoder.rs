@@ -50,7 +50,7 @@ extern_methods!(
 
         #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other decodeDataObject)]
-        pub unsafe fn decodeDataObject(&self) -> Option<Id<NSData>>;
+        pub unsafe fn decodeDataObject(&self) -> Option<Retained<NSData>>;
 
         #[method(decodeValueOfObjCType:at:size:)]
         pub unsafe fn decodeValueOfObjCType_at_size(
@@ -70,10 +70,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCoder {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -107,13 +107,13 @@ extern_methods!(
         pub unsafe fn encodeBytes_length(&self, byteaddr: *mut c_void, length: NSUInteger);
 
         #[method_id(@__retain_semantics Other decodeObject)]
-        pub unsafe fn decodeObject(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn decodeObject(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSError")]
         #[method_id(@__retain_semantics Other decodeTopLevelObjectAndReturnError:_)]
         pub unsafe fn decodeTopLevelObjectAndReturnError(
             &self,
-        ) -> Result<Id<AnyObject>, Id<NSError>>;
+        ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[method(decodeArrayOfObjCType:count:at:)]
         pub unsafe fn decodeArrayOfObjCType_count_at(
@@ -133,7 +133,7 @@ extern_methods!(
         pub unsafe fn encodePropertyList(&self, a_property_list: &AnyObject);
 
         #[method_id(@__retain_semantics Other decodePropertyList)]
-        pub unsafe fn decodePropertyList(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn decodePropertyList(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSZone")]
         #[method(setObjectZone:)]
@@ -200,14 +200,14 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other decodeObjectForKey:)]
-        pub unsafe fn decodeObjectForKey(&self, key: &NSString) -> Option<Id<AnyObject>>;
+        pub unsafe fn decodeObjectForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[method_id(@__retain_semantics Other decodeTopLevelObjectForKey:error:_)]
         pub unsafe fn decodeTopLevelObjectForKey_error(
             &self,
             key: &NSString,
-        ) -> Result<Id<AnyObject>, Id<NSError>>;
+        ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(feature = "NSString")]
         #[method(decodeBoolForKey:)]
@@ -258,7 +258,7 @@ extern_methods!(
             &self,
             a_class: &AnyClass,
             key: &NSString,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[method_id(@__retain_semantics Other decodeTopLevelObjectOfClass:forKey:error:_)]
@@ -266,7 +266,7 @@ extern_methods!(
             &self,
             a_class: &AnyClass,
             key: &NSString,
-        ) -> Result<Id<AnyObject>, Id<NSError>>;
+        ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other decodeArrayOfObjectsOfClass:forKey:)]
@@ -274,7 +274,7 @@ extern_methods!(
             &self,
             cls: &AnyClass,
             key: &NSString,
-        ) -> Option<Id<NSArray>>;
+        ) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other decodeDictionaryWithKeysOfClass:objectsOfClass:forKey:)]
@@ -283,7 +283,7 @@ extern_methods!(
             key_cls: &AnyClass,
             object_cls: &AnyClass,
             key: &NSString,
-        ) -> Option<Id<NSDictionary>>;
+        ) -> Option<Retained<NSDictionary>>;
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
         #[method_id(@__retain_semantics Other decodeObjectOfClasses:forKey:)]
@@ -291,7 +291,7 @@ extern_methods!(
             &self,
             classes: Option<&NSSet<TodoClass>>,
             key: &NSString,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSError", feature = "NSSet", feature = "NSString"))]
         #[method_id(@__retain_semantics Other decodeTopLevelObjectOfClasses:forKey:error:_)]
@@ -299,7 +299,7 @@ extern_methods!(
             &self,
             classes: Option<&NSSet<TodoClass>>,
             key: &NSString,
-        ) -> Result<Id<AnyObject>, Id<NSError>>;
+        ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSSet", feature = "NSString"))]
         #[method_id(@__retain_semantics Other decodeArrayOfObjectsOfClasses:forKey:)]
@@ -307,7 +307,7 @@ extern_methods!(
             &self,
             classes: &NSSet<TodoClass>,
             key: &NSString,
-        ) -> Option<Id<NSArray>>;
+        ) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSSet", feature = "NSString"))]
         #[method_id(@__retain_semantics Other decodeDictionaryWithKeysOfClasses:objectsOfClasses:forKey:)]
@@ -316,15 +316,18 @@ extern_methods!(
             key_classes: &NSSet<TodoClass>,
             object_classes: &NSSet<TodoClass>,
             key: &NSString,
-        ) -> Option<Id<NSDictionary>>;
+        ) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other decodePropertyListForKey:)]
-        pub unsafe fn decodePropertyListForKey(&self, key: &NSString) -> Option<Id<AnyObject>>;
+        pub unsafe fn decodePropertyListForKey(
+            &self,
+            key: &NSString,
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSSet")]
         #[method_id(@__retain_semantics Other allowedClasses)]
-        pub unsafe fn allowedClasses(&self) -> Option<Id<NSSet<TodoClass>>>;
+        pub unsafe fn allowedClasses(&self) -> Option<Retained<NSSet<TodoClass>>>;
 
         #[cfg(feature = "NSError")]
         #[method(failWithError:)]
@@ -335,7 +338,7 @@ extern_methods!(
 
         #[cfg(feature = "NSError")]
         #[method_id(@__retain_semantics Other error)]
-        pub unsafe fn error(&self) -> Option<Id<NSError>>;
+        pub unsafe fn error(&self) -> Option<Retained<NSError>>;
     }
 );
 
@@ -353,7 +356,7 @@ extern_methods!(
 
         #[deprecated = "Not supported"]
         #[method_id(@__retain_semantics Other decodeNXObject)]
-        pub unsafe fn decodeNXObject(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn decodeNXObject(&self) -> Option<Retained<AnyObject>>;
     }
 );
 

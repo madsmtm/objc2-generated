@@ -125,10 +125,10 @@ extern_methods!(
         pub unsafe fn stackViewWithViews(
             views: &NSArray<NSView>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSStackViewDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSStackViewDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -183,7 +183,7 @@ extern_methods!(
         pub unsafe fn setDetachesHiddenViews(&self, detaches_hidden_views: bool);
 
         #[method_id(@__retain_semantics Other arrangedSubviews)]
-        pub unsafe fn arrangedSubviews(&self) -> Id<NSArray<NSView>>;
+        pub unsafe fn arrangedSubviews(&self) -> Retained<NSArray<NSView>>;
 
         #[method(addArrangedSubview:)]
         pub unsafe fn addArrangedSubview(&self, view: &NSView);
@@ -195,7 +195,7 @@ extern_methods!(
         pub unsafe fn removeArrangedSubview(&self, view: &NSView);
 
         #[method_id(@__retain_semantics Other detachedViews)]
-        pub unsafe fn detachedViews(&self) -> Id<NSArray<NSView>>;
+        pub unsafe fn detachedViews(&self) -> Retained<NSArray<NSView>>;
 
         #[method(setVisibilityPriority:forView:)]
         pub unsafe fn setVisibilityPriority_forView(
@@ -247,10 +247,13 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSStackView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -259,7 +262,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSStackView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -268,7 +271,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSStackView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -315,7 +318,10 @@ extern_methods!(
         pub unsafe fn removeView(&self, view: &NSView);
 
         #[method_id(@__retain_semantics Other viewsInGravity:)]
-        pub unsafe fn viewsInGravity(&self, gravity: NSStackViewGravity) -> Id<NSArray<NSView>>;
+        pub unsafe fn viewsInGravity(
+            &self,
+            gravity: NSStackViewGravity,
+        ) -> Retained<NSArray<NSView>>;
 
         #[method(setViews:inGravity:)]
         pub unsafe fn setViews_inGravity(
@@ -325,7 +331,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other views)]
-        pub unsafe fn views(&self) -> Id<NSArray<NSView>>;
+        pub unsafe fn views(&self) -> Retained<NSArray<NSView>>;
     }
 );
 

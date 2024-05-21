@@ -31,15 +31,15 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other graphWithGraphObjects:)]
-        pub unsafe fn graphWithGraphObjects(graph_objects: &NSArray<MLCGraph>) -> Id<Self>;
+        pub unsafe fn graphWithGraphObjects(graph_objects: &NSArray<MLCGraph>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
@@ -167,6 +167,6 @@ extern_methods!(
     unsafe impl MLCInferenceGraph {
         #[deprecated]
         #[method_id(@__retain_semantics Other graph)]
-        pub unsafe fn graph() -> Id<Self>;
+        pub unsafe fn graph() -> Retained<Self>;
     }
 );

@@ -38,11 +38,11 @@ extern_methods!(
             identifier: &NSToolbarItemIdentifier,
             split_view: &NSSplitView,
             divider_index: NSInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSSplitView", feature = "NSView"))]
         #[method_id(@__retain_semantics Other splitView)]
-        pub unsafe fn splitView(&self) -> Id<NSSplitView>;
+        pub unsafe fn splitView(&self) -> Retained<NSSplitView>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSSplitView", feature = "NSView"))]
         #[method(setSplitView:)]
@@ -65,7 +65,7 @@ extern_methods!(
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -74,9 +74,9 @@ extern_methods!(
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSTrackingSeparatorToolbarItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -26,43 +26,43 @@ unsafe impl NSSecureCoding for LPLinkMetadata {}
 extern_methods!(
     unsafe impl LPLinkMetadata {
         #[method_id(@__retain_semantics Other originalURL)]
-        pub unsafe fn originalURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn originalURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setOriginalURL:)]
         pub unsafe fn setOriginalURL(&self, original_url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other iconProvider)]
-        pub unsafe fn iconProvider(&self) -> Option<Id<NSItemProvider>>;
+        pub unsafe fn iconProvider(&self) -> Option<Retained<NSItemProvider>>;
 
         #[method(setIconProvider:)]
         pub unsafe fn setIconProvider(&self, icon_provider: Option<&NSItemProvider>);
 
         #[method_id(@__retain_semantics Other imageProvider)]
-        pub unsafe fn imageProvider(&self) -> Option<Id<NSItemProvider>>;
+        pub unsafe fn imageProvider(&self) -> Option<Retained<NSItemProvider>>;
 
         #[method(setImageProvider:)]
         pub unsafe fn setImageProvider(&self, image_provider: Option<&NSItemProvider>);
 
         #[method_id(@__retain_semantics Other videoProvider)]
-        pub unsafe fn videoProvider(&self) -> Option<Id<NSItemProvider>>;
+        pub unsafe fn videoProvider(&self) -> Option<Retained<NSItemProvider>>;
 
         #[method(setVideoProvider:)]
         pub unsafe fn setVideoProvider(&self, video_provider: Option<&NSItemProvider>);
 
         #[method_id(@__retain_semantics Other remoteVideoURL)]
-        pub unsafe fn remoteVideoURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn remoteVideoURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setRemoteVideoURL:)]
         pub unsafe fn setRemoteVideoURL(&self, remote_video_url: Option<&NSURL>);
@@ -73,9 +73,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl LPLinkMetadata {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

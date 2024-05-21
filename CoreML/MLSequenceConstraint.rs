@@ -25,7 +25,7 @@ extern_methods!(
     unsafe impl MLSequenceConstraint {
         #[cfg(feature = "MLFeatureDescription")]
         #[method_id(@__retain_semantics Other valueDescription)]
-        pub unsafe fn valueDescription(&self) -> Id<MLFeatureDescription>;
+        pub unsafe fn valueDescription(&self) -> Retained<MLFeatureDescription>;
 
         #[method(countRange)]
         pub unsafe fn countRange(&self) -> NSRange;
@@ -36,9 +36,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLSequenceConstraint {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

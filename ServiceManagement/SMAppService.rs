@@ -43,22 +43,22 @@ unsafe impl NSObjectProtocol for SMAppService {}
 extern_methods!(
     unsafe impl SMAppService {
         #[method_id(@__retain_semantics Other loginItemServiceWithIdentifier:)]
-        pub unsafe fn loginItemServiceWithIdentifier(identifier: &NSString) -> Id<Self>;
+        pub unsafe fn loginItemServiceWithIdentifier(identifier: &NSString) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other mainAppService)]
-        pub unsafe fn mainAppService() -> Id<SMAppService>;
+        pub unsafe fn mainAppService() -> Retained<SMAppService>;
 
         #[method_id(@__retain_semantics Other agentServiceWithPlistName:)]
-        pub unsafe fn agentServiceWithPlistName(plist_name: &NSString) -> Id<Self>;
+        pub unsafe fn agentServiceWithPlistName(plist_name: &NSString) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other daemonServiceWithPlistName:)]
-        pub unsafe fn daemonServiceWithPlistName(plist_name: &NSString) -> Id<Self>;
+        pub unsafe fn daemonServiceWithPlistName(plist_name: &NSString) -> Retained<Self>;
 
         #[method(registerAndReturnError:_)]
-        pub unsafe fn registerAndReturnError(&self) -> Result<(), Id<NSError>>;
+        pub unsafe fn registerAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
         #[method(unregisterAndReturnError:_)]
-        pub unsafe fn unregisterAndReturnError(&self) -> Result<(), Id<NSError>>;
+        pub unsafe fn unregisterAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "block2")]
         #[method(unregisterWithCompletionHandler:)]
@@ -82,9 +82,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SMAppService {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -68,19 +68,19 @@ extern_category!(
         #[method_id(@__retain_semantics Other fileProviderErrorForCollisionWithItem:)]
         unsafe fn fileProviderErrorForCollisionWithItem(
             existing_item: &NSFileProviderItem,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSFileProviderItem")]
         #[method_id(@__retain_semantics Other fileProviderErrorForNonExistentItemWithIdentifier:)]
         unsafe fn fileProviderErrorForNonExistentItemWithIdentifier(
             item_identifier: &NSFileProviderItemIdentifier,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSFileProviderItem")]
         #[method_id(@__retain_semantics Other fileProviderErrorForRejectedDeletionOfItem:)]
         unsafe fn fileProviderErrorForRejectedDeletionOfItem(
             updated_version: &NSFileProviderItem,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 
     unsafe impl NSErrorNSFileProviderError for NSError {}

@@ -24,7 +24,7 @@ unsafe impl NSObjectProtocol for NSPDFInfo {}
 extern_methods!(
     unsafe impl NSPDFInfo {
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
@@ -36,7 +36,7 @@ extern_methods!(
         pub unsafe fn setFileExtensionHidden(&self, file_extension_hidden: bool);
 
         #[method_id(@__retain_semantics Other tagNames)]
-        pub unsafe fn tagNames(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn tagNames(&self) -> Retained<NSArray<NSString>>;
 
         #[method(setTagNames:)]
         pub unsafe fn setTagNames(&self, tag_names: &NSArray<NSString>);
@@ -59,7 +59,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(
             &self,
-        ) -> Id<NSMutableDictionary<NSPrintInfoAttributeKey, AnyObject>>;
+        ) -> Retained<NSMutableDictionary<NSPrintInfoAttributeKey, AnyObject>>;
     }
 );
 
@@ -67,9 +67,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPDFInfo {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

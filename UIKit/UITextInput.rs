@@ -109,10 +109,10 @@ unsafe impl NSObjectProtocol for UIDictationPhrase {}
 extern_methods!(
     unsafe impl UIDictationPhrase {
         #[method_id(@__retain_semantics Other text)]
-        pub unsafe fn text(&self) -> Id<NSString>;
+        pub unsafe fn text(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other alternativeInterpretations)]
-        pub unsafe fn alternativeInterpretations(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn alternativeInterpretations(&self) -> Option<Retained<NSArray<NSString>>>;
     }
 );
 
@@ -120,10 +120,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDictationPhrase {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -149,7 +149,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         #[method_id(@__retain_semantics Other leadingBarButtonGroups)]
-        pub unsafe fn leadingBarButtonGroups(&self) -> Id<NSArray<UIBarButtonItemGroup>>;
+        pub unsafe fn leadingBarButtonGroups(&self) -> Retained<NSArray<UIBarButtonItemGroup>>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         #[method(setLeadingBarButtonGroups:)]
@@ -160,7 +160,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         #[method_id(@__retain_semantics Other trailingBarButtonGroups)]
-        pub unsafe fn trailingBarButtonGroups(&self) -> Id<NSArray<UIBarButtonItemGroup>>;
+        pub unsafe fn trailingBarButtonGroups(&self) -> Retained<NSArray<UIBarButtonItemGroup>>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         #[method(setTrailingBarButtonGroups:)]
@@ -175,10 +175,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextInputAssistantItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -197,7 +197,7 @@ unsafe impl NSObjectProtocol for UITextPlaceholder {}
 extern_methods!(
     unsafe impl UITextPlaceholder {
         #[method_id(@__retain_semantics Other rects)]
-        pub unsafe fn rects(&self) -> Id<NSArray<UITextSelectionRect>>;
+        pub unsafe fn rects(&self) -> Retained<NSArray<UITextSelectionRect>>;
     }
 );
 
@@ -205,10 +205,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextPlaceholder {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -235,24 +235,24 @@ extern_protocol!(
     #[cfg(feature = "UITextInputTraits")]
     pub unsafe trait UITextInput: UIKeyInput + IsMainThreadOnly {
         #[method_id(@__retain_semantics Other textInRange:)]
-        unsafe fn textInRange(&self, range: &UITextRange) -> Option<Id<NSString>>;
+        unsafe fn textInRange(&self, range: &UITextRange) -> Option<Retained<NSString>>;
 
         #[method(replaceRange:withText:)]
         unsafe fn replaceRange_withText(&self, range: &UITextRange, text: &NSString);
 
         #[method_id(@__retain_semantics Other selectedTextRange)]
-        unsafe fn selectedTextRange(&self) -> Option<Id<UITextRange>>;
+        unsafe fn selectedTextRange(&self) -> Option<Retained<UITextRange>>;
 
         #[method(setSelectedTextRange:)]
         unsafe fn setSelectedTextRange(&self, selected_text_range: Option<&UITextRange>);
 
         #[method_id(@__retain_semantics Other markedTextRange)]
-        unsafe fn markedTextRange(&self) -> Option<Id<UITextRange>>;
+        unsafe fn markedTextRange(&self) -> Option<Retained<UITextRange>>;
 
         #[method_id(@__retain_semantics Other markedTextStyle)]
         unsafe fn markedTextStyle(
             &self,
-        ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         #[method(setMarkedTextStyle:)]
         unsafe fn setMarkedTextStyle(
@@ -271,24 +271,24 @@ extern_protocol!(
         unsafe fn unmarkText(&self);
 
         #[method_id(@__retain_semantics Other beginningOfDocument)]
-        unsafe fn beginningOfDocument(&self) -> Id<UITextPosition>;
+        unsafe fn beginningOfDocument(&self) -> Retained<UITextPosition>;
 
         #[method_id(@__retain_semantics Other endOfDocument)]
-        unsafe fn endOfDocument(&self) -> Id<UITextPosition>;
+        unsafe fn endOfDocument(&self) -> Retained<UITextPosition>;
 
         #[method_id(@__retain_semantics Other textRangeFromPosition:toPosition:)]
         unsafe fn textRangeFromPosition_toPosition(
             &self,
             from_position: &UITextPosition,
             to_position: &UITextPosition,
-        ) -> Option<Id<UITextRange>>;
+        ) -> Option<Retained<UITextRange>>;
 
         #[method_id(@__retain_semantics Other positionFromPosition:offset:)]
         unsafe fn positionFromPosition_offset(
             &self,
             position: &UITextPosition,
             offset: NSInteger,
-        ) -> Option<Id<UITextPosition>>;
+        ) -> Option<Retained<UITextPosition>>;
 
         #[method_id(@__retain_semantics Other positionFromPosition:inDirection:offset:)]
         unsafe fn positionFromPosition_inDirection_offset(
@@ -296,7 +296,7 @@ extern_protocol!(
             position: &UITextPosition,
             direction: UITextLayoutDirection,
             offset: NSInteger,
-        ) -> Option<Id<UITextPosition>>;
+        ) -> Option<Retained<UITextPosition>>;
 
         #[method(comparePosition:toPosition:)]
         unsafe fn comparePosition_toPosition(
@@ -313,7 +313,8 @@ extern_protocol!(
         ) -> NSInteger;
 
         #[method_id(@__retain_semantics Other inputDelegate)]
-        unsafe fn inputDelegate(&self) -> Option<Id<ProtocolObject<dyn UITextInputDelegate>>>;
+        unsafe fn inputDelegate(&self)
+            -> Option<Retained<ProtocolObject<dyn UITextInputDelegate>>>;
 
         #[method(setInputDelegate:)]
         unsafe fn setInputDelegate(
@@ -322,21 +323,21 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other tokenizer)]
-        unsafe fn tokenizer(&self) -> Id<ProtocolObject<dyn UITextInputTokenizer>>;
+        unsafe fn tokenizer(&self) -> Retained<ProtocolObject<dyn UITextInputTokenizer>>;
 
         #[method_id(@__retain_semantics Other positionWithinRange:farthestInDirection:)]
         unsafe fn positionWithinRange_farthestInDirection(
             &self,
             range: &UITextRange,
             direction: UITextLayoutDirection,
-        ) -> Option<Id<UITextPosition>>;
+        ) -> Option<Retained<UITextPosition>>;
 
         #[method_id(@__retain_semantics Other characterRangeByExtendingPosition:inDirection:)]
         unsafe fn characterRangeByExtendingPosition_inDirection(
             &self,
             position: &UITextPosition,
             direction: UITextLayoutDirection,
-        ) -> Option<Id<UITextRange>>;
+        ) -> Option<Retained<UITextRange>>;
 
         #[cfg(feature = "NSText")]
         #[method(baseWritingDirectionForPosition:inDirection:)]
@@ -364,20 +365,21 @@ extern_protocol!(
         unsafe fn selectionRectsForRange(
             &self,
             range: &UITextRange,
-        ) -> Id<NSArray<UITextSelectionRect>>;
+        ) -> Retained<NSArray<UITextSelectionRect>>;
 
         #[method_id(@__retain_semantics Other closestPositionToPoint:)]
-        unsafe fn closestPositionToPoint(&self, point: CGPoint) -> Option<Id<UITextPosition>>;
+        unsafe fn closestPositionToPoint(&self, point: CGPoint)
+            -> Option<Retained<UITextPosition>>;
 
         #[method_id(@__retain_semantics Other closestPositionToPoint:withinRange:)]
         unsafe fn closestPositionToPoint_withinRange(
             &self,
             point: CGPoint,
             range: &UITextRange,
-        ) -> Option<Id<UITextPosition>>;
+        ) -> Option<Retained<UITextPosition>>;
 
         #[method_id(@__retain_semantics Other characterRangeAtPoint:)]
-        unsafe fn characterRangeAtPoint(&self, point: CGPoint) -> Option<Id<UITextRange>>;
+        unsafe fn characterRangeAtPoint(&self, point: CGPoint) -> Option<Retained<UITextRange>>;
 
         #[optional]
         #[method(shouldChangeTextInRange:replacementText:)]
@@ -393,7 +395,7 @@ extern_protocol!(
             &self,
             position: &UITextPosition,
             direction: UITextStorageDirection,
-        ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other positionWithinRange:atCharacterOffset:)]
@@ -401,7 +403,7 @@ extern_protocol!(
             &self,
             range: &UITextRange,
             offset: NSInteger,
-        ) -> Option<Id<UITextPosition>>;
+        ) -> Option<Retained<UITextPosition>>;
 
         #[optional]
         #[method(characterOffsetOfPosition:withinRange:)]
@@ -414,7 +416,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
         #[method_id(@__retain_semantics Other textInputView)]
-        unsafe fn textInputView(&self) -> Id<UIView>;
+        unsafe fn textInputView(&self) -> Retained<UIView>;
 
         #[optional]
         #[method(selectionAffinity)]
@@ -438,7 +440,7 @@ extern_protocol!(
 
         #[optional]
         #[method_id(@__retain_semantics Other insertDictationResultPlaceholder)]
-        unsafe fn insertDictationResultPlaceholder(&self) -> Id<AnyObject>;
+        unsafe fn insertDictationResultPlaceholder(&self) -> Retained<AnyObject>;
 
         #[optional]
         #[method(frameForDictationResultPlaceholder:)]
@@ -471,7 +473,8 @@ extern_protocol!(
 
         #[optional]
         #[method_id(@__retain_semantics Other insertTextPlaceholderWithSize:)]
-        unsafe fn insertTextPlaceholderWithSize(&self, size: CGSize) -> Id<UITextPlaceholder>;
+        unsafe fn insertTextPlaceholderWithSize(&self, size: CGSize)
+            -> Retained<UITextPlaceholder>;
 
         #[optional]
         #[method(removeTextPlaceholder:)]
@@ -500,7 +503,7 @@ extern_protocol!(
             &self,
             text_range: &UITextRange,
             suggested_actions: &NSArray<UIMenuElement>,
-        ) -> Option<Id<UIMenu>>;
+        ) -> Option<Retained<UIMenu>>;
 
         #[cfg(feature = "UIEditMenuInteraction")]
         #[optional]
@@ -555,10 +558,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextPosition {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -580,10 +583,10 @@ extern_methods!(
         pub unsafe fn isEmpty(&self) -> bool;
 
         #[method_id(@__retain_semantics Other start)]
-        pub unsafe fn start(&self) -> Id<UITextPosition>;
+        pub unsafe fn start(&self) -> Retained<UITextPosition>;
 
         #[method_id(@__retain_semantics Other end)]
-        pub unsafe fn end(&self) -> Id<UITextPosition>;
+        pub unsafe fn end(&self) -> Retained<UITextPosition>;
     }
 );
 
@@ -591,10 +594,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextRange {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -637,10 +640,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextSelectionRect {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -674,7 +677,7 @@ extern_protocol!(
             position: &UITextPosition,
             granularity: UITextGranularity,
             direction: UITextDirection,
-        ) -> Option<Id<UITextRange>>;
+        ) -> Option<Retained<UITextRange>>;
 
         #[method(isPosition:atBoundary:inDirection:)]
         unsafe fn isPosition_atBoundary_inDirection(
@@ -690,7 +693,7 @@ extern_protocol!(
             position: &UITextPosition,
             granularity: UITextGranularity,
             direction: UITextDirection,
-        ) -> Option<Id<UITextPosition>>;
+        ) -> Option<Retained<UITextPosition>>;
 
         #[method(isPosition:withinTextUnit:inDirection:)]
         unsafe fn isPosition_withinTextUnit_inDirection(
@@ -725,7 +728,7 @@ extern_methods!(
         pub unsafe fn initWithTextInput(
             this: Allocated<Self>,
             text_input: &UIResponder,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -733,10 +736,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextInputStringTokenizer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -759,14 +762,15 @@ unsafe impl NSSecureCoding for UITextInputMode {}
 extern_methods!(
     unsafe impl UITextInputMode {
         #[method_id(@__retain_semantics Other primaryLanguage)]
-        pub unsafe fn primaryLanguage(&self) -> Option<Id<NSString>>;
+        pub unsafe fn primaryLanguage(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other currentInputMode)]
-        pub unsafe fn currentInputMode(mtm: MainThreadMarker) -> Option<Id<UITextInputMode>>;
+        pub unsafe fn currentInputMode(mtm: MainThreadMarker) -> Option<Retained<UITextInputMode>>;
 
         #[method_id(@__retain_semantics Other activeInputModes)]
-        pub unsafe fn activeInputModes(mtm: MainThreadMarker) -> Id<NSArray<UITextInputMode>>;
+        pub unsafe fn activeInputModes(mtm: MainThreadMarker)
+            -> Retained<NSArray<UITextInputMode>>;
     }
 );
 
@@ -774,10 +778,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextInputMode {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

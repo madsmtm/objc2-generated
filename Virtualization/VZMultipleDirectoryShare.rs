@@ -25,24 +25,24 @@ extern_methods!(
     #[cfg(feature = "VZDirectoryShare")]
     unsafe impl VZMultipleDirectoryShare {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZSharedDirectory")]
         #[method_id(@__retain_semantics Init initWithDirectories:)]
         pub unsafe fn initWithDirectories(
             this: Allocated<Self>,
             directories: &NSDictionary<NSString, VZSharedDirectory>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "VZSharedDirectory")]
         #[method_id(@__retain_semantics Other directories)]
-        pub unsafe fn directories(&self) -> Id<NSDictionary<NSString, VZSharedDirectory>>;
+        pub unsafe fn directories(&self) -> Retained<NSDictionary<NSString, VZSharedDirectory>>;
 
         #[method(validateName:error:_)]
-        pub unsafe fn validateName_error(name: &NSString) -> Result<(), Id<NSError>>;
+        pub unsafe fn validateName_error(name: &NSString) -> Result<(), Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other canonicalizedNameFromName:)]
-        pub unsafe fn canonicalizedNameFromName(name: &NSString) -> Option<Id<NSString>>;
+        pub unsafe fn canonicalizedNameFromName(name: &NSString) -> Option<Retained<NSString>>;
     }
 );
 
@@ -51,6 +51,6 @@ extern_methods!(
     #[cfg(feature = "VZDirectoryShare")]
     unsafe impl VZMultipleDirectoryShare {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

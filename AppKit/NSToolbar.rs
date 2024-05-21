@@ -83,10 +83,10 @@ extern_methods!(
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSToolbarIdentifier,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(insertItemWithItemIdentifier:atIndex:)]
         pub unsafe fn insertItemWithItemIdentifier_atIndex(
@@ -99,7 +99,7 @@ extern_methods!(
         pub unsafe fn removeItemAtIndex(&self, index: NSInteger);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSToolbarDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSToolbarDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSToolbarDelegate>>);
@@ -123,7 +123,7 @@ extern_methods!(
         pub unsafe fn setDisplayMode(&self, display_mode: NSToolbarDisplayMode);
 
         #[method_id(@__retain_semantics Other selectedItemIdentifier)]
-        pub unsafe fn selectedItemIdentifier(&self) -> Option<Id<NSToolbarItemIdentifier>>;
+        pub unsafe fn selectedItemIdentifier(&self) -> Option<Retained<NSToolbarItemIdentifier>>;
 
         #[method(setSelectedItemIdentifier:)]
         pub unsafe fn setSelectedItemIdentifier(
@@ -152,18 +152,18 @@ extern_methods!(
         pub unsafe fn setAllowsUserCustomization(&self, allows_user_customization: bool);
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSToolbarIdentifier>;
+        pub unsafe fn identifier(&self) -> Retained<NSToolbarIdentifier>;
 
         #[cfg(feature = "NSToolbarItem")]
         #[method_id(@__retain_semantics Other items)]
-        pub unsafe fn items(&self) -> Id<NSArray<NSToolbarItem>>;
+        pub unsafe fn items(&self) -> Retained<NSArray<NSToolbarItem>>;
 
         #[cfg(feature = "NSToolbarItem")]
         #[method_id(@__retain_semantics Other visibleItems)]
-        pub unsafe fn visibleItems(&self) -> Option<Id<NSArray<NSToolbarItem>>>;
+        pub unsafe fn visibleItems(&self) -> Option<Retained<NSArray<NSToolbarItem>>>;
 
         #[method_id(@__retain_semantics Other centeredItemIdentifiers)]
-        pub unsafe fn centeredItemIdentifiers(&self) -> Id<NSSet<NSToolbarItemIdentifier>>;
+        pub unsafe fn centeredItemIdentifiers(&self) -> Retained<NSSet<NSToolbarItemIdentifier>>;
 
         #[method(setCenteredItemIdentifiers:)]
         pub unsafe fn setCenteredItemIdentifiers(
@@ -173,7 +173,7 @@ extern_methods!(
 
         #[deprecated = "Use the centeredItemIdentifiers property instead"]
         #[method_id(@__retain_semantics Other centeredItemIdentifier)]
-        pub unsafe fn centeredItemIdentifier(&self) -> Option<Id<NSToolbarItemIdentifier>>;
+        pub unsafe fn centeredItemIdentifier(&self) -> Option<Retained<NSToolbarItemIdentifier>>;
 
         #[deprecated = "Use the centeredItemIdentifiers property instead"]
         #[method(setCenteredItemIdentifier:)]
@@ -195,7 +195,8 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other configurationDictionary)]
-        pub unsafe fn configurationDictionary(&self) -> Id<NSDictionary<NSString, AnyObject>>;
+        pub unsafe fn configurationDictionary(&self)
+            -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[method(validateVisibleItems)]
         pub unsafe fn validateVisibleItems(&self);
@@ -212,7 +213,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSToolbar {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -226,35 +227,35 @@ extern_protocol!(
             toolbar: &NSToolbar,
             item_identifier: &NSToolbarItemIdentifier,
             flag: bool,
-        ) -> Option<Id<NSToolbarItem>>;
+        ) -> Option<Retained<NSToolbarItem>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other toolbarDefaultItemIdentifiers:)]
         unsafe fn toolbarDefaultItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
-        ) -> Id<NSArray<NSToolbarItemIdentifier>>;
+        ) -> Retained<NSArray<NSToolbarItemIdentifier>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other toolbarAllowedItemIdentifiers:)]
         unsafe fn toolbarAllowedItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
-        ) -> Id<NSArray<NSToolbarItemIdentifier>>;
+        ) -> Retained<NSArray<NSToolbarItemIdentifier>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other toolbarSelectableItemIdentifiers:)]
         unsafe fn toolbarSelectableItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
-        ) -> Id<NSArray<NSToolbarItemIdentifier>>;
+        ) -> Retained<NSArray<NSToolbarItemIdentifier>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other toolbarImmovableItemIdentifiers:)]
         unsafe fn toolbarImmovableItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
-        ) -> Id<NSSet<NSToolbarItemIdentifier>>;
+        ) -> Retained<NSSet<NSToolbarItemIdentifier>>;
 
         #[optional]
         #[method(toolbar:itemIdentifier:canBeInsertedAtIndex:)]
@@ -291,7 +292,7 @@ extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use NSTitlebarAccessoryViewController with NSWindow instead"]
         #[method_id(@__retain_semantics Other fullScreenAccessoryView)]
-        pub unsafe fn fullScreenAccessoryView(&self) -> Option<Id<NSView>>;
+        pub unsafe fn fullScreenAccessoryView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use NSTitlebarAccessoryViewController with NSWindow instead"]

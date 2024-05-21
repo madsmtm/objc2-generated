@@ -25,11 +25,11 @@ extern_methods!(
     #[cfg(feature = "VZDirectorySharingDevice")]
     unsafe impl VZVirtioFileSystemDevice {
         #[method_id(@__retain_semantics Other tag)]
-        pub unsafe fn tag(&self) -> Id<NSString>;
+        pub unsafe fn tag(&self) -> Retained<NSString>;
 
         #[cfg(feature = "VZDirectoryShare")]
         #[method_id(@__retain_semantics Other share)]
-        pub unsafe fn share(&self) -> Option<Id<VZDirectoryShare>>;
+        pub unsafe fn share(&self) -> Option<Retained<VZDirectoryShare>>;
 
         #[cfg(feature = "VZDirectoryShare")]
         #[method(setShare:)]
@@ -42,9 +42,9 @@ extern_methods!(
     #[cfg(feature = "VZDirectorySharingDevice")]
     unsafe impl VZVirtioFileSystemDevice {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

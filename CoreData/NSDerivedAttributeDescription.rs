@@ -31,7 +31,7 @@ extern_methods!(
     #[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
     unsafe impl NSDerivedAttributeDescription {
         #[method_id(@__retain_semantics Other derivationExpression)]
-        pub unsafe fn derivationExpression(&self) -> Option<Id<NSExpression>>;
+        pub unsafe fn derivationExpression(&self) -> Option<Retained<NSExpression>>;
 
         #[method(setDerivationExpression:)]
         pub unsafe fn setDerivationExpression(&self, derivation_expression: Option<&NSExpression>);
@@ -43,9 +43,9 @@ extern_methods!(
     #[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
     unsafe impl NSDerivedAttributeDescription {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -32,8 +32,9 @@ extern_methods!(
     unsafe impl MXCellularConditionMetric {
         #[cfg(all(feature = "MXHistogram", feature = "MXUnit"))]
         #[method_id(@__retain_semantics Other histogrammedCellularConditionTime)]
-        pub unsafe fn histogrammedCellularConditionTime(&self)
-            -> Id<MXHistogram<MXUnitSignalBars>>;
+        pub unsafe fn histogrammedCellularConditionTime(
+            &self,
+        ) -> Retained<MXHistogram<MXUnitSignalBars>>;
     }
 );
 
@@ -42,9 +43,9 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXCellularConditionMetric {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

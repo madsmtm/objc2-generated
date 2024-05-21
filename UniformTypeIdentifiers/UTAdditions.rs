@@ -15,14 +15,14 @@ extern_category!(
             &self,
             partial_name: &NSString,
             content_type: &UTType,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(feature = "UTType")]
         #[method_id(@__retain_semantics Other stringByAppendingPathExtensionForType:)]
         unsafe fn stringByAppendingPathExtensionForType(
             &self,
             content_type: &UTType,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
     }
 
     unsafe impl NSStringUTAdditions for NSString {}
@@ -38,11 +38,14 @@ extern_category!(
             &self,
             partial_name: &NSString,
             content_type: &UTType,
-        ) -> Id<NSURL>;
+        ) -> Retained<NSURL>;
 
         #[cfg(feature = "UTType")]
         #[method_id(@__retain_semantics Other URLByAppendingPathExtensionForType:)]
-        unsafe fn URLByAppendingPathExtensionForType(&self, content_type: &UTType) -> Id<NSURL>;
+        unsafe fn URLByAppendingPathExtensionForType(
+            &self,
+            content_type: &UTType,
+        ) -> Retained<NSURL>;
     }
 
     unsafe impl NSURLUTAdditions for NSURL {}

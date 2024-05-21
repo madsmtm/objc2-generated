@@ -28,28 +28,28 @@ unsafe impl NSSecureCoding for HKAttachment {}
 extern_methods!(
     unsafe impl HKAttachment {
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSUUID>;
+        pub unsafe fn identifier(&self) -> Retained<NSUUID>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         #[method_id(@__retain_semantics Other contentType)]
-        pub unsafe fn contentType(&self) -> Id<UTType>;
+        pub unsafe fn contentType(&self) -> Retained<UTType>;
 
         #[method(size)]
         pub unsafe fn size(&self) -> NSInteger;
 
         #[method_id(@__retain_semantics Other creationDate)]
-        pub unsafe fn creationDate(&self) -> Id<NSDate>;
+        pub unsafe fn creationDate(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other metadata)]
-        pub unsafe fn metadata(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -105,22 +105,22 @@ unsafe impl NSSecureCoding for CALayer {}
 extern_methods!(
     unsafe impl CALayer {
         #[method_id(@__retain_semantics Other layer)]
-        pub fn layer() -> Id<Self>;
+        pub fn layer() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Allocated<Self>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithLayer:)]
-        pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Id<Self>;
+        pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other presentationLayer)]
-        pub unsafe fn presentationLayer(&self) -> Option<Id<Self>>;
+        pub unsafe fn presentationLayer(&self) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other modelLayer)]
-        pub unsafe fn modelLayer(&self) -> Id<Self>;
+        pub unsafe fn modelLayer(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other defaultValueForKey:)]
-        pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Id<AnyObject>>;
+        pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[method(needsDisplayForKey:)]
         pub unsafe fn needsDisplayForKey(key: &NSString) -> bool;
@@ -194,13 +194,13 @@ extern_methods!(
         pub fn contentsAreFlipped(&self) -> bool;
 
         #[method_id(@__retain_semantics Other superlayer)]
-        pub fn superlayer(&self) -> Option<Id<CALayer>>;
+        pub fn superlayer(&self) -> Option<Retained<CALayer>>;
 
         #[method(removeFromSuperlayer)]
         pub fn removeFromSuperlayer(&self);
 
         #[method_id(@__retain_semantics Other sublayers)]
-        pub unsafe fn sublayers(&self) -> Option<Id<NSArray<CALayer>>>;
+        pub unsafe fn sublayers(&self) -> Option<Retained<NSArray<CALayer>>>;
 
         #[method(setSublayers:)]
         pub unsafe fn setSublayers(&self, sublayers: Option<&NSArray<CALayer>>);
@@ -229,7 +229,7 @@ extern_methods!(
         pub fn setSublayerTransform(&self, sublayer_transform: CATransform3D);
 
         #[method_id(@__retain_semantics Other mask)]
-        pub fn mask(&self) -> Option<Id<CALayer>>;
+        pub fn mask(&self) -> Option<Retained<CALayer>>;
 
         #[method(setMask:)]
         pub unsafe fn setMask(&self, mask: Option<&CALayer>);
@@ -264,13 +264,13 @@ extern_methods!(
             -> CFTimeInterval;
 
         #[method_id(@__retain_semantics Other hitTest:)]
-        pub fn hitTest(&self, p: CGPoint) -> Option<Id<CALayer>>;
+        pub fn hitTest(&self, p: CGPoint) -> Option<Retained<CALayer>>;
 
         #[method(containsPoint:)]
         pub fn containsPoint(&self, p: CGPoint) -> bool;
 
         #[method_id(@__retain_semantics Other contents)]
-        pub unsafe fn contents(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn contents(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setContents:)]
         pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
@@ -282,7 +282,7 @@ extern_methods!(
         pub fn setContentsRect(&self, contents_rect: CGRect);
 
         #[method_id(@__retain_semantics Other contentsGravity)]
-        pub fn contentsGravity(&self) -> Id<CALayerContentsGravity>;
+        pub fn contentsGravity(&self) -> Retained<CALayerContentsGravity>;
 
         #[method(setContentsGravity:)]
         pub fn setContentsGravity(&self, contents_gravity: &CALayerContentsGravity);
@@ -300,7 +300,7 @@ extern_methods!(
         pub fn setContentsCenter(&self, contents_center: CGRect);
 
         #[method_id(@__retain_semantics Other contentsFormat)]
-        pub fn contentsFormat(&self) -> Id<CALayerContentsFormat>;
+        pub fn contentsFormat(&self) -> Retained<CALayerContentsFormat>;
 
         #[method(setContentsFormat:)]
         pub fn setContentsFormat(&self, contents_format: &CALayerContentsFormat);
@@ -315,13 +315,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other minificationFilter)]
-        pub fn minificationFilter(&self) -> Id<CALayerContentsFilter>;
+        pub fn minificationFilter(&self) -> Retained<CALayerContentsFilter>;
 
         #[method(setMinificationFilter:)]
         pub fn setMinificationFilter(&self, minification_filter: &CALayerContentsFilter);
 
         #[method_id(@__retain_semantics Other magnificationFilter)]
-        pub fn magnificationFilter(&self) -> Id<CALayerContentsFilter>;
+        pub fn magnificationFilter(&self) -> Retained<CALayerContentsFilter>;
 
         #[method(setMagnificationFilter:)]
         pub fn setMagnificationFilter(&self, magnification_filter: &CALayerContentsFilter);
@@ -390,7 +390,7 @@ extern_methods!(
         pub fn setMaskedCorners(&self, masked_corners: CACornerMask);
 
         #[method_id(@__retain_semantics Other cornerCurve)]
-        pub fn cornerCurve(&self) -> Id<CALayerCornerCurve>;
+        pub fn cornerCurve(&self) -> Retained<CALayerCornerCurve>;
 
         #[method(setCornerCurve:)]
         pub fn setCornerCurve(&self, corner_curve: &CALayerCornerCurve);
@@ -417,19 +417,19 @@ extern_methods!(
         pub fn setAllowsGroupOpacity(&self, allows_group_opacity: bool);
 
         #[method_id(@__retain_semantics Other compositingFilter)]
-        pub unsafe fn compositingFilter(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn compositingFilter(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setCompositingFilter:)]
         pub unsafe fn setCompositingFilter(&self, compositing_filter: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other filters)]
-        pub unsafe fn filters(&self) -> Option<Id<NSArray>>;
+        pub unsafe fn filters(&self) -> Option<Retained<NSArray>>;
 
         #[method(setFilters:)]
         pub unsafe fn setFilters(&self, filters: Option<&NSArray>);
 
         #[method_id(@__retain_semantics Other backgroundFilters)]
-        pub unsafe fn backgroundFilters(&self) -> Option<Id<NSArray>>;
+        pub unsafe fn backgroundFilters(&self) -> Option<Retained<NSArray>>;
 
         #[method(setBackgroundFilters:)]
         pub unsafe fn setBackgroundFilters(&self, background_filters: Option<&NSArray>);
@@ -471,7 +471,7 @@ extern_methods!(
         pub fn setAutoresizingMask(&self, autoresizing_mask: CAAutoresizingMask);
 
         #[method_id(@__retain_semantics Other layoutManager)]
-        pub fn layoutManager(&self) -> Option<Id<ProtocolObject<dyn CALayoutManager>>>;
+        pub fn layoutManager(&self) -> Option<Retained<ProtocolObject<dyn CALayoutManager>>>;
 
         #[method(setLayoutManager:)]
         pub fn setLayoutManager(
@@ -501,13 +501,20 @@ extern_methods!(
         pub fn resizeWithOldSuperlayerSize(&self, size: CGSize);
 
         #[method_id(@__retain_semantics Other defaultActionForKey:)]
-        pub fn defaultActionForKey(event: &NSString) -> Option<Id<ProtocolObject<dyn CAAction>>>;
+        pub fn defaultActionForKey(
+            event: &NSString,
+        ) -> Option<Retained<ProtocolObject<dyn CAAction>>>;
 
         #[method_id(@__retain_semantics Other actionForKey:)]
-        pub fn actionForKey(&self, event: &NSString) -> Option<Id<ProtocolObject<dyn CAAction>>>;
+        pub fn actionForKey(
+            &self,
+            event: &NSString,
+        ) -> Option<Retained<ProtocolObject<dyn CAAction>>>;
 
         #[method_id(@__retain_semantics Other actions)]
-        pub fn actions(&self) -> Option<Id<NSDictionary<NSString, ProtocolObject<dyn CAAction>>>>;
+        pub fn actions(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSString, ProtocolObject<dyn CAAction>>>>;
 
         #[method(setActions:)]
         pub fn setActions(
@@ -526,26 +533,26 @@ extern_methods!(
         pub fn removeAnimationForKey(&self, key: &NSString);
 
         #[method_id(@__retain_semantics Other animationKeys)]
-        pub fn animationKeys(&self) -> Option<Id<NSArray<NSString>>>;
+        pub fn animationKeys(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(feature = "CAAnimation")]
         #[method_id(@__retain_semantics Other animationForKey:)]
-        pub unsafe fn animationForKey(&self, key: &NSString) -> Option<Id<CAAnimation>>;
+        pub unsafe fn animationForKey(&self, key: &NSString) -> Option<Retained<CAAnimation>>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub fn name(&self) -> Option<Id<NSString>>;
+        pub fn name(&self) -> Option<Retained<NSString>>;
 
         #[method(setName:)]
         pub fn setName(&self, name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub fn delegate(&self) -> Option<Id<ProtocolObject<dyn CALayerDelegate>>>;
+        pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn CALayerDelegate>>>;
 
         #[method(setDelegate:)]
         pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn CALayerDelegate>>);
 
         #[method_id(@__retain_semantics Other style)]
-        pub unsafe fn style(&self) -> Option<Id<NSDictionary>>;
+        pub unsafe fn style(&self) -> Option<Retained<NSDictionary>>;
 
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: Option<&NSDictionary>);
@@ -556,13 +563,13 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CALayer {
         #[method_id(@__retain_semantics New new)]
-        pub fn new() -> Id<Self>;
+        pub fn new() -> Retained<Self>;
     }
 );
 
-impl DefaultId for CALayer {
+impl DefaultRetained for CALayer {
     #[inline]
-    fn default_id() -> Id<Self> {
+    fn default_id() -> Retained<Self> {
         Self::new()
     }
 }
@@ -621,7 +628,7 @@ extern_protocol!(
             &self,
             layer: &CALayer,
             event: &NSString,
-        ) -> Option<Id<ProtocolObject<dyn CAAction>>>;
+        ) -> Option<Retained<ProtocolObject<dyn CAAction>>>;
     }
 
     unsafe impl ProtocolType for dyn CALayerDelegate {}

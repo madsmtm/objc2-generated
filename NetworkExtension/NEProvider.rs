@@ -90,7 +90,7 @@ extern_methods!(
             enable_tls: bool,
             tls_parameters: Option<&NWTLSParameters>,
             delegate: Option<&AnyObject>,
-        ) -> Id<NWTCPConnection>;
+        ) -> Retained<NWTCPConnection>;
 
         #[cfg(all(
             feature = "NWEndpoint",
@@ -102,7 +102,7 @@ extern_methods!(
             &self,
             remote_endpoint: &NWEndpoint,
             local_endpoint: Option<&NWHostEndpoint>,
-        ) -> Id<NWUDPSession>;
+        ) -> Retained<NWUDPSession>;
 
         #[cfg(feature = "block2")]
         #[deprecated]
@@ -118,7 +118,7 @@ extern_methods!(
 
         #[cfg(feature = "NWPath")]
         #[method_id(@__retain_semantics Other defaultPath)]
-        pub unsafe fn defaultPath(&self) -> Option<Id<NWPath>>;
+        pub unsafe fn defaultPath(&self) -> Option<Retained<NWPath>>;
     }
 );
 
@@ -126,9 +126,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEProvider {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

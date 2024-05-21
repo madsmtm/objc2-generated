@@ -50,23 +50,23 @@ unsafe impl NSObjectProtocol for NSAlert {}
 extern_methods!(
     unsafe impl NSAlert {
         #[method_id(@__retain_semantics Other alertWithError:)]
-        pub unsafe fn alertWithError(error: &NSError, mtm: MainThreadMarker) -> Id<NSAlert>;
+        pub unsafe fn alertWithError(error: &NSError, mtm: MainThreadMarker) -> Retained<NSAlert>;
 
         #[method_id(@__retain_semantics Other messageText)]
-        pub unsafe fn messageText(&self) -> Id<NSString>;
+        pub unsafe fn messageText(&self) -> Retained<NSString>;
 
         #[method(setMessageText:)]
         pub unsafe fn setMessageText(&self, message_text: &NSString);
 
         #[method_id(@__retain_semantics Other informativeText)]
-        pub unsafe fn informativeText(&self) -> Id<NSString>;
+        pub unsafe fn informativeText(&self) -> Retained<NSString>;
 
         #[method(setInformativeText:)]
         pub unsafe fn setInformativeText(&self, informative_text: &NSString);
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other icon)]
-        pub unsafe fn icon(&self) -> Option<Id<NSImage>>;
+        pub unsafe fn icon(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         #[method(setIcon:)]
@@ -79,7 +79,7 @@ extern_methods!(
             feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other addButtonWithTitle:)]
-        pub unsafe fn addButtonWithTitle(&self, title: &NSString) -> Id<NSButton>;
+        pub unsafe fn addButtonWithTitle(&self, title: &NSString) -> Retained<NSButton>;
 
         #[cfg(all(
             feature = "NSButton",
@@ -88,7 +88,7 @@ extern_methods!(
             feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other buttons)]
-        pub unsafe fn buttons(&self) -> Id<NSArray<NSButton>>;
+        pub unsafe fn buttons(&self) -> Retained<NSArray<NSButton>>;
 
         #[method(alertStyle)]
         pub unsafe fn alertStyle(&self) -> NSAlertStyle;
@@ -104,21 +104,21 @@ extern_methods!(
 
         #[cfg(feature = "NSHelpManager")]
         #[method_id(@__retain_semantics Other helpAnchor)]
-        pub unsafe fn helpAnchor(&self) -> Option<Id<NSHelpAnchorName>>;
+        pub unsafe fn helpAnchor(&self) -> Option<Retained<NSHelpAnchorName>>;
 
         #[cfg(feature = "NSHelpManager")]
         #[method(setHelpAnchor:)]
         pub unsafe fn setHelpAnchor(&self, help_anchor: Option<&NSHelpAnchorName>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSAlertDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSAlertDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSAlertDelegate>>);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other accessoryView)]
-        pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
+        pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setAccessoryView:)]
@@ -144,7 +144,7 @@ extern_methods!(
             feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other suppressionButton)]
-        pub unsafe fn suppressionButton(&self) -> Option<Id<NSButton>>;
+        pub unsafe fn suppressionButton(&self) -> Option<Retained<NSButton>>;
 
         #[cfg(all(
             feature = "NSApplication",
@@ -161,7 +161,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method_id(@__retain_semantics Other window)]
-        pub unsafe fn window(&self) -> Id<NSWindow>;
+        pub unsafe fn window(&self) -> Retained<NSWindow>;
     }
 );
 
@@ -169,10 +169,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAlert {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

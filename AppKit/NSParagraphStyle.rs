@@ -79,8 +79,9 @@ unsafe impl NSSecureCoding for NSTextTab {}
 extern_methods!(
     unsafe impl NSTextTab {
         #[method_id(@__retain_semantics Other columnTerminatorsForLocale:)]
-        pub unsafe fn columnTerminatorsForLocale(a_locale: Option<&NSLocale>)
-            -> Id<NSCharacterSet>;
+        pub unsafe fn columnTerminatorsForLocale(
+            a_locale: Option<&NSLocale>,
+        ) -> Retained<NSCharacterSet>;
 
         #[cfg(feature = "NSText")]
         #[method_id(@__retain_semantics Init initWithTextAlignment:location:options:)]
@@ -89,7 +90,7 @@ extern_methods!(
             alignment: NSTextAlignment,
             loc: CGFloat,
             options: &NSDictionary<NSTextTabOptionKey, AnyObject>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSText")]
         #[method(alignment)]
@@ -99,7 +100,7 @@ extern_methods!(
         pub unsafe fn location(&self) -> CGFloat;
 
         #[method_id(@__retain_semantics Other options)]
-        pub unsafe fn options(&self) -> Id<NSDictionary<NSTextTabOptionKey, AnyObject>>;
+        pub unsafe fn options(&self) -> Retained<NSDictionary<NSTextTabOptionKey, AnyObject>>;
     }
 );
 
@@ -107,10 +108,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextTab {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -137,7 +138,7 @@ unsafe impl NSSecureCoding for NSParagraphStyle {}
 extern_methods!(
     unsafe impl NSParagraphStyle {
         #[method_id(@__retain_semantics Other defaultParagraphStyle)]
-        pub unsafe fn defaultParagraphStyle() -> Id<NSParagraphStyle>;
+        pub unsafe fn defaultParagraphStyle() -> Retained<NSParagraphStyle>;
 
         #[cfg(feature = "NSText")]
         #[method(defaultWritingDirectionForLanguage:)]
@@ -190,7 +191,7 @@ extern_methods!(
         pub unsafe fn usesDefaultHyphenation(&self) -> bool;
 
         #[method_id(@__retain_semantics Other tabStops)]
-        pub unsafe fn tabStops(&self) -> Id<NSArray<NSTextTab>>;
+        pub unsafe fn tabStops(&self) -> Retained<NSArray<NSTextTab>>;
 
         #[method(defaultTabInterval)]
         pub unsafe fn defaultTabInterval(&self) -> CGFloat;
@@ -203,11 +204,11 @@ extern_methods!(
 
         #[cfg(feature = "NSTextTable")]
         #[method_id(@__retain_semantics Other textBlocks)]
-        pub unsafe fn textBlocks(&self) -> Id<NSArray<NSTextBlock>>;
+        pub unsafe fn textBlocks(&self) -> Retained<NSArray<NSTextBlock>>;
 
         #[cfg(feature = "NSTextList")]
         #[method_id(@__retain_semantics Other textLists)]
-        pub unsafe fn textLists(&self) -> Id<NSArray<NSTextList>>;
+        pub unsafe fn textLists(&self) -> Retained<NSArray<NSTextList>>;
 
         #[method(headerLevel)]
         pub unsafe fn headerLevel(&self) -> NSInteger;
@@ -221,10 +222,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSParagraphStyle {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -340,7 +341,7 @@ extern_methods!(
         pub unsafe fn setUsesDefaultHyphenation(&self, uses_default_hyphenation: bool);
 
         #[method_id(@__retain_semantics Other tabStops)]
-        pub unsafe fn tabStops(&self) -> Id<NSArray<NSTextTab>>;
+        pub unsafe fn tabStops(&self) -> Retained<NSArray<NSTextTab>>;
 
         #[method(setTabStops:)]
         pub unsafe fn setTabStops(&self, tab_stops: Option<&NSArray<NSTextTab>>);
@@ -380,7 +381,7 @@ extern_methods!(
 
         #[cfg(feature = "NSTextTable")]
         #[method_id(@__retain_semantics Other textBlocks)]
-        pub unsafe fn textBlocks(&self) -> Id<NSArray<NSTextBlock>>;
+        pub unsafe fn textBlocks(&self) -> Retained<NSArray<NSTextBlock>>;
 
         #[cfg(feature = "NSTextTable")]
         #[method(setTextBlocks:)]
@@ -388,7 +389,7 @@ extern_methods!(
 
         #[cfg(feature = "NSTextList")]
         #[method_id(@__retain_semantics Other textLists)]
-        pub unsafe fn textLists(&self) -> Id<NSArray<NSTextList>>;
+        pub unsafe fn textLists(&self) -> Retained<NSArray<NSTextList>>;
 
         #[cfg(feature = "NSTextList")]
         #[method(setTextLists:)]
@@ -412,10 +413,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMutableParagraphStyle {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -446,7 +447,7 @@ extern_methods!(
             this: Allocated<Self>,
             r#type: NSTextTabType,
             loc: CGFloat,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(tabStopType)]
         pub unsafe fn tabStopType(&self) -> NSTextTabType;

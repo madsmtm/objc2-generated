@@ -11,7 +11,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other supportedProjectTypes)]
-        unsafe fn supportedProjectTypes(&self) -> Id<NSArray<PHProjectTypeDescription>>;
+        unsafe fn supportedProjectTypes(&self) -> Retained<NSArray<PHProjectTypeDescription>>;
 
         #[cfg(all(
             feature = "PHProjectTypeDescriptionDataSource",
@@ -23,7 +23,7 @@ extern_protocol!(
             &self,
             category: &PHProjectCategory,
             invalidator: &ProtocolObject<dyn PHProjectTypeDescriptionInvalidator>,
-        ) -> Id<ProtocolObject<dyn PHProjectTypeDescriptionDataSource>>;
+        ) -> Retained<ProtocolObject<dyn PHProjectTypeDescriptionDataSource>>;
 
         #[cfg(all(
             feature = "PHProjectExtensionContext",

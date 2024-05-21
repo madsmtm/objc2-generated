@@ -26,16 +26,16 @@ unsafe impl NSSecureCoding for HKSource {}
 extern_methods!(
     unsafe impl HKSource {
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other bundleIdentifier)]
-        pub unsafe fn bundleIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other defaultSource)]
-        pub unsafe fn defaultSource() -> Id<HKSource>;
+        pub unsafe fn defaultSource() -> Retained<HKSource>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -43,6 +43,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKSource {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -28,13 +28,13 @@ extern_methods!(
         pub unsafe fn isIndexingEnabled(&self) -> bool;
 
         #[method_id(@__retain_semantics Other domainIdentifier)]
-        pub unsafe fn domainIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn domainIdentifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other indexName)]
-        pub unsafe fn indexName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn indexName(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(
             feature = "NSPersistentStoreCoordinator",
@@ -45,7 +45,7 @@ extern_methods!(
             this: Allocated<Self>,
             description: &NSPersistentStoreDescription,
             psc: &NSPersistentStoreCoordinator,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "NSManagedObjectModel",
@@ -57,7 +57,7 @@ extern_methods!(
             this: Allocated<Self>,
             description: &NSPersistentStoreDescription,
             model: &NSManagedObjectModel,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(startSpotlightIndexing)]
         pub unsafe fn startSpotlightIndexing(&self);
@@ -78,6 +78,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCoreDataCoreSpotlightDelegate {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

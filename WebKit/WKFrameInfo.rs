@@ -28,16 +28,16 @@ extern_methods!(
         pub unsafe fn isMainFrame(&self) -> bool;
 
         #[method_id(@__retain_semantics Other request)]
-        pub unsafe fn request(&self) -> Id<NSURLRequest>;
+        pub unsafe fn request(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "WKSecurityOrigin")]
         #[method_id(@__retain_semantics Other securityOrigin)]
-        pub unsafe fn securityOrigin(&self) -> Id<WKSecurityOrigin>;
+        pub unsafe fn securityOrigin(&self) -> Retained<WKSecurityOrigin>;
 
         #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other webView)]
-        pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Id<WKWebView>>;
+        pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Retained<WKWebView>>;
     }
 );
 
@@ -45,9 +45,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKFrameInfo {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

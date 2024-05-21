@@ -103,7 +103,7 @@ extern_methods!(
     unsafe impl CMDeviceMotion {
         #[cfg(feature = "CMAttitude")]
         #[method_id(@__retain_semantics Other attitude)]
-        pub unsafe fn attitude(&self) -> Id<CMAttitude>;
+        pub unsafe fn attitude(&self) -> Retained<CMAttitude>;
 
         #[cfg(feature = "CMGyro")]
         #[method(rotationRate)]
@@ -134,9 +134,9 @@ extern_methods!(
     #[cfg(feature = "CMLogItem")]
     unsafe impl CMDeviceMotion {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -29,12 +29,12 @@ extern_methods!(
             interested_events: MLUpdateProgressEvent,
             progress_handler: Option<&block2::Block<dyn Fn(NonNull<MLUpdateContext>)>>,
             completion_handler: &block2::Block<dyn Fn(NonNull<MLUpdateContext>)>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

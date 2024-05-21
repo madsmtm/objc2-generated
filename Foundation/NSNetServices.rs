@@ -81,7 +81,7 @@ extern_methods!(
             r#type: &NSString,
             name: &NSString,
             port: c_int,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
@@ -91,7 +91,7 @@ extern_methods!(
             domain: &NSString,
             r#type: &NSString,
             name: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
@@ -113,7 +113,8 @@ extern_methods!(
 
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSNetServiceDelegate>>>;
+        pub unsafe fn delegate(&self)
+            -> Option<Retained<ProtocolObject<dyn NSNetServiceDelegate>>>;
 
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(setDelegate:)]
@@ -131,27 +132,27 @@ extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSString>;
+        pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other domain)]
-        pub unsafe fn domain(&self) -> Id<NSString>;
+        pub unsafe fn domain(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other hostName)]
-        pub unsafe fn hostName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn hostName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSData"))]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other addresses)]
-        pub unsafe fn addresses(&self) -> Option<Id<NSArray<NSData>>>;
+        pub unsafe fn addresses(&self) -> Option<Retained<NSArray<NSData>>>;
 
         #[method(port)]
         pub unsafe fn port(&self) -> NSInteger;
@@ -176,14 +177,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dictionaryFromTXTRecordData:)]
         pub unsafe fn dictionaryFromTXTRecordData(
             txt_data: &NSData,
-        ) -> Id<NSDictionary<NSString, NSData>>;
+        ) -> Retained<NSDictionary<NSString, NSData>>;
 
         #[cfg(all(feature = "NSData", feature = "NSDictionary", feature = "NSString"))]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other dataFromTXTRecordDictionary:)]
         pub unsafe fn dataFromTXTRecordDictionary(
             txt_dictionary: &NSDictionary<NSString, NSData>,
-        ) -> Id<NSData>;
+        ) -> Retained<NSData>;
 
         #[cfg(feature = "NSDate")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
@@ -198,7 +199,7 @@ extern_methods!(
         #[cfg(feature = "NSData")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other TXTRecordData)]
-        pub unsafe fn TXTRecordData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn TXTRecordData(&self) -> Option<Retained<NSData>>;
 
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(startMonitoring)]
@@ -214,10 +215,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSNetService {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -238,13 +239,13 @@ extern_methods!(
     unsafe impl NSNetServiceBrowser {
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSNetServiceBrowserDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSNetServiceBrowserDelegate>>>;
 
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(setDelegate:)]
@@ -304,7 +305,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSNetServiceBrowser {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

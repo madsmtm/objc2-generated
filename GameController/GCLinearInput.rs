@@ -51,7 +51,7 @@ extern_protocol!(
 
         #[cfg(feature = "GCPhysicalInputSource")]
         #[method_id(@__retain_semantics Other sources)]
-        unsafe fn sources(&self) -> Id<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
+        unsafe fn sources(&self) -> Retained<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }
 
     unsafe impl ProtocolType for dyn GCLinearInput {}

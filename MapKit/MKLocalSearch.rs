@@ -28,14 +28,14 @@ extern_methods!(
         pub unsafe fn initWithRequest(
             this: Allocated<Self>,
             request: &MKLocalSearchRequest,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MKLocalPointsOfInterestRequest")]
         #[method_id(@__retain_semantics Init initWithPointsOfInterestRequest:)]
         pub unsafe fn initWithPointsOfInterestRequest(
             this: Allocated<Self>,
             request: &MKLocalPointsOfInterestRequest,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKLocalSearchResponse", feature = "block2"))]
         #[method(startWithCompletionHandler:)]
@@ -56,9 +56,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKLocalSearch {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

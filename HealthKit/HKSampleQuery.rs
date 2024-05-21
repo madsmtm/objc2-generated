@@ -30,7 +30,7 @@ extern_methods!(
         pub unsafe fn limit(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other sortDescriptors)]
-        pub unsafe fn sortDescriptors(&self) -> Option<Id<NSArray<NSSortDescriptor>>>;
+        pub unsafe fn sortDescriptors(&self) -> Option<Retained<NSArray<NSSortDescriptor>>>;
 
         #[cfg(all(
             feature = "HKObject",
@@ -48,7 +48,7 @@ extern_methods!(
             results_handler: &block2::Block<
                 dyn Fn(NonNull<HKSampleQuery>, *mut NSArray<HKSample>, *mut NSError),
             >,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "HKObject",
@@ -64,7 +64,7 @@ extern_methods!(
             results_handler: &block2::Block<
                 dyn Fn(NonNull<HKSampleQuery>, *mut NSArray<HKSample>, *mut NSError),
             >,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "HKObject",
@@ -81,7 +81,7 @@ extern_methods!(
             results_handler: &block2::Block<
                 dyn Fn(NonNull<HKSampleQuery>, *mut NSArray<HKSample>, *mut NSError),
             >,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -90,7 +90,7 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKSampleQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -99,6 +99,6 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKSampleQuery {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

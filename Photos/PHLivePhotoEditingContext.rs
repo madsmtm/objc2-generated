@@ -36,15 +36,15 @@ extern_methods!(
         pub unsafe fn initWithLivePhotoEditingInput(
             this: Allocated<Self>,
             live_photo_input: &PHContentEditingInput,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other fullSizeImage)]
-        pub unsafe fn fullSizeImage(&self) -> Id<CIImage>;
+        pub unsafe fn fullSizeImage(&self) -> Retained<CIImage>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
         #[cfg(not(target_os = "watchos"))]
@@ -89,7 +89,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHLivePhotoEditingContext {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -117,7 +117,7 @@ extern_protocol!(
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other image)]
-        unsafe fn image(&self) -> Id<CIImage>;
+        unsafe fn image(&self) -> Retained<CIImage>;
 
         #[method(type)]
         unsafe fn r#type(&self) -> PHLivePhotoFrameType;

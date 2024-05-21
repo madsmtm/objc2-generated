@@ -27,12 +27,12 @@ extern_methods!(
         #[cfg(feature = "MLCPoolingDescriptor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptor)]
-        pub unsafe fn descriptor(&self) -> Id<MLCPoolingDescriptor>;
+        pub unsafe fn descriptor(&self) -> Retained<MLCPoolingDescriptor>;
 
         #[cfg(feature = "MLCPoolingDescriptor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithDescriptor:)]
-        pub unsafe fn layerWithDescriptor(descriptor: &MLCPoolingDescriptor) -> Id<Self>;
+        pub unsafe fn layerWithDescriptor(descriptor: &MLCPoolingDescriptor) -> Retained<Self>;
     }
 );
 
@@ -42,10 +42,10 @@ extern_methods!(
     unsafe impl MLCPoolingLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

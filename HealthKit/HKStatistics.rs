@@ -54,81 +54,93 @@ extern_methods!(
     unsafe impl HKStatistics {
         #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other quantityType)]
-        pub unsafe fn quantityType(&self) -> Id<HKQuantityType>;
+        pub unsafe fn quantityType(&self) -> Retained<HKQuantityType>;
 
         #[method_id(@__retain_semantics Other startDate)]
-        pub unsafe fn startDate(&self) -> Id<NSDate>;
+        pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other endDate)]
-        pub unsafe fn endDate(&self) -> Id<NSDate>;
+        pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "HKSource")]
         #[method_id(@__retain_semantics Other sources)]
-        pub unsafe fn sources(&self) -> Option<Id<NSArray<HKSource>>>;
+        pub unsafe fn sources(&self) -> Option<Retained<NSArray<HKSource>>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         #[method_id(@__retain_semantics Other averageQuantityForSource:)]
-        pub unsafe fn averageQuantityForSource(&self, source: &HKSource) -> Option<Id<HKQuantity>>;
+        pub unsafe fn averageQuantityForSource(
+            &self,
+            source: &HKSource,
+        ) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other averageQuantity)]
-        pub unsafe fn averageQuantity(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn averageQuantity(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         #[method_id(@__retain_semantics Other minimumQuantityForSource:)]
-        pub unsafe fn minimumQuantityForSource(&self, source: &HKSource) -> Option<Id<HKQuantity>>;
+        pub unsafe fn minimumQuantityForSource(
+            &self,
+            source: &HKSource,
+        ) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other minimumQuantity)]
-        pub unsafe fn minimumQuantity(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn minimumQuantity(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         #[method_id(@__retain_semantics Other maximumQuantityForSource:)]
-        pub unsafe fn maximumQuantityForSource(&self, source: &HKSource) -> Option<Id<HKQuantity>>;
+        pub unsafe fn maximumQuantityForSource(
+            &self,
+            source: &HKSource,
+        ) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other maximumQuantity)]
-        pub unsafe fn maximumQuantity(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn maximumQuantity(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         #[method_id(@__retain_semantics Other mostRecentQuantityForSource:)]
         pub unsafe fn mostRecentQuantityForSource(
             &self,
             source: &HKSource,
-        ) -> Option<Id<HKQuantity>>;
+        ) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other mostRecentQuantity)]
-        pub unsafe fn mostRecentQuantity(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn mostRecentQuantity(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKSource")]
         #[method_id(@__retain_semantics Other mostRecentQuantityDateIntervalForSource:)]
         pub unsafe fn mostRecentQuantityDateIntervalForSource(
             &self,
             source: &HKSource,
-        ) -> Option<Id<NSDateInterval>>;
+        ) -> Option<Retained<NSDateInterval>>;
 
         #[method_id(@__retain_semantics Other mostRecentQuantityDateInterval)]
-        pub unsafe fn mostRecentQuantityDateInterval(&self) -> Option<Id<NSDateInterval>>;
+        pub unsafe fn mostRecentQuantityDateInterval(&self) -> Option<Retained<NSDateInterval>>;
 
         #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         #[method_id(@__retain_semantics Other sumQuantityForSource:)]
-        pub unsafe fn sumQuantityForSource(&self, source: &HKSource) -> Option<Id<HKQuantity>>;
+        pub unsafe fn sumQuantityForSource(
+            &self,
+            source: &HKSource,
+        ) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other sumQuantity)]
-        pub unsafe fn sumQuantity(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn sumQuantity(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other duration)]
-        pub unsafe fn duration(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn duration(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         #[method_id(@__retain_semantics Other durationForSource:)]
-        pub unsafe fn durationForSource(&self, source: &HKSource) -> Option<Id<HKQuantity>>;
+        pub unsafe fn durationForSource(&self, source: &HKSource) -> Option<Retained<HKQuantity>>;
     }
 );
 
@@ -136,6 +148,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKStatistics {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

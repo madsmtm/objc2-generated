@@ -10,32 +10,32 @@ extern_methods!(
     #[cfg(feature = "CNContact")]
     unsafe impl CNContact {
         #[method_id(@__retain_semantics Other predicateForContactsMatchingName:)]
-        pub unsafe fn predicateForContactsMatchingName(name: &NSString) -> Id<NSPredicate>;
+        pub unsafe fn predicateForContactsMatchingName(name: &NSString) -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other predicateForContactsMatchingEmailAddress:)]
         pub unsafe fn predicateForContactsMatchingEmailAddress(
             email_address: &NSString,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "CNPhoneNumber")]
         #[method_id(@__retain_semantics Other predicateForContactsMatchingPhoneNumber:)]
         pub unsafe fn predicateForContactsMatchingPhoneNumber(
             phone_number: &CNPhoneNumber,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other predicateForContactsWithIdentifiers:)]
         pub unsafe fn predicateForContactsWithIdentifiers(
             identifiers: &NSArray<NSString>,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other predicateForContactsInGroupWithIdentifier:)]
         pub unsafe fn predicateForContactsInGroupWithIdentifier(
             group_identifier: &NSString,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[method_id(@__retain_semantics Other predicateForContactsInContainerWithIdentifier:)]
         pub unsafe fn predicateForContactsInContainerWithIdentifier(
             container_identifier: &NSString,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
     }
 );

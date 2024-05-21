@@ -25,25 +25,25 @@ extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKSource {
         #[method_id(@__retain_semantics Other sourceIdentifier)]
-        pub unsafe fn sourceIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn sourceIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "EKTypes")]
         #[method(sourceType)]
         pub unsafe fn sourceType(&self) -> EKSourceType;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[cfg(feature = "EKCalendar")]
         #[method_id(@__retain_semantics Other calendars)]
-        pub unsafe fn calendars(&self) -> Id<NSSet<EKCalendar>>;
+        pub unsafe fn calendars(&self) -> Retained<NSSet<EKCalendar>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKTypes"))]
         #[method_id(@__retain_semantics Other calendarsForEntityType:)]
         pub unsafe fn calendarsForEntityType(
             &self,
             entity_type: EKEntityType,
-        ) -> Id<NSSet<EKCalendar>>;
+        ) -> Retained<NSSet<EKCalendar>>;
 
         #[method(isDelegate)]
         pub unsafe fn isDelegate(&self) -> bool;
@@ -55,9 +55,9 @@ extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKSource {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

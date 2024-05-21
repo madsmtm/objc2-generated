@@ -20,7 +20,7 @@ unsafe impl NSObjectProtocol for NSSpeechRecognizer {}
 extern_methods!(
     unsafe impl NSSpeechRecognizer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Id<Self>>;
+        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
 
         #[method(startListening)]
         pub unsafe fn startListening(&self);
@@ -32,7 +32,7 @@ extern_methods!(
         pub unsafe fn delegate(
             &self,
             mtm: MainThreadMarker,
-        ) -> Option<Id<ProtocolObject<dyn NSSpeechRecognizerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSSpeechRecognizerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -41,13 +41,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other commands)]
-        pub unsafe fn commands(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn commands(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setCommands:)]
         pub unsafe fn setCommands(&self, commands: Option<&NSArray<NSString>>);
 
         #[method_id(@__retain_semantics Other displayedCommandsTitle)]
-        pub unsafe fn displayedCommandsTitle(&self) -> Option<Id<NSString>>;
+        pub unsafe fn displayedCommandsTitle(&self) -> Option<Retained<NSString>>;
 
         #[method(setDisplayedCommandsTitle:)]
         pub unsafe fn setDisplayedCommandsTitle(&self, displayed_commands_title: Option<&NSString>);
@@ -70,7 +70,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSpeechRecognizer {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

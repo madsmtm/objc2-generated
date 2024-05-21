@@ -24,7 +24,7 @@ unsafe impl NSSecureCoding for MXCallStackTree {}
 extern_methods!(
     unsafe impl MXCallStackTree {
         #[method_id(@__retain_semantics Other JSONRepresentation)]
-        pub unsafe fn JSONRepresentation(&self) -> Id<NSData>;
+        pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
     }
 );
 
@@ -32,9 +32,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXCallStackTree {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

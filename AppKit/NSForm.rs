@@ -156,14 +156,14 @@ extern_methods!(
         pub unsafe fn setTextFont(&self, font_obj: &NSFont);
 
         #[method_id(@__retain_semantics Other cellAtIndex:)]
-        pub unsafe fn cellAtIndex(&self, index: NSInteger) -> Option<Id<AnyObject>>;
+        pub unsafe fn cellAtIndex(&self, index: NSInteger) -> Option<Retained<AnyObject>>;
 
         #[method(drawCellAtIndex:)]
         pub unsafe fn drawCellAtIndex(&self, index: NSInteger);
 
         #[cfg(all(feature = "NSActionCell", feature = "NSCell", feature = "NSFormCell"))]
         #[method_id(@__retain_semantics Other addEntry:)]
-        pub unsafe fn addEntry(&self, title: &NSString) -> Id<NSFormCell>;
+        pub unsafe fn addEntry(&self, title: &NSString) -> Retained<NSFormCell>;
 
         #[cfg(all(feature = "NSActionCell", feature = "NSCell", feature = "NSFormCell"))]
         #[method_id(@__retain_semantics Other insertEntry:atIndex:)]
@@ -171,7 +171,7 @@ extern_methods!(
             &self,
             title: &NSString,
             index: NSInteger,
-        ) -> Option<Id<NSFormCell>>;
+        ) -> Option<Retained<NSFormCell>>;
 
         #[method(removeEntryAtIndex:)]
         pub unsafe fn removeEntryAtIndex(&self, index: NSInteger);
@@ -211,7 +211,7 @@ extern_methods!(
     ))]
     unsafe impl NSForm {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[cfg(feature = "NSCell")]
         #[method_id(@__retain_semantics Init initWithFrame:mode:prototype:numberOfRows:numberOfColumns:)]
@@ -222,7 +222,7 @@ extern_methods!(
             cell: &NSCell,
             rows_high: NSInteger,
             cols_wide: NSInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_cellClass_numberOfRows_numberOfColumns(
@@ -232,7 +232,7 @@ extern_methods!(
             factory_id: Option<&AnyClass>,
             rows_high: NSInteger,
             cols_wide: NSInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -246,7 +246,10 @@ extern_methods!(
     ))]
     unsafe impl NSForm {
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -260,7 +263,7 @@ extern_methods!(
     ))]
     unsafe impl NSForm {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -274,6 +277,6 @@ extern_methods!(
     ))]
     unsafe impl NSForm {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

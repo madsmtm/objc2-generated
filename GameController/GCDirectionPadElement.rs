@@ -9,31 +9,31 @@ extern_protocol!(
     pub unsafe trait GCDirectionPadElement: GCPhysicalInputElement {
         #[cfg(feature = "GCAxis2DInput")]
         #[method_id(@__retain_semantics Other xyAxes)]
-        unsafe fn xyAxes(&self) -> Id<ProtocolObject<dyn GCAxis2DInput>>;
+        unsafe fn xyAxes(&self) -> Retained<ProtocolObject<dyn GCAxis2DInput>>;
 
         #[cfg(feature = "GCAxisInput")]
         #[method_id(@__retain_semantics Other xAxis)]
-        unsafe fn xAxis(&self) -> Id<ProtocolObject<dyn GCAxisInput>>;
+        unsafe fn xAxis(&self) -> Retained<ProtocolObject<dyn GCAxisInput>>;
 
         #[cfg(feature = "GCAxisInput")]
         #[method_id(@__retain_semantics Other yAxis)]
-        unsafe fn yAxis(&self) -> Id<ProtocolObject<dyn GCAxisInput>>;
+        unsafe fn yAxis(&self) -> Retained<ProtocolObject<dyn GCAxisInput>>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         #[method_id(@__retain_semantics Other up)]
-        unsafe fn up(&self) -> Id<TodoProtocols>;
+        unsafe fn up(&self) -> Retained<TodoProtocols>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         #[method_id(@__retain_semantics Other down)]
-        unsafe fn down(&self) -> Id<TodoProtocols>;
+        unsafe fn down(&self) -> Retained<TodoProtocols>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         #[method_id(@__retain_semantics Other left)]
-        unsafe fn left(&self) -> Id<TodoProtocols>;
+        unsafe fn left(&self) -> Retained<TodoProtocols>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         #[method_id(@__retain_semantics Other right)]
-        unsafe fn right(&self) -> Id<TodoProtocols>;
+        unsafe fn right(&self) -> Retained<TodoProtocols>;
     }
 
     #[cfg(feature = "GCPhysicalInputElement")]

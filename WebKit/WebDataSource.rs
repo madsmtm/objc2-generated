@@ -25,39 +25,39 @@ extern_methods!(
         pub unsafe fn initWithRequest(
             this: Allocated<Self>,
             request: Option<&NSURLRequest>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Id<NSData>;
+        pub unsafe fn data(&self) -> Retained<NSData>;
 
         #[cfg(feature = "WebDocument")]
         #[deprecated]
         #[method_id(@__retain_semantics Other representation)]
         pub unsafe fn representation(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn WebDocumentRepresentation>>>;
+        ) -> Option<Retained<ProtocolObject<dyn WebDocumentRepresentation>>>;
 
         #[cfg(feature = "WebFrame")]
         #[deprecated]
         #[method_id(@__retain_semantics Other webFrame)]
-        pub unsafe fn webFrame(&self) -> Option<Id<WebFrame>>;
+        pub unsafe fn webFrame(&self) -> Option<Retained<WebFrame>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other initialRequest)]
-        pub unsafe fn initialRequest(&self) -> Option<Id<NSURLRequest>>;
+        pub unsafe fn initialRequest(&self) -> Option<Retained<NSURLRequest>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other request)]
-        pub unsafe fn request(&self) -> Option<Id<NSMutableURLRequest>>;
+        pub unsafe fn request(&self) -> Option<Retained<NSMutableURLRequest>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other response)]
-        pub unsafe fn response(&self) -> Option<Id<NSURLResponse>>;
+        pub unsafe fn response(&self) -> Option<Retained<NSURLResponse>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other textEncodingName)]
-        pub unsafe fn textEncodingName(&self) -> Id<NSString>;
+        pub unsafe fn textEncodingName(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(isLoading)]
@@ -65,30 +65,33 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other pageTitle)]
-        pub unsafe fn pageTitle(&self) -> Id<NSString>;
+        pub unsafe fn pageTitle(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other unreachableURL)]
-        pub unsafe fn unreachableURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn unreachableURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "WebArchive")]
         #[deprecated]
         #[method_id(@__retain_semantics Other webArchive)]
-        pub unsafe fn webArchive(&self) -> Option<Id<WebArchive>>;
+        pub unsafe fn webArchive(&self) -> Option<Retained<WebArchive>>;
 
         #[cfg(feature = "WebResource")]
         #[deprecated]
         #[method_id(@__retain_semantics Other mainResource)]
-        pub unsafe fn mainResource(&self) -> Option<Id<WebResource>>;
+        pub unsafe fn mainResource(&self) -> Option<Retained<WebResource>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other subresources)]
-        pub unsafe fn subresources(&self) -> Id<NSArray>;
+        pub unsafe fn subresources(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "WebResource")]
         #[deprecated]
         #[method_id(@__retain_semantics Other subresourceForURL:)]
-        pub unsafe fn subresourceForURL(&self, url: Option<&NSURL>) -> Option<Id<WebResource>>;
+        pub unsafe fn subresourceForURL(
+            &self,
+            url: Option<&NSURL>,
+        ) -> Option<Retained<WebResource>>;
 
         #[cfg(feature = "WebResource")]
         #[deprecated]
@@ -101,9 +104,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebDataSource {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

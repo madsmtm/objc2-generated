@@ -11,7 +11,9 @@ extern_methods!(
     unsafe impl MLModel {
         #[deprecated = "Use the asynchronous interface compileModelAtURL:completionHandler:error: instead."]
         #[method_id(@__retain_semantics Other compileModelAtURL:error:_)]
-        pub unsafe fn compileModelAtURL_error(model_url: &NSURL) -> Result<Id<NSURL>, Id<NSError>>;
+        pub unsafe fn compileModelAtURL_error(
+            model_url: &NSURL,
+        ) -> Result<Retained<NSURL>, Retained<NSError>>;
 
         #[cfg(feature = "block2")]
         #[method(compileModelAtURL:completionHandler:)]

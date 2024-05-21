@@ -24,24 +24,26 @@ unsafe impl NSObjectProtocol for MLModelStructureProgramOperation {}
 extern_methods!(
     unsafe impl MLModelStructureProgramOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other operatorName)]
-        pub unsafe fn operatorName(&self) -> Id<NSString>;
+        pub unsafe fn operatorName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MLModelStructureProgramArgument")]
         #[method_id(@__retain_semantics Other inputs)]
-        pub unsafe fn inputs(&self) -> Id<NSDictionary<NSString, MLModelStructureProgramArgument>>;
+        pub unsafe fn inputs(
+            &self,
+        ) -> Retained<NSDictionary<NSString, MLModelStructureProgramArgument>>;
 
         #[cfg(feature = "MLModelStructureProgramNamedValueType")]
         #[method_id(@__retain_semantics Other outputs)]
-        pub unsafe fn outputs(&self) -> Id<NSArray<MLModelStructureProgramNamedValueType>>;
+        pub unsafe fn outputs(&self) -> Retained<NSArray<MLModelStructureProgramNamedValueType>>;
 
         #[cfg(feature = "MLModelStructureProgramBlock")]
         #[method_id(@__retain_semantics Other blocks)]
-        pub unsafe fn blocks(&self) -> Id<NSArray<MLModelStructureProgramBlock>>;
+        pub unsafe fn blocks(&self) -> Retained<NSArray<MLModelStructureProgramBlock>>;
     }
 );

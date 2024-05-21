@@ -42,7 +42,7 @@ extern_methods!(
         pub unsafe fn setFilteredTraits(&self, filtered_traits: UIFontDescriptorSymbolicTraits);
 
         #[method_id(@__retain_semantics Other filteredLanguagesPredicate)]
-        pub unsafe fn filteredLanguagesPredicate(&self) -> Option<Id<NSPredicate>>;
+        pub unsafe fn filteredLanguagesPredicate(&self) -> Option<Retained<NSPredicate>>;
 
         #[method(setFilteredLanguagesPredicate:)]
         pub unsafe fn setFilteredLanguagesPredicate(
@@ -54,7 +54,7 @@ extern_methods!(
         pub unsafe fn filterPredicateForFilteredLanguages(
             filtered_languages: &NSArray<NSString>,
             mtm: MainThreadMarker,
-        ) -> Option<Id<NSPredicate>>;
+        ) -> Option<Retained<NSPredicate>>;
     }
 );
 
@@ -62,9 +62,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIFontPickerViewControllerConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

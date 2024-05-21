@@ -78,21 +78,27 @@ extern_methods!(
     unsafe impl UITableViewController {
         #[cfg(feature = "UITableView")]
         #[method_id(@__retain_semantics Init initWithStyle:)]
-        pub unsafe fn initWithStyle(this: Allocated<Self>, style: UITableViewStyle) -> Id<Self>;
+        pub unsafe fn initWithStyle(
+            this: Allocated<Self>,
+            style: UITableViewStyle,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "UIScrollView", feature = "UITableView", feature = "UIView"))]
         #[method_id(@__retain_semantics Other tableView)]
-        pub unsafe fn tableView(&self) -> Option<Id<UITableView>>;
+        pub unsafe fn tableView(&self) -> Option<Retained<UITableView>>;
 
         #[cfg(all(feature = "UIScrollView", feature = "UITableView", feature = "UIView"))]
         #[method(setTableView:)]
@@ -113,7 +119,7 @@ extern_methods!(
             feature = "UIView"
         ))]
         #[method_id(@__retain_semantics Other refreshControl)]
-        pub unsafe fn refreshControl(&self) -> Option<Id<UIRefreshControl>>;
+        pub unsafe fn refreshControl(&self) -> Option<Retained<UIRefreshControl>>;
 
         #[cfg(all(
             feature = "UIControl",
@@ -130,9 +136,9 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UITableViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

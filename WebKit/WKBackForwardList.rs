@@ -21,27 +21,30 @@ extern_methods!(
     unsafe impl WKBackForwardList {
         #[cfg(feature = "WKBackForwardListItem")]
         #[method_id(@__retain_semantics Other currentItem)]
-        pub unsafe fn currentItem(&self) -> Option<Id<WKBackForwardListItem>>;
+        pub unsafe fn currentItem(&self) -> Option<Retained<WKBackForwardListItem>>;
 
         #[cfg(feature = "WKBackForwardListItem")]
         #[method_id(@__retain_semantics Other backItem)]
-        pub unsafe fn backItem(&self) -> Option<Id<WKBackForwardListItem>>;
+        pub unsafe fn backItem(&self) -> Option<Retained<WKBackForwardListItem>>;
 
         #[cfg(feature = "WKBackForwardListItem")]
         #[method_id(@__retain_semantics Other forwardItem)]
-        pub unsafe fn forwardItem(&self) -> Option<Id<WKBackForwardListItem>>;
+        pub unsafe fn forwardItem(&self) -> Option<Retained<WKBackForwardListItem>>;
 
         #[cfg(feature = "WKBackForwardListItem")]
         #[method_id(@__retain_semantics Other itemAtIndex:)]
-        pub unsafe fn itemAtIndex(&self, index: NSInteger) -> Option<Id<WKBackForwardListItem>>;
+        pub unsafe fn itemAtIndex(
+            &self,
+            index: NSInteger,
+        ) -> Option<Retained<WKBackForwardListItem>>;
 
         #[cfg(feature = "WKBackForwardListItem")]
         #[method_id(@__retain_semantics Other backList)]
-        pub unsafe fn backList(&self) -> Id<NSArray<WKBackForwardListItem>>;
+        pub unsafe fn backList(&self) -> Retained<NSArray<WKBackForwardListItem>>;
 
         #[cfg(feature = "WKBackForwardListItem")]
         #[method_id(@__retain_semantics Other forwardList)]
-        pub unsafe fn forwardList(&self) -> Id<NSArray<WKBackForwardListItem>>;
+        pub unsafe fn forwardList(&self) -> Retained<NSArray<WKBackForwardListItem>>;
     }
 );
 
@@ -49,9 +52,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKBackForwardList {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

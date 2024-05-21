@@ -66,14 +66,14 @@ extern_methods!(
             feature = "HKLensSpecification"
         ))]
         #[method_id(@__retain_semantics Other rightEye)]
-        pub unsafe fn rightEye(&self) -> Option<Id<HKGlassesLensSpecification>>;
+        pub unsafe fn rightEye(&self) -> Option<Retained<HKGlassesLensSpecification>>;
 
         #[cfg(all(
             feature = "HKGlassesLensSpecification",
             feature = "HKLensSpecification"
         ))]
         #[method_id(@__retain_semantics Other leftEye)]
-        pub unsafe fn leftEye(&self) -> Option<Id<HKGlassesLensSpecification>>;
+        pub unsafe fn leftEye(&self) -> Option<Retained<HKGlassesLensSpecification>>;
 
         #[cfg(all(
             feature = "HKDevice",
@@ -88,13 +88,13 @@ extern_methods!(
             expiration_date: Option<&NSDate>,
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "HKDevice")]
         #[method_id(@__retain_semantics Other prescriptionWithType:dateIssued:expirationDate:device:metadata:)]
@@ -104,6 +104,6 @@ extern_methods!(
             expiration_date: Option<&NSDate>,
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

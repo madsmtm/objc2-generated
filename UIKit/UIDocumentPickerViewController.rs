@@ -120,7 +120,7 @@ extern_methods!(
             this: Allocated<Self>,
             allowed_ut_is: &NSArray<NSString>,
             mode: UIDocumentPickerMode,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         #[method_id(@__retain_semantics Init initForOpeningContentTypes:asCopy:)]
@@ -128,17 +128,20 @@ extern_methods!(
             this: Allocated<Self>,
             content_types: &NSArray<UTType>,
             as_copy: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         #[method_id(@__retain_semantics Init initForOpeningContentTypes:)]
         pub unsafe fn initForOpeningContentTypes(
             this: Allocated<Self>,
             content_types: &NSArray<UTType>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithURL:inMode:)]
@@ -146,7 +149,7 @@ extern_methods!(
             this: Allocated<Self>,
             url: &NSURL,
             mode: UIDocumentPickerMode,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithURLs:inMode:)]
@@ -154,23 +157,25 @@ extern_methods!(
             this: Allocated<Self>,
             urls: &NSArray<NSURL>,
             mode: UIDocumentPickerMode,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initForExportingURLs:asCopy:)]
         pub unsafe fn initForExportingURLs_asCopy(
             this: Allocated<Self>,
             urls: &NSArray<NSURL>,
             as_copy: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initForExportingURLs:)]
         pub unsafe fn initForExportingURLs(
             this: Allocated<Self>,
             urls: &NSArray<NSURL>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn UIDocumentPickerDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn UIDocumentPickerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -195,7 +200,7 @@ extern_methods!(
         pub unsafe fn setShouldShowFileExtensions(&self, should_show_file_extensions: bool);
 
         #[method_id(@__retain_semantics Other directoryURL)]
-        pub unsafe fn directoryURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn directoryURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setDirectoryURL:)]
         pub unsafe fn setDirectoryURL(&self, directory_url: Option<&NSURL>);
@@ -211,7 +216,7 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -220,9 +225,9 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentPickerViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

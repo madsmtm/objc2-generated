@@ -32,60 +32,62 @@ unsafe impl UIContentConfiguration for UIListContentConfiguration {}
 extern_methods!(
     unsafe impl UIListContentConfiguration {
         #[method_id(@__retain_semantics Other cellConfiguration)]
-        pub unsafe fn cellConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn cellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other subtitleCellConfiguration)]
-        pub unsafe fn subtitleCellConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn subtitleCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other valueCellConfiguration)]
-        pub unsafe fn valueCellConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn valueCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other plainHeaderConfiguration)]
-        pub unsafe fn plainHeaderConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn plainHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other plainFooterConfiguration)]
-        pub unsafe fn plainFooterConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn plainFooterConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other groupedHeaderConfiguration)]
-        pub unsafe fn groupedHeaderConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn groupedHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other groupedFooterConfiguration)]
-        pub unsafe fn groupedFooterConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn groupedFooterConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other prominentInsetGroupedHeaderConfiguration)]
-        pub unsafe fn prominentInsetGroupedHeaderConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn prominentInsetGroupedHeaderConfiguration(
+            mtm: MainThreadMarker,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other extraProminentInsetGroupedHeaderConfiguration)]
         pub unsafe fn extraProminentInsetGroupedHeaderConfiguration(
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other sidebarCellConfiguration)]
-        pub unsafe fn sidebarCellConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn sidebarCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other sidebarSubtitleCellConfiguration)]
-        pub unsafe fn sidebarSubtitleCellConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn sidebarSubtitleCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other accompaniedSidebarCellConfiguration)]
-        pub unsafe fn accompaniedSidebarCellConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn accompaniedSidebarCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other accompaniedSidebarSubtitleCellConfiguration)]
         pub unsafe fn accompaniedSidebarSubtitleCellConfiguration(
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other sidebarHeaderConfiguration)]
-        pub unsafe fn sidebarHeaderConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn sidebarHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setImage:)]
@@ -93,32 +95,32 @@ extern_methods!(
 
         #[cfg(feature = "UIListContentImageProperties")]
         #[method_id(@__retain_semantics Other imageProperties)]
-        pub unsafe fn imageProperties(&self) -> Id<UIListContentImageProperties>;
+        pub unsafe fn imageProperties(&self) -> Retained<UIListContentImageProperties>;
 
         #[method_id(@__retain_semantics Other text)]
-        pub unsafe fn text(&self) -> Option<Id<NSString>>;
+        pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         #[method(setText:)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other attributedText)]
-        pub unsafe fn attributedText(&self) -> Option<Id<NSAttributedString>>;
+        pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         #[method(setAttributedText:)]
         pub unsafe fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);
 
         #[cfg(feature = "UIListContentTextProperties")]
         #[method_id(@__retain_semantics Other textProperties)]
-        pub unsafe fn textProperties(&self) -> Id<UIListContentTextProperties>;
+        pub unsafe fn textProperties(&self) -> Retained<UIListContentTextProperties>;
 
         #[method_id(@__retain_semantics Other secondaryText)]
-        pub unsafe fn secondaryText(&self) -> Option<Id<NSString>>;
+        pub unsafe fn secondaryText(&self) -> Option<Retained<NSString>>;
 
         #[method(setSecondaryText:)]
         pub unsafe fn setSecondaryText(&self, secondary_text: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other secondaryAttributedText)]
-        pub unsafe fn secondaryAttributedText(&self) -> Option<Id<NSAttributedString>>;
+        pub unsafe fn secondaryAttributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         #[method(setSecondaryAttributedText:)]
         pub unsafe fn setSecondaryAttributedText(
@@ -128,7 +130,7 @@ extern_methods!(
 
         #[cfg(feature = "UIListContentTextProperties")]
         #[method_id(@__retain_semantics Other secondaryTextProperties)]
-        pub unsafe fn secondaryTextProperties(&self) -> Id<UIListContentTextProperties>;
+        pub unsafe fn secondaryTextProperties(&self) -> Retained<UIListContentTextProperties>;
 
         #[cfg(feature = "UIGeometry")]
         #[method(axesPreservingSuperviewLayoutMargins)]
@@ -263,36 +265,39 @@ extern_methods!(
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &UIListContentConfiguration,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration(&self) -> Id<UIListContentConfiguration>;
+        pub unsafe fn configuration(&self) -> Retained<UIListContentConfiguration>;
 
         #[method(setConfiguration:)]
         pub unsafe fn setConfiguration(&self, configuration: &UIListContentConfiguration);
 
         #[cfg(feature = "UILayoutGuide")]
         #[method_id(@__retain_semantics Other textLayoutGuide)]
-        pub unsafe fn textLayoutGuide(&self) -> Option<Id<UILayoutGuide>>;
+        pub unsafe fn textLayoutGuide(&self) -> Option<Retained<UILayoutGuide>>;
 
         #[cfg(feature = "UILayoutGuide")]
         #[method_id(@__retain_semantics Other secondaryTextLayoutGuide)]
-        pub unsafe fn secondaryTextLayoutGuide(&self) -> Option<Id<UILayoutGuide>>;
+        pub unsafe fn secondaryTextLayoutGuide(&self) -> Option<Retained<UILayoutGuide>>;
 
         #[cfg(feature = "UILayoutGuide")]
         #[method_id(@__retain_semantics Other imageLayoutGuide)]
-        pub unsafe fn imageLayoutGuide(&self) -> Option<Id<UILayoutGuide>>;
+        pub unsafe fn imageLayoutGuide(&self) -> Option<Retained<UILayoutGuide>>;
     }
 );

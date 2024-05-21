@@ -179,9 +179,9 @@ extern_methods!(
     #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
     unsafe impl GCDualSenseAdaptiveTrigger {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -132,7 +132,7 @@ extern_protocol!(
     pub unsafe trait NSDraggingInfo: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method_id(@__retain_semantics Other draggingDestinationWindow)]
-        unsafe fn draggingDestinationWindow(&self) -> Option<Id<NSWindow>>;
+        unsafe fn draggingDestinationWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[method(draggingSourceOperationMask)]
         unsafe fn draggingSourceOperationMask(&self) -> NSDragOperation;
@@ -146,14 +146,14 @@ extern_protocol!(
         #[cfg(feature = "NSImage")]
         #[deprecated = "Use NSDraggingItem objects instead"]
         #[method_id(@__retain_semantics Other draggedImage)]
-        unsafe fn draggedImage(&self) -> Option<Id<NSImage>>;
+        unsafe fn draggedImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Other draggingPasteboard)]
-        unsafe fn draggingPasteboard(&self) -> Id<NSPasteboard>;
+        unsafe fn draggingPasteboard(&self) -> Retained<NSPasteboard>;
 
         #[method_id(@__retain_semantics Other draggingSource)]
-        unsafe fn draggingSource(&self) -> Option<Id<AnyObject>>;
+        unsafe fn draggingSource(&self) -> Option<Retained<AnyObject>>;
 
         #[method(draggingSequenceNumber)]
         unsafe fn draggingSequenceNumber(&self) -> NSInteger;
@@ -166,7 +166,7 @@ extern_protocol!(
         unsafe fn namesOfPromisedFilesDroppedAtDestination(
             &self,
             drop_destination: &NSURL,
-        ) -> Option<Id<NSArray<NSString>>>;
+        ) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(draggingFormation)]
         unsafe fn draggingFormation(&self) -> NSDraggingFormation;

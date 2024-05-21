@@ -51,20 +51,20 @@ extern_methods!(
         pub unsafe fn range(&self) -> NSRange;
 
         #[method_id(@__retain_semantics Other link)]
-        pub unsafe fn link(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn link(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSTextAttachment")]
         #[method_id(@__retain_semantics Other textAttachment)]
-        pub unsafe fn textAttachment(&self) -> Option<Id<NSTextAttachment>>;
+        pub unsafe fn textAttachment(&self) -> Option<Retained<NSTextAttachment>>;
 
         #[method_id(@__retain_semantics Other tagIdentifier)]
-        pub unsafe fn tagIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn tagIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -83,17 +83,17 @@ unsafe impl NSObjectProtocol for UITextItemMenuPreview {}
 extern_methods!(
     unsafe impl UITextItemMenuPreview {
         #[method_id(@__retain_semantics Other defaultPreview)]
-        pub unsafe fn defaultPreview(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn defaultPreview(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Init initWithView:)]
-        pub unsafe fn initWithView(this: Allocated<Self>, view: &UIView) -> Id<Self>;
+        pub unsafe fn initWithView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -113,19 +113,19 @@ extern_methods!(
     unsafe impl UITextItemMenuConfiguration {
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Other configurationWithMenu:)]
-        pub unsafe fn configurationWithMenu(menu: &UIMenu) -> Id<Self>;
+        pub unsafe fn configurationWithMenu(menu: &UIMenu) -> Retained<Self>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Other configurationWithPreview:menu:)]
         pub unsafe fn configurationWithPreview_menu(
             preview: Option<&UITextItemMenuPreview>,
             menu: &UIMenu,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

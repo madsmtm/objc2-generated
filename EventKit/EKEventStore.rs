@@ -62,17 +62,17 @@ extern_methods!(
         pub unsafe fn initWithAccessToEntityTypes(
             this: Allocated<Self>,
             entity_types: EKEntityMask,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "EKObject", feature = "EKSource"))]
         #[method_id(@__retain_semantics Init initWithSources:)]
         pub unsafe fn initWithSources(
             this: Allocated<Self>,
             sources: &NSArray<EKSource>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(requestFullAccessToEventsWithCompletion:)]
@@ -105,45 +105,48 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other eventStoreIdentifier)]
-        pub unsafe fn eventStoreIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn eventStoreIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "EKObject", feature = "EKSource"))]
         #[method_id(@__retain_semantics Other delegateSources)]
-        pub unsafe fn delegateSources(&self) -> Id<NSArray<EKSource>>;
+        pub unsafe fn delegateSources(&self) -> Retained<NSArray<EKSource>>;
 
         #[cfg(all(feature = "EKObject", feature = "EKSource"))]
         #[method_id(@__retain_semantics Other sources)]
-        pub unsafe fn sources(&self) -> Id<NSArray<EKSource>>;
+        pub unsafe fn sources(&self) -> Retained<NSArray<EKSource>>;
 
         #[cfg(all(feature = "EKObject", feature = "EKSource"))]
         #[method_id(@__retain_semantics Other sourceWithIdentifier:)]
-        pub unsafe fn sourceWithIdentifier(&self, identifier: &NSString) -> Option<Id<EKSource>>;
+        pub unsafe fn sourceWithIdentifier(
+            &self,
+            identifier: &NSString,
+        ) -> Option<Retained<EKSource>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
         #[method_id(@__retain_semantics Other calendars)]
-        pub unsafe fn calendars(&self) -> Id<NSArray<EKCalendar>>;
+        pub unsafe fn calendars(&self) -> Retained<NSArray<EKCalendar>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject", feature = "EKTypes"))]
         #[method_id(@__retain_semantics Other calendarsForEntityType:)]
         pub unsafe fn calendarsForEntityType(
             &self,
             entity_type: EKEntityType,
-        ) -> Id<NSArray<EKCalendar>>;
+        ) -> Retained<NSArray<EKCalendar>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
         #[method_id(@__retain_semantics Other defaultCalendarForNewEvents)]
-        pub unsafe fn defaultCalendarForNewEvents(&self) -> Option<Id<EKCalendar>>;
+        pub unsafe fn defaultCalendarForNewEvents(&self) -> Option<Retained<EKCalendar>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
         #[method_id(@__retain_semantics Other defaultCalendarForNewReminders)]
-        pub unsafe fn defaultCalendarForNewReminders(&self) -> Option<Id<EKCalendar>>;
+        pub unsafe fn defaultCalendarForNewReminders(&self) -> Option<Retained<EKCalendar>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
         #[method_id(@__retain_semantics Other calendarWithIdentifier:)]
         pub unsafe fn calendarWithIdentifier(
             &self,
             identifier: &NSString,
-        ) -> Option<Id<EKCalendar>>;
+        ) -> Option<Retained<EKCalendar>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
         #[method(saveCalendar:commit:error:_)]
@@ -151,7 +154,7 @@ extern_methods!(
             &self,
             calendar: &EKCalendar,
             commit: bool,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
         #[method(removeCalendar:commit:error:_)]
@@ -159,21 +162,21 @@ extern_methods!(
             &self,
             calendar: &EKCalendar,
             commit: bool,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
         #[method_id(@__retain_semantics Other calendarItemWithIdentifier:)]
         pub unsafe fn calendarItemWithIdentifier(
             &self,
             identifier: &NSString,
-        ) -> Option<Id<EKCalendarItem>>;
+        ) -> Option<Retained<EKCalendarItem>>;
 
         #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
         #[method_id(@__retain_semantics Other calendarItemsWithExternalIdentifier:)]
         pub unsafe fn calendarItemsWithExternalIdentifier(
             &self,
             external_identifier: &NSString,
-        ) -> Id<NSArray<EKCalendarItem>>;
+        ) -> Retained<NSArray<EKCalendarItem>>;
 
         #[cfg(all(feature = "EKCalendarItem", feature = "EKEvent", feature = "EKObject"))]
         #[method(saveEvent:span:error:_)]
@@ -181,7 +184,7 @@ extern_methods!(
             &self,
             event: &EKEvent,
             span: EKSpan,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "EKCalendarItem", feature = "EKEvent", feature = "EKObject"))]
         #[method(removeEvent:span:error:_)]
@@ -189,7 +192,7 @@ extern_methods!(
             &self,
             event: &EKEvent,
             span: EKSpan,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "EKCalendarItem", feature = "EKEvent", feature = "EKObject"))]
         #[method(saveEvent:span:commit:error:_)]
@@ -198,7 +201,7 @@ extern_methods!(
             event: &EKEvent,
             span: EKSpan,
             commit: bool,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "EKCalendarItem", feature = "EKEvent", feature = "EKObject"))]
         #[method(removeEvent:span:commit:error:_)]
@@ -207,18 +210,21 @@ extern_methods!(
             event: &EKEvent,
             span: EKSpan,
             commit: bool,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "EKCalendarItem", feature = "EKEvent", feature = "EKObject"))]
         #[method_id(@__retain_semantics Other eventWithIdentifier:)]
-        pub unsafe fn eventWithIdentifier(&self, identifier: &NSString) -> Option<Id<EKEvent>>;
+        pub unsafe fn eventWithIdentifier(
+            &self,
+            identifier: &NSString,
+        ) -> Option<Retained<EKEvent>>;
 
         #[cfg(all(feature = "EKCalendarItem", feature = "EKEvent", feature = "EKObject"))]
         #[method_id(@__retain_semantics Other eventsMatchingPredicate:)]
         pub unsafe fn eventsMatchingPredicate(
             &self,
             predicate: &NSPredicate,
-        ) -> Id<NSArray<EKEvent>>;
+        ) -> Retained<NSArray<EKEvent>>;
 
         #[cfg(all(
             feature = "EKCalendarItem",
@@ -240,7 +246,7 @@ extern_methods!(
             start_date: &NSDate,
             end_date: &NSDate,
             calendars: Option<&NSArray<EKCalendar>>,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(all(
             feature = "EKCalendarItem",
@@ -252,7 +258,7 @@ extern_methods!(
             &self,
             reminder: &EKReminder,
             commit: bool,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(
             feature = "EKCalendarItem",
@@ -264,7 +270,7 @@ extern_methods!(
             &self,
             reminder: &EKReminder,
             commit: bool,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(
             feature = "EKCalendarItem",
@@ -277,7 +283,7 @@ extern_methods!(
             &self,
             predicate: &NSPredicate,
             completion: &block2::Block<dyn Fn(*mut NSArray<EKReminder>)>,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
 
         #[method(cancelFetchRequest:)]
         pub unsafe fn cancelFetchRequest(&self, fetch_identifier: &AnyObject);
@@ -287,7 +293,7 @@ extern_methods!(
         pub unsafe fn predicateForRemindersInCalendars(
             &self,
             calendars: Option<&NSArray<EKCalendar>>,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
         #[method_id(@__retain_semantics Other predicateForIncompleteRemindersWithDueDateStarting:ending:calendars:)]
@@ -296,7 +302,7 @@ extern_methods!(
             start_date: Option<&NSDate>,
             end_date: Option<&NSDate>,
             calendars: Option<&NSArray<EKCalendar>>,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
         #[method_id(@__retain_semantics Other predicateForCompletedRemindersWithCompletionDateStarting:ending:calendars:)]
@@ -305,10 +311,10 @@ extern_methods!(
             start_date: Option<&NSDate>,
             end_date: Option<&NSDate>,
             calendars: Option<&NSArray<EKCalendar>>,
-        ) -> Id<NSPredicate>;
+        ) -> Retained<NSPredicate>;
 
         #[method(commit:_)]
-        pub unsafe fn commit(&self) -> Result<(), Id<NSError>>;
+        pub unsafe fn commit(&self) -> Result<(), Retained<NSError>>;
 
         #[method(reset)]
         pub unsafe fn reset(&self);
@@ -322,7 +328,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EKEventStore {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

@@ -60,7 +60,7 @@ extern_methods!(
     unsafe impl NINearbyObject {
         #[cfg(feature = "NIConfiguration")]
         #[method_id(@__retain_semantics Other discoveryToken)]
-        pub unsafe fn discoveryToken(&self) -> Id<NIDiscoveryToken>;
+        pub unsafe fn discoveryToken(&self) -> Retained<NIDiscoveryToken>;
 
         #[method(distance)]
         pub unsafe fn distance(&self) -> c_float;
@@ -72,9 +72,9 @@ extern_methods!(
         pub unsafe fn horizontalAngle(&self) -> c_float;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

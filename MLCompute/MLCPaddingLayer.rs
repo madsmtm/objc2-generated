@@ -55,22 +55,22 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithReflectionPadding:)]
-        pub unsafe fn layerWithReflectionPadding(padding: &NSArray<NSNumber>) -> Id<Self>;
+        pub unsafe fn layerWithReflectionPadding(padding: &NSArray<NSNumber>) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithSymmetricPadding:)]
-        pub unsafe fn layerWithSymmetricPadding(padding: &NSArray<NSNumber>) -> Id<Self>;
+        pub unsafe fn layerWithSymmetricPadding(padding: &NSArray<NSNumber>) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithZeroPadding:)]
-        pub unsafe fn layerWithZeroPadding(padding: &NSArray<NSNumber>) -> Id<Self>;
+        pub unsafe fn layerWithZeroPadding(padding: &NSArray<NSNumber>) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithConstantPadding:constantValue:)]
         pub unsafe fn layerWithConstantPadding_constantValue(
             padding: &NSArray<NSNumber>,
             constant_value: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -80,10 +80,10 @@ extern_methods!(
     unsafe impl MLCPaddingLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

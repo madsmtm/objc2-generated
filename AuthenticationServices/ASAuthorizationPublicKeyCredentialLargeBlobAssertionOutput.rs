@@ -20,13 +20,13 @@ unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialLargeBlobAsse
 extern_methods!(
     unsafe impl ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other readData)]
-        pub unsafe fn readData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn readData(&self) -> Option<Retained<NSData>>;
 
         #[method(didWrite)]
         pub unsafe fn didWrite(&self) -> bool;

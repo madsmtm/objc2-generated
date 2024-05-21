@@ -33,7 +33,7 @@ extern_methods!(
     unsafe impl GCExtendedGamepad {
         #[cfg(feature = "GCController")]
         #[method_id(@__retain_semantics Other controller)]
-        pub unsafe fn controller(&self) -> Option<Id<GCController>>;
+        pub unsafe fn controller(&self) -> Option<Retained<GCController>>;
 
         #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
         #[method(valueChangedHandler)]
@@ -49,71 +49,71 @@ extern_methods!(
         #[cfg(feature = "GCExtendedGamepadSnapshot")]
         #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController capture] instead"]
         #[method_id(@__retain_semantics Other saveSnapshot)]
-        pub unsafe fn saveSnapshot(&self) -> Id<GCExtendedGamepadSnapshot>;
+        pub unsafe fn saveSnapshot(&self) -> Retained<GCExtendedGamepadSnapshot>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other dpad)]
-        pub unsafe fn dpad(&self) -> Id<GCControllerDirectionPad>;
+        pub unsafe fn dpad(&self) -> Retained<GCControllerDirectionPad>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other buttonA)]
-        pub unsafe fn buttonA(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn buttonA(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other buttonB)]
-        pub unsafe fn buttonB(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn buttonB(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other buttonX)]
-        pub unsafe fn buttonX(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn buttonX(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other buttonY)]
-        pub unsafe fn buttonY(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn buttonY(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other buttonMenu)]
-        pub unsafe fn buttonMenu(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn buttonMenu(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other buttonOptions)]
-        pub unsafe fn buttonOptions(&self) -> Option<Id<GCControllerButtonInput>>;
+        pub unsafe fn buttonOptions(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other buttonHome)]
-        pub unsafe fn buttonHome(&self) -> Option<Id<GCControllerButtonInput>>;
+        pub unsafe fn buttonHome(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other leftThumbstick)]
-        pub unsafe fn leftThumbstick(&self) -> Id<GCControllerDirectionPad>;
+        pub unsafe fn leftThumbstick(&self) -> Retained<GCControllerDirectionPad>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other rightThumbstick)]
-        pub unsafe fn rightThumbstick(&self) -> Id<GCControllerDirectionPad>;
+        pub unsafe fn rightThumbstick(&self) -> Retained<GCControllerDirectionPad>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other leftShoulder)]
-        pub unsafe fn leftShoulder(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn leftShoulder(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other rightShoulder)]
-        pub unsafe fn rightShoulder(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn rightShoulder(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other leftTrigger)]
-        pub unsafe fn leftTrigger(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn leftTrigger(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other rightTrigger)]
-        pub unsafe fn rightTrigger(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn rightTrigger(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other leftThumbstickButton)]
-        pub unsafe fn leftThumbstickButton(&self) -> Option<Id<GCControllerButtonInput>>;
+        pub unsafe fn leftThumbstickButton(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other rightThumbstickButton)]
-        pub unsafe fn rightThumbstickButton(&self) -> Option<Id<GCControllerButtonInput>>;
+        pub unsafe fn rightThumbstickButton(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[method(setStateFromExtendedGamepad:)]
         pub unsafe fn setStateFromExtendedGamepad(&self, extended_gamepad: &GCExtendedGamepad);
@@ -125,9 +125,9 @@ extern_methods!(
     #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl GCExtendedGamepad {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

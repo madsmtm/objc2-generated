@@ -29,7 +29,7 @@ extern_methods!(
         pub unsafe fn initWithURLTemplate(
             this: Allocated<Self>,
             url_template: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(tileSize)]
         pub unsafe fn tileSize(&self) -> CGSize;
@@ -56,7 +56,7 @@ extern_methods!(
         pub unsafe fn setMaximumZ(&self, maximum_z: NSInteger);
 
         #[method_id(@__retain_semantics Other URLTemplate)]
-        pub unsafe fn URLTemplate(&self) -> Option<Id<NSString>>;
+        pub unsafe fn URLTemplate(&self) -> Option<Retained<NSString>>;
 
         #[method(canReplaceMapContent)]
         pub unsafe fn canReplaceMapContent(&self) -> bool;
@@ -70,10 +70,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKTileOverlay {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -106,7 +106,7 @@ extern_methods!(
     /// CustomLoading
     unsafe impl MKTileOverlay {
         #[method_id(@__retain_semantics Other URLForTilePath:)]
-        pub unsafe fn URLForTilePath(&self, path: MKTileOverlayPath) -> Id<NSURL>;
+        pub unsafe fn URLForTilePath(&self, path: MKTileOverlayPath) -> Retained<NSURL>;
 
         #[cfg(feature = "block2")]
         #[method(loadTileAtPath:result:)]

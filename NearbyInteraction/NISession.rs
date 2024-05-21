@@ -25,21 +25,21 @@ extern_methods!(
 
         #[cfg(feature = "NIDeviceCapability")]
         #[method_id(@__retain_semantics Other deviceCapabilities)]
-        pub unsafe fn deviceCapabilities() -> Id<ProtocolObject<dyn NIDeviceCapability>>;
+        pub unsafe fn deviceCapabilities() -> Retained<ProtocolObject<dyn NIDeviceCapability>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NISessionDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NISessionDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NISessionDelegate>>);
 
         #[cfg(feature = "NIConfiguration")]
         #[method_id(@__retain_semantics Other discoveryToken)]
-        pub unsafe fn discoveryToken(&self) -> Option<Id<NIDiscoveryToken>>;
+        pub unsafe fn discoveryToken(&self) -> Option<Retained<NIDiscoveryToken>>;
 
         #[cfg(feature = "NIConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration(&self) -> Option<Id<NIConfiguration>>;
+        pub unsafe fn configuration(&self) -> Option<Retained<NIConfiguration>>;
 
         #[cfg(feature = "NIConfiguration")]
         #[method(runWithConfiguration:)]
@@ -57,10 +57,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NISession {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -129,13 +129,13 @@ extern_methods!(
 
         #[cfg(feature = "NIAlgorithmConvergenceStatusReason")]
         #[method_id(@__retain_semantics Other reasons)]
-        pub unsafe fn reasons(&self) -> Id<NSArray<NIAlgorithmConvergenceStatusReason>>;
+        pub unsafe fn reasons(&self) -> Retained<NSArray<NIAlgorithmConvergenceStatusReason>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

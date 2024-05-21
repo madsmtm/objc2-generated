@@ -148,7 +148,7 @@ extern_methods!(
         pub unsafe fn initWithDesktopIndependentWindow(
             this: Allocated<Self>,
             window: &SCWindow,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "SCShareableContent")]
         #[method_id(@__retain_semantics Init initWithDisplay:excludingWindows:)]
@@ -156,7 +156,7 @@ extern_methods!(
             this: Allocated<Self>,
             display: &SCDisplay,
             excluded: &NSArray<SCWindow>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "SCShareableContent")]
         #[method_id(@__retain_semantics Init initWithDisplay:includingWindows:)]
@@ -164,7 +164,7 @@ extern_methods!(
             this: Allocated<Self>,
             display: &SCDisplay,
             included_windows: &NSArray<SCWindow>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "SCShareableContent")]
         #[method_id(@__retain_semantics Init initWithDisplay:includingApplications:exceptingWindows:)]
@@ -173,7 +173,7 @@ extern_methods!(
             display: &SCDisplay,
             applications: &NSArray<SCRunningApplication>,
             excepting_windows: &NSArray<SCWindow>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "SCShareableContent")]
         #[method_id(@__retain_semantics Init initWithDisplay:excludingApplications:exceptingWindows:)]
@@ -182,7 +182,7 @@ extern_methods!(
             display: &SCDisplay,
             applications: &NSArray<SCRunningApplication>,
             excepting_windows: &NSArray<SCWindow>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -190,10 +190,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCContentFilter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -242,7 +242,7 @@ extern_methods!(
         pub unsafe fn setPreservesAspectRatio(&self, preserves_aspect_ratio: bool);
 
         #[method_id(@__retain_semantics Other streamName)]
-        pub unsafe fn streamName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn streamName(&self) -> Option<Retained<NSString>>;
 
         #[method(setStreamName:)]
         pub unsafe fn setStreamName(&self, stream_name: Option<&NSString>);
@@ -361,10 +361,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCStreamConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -422,10 +422,10 @@ unsafe impl NSObjectProtocol for SCStream {}
 extern_methods!(
     unsafe impl SCStream {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithFilter:configuration:delegate:)]
         pub unsafe fn initWithFilter_configuration_delegate(
@@ -433,14 +433,14 @@ extern_methods!(
             content_filter: &SCContentFilter,
             stream_config: &SCStreamConfiguration,
             delegate: Option<&ProtocolObject<dyn SCStreamDelegate>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(removeStreamOutput:type:error:_)]
         pub unsafe fn removeStreamOutput_type_error(
             &self,
             output: &ProtocolObject<dyn SCStreamOutput>,
             r#type: SCStreamOutputType,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "block2")]
         #[method(updateContentFilter:completionHandler:)]

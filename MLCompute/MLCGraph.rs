@@ -23,20 +23,20 @@ extern_methods!(
         #[cfg(feature = "MLCDevice")]
         #[deprecated]
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Option<Id<MLCDevice>>;
+        pub unsafe fn device(&self) -> Option<Retained<MLCDevice>>;
 
         #[cfg(feature = "MLCLayer")]
         #[deprecated]
         #[method_id(@__retain_semantics Other layers)]
-        pub unsafe fn layers(&self) -> Id<NSArray<MLCLayer>>;
+        pub unsafe fn layers(&self) -> Retained<NSArray<MLCLayer>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other graph)]
-        pub unsafe fn graph() -> Id<Self>;
+        pub unsafe fn graph() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other summarizedDOTDescription)]
-        pub unsafe fn summarizedDOTDescription(&self) -> Id<NSString>;
+        pub unsafe fn summarizedDOTDescription(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
         #[deprecated]
@@ -45,7 +45,7 @@ extern_methods!(
             &self,
             layer: &MLCLayer,
             source: &MLCTensor,
-        ) -> Option<Id<MLCTensor>>;
+        ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
         #[deprecated]
@@ -54,7 +54,7 @@ extern_methods!(
             &self,
             layer: &MLCLayer,
             sources: &NSArray<MLCTensor>,
-        ) -> Option<Id<MLCTensor>>;
+        ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
         #[deprecated]
@@ -64,7 +64,7 @@ extern_methods!(
             layer: &MLCLayer,
             sources: &NSArray<MLCTensor>,
             disable_update: bool,
-        ) -> Option<Id<MLCTensor>>;
+        ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
         #[deprecated]
@@ -74,7 +74,7 @@ extern_methods!(
             layer: &MLCLayer,
             sources: &NSArray<MLCTensor>,
             loss_labels: &NSArray<MLCTensor>,
-        ) -> Option<Id<MLCTensor>>;
+        ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
@@ -84,7 +84,7 @@ extern_methods!(
             source: &MLCTensor,
             split_count: NSUInteger,
             dimension: NSUInteger,
-        ) -> Option<Id<NSArray<MLCTensor>>>;
+        ) -> Option<Retained<NSArray<MLCTensor>>>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
@@ -94,7 +94,7 @@ extern_methods!(
             source: &MLCTensor,
             split_section_lengths: &NSArray<NSNumber>,
             dimension: NSUInteger,
-        ) -> Option<Id<NSArray<MLCTensor>>>;
+        ) -> Option<Retained<NSArray<MLCTensor>>>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
@@ -103,7 +103,7 @@ extern_methods!(
             &self,
             sources: &NSArray<MLCTensor>,
             dimension: NSUInteger,
-        ) -> Option<Id<MLCTensor>>;
+        ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
@@ -112,7 +112,7 @@ extern_methods!(
             &self,
             shape: &NSArray<NSNumber>,
             source: &MLCTensor,
-        ) -> Option<Id<MLCTensor>>;
+        ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
@@ -121,7 +121,7 @@ extern_methods!(
             &self,
             dimensions: &NSArray<NSNumber>,
             source: &MLCTensor,
-        ) -> Option<Id<MLCTensor>>;
+        ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         #[method_id(@__retain_semantics Other selectWithSources:condition:)]
@@ -129,7 +129,7 @@ extern_methods!(
             &self,
             sources: &NSArray<MLCTensor>,
             condition: &MLCTensor,
-        ) -> Option<Id<MLCTensor>>;
+        ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
         #[method_id(@__retain_semantics Other scatterWithDimension:source:indices:copyFrom:reductionType:)]
@@ -140,7 +140,7 @@ extern_methods!(
             indices: &MLCTensor,
             copy_from: &MLCTensor,
             reduction_type: MLCReductionType,
-        ) -> Option<Id<MLCTensor>>;
+        ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         #[method_id(@__retain_semantics Other gatherWithDimension:source:indices:)]
@@ -149,7 +149,7 @@ extern_methods!(
             dimension: NSUInteger,
             source: &MLCTensor,
             indices: &MLCTensor,
-        ) -> Option<Id<MLCTensor>>;
+        ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(all(
             feature = "MLCDevice",
@@ -185,12 +185,18 @@ extern_methods!(
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other sourceTensorsForLayer:)]
-        pub unsafe fn sourceTensorsForLayer(&self, layer: &MLCLayer) -> Id<NSArray<MLCTensor>>;
+        pub unsafe fn sourceTensorsForLayer(
+            &self,
+            layer: &MLCLayer,
+        ) -> Retained<NSArray<MLCTensor>>;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other resultTensorsForLayer:)]
-        pub unsafe fn resultTensorsForLayer(&self, layer: &MLCLayer) -> Id<NSArray<MLCTensor>>;
+        pub unsafe fn resultTensorsForLayer(
+            &self,
+            layer: &MLCLayer,
+        ) -> Retained<NSArray<MLCTensor>>;
     }
 );
 
@@ -198,9 +204,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLCGraph {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

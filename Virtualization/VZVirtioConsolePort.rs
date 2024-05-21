@@ -20,17 +20,17 @@ unsafe impl NSObjectProtocol for VZVirtioConsolePort {}
 extern_methods!(
     unsafe impl VZVirtioConsolePort {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "VZSerialPortAttachment")]
         #[method_id(@__retain_semantics Other attachment)]
-        pub unsafe fn attachment(&self) -> Option<Id<VZSerialPortAttachment>>;
+        pub unsafe fn attachment(&self) -> Option<Retained<VZSerialPortAttachment>>;
 
         #[cfg(feature = "VZSerialPortAttachment")]
         #[method(setAttachment:)]

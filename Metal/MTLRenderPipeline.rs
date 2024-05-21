@@ -300,10 +300,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPipelineColorAttachmentDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -323,38 +323,38 @@ extern_methods!(
     unsafe impl MTLRenderPipelineReflection {
         #[cfg(feature = "MTLArgument")]
         #[method_id(@__retain_semantics Other vertexBindings)]
-        pub unsafe fn vertexBindings(&self) -> Id<NSArray<ProtocolObject<dyn MTLBinding>>>;
+        pub unsafe fn vertexBindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
         #[cfg(feature = "MTLArgument")]
         #[method_id(@__retain_semantics Other fragmentBindings)]
-        pub unsafe fn fragmentBindings(&self) -> Id<NSArray<ProtocolObject<dyn MTLBinding>>>;
+        pub unsafe fn fragmentBindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
         #[cfg(feature = "MTLArgument")]
         #[method_id(@__retain_semantics Other tileBindings)]
-        pub unsafe fn tileBindings(&self) -> Id<NSArray<ProtocolObject<dyn MTLBinding>>>;
+        pub unsafe fn tileBindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
         #[cfg(feature = "MTLArgument")]
         #[method_id(@__retain_semantics Other objectBindings)]
-        pub unsafe fn objectBindings(&self) -> Id<NSArray<ProtocolObject<dyn MTLBinding>>>;
+        pub unsafe fn objectBindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
         #[cfg(feature = "MTLArgument")]
         #[method_id(@__retain_semantics Other meshBindings)]
-        pub unsafe fn meshBindings(&self) -> Id<NSArray<ProtocolObject<dyn MTLBinding>>>;
+        pub unsafe fn meshBindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
         #[cfg(feature = "MTLArgument")]
         #[deprecated]
         #[method_id(@__retain_semantics Other vertexArguments)]
-        pub fn vertexArguments(&self) -> Option<Id<NSArray<MTLArgument>>>;
+        pub fn vertexArguments(&self) -> Option<Retained<NSArray<MTLArgument>>>;
 
         #[cfg(feature = "MTLArgument")]
         #[deprecated]
         #[method_id(@__retain_semantics Other fragmentArguments)]
-        pub fn fragmentArguments(&self) -> Option<Id<NSArray<MTLArgument>>>;
+        pub fn fragmentArguments(&self) -> Option<Retained<NSArray<MTLArgument>>>;
 
         #[cfg(feature = "MTLArgument")]
         #[deprecated]
         #[method_id(@__retain_semantics Other tileArguments)]
-        pub fn tileArguments(&self) -> Option<Id<NSArray<MTLArgument>>>;
+        pub fn tileArguments(&self) -> Option<Retained<NSArray<MTLArgument>>>;
     }
 );
 
@@ -362,10 +362,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPipelineReflection {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -386,14 +386,14 @@ unsafe impl NSObjectProtocol for MTLRenderPipelineDescriptor {}
 extern_methods!(
     unsafe impl MTLRenderPipelineDescriptor {
         #[method_id(@__retain_semantics Other label)]
-        pub fn label(&self) -> Option<Id<NSString>>;
+        pub fn label(&self) -> Option<Retained<NSString>>;
 
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other vertexFunction)]
-        pub fn vertexFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
+        pub fn vertexFunction(&self) -> Option<Retained<ProtocolObject<dyn MTLFunction>>>;
 
         #[cfg(feature = "MTLLibrary")]
         #[method(setVertexFunction:)]
@@ -401,7 +401,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other fragmentFunction)]
-        pub fn fragmentFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
+        pub fn fragmentFunction(&self) -> Option<Retained<ProtocolObject<dyn MTLFunction>>>;
 
         #[cfg(feature = "MTLLibrary")]
         #[method(setFragmentFunction:)]
@@ -412,7 +412,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLVertexDescriptor")]
         #[method_id(@__retain_semantics Other vertexDescriptor)]
-        pub fn vertexDescriptor(&self) -> Option<Id<MTLVertexDescriptor>>;
+        pub fn vertexDescriptor(&self) -> Option<Retained<MTLVertexDescriptor>>;
 
         #[cfg(feature = "MTLVertexDescriptor")]
         #[method(setVertexDescriptor:)]
@@ -460,7 +460,8 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other colorAttachments)]
-        pub fn colorAttachments(&self) -> Id<MTLRenderPipelineColorAttachmentDescriptorArray>;
+        pub fn colorAttachments(&self)
+            -> Retained<MTLRenderPipelineColorAttachmentDescriptorArray>;
 
         #[cfg(feature = "MTLPixelFormat")]
         #[method(depthAttachmentPixelFormat)]
@@ -551,11 +552,11 @@ extern_methods!(
 
         #[cfg(feature = "MTLPipeline")]
         #[method_id(@__retain_semantics Other vertexBuffers)]
-        pub fn vertexBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
+        pub fn vertexBuffers(&self) -> Retained<MTLPipelineBufferDescriptorArray>;
 
         #[cfg(feature = "MTLPipeline")]
         #[method_id(@__retain_semantics Other fragmentBuffers)]
-        pub fn fragmentBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
+        pub fn fragmentBuffers(&self) -> Retained<MTLPipelineBufferDescriptorArray>;
 
         #[method(supportIndirectCommandBuffers)]
         pub fn supportIndirectCommandBuffers(&self) -> bool;
@@ -565,7 +566,9 @@ extern_methods!(
 
         #[cfg(feature = "MTLBinaryArchive")]
         #[method_id(@__retain_semantics Other binaryArchives)]
-        pub fn binaryArchives(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
+        pub fn binaryArchives(
+            &self,
+        ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
 
         #[cfg(feature = "MTLBinaryArchive")]
         #[method(setBinaryArchives:)]
@@ -578,7 +581,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other vertexPreloadedLibraries)]
         pub fn vertexPreloadedLibraries(
             &self,
-        ) -> Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>;
+        ) -> Retained<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>;
 
         #[cfg(feature = "MTLDynamicLibrary")]
         #[method(setVertexPreloadedLibraries:)]
@@ -591,7 +594,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fragmentPreloadedLibraries)]
         pub fn fragmentPreloadedLibraries(
             &self,
-        ) -> Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>;
+        ) -> Retained<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>;
 
         #[cfg(feature = "MTLDynamicLibrary")]
         #[method(setFragmentPreloadedLibraries:)]
@@ -602,7 +605,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLLinkedFunctions")]
         #[method_id(@__retain_semantics Other vertexLinkedFunctions)]
-        pub fn vertexLinkedFunctions(&self) -> Id<MTLLinkedFunctions>;
+        pub fn vertexLinkedFunctions(&self) -> Retained<MTLLinkedFunctions>;
 
         #[cfg(feature = "MTLLinkedFunctions")]
         #[method(setVertexLinkedFunctions:)]
@@ -613,7 +616,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLLinkedFunctions")]
         #[method_id(@__retain_semantics Other fragmentLinkedFunctions)]
-        pub fn fragmentLinkedFunctions(&self) -> Id<MTLLinkedFunctions>;
+        pub fn fragmentLinkedFunctions(&self) -> Retained<MTLLinkedFunctions>;
 
         #[cfg(feature = "MTLLinkedFunctions")]
         #[method(setFragmentLinkedFunctions:)]
@@ -661,16 +664,16 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPipelineDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Allocated<Self>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub fn new() -> Id<Self>;
+        pub fn new() -> Retained<Self>;
     }
 );
 
-impl DefaultId for MTLRenderPipelineDescriptor {
+impl DefaultRetained for MTLRenderPipelineDescriptor {
     #[inline]
-    fn default_id() -> Id<Self> {
+    fn default_id() -> Retained<Self> {
         Self::new()
     }
 }
@@ -695,7 +698,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other vertexAdditionalBinaryFunctions)]
         pub unsafe fn vertexAdditionalBinaryFunctions(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>>>;
+        ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
         #[cfg(feature = "MTLLibrary")]
         #[method(setVertexAdditionalBinaryFunctions:)]
@@ -708,7 +711,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fragmentAdditionalBinaryFunctions)]
         pub unsafe fn fragmentAdditionalBinaryFunctions(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>>>;
+        ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
         #[cfg(feature = "MTLLibrary")]
         #[method(setFragmentAdditionalBinaryFunctions:)]
@@ -721,7 +724,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other tileAdditionalBinaryFunctions)]
         pub unsafe fn tileAdditionalBinaryFunctions(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>>>;
+        ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
         #[cfg(feature = "MTLLibrary")]
         #[method(setTileAdditionalBinaryFunctions:)]
@@ -736,21 +739,21 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPipelineFunctionsDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
 extern_protocol!(
     pub unsafe trait MTLRenderPipelineState: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other label)]
-        unsafe fn label(&self) -> Option<Id<NSString>>;
+        unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
-        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
+        unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[method(maxTotalThreadsPerThreadgroup)]
         unsafe fn maxTotalThreadsPerThreadgroup(&self) -> NSUInteger;
@@ -800,7 +803,7 @@ extern_protocol!(
             &self,
             function: &ProtocolObject<dyn MTLFunction>,
             stage: MTLRenderStages,
-        ) -> Option<Id<ProtocolObject<dyn MTLFunctionHandle>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MTLFunctionHandle>>>;
 
         #[cfg(all(
             feature = "MTLRenderCommandEncoder",
@@ -812,7 +815,7 @@ extern_protocol!(
             &self,
             descriptor: &MTLVisibleFunctionTableDescriptor,
             stage: MTLRenderStages,
-        ) -> Option<Id<ProtocolObject<dyn MTLVisibleFunctionTable>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MTLVisibleFunctionTable>>>;
 
         #[cfg(all(
             feature = "MTLIntersectionFunctionTable",
@@ -824,13 +827,13 @@ extern_protocol!(
             &self,
             descriptor: &MTLIntersectionFunctionTableDescriptor,
             stage: MTLRenderStages,
-        ) -> Option<Id<ProtocolObject<dyn MTLIntersectionFunctionTable>>>;
+        ) -> Option<Retained<ProtocolObject<dyn MTLIntersectionFunctionTable>>>;
 
         #[method_id(@__retain_semantics New newRenderPipelineStateWithAdditionalBinaryFunctions:error:_)]
         unsafe fn newRenderPipelineStateWithAdditionalBinaryFunctions_error(
             &self,
             additional_binary_functions: &MTLRenderPipelineFunctionsDescriptor,
-        ) -> Result<Id<ProtocolObject<dyn MTLRenderPipelineState>>, Id<NSError>>;
+        ) -> Result<Retained<ProtocolObject<dyn MTLRenderPipelineState>>, Retained<NSError>>;
     }
 
     unsafe impl ProtocolType for dyn MTLRenderPipelineState {}
@@ -854,7 +857,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
-        ) -> Id<MTLRenderPipelineColorAttachmentDescriptor>;
+        ) -> Retained<MTLRenderPipelineColorAttachmentDescriptor>;
 
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -869,10 +872,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPipelineColorAttachmentDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -906,10 +909,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLTileRenderPipelineColorAttachmentDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -931,7 +934,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
-        ) -> Id<MTLTileRenderPipelineColorAttachmentDescriptor>;
+        ) -> Retained<MTLTileRenderPipelineColorAttachmentDescriptor>;
 
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -946,10 +949,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLTileRenderPipelineColorAttachmentDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -970,14 +973,14 @@ unsafe impl NSObjectProtocol for MTLTileRenderPipelineDescriptor {}
 extern_methods!(
     unsafe impl MTLTileRenderPipelineDescriptor {
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Option<Id<NSString>>;
+        pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other tileFunction)]
-        pub unsafe fn tileFunction(&self) -> Id<ProtocolObject<dyn MTLFunction>>;
+        pub unsafe fn tileFunction(&self) -> Retained<ProtocolObject<dyn MTLFunction>>;
 
         #[cfg(feature = "MTLLibrary")]
         #[method(setTileFunction:)]
@@ -992,7 +995,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other colorAttachments)]
         pub unsafe fn colorAttachments(
             &self,
-        ) -> Id<MTLTileRenderPipelineColorAttachmentDescriptorArray>;
+        ) -> Retained<MTLTileRenderPipelineColorAttachmentDescriptorArray>;
 
         #[method(threadgroupSizeMatchesTileSize)]
         pub unsafe fn threadgroupSizeMatchesTileSize(&self) -> bool;
@@ -1005,7 +1008,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLPipeline")]
         #[method_id(@__retain_semantics Other tileBuffers)]
-        pub unsafe fn tileBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
+        pub unsafe fn tileBuffers(&self) -> Retained<MTLPipelineBufferDescriptorArray>;
 
         #[method(maxTotalThreadsPerThreadgroup)]
         pub unsafe fn maxTotalThreadsPerThreadgroup(&self) -> NSUInteger;
@@ -1020,7 +1023,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other binaryArchives)]
         pub unsafe fn binaryArchives(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
+        ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
 
         #[cfg(feature = "MTLBinaryArchive")]
         #[method(setBinaryArchives:)]
@@ -1033,7 +1036,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other preloadedLibraries)]
         pub unsafe fn preloadedLibraries(
             &self,
-        ) -> Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>;
+        ) -> Retained<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>;
 
         #[cfg(feature = "MTLDynamicLibrary")]
         #[method(setPreloadedLibraries:)]
@@ -1044,7 +1047,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLLinkedFunctions")]
         #[method_id(@__retain_semantics Other linkedFunctions)]
-        pub unsafe fn linkedFunctions(&self) -> Id<MTLLinkedFunctions>;
+        pub unsafe fn linkedFunctions(&self) -> Retained<MTLLinkedFunctions>;
 
         #[cfg(feature = "MTLLinkedFunctions")]
         #[method(setLinkedFunctions:)]
@@ -1071,10 +1074,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLTileRenderPipelineDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -1095,14 +1098,14 @@ unsafe impl NSObjectProtocol for MTLMeshRenderPipelineDescriptor {}
 extern_methods!(
     unsafe impl MTLMeshRenderPipelineDescriptor {
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Option<Id<NSString>>;
+        pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other objectFunction)]
-        pub unsafe fn objectFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
+        pub unsafe fn objectFunction(&self) -> Option<Retained<ProtocolObject<dyn MTLFunction>>>;
 
         #[cfg(feature = "MTLLibrary")]
         #[method(setObjectFunction:)]
@@ -1113,7 +1116,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other meshFunction)]
-        pub unsafe fn meshFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
+        pub unsafe fn meshFunction(&self) -> Option<Retained<ProtocolObject<dyn MTLFunction>>>;
 
         #[cfg(feature = "MTLLibrary")]
         #[method(setMeshFunction:)]
@@ -1124,7 +1127,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other fragmentFunction)]
-        pub unsafe fn fragmentFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
+        pub unsafe fn fragmentFunction(&self) -> Option<Retained<ProtocolObject<dyn MTLFunction>>>;
 
         #[cfg(feature = "MTLLibrary")]
         #[method(setFragmentFunction:)]
@@ -1186,15 +1189,15 @@ extern_methods!(
 
         #[cfg(feature = "MTLPipeline")]
         #[method_id(@__retain_semantics Other objectBuffers)]
-        pub unsafe fn objectBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
+        pub unsafe fn objectBuffers(&self) -> Retained<MTLPipelineBufferDescriptorArray>;
 
         #[cfg(feature = "MTLPipeline")]
         #[method_id(@__retain_semantics Other meshBuffers)]
-        pub unsafe fn meshBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
+        pub unsafe fn meshBuffers(&self) -> Retained<MTLPipelineBufferDescriptorArray>;
 
         #[cfg(feature = "MTLPipeline")]
         #[method_id(@__retain_semantics Other fragmentBuffers)]
-        pub unsafe fn fragmentBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
+        pub unsafe fn fragmentBuffers(&self) -> Retained<MTLPipelineBufferDescriptorArray>;
 
         #[method(rasterSampleCount)]
         pub unsafe fn rasterSampleCount(&self) -> NSUInteger;
@@ -1232,7 +1235,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other colorAttachments)]
         pub unsafe fn colorAttachments(
             &self,
-        ) -> Id<MTLRenderPipelineColorAttachmentDescriptorArray>;
+        ) -> Retained<MTLRenderPipelineColorAttachmentDescriptorArray>;
 
         #[cfg(feature = "MTLPixelFormat")]
         #[method(depthAttachmentPixelFormat)]
@@ -1267,7 +1270,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLLinkedFunctions")]
         #[method_id(@__retain_semantics Other objectLinkedFunctions)]
-        pub unsafe fn objectLinkedFunctions(&self) -> Id<MTLLinkedFunctions>;
+        pub unsafe fn objectLinkedFunctions(&self) -> Retained<MTLLinkedFunctions>;
 
         #[cfg(feature = "MTLLinkedFunctions")]
         #[method(setObjectLinkedFunctions:)]
@@ -1278,7 +1281,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLLinkedFunctions")]
         #[method_id(@__retain_semantics Other meshLinkedFunctions)]
-        pub unsafe fn meshLinkedFunctions(&self) -> Id<MTLLinkedFunctions>;
+        pub unsafe fn meshLinkedFunctions(&self) -> Retained<MTLLinkedFunctions>;
 
         #[cfg(feature = "MTLLinkedFunctions")]
         #[method(setMeshLinkedFunctions:)]
@@ -1289,7 +1292,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLLinkedFunctions")]
         #[method_id(@__retain_semantics Other fragmentLinkedFunctions)]
-        pub unsafe fn fragmentLinkedFunctions(&self) -> Id<MTLLinkedFunctions>;
+        pub unsafe fn fragmentLinkedFunctions(&self) -> Retained<MTLLinkedFunctions>;
 
         #[cfg(feature = "MTLLinkedFunctions")]
         #[method(setFragmentLinkedFunctions:)]
@@ -1307,9 +1310,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLMeshRenderPipelineDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

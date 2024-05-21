@@ -24,11 +24,11 @@ unsafe impl NSObjectProtocol for NSStatusBar {}
 extern_methods!(
     unsafe impl NSStatusBar {
         #[method_id(@__retain_semantics Other systemStatusBar)]
-        pub unsafe fn systemStatusBar() -> Id<NSStatusBar>;
+        pub unsafe fn systemStatusBar() -> Retained<NSStatusBar>;
 
         #[cfg(feature = "NSStatusItem")]
         #[method_id(@__retain_semantics Other statusItemWithLength:)]
-        pub unsafe fn statusItemWithLength(&self, length: CGFloat) -> Id<NSStatusItem>;
+        pub unsafe fn statusItemWithLength(&self, length: CGFloat) -> Retained<NSStatusItem>;
 
         #[cfg(feature = "NSStatusItem")]
         #[method(removeStatusItem:)]
@@ -46,9 +46,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSStatusBar {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

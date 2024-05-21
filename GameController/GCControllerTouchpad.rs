@@ -50,7 +50,7 @@ extern_methods!(
     unsafe impl GCControllerTouchpad {
         #[cfg(feature = "GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other button)]
-        pub unsafe fn button(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn button(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(feature = "block2")]
         #[method(touchDown)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[cfg(feature = "GCControllerDirectionPad")]
         #[method_id(@__retain_semantics Other touchSurface)]
-        pub unsafe fn touchSurface(&self) -> Id<GCControllerDirectionPad>;
+        pub unsafe fn touchSurface(&self) -> Retained<GCControllerDirectionPad>;
 
         #[method(touchState)]
         pub unsafe fn touchState(&self) -> GCTouchState;
@@ -108,9 +108,9 @@ extern_methods!(
     #[cfg(feature = "GCControllerElement")]
     unsafe impl GCControllerTouchpad {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

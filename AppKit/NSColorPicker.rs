@@ -33,7 +33,7 @@ extern_methods!(
             this: Allocated<Self>,
             mask: NSUInteger,
             owning_color_panel: &NSColorPanel,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(
             feature = "NSColorPanel",
@@ -42,11 +42,11 @@ extern_methods!(
             feature = "NSWindow"
         ))]
         #[method_id(@__retain_semantics Other colorPanel)]
-        pub unsafe fn colorPanel(&self) -> Id<NSColorPanel>;
+        pub unsafe fn colorPanel(&self) -> Retained<NSColorPanel>;
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other provideNewButtonImage)]
-        pub unsafe fn provideNewButtonImage(&self) -> Id<NSImage>;
+        pub unsafe fn provideNewButtonImage(&self) -> Retained<NSImage>;
 
         #[cfg(all(
             feature = "NSActionCell",
@@ -77,7 +77,7 @@ extern_methods!(
         pub unsafe fn setMode(&self, mode: NSColorPanelMode);
 
         #[method_id(@__retain_semantics Other buttonToolTip)]
-        pub unsafe fn buttonToolTip(&self) -> Id<NSString>;
+        pub unsafe fn buttonToolTip(&self) -> Retained<NSString>;
 
         #[method(minContentSize)]
         pub unsafe fn minContentSize(&self) -> NSSize;
@@ -88,9 +88,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSColorPicker {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

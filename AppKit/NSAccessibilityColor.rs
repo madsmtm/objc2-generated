@@ -8,7 +8,7 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait NSAccessibilityColor {
         #[method_id(@__retain_semantics Other accessibilityName)]
-        unsafe fn accessibilityName(&self) -> Id<NSString>;
+        unsafe fn accessibilityName(&self) -> Retained<NSString>;
     }
 
     unsafe impl ProtocolType for dyn NSAccessibilityColor {}

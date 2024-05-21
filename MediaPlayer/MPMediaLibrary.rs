@@ -47,10 +47,10 @@ unsafe impl NSSecureCoding for MPMediaLibrary {}
 extern_methods!(
     unsafe impl MPMediaLibrary {
         #[method_id(@__retain_semantics Other defaultMediaLibrary)]
-        pub unsafe fn defaultMediaLibrary() -> Id<MPMediaLibrary>;
+        pub unsafe fn defaultMediaLibrary() -> Retained<MPMediaLibrary>;
 
         #[method_id(@__retain_semantics Other lastModifiedDate)]
-        pub unsafe fn lastModifiedDate(&self) -> Id<NSDate>;
+        pub unsafe fn lastModifiedDate(&self) -> Retained<NSDate>;
 
         #[method(beginGeneratingLibraryChangeNotifications)]
         pub unsafe fn beginGeneratingLibraryChangeNotifications(&self);
@@ -97,10 +97,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPMediaLibrary {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

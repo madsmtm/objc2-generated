@@ -46,7 +46,7 @@ extern_methods!(
     unsafe impl WebHistory {
         #[deprecated]
         #[method_id(@__retain_semantics Other optionalSharedHistory)]
-        pub unsafe fn optionalSharedHistory() -> Option<Id<WebHistory>>;
+        pub unsafe fn optionalSharedHistory() -> Option<Retained<WebHistory>>;
 
         #[deprecated]
         #[method(setOptionalSharedHistory:)]
@@ -66,19 +66,19 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other orderedLastVisitedDays)]
-        pub unsafe fn orderedLastVisitedDays(&self) -> Id<NSArray>;
+        pub unsafe fn orderedLastVisitedDays(&self) -> Retained<NSArray>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other orderedItemsLastVisitedOnDay:)]
         pub unsafe fn orderedItemsLastVisitedOnDay(
             &self,
             calendar_date: Option<&NSCalendarDate>,
-        ) -> Option<Id<NSArray>>;
+        ) -> Option<Retained<NSArray>>;
 
         #[cfg(feature = "WebHistoryItem")]
         #[deprecated]
         #[method_id(@__retain_semantics Other itemForURL:)]
-        pub unsafe fn itemForURL(&self, url: Option<&NSURL>) -> Option<Id<WebHistoryItem>>;
+        pub unsafe fn itemForURL(&self, url: Option<&NSURL>) -> Option<Retained<WebHistoryItem>>;
 
         #[deprecated]
         #[method(historyItemLimit)]
@@ -102,9 +102,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebHistory {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

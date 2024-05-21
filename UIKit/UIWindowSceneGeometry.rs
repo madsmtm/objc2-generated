@@ -45,10 +45,10 @@ unsafe impl NSObjectProtocol for UIWindowSceneGeometry {}
 extern_methods!(
     unsafe impl UIWindowSceneGeometry {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method(systemFrame)]
         pub unsafe fn systemFrame(&self) -> CGRect;

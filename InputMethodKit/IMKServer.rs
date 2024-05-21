@@ -24,7 +24,7 @@ extern_methods!(
             this: Allocated<Self>,
             name: Option<&NSString>,
             bundle_identifier: Option<&NSString>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithName:controllerClass:delegateClass:)]
         pub unsafe fn initWithName_controllerClass_delegateClass(
@@ -32,10 +32,10 @@ extern_methods!(
             name: Option<&NSString>,
             controller_class_id: Option<&AnyClass>,
             delegate_class_id: Option<&AnyClass>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other bundle)]
-        pub unsafe fn bundle(&self) -> Option<Id<NSBundle>>;
+        pub unsafe fn bundle(&self) -> Option<Retained<NSBundle>>;
 
         #[method(paletteWillTerminate)]
         pub unsafe fn paletteWillTerminate(&self) -> bool;
@@ -49,9 +49,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl IMKServer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -50,7 +50,7 @@ extern_methods!(
             feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other client)]
-        pub unsafe fn client(&self) -> Option<Id<NSView>>;
+        pub unsafe fn client(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(
             feature = "NSResponder",
@@ -63,7 +63,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSCandidateListTouchBarItemDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSCandidateListTouchBarItemDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -118,7 +118,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other candidates)]
-        pub unsafe fn candidates(&self) -> Id<NSArray<CandidateType>>;
+        pub unsafe fn candidates(&self) -> Retained<NSArray<CandidateType>>;
 
         #[method(setCandidates:forSelectedRange:inString:)]
         pub unsafe fn setCandidates_forSelectedRange_inString(
@@ -129,7 +129,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other customizationLabel)]
-        pub unsafe fn customizationLabel(&self) -> Id<NSString>;
+        pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
@@ -144,13 +144,16 @@ extern_methods!(
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -159,7 +162,7 @@ extern_methods!(
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -214,7 +217,9 @@ extern_methods!(
     unsafe impl NSView {
         #[cfg(feature = "NSTouchBarItem")]
         #[method_id(@__retain_semantics Other candidateListTouchBarItem)]
-        pub unsafe fn candidateListTouchBarItem(&self) -> Option<Id<NSCandidateListTouchBarItem>>;
+        pub unsafe fn candidateListTouchBarItem(
+            &self,
+        ) -> Option<Retained<NSCandidateListTouchBarItem>>;
     }
 );
 

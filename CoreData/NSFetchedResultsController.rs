@@ -43,29 +43,29 @@ extern_methods!(
             context: &NSManagedObjectContext,
             section_name_key_path: Option<&NSString>,
             name: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(performFetch:_)]
-        pub unsafe fn performFetch(&self) -> Result<(), Id<NSError>>;
+        pub unsafe fn performFetch(&self) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         #[method_id(@__retain_semantics Other fetchRequest)]
-        pub unsafe fn fetchRequest(&self) -> Id<NSFetchRequest<ResultType>>;
+        pub unsafe fn fetchRequest(&self) -> Retained<NSFetchRequest<ResultType>>;
 
         #[cfg(feature = "NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
-        pub unsafe fn managedObjectContext(&self) -> Id<NSManagedObjectContext>;
+        pub unsafe fn managedObjectContext(&self) -> Retained<NSManagedObjectContext>;
 
         #[method_id(@__retain_semantics Other sectionNameKeyPath)]
-        pub unsafe fn sectionNameKeyPath(&self) -> Option<Id<NSString>>;
+        pub unsafe fn sectionNameKeyPath(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other cacheName)]
-        pub unsafe fn cacheName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn cacheName(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSFetchedResultsControllerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSFetchedResultsControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -77,27 +77,30 @@ extern_methods!(
         pub unsafe fn deleteCacheWithName(name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other fetchedObjects)]
-        pub unsafe fn fetchedObjects(&self) -> Option<Id<NSArray<ResultType>>>;
+        pub unsafe fn fetchedObjects(&self) -> Option<Retained<NSArray<ResultType>>>;
 
         #[method_id(@__retain_semantics Other objectAtIndexPath:)]
-        pub unsafe fn objectAtIndexPath(&self, index_path: &NSIndexPath) -> Id<ResultType>;
+        pub unsafe fn objectAtIndexPath(&self, index_path: &NSIndexPath) -> Retained<ResultType>;
 
         #[method_id(@__retain_semantics Other indexPathForObject:)]
-        pub unsafe fn indexPathForObject(&self, object: &ResultType) -> Option<Id<NSIndexPath>>;
+        pub unsafe fn indexPathForObject(
+            &self,
+            object: &ResultType,
+        ) -> Option<Retained<NSIndexPath>>;
 
         #[method_id(@__retain_semantics Other sectionIndexTitleForSectionName:)]
         pub unsafe fn sectionIndexTitleForSectionName(
             &self,
             section_name: &NSString,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other sectionIndexTitles)]
-        pub unsafe fn sectionIndexTitles(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn sectionIndexTitles(&self) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other sections)]
         pub unsafe fn sections(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn NSFetchedResultsSectionInfo>>>>;
+        ) -> Option<Retained<NSArray<ProtocolObject<dyn NSFetchedResultsSectionInfo>>>>;
 
         #[method(sectionForSectionIndexTitle:atIndex:)]
         pub unsafe fn sectionForSectionIndexTitle_atIndex(
@@ -112,26 +115,26 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ResultType: Message> NSFetchedResultsController<ResultType> {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
 extern_protocol!(
     pub unsafe trait NSFetchedResultsSectionInfo {
         #[method_id(@__retain_semantics Other name)]
-        unsafe fn name(&self) -> Id<NSString>;
+        unsafe fn name(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other indexTitle)]
-        unsafe fn indexTitle(&self) -> Option<Id<NSString>>;
+        unsafe fn indexTitle(&self) -> Option<Retained<NSString>>;
 
         #[method(numberOfObjects)]
         unsafe fn numberOfObjects(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other objects)]
-        unsafe fn objects(&self) -> Option<Id<NSArray>>;
+        unsafe fn objects(&self) -> Option<Retained<NSArray>>;
     }
 
     unsafe impl ProtocolType for dyn NSFetchedResultsSectionInfo {}
@@ -202,7 +205,7 @@ extern_protocol!(
             &self,
             controller: &NSFetchedResultsController,
             section_name: &NSString,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn NSFetchedResultsControllerDelegate {}

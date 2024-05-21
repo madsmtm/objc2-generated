@@ -58,10 +58,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKProductSubscriptionPeriod {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -84,19 +84,19 @@ unsafe impl NSObjectProtocol for SKProduct {}
 extern_methods!(
     unsafe impl SKProduct {
         #[method_id(@__retain_semantics Other localizedDescription)]
-        pub unsafe fn localizedDescription(&self) -> Id<NSString>;
+        pub unsafe fn localizedDescription(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other localizedTitle)]
-        pub unsafe fn localizedTitle(&self) -> Id<NSString>;
+        pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other price)]
-        pub unsafe fn price(&self) -> Id<NSDecimalNumber>;
+        pub unsafe fn price(&self) -> Retained<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other priceLocale)]
-        pub unsafe fn priceLocale(&self) -> Id<NSLocale>;
+        pub unsafe fn priceLocale(&self) -> Retained<NSLocale>;
 
         #[method_id(@__retain_semantics Other productIdentifier)]
-        pub unsafe fn productIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn productIdentifier(&self) -> Retained<NSString>;
 
         #[method(isDownloadable)]
         pub unsafe fn isDownloadable(&self) -> bool;
@@ -110,31 +110,31 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other contentLengths)]
-        pub unsafe fn contentLengths(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn contentLengths(&self) -> Retained<NSArray<NSNumber>>;
 
         #[method_id(@__retain_semantics Other downloadContentLengths)]
-        pub unsafe fn downloadContentLengths(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn downloadContentLengths(&self) -> Retained<NSArray<NSNumber>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other contentVersion)]
-        pub unsafe fn contentVersion(&self) -> Id<NSString>;
+        pub unsafe fn contentVersion(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other downloadContentVersion)]
-        pub unsafe fn downloadContentVersion(&self) -> Id<NSString>;
+        pub unsafe fn downloadContentVersion(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other subscriptionPeriod)]
-        pub unsafe fn subscriptionPeriod(&self) -> Option<Id<SKProductSubscriptionPeriod>>;
+        pub unsafe fn subscriptionPeriod(&self) -> Option<Retained<SKProductSubscriptionPeriod>>;
 
         #[cfg(feature = "SKProductDiscount")]
         #[method_id(@__retain_semantics Other introductoryPrice)]
-        pub unsafe fn introductoryPrice(&self) -> Option<Id<SKProductDiscount>>;
+        pub unsafe fn introductoryPrice(&self) -> Option<Retained<SKProductDiscount>>;
 
         #[method_id(@__retain_semantics Other subscriptionGroupIdentifier)]
-        pub unsafe fn subscriptionGroupIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn subscriptionGroupIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "SKProductDiscount")]
         #[method_id(@__retain_semantics Other discounts)]
-        pub unsafe fn discounts(&self) -> Id<NSArray<SKProductDiscount>>;
+        pub unsafe fn discounts(&self) -> Retained<NSArray<SKProductDiscount>>;
     }
 );
 
@@ -142,9 +142,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKProduct {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

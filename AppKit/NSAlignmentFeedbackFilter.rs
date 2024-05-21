@@ -45,7 +45,7 @@ extern_methods!(
             previous_point: NSPoint,
             aligned_point: NSPoint,
             default_point: NSPoint,
-        ) -> Option<Id<ProtocolObject<dyn NSAlignmentFeedbackToken>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSAlignmentFeedbackToken>>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other alignmentFeedbackTokenForHorizontalMovementInView:previousX:alignedX:defaultX:)]
@@ -55,7 +55,7 @@ extern_methods!(
             previous_x: CGFloat,
             aligned_x: CGFloat,
             default_x: CGFloat,
-        ) -> Option<Id<ProtocolObject<dyn NSAlignmentFeedbackToken>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSAlignmentFeedbackToken>>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other alignmentFeedbackTokenForVerticalMovementInView:previousY:alignedY:defaultY:)]
@@ -65,7 +65,7 @@ extern_methods!(
             previous_y: CGFloat,
             aligned_y: CGFloat,
             default_y: CGFloat,
-        ) -> Option<Id<ProtocolObject<dyn NSAlignmentFeedbackToken>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSAlignmentFeedbackToken>>>;
 
         #[cfg(feature = "NSHapticFeedback")]
         #[method(performFeedback:performanceTime:)]
@@ -81,9 +81,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAlignmentFeedbackFilter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

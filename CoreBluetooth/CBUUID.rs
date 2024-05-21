@@ -54,19 +54,19 @@ unsafe impl NSObjectProtocol for CBUUID {}
 extern_methods!(
     unsafe impl CBUUID {
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Id<NSData>;
+        pub unsafe fn data(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other UUIDString)]
-        pub unsafe fn UUIDString(&self) -> Id<NSString>;
+        pub unsafe fn UUIDString(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other UUIDWithString:)]
-        pub unsafe fn UUIDWithString(the_string: &NSString) -> Id<CBUUID>;
+        pub unsafe fn UUIDWithString(the_string: &NSString) -> Retained<CBUUID>;
 
         #[method_id(@__retain_semantics Other UUIDWithData:)]
-        pub unsafe fn UUIDWithData(the_data: &NSData) -> Id<CBUUID>;
+        pub unsafe fn UUIDWithData(the_data: &NSData) -> Retained<CBUUID>;
 
         #[method_id(@__retain_semantics Other UUIDWithNSUUID:)]
-        pub unsafe fn UUIDWithNSUUID(the_uuid: &NSUUID) -> Id<CBUUID>;
+        pub unsafe fn UUIDWithNSUUID(the_uuid: &NSUUID) -> Retained<CBUUID>;
     }
 );
 
@@ -74,9 +74,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CBUUID {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

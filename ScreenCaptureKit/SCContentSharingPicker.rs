@@ -70,13 +70,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other excludedWindowIDs)]
-        pub unsafe fn excludedWindowIDs(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn excludedWindowIDs(&self) -> Retained<NSArray<NSNumber>>;
 
         #[method(setExcludedWindowIDs:)]
         pub unsafe fn setExcludedWindowIDs(&self, excluded_window_i_ds: &NSArray<NSNumber>);
 
         #[method_id(@__retain_semantics Other excludedBundleIDs)]
-        pub unsafe fn excludedBundleIDs(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn excludedBundleIDs(&self) -> Retained<NSArray<NSString>>;
 
         #[method(setExcludedBundleIDs:)]
         pub unsafe fn setExcludedBundleIDs(&self, excluded_bundle_i_ds: &NSArray<NSString>);
@@ -96,10 +96,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<NSCopying: Message> SCContentSharingPickerConfiguration<NSCopying> {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -118,16 +118,16 @@ unsafe impl NSObjectProtocol for SCContentSharingPicker {}
 extern_methods!(
     unsafe impl SCContentSharingPicker {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other sharedPicker)]
-        pub unsafe fn sharedPicker() -> Id<SCContentSharingPicker>;
+        pub unsafe fn sharedPicker() -> Retained<SCContentSharingPicker>;
 
         #[method_id(@__retain_semantics Other defaultConfiguration)]
-        pub unsafe fn defaultConfiguration(&self) -> Id<SCContentSharingPickerConfiguration>;
+        pub unsafe fn defaultConfiguration(&self) -> Retained<SCContentSharingPickerConfiguration>;
 
         #[method(setDefaultConfiguration:)]
         pub unsafe fn setDefaultConfiguration(
@@ -136,7 +136,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other maximumStreamCount)]
-        pub unsafe fn maximumStreamCount(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn maximumStreamCount(&self) -> Option<Retained<NSNumber>>;
 
         #[method(setMaximumStreamCount:)]
         pub unsafe fn setMaximumStreamCount(&self, maximum_stream_count: Option<&NSNumber>);

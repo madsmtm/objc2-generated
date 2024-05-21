@@ -28,57 +28,59 @@ extern_methods!(
         #[cfg(feature = "MLCLSTMDescriptor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptor)]
-        pub unsafe fn descriptor(&self) -> Id<MLCLSTMDescriptor>;
+        pub unsafe fn descriptor(&self) -> Retained<MLCLSTMDescriptor>;
 
         #[cfg(feature = "MLCActivationDescriptor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other gateActivations)]
-        pub unsafe fn gateActivations(&self) -> Id<NSArray<MLCActivationDescriptor>>;
+        pub unsafe fn gateActivations(&self) -> Retained<NSArray<MLCActivationDescriptor>>;
 
         #[cfg(feature = "MLCActivationDescriptor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other outputResultActivation)]
-        pub unsafe fn outputResultActivation(&self) -> Id<MLCActivationDescriptor>;
+        pub unsafe fn outputResultActivation(&self) -> Retained<MLCActivationDescriptor>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other inputWeights)]
-        pub unsafe fn inputWeights(&self) -> Id<NSArray<MLCTensor>>;
+        pub unsafe fn inputWeights(&self) -> Retained<NSArray<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other hiddenWeights)]
-        pub unsafe fn hiddenWeights(&self) -> Id<NSArray<MLCTensor>>;
+        pub unsafe fn hiddenWeights(&self) -> Retained<NSArray<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other peepholeWeights)]
-        pub unsafe fn peepholeWeights(&self) -> Option<Id<NSArray<MLCTensor>>>;
+        pub unsafe fn peepholeWeights(&self) -> Option<Retained<NSArray<MLCTensor>>>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other biases)]
-        pub unsafe fn biases(&self) -> Option<Id<NSArray<MLCTensor>>>;
+        pub unsafe fn biases(&self) -> Option<Retained<NSArray<MLCTensor>>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         #[deprecated]
         #[method_id(@__retain_semantics Other inputWeightsParameters)]
-        pub unsafe fn inputWeightsParameters(&self) -> Id<NSArray<MLCTensorParameter>>;
+        pub unsafe fn inputWeightsParameters(&self) -> Retained<NSArray<MLCTensorParameter>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         #[deprecated]
         #[method_id(@__retain_semantics Other hiddenWeightsParameters)]
-        pub unsafe fn hiddenWeightsParameters(&self) -> Id<NSArray<MLCTensorParameter>>;
+        pub unsafe fn hiddenWeightsParameters(&self) -> Retained<NSArray<MLCTensorParameter>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         #[deprecated]
         #[method_id(@__retain_semantics Other peepholeWeightsParameters)]
-        pub unsafe fn peepholeWeightsParameters(&self) -> Option<Id<NSArray<MLCTensorParameter>>>;
+        pub unsafe fn peepholeWeightsParameters(
+            &self,
+        ) -> Option<Retained<NSArray<MLCTensorParameter>>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         #[deprecated]
         #[method_id(@__retain_semantics Other biasesParameters)]
-        pub unsafe fn biasesParameters(&self) -> Option<Id<NSArray<MLCTensorParameter>>>;
+        pub unsafe fn biasesParameters(&self) -> Option<Retained<NSArray<MLCTensorParameter>>>;
 
         #[cfg(all(feature = "MLCLSTMDescriptor", feature = "MLCTensor"))]
         #[deprecated]
@@ -88,7 +90,7 @@ extern_methods!(
             input_weights: &NSArray<MLCTensor>,
             hidden_weights: &NSArray<MLCTensor>,
             biases: Option<&NSArray<MLCTensor>>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "MLCLSTMDescriptor", feature = "MLCTensor"))]
         #[deprecated]
@@ -99,7 +101,7 @@ extern_methods!(
             hidden_weights: &NSArray<MLCTensor>,
             peephole_weights: Option<&NSArray<MLCTensor>>,
             biases: Option<&NSArray<MLCTensor>>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(
             feature = "MLCActivationDescriptor",
@@ -116,7 +118,7 @@ extern_methods!(
             biases: Option<&NSArray<MLCTensor>>,
             gate_activations: &NSArray<MLCActivationDescriptor>,
             output_result_activation: &MLCActivationDescriptor,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -126,10 +128,10 @@ extern_methods!(
     unsafe impl MLCLSTMLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

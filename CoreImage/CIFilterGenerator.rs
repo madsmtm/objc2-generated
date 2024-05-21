@@ -41,18 +41,18 @@ unsafe impl NSSecureCoding for CIFilterGenerator {}
 extern_methods!(
     unsafe impl CIFilterGenerator {
         #[method_id(@__retain_semantics Other filterGenerator)]
-        pub unsafe fn filterGenerator() -> Id<CIFilterGenerator>;
+        pub unsafe fn filterGenerator() -> Retained<CIFilterGenerator>;
 
         #[method_id(@__retain_semantics Other filterGeneratorWithContentsOfURL:)]
         pub unsafe fn filterGeneratorWithContentsOfURL(
             a_url: &NSURL,
-        ) -> Option<Id<CIFilterGenerator>>;
+        ) -> Option<Retained<CIFilterGenerator>>;
 
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
             a_url: &NSURL,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method(connectObject:withKey:toObject:withKey:)]
         pub unsafe fn connectObject_withKey_toObject_withKey(
@@ -84,7 +84,7 @@ extern_methods!(
         pub unsafe fn removeExportedKey(&self, exported_key_name: &NSString);
 
         #[method_id(@__retain_semantics Other exportedKeys)]
-        pub unsafe fn exportedKeys(&self) -> Id<NSDictionary>;
+        pub unsafe fn exportedKeys(&self) -> Retained<NSDictionary>;
 
         #[method(setAttributes:forExportedKey:)]
         pub unsafe fn setAttributes_forExportedKey(
@@ -94,14 +94,14 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other classAttributes)]
-        pub unsafe fn classAttributes(&self) -> Id<NSDictionary>;
+        pub unsafe fn classAttributes(&self) -> Retained<NSDictionary>;
 
         #[method(setClassAttributes:)]
         pub unsafe fn setClassAttributes(&self, class_attributes: &NSDictionary);
 
         #[cfg(feature = "CIFilter")]
         #[method_id(@__retain_semantics Other filter)]
-        pub unsafe fn filter(&self) -> Id<CIFilter>;
+        pub unsafe fn filter(&self) -> Retained<CIFilter>;
 
         #[method(registerFilterName:)]
         pub unsafe fn registerFilterName(&self, name: &NSString);
@@ -115,9 +115,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIFilterGenerator {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

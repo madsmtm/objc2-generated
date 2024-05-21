@@ -32,7 +32,7 @@ extern_methods!(
             this: Allocated<Self>,
             health_store: &HKHealthStore,
             device: Option<&HKDevice>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-location"))]
         #[method(insertRouteData:completion:)]
@@ -73,7 +73,7 @@ extern_methods!(
     #[cfg(feature = "HKSeriesBuilder")]
     unsafe impl HKWorkoutRouteBuilder {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -82,6 +82,6 @@ extern_methods!(
     #[cfg(feature = "HKSeriesBuilder")]
     unsafe impl HKWorkoutRouteBuilder {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

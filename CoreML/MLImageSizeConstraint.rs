@@ -35,7 +35,7 @@ extern_methods!(
 
         #[cfg(feature = "MLImageSize")]
         #[method_id(@__retain_semantics Other enumeratedImageSizes)]
-        pub unsafe fn enumeratedImageSizes(&self) -> Id<NSArray<MLImageSize>>;
+        pub unsafe fn enumeratedImageSizes(&self) -> Retained<NSArray<MLImageSize>>;
     }
 );
 
@@ -43,9 +43,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLImageSizeConstraint {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

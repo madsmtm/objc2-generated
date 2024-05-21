@@ -27,11 +27,12 @@ extern_methods!(
     unsafe impl MLCTransposeLayer {
         #[deprecated]
         #[method_id(@__retain_semantics Other dimensions)]
-        pub unsafe fn dimensions(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn dimensions(&self) -> Retained<NSArray<NSNumber>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithDimensions:)]
-        pub unsafe fn layerWithDimensions(dimensions: &NSArray<NSNumber>) -> Option<Id<Self>>;
+        pub unsafe fn layerWithDimensions(dimensions: &NSArray<NSNumber>)
+            -> Option<Retained<Self>>;
     }
 );
 
@@ -41,10 +42,10 @@ extern_methods!(
     unsafe impl MLCTransposeLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

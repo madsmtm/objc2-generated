@@ -22,19 +22,19 @@ unsafe impl NSObjectProtocol for BGTaskRequest {}
 extern_methods!(
     unsafe impl BGTaskRequest {
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other earliestBeginDate)]
-        pub unsafe fn earliestBeginDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn earliestBeginDate(&self) -> Option<Retained<NSDate>>;
 
         #[method(setEarliestBeginDate:)]
         pub unsafe fn setEarliestBeginDate(&self, earliest_begin_date: Option<&NSDate>);
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -56,7 +56,10 @@ unsafe impl NSObjectProtocol for BGAppRefreshTaskRequest {}
 extern_methods!(
     unsafe impl BGAppRefreshTaskRequest {
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
-        pub unsafe fn initWithIdentifier(this: Allocated<Self>, identifier: &NSString) -> Id<Self>;
+        pub unsafe fn initWithIdentifier(
+            this: Allocated<Self>,
+            identifier: &NSString,
+        ) -> Retained<Self>;
     }
 );
 
@@ -64,10 +67,10 @@ extern_methods!(
     /// Methods declared on superclass `BGTaskRequest`
     unsafe impl BGAppRefreshTaskRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -89,7 +92,10 @@ unsafe impl NSObjectProtocol for BGProcessingTaskRequest {}
 extern_methods!(
     unsafe impl BGProcessingTaskRequest {
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
-        pub unsafe fn initWithIdentifier(this: Allocated<Self>, identifier: &NSString) -> Id<Self>;
+        pub unsafe fn initWithIdentifier(
+            this: Allocated<Self>,
+            identifier: &NSString,
+        ) -> Retained<Self>;
 
         #[method(requiresNetworkConnectivity)]
         pub unsafe fn requiresNetworkConnectivity(&self) -> bool;
@@ -109,10 +115,10 @@ extern_methods!(
     /// Methods declared on superclass `BGTaskRequest`
     unsafe impl BGProcessingTaskRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -134,7 +140,7 @@ unsafe impl NSObjectProtocol for BGHealthResearchTaskRequest {}
 extern_methods!(
     unsafe impl BGHealthResearchTaskRequest {
         #[method_id(@__retain_semantics Other protectionTypeOfRequiredData)]
-        pub unsafe fn protectionTypeOfRequiredData(&self) -> Id<NSFileProtectionType>;
+        pub unsafe fn protectionTypeOfRequiredData(&self) -> Retained<NSFileProtectionType>;
 
         #[method(setProtectionTypeOfRequiredData:)]
         pub unsafe fn setProtectionTypeOfRequiredData(
@@ -148,7 +154,10 @@ extern_methods!(
     /// Methods declared on superclass `BGProcessingTaskRequest`
     unsafe impl BGHealthResearchTaskRequest {
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
-        pub unsafe fn initWithIdentifier(this: Allocated<Self>, identifier: &NSString) -> Id<Self>;
+        pub unsafe fn initWithIdentifier(
+            this: Allocated<Self>,
+            identifier: &NSString,
+        ) -> Retained<Self>;
     }
 );
 
@@ -156,9 +165,9 @@ extern_methods!(
     /// Methods declared on superclass `BGTaskRequest`
     unsafe impl BGHealthResearchTaskRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

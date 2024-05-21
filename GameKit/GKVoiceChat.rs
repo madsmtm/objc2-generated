@@ -65,7 +65,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
@@ -81,7 +81,7 @@ extern_methods!(
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other players)]
-        pub unsafe fn players(&self) -> Id<NSArray<GKPlayer>>;
+        pub unsafe fn players(&self) -> Retained<NSArray<GKPlayer>>;
 
         #[method(isVoIPAllowed)]
         pub unsafe fn isVoIPAllowed() -> bool;
@@ -92,10 +92,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKVoiceChat {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -126,7 +126,7 @@ extern_methods!(
     unsafe impl GKVoiceChat {
         #[deprecated]
         #[method_id(@__retain_semantics Other playerIDs)]
-        pub unsafe fn playerIDs(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn playerIDs(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[deprecated]
         #[method(setMute:forPlayer:)]

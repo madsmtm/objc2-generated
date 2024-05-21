@@ -30,15 +30,15 @@ extern_methods!(
     unsafe impl DOMCounter {
         #[deprecated]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other listStyle)]
-        pub unsafe fn listStyle(&self) -> Id<NSString>;
+        pub unsafe fn listStyle(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other separator)]
-        pub unsafe fn separator(&self) -> Id<NSString>;
+        pub unsafe fn separator(&self) -> Retained<NSString>;
     }
 );
 
@@ -48,7 +48,7 @@ extern_methods!(
     unsafe impl DOMCounter {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -57,6 +57,6 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCounter {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

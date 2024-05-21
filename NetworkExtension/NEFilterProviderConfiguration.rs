@@ -46,7 +46,9 @@ extern_methods!(
         pub unsafe fn setFilterPackets(&self, filter_packets: bool);
 
         #[method_id(@__retain_semantics Other vendorConfiguration)]
-        pub unsafe fn vendorConfiguration(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+        pub unsafe fn vendorConfiguration(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[method(setVendorConfiguration:)]
         pub unsafe fn setVendorConfiguration(
@@ -55,37 +57,37 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other serverAddress)]
-        pub unsafe fn serverAddress(&self) -> Option<Id<NSString>>;
+        pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
 
         #[method(setServerAddress:)]
         pub unsafe fn setServerAddress(&self, server_address: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other username)]
-        pub unsafe fn username(&self) -> Option<Id<NSString>>;
+        pub unsafe fn username(&self) -> Option<Retained<NSString>>;
 
         #[method(setUsername:)]
         pub unsafe fn setUsername(&self, username: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other organization)]
-        pub unsafe fn organization(&self) -> Option<Id<NSString>>;
+        pub unsafe fn organization(&self) -> Option<Retained<NSString>>;
 
         #[method(setOrganization:)]
         pub unsafe fn setOrganization(&self, organization: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other passwordReference)]
-        pub unsafe fn passwordReference(&self) -> Option<Id<NSData>>;
+        pub unsafe fn passwordReference(&self) -> Option<Retained<NSData>>;
 
         #[method(setPasswordReference:)]
         pub unsafe fn setPasswordReference(&self, password_reference: Option<&NSData>);
 
         #[method_id(@__retain_semantics Other identityReference)]
-        pub unsafe fn identityReference(&self) -> Option<Id<NSData>>;
+        pub unsafe fn identityReference(&self) -> Option<Retained<NSData>>;
 
         #[method(setIdentityReference:)]
         pub unsafe fn setIdentityReference(&self, identity_reference: Option<&NSData>);
 
         #[method_id(@__retain_semantics Other filterDataProviderBundleIdentifier)]
-        pub unsafe fn filterDataProviderBundleIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn filterDataProviderBundleIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(setFilterDataProviderBundleIdentifier:)]
         pub unsafe fn setFilterDataProviderBundleIdentifier(
@@ -94,7 +96,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other filterPacketProviderBundleIdentifier)]
-        pub unsafe fn filterPacketProviderBundleIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn filterPacketProviderBundleIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(setFilterPacketProviderBundleIdentifier:)]
         pub unsafe fn setFilterPacketProviderBundleIdentifier(
@@ -108,9 +110,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterProviderConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

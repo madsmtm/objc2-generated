@@ -35,7 +35,7 @@ extern_methods!(
     unsafe impl NETransparentProxyNetworkSettings {
         #[cfg(feature = "NENetworkRule")]
         #[method_id(@__retain_semantics Other includedNetworkRules)]
-        pub unsafe fn includedNetworkRules(&self) -> Option<Id<NSArray<NENetworkRule>>>;
+        pub unsafe fn includedNetworkRules(&self) -> Option<Retained<NSArray<NENetworkRule>>>;
 
         #[cfg(feature = "NENetworkRule")]
         #[method(setIncludedNetworkRules:)]
@@ -46,7 +46,7 @@ extern_methods!(
 
         #[cfg(feature = "NENetworkRule")]
         #[method_id(@__retain_semantics Other excludedNetworkRules)]
-        pub unsafe fn excludedNetworkRules(&self) -> Option<Id<NSArray<NENetworkRule>>>;
+        pub unsafe fn excludedNetworkRules(&self) -> Option<Retained<NSArray<NENetworkRule>>>;
 
         #[cfg(feature = "NENetworkRule")]
         #[method(setExcludedNetworkRules:)]
@@ -65,7 +65,7 @@ extern_methods!(
         pub unsafe fn initWithTunnelRemoteAddress(
             this: Allocated<Self>,
             address: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -74,9 +74,9 @@ extern_methods!(
     #[cfg(feature = "NETunnelNetworkSettings")]
     unsafe impl NETransparentProxyNetworkSettings {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

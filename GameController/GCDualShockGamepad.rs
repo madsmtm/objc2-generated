@@ -25,15 +25,15 @@ extern_methods!(
     unsafe impl GCDualShockGamepad {
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other touchpadButton)]
-        pub unsafe fn touchpadButton(&self) -> Option<Id<GCControllerButtonInput>>;
+        pub unsafe fn touchpadButton(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other touchpadPrimary)]
-        pub unsafe fn touchpadPrimary(&self) -> Option<Id<GCControllerDirectionPad>>;
+        pub unsafe fn touchpadPrimary(&self) -> Option<Retained<GCControllerDirectionPad>>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other touchpadSecondary)]
-        pub unsafe fn touchpadSecondary(&self) -> Option<Id<GCControllerDirectionPad>>;
+        pub unsafe fn touchpadSecondary(&self) -> Option<Retained<GCControllerDirectionPad>>;
     }
 );
 
@@ -42,9 +42,9 @@ extern_methods!(
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCDualShockGamepad {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -102,14 +102,14 @@ extern_methods!(
             this: Allocated<Self>,
             label: &NSString,
             item_search_delegate: &ProtocolObject<dyn NSAccessibilityCustomRotorItemSearchDelegate>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithRotorType:itemSearchDelegate:)]
         pub unsafe fn initWithRotorType_itemSearchDelegate(
             this: Allocated<Self>,
             rotor_type: NSAccessibilityCustomRotorType,
             item_search_delegate: &ProtocolObject<dyn NSAccessibilityCustomRotorItemSearchDelegate>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(type)]
         pub unsafe fn r#type(&self) -> NSAccessibilityCustomRotorType;
@@ -118,7 +118,7 @@ extern_methods!(
         pub unsafe fn setType(&self, r#type: NSAccessibilityCustomRotorType);
 
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Id<NSString>;
+        pub unsafe fn label(&self) -> Retained<NSString>;
 
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
@@ -126,7 +126,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other itemSearchDelegate)]
         pub unsafe fn itemSearchDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSAccessibilityCustomRotorItemSearchDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSAccessibilityCustomRotorItemSearchDelegate>>>;
 
         #[method(setItemSearchDelegate:)]
         pub unsafe fn setItemSearchDelegate(
@@ -140,7 +140,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other itemLoadingDelegate)]
         pub unsafe fn itemLoadingDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSAccessibilityElementLoading>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSAccessibilityElementLoading>>>;
 
         #[cfg(feature = "NSAccessibilityProtocols")]
         #[method(setItemLoadingDelegate:)]
@@ -155,10 +155,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAccessibilityCustomRotor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -177,7 +177,7 @@ unsafe impl NSObjectProtocol for NSAccessibilityCustomRotorSearchParameters {}
 extern_methods!(
     unsafe impl NSAccessibilityCustomRotorSearchParameters {
         #[method_id(@__retain_semantics Other currentItem)]
-        pub unsafe fn currentItem(&self) -> Option<Id<NSAccessibilityCustomRotorItemResult>>;
+        pub unsafe fn currentItem(&self) -> Option<Retained<NSAccessibilityCustomRotorItemResult>>;
 
         #[method(setCurrentItem:)]
         pub unsafe fn setCurrentItem(
@@ -195,7 +195,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other filterString)]
-        pub unsafe fn filterString(&self) -> Id<NSString>;
+        pub unsafe fn filterString(&self) -> Retained<NSString>;
 
         #[method(setFilterString:)]
         pub unsafe fn setFilterString(&self, filter_string: &NSString);
@@ -206,10 +206,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAccessibilityCustomRotorSearchParameters {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -228,17 +228,17 @@ unsafe impl NSObjectProtocol for NSAccessibilityCustomRotorItemResult {}
 extern_methods!(
     unsafe impl NSAccessibilityCustomRotorItemResult {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSAccessibilityProtocols")]
         #[method_id(@__retain_semantics Init initWithTargetElement:)]
         pub unsafe fn initWithTargetElement(
             this: Allocated<Self>,
             target_element: &ProtocolObject<dyn NSAccessibilityElementProtocol>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[method_id(@__retain_semantics Init initWithItemLoadingToken:customLabel:)]
@@ -246,17 +246,17 @@ extern_methods!(
             this: Allocated<Self>,
             item_loading_token: &NSAccessibilityLoadingToken,
             custom_label: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSAccessibilityProtocols")]
         #[method_id(@__retain_semantics Other targetElement)]
         pub unsafe fn targetElement(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSAccessibilityElementProtocol>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSAccessibilityElementProtocol>>>;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[method_id(@__retain_semantics Other itemLoadingToken)]
-        pub unsafe fn itemLoadingToken(&self) -> Option<Id<NSAccessibilityLoadingToken>>;
+        pub unsafe fn itemLoadingToken(&self) -> Option<Retained<NSAccessibilityLoadingToken>>;
 
         #[method(targetRange)]
         pub unsafe fn targetRange(&self) -> NSRange;
@@ -265,7 +265,7 @@ extern_methods!(
         pub unsafe fn setTargetRange(&self, target_range: NSRange);
 
         #[method_id(@__retain_semantics Other customLabel)]
-        pub unsafe fn customLabel(&self) -> Option<Id<NSString>>;
+        pub unsafe fn customLabel(&self) -> Option<Retained<NSString>>;
 
         #[method(setCustomLabel:)]
         pub unsafe fn setCustomLabel(&self, custom_label: Option<&NSString>);
@@ -279,7 +279,7 @@ extern_protocol!(
             &self,
             rotor: &NSAccessibilityCustomRotor,
             search_parameters: &NSAccessibilityCustomRotorSearchParameters,
-        ) -> Option<Id<NSAccessibilityCustomRotorItemResult>>;
+        ) -> Option<Retained<NSAccessibilityCustomRotorItemResult>>;
     }
 
     unsafe impl ProtocolType for dyn NSAccessibilityCustomRotorItemSearchDelegate {}

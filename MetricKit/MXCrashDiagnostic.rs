@@ -32,28 +32,28 @@ extern_methods!(
     unsafe impl MXCrashDiagnostic {
         #[cfg(feature = "MXCallStackTree")]
         #[method_id(@__retain_semantics Other callStackTree)]
-        pub unsafe fn callStackTree(&self) -> Id<MXCallStackTree>;
+        pub unsafe fn callStackTree(&self) -> Retained<MXCallStackTree>;
 
         #[method_id(@__retain_semantics Other terminationReason)]
-        pub unsafe fn terminationReason(&self) -> Option<Id<NSString>>;
+        pub unsafe fn terminationReason(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other virtualMemoryRegionInfo)]
-        pub unsafe fn virtualMemoryRegionInfo(&self) -> Option<Id<NSString>>;
+        pub unsafe fn virtualMemoryRegionInfo(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other exceptionType)]
-        pub unsafe fn exceptionType(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn exceptionType(&self) -> Option<Retained<NSNumber>>;
 
         #[method_id(@__retain_semantics Other exceptionCode)]
-        pub unsafe fn exceptionCode(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn exceptionCode(&self) -> Option<Retained<NSNumber>>;
 
         #[method_id(@__retain_semantics Other signal)]
-        pub unsafe fn signal(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn signal(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "MXCrashDiagnosticObjectiveCExceptionReason")]
         #[method_id(@__retain_semantics Other exceptionReason)]
         pub unsafe fn exceptionReason(
             &self,
-        ) -> Option<Id<MXCrashDiagnosticObjectiveCExceptionReason>>;
+        ) -> Option<Retained<MXCrashDiagnosticObjectiveCExceptionReason>>;
     }
 );
 
@@ -62,9 +62,9 @@ extern_methods!(
     #[cfg(feature = "MXDiagnostic")]
     unsafe impl MXCrashDiagnostic {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

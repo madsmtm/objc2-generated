@@ -33,11 +33,11 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other shape)]
-        pub unsafe fn shape(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn shape(&self) -> Retained<NSArray<NSNumber>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other stride)]
-        pub unsafe fn stride(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn stride(&self) -> Retained<NSArray<NSNumber>>;
 
         #[deprecated]
         #[method(tensorAllocationSizeInBytes)]
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other sequenceLengths)]
-        pub unsafe fn sequenceLengths(&self) -> Option<Id<NSArray<NSNumber>>>;
+        pub unsafe fn sequenceLengths(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[deprecated]
         #[method(sortedSequences)]
@@ -53,15 +53,15 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other batchSizePerSequenceStep)]
-        pub unsafe fn batchSizePerSequenceStep(&self) -> Option<Id<NSArray<NSNumber>>>;
+        pub unsafe fn batchSizePerSequenceStep(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated]
         #[method(maxTensorDimensions)]
@@ -73,7 +73,7 @@ extern_methods!(
         pub unsafe fn descriptorWithShape_dataType(
             shape: &NSArray<NSNumber>,
             data_type: MLCDataType,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -83,7 +83,7 @@ extern_methods!(
             sequence_lengths: &NSArray<NSNumber>,
             sorted_sequences: bool,
             data_type: MLCDataType,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithWidth:height:featureChannelCount:batchSize:)]
@@ -92,7 +92,7 @@ extern_methods!(
             height: NSUInteger,
             feature_channels: NSUInteger,
             batch_size: NSUInteger,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -103,7 +103,7 @@ extern_methods!(
             feature_channel_count: NSUInteger,
             batch_size: NSUInteger,
             data_type: MLCDataType,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -114,7 +114,7 @@ extern_methods!(
             input_feature_channel_count: NSUInteger,
             output_feature_channel_count: NSUInteger,
             data_type: MLCDataType,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -123,7 +123,7 @@ extern_methods!(
             input_feature_channel_count: NSUInteger,
             output_feature_channel_count: NSUInteger,
             data_type: MLCDataType,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -131,6 +131,6 @@ extern_methods!(
         pub unsafe fn convolutionBiasesDescriptorWithFeatureChannelCount_dataType(
             feature_channel_count: NSUInteger,
             data_type: MLCDataType,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
     }
 );

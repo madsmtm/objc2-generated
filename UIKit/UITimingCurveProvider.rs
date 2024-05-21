@@ -35,11 +35,11 @@ extern_protocol!(
 
         #[cfg(feature = "UITimingParameters")]
         #[method_id(@__retain_semantics Other cubicTimingParameters)]
-        unsafe fn cubicTimingParameters(&self) -> Option<Id<UICubicTimingParameters>>;
+        unsafe fn cubicTimingParameters(&self) -> Option<Retained<UICubicTimingParameters>>;
 
         #[cfg(feature = "UITimingParameters")]
         #[method_id(@__retain_semantics Other springTimingParameters)]
-        unsafe fn springTimingParameters(&self) -> Option<Id<UISpringTimingParameters>>;
+        unsafe fn springTimingParameters(&self) -> Option<Retained<UISpringTimingParameters>>;
     }
 
     unsafe impl ProtocolType for dyn UITimingCurveProvider {}

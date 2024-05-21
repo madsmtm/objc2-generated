@@ -85,11 +85,11 @@ extern_methods!(
         #[cfg(feature = "DOMHTMLFormElement")]
         #[deprecated]
         #[method_id(@__retain_semantics Other form)]
-        pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement>>;
+        pub unsafe fn form(&self) -> Option<Retained<DOMHTMLFormElement>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSString>;
+        pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setType:)]
@@ -97,7 +97,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setName:)]
@@ -105,7 +105,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Id<NSString>;
+        pub unsafe fn value(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setValue:)]
@@ -116,7 +116,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other accessKey)]
-        pub unsafe fn accessKey(&self) -> Id<NSString>;
+        pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setAccessKey:)]
@@ -139,7 +139,7 @@ extern_methods!(
     unsafe impl DOMHTMLButtonElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -154,6 +154,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLButtonElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -81,17 +81,20 @@ extern_methods!(
         pub unsafe fn initWithCollectionViewLayout(
             this: Allocated<Self>,
             layout: &UICollectionViewLayout,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(
             feature = "UICollectionView",
@@ -99,7 +102,7 @@ extern_methods!(
             feature = "UIView"
         ))]
         #[method_id(@__retain_semantics Other collectionView)]
-        pub unsafe fn collectionView(&self) -> Option<Id<UICollectionView>>;
+        pub unsafe fn collectionView(&self) -> Option<Retained<UICollectionView>>;
 
         #[cfg(all(
             feature = "UICollectionView",
@@ -129,7 +132,7 @@ extern_methods!(
 
         #[cfg(feature = "UICollectionViewLayout")]
         #[method_id(@__retain_semantics Other collectionViewLayout)]
-        pub unsafe fn collectionViewLayout(&self) -> Id<UICollectionViewLayout>;
+        pub unsafe fn collectionViewLayout(&self) -> Retained<UICollectionViewLayout>;
 
         #[method(installsStandardGestureForInteractiveMovement)]
         pub unsafe fn installsStandardGestureForInteractiveMovement(&self) -> bool;
@@ -147,9 +150,9 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UICollectionViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

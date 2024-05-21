@@ -71,7 +71,7 @@ extern_methods!(
         pub unsafe fn setAltitude(&self, altitude: CLLocationDistance);
 
         #[method_id(@__retain_semantics Other camera)]
-        pub unsafe fn camera() -> Id<Self>;
+        pub unsafe fn camera() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method_id(@__retain_semantics Other cameraLookingAtCenterCoordinate:fromEyeCoordinate:eyeAltitude:)]
@@ -79,7 +79,7 @@ extern_methods!(
             center_coordinate: CLLocationCoordinate2D,
             eye_coordinate: CLLocationCoordinate2D,
             eye_altitude: CLLocationDistance,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method_id(@__retain_semantics Other cameraLookingAtCenterCoordinate:fromDistance:pitch:heading:)]
@@ -88,7 +88,7 @@ extern_methods!(
             distance: CLLocationDistance,
             pitch: CGFloat,
             heading: CLLocationDirection,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MKMapItem")]
         #[method_id(@__retain_semantics Other cameraLookingAtMapItem:forViewSize:allowPitch:)]
@@ -96,7 +96,7 @@ extern_methods!(
             map_item: &MKMapItem,
             view_size: CGSize,
             allow_pitch: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -104,9 +104,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKMapCamera {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -97,7 +97,7 @@ extern_methods!(
             dilation_rates: &NSArray<NSNumber>,
             padding_policy: MLCPaddingPolicy,
             padding_sizes: Option<&NSArray<NSNumber>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithKernelWidth:kernelHeight:inputFeatureChannelCount:outputFeatureChannelCount:)]
@@ -106,7 +106,7 @@ extern_methods!(
             kernel_height: NSUInteger,
             input_feature_channel_count: NSUInteger,
             output_feature_channel_count: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -118,7 +118,7 @@ extern_methods!(
             strides: &NSArray<NSNumber>,
             padding_policy: MLCPaddingPolicy,
             padding_sizes: Option<&NSArray<NSNumber>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -132,7 +132,7 @@ extern_methods!(
             dilation_rates: &NSArray<NSNumber>,
             padding_policy: MLCPaddingPolicy,
             padding_sizes: Option<&NSArray<NSNumber>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other convolutionTransposeDescriptorWithKernelWidth:kernelHeight:inputFeatureChannelCount:outputFeatureChannelCount:)]
@@ -141,7 +141,7 @@ extern_methods!(
             kernel_height: NSUInteger,
             input_feature_channel_count: NSUInteger,
             output_feature_channel_count: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -153,7 +153,7 @@ extern_methods!(
             strides: &NSArray<NSNumber>,
             padding_policy: MLCPaddingPolicy,
             padding_sizes: Option<&NSArray<NSNumber>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -167,7 +167,7 @@ extern_methods!(
             dilation_rates: &NSArray<NSNumber>,
             padding_policy: MLCPaddingPolicy,
             padding_sizes: Option<&NSArray<NSNumber>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other depthwiseConvolutionDescriptorWithKernelWidth:kernelHeight:inputFeatureChannelCount:channelMultiplier:)]
@@ -176,7 +176,7 @@ extern_methods!(
             kernel_height: NSUInteger,
             input_feature_channel_count: NSUInteger,
             channel_multiplier: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -188,7 +188,7 @@ extern_methods!(
             strides: &NSArray<NSNumber>,
             padding_policy: MLCPaddingPolicy,
             padding_sizes: Option<&NSArray<NSNumber>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -201,7 +201,7 @@ extern_methods!(
             dilation_rates: &NSArray<NSNumber>,
             padding_policy: MLCPaddingPolicy,
             padding_sizes: Option<&NSArray<NSNumber>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -209,9 +209,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLCConvolutionDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

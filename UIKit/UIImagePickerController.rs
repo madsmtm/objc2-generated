@@ -268,7 +268,7 @@ extern_methods!(
         pub unsafe fn availableMediaTypesForSourceType(
             source_type: UIImagePickerControllerSourceType,
             mtm: MainThreadMarker,
-        ) -> Option<Id<NSArray<NSString>>>;
+        ) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(isCameraDeviceAvailable:)]
         pub unsafe fn isCameraDeviceAvailable(
@@ -286,10 +286,10 @@ extern_methods!(
         pub unsafe fn availableCaptureModesForCameraDevice(
             camera_device: UIImagePickerControllerCameraDevice,
             mtm: MainThreadMarker,
-        ) -> Option<Id<NSArray<NSNumber>>>;
+        ) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<TodoProtocols>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<TodoProtocols>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&TodoProtocols>);
@@ -301,7 +301,7 @@ extern_methods!(
         pub unsafe fn setSourceType(&self, source_type: UIImagePickerControllerSourceType);
 
         #[method_id(@__retain_semantics Other mediaTypes)]
-        pub unsafe fn mediaTypes(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn mediaTypes(&self) -> Retained<NSArray<NSString>>;
 
         #[method(setMediaTypes:)]
         pub unsafe fn setMediaTypes(&self, media_types: &NSArray<NSString>);
@@ -345,7 +345,7 @@ extern_methods!(
 
         #[deprecated = "Will be removed in a future release, use PHPicker."]
         #[method_id(@__retain_semantics Other videoExportPreset)]
-        pub unsafe fn videoExportPreset(&self) -> Id<NSString>;
+        pub unsafe fn videoExportPreset(&self) -> Retained<NSString>;
 
         #[deprecated = "Will be removed in a future release, use PHPicker."]
         #[method(setVideoExportPreset:)]
@@ -359,7 +359,7 @@ extern_methods!(
 
         #[cfg(feature = "UIView")]
         #[method_id(@__retain_semantics Other cameraOverlayView)]
-        pub unsafe fn cameraOverlayView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn cameraOverlayView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UIView")]
         #[method(setCameraOverlayView:)]
@@ -419,24 +419,26 @@ extern_methods!(
             this: Allocated<Self>,
             navigation_bar_class: Option<&AnyClass>,
             toolbar_class: Option<&AnyClass>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithRootViewController:)]
         pub unsafe fn initWithRootViewController(
             this: Allocated<Self>,
             root_view_controller: &UIViewController,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder)
-            -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            a_decoder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -449,10 +451,10 @@ extern_methods!(
     ))]
     unsafe impl UIImagePickerController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

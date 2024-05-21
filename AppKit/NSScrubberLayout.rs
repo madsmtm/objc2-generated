@@ -40,7 +40,7 @@ extern_methods!(
         pub unsafe fn setAlpha(&self, alpha: CGFloat);
 
         #[method_id(@__retain_semantics Other layoutAttributesForItemAtIndex:)]
-        pub unsafe fn layoutAttributesForItemAtIndex(index: NSInteger) -> Id<Self>;
+        pub unsafe fn layoutAttributesForItemAtIndex(index: NSInteger) -> Retained<Self>;
     }
 );
 
@@ -48,10 +48,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScrubberLayoutAttributes {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -76,16 +76,16 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSScrubber", feature = "NSView"))]
         #[method_id(@__retain_semantics Other scrubber)]
-        pub unsafe fn scrubber(&self) -> Option<Id<NSScrubber>>;
+        pub unsafe fn scrubber(&self) -> Option<Retained<NSScrubber>>;
 
         #[method(visibleRect)]
         pub unsafe fn visibleRect(&self) -> NSRect;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method(invalidateLayout)]
         pub unsafe fn invalidateLayout(&self);
@@ -100,13 +100,13 @@ extern_methods!(
         pub unsafe fn layoutAttributesForItemAtIndex(
             &self,
             index: NSInteger,
-        ) -> Option<Id<NSScrubberLayoutAttributes>>;
+        ) -> Option<Retained<NSScrubberLayoutAttributes>>;
 
         #[method_id(@__retain_semantics Other layoutAttributesForItemsInRect:)]
         pub unsafe fn layoutAttributesForItemsInRect(
             &self,
             rect: NSRect,
-        ) -> Id<NSSet<NSScrubberLayoutAttributes>>;
+        ) -> Retained<NSSet<NSScrubberLayoutAttributes>>;
 
         #[method(shouldInvalidateLayoutForSelectionChange)]
         pub unsafe fn shouldInvalidateLayoutForSelectionChange(&self) -> bool;
@@ -130,7 +130,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScrubberLayout {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -190,10 +190,10 @@ extern_methods!(
     /// Methods declared on superclass `NSScrubberLayout`
     unsafe impl NSScrubberFlowLayout {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     }
 );
 
@@ -201,7 +201,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScrubberFlowLayout {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -232,10 +232,10 @@ extern_methods!(
         pub unsafe fn initWithNumberOfVisibleItems(
             this: Allocated<Self>,
             number_of_visible_items: NSInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     }
 );
 
@@ -243,7 +243,7 @@ extern_methods!(
     /// Methods declared on superclass `NSScrubberLayout`
     unsafe impl NSScrubberProportionalLayout {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -251,6 +251,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScrubberProportionalLayout {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

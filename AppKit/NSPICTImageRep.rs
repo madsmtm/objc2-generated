@@ -31,13 +31,16 @@ extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSPICTImageRep {
         #[method_id(@__retain_semantics Other imageRepWithData:)]
-        pub unsafe fn imageRepWithData(pict_data: &NSData) -> Option<Id<Self>>;
+        pub unsafe fn imageRepWithData(pict_data: &NSData) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithData:)]
-        pub unsafe fn initWithData(this: Allocated<Self>, pict_data: &NSData) -> Option<Id<Self>>;
+        pub unsafe fn initWithData(
+            this: Allocated<Self>,
+            pict_data: &NSData,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other PICTRepresentation)]
-        pub unsafe fn PICTRepresentation(&self) -> Id<NSData>;
+        pub unsafe fn PICTRepresentation(&self) -> Retained<NSData>;
 
         #[method(boundingBox)]
         pub unsafe fn boundingBox(&self) -> NSRect;
@@ -49,10 +52,13 @@ extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSPICTImageRep {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -61,6 +67,6 @@ extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSPICTImageRep {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

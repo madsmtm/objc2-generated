@@ -34,13 +34,16 @@ extern_methods!(
     #[cfg(feature = "NWEndpoint")]
     unsafe impl NWHostEndpoint {
         #[method_id(@__retain_semantics Other endpointWithHostname:port:)]
-        pub unsafe fn endpointWithHostname_port(hostname: &NSString, port: &NSString) -> Id<Self>;
+        pub unsafe fn endpointWithHostname_port(
+            hostname: &NSString,
+            port: &NSString,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other hostname)]
-        pub unsafe fn hostname(&self) -> Id<NSString>;
+        pub unsafe fn hostname(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other port)]
-        pub unsafe fn port(&self) -> Id<NSString>;
+        pub unsafe fn port(&self) -> Retained<NSString>;
     }
 );
 
@@ -49,9 +52,9 @@ extern_methods!(
     #[cfg(feature = "NWEndpoint")]
     unsafe impl NWHostEndpoint {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

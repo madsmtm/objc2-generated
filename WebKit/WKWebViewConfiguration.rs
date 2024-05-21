@@ -67,7 +67,7 @@ extern_methods!(
     unsafe impl WKWebViewConfiguration {
         #[cfg(feature = "WKProcessPool")]
         #[method_id(@__retain_semantics Other processPool)]
-        pub unsafe fn processPool(&self) -> Id<WKProcessPool>;
+        pub unsafe fn processPool(&self) -> Retained<WKProcessPool>;
 
         #[cfg(feature = "WKProcessPool")]
         #[method(setProcessPool:)]
@@ -75,7 +75,7 @@ extern_methods!(
 
         #[cfg(feature = "WKPreferences")]
         #[method_id(@__retain_semantics Other preferences)]
-        pub unsafe fn preferences(&self) -> Id<WKPreferences>;
+        pub unsafe fn preferences(&self) -> Retained<WKPreferences>;
 
         #[cfg(feature = "WKPreferences")]
         #[method(setPreferences:)]
@@ -83,7 +83,7 @@ extern_methods!(
 
         #[cfg(feature = "WKUserContentController")]
         #[method_id(@__retain_semantics Other userContentController)]
-        pub unsafe fn userContentController(&self) -> Id<WKUserContentController>;
+        pub unsafe fn userContentController(&self) -> Retained<WKUserContentController>;
 
         #[cfg(feature = "WKUserContentController")]
         #[method(setUserContentController:)]
@@ -94,7 +94,7 @@ extern_methods!(
 
         #[cfg(feature = "WKWebsiteDataStore")]
         #[method_id(@__retain_semantics Other websiteDataStore)]
-        pub unsafe fn websiteDataStore(&self) -> Id<WKWebsiteDataStore>;
+        pub unsafe fn websiteDataStore(&self) -> Retained<WKWebsiteDataStore>;
 
         #[cfg(feature = "WKWebsiteDataStore")]
         #[method(setWebsiteDataStore:)]
@@ -110,7 +110,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other applicationNameForUserAgent)]
-        pub unsafe fn applicationNameForUserAgent(&self) -> Option<Id<NSString>>;
+        pub unsafe fn applicationNameForUserAgent(&self) -> Option<Retained<NSString>>;
 
         #[method(setApplicationNameForUserAgent:)]
         pub unsafe fn setApplicationNameForUserAgent(
@@ -144,7 +144,7 @@ extern_methods!(
 
         #[cfg(feature = "WKWebpagePreferences")]
         #[method_id(@__retain_semantics Other defaultWebpagePreferences)]
-        pub unsafe fn defaultWebpagePreferences(&self) -> Id<WKWebpagePreferences>;
+        pub unsafe fn defaultWebpagePreferences(&self) -> Retained<WKWebpagePreferences>;
 
         #[cfg(feature = "WKWebpagePreferences")]
         #[method(setDefaultWebpagePreferences:)]
@@ -190,7 +190,7 @@ extern_methods!(
         pub unsafe fn urlSchemeHandlerForURLScheme(
             &self,
             url_scheme: &NSString,
-        ) -> Option<Id<ProtocolObject<dyn WKURLSchemeHandler>>>;
+        ) -> Option<Retained<ProtocolObject<dyn WKURLSchemeHandler>>>;
     }
 );
 
@@ -198,9 +198,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKWebViewConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -49,14 +49,14 @@ extern_methods!(
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSUserInterfaceItemIdentifier,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSUserInterfaceItemIdentifier>;
+        pub unsafe fn identifier(&self) -> Retained<NSUserInterfaceItemIdentifier>;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         #[method(setIdentifier:)]
@@ -69,7 +69,7 @@ extern_methods!(
             feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other tableView)]
-        pub unsafe fn tableView(&self, mtm: MainThreadMarker) -> Option<Id<NSTableView>>;
+        pub unsafe fn tableView(&self, mtm: MainThreadMarker) -> Option<Retained<NSTableView>>;
 
         #[cfg(all(
             feature = "NSControl",
@@ -99,7 +99,7 @@ extern_methods!(
         pub unsafe fn setMaxWidth(&self, max_width: CGFloat);
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -111,7 +111,7 @@ extern_methods!(
             feature = "NSTextFieldCell"
         ))]
         #[method_id(@__retain_semantics Other headerCell)]
-        pub unsafe fn headerCell(&self, mtm: MainThreadMarker) -> Id<NSTableHeaderCell>;
+        pub unsafe fn headerCell(&self, mtm: MainThreadMarker) -> Retained<NSTableHeaderCell>;
 
         #[cfg(all(
             feature = "NSActionCell",
@@ -132,7 +132,7 @@ extern_methods!(
         pub unsafe fn sizeToFit(&self);
 
         #[method_id(@__retain_semantics Other sortDescriptorPrototype)]
-        pub unsafe fn sortDescriptorPrototype(&self) -> Option<Id<NSSortDescriptor>>;
+        pub unsafe fn sortDescriptorPrototype(&self) -> Option<Retained<NSSortDescriptor>>;
 
         #[method(setSortDescriptorPrototype:)]
         pub unsafe fn setSortDescriptorPrototype(
@@ -147,7 +147,7 @@ extern_methods!(
         pub unsafe fn setResizingMask(&self, resizing_mask: NSTableColumnResizingOptions);
 
         #[method_id(@__retain_semantics Other headerToolTip)]
-        pub unsafe fn headerToolTip(&self) -> Option<Id<NSString>>;
+        pub unsafe fn headerToolTip(&self) -> Option<Retained<NSString>>;
 
         #[method(setHeaderToolTip:)]
         pub unsafe fn setHeaderToolTip(&self, header_tool_tip: Option<&NSString>);
@@ -164,10 +164,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTableColumn {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -183,12 +183,12 @@ extern_methods!(
         pub unsafe fn isResizable(&self) -> bool;
 
         #[method_id(@__retain_semantics Other dataCell)]
-        pub unsafe fn dataCell(&self) -> Id<AnyObject>;
+        pub unsafe fn dataCell(&self) -> Retained<AnyObject>;
 
         #[method(setDataCell:)]
         pub unsafe fn setDataCell(&self, data_cell: &AnyObject);
 
         #[method_id(@__retain_semantics Other dataCellForRow:)]
-        pub unsafe fn dataCellForRow(&self, row: NSInteger) -> Id<AnyObject>;
+        pub unsafe fn dataCellForRow(&self, row: NSInteger) -> Retained<AnyObject>;
     }
 );

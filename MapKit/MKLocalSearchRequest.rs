@@ -45,13 +45,13 @@ unsafe impl NSObjectProtocol for MKLocalSearchRequest {}
 extern_methods!(
     unsafe impl MKLocalSearchRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithNaturalLanguageQuery:)]
         pub unsafe fn initWithNaturalLanguageQuery(
             this: Allocated<Self>,
             natural_language_query: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method_id(@__retain_semantics Init initWithNaturalLanguageQuery:region:)]
@@ -59,10 +59,10 @@ extern_methods!(
             this: Allocated<Self>,
             natural_language_query: &NSString,
             region: MKCoordinateRegion,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other naturalLanguageQuery)]
-        pub unsafe fn naturalLanguageQuery(&self) -> Option<Id<NSString>>;
+        pub unsafe fn naturalLanguageQuery(&self) -> Option<Retained<NSString>>;
 
         #[method(setNaturalLanguageQuery:)]
         pub unsafe fn setNaturalLanguageQuery(&self, natural_language_query: Option<&NSString>);
@@ -83,7 +83,7 @@ extern_methods!(
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
-        pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
+        pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         #[method(setPointOfInterestFilter:)]
@@ -98,6 +98,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKLocalSearchRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

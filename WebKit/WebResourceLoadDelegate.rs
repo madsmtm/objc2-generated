@@ -25,7 +25,7 @@ extern_protocol!(
             sender: Option<&WebView>,
             request: Option<&NSURLRequest>,
             data_source: Option<&WebDataSource>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(
             feature = "WebDataSource",
@@ -43,7 +43,7 @@ extern_protocol!(
             request: Option<&NSURLRequest>,
             redirect_response: Option<&NSURLResponse>,
             data_source: Option<&WebDataSource>,
-        ) -> Option<Id<NSURLRequest>>;
+        ) -> Option<Retained<NSURLRequest>>;
 
         #[cfg(all(
             feature = "WebDataSource",

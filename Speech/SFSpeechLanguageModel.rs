@@ -26,23 +26,23 @@ unsafe impl NSObjectProtocol for SFSpeechLanguageModelConfiguration {}
 extern_methods!(
     unsafe impl SFSpeechLanguageModelConfiguration {
         #[method_id(@__retain_semantics Other languageModel)]
-        pub unsafe fn languageModel(&self) -> Id<NSURL>;
+        pub unsafe fn languageModel(&self) -> Retained<NSURL>;
 
         #[method_id(@__retain_semantics Other vocabulary)]
-        pub unsafe fn vocabulary(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn vocabulary(&self) -> Option<Retained<NSURL>>;
 
         #[method_id(@__retain_semantics Init initWithLanguageModel:)]
         pub unsafe fn initWithLanguageModel(
             this: Allocated<Self>,
             language_model: &NSURL,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithLanguageModel:vocabulary:)]
         pub unsafe fn initWithLanguageModel_vocabulary(
             this: Allocated<Self>,
             language_model: &NSURL,
             vocabulary: Option<&NSURL>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -50,10 +50,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFSpeechLanguageModelConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -96,9 +96,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFSpeechLanguageModel {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

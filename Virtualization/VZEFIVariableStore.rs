@@ -38,22 +38,22 @@ unsafe impl NSObjectProtocol for VZEFIVariableStore {}
 extern_methods!(
     unsafe impl VZEFIVariableStore {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithURL:)]
-        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Id<Self>;
+        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initCreatingVariableStoreAtURL:options:error:_)]
         pub unsafe fn initCreatingVariableStoreAtURL_options_error(
             this: Allocated<Self>,
             url: &NSURL,
             options: VZEFIVariableStoreInitializationOptions,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL>;
+        pub unsafe fn URL(&self) -> Retained<NSURL>;
     }
 );

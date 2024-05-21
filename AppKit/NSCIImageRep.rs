@@ -36,17 +36,17 @@ extern_methods!(
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other imageRepWithCIImage:)]
-        pub unsafe fn imageRepWithCIImage(image: &CIImage) -> Id<Self>;
+        pub unsafe fn imageRepWithCIImage(image: &CIImage) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Init initWithCIImage:)]
-        pub unsafe fn initWithCIImage(this: Allocated<Self>, image: &CIImage) -> Id<Self>;
+        pub unsafe fn initWithCIImage(this: Allocated<Self>, image: &CIImage) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other CIImage)]
-        pub unsafe fn CIImage(&self) -> Id<CIImage>;
+        pub unsafe fn CIImage(&self) -> Retained<CIImage>;
     }
 );
 
@@ -55,10 +55,13 @@ extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCIImageRep {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -67,7 +70,7 @@ extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCIImageRep {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -80,7 +83,7 @@ extern_category!(
         unsafe fn initWithBitmapImageRep(
             this: Allocated<Self>,
             bitmap_image_rep: &NSBitmapImageRep,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSGraphics")]
         #[method(drawInRect:fromRect:operation:fraction:)]

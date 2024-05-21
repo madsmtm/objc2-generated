@@ -106,14 +106,17 @@ unsafe impl NSSecureCoding for NSLayoutManager {}
 extern_methods!(
     unsafe impl NSLayoutManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSTextStorage")]
         #[method_id(@__retain_semantics Other textStorage)]
-        pub unsafe fn textStorage(&self) -> Option<Id<NSTextStorage>>;
+        pub unsafe fn textStorage(&self) -> Option<Retained<NSTextStorage>>;
 
         #[cfg(feature = "NSTextStorage")]
         #[method(setTextStorage:)]
@@ -121,7 +124,7 @@ extern_methods!(
 
         #[cfg(feature = "NSTextContainer")]
         #[method_id(@__retain_semantics Other textContainers)]
-        pub unsafe fn textContainers(&self) -> Id<NSArray<NSTextContainer>>;
+        pub unsafe fn textContainers(&self) -> Retained<NSArray<NSTextContainer>>;
 
         #[cfg(feature = "NSTextContainer")]
         #[method(addTextContainer:)]
@@ -143,7 +146,9 @@ extern_methods!(
         pub unsafe fn textContainerChangedGeometry(&self, container: &NSTextContainer);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSLayoutManagerDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn NSLayoutManagerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -336,7 +341,7 @@ extern_methods!(
             &self,
             glyph_index: NSUInteger,
             effective_glyph_range: NSRangePointer,
-        ) -> Option<Id<NSTextContainer>>;
+        ) -> Option<Retained<NSTextContainer>>;
 
         #[cfg(feature = "NSTextContainer")]
         #[method_id(@__retain_semantics Other textContainerForGlyphAtIndex:effectiveRange:withoutAdditionalLayout:)]
@@ -345,7 +350,7 @@ extern_methods!(
             glyph_index: NSUInteger,
             effective_glyph_range: NSRangePointer,
             flag: bool,
-        ) -> Option<Id<NSTextContainer>>;
+        ) -> Option<Retained<NSTextContainer>>;
 
         #[cfg(feature = "NSTextContainer")]
         #[method(usedRectForTextContainer:)]
@@ -389,7 +394,7 @@ extern_methods!(
 
         #[cfg(feature = "NSTextContainer")]
         #[method_id(@__retain_semantics Other extraLineFragmentTextContainer)]
-        pub unsafe fn extraLineFragmentTextContainer(&self) -> Option<Id<NSTextContainer>>;
+        pub unsafe fn extraLineFragmentTextContainer(&self) -> Option<Retained<NSTextContainer>>;
 
         #[method(locationForGlyphAtIndex:)]
         pub unsafe fn locationForGlyphAtIndex(&self, glyph_index: NSUInteger) -> CGPoint;
@@ -591,7 +596,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSLayoutManager {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

@@ -59,13 +59,13 @@ extern_methods!(
         pub unsafe fn presentationAnimationDidFinish(&self);
 
         #[method_id(@__retain_semantics Other textView)]
-        pub unsafe fn textView(&self) -> Option<Id<NSTextView>>;
+        pub unsafe fn textView(&self) -> Option<Retained<NSTextView>>;
 
         #[method_id(@__retain_semantics Other contentText)]
-        pub unsafe fn contentText(&self) -> Option<Id<NSString>>;
+        pub unsafe fn contentText(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other placeholder)]
-        pub unsafe fn placeholder(&self) -> Id<NSString>;
+        pub unsafe fn placeholder(&self) -> Retained<NSString>;
 
         #[method(setPlaceholder:)]
         pub unsafe fn setPlaceholder(&self, placeholder: Option<&NSString>);
@@ -86,7 +86,7 @@ extern_methods!(
         pub unsafe fn validateContent(&self);
 
         #[method_id(@__retain_semantics Other charactersRemaining)]
-        pub unsafe fn charactersRemaining(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn charactersRemaining(&self) -> Option<Retained<NSNumber>>;
 
         #[method(setCharactersRemaining:)]
         pub unsafe fn setCharactersRemaining(&self, characters_remaining: Option<&NSNumber>);
@@ -103,10 +103,13 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -116,7 +119,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl SLComposeServiceViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -126,6 +129,6 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl SLComposeServiceViewController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -44,7 +44,7 @@ extern_methods!(
 
         #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Other draggingPasteboard)]
-        pub unsafe fn draggingPasteboard(&self) -> Id<NSPasteboard>;
+        pub unsafe fn draggingPasteboard(&self) -> Retained<NSPasteboard>;
 
         #[method(draggingSequenceNumber)]
         pub unsafe fn draggingSequenceNumber(&self) -> NSInteger;
@@ -76,9 +76,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDraggingSession {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

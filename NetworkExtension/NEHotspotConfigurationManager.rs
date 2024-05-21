@@ -90,7 +90,7 @@ unsafe impl NSSecureCoding for NEHotspotHS20Settings {}
 extern_methods!(
     unsafe impl NEHotspotHS20Settings {
         #[method_id(@__retain_semantics Other domainName)]
-        pub unsafe fn domainName(&self) -> Id<NSString>;
+        pub unsafe fn domainName(&self) -> Retained<NSString>;
 
         #[method(isRoamingEnabled)]
         pub unsafe fn isRoamingEnabled(&self) -> bool;
@@ -99,19 +99,19 @@ extern_methods!(
         pub unsafe fn setRoamingEnabled(&self, roaming_enabled: bool);
 
         #[method_id(@__retain_semantics Other roamingConsortiumOIs)]
-        pub unsafe fn roamingConsortiumOIs(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn roamingConsortiumOIs(&self) -> Retained<NSArray<NSString>>;
 
         #[method(setRoamingConsortiumOIs:)]
         pub unsafe fn setRoamingConsortiumOIs(&self, roaming_consortium_o_is: &NSArray<NSString>);
 
         #[method_id(@__retain_semantics Other naiRealmNames)]
-        pub unsafe fn naiRealmNames(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn naiRealmNames(&self) -> Retained<NSArray<NSString>>;
 
         #[method(setNaiRealmNames:)]
         pub unsafe fn setNaiRealmNames(&self, nai_realm_names: &NSArray<NSString>);
 
         #[method_id(@__retain_semantics Other MCCAndMNCs)]
-        pub unsafe fn MCCAndMNCs(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn MCCAndMNCs(&self) -> Retained<NSArray<NSString>>;
 
         #[method(setMCCAndMNCs:)]
         pub unsafe fn setMCCAndMNCs(&self, mcc_and_mn_cs: &NSArray<NSString>);
@@ -121,7 +121,7 @@ extern_methods!(
             this: Allocated<Self>,
             domain_name: &NSString,
             roaming_enabled: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -129,10 +129,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEHotspotHS20Settings {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -157,19 +157,19 @@ unsafe impl NSSecureCoding for NEHotspotEAPSettings {}
 extern_methods!(
     unsafe impl NEHotspotEAPSettings {
         #[method_id(@__retain_semantics Other supportedEAPTypes)]
-        pub unsafe fn supportedEAPTypes(&self) -> Id<NSArray<NSNumber>>;
+        pub unsafe fn supportedEAPTypes(&self) -> Retained<NSArray<NSNumber>>;
 
         #[method(setSupportedEAPTypes:)]
         pub unsafe fn setSupportedEAPTypes(&self, supported_eap_types: &NSArray<NSNumber>);
 
         #[method_id(@__retain_semantics Other username)]
-        pub unsafe fn username(&self) -> Id<NSString>;
+        pub unsafe fn username(&self) -> Retained<NSString>;
 
         #[method(setUsername:)]
         pub unsafe fn setUsername(&self, username: &NSString);
 
         #[method_id(@__retain_semantics Other outerIdentity)]
-        pub unsafe fn outerIdentity(&self) -> Id<NSString>;
+        pub unsafe fn outerIdentity(&self) -> Retained<NSString>;
 
         #[method(setOuterIdentity:)]
         pub unsafe fn setOuterIdentity(&self, outer_identity: &NSString);
@@ -186,13 +186,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other password)]
-        pub unsafe fn password(&self) -> Id<NSString>;
+        pub unsafe fn password(&self) -> Retained<NSString>;
 
         #[method(setPassword:)]
         pub unsafe fn setPassword(&self, password: &NSString);
 
         #[method_id(@__retain_semantics Other trustedServerNames)]
-        pub unsafe fn trustedServerNames(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn trustedServerNames(&self) -> Retained<NSArray<NSString>>;
 
         #[method(setTrustedServerNames:)]
         pub unsafe fn setTrustedServerNames(&self, trusted_server_names: &NSArray<NSString>);
@@ -221,10 +221,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEHotspotEAPSettings {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -249,10 +249,10 @@ unsafe impl NSSecureCoding for NEHotspotConfiguration {}
 extern_methods!(
     unsafe impl NEHotspotConfiguration {
         #[method_id(@__retain_semantics Other SSID)]
-        pub unsafe fn SSID(&self) -> Id<NSString>;
+        pub unsafe fn SSID(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other SSIDPrefix)]
-        pub unsafe fn SSIDPrefix(&self) -> Id<NSString>;
+        pub unsafe fn SSIDPrefix(&self) -> Retained<NSString>;
 
         #[method(joinOnce)]
         pub unsafe fn joinOnce(&self) -> bool;
@@ -261,7 +261,7 @@ extern_methods!(
         pub unsafe fn setJoinOnce(&self, join_once: bool);
 
         #[method_id(@__retain_semantics Other lifeTimeInDays)]
-        pub unsafe fn lifeTimeInDays(&self) -> Id<NSNumber>;
+        pub unsafe fn lifeTimeInDays(&self) -> Retained<NSNumber>;
 
         #[method(setLifeTimeInDays:)]
         pub unsafe fn setLifeTimeInDays(&self, life_time_in_days: &NSNumber);
@@ -273,7 +273,7 @@ extern_methods!(
         pub unsafe fn setHidden(&self, hidden: bool);
 
         #[method_id(@__retain_semantics Init initWithSSID:)]
-        pub unsafe fn initWithSSID(this: Allocated<Self>, ssid: &NSString) -> Id<Self>;
+        pub unsafe fn initWithSSID(this: Allocated<Self>, ssid: &NSString) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithSSID:passphrase:isWEP:)]
         pub unsafe fn initWithSSID_passphrase_isWEP(
@@ -281,25 +281,27 @@ extern_methods!(
             ssid: &NSString,
             passphrase: &NSString,
             is_wep: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithSSID:eapSettings:)]
         pub unsafe fn initWithSSID_eapSettings(
             this: Allocated<Self>,
             ssid: &NSString,
             eap_settings: &NEHotspotEAPSettings,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithHS20Settings:eapSettings:)]
         pub unsafe fn initWithHS20Settings_eapSettings(
             this: Allocated<Self>,
             hs20_settings: &NEHotspotHS20Settings,
             eap_settings: &NEHotspotEAPSettings,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithSSIDPrefix:)]
-        pub unsafe fn initWithSSIDPrefix(this: Allocated<Self>, ssid_prefix: &NSString)
-            -> Id<Self>;
+        pub unsafe fn initWithSSIDPrefix(
+            this: Allocated<Self>,
+            ssid_prefix: &NSString,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithSSIDPrefix:passphrase:isWEP:)]
         pub unsafe fn initWithSSIDPrefix_passphrase_isWEP(
@@ -307,7 +309,7 @@ extern_methods!(
             ssid_prefix: &NSString,
             passphrase: &NSString,
             is_wep: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -315,10 +317,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEHotspotConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -388,7 +390,7 @@ unsafe impl NSObjectProtocol for NEHotspotConfigurationManager {}
 extern_methods!(
     unsafe impl NEHotspotConfigurationManager {
         #[method_id(@__retain_semantics Other sharedManager)]
-        pub unsafe fn sharedManager() -> Id<NEHotspotConfigurationManager>;
+        pub unsafe fn sharedManager() -> Retained<NEHotspotConfigurationManager>;
 
         #[cfg(feature = "block2")]
         #[method(applyConfiguration:completionHandler:)]
@@ -417,9 +419,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEHotspotConfigurationManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

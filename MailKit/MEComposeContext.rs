@@ -43,11 +43,11 @@ unsafe impl NSObjectProtocol for MEComposeContext {}
 extern_methods!(
     unsafe impl MEComposeContext {
         #[method_id(@__retain_semantics Other contextID)]
-        pub unsafe fn contextID(&self) -> Id<NSUUID>;
+        pub unsafe fn contextID(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "MEMessage")]
         #[method_id(@__retain_semantics Other originalMessage)]
-        pub unsafe fn originalMessage(&self) -> Option<Id<MEMessage>>;
+        pub unsafe fn originalMessage(&self) -> Option<Retained<MEMessage>>;
 
         #[method(action)]
         pub unsafe fn action(&self) -> MEComposeUserAction;
@@ -70,9 +70,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MEComposeContext {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

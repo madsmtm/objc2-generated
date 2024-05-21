@@ -63,12 +63,12 @@ extern_methods!(
         #[cfg(feature = "WebFrame")]
         #[deprecated]
         #[method_id(@__retain_semantics Other webFrame)]
-        pub unsafe fn webFrame(&self) -> Option<Id<WebFrame>>;
+        pub unsafe fn webFrame(&self) -> Option<Retained<WebFrame>>;
 
         #[cfg(feature = "WebDocument")]
         #[deprecated]
         #[method_id(@__retain_semantics Other documentView)]
-        pub unsafe fn documentView(&self) -> Option<Id<NSView>>;
+        pub unsafe fn documentView(&self) -> Option<Retained<NSView>>;
 
         #[deprecated]
         #[method(allowsScrolling)]
@@ -87,7 +87,7 @@ extern_methods!(
         pub unsafe fn printOperationWithPrintInfo(
             &self,
             print_info: Option<&NSPrintInfo>,
-        ) -> Option<Id<NSPrintOperation>>;
+        ) -> Option<Retained<NSPrintOperation>>;
 
         #[deprecated]
         #[method(documentViewShouldHandlePrint)]
@@ -105,10 +105,13 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl WebFrameView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -118,7 +121,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl WebFrameView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -128,6 +131,6 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl WebFrameView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

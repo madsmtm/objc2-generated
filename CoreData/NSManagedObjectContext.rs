@@ -112,17 +112,17 @@ extern_methods!(
     unsafe impl NSManagedObjectContext {
         #[deprecated = "Use -initWithConcurrencyType: instead"]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated = "Use -initWithConcurrencyType: instead"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithConcurrencyType:)]
         pub unsafe fn initWithConcurrencyType(
             this: Allocated<Self>,
             ct: NSManagedObjectContextConcurrencyType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(performBlock:)]
@@ -134,8 +134,9 @@ extern_methods!(
 
         #[cfg(feature = "NSPersistentStoreCoordinator")]
         #[method_id(@__retain_semantics Other persistentStoreCoordinator)]
-        pub unsafe fn persistentStoreCoordinator(&self)
-            -> Option<Id<NSPersistentStoreCoordinator>>;
+        pub unsafe fn persistentStoreCoordinator(
+            &self,
+        ) -> Option<Retained<NSPersistentStoreCoordinator>>;
 
         #[cfg(feature = "NSPersistentStoreCoordinator")]
         #[method(setPersistentStoreCoordinator:)]
@@ -145,19 +146,19 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other parentContext)]
-        pub unsafe fn parentContext(&self) -> Option<Id<NSManagedObjectContext>>;
+        pub unsafe fn parentContext(&self) -> Option<Retained<NSManagedObjectContext>>;
 
         #[method(setParentContext:)]
         pub unsafe fn setParentContext(&self, parent_context: Option<&NSManagedObjectContext>);
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString>>;
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other undoManager)]
-        pub unsafe fn undoManager(&self) -> Option<Id<NSUndoManager>>;
+        pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
 
         #[method(setUndoManager:)]
         pub unsafe fn setUndoManager(&self, undo_manager: Option<&NSUndoManager>);
@@ -166,7 +167,7 @@ extern_methods!(
         pub unsafe fn hasChanges(&self) -> bool;
 
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Id<NSMutableDictionary>;
+        pub unsafe fn userInfo(&self) -> Retained<NSMutableDictionary>;
 
         #[method(concurrencyType)]
         pub unsafe fn concurrencyType(&self) -> NSManagedObjectContextConcurrencyType;
@@ -176,25 +177,28 @@ extern_methods!(
         pub unsafe fn objectRegisteredForID(
             &self,
             object_id: &NSManagedObjectID,
-        ) -> Option<Id<NSManagedObject>>;
+        ) -> Option<Retained<NSManagedObject>>;
 
         #[cfg(all(feature = "NSManagedObject", feature = "NSManagedObjectID"))]
         #[method_id(@__retain_semantics Other objectWithID:)]
-        pub unsafe fn objectWithID(&self, object_id: &NSManagedObjectID) -> Id<NSManagedObject>;
+        pub unsafe fn objectWithID(
+            &self,
+            object_id: &NSManagedObjectID,
+        ) -> Retained<NSManagedObject>;
 
         #[cfg(all(feature = "NSManagedObject", feature = "NSManagedObjectID"))]
         #[method_id(@__retain_semantics Other existingObjectWithID:error:_)]
         pub unsafe fn existingObjectWithID_error(
             &self,
             object_id: &NSManagedObjectID,
-        ) -> Result<Id<NSManagedObject>, Id<NSError>>;
+        ) -> Result<Retained<NSManagedObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         #[method_id(@__retain_semantics Other executeFetchRequest:error:_)]
         pub unsafe fn executeFetchRequest_error(
             &self,
             request: &NSFetchRequest,
-        ) -> Result<Id<NSArray>, Id<NSError>>;
+        ) -> Result<Retained<NSArray>, Retained<NSError>>;
 
         #[cfg(all(
             feature = "NSPersistentStoreRequest",
@@ -204,7 +208,7 @@ extern_methods!(
         pub unsafe fn executeRequest_error(
             &self,
             request: &NSPersistentStoreRequest,
-        ) -> Result<Id<NSPersistentStoreResult>, Id<NSError>>;
+        ) -> Result<Retained<NSPersistentStoreResult>, Retained<NSError>>;
 
         #[cfg(feature = "NSManagedObject")]
         #[method(insertObject:)]
@@ -244,19 +248,19 @@ extern_methods!(
 
         #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other insertedObjects)]
-        pub unsafe fn insertedObjects(&self) -> Id<NSSet<NSManagedObject>>;
+        pub unsafe fn insertedObjects(&self) -> Retained<NSSet<NSManagedObject>>;
 
         #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other updatedObjects)]
-        pub unsafe fn updatedObjects(&self) -> Id<NSSet<NSManagedObject>>;
+        pub unsafe fn updatedObjects(&self) -> Retained<NSSet<NSManagedObject>>;
 
         #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other deletedObjects)]
-        pub unsafe fn deletedObjects(&self) -> Id<NSSet<NSManagedObject>>;
+        pub unsafe fn deletedObjects(&self) -> Retained<NSSet<NSManagedObject>>;
 
         #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other registeredObjects)]
-        pub unsafe fn registeredObjects(&self) -> Id<NSSet<NSManagedObject>>;
+        pub unsafe fn registeredObjects(&self) -> Retained<NSSet<NSManagedObject>>;
 
         #[method(undo)]
         pub unsafe fn undo(&self);
@@ -271,7 +275,7 @@ extern_methods!(
         pub unsafe fn rollback(&self);
 
         #[method(save:_)]
-        pub unsafe fn save(&self) -> Result<(), Id<NSError>>;
+        pub unsafe fn save(&self) -> Result<(), Retained<NSError>>;
 
         #[method(refreshAllObjects)]
         pub unsafe fn refreshAllObjects(&self);
@@ -332,7 +336,7 @@ extern_methods!(
         pub unsafe fn setStalenessInterval(&self, staleness_interval: NSTimeInterval);
 
         #[method_id(@__retain_semantics Other mergePolicy)]
-        pub unsafe fn mergePolicy(&self) -> Id<AnyObject>;
+        pub unsafe fn mergePolicy(&self) -> Retained<AnyObject>;
 
         #[method(setMergePolicy:)]
         pub unsafe fn setMergePolicy(&self, merge_policy: &AnyObject);
@@ -342,7 +346,7 @@ extern_methods!(
         pub unsafe fn obtainPermanentIDsForObjects_error(
             &self,
             objects: &NSArray<NSManagedObject>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(mergeChangesFromContextDidSaveNotification:)]
         pub unsafe fn mergeChangesFromContextDidSaveNotification(
@@ -358,14 +362,14 @@ extern_methods!(
 
         #[cfg(feature = "NSQueryGenerationToken")]
         #[method_id(@__retain_semantics Other queryGenerationToken)]
-        pub unsafe fn queryGenerationToken(&self) -> Option<Id<NSQueryGenerationToken>>;
+        pub unsafe fn queryGenerationToken(&self) -> Option<Retained<NSQueryGenerationToken>>;
 
         #[cfg(feature = "NSQueryGenerationToken")]
         #[method(setQueryGenerationFromToken:error:_)]
         pub unsafe fn setQueryGenerationFromToken_error(
             &self,
             generation: Option<&NSQueryGenerationToken>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(automaticallyMergesChangesFromParent)]
         pub unsafe fn automaticallyMergesChangesFromParent(&self) -> bool;
@@ -377,7 +381,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other transactionAuthor)]
-        pub unsafe fn transactionAuthor(&self) -> Option<Id<NSString>>;
+        pub unsafe fn transactionAuthor(&self) -> Option<Retained<NSString>>;
 
         #[method(setTransactionAuthor:)]
         pub unsafe fn setTransactionAuthor(&self, transaction_author: Option<&NSString>);

@@ -24,7 +24,7 @@ extern_methods!(
             content_size: CGSize,
             paper_list: &NSArray<UIPrintPaper>,
             mtm: MainThreadMarker,
-        ) -> Id<UIPrintPaper>;
+        ) -> Retained<UIPrintPaper>;
 
         #[method(paperSize)]
         pub unsafe fn paperSize(&self) -> CGSize;
@@ -38,10 +38,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrintPaper {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

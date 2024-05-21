@@ -77,7 +77,7 @@ extern_methods!(
             target: Option<&AnyObject>,
             action: Option<Sel>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other pickerTouchBarItemWithIdentifier:images:selectionMode:target:action:)]
@@ -88,7 +88,7 @@ extern_methods!(
             target: Option<&AnyObject>,
             action: Option<Sel>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(controlRepresentation)]
         pub unsafe fn controlRepresentation(&self) -> NSPickerTouchBarItemControlRepresentation;
@@ -100,7 +100,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other collapsedRepresentationLabel)]
-        pub unsafe fn collapsedRepresentationLabel(&self) -> Id<NSString>;
+        pub unsafe fn collapsedRepresentationLabel(&self) -> Retained<NSString>;
 
         #[method(setCollapsedRepresentationLabel:)]
         pub unsafe fn setCollapsedRepresentationLabel(
@@ -110,7 +110,7 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other collapsedRepresentationImage)]
-        pub unsafe fn collapsedRepresentationImage(&self) -> Option<Id<NSImage>>;
+        pub unsafe fn collapsedRepresentationImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         #[method(setCollapsedRepresentationImage:)]
@@ -127,7 +127,7 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other selectionColor)]
-        pub unsafe fn selectionColor(&self) -> Option<Id<NSColor>>;
+        pub unsafe fn selectionColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         #[method(setSelectionColor:)]
@@ -151,16 +151,16 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other imageAtIndex:)]
-        pub unsafe fn imageAtIndex(&self, index: NSInteger) -> Option<Id<NSImage>>;
+        pub unsafe fn imageAtIndex(&self, index: NSInteger) -> Option<Retained<NSImage>>;
 
         #[method(setLabel:atIndex:)]
         pub unsafe fn setLabel_atIndex(&self, label: &NSString, index: NSInteger);
 
         #[method_id(@__retain_semantics Other labelAtIndex:)]
-        pub unsafe fn labelAtIndex(&self, index: NSInteger) -> Option<Id<NSString>>;
+        pub unsafe fn labelAtIndex(&self, index: NSInteger) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -184,7 +184,7 @@ extern_methods!(
         pub unsafe fn isEnabledAtIndex(&self, index: NSInteger) -> bool;
 
         #[method_id(@__retain_semantics Other customizationLabel)]
-        pub unsafe fn customizationLabel(&self) -> Id<NSString>;
+        pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
@@ -199,13 +199,16 @@ extern_methods!(
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -214,6 +217,6 @@ extern_methods!(
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSPickerTouchBarItem {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

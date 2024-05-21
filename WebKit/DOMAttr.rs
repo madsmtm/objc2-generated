@@ -58,7 +58,7 @@ extern_methods!(
     unsafe impl DOMAttr {
         #[deprecated]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(specified)]
@@ -66,7 +66,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Id<NSString>;
+        pub unsafe fn value(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setValue:)]
@@ -75,11 +75,11 @@ extern_methods!(
         #[cfg(feature = "DOMElement")]
         #[deprecated]
         #[method_id(@__retain_semantics Other ownerElement)]
-        pub unsafe fn ownerElement(&self) -> Option<Id<DOMElement>>;
+        pub unsafe fn ownerElement(&self) -> Option<Retained<DOMElement>>;
 
         #[cfg(feature = "DOMCSSStyleDeclaration")]
         #[method_id(@__retain_semantics Other style)]
-        pub unsafe fn style(&self) -> Option<Id<DOMCSSStyleDeclaration>>;
+        pub unsafe fn style(&self) -> Option<Retained<DOMCSSStyleDeclaration>>;
     }
 );
 
@@ -93,7 +93,7 @@ extern_methods!(
     unsafe impl DOMAttr {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -106,6 +106,6 @@ extern_methods!(
     ))]
     unsafe impl DOMAttr {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

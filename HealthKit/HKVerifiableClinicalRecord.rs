@@ -67,41 +67,41 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKVerifiableClinicalRecord {
         #[method_id(@__retain_semantics Other recordTypes)]
-        pub unsafe fn recordTypes(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn recordTypes(&self) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other issuerIdentifier)]
-        pub unsafe fn issuerIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn issuerIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HKVerifiableClinicalRecordSubject")]
         #[method_id(@__retain_semantics Other subject)]
-        pub unsafe fn subject(&self) -> Id<HKVerifiableClinicalRecordSubject>;
+        pub unsafe fn subject(&self) -> Retained<HKVerifiableClinicalRecordSubject>;
 
         #[method_id(@__retain_semantics Other issuedDate)]
-        pub unsafe fn issuedDate(&self) -> Id<NSDate>;
+        pub unsafe fn issuedDate(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other relevantDate)]
-        pub unsafe fn relevantDate(&self) -> Id<NSDate>;
+        pub unsafe fn relevantDate(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other expirationDate)]
-        pub unsafe fn expirationDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn expirationDate(&self) -> Option<Retained<NSDate>>;
 
         #[method_id(@__retain_semantics Other itemNames)]
-        pub unsafe fn itemNames(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn itemNames(&self) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other sourceType)]
-        pub unsafe fn sourceType(&self) -> Option<Id<HKVerifiableClinicalRecordSourceType>>;
+        pub unsafe fn sourceType(&self) -> Option<Retained<HKVerifiableClinicalRecordSourceType>>;
 
         #[method_id(@__retain_semantics Other dataRepresentation)]
-        pub unsafe fn dataRepresentation(&self) -> Id<NSData>;
+        pub unsafe fn dataRepresentation(&self) -> Retained<NSData>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other JWSRepresentation)]
-        pub unsafe fn JWSRepresentation(&self) -> Id<NSData>;
+        pub unsafe fn JWSRepresentation(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -20,28 +20,28 @@ unsafe impl NSObjectProtocol for WKWindowFeatures {}
 extern_methods!(
     unsafe impl WKWindowFeatures {
         #[method_id(@__retain_semantics Other menuBarVisibility)]
-        pub unsafe fn menuBarVisibility(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn menuBarVisibility(&self) -> Option<Retained<NSNumber>>;
 
         #[method_id(@__retain_semantics Other statusBarVisibility)]
-        pub unsafe fn statusBarVisibility(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn statusBarVisibility(&self) -> Option<Retained<NSNumber>>;
 
         #[method_id(@__retain_semantics Other toolbarsVisibility)]
-        pub unsafe fn toolbarsVisibility(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn toolbarsVisibility(&self) -> Option<Retained<NSNumber>>;
 
         #[method_id(@__retain_semantics Other allowsResizing)]
-        pub unsafe fn allowsResizing(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn allowsResizing(&self) -> Option<Retained<NSNumber>>;
 
         #[method_id(@__retain_semantics Other x)]
-        pub unsafe fn x(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn x(&self) -> Option<Retained<NSNumber>>;
 
         #[method_id(@__retain_semantics Other y)]
-        pub unsafe fn y(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn y(&self) -> Option<Retained<NSNumber>>;
 
         #[method_id(@__retain_semantics Other width)]
-        pub unsafe fn width(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn width(&self) -> Option<Retained<NSNumber>>;
 
         #[method_id(@__retain_semantics Other height)]
-        pub unsafe fn height(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn height(&self) -> Option<Retained<NSNumber>>;
     }
 );
 
@@ -49,9 +49,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKWindowFeatures {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

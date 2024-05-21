@@ -71,7 +71,7 @@ extern_methods!(
     unsafe impl UIListContentTextProperties {
         #[cfg(feature = "UIFont")]
         #[method_id(@__retain_semantics Other font)]
-        pub unsafe fn font(&self) -> Id<UIFont>;
+        pub unsafe fn font(&self) -> Retained<UIFont>;
 
         #[cfg(feature = "UIFont")]
         #[method(setFont:)]
@@ -79,7 +79,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other color)]
-        pub unsafe fn color(&self) -> Id<UIColor>;
+        pub unsafe fn color(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
         #[method(setColor:)]
@@ -106,7 +106,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other resolvedColor)]
-        pub unsafe fn resolvedColor(&self) -> Id<UIColor>;
+        pub unsafe fn resolvedColor(&self) -> Retained<UIColor>;
 
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> UIListContentTextAlignment;
@@ -179,9 +179,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIListContentTextProperties {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -32,13 +32,13 @@ extern_methods!(
     unsafe impl HKCategorySample {
         #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other categoryType)]
-        pub unsafe fn categoryType(&self) -> Id<HKCategoryType>;
+        pub unsafe fn categoryType(&self) -> Retained<HKCategoryType>;
 
         #[method(value)]
         pub unsafe fn value(&self) -> NSInteger;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other categorySampleWithType:value:startDate:endDate:metadata:)]
@@ -48,7 +48,7 @@ extern_methods!(
             start_date: &NSDate,
             end_date: &NSDate,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other categorySampleWithType:value:startDate:endDate:)]
@@ -57,7 +57,7 @@ extern_methods!(
             value: NSInteger,
             start_date: &NSDate,
             end_date: &NSDate,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKDevice", feature = "HKObjectType"))]
         #[method_id(@__retain_semantics Other categorySampleWithType:value:startDate:endDate:device:metadata:)]
@@ -68,7 +68,7 @@ extern_methods!(
             end_date: &NSDate,
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -77,7 +77,7 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKCategorySample {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

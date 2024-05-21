@@ -29,20 +29,20 @@ unsafe impl NSSecureCoding for ASPasswordCredentialRequest {}
 extern_methods!(
     unsafe impl ASPasswordCredentialRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "ASPasswordCredentialIdentity")]
         #[method_id(@__retain_semantics Init initWithCredentialIdentity:)]
         pub unsafe fn initWithCredentialIdentity(
             this: Allocated<Self>,
             credential_identity: &ASPasswordCredentialIdentity,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "ASPasswordCredentialIdentity")]
         #[method_id(@__retain_semantics Other requestWithCredentialIdentity:)]
         pub unsafe fn requestWithCredentialIdentity(
             credential_identity: &ASPasswordCredentialIdentity,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -50,6 +50,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASPasswordCredentialRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

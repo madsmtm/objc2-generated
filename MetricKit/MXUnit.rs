@@ -27,7 +27,7 @@ unsafe impl NSSecureCoding for MXUnitSignalBars {}
 extern_methods!(
     unsafe impl MXUnitSignalBars {
         #[method_id(@__retain_semantics Other bars)]
-        pub unsafe fn bars() -> Id<MXUnitSignalBars>;
+        pub unsafe fn bars() -> Retained<MXUnitSignalBars>;
     }
 );
 
@@ -39,10 +39,10 @@ extern_methods!(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
+        pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
 
@@ -50,13 +50,13 @@ extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl MXUnitSignalBars {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Id<Self>;
+        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
 
@@ -82,7 +82,7 @@ unsafe impl NSSecureCoding for MXUnitAveragePixelLuminance {}
 extern_methods!(
     unsafe impl MXUnitAveragePixelLuminance {
         #[method_id(@__retain_semantics Other apl)]
-        pub unsafe fn apl() -> Id<MXUnitAveragePixelLuminance>;
+        pub unsafe fn apl() -> Retained<MXUnitAveragePixelLuminance>;
     }
 );
 
@@ -94,10 +94,10 @@ extern_methods!(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
+        pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
 
@@ -105,12 +105,12 @@ extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl MXUnitAveragePixelLuminance {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Id<Self>;
+        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );

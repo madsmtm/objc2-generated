@@ -31,32 +31,32 @@ extern_methods!(
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other mean)]
-        pub unsafe fn mean(&self) -> Id<MLCTensor>;
+        pub unsafe fn mean(&self) -> Retained<MLCTensor>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other variance)]
-        pub unsafe fn variance(&self) -> Id<MLCTensor>;
+        pub unsafe fn variance(&self) -> Retained<MLCTensor>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other beta)]
-        pub unsafe fn beta(&self) -> Option<Id<MLCTensor>>;
+        pub unsafe fn beta(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other gamma)]
-        pub unsafe fn gamma(&self) -> Option<Id<MLCTensor>>;
+        pub unsafe fn gamma(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         #[deprecated]
         #[method_id(@__retain_semantics Other betaParameter)]
-        pub unsafe fn betaParameter(&self) -> Option<Id<MLCTensorParameter>>;
+        pub unsafe fn betaParameter(&self) -> Option<Retained<MLCTensorParameter>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         #[deprecated]
         #[method_id(@__retain_semantics Other gammaParameter)]
-        pub unsafe fn gammaParameter(&self) -> Option<Id<MLCTensorParameter>>;
+        pub unsafe fn gammaParameter(&self) -> Option<Retained<MLCTensorParameter>>;
 
         #[deprecated]
         #[method(varianceEpsilon)]
@@ -76,7 +76,7 @@ extern_methods!(
             beta: Option<&MLCTensor>,
             gamma: Option<&MLCTensor>,
             variance_epsilon: c_float,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
@@ -89,7 +89,7 @@ extern_methods!(
             gamma: Option<&MLCTensor>,
             variance_epsilon: c_float,
             momentum: c_float,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -99,10 +99,10 @@ extern_methods!(
     unsafe impl MLCBatchNormalizationLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

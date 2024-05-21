@@ -221,29 +221,32 @@ extern_methods!(
             this: Allocated<Self>,
             frame_rect: NSRect,
             container: Option<&NSTextContainer>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initUsingTextLayoutManager:)]
         pub unsafe fn initUsingTextLayoutManager(
             this: Allocated<Self>,
             using_text_layout_manager: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other textViewUsingTextLayoutManager:)]
         pub unsafe fn textViewUsingTextLayoutManager(
             using_text_layout_manager: bool,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSTextContainer")]
         #[method_id(@__retain_semantics Other textContainer)]
-        pub unsafe fn textContainer(&self) -> Option<Id<NSTextContainer>>;
+        pub unsafe fn textContainer(&self) -> Option<Retained<NSTextContainer>>;
 
         #[cfg(feature = "NSTextContainer")]
         #[method(setTextContainer:)]
@@ -267,19 +270,19 @@ extern_methods!(
 
         #[cfg(feature = "NSLayoutManager")]
         #[method_id(@__retain_semantics Other layoutManager)]
-        pub unsafe fn layoutManager(&self) -> Option<Id<NSLayoutManager>>;
+        pub unsafe fn layoutManager(&self) -> Option<Retained<NSLayoutManager>>;
 
         #[cfg(feature = "NSTextStorage")]
         #[method_id(@__retain_semantics Other textStorage)]
-        pub unsafe fn textStorage(&self) -> Option<Id<NSTextStorage>>;
+        pub unsafe fn textStorage(&self) -> Option<Retained<NSTextStorage>>;
 
         #[cfg(feature = "NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other textLayoutManager)]
-        pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager>>;
+        pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "NSTextContentManager")]
         #[method_id(@__retain_semantics Other textContentStorage)]
-        pub unsafe fn textContentStorage(&self) -> Option<Id<NSTextContentStorage>>;
+        pub unsafe fn textContentStorage(&self) -> Option<Retained<NSTextContentStorage>>;
 
         #[deprecated = "Use -insertText:replacementRange: from NSTextInputClient instead. Since the method is designed to be used solely by the input system, the message should never be sent to a text view from applications. Any content modifications should be via either NSTextStorage or NSText methods."]
         #[method(insertText:)]
@@ -496,7 +499,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
     unsafe impl NSTextView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -505,7 +508,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
     unsafe impl NSTextView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -524,7 +527,7 @@ extern_methods!(
             &self,
             char_range: NSRange,
             index: NonNull<NSInteger>,
-        ) -> Option<Id<NSArray<NSString>>>;
+        ) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(insertCompletion:forPartialWordRange:movement:isFinal:)]
         pub unsafe fn insertCompletion_forPartialWordRange_movement_isFinal(
@@ -543,7 +546,7 @@ extern_methods!(
     unsafe impl NSTextView {
         #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Other writablePasteboardTypes)]
-        pub unsafe fn writablePasteboardTypes(&self) -> Id<NSArray<NSPasteboardType>>;
+        pub unsafe fn writablePasteboardTypes(&self) -> Retained<NSArray<NSPasteboardType>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[method(writeSelectionToPasteboard:type:)]
@@ -563,7 +566,7 @@ extern_methods!(
 
         #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Other readablePasteboardTypes)]
-        pub unsafe fn readablePasteboardTypes(&self) -> Id<NSArray<NSPasteboardType>>;
+        pub unsafe fn readablePasteboardTypes(&self) -> Retained<NSArray<NSPasteboardType>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Other preferredPasteboardTypeFromArray:restrictedToTypesFromArray:)]
@@ -571,7 +574,7 @@ extern_methods!(
             &self,
             available_types: &NSArray<NSPasteboardType>,
             allowed_types: Option<&NSArray<NSPasteboardType>>,
-        ) -> Option<Id<NSPasteboardType>>;
+        ) -> Option<Retained<NSPasteboardType>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[method(readSelectionFromPasteboard:type:)]
@@ -594,7 +597,7 @@ extern_methods!(
             &self,
             send_type: Option<&NSPasteboardType>,
             return_type: Option<&NSPasteboardType>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[method(pasteAsPlainText:)]
         pub unsafe fn pasteAsPlainText(&self, sender: Option<&AnyObject>);
@@ -623,11 +626,11 @@ extern_methods!(
             &self,
             event: &NSEvent,
             origin: NSPointPointer,
-        ) -> Option<Id<NSImage>>;
+        ) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Other acceptableDragTypes)]
-        pub unsafe fn acceptableDragTypes(&self) -> Id<NSArray<NSPasteboardType>>;
+        pub unsafe fn acceptableDragTypes(&self) -> Retained<NSArray<NSPasteboardType>>;
 
         #[cfg(all(feature = "NSDragging", feature = "NSPasteboard"))]
         #[method(dragOperationForDraggingInfo:type:)]
@@ -647,7 +650,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
     unsafe impl NSTextView {
         #[method_id(@__retain_semantics Other selectedRanges)]
-        pub unsafe fn selectedRanges(&self) -> Id<NSArray<NSValue>>;
+        pub unsafe fn selectedRanges(&self) -> Retained<NSArray<NSValue>>;
 
         #[method(setSelectedRanges:)]
         pub unsafe fn setSelectedRanges(&self, selected_ranges: &NSArray<NSValue>);
@@ -680,7 +683,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other selectedTextAttributes)]
         pub unsafe fn selectedTextAttributes(
             &self,
-        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[method(setSelectedTextAttributes:)]
         pub unsafe fn setSelectedTextAttributes(
@@ -690,7 +693,7 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other insertionPointColor)]
-        pub unsafe fn insertionPointColor(&self) -> Id<NSColor>;
+        pub unsafe fn insertionPointColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         #[method(setInsertionPointColor:)]
@@ -702,7 +705,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other markedTextAttributes)]
         pub unsafe fn markedTextAttributes(
             &self,
-        ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         #[method(setMarkedTextAttributes:)]
         pub unsafe fn setMarkedTextAttributes(
@@ -713,7 +716,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other linkTextAttributes)]
         pub unsafe fn linkTextAttributes(
             &self,
-        ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
+        ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         #[method(setLinkTextAttributes:)]
         pub unsafe fn setLinkTextAttributes(
@@ -773,8 +776,9 @@ extern_methods!(
         pub unsafe fn setSpellingState_range(&self, value: NSInteger, char_range: NSRange);
 
         #[method_id(@__retain_semantics Other typingAttributes)]
-        pub unsafe fn typingAttributes(&self)
-            -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
+        pub unsafe fn typingAttributes(
+            &self,
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[method(setTypingAttributes:)]
         pub unsafe fn setTypingAttributes(
@@ -790,13 +794,17 @@ extern_methods!(
         ) -> bool;
 
         #[method_id(@__retain_semantics Other rangesForUserTextChange)]
-        pub unsafe fn rangesForUserTextChange(&self) -> Option<Id<NSArray<NSValue>>>;
+        pub unsafe fn rangesForUserTextChange(&self) -> Option<Retained<NSArray<NSValue>>>;
 
         #[method_id(@__retain_semantics Other rangesForUserCharacterAttributeChange)]
-        pub unsafe fn rangesForUserCharacterAttributeChange(&self) -> Option<Id<NSArray<NSValue>>>;
+        pub unsafe fn rangesForUserCharacterAttributeChange(
+            &self,
+        ) -> Option<Retained<NSArray<NSValue>>>;
 
         #[method_id(@__retain_semantics Other rangesForUserParagraphAttributeChange)]
-        pub unsafe fn rangesForUserParagraphAttributeChange(&self) -> Option<Id<NSArray<NSValue>>>;
+        pub unsafe fn rangesForUserParagraphAttributeChange(
+            &self,
+        ) -> Option<Retained<NSArray<NSValue>>>;
 
         #[method(shouldChangeTextInRange:replacementString:)]
         pub unsafe fn shouldChangeTextInRange_replacementString(
@@ -828,7 +836,7 @@ extern_methods!(
 
         #[cfg(feature = "NSParagraphStyle")]
         #[method_id(@__retain_semantics Other defaultParagraphStyle)]
-        pub unsafe fn defaultParagraphStyle(&self) -> Option<Id<NSParagraphStyle>>;
+        pub unsafe fn defaultParagraphStyle(&self) -> Option<Retained<NSParagraphStyle>>;
 
         #[cfg(feature = "NSParagraphStyle")]
         #[method(setDefaultParagraphStyle:)]
@@ -868,7 +876,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTextViewDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTextViewDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTextViewDelegate>>);
@@ -905,7 +913,7 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
+        pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         #[method(setBackgroundColor:)]
@@ -933,7 +941,7 @@ extern_methods!(
         pub unsafe fn setSelectedRange(&self, char_range: NSRange);
 
         #[method_id(@__retain_semantics Other allowedInputSourceLocales)]
-        pub unsafe fn allowedInputSourceLocales(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn allowedInputSourceLocales(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setAllowedInputSourceLocales:)]
         pub unsafe fn setAllowedInputSourceLocales(
@@ -967,8 +975,8 @@ extern_methods!(
             &self,
             paste_string: &NSString,
             char_range_to_replace: NSRange,
-            before_string: Option<&mut Option<Id<NSString>>>,
-            after_string: Option<&mut Option<Id<NSString>>>,
+            before_string: Option<&mut Option<Retained<NSString>>>,
+            after_string: Option<&mut Option<Retained<NSString>>>,
         );
 
         #[method_id(@__retain_semantics Other smartInsertBeforeStringForString:replacingRange:)]
@@ -976,14 +984,14 @@ extern_methods!(
             &self,
             paste_string: &NSString,
             char_range_to_replace: NSRange,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other smartInsertAfterStringForString:replacingRange:)]
         pub unsafe fn smartInsertAfterStringForString_replacingRange(
             &self,
             paste_string: &NSString,
             char_range_to_replace: NSRange,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[method(isAutomaticQuoteSubstitutionEnabled)]
         pub unsafe fn isAutomaticQuoteSubstitutionEnabled(&self) -> bool;
@@ -1181,7 +1189,9 @@ extern_methods!(
 
         #[cfg(all(feature = "NSCandidateListTouchBarItem", feature = "NSTouchBarItem"))]
         #[method_id(@__retain_semantics Other candidateListTouchBarItem)]
-        pub unsafe fn candidateListTouchBarItem(&self) -> Option<Id<NSCandidateListTouchBarItem>>;
+        pub unsafe fn candidateListTouchBarItem(
+            &self,
+        ) -> Option<Retained<NSCandidateListTouchBarItem>>;
     }
 );
 
@@ -1207,20 +1217,22 @@ extern_methods!(
     unsafe impl NSTextView {
         #[cfg(feature = "NSScrollView")]
         #[method_id(@__retain_semantics Other scrollableTextView)]
-        pub unsafe fn scrollableTextView(mtm: MainThreadMarker) -> Id<NSScrollView>;
+        pub unsafe fn scrollableTextView(mtm: MainThreadMarker) -> Retained<NSScrollView>;
 
         #[method_id(@__retain_semantics Other fieldEditor)]
-        pub unsafe fn fieldEditor(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn fieldEditor(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "NSScrollView")]
         #[method_id(@__retain_semantics Other scrollableDocumentContentTextView)]
-        pub unsafe fn scrollableDocumentContentTextView(mtm: MainThreadMarker) -> Id<NSScrollView>;
+        pub unsafe fn scrollableDocumentContentTextView(
+            mtm: MainThreadMarker,
+        ) -> Retained<NSScrollView>;
 
         #[cfg(feature = "NSScrollView")]
         #[method_id(@__retain_semantics Other scrollablePlainDocumentContentTextView)]
         pub unsafe fn scrollablePlainDocumentContentTextView(
             mtm: MainThreadMarker,
-        ) -> Id<NSScrollView>;
+        ) -> Retained<NSScrollView>;
     }
 );
 
@@ -1307,7 +1319,7 @@ extern_protocol!(
             view: &NSTextView,
             cell: &ProtocolObject<dyn NSTextAttachmentCellProtocol>,
             char_index: NSUInteger,
-        ) -> Id<NSArray<NSPasteboardType>>;
+        ) -> Retained<NSArray<NSPasteboardType>>;
 
         #[cfg(all(
             feature = "NSPasteboard",
@@ -1344,7 +1356,7 @@ extern_protocol!(
             text_view: &NSTextView,
             old_selected_char_ranges: &NSArray<NSValue>,
             new_selected_char_ranges: &NSArray<NSValue>,
-        ) -> Id<NSArray<NSValue>>;
+        ) -> Retained<NSArray<NSValue>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -1364,7 +1376,7 @@ extern_protocol!(
             text_view: &NSTextView,
             old_typing_attributes: &NSDictionary<NSString, AnyObject>,
             new_typing_attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
-        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[optional]
         #[method(textViewDidChangeSelection:)]
@@ -1382,7 +1394,7 @@ extern_protocol!(
             text_view: &NSTextView,
             tooltip: &NSString,
             character_index: NSUInteger,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -1393,7 +1405,7 @@ extern_protocol!(
             words: &NSArray<NSString>,
             char_range: NSRange,
             index: *mut NSInteger,
-        ) -> Id<NSArray<NSString>>;
+        ) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -1438,7 +1450,7 @@ extern_protocol!(
             menu: &NSMenu,
             event: &NSEvent,
             char_index: NSUInteger,
-        ) -> Option<Id<NSMenu>>;
+        ) -> Option<Retained<NSMenu>>;
 
         #[cfg(all(
             feature = "NSResponder",
@@ -1453,7 +1465,7 @@ extern_protocol!(
             range: NSRange,
             options: &NSDictionary<NSTextCheckingOptionKey, AnyObject>,
             checking_types: NonNull<NSTextCheckingTypes>,
-        ) -> Id<NSDictionary<NSTextCheckingOptionKey, AnyObject>>;
+        ) -> Retained<NSDictionary<NSTextCheckingOptionKey, AnyObject>>;
 
         #[cfg(all(
             feature = "NSResponder",
@@ -1471,7 +1483,7 @@ extern_protocol!(
             results: &NSArray<NSTextCheckingResult>,
             orthography: &NSOrthography,
             word_count: NSInteger,
-        ) -> Id<NSArray<NSTextCheckingResult>>;
+        ) -> Retained<NSArray<NSTextCheckingResult>>;
 
         #[cfg(all(
             feature = "NSResponder",
@@ -1485,7 +1497,7 @@ extern_protocol!(
             text_view: &NSTextView,
             text_attachment: &NSTextAttachment,
             char_index: NSUInteger,
-        ) -> Option<Id<NSURL>>;
+        ) -> Option<Retained<NSURL>>;
 
         #[cfg(all(
             feature = "NSResponder",
@@ -1499,12 +1511,15 @@ extern_protocol!(
             text_view: &NSTextView,
             service_picker: &NSSharingServicePicker,
             items: &NSArray,
-        ) -> Option<Id<NSSharingServicePicker>>;
+        ) -> Option<Retained<NSSharingServicePicker>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other undoManagerForTextView:)]
-        unsafe fn undoManagerForTextView(&self, view: &NSTextView) -> Option<Id<NSUndoManager>>;
+        unsafe fn undoManagerForTextView(
+            &self,
+            view: &NSTextView,
+        ) -> Option<Retained<NSUndoManager>>;
 
         #[cfg(all(
             feature = "NSResponder",
@@ -1517,7 +1532,7 @@ extern_protocol!(
             &self,
             text_view: &NSTextView,
             identifiers: &NSArray<NSTouchBarItemIdentifier>,
-        ) -> Id<NSArray<NSTouchBarItemIdentifier>>;
+        ) -> Retained<NSArray<NSTouchBarItemIdentifier>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -1526,7 +1541,7 @@ extern_protocol!(
             &self,
             text_view: &NSTextView,
             selected_range: NSRange,
-        ) -> Option<Id<NSArray>>;
+        ) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -1536,7 +1551,7 @@ extern_protocol!(
             text_view: &NSTextView,
             candidates: &NSArray<NSTextCheckingResult>,
             selected_range: NSRange,
-        ) -> Id<NSArray<NSTextCheckingResult>>;
+        ) -> Retained<NSArray<NSTextCheckingResult>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]

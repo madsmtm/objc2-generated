@@ -60,7 +60,7 @@ extern_methods!(
         pub unsafe fn regularExpressionWithPattern_options_error(
             pattern: &NSString,
             options: NSRegularExpressionOptions,
-        ) -> Result<Id<NSRegularExpression>, Id<NSError>>;
+        ) -> Result<Retained<NSRegularExpression>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[method_id(@__retain_semantics Init initWithPattern:options:error:_)]
@@ -68,11 +68,11 @@ extern_methods!(
             this: Allocated<Self>,
             pattern: &NSString,
             options: NSRegularExpressionOptions,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other pattern)]
-        pub unsafe fn pattern(&self) -> Id<NSString>;
+        pub unsafe fn pattern(&self) -> Retained<NSString>;
 
         #[method(options)]
         pub unsafe fn options(&self) -> NSRegularExpressionOptions;
@@ -82,7 +82,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other escapedPatternForString:)]
-        pub unsafe fn escapedPatternForString(string: &NSString) -> Id<NSString>;
+        pub unsafe fn escapedPatternForString(string: &NSString) -> Retained<NSString>;
     }
 );
 
@@ -90,10 +90,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSRegularExpression {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -173,7 +173,7 @@ extern_methods!(
             string: &NSString,
             options: NSMatchingOptions,
             range: NSRange,
-        ) -> Id<NSArray<NSTextCheckingResult>>;
+        ) -> Retained<NSArray<NSTextCheckingResult>>;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
         #[method(numberOfMatchesInString:options:range:)]
@@ -195,7 +195,7 @@ extern_methods!(
             string: &NSString,
             options: NSMatchingOptions,
             range: NSRange,
-        ) -> Option<Id<NSTextCheckingResult>>;
+        ) -> Option<Retained<NSTextCheckingResult>>;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
         #[method(rangeOfFirstMatchInString:options:range:)]
@@ -219,7 +219,7 @@ extern_methods!(
             options: NSMatchingOptions,
             range: NSRange,
             templ: &NSString,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
         #[method(replaceMatchesInString:options:range:withTemplate:)]
@@ -239,11 +239,11 @@ extern_methods!(
             string: &NSString,
             offset: NSInteger,
             templ: &NSString,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other escapedTemplateForString:)]
-        pub unsafe fn escapedTemplateForString(string: &NSString) -> Id<NSString>;
+        pub unsafe fn escapedTemplateForString(string: &NSString) -> Retained<NSString>;
     }
 );
 
@@ -275,14 +275,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dataDetectorWithTypes:error:_)]
         pub unsafe fn dataDetectorWithTypes_error(
             checking_types: NSTextCheckingTypes,
-        ) -> Result<Id<NSDataDetector>, Id<NSError>>;
+        ) -> Result<Retained<NSDataDetector>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSTextCheckingResult"))]
         #[method_id(@__retain_semantics Init initWithTypes:error:_)]
         pub unsafe fn initWithTypes_error(
             this: Allocated<Self>,
             checking_types: NSTextCheckingTypes,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSTextCheckingResult")]
         #[method(checkingTypes)]
@@ -299,7 +299,7 @@ extern_methods!(
             this: Allocated<Self>,
             pattern: &NSString,
             options: NSRegularExpressionOptions,
-        ) -> Result<Id<Self>, Id<NSError>>;
+        ) -> Result<Retained<Self>, Retained<NSError>>;
     }
 );
 
@@ -307,9 +307,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDataDetector {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -35,21 +35,21 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other splitSectionLengths)]
-        pub unsafe fn splitSectionLengths(&self) -> Option<Id<NSArray<NSNumber>>>;
+        pub unsafe fn splitSectionLengths(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithSplitCount:dimension:)]
         pub unsafe fn layerWithSplitCount_dimension(
             split_count: NSUInteger,
             dimension: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithSplitSectionLengths:dimension:)]
         pub unsafe fn layerWithSplitSectionLengths_dimension(
             split_section_lengths: &NSArray<NSNumber>,
             dimension: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -59,10 +59,10 @@ extern_methods!(
     unsafe impl MLCSplitLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

@@ -17,11 +17,11 @@ extern_protocol!(
         unsafe fn initWithTraitCollection(
             this: Allocated<Self>,
             trait_collection: &UITraitCollection,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UITraitCollection")]
         #[method_id(@__retain_semantics Other traitCollection)]
-        unsafe fn traitCollection(&self) -> Id<UITraitCollection>;
+        unsafe fn traitCollection(&self) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITraitCollection")]
         #[method(setTraitCollection:)]
@@ -31,7 +31,7 @@ extern_protocol!(
         unsafe fn customStateForKey(
             &self,
             key: &UIConfigurationStateCustomKey,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[method(setCustomState:forKey:)]
         unsafe fn setCustomState_forKey(
@@ -44,7 +44,7 @@ extern_protocol!(
         unsafe fn objectForKeyedSubscript(
             &self,
             key: &UIConfigurationStateCustomKey,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[method(setObject:forKeyedSubscript:)]
         unsafe fn setObject_forKeyedSubscript(

@@ -12,7 +12,9 @@ extern_category!(
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
         #[method_id(@__retain_semantics Other accessibilityAttributeNames)]
-        unsafe fn accessibilityAttributeNames(&self) -> Id<NSArray<NSAccessibilityAttributeName>>;
+        unsafe fn accessibilityAttributeNames(
+            &self,
+        ) -> Retained<NSArray<NSAccessibilityAttributeName>>;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
@@ -20,7 +22,7 @@ extern_category!(
         unsafe fn accessibilityAttributeValue(
             &self,
             attribute: &NSAccessibilityAttributeName,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
@@ -44,7 +46,7 @@ extern_category!(
         #[method_id(@__retain_semantics Other accessibilityParameterizedAttributeNames)]
         unsafe fn accessibilityParameterizedAttributeNames(
             &self,
-        ) -> Id<NSArray<NSAccessibilityParameterizedAttributeName>>;
+        ) -> Retained<NSArray<NSAccessibilityParameterizedAttributeName>>;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
@@ -53,12 +55,12 @@ extern_category!(
             &self,
             attribute: &NSAccessibilityParameterizedAttributeName,
             parameter: Option<&AnyObject>,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
         #[method_id(@__retain_semantics Other accessibilityActionNames)]
-        unsafe fn accessibilityActionNames(&self) -> Id<NSArray<NSAccessibilityActionName>>;
+        unsafe fn accessibilityActionNames(&self) -> Retained<NSArray<NSAccessibilityActionName>>;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
@@ -66,7 +68,7 @@ extern_category!(
         unsafe fn accessibilityActionDescription(
             &self,
             action: &NSAccessibilityActionName,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
@@ -78,10 +80,10 @@ extern_category!(
         unsafe fn accessibilityIsIgnored(&self) -> bool;
 
         #[method_id(@__retain_semantics Other accessibilityHitTest:)]
-        unsafe fn accessibilityHitTest(&self, point: NSPoint) -> Option<Id<AnyObject>>;
+        unsafe fn accessibilityHitTest(&self, point: NSPoint) -> Option<Retained<AnyObject>>;
 
         #[method_id(@__retain_semantics Other accessibilityFocusedUIElement)]
-        unsafe fn accessibilityFocusedUIElement(&self) -> Option<Id<AnyObject>>;
+        unsafe fn accessibilityFocusedUIElement(&self) -> Option<Retained<AnyObject>>;
 
         #[method(accessibilityIndexOfChild:)]
         unsafe fn accessibilityIndexOfChild(&self, child: &AnyObject) -> NSUInteger;
@@ -100,7 +102,7 @@ extern_category!(
             attribute: &NSAccessibilityAttributeName,
             index: NSUInteger,
             max_count: NSUInteger,
-        ) -> Id<NSArray>;
+        ) -> Retained<NSArray>;
 
         #[method(accessibilityNotifiesWhenDestroyed)]
         unsafe fn accessibilityNotifiesWhenDestroyed(&self) -> bool;

@@ -33,7 +33,7 @@ extern_methods!(
             completion_handler: &block2::Block<
                 dyn Fn(NonNull<HKSourceQuery>, *mut NSSet<HKSource>, *mut NSError),
             >,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -42,7 +42,7 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKSourceQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -51,6 +51,6 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKSourceQuery {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

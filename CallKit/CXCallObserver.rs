@@ -31,7 +31,7 @@ extern_methods!(
     unsafe impl CXCallObserver {
         #[cfg(feature = "CXCall")]
         #[method_id(@__retain_semantics Other calls)]
-        pub unsafe fn calls(&self) -> Id<NSArray<CXCall>>;
+        pub unsafe fn calls(&self) -> Retained<NSArray<CXCall>>;
     }
 );
 
@@ -39,9 +39,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXCallObserver {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

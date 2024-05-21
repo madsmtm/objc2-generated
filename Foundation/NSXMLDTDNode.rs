@@ -66,7 +66,7 @@ extern_methods!(
         pub unsafe fn initWithXMLString(
             this: Allocated<Self>,
             string: &NSString,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSXMLNodeOptions")]
         #[method_id(@__retain_semantics Init initWithKind:options:)]
@@ -74,10 +74,10 @@ extern_methods!(
             this: Allocated<Self>,
             kind: NSXMLNodeKind,
             options: NSXMLNodeOptions,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(DTDKind)]
         pub unsafe fn DTDKind(&self) -> NSXMLDTDNodeKind;
@@ -90,7 +90,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other publicID)]
-        pub unsafe fn publicID(&self) -> Option<Id<NSString>>;
+        pub unsafe fn publicID(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setPublicID:)]
@@ -98,7 +98,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other systemID)]
-        pub unsafe fn systemID(&self) -> Option<Id<NSString>>;
+        pub unsafe fn systemID(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setSystemID:)]
@@ -106,7 +106,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other notationName)]
-        pub unsafe fn notationName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn notationName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setNotationName:)]
@@ -119,7 +119,7 @@ extern_methods!(
     #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLDTDNode {
         #[method_id(@__retain_semantics Init initWithKind:)]
-        pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Id<Self>;
+        pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
     }
 );
 
@@ -128,6 +128,6 @@ extern_methods!(
     #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLDTDNode {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -38,11 +38,11 @@ extern_methods!(
     unsafe impl UISelectionFeedbackGenerator {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other feedbackGeneratorForView:)]
-        pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Id<Self>;
+        pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -51,6 +51,6 @@ extern_methods!(
     #[cfg(feature = "UIFeedbackGenerator")]
     unsafe impl UISelectionFeedbackGenerator {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

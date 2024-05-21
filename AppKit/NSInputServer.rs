@@ -148,7 +148,7 @@ extern_methods!(
             this: Allocated<Self>,
             delegate: Option<&AnyObject>,
             name: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -156,9 +156,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInputServer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

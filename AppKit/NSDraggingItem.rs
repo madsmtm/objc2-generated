@@ -33,25 +33,25 @@ extern_methods!(
         #[method_id(@__retain_semantics Other draggingImageComponentWithKey:)]
         pub unsafe fn draggingImageComponentWithKey(
             key: &NSDraggingImageComponentKey,
-        ) -> Id<NSDraggingImageComponent>;
+        ) -> Retained<NSDraggingImageComponent>;
 
         #[method_id(@__retain_semantics Init initWithKey:)]
         pub unsafe fn initWithKey(
             this: Allocated<Self>,
             key: &NSDraggingImageComponentKey,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other key)]
-        pub unsafe fn key(&self) -> Id<NSDraggingImageComponentKey>;
+        pub unsafe fn key(&self) -> Retained<NSDraggingImageComponentKey>;
 
         #[method(setKey:)]
         pub unsafe fn setKey(&self, key: &NSDraggingImageComponentKey);
 
         #[method_id(@__retain_semantics Other contents)]
-        pub unsafe fn contents(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn contents(&self) -> Option<Retained<AnyObject>>;
 
         #[method(setContents:)]
         pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
@@ -68,7 +68,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDraggingImageComponent {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -91,13 +91,13 @@ extern_methods!(
         pub unsafe fn initWithPasteboardWriter(
             this: Allocated<Self>,
             pasteboard_writer: &ProtocolObject<dyn NSPasteboardWriting>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other item)]
-        pub unsafe fn item(&self) -> Id<AnyObject>;
+        pub unsafe fn item(&self) -> Retained<AnyObject>;
 
         #[method(draggingFrame)]
         pub unsafe fn draggingFrame(&self) -> NSRect;
@@ -124,7 +124,8 @@ extern_methods!(
         pub unsafe fn setDraggingFrame_contents(&self, frame: NSRect, contents: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other imageComponents)]
-        pub unsafe fn imageComponents(&self) -> Option<Id<NSArray<NSDraggingImageComponent>>>;
+        pub unsafe fn imageComponents(&self)
+            -> Option<Retained<NSArray<NSDraggingImageComponent>>>;
     }
 );
 
@@ -132,6 +133,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDraggingItem {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

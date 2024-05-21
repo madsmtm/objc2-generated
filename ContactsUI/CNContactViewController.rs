@@ -53,11 +53,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other descriptorForRequiredKeys)]
         pub unsafe fn descriptorForRequiredKeys(
             mtm: MainThreadMarker,
-        ) -> Id<ProtocolObject<dyn CNKeyDescriptor>>;
+        ) -> Retained<ProtocolObject<dyn CNKeyDescriptor>>;
 
         #[cfg(feature = "objc2-contacts")]
         #[method_id(@__retain_semantics Other contact)]
-        pub unsafe fn contact(&self) -> Option<Id<CNContact>>;
+        pub unsafe fn contact(&self) -> Option<Retained<CNContact>>;
 
         #[cfg(feature = "objc2-contacts")]
         #[method(setContact:)]
@@ -75,10 +75,13 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -88,7 +91,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl CNContactViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -98,6 +101,6 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl CNContactViewController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

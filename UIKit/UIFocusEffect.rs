@@ -25,13 +25,13 @@ unsafe impl NSObjectProtocol for UIFocusEffect {}
 extern_methods!(
     unsafe impl UIFocusEffect {
         #[method_id(@__retain_semantics Other effect)]
-        pub unsafe fn effect() -> Id<Self>;
+        pub unsafe fn effect() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -74,7 +74,7 @@ unsafe impl NSObjectProtocol for UIFocusHaloEffect {}
 extern_methods!(
     unsafe impl UIFocusHaloEffect {
         #[method_id(@__retain_semantics Other effectWithRect:)]
-        pub unsafe fn effectWithRect(rect: CGRect) -> Id<Self>;
+        pub unsafe fn effectWithRect(rect: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
@@ -83,15 +83,15 @@ extern_methods!(
             rect: CGRect,
             corner_radius: CGFloat,
             curve: &CALayerCornerCurve,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIBezierPath")]
         #[method_id(@__retain_semantics Other effectWithPath:)]
-        pub unsafe fn effectWithPath(bezier_path: &UIBezierPath) -> Id<Self>;
+        pub unsafe fn effectWithPath(bezier_path: &UIBezierPath) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other containerView)]
-        pub unsafe fn containerView(&self, mtm: MainThreadMarker) -> Option<Id<UIView>>;
+        pub unsafe fn containerView(&self, mtm: MainThreadMarker) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(setContainerView:)]
@@ -99,7 +99,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other referenceView)]
-        pub unsafe fn referenceView(&self, mtm: MainThreadMarker) -> Option<Id<UIView>>;
+        pub unsafe fn referenceView(&self, mtm: MainThreadMarker) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(setReferenceView:)]
@@ -117,12 +117,12 @@ extern_methods!(
     /// Methods declared on superclass `UIFocusEffect`
     unsafe impl UIFocusHaloEffect {
         #[method_id(@__retain_semantics Other effect)]
-        pub unsafe fn effect() -> Id<Self>;
+        pub unsafe fn effect() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

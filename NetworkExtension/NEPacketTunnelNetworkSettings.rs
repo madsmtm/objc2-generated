@@ -35,7 +35,7 @@ extern_methods!(
     unsafe impl NEPacketTunnelNetworkSettings {
         #[cfg(feature = "NEIPv4Settings")]
         #[method_id(@__retain_semantics Other IPv4Settings)]
-        pub unsafe fn IPv4Settings(&self) -> Option<Id<NEIPv4Settings>>;
+        pub unsafe fn IPv4Settings(&self) -> Option<Retained<NEIPv4Settings>>;
 
         #[cfg(feature = "NEIPv4Settings")]
         #[method(setIPv4Settings:)]
@@ -43,20 +43,20 @@ extern_methods!(
 
         #[cfg(feature = "NEIPv6Settings")]
         #[method_id(@__retain_semantics Other IPv6Settings)]
-        pub unsafe fn IPv6Settings(&self) -> Option<Id<NEIPv6Settings>>;
+        pub unsafe fn IPv6Settings(&self) -> Option<Retained<NEIPv6Settings>>;
 
         #[cfg(feature = "NEIPv6Settings")]
         #[method(setIPv6Settings:)]
         pub unsafe fn setIPv6Settings(&self, i_pv6_settings: Option<&NEIPv6Settings>);
 
         #[method_id(@__retain_semantics Other tunnelOverheadBytes)]
-        pub unsafe fn tunnelOverheadBytes(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn tunnelOverheadBytes(&self) -> Option<Retained<NSNumber>>;
 
         #[method(setTunnelOverheadBytes:)]
         pub unsafe fn setTunnelOverheadBytes(&self, tunnel_overhead_bytes: Option<&NSNumber>);
 
         #[method_id(@__retain_semantics Other MTU)]
-        pub unsafe fn MTU(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn MTU(&self) -> Option<Retained<NSNumber>>;
 
         #[method(setMTU:)]
         pub unsafe fn setMTU(&self, mtu: Option<&NSNumber>);
@@ -71,7 +71,7 @@ extern_methods!(
         pub unsafe fn initWithTunnelRemoteAddress(
             this: Allocated<Self>,
             address: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -80,9 +80,9 @@ extern_methods!(
     #[cfg(feature = "NETunnelNetworkSettings")]
     unsafe impl NEPacketTunnelNetworkSettings {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

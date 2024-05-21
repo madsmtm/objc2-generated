@@ -85,7 +85,7 @@ extern_methods!(
     #[cfg(feature = "UIMenuElement")]
     unsafe impl UIMenu {
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<UIMenuIdentifier>;
+        pub unsafe fn identifier(&self) -> Retained<UIMenuIdentifier>;
 
         #[method(options)]
         pub unsafe fn options(&self) -> UIMenuOptions;
@@ -97,14 +97,14 @@ extern_methods!(
         pub unsafe fn setPreferredElementSize(&self, preferred_element_size: UIMenuElementSize);
 
         #[method_id(@__retain_semantics Other children)]
-        pub unsafe fn children(&self) -> Id<NSArray<UIMenuElement>>;
+        pub unsafe fn children(&self) -> Retained<NSArray<UIMenuElement>>;
 
         #[method_id(@__retain_semantics Other selectedElements)]
-        pub unsafe fn selectedElements(&self) -> Id<NSArray<UIMenuElement>>;
+        pub unsafe fn selectedElements(&self) -> Retained<NSArray<UIMenuElement>>;
 
         #[cfg(feature = "UIMenuDisplayPreferences")]
         #[method_id(@__retain_semantics Other displayPreferences)]
-        pub unsafe fn displayPreferences(&self) -> Option<Id<UIMenuDisplayPreferences>>;
+        pub unsafe fn displayPreferences(&self) -> Option<Retained<UIMenuDisplayPreferences>>;
 
         #[cfg(feature = "UIMenuDisplayPreferences")]
         #[method(setDisplayPreferences:)]
@@ -117,14 +117,14 @@ extern_methods!(
         pub unsafe fn menuWithChildren(
             children: &NSArray<UIMenuElement>,
             mtm: MainThreadMarker,
-        ) -> Id<UIMenu>;
+        ) -> Retained<UIMenu>;
 
         #[method_id(@__retain_semantics Other menuWithTitle:children:)]
         pub unsafe fn menuWithTitle_children(
             title: &NSString,
             children: &NSArray<UIMenuElement>,
             mtm: MainThreadMarker,
-        ) -> Id<UIMenu>;
+        ) -> Retained<UIMenu>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other menuWithTitle:image:identifier:options:children:)]
@@ -135,22 +135,25 @@ extern_methods!(
             options: UIMenuOptions,
             children: &NSArray<UIMenuElement>,
             mtm: MainThreadMarker,
-        ) -> Id<UIMenu>;
+        ) -> Retained<UIMenu>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other menuByReplacingChildren:)]
         pub unsafe fn menuByReplacingChildren(
             &self,
             new_children: &NSArray<UIMenuElement>,
-        ) -> Id<UIMenu>;
+        ) -> Retained<UIMenu>;
     }
 );
 

@@ -27,12 +27,12 @@ unsafe impl NSObjectProtocol for NSURLSession {}
 extern_methods!(
     unsafe impl NSURLSession {
         #[method_id(@__retain_semantics Other sharedSession)]
-        pub unsafe fn sharedSession() -> Id<NSURLSession>;
+        pub unsafe fn sharedSession() -> Retained<NSURLSession>;
 
         #[method_id(@__retain_semantics Other sessionWithConfiguration:)]
         pub unsafe fn sessionWithConfiguration(
             configuration: &NSURLSessionConfiguration,
-        ) -> Id<NSURLSession>;
+        ) -> Retained<NSURLSession>;
 
         #[cfg(feature = "NSOperation")]
         #[method_id(@__retain_semantics Other sessionWithConfiguration:delegate:delegateQueue:)]
@@ -40,21 +40,22 @@ extern_methods!(
             configuration: &NSURLSessionConfiguration,
             delegate: Option<&ProtocolObject<dyn NSURLSessionDelegate>>,
             queue: Option<&NSOperationQueue>,
-        ) -> Id<NSURLSession>;
+        ) -> Retained<NSURLSession>;
 
         #[cfg(feature = "NSOperation")]
         #[method_id(@__retain_semantics Other delegateQueue)]
-        pub unsafe fn delegateQueue(&self) -> Id<NSOperationQueue>;
+        pub unsafe fn delegateQueue(&self) -> Retained<NSOperationQueue>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSURLSessionDelegate>>>;
+        pub unsafe fn delegate(&self)
+            -> Option<Retained<ProtocolObject<dyn NSURLSessionDelegate>>>;
 
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration(&self) -> Id<NSURLSessionConfiguration>;
+        pub unsafe fn configuration(&self) -> Retained<NSURLSessionConfiguration>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other sessionDescription)]
-        pub unsafe fn sessionDescription(&self) -> Option<Id<NSString>>;
+        pub unsafe fn sessionDescription(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setSessionDescription:)]
@@ -105,11 +106,11 @@ extern_methods!(
         pub unsafe fn dataTaskWithRequest(
             &self,
             request: &NSURLRequest,
-        ) -> Id<NSURLSessionDataTask>;
+        ) -> Retained<NSURLSessionDataTask>;
 
         #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other dataTaskWithURL:)]
-        pub unsafe fn dataTaskWithURL(&self, url: &NSURL) -> Id<NSURLSessionDataTask>;
+        pub unsafe fn dataTaskWithURL(&self, url: &NSURL) -> Retained<NSURLSessionDataTask>;
 
         #[cfg(all(feature = "NSURL", feature = "NSURLRequest"))]
         #[method_id(@__retain_semantics Other uploadTaskWithRequest:fromFile:)]
@@ -117,7 +118,7 @@ extern_methods!(
             &self,
             request: &NSURLRequest,
             file_url: &NSURL,
-        ) -> Id<NSURLSessionUploadTask>;
+        ) -> Retained<NSURLSessionUploadTask>;
 
         #[cfg(all(feature = "NSData", feature = "NSURLRequest"))]
         #[method_id(@__retain_semantics Other uploadTaskWithRequest:fromData:)]
@@ -125,39 +126,40 @@ extern_methods!(
             &self,
             request: &NSURLRequest,
             body_data: &NSData,
-        ) -> Id<NSURLSessionUploadTask>;
+        ) -> Retained<NSURLSessionUploadTask>;
 
         #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other uploadTaskWithResumeData:)]
         pub unsafe fn uploadTaskWithResumeData(
             &self,
             resume_data: &NSData,
-        ) -> Id<NSURLSessionUploadTask>;
+        ) -> Retained<NSURLSessionUploadTask>;
 
         #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other uploadTaskWithStreamedRequest:)]
         pub unsafe fn uploadTaskWithStreamedRequest(
             &self,
             request: &NSURLRequest,
-        ) -> Id<NSURLSessionUploadTask>;
+        ) -> Retained<NSURLSessionUploadTask>;
 
         #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other downloadTaskWithRequest:)]
         pub unsafe fn downloadTaskWithRequest(
             &self,
             request: &NSURLRequest,
-        ) -> Id<NSURLSessionDownloadTask>;
+        ) -> Retained<NSURLSessionDownloadTask>;
 
         #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other downloadTaskWithURL:)]
-        pub unsafe fn downloadTaskWithURL(&self, url: &NSURL) -> Id<NSURLSessionDownloadTask>;
+        pub unsafe fn downloadTaskWithURL(&self, url: &NSURL)
+            -> Retained<NSURLSessionDownloadTask>;
 
         #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other downloadTaskWithResumeData:)]
         pub unsafe fn downloadTaskWithResumeData(
             &self,
             resume_data: &NSData,
-        ) -> Id<NSURLSessionDownloadTask>;
+        ) -> Retained<NSURLSessionDownloadTask>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other streamTaskWithHostName:port:)]
@@ -165,7 +167,7 @@ extern_methods!(
             &self,
             hostname: &NSString,
             port: NSInteger,
-        ) -> Id<NSURLSessionStreamTask>;
+        ) -> Retained<NSURLSessionStreamTask>;
 
         #[cfg(feature = "NSNetServices")]
         #[deprecated = "Use nw_connection_t in Network framework instead"]
@@ -173,11 +175,14 @@ extern_methods!(
         pub unsafe fn streamTaskWithNetService(
             &self,
             service: &NSNetService,
-        ) -> Id<NSURLSessionStreamTask>;
+        ) -> Retained<NSURLSessionStreamTask>;
 
         #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other webSocketTaskWithURL:)]
-        pub unsafe fn webSocketTaskWithURL(&self, url: &NSURL) -> Id<NSURLSessionWebSocketTask>;
+        pub unsafe fn webSocketTaskWithURL(
+            &self,
+            url: &NSURL,
+        ) -> Retained<NSURLSessionWebSocketTask>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString", feature = "NSURL"))]
         #[method_id(@__retain_semantics Other webSocketTaskWithURL:protocols:)]
@@ -185,22 +190,22 @@ extern_methods!(
             &self,
             url: &NSURL,
             protocols: &NSArray<NSString>,
-        ) -> Id<NSURLSessionWebSocketTask>;
+        ) -> Retained<NSURLSessionWebSocketTask>;
 
         #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other webSocketTaskWithRequest:)]
         pub unsafe fn webSocketTaskWithRequest(
             &self,
             request: &NSURLRequest,
-        ) -> Id<NSURLSessionWebSocketTask>;
+        ) -> Retained<NSURLSessionWebSocketTask>;
 
         #[deprecated = "Please use +[NSURLSession sessionWithConfiguration:] or other class methods to create instances"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Please use +[NSURLSession sessionWithConfiguration:] or other class methods to create instances"]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -221,7 +226,7 @@ extern_methods!(
             completion_handler: &block2::Block<
                 dyn Fn(*mut NSData, *mut NSURLResponse, *mut NSError),
             >,
-        ) -> Id<NSURLSessionDataTask>;
+        ) -> Retained<NSURLSessionDataTask>;
 
         #[cfg(all(
             feature = "NSData",
@@ -237,7 +242,7 @@ extern_methods!(
             completion_handler: &block2::Block<
                 dyn Fn(*mut NSData, *mut NSURLResponse, *mut NSError),
             >,
-        ) -> Id<NSURLSessionDataTask>;
+        ) -> Retained<NSURLSessionDataTask>;
 
         #[cfg(all(
             feature = "NSData",
@@ -255,7 +260,7 @@ extern_methods!(
             completion_handler: &block2::Block<
                 dyn Fn(*mut NSData, *mut NSURLResponse, *mut NSError),
             >,
-        ) -> Id<NSURLSessionUploadTask>;
+        ) -> Retained<NSURLSessionUploadTask>;
 
         #[cfg(all(
             feature = "NSData",
@@ -272,7 +277,7 @@ extern_methods!(
             completion_handler: &block2::Block<
                 dyn Fn(*mut NSData, *mut NSURLResponse, *mut NSError),
             >,
-        ) -> Id<NSURLSessionUploadTask>;
+        ) -> Retained<NSURLSessionUploadTask>;
 
         #[cfg(all(
             feature = "NSData",
@@ -287,7 +292,7 @@ extern_methods!(
             completion_handler: &block2::Block<
                 dyn Fn(*mut NSData, *mut NSURLResponse, *mut NSError),
             >,
-        ) -> Id<NSURLSessionUploadTask>;
+        ) -> Retained<NSURLSessionUploadTask>;
 
         #[cfg(all(
             feature = "NSError",
@@ -303,7 +308,7 @@ extern_methods!(
             completion_handler: &block2::Block<
                 dyn Fn(*mut NSURL, *mut NSURLResponse, *mut NSError),
             >,
-        ) -> Id<NSURLSessionDownloadTask>;
+        ) -> Retained<NSURLSessionDownloadTask>;
 
         #[cfg(all(
             feature = "NSError",
@@ -318,7 +323,7 @@ extern_methods!(
             completion_handler: &block2::Block<
                 dyn Fn(*mut NSURL, *mut NSURLResponse, *mut NSError),
             >,
-        ) -> Id<NSURLSessionDownloadTask>;
+        ) -> Retained<NSURLSessionDownloadTask>;
 
         #[cfg(all(
             feature = "NSData",
@@ -334,7 +339,7 @@ extern_methods!(
             completion_handler: &block2::Block<
                 dyn Fn(*mut NSURL, *mut NSURLResponse, *mut NSError),
             >,
-        ) -> Id<NSURLSessionDownloadTask>;
+        ) -> Retained<NSURLSessionDownloadTask>;
     }
 );
 
@@ -390,18 +395,20 @@ extern_methods!(
 
         #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other originalRequest)]
-        pub unsafe fn originalRequest(&self) -> Option<Id<NSURLRequest>>;
+        pub unsafe fn originalRequest(&self) -> Option<Retained<NSURLRequest>>;
 
         #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other currentRequest)]
-        pub unsafe fn currentRequest(&self) -> Option<Id<NSURLRequest>>;
+        pub unsafe fn currentRequest(&self) -> Option<Retained<NSURLRequest>>;
 
         #[cfg(feature = "NSURLResponse")]
         #[method_id(@__retain_semantics Other response)]
-        pub unsafe fn response(&self) -> Option<Id<NSURLResponse>>;
+        pub unsafe fn response(&self) -> Option<Retained<NSURLResponse>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSURLSessionTaskDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn NSURLSessionTaskDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -411,11 +418,11 @@ extern_methods!(
 
         #[cfg(feature = "NSProgress")]
         #[method_id(@__retain_semantics Other progress)]
-        pub unsafe fn progress(&self) -> Id<NSProgress>;
+        pub unsafe fn progress(&self) -> Retained<NSProgress>;
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other earliestBeginDate)]
-        pub unsafe fn earliestBeginDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn earliestBeginDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
         #[method(setEarliestBeginDate:)]
@@ -453,7 +460,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other taskDescription)]
-        pub unsafe fn taskDescription(&self) -> Option<Id<NSString>>;
+        pub unsafe fn taskDescription(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setTaskDescription:)]
@@ -467,7 +474,7 @@ extern_methods!(
 
         #[cfg(feature = "NSError")]
         #[method_id(@__retain_semantics Other error)]
-        pub unsafe fn error(&self) -> Option<Id<NSError>>;
+        pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         #[method(suspend)]
         pub unsafe fn suspend(&self);
@@ -489,11 +496,11 @@ extern_methods!(
 
         #[deprecated = "Not supported"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Not supported"]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -536,11 +543,11 @@ extern_methods!(
     unsafe impl NSURLSessionDataTask {
         #[deprecated = "Please use -[NSURLSession dataTaskWithRequest:] or other NSURLSession methods to create instances"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Please use -[NSURLSession dataTaskWithRequest:] or other NSURLSession methods to create instances"]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -571,11 +578,11 @@ extern_methods!(
     unsafe impl NSURLSessionUploadTask {
         #[deprecated = "Please use -[NSURLSession uploadTaskWithStreamedRequest:] or other NSURLSession methods to create instances"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Please use -[NSURLSession uploadTaskWithStreamedRequest:] or other NSURLSession methods to create instances"]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(feature = "NSData", feature = "block2"))]
         #[method(cancelByProducingResumeData:)]
@@ -620,11 +627,11 @@ extern_methods!(
 
         #[deprecated = "Please use -[NSURLSession downloadTaskWithRequest:] or other NSURLSession methods to create instances"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Please use -[NSURLSession downloadTaskWithRequest:] or other NSURLSession methods to create instances"]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -700,11 +707,11 @@ extern_methods!(
 
         #[deprecated = "Please use -[NSURLSession streamTaskWithHostName:port:] or other NSURLSession methods to create instances"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Please use -[NSURLSession streamTaskWithHostName:port:] or other NSURLSession methods to create instances"]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -747,28 +754,28 @@ extern_methods!(
     unsafe impl NSURLSessionWebSocketMessage {
         #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
-        pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Id<Self>;
+        pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
-        pub unsafe fn initWithString(this: Allocated<Self>, string: &NSString) -> Id<Self>;
+        pub unsafe fn initWithString(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[method(type)]
         pub unsafe fn r#type(&self) -> NSURLSessionWebSocketMessageType;
 
         #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Option<Id<NSData>>;
+        pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other string)]
-        pub unsafe fn string(&self) -> Option<Id<NSString>>;
+        pub unsafe fn string(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -881,13 +888,13 @@ extern_methods!(
 
         #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other closeReason)]
-        pub unsafe fn closeReason(&self) -> Option<Id<NSData>>;
+        pub unsafe fn closeReason(&self) -> Option<Retained<NSData>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -936,20 +943,20 @@ unsafe impl NSObjectProtocol for NSURLSessionConfiguration {}
 extern_methods!(
     unsafe impl NSURLSessionConfiguration {
         #[method_id(@__retain_semantics Other defaultSessionConfiguration)]
-        pub unsafe fn defaultSessionConfiguration() -> Id<NSURLSessionConfiguration>;
+        pub unsafe fn defaultSessionConfiguration() -> Retained<NSURLSessionConfiguration>;
 
         #[method_id(@__retain_semantics Other ephemeralSessionConfiguration)]
-        pub unsafe fn ephemeralSessionConfiguration() -> Id<NSURLSessionConfiguration>;
+        pub unsafe fn ephemeralSessionConfiguration() -> Retained<NSURLSessionConfiguration>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other backgroundSessionConfigurationWithIdentifier:)]
         pub unsafe fn backgroundSessionConfigurationWithIdentifier(
             identifier: &NSString,
-        ) -> Id<NSURLSessionConfiguration>;
+        ) -> Retained<NSURLSessionConfiguration>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSURLRequest")]
         #[method(requestCachePolicy)]
@@ -1033,7 +1040,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other sharedContainerIdentifier)]
-        pub unsafe fn sharedContainerIdentifier(&self) -> Option<Id<NSString>>;
+        pub unsafe fn sharedContainerIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(setSharedContainerIdentifier:)]
@@ -1050,7 +1057,7 @@ extern_methods!(
 
         #[cfg(feature = "NSDictionary")]
         #[method_id(@__retain_semantics Other connectionProxyDictionary)]
-        pub unsafe fn connectionProxyDictionary(&self) -> Option<Id<NSDictionary>>;
+        pub unsafe fn connectionProxyDictionary(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSDictionary")]
         #[method(setConnectionProxyDictionary:)]
@@ -1084,7 +1091,7 @@ extern_methods!(
 
         #[cfg(feature = "NSDictionary")]
         #[method_id(@__retain_semantics Other HTTPAdditionalHeaders)]
-        pub unsafe fn HTTPAdditionalHeaders(&self) -> Option<Id<NSDictionary>>;
+        pub unsafe fn HTTPAdditionalHeaders(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSDictionary")]
         #[method(setHTTPAdditionalHeaders:)]
@@ -1104,7 +1111,7 @@ extern_methods!(
 
         #[cfg(feature = "NSHTTPCookieStorage")]
         #[method_id(@__retain_semantics Other HTTPCookieStorage)]
-        pub unsafe fn HTTPCookieStorage(&self) -> Option<Id<NSHTTPCookieStorage>>;
+        pub unsafe fn HTTPCookieStorage(&self) -> Option<Retained<NSHTTPCookieStorage>>;
 
         #[cfg(feature = "NSHTTPCookieStorage")]
         #[method(setHTTPCookieStorage:)]
@@ -1115,7 +1122,7 @@ extern_methods!(
 
         #[cfg(feature = "NSURLCredentialStorage")]
         #[method_id(@__retain_semantics Other URLCredentialStorage)]
-        pub unsafe fn URLCredentialStorage(&self) -> Option<Id<NSURLCredentialStorage>>;
+        pub unsafe fn URLCredentialStorage(&self) -> Option<Retained<NSURLCredentialStorage>>;
 
         #[cfg(feature = "NSURLCredentialStorage")]
         #[method(setURLCredentialStorage:)]
@@ -1126,7 +1133,7 @@ extern_methods!(
 
         #[cfg(feature = "NSURLCache")]
         #[method_id(@__retain_semantics Other URLCache)]
-        pub unsafe fn URLCache(&self) -> Option<Id<NSURLCache>>;
+        pub unsafe fn URLCache(&self) -> Option<Retained<NSURLCache>>;
 
         #[cfg(feature = "NSURLCache")]
         #[method(setURLCache:)]
@@ -1143,7 +1150,7 @@ extern_methods!(
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other protocolClasses)]
-        pub unsafe fn protocolClasses(&self) -> Option<Id<NSArray<TodoClass>>>;
+        pub unsafe fn protocolClasses(&self) -> Option<Retained<NSArray<TodoClass>>>;
 
         #[cfg(feature = "NSArray")]
         #[method(setProtocolClasses:)]
@@ -1160,11 +1167,11 @@ extern_methods!(
 
         #[deprecated = "Please use NSURLSessionConfiguration.defaultSessionConfiguration or other class methods to create instances"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Please use NSURLSessionConfiguration.defaultSessionConfiguration or other class methods to create instances"]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -1562,7 +1569,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other backgroundSessionConfiguration:)]
         pub unsafe fn backgroundSessionConfiguration(
             identifier: &NSString,
-        ) -> Id<NSURLSessionConfiguration>;
+        ) -> Retained<NSURLSessionConfiguration>;
     }
 );
 
@@ -1634,59 +1641,59 @@ extern_methods!(
     unsafe impl NSURLSessionTaskTransactionMetrics {
         #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other request)]
-        pub unsafe fn request(&self) -> Id<NSURLRequest>;
+        pub unsafe fn request(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSURLResponse")]
         #[method_id(@__retain_semantics Other response)]
-        pub unsafe fn response(&self) -> Option<Id<NSURLResponse>>;
+        pub unsafe fn response(&self) -> Option<Retained<NSURLResponse>>;
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other fetchStartDate)]
-        pub unsafe fn fetchStartDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn fetchStartDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other domainLookupStartDate)]
-        pub unsafe fn domainLookupStartDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn domainLookupStartDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other domainLookupEndDate)]
-        pub unsafe fn domainLookupEndDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn domainLookupEndDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other connectStartDate)]
-        pub unsafe fn connectStartDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn connectStartDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other secureConnectionStartDate)]
-        pub unsafe fn secureConnectionStartDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn secureConnectionStartDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other secureConnectionEndDate)]
-        pub unsafe fn secureConnectionEndDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn secureConnectionEndDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other connectEndDate)]
-        pub unsafe fn connectEndDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn connectEndDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other requestStartDate)]
-        pub unsafe fn requestStartDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn requestStartDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other requestEndDate)]
-        pub unsafe fn requestEndDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn requestEndDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other responseStartDate)]
-        pub unsafe fn responseStartDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn responseStartDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other responseEndDate)]
-        pub unsafe fn responseEndDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn responseEndDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other networkProtocolName)]
-        pub unsafe fn networkProtocolName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn networkProtocolName(&self) -> Option<Retained<NSString>>;
 
         #[method(isProxyConnection)]
         pub unsafe fn isProxyConnection(&self) -> bool;
@@ -1717,27 +1724,27 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other localAddress)]
-        pub unsafe fn localAddress(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localAddress(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other localPort)]
-        pub unsafe fn localPort(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn localPort(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other remoteAddress)]
-        pub unsafe fn remoteAddress(&self) -> Option<Id<NSString>>;
+        pub unsafe fn remoteAddress(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other remotePort)]
-        pub unsafe fn remotePort(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn remotePort(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other negotiatedTLSProtocolVersion)]
-        pub unsafe fn negotiatedTLSProtocolVersion(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn negotiatedTLSProtocolVersion(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other negotiatedTLSCipherSuite)]
-        pub unsafe fn negotiatedTLSCipherSuite(&self) -> Option<Id<NSNumber>>;
+        pub unsafe fn negotiatedTLSCipherSuite(&self) -> Option<Retained<NSNumber>>;
 
         #[method(isCellular)]
         pub unsafe fn isCellular(&self) -> bool;
@@ -1758,11 +1765,11 @@ extern_methods!(
 
         #[deprecated = "Not supported"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Not supported"]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -1786,21 +1793,23 @@ extern_methods!(
     unsafe impl NSURLSessionTaskMetrics {
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other transactionMetrics)]
-        pub unsafe fn transactionMetrics(&self) -> Id<NSArray<NSURLSessionTaskTransactionMetrics>>;
+        pub unsafe fn transactionMetrics(
+            &self,
+        ) -> Retained<NSArray<NSURLSessionTaskTransactionMetrics>>;
 
         #[cfg(feature = "NSDateInterval")]
         #[method_id(@__retain_semantics Other taskInterval)]
-        pub unsafe fn taskInterval(&self) -> Id<NSDateInterval>;
+        pub unsafe fn taskInterval(&self) -> Retained<NSDateInterval>;
 
         #[method(redirectCount)]
         pub unsafe fn redirectCount(&self) -> NSUInteger;
 
         #[deprecated = "Not supported"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Not supported"]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

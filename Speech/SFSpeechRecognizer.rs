@@ -43,7 +43,7 @@ unsafe impl NSObjectProtocol for SFSpeechRecognizer {}
 extern_methods!(
     unsafe impl SFSpeechRecognizer {
         #[method_id(@__retain_semantics Other supportedLocales)]
-        pub unsafe fn supportedLocales() -> Id<NSSet<NSLocale>>;
+        pub unsafe fn supportedLocales() -> Retained<NSSet<NSLocale>>;
 
         #[method(authorizationStatus)]
         pub unsafe fn authorizationStatus() -> SFSpeechRecognizerAuthorizationStatus;
@@ -55,16 +55,19 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Id<Self>>;
+        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init initWithLocale:)]
-        pub unsafe fn initWithLocale(this: Allocated<Self>, locale: &NSLocale) -> Option<Id<Self>>;
+        pub unsafe fn initWithLocale(
+            this: Allocated<Self>,
+            locale: &NSLocale,
+        ) -> Option<Retained<Self>>;
 
         #[method(isAvailable)]
         pub unsafe fn isAvailable(&self) -> bool;
 
         #[method_id(@__retain_semantics Other locale)]
-        pub unsafe fn locale(&self) -> Id<NSLocale>;
+        pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[method(supportsOnDeviceRecognition)]
         pub unsafe fn supportsOnDeviceRecognition(&self) -> bool;
@@ -73,8 +76,9 @@ extern_methods!(
         pub unsafe fn setSupportsOnDeviceRecognition(&self, supports_on_device_recognition: bool);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self)
-            -> Option<Id<ProtocolObject<dyn SFSpeechRecognizerDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn SFSpeechRecognizerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -101,7 +105,7 @@ extern_methods!(
             &self,
             request: &SFSpeechRecognitionRequest,
             result_handler: &block2::Block<dyn Fn(*mut SFSpeechRecognitionResult, *mut NSError)>,
-        ) -> Id<SFSpeechRecognitionTask>;
+        ) -> Retained<SFSpeechRecognitionTask>;
 
         #[cfg(all(
             feature = "SFSpeechRecognitionRequest",
@@ -112,10 +116,10 @@ extern_methods!(
             &self,
             request: &SFSpeechRecognitionRequest,
             delegate: &ProtocolObject<dyn SFSpeechRecognitionTaskDelegate>,
-        ) -> Id<SFSpeechRecognitionTask>;
+        ) -> Retained<SFSpeechRecognitionTask>;
 
         #[method_id(@__retain_semantics Other queue)]
-        pub unsafe fn queue(&self) -> Id<NSOperationQueue>;
+        pub unsafe fn queue(&self) -> Retained<NSOperationQueue>;
 
         #[method(setQueue:)]
         pub unsafe fn setQueue(&self, queue: &NSOperationQueue);
@@ -126,7 +130,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFSpeechRecognizer {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

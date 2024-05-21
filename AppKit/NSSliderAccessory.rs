@@ -26,10 +26,10 @@ extern_methods!(
         pub unsafe fn accessoryWithImage(
             image: &NSImage,
             mtm: MainThreadMarker,
-        ) -> Id<NSSliderAccessory>;
+        ) -> Retained<NSSliderAccessory>;
 
         #[method_id(@__retain_semantics Other behavior)]
-        pub unsafe fn behavior(&self) -> Id<NSSliderAccessoryBehavior>;
+        pub unsafe fn behavior(&self) -> Retained<NSSliderAccessoryBehavior>;
 
         #[method(setBehavior:)]
         pub unsafe fn setBehavior(&self, behavior: &NSSliderAccessoryBehavior);
@@ -46,10 +46,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSliderAccessory {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -82,27 +82,33 @@ unsafe impl NSObjectProtocol for NSSliderAccessoryBehavior {}
 extern_methods!(
     unsafe impl NSSliderAccessoryBehavior {
         #[method_id(@__retain_semantics Other automaticBehavior)]
-        pub unsafe fn automaticBehavior(mtm: MainThreadMarker) -> Id<NSSliderAccessoryBehavior>;
+        pub unsafe fn automaticBehavior(
+            mtm: MainThreadMarker,
+        ) -> Retained<NSSliderAccessoryBehavior>;
 
         #[method_id(@__retain_semantics Other valueStepBehavior)]
-        pub unsafe fn valueStepBehavior(mtm: MainThreadMarker) -> Id<NSSliderAccessoryBehavior>;
+        pub unsafe fn valueStepBehavior(
+            mtm: MainThreadMarker,
+        ) -> Retained<NSSliderAccessoryBehavior>;
 
         #[method_id(@__retain_semantics Other valueResetBehavior)]
-        pub unsafe fn valueResetBehavior(mtm: MainThreadMarker) -> Id<NSSliderAccessoryBehavior>;
+        pub unsafe fn valueResetBehavior(
+            mtm: MainThreadMarker,
+        ) -> Retained<NSSliderAccessoryBehavior>;
 
         #[method_id(@__retain_semantics Other behaviorWithTarget:action:)]
         pub unsafe fn behaviorWithTarget_action(
             target: Option<&AnyObject>,
             action: Sel,
             mtm: MainThreadMarker,
-        ) -> Id<NSSliderAccessoryBehavior>;
+        ) -> Retained<NSSliderAccessoryBehavior>;
 
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Other behaviorWithHandler:)]
         pub unsafe fn behaviorWithHandler(
             handler: &block2::Block<dyn Fn(NonNull<NSSliderAccessory>)>,
             mtm: MainThreadMarker,
-        ) -> Id<NSSliderAccessoryBehavior>;
+        ) -> Retained<NSSliderAccessoryBehavior>;
 
         #[method(handleAction:)]
         pub unsafe fn handleAction(&self, sender: &NSSliderAccessory);
@@ -113,9 +119,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSliderAccessoryBehavior {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -68,14 +68,14 @@ extern_methods!(
         pub unsafe fn initWithTagSchemes(
             this: Allocated<Self>,
             tag_schemes: &NSArray<NLTagScheme>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NLTagScheme")]
         #[method_id(@__retain_semantics Other tagSchemes)]
-        pub unsafe fn tagSchemes(&self) -> Id<NSArray<NLTagScheme>>;
+        pub unsafe fn tagSchemes(&self) -> Retained<NSArray<NLTagScheme>>;
 
         #[method_id(@__retain_semantics Other string)]
-        pub unsafe fn string(&self) -> Option<Id<NSString>>;
+        pub unsafe fn string(&self) -> Option<Retained<NSString>>;
 
         #[method(setString:)]
         pub unsafe fn setString(&self, string: Option<&NSString>);
@@ -89,7 +89,7 @@ extern_methods!(
         pub unsafe fn availableTagSchemesForUnit_language(
             unit: NLTokenUnit,
             language: &NLLanguage,
-        ) -> Id<NSArray<NLTagScheme>>;
+        ) -> Retained<NSArray<NLTagScheme>>;
 
         #[cfg(feature = "NLTokenizer")]
         #[method(tokenRangeAtIndex:unit:)]
@@ -105,7 +105,7 @@ extern_methods!(
 
         #[cfg(feature = "NLLanguage")]
         #[method_id(@__retain_semantics Other dominantLanguage)]
-        pub unsafe fn dominantLanguage(&self) -> Option<Id<NLLanguage>>;
+        pub unsafe fn dominantLanguage(&self) -> Option<Retained<NLLanguage>>;
 
         #[cfg(all(feature = "NLTagScheme", feature = "NLTokenizer", feature = "block2"))]
         #[method(enumerateTagsInRange:unit:scheme:options:usingBlock:)]
@@ -126,7 +126,7 @@ extern_methods!(
             unit: NLTokenUnit,
             scheme: &NLTagScheme,
             token_range: NSRangePointer,
-        ) -> Option<Id<NLTag>>;
+        ) -> Option<Retained<NLTag>>;
 
         #[cfg(all(feature = "NLTagScheme", feature = "NLTokenizer"))]
         #[method_id(@__retain_semantics Other tagsInRange:unit:scheme:options:tokenRanges:)]
@@ -136,8 +136,8 @@ extern_methods!(
             unit: NLTokenUnit,
             scheme: &NLTagScheme,
             options: NLTaggerOptions,
-            token_ranges: Option<&mut Option<Id<NSArray<NSValue>>>>,
-        ) -> Id<NSArray<NLTag>>;
+            token_ranges: Option<&mut Option<Retained<NSArray<NSValue>>>>,
+        ) -> Retained<NSArray<NLTag>>;
 
         #[cfg(all(feature = "NLTagScheme", feature = "NLTokenizer"))]
         #[method_id(@__retain_semantics Other tagHypothesesAtIndex:unit:scheme:maximumCount:tokenRange:)]
@@ -148,7 +148,7 @@ extern_methods!(
             scheme: &NLTagScheme,
             maximum_count: NSUInteger,
             token_range: NSRangePointer,
-        ) -> Id<NSDictionary<NLTag, NSNumber>>;
+        ) -> Retained<NSDictionary<NLTag, NSNumber>>;
 
         #[cfg(feature = "NLLanguage")]
         #[method(setLanguage:range:)]
@@ -167,7 +167,10 @@ extern_methods!(
 
         #[cfg(all(feature = "NLModel", feature = "NLTagScheme"))]
         #[method_id(@__retain_semantics Other modelsForTagScheme:)]
-        pub unsafe fn modelsForTagScheme(&self, tag_scheme: &NLTagScheme) -> Id<NSArray<NLModel>>;
+        pub unsafe fn modelsForTagScheme(
+            &self,
+            tag_scheme: &NLTagScheme,
+        ) -> Retained<NSArray<NLModel>>;
 
         #[cfg(all(feature = "NLGazetteer", feature = "NLTagScheme"))]
         #[method(setGazetteers:forTagScheme:)]
@@ -182,7 +185,7 @@ extern_methods!(
         pub unsafe fn gazetteersForTagScheme(
             &self,
             tag_scheme: &NLTagScheme,
-        ) -> Id<NSArray<NLGazetteer>>;
+        ) -> Retained<NSArray<NLGazetteer>>;
 
         #[cfg(all(feature = "NLLanguage", feature = "NLTagScheme", feature = "block2"))]
         #[method(requestAssetsForLanguage:tagScheme:completionHandler:)]
@@ -198,9 +201,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NLTagger {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

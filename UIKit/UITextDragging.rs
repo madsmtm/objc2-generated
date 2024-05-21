@@ -29,7 +29,9 @@ extern_protocol!(
     #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
     pub unsafe trait UITextDraggable: UITextInput + IsMainThreadOnly {
         #[method_id(@__retain_semantics Other textDragDelegate)]
-        unsafe fn textDragDelegate(&self) -> Option<Id<ProtocolObject<dyn UITextDragDelegate>>>;
+        unsafe fn textDragDelegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn UITextDragDelegate>>>;
 
         #[method(setTextDragDelegate:)]
         unsafe fn setTextDragDelegate(
@@ -39,7 +41,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIDragInteraction")]
         #[method_id(@__retain_semantics Other textDragInteraction)]
-        unsafe fn textDragInteraction(&self) -> Option<Id<UIDragInteraction>>;
+        unsafe fn textDragInteraction(&self) -> Option<Retained<UIDragInteraction>>;
 
         #[method(isTextDragActive)]
         unsafe fn isTextDragActive(&self) -> bool;
@@ -70,7 +72,7 @@ extern_protocol!(
             &self,
             text_draggable_view: &UIView,
             drag_request: &ProtocolObject<dyn UITextDragRequest>,
-        ) -> Id<NSArray<UIDragItem>>;
+        ) -> Retained<NSArray<UIDragItem>>;
 
         #[cfg(all(
             feature = "UIDragItem",
@@ -89,7 +91,7 @@ extern_protocol!(
             text_draggable_view: &UIView,
             item: &UIDragItem,
             session: &ProtocolObject<dyn UIDragSession>,
-        ) -> Option<Id<UITargetedDragPreview>>;
+        ) -> Option<Retained<UITargetedDragPreview>>;
 
         #[cfg(all(
             feature = "UIDragInteraction",
@@ -148,22 +150,22 @@ extern_protocol!(
     pub unsafe trait UITextDragRequest: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other dragRange)]
-        unsafe fn dragRange(&self) -> Id<UITextRange>;
+        unsafe fn dragRange(&self) -> Retained<UITextRange>;
 
         #[cfg(feature = "UIDragItem")]
         #[method_id(@__retain_semantics Other suggestedItems)]
-        unsafe fn suggestedItems(&self) -> Id<NSArray<UIDragItem>>;
+        unsafe fn suggestedItems(&self) -> Retained<NSArray<UIDragItem>>;
 
         #[cfg(feature = "UIDragItem")]
         #[method_id(@__retain_semantics Other existingItems)]
-        unsafe fn existingItems(&self) -> Id<NSArray<UIDragItem>>;
+        unsafe fn existingItems(&self) -> Retained<NSArray<UIDragItem>>;
 
         #[method(isSelected)]
         unsafe fn isSelected(&self) -> bool;
 
         #[cfg(feature = "UIDragSession")]
         #[method_id(@__retain_semantics Other dragSession)]
-        unsafe fn dragSession(&self) -> Id<ProtocolObject<dyn UIDragSession>>;
+        unsafe fn dragSession(&self) -> Retained<ProtocolObject<dyn UIDragSession>>;
     }
 
     unsafe impl ProtocolType for dyn UITextDragRequest {}

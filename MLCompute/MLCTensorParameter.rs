@@ -23,7 +23,7 @@ extern_methods!(
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other tensor)]
-        pub unsafe fn tensor(&self) -> Id<MLCTensor>;
+        pub unsafe fn tensor(&self) -> Retained<MLCTensor>;
 
         #[deprecated]
         #[method(isUpdatable)]
@@ -35,16 +35,16 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTensor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other parameterWithTensor:)]
-        pub unsafe fn parameterWithTensor(tensor: &MLCTensor) -> Id<Self>;
+        pub unsafe fn parameterWithTensor(tensor: &MLCTensor) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTensorData"))]
         #[deprecated]
@@ -52,6 +52,6 @@ extern_methods!(
         pub unsafe fn parameterWithTensor_optimizerData(
             tensor: &MLCTensor,
             optimizer_data: Option<&NSArray<MLCTensorData>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

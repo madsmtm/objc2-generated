@@ -29,16 +29,17 @@ extern_methods!(
     unsafe impl PHProjectChangeRequest {
         #[cfg(all(feature = "PHCollection", feature = "PHObject", feature = "PHProject"))]
         #[method_id(@__retain_semantics Init initWithProject:)]
-        pub unsafe fn initWithProject(this: Allocated<Self>, project: &PHProject) -> Id<Self>;
+        pub unsafe fn initWithProject(this: Allocated<Self>, project: &PHProject)
+            -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[method_id(@__retain_semantics Other projectExtensionData)]
-        pub unsafe fn projectExtensionData(&self) -> Id<NSData>;
+        pub unsafe fn projectExtensionData(&self) -> Retained<NSData>;
 
         #[method(setProjectExtensionData:)]
         pub unsafe fn setProjectExtensionData(&self, project_extension_data: &NSData);
@@ -63,9 +64,9 @@ extern_methods!(
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHProjectChangeRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

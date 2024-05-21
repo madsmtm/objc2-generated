@@ -35,7 +35,7 @@ extern_methods!(
             width_in_pixels: NSInteger,
             height_in_pixels: NSInteger,
             pixels_per_inch: NSInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[method_id(@__retain_semantics Init initForScreen:sizeInPoints:)]
@@ -43,7 +43,7 @@ extern_methods!(
             this: Allocated<Self>,
             screen: &NSScreen,
             size_in_points: NSSize,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(widthInPixels)]
         pub unsafe fn widthInPixels(&self) -> NSInteger;
@@ -70,9 +70,9 @@ extern_methods!(
     #[cfg(feature = "VZGraphicsDisplayConfiguration")]
     unsafe impl VZMacGraphicsDisplayConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

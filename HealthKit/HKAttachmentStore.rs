@@ -26,7 +26,7 @@ extern_methods!(
         pub unsafe fn initWithHealthStore(
             this: Allocated<Self>,
             health_store: &HKHealthStore,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "HKAttachment",
@@ -68,7 +68,7 @@ extern_methods!(
             &self,
             attachment: &HKAttachment,
             completion: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
-        ) -> Id<NSProgress>;
+        ) -> Retained<NSProgress>;
 
         #[cfg(all(feature = "HKAttachment", feature = "block2"))]
         #[method_id(@__retain_semantics Other streamDataForAttachment:dataHandler:)]
@@ -76,7 +76,7 @@ extern_methods!(
             &self,
             attachment: &HKAttachment,
             data_handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError, Bool)>,
-        ) -> Id<NSProgress>;
+        ) -> Retained<NSProgress>;
     }
 );
 
@@ -84,9 +84,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKAttachmentStore {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -58,18 +58,18 @@ extern_methods!(
         pub unsafe fn initWithTextLayoutManager(
             this: Allocated<Self>,
             text_layout_manager: &NSTextLayoutManager,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSTextViewportLayoutControllerDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn NSTextViewportLayoutControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -79,14 +79,14 @@ extern_methods!(
 
         #[cfg(feature = "NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other textLayoutManager)]
-        pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager>>;
+        pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[method(viewportBounds)]
         pub unsafe fn viewportBounds(&self) -> CGRect;
 
         #[cfg(feature = "NSTextRange")]
         #[method_id(@__retain_semantics Other viewportRange)]
-        pub unsafe fn viewportRange(&self) -> Option<Id<NSTextRange>>;
+        pub unsafe fn viewportRange(&self) -> Option<Retained<NSTextRange>>;
 
         #[method(layoutViewport)]
         pub unsafe fn layoutViewport(&self);

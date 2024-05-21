@@ -41,7 +41,7 @@ unsafe impl NSObjectProtocol for NSEntityMapping {}
 extern_methods!(
     unsafe impl NSEntityMapping {
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -53,13 +53,13 @@ extern_methods!(
         pub unsafe fn setMappingType(&self, mapping_type: NSEntityMappingType);
 
         #[method_id(@__retain_semantics Other sourceEntityName)]
-        pub unsafe fn sourceEntityName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn sourceEntityName(&self) -> Option<Retained<NSString>>;
 
         #[method(setSourceEntityName:)]
         pub unsafe fn setSourceEntityName(&self, source_entity_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other sourceEntityVersionHash)]
-        pub unsafe fn sourceEntityVersionHash(&self) -> Option<Id<NSData>>;
+        pub unsafe fn sourceEntityVersionHash(&self) -> Option<Retained<NSData>>;
 
         #[method(setSourceEntityVersionHash:)]
         pub unsafe fn setSourceEntityVersionHash(
@@ -68,13 +68,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other destinationEntityName)]
-        pub unsafe fn destinationEntityName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn destinationEntityName(&self) -> Option<Retained<NSString>>;
 
         #[method(setDestinationEntityName:)]
         pub unsafe fn setDestinationEntityName(&self, destination_entity_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other destinationEntityVersionHash)]
-        pub unsafe fn destinationEntityVersionHash(&self) -> Option<Id<NSData>>;
+        pub unsafe fn destinationEntityVersionHash(&self) -> Option<Retained<NSData>>;
 
         #[method(setDestinationEntityVersionHash:)]
         pub unsafe fn setDestinationEntityVersionHash(
@@ -84,7 +84,7 @@ extern_methods!(
 
         #[cfg(feature = "NSPropertyMapping")]
         #[method_id(@__retain_semantics Other attributeMappings)]
-        pub unsafe fn attributeMappings(&self) -> Option<Id<NSArray<NSPropertyMapping>>>;
+        pub unsafe fn attributeMappings(&self) -> Option<Retained<NSArray<NSPropertyMapping>>>;
 
         #[cfg(feature = "NSPropertyMapping")]
         #[method(setAttributeMappings:)]
@@ -95,7 +95,7 @@ extern_methods!(
 
         #[cfg(feature = "NSPropertyMapping")]
         #[method_id(@__retain_semantics Other relationshipMappings)]
-        pub unsafe fn relationshipMappings(&self) -> Option<Id<NSArray<NSPropertyMapping>>>;
+        pub unsafe fn relationshipMappings(&self) -> Option<Retained<NSArray<NSPropertyMapping>>>;
 
         #[cfg(feature = "NSPropertyMapping")]
         #[method(setRelationshipMappings:)]
@@ -105,19 +105,19 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other sourceExpression)]
-        pub unsafe fn sourceExpression(&self) -> Option<Id<NSExpression>>;
+        pub unsafe fn sourceExpression(&self) -> Option<Retained<NSExpression>>;
 
         #[method(setSourceExpression:)]
         pub unsafe fn setSourceExpression(&self, source_expression: Option<&NSExpression>);
 
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
+        pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
 
         #[method_id(@__retain_semantics Other entityMigrationPolicyClassName)]
-        pub unsafe fn entityMigrationPolicyClassName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn entityMigrationPolicyClassName(&self) -> Option<Retained<NSString>>;
 
         #[method(setEntityMigrationPolicyClassName:)]
         pub unsafe fn setEntityMigrationPolicyClassName(
@@ -131,9 +131,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSEntityMapping {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

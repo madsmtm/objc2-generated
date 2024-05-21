@@ -25,20 +25,20 @@ extern_methods!(
             this: Allocated<Self>,
             accessory: &EAAccessory,
             protocol_string: &NSString,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "EAAccessory")]
         #[method_id(@__retain_semantics Other accessory)]
-        pub unsafe fn accessory(&self) -> Option<Id<EAAccessory>>;
+        pub unsafe fn accessory(&self) -> Option<Retained<EAAccessory>>;
 
         #[method_id(@__retain_semantics Other protocolString)]
-        pub unsafe fn protocolString(&self) -> Option<Id<NSString>>;
+        pub unsafe fn protocolString(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other inputStream)]
-        pub unsafe fn inputStream(&self) -> Option<Id<NSInputStream>>;
+        pub unsafe fn inputStream(&self) -> Option<Retained<NSInputStream>>;
 
         #[method_id(@__retain_semantics Other outputStream)]
-        pub unsafe fn outputStream(&self) -> Option<Id<NSOutputStream>>;
+        pub unsafe fn outputStream(&self) -> Option<Retained<NSOutputStream>>;
     }
 );
 
@@ -46,9 +46,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EASession {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

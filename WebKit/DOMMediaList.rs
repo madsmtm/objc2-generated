@@ -30,7 +30,7 @@ extern_methods!(
     unsafe impl DOMMediaList {
         #[deprecated]
         #[method_id(@__retain_semantics Other mediaText)]
-        pub unsafe fn mediaText(&self) -> Id<NSString>;
+        pub unsafe fn mediaText(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setMediaText:)]
@@ -42,7 +42,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other item:)]
-        pub unsafe fn item(&self, index: c_uint) -> Option<Id<NSString>>;
+        pub unsafe fn item(&self, index: c_uint) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method(deleteMedium:)]
@@ -60,7 +60,7 @@ extern_methods!(
     unsafe impl DOMMediaList {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -69,6 +69,6 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMMediaList {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -25,15 +25,15 @@ extern_methods!(
     unsafe impl GCDualSenseGamepad {
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other touchpadButton)]
-        pub unsafe fn touchpadButton(&self) -> Id<GCControllerButtonInput>;
+        pub unsafe fn touchpadButton(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other touchpadPrimary)]
-        pub unsafe fn touchpadPrimary(&self) -> Id<GCControllerDirectionPad>;
+        pub unsafe fn touchpadPrimary(&self) -> Retained<GCControllerDirectionPad>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other touchpadSecondary)]
-        pub unsafe fn touchpadSecondary(&self) -> Id<GCControllerDirectionPad>;
+        pub unsafe fn touchpadSecondary(&self) -> Retained<GCControllerDirectionPad>;
 
         #[cfg(all(
             feature = "GCControllerButtonInput",
@@ -41,7 +41,7 @@ extern_methods!(
             feature = "GCDualSenseAdaptiveTrigger"
         ))]
         #[method_id(@__retain_semantics Other leftTrigger)]
-        pub unsafe fn leftTrigger(&self) -> Id<GCDualSenseAdaptiveTrigger>;
+        pub unsafe fn leftTrigger(&self) -> Retained<GCDualSenseAdaptiveTrigger>;
 
         #[cfg(all(
             feature = "GCControllerButtonInput",
@@ -49,7 +49,7 @@ extern_methods!(
             feature = "GCDualSenseAdaptiveTrigger"
         ))]
         #[method_id(@__retain_semantics Other rightTrigger)]
-        pub unsafe fn rightTrigger(&self) -> Id<GCDualSenseAdaptiveTrigger>;
+        pub unsafe fn rightTrigger(&self) -> Retained<GCDualSenseAdaptiveTrigger>;
     }
 );
 
@@ -58,9 +58,9 @@ extern_methods!(
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCDualSenseGamepad {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -227,7 +227,7 @@ extern_protocol!(
         unsafe fn undoManagerForWebView(
             &self,
             web_view: Option<&WebView>,
-        ) -> Option<Id<NSUndoManager>>;
+        ) -> Option<Retained<NSUndoManager>>;
     }
 
     unsafe impl ProtocolType for dyn WebEditingDelegate {}

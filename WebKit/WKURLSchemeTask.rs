@@ -8,7 +8,7 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait WKURLSchemeTask: NSObjectProtocol {
         #[method_id(@__retain_semantics Other request)]
-        unsafe fn request(&self) -> Id<NSURLRequest>;
+        unsafe fn request(&self) -> Retained<NSURLRequest>;
 
         #[method(didReceiveResponse:)]
         unsafe fn didReceiveResponse(&self, response: &NSURLResponse);

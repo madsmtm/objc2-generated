@@ -38,20 +38,20 @@ unsafe impl NSObjectProtocol for NSFileProviderItemVersion {}
 extern_methods!(
     unsafe impl NSFileProviderItemVersion {
         #[method_id(@__retain_semantics Other beforeFirstSyncComponent)]
-        pub unsafe fn beforeFirstSyncComponent() -> Id<NSData>;
+        pub unsafe fn beforeFirstSyncComponent() -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Init initWithContentVersion:metadataVersion:)]
         pub unsafe fn initWithContentVersion_metadataVersion(
             this: Allocated<Self>,
             content_version: &NSData,
             metadata_version: &NSData,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other contentVersion)]
-        pub unsafe fn contentVersion(&self) -> Id<NSData>;
+        pub unsafe fn contentVersion(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other metadataVersion)]
-        pub unsafe fn metadataVersion(&self) -> Id<NSData>;
+        pub unsafe fn metadataVersion(&self) -> Retained<NSData>;
     }
 );
 
@@ -59,10 +59,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderItemVersion {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -205,23 +205,23 @@ unsafe impl RefEncode for NSFileProviderContentPolicy {
 extern_protocol!(
     pub unsafe trait NSFileProviderItemProtocol: NSObjectProtocol {
         #[method_id(@__retain_semantics Other itemIdentifier)]
-        unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier>;
+        unsafe fn itemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
 
         #[method_id(@__retain_semantics Other parentItemIdentifier)]
-        unsafe fn parentItemIdentifier(&self) -> Id<NSFileProviderItemIdentifier>;
+        unsafe fn parentItemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
 
         #[method_id(@__retain_semantics Other filename)]
-        unsafe fn filename(&self) -> Id<NSString>;
+        unsafe fn filename(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         #[optional]
         #[method_id(@__retain_semantics Other contentType)]
-        unsafe fn contentType(&self) -> Id<UTType>;
+        unsafe fn contentType(&self) -> Retained<UTType>;
 
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other typeIdentifier)]
-        unsafe fn typeIdentifier(&self) -> Id<NSString>;
+        unsafe fn typeIdentifier(&self) -> Retained<NSString>;
 
         #[optional]
         #[method(typeAndCreator)]
@@ -237,35 +237,35 @@ extern_protocol!(
 
         #[optional]
         #[method_id(@__retain_semantics Other documentSize)]
-        unsafe fn documentSize(&self) -> Option<Id<NSNumber>>;
+        unsafe fn documentSize(&self) -> Option<Retained<NSNumber>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other childItemCount)]
-        unsafe fn childItemCount(&self) -> Option<Id<NSNumber>>;
+        unsafe fn childItemCount(&self) -> Option<Retained<NSNumber>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other creationDate)]
-        unsafe fn creationDate(&self) -> Option<Id<NSDate>>;
+        unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other contentModificationDate)]
-        unsafe fn contentModificationDate(&self) -> Option<Id<NSDate>>;
+        unsafe fn contentModificationDate(&self) -> Option<Retained<NSDate>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other extendedAttributes)]
-        unsafe fn extendedAttributes(&self) -> Id<NSDictionary<NSString, NSData>>;
+        unsafe fn extendedAttributes(&self) -> Retained<NSDictionary<NSString, NSData>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other lastUsedDate)]
-        unsafe fn lastUsedDate(&self) -> Option<Id<NSDate>>;
+        unsafe fn lastUsedDate(&self) -> Option<Retained<NSDate>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other tagData)]
-        unsafe fn tagData(&self) -> Option<Id<NSData>>;
+        unsafe fn tagData(&self) -> Option<Retained<NSData>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other favoriteRank)]
-        unsafe fn favoriteRank(&self) -> Option<Id<NSNumber>>;
+        unsafe fn favoriteRank(&self) -> Option<Retained<NSNumber>>;
 
         #[optional]
         #[method(isTrashed)]
@@ -281,7 +281,7 @@ extern_protocol!(
 
         #[optional]
         #[method_id(@__retain_semantics Other uploadingError)]
-        unsafe fn uploadingError(&self) -> Option<Id<NSError>>;
+        unsafe fn uploadingError(&self) -> Option<Retained<NSError>>;
 
         #[optional]
         #[method(isDownloaded)]
@@ -293,7 +293,7 @@ extern_protocol!(
 
         #[optional]
         #[method_id(@__retain_semantics Other downloadingError)]
-        unsafe fn downloadingError(&self) -> Option<Id<NSError>>;
+        unsafe fn downloadingError(&self) -> Option<Retained<NSError>>;
 
         #[optional]
         #[method(isMostRecentVersionDownloaded)]
@@ -309,27 +309,28 @@ extern_protocol!(
 
         #[optional]
         #[method_id(@__retain_semantics Other ownerNameComponents)]
-        unsafe fn ownerNameComponents(&self) -> Option<Id<NSPersonNameComponents>>;
+        unsafe fn ownerNameComponents(&self) -> Option<Retained<NSPersonNameComponents>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other mostRecentEditorNameComponents)]
-        unsafe fn mostRecentEditorNameComponents(&self) -> Option<Id<NSPersonNameComponents>>;
+        unsafe fn mostRecentEditorNameComponents(&self)
+            -> Option<Retained<NSPersonNameComponents>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other versionIdentifier)]
-        unsafe fn versionIdentifier(&self) -> Option<Id<NSData>>;
+        unsafe fn versionIdentifier(&self) -> Option<Retained<NSData>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other itemVersion)]
-        unsafe fn itemVersion(&self) -> Id<NSFileProviderItemVersion>;
+        unsafe fn itemVersion(&self) -> Retained<NSFileProviderItemVersion>;
 
         #[optional]
         #[method_id(@__retain_semantics Other symlinkTargetPath)]
-        unsafe fn symlinkTargetPath(&self) -> Option<Id<NSString>>;
+        unsafe fn symlinkTargetPath(&self) -> Option<Retained<NSString>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other userInfo)]
-        unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
+        unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         #[optional]
         #[method(contentPolicy)]

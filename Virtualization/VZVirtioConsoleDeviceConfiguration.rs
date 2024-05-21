@@ -28,11 +28,11 @@ extern_methods!(
     #[cfg(feature = "VZConsoleDeviceConfiguration")]
     unsafe impl VZVirtioConsoleDeviceConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZVirtioConsolePortConfigurationArray")]
         #[method_id(@__retain_semantics Other ports)]
-        pub unsafe fn ports(&self) -> Id<VZVirtioConsolePortConfigurationArray>;
+        pub unsafe fn ports(&self) -> Retained<VZVirtioConsolePortConfigurationArray>;
     }
 );
 
@@ -41,6 +41,6 @@ extern_methods!(
     #[cfg(feature = "VZConsoleDeviceConfiguration")]
     unsafe impl VZVirtioConsoleDeviceConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

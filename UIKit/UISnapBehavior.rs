@@ -29,7 +29,7 @@ extern_methods!(
             this: Allocated<Self>,
             item: &ProtocolObject<dyn UIDynamicItem>,
             point: CGPoint,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(snapPoint)]
         pub unsafe fn snapPoint(&self) -> CGPoint;
@@ -50,9 +50,9 @@ extern_methods!(
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UISnapBehavior {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

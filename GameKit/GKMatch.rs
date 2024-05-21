@@ -56,10 +56,10 @@ extern_methods!(
     unsafe impl GKMatch {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other players)]
-        pub unsafe fn players(&self) -> Id<NSArray<GKPlayer>>;
+        pub unsafe fn players(&self) -> Retained<NSArray<GKPlayer>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn GKMatchDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn GKMatchDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn GKMatchDelegate>>);
@@ -69,13 +69,13 @@ extern_methods!(
 
         #[cfg(feature = "GKDefines")]
         #[method_id(@__retain_semantics Other properties)]
-        pub unsafe fn properties(&self) -> Option<Id<GKMatchProperties>>;
+        pub unsafe fn properties(&self) -> Option<Retained<GKMatchProperties>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKDefines", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other playerProperties)]
         pub unsafe fn playerProperties(
             &self,
-        ) -> Option<Id<NSDictionary<GKPlayer, GKMatchProperties>>>;
+        ) -> Option<Retained<NSDictionary<GKPlayer, GKMatchProperties>>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method(sendData:toPlayers:dataMode:error:_)]
@@ -84,21 +84,21 @@ extern_methods!(
             data: &NSData,
             players: &NSArray<GKPlayer>,
             mode: GKMatchSendDataMode,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(sendDataToAllPlayers:withDataMode:error:_)]
         pub unsafe fn sendDataToAllPlayers_withDataMode_error(
             &self,
             data: &NSData,
             mode: GKMatchSendDataMode,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(disconnect)]
         pub unsafe fn disconnect(&self);
 
         #[cfg(feature = "GKVoiceChat")]
         #[method_id(@__retain_semantics Other voiceChatWithName:)]
-        pub unsafe fn voiceChatWithName(&self, name: &NSString) -> Option<Id<GKVoiceChat>>;
+        pub unsafe fn voiceChatWithName(&self, name: &NSString) -> Option<Retained<GKVoiceChat>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         #[method(chooseBestHostingPlayerWithCompletionHandler:)]
@@ -120,10 +120,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKMatch {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -224,10 +224,10 @@ extern_methods!(
             data: &NSData,
             player_i_ds: &NSArray<NSString>,
             mode: GKMatchSendDataMode,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other playerIDs)]
-        pub unsafe fn playerIDs(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn playerIDs(&self) -> Option<Retained<NSArray<NSString>>>;
     }
 );

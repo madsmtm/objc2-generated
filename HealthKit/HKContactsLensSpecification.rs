@@ -35,11 +35,11 @@ extern_methods!(
     unsafe impl HKContactsLensSpecification {
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other baseCurve)]
-        pub unsafe fn baseCurve(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn baseCurve(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other diameter)]
-        pub unsafe fn diameter(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn diameter(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Init initWithSphere:cylinder:axis:addPower:baseCurve:diameter:)]
@@ -51,12 +51,12 @@ extern_methods!(
             add_power: Option<&HKQuantity>,
             base_curve: Option<&HKQuantity>,
             diameter: Option<&HKQuantity>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

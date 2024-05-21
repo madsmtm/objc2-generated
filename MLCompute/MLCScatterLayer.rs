@@ -39,7 +39,7 @@ extern_methods!(
         pub unsafe fn layerWithDimension_reductionType(
             dimension: NSUInteger,
             reduction_type: MLCReductionType,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -49,10 +49,10 @@ extern_methods!(
     unsafe impl MLCScatterLayer {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

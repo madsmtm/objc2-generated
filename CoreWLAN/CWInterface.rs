@@ -20,31 +20,31 @@ unsafe impl NSObjectProtocol for CWInterface {}
 extern_methods!(
     unsafe impl CWInterface {
         #[method_id(@__retain_semantics Other interfaceName)]
-        pub unsafe fn interfaceName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn interfaceName(&self) -> Option<Retained<NSString>>;
 
         #[method(powerOn)]
         pub unsafe fn powerOn(&self) -> bool;
 
         #[cfg(feature = "CWChannel")]
         #[method_id(@__retain_semantics Other supportedWLANChannels)]
-        pub unsafe fn supportedWLANChannels(&self) -> Option<Id<NSSet<CWChannel>>>;
+        pub unsafe fn supportedWLANChannels(&self) -> Option<Retained<NSSet<CWChannel>>>;
 
         #[cfg(feature = "CWChannel")]
         #[method_id(@__retain_semantics Other wlanChannel)]
-        pub unsafe fn wlanChannel(&self) -> Option<Id<CWChannel>>;
+        pub unsafe fn wlanChannel(&self) -> Option<Retained<CWChannel>>;
 
         #[cfg(feature = "CoreWLANTypes")]
         #[method(activePHYMode)]
         pub unsafe fn activePHYMode(&self) -> CWPHYMode;
 
         #[method_id(@__retain_semantics Other ssid)]
-        pub unsafe fn ssid(&self) -> Option<Id<NSString>>;
+        pub unsafe fn ssid(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other ssidData)]
-        pub unsafe fn ssidData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn ssidData(&self) -> Option<Retained<NSData>>;
 
         #[method_id(@__retain_semantics Other bssid)]
-        pub unsafe fn bssid(&self) -> Option<Id<NSString>>;
+        pub unsafe fn bssid(&self) -> Option<Retained<NSString>>;
 
         #[method(rssiValue)]
         pub unsafe fn rssiValue(&self) -> NSInteger;
@@ -60,7 +60,7 @@ extern_methods!(
         pub unsafe fn transmitRate(&self) -> c_double;
 
         #[method_id(@__retain_semantics Other countryCode)]
-        pub unsafe fn countryCode(&self) -> Option<Id<NSString>>;
+        pub unsafe fn countryCode(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CoreWLANTypes")]
         #[method(interfaceMode)]
@@ -70,50 +70,53 @@ extern_methods!(
         pub unsafe fn transmitPower(&self) -> NSInteger;
 
         #[method_id(@__retain_semantics Other hardwareAddress)]
-        pub unsafe fn hardwareAddress(&self) -> Option<Id<NSString>>;
+        pub unsafe fn hardwareAddress(&self) -> Option<Retained<NSString>>;
 
         #[method(serviceActive)]
         pub unsafe fn serviceActive(&self) -> bool;
 
         #[cfg(feature = "CWNetwork")]
         #[method_id(@__retain_semantics Other cachedScanResults)]
-        pub unsafe fn cachedScanResults(&self) -> Option<Id<NSSet<CWNetwork>>>;
+        pub unsafe fn cachedScanResults(&self) -> Option<Retained<NSSet<CWNetwork>>>;
 
         #[cfg(feature = "CWConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration(&self) -> Option<Id<CWConfiguration>>;
+        pub unsafe fn configuration(&self) -> Option<Retained<CWConfiguration>>;
 
         #[deprecated = "Use -[CWWiFiClient interfaceNames] instead"]
         #[method_id(@__retain_semantics Other interfaceNames)]
-        pub unsafe fn interfaceNames() -> Option<Id<NSSet<NSString>>>;
+        pub unsafe fn interfaceNames() -> Option<Retained<NSSet<NSString>>>;
 
         #[deprecated = "Use -[CWWiFiClient interface] instead"]
         #[method_id(@__retain_semantics Other interface)]
-        pub unsafe fn interface() -> Id<Self>;
+        pub unsafe fn interface() -> Retained<Self>;
 
         #[deprecated = "Use -[CWWiFiClient interfaceWithName:] instead"]
         #[method_id(@__retain_semantics Other interfaceWithName:)]
-        pub unsafe fn interfaceWithName(name: Option<&NSString>) -> Id<Self>;
+        pub unsafe fn interfaceWithName(name: Option<&NSString>) -> Retained<Self>;
 
         #[deprecated = "Use -[CWWiFiClient interfaceWithName:] instead"]
         #[method_id(@__retain_semantics Init initWithInterfaceName:)]
         pub unsafe fn initWithInterfaceName(
             this: Allocated<Self>,
             name: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(setPower:error:_)]
-        pub unsafe fn setPower_error(&self, power: bool) -> Result<(), Id<NSError>>;
+        pub unsafe fn setPower_error(&self, power: bool) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "CWChannel")]
         #[method(setWLANChannel:error:_)]
-        pub unsafe fn setWLANChannel_error(&self, channel: &CWChannel) -> Result<(), Id<NSError>>;
+        pub unsafe fn setWLANChannel_error(
+            &self,
+            channel: &CWChannel,
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(setPairwiseMasterKey:error:_)]
         pub unsafe fn setPairwiseMasterKey_error(
             &self,
             key: Option<&NSData>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "CoreWLANTypes")]
         #[method(setWEPKey:flags:index:error:_)]
@@ -122,14 +125,14 @@ extern_methods!(
             key: Option<&NSData>,
             flags: CWCipherKeyFlags,
             index: NSInteger,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "CWNetwork")]
         #[method_id(@__retain_semantics Other scanForNetworksWithSSID:error:_)]
         pub unsafe fn scanForNetworksWithSSID_error(
             &self,
             ssid: Option<&NSData>,
-        ) -> Result<Id<NSSet<CWNetwork>>, Id<NSError>>;
+        ) -> Result<Retained<NSSet<CWNetwork>>, Retained<NSError>>;
 
         #[cfg(feature = "CWNetwork")]
         #[method_id(@__retain_semantics Other scanForNetworksWithSSID:includeHidden:error:_)]
@@ -137,14 +140,14 @@ extern_methods!(
             &self,
             ssid: Option<&NSData>,
             include_hidden: bool,
-        ) -> Result<Id<NSSet<CWNetwork>>, Id<NSError>>;
+        ) -> Result<Retained<NSSet<CWNetwork>>, Retained<NSError>>;
 
         #[cfg(feature = "CWNetwork")]
         #[method_id(@__retain_semantics Other scanForNetworksWithName:error:_)]
         pub unsafe fn scanForNetworksWithName_error(
             &self,
             network_name: Option<&NSString>,
-        ) -> Result<Id<NSSet<CWNetwork>>, Id<NSError>>;
+        ) -> Result<Retained<NSSet<CWNetwork>>, Retained<NSError>>;
 
         #[cfg(feature = "CWNetwork")]
         #[method_id(@__retain_semantics Other scanForNetworksWithName:includeHidden:error:_)]
@@ -152,7 +155,7 @@ extern_methods!(
             &self,
             network_name: Option<&NSString>,
             include_hidden: bool,
-        ) -> Result<Id<NSSet<CWNetwork>>, Id<NSError>>;
+        ) -> Result<Retained<NSSet<CWNetwork>>, Retained<NSError>>;
 
         #[cfg(feature = "CWNetwork")]
         #[method(associateToNetwork:password:error:_)]
@@ -160,7 +163,7 @@ extern_methods!(
             &self,
             network: &CWNetwork,
             password: Option<&NSString>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(disassociate)]
         pub unsafe fn disassociate(&self);
@@ -174,7 +177,7 @@ extern_methods!(
             security: CWIBSSModeSecurity,
             channel: NSUInteger,
             password: Option<&NSString>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
     }
 );
 
@@ -182,9 +185,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWInterface {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

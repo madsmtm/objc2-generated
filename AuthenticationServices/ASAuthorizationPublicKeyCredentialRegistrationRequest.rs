@@ -10,28 +10,28 @@ extern_protocol!(
         NSCopying + NSObjectProtocol + NSSecureCoding
     {
         #[method_id(@__retain_semantics Other relyingPartyIdentifier)]
-        unsafe fn relyingPartyIdentifier(&self) -> Id<NSString>;
+        unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other userID)]
-        unsafe fn userID(&self) -> Id<NSData>;
+        unsafe fn userID(&self) -> Retained<NSData>;
 
         #[method(setUserID:)]
         unsafe fn setUserID(&self, user_id: &NSData);
 
         #[method_id(@__retain_semantics Other name)]
-        unsafe fn name(&self) -> Id<NSString>;
+        unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(setName:)]
         unsafe fn setName(&self, name: &NSString);
 
         #[method_id(@__retain_semantics Other displayName)]
-        unsafe fn displayName(&self) -> Option<Id<NSString>>;
+        unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
         #[method(setDisplayName:)]
         unsafe fn setDisplayName(&self, display_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other challenge)]
-        unsafe fn challenge(&self) -> Id<NSData>;
+        unsafe fn challenge(&self) -> Retained<NSData>;
 
         #[method(setChallenge:)]
         unsafe fn setChallenge(&self, challenge: &NSData);
@@ -40,7 +40,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other userVerificationPreference)]
         unsafe fn userVerificationPreference(
             &self,
-        ) -> Id<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
+        ) -> Retained<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         #[method(setUserVerificationPreference:)]
@@ -53,7 +53,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other attestationPreference)]
         unsafe fn attestationPreference(
             &self,
-        ) -> Id<ASAuthorizationPublicKeyCredentialAttestationKind>;
+        ) -> Retained<ASAuthorizationPublicKeyCredentialAttestationKind>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         #[method(setAttestationPreference:)]

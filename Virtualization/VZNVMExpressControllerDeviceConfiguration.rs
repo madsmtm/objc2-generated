@@ -32,7 +32,7 @@ extern_methods!(
         pub unsafe fn initWithAttachment(
             this: Allocated<Self>,
             attachment: &VZStorageDeviceAttachment,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -41,9 +41,9 @@ extern_methods!(
     #[cfg(feature = "VZStorageDeviceConfiguration")]
     unsafe impl VZNVMExpressControllerDeviceConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

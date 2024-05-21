@@ -19,18 +19,18 @@ unsafe impl NSObjectProtocol for LAAuthenticationRequirement {}
 extern_methods!(
     unsafe impl LAAuthenticationRequirement {
         #[method_id(@__retain_semantics Other defaultRequirement)]
-        pub unsafe fn defaultRequirement() -> Id<LAAuthenticationRequirement>;
+        pub unsafe fn defaultRequirement() -> Retained<LAAuthenticationRequirement>;
 
         #[method_id(@__retain_semantics Other biometryRequirement)]
-        pub unsafe fn biometryRequirement() -> Id<LAAuthenticationRequirement>;
+        pub unsafe fn biometryRequirement() -> Retained<LAAuthenticationRequirement>;
 
         #[method_id(@__retain_semantics Other biometryCurrentSetRequirement)]
-        pub unsafe fn biometryCurrentSetRequirement() -> Id<LAAuthenticationRequirement>;
+        pub unsafe fn biometryCurrentSetRequirement() -> Retained<LAAuthenticationRequirement>;
 
         #[method_id(@__retain_semantics Other biometryRequirementWithFallback:)]
         pub unsafe fn biometryRequirementWithFallback(
             fallback: &LABiometryFallbackRequirement,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -38,10 +38,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl LAAuthenticationRequirement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -60,10 +60,10 @@ unsafe impl NSObjectProtocol for LABiometryFallbackRequirement {}
 extern_methods!(
     unsafe impl LABiometryFallbackRequirement {
         #[method_id(@__retain_semantics Other defaultRequirement)]
-        pub unsafe fn defaultRequirement() -> Id<LABiometryFallbackRequirement>;
+        pub unsafe fn defaultRequirement() -> Retained<LABiometryFallbackRequirement>;
 
         #[method_id(@__retain_semantics Other devicePasscodeRequirement)]
-        pub unsafe fn devicePasscodeRequirement() -> Id<LABiometryFallbackRequirement>;
+        pub unsafe fn devicePasscodeRequirement() -> Retained<LABiometryFallbackRequirement>;
     }
 );
 
@@ -71,9 +71,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl LABiometryFallbackRequirement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

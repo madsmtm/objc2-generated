@@ -23,7 +23,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIBezierPath")]
         #[method_id(@__retain_semantics Other customShape)]
-        unsafe fn customShape(&self) -> Option<Id<UIBezierPath>>;
+        unsafe fn customShape(&self) -> Option<Retained<UIBezierPath>>;
 
         #[cfg(feature = "UIBezierPath")]
         #[method(setCustomShape:)]

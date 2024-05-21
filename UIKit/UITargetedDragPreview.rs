@@ -40,7 +40,7 @@ extern_methods!(
             container: &UIView,
             center: CGPoint,
             transform: CGAffineTransform,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Init initWithContainer:center:)]
@@ -48,13 +48,13 @@ extern_methods!(
             this: Allocated<Self>,
             container: &UIView,
             center: CGPoint,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -84,7 +84,7 @@ extern_methods!(
         pub unsafe fn retargetedPreviewWithTarget(
             &self,
             new_target: &UIDragPreviewTarget,
-        ) -> Id<UITargetedDragPreview>;
+        ) -> Retained<UITargetedDragPreview>;
     }
 );
 
@@ -103,7 +103,7 @@ extern_methods!(
             view: &UIView,
             parameters: &UIPreviewParameters,
             target: &UIPreviewTarget,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "UIPreviewParameters",
@@ -115,16 +115,16 @@ extern_methods!(
             this: Allocated<Self>,
             view: &UIView,
             parameters: &UIPreviewParameters,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Init initWithView:)]
-        pub unsafe fn initWithView(this: Allocated<Self>, view: &UIView) -> Id<Self>;
+        pub unsafe fn initWithView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

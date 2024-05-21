@@ -71,19 +71,19 @@ extern_methods!(
     unsafe impl HKVisionPrism {
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other amount)]
-        pub unsafe fn amount(&self) -> Id<HKQuantity>;
+        pub unsafe fn amount(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other angle)]
-        pub unsafe fn angle(&self) -> Id<HKQuantity>;
+        pub unsafe fn angle(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other verticalAmount)]
-        pub unsafe fn verticalAmount(&self) -> Id<HKQuantity>;
+        pub unsafe fn verticalAmount(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other horizontalAmount)]
-        pub unsafe fn horizontalAmount(&self) -> Id<HKQuantity>;
+        pub unsafe fn horizontalAmount(&self) -> Retained<HKQuantity>;
 
         #[method(verticalBase)]
         pub unsafe fn verticalBase(&self) -> HKPrismBase;
@@ -101,7 +101,7 @@ extern_methods!(
             amount: &HKQuantity,
             angle: &HKQuantity,
             eye: HKVisionEye,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Init initWithVerticalAmount:verticalBase:horizontalAmount:horizontalBase:eye:)]
@@ -112,12 +112,12 @@ extern_methods!(
             horizontal_amount: &HKQuantity,
             horizontal_base: HKPrismBase,
             eye: HKVisionEye,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

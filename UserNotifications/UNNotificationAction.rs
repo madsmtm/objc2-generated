@@ -49,24 +49,24 @@ unsafe impl NSSecureCoding for UNNotificationAction {}
 extern_methods!(
     unsafe impl UNNotificationAction {
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method(options)]
         pub unsafe fn options(&self) -> UNNotificationActionOptions;
 
         #[cfg(feature = "UNNotificationActionIcon")]
         #[method_id(@__retain_semantics Other icon)]
-        pub unsafe fn icon(&self) -> Option<Id<UNNotificationActionIcon>>;
+        pub unsafe fn icon(&self) -> Option<Retained<UNNotificationActionIcon>>;
 
         #[method_id(@__retain_semantics Other actionWithIdentifier:title:options:)]
         pub unsafe fn actionWithIdentifier_title_options(
             identifier: &NSString,
             title: &NSString,
             options: UNNotificationActionOptions,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UNNotificationActionIcon")]
         #[method_id(@__retain_semantics Other actionWithIdentifier:title:options:icon:)]
@@ -75,10 +75,10 @@ extern_methods!(
             title: &NSString,
             options: UNNotificationActionOptions,
             icon: Option<&UNNotificationActionIcon>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -86,7 +86,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNNotificationAction {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -118,7 +118,7 @@ extern_methods!(
             options: UNNotificationActionOptions,
             text_input_button_title: &NSString,
             text_input_placeholder: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UNNotificationActionIcon")]
         #[method_id(@__retain_semantics Other actionWithIdentifier:title:options:icon:textInputButtonTitle:textInputPlaceholder:)]
@@ -129,13 +129,13 @@ extern_methods!(
             icon: Option<&UNNotificationActionIcon>,
             text_input_button_title: &NSString,
             text_input_placeholder: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other textInputButtonTitle)]
-        pub unsafe fn textInputButtonTitle(&self) -> Id<NSString>;
+        pub unsafe fn textInputButtonTitle(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other textInputPlaceholder)]
-        pub unsafe fn textInputPlaceholder(&self) -> Id<NSString>;
+        pub unsafe fn textInputPlaceholder(&self) -> Retained<NSString>;
     }
 );
 
@@ -147,7 +147,7 @@ extern_methods!(
             identifier: &NSString,
             title: &NSString,
             options: UNNotificationActionOptions,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UNNotificationActionIcon")]
         #[method_id(@__retain_semantics Other actionWithIdentifier:title:options:icon:)]
@@ -156,10 +156,10 @@ extern_methods!(
             title: &NSString,
             options: UNNotificationActionOptions,
             icon: Option<&UNNotificationActionIcon>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -167,6 +167,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNTextInputNotificationAction {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

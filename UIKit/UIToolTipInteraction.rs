@@ -25,7 +25,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIToolTipInteractionDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIToolTipInteractionDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -40,19 +40,19 @@ extern_methods!(
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[method_id(@__retain_semantics Other defaultToolTip)]
-        pub unsafe fn defaultToolTip(&self) -> Option<Id<NSString>>;
+        pub unsafe fn defaultToolTip(&self) -> Option<Retained<NSString>>;
 
         #[method(setDefaultToolTip:)]
         pub unsafe fn setDefaultToolTip(&self, default_tool_tip: Option<&NSString>);
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithDefaultToolTip:)]
         pub unsafe fn initWithDefaultToolTip(
             this: Allocated<Self>,
             default_tool_tip: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -60,7 +60,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIToolTipInteraction {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -79,25 +79,25 @@ unsafe impl NSObjectProtocol for UIToolTipConfiguration {}
 extern_methods!(
     unsafe impl UIToolTipConfiguration {
         #[method_id(@__retain_semantics Other toolTip)]
-        pub unsafe fn toolTip(&self) -> Id<NSString>;
+        pub unsafe fn toolTip(&self) -> Retained<NSString>;
 
         #[method(sourceRect)]
         pub unsafe fn sourceRect(&self) -> CGRect;
 
         #[method_id(@__retain_semantics Other configurationWithToolTip:)]
-        pub unsafe fn configurationWithToolTip(tool_tip: &NSString) -> Id<Self>;
+        pub unsafe fn configurationWithToolTip(tool_tip: &NSString) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationWithToolTip:inRect:)]
         pub unsafe fn configurationWithToolTip_inRect(
             tool_tip: &NSString,
             source_rect: CGRect,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -109,7 +109,7 @@ extern_protocol!(
             &self,
             interaction: &UIToolTipInteraction,
             point: CGPoint,
-        ) -> Option<Id<UIToolTipConfiguration>>;
+        ) -> Option<Retained<UIToolTipConfiguration>>;
     }
 
     unsafe impl ProtocolType for dyn UIToolTipInteractionDelegate {}

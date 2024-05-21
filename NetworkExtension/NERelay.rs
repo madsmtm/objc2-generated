@@ -26,25 +26,25 @@ unsafe impl NSSecureCoding for NERelay {}
 extern_methods!(
     unsafe impl NERelay {
         #[method_id(@__retain_semantics Other HTTP3RelayURL)]
-        pub unsafe fn HTTP3RelayURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn HTTP3RelayURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setHTTP3RelayURL:)]
         pub unsafe fn setHTTP3RelayURL(&self, http3_relay_url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other HTTP2RelayURL)]
-        pub unsafe fn HTTP2RelayURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn HTTP2RelayURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setHTTP2RelayURL:)]
         pub unsafe fn setHTTP2RelayURL(&self, http2_relay_url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other dnsOverHTTPSURL)]
-        pub unsafe fn dnsOverHTTPSURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn dnsOverHTTPSURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setDnsOverHTTPSURL:)]
         pub unsafe fn setDnsOverHTTPSURL(&self, dns_over_httpsurl: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other syntheticDNSAnswerIPv4Prefix)]
-        pub unsafe fn syntheticDNSAnswerIPv4Prefix(&self) -> Option<Id<NSString>>;
+        pub unsafe fn syntheticDNSAnswerIPv4Prefix(&self) -> Option<Retained<NSString>>;
 
         #[method(setSyntheticDNSAnswerIPv4Prefix:)]
         pub unsafe fn setSyntheticDNSAnswerIPv4Prefix(
@@ -53,7 +53,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other syntheticDNSAnswerIPv6Prefix)]
-        pub unsafe fn syntheticDNSAnswerIPv6Prefix(&self) -> Option<Id<NSString>>;
+        pub unsafe fn syntheticDNSAnswerIPv6Prefix(&self) -> Option<Retained<NSString>>;
 
         #[method(setSyntheticDNSAnswerIPv6Prefix:)]
         pub unsafe fn setSyntheticDNSAnswerIPv6Prefix(
@@ -62,7 +62,9 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other additionalHTTPHeaderFields)]
-        pub unsafe fn additionalHTTPHeaderFields(&self) -> Id<NSDictionary<NSString, NSString>>;
+        pub unsafe fn additionalHTTPHeaderFields(
+            &self,
+        ) -> Retained<NSDictionary<NSString, NSString>>;
 
         #[method(setAdditionalHTTPHeaderFields:)]
         pub unsafe fn setAdditionalHTTPHeaderFields(
@@ -71,19 +73,19 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other rawPublicKeys)]
-        pub unsafe fn rawPublicKeys(&self) -> Option<Id<NSArray<NSData>>>;
+        pub unsafe fn rawPublicKeys(&self) -> Option<Retained<NSArray<NSData>>>;
 
         #[method(setRawPublicKeys:)]
         pub unsafe fn setRawPublicKeys(&self, raw_public_keys: Option<&NSArray<NSData>>);
 
         #[method_id(@__retain_semantics Other identityData)]
-        pub unsafe fn identityData(&self) -> Option<Id<NSData>>;
+        pub unsafe fn identityData(&self) -> Option<Retained<NSData>>;
 
         #[method(setIdentityData:)]
         pub unsafe fn setIdentityData(&self, identity_data: Option<&NSData>);
 
         #[method_id(@__retain_semantics Other identityDataPassword)]
-        pub unsafe fn identityDataPassword(&self) -> Option<Id<NSString>>;
+        pub unsafe fn identityDataPassword(&self) -> Option<Retained<NSString>>;
 
         #[method(setIdentityDataPassword:)]
         pub unsafe fn setIdentityDataPassword(&self, identity_data_password: Option<&NSString>);
@@ -94,9 +96,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NERelay {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

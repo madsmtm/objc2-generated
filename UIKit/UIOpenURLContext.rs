@@ -20,16 +20,16 @@ unsafe impl NSObjectProtocol for UIOpenURLContext {}
 extern_methods!(
     unsafe impl UIOpenURLContext {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL>;
+        pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         #[cfg(feature = "UISceneOptions")]
         #[method_id(@__retain_semantics Other options)]
-        pub unsafe fn options(&self) -> Id<UISceneOpenURLOptions>;
+        pub unsafe fn options(&self) -> Retained<UISceneOpenURLOptions>;
     }
 );

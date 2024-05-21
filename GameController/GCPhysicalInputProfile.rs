@@ -21,7 +21,7 @@ extern_methods!(
     unsafe impl GCPhysicalInputProfile {
         #[cfg(feature = "GCDevice")]
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Option<Id<ProtocolObject<dyn GCDevice>>>;
+        pub unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn GCDevice>>>;
 
         #[method(lastEventTimestamp)]
         pub unsafe fn lastEventTimestamp(&self) -> NSTimeInterval;
@@ -48,53 +48,53 @@ extern_methods!(
 
         #[cfg(feature = "GCControllerElement")]
         #[method_id(@__retain_semantics Other elements)]
-        pub unsafe fn elements(&self) -> Id<NSDictionary<NSString, GCControllerElement>>;
+        pub unsafe fn elements(&self) -> Retained<NSDictionary<NSString, GCControllerElement>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other buttons)]
-        pub unsafe fn buttons(&self) -> Id<NSDictionary<NSString, GCControllerButtonInput>>;
+        pub unsafe fn buttons(&self) -> Retained<NSDictionary<NSString, GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerAxisInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other axes)]
-        pub unsafe fn axes(&self) -> Id<NSDictionary<NSString, GCControllerAxisInput>>;
+        pub unsafe fn axes(&self) -> Retained<NSDictionary<NSString, GCControllerAxisInput>>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other dpads)]
-        pub unsafe fn dpads(&self) -> Id<NSDictionary<NSString, GCControllerDirectionPad>>;
+        pub unsafe fn dpads(&self) -> Retained<NSDictionary<NSString, GCControllerDirectionPad>>;
 
         #[cfg(all(feature = "GCControllerElement", feature = "GCControllerTouchpad"))]
         #[method_id(@__retain_semantics Other touchpads)]
-        pub unsafe fn touchpads(&self) -> Id<NSDictionary<NSString, GCControllerTouchpad>>;
+        pub unsafe fn touchpads(&self) -> Retained<NSDictionary<NSString, GCControllerTouchpad>>;
 
         #[cfg(feature = "GCControllerElement")]
         #[method_id(@__retain_semantics Other allElements)]
-        pub unsafe fn allElements(&self) -> Id<NSSet<GCControllerElement>>;
+        pub unsafe fn allElements(&self) -> Retained<NSSet<GCControllerElement>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other allButtons)]
-        pub unsafe fn allButtons(&self) -> Id<NSSet<GCControllerButtonInput>>;
+        pub unsafe fn allButtons(&self) -> Retained<NSSet<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerAxisInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other allAxes)]
-        pub unsafe fn allAxes(&self) -> Id<NSSet<GCControllerAxisInput>>;
+        pub unsafe fn allAxes(&self) -> Retained<NSSet<GCControllerAxisInput>>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other allDpads)]
-        pub unsafe fn allDpads(&self) -> Id<NSSet<GCControllerDirectionPad>>;
+        pub unsafe fn allDpads(&self) -> Retained<NSSet<GCControllerDirectionPad>>;
 
         #[cfg(all(feature = "GCControllerElement", feature = "GCControllerTouchpad"))]
         #[method_id(@__retain_semantics Other allTouchpads)]
-        pub unsafe fn allTouchpads(&self) -> Id<NSSet<GCControllerTouchpad>>;
+        pub unsafe fn allTouchpads(&self) -> Retained<NSSet<GCControllerTouchpad>>;
 
         #[cfg(feature = "GCControllerElement")]
         #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
         pub unsafe fn objectForKeyedSubscript(
             &self,
             key: &NSString,
-        ) -> Option<Id<GCControllerElement>>;
+        ) -> Option<Retained<GCControllerElement>>;
 
         #[method_id(@__retain_semantics Other capture)]
-        pub unsafe fn capture(&self) -> Id<Self>;
+        pub unsafe fn capture(&self) -> Retained<Self>;
 
         #[method(setStateFromPhysicalInput:)]
         pub unsafe fn setStateFromPhysicalInput(&self, physical_input: &GCPhysicalInputProfile);
@@ -103,13 +103,13 @@ extern_methods!(
         pub unsafe fn mappedElementAliasForPhysicalInputName(
             &self,
             input_name: &NSString,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other mappedPhysicalInputNamesForElementAlias:)]
         pub unsafe fn mappedPhysicalInputNamesForElementAlias(
             &self,
             element_alias: &NSString,
-        ) -> Id<NSSet<NSString>>;
+        ) -> Retained<NSSet<NSString>>;
     }
 );
 
@@ -117,9 +117,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCPhysicalInputProfile {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

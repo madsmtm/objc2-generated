@@ -69,7 +69,7 @@ extern_methods!(
             gradient_rescale: c_float,
             regularization_type: MLCRegularizationType,
             regularization_scale: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -82,7 +82,7 @@ extern_methods!(
             gradient_clip_min: c_float,
             regularization_type: MLCRegularizationType,
             regularization_scale: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[method_id(@__retain_semantics Other descriptorWithLearningRate:gradientRescale:appliesGradientClipping:gradientClippingType:gradientClipMax:gradientClipMin:maximumClippingNorm:customGlobalNorm:regularizationType:regularizationScale:)]
@@ -97,7 +97,7 @@ extern_methods!(
             custom_global_norm: c_float,
             regularization_type: MLCRegularizationType,
             regularization_scale: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -105,9 +105,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLCOptimizerDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

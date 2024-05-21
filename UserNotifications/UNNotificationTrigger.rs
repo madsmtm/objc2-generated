@@ -31,7 +31,7 @@ extern_methods!(
         pub unsafe fn repeats(&self) -> bool;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -39,7 +39,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNNotificationTrigger {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -70,7 +70,7 @@ extern_methods!(
     /// Methods declared on superclass `UNNotificationTrigger`
     unsafe impl UNPushNotificationTrigger {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -78,7 +78,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNPushNotificationTrigger {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -110,10 +110,10 @@ extern_methods!(
         pub unsafe fn triggerWithTimeInterval_repeats(
             time_interval: NSTimeInterval,
             repeats: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other nextTriggerDate)]
-        pub unsafe fn nextTriggerDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn nextTriggerDate(&self) -> Option<Retained<NSDate>>;
     }
 );
 
@@ -121,7 +121,7 @@ extern_methods!(
     /// Methods declared on superclass `UNNotificationTrigger`
     unsafe impl UNTimeIntervalNotificationTrigger {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -129,7 +129,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNTimeIntervalNotificationTrigger {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -155,16 +155,16 @@ unsafe impl NSSecureCoding for UNCalendarNotificationTrigger {}
 extern_methods!(
     unsafe impl UNCalendarNotificationTrigger {
         #[method_id(@__retain_semantics Other dateComponents)]
-        pub unsafe fn dateComponents(&self) -> Id<NSDateComponents>;
+        pub unsafe fn dateComponents(&self) -> Retained<NSDateComponents>;
 
         #[method_id(@__retain_semantics Other triggerWithDateMatchingComponents:repeats:)]
         pub unsafe fn triggerWithDateMatchingComponents_repeats(
             date_components: &NSDateComponents,
             repeats: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other nextTriggerDate)]
-        pub unsafe fn nextTriggerDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn nextTriggerDate(&self) -> Option<Retained<NSDate>>;
     }
 );
 
@@ -172,7 +172,7 @@ extern_methods!(
     /// Methods declared on superclass `UNNotificationTrigger`
     unsafe impl UNCalendarNotificationTrigger {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -180,7 +180,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNCalendarNotificationTrigger {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -207,11 +207,12 @@ extern_methods!(
     unsafe impl UNLocationNotificationTrigger {
         #[cfg(feature = "objc2-core-location")]
         #[method_id(@__retain_semantics Other region)]
-        pub unsafe fn region(&self) -> Id<CLRegion>;
+        pub unsafe fn region(&self) -> Retained<CLRegion>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method_id(@__retain_semantics Other triggerWithRegion:repeats:)]
-        pub unsafe fn triggerWithRegion_repeats(region: &CLRegion, repeats: bool) -> Id<Self>;
+        pub unsafe fn triggerWithRegion_repeats(region: &CLRegion, repeats: bool)
+            -> Retained<Self>;
     }
 );
 
@@ -219,7 +220,7 @@ extern_methods!(
     /// Methods declared on superclass `UNNotificationTrigger`
     unsafe impl UNLocationNotificationTrigger {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -227,6 +228,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNLocationNotificationTrigger {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

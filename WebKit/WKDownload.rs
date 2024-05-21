@@ -25,16 +25,16 @@ unsafe impl NSProgressReporting for WKDownload {}
 extern_methods!(
     unsafe impl WKDownload {
         #[method_id(@__retain_semantics Other originalRequest)]
-        pub unsafe fn originalRequest(&self) -> Option<Id<NSURLRequest>>;
+        pub unsafe fn originalRequest(&self) -> Option<Retained<NSURLRequest>>;
 
         #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other webView)]
-        pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Id<WKWebView>>;
+        pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Retained<WKWebView>>;
 
         #[cfg(feature = "WKDownloadDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn WKDownloadDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn WKDownloadDelegate>>>;
 
         #[cfg(feature = "WKDownloadDelegate")]
         #[method(setDelegate:)]
@@ -53,9 +53,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKDownload {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

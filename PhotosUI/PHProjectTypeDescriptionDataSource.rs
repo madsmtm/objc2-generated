@@ -12,21 +12,21 @@ extern_protocol!(
         unsafe fn subtypesForProjectType(
             &self,
             project_type: &PHProjectType,
-        ) -> Id<NSArray<PHProjectTypeDescription>>;
+        ) -> Retained<NSArray<PHProjectTypeDescription>>;
 
         #[cfg(all(feature = "PHProjectTypeDescription", feature = "PhotosUITypes"))]
         #[method_id(@__retain_semantics Other typeDescriptionForProjectType:)]
         unsafe fn typeDescriptionForProjectType(
             &self,
             project_type: &PHProjectType,
-        ) -> Option<Id<PHProjectTypeDescription>>;
+        ) -> Option<Retained<PHProjectTypeDescription>>;
 
         #[cfg(feature = "PhotosUITypes")]
         #[method_id(@__retain_semantics Other footerTextForSubtypesOfProjectType:)]
         unsafe fn footerTextForSubtypesOfProjectType(
             &self,
             project_type: &PHProjectType,
-        ) -> Option<Id<NSAttributedString>>;
+        ) -> Option<Retained<NSAttributedString>>;
 
         #[optional]
         #[method(extensionWillDiscardDataSource)]

@@ -44,10 +44,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIAcceleration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -68,7 +68,7 @@ extern_methods!(
     unsafe impl UIAccelerometer {
         #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
         #[method_id(@__retain_semantics Other sharedAccelerometer)]
-        pub unsafe fn sharedAccelerometer(mtm: MainThreadMarker) -> Id<UIAccelerometer>;
+        pub unsafe fn sharedAccelerometer(mtm: MainThreadMarker) -> Retained<UIAccelerometer>;
 
         #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
         #[method(updateInterval)]
@@ -80,7 +80,9 @@ extern_methods!(
 
         #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn UIAccelerometerDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn UIAccelerometerDelegate>>>;
 
         #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
         #[method(setDelegate:)]
@@ -95,10 +97,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIAccelerometer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

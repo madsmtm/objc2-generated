@@ -43,10 +43,12 @@ extern_methods!(
         pub unsafe fn initWithProductIdentifiers(
             this: Allocated<Self>,
             product_identifiers: &NSSet<NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn SKProductsRequestDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn SKProductsRequestDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -61,10 +63,10 @@ extern_methods!(
     #[cfg(feature = "SKRequest")]
     unsafe impl SKProductsRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -88,10 +90,10 @@ extern_methods!(
     unsafe impl SKProductsResponse {
         #[cfg(feature = "SKProduct")]
         #[method_id(@__retain_semantics Other products)]
-        pub unsafe fn products(&self) -> Id<NSArray<SKProduct>>;
+        pub unsafe fn products(&self) -> Retained<NSArray<SKProduct>>;
 
         #[method_id(@__retain_semantics Other invalidProductIdentifiers)]
-        pub unsafe fn invalidProductIdentifiers(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn invalidProductIdentifiers(&self) -> Retained<NSArray<NSString>>;
     }
 );
 
@@ -99,9 +101,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKProductsResponse {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -26,19 +26,19 @@ extern_methods!(
             this: Allocated<Self>,
             title: &NSString,
             identifier: &EKVirtualConferenceRoomTypeIdentifier,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<EKVirtualConferenceRoomTypeIdentifier>;
+        pub unsafe fn identifier(&self) -> Retained<EKVirtualConferenceRoomTypeIdentifier>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -61,19 +61,19 @@ extern_methods!(
             this: Allocated<Self>,
             title: Option<&NSString>,
             url: &NSURL,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL>;
+        pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -97,21 +97,21 @@ extern_methods!(
             title: Option<&NSString>,
             url_descriptors: &NSArray<EKVirtualConferenceURLDescriptor>,
             conference_details: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other URLDescriptors)]
-        pub unsafe fn URLDescriptors(&self) -> Id<NSArray<EKVirtualConferenceURLDescriptor>>;
+        pub unsafe fn URLDescriptors(&self) -> Retained<NSArray<EKVirtualConferenceURLDescriptor>>;
 
         #[method_id(@__retain_semantics Other conferenceDetails)]
-        pub unsafe fn conferenceDetails(&self) -> Option<Id<NSString>>;
+        pub unsafe fn conferenceDetails(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -45,10 +45,10 @@ unsafe impl NSObjectProtocol for UICollectionViewUpdateItem {}
 extern_methods!(
     unsafe impl UICollectionViewUpdateItem {
         #[method_id(@__retain_semantics Other indexPathBeforeUpdate)]
-        pub unsafe fn indexPathBeforeUpdate(&self) -> Option<Id<NSIndexPath>>;
+        pub unsafe fn indexPathBeforeUpdate(&self) -> Option<Retained<NSIndexPath>>;
 
         #[method_id(@__retain_semantics Other indexPathAfterUpdate)]
-        pub unsafe fn indexPathAfterUpdate(&self) -> Option<Id<NSIndexPath>>;
+        pub unsafe fn indexPathAfterUpdate(&self) -> Option<Retained<NSIndexPath>>;
 
         #[method(updateAction)]
         pub unsafe fn updateAction(&self) -> UICollectionUpdateAction;
@@ -59,9 +59,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICollectionViewUpdateItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

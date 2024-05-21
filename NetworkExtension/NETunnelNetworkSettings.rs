@@ -29,14 +29,14 @@ extern_methods!(
         pub unsafe fn initWithTunnelRemoteAddress(
             this: Allocated<Self>,
             address: &NSString,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other tunnelRemoteAddress)]
-        pub unsafe fn tunnelRemoteAddress(&self) -> Id<NSString>;
+        pub unsafe fn tunnelRemoteAddress(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NEDNSSettings")]
         #[method_id(@__retain_semantics Other DNSSettings)]
-        pub unsafe fn DNSSettings(&self) -> Option<Id<NEDNSSettings>>;
+        pub unsafe fn DNSSettings(&self) -> Option<Retained<NEDNSSettings>>;
 
         #[cfg(feature = "NEDNSSettings")]
         #[method(setDNSSettings:)]
@@ -44,7 +44,7 @@ extern_methods!(
 
         #[cfg(feature = "NEProxySettings")]
         #[method_id(@__retain_semantics Other proxySettings)]
-        pub unsafe fn proxySettings(&self) -> Option<Id<NEProxySettings>>;
+        pub unsafe fn proxySettings(&self) -> Option<Retained<NEProxySettings>>;
 
         #[cfg(feature = "NEProxySettings")]
         #[method(setProxySettings:)]
@@ -56,9 +56,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NETunnelNetworkSettings {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

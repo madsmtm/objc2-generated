@@ -71,7 +71,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other earliestPermittedSampleDate)]
-        pub unsafe fn earliestPermittedSampleDate(&self) -> Id<NSDate>;
+        pub unsafe fn earliestPermittedSampleDate(&self) -> Retained<NSDate>;
 
         #[cfg(all(feature = "HKObject", feature = "block2"))]
         #[method(saveObject:withCompletion:)]
@@ -135,40 +135,42 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other dateOfBirthWithError:_)]
-        pub unsafe fn dateOfBirthWithError(&self) -> Result<Id<NSDate>, Id<NSError>>;
+        pub unsafe fn dateOfBirthWithError(&self) -> Result<Retained<NSDate>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Other dateOfBirthComponentsWithError:_)]
         pub unsafe fn dateOfBirthComponentsWithError(
             &self,
-        ) -> Result<Id<NSDateComponents>, Id<NSError>>;
+        ) -> Result<Retained<NSDateComponents>, Retained<NSError>>;
 
         #[cfg(feature = "HKCharacteristicObjects")]
         #[method_id(@__retain_semantics Other biologicalSexWithError:_)]
         pub unsafe fn biologicalSexWithError(
             &self,
-        ) -> Result<Id<HKBiologicalSexObject>, Id<NSError>>;
+        ) -> Result<Retained<HKBiologicalSexObject>, Retained<NSError>>;
 
         #[cfg(feature = "HKCharacteristicObjects")]
         #[method_id(@__retain_semantics Other bloodTypeWithError:_)]
-        pub unsafe fn bloodTypeWithError(&self) -> Result<Id<HKBloodTypeObject>, Id<NSError>>;
+        pub unsafe fn bloodTypeWithError(
+            &self,
+        ) -> Result<Retained<HKBloodTypeObject>, Retained<NSError>>;
 
         #[cfg(feature = "HKCharacteristicObjects")]
         #[method_id(@__retain_semantics Other fitzpatrickSkinTypeWithError:_)]
         pub unsafe fn fitzpatrickSkinTypeWithError(
             &self,
-        ) -> Result<Id<HKFitzpatrickSkinTypeObject>, Id<NSError>>;
+        ) -> Result<Retained<HKFitzpatrickSkinTypeObject>, Retained<NSError>>;
 
         #[cfg(feature = "HKCharacteristicObjects")]
         #[method_id(@__retain_semantics Other wheelchairUseWithError:_)]
         pub unsafe fn wheelchairUseWithError(
             &self,
-        ) -> Result<Id<HKWheelchairUseObject>, Id<NSError>>;
+        ) -> Result<Retained<HKWheelchairUseObject>, Retained<NSError>>;
 
         #[cfg(feature = "HKCharacteristicObjects")]
         #[method_id(@__retain_semantics Other activityMoveModeWithError:_)]
         pub unsafe fn activityMoveModeWithError(
             &self,
-        ) -> Result<Id<HKActivityMoveModeObject>, Id<NSError>>;
+        ) -> Result<Retained<HKActivityMoveModeObject>, Retained<NSError>>;
     }
 );
 
@@ -176,10 +178,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKHealthStore {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

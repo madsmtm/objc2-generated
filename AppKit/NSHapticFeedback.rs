@@ -74,7 +74,7 @@ unsafe impl NSObjectProtocol for NSHapticFeedbackManager {}
 extern_methods!(
     unsafe impl NSHapticFeedbackManager {
         #[method_id(@__retain_semantics Other defaultPerformer)]
-        pub unsafe fn defaultPerformer() -> Id<ProtocolObject<dyn NSHapticFeedbackPerformer>>;
+        pub unsafe fn defaultPerformer() -> Retained<ProtocolObject<dyn NSHapticFeedbackPerformer>>;
     }
 );
 
@@ -82,9 +82,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSHapticFeedbackManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -26,19 +26,19 @@ unsafe impl NSSecureCoding for UIBezierPath {}
 extern_methods!(
     unsafe impl UIBezierPath {
         #[method_id(@__retain_semantics Other bezierPath)]
-        pub unsafe fn bezierPath() -> Id<Self>;
+        pub unsafe fn bezierPath() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other bezierPathWithRect:)]
-        pub unsafe fn bezierPathWithRect(rect: CGRect) -> Id<Self>;
+        pub unsafe fn bezierPathWithRect(rect: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other bezierPathWithOvalInRect:)]
-        pub unsafe fn bezierPathWithOvalInRect(rect: CGRect) -> Id<Self>;
+        pub unsafe fn bezierPathWithOvalInRect(rect: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other bezierPathWithRoundedRect:cornerRadius:)]
         pub unsafe fn bezierPathWithRoundedRect_cornerRadius(
             rect: CGRect,
             corner_radius: CGFloat,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIGeometry")]
         #[method_id(@__retain_semantics Other bezierPathWithRoundedRect:byRoundingCorners:cornerRadii:)]
@@ -46,7 +46,7 @@ extern_methods!(
             rect: CGRect,
             corners: UIRectCorner,
             corner_radii: CGSize,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other bezierPathWithArcCenter:radius:startAngle:endAngle:clockwise:)]
         pub unsafe fn bezierPathWithArcCenter_radius_startAngle_endAngle_clockwise(
@@ -55,13 +55,16 @@ extern_methods!(
             start_angle: CGFloat,
             end_angle: CGFloat,
             clockwise: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method(moveToPoint:)]
         pub unsafe fn moveToPoint(&self, point: CGPoint);
@@ -104,7 +107,7 @@ extern_methods!(
         pub unsafe fn appendPath(&self, bezier_path: &UIBezierPath);
 
         #[method_id(@__retain_semantics Other bezierPathByReversingPath)]
-        pub unsafe fn bezierPathByReversingPath(&self) -> Id<UIBezierPath>;
+        pub unsafe fn bezierPathByReversingPath(&self) -> Retained<UIBezierPath>;
 
         #[method(applyTransform:)]
         pub unsafe fn applyTransform(&self, transform: CGAffineTransform);
@@ -176,6 +179,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIBezierPath {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

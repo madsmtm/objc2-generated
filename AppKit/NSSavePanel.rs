@@ -84,21 +84,21 @@ extern_methods!(
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSSavePanel {
         #[method_id(@__retain_semantics Other savePanel)]
-        pub unsafe fn savePanel(mtm: MainThreadMarker) -> Id<NSSavePanel>;
+        pub unsafe fn savePanel(mtm: MainThreadMarker) -> Retained<NSSavePanel>;
 
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSUserInterfaceItemIdentifier>>;
+        pub unsafe fn identifier(&self) -> Option<Retained<NSUserInterfaceItemIdentifier>>;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSUserInterfaceItemIdentifier>);
 
         #[method_id(@__retain_semantics Other directoryURL)]
-        pub unsafe fn directoryURL(&self) -> Option<Id<NSURL>>;
+        pub unsafe fn directoryURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(setDirectoryURL:)]
         pub unsafe fn setDirectoryURL(&self, directory_url: Option<&NSURL>);
@@ -111,14 +111,16 @@ extern_methods!(
 
         #[cfg(feature = "NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
-        pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
+        pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSOpenSavePanelDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn NSOpenSavePanelDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -157,31 +159,31 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other prompt)]
-        pub unsafe fn prompt(&self) -> Id<NSString>;
+        pub unsafe fn prompt(&self) -> Retained<NSString>;
 
         #[method(setPrompt:)]
         pub unsafe fn setPrompt(&self, prompt: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other nameFieldLabel)]
-        pub unsafe fn nameFieldLabel(&self) -> Id<NSString>;
+        pub unsafe fn nameFieldLabel(&self) -> Retained<NSString>;
 
         #[method(setNameFieldLabel:)]
         pub unsafe fn setNameFieldLabel(&self, name_field_label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other nameFieldStringValue)]
-        pub unsafe fn nameFieldStringValue(&self) -> Id<NSString>;
+        pub unsafe fn nameFieldStringValue(&self) -> Retained<NSString>;
 
         #[method(setNameFieldStringValue:)]
         pub unsafe fn setNameFieldStringValue(&self, name_field_string_value: &NSString);
 
         #[method_id(@__retain_semantics Other message)]
-        pub unsafe fn message(&self) -> Id<NSString>;
+        pub unsafe fn message(&self) -> Retained<NSString>;
 
         #[method(setMessage:)]
         pub unsafe fn setMessage(&self, message: Option<&NSString>);
@@ -202,7 +204,7 @@ extern_methods!(
         pub unsafe fn setShowsTagField(&self, shows_tag_field: bool);
 
         #[method_id(@__retain_semantics Other tagNames)]
-        pub unsafe fn tagNames(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn tagNames(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setTagNames:)]
         pub unsafe fn setTagNames(&self, tag_names: Option<&NSArray<NSString>>);
@@ -246,7 +248,7 @@ extern_methods!(
             style: NSWindowStyleMask,
             backing_store_type: NSBackingStoreType,
             flag: bool,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSGraphics", feature = "NSScreen"))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
@@ -257,16 +259,16 @@ extern_methods!(
             backing_store_type: NSBackingStoreType,
             flag: bool,
             screen: Option<&NSScreen>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSViewController")]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -275,7 +277,7 @@ extern_methods!(
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSSavePanel {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -284,7 +286,7 @@ extern_methods!(
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSSavePanel {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -300,7 +302,7 @@ extern_protocol!(
             &self,
             sender: &AnyObject,
             url: &NSURL,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[optional]
         #[method(panel:didChangeToDirectoryURL:)]
@@ -313,7 +315,7 @@ extern_protocol!(
             sender: &AnyObject,
             filename: &NSString,
             ok_flag: bool,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[optional]
         #[method(panel:willExpand:)]
@@ -333,11 +335,11 @@ extern_methods!(
     unsafe impl NSSavePanel {
         #[deprecated = "Use -URL instead"]
         #[method_id(@__retain_semantics Other filename)]
-        pub unsafe fn filename(&self) -> Id<NSString>;
+        pub unsafe fn filename(&self) -> Retained<NSString>;
 
         #[deprecated = "Use -directoryURL instead"]
         #[method_id(@__retain_semantics Other directory)]
-        pub unsafe fn directory(&self) -> Id<NSString>;
+        pub unsafe fn directory(&self) -> Retained<NSString>;
 
         #[deprecated = "Use -setDirectoryURL: instead"]
         #[method(setDirectory:)]
@@ -345,7 +347,7 @@ extern_methods!(
 
         #[deprecated = "Use -allowedFileTypes instead"]
         #[method_id(@__retain_semantics Other requiredFileType)]
-        pub unsafe fn requiredFileType(&self) -> Option<Id<NSString>>;
+        pub unsafe fn requiredFileType(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Use -setAllowedFileTypes: instead"]
         #[method(setRequiredFileType:)]
@@ -377,7 +379,7 @@ extern_methods!(
 
         #[deprecated = "Use -allowedContentTypes instead"]
         #[method_id(@__retain_semantics Other allowedFileTypes)]
-        pub unsafe fn allowedFileTypes(&self) -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn allowedFileTypes(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[deprecated = "Use -allowedContentTypes instead"]
         #[method(setAllowedFileTypes:)]

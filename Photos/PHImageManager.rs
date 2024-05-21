@@ -147,10 +147,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHImageRequestOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -202,10 +202,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHLivePhotoRequestOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -303,10 +303,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHVideoRequestOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -353,7 +353,7 @@ unsafe impl NSObjectProtocol for PHImageManager {}
 extern_methods!(
     unsafe impl PHImageManager {
         #[method_id(@__retain_semantics Other defaultManager)]
-        pub unsafe fn defaultManager() -> Id<PHImageManager>;
+        pub unsafe fn defaultManager() -> Retained<PHImageManager>;
 
         #[cfg(all(
             feature = "PHAsset",
@@ -399,10 +399,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHImageManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -459,9 +459,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHCachingImageManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

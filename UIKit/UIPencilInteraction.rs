@@ -90,12 +90,12 @@ extern_methods!(
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: &ProtocolObject<dyn UIPencilInteractionDelegate>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIPencilInteractionDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIPencilInteractionDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -115,10 +115,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPencilInteraction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -137,10 +137,10 @@ unsafe impl NSObjectProtocol for UIPencilHoverPose {}
 extern_methods!(
     unsafe impl UIPencilHoverPose {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(location)]
         pub unsafe fn location(&self) -> CGPoint;
@@ -177,16 +177,16 @@ unsafe impl NSObjectProtocol for UIPencilInteractionTap {}
 extern_methods!(
     unsafe impl UIPencilInteractionTap {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(timestamp)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
 
         #[method_id(@__retain_semantics Other hoverPose)]
-        pub unsafe fn hoverPose(&self) -> Option<Id<UIPencilHoverPose>>;
+        pub unsafe fn hoverPose(&self) -> Option<Retained<UIPencilHoverPose>>;
     }
 );
 
@@ -205,10 +205,10 @@ unsafe impl NSObjectProtocol for UIPencilInteractionSqueeze {}
 extern_methods!(
     unsafe impl UIPencilInteractionSqueeze {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(timestamp)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
@@ -217,7 +217,7 @@ extern_methods!(
         pub unsafe fn phase(&self) -> UIPencilInteractionPhase;
 
         #[method_id(@__retain_semantics Other hoverPose)]
-        pub unsafe fn hoverPose(&self) -> Option<Id<UIPencilHoverPose>>;
+        pub unsafe fn hoverPose(&self) -> Option<Retained<UIPencilHoverPose>>;
     }
 );
 

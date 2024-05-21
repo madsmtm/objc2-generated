@@ -79,29 +79,32 @@ extern_methods!(
             this: Allocated<Self>,
             text_element: &NSTextElement,
             range_in_element: Option<&NSTextRange>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other textLayoutManager)]
-        pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager>>;
+        pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "NSTextElement")]
         #[method_id(@__retain_semantics Other textElement)]
-        pub unsafe fn textElement(&self) -> Option<Id<NSTextElement>>;
+        pub unsafe fn textElement(&self) -> Option<Retained<NSTextElement>>;
 
         #[cfg(feature = "NSTextRange")]
         #[method_id(@__retain_semantics Other rangeInElement)]
-        pub unsafe fn rangeInElement(&self) -> Id<NSTextRange>;
+        pub unsafe fn rangeInElement(&self) -> Retained<NSTextRange>;
 
         #[cfg(feature = "NSTextLineFragment")]
         #[method_id(@__retain_semantics Other textLineFragments)]
-        pub unsafe fn textLineFragments(&self) -> Id<NSArray<NSTextLineFragment>>;
+        pub unsafe fn textLineFragments(&self) -> Retained<NSArray<NSTextLineFragment>>;
 
         #[cfg(feature = "NSTextLineFragment")]
         #[method_id(@__retain_semantics Other textLineFragmentForVerticalOffset:requiresExactMatch:)]
@@ -109,7 +112,7 @@ extern_methods!(
             &self,
             vertical_offset: CGFloat,
             requires_exact_match: bool,
-        ) -> Option<Id<NSTextLineFragment>>;
+        ) -> Option<Retained<NSTextLineFragment>>;
 
         #[cfg(all(feature = "NSTextLineFragment", feature = "NSTextRange"))]
         #[method_id(@__retain_semantics Other textLineFragmentForTextLocation:isUpstreamAffinity:)]
@@ -117,10 +120,10 @@ extern_methods!(
             &self,
             text_location: &ProtocolObject<dyn NSTextLocation>,
             is_upstream_affinity: bool,
-        ) -> Option<Id<NSTextLineFragment>>;
+        ) -> Option<Retained<NSTextLineFragment>>;
 
         #[method_id(@__retain_semantics Other layoutQueue)]
-        pub unsafe fn layoutQueue(&self) -> Option<Id<NSOperationQueue>>;
+        pub unsafe fn layoutQueue(&self) -> Option<Retained<NSOperationQueue>>;
 
         #[method(setLayoutQueue:)]
         pub unsafe fn setLayoutQueue(&self, layout_queue: Option<&NSOperationQueue>);
@@ -153,7 +156,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textAttachmentViewProviders)]
         pub unsafe fn textAttachmentViewProviders(
             &self,
-        ) -> Id<NSArray<NSTextAttachmentViewProvider>>;
+        ) -> Retained<NSArray<NSTextAttachmentViewProvider>>;
 
         #[cfg(feature = "NSTextRange")]
         #[method(frameForTextAttachmentAtLocation:)]
@@ -168,6 +171,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextLayoutFragment {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

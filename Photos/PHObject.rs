@@ -26,7 +26,7 @@ unsafe impl NSObjectProtocol for PHObject {}
 extern_methods!(
     unsafe impl PHObject {
         #[method_id(@__retain_semantics Other localIdentifier)]
-        pub unsafe fn localIdentifier(&self) -> Id<NSString>;
+        pub unsafe fn localIdentifier(&self) -> Retained<NSString>;
     }
 );
 
@@ -34,10 +34,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHObject {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -68,9 +68,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHObjectPlaceholder {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

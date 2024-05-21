@@ -23,14 +23,14 @@ extern_methods!(
     unsafe impl CXCallUpdate {
         #[cfg(feature = "CXHandle")]
         #[method_id(@__retain_semantics Other remoteHandle)]
-        pub unsafe fn remoteHandle(&self) -> Option<Id<CXHandle>>;
+        pub unsafe fn remoteHandle(&self) -> Option<Retained<CXHandle>>;
 
         #[cfg(feature = "CXHandle")]
         #[method(setRemoteHandle:)]
         pub unsafe fn setRemoteHandle(&self, remote_handle: Option<&CXHandle>);
 
         #[method_id(@__retain_semantics Other localizedCallerName)]
-        pub unsafe fn localizedCallerName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn localizedCallerName(&self) -> Option<Retained<NSString>>;
 
         #[method(setLocalizedCallerName:)]
         pub unsafe fn setLocalizedCallerName(&self, localized_caller_name: Option<&NSString>);
@@ -71,9 +71,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXCallUpdate {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

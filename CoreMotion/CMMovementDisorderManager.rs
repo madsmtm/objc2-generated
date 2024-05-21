@@ -26,10 +26,10 @@ unsafe impl NSSecureCoding for CMDyskineticSymptomResult {}
 extern_methods!(
     unsafe impl CMDyskineticSymptomResult {
         #[method_id(@__retain_semantics Other startDate)]
-        pub unsafe fn startDate(&self) -> Id<NSDate>;
+        pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other endDate)]
-        pub unsafe fn endDate(&self) -> Id<NSDate>;
+        pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
         #[method(percentUnlikely)]
         pub unsafe fn percentUnlikely(&self) -> c_float;
@@ -43,10 +43,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMDyskineticSymptomResult {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -71,10 +71,10 @@ unsafe impl NSSecureCoding for CMTremorResult {}
 extern_methods!(
     unsafe impl CMTremorResult {
         #[method_id(@__retain_semantics Other startDate)]
-        pub unsafe fn startDate(&self) -> Id<NSDate>;
+        pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other endDate)]
-        pub unsafe fn endDate(&self) -> Id<NSDate>;
+        pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
         #[method(percentUnknown)]
         pub unsafe fn percentUnknown(&self) -> c_float;
@@ -100,10 +100,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMTremorResult {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -133,7 +133,7 @@ extern_methods!(
         pub unsafe fn isAvailable() -> bool;
 
         #[method_id(@__retain_semantics Other version)]
-        pub unsafe fn version() -> Option<Id<NSString>>;
+        pub unsafe fn version() -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CMAuthorization")]
         #[method(authorizationStatus)]
@@ -161,10 +161,10 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other lastProcessedDate)]
-        pub unsafe fn lastProcessedDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn lastProcessedDate(&self) -> Option<Retained<NSDate>>;
 
         #[method_id(@__retain_semantics Other monitorKinesiasExpirationDate)]
-        pub unsafe fn monitorKinesiasExpirationDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn monitorKinesiasExpirationDate(&self) -> Option<Retained<NSDate>>;
     }
 );
 
@@ -172,9 +172,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMMovementDisorderManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

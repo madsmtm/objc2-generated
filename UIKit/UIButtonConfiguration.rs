@@ -150,34 +150,35 @@ unsafe impl NSSecureCoding for UIButtonConfiguration {}
 extern_methods!(
     unsafe impl UIButtonConfiguration {
         #[method_id(@__retain_semantics Other plainButtonConfiguration)]
-        pub unsafe fn plainButtonConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn plainButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other tintedButtonConfiguration)]
-        pub unsafe fn tintedButtonConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn tintedButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other grayButtonConfiguration)]
-        pub unsafe fn grayButtonConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn grayButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other filledButtonConfiguration)]
-        pub unsafe fn filledButtonConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn filledButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other borderlessButtonConfiguration)]
-        pub unsafe fn borderlessButtonConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn borderlessButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other borderedButtonConfiguration)]
-        pub unsafe fn borderedButtonConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn borderedButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other borderedTintedButtonConfiguration)]
-        pub unsafe fn borderedTintedButtonConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn borderedTintedButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other borderedProminentButtonConfiguration)]
-        pub unsafe fn borderedProminentButtonConfiguration(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn borderedProminentButtonConfiguration(mtm: MainThreadMarker)
+            -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(
             feature = "UIButton",
@@ -186,11 +187,11 @@ extern_methods!(
             feature = "UIView"
         ))]
         #[method_id(@__retain_semantics Other updatedConfigurationForButton:)]
-        pub unsafe fn updatedConfigurationForButton(&self, button: &UIButton) -> Id<Self>;
+        pub unsafe fn updatedConfigurationForButton(&self, button: &UIButton) -> Retained<Self>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         #[method_id(@__retain_semantics Other background)]
-        pub unsafe fn background(&self) -> Id<UIBackgroundConfiguration>;
+        pub unsafe fn background(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         #[method(setBackground:)]
@@ -216,7 +217,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other baseForegroundColor)]
-        pub unsafe fn baseForegroundColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn baseForegroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setBaseForegroundColor:)]
@@ -224,7 +225,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other baseBackgroundColor)]
-        pub unsafe fn baseBackgroundColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn baseBackgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setBaseBackgroundColor:)]
@@ -232,7 +233,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setImage:)]
@@ -264,7 +265,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other preferredSymbolConfigurationForImage)]
         pub unsafe fn preferredSymbolConfigurationForImage(
             &self,
-        ) -> Option<Id<UIImageSymbolConfiguration>>;
+        ) -> Option<Retained<UIImageSymbolConfiguration>>;
 
         #[cfg(all(
             feature = "UIImageConfiguration",
@@ -302,13 +303,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other attributedTitle)]
-        pub unsafe fn attributedTitle(&self) -> Option<Id<NSAttributedString>>;
+        pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
@@ -335,13 +336,13 @@ extern_methods!(
         pub unsafe fn setTitleLineBreakMode(&self, title_line_break_mode: NSLineBreakMode);
 
         #[method_id(@__retain_semantics Other subtitle)]
-        pub unsafe fn subtitle(&self) -> Option<Id<NSString>>;
+        pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         #[method(setSubtitle:)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other attributedSubtitle)]
-        pub unsafe fn attributedSubtitle(&self) -> Option<Id<NSAttributedString>>;
+        pub unsafe fn attributedSubtitle(&self) -> Option<Retained<NSAttributedString>>;
 
         #[method(setAttributedSubtitle:)]
         pub unsafe fn setAttributedSubtitle(

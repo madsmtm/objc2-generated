@@ -27,14 +27,14 @@ unsafe impl NSTextLayoutOrientationProvider for NSTextContainer {}
 extern_methods!(
     unsafe impl NSTextContainer {
         #[method_id(@__retain_semantics Init initWithSize:)]
-        pub unsafe fn initWithSize(this: Allocated<Self>, size: NSSize) -> Id<Self>;
+        pub unsafe fn initWithSize(this: Allocated<Self>, size: NSSize) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSLayoutManager")]
         #[method_id(@__retain_semantics Other layoutManager)]
-        pub unsafe fn layoutManager(&self) -> Option<Id<NSLayoutManager>>;
+        pub unsafe fn layoutManager(&self) -> Option<Retained<NSLayoutManager>>;
 
         #[cfg(feature = "NSLayoutManager")]
         #[method(setLayoutManager:)]
@@ -46,7 +46,7 @@ extern_methods!(
 
         #[cfg(feature = "NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other textLayoutManager)]
-        pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager>>;
+        pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
@@ -56,7 +56,7 @@ extern_methods!(
 
         #[cfg(feature = "NSBezierPath")]
         #[method_id(@__retain_semantics Other exclusionPaths)]
-        pub unsafe fn exclusionPaths(&self) -> Id<NSArray<NSBezierPath>>;
+        pub unsafe fn exclusionPaths(&self) -> Retained<NSArray<NSBezierPath>>;
 
         #[cfg(feature = "NSBezierPath")]
         #[method(setExclusionPaths:)]
@@ -114,7 +114,7 @@ extern_methods!(
             feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other textView)]
-        pub unsafe fn textView(&self, mtm: MainThreadMarker) -> Option<Id<NSTextView>>;
+        pub unsafe fn textView(&self, mtm: MainThreadMarker) -> Option<Retained<NSTextView>>;
 
         #[cfg(all(
             feature = "NSResponder",
@@ -131,10 +131,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextContainer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -184,7 +184,7 @@ extern_methods!(
         pub unsafe fn initWithContainerSize(
             this: Allocated<Self>,
             a_container_size: NSSize,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(containerSize)]
         pub unsafe fn containerSize(&self) -> NSSize;

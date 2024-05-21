@@ -23,24 +23,24 @@ unsafe impl NSObjectProtocol for CKOperation {}
 extern_methods!(
     unsafe impl CKOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration(&self) -> Id<CKOperationConfiguration>;
+        pub unsafe fn configuration(&self) -> Retained<CKOperationConfiguration>;
 
         #[method(setConfiguration:)]
         pub unsafe fn setConfiguration(&self, configuration: Option<&CKOperationConfiguration>);
 
         #[cfg(feature = "CKOperationGroup")]
         #[method_id(@__retain_semantics Other group)]
-        pub unsafe fn group(&self) -> Option<Id<CKOperationGroup>>;
+        pub unsafe fn group(&self) -> Option<Retained<CKOperationGroup>>;
 
         #[cfg(feature = "CKOperationGroup")]
         #[method(setGroup:)]
         pub unsafe fn setGroup(&self, group: Option<&CKOperationGroup>);
 
         #[method_id(@__retain_semantics Other operationID)]
-        pub unsafe fn operationID(&self) -> Id<CKOperationID>;
+        pub unsafe fn operationID(&self) -> Retained<CKOperationID>;
 
         #[cfg(feature = "block2")]
         #[method(longLivedOperationWasPersistedBlock)]
@@ -59,7 +59,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKOperation {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -79,7 +79,7 @@ extern_methods!(
     unsafe impl CKOperationConfiguration {
         #[cfg(feature = "CKContainer")]
         #[method_id(@__retain_semantics Other container)]
-        pub unsafe fn container(&self) -> Option<Id<CKContainer>>;
+        pub unsafe fn container(&self) -> Option<Retained<CKContainer>>;
 
         #[cfg(feature = "CKContainer")]
         #[method(setContainer:)]
@@ -127,10 +127,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKOperationConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -140,7 +140,7 @@ extern_methods!(
         #[cfg(feature = "CKContainer")]
         #[deprecated = "Use CKOperationConfiguration"]
         #[method_id(@__retain_semantics Other container)]
-        pub unsafe fn container(&self) -> Option<Id<CKContainer>>;
+        pub unsafe fn container(&self) -> Option<Retained<CKContainer>>;
 
         #[cfg(feature = "CKContainer")]
         #[deprecated = "Use CKOperationConfiguration"]

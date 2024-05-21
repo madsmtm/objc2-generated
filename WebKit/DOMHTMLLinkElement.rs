@@ -78,7 +78,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other charset)]
-        pub unsafe fn charset(&self) -> Id<NSString>;
+        pub unsafe fn charset(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setCharset:)]
@@ -86,7 +86,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other href)]
-        pub unsafe fn href(&self) -> Id<NSString>;
+        pub unsafe fn href(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setHref:)]
@@ -94,7 +94,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other hreflang)]
-        pub unsafe fn hreflang(&self) -> Id<NSString>;
+        pub unsafe fn hreflang(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setHreflang:)]
@@ -102,7 +102,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other media)]
-        pub unsafe fn media(&self) -> Id<NSString>;
+        pub unsafe fn media(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setMedia:)]
@@ -110,7 +110,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other rel)]
-        pub unsafe fn rel(&self) -> Id<NSString>;
+        pub unsafe fn rel(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setRel:)]
@@ -118,7 +118,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other rev)]
-        pub unsafe fn rev(&self) -> Id<NSString>;
+        pub unsafe fn rev(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setRev:)]
@@ -126,7 +126,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Id<NSString>;
+        pub unsafe fn target(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setTarget:)]
@@ -134,7 +134,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSString>;
+        pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setType:)]
@@ -142,10 +142,10 @@ extern_methods!(
 
         #[cfg(feature = "DOMStyleSheet")]
         #[method_id(@__retain_semantics Other sheet)]
-        pub unsafe fn sheet(&self) -> Option<Id<DOMStyleSheet>>;
+        pub unsafe fn sheet(&self) -> Option<Retained<DOMStyleSheet>>;
 
         #[method_id(@__retain_semantics Other absoluteLinkURL)]
-        pub unsafe fn absoluteLinkURL(&self) -> Id<NSURL>;
+        pub unsafe fn absoluteLinkURL(&self) -> Retained<NSURL>;
     }
 );
 
@@ -161,7 +161,7 @@ extern_methods!(
     unsafe impl DOMHTMLLinkElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -176,6 +176,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLLinkElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -28,10 +28,10 @@ unsafe impl NSSecureCoding for NSInflectionRule {}
 extern_methods!(
     unsafe impl NSInflectionRule {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other automaticRule)]
-        pub unsafe fn automaticRule() -> Id<NSInflectionRule>;
+        pub unsafe fn automaticRule() -> Retained<NSInflectionRule>;
     }
 );
 
@@ -39,7 +39,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInflectionRule {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -72,11 +72,11 @@ extern_methods!(
         pub unsafe fn initWithMorphology(
             this: Allocated<Self>,
             morphology: &NSMorphology,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSMorphology")]
         #[method_id(@__retain_semantics Other morphology)]
-        pub unsafe fn morphology(&self) -> Id<NSMorphology>;
+        pub unsafe fn morphology(&self) -> Retained<NSMorphology>;
     }
 );
 
@@ -84,7 +84,7 @@ extern_methods!(
     /// Methods declared on superclass `NSInflectionRule`
     unsafe impl NSInflectionRuleExplicit {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -92,7 +92,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInflectionRuleExplicit {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

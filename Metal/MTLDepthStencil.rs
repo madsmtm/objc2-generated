@@ -128,10 +128,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLStencilDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -164,19 +164,19 @@ extern_methods!(
         pub fn setDepthWriteEnabled(&self, depth_write_enabled: bool);
 
         #[method_id(@__retain_semantics Other frontFaceStencil)]
-        pub fn frontFaceStencil(&self) -> Id<MTLStencilDescriptor>;
+        pub fn frontFaceStencil(&self) -> Retained<MTLStencilDescriptor>;
 
         #[method(setFrontFaceStencil:)]
         pub fn setFrontFaceStencil(&self, front_face_stencil: Option<&MTLStencilDescriptor>);
 
         #[method_id(@__retain_semantics Other backFaceStencil)]
-        pub fn backFaceStencil(&self) -> Id<MTLStencilDescriptor>;
+        pub fn backFaceStencil(&self) -> Retained<MTLStencilDescriptor>;
 
         #[method(setBackFaceStencil:)]
         pub fn setBackFaceStencil(&self, back_face_stencil: Option<&MTLStencilDescriptor>);
 
         #[method_id(@__retain_semantics Other label)]
-        pub fn label(&self) -> Option<Id<NSString>>;
+        pub fn label(&self) -> Option<Retained<NSString>>;
 
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
@@ -187,21 +187,21 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLDepthStencilDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
 extern_protocol!(
     pub unsafe trait MTLDepthStencilState: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other label)]
-        fn label(&self) -> Option<Id<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
-        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
     }
 
     unsafe impl ProtocolType for dyn MTLDepthStencilState {}

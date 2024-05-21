@@ -95,14 +95,14 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITabBar {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn UITabBarDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UITabBarDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UITabBarDelegate>>);
 
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
         #[method_id(@__retain_semantics Other items)]
-        pub unsafe fn items(&self) -> Option<Id<NSArray<UITabBarItem>>>;
+        pub unsafe fn items(&self) -> Option<Retained<NSArray<UITabBarItem>>>;
 
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
         #[method(setItems:)]
@@ -110,7 +110,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
         #[method_id(@__retain_semantics Other selectedItem)]
-        pub unsafe fn selectedItem(&self) -> Option<Id<UITabBarItem>>;
+        pub unsafe fn selectedItem(&self) -> Option<Retained<UITabBarItem>>;
 
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
         #[method(setSelectedItem:)]
@@ -136,7 +136,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other tintColor)]
-        pub unsafe fn tintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setTintColor:)]
@@ -144,7 +144,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other barTintColor)]
-        pub unsafe fn barTintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn barTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setBarTintColor:)]
@@ -152,7 +152,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other unselectedItemTintColor)]
-        pub unsafe fn unselectedItemTintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn unselectedItemTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setUnselectedItemTintColor:)]
@@ -164,7 +164,7 @@ extern_methods!(
         #[cfg(feature = "UIColor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other selectedImageTintColor)]
-        pub unsafe fn selectedImageTintColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn selectedImageTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[deprecated]
@@ -173,7 +173,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other backgroundImage)]
-        pub unsafe fn backgroundImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn backgroundImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setBackgroundImage:)]
@@ -181,7 +181,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other selectionIndicatorImage)]
-        pub unsafe fn selectionIndicatorImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn selectionIndicatorImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setSelectionIndicatorImage:)]
@@ -192,7 +192,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other shadowImage)]
-        pub unsafe fn shadowImage(&self) -> Option<Id<UIImage>>;
+        pub unsafe fn shadowImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[method(setShadowImage:)]
@@ -232,7 +232,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
         #[method_id(@__retain_semantics Other standardAppearance)]
-        pub unsafe fn standardAppearance(&self) -> Id<UITabBarAppearance>;
+        pub unsafe fn standardAppearance(&self) -> Retained<UITabBarAppearance>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
         #[method(setStandardAppearance:)]
@@ -240,7 +240,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
         #[method_id(@__retain_semantics Other scrollEdgeAppearance)]
-        pub unsafe fn scrollEdgeAppearance(&self) -> Option<Id<UITabBarAppearance>>;
+        pub unsafe fn scrollEdgeAppearance(&self) -> Option<Retained<UITabBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
         #[method(setScrollEdgeAppearance:)]
@@ -250,10 +250,10 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other leadingAccessoryView)]
-        pub unsafe fn leadingAccessoryView(&self) -> Id<UIView>;
+        pub unsafe fn leadingAccessoryView(&self) -> Retained<UIView>;
 
         #[method_id(@__retain_semantics Other trailingAccessoryView)]
-        pub unsafe fn trailingAccessoryView(&self) -> Id<UIView>;
+        pub unsafe fn trailingAccessoryView(&self) -> Retained<UIView>;
     }
 );
 
@@ -262,10 +262,13 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITabBar {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -274,10 +277,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITabBar {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

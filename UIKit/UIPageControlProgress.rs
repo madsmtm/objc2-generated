@@ -40,7 +40,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIPageControlProgressDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIPageControlProgressDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -63,10 +63,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPageControlProgress {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -109,12 +109,12 @@ extern_methods!(
         pub unsafe fn initWithPreferredDuration(
             this: Allocated<Self>,
             preferred_duration: NSTimeInterval,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIPageControlTimerProgressDelegate>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIPageControlTimerProgressDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -150,9 +150,9 @@ extern_methods!(
         pub unsafe fn durationForPage(&self, page: NSInteger) -> NSTimeInterval;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

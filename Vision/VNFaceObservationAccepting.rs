@@ -9,7 +9,7 @@ extern_protocol!(
     pub unsafe trait VNFaceObservationAccepting: NSObjectProtocol {
         #[cfg(feature = "VNObservation")]
         #[method_id(@__retain_semantics Other inputFaceObservations)]
-        unsafe fn inputFaceObservations(&self) -> Option<Id<NSArray<VNFaceObservation>>>;
+        unsafe fn inputFaceObservations(&self) -> Option<Retained<NSArray<VNFaceObservation>>>;
 
         #[cfg(feature = "VNObservation")]
         #[method(setInputFaceObservations:)]

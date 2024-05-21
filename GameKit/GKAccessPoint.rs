@@ -46,7 +46,7 @@ unsafe impl NSObjectProtocol for GKAccessPoint {}
 extern_methods!(
     unsafe impl GKAccessPoint {
         #[method_id(@__retain_semantics Other shared)]
-        pub unsafe fn shared() -> Id<GKAccessPoint>;
+        pub unsafe fn shared() -> Retained<GKAccessPoint>;
 
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
@@ -84,7 +84,7 @@ extern_methods!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other parentWindow)]
-        pub unsafe fn parentWindow(&self, mtm: MainThreadMarker) -> Option<Id<NSWindow>>;
+        pub unsafe fn parentWindow(&self, mtm: MainThreadMarker) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
@@ -109,9 +109,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKAccessPoint {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

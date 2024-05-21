@@ -87,10 +87,10 @@ extern_methods!(
             style: UIAlertActionStyle,
             handler: Option<&block2::Block<dyn Fn(NonNull<UIAlertAction>)>>,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method(style)]
         pub unsafe fn style(&self) -> UIAlertActionStyle;
@@ -107,10 +107,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIAlertAction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -169,16 +169,16 @@ extern_methods!(
             message: Option<&NSString>,
             preferred_style: UIAlertControllerStyle,
             mtm: MainThreadMarker,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(addAction:)]
         pub unsafe fn addAction(&self, action: &UIAlertAction);
 
         #[method_id(@__retain_semantics Other actions)]
-        pub unsafe fn actions(&self) -> Id<NSArray<UIAlertAction>>;
+        pub unsafe fn actions(&self) -> Retained<NSArray<UIAlertAction>>;
 
         #[method_id(@__retain_semantics Other preferredAction)]
-        pub unsafe fn preferredAction(&self) -> Option<Id<UIAlertAction>>;
+        pub unsafe fn preferredAction(&self) -> Option<Retained<UIAlertAction>>;
 
         #[method(setPreferredAction:)]
         pub unsafe fn setPreferredAction(&self, preferred_action: Option<&UIAlertAction>);
@@ -197,16 +197,16 @@ extern_methods!(
 
         #[cfg(all(feature = "UIControl", feature = "UITextField", feature = "UIView"))]
         #[method_id(@__retain_semantics Other textFields)]
-        pub unsafe fn textFields(&self) -> Option<Id<NSArray<UITextField>>>;
+        pub unsafe fn textFields(&self) -> Option<Retained<NSArray<UITextField>>>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString>>;
+        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other message)]
-        pub unsafe fn message(&self) -> Option<Id<NSString>>;
+        pub unsafe fn message(&self) -> Option<Retained<NSString>>;
 
         #[method(setMessage:)]
         pub unsafe fn setMessage(&self, message: Option<&NSString>);
@@ -231,10 +231,13 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -243,10 +246,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIAlertController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

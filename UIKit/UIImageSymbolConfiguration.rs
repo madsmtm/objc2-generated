@@ -110,78 +110,81 @@ extern_methods!(
     #[cfg(feature = "UIImageConfiguration")]
     unsafe impl UIImageSymbolConfiguration {
         #[method_id(@__retain_semantics Other unspecifiedConfiguration)]
-        pub unsafe fn unspecifiedConfiguration() -> Id<UIImageSymbolConfiguration>;
+        pub unsafe fn unspecifiedConfiguration() -> Retained<UIImageSymbolConfiguration>;
 
         #[method_id(@__retain_semantics Other configurationWithScale:)]
-        pub unsafe fn configurationWithScale(scale: UIImageSymbolScale) -> Id<Self>;
+        pub unsafe fn configurationWithScale(scale: UIImageSymbolScale) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationWithPointSize:)]
-        pub unsafe fn configurationWithPointSize(point_size: CGFloat) -> Id<Self>;
+        pub unsafe fn configurationWithPointSize(point_size: CGFloat) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationWithWeight:)]
-        pub unsafe fn configurationWithWeight(weight: UIImageSymbolWeight) -> Id<Self>;
+        pub unsafe fn configurationWithWeight(weight: UIImageSymbolWeight) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationWithPointSize:weight:)]
         pub unsafe fn configurationWithPointSize_weight(
             point_size: CGFloat,
             weight: UIImageSymbolWeight,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationWithPointSize:weight:scale:)]
         pub unsafe fn configurationWithPointSize_weight_scale(
             point_size: CGFloat,
             weight: UIImageSymbolWeight,
             scale: UIImageSymbolScale,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIFontDescriptor")]
         #[method_id(@__retain_semantics Other configurationWithTextStyle:)]
-        pub unsafe fn configurationWithTextStyle(text_style: &UIFontTextStyle) -> Id<Self>;
+        pub unsafe fn configurationWithTextStyle(text_style: &UIFontTextStyle) -> Retained<Self>;
 
         #[cfg(feature = "UIFontDescriptor")]
         #[method_id(@__retain_semantics Other configurationWithTextStyle:scale:)]
         pub unsafe fn configurationWithTextStyle_scale(
             text_style: &UIFontTextStyle,
             scale: UIImageSymbolScale,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIFont")]
         #[method_id(@__retain_semantics Other configurationWithFont:)]
-        pub unsafe fn configurationWithFont(font: &UIFont) -> Id<Self>;
+        pub unsafe fn configurationWithFont(font: &UIFont) -> Retained<Self>;
 
         #[cfg(feature = "UIFont")]
         #[method_id(@__retain_semantics Other configurationWithFont:scale:)]
         pub unsafe fn configurationWithFont_scale(
             font: &UIFont,
             scale: UIImageSymbolScale,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other configurationWithHierarchicalColor:)]
-        pub unsafe fn configurationWithHierarchicalColor(hierarchical_color: &UIColor) -> Id<Self>;
+        pub unsafe fn configurationWithHierarchicalColor(
+            hierarchical_color: &UIColor,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other configurationWithPaletteColors:)]
-        pub unsafe fn configurationWithPaletteColors(palette_colors: &NSArray<UIColor>)
-            -> Id<Self>;
+        pub unsafe fn configurationWithPaletteColors(
+            palette_colors: &NSArray<UIColor>,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationPreferringMulticolor)]
-        pub unsafe fn configurationPreferringMulticolor() -> Id<Self>;
+        pub unsafe fn configurationPreferringMulticolor() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationPreferringMonochrome)]
-        pub unsafe fn configurationPreferringMonochrome() -> Id<Self>;
+        pub unsafe fn configurationPreferringMonochrome() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationWithoutTextStyle)]
-        pub unsafe fn configurationWithoutTextStyle(&self) -> Id<Self>;
+        pub unsafe fn configurationWithoutTextStyle(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationWithoutScale)]
-        pub unsafe fn configurationWithoutScale(&self) -> Id<Self>;
+        pub unsafe fn configurationWithoutScale(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationWithoutWeight)]
-        pub unsafe fn configurationWithoutWeight(&self) -> Id<Self>;
+        pub unsafe fn configurationWithoutWeight(&self) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationWithoutPointSizeAndWeight)]
-        pub unsafe fn configurationWithoutPointSizeAndWeight(&self) -> Id<Self>;
+        pub unsafe fn configurationWithoutPointSizeAndWeight(&self) -> Retained<Self>;
 
         #[method(isEqualToConfiguration:)]
         pub unsafe fn isEqualToConfiguration(
@@ -196,18 +199,18 @@ extern_methods!(
     #[cfg(feature = "UIImageConfiguration")]
     unsafe impl UIImageSymbolConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UITraitCollection")]
         #[method_id(@__retain_semantics Other configurationWithTraitCollection:)]
         pub unsafe fn configurationWithTraitCollection(
             trait_collection: Option<&UITraitCollection>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationWithLocale:)]
-        pub unsafe fn configurationWithLocale(locale: Option<&NSLocale>) -> Id<Self>;
+        pub unsafe fn configurationWithLocale(locale: Option<&NSLocale>) -> Retained<Self>;
     }
 );

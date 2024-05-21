@@ -26,7 +26,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other classDescriptionForClass:)]
         pub unsafe fn classDescriptionForClass(
             a_class: &AnyClass,
-        ) -> Option<Id<NSScriptClassDescription>>;
+        ) -> Option<Retained<NSScriptClassDescription>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Init initWithSuiteName:className:dictionary:)]
@@ -35,22 +35,22 @@ extern_methods!(
             suite_name: &NSString,
             class_name: &NSString,
             class_declaration: Option<&NSDictionary>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other suiteName)]
-        pub unsafe fn suiteName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn suiteName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other className)]
-        pub unsafe fn className(&self) -> Option<Id<NSString>>;
+        pub unsafe fn className(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other implementationClassName)]
-        pub unsafe fn implementationClassName(&self) -> Option<Id<NSString>>;
+        pub unsafe fn implementationClassName(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other superclassDescription)]
-        pub unsafe fn superclassDescription(&self) -> Option<Id<NSScriptClassDescription>>;
+        pub unsafe fn superclassDescription(&self) -> Option<Retained<NSScriptClassDescription>>;
 
         #[method(appleEventCode)]
         pub unsafe fn appleEventCode(&self) -> FourCharCode;
@@ -74,14 +74,14 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other typeForKey:)]
-        pub unsafe fn typeForKey(&self, key: &NSString) -> Option<Id<NSString>>;
+        pub unsafe fn typeForKey(&self, key: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other classDescriptionForKey:)]
         pub unsafe fn classDescriptionForKey(
             &self,
             key: &NSString,
-        ) -> Option<Id<NSScriptClassDescription>>;
+        ) -> Option<Retained<NSScriptClassDescription>>;
 
         #[cfg(feature = "NSString")]
         #[method(appleEventCodeForKey:)]
@@ -92,11 +92,11 @@ extern_methods!(
         pub unsafe fn keyWithAppleEventCode(
             &self,
             apple_event_code: FourCharCode,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other defaultSubcontainerAttributeKey)]
-        pub unsafe fn defaultSubcontainerAttributeKey(&self) -> Option<Id<NSString>>;
+        pub unsafe fn defaultSubcontainerAttributeKey(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[method(isLocationRequiredToCreateForKey:)]
@@ -128,10 +128,10 @@ extern_methods!(
     #[cfg(feature = "NSClassDescription")]
     unsafe impl NSScriptClassDescription {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -155,7 +155,7 @@ extern_category!(
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other className)]
-        unsafe fn className(&self) -> Id<NSString>;
+        unsafe fn className(&self) -> Retained<NSString>;
     }
 
     unsafe impl NSObjectNSScriptClassDescription for NSObject {}

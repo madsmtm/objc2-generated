@@ -25,16 +25,16 @@ extern_methods!(
     #[cfg(feature = "NSMigrationStage")]
     unsafe impl NSLightweightMigrationStage {
         #[method_id(@__retain_semantics Other versionChecksums)]
-        pub unsafe fn versionChecksums(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn versionChecksums(&self) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithVersionChecksums:)]
         pub unsafe fn initWithVersionChecksums(
             this: Allocated<Self>,
             version_checksums: &NSArray<NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -43,6 +43,6 @@ extern_methods!(
     #[cfg(feature = "NSMigrationStage")]
     unsafe impl NSLightweightMigrationStage {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -33,13 +33,13 @@ extern_methods!(
             fetch: &NSExpression,
             context: &NSExpression,
             count_flag: bool,
-        ) -> Id<NSExpression>;
+        ) -> Retained<NSExpression>;
 
         #[method_id(@__retain_semantics Other requestExpression)]
-        pub unsafe fn requestExpression(&self) -> Id<NSExpression>;
+        pub unsafe fn requestExpression(&self) -> Retained<NSExpression>;
 
         #[method_id(@__retain_semantics Other contextExpression)]
-        pub unsafe fn contextExpression(&self) -> Id<NSExpression>;
+        pub unsafe fn contextExpression(&self) -> Retained<NSExpression>;
 
         #[method(isCountOnlyRequest)]
         pub unsafe fn isCountOnlyRequest(&self) -> bool;
@@ -53,10 +53,13 @@ extern_methods!(
         pub unsafe fn initWithExpressionType(
             this: Allocated<Self>,
             r#type: NSExpressionType,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -64,9 +67,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFetchRequestExpression {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

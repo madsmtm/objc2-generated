@@ -58,7 +58,7 @@ extern_methods!(
     unsafe impl DOMCharacterData {
         #[deprecated]
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Id<NSString>;
+        pub unsafe fn data(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setData:)]
@@ -73,7 +73,7 @@ extern_methods!(
             &self,
             offset: c_uint,
             length: c_uint,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method(appendData:)]
@@ -105,7 +105,7 @@ extern_methods!(
     unsafe impl DOMCharacterData {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -118,7 +118,7 @@ extern_methods!(
     ))]
     unsafe impl DOMCharacterData {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -132,7 +132,11 @@ extern_methods!(
     unsafe impl DOMCharacterData {
         #[deprecated]
         #[method_id(@__retain_semantics Other substringData::)]
-        pub unsafe fn substringData(&self, offset: c_uint, length: c_uint) -> Option<Id<NSString>>;
+        pub unsafe fn substringData(
+            &self,
+            offset: c_uint,
+            length: c_uint,
+        ) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method(insertData::)]

@@ -99,16 +99,16 @@ unsafe impl NSObjectProtocol for UICollectionLayoutListConfiguration {}
 extern_methods!(
     unsafe impl UICollectionLayoutListConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithAppearance:)]
         pub unsafe fn initWithAppearance(
             this: Allocated<Self>,
             appearance: UICollectionLayoutListAppearance,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method(appearance)]
         pub unsafe fn appearance(&self) -> UICollectionLayoutListAppearance;
@@ -121,7 +121,7 @@ extern_methods!(
 
         #[cfg(feature = "UIListSeparatorConfiguration")]
         #[method_id(@__retain_semantics Other separatorConfiguration)]
-        pub unsafe fn separatorConfiguration(&self) -> Id<UIListSeparatorConfiguration>;
+        pub unsafe fn separatorConfiguration(&self) -> Retained<UIListSeparatorConfiguration>;
 
         #[cfg(feature = "UIListSeparatorConfiguration")]
         #[method(setSeparatorConfiguration:)]
@@ -143,7 +143,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Option<Id<UIColor>>;
+        pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setBackgroundColor:)]
@@ -203,7 +203,7 @@ extern_methods!(
         pub unsafe fn sectionWithListConfiguration_layoutEnvironment(
             configuration: &UICollectionLayoutListConfiguration,
             layout_environment: &ProtocolObject<dyn NSCollectionLayoutEnvironment>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -217,6 +217,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other layoutWithListConfiguration:)]
         pub unsafe fn layoutWithListConfiguration(
             configuration: &UICollectionLayoutListConfiguration,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

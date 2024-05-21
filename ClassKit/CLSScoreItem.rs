@@ -49,7 +49,7 @@ extern_methods!(
             title: &NSString,
             score: c_double,
             max_score: c_double,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -58,9 +58,9 @@ extern_methods!(
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
     unsafe impl CLSScoreItem {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

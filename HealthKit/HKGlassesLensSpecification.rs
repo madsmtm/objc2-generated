@@ -35,19 +35,19 @@ extern_methods!(
     unsafe impl HKGlassesLensSpecification {
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other vertexDistance)]
-        pub unsafe fn vertexDistance(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn vertexDistance(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKVisionPrism")]
         #[method_id(@__retain_semantics Other prism)]
-        pub unsafe fn prism(&self) -> Option<Id<HKVisionPrism>>;
+        pub unsafe fn prism(&self) -> Option<Retained<HKVisionPrism>>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other farPupillaryDistance)]
-        pub unsafe fn farPupillaryDistance(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn farPupillaryDistance(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other nearPupillaryDistance)]
-        pub unsafe fn nearPupillaryDistance(&self) -> Option<Id<HKQuantity>>;
+        pub unsafe fn nearPupillaryDistance(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(all(feature = "HKQuantity", feature = "HKVisionPrism"))]
         #[method_id(@__retain_semantics Init initWithSphere:cylinder:axis:addPower:vertexDistance:prism:farPupillaryDistance:nearPupillaryDistance:)]
@@ -61,12 +61,12 @@ extern_methods!(
             prism: Option<&HKVisionPrism>,
             far_pupillary_distance: Option<&HKQuantity>,
             near_pupillary_distance: Option<&HKQuantity>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -26,13 +26,13 @@ unsafe impl NSSecureCoding for CNContactRelation {}
 extern_methods!(
     unsafe impl CNContactRelation {
         #[method_id(@__retain_semantics Other contactRelationWithName:)]
-        pub unsafe fn contactRelationWithName(name: &NSString) -> Id<Self>;
+        pub unsafe fn contactRelationWithName(name: &NSString) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithName:)]
-        pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Id<Self>;
+        pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
     }
 );
 
@@ -40,10 +40,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNContactRelation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

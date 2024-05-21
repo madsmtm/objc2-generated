@@ -25,20 +25,20 @@ extern_methods!(
     unsafe impl MXDiagnostic {
         #[cfg(feature = "MXMetaData")]
         #[method_id(@__retain_semantics Other metaData)]
-        pub unsafe fn metaData(&self) -> Id<MXMetaData>;
+        pub unsafe fn metaData(&self) -> Retained<MXMetaData>;
 
         #[method_id(@__retain_semantics Other applicationVersion)]
-        pub unsafe fn applicationVersion(&self) -> Id<NSString>;
+        pub unsafe fn applicationVersion(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MXSignpostRecord")]
         #[method_id(@__retain_semantics Other signpostData)]
-        pub unsafe fn signpostData(&self) -> Option<Id<NSArray<MXSignpostRecord>>>;
+        pub unsafe fn signpostData(&self) -> Option<Retained<NSArray<MXSignpostRecord>>>;
 
         #[method_id(@__retain_semantics Other JSONRepresentation)]
-        pub unsafe fn JSONRepresentation(&self) -> Id<NSData>;
+        pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
-        pub unsafe fn dictionaryRepresentation(&self) -> Id<NSDictionary>;
+        pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }
 );
 
@@ -46,9 +46,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXDiagnostic {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

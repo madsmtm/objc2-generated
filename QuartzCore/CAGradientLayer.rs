@@ -37,13 +37,13 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAGradientLayer {
         #[method_id(@__retain_semantics Other colors)]
-        pub unsafe fn colors(&self) -> Option<Id<NSArray>>;
+        pub unsafe fn colors(&self) -> Option<Retained<NSArray>>;
 
         #[method(setColors:)]
         pub unsafe fn setColors(&self, colors: Option<&NSArray>);
 
         #[method_id(@__retain_semantics Other locations)]
-        pub unsafe fn locations(&self) -> Option<Id<NSArray<NSNumber>>>;
+        pub unsafe fn locations(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[method(setLocations:)]
         pub unsafe fn setLocations(&self, locations: Option<&NSArray<NSNumber>>);
@@ -61,7 +61,7 @@ extern_methods!(
         pub unsafe fn setEndPoint(&self, end_point: CGPoint);
 
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<CAGradientLayerType>;
+        pub unsafe fn r#type(&self) -> Retained<CAGradientLayerType>;
 
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: &CAGradientLayerType);
@@ -73,13 +73,13 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAGradientLayer {
         #[method_id(@__retain_semantics Other layer)]
-        pub unsafe fn layer() -> Id<Self>;
+        pub unsafe fn layer() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithLayer:)]
-        pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Id<Self>;
+        pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
 );
 
@@ -88,7 +88,7 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAGradientLayer {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

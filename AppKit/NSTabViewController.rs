@@ -93,7 +93,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSTabView", feature = "NSView"))]
         #[method_id(@__retain_semantics Other tabView)]
-        pub unsafe fn tabView(&self) -> Id<NSTabView>;
+        pub unsafe fn tabView(&self) -> Retained<NSTabView>;
 
         #[cfg(all(feature = "NSTabView", feature = "NSView"))]
         #[method(setTabView:)]
@@ -119,7 +119,7 @@ extern_methods!(
 
         #[cfg(feature = "NSTabViewItem")]
         #[method_id(@__retain_semantics Other tabViewItems)]
-        pub unsafe fn tabViewItems(&self) -> Id<NSArray<NSTabViewItem>>;
+        pub unsafe fn tabViewItems(&self) -> Retained<NSArray<NSTabViewItem>>;
 
         #[cfg(feature = "NSTabViewItem")]
         #[method(setTabViewItems:)]
@@ -152,7 +152,7 @@ extern_methods!(
         pub unsafe fn tabViewItemForViewController(
             &self,
             view_controller: &NSViewController,
-        ) -> Option<Id<NSTabViewItem>>;
+        ) -> Option<Retained<NSTabViewItem>>;
 
         #[method(viewDidLoad)]
         pub unsafe fn viewDidLoad(&self);
@@ -188,28 +188,28 @@ extern_methods!(
             toolbar: &NSToolbar,
             item_identifier: &NSToolbarItemIdentifier,
             flag: bool,
-        ) -> Option<Id<NSToolbarItem>>;
+        ) -> Option<Retained<NSToolbarItem>>;
 
         #[cfg(feature = "NSToolbar")]
         #[method_id(@__retain_semantics Other toolbarDefaultItemIdentifiers:)]
         pub unsafe fn toolbarDefaultItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
-        ) -> Id<NSArray<NSToolbarItemIdentifier>>;
+        ) -> Retained<NSArray<NSToolbarItemIdentifier>>;
 
         #[cfg(feature = "NSToolbar")]
         #[method_id(@__retain_semantics Other toolbarAllowedItemIdentifiers:)]
         pub unsafe fn toolbarAllowedItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
-        ) -> Id<NSArray<NSToolbarItemIdentifier>>;
+        ) -> Retained<NSArray<NSToolbarItemIdentifier>>;
 
         #[cfg(feature = "NSToolbar")]
         #[method_id(@__retain_semantics Other toolbarSelectableItemIdentifiers:)]
         pub unsafe fn toolbarSelectableItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
-        ) -> Id<NSArray<NSToolbarItemIdentifier>>;
+        ) -> Retained<NSArray<NSToolbarItemIdentifier>>;
     }
 );
 
@@ -223,10 +223,13 @@ extern_methods!(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -235,7 +238,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSTabViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -244,6 +247,6 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSTabViewController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

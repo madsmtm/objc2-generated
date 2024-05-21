@@ -47,22 +47,22 @@ unsafe impl NSSecureCoding for CLMonitoringEvent {}
 extern_methods!(
     unsafe impl CLMonitoringEvent {
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "CLCondition")]
         #[method_id(@__retain_semantics Other refinement)]
-        pub unsafe fn refinement(&self) -> Option<Id<CLCondition>>;
+        pub unsafe fn refinement(&self) -> Option<Retained<CLCondition>>;
 
         #[method(state)]
         pub unsafe fn state(&self) -> CLMonitoringState;
 
         #[method_id(@__retain_semantics Other date)]
-        pub unsafe fn date(&self) -> Id<NSDate>;
+        pub unsafe fn date(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

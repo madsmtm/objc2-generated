@@ -24,11 +24,11 @@ extern_methods!(
     unsafe impl MLCMatMulDescriptor {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated]
         #[method(alpha)]
@@ -48,10 +48,10 @@ extern_methods!(
             alpha: c_float,
             transposes_x: bool,
             transposes_y: bool,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptor)]
-        pub unsafe fn descriptor() -> Id<Self>;
+        pub unsafe fn descriptor() -> Retained<Self>;
     }
 );

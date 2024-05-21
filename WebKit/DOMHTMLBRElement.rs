@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl DOMHTMLBRElement {
         #[deprecated]
         #[method_id(@__retain_semantics Other clear)]
-        pub unsafe fn clear(&self) -> Id<NSString>;
+        pub unsafe fn clear(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setClear:)]
@@ -90,7 +90,7 @@ extern_methods!(
     unsafe impl DOMHTMLBRElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -105,6 +105,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLBRElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

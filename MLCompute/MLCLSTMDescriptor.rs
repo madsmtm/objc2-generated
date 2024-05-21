@@ -24,11 +24,11 @@ extern_methods!(
     unsafe impl MLCLSTMDescriptor {
         #[deprecated]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated]
         #[method(inputSize)]
@@ -73,7 +73,7 @@ extern_methods!(
             input_size: NSUInteger,
             hidden_size: NSUInteger,
             layer_count: NSUInteger,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithInputSize:hiddenSize:layerCount:usesBiases:isBidirectional:dropout:)]
@@ -84,7 +84,7 @@ extern_methods!(
             uses_biases: bool,
             is_bidirectional: bool,
             dropout: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithInputSize:hiddenSize:layerCount:usesBiases:batchFirst:isBidirectional:dropout:)]
@@ -96,7 +96,7 @@ extern_methods!(
             batch_first: bool,
             is_bidirectional: bool,
             dropout: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithInputSize:hiddenSize:layerCount:usesBiases:batchFirst:isBidirectional:returnsSequences:dropout:)]
@@ -109,7 +109,7 @@ extern_methods!(
             is_bidirectional: bool,
             returns_sequences: bool,
             dropout: c_float,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
@@ -124,6 +124,6 @@ extern_methods!(
             returns_sequences: bool,
             dropout: c_float,
             result_mode: MLCLSTMResultMode,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

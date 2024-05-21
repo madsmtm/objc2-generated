@@ -42,7 +42,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl GKDialogController {
         #[method_id(@__retain_semantics Other parentWindow)]
-        pub unsafe fn parentWindow(&self) -> Option<Id<NSWindow>>;
+        pub unsafe fn parentWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[method(setParentWindow:)]
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
@@ -61,10 +61,13 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl GKDialogController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -74,7 +77,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl GKDialogController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -84,6 +87,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl GKDialogController {
         #[method_id(@__retain_semantics Other sharedDialogController)]
-        pub unsafe fn sharedDialogController(mtm: MainThreadMarker) -> Id<GKDialogController>;
+        pub unsafe fn sharedDialogController(mtm: MainThreadMarker)
+            -> Retained<GKDialogController>;
     }
 );

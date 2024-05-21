@@ -45,14 +45,14 @@ extern_methods!(
         pub unsafe fn initWithCoordinate(
             this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoordinate:addressDictionary:)]
         pub unsafe fn initWithCoordinate_addressDictionary(
             this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
             address_dictionary: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-contacts")]
         #[cfg(not(target_os = "tvos"))]
@@ -61,10 +61,10 @@ extern_methods!(
             this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
             postal_address: &CNPostalAddress,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other countryCode)]
-        pub unsafe fn countryCode(&self) -> Option<Id<NSString>>;
+        pub unsafe fn countryCode(&self) -> Option<Retained<NSString>>;
     }
 );
 
@@ -73,13 +73,15 @@ extern_methods!(
     #[cfg(feature = "objc2-core-location")]
     unsafe impl MKPlacemark {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithPlacemark:)]
-        pub unsafe fn initWithPlacemark(this: Allocated<Self>, placemark: &CLPlacemark)
-            -> Id<Self>;
+        pub unsafe fn initWithPlacemark(
+            this: Allocated<Self>,
+            placemark: &CLPlacemark,
+        ) -> Retained<Self>;
     }
 );

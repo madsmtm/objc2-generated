@@ -55,7 +55,7 @@ extern_methods!(
             this: Allocated<Self>,
             response: &NSURLResponse,
             data: &NSData,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "NSData",
@@ -69,19 +69,19 @@ extern_methods!(
             data: &NSData,
             user_info: Option<&NSDictionary>,
             storage_policy: NSURLCacheStoragePolicy,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSURLResponse")]
         #[method_id(@__retain_semantics Other response)]
-        pub unsafe fn response(&self) -> Id<NSURLResponse>;
+        pub unsafe fn response(&self) -> Retained<NSURLResponse>;
 
         #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Id<NSData>;
+        pub unsafe fn data(&self) -> Retained<NSData>;
 
         #[cfg(feature = "NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
+        pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         #[method(storagePolicy)]
         pub unsafe fn storagePolicy(&self) -> NSURLCacheStoragePolicy;
@@ -92,10 +92,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCachedURLResponse {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -118,7 +118,7 @@ unsafe impl NSObjectProtocol for NSURLCache {}
 extern_methods!(
     unsafe impl NSURLCache {
         #[method_id(@__retain_semantics Other sharedURLCache)]
-        pub unsafe fn sharedURLCache() -> Id<NSURLCache>;
+        pub unsafe fn sharedURLCache() -> Retained<NSURLCache>;
 
         #[method(setSharedURLCache:)]
         pub unsafe fn setSharedURLCache(shared_url_cache: &NSURLCache);
@@ -131,7 +131,7 @@ extern_methods!(
             memory_capacity: NSUInteger,
             disk_capacity: NSUInteger,
             path: Option<&NSString>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Init initWithMemoryCapacity:diskCapacity:directoryURL:)]
@@ -140,14 +140,14 @@ extern_methods!(
             memory_capacity: NSUInteger,
             disk_capacity: NSUInteger,
             directory_url: Option<&NSURL>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other cachedResponseForRequest:)]
         pub unsafe fn cachedResponseForRequest(
             &self,
             request: &NSURLRequest,
-        ) -> Option<Id<NSCachedURLResponse>>;
+        ) -> Option<Retained<NSCachedURLResponse>>;
 
         #[cfg(feature = "NSURLRequest")]
         #[method(storeCachedResponse:forRequest:)]
@@ -192,10 +192,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLCache {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

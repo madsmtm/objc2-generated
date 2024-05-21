@@ -25,17 +25,18 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKVerifiableClinicalRecordQuery {
         #[method_id(@__retain_semantics Other recordTypes)]
-        pub unsafe fn recordTypes(&self) -> Id<NSArray<NSString>>;
+        pub unsafe fn recordTypes(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "HKVerifiableClinicalRecord")]
         #[method_id(@__retain_semantics Other sourceTypes)]
-        pub unsafe fn sourceTypes(&self) -> Id<NSArray<HKVerifiableClinicalRecordSourceType>>;
+        pub unsafe fn sourceTypes(&self)
+            -> Retained<NSArray<HKVerifiableClinicalRecordSourceType>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(
             feature = "HKObject",
@@ -55,7 +56,7 @@ extern_methods!(
                     *mut NSError,
                 ),
             >,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "HKObject",
@@ -76,6 +77,6 @@ extern_methods!(
                     *mut NSError,
                 ),
             >,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

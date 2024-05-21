@@ -27,16 +27,16 @@ extern_methods!(
     unsafe impl HKQueryDescriptor {
         #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other sampleType)]
-        pub unsafe fn sampleType(&self) -> Id<HKSampleType>;
+        pub unsafe fn sampleType(&self) -> Retained<HKSampleType>;
 
         #[method_id(@__retain_semantics Other predicate)]
-        pub unsafe fn predicate(&self) -> Option<Id<NSPredicate>>;
+        pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Init initWithSampleType:predicate:)]
@@ -44,6 +44,6 @@ extern_methods!(
             this: Allocated<Self>,
             sample_type: &HKSampleType,
             predicate: Option<&NSPredicate>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

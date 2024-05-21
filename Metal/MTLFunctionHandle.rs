@@ -12,11 +12,11 @@ extern_protocol!(
         fn functionType(&self) -> MTLFunctionType;
 
         #[method_id(@__retain_semantics Other name)]
-        fn name(&self) -> Id<NSString>;
+        fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
-        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
     }
 
     unsafe impl ProtocolType for dyn MTLFunctionHandle {}

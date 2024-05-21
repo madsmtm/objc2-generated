@@ -25,11 +25,13 @@ extern_methods!(
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHAssetCollectionChangeRequest {
         #[method_id(@__retain_semantics Other creationRequestForAssetCollectionWithTitle:)]
-        pub unsafe fn creationRequestForAssetCollectionWithTitle(title: &NSString) -> Id<Self>;
+        pub unsafe fn creationRequestForAssetCollectionWithTitle(
+            title: &NSString,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "PHObject")]
         #[method_id(@__retain_semantics Other placeholderForCreatedAssetCollection)]
-        pub unsafe fn placeholderForCreatedAssetCollection(&self) -> Id<PHObjectPlaceholder>;
+        pub unsafe fn placeholderForCreatedAssetCollection(&self) -> Retained<PHObjectPlaceholder>;
 
         #[method(deleteAssetCollections:)]
         pub unsafe fn deleteAssetCollections(
@@ -40,7 +42,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other changeRequestForAssetCollection:)]
         pub unsafe fn changeRequestForAssetCollection(
             asset_collection: &PHAssetCollection,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(
             feature = "PHAsset",
@@ -52,10 +54,10 @@ extern_methods!(
         pub unsafe fn changeRequestForAssetCollection_assets(
             asset_collection: &PHAssetCollection,
             assets: &PHFetchResult<PHAsset>,
-        ) -> Option<Id<Self>>;
+        ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -97,9 +99,9 @@ extern_methods!(
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHAssetCollectionChangeRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

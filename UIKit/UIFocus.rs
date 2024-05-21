@@ -59,16 +59,17 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other preferredFocusEnvironments)]
         unsafe fn preferredFocusEnvironments(
             &self,
-        ) -> Id<NSArray<ProtocolObject<dyn UIFocusEnvironment>>>;
+        ) -> Retained<NSArray<ProtocolObject<dyn UIFocusEnvironment>>>;
 
         #[method_id(@__retain_semantics Other parentFocusEnvironment)]
         unsafe fn parentFocusEnvironment(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UIFocusEnvironment>>>;
+        ) -> Option<Retained<ProtocolObject<dyn UIFocusEnvironment>>>;
 
         #[method_id(@__retain_semantics Other focusItemContainer)]
-        unsafe fn focusItemContainer(&self)
-            -> Option<Id<ProtocolObject<dyn UIFocusItemContainer>>>;
+        unsafe fn focusItemContainer(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn UIFocusItemContainer>>>;
 
         #[method(setNeedsFocusUpdate)]
         unsafe fn setNeedsFocusUpdate(&self);
@@ -92,17 +93,17 @@ extern_protocol!(
         unsafe fn soundIdentifierForFocusUpdateInContext(
             &self,
             context: &UIFocusUpdateContext,
-        ) -> Option<Id<UIFocusSoundIdentifier>>;
+        ) -> Option<Retained<UIFocusSoundIdentifier>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other preferredFocusedView)]
-        unsafe fn preferredFocusedView(&self) -> Option<Id<UIView>>;
+        unsafe fn preferredFocusedView(&self) -> Option<Retained<UIView>>;
 
         #[optional]
         #[method_id(@__retain_semantics Other focusGroupIdentifier)]
-        unsafe fn focusGroupIdentifier(&self) -> Option<Id<NSString>>;
+        unsafe fn focusGroupIdentifier(&self) -> Option<Retained<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn UIFocusEnvironment {}
@@ -119,7 +120,7 @@ extern_protocol!(
         #[cfg(feature = "UIFocusEffect")]
         #[optional]
         #[method_id(@__retain_semantics Other focusEffect)]
-        unsafe fn focusEffect(&self) -> Option<Id<UIFocusEffect>>;
+        unsafe fn focusEffect(&self) -> Option<Retained<UIFocusEffect>>;
 
         #[optional]
         #[method(focusGroupPriority)]
@@ -142,13 +143,13 @@ extern_protocol!(
     pub unsafe trait UIFocusItemContainer: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "UIView")]
         #[method_id(@__retain_semantics Other coordinateSpace)]
-        unsafe fn coordinateSpace(&self) -> Id<ProtocolObject<dyn UICoordinateSpace>>;
+        unsafe fn coordinateSpace(&self) -> Retained<ProtocolObject<dyn UICoordinateSpace>>;
 
         #[method_id(@__retain_semantics Other focusItemsInRect:)]
         unsafe fn focusItemsInRect(
             &self,
             rect: CGRect,
-        ) -> Id<NSArray<ProtocolObject<dyn UIFocusItem>>>;
+        ) -> Retained<NSArray<ProtocolObject<dyn UIFocusItem>>>;
     }
 
     unsafe impl ProtocolType for dyn UIFocusItemContainer {}
@@ -189,18 +190,20 @@ unsafe impl NSObjectProtocol for UIFocusUpdateContext {}
 extern_methods!(
     unsafe impl UIFocusUpdateContext {
         #[method_id(@__retain_semantics Other previouslyFocusedItem)]
-        pub unsafe fn previouslyFocusedItem(&self) -> Option<Id<ProtocolObject<dyn UIFocusItem>>>;
+        pub unsafe fn previouslyFocusedItem(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn UIFocusItem>>>;
 
         #[method_id(@__retain_semantics Other nextFocusedItem)]
-        pub unsafe fn nextFocusedItem(&self) -> Option<Id<ProtocolObject<dyn UIFocusItem>>>;
+        pub unsafe fn nextFocusedItem(&self) -> Option<Retained<ProtocolObject<dyn UIFocusItem>>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other previouslyFocusedView)]
-        pub unsafe fn previouslyFocusedView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn previouslyFocusedView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other nextFocusedView)]
-        pub unsafe fn nextFocusedView(&self) -> Option<Id<UIView>>;
+        pub unsafe fn nextFocusedView(&self) -> Option<Retained<UIView>>;
 
         #[method(focusHeading)]
         pub unsafe fn focusHeading(&self) -> UIFocusHeading;
@@ -211,10 +214,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIFocusUpdateContext {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

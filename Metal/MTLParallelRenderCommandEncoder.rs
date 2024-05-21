@@ -11,7 +11,9 @@ extern_protocol!(
     {
         #[cfg(feature = "MTLRenderCommandEncoder")]
         #[method_id(@__retain_semantics Other renderCommandEncoder)]
-        fn renderCommandEncoder(&self) -> Option<Id<ProtocolObject<dyn MTLRenderCommandEncoder>>>;
+        fn renderCommandEncoder(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn MTLRenderCommandEncoder>>>;
 
         #[cfg(feature = "MTLRenderPass")]
         #[method(setColorStoreAction:atIndex:)]

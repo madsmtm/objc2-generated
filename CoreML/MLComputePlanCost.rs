@@ -23,10 +23,10 @@ unsafe impl NSObjectProtocol for MLComputePlanCost {}
 extern_methods!(
     unsafe impl MLComputePlanCost {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method(weight)]
         pub unsafe fn weight(&self) -> c_double;

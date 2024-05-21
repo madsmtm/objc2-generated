@@ -28,7 +28,7 @@ extern_methods!(
         pub unsafe fn startTunnelWithOptions_andReturnError(
             &self,
             options: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(stopTunnel)]
         pub unsafe fn stopTunnel(&self);
@@ -38,7 +38,7 @@ extern_methods!(
         pub unsafe fn sendProviderMessage_returnError_responseHandler(
             &self,
             message_data: &NSData,
-            error: Option<&mut Option<Id<NSError>>>,
+            error: Option<&mut Option<Retained<NSError>>>,
             response_handler: Option<&block2::Block<dyn Fn(*mut NSData)>>,
         ) -> bool;
     }
@@ -49,9 +49,9 @@ extern_methods!(
     #[cfg(feature = "NEVPNConnection")]
     unsafe impl NETunnelProviderSession {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

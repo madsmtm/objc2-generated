@@ -22,10 +22,10 @@ unsafe impl NSObjectProtocol for CBPeer {}
 extern_methods!(
     unsafe impl CBPeer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSUUID>;
+        pub unsafe fn identifier(&self) -> Retained<NSUUID>;
     }
 );
 
@@ -33,6 +33,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CBPeer {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

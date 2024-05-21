@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl DOMHTMLIFrameElement {
         #[deprecated]
         #[method_id(@__retain_semantics Other align)]
-        pub unsafe fn align(&self) -> Id<NSString>;
+        pub unsafe fn align(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setAlign:)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other frameBorder)]
-        pub unsafe fn frameBorder(&self) -> Id<NSString>;
+        pub unsafe fn frameBorder(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setFrameBorder:)]
@@ -86,7 +86,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other height)]
-        pub unsafe fn height(&self) -> Id<NSString>;
+        pub unsafe fn height(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setHeight:)]
@@ -94,7 +94,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other longDesc)]
-        pub unsafe fn longDesc(&self) -> Id<NSString>;
+        pub unsafe fn longDesc(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setLongDesc:)]
@@ -102,7 +102,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other marginHeight)]
-        pub unsafe fn marginHeight(&self) -> Id<NSString>;
+        pub unsafe fn marginHeight(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setMarginHeight:)]
@@ -110,7 +110,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other marginWidth)]
-        pub unsafe fn marginWidth(&self) -> Id<NSString>;
+        pub unsafe fn marginWidth(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setMarginWidth:)]
@@ -118,7 +118,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString>;
+        pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setName:)]
@@ -126,7 +126,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other scrolling)]
-        pub unsafe fn scrolling(&self) -> Id<NSString>;
+        pub unsafe fn scrolling(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setScrolling:)]
@@ -134,7 +134,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other src)]
-        pub unsafe fn src(&self) -> Id<NSString>;
+        pub unsafe fn src(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setSrc:)]
@@ -142,7 +142,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other width)]
-        pub unsafe fn width(&self) -> Id<NSString>;
+        pub unsafe fn width(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(setWidth:)]
@@ -151,11 +151,11 @@ extern_methods!(
         #[cfg(feature = "DOMDocument")]
         #[deprecated]
         #[method_id(@__retain_semantics Other contentDocument)]
-        pub unsafe fn contentDocument(&self) -> Option<Id<DOMDocument>>;
+        pub unsafe fn contentDocument(&self) -> Option<Retained<DOMDocument>>;
 
         #[cfg(feature = "DOMAbstractView")]
         #[method_id(@__retain_semantics Other contentWindow)]
-        pub unsafe fn contentWindow(&self) -> Option<Id<DOMAbstractView>>;
+        pub unsafe fn contentWindow(&self) -> Option<Retained<DOMAbstractView>>;
     }
 );
 
@@ -171,7 +171,7 @@ extern_methods!(
     unsafe impl DOMHTMLIFrameElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -186,6 +186,6 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLIFrameElement {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -26,13 +26,13 @@ extern_methods!(
     unsafe impl HKCorrelationQuery {
         #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other correlationType)]
-        pub unsafe fn correlationType(&self) -> Id<HKCorrelationType>;
+        pub unsafe fn correlationType(&self) -> Retained<HKCorrelationType>;
 
         #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other samplePredicates)]
         pub unsafe fn samplePredicates(
             &self,
-        ) -> Option<Id<NSDictionary<HKSampleType, NSPredicate>>>;
+        ) -> Option<Retained<NSDictionary<HKSampleType, NSPredicate>>>;
 
         #[cfg(all(
             feature = "HKCorrelation",
@@ -50,7 +50,7 @@ extern_methods!(
             completion: &block2::Block<
                 dyn Fn(NonNull<HKCorrelationQuery>, *mut NSArray<HKCorrelation>, *mut NSError),
             >,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -59,7 +59,7 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKCorrelationQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -68,6 +68,6 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKCorrelationQuery {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

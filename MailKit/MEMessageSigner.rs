@@ -25,19 +25,19 @@ extern_methods!(
     unsafe impl MEMessageSigner {
         #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Other emailAddresses)]
-        pub unsafe fn emailAddresses(&self) -> Id<NSArray<MEEmailAddress>>;
+        pub unsafe fn emailAddresses(&self) -> Retained<NSArray<MEEmailAddress>>;
 
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Id<NSString>;
+        pub unsafe fn label(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other context)]
-        pub unsafe fn context(&self) -> Id<NSData>;
+        pub unsafe fn context(&self) -> Retained<NSData>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Init initWithEmailAddresses:signatureLabel:context:)]
@@ -46,6 +46,6 @@ extern_methods!(
             email_addresses: &NSArray<MEEmailAddress>,
             label: &NSString,
             context: Option<&NSData>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );

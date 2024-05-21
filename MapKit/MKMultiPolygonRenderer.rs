@@ -28,11 +28,11 @@ extern_methods!(
         pub unsafe fn initWithMultiPolygon(
             this: Allocated<Self>,
             multi_polygon: &MKMultiPolygon,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKMultiPolygon", feature = "MKShape"))]
         #[method_id(@__retain_semantics Other multiPolygon)]
-        pub unsafe fn multiPolygon(&self) -> Id<MKMultiPolygon>;
+        pub unsafe fn multiPolygon(&self) -> Retained<MKMultiPolygon>;
     }
 );
 
@@ -45,7 +45,7 @@ extern_methods!(
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -54,9 +54,9 @@ extern_methods!(
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKMultiPolygonRenderer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

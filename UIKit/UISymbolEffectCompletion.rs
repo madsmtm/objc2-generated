@@ -29,20 +29,20 @@ extern_methods!(
         pub unsafe fn isFinished(&self) -> bool;
 
         #[method_id(@__retain_semantics Other sender)]
-        pub unsafe fn sender(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn sender(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "objc2-symbols")]
         #[method_id(@__retain_semantics Other effect)]
-        pub unsafe fn effect(&self) -> Option<Id<NSSymbolEffect>>;
+        pub unsafe fn effect(&self) -> Option<Retained<NSSymbolEffect>>;
 
         #[cfg(feature = "objc2-symbols")]
         #[method_id(@__retain_semantics Other contentTransition)]
-        pub unsafe fn contentTransition(&self) -> Option<Id<NSSymbolContentTransition>>;
+        pub unsafe fn contentTransition(&self) -> Option<Retained<NSSymbolContentTransition>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

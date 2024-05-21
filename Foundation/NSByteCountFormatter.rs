@@ -85,29 +85,32 @@ extern_methods!(
         pub unsafe fn stringFromByteCount_countStyle(
             byte_count: c_longlong,
             count_style: NSByteCountFormatterCountStyle,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringFromByteCount:)]
-        pub unsafe fn stringFromByteCount(&self, byte_count: c_longlong) -> Id<NSString>;
+        pub unsafe fn stringFromByteCount(&self, byte_count: c_longlong) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSMeasurement", feature = "NSString", feature = "NSUnit"))]
         #[method_id(@__retain_semantics Other stringFromMeasurement:countStyle:)]
         pub unsafe fn stringFromMeasurement_countStyle(
             measurement: &NSMeasurement<NSUnitInformationStorage>,
             count_style: NSByteCountFormatterCountStyle,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSMeasurement", feature = "NSString", feature = "NSUnit"))]
         #[method_id(@__retain_semantics Other stringFromMeasurement:)]
         pub unsafe fn stringFromMeasurement(
             &self,
             measurement: &NSMeasurement<NSUnitInformationStorage>,
-        ) -> Id<NSString>;
+        ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringForObjectValue:)]
-        pub unsafe fn stringForObjectValue(&self, obj: Option<&AnyObject>) -> Option<Id<NSString>>;
+        pub unsafe fn stringForObjectValue(
+            &self,
+            obj: Option<&AnyObject>,
+        ) -> Option<Retained<NSString>>;
 
         #[method(allowedUnits)]
         pub unsafe fn allowedUnits(&self) -> NSByteCountFormatterUnits;
@@ -170,9 +173,9 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSByteCountFormatter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

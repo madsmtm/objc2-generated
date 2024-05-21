@@ -47,21 +47,21 @@ extern_methods!(
     unsafe impl OSAScriptController {
         #[cfg(feature = "OSAScriptView")]
         #[method_id(@__retain_semantics Other scriptView)]
-        pub unsafe fn scriptView(&self) -> Option<Id<OSAScriptView>>;
+        pub unsafe fn scriptView(&self) -> Option<Retained<OSAScriptView>>;
 
         #[cfg(feature = "OSAScriptView")]
         #[method(setScriptView:)]
         pub unsafe fn setScriptView(&self, script_view: Option<&OSAScriptView>);
 
         #[method_id(@__retain_semantics Other resultView)]
-        pub unsafe fn resultView(&self) -> Option<Id<NSTextView>>;
+        pub unsafe fn resultView(&self) -> Option<Retained<NSTextView>>;
 
         #[method(setResultView:)]
         pub unsafe fn setResultView(&self, result_view: Option<&NSTextView>);
 
         #[cfg(feature = "OSAScript")]
         #[method_id(@__retain_semantics Other script)]
-        pub unsafe fn script(&self) -> Option<Id<OSAScript>>;
+        pub unsafe fn script(&self) -> Option<Retained<OSAScript>>;
 
         #[cfg(feature = "OSAScript")]
         #[method(setScript:)]
@@ -69,7 +69,7 @@ extern_methods!(
 
         #[cfg(feature = "OSALanguage")]
         #[method_id(@__retain_semantics Other language)]
-        pub unsafe fn language(&self) -> Option<Id<OSALanguage>>;
+        pub unsafe fn language(&self) -> Option<Retained<OSALanguage>>;
 
         #[cfg(feature = "OSALanguage")]
         #[method(setLanguage:)]
@@ -99,10 +99,13 @@ extern_methods!(
     /// Methods declared on superclass `NSController`
     unsafe impl OSAScriptController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(
+            this: Allocated<Self>,
+            coder: &NSCoder,
+        ) -> Option<Retained<Self>>;
     }
 );
 
@@ -110,6 +113,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSAScriptController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

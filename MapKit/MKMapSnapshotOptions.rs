@@ -28,7 +28,7 @@ extern_methods!(
     unsafe impl MKMapSnapshotOptions {
         #[cfg(feature = "MKMapConfiguration")]
         #[method_id(@__retain_semantics Other preferredConfiguration)]
-        pub unsafe fn preferredConfiguration(&self) -> Id<MKMapConfiguration>;
+        pub unsafe fn preferredConfiguration(&self) -> Retained<MKMapConfiguration>;
 
         #[cfg(feature = "MKMapConfiguration")]
         #[method(setPreferredConfiguration:)]
@@ -39,7 +39,7 @@ extern_methods!(
 
         #[cfg(feature = "MKMapCamera")]
         #[method_id(@__retain_semantics Other camera)]
-        pub unsafe fn camera(&self) -> Id<MKMapCamera>;
+        pub unsafe fn camera(&self) -> Retained<MKMapCamera>;
 
         #[cfg(feature = "MKMapCamera")]
         #[method(setCamera:)]
@@ -74,7 +74,7 @@ extern_methods!(
         #[cfg(feature = "MKPointOfInterestFilter")]
         #[deprecated = "Use preferredConfiguration"]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
-        pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
+        pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         #[deprecated = "Use preferredConfiguration"]
@@ -109,7 +109,7 @@ extern_methods!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other appearance)]
-        pub unsafe fn appearance(&self) -> Option<Id<NSAppearance>>;
+        pub unsafe fn appearance(&self) -> Option<Retained<NSAppearance>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
@@ -122,9 +122,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKMapSnapshotOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

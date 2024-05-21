@@ -29,10 +29,10 @@ unsafe impl VNRequestRevisionProviding for VNFaceLandmarkRegion {}
 extern_methods!(
     unsafe impl VNFaceLandmarkRegion {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(pointCount)]
         pub unsafe fn pointCount(&self) -> NSUInteger;
@@ -70,7 +70,7 @@ extern_methods!(
         pub unsafe fn pointsInImageOfSize(&self, image_size: CGSize) -> NonNull<CGPoint>;
 
         #[method_id(@__retain_semantics Other precisionEstimatesPerPoint)]
-        pub unsafe fn precisionEstimatesPerPoint(&self) -> Option<Id<NSArray<NSNumber>>>;
+        pub unsafe fn precisionEstimatesPerPoint(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[cfg(feature = "VNTypes")]
         #[method(pointsClassification)]
@@ -82,10 +82,10 @@ extern_methods!(
     /// Methods declared on superclass `VNFaceLandmarkRegion`
     unsafe impl VNFaceLandmarkRegion2D {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -113,7 +113,7 @@ unsafe impl VNRequestRevisionProviding for VNFaceLandmarks {}
 extern_methods!(
     unsafe impl VNFaceLandmarks {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VNTypes")]
         #[method(confidence)]
@@ -125,7 +125,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNFaceLandmarks {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -154,43 +154,43 @@ unsafe impl VNRequestRevisionProviding for VNFaceLandmarks2D {}
 extern_methods!(
     unsafe impl VNFaceLandmarks2D {
         #[method_id(@__retain_semantics Other allPoints)]
-        pub unsafe fn allPoints(&self) -> Option<Id<VNFaceLandmarkRegion2D>>;
+        pub unsafe fn allPoints(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         #[method_id(@__retain_semantics Other faceContour)]
-        pub unsafe fn faceContour(&self) -> Option<Id<VNFaceLandmarkRegion2D>>;
+        pub unsafe fn faceContour(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         #[method_id(@__retain_semantics Other leftEye)]
-        pub unsafe fn leftEye(&self) -> Option<Id<VNFaceLandmarkRegion2D>>;
+        pub unsafe fn leftEye(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         #[method_id(@__retain_semantics Other rightEye)]
-        pub unsafe fn rightEye(&self) -> Option<Id<VNFaceLandmarkRegion2D>>;
+        pub unsafe fn rightEye(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         #[method_id(@__retain_semantics Other leftEyebrow)]
-        pub unsafe fn leftEyebrow(&self) -> Option<Id<VNFaceLandmarkRegion2D>>;
+        pub unsafe fn leftEyebrow(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         #[method_id(@__retain_semantics Other rightEyebrow)]
-        pub unsafe fn rightEyebrow(&self) -> Option<Id<VNFaceLandmarkRegion2D>>;
+        pub unsafe fn rightEyebrow(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         #[method_id(@__retain_semantics Other nose)]
-        pub unsafe fn nose(&self) -> Option<Id<VNFaceLandmarkRegion2D>>;
+        pub unsafe fn nose(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         #[method_id(@__retain_semantics Other noseCrest)]
-        pub unsafe fn noseCrest(&self) -> Option<Id<VNFaceLandmarkRegion2D>>;
+        pub unsafe fn noseCrest(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         #[method_id(@__retain_semantics Other medianLine)]
-        pub unsafe fn medianLine(&self) -> Option<Id<VNFaceLandmarkRegion2D>>;
+        pub unsafe fn medianLine(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         #[method_id(@__retain_semantics Other outerLips)]
-        pub unsafe fn outerLips(&self) -> Option<Id<VNFaceLandmarkRegion2D>>;
+        pub unsafe fn outerLips(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         #[method_id(@__retain_semantics Other innerLips)]
-        pub unsafe fn innerLips(&self) -> Option<Id<VNFaceLandmarkRegion2D>>;
+        pub unsafe fn innerLips(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         #[method_id(@__retain_semantics Other leftPupil)]
-        pub unsafe fn leftPupil(&self) -> Option<Id<VNFaceLandmarkRegion2D>>;
+        pub unsafe fn leftPupil(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         #[method_id(@__retain_semantics Other rightPupil)]
-        pub unsafe fn rightPupil(&self) -> Option<Id<VNFaceLandmarkRegion2D>>;
+        pub unsafe fn rightPupil(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
     }
 );
 
@@ -198,7 +198,7 @@ extern_methods!(
     /// Methods declared on superclass `VNFaceLandmarks`
     unsafe impl VNFaceLandmarks2D {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -206,6 +206,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNFaceLandmarks2D {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

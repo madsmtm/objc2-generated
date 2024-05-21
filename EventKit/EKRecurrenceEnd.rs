@@ -26,13 +26,15 @@ unsafe impl NSSecureCoding for EKRecurrenceEnd {}
 extern_methods!(
     unsafe impl EKRecurrenceEnd {
         #[method_id(@__retain_semantics Other recurrenceEndWithEndDate:)]
-        pub unsafe fn recurrenceEndWithEndDate(end_date: &NSDate) -> Id<Self>;
+        pub unsafe fn recurrenceEndWithEndDate(end_date: &NSDate) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other recurrenceEndWithOccurrenceCount:)]
-        pub unsafe fn recurrenceEndWithOccurrenceCount(occurrence_count: NSUInteger) -> Id<Self>;
+        pub unsafe fn recurrenceEndWithOccurrenceCount(
+            occurrence_count: NSUInteger,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other endDate)]
-        pub unsafe fn endDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
         #[method(occurrenceCount)]
         pub unsafe fn occurrenceCount(&self) -> NSUInteger;
@@ -43,9 +45,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EKRecurrenceEnd {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

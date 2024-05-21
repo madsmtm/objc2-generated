@@ -116,13 +116,13 @@ unsafe impl NSObjectProtocol for NEVPNConnection {}
 extern_methods!(
     unsafe impl NEVPNConnection {
         #[method(startVPNTunnelAndReturnError:_)]
-        pub unsafe fn startVPNTunnelAndReturnError(&self) -> Result<(), Id<NSError>>;
+        pub unsafe fn startVPNTunnelAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
         #[method(startVPNTunnelWithOptions:andReturnError:_)]
         pub unsafe fn startVPNTunnelWithOptions_andReturnError(
             &self,
             options: Option<&NSDictionary<NSString, NSObject>>,
-        ) -> Result<(), Id<NSError>>;
+        ) -> Result<(), Retained<NSError>>;
 
         #[method(stopVPNTunnel)]
         pub unsafe fn stopVPNTunnel(&self);
@@ -138,11 +138,11 @@ extern_methods!(
         pub unsafe fn status(&self) -> NEVPNStatus;
 
         #[method_id(@__retain_semantics Other connectedDate)]
-        pub unsafe fn connectedDate(&self) -> Option<Id<NSDate>>;
+        pub unsafe fn connectedDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NEVPNManager")]
         #[method_id(@__retain_semantics Other manager)]
-        pub unsafe fn manager(&self) -> Id<NEVPNManager>;
+        pub unsafe fn manager(&self) -> Retained<NEVPNManager>;
     }
 );
 
@@ -150,9 +150,9 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEVPNConnection {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

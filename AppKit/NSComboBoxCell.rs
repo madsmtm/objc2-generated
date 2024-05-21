@@ -145,11 +145,12 @@ extern_methods!(
         pub unsafe fn setCompletes(&self, completes: bool);
 
         #[method_id(@__retain_semantics Other completedString:)]
-        pub unsafe fn completedString(&self, string: &NSString) -> Option<Id<NSString>>;
+        pub unsafe fn completedString(&self, string: &NSString) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other dataSource)]
-        pub unsafe fn dataSource(&self)
-            -> Option<Id<ProtocolObject<dyn NSComboBoxCellDataSource>>>;
+        pub unsafe fn dataSource(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn NSComboBoxCellDataSource>>>;
 
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
@@ -183,16 +184,16 @@ extern_methods!(
         pub unsafe fn selectItemWithObjectValue(&self, object: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other itemObjectValueAtIndex:)]
-        pub unsafe fn itemObjectValueAtIndex(&self, index: NSInteger) -> Id<AnyObject>;
+        pub unsafe fn itemObjectValueAtIndex(&self, index: NSInteger) -> Retained<AnyObject>;
 
         #[method_id(@__retain_semantics Other objectValueOfSelectedItem)]
-        pub unsafe fn objectValueOfSelectedItem(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn objectValueOfSelectedItem(&self) -> Option<Retained<AnyObject>>;
 
         #[method(indexOfItemWithObjectValue:)]
         pub unsafe fn indexOfItemWithObjectValue(&self, object: &AnyObject) -> NSInteger;
 
         #[method_id(@__retain_semantics Other objectValues)]
-        pub unsafe fn objectValues(&self) -> Id<NSArray>;
+        pub unsafe fn objectValues(&self) -> Retained<NSArray>;
     }
 );
 
@@ -205,14 +206,17 @@ extern_methods!(
     ))]
     unsafe impl NSComboBoxCell {
         #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Id<Self>;
+        pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
-        pub unsafe fn initImageCell(this: Allocated<Self>, image: Option<&NSImage>) -> Id<Self>;
+        pub unsafe fn initImageCell(
+            this: Allocated<Self>,
+            image: Option<&NSImage>,
+        ) -> Retained<Self>;
     }
 );
 
@@ -225,7 +229,7 @@ extern_methods!(
     ))]
     unsafe impl NSComboBoxCell {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -238,7 +242,7 @@ extern_methods!(
     ))]
     unsafe impl NSComboBoxCell {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -264,7 +268,7 @@ extern_protocol!(
             &self,
             combo_box_cell: &NSComboBoxCell,
             index: NSInteger,
-        ) -> Id<AnyObject>;
+        ) -> Retained<AnyObject>;
 
         #[cfg(all(
             feature = "NSActionCell",
@@ -290,7 +294,7 @@ extern_protocol!(
             &self,
             combo_box_cell: &NSComboBoxCell,
             uncompleted_string: &NSString,
-        ) -> Option<Id<NSString>>;
+        ) -> Option<Retained<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn NSComboBoxCellDataSource {}

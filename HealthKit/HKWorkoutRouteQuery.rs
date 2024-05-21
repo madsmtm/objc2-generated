@@ -41,7 +41,7 @@ extern_methods!(
             data_handler: &block2::Block<
                 dyn Fn(NonNull<HKWorkoutRouteQuery>, *mut NSArray<CLLocation>, Bool, *mut NSError),
             >,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(all(
             feature = "HKObject",
@@ -59,7 +59,7 @@ extern_methods!(
             data_handler: &block2::Block<
                 dyn Fn(NonNull<HKWorkoutRouteQuery>, *mut NSArray<CLLocation>, Bool, *mut NSError),
             >,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
     }
 );
 
@@ -68,7 +68,7 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKWorkoutRouteQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
 
@@ -77,6 +77,6 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKWorkoutRouteQuery {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );

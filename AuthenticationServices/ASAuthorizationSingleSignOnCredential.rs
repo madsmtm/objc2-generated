@@ -29,28 +29,28 @@ unsafe impl NSSecureCoding for ASAuthorizationSingleSignOnCredential {}
 extern_methods!(
     unsafe impl ASAuthorizationSingleSignOnCredential {
         #[method_id(@__retain_semantics Other state)]
-        pub unsafe fn state(&self) -> Option<Id<NSString>>;
+        pub unsafe fn state(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other accessToken)]
-        pub unsafe fn accessToken(&self) -> Option<Id<NSData>>;
+        pub unsafe fn accessToken(&self) -> Option<Retained<NSData>>;
 
         #[method_id(@__retain_semantics Other identityToken)]
-        pub unsafe fn identityToken(&self) -> Option<Id<NSData>>;
+        pub unsafe fn identityToken(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "ASAuthorization")]
         #[method_id(@__retain_semantics Other authorizedScopes)]
-        pub unsafe fn authorizedScopes(&self) -> Id<NSArray<ASAuthorizationScope>>;
+        pub unsafe fn authorizedScopes(&self) -> Retained<NSArray<ASAuthorizationScope>>;
 
         #[method_id(@__retain_semantics Other authenticatedResponse)]
-        pub unsafe fn authenticatedResponse(&self) -> Option<Id<NSHTTPURLResponse>>;
+        pub unsafe fn authenticatedResponse(&self) -> Option<Retained<NSHTTPURLResponse>>;
 
         #[method_id(@__retain_semantics Other privateKeys)]
-        pub unsafe fn privateKeys(&self) -> Id<NSArray>;
+        pub unsafe fn privateKeys(&self) -> Retained<NSArray>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

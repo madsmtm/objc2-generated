@@ -84,18 +84,18 @@ extern_methods!(
             request: &NSURLRequest,
             cached_response: Option<&NSCachedURLResponse>,
             client: Option<&ProtocolObject<dyn NSURLProtocolClient>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other client)]
-        pub unsafe fn client(&self) -> Option<Id<ProtocolObject<dyn NSURLProtocolClient>>>;
+        pub unsafe fn client(&self) -> Option<Retained<ProtocolObject<dyn NSURLProtocolClient>>>;
 
         #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other request)]
-        pub unsafe fn request(&self) -> Id<NSURLRequest>;
+        pub unsafe fn request(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSURLCache")]
         #[method_id(@__retain_semantics Other cachedResponse)]
-        pub unsafe fn cachedResponse(&self) -> Option<Id<NSCachedURLResponse>>;
+        pub unsafe fn cachedResponse(&self) -> Option<Retained<NSCachedURLResponse>>;
 
         #[cfg(feature = "NSURLRequest")]
         #[method(canInitWithRequest:)]
@@ -103,7 +103,7 @@ extern_methods!(
 
         #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other canonicalRequestForRequest:)]
-        pub unsafe fn canonicalRequestForRequest(request: &NSURLRequest) -> Id<NSURLRequest>;
+        pub unsafe fn canonicalRequestForRequest(request: &NSURLRequest) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSURLRequest")]
         #[method(requestIsCacheEquivalent:toRequest:)]
@@ -123,7 +123,7 @@ extern_methods!(
         pub unsafe fn propertyForKey_inRequest(
             key: &NSString,
             request: &NSURLRequest,
-        ) -> Option<Id<AnyObject>>;
+        ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSString", feature = "NSURLRequest"))]
         #[method(setProperty:forKey:inRequest:)]
@@ -149,10 +149,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLProtocol {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     }
 );
 
@@ -170,10 +170,10 @@ extern_methods!(
             task: &NSURLSessionTask,
             cached_response: Option<&NSCachedURLResponse>,
             client: Option<&ProtocolObject<dyn NSURLProtocolClient>>,
-        ) -> Id<Self>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "NSURLSession")]
         #[method_id(@__retain_semantics Other task)]
-        pub unsafe fn task(&self) -> Option<Id<NSURLSessionTask>>;
+        pub unsafe fn task(&self) -> Option<Retained<NSURLSessionTask>>;
     }
 );

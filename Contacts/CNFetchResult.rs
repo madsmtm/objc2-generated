@@ -32,15 +32,15 @@ unsafe impl<ValueType: ?Sized> NSObjectProtocol for CNFetchResult<ValueType> {}
 extern_methods!(
     unsafe impl<ValueType: Message> CNFetchResult<ValueType> {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Id<ValueType>;
+        pub unsafe fn value(&self) -> Retained<ValueType>;
 
         #[method_id(@__retain_semantics Other currentHistoryToken)]
-        pub unsafe fn currentHistoryToken(&self) -> Id<NSData>;
+        pub unsafe fn currentHistoryToken(&self) -> Retained<NSData>;
     }
 );
