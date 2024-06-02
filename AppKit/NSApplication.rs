@@ -399,7 +399,7 @@ extern_methods!(
         pub unsafe fn finishLaunching(&self);
 
         #[method(run)]
-        pub unsafe fn run(&self);
+        pub fn run(&self);
 
         #[cfg(feature = "NSWindow")]
         #[method(runModalForWindow:)]
