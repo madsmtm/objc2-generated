@@ -2,9 +2,6 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
-#[cfg(feature = "objc2-link-presentation")]
-#[cfg(not(target_os = "watchos"))]
-use objc2_link_presentation::*;
 
 use crate::*;
 
@@ -77,20 +74,6 @@ extern_protocol!(
             activity_type: Option<&UIActivityType>,
             size: CGSize,
         ) -> Option<Retained<UIImage>>;
-
-        #[cfg(all(
-            feature = "UIActivityViewController",
-            feature = "UIResponder",
-            feature = "UIViewController",
-            feature = "objc2-link-presentation"
-        ))]
-        #[cfg(not(target_os = "watchos"))]
-        #[optional]
-        #[method_id(@__retain_semantics Other activityViewControllerLinkMetadata:)]
-        unsafe fn activityViewControllerLinkMetadata(
-            &self,
-            activity_view_controller: &UIActivityViewController,
-        ) -> Option<Retained<LPLinkMetadata>>;
     }
 
     unsafe impl ProtocolType for dyn UIActivityItemSource {}

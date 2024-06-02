@@ -2,9 +2,6 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
-#[cfg(feature = "objc2-link-presentation")]
-#[cfg(not(target_os = "watchos"))]
-use objc2_link_presentation::*;
 
 use crate::*;
 
@@ -30,24 +27,6 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
-
-        #[cfg(feature = "objc2-link-presentation")]
-        #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Init initWithMetadata:)]
-        pub unsafe fn initWithMetadata(
-            this: Allocated<Self>,
-            metadata: &LPLinkMetadata,
-        ) -> Retained<Self>;
-
-        #[cfg(feature = "objc2-link-presentation")]
-        #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other metadata)]
-        pub unsafe fn metadata(&self) -> Retained<LPLinkMetadata>;
-
-        #[cfg(feature = "objc2-link-presentation")]
-        #[cfg(not(target_os = "watchos"))]
-        #[method(setMetadata:)]
-        pub unsafe fn setMetadata(&self, metadata: &LPLinkMetadata);
 
         #[cfg(all(feature = "UIDragItem", feature = "UIDragSession", feature = "block2"))]
         #[method(dragItemsProvider)]
