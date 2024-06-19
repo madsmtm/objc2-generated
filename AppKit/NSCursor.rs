@@ -11,7 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for NSCursor {
         type Super = NSObject;
-        type Mutability = Immutable;
+        type Mutability = InteriorMutable;
     }
 );
 

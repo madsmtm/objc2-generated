@@ -10,7 +10,7 @@ extern_class!(
 
     unsafe impl ClassType for NSIndexPath {
         type Super = NSObject;
-        type Mutability = Immutable;
+        type Mutability = InteriorMutable;
     }
 );
 
