@@ -23,7 +23,7 @@ extern_class!(
 
     unsafe impl ClassType for NSAttributedString {
         type Super = NSObject;
-        type Mutability = ImmutableWithMutableSubclass<NSMutableAttributedString>;
+        type Mutability = InteriorMutableWithSubclass<NSMutableAttributedString>;
     }
 );
 
@@ -220,7 +220,7 @@ extern_class!(
     unsafe impl ClassType for NSMutableAttributedString {
         #[inherits(NSObject)]
         type Super = NSAttributedString;
-        type Mutability = MutableWithImmutableSuperclass<NSAttributedString>;
+        type Mutability = InteriorMutableWithSuperclass<NSAttributedString>;
     }
 );
 
@@ -242,16 +242,12 @@ extern_methods!(
     unsafe impl NSMutableAttributedString {
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
         #[method(replaceCharactersInRange:withString:)]
-        pub unsafe fn replaceCharactersInRange_withString(
-            &mut self,
-            range: NSRange,
-            str: &NSString,
-        );
+        pub unsafe fn replaceCharactersInRange_withString(&self, range: NSRange, str: &NSString);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSRange", feature = "NSString"))]
         #[method(setAttributes:range:)]
         pub unsafe fn setAttributes_range(
-            &mut self,
+            &self,
             attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
             range: NSRange,
         );
@@ -286,7 +282,7 @@ extern_methods!(
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
         #[method(addAttribute:value:range:)]
         pub unsafe fn addAttribute_value_range(
-            &mut self,
+            &self,
             name: &NSAttributedStringKey,
             value: &AnyObject,
             range: NSRange,
@@ -295,49 +291,45 @@ extern_methods!(
         #[cfg(all(feature = "NSDictionary", feature = "NSRange", feature = "NSString"))]
         #[method(addAttributes:range:)]
         pub unsafe fn addAttributes_range(
-            &mut self,
+            &self,
             attrs: &NSDictionary<NSAttributedStringKey, AnyObject>,
             range: NSRange,
         );
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
         #[method(removeAttribute:range:)]
-        pub unsafe fn removeAttribute_range(
-            &mut self,
-            name: &NSAttributedStringKey,
-            range: NSRange,
-        );
+        pub unsafe fn removeAttribute_range(&self, name: &NSAttributedStringKey, range: NSRange);
 
         #[cfg(feature = "NSRange")]
         #[method(replaceCharactersInRange:withAttributedString:)]
         pub unsafe fn replaceCharactersInRange_withAttributedString(
-            &mut self,
+            &self,
             range: NSRange,
             attr_string: &NSAttributedString,
         );
 
         #[method(insertAttributedString:atIndex:)]
         pub unsafe fn insertAttributedString_atIndex(
-            &mut self,
+            &self,
             attr_string: &NSAttributedString,
             loc: NSUInteger,
         );
 
         #[method(appendAttributedString:)]
-        pub unsafe fn appendAttributedString(&mut self, attr_string: &NSAttributedString);
+        pub unsafe fn appendAttributedString(&self, attr_string: &NSAttributedString);
 
         #[cfg(feature = "NSRange")]
         #[method(deleteCharactersInRange:)]
-        pub unsafe fn deleteCharactersInRange(&mut self, range: NSRange);
+        pub unsafe fn deleteCharactersInRange(&self, range: NSRange);
 
         #[method(setAttributedString:)]
-        pub fn setAttributedString(&mut self, attr_string: &NSAttributedString);
+        pub fn setAttributedString(&self, attr_string: &NSAttributedString);
 
         #[method(beginEditing)]
-        pub unsafe fn beginEditing(&mut self);
+        pub unsafe fn beginEditing(&self);
 
         #[method(endEditing)]
-        pub unsafe fn endEditing(&mut self);
+        pub unsafe fn endEditing(&self);
     }
 );
 

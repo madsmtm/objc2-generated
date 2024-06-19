@@ -31,7 +31,7 @@ extern_class!(
     unsafe impl ClassType for NSTextStorage {
         #[inherits(NSAttributedString, NSObject)]
         type Super = NSMutableAttributedString;
-        type Mutability = Mutable;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -49,11 +49,11 @@ extern_methods!(
 
         #[cfg(feature = "NSLayoutManager")]
         #[method(addLayoutManager:)]
-        pub unsafe fn addLayoutManager(&mut self, a_layout_manager: &NSLayoutManager);
+        pub unsafe fn addLayoutManager(&self, a_layout_manager: &NSLayoutManager);
 
         #[cfg(feature = "NSLayoutManager")]
         #[method(removeLayoutManager:)]
-        pub unsafe fn removeLayoutManager(&mut self, a_layout_manager: &NSLayoutManager);
+        pub unsafe fn removeLayoutManager(&self, a_layout_manager: &NSLayoutManager);
 
         #[method(editedMask)]
         pub unsafe fn editedMask(&self) -> NSTextStorageEditActions;
@@ -71,29 +71,29 @@ extern_methods!(
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
-            &mut self,
+            &self,
             delegate: Option<&ProtocolObject<dyn NSTextStorageDelegate>>,
         );
 
         #[method(edited:range:changeInLength:)]
         pub unsafe fn edited_range_changeInLength(
-            &mut self,
+            &self,
             edited_mask: NSTextStorageEditActions,
             edited_range: NSRange,
             delta: NSInteger,
         );
 
         #[method(processEditing)]
-        pub unsafe fn processEditing(&mut self);
+        pub unsafe fn processEditing(&self);
 
         #[method(fixesAttributesLazily)]
         pub unsafe fn fixesAttributesLazily(&self) -> bool;
 
         #[method(invalidateAttributesInRange:)]
-        pub unsafe fn invalidateAttributesInRange(&mut self, range: NSRange);
+        pub unsafe fn invalidateAttributesInRange(&self, range: NSRange);
 
         #[method(ensureAttributesAreFixedInRange:)]
-        pub unsafe fn ensureAttributesAreFixedInRange(&mut self, range: NSRange);
+        pub unsafe fn ensureAttributesAreFixedInRange(&self, range: NSRange);
 
         #[method_id(@__retain_semantics Other textStorageObserver)]
         pub unsafe fn textStorageObserver(
@@ -102,7 +102,7 @@ extern_methods!(
 
         #[method(setTextStorageObserver:)]
         pub unsafe fn setTextStorageObserver(
-            &mut self,
+            &self,
             text_storage_observer: Option<&ProtocolObject<dyn NSTextStorageObserving>>,
         );
     }

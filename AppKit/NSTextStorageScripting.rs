@@ -13,25 +13,25 @@ extern_methods!(
         pub unsafe fn attributeRuns(&self) -> Retained<NSArray<NSTextStorage>>;
 
         #[method(setAttributeRuns:)]
-        pub unsafe fn setAttributeRuns(&mut self, attribute_runs: &NSArray<NSTextStorage>);
+        pub unsafe fn setAttributeRuns(&self, attribute_runs: &NSArray<NSTextStorage>);
 
         #[method_id(@__retain_semantics Other paragraphs)]
         pub unsafe fn paragraphs(&self) -> Retained<NSArray<NSTextStorage>>;
 
         #[method(setParagraphs:)]
-        pub unsafe fn setParagraphs(&mut self, paragraphs: &NSArray<NSTextStorage>);
+        pub unsafe fn setParagraphs(&self, paragraphs: &NSArray<NSTextStorage>);
 
         #[method_id(@__retain_semantics Other words)]
         pub unsafe fn words(&self) -> Retained<NSArray<NSTextStorage>>;
 
         #[method(setWords:)]
-        pub unsafe fn setWords(&mut self, words: &NSArray<NSTextStorage>);
+        pub unsafe fn setWords(&self, words: &NSArray<NSTextStorage>);
 
         #[method_id(@__retain_semantics Other characters)]
         pub unsafe fn characters(&self) -> Retained<NSArray<NSTextStorage>>;
 
         #[method(setCharacters:)]
-        pub unsafe fn setCharacters(&mut self, characters: &NSArray<NSTextStorage>);
+        pub unsafe fn setCharacters(&self, characters: &NSArray<NSTextStorage>);
 
         #[cfg(feature = "NSFont")]
         #[method_id(@__retain_semantics Other font)]
@@ -39,7 +39,7 @@ extern_methods!(
 
         #[cfg(feature = "NSFont")]
         #[method(setFont:)]
-        pub unsafe fn setFont(&mut self, font: Option<&NSFont>);
+        pub unsafe fn setFont(&self, font: Option<&NSFont>);
 
         #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other foregroundColor)]
@@ -47,6 +47,6 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         #[method(setForegroundColor:)]
-        pub unsafe fn setForegroundColor(&mut self, foreground_color: Option<&NSColor>);
+        pub unsafe fn setForegroundColor(&self, foreground_color: Option<&NSColor>);
     }
 );
