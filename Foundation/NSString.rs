@@ -83,7 +83,7 @@ extern_class!(
 
     unsafe impl ClassType for NSString {
         type Super = NSObject;
-        type Mutability = ImmutableWithMutableSubclass<NSMutableString>;
+        type Mutability = InteriorMutableWithSubclass<NSMutableString>;
     }
 );
 
@@ -1058,7 +1058,7 @@ extern_class!(
     unsafe impl ClassType for NSMutableString {
         #[inherits(NSObject)]
         type Super = NSString;
-        type Mutability = MutableWithImmutableSuperclass<NSString>;
+        type Mutability = InteriorMutableWithSuperclass<NSString>;
     }
 );
 
@@ -1081,7 +1081,7 @@ extern_methods!(
         #[cfg(feature = "NSRange")]
         #[method(replaceCharactersInRange:withString:)]
         pub unsafe fn replaceCharactersInRange_withString(
-            &mut self,
+            &self,
             range: NSRange,
             a_string: &NSString,
         );
@@ -1122,22 +1122,22 @@ extern_methods!(
     /// NSMutableStringExtensionMethods
     unsafe impl NSMutableString {
         #[method(insertString:atIndex:)]
-        pub unsafe fn insertString_atIndex(&mut self, a_string: &NSString, loc: NSUInteger);
+        pub unsafe fn insertString_atIndex(&self, a_string: &NSString, loc: NSUInteger);
 
         #[cfg(feature = "NSRange")]
         #[method(deleteCharactersInRange:)]
-        pub unsafe fn deleteCharactersInRange(&mut self, range: NSRange);
+        pub unsafe fn deleteCharactersInRange(&self, range: NSRange);
 
         #[method(appendString:)]
-        pub fn appendString(&mut self, a_string: &NSString);
+        pub fn appendString(&self, a_string: &NSString);
 
         #[method(setString:)]
-        pub fn setString(&mut self, a_string: &NSString);
+        pub fn setString(&self, a_string: &NSString);
 
         #[cfg(feature = "NSRange")]
         #[method(replaceOccurrencesOfString:withString:options:range:)]
         pub unsafe fn replaceOccurrencesOfString_withString_options_range(
-            &mut self,
+            &self,
             target: &NSString,
             replacement: &NSString,
             options: NSStringCompareOptions,
@@ -1147,7 +1147,7 @@ extern_methods!(
         #[cfg(feature = "NSRange")]
         #[method(applyTransform:reverse:range:updatedRange:)]
         pub unsafe fn applyTransform_reverse_range_updatedRange(
-            &mut self,
+            &self,
             transform: &NSStringTransform,
             reverse: bool,
             range: NSRange,
@@ -1351,7 +1351,7 @@ extern_class!(
     unsafe impl ClassType for NSSimpleCString {
         #[inherits(NSObject)]
         type Super = NSString;
-        type Mutability = Immutable;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -1397,7 +1397,7 @@ extern_class!(
     unsafe impl ClassType for NSConstantString {
         #[inherits(NSString, NSObject)]
         type Super = NSSimpleCString;
-        type Mutability = Immutable;
+        type Mutability = InteriorMutable;
     }
 );
 
