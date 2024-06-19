@@ -121,7 +121,7 @@ extern_class!(
 
     unsafe impl ClassType for NSData {
         type Super = NSObject;
-        type Mutability = ImmutableWithMutableSubclass<NSMutableData>;
+        type Mutability = InteriorMutableWithSubclass<NSMutableData>;
     }
 );
 
@@ -627,7 +627,7 @@ extern_class!(
     unsafe impl ClassType for NSMutableData {
         #[inherits(NSObject)]
         type Super = NSData;
-        type Mutability = MutableWithImmutableSuperclass<NSData>;
+        type Mutability = InteriorMutableWithSuperclass<NSData>;
     }
 );
 
@@ -648,7 +648,7 @@ unsafe impl NSSecureCoding for NSMutableData {}
 extern_methods!(
     unsafe impl NSMutableData {
         #[method(setLength:)]
-        pub fn setLength(&mut self, length: NSUInteger);
+        pub fn setLength(&self, length: NSUInteger);
     }
 );
 
@@ -674,33 +674,29 @@ extern_methods!(
     /// NSExtendedMutableData
     unsafe impl NSMutableData {
         #[method(appendBytes:length:)]
-        pub unsafe fn appendBytes_length(&mut self, bytes: NonNull<c_void>, length: NSUInteger);
+        pub unsafe fn appendBytes_length(&self, bytes: NonNull<c_void>, length: NSUInteger);
 
         #[method(appendData:)]
-        pub unsafe fn appendData(&mut self, other: &NSData);
+        pub unsafe fn appendData(&self, other: &NSData);
 
         #[method(increaseLengthBy:)]
-        pub unsafe fn increaseLengthBy(&mut self, extra_length: NSUInteger);
+        pub unsafe fn increaseLengthBy(&self, extra_length: NSUInteger);
 
         #[cfg(feature = "NSRange")]
         #[method(replaceBytesInRange:withBytes:)]
-        pub unsafe fn replaceBytesInRange_withBytes(
-            &mut self,
-            range: NSRange,
-            bytes: NonNull<c_void>,
-        );
+        pub unsafe fn replaceBytesInRange_withBytes(&self, range: NSRange, bytes: NonNull<c_void>);
 
         #[cfg(feature = "NSRange")]
         #[method(resetBytesInRange:)]
-        pub unsafe fn resetBytesInRange(&mut self, range: NSRange);
+        pub unsafe fn resetBytesInRange(&self, range: NSRange);
 
         #[method(setData:)]
-        pub unsafe fn setData(&mut self, data: &NSData);
+        pub unsafe fn setData(&self, data: &NSData);
 
         #[cfg(feature = "NSRange")]
         #[method(replaceBytesInRange:withBytes:length:)]
         pub unsafe fn replaceBytesInRange_withBytes_length(
-            &mut self,
+            &self,
             range: NSRange,
             replacement_bytes: *mut c_void,
             replacement_length: NSUInteger,
@@ -737,14 +733,14 @@ extern_methods!(
         #[cfg(feature = "NSError")]
         #[method(decompressUsingAlgorithm:error:_)]
         pub unsafe fn decompressUsingAlgorithm_error(
-            &mut self,
+            &self,
             algorithm: NSDataCompressionAlgorithm,
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
         #[method(compressUsingAlgorithm:error:_)]
         pub unsafe fn compressUsingAlgorithm_error(
-            &mut self,
+            &self,
             algorithm: NSDataCompressionAlgorithm,
         ) -> Result<(), Retained<NSError>>;
     }
@@ -757,7 +753,7 @@ extern_class!(
     unsafe impl ClassType for NSPurgeableData {
         #[inherits(NSData, NSObject)]
         type Super = NSMutableData;
-        type Mutability = Mutable;
+        type Mutability = InteriorMutable;
     }
 );
 
