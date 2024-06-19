@@ -12,7 +12,7 @@ extern_class!(
 
     unsafe impl ClassType for NSCharacterSet {
         type Super = NSObject;
-        type Mutability = ImmutableWithMutableSubclass<NSMutableCharacterSet>;
+        type Mutability = InteriorMutableWithSubclass<NSMutableCharacterSet>;
     }
 );
 
@@ -143,7 +143,7 @@ extern_class!(
     unsafe impl ClassType for NSMutableCharacterSet {
         #[inherits(NSObject)]
         type Super = NSCharacterSet;
-        type Mutability = MutableWithImmutableSuperclass<NSCharacterSet>;
+        type Mutability = InteriorMutableWithSuperclass<NSCharacterSet>;
     }
 );
 
@@ -165,28 +165,28 @@ extern_methods!(
     unsafe impl NSMutableCharacterSet {
         #[cfg(feature = "NSRange")]
         #[method(addCharactersInRange:)]
-        pub unsafe fn addCharactersInRange(&mut self, a_range: NSRange);
+        pub unsafe fn addCharactersInRange(&self, a_range: NSRange);
 
         #[cfg(feature = "NSRange")]
         #[method(removeCharactersInRange:)]
-        pub unsafe fn removeCharactersInRange(&mut self, a_range: NSRange);
+        pub unsafe fn removeCharactersInRange(&self, a_range: NSRange);
 
         #[cfg(feature = "NSString")]
         #[method(addCharactersInString:)]
-        pub unsafe fn addCharactersInString(&mut self, a_string: &NSString);
+        pub unsafe fn addCharactersInString(&self, a_string: &NSString);
 
         #[cfg(feature = "NSString")]
         #[method(removeCharactersInString:)]
-        pub unsafe fn removeCharactersInString(&mut self, a_string: &NSString);
+        pub unsafe fn removeCharactersInString(&self, a_string: &NSString);
 
         #[method(formUnionWithCharacterSet:)]
-        pub unsafe fn formUnionWithCharacterSet(&mut self, other_set: &NSCharacterSet);
+        pub unsafe fn formUnionWithCharacterSet(&self, other_set: &NSCharacterSet);
 
         #[method(formIntersectionWithCharacterSet:)]
-        pub unsafe fn formIntersectionWithCharacterSet(&mut self, other_set: &NSCharacterSet);
+        pub unsafe fn formIntersectionWithCharacterSet(&self, other_set: &NSCharacterSet);
 
         #[method(invert)]
-        pub unsafe fn invert(&mut self);
+        pub unsafe fn invert(&self);
 
         #[method_id(@__retain_semantics Other controlCharacterSet)]
         pub unsafe fn controlCharacterSet() -> Retained<NSMutableCharacterSet>;
