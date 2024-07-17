@@ -78,7 +78,7 @@ extern_methods!(
         pub unsafe fn anyObject(&self) -> Option<Retained<ObjectType>>;
 
         #[method(containsObject:)]
-        pub unsafe fn containsObject(&self, an_object: &ObjectType) -> bool;
+        pub fn containsObject(&self, an_object: &ObjectType) -> bool;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other description)]
@@ -92,13 +92,13 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[method(intersectsSet:)]
-        pub unsafe fn intersectsSet(&self, other_set: &NSSet<ObjectType>) -> bool;
+        pub fn intersectsSet(&self, other_set: &NSSet<ObjectType>) -> bool;
 
         #[method(isEqualToSet:)]
         pub unsafe fn isEqualToSet(&self, other_set: &NSSet<ObjectType>) -> bool;
 
         #[method(isSubsetOfSet:)]
-        pub unsafe fn isSubsetOfSet(&self, other_set: &NSSet<ObjectType>) -> bool;
+        pub fn isSubsetOfSet(&self, other_set: &NSSet<ObjectType>) -> bool;
 
         #[method(makeObjectsPerformSelector:)]
         pub unsafe fn makeObjectsPerformSelector(&self, a_selector: Sel);
