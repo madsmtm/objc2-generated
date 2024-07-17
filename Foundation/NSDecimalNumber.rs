@@ -48,7 +48,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug, PartialEq, Hash)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSValue")]
     pub struct NSDecimalNumber;
 
