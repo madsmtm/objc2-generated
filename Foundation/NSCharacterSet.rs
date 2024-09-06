@@ -12,7 +12,7 @@ extern_class!(
 
     unsafe impl ClassType for NSCharacterSet {
         type Super = NSObject;
-        type Mutability = InteriorMutableWithSubclass<NSMutableCharacterSet>;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -23,7 +23,17 @@ unsafe impl NSCoding for NSCharacterSet {}
 unsafe impl NSCopying for NSCharacterSet {}
 
 #[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSCharacterSet {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSObject")]
 unsafe impl NSMutableCopying for NSCharacterSet {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl MutableCopyingHelper for NSCharacterSet {
+    type Result = NSMutableCharacterSet;
+}
 
 unsafe impl NSObjectProtocol for NSCharacterSet {}
 
@@ -143,7 +153,7 @@ extern_class!(
     unsafe impl ClassType for NSMutableCharacterSet {
         #[inherits(NSObject)]
         type Super = NSCharacterSet;
-        type Mutability = InteriorMutableWithSuperclass<NSCharacterSet>;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -154,7 +164,17 @@ unsafe impl NSCoding for NSMutableCharacterSet {}
 unsafe impl NSCopying for NSMutableCharacterSet {}
 
 #[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSMutableCharacterSet {
+    type Result = NSCharacterSet;
+}
+
+#[cfg(feature = "NSObject")]
 unsafe impl NSMutableCopying for NSMutableCharacterSet {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl MutableCopyingHelper for NSMutableCharacterSet {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSMutableCharacterSet {}
 

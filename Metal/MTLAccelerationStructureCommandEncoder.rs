@@ -183,6 +183,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {}
 
+unsafe impl CopyingHelper for MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {}
 
 extern_methods!(
@@ -279,6 +283,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for MTLAccelerationStructurePassDescriptor {}
+
+unsafe impl CopyingHelper for MTLAccelerationStructurePassDescriptor {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for MTLAccelerationStructurePassDescriptor {}
 

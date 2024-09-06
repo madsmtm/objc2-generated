@@ -52,6 +52,16 @@ unsafe impl NSCopying for DOMComment {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMComment {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMCharacterData",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMComment {}
 
 extern_methods!(

@@ -42,6 +42,11 @@ unsafe impl NSCoding for NSCachedURLResponse {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSCachedURLResponse {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSCachedURLResponse {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSCachedURLResponse {}
 
 #[cfg(feature = "NSObject")]

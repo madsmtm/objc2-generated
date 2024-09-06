@@ -23,6 +23,10 @@ unsafe impl NSCoding for UTType {}
 
 unsafe impl NSCopying for UTType {}
 
+unsafe impl CopyingHelper for UTType {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UTType {}
 
 unsafe impl NSSecureCoding for UTType {}

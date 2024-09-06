@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VZVirtioTraditionalMemoryBalloonDeviceConfiguration {}
 
 #[cfg(feature = "VZMemoryBalloonDeviceConfiguration")]
+unsafe impl CopyingHelper for VZVirtioTraditionalMemoryBalloonDeviceConfiguration {
+    type Result = Self;
+}
+
+#[cfg(feature = "VZMemoryBalloonDeviceConfiguration")]
 unsafe impl NSObjectProtocol for VZVirtioTraditionalMemoryBalloonDeviceConfiguration {}
 
 extern_methods!(

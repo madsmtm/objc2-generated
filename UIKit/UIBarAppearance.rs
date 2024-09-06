@@ -19,6 +19,10 @@ unsafe impl NSCoding for UIBarAppearance {}
 
 unsafe impl NSCopying for UIBarAppearance {}
 
+unsafe impl CopyingHelper for UIBarAppearance {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIBarAppearance {}
 
 unsafe impl NSSecureCoding for UIBarAppearance {}

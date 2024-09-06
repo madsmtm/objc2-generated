@@ -23,6 +23,10 @@ unsafe impl NSCoding for UIImageConfiguration {}
 
 unsafe impl NSCopying for UIImageConfiguration {}
 
+unsafe impl CopyingHelper for UIImageConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIImageConfiguration {}
 
 unsafe impl NSSecureCoding for UIImageConfiguration {}

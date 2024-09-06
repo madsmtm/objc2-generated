@@ -64,6 +64,10 @@ unsafe impl NSCoding for ASAuthorizationAppleIDCredential {}
 
 unsafe impl NSCopying for ASAuthorizationAppleIDCredential {}
 
+unsafe impl CopyingHelper for ASAuthorizationAppleIDCredential {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for ASAuthorizationAppleIDCredential {}
 
 unsafe impl NSSecureCoding for ASAuthorizationAppleIDCredential {}

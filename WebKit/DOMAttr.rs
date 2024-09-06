@@ -47,6 +47,15 @@ unsafe impl NSCopying for DOMAttr {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMAttr {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMAttr {}
 
 extern_methods!(

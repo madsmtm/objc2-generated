@@ -22,6 +22,10 @@ unsafe impl NSCoding for ASPasskeyRegistrationCredential {}
 
 unsafe impl NSCopying for ASPasskeyRegistrationCredential {}
 
+unsafe impl CopyingHelper for ASPasskeyRegistrationCredential {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for ASPasskeyRegistrationCredential {}
 
 unsafe impl NSSecureCoding for ASPasskeyRegistrationCredential {}

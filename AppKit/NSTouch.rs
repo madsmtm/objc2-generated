@@ -94,6 +94,10 @@ unsafe impl Sync for NSTouch {}
 
 unsafe impl NSCopying for NSTouch {}
 
+unsafe impl CopyingHelper for NSTouch {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSTouch {}
 
 extern_methods!(

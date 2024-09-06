@@ -19,6 +19,10 @@ unsafe impl NSCoding for WebResource {}
 
 unsafe impl NSCopying for WebResource {}
 
+unsafe impl CopyingHelper for WebResource {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for WebResource {}
 
 extern_methods!(

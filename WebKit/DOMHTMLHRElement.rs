@@ -57,6 +57,17 @@ unsafe impl NSCopying for DOMHTMLHRElement {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMHTMLHRElement {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMHTMLHRElement {}
 
 extern_methods!(

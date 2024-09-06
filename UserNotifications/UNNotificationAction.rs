@@ -42,6 +42,10 @@ unsafe impl NSCoding for UNNotificationAction {}
 
 unsafe impl NSCopying for UNNotificationAction {}
 
+unsafe impl CopyingHelper for UNNotificationAction {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UNNotificationAction {}
 
 unsafe impl NSSecureCoding for UNNotificationAction {}
@@ -104,6 +108,10 @@ extern_class!(
 unsafe impl NSCoding for UNTextInputNotificationAction {}
 
 unsafe impl NSCopying for UNTextInputNotificationAction {}
+
+unsafe impl CopyingHelper for UNTextInputNotificationAction {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UNTextInputNotificationAction {}
 

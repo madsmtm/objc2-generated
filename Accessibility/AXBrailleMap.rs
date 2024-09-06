@@ -19,6 +19,10 @@ unsafe impl NSCoding for AXBrailleMap {}
 
 unsafe impl NSCopying for AXBrailleMap {}
 
+unsafe impl CopyingHelper for AXBrailleMap {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for AXBrailleMap {}
 
 unsafe impl NSSecureCoding for AXBrailleMap {}

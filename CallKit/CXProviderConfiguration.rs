@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for CXProviderConfiguration {}
 
+unsafe impl CopyingHelper for CXProviderConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CXProviderConfiguration {}
 
 extern_methods!(

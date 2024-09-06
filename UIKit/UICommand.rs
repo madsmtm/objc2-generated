@@ -42,6 +42,10 @@ unsafe impl NSCoding for UICommandAlternate {}
 
 unsafe impl NSCopying for UICommandAlternate {}
 
+unsafe impl CopyingHelper for UICommandAlternate {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UICommandAlternate {}
 
 unsafe impl NSSecureCoding for UICommandAlternate {}
@@ -97,6 +101,11 @@ unsafe impl NSCoding for UICommand {}
 
 #[cfg(feature = "UIMenuElement")]
 unsafe impl NSCopying for UICommand {}
+
+#[cfg(feature = "UIMenuElement")]
+unsafe impl CopyingHelper for UICommand {
+    type Result = Self;
+}
 
 #[cfg(feature = "UIMenuElement")]
 unsafe impl NSObjectProtocol for UICommand {}

@@ -76,6 +76,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIAlertAction {}
 
+unsafe impl CopyingHelper for UIAlertAction {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIAlertAction {}
 
 extern_methods!(

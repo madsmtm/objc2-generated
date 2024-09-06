@@ -118,6 +118,10 @@ unsafe impl NSCoding for NIAlgorithmConvergence {}
 
 unsafe impl NSCopying for NIAlgorithmConvergence {}
 
+unsafe impl CopyingHelper for NIAlgorithmConvergence {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NIAlgorithmConvergence {}
 
 unsafe impl NSSecureCoding for NIAlgorithmConvergence {}

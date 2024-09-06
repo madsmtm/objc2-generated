@@ -25,6 +25,11 @@ unsafe impl NSCoding for CMRotationRateData {}
 unsafe impl NSCopying for CMRotationRateData {}
 
 #[cfg(feature = "CMLogItem")]
+unsafe impl CopyingHelper for CMRotationRateData {
+    type Result = Self;
+}
+
+#[cfg(feature = "CMLogItem")]
 unsafe impl NSObjectProtocol for CMRotationRateData {}
 
 #[cfg(feature = "CMLogItem")]
@@ -69,6 +74,11 @@ unsafe impl NSCoding for CMRecordedRotationRateData {}
 
 #[cfg(feature = "CMLogItem")]
 unsafe impl NSCopying for CMRecordedRotationRateData {}
+
+#[cfg(feature = "CMLogItem")]
+unsafe impl CopyingHelper for CMRecordedRotationRateData {
+    type Result = Self;
+}
 
 #[cfg(feature = "CMLogItem")]
 unsafe impl NSObjectProtocol for CMRecordedRotationRateData {}

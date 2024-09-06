@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VZVirtioEntropyDeviceConfiguration {}
 
 #[cfg(feature = "VZEntropyDeviceConfiguration")]
+unsafe impl CopyingHelper for VZVirtioEntropyDeviceConfiguration {
+    type Result = Self;
+}
+
+#[cfg(feature = "VZEntropyDeviceConfiguration")]
 unsafe impl NSObjectProtocol for VZVirtioEntropyDeviceConfiguration {}
 
 extern_methods!(

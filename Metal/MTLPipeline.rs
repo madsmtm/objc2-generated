@@ -38,6 +38,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLPipelineBufferDescriptor {}
 
+unsafe impl CopyingHelper for MTLPipelineBufferDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLPipelineBufferDescriptor {}
 
 extern_methods!(

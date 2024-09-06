@@ -26,6 +26,10 @@ unsafe impl NSCoding for CLHeading {}
 
 unsafe impl NSCopying for CLHeading {}
 
+unsafe impl CopyingHelper for CLHeading {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CLHeading {}
 
 unsafe impl NSSecureCoding for CLHeading {}

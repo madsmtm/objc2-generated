@@ -35,6 +35,11 @@ unsafe impl NSCoding for UIWindowSceneActivationAction {}
 unsafe impl NSCopying for UIWindowSceneActivationAction {}
 
 #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
+unsafe impl CopyingHelper for UIWindowSceneActivationAction {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
 unsafe impl NSObjectProtocol for UIWindowSceneActivationAction {}
 
 #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]

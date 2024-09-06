@@ -19,6 +19,10 @@ unsafe impl NSCoding for LPLinkMetadata {}
 
 unsafe impl NSCopying for LPLinkMetadata {}
 
+unsafe impl CopyingHelper for LPLinkMetadata {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for LPLinkMetadata {}
 
 unsafe impl NSSecureCoding for LPLinkMetadata {}

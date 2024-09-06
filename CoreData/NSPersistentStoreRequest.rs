@@ -37,6 +37,10 @@ extern_class!(
 
 unsafe impl NSCopying for NSPersistentStoreRequest {}
 
+unsafe impl CopyingHelper for NSPersistentStoreRequest {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSPersistentStoreRequest {}
 
 extern_methods!(

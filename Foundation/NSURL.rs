@@ -841,6 +841,11 @@ unsafe impl NSCoding for NSURL {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURL {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSURL {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSURL {}
 
 #[cfg(feature = "NSObject")]
@@ -1286,6 +1291,11 @@ unsafe impl NSCoding for NSURLQueryItem {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLQueryItem {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSURLQueryItem {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSURLQueryItem {}
 
 #[cfg(feature = "NSObject")]
@@ -1341,6 +1351,11 @@ extern_class!(
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLComponents {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSURLComponents {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSURLComponents {}
 
@@ -1713,6 +1728,11 @@ unsafe impl NSCoding for NSFileSecurity {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSFileSecurity {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSFileSecurity {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSFileSecurity {}
 

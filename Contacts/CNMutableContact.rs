@@ -25,7 +25,17 @@ unsafe impl NSCoding for CNMutableContact {}
 unsafe impl NSCopying for CNMutableContact {}
 
 #[cfg(feature = "CNContact")]
+unsafe impl CopyingHelper for CNMutableContact {
+    type Result = Self;
+}
+
+#[cfg(feature = "CNContact")]
 unsafe impl NSMutableCopying for CNMutableContact {}
+
+#[cfg(feature = "CNContact")]
+unsafe impl MutableCopyingHelper for CNMutableContact {
+    type Result = Self;
+}
 
 #[cfg(feature = "CNContact")]
 unsafe impl NSObjectProtocol for CNMutableContact {}

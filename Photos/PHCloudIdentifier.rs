@@ -133,6 +133,10 @@ extern_methods!(
 
 unsafe impl NSCopying for PHCloudIdentifier {}
 
+unsafe impl CopyingHelper for PHCloudIdentifier {
+    type Result = Self;
+}
+
 extern_methods!(
     /// CloudIdentifiers
     #[cfg(feature = "PHPhotoLibrary")]

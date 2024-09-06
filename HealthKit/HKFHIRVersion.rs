@@ -19,6 +19,10 @@ unsafe impl NSCoding for HKFHIRVersion {}
 
 unsafe impl NSCopying for HKFHIRVersion {}
 
+unsafe impl CopyingHelper for HKFHIRVersion {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKFHIRVersion {}
 
 unsafe impl NSSecureCoding for HKFHIRVersion {}

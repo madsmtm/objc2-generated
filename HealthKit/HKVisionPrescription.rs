@@ -44,6 +44,11 @@ unsafe impl NSCoding for HKVisionPrescription {}
 unsafe impl NSCopying for HKVisionPrescription {}
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
+unsafe impl CopyingHelper for HKVisionPrescription {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSObjectProtocol for HKVisionPrescription {}
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]

@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for CXCallUpdate {}
 
+unsafe impl CopyingHelper for CXCallUpdate {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CXCallUpdate {}
 
 extern_methods!(

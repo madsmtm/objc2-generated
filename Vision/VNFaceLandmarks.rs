@@ -19,6 +19,10 @@ unsafe impl NSCoding for VNFaceLandmarkRegion {}
 
 unsafe impl NSCopying for VNFaceLandmarkRegion {}
 
+unsafe impl CopyingHelper for VNFaceLandmarkRegion {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNFaceLandmarkRegion {}
 
 unsafe impl NSSecureCoding for VNFaceLandmarkRegion {}
@@ -53,6 +57,10 @@ extern_class!(
 unsafe impl NSCoding for VNFaceLandmarkRegion2D {}
 
 unsafe impl NSCopying for VNFaceLandmarkRegion2D {}
+
+unsafe impl CopyingHelper for VNFaceLandmarkRegion2D {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNFaceLandmarkRegion2D {}
 
@@ -103,6 +111,10 @@ unsafe impl NSCoding for VNFaceLandmarks {}
 
 unsafe impl NSCopying for VNFaceLandmarks {}
 
+unsafe impl CopyingHelper for VNFaceLandmarks {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNFaceLandmarks {}
 
 unsafe impl NSSecureCoding for VNFaceLandmarks {}
@@ -143,6 +155,10 @@ extern_class!(
 unsafe impl NSCoding for VNFaceLandmarks2D {}
 
 unsafe impl NSCopying for VNFaceLandmarks2D {}
+
+unsafe impl CopyingHelper for VNFaceLandmarks2D {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNFaceLandmarks2D {}
 

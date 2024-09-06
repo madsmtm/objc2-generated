@@ -116,6 +116,10 @@ extern_class!(
 
 unsafe impl NSCopying for OSAScript {}
 
+unsafe impl CopyingHelper for OSAScript {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for OSAScript {}
 
 extern_methods!(

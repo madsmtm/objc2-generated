@@ -14,7 +14,7 @@ __inner_extern_class!(
 
     unsafe impl<ObjectType: ?Sized + Message> ClassType for NSSet<ObjectType> {
         type Super = NSObject;
-        type Mutability = InteriorMutableWithSubclass<NSMutableSet<ObjectType>>;
+        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -28,11 +28,21 @@ unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSSet<ObjectType> {}
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized> NSCopying for NSSet<ObjectType> {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for NSSet<ObjectType> {
+    type Result = Self;
+}
+
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSSet<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSSet<ObjectType> {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl<ObjectType: ?Sized + Message> MutableCopyingHelper for NSSet<ObjectType> {
+    type Result = NSMutableSet<ObjectType>;
+}
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSSet<ObjectType> {}
 
@@ -276,7 +286,7 @@ __inner_extern_class!(
     unsafe impl<ObjectType: ?Sized + Message> ClassType for NSMutableSet<ObjectType> {
         #[inherits(NSObject)]
         type Super = NSSet<ObjectType>;
-        type Mutability = InteriorMutableWithSuperclass<NSSet<ObjectType>>;
+        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -290,11 +300,21 @@ unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSMutableSet<ObjectType>
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized> NSCopying for NSMutableSet<ObjectType> {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for NSMutableSet<ObjectType> {
+    type Result = NSSet<ObjectType>;
+}
+
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSMutableSet<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSMutableSet<ObjectType> {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl<ObjectType: ?Sized + Message> MutableCopyingHelper for NSMutableSet<ObjectType> {
+    type Result = Self;
+}
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSMutableSet<ObjectType> {}
 
@@ -408,11 +428,21 @@ unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSCountedSet<ObjectType>
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized> NSCopying for NSCountedSet<ObjectType> {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for NSCountedSet<ObjectType> {
+    type Result = Self;
+}
+
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSCountedSet<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSCountedSet<ObjectType> {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl<ObjectType: ?Sized + Message> MutableCopyingHelper for NSCountedSet<ObjectType> {
+    type Result = Self;
+}
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSCountedSet<ObjectType> {}
 

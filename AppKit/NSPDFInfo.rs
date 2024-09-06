@@ -19,6 +19,10 @@ unsafe impl NSCoding for NSPDFInfo {}
 
 unsafe impl NSCopying for NSPDFInfo {}
 
+unsafe impl CopyingHelper for NSPDFInfo {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSPDFInfo {}
 
 extern_methods!(

@@ -20,6 +20,11 @@ unsafe impl NSCoding for NSInflectionRule {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSInflectionRule {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSInflectionRule {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSInflectionRule {}
 
 #[cfg(feature = "NSObject")]
@@ -59,6 +64,11 @@ unsafe impl NSCoding for NSInflectionRuleExplicit {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSInflectionRuleExplicit {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSInflectionRuleExplicit {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSInflectionRuleExplicit {}
 

@@ -31,6 +31,11 @@ unsafe impl NSCoding for NSBrowserCell {}
 unsafe impl NSCopying for NSBrowserCell {}
 
 #[cfg(feature = "NSCell")]
+unsafe impl CopyingHelper for NSBrowserCell {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSCell")]
 unsafe impl NSObjectProtocol for NSBrowserCell {}
 
 #[cfg(all(feature = "NSCell", feature = "NSUserInterfaceItemIdentification"))]

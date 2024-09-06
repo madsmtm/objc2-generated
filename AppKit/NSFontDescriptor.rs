@@ -87,6 +87,10 @@ unsafe impl NSCoding for NSFontDescriptor {}
 
 unsafe impl NSCopying for NSFontDescriptor {}
 
+unsafe impl CopyingHelper for NSFontDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSFontDescriptor {}
 
 unsafe impl NSSecureCoding for NSFontDescriptor {}

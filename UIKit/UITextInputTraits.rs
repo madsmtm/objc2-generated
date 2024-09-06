@@ -262,6 +262,10 @@ unsafe impl NSCoding for UITextInputPasswordRules {}
 
 unsafe impl NSCopying for UITextInputPasswordRules {}
 
+unsafe impl CopyingHelper for UITextInputPasswordRules {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UITextInputPasswordRules {}
 
 unsafe impl NSSecureCoding for UITextInputPasswordRules {}

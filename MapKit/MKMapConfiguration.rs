@@ -38,6 +38,10 @@ unsafe impl NSCoding for MKMapConfiguration {}
 
 unsafe impl NSCopying for MKMapConfiguration {}
 
+unsafe impl CopyingHelper for MKMapConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MKMapConfiguration {}
 
 unsafe impl NSSecureCoding for MKMapConfiguration {}

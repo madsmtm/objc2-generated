@@ -23,6 +23,10 @@ unsafe impl NSCoding for CKServerChangeToken {}
 
 unsafe impl NSCopying for CKServerChangeToken {}
 
+unsafe impl CopyingHelper for CKServerChangeToken {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CKServerChangeToken {}
 
 unsafe impl NSSecureCoding for CKServerChangeToken {}

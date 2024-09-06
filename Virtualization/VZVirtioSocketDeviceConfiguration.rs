@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VZVirtioSocketDeviceConfiguration {}
 
 #[cfg(feature = "VZSocketDeviceConfiguration")]
+unsafe impl CopyingHelper for VZVirtioSocketDeviceConfiguration {
+    type Result = Self;
+}
+
+#[cfg(feature = "VZSocketDeviceConfiguration")]
 unsafe impl NSObjectProtocol for VZVirtioSocketDeviceConfiguration {}
 
 extern_methods!(

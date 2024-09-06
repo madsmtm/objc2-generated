@@ -19,6 +19,10 @@ unsafe impl NSCoding for MLKey {}
 
 unsafe impl NSCopying for MLKey {}
 
+unsafe impl CopyingHelper for MLKey {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MLKey {}
 
 unsafe impl NSSecureCoding for MLKey {}

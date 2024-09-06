@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for MKLookAroundScene {}
 
+unsafe impl CopyingHelper for MKLookAroundScene {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MKLookAroundScene {}
 
 extern_methods!(

@@ -186,6 +186,11 @@ unsafe impl NSCollectionViewElement for NSCollectionViewItem {}
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
 unsafe impl NSCopying for NSCollectionViewItem {}
 
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+unsafe impl CopyingHelper for NSCollectionViewItem {
+    type Result = Self;
+}
+
 #[cfg(all(
     feature = "NSKeyValueBinding",
     feature = "NSResponder",

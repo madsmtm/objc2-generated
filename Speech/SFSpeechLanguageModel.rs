@@ -21,6 +21,10 @@ unsafe impl Sync for SFSpeechLanguageModelConfiguration {}
 
 unsafe impl NSCopying for SFSpeechLanguageModelConfiguration {}
 
+unsafe impl CopyingHelper for SFSpeechLanguageModelConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for SFSpeechLanguageModelConfiguration {}
 
 extern_methods!(

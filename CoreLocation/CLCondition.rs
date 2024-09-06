@@ -23,6 +23,10 @@ unsafe impl NSCoding for CLCondition {}
 
 unsafe impl NSCopying for CLCondition {}
 
+unsafe impl CopyingHelper for CLCondition {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CLCondition {}
 
 unsafe impl NSSecureCoding for CLCondition {}

@@ -19,6 +19,10 @@ unsafe impl NSCoding for HKSource {}
 
 unsafe impl NSCopying for HKSource {}
 
+unsafe impl CopyingHelper for HKSource {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKSource {}
 
 unsafe impl NSSecureCoding for HKSource {}

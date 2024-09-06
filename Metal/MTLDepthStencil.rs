@@ -79,6 +79,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLStencilDescriptor {}
 
+unsafe impl CopyingHelper for MTLStencilDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLStencilDescriptor {}
 
 extern_methods!(
@@ -146,6 +150,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for MTLDepthStencilDescriptor {}
+
+unsafe impl CopyingHelper for MTLDepthStencilDescriptor {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for MTLDepthStencilDescriptor {}
 

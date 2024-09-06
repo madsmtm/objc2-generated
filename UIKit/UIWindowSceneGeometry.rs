@@ -40,6 +40,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIWindowSceneGeometry {}
 
+unsafe impl CopyingHelper for UIWindowSceneGeometry {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIWindowSceneGeometry {}
 
 extern_methods!(

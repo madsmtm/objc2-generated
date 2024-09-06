@@ -22,6 +22,10 @@ unsafe impl NSCoding for UIListContentConfiguration {}
 
 unsafe impl NSCopying for UIListContentConfiguration {}
 
+unsafe impl CopyingHelper for UIListContentConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIListContentConfiguration {}
 
 unsafe impl NSSecureCoding for UIListContentConfiguration {}

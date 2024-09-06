@@ -65,6 +65,10 @@ unsafe impl NSCoding for UIMenuElement {}
 
 unsafe impl NSCopying for UIMenuElement {}
 
+unsafe impl CopyingHelper for UIMenuElement {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIMenuElement {}
 
 unsafe impl NSSecureCoding for UIMenuElement {}

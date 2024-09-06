@@ -23,6 +23,10 @@ unsafe impl NSCoding for VNObservation {}
 
 unsafe impl NSCopying for VNObservation {}
 
+unsafe impl CopyingHelper for VNObservation {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNObservation {}
 
 unsafe impl NSSecureCoding for VNObservation {}
@@ -66,6 +70,10 @@ extern_class!(
 unsafe impl NSCoding for VNDetectedObjectObservation {}
 
 unsafe impl NSCopying for VNDetectedObjectObservation {}
+
+unsafe impl CopyingHelper for VNDetectedObjectObservation {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNDetectedObjectObservation {}
 
@@ -118,6 +126,10 @@ extern_class!(
 unsafe impl NSCoding for VNFaceObservation {}
 
 unsafe impl NSCopying for VNFaceObservation {}
+
+unsafe impl CopyingHelper for VNFaceObservation {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNFaceObservation {}
 
@@ -204,6 +216,10 @@ unsafe impl NSCoding for VNClassificationObservation {}
 
 unsafe impl NSCopying for VNClassificationObservation {}
 
+unsafe impl CopyingHelper for VNClassificationObservation {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNClassificationObservation {}
 
 unsafe impl NSSecureCoding for VNClassificationObservation {}
@@ -266,6 +282,10 @@ unsafe impl NSCoding for VNRecognizedObjectObservation {}
 
 unsafe impl NSCopying for VNRecognizedObjectObservation {}
 
+unsafe impl CopyingHelper for VNRecognizedObjectObservation {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNRecognizedObjectObservation {}
 
 unsafe impl NSSecureCoding for VNRecognizedObjectObservation {}
@@ -320,6 +340,10 @@ unsafe impl NSCoding for VNCoreMLFeatureValueObservation {}
 
 unsafe impl NSCopying for VNCoreMLFeatureValueObservation {}
 
+unsafe impl CopyingHelper for VNCoreMLFeatureValueObservation {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNCoreMLFeatureValueObservation {}
 
 unsafe impl NSSecureCoding for VNCoreMLFeatureValueObservation {}
@@ -364,6 +388,10 @@ unsafe impl NSCoding for VNPixelBufferObservation {}
 
 unsafe impl NSCopying for VNPixelBufferObservation {}
 
+unsafe impl CopyingHelper for VNPixelBufferObservation {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNPixelBufferObservation {}
 
 unsafe impl NSSecureCoding for VNPixelBufferObservation {}
@@ -403,6 +431,10 @@ extern_class!(
 unsafe impl NSCoding for VNRectangleObservation {}
 
 unsafe impl NSCopying for VNRectangleObservation {}
+
+unsafe impl CopyingHelper for VNRectangleObservation {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNRectangleObservation {}
 
@@ -486,6 +518,10 @@ unsafe impl NSCoding for VNTrajectoryObservation {}
 
 unsafe impl NSCopying for VNTrajectoryObservation {}
 
+unsafe impl CopyingHelper for VNTrajectoryObservation {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNTrajectoryObservation {}
 
 unsafe impl NSSecureCoding for VNTrajectoryObservation {}
@@ -533,6 +569,10 @@ extern_class!(
 unsafe impl NSCoding for VNTextObservation {}
 
 unsafe impl NSCopying for VNTextObservation {}
+
+unsafe impl CopyingHelper for VNTextObservation {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNTextObservation {}
 
@@ -611,6 +651,10 @@ unsafe impl NSCoding for VNRecognizedText {}
 
 unsafe impl NSCopying for VNRecognizedText {}
 
+unsafe impl CopyingHelper for VNRecognizedText {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNRecognizedText {}
 
 unsafe impl NSSecureCoding for VNRecognizedText {}
@@ -660,6 +704,10 @@ extern_class!(
 unsafe impl NSCoding for VNRecognizedTextObservation {}
 
 unsafe impl NSCopying for VNRecognizedTextObservation {}
+
+unsafe impl CopyingHelper for VNRecognizedTextObservation {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNRecognizedTextObservation {}
 
@@ -741,6 +789,10 @@ extern_class!(
 unsafe impl NSCoding for VNBarcodeObservation {}
 
 unsafe impl NSCopying for VNBarcodeObservation {}
+
+unsafe impl CopyingHelper for VNBarcodeObservation {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNBarcodeObservation {}
 
@@ -847,6 +899,10 @@ unsafe impl NSCoding for VNHorizonObservation {}
 
 unsafe impl NSCopying for VNHorizonObservation {}
 
+unsafe impl CopyingHelper for VNHorizonObservation {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNHorizonObservation {}
 
 unsafe impl NSSecureCoding for VNHorizonObservation {}
@@ -887,6 +943,10 @@ unsafe impl NSCoding for VNImageAlignmentObservation {}
 
 unsafe impl NSCopying for VNImageAlignmentObservation {}
 
+unsafe impl CopyingHelper for VNImageAlignmentObservation {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNImageAlignmentObservation {}
 
 unsafe impl NSSecureCoding for VNImageAlignmentObservation {}
@@ -923,6 +983,10 @@ extern_class!(
 unsafe impl NSCoding for VNImageTranslationAlignmentObservation {}
 
 unsafe impl NSCopying for VNImageTranslationAlignmentObservation {}
+
+unsafe impl CopyingHelper for VNImageTranslationAlignmentObservation {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNImageTranslationAlignmentObservation {}
 
@@ -961,6 +1025,10 @@ unsafe impl NSCoding for VNImageHomographicAlignmentObservation {}
 
 unsafe impl NSCopying for VNImageHomographicAlignmentObservation {}
 
+unsafe impl CopyingHelper for VNImageHomographicAlignmentObservation {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNImageHomographicAlignmentObservation {}
 
 unsafe impl NSSecureCoding for VNImageHomographicAlignmentObservation {}
@@ -997,6 +1065,10 @@ extern_class!(
 unsafe impl NSCoding for VNSaliencyImageObservation {}
 
 unsafe impl NSCopying for VNSaliencyImageObservation {}
+
+unsafe impl CopyingHelper for VNSaliencyImageObservation {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNSaliencyImageObservation {}
 
@@ -1037,6 +1109,10 @@ extern_class!(
 unsafe impl NSCoding for VNFeaturePrintObservation {}
 
 unsafe impl NSCopying for VNFeaturePrintObservation {}
+
+unsafe impl CopyingHelper for VNFeaturePrintObservation {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNFeaturePrintObservation {}
 
@@ -1091,6 +1167,10 @@ extern_class!(
 unsafe impl NSCoding for VNContoursObservation {}
 
 unsafe impl NSCopying for VNContoursObservation {}
+
+unsafe impl CopyingHelper for VNContoursObservation {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNContoursObservation {}
 
@@ -1157,6 +1237,10 @@ extern_class!(
 unsafe impl NSCoding for VNRecognizedPointsObservation {}
 
 unsafe impl NSCopying for VNRecognizedPointsObservation {}
+
+unsafe impl CopyingHelper for VNRecognizedPointsObservation {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNRecognizedPointsObservation {}
 
@@ -1229,6 +1313,10 @@ unsafe impl NSCoding for VNHumanObservation {}
 
 unsafe impl NSCopying for VNHumanObservation {}
 
+unsafe impl CopyingHelper for VNHumanObservation {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNHumanObservation {}
 
 unsafe impl NSSecureCoding for VNHumanObservation {}
@@ -1283,6 +1371,10 @@ unsafe impl NSCoding for VNInstanceMaskObservation {}
 
 unsafe impl NSCopying for VNInstanceMaskObservation {}
 
+unsafe impl CopyingHelper for VNInstanceMaskObservation {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNInstanceMaskObservation {}
 
 unsafe impl NSSecureCoding for VNInstanceMaskObservation {}
@@ -1322,6 +1414,10 @@ extern_class!(
 unsafe impl NSCoding for VNAnimalBodyPoseObservation {}
 
 unsafe impl NSCopying for VNAnimalBodyPoseObservation {}
+
+unsafe impl CopyingHelper for VNAnimalBodyPoseObservation {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNAnimalBodyPoseObservation {}
 
@@ -1401,6 +1497,10 @@ extern_class!(
 unsafe impl NSCoding for VNRecognizedPoints3DObservation {}
 
 unsafe impl NSCopying for VNRecognizedPoints3DObservation {}
+
+unsafe impl CopyingHelper for VNRecognizedPoints3DObservation {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNRecognizedPoints3DObservation {}
 
@@ -1485,6 +1585,10 @@ extern_class!(
 unsafe impl NSCoding for VNHumanBodyPose3DObservation {}
 
 unsafe impl NSCopying for VNHumanBodyPose3DObservation {}
+
+unsafe impl CopyingHelper for VNHumanBodyPose3DObservation {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNHumanBodyPose3DObservation {}
 

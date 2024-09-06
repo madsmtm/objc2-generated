@@ -22,6 +22,10 @@ unsafe impl NSCoding for CKLocationSortDescriptor {}
 
 unsafe impl NSCopying for CKLocationSortDescriptor {}
 
+unsafe impl CopyingHelper for CKLocationSortDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CKLocationSortDescriptor {}
 
 unsafe impl NSSecureCoding for CKLocationSortDescriptor {}

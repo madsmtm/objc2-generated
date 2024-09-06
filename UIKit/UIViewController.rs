@@ -1258,6 +1258,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIPreviewAction {}
 
+unsafe impl CopyingHelper for UIPreviewAction {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIPreviewAction {}
 
 unsafe impl UIPreviewActionItem for UIPreviewAction {}
@@ -1310,6 +1314,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for UIPreviewActionGroup {}
+
+unsafe impl CopyingHelper for UIPreviewActionGroup {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UIPreviewActionGroup {}
 

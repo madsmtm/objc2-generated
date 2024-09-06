@@ -62,6 +62,11 @@ unsafe impl NSCoding for NSLevelIndicatorCell {}
 unsafe impl NSCopying for NSLevelIndicatorCell {}
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+unsafe impl CopyingHelper for NSLevelIndicatorCell {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl NSObjectProtocol for NSLevelIndicatorCell {}
 
 #[cfg(all(

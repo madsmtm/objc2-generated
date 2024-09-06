@@ -39,6 +39,15 @@ unsafe impl NSCopying for DOMCSSCharsetRule {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMCSSCharsetRule {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMCSSCharsetRule {}
 
 extern_methods!(

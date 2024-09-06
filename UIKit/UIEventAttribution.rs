@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIEventAttribution {}
 
+unsafe impl CopyingHelper for UIEventAttribution {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIEventAttribution {}
 
 extern_methods!(

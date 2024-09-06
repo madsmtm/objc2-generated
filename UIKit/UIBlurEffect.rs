@@ -82,6 +82,11 @@ unsafe impl NSCoding for UIBlurEffect {}
 unsafe impl NSCopying for UIBlurEffect {}
 
 #[cfg(feature = "UIVisualEffect")]
+unsafe impl CopyingHelper for UIBlurEffect {
+    type Result = Self;
+}
+
+#[cfg(feature = "UIVisualEffect")]
 unsafe impl NSObjectProtocol for UIBlurEffect {}
 
 #[cfg(feature = "UIVisualEffect")]

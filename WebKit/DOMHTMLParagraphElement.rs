@@ -57,6 +57,17 @@ unsafe impl NSCopying for DOMHTMLParagraphElement {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMHTMLParagraphElement {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMHTMLParagraphElement {}
 
 extern_methods!(

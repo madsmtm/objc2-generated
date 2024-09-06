@@ -23,6 +23,11 @@ extern_class!(
 unsafe impl NSCopying for MLCPaddingLayer {}
 
 #[cfg(feature = "MLCLayer")]
+unsafe impl CopyingHelper for MLCPaddingLayer {
+    type Result = Self;
+}
+
+#[cfg(feature = "MLCLayer")]
 unsafe impl NSObjectProtocol for MLCPaddingLayer {}
 
 extern_methods!(

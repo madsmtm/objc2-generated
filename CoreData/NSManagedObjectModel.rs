@@ -19,6 +19,10 @@ unsafe impl NSCoding for NSManagedObjectModel {}
 
 unsafe impl NSCopying for NSManagedObjectModel {}
 
+unsafe impl CopyingHelper for NSManagedObjectModel {
+    type Result = Self;
+}
+
 unsafe impl NSFastEnumeration for NSManagedObjectModel {}
 
 unsafe impl NSObjectProtocol for NSManagedObjectModel {}

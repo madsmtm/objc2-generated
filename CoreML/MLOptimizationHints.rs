@@ -19,6 +19,10 @@ unsafe impl NSCoding for MLOptimizationHints {}
 
 unsafe impl NSCopying for MLOptimizationHints {}
 
+unsafe impl CopyingHelper for MLOptimizationHints {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MLOptimizationHints {}
 
 unsafe impl NSSecureCoding for MLOptimizationHints {}

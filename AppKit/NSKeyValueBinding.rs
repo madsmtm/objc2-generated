@@ -26,6 +26,10 @@ extern_class!(
 
 unsafe impl NSCopying for NSBindingSelectionMarker {}
 
+unsafe impl CopyingHelper for NSBindingSelectionMarker {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSBindingSelectionMarker {}
 
 extern_methods!(

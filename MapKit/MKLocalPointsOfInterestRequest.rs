@@ -24,6 +24,10 @@ extern_class!(
 
 unsafe impl NSCopying for MKLocalPointsOfInterestRequest {}
 
+unsafe impl CopyingHelper for MKLocalPointsOfInterestRequest {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MKLocalPointsOfInterestRequest {}
 
 extern_methods!(

@@ -19,6 +19,10 @@ unsafe impl NSCoding for UIListContentImageProperties {}
 
 unsafe impl NSCopying for UIListContentImageProperties {}
 
+unsafe impl CopyingHelper for UIListContentImageProperties {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIListContentImageProperties {}
 
 unsafe impl NSSecureCoding for UIListContentImageProperties {}

@@ -99,6 +99,10 @@ unsafe impl NSCoding for NLModelConfiguration {}
 
 unsafe impl NSCopying for NLModelConfiguration {}
 
+unsafe impl CopyingHelper for NLModelConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NLModelConfiguration {}
 
 unsafe impl NSSecureCoding for NLModelConfiguration {}

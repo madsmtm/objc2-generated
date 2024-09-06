@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for VZAudioDeviceConfiguration {}
 
+unsafe impl CopyingHelper for VZAudioDeviceConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VZAudioDeviceConfiguration {}
 
 extern_methods!(

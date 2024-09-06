@@ -19,6 +19,11 @@ unsafe impl NSCoding for NSValue {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSValue {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSValue {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSValue {}
 
 #[cfg(feature = "NSObject")]
@@ -106,6 +111,11 @@ unsafe impl NSCoding for NSNumber {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSNumber {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSNumber {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSNumber {}
 

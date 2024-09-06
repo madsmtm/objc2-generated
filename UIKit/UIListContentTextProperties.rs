@@ -63,6 +63,10 @@ unsafe impl NSCoding for UIListContentTextProperties {}
 
 unsafe impl NSCopying for UIListContentTextProperties {}
 
+unsafe impl CopyingHelper for UIListContentTextProperties {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIListContentTextProperties {}
 
 unsafe impl NSSecureCoding for UIListContentTextProperties {}

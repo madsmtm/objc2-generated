@@ -250,6 +250,11 @@ unsafe impl NSCoding for NSMorphology {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSMorphology {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSMorphology {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSMorphology {}
 
 #[cfg(feature = "NSObject")]
@@ -334,6 +339,11 @@ unsafe impl NSCoding for NSMorphologyPronoun {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSMorphologyPronoun {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSMorphologyPronoun {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSMorphologyPronoun {}
 
 #[cfg(feature = "NSObject")]
@@ -406,6 +416,11 @@ unsafe impl NSCoding for NSMorphologyCustomPronoun {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSMorphologyCustomPronoun {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSMorphologyCustomPronoun {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSMorphologyCustomPronoun {}
 

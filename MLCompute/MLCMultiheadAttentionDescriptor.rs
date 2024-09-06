@@ -18,6 +18,10 @@ extern_class!(
 
 unsafe impl NSCopying for MLCMultiheadAttentionDescriptor {}
 
+unsafe impl CopyingHelper for MLCMultiheadAttentionDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MLCMultiheadAttentionDescriptor {}
 
 extern_methods!(

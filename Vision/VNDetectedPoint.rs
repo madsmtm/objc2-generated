@@ -25,6 +25,11 @@ unsafe impl NSCoding for VNDetectedPoint {}
 unsafe impl NSCopying for VNDetectedPoint {}
 
 #[cfg(feature = "VNGeometry")]
+unsafe impl CopyingHelper for VNDetectedPoint {
+    type Result = Self;
+}
+
+#[cfg(feature = "VNGeometry")]
 unsafe impl NSObjectProtocol for VNDetectedPoint {}
 
 #[cfg(feature = "VNGeometry")]
@@ -73,6 +78,11 @@ unsafe impl NSCoding for VNRecognizedPoint {}
 
 #[cfg(feature = "VNGeometry")]
 unsafe impl NSCopying for VNRecognizedPoint {}
+
+#[cfg(feature = "VNGeometry")]
+unsafe impl CopyingHelper for VNRecognizedPoint {
+    type Result = Self;
+}
 
 #[cfg(feature = "VNGeometry")]
 unsafe impl NSObjectProtocol for VNRecognizedPoint {}

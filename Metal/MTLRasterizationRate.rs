@@ -50,6 +50,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLRasterizationRateLayerDescriptor {}
 
+unsafe impl CopyingHelper for MTLRasterizationRateLayerDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLRasterizationRateLayerDescriptor {}
 
 extern_methods!(
@@ -154,6 +158,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for MTLRasterizationRateMapDescriptor {}
+
+unsafe impl CopyingHelper for MTLRasterizationRateMapDescriptor {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for MTLRasterizationRateMapDescriptor {}
 

@@ -72,6 +72,11 @@ unsafe impl NSCoding for NSPersonNameComponentsFormatter {}
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCopying for NSPersonNameComponentsFormatter {}
 
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
+unsafe impl CopyingHelper for NSPersonNameComponentsFormatter {
+    type Result = Self;
+}
+
 #[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSPersonNameComponentsFormatter {}
 

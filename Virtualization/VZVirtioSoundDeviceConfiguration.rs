@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VZVirtioSoundDeviceConfiguration {}
 
 #[cfg(feature = "VZAudioDeviceConfiguration")]
+unsafe impl CopyingHelper for VZVirtioSoundDeviceConfiguration {
+    type Result = Self;
+}
+
+#[cfg(feature = "VZAudioDeviceConfiguration")]
 unsafe impl NSObjectProtocol for VZVirtioSoundDeviceConfiguration {}
 
 extern_methods!(

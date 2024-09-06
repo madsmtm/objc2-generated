@@ -57,6 +57,17 @@ unsafe impl NSCopying for DOMHTMLTitleElement {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMHTMLTitleElement {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMHTMLTitleElement {}
 
 extern_methods!(

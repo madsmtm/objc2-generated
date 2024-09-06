@@ -143,6 +143,11 @@ unsafe impl NSCoding for NEFilterDataVerdict {}
 unsafe impl NSCopying for NEFilterDataVerdict {}
 
 #[cfg(feature = "NEFilterProvider")]
+unsafe impl CopyingHelper for NEFilterDataVerdict {
+    type Result = Self;
+}
+
+#[cfg(feature = "NEFilterProvider")]
 unsafe impl NSObjectProtocol for NEFilterDataVerdict {}
 
 #[cfg(feature = "NEFilterProvider")]
@@ -216,6 +221,11 @@ unsafe impl NSCoding for NEFilterRemediationVerdict {}
 
 #[cfg(feature = "NEFilterProvider")]
 unsafe impl NSCopying for NEFilterRemediationVerdict {}
+
+#[cfg(feature = "NEFilterProvider")]
+unsafe impl CopyingHelper for NEFilterRemediationVerdict {
+    type Result = Self;
+}
 
 #[cfg(feature = "NEFilterProvider")]
 unsafe impl NSObjectProtocol for NEFilterRemediationVerdict {}

@@ -231,6 +231,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLRenderPipelineColorAttachmentDescriptor {}
 
+unsafe impl CopyingHelper for MTLRenderPipelineColorAttachmentDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLRenderPipelineColorAttachmentDescriptor {}
 
 extern_methods!(
@@ -380,6 +384,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for MTLRenderPipelineDescriptor {}
+
+unsafe impl CopyingHelper for MTLRenderPipelineDescriptor {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for MTLRenderPipelineDescriptor {}
 
@@ -690,6 +698,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLRenderPipelineFunctionsDescriptor {}
 
+unsafe impl CopyingHelper for MTLRenderPipelineFunctionsDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLRenderPipelineFunctionsDescriptor {}
 
 extern_methods!(
@@ -891,6 +903,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLTileRenderPipelineColorAttachmentDescriptor {}
 
+unsafe impl CopyingHelper for MTLTileRenderPipelineColorAttachmentDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLTileRenderPipelineColorAttachmentDescriptor {}
 
 extern_methods!(
@@ -967,6 +983,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for MTLTileRenderPipelineDescriptor {}
+
+unsafe impl CopyingHelper for MTLTileRenderPipelineDescriptor {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for MTLTileRenderPipelineDescriptor {}
 
@@ -1092,6 +1112,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for MTLMeshRenderPipelineDescriptor {}
+
+unsafe impl CopyingHelper for MTLMeshRenderPipelineDescriptor {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for MTLMeshRenderPipelineDescriptor {}
 

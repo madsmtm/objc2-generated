@@ -46,6 +46,11 @@ unsafe impl NSCoding for CMMotionActivity {}
 unsafe impl NSCopying for CMMotionActivity {}
 
 #[cfg(feature = "CMLogItem")]
+unsafe impl CopyingHelper for CMMotionActivity {
+    type Result = Self;
+}
+
+#[cfg(feature = "CMLogItem")]
 unsafe impl NSObjectProtocol for CMMotionActivity {}
 
 #[cfg(feature = "CMLogItem")]

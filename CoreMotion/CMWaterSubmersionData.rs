@@ -69,6 +69,10 @@ unsafe impl NSCoding for CMWaterSubmersionEvent {}
 
 unsafe impl NSCopying for CMWaterSubmersionEvent {}
 
+unsafe impl CopyingHelper for CMWaterSubmersionEvent {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CMWaterSubmersionEvent {}
 
 unsafe impl NSSecureCoding for CMWaterSubmersionEvent {}
@@ -107,6 +111,10 @@ extern_class!(
 unsafe impl NSCoding for CMWaterSubmersionMeasurement {}
 
 unsafe impl NSCopying for CMWaterSubmersionMeasurement {}
+
+unsafe impl CopyingHelper for CMWaterSubmersionMeasurement {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CMWaterSubmersionMeasurement {}
 
@@ -155,6 +163,10 @@ extern_class!(
 unsafe impl NSCoding for CMWaterTemperature {}
 
 unsafe impl NSCopying for CMWaterTemperature {}
+
+unsafe impl CopyingHelper for CMWaterTemperature {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CMWaterTemperature {}
 

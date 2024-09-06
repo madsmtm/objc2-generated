@@ -47,6 +47,15 @@ unsafe impl NSCopying for DOMEntity {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMEntity {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMEntity {}
 
 extern_methods!(

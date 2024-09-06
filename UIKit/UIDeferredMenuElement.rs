@@ -25,6 +25,11 @@ unsafe impl NSCoding for UIDeferredMenuElement {}
 unsafe impl NSCopying for UIDeferredMenuElement {}
 
 #[cfg(feature = "UIMenuElement")]
+unsafe impl CopyingHelper for UIDeferredMenuElement {
+    type Result = Self;
+}
+
+#[cfg(feature = "UIMenuElement")]
 unsafe impl NSObjectProtocol for UIDeferredMenuElement {}
 
 #[cfg(feature = "UIMenuElement")]

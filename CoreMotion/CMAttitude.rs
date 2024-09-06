@@ -104,6 +104,10 @@ unsafe impl NSCoding for CMAttitude {}
 
 unsafe impl NSCopying for CMAttitude {}
 
+unsafe impl CopyingHelper for CMAttitude {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CMAttitude {}
 
 unsafe impl NSSecureCoding for CMAttitude {}

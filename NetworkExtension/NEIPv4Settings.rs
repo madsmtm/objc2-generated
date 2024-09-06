@@ -19,6 +19,10 @@ unsafe impl NSCoding for NEIPv4Settings {}
 
 unsafe impl NSCopying for NEIPv4Settings {}
 
+unsafe impl CopyingHelper for NEIPv4Settings {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEIPv4Settings {}
 
 unsafe impl NSSecureCoding for NEIPv4Settings {}
@@ -85,6 +89,10 @@ extern_class!(
 unsafe impl NSCoding for NEIPv4Route {}
 
 unsafe impl NSCopying for NEIPv4Route {}
+
+unsafe impl CopyingHelper for NEIPv4Route {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NEIPv4Route {}
 

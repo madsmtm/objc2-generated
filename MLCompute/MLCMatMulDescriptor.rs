@@ -18,6 +18,10 @@ extern_class!(
 
 unsafe impl NSCopying for MLCMatMulDescriptor {}
 
+unsafe impl CopyingHelper for MLCMatMulDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MLCMatMulDescriptor {}
 
 extern_methods!(

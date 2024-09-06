@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VNTrackTranslationalImageRegistrationRequest {}
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
+unsafe impl CopyingHelper for VNTrackTranslationalImageRegistrationRequest {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 unsafe impl NSObjectProtocol for VNTrackTranslationalImageRegistrationRequest {}
 
 extern_methods!(

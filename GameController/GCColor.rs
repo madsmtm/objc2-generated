@@ -19,6 +19,10 @@ unsafe impl NSCoding for GCColor {}
 
 unsafe impl NSCopying for GCColor {}
 
+unsafe impl CopyingHelper for GCColor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for GCColor {}
 
 unsafe impl NSSecureCoding for GCColor {}

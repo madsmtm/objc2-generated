@@ -19,6 +19,10 @@ unsafe impl NSCoding for UIVisualEffect {}
 
 unsafe impl NSCopying for UIVisualEffect {}
 
+unsafe impl CopyingHelper for UIVisualEffect {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIVisualEffect {}
 
 unsafe impl NSSecureCoding for UIVisualEffect {}

@@ -39,6 +39,11 @@ extern_class!(
 #[cfg(all(feature = "NSObject", feature = "NSXMLNode"))]
 unsafe impl NSCopying for NSXMLDocument {}
 
+#[cfg(all(feature = "NSObject", feature = "NSXMLNode"))]
+unsafe impl CopyingHelper for NSXMLDocument {
+    type Result = Self;
+}
+
 #[cfg(feature = "NSXMLNode")]
 unsafe impl NSObjectProtocol for NSXMLDocument {}
 

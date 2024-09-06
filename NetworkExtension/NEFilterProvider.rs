@@ -97,6 +97,10 @@ unsafe impl NSCoding for NEFilterVerdict {}
 
 unsafe impl NSCopying for NEFilterVerdict {}
 
+unsafe impl CopyingHelper for NEFilterVerdict {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEFilterVerdict {}
 
 unsafe impl NSSecureCoding for NEFilterVerdict {}
@@ -136,6 +140,10 @@ extern_class!(
 unsafe impl NSCoding for NEFilterNewFlowVerdict {}
 
 unsafe impl NSCopying for NEFilterNewFlowVerdict {}
+
+unsafe impl CopyingHelper for NEFilterNewFlowVerdict {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NEFilterNewFlowVerdict {}
 
@@ -210,6 +218,10 @@ extern_class!(
 unsafe impl NSCoding for NEFilterControlVerdict {}
 
 unsafe impl NSCopying for NEFilterControlVerdict {}
+
+unsafe impl CopyingHelper for NEFilterControlVerdict {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NEFilterControlVerdict {}
 
@@ -304,6 +316,10 @@ extern_class!(
 unsafe impl NSCoding for NEFilterReport {}
 
 unsafe impl NSCopying for NEFilterReport {}
+
+unsafe impl CopyingHelper for NEFilterReport {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NEFilterReport {}
 

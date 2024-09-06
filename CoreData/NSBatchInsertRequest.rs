@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for NSBatchInsertRequest {}
 
 #[cfg(feature = "NSPersistentStoreRequest")]
+unsafe impl CopyingHelper for NSBatchInsertRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSBatchInsertRequest {}
 
 extern_methods!(

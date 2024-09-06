@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIPreviewParameters {}
 
+unsafe impl CopyingHelper for UIPreviewParameters {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIPreviewParameters {}
 
 extern_methods!(

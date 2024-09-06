@@ -57,6 +57,17 @@ unsafe impl NSCopying for DOMCDATASection {}
     feature = "DOMText",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMCDATASection {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMCharacterData",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "DOMText",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMCDATASection {}
 
 extern_methods!(

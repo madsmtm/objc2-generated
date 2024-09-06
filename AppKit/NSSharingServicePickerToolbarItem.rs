@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for NSSharingServicePickerToolbarItem {}
 
 #[cfg(feature = "NSToolbarItem")]
+unsafe impl CopyingHelper for NSSharingServicePickerToolbarItem {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSToolbarItem")]
 unsafe impl NSObjectProtocol for NSSharingServicePickerToolbarItem {}
 
 extern_methods!(

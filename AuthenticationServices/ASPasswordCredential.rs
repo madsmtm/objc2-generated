@@ -22,6 +22,10 @@ unsafe impl NSCoding for ASPasswordCredential {}
 
 unsafe impl NSCopying for ASPasswordCredential {}
 
+unsafe impl CopyingHelper for ASPasswordCredential {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for ASPasswordCredential {}
 
 unsafe impl NSSecureCoding for ASPasswordCredential {}

@@ -34,6 +34,11 @@ unsafe impl NSCoding for ASAuthorizationSecurityKeyPublicKeyCredentialAssertionR
 unsafe impl NSCopying for ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {}
 
 #[cfg(feature = "ASAuthorizationRequest")]
+unsafe impl CopyingHelper for ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {}
 
 #[cfg(feature = "ASAuthorizationRequest")]

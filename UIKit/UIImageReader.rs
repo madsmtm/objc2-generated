@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIImageReaderConfiguration {}
 
+unsafe impl CopyingHelper for UIImageReaderConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIImageReaderConfiguration {}
 
 extern_methods!(

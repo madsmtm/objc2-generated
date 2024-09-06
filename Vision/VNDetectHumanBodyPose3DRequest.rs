@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VNDetectHumanBodyPose3DRequest {}
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
+unsafe impl CopyingHelper for VNDetectHumanBodyPose3DRequest {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 unsafe impl NSObjectProtocol for VNDetectHumanBodyPose3DRequest {}
 
 extern_methods!(

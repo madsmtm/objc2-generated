@@ -25,6 +25,11 @@ unsafe impl NSCoding for BAURLDownload {}
 unsafe impl NSCopying for BAURLDownload {}
 
 #[cfg(feature = "BADownload")]
+unsafe impl CopyingHelper for BAURLDownload {
+    type Result = Self;
+}
+
+#[cfg(feature = "BADownload")]
 unsafe impl NSObjectProtocol for BAURLDownload {}
 
 #[cfg(feature = "BADownload")]

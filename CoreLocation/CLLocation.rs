@@ -106,6 +106,10 @@ unsafe impl NSCoding for CLFloor {}
 
 unsafe impl NSCopying for CLFloor {}
 
+unsafe impl CopyingHelper for CLFloor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CLFloor {}
 
 unsafe impl NSSecureCoding for CLFloor {}
@@ -141,6 +145,10 @@ extern_class!(
 unsafe impl NSCoding for CLLocationSourceInformation {}
 
 unsafe impl NSCopying for CLLocationSourceInformation {}
+
+unsafe impl CopyingHelper for CLLocationSourceInformation {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CLLocationSourceInformation {}
 
@@ -191,6 +199,10 @@ unsafe impl Sync for CLLocation {}
 unsafe impl NSCoding for CLLocation {}
 
 unsafe impl NSCopying for CLLocation {}
+
+unsafe impl CopyingHelper for CLLocation {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CLLocation {}
 

@@ -75,6 +75,11 @@ unsafe impl NSCoding for NSImageCell {}
 unsafe impl NSCopying for NSImageCell {}
 
 #[cfg(feature = "NSCell")]
+unsafe impl CopyingHelper for NSImageCell {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSCell")]
 unsafe impl NSObjectProtocol for NSImageCell {}
 
 #[cfg(all(feature = "NSCell", feature = "NSUserInterfaceItemIdentification"))]

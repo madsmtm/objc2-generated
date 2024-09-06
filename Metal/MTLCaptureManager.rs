@@ -61,6 +61,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLCaptureDescriptor {}
 
+unsafe impl CopyingHelper for MTLCaptureDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLCaptureDescriptor {}
 
 extern_methods!(

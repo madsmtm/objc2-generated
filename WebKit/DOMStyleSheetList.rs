@@ -23,6 +23,11 @@ extern_class!(
 unsafe impl NSCopying for DOMStyleSheetList {}
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+unsafe impl CopyingHelper for DOMStyleSheetList {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMStyleSheetList {}
 
 extern_methods!(

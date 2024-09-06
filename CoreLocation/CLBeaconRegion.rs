@@ -26,6 +26,11 @@ unsafe impl NSCoding for CLBeaconRegion {}
 unsafe impl NSCopying for CLBeaconRegion {}
 
 #[cfg(feature = "CLRegion")]
+unsafe impl CopyingHelper for CLBeaconRegion {
+    type Result = Self;
+}
+
+#[cfg(feature = "CLRegion")]
 unsafe impl NSObjectProtocol for CLBeaconRegion {}
 
 #[cfg(feature = "CLRegion")]
@@ -182,6 +187,10 @@ extern_class!(
 unsafe impl NSCoding for CLBeacon {}
 
 unsafe impl NSCopying for CLBeacon {}
+
+unsafe impl CopyingHelper for CLBeacon {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CLBeacon {}
 

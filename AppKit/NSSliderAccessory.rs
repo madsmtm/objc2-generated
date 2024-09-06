@@ -77,6 +77,10 @@ unsafe impl NSCoding for NSSliderAccessoryBehavior {}
 
 unsafe impl NSCopying for NSSliderAccessoryBehavior {}
 
+unsafe impl CopyingHelper for NSSliderAccessoryBehavior {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSSliderAccessoryBehavior {}
 
 extern_methods!(

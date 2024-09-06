@@ -19,6 +19,10 @@ unsafe impl NSCoding for UIKey {}
 
 unsafe impl NSCopying for UIKey {}
 
+unsafe impl CopyingHelper for UIKey {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIKey {}
 
 extern_methods!(

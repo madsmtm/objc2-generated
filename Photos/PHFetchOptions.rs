@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for PHFetchOptions {}
 
+unsafe impl CopyingHelper for PHFetchOptions {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for PHFetchOptions {}
 
 extern_methods!(

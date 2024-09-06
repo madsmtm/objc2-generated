@@ -31,6 +31,11 @@ unsafe impl NSCoding for NSDate {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSDate {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSDate {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSDate {}
 
 #[cfg(feature = "NSObject")]

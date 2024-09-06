@@ -108,6 +108,10 @@ unsafe impl NSCoding for NSTextList {}
 
 unsafe impl NSCopying for NSTextList {}
 
+unsafe impl CopyingHelper for NSTextList {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSTextList {}
 
 unsafe impl NSSecureCoding for NSTextList {}

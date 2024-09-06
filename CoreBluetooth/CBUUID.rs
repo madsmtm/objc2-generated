@@ -49,6 +49,10 @@ extern_class!(
 
 unsafe impl NSCopying for CBUUID {}
 
+unsafe impl CopyingHelper for CBUUID {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CBUUID {}
 
 extern_methods!(

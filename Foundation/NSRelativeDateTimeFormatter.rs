@@ -65,6 +65,11 @@ unsafe impl NSCoding for NSRelativeDateTimeFormatter {}
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCopying for NSRelativeDateTimeFormatter {}
 
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
+unsafe impl CopyingHelper for NSRelativeDateTimeFormatter {
+    type Result = Self;
+}
+
 #[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSRelativeDateTimeFormatter {}
 

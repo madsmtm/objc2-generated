@@ -21,6 +21,10 @@ unsafe impl NSCoding for MKMapCameraBoundary {}
 
 unsafe impl NSCopying for MKMapCameraBoundary {}
 
+unsafe impl CopyingHelper for MKMapCameraBoundary {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MKMapCameraBoundary {}
 
 unsafe impl NSSecureCoding for MKMapCameraBoundary {}

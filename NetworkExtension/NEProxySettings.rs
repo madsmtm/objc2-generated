@@ -19,6 +19,10 @@ unsafe impl NSCoding for NEProxyServer {}
 
 unsafe impl NSCopying for NEProxyServer {}
 
+unsafe impl CopyingHelper for NEProxyServer {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEProxyServer {}
 
 unsafe impl NSSecureCoding for NEProxyServer {}
@@ -82,6 +86,10 @@ extern_class!(
 unsafe impl NSCoding for NEProxySettings {}
 
 unsafe impl NSCopying for NEProxySettings {}
+
+unsafe impl CopyingHelper for NEProxySettings {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NEProxySettings {}
 

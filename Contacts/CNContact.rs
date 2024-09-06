@@ -69,7 +69,15 @@ unsafe impl NSCoding for CNContact {}
 
 unsafe impl NSCopying for CNContact {}
 
+unsafe impl CopyingHelper for CNContact {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for CNContact {}
+
+unsafe impl MutableCopyingHelper for CNContact {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CNContact {}
 

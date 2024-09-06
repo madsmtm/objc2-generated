@@ -25,6 +25,11 @@ unsafe impl NSCoding for MLParameterKey {}
 unsafe impl NSCopying for MLParameterKey {}
 
 #[cfg(feature = "MLKey")]
+unsafe impl CopyingHelper for MLParameterKey {
+    type Result = Self;
+}
+
+#[cfg(feature = "MLKey")]
 unsafe impl NSObjectProtocol for MLParameterKey {}
 
 #[cfg(feature = "MLKey")]

@@ -30,6 +30,11 @@ unsafe impl Sync for PHCollection {}
 unsafe impl NSCopying for PHCollection {}
 
 #[cfg(feature = "PHObject")]
+unsafe impl CopyingHelper for PHCollection {
+    type Result = Self;
+}
+
+#[cfg(feature = "PHObject")]
 unsafe impl NSObjectProtocol for PHCollection {}
 
 extern_methods!(
@@ -99,6 +104,11 @@ unsafe impl Sync for PHAssetCollection {}
 
 #[cfg(feature = "PHObject")]
 unsafe impl NSCopying for PHAssetCollection {}
+
+#[cfg(feature = "PHObject")]
+unsafe impl CopyingHelper for PHAssetCollection {
+    type Result = Self;
+}
 
 #[cfg(feature = "PHObject")]
 unsafe impl NSObjectProtocol for PHAssetCollection {}
@@ -234,6 +244,11 @@ unsafe impl Sync for PHCollectionList {}
 
 #[cfg(feature = "PHObject")]
 unsafe impl NSCopying for PHCollectionList {}
+
+#[cfg(feature = "PHObject")]
+unsafe impl CopyingHelper for PHCollectionList {
+    type Result = Self;
+}
 
 #[cfg(feature = "PHObject")]
 unsafe impl NSObjectProtocol for PHCollectionList {}

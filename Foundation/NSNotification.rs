@@ -24,6 +24,11 @@ unsafe impl NSCoding for NSNotification {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSNotification {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSNotification {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSNotification {}
 
 extern_methods!(

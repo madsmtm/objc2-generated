@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for CBCentral {}
 
 #[cfg(feature = "CBPeer")]
+unsafe impl CopyingHelper for CBCentral {
+    type Result = Self;
+}
+
+#[cfg(feature = "CBPeer")]
 unsafe impl NSObjectProtocol for CBCentral {}
 
 extern_methods!(

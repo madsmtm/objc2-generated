@@ -52,6 +52,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLIntersectionFunctionTableDescriptor {}
 
+unsafe impl CopyingHelper for MTLIntersectionFunctionTableDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLIntersectionFunctionTableDescriptor {}
 
 extern_methods!(

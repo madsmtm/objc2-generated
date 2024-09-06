@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for VZVirtioSoundDeviceStreamConfiguration {}
 
+unsafe impl CopyingHelper for VZVirtioSoundDeviceStreamConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VZVirtioSoundDeviceStreamConfiguration {}
 
 extern_methods!(

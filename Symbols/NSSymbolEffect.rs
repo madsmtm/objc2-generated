@@ -19,6 +19,10 @@ unsafe impl NSCoding for NSSymbolEffectOptions {}
 
 unsafe impl NSCopying for NSSymbolEffectOptions {}
 
+unsafe impl CopyingHelper for NSSymbolEffectOptions {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSSymbolEffectOptions {}
 
 unsafe impl NSSecureCoding for NSSymbolEffectOptions {}
@@ -74,6 +78,10 @@ unsafe impl NSCoding for NSSymbolEffect {}
 
 unsafe impl NSCopying for NSSymbolEffect {}
 
+unsafe impl CopyingHelper for NSSymbolEffect {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSSymbolEffect {}
 
 unsafe impl NSSecureCoding for NSSymbolEffect {}
@@ -102,6 +110,10 @@ extern_class!(
 unsafe impl NSCoding for NSSymbolPulseEffect {}
 
 unsafe impl NSCopying for NSSymbolPulseEffect {}
+
+unsafe impl CopyingHelper for NSSymbolPulseEffect {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSSymbolPulseEffect {}
 
@@ -145,6 +157,10 @@ extern_class!(
 unsafe impl NSCoding for NSSymbolBounceEffect {}
 
 unsafe impl NSCopying for NSSymbolBounceEffect {}
+
+unsafe impl CopyingHelper for NSSymbolBounceEffect {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSSymbolBounceEffect {}
 
@@ -194,6 +210,10 @@ extern_class!(
 unsafe impl NSCoding for NSSymbolVariableColorEffect {}
 
 unsafe impl NSCopying for NSSymbolVariableColorEffect {}
+
+unsafe impl CopyingHelper for NSSymbolVariableColorEffect {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSSymbolVariableColorEffect {}
 
@@ -250,6 +270,10 @@ unsafe impl NSCoding for NSSymbolScaleEffect {}
 
 unsafe impl NSCopying for NSSymbolScaleEffect {}
 
+unsafe impl CopyingHelper for NSSymbolScaleEffect {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSSymbolScaleEffect {}
 
 unsafe impl NSSecureCoding for NSSymbolScaleEffect {}
@@ -298,6 +322,10 @@ extern_class!(
 unsafe impl NSCoding for NSSymbolAppearEffect {}
 
 unsafe impl NSCopying for NSSymbolAppearEffect {}
+
+unsafe impl CopyingHelper for NSSymbolAppearEffect {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSSymbolAppearEffect {}
 
@@ -348,6 +376,10 @@ unsafe impl NSCoding for NSSymbolDisappearEffect {}
 
 unsafe impl NSCopying for NSSymbolDisappearEffect {}
 
+unsafe impl CopyingHelper for NSSymbolDisappearEffect {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSSymbolDisappearEffect {}
 
 unsafe impl NSSecureCoding for NSSymbolDisappearEffect {}
@@ -396,6 +428,10 @@ unsafe impl NSCoding for NSSymbolContentTransition {}
 
 unsafe impl NSCopying for NSSymbolContentTransition {}
 
+unsafe impl CopyingHelper for NSSymbolContentTransition {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSSymbolContentTransition {}
 
 unsafe impl NSSecureCoding for NSSymbolContentTransition {}
@@ -424,6 +460,10 @@ extern_class!(
 unsafe impl NSCoding for NSSymbolReplaceContentTransition {}
 
 unsafe impl NSCopying for NSSymbolReplaceContentTransition {}
+
+unsafe impl CopyingHelper for NSSymbolReplaceContentTransition {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSSymbolReplaceContentTransition {}
 
@@ -476,6 +516,10 @@ extern_class!(
 unsafe impl NSCoding for NSSymbolAutomaticContentTransition {}
 
 unsafe impl NSCopying for NSSymbolAutomaticContentTransition {}
+
+unsafe impl CopyingHelper for NSSymbolAutomaticContentTransition {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSSymbolAutomaticContentTransition {}
 

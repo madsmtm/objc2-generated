@@ -23,6 +23,11 @@ extern_class!(
 unsafe impl NSCopying for DOMHTMLOptionsCollection {}
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+unsafe impl CopyingHelper for DOMHTMLOptionsCollection {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMHTMLOptionsCollection {}
 
 extern_methods!(

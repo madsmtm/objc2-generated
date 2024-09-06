@@ -36,6 +36,10 @@ extern_class!(
 
 unsafe impl NSCopying for WKUserScript {}
 
+unsafe impl CopyingHelper for WKUserScript {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for WKUserScript {}
 
 extern_methods!(

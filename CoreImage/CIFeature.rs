@@ -188,6 +188,10 @@ unsafe impl NSCoding for CIQRCodeFeature {}
 
 unsafe impl NSCopying for CIQRCodeFeature {}
 
+unsafe impl CopyingHelper for CIQRCodeFeature {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CIQRCodeFeature {}
 
 unsafe impl NSSecureCoding for CIQRCodeFeature {}

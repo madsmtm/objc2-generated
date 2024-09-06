@@ -47,6 +47,11 @@ extern_class!(
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUserNotification {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUserNotification {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSUserNotification {}
 
 extern_methods!(
@@ -250,6 +255,11 @@ extern_class!(
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUserNotificationAction {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUserNotificationAction {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSUserNotificationAction {}
 

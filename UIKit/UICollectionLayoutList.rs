@@ -94,6 +94,10 @@ extern_class!(
 
 unsafe impl NSCopying for UICollectionLayoutListConfiguration {}
 
+unsafe impl CopyingHelper for UICollectionLayoutListConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UICollectionLayoutListConfiguration {}
 
 extern_methods!(

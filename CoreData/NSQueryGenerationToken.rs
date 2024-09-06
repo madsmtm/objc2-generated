@@ -19,6 +19,10 @@ unsafe impl NSCoding for NSQueryGenerationToken {}
 
 unsafe impl NSCopying for NSQueryGenerationToken {}
 
+unsafe impl CopyingHelper for NSQueryGenerationToken {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSQueryGenerationToken {}
 
 unsafe impl NSSecureCoding for NSQueryGenerationToken {}

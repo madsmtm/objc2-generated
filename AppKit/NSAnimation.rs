@@ -66,6 +66,10 @@ unsafe impl NSCoding for NSAnimation {}
 
 unsafe impl NSCopying for NSAnimation {}
 
+unsafe impl CopyingHelper for NSAnimation {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSAnimation {}
 
 extern_methods!(
@@ -263,6 +267,10 @@ extern_class!(
 unsafe impl NSCoding for NSViewAnimation {}
 
 unsafe impl NSCopying for NSViewAnimation {}
+
+unsafe impl CopyingHelper for NSViewAnimation {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSViewAnimation {}
 

@@ -26,6 +26,11 @@ extern_class!(
 unsafe impl NSCopying for EKStructuredLocation {}
 
 #[cfg(feature = "EKObject")]
+unsafe impl CopyingHelper for EKStructuredLocation {
+    type Result = Self;
+}
+
+#[cfg(feature = "EKObject")]
 unsafe impl NSObjectProtocol for EKStructuredLocation {}
 
 extern_methods!(

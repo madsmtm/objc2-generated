@@ -192,6 +192,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLCounterSampleBufferDescriptor {}
 
+unsafe impl CopyingHelper for MTLCounterSampleBufferDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLCounterSampleBufferDescriptor {}
 
 extern_methods!(

@@ -46,6 +46,15 @@ unsafe impl NSCopying for DOMMutationEvent {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMMutationEvent {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMMutationEvent {}
 
 extern_methods!(

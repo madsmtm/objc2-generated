@@ -33,6 +33,11 @@ unsafe impl NSCoding for MKPlacemark {}
 unsafe impl NSCopying for MKPlacemark {}
 
 #[cfg(feature = "objc2-core-location")]
+unsafe impl CopyingHelper for MKPlacemark {
+    type Result = Self;
+}
+
+#[cfg(feature = "objc2-core-location")]
 unsafe impl NSObjectProtocol for MKPlacemark {}
 
 #[cfg(feature = "objc2-core-location")]

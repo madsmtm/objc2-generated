@@ -127,6 +127,10 @@ unsafe impl NSCoding for WebUndefined {}
 
 unsafe impl NSCopying for WebUndefined {}
 
+unsafe impl CopyingHelper for WebUndefined {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for WebUndefined {}
 
 extern_methods!(

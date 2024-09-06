@@ -127,6 +127,10 @@ unsafe impl NSCoding for UITabBarItemAppearance {}
 
 unsafe impl NSCopying for UITabBarItemAppearance {}
 
+unsafe impl CopyingHelper for UITabBarItemAppearance {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UITabBarItemAppearance {}
 
 unsafe impl NSSecureCoding for UITabBarItemAppearance {}
@@ -191,6 +195,11 @@ unsafe impl NSCoding for UITabBarAppearance {}
 
 #[cfg(feature = "UIBarAppearance")]
 unsafe impl NSCopying for UITabBarAppearance {}
+
+#[cfg(feature = "UIBarAppearance")]
+unsafe impl CopyingHelper for UITabBarAppearance {
+    type Result = Self;
+}
 
 #[cfg(feature = "UIBarAppearance")]
 unsafe impl NSObjectProtocol for UITabBarAppearance {}

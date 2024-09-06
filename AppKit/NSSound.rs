@@ -28,6 +28,10 @@ unsafe impl NSCoding for NSSound {}
 
 unsafe impl NSCopying for NSSound {}
 
+unsafe impl CopyingHelper for NSSound {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSSound {}
 
 #[cfg(feature = "NSPasteboard")]

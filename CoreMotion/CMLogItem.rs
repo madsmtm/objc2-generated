@@ -19,6 +19,10 @@ unsafe impl NSCoding for CMLogItem {}
 
 unsafe impl NSCopying for CMLogItem {}
 
+unsafe impl CopyingHelper for CMLogItem {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CMLogItem {}
 
 unsafe impl NSSecureCoding for CMLogItem {}

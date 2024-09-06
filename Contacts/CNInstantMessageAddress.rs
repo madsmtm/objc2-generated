@@ -19,6 +19,10 @@ unsafe impl NSCoding for CNInstantMessageAddress {}
 
 unsafe impl NSCopying for CNInstantMessageAddress {}
 
+unsafe impl CopyingHelper for CNInstantMessageAddress {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CNInstantMessageAddress {}
 
 unsafe impl NSSecureCoding for CNInstantMessageAddress {}

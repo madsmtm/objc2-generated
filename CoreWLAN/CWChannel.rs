@@ -19,6 +19,10 @@ unsafe impl NSCoding for CWChannel {}
 
 unsafe impl NSCopying for CWChannel {}
 
+unsafe impl CopyingHelper for CWChannel {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CWChannel {}
 
 unsafe impl NSSecureCoding for CWChannel {}

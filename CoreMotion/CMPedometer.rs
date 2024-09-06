@@ -19,6 +19,10 @@ unsafe impl NSCoding for CMPedometerData {}
 
 unsafe impl NSCopying for CMPedometerData {}
 
+unsafe impl CopyingHelper for CMPedometerData {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CMPedometerData {}
 
 unsafe impl NSSecureCoding for CMPedometerData {}
@@ -97,6 +101,10 @@ extern_class!(
 unsafe impl NSCoding for CMPedometerEvent {}
 
 unsafe impl NSCopying for CMPedometerEvent {}
+
+unsafe impl CopyingHelper for CMPedometerEvent {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CMPedometerEvent {}
 

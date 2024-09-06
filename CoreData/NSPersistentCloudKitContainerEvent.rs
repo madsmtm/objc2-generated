@@ -46,6 +46,10 @@ extern_class!(
 
 unsafe impl NSCopying for NSPersistentCloudKitContainerEvent {}
 
+unsafe impl CopyingHelper for NSPersistentCloudKitContainerEvent {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEvent {}
 
 extern_methods!(

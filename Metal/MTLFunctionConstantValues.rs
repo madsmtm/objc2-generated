@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLFunctionConstantValues {}
 
+unsafe impl CopyingHelper for MTLFunctionConstantValues {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLFunctionConstantValues {}
 
 extern_methods!(

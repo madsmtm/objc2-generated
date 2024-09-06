@@ -20,6 +20,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIFocusMovementHint {}
 
+unsafe impl CopyingHelper for UIFocusMovementHint {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIFocusMovementHint {}
 
 extern_methods!(

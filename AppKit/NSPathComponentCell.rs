@@ -61,6 +61,15 @@ unsafe impl NSCopying for NSPathComponentCell {}
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
+unsafe impl CopyingHelper for NSPathComponentCell {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
 unsafe impl NSObjectProtocol for NSPathComponentCell {}
 
 #[cfg(all(

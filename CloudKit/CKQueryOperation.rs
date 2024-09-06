@@ -19,6 +19,10 @@ unsafe impl NSCoding for CKQueryCursor {}
 
 unsafe impl NSCopying for CKQueryCursor {}
 
+unsafe impl CopyingHelper for CKQueryCursor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CKQueryCursor {}
 
 unsafe impl NSSecureCoding for CKQueryCursor {}

@@ -102,6 +102,11 @@ unsafe impl NSCoding for NSDatePickerCell {}
 unsafe impl NSCopying for NSDatePickerCell {}
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+unsafe impl CopyingHelper for NSDatePickerCell {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl NSObjectProtocol for NSDatePickerCell {}
 
 #[cfg(all(

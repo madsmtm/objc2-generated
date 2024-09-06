@@ -19,6 +19,10 @@ unsafe impl NSCoding for VNPoint {}
 
 unsafe impl NSCopying for VNPoint {}
 
+unsafe impl CopyingHelper for VNPoint {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNPoint {}
 
 unsafe impl NSSecureCoding for VNPoint {}
@@ -87,6 +91,10 @@ unsafe impl NSCoding for VNPoint3D {}
 
 unsafe impl NSCopying for VNPoint3D {}
 
+unsafe impl CopyingHelper for VNPoint3D {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNPoint3D {}
 
 unsafe impl NSSecureCoding for VNPoint3D {}
@@ -119,6 +127,10 @@ extern_class!(
 unsafe impl NSCoding for VNVector {}
 
 unsafe impl NSCopying for VNVector {}
+
+unsafe impl CopyingHelper for VNVector {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNVector {}
 
@@ -219,6 +231,10 @@ unsafe impl NSCoding for VNCircle {}
 
 unsafe impl NSCopying for VNCircle {}
 
+unsafe impl CopyingHelper for VNCircle {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNCircle {}
 
 unsafe impl NSSecureCoding for VNCircle {}
@@ -285,6 +301,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for VNContour {}
+
+unsafe impl CopyingHelper for VNContour {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNContour {}
 

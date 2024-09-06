@@ -75,6 +75,10 @@ unsafe impl NSCoding for NSColor {}
 
 unsafe impl NSCopying for NSColor {}
 
+unsafe impl CopyingHelper for NSColor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSColor {}
 
 #[cfg(feature = "NSPasteboard")]

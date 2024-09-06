@@ -19,6 +19,10 @@ unsafe impl NSCoding for NEFilterFlow {}
 
 unsafe impl NSCopying for NEFilterFlow {}
 
+unsafe impl CopyingHelper for NEFilterFlow {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEFilterFlow {}
 
 unsafe impl NSSecureCoding for NEFilterFlow {}
@@ -78,6 +82,10 @@ unsafe impl NSCoding for NEFilterBrowserFlow {}
 
 unsafe impl NSCopying for NEFilterBrowserFlow {}
 
+unsafe impl CopyingHelper for NEFilterBrowserFlow {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEFilterBrowserFlow {}
 
 unsafe impl NSSecureCoding for NEFilterBrowserFlow {}
@@ -120,6 +128,10 @@ extern_class!(
 unsafe impl NSCoding for NEFilterSocketFlow {}
 
 unsafe impl NSCopying for NEFilterSocketFlow {}
+
+unsafe impl CopyingHelper for NEFilterSocketFlow {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NEFilterSocketFlow {}
 

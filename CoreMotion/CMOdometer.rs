@@ -46,6 +46,10 @@ unsafe impl NSCoding for CMOdometerData {}
 
 unsafe impl NSCopying for CMOdometerData {}
 
+unsafe impl CopyingHelper for CMOdometerData {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CMOdometerData {}
 
 unsafe impl NSSecureCoding for CMOdometerData {}

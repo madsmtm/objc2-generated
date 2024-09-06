@@ -23,6 +23,11 @@ unsafe impl NSCoding for NSListFormatter {}
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCopying for NSListFormatter {}
 
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
+unsafe impl CopyingHelper for NSListFormatter {
+    type Result = Self;
+}
+
 #[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSListFormatter {}
 

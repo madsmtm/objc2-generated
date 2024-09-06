@@ -43,6 +43,11 @@ extern_class!(
 unsafe impl NSCopying for VNGeneratePersonSegmentationRequest {}
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
+unsafe impl CopyingHelper for VNGeneratePersonSegmentationRequest {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 unsafe impl NSObjectProtocol for VNGeneratePersonSegmentationRequest {}
 
 extern_methods!(

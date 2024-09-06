@@ -19,6 +19,10 @@ unsafe impl NSCoding for CKUserIdentityLookupInfo {}
 
 unsafe impl NSCopying for CKUserIdentityLookupInfo {}
 
+unsafe impl CopyingHelper for CKUserIdentityLookupInfo {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CKUserIdentityLookupInfo {}
 
 unsafe impl NSSecureCoding for CKUserIdentityLookupInfo {}

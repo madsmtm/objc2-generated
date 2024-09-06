@@ -22,6 +22,10 @@ unsafe impl NSCoding for UNNotificationSound {}
 
 unsafe impl NSCopying for UNNotificationSound {}
 
+unsafe impl CopyingHelper for UNNotificationSound {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UNNotificationSound {}
 
 unsafe impl NSSecureCoding for UNNotificationSound {}

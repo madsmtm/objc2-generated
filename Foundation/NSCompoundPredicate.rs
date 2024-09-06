@@ -41,6 +41,11 @@ unsafe impl NSCoding for NSCompoundPredicate {}
 #[cfg(all(feature = "NSObject", feature = "NSPredicate"))]
 unsafe impl NSCopying for NSCompoundPredicate {}
 
+#[cfg(all(feature = "NSObject", feature = "NSPredicate"))]
+unsafe impl CopyingHelper for NSCompoundPredicate {
+    type Result = Self;
+}
+
 #[cfg(feature = "NSPredicate")]
 unsafe impl NSObjectProtocol for NSCompoundPredicate {}
 

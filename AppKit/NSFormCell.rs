@@ -39,6 +39,11 @@ unsafe impl NSCoding for NSFormCell {}
 unsafe impl NSCopying for NSFormCell {}
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+unsafe impl CopyingHelper for NSFormCell {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl NSObjectProtocol for NSFormCell {}
 
 #[cfg(all(

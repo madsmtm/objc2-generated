@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VZMacGraphicsDeviceConfiguration {}
 
 #[cfg(feature = "VZGraphicsDeviceConfiguration")]
+unsafe impl CopyingHelper for VZMacGraphicsDeviceConfiguration {
+    type Result = Self;
+}
+
+#[cfg(feature = "VZGraphicsDeviceConfiguration")]
 unsafe impl NSObjectProtocol for VZMacGraphicsDeviceConfiguration {}
 
 extern_methods!(

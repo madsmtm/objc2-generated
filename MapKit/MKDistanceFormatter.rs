@@ -66,6 +66,10 @@ unsafe impl NSCoding for MKDistanceFormatter {}
 
 unsafe impl NSCopying for MKDistanceFormatter {}
 
+unsafe impl CopyingHelper for MKDistanceFormatter {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MKDistanceFormatter {}
 
 extern_methods!(

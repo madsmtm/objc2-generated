@@ -81,6 +81,11 @@ unsafe impl NSCoding for NSSliderCell {}
 unsafe impl NSCopying for NSSliderCell {}
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+unsafe impl CopyingHelper for NSSliderCell {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl NSObjectProtocol for NSSliderCell {}
 
 #[cfg(all(

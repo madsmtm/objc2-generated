@@ -67,6 +67,11 @@ unsafe impl DOMEventTarget for DOMNode {}
 unsafe impl NSCopying for DOMNode {}
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+unsafe impl CopyingHelper for DOMNode {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMNode {}
 
 extern_methods!(

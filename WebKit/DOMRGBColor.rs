@@ -26,6 +26,11 @@ extern_class!(
 unsafe impl NSCopying for DOMRGBColor {}
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+unsafe impl CopyingHelper for DOMRGBColor {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMRGBColor {}
 
 extern_methods!(

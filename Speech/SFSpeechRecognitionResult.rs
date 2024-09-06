@@ -19,6 +19,10 @@ unsafe impl NSCoding for SFSpeechRecognitionResult {}
 
 unsafe impl NSCopying for SFSpeechRecognitionResult {}
 
+unsafe impl CopyingHelper for SFSpeechRecognitionResult {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for SFSpeechRecognitionResult {}
 
 unsafe impl NSSecureCoding for SFSpeechRecognitionResult {}

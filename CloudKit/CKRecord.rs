@@ -63,6 +63,10 @@ unsafe impl NSCoding for CKRecord {}
 
 unsafe impl NSCopying for CKRecord {}
 
+unsafe impl CopyingHelper for CKRecord {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CKRecord {}
 
 unsafe impl NSSecureCoding for CKRecord {}

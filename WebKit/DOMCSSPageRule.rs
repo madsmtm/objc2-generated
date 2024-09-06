@@ -39,6 +39,15 @@ unsafe impl NSCopying for DOMCSSPageRule {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMCSSPageRule {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMCSSPageRule {}
 
 extern_methods!(

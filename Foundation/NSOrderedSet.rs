@@ -14,7 +14,7 @@ __inner_extern_class!(
 
     unsafe impl<ObjectType: ?Sized + Message> ClassType for NSOrderedSet<ObjectType> {
         type Super = NSObject;
-        type Mutability = InteriorMutableWithSubclass<NSMutableOrderedSet<ObjectType>>;
+        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -28,11 +28,21 @@ unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSOrderedSet<ObjectType>
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized> NSCopying for NSOrderedSet<ObjectType> {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for NSOrderedSet<ObjectType> {
+    type Result = Self;
+}
+
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSOrderedSet<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSOrderedSet<ObjectType> {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl<ObjectType: ?Sized + Message> MutableCopyingHelper for NSOrderedSet<ObjectType> {
+    type Result = NSMutableOrderedSet<ObjectType>;
+}
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSOrderedSet<ObjectType> {}
 
@@ -549,7 +559,7 @@ __inner_extern_class!(
     unsafe impl<ObjectType: ?Sized + Message> ClassType for NSMutableOrderedSet<ObjectType> {
         #[inherits(NSObject)]
         type Super = NSOrderedSet<ObjectType>;
-        type Mutability = InteriorMutableWithSuperclass<NSOrderedSet<ObjectType>>;
+        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -563,11 +573,21 @@ unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSMutableOrderedSet<Obje
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized> NSCopying for NSMutableOrderedSet<ObjectType> {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for NSMutableOrderedSet<ObjectType> {
+    type Result = NSOrderedSet<ObjectType>;
+}
+
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSMutableOrderedSet<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSMutableOrderedSet<ObjectType> {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl<ObjectType: ?Sized + Message> MutableCopyingHelper for NSMutableOrderedSet<ObjectType> {
+    type Result = Self;
+}
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSMutableOrderedSet<ObjectType> {}
 

@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for NSPersistentCloudKitContainerEventRequest {}
 
 #[cfg(feature = "NSPersistentStoreRequest")]
+unsafe impl CopyingHelper for NSPersistentCloudKitContainerEventRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEventRequest {}
 
 extern_methods!(

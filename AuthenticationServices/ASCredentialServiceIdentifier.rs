@@ -38,6 +38,10 @@ unsafe impl NSCoding for ASCredentialServiceIdentifier {}
 
 unsafe impl NSCopying for ASCredentialServiceIdentifier {}
 
+unsafe impl CopyingHelper for ASCredentialServiceIdentifier {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for ASCredentialServiceIdentifier {}
 
 unsafe impl NSSecureCoding for ASCredentialServiceIdentifier {}

@@ -38,6 +38,10 @@ unsafe impl NSCoding for ASAuthorizationPlatformPublicKeyCredentialAssertion {}
 
 unsafe impl NSCopying for ASAuthorizationPlatformPublicKeyCredentialAssertion {}
 
+unsafe impl CopyingHelper for ASAuthorizationPlatformPublicKeyCredentialAssertion {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialAssertion {}
 
 unsafe impl NSSecureCoding for ASAuthorizationPlatformPublicKeyCredentialAssertion {}

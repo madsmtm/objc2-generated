@@ -26,6 +26,11 @@ unsafe impl NSCoding for CLCircularRegion {}
 unsafe impl NSCopying for CLCircularRegion {}
 
 #[cfg(feature = "CLRegion")]
+unsafe impl CopyingHelper for CLCircularRegion {
+    type Result = Self;
+}
+
+#[cfg(feature = "CLRegion")]
 unsafe impl NSObjectProtocol for CLCircularRegion {}
 
 #[cfg(feature = "CLRegion")]

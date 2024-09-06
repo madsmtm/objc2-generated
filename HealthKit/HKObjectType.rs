@@ -23,6 +23,10 @@ unsafe impl NSCoding for HKObjectType {}
 
 unsafe impl NSCopying for HKObjectType {}
 
+unsafe impl CopyingHelper for HKObjectType {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKObjectType {}
 
 unsafe impl NSSecureCoding for HKObjectType {}
@@ -117,6 +121,10 @@ unsafe impl NSCoding for HKCharacteristicType {}
 
 unsafe impl NSCopying for HKCharacteristicType {}
 
+unsafe impl CopyingHelper for HKCharacteristicType {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKCharacteristicType {}
 
 unsafe impl NSSecureCoding for HKCharacteristicType {}
@@ -159,6 +167,10 @@ unsafe impl Sync for HKSampleType {}
 unsafe impl NSCoding for HKSampleType {}
 
 unsafe impl NSCopying for HKSampleType {}
+
+unsafe impl CopyingHelper for HKSampleType {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for HKSampleType {}
 
@@ -218,6 +230,10 @@ unsafe impl NSCoding for HKCategoryType {}
 
 unsafe impl NSCopying for HKCategoryType {}
 
+unsafe impl CopyingHelper for HKCategoryType {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKCategoryType {}
 
 unsafe impl NSSecureCoding for HKCategoryType {}
@@ -260,6 +276,10 @@ unsafe impl Sync for HKCorrelationType {}
 unsafe impl NSCoding for HKCorrelationType {}
 
 unsafe impl NSCopying for HKCorrelationType {}
+
+unsafe impl CopyingHelper for HKCorrelationType {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for HKCorrelationType {}
 
@@ -304,6 +324,10 @@ unsafe impl NSCoding for HKDocumentType {}
 
 unsafe impl NSCopying for HKDocumentType {}
 
+unsafe impl CopyingHelper for HKDocumentType {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKDocumentType {}
 
 unsafe impl NSSecureCoding for HKDocumentType {}
@@ -346,6 +370,10 @@ unsafe impl Sync for HKQuantityType {}
 unsafe impl NSCoding for HKQuantityType {}
 
 unsafe impl NSCopying for HKQuantityType {}
+
+unsafe impl CopyingHelper for HKQuantityType {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for HKQuantityType {}
 
@@ -398,6 +426,10 @@ unsafe impl NSCoding for HKWorkoutType {}
 
 unsafe impl NSCopying for HKWorkoutType {}
 
+unsafe impl CopyingHelper for HKWorkoutType {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKWorkoutType {}
 
 unsafe impl NSSecureCoding for HKWorkoutType {}
@@ -440,6 +472,10 @@ unsafe impl Sync for HKSeriesType {}
 unsafe impl NSCoding for HKSeriesType {}
 
 unsafe impl NSCopying for HKSeriesType {}
+
+unsafe impl CopyingHelper for HKSeriesType {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for HKSeriesType {}
 
@@ -490,6 +526,10 @@ unsafe impl NSCoding for HKActivitySummaryType {}
 
 unsafe impl NSCopying for HKActivitySummaryType {}
 
+unsafe impl CopyingHelper for HKActivitySummaryType {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKActivitySummaryType {}
 
 unsafe impl NSSecureCoding for HKActivitySummaryType {}
@@ -532,6 +572,10 @@ unsafe impl Sync for HKAudiogramSampleType {}
 unsafe impl NSCoding for HKAudiogramSampleType {}
 
 unsafe impl NSCopying for HKAudiogramSampleType {}
+
+unsafe impl CopyingHelper for HKAudiogramSampleType {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for HKAudiogramSampleType {}
 
@@ -576,6 +620,10 @@ unsafe impl NSCoding for HKElectrocardiogramType {}
 
 unsafe impl NSCopying for HKElectrocardiogramType {}
 
+unsafe impl CopyingHelper for HKElectrocardiogramType {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKElectrocardiogramType {}
 
 unsafe impl NSSecureCoding for HKElectrocardiogramType {}
@@ -618,6 +666,10 @@ unsafe impl Sync for HKPrescriptionType {}
 unsafe impl NSCoding for HKPrescriptionType {}
 
 unsafe impl NSCopying for HKPrescriptionType {}
+
+unsafe impl CopyingHelper for HKPrescriptionType {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for HKPrescriptionType {}
 

@@ -20,6 +20,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIFocusEffect {}
 
+unsafe impl CopyingHelper for UIFocusEffect {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIFocusEffect {}
 
 extern_methods!(
@@ -68,6 +72,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for UIFocusHaloEffect {}
+
+unsafe impl CopyingHelper for UIFocusHaloEffect {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UIFocusHaloEffect {}
 

@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for UILexiconEntry {}
 
+unsafe impl CopyingHelper for UILexiconEntry {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UILexiconEntry {}
 
 extern_methods!(
@@ -51,6 +55,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for UILexicon {}
+
+unsafe impl CopyingHelper for UILexicon {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UILexicon {}
 

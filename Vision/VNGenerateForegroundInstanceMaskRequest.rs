@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VNGenerateForegroundInstanceMaskRequest {}
 
 #[cfg(feature = "VNRequest")]
+unsafe impl CopyingHelper for VNGenerateForegroundInstanceMaskRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNGenerateForegroundInstanceMaskRequest {}
 
 extern_methods!(

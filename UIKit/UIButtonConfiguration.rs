@@ -143,6 +143,10 @@ unsafe impl NSCoding for UIButtonConfiguration {}
 
 unsafe impl NSCopying for UIButtonConfiguration {}
 
+unsafe impl CopyingHelper for UIButtonConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIButtonConfiguration {}
 
 unsafe impl NSSecureCoding for UIButtonConfiguration {}

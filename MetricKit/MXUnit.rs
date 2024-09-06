@@ -20,6 +20,10 @@ unsafe impl NSCoding for MXUnitSignalBars {}
 
 unsafe impl NSCopying for MXUnitSignalBars {}
 
+unsafe impl CopyingHelper for MXUnitSignalBars {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MXUnitSignalBars {}
 
 unsafe impl NSSecureCoding for MXUnitSignalBars {}
@@ -74,6 +78,10 @@ extern_class!(
 unsafe impl NSCoding for MXUnitAveragePixelLuminance {}
 
 unsafe impl NSCopying for MXUnitAveragePixelLuminance {}
+
+unsafe impl CopyingHelper for MXUnitAveragePixelLuminance {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for MXUnitAveragePixelLuminance {}
 

@@ -21,6 +21,10 @@ unsafe impl NSCoding for HKAttachment {}
 
 unsafe impl NSCopying for HKAttachment {}
 
+unsafe impl CopyingHelper for HKAttachment {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKAttachment {}
 
 unsafe impl NSSecureCoding for HKAttachment {}

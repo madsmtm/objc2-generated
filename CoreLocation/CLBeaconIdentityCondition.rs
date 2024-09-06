@@ -29,6 +29,11 @@ unsafe impl NSCoding for CLBeaconIdentityCondition {}
 unsafe impl NSCopying for CLBeaconIdentityCondition {}
 
 #[cfg(feature = "CLCondition")]
+unsafe impl CopyingHelper for CLBeaconIdentityCondition {
+    type Result = Self;
+}
+
+#[cfg(feature = "CLCondition")]
 unsafe impl NSObjectProtocol for CLBeaconIdentityCondition {}
 
 #[cfg(feature = "CLCondition")]

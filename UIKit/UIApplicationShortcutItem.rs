@@ -90,6 +90,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIApplicationShortcutIcon {}
 
+unsafe impl CopyingHelper for UIApplicationShortcutIcon {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIApplicationShortcutIcon {}
 
 extern_methods!(
@@ -128,7 +132,15 @@ extern_class!(
 
 unsafe impl NSCopying for UIApplicationShortcutItem {}
 
+unsafe impl CopyingHelper for UIApplicationShortcutItem {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for UIApplicationShortcutItem {}
+
+unsafe impl MutableCopyingHelper for UIApplicationShortcutItem {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UIApplicationShortcutItem {}
 
@@ -197,7 +209,15 @@ extern_class!(
 
 unsafe impl NSCopying for UIMutableApplicationShortcutItem {}
 
+unsafe impl CopyingHelper for UIMutableApplicationShortcutItem {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for UIMutableApplicationShortcutItem {}
+
+unsafe impl MutableCopyingHelper for UIMutableApplicationShortcutItem {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UIMutableApplicationShortcutItem {}
 

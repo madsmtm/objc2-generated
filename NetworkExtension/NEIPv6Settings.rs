@@ -19,6 +19,10 @@ unsafe impl NSCoding for NEIPv6Settings {}
 
 unsafe impl NSCopying for NEIPv6Settings {}
 
+unsafe impl CopyingHelper for NEIPv6Settings {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEIPv6Settings {}
 
 unsafe impl NSSecureCoding for NEIPv6Settings {}
@@ -82,6 +86,10 @@ extern_class!(
 unsafe impl NSCoding for NEIPv6Route {}
 
 unsafe impl NSCopying for NEIPv6Route {}
+
+unsafe impl CopyingHelper for NEIPv6Route {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NEIPv6Route {}
 

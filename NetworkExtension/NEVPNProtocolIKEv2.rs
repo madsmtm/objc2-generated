@@ -181,6 +181,10 @@ unsafe impl NSCoding for NEVPNIKEv2SecurityAssociationParameters {}
 
 unsafe impl NSCopying for NEVPNIKEv2SecurityAssociationParameters {}
 
+unsafe impl CopyingHelper for NEVPNIKEv2SecurityAssociationParameters {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEVPNIKEv2SecurityAssociationParameters {}
 
 unsafe impl NSSecureCoding for NEVPNIKEv2SecurityAssociationParameters {}
@@ -251,6 +255,11 @@ unsafe impl NSCoding for NEVPNProtocolIKEv2 {}
 
 #[cfg(all(feature = "NEVPNProtocol", feature = "NEVPNProtocolIPSec"))]
 unsafe impl NSCopying for NEVPNProtocolIKEv2 {}
+
+#[cfg(all(feature = "NEVPNProtocol", feature = "NEVPNProtocolIPSec"))]
+unsafe impl CopyingHelper for NEVPNProtocolIKEv2 {
+    type Result = Self;
+}
 
 #[cfg(all(feature = "NEVPNProtocol", feature = "NEVPNProtocolIPSec"))]
 unsafe impl NSObjectProtocol for NEVPNProtocolIKEv2 {}

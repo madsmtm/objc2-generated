@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for VZMacHardwareModel {}
 
+unsafe impl CopyingHelper for VZMacHardwareModel {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VZMacHardwareModel {}
 
 extern_methods!(

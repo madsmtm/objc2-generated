@@ -25,6 +25,11 @@ unsafe impl NSCoding for VNHumanBodyRecognizedPoint3D {}
 unsafe impl NSCopying for VNHumanBodyRecognizedPoint3D {}
 
 #[cfg(all(feature = "VNGeometry", feature = "VNRecognizedPoint3D"))]
+unsafe impl CopyingHelper for VNHumanBodyRecognizedPoint3D {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "VNGeometry", feature = "VNRecognizedPoint3D"))]
 unsafe impl NSObjectProtocol for VNHumanBodyRecognizedPoint3D {}
 
 #[cfg(all(feature = "VNGeometry", feature = "VNRecognizedPoint3D"))]

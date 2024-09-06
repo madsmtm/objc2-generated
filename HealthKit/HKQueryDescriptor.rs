@@ -19,6 +19,10 @@ unsafe impl NSCoding for HKQueryDescriptor {}
 
 unsafe impl NSCopying for HKQueryDescriptor {}
 
+unsafe impl CopyingHelper for HKQueryDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKQueryDescriptor {}
 
 unsafe impl NSSecureCoding for HKQueryDescriptor {}

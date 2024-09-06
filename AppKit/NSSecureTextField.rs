@@ -248,6 +248,15 @@ unsafe impl NSCopying for NSSecureTextFieldCell {}
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
+unsafe impl CopyingHelper for NSSecureTextFieldCell {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
 unsafe impl NSObjectProtocol for NSSecureTextFieldCell {}
 
 #[cfg(all(

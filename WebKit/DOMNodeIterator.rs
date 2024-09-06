@@ -23,6 +23,11 @@ extern_class!(
 unsafe impl NSCopying for DOMNodeIterator {}
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+unsafe impl CopyingHelper for DOMNodeIterator {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMNodeIterator {}
 
 extern_methods!(

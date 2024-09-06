@@ -46,6 +46,10 @@ unsafe impl NSCoding for NSTrackingArea {}
 
 unsafe impl NSCopying for NSTrackingArea {}
 
+unsafe impl CopyingHelper for NSTrackingArea {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSTrackingArea {}
 
 extern_methods!(

@@ -20,6 +20,11 @@ unsafe impl NSCoding for NSOrthography {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSOrthography {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSOrthography {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSOrthography {}
 
 #[cfg(feature = "NSObject")]

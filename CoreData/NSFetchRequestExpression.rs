@@ -22,6 +22,10 @@ unsafe impl NSCoding for NSFetchRequestExpression {}
 
 unsafe impl NSCopying for NSFetchRequestExpression {}
 
+unsafe impl CopyingHelper for NSFetchRequestExpression {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSFetchRequestExpression {}
 
 unsafe impl NSSecureCoding for NSFetchRequestExpression {}

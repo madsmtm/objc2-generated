@@ -19,6 +19,10 @@ unsafe impl NSCoding for UNNotificationActionIcon {}
 
 unsafe impl NSCopying for UNNotificationActionIcon {}
 
+unsafe impl CopyingHelper for UNNotificationActionIcon {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UNNotificationActionIcon {}
 
 unsafe impl NSSecureCoding for UNNotificationActionIcon {}

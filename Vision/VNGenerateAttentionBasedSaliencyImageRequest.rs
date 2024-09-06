@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VNGenerateAttentionBasedSaliencyImageRequest {}
 
 #[cfg(feature = "VNRequest")]
+unsafe impl CopyingHelper for VNGenerateAttentionBasedSaliencyImageRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNGenerateAttentionBasedSaliencyImageRequest {}
 
 extern_methods!(

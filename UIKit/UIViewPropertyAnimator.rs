@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIViewPropertyAnimator {}
 
+unsafe impl CopyingHelper for UIViewPropertyAnimator {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIViewPropertyAnimator {}
 
 #[cfg(feature = "UIViewAnimating")]

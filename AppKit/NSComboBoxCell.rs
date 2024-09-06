@@ -61,6 +61,15 @@ unsafe impl NSCopying for NSComboBoxCell {}
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
+unsafe impl CopyingHelper for NSComboBoxCell {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
 unsafe impl NSObjectProtocol for NSComboBoxCell {}
 
 #[cfg(all(

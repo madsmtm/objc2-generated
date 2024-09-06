@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLLinkedFunctions {}
 
+unsafe impl CopyingHelper for MTLLinkedFunctions {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLLinkedFunctions {}
 
 extern_methods!(

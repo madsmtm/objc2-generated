@@ -19,6 +19,10 @@ unsafe impl NSCoding for CWNetwork {}
 
 unsafe impl NSCopying for CWNetwork {}
 
+unsafe impl CopyingHelper for CWNetwork {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CWNetwork {}
 
 unsafe impl NSSecureCoding for CWNetwork {}

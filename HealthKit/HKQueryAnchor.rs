@@ -19,6 +19,10 @@ unsafe impl NSCoding for HKQueryAnchor {}
 
 unsafe impl NSCopying for HKQueryAnchor {}
 
+unsafe impl CopyingHelper for HKQueryAnchor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKQueryAnchor {}
 
 unsafe impl NSSecureCoding for HKQueryAnchor {}

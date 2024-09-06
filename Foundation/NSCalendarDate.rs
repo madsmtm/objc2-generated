@@ -24,6 +24,11 @@ unsafe impl NSCoding for NSCalendarDate {}
 #[cfg(all(feature = "NSDate", feature = "NSObject"))]
 unsafe impl NSCopying for NSCalendarDate {}
 
+#[cfg(all(feature = "NSDate", feature = "NSObject"))]
+unsafe impl CopyingHelper for NSCalendarDate {
+    type Result = Self;
+}
+
 #[cfg(feature = "NSDate")]
 unsafe impl NSObjectProtocol for NSCalendarDate {}
 

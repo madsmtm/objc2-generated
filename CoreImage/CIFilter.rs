@@ -395,6 +395,10 @@ unsafe impl NSCoding for CIFilter {}
 
 unsafe impl NSCopying for CIFilter {}
 
+unsafe impl CopyingHelper for CIFilter {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CIFilter {}
 
 unsafe impl NSSecureCoding for CIFilter {}

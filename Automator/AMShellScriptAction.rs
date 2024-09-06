@@ -25,6 +25,11 @@ unsafe impl NSCoding for AMShellScriptAction {}
 unsafe impl NSCopying for AMShellScriptAction {}
 
 #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
+unsafe impl CopyingHelper for AMShellScriptAction {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
 unsafe impl NSObjectProtocol for AMShellScriptAction {}
 
 #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]

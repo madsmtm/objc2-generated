@@ -19,6 +19,10 @@ unsafe impl NSCoding for NSRulerMarker {}
 
 unsafe impl NSCopying for NSRulerMarker {}
 
+unsafe impl CopyingHelper for NSRulerMarker {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSRulerMarker {}
 
 extern_methods!(

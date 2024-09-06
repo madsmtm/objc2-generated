@@ -48,6 +48,10 @@ extern_class!(
 
 unsafe impl NSCopying for NSCollectionViewLayoutAttributes {}
 
+unsafe impl CopyingHelper for NSCollectionViewLayoutAttributes {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSCollectionViewLayoutAttributes {}
 
 extern_methods!(

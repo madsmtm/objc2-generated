@@ -27,6 +27,10 @@ unsafe impl<AnchorType: ?Sized + NSCoding> NSCoding for NSLayoutAnchor<AnchorTyp
 
 unsafe impl<AnchorType: ?Sized> NSCopying for NSLayoutAnchor<AnchorType> {}
 
+unsafe impl<AnchorType: ?Sized + Message> CopyingHelper for NSLayoutAnchor<AnchorType> {
+    type Result = Self;
+}
+
 unsafe impl<AnchorType: ?Sized> NSObjectProtocol for NSLayoutAnchor<AnchorType> {}
 
 extern_methods!(
@@ -117,6 +121,10 @@ unsafe impl NSCoding for NSLayoutXAxisAnchor {}
 
 unsafe impl NSCopying for NSLayoutXAxisAnchor {}
 
+unsafe impl CopyingHelper for NSLayoutXAxisAnchor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSLayoutXAxisAnchor {}
 
 extern_methods!(
@@ -179,6 +187,10 @@ unsafe impl NSCoding for NSLayoutYAxisAnchor {}
 
 unsafe impl NSCopying for NSLayoutYAxisAnchor {}
 
+unsafe impl CopyingHelper for NSLayoutYAxisAnchor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSLayoutYAxisAnchor {}
 
 extern_methods!(
@@ -240,6 +252,10 @@ extern_class!(
 unsafe impl NSCoding for NSLayoutDimension {}
 
 unsafe impl NSCopying for NSLayoutDimension {}
+
+unsafe impl CopyingHelper for NSLayoutDimension {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSLayoutDimension {}
 

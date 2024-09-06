@@ -62,6 +62,11 @@ extern_class!(
 unsafe impl NSCopying for CBPeripheral {}
 
 #[cfg(feature = "CBPeer")]
+unsafe impl CopyingHelper for CBPeripheral {
+    type Result = Self;
+}
+
+#[cfg(feature = "CBPeer")]
 unsafe impl NSObjectProtocol for CBPeripheral {}
 
 extern_methods!(

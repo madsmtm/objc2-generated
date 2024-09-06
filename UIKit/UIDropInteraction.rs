@@ -85,6 +85,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIDropProposal {}
 
+unsafe impl CopyingHelper for UIDropProposal {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIDropProposal {}
 
 extern_methods!(

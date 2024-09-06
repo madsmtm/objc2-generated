@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VZGenericPlatformConfiguration {}
 
 #[cfg(feature = "VZPlatformConfiguration")]
+unsafe impl CopyingHelper for VZGenericPlatformConfiguration {
+    type Result = Self;
+}
+
+#[cfg(feature = "VZPlatformConfiguration")]
 unsafe impl NSObjectProtocol for VZGenericPlatformConfiguration {}
 
 extern_methods!(

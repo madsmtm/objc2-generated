@@ -19,6 +19,10 @@ unsafe impl NSCoding for CNSocialProfile {}
 
 unsafe impl NSCopying for CNSocialProfile {}
 
+unsafe impl CopyingHelper for CNSocialProfile {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CNSocialProfile {}
 
 unsafe impl NSSecureCoding for CNSocialProfile {}

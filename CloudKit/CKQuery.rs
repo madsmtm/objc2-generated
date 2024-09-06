@@ -19,6 +19,10 @@ unsafe impl NSCoding for CKQuery {}
 
 unsafe impl NSCopying for CKQuery {}
 
+unsafe impl CopyingHelper for CKQuery {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CKQuery {}
 
 unsafe impl NSSecureCoding for CKQuery {}

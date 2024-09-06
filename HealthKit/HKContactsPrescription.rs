@@ -45,6 +45,15 @@ unsafe impl NSCopying for HKContactsPrescription {}
     feature = "HKSample",
     feature = "HKVisionPrescription"
 ))]
+unsafe impl CopyingHelper for HKContactsPrescription {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "HKObject",
+    feature = "HKSample",
+    feature = "HKVisionPrescription"
+))]
 unsafe impl NSObjectProtocol for HKContactsPrescription {}
 
 #[cfg(all(

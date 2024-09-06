@@ -19,6 +19,10 @@ unsafe impl NSCoding for NEAppRule {}
 
 unsafe impl NSCopying for NEAppRule {}
 
+unsafe impl CopyingHelper for NEAppRule {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEAppRule {}
 
 unsafe impl NSSecureCoding for NEAppRule {}

@@ -19,6 +19,10 @@ unsafe impl NSCoding for UIViewConfigurationState {}
 
 unsafe impl NSCopying for UIViewConfigurationState {}
 
+unsafe impl CopyingHelper for UIViewConfigurationState {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIViewConfigurationState {}
 
 unsafe impl NSSecureCoding for UIViewConfigurationState {}

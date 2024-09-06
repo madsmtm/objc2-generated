@@ -424,6 +424,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLArgumentDescriptor {}
 
+unsafe impl CopyingHelper for MTLArgumentDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLArgumentDescriptor {}
 
 extern_methods!(
@@ -497,6 +501,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for MTLArchitecture {}
+
+unsafe impl CopyingHelper for MTLArchitecture {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for MTLArchitecture {}
 

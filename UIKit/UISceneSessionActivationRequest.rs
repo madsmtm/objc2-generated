@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for UISceneSessionActivationRequest {}
 
+unsafe impl CopyingHelper for UISceneSessionActivationRequest {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UISceneSessionActivationRequest {}
 
 extern_methods!(

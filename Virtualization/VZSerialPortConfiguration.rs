@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for VZSerialPortConfiguration {}
 
+unsafe impl CopyingHelper for VZSerialPortConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VZSerialPortConfiguration {}
 
 extern_methods!(

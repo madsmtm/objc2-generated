@@ -20,6 +20,10 @@ extern_class!(
 
 unsafe impl NSCopying for MLCDevice {}
 
+unsafe impl CopyingHelper for MLCDevice {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MLCDevice {}
 
 extern_methods!(

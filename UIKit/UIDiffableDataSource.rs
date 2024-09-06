@@ -34,6 +34,12 @@ unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSCopying
 {
 }
 
+unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
+    CopyingHelper for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
+{
+    type Result = Self;
+}
+
 unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
     for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
 {
@@ -411,6 +417,12 @@ unsafe impl<SectionType: ?Sized, ItemType: ?Sized> NSCopying
 {
 }
 
+unsafe impl<SectionType: ?Sized + Message, ItemType: ?Sized + Message> CopyingHelper
+    for UICollectionViewDiffableDataSourceReorderingHandlers<SectionType, ItemType>
+{
+    type Result = Self;
+}
+
 unsafe impl<SectionType: ?Sized, ItemType: ?Sized> NSObjectProtocol
     for UICollectionViewDiffableDataSourceReorderingHandlers<SectionType, ItemType>
 {
@@ -511,6 +523,12 @@ __inner_extern_class!(
 unsafe impl<ItemType: ?Sized> NSCopying
     for UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType>
 {
+}
+
+unsafe impl<ItemType: ?Sized + Message> CopyingHelper
+    for UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType>
+{
+    type Result = Self;
 }
 
 unsafe impl<ItemType: ?Sized> NSObjectProtocol

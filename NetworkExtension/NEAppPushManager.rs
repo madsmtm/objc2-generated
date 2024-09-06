@@ -46,6 +46,10 @@ unsafe impl NSCoding for NEPrivateLTENetwork {}
 
 unsafe impl NSCopying for NEPrivateLTENetwork {}
 
+unsafe impl CopyingHelper for NEPrivateLTENetwork {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEPrivateLTENetwork {}
 
 unsafe impl NSSecureCoding for NEPrivateLTENetwork {}

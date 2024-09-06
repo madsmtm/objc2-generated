@@ -45,6 +45,10 @@ unsafe impl NSCoding for UNNotificationCategory {}
 
 unsafe impl NSCopying for UNNotificationCategory {}
 
+unsafe impl CopyingHelper for UNNotificationCategory {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UNNotificationCategory {}
 
 unsafe impl NSSecureCoding for UNNotificationCategory {}

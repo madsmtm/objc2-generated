@@ -48,6 +48,11 @@ unsafe impl NSCoding for CMMagnetometerData {}
 unsafe impl NSCopying for CMMagnetometerData {}
 
 #[cfg(feature = "CMLogItem")]
+unsafe impl CopyingHelper for CMMagnetometerData {
+    type Result = Self;
+}
+
+#[cfg(feature = "CMLogItem")]
 unsafe impl NSObjectProtocol for CMMagnetometerData {}
 
 #[cfg(feature = "CMLogItem")]

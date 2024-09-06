@@ -24,6 +24,11 @@ unsafe impl NSCoding for NSDateInterval {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSDateInterval {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSDateInterval {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSDateInterval {}
 
 #[cfg(feature = "NSObject")]

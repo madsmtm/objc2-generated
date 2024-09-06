@@ -45,6 +45,10 @@ unsafe impl NSCoding for MLModelConfiguration {}
 
 unsafe impl NSCopying for MLModelConfiguration {}
 
+unsafe impl CopyingHelper for MLModelConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MLModelConfiguration {}
 
 unsafe impl NSSecureCoding for MLModelConfiguration {}

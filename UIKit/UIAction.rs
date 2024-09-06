@@ -47,6 +47,11 @@ unsafe impl NSCoding for UIAction {}
 unsafe impl NSCopying for UIAction {}
 
 #[cfg(feature = "UIMenuElement")]
+unsafe impl CopyingHelper for UIAction {
+    type Result = Self;
+}
+
+#[cfg(feature = "UIMenuElement")]
 unsafe impl NSObjectProtocol for UIAction {}
 
 #[cfg(feature = "UIMenuElement")]

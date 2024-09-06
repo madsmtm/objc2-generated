@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for NSTrackingSeparatorToolbarItem {}
 
 #[cfg(feature = "NSToolbarItem")]
+unsafe impl CopyingHelper for NSTrackingSeparatorToolbarItem {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSToolbarItem")]
 unsafe impl NSObjectProtocol for NSTrackingSeparatorToolbarItem {}
 
 extern_methods!(

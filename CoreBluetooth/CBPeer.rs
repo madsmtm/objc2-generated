@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for CBPeer {}
 
+unsafe impl CopyingHelper for CBPeer {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CBPeer {}
 
 extern_methods!(

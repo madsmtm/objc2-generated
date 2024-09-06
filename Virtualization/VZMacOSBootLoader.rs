@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VZMacOSBootLoader {}
 
 #[cfg(feature = "VZBootLoader")]
+unsafe impl CopyingHelper for VZMacOSBootLoader {
+    type Result = Self;
+}
+
+#[cfg(feature = "VZBootLoader")]
 unsafe impl NSObjectProtocol for VZMacOSBootLoader {}
 
 extern_methods!(

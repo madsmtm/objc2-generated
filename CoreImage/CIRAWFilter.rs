@@ -56,6 +56,11 @@ unsafe impl NSCoding for CIRAWFilter {}
 unsafe impl NSCopying for CIRAWFilter {}
 
 #[cfg(feature = "CIFilter")]
+unsafe impl CopyingHelper for CIRAWFilter {
+    type Result = Self;
+}
+
+#[cfg(feature = "CIFilter")]
 unsafe impl NSObjectProtocol for CIRAWFilter {}
 
 #[cfg(feature = "CIFilter")]

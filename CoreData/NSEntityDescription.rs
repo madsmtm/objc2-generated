@@ -19,6 +19,10 @@ unsafe impl NSCoding for NSEntityDescription {}
 
 unsafe impl NSCopying for NSEntityDescription {}
 
+unsafe impl CopyingHelper for NSEntityDescription {
+    type Result = Self;
+}
+
 unsafe impl NSFastEnumeration for NSEntityDescription {}
 
 unsafe impl NSObjectProtocol for NSEntityDescription {}

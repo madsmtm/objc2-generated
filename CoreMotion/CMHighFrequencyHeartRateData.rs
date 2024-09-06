@@ -48,6 +48,11 @@ unsafe impl NSCoding for CMHighFrequencyHeartRateData {}
 unsafe impl NSCopying for CMHighFrequencyHeartRateData {}
 
 #[cfg(feature = "CMLogItem")]
+unsafe impl CopyingHelper for CMHighFrequencyHeartRateData {
+    type Result = Self;
+}
+
+#[cfg(feature = "CMLogItem")]
 unsafe impl NSObjectProtocol for CMHighFrequencyHeartRateData {}
 
 #[cfg(feature = "CMLogItem")]

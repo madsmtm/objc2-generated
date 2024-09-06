@@ -19,6 +19,10 @@ unsafe impl NSCoding for MEEmailAddress {}
 
 unsafe impl NSCopying for MEEmailAddress {}
 
+unsafe impl CopyingHelper for MEEmailAddress {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MEEmailAddress {}
 
 unsafe impl NSSecureCoding for MEEmailAddress {}

@@ -37,6 +37,10 @@ unsafe impl NSCoding for CNPostalAddressFormatter {}
 
 unsafe impl NSCopying for CNPostalAddressFormatter {}
 
+unsafe impl CopyingHelper for CNPostalAddressFormatter {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CNPostalAddressFormatter {}
 
 extern_methods!(

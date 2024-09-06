@@ -17,6 +17,11 @@ extern_class!(
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSScanner {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSScanner {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSScanner {}
 
 extern_methods!(

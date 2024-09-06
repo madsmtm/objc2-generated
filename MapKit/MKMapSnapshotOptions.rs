@@ -22,6 +22,10 @@ extern_class!(
 
 unsafe impl NSCopying for MKMapSnapshotOptions {}
 
+unsafe impl CopyingHelper for MKMapSnapshotOptions {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MKMapSnapshotOptions {}
 
 extern_methods!(

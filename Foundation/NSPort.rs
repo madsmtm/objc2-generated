@@ -27,6 +27,11 @@ unsafe impl NSCoding for NSPort {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSPort {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSPort {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSPort {}
 
 extern_methods!(
@@ -169,6 +174,11 @@ unsafe impl NSCoding for NSMachPort {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSMachPort {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSMachPort {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSMachPort {}
 
 extern_methods!(
@@ -252,6 +262,11 @@ unsafe impl NSCoding for NSMessagePort {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSMessagePort {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSMessagePort {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSMessagePort {}
 
 extern_methods!(
@@ -285,6 +300,11 @@ unsafe impl NSCoding for NSSocketPort {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSSocketPort {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSSocketPort {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSSocketPort {}
 

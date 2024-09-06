@@ -59,6 +59,10 @@ unsafe impl NSCoding for BADownload {}
 
 unsafe impl NSCopying for BADownload {}
 
+unsafe impl CopyingHelper for BADownload {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for BADownload {}
 
 unsafe impl NSSecureCoding for BADownload {}

@@ -19,6 +19,10 @@ unsafe impl NSCoding for ASAuthorizationPublicKeyCredentialParameters {}
 
 unsafe impl NSCopying for ASAuthorizationPublicKeyCredentialParameters {}
 
+unsafe impl CopyingHelper for ASAuthorizationPublicKeyCredentialParameters {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialParameters {}
 
 unsafe impl NSSecureCoding for ASAuthorizationPublicKeyCredentialParameters {}

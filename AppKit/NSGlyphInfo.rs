@@ -19,6 +19,10 @@ unsafe impl NSCoding for NSGlyphInfo {}
 
 unsafe impl NSCopying for NSGlyphInfo {}
 
+unsafe impl CopyingHelper for NSGlyphInfo {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSGlyphInfo {}
 
 unsafe impl NSSecureCoding for NSGlyphInfo {}

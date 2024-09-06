@@ -87,6 +87,11 @@ unsafe impl NSCoding for NSDateComponentsFormatter {}
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCopying for NSDateComponentsFormatter {}
 
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
+unsafe impl CopyingHelper for NSDateComponentsFormatter {
+    type Result = Self;
+}
+
 #[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSDateComponentsFormatter {}
 

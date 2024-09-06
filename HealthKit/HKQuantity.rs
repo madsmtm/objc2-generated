@@ -23,6 +23,10 @@ unsafe impl NSCoding for HKQuantity {}
 
 unsafe impl NSCopying for HKQuantity {}
 
+unsafe impl CopyingHelper for HKQuantity {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKQuantity {}
 
 unsafe impl NSSecureCoding for HKQuantity {}

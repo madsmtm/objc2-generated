@@ -40,6 +40,14 @@ unsafe impl NSCopying for ASAuthorizationAppleIDRequest {}
     feature = "ASAuthorizationOpenIDRequest",
     feature = "ASAuthorizationRequest"
 ))]
+unsafe impl CopyingHelper for ASAuthorizationAppleIDRequest {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "ASAuthorizationOpenIDRequest",
+    feature = "ASAuthorizationRequest"
+))]
 unsafe impl NSObjectProtocol for ASAuthorizationAppleIDRequest {}
 
 #[cfg(all(

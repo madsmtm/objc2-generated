@@ -49,6 +49,11 @@ unsafe impl NSCoding for CKShare {}
 unsafe impl NSCopying for CKShare {}
 
 #[cfg(feature = "CKRecord")]
+unsafe impl CopyingHelper for CKShare {
+    type Result = Self;
+}
+
+#[cfg(feature = "CKRecord")]
 unsafe impl NSObjectProtocol for CKShare {}
 
 #[cfg(feature = "CKRecord")]

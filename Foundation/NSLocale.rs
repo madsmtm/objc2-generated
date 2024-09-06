@@ -28,6 +28,11 @@ unsafe impl NSCoding for NSLocale {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSLocale {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSLocale {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSLocale {}
 
 #[cfg(feature = "NSObject")]

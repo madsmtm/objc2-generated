@@ -20,6 +20,11 @@ unsafe impl NSCoding for NSPointerArray {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSPointerArray {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSPointerArray {
+    type Result = Self;
+}
+
 #[cfg(feature = "NSEnumerator")]
 unsafe impl NSFastEnumeration for NSPointerArray {}
 

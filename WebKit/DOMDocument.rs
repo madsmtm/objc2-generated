@@ -47,6 +47,15 @@ unsafe impl NSCopying for DOMDocument {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMDocument {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMDocument {}
 
 extern_methods!(

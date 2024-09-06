@@ -44,6 +44,10 @@ unsafe impl NSCoding for CKRecordZone {}
 
 unsafe impl NSCopying for CKRecordZone {}
 
+unsafe impl CopyingHelper for CKRecordZone {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CKRecordZone {}
 
 unsafe impl NSSecureCoding for CKRecordZone {}

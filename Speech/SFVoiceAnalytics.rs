@@ -19,6 +19,10 @@ unsafe impl NSCoding for SFAcousticFeature {}
 
 unsafe impl NSCopying for SFAcousticFeature {}
 
+unsafe impl CopyingHelper for SFAcousticFeature {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for SFAcousticFeature {}
 
 unsafe impl NSSecureCoding for SFAcousticFeature {}
@@ -57,6 +61,10 @@ extern_class!(
 unsafe impl NSCoding for SFVoiceAnalytics {}
 
 unsafe impl NSCopying for SFVoiceAnalytics {}
+
+unsafe impl CopyingHelper for SFVoiceAnalytics {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for SFVoiceAnalytics {}
 

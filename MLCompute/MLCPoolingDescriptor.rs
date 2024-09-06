@@ -18,6 +18,10 @@ extern_class!(
 
 unsafe impl NSCopying for MLCPoolingDescriptor {}
 
+unsafe impl CopyingHelper for MLCPoolingDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MLCPoolingDescriptor {}
 
 extern_methods!(

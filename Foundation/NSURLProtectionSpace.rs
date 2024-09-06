@@ -99,6 +99,11 @@ unsafe impl NSCoding for NSURLProtectionSpace {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLProtectionSpace {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSURLProtectionSpace {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSURLProtectionSpace {}
 
 #[cfg(feature = "NSObject")]

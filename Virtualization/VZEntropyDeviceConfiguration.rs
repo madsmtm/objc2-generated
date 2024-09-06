@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for VZEntropyDeviceConfiguration {}
 
+unsafe impl CopyingHelper for VZEntropyDeviceConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VZEntropyDeviceConfiguration {}
 
 extern_methods!(

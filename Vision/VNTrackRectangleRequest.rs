@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VNTrackRectangleRequest {}
 
 #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
+unsafe impl CopyingHelper for VNTrackRectangleRequest {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
 unsafe impl NSObjectProtocol for VNTrackRectangleRequest {}
 
 extern_methods!(

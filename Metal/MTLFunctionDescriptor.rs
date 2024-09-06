@@ -37,6 +37,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLFunctionDescriptor {}
 
+unsafe impl CopyingHelper for MTLFunctionDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLFunctionDescriptor {}
 
 extern_methods!(
@@ -115,6 +119,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for MTLIntersectionFunctionDescriptor {}
+
+unsafe impl CopyingHelper for MTLIntersectionFunctionDescriptor {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for MTLIntersectionFunctionDescriptor {}
 

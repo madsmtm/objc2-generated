@@ -25,6 +25,11 @@ unsafe impl NSCoding for HKContactsLensSpecification {}
 unsafe impl NSCopying for HKContactsLensSpecification {}
 
 #[cfg(feature = "HKLensSpecification")]
+unsafe impl CopyingHelper for HKContactsLensSpecification {
+    type Result = Self;
+}
+
+#[cfg(feature = "HKLensSpecification")]
 unsafe impl NSObjectProtocol for HKContactsLensSpecification {}
 
 #[cfg(feature = "HKLensSpecification")]

@@ -19,6 +19,10 @@ unsafe impl NSCoding for UIRegion {}
 
 unsafe impl NSCopying for UIRegion {}
 
+unsafe impl CopyingHelper for UIRegion {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIRegion {}
 
 extern_methods!(

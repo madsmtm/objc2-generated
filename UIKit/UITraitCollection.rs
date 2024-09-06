@@ -23,6 +23,10 @@ unsafe impl NSCoding for UITraitCollection {}
 
 unsafe impl NSCopying for UITraitCollection {}
 
+unsafe impl CopyingHelper for UITraitCollection {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UITraitCollection {}
 
 unsafe impl NSSecureCoding for UITraitCollection {}

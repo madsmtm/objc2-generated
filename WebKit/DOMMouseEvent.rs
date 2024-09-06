@@ -43,6 +43,16 @@ unsafe impl NSCopying for DOMMouseEvent {}
     feature = "DOMUIEvent",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMMouseEvent {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "DOMUIEvent",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMMouseEvent {}
 
 extern_methods!(

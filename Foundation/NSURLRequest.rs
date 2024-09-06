@@ -77,7 +77,7 @@ extern_class!(
 
     unsafe impl ClassType for NSURLRequest {
         type Super = NSObject;
-        type Mutability = InteriorMutableWithSubclass<NSMutableURLRequest>;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -88,7 +88,17 @@ unsafe impl NSCoding for NSURLRequest {}
 unsafe impl NSCopying for NSURLRequest {}
 
 #[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSURLRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSObject")]
 unsafe impl NSMutableCopying for NSURLRequest {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl MutableCopyingHelper for NSURLRequest {
+    type Result = NSMutableURLRequest;
+}
 
 unsafe impl NSObjectProtocol for NSURLRequest {}
 
@@ -181,7 +191,7 @@ extern_class!(
     unsafe impl ClassType for NSMutableURLRequest {
         #[inherits(NSObject)]
         type Super = NSURLRequest;
-        type Mutability = InteriorMutableWithSuperclass<NSURLRequest>;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -192,7 +202,17 @@ unsafe impl NSCoding for NSMutableURLRequest {}
 unsafe impl NSCopying for NSMutableURLRequest {}
 
 #[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSMutableURLRequest {
+    type Result = NSURLRequest;
+}
+
+#[cfg(feature = "NSObject")]
 unsafe impl NSMutableCopying for NSMutableURLRequest {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl MutableCopyingHelper for NSMutableURLRequest {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSMutableURLRequest {}
 

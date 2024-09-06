@@ -144,6 +144,11 @@ unsafe impl NSCoding for NSTextAttachmentCell {}
 unsafe impl NSCopying for NSTextAttachmentCell {}
 
 #[cfg(feature = "NSCell")]
+unsafe impl CopyingHelper for NSTextAttachmentCell {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSCell")]
 unsafe impl NSObjectProtocol for NSTextAttachmentCell {}
 
 #[cfg(feature = "NSCell")]

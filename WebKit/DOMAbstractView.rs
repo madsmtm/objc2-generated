@@ -23,6 +23,11 @@ extern_class!(
 unsafe impl NSCopying for DOMAbstractView {}
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+unsafe impl CopyingHelper for DOMAbstractView {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMAbstractView {}
 
 extern_methods!(

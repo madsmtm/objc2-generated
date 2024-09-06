@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VNDetectHorizonRequest {}
 
 #[cfg(feature = "VNRequest")]
+unsafe impl CopyingHelper for VNDetectHorizonRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNDetectHorizonRequest {}
 
 extern_methods!(

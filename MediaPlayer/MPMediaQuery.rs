@@ -50,6 +50,10 @@ unsafe impl NSCoding for MPMediaQuery {}
 
 unsafe impl NSCopying for MPMediaQuery {}
 
+unsafe impl CopyingHelper for MPMediaQuery {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MPMediaQuery {}
 
 unsafe impl NSSecureCoding for MPMediaQuery {}

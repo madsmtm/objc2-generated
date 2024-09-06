@@ -62,6 +62,10 @@ unsafe impl NSCoding for CLRegion {}
 
 unsafe impl NSCopying for CLRegion {}
 
+unsafe impl CopyingHelper for CLRegion {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CLRegion {}
 
 unsafe impl NSSecureCoding for CLRegion {}

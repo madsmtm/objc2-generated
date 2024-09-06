@@ -72,6 +72,10 @@ extern_class!(
 
 unsafe impl NSCopying for UICollectionViewLayoutAttributes {}
 
+unsafe impl CopyingHelper for UICollectionViewLayoutAttributes {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UICollectionViewLayoutAttributes {}
 
 #[cfg(feature = "UIDynamicBehavior")]

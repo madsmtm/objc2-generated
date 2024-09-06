@@ -19,6 +19,10 @@ unsafe impl NSCoding for NEVPNProtocol {}
 
 unsafe impl NSCopying for NEVPNProtocol {}
 
+unsafe impl CopyingHelper for NEVPNProtocol {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEVPNProtocol {}
 
 unsafe impl NSSecureCoding for NEVPNProtocol {}

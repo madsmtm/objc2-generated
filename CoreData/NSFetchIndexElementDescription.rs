@@ -38,6 +38,10 @@ unsafe impl NSCoding for NSFetchIndexElementDescription {}
 
 unsafe impl NSCopying for NSFetchIndexElementDescription {}
 
+unsafe impl CopyingHelper for NSFetchIndexElementDescription {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSFetchIndexElementDescription {}
 
 extern_methods!(

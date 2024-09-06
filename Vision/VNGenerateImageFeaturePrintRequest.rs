@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VNGenerateImageFeaturePrintRequest {}
 
 #[cfg(feature = "VNRequest")]
+unsafe impl CopyingHelper for VNGenerateImageFeaturePrintRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNGenerateImageFeaturePrintRequest {}
 
 extern_methods!(

@@ -25,6 +25,11 @@ unsafe impl NSCoding for CMRecordedPressureData {}
 unsafe impl NSCopying for CMRecordedPressureData {}
 
 #[cfg(all(feature = "CMAmbientPressure", feature = "CMLogItem"))]
+unsafe impl CopyingHelper for CMRecordedPressureData {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "CMAmbientPressure", feature = "CMLogItem"))]
 unsafe impl NSObjectProtocol for CMRecordedPressureData {}
 
 #[cfg(all(feature = "CMAmbientPressure", feature = "CMLogItem"))]

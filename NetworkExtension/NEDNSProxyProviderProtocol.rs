@@ -25,6 +25,11 @@ unsafe impl NSCoding for NEDNSProxyProviderProtocol {}
 unsafe impl NSCopying for NEDNSProxyProviderProtocol {}
 
 #[cfg(feature = "NEVPNProtocol")]
+unsafe impl CopyingHelper for NEDNSProxyProviderProtocol {
+    type Result = Self;
+}
+
+#[cfg(feature = "NEVPNProtocol")]
 unsafe impl NSObjectProtocol for NEDNSProxyProviderProtocol {}
 
 #[cfg(feature = "NEVPNProtocol")]

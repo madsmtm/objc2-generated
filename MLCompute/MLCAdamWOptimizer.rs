@@ -23,6 +23,11 @@ extern_class!(
 unsafe impl NSCopying for MLCAdamWOptimizer {}
 
 #[cfg(feature = "MLCOptimizer")]
+unsafe impl CopyingHelper for MLCAdamWOptimizer {
+    type Result = Self;
+}
+
+#[cfg(feature = "MLCOptimizer")]
 unsafe impl NSObjectProtocol for MLCAdamWOptimizer {}
 
 extern_methods!(

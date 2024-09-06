@@ -60,6 +60,11 @@ unsafe impl NSCoding for NSPathCell {}
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl NSCopying for NSPathCell {}
 
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+unsafe impl CopyingHelper for NSPathCell {
+    type Result = Self;
+}
+
 #[cfg(all(feature = "NSActionCell", feature = "NSCell", feature = "NSMenu"))]
 unsafe impl NSMenuItemValidation for NSPathCell {}
 

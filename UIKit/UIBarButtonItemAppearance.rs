@@ -79,6 +79,10 @@ unsafe impl NSCoding for UIBarButtonItemAppearance {}
 
 unsafe impl NSCopying for UIBarButtonItemAppearance {}
 
+unsafe impl CopyingHelper for UIBarButtonItemAppearance {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIBarButtonItemAppearance {}
 
 unsafe impl NSSecureCoding for UIBarButtonItemAppearance {}

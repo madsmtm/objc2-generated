@@ -87,6 +87,10 @@ extern_class!(
 
 unsafe impl NSCopying for PHImageRequestOptions {}
 
+unsafe impl CopyingHelper for PHImageRequestOptions {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for PHImageRequestOptions {}
 
 extern_methods!(
@@ -165,6 +169,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for PHLivePhotoRequestOptions {}
+
+unsafe impl CopyingHelper for PHLivePhotoRequestOptions {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for PHLivePhotoRequestOptions {}
 
@@ -266,6 +274,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for PHVideoRequestOptions {}
+
+unsafe impl CopyingHelper for PHVideoRequestOptions {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for PHVideoRequestOptions {}
 

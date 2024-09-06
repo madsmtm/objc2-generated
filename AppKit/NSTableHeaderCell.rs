@@ -61,6 +61,15 @@ unsafe impl NSCopying for NSTableHeaderCell {}
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
+unsafe impl CopyingHelper for NSTableHeaderCell {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
 unsafe impl NSObjectProtocol for NSTableHeaderCell {}
 
 #[cfg(all(

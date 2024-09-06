@@ -39,6 +39,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLFXSpatialScalerDescriptor {}
 
+unsafe impl CopyingHelper for MTLFXSpatialScalerDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLFXSpatialScalerDescriptor {}
 
 extern_methods!(

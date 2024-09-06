@@ -19,7 +19,15 @@ unsafe impl NSCoding for CWConfiguration {}
 
 unsafe impl NSCopying for CWConfiguration {}
 
+unsafe impl CopyingHelper for CWConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for CWConfiguration {}
+
+unsafe impl MutableCopyingHelper for CWConfiguration {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CWConfiguration {}
 
@@ -88,7 +96,15 @@ unsafe impl NSCoding for CWMutableConfiguration {}
 
 unsafe impl NSCopying for CWMutableConfiguration {}
 
+unsafe impl CopyingHelper for CWMutableConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for CWMutableConfiguration {}
+
+unsafe impl MutableCopyingHelper for CWMutableConfiguration {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CWMutableConfiguration {}
 

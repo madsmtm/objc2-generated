@@ -101,6 +101,11 @@ unsafe impl NSCoding for UIImageSymbolConfiguration {}
 unsafe impl NSCopying for UIImageSymbolConfiguration {}
 
 #[cfg(feature = "UIImageConfiguration")]
+unsafe impl CopyingHelper for UIImageSymbolConfiguration {
+    type Result = Self;
+}
+
+#[cfg(feature = "UIImageConfiguration")]
 unsafe impl NSObjectProtocol for UIImageSymbolConfiguration {}
 
 #[cfg(feature = "UIImageConfiguration")]

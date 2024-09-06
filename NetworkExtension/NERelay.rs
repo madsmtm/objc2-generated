@@ -19,6 +19,10 @@ unsafe impl NSCoding for NERelay {}
 
 unsafe impl NSCopying for NERelay {}
 
+unsafe impl CopyingHelper for NERelay {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NERelay {}
 
 unsafe impl NSSecureCoding for NERelay {}

@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for UIWindowSceneStandardPlacement {}
 
 #[cfg(feature = "UIWindowScenePlacement")]
+unsafe impl CopyingHelper for UIWindowSceneStandardPlacement {
+    type Result = Self;
+}
+
+#[cfg(feature = "UIWindowScenePlacement")]
 unsafe impl NSObjectProtocol for UIWindowSceneStandardPlacement {}
 
 extern_methods!(

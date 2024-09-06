@@ -38,6 +38,10 @@ unsafe impl NSCoding for PHLivePhoto {}
 
 unsafe impl NSCopying for PHLivePhoto {}
 
+unsafe impl CopyingHelper for PHLivePhoto {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for PHLivePhoto {}
 
 unsafe impl NSSecureCoding for PHLivePhoto {}

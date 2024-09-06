@@ -72,6 +72,10 @@ unsafe impl NSCoding for NSTextTab {}
 
 unsafe impl NSCopying for NSTextTab {}
 
+unsafe impl CopyingHelper for NSTextTab {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSTextTab {}
 
 unsafe impl NSSecureCoding for NSTextTab {}
@@ -129,7 +133,15 @@ unsafe impl NSCoding for NSParagraphStyle {}
 
 unsafe impl NSCopying for NSParagraphStyle {}
 
+unsafe impl CopyingHelper for NSParagraphStyle {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for NSParagraphStyle {}
+
+unsafe impl MutableCopyingHelper for NSParagraphStyle {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSParagraphStyle {}
 
@@ -234,7 +246,15 @@ unsafe impl NSCoding for NSMutableParagraphStyle {}
 
 unsafe impl NSCopying for NSMutableParagraphStyle {}
 
+unsafe impl CopyingHelper for NSMutableParagraphStyle {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for NSMutableParagraphStyle {}
+
+unsafe impl MutableCopyingHelper for NSMutableParagraphStyle {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSMutableParagraphStyle {}
 

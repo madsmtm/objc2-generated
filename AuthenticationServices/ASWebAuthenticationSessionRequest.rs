@@ -41,6 +41,10 @@ unsafe impl NSCoding for ASWebAuthenticationSessionRequest {}
 
 unsafe impl NSCopying for ASWebAuthenticationSessionRequest {}
 
+unsafe impl CopyingHelper for ASWebAuthenticationSessionRequest {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for ASWebAuthenticationSessionRequest {}
 
 unsafe impl NSSecureCoding for ASWebAuthenticationSessionRequest {}

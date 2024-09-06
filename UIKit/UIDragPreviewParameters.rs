@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for UIDragPreviewParameters {}
 
 #[cfg(feature = "UIPreviewParameters")]
+unsafe impl CopyingHelper for UIDragPreviewParameters {
+    type Result = Self;
+}
+
+#[cfg(feature = "UIPreviewParameters")]
 unsafe impl NSObjectProtocol for UIDragPreviewParameters {}
 
 extern_methods!(

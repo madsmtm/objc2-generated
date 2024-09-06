@@ -46,6 +46,10 @@ unsafe impl NSCoding for HKStatistics {}
 
 unsafe impl NSCopying for HKStatistics {}
 
+unsafe impl CopyingHelper for HKStatistics {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKStatistics {}
 
 unsafe impl NSSecureCoding for HKStatistics {}

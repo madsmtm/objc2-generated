@@ -20,6 +20,11 @@ unsafe impl NSCoding for NSExtensionItem {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSExtensionItem {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSExtensionItem {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSExtensionItem {}
 
 #[cfg(feature = "NSObject")]

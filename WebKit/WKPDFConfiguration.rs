@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for WKPDFConfiguration {}
 
+unsafe impl CopyingHelper for WKPDFConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for WKPDFConfiguration {}
 
 extern_methods!(

@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VNStatefulRequest {}
 
 #[cfg(feature = "VNRequest")]
+unsafe impl CopyingHelper for VNStatefulRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNStatefulRequest {}
 
 extern_methods!(

@@ -39,6 +39,15 @@ unsafe impl NSCopying for DOMCSSValueList {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMCSSValueList {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMCSSValue",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMCSSValueList {}
 
 extern_methods!(

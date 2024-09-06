@@ -40,6 +40,10 @@ unsafe impl NSCoding for CXHandle {}
 
 unsafe impl NSCopying for CXHandle {}
 
+unsafe impl CopyingHelper for CXHandle {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CXHandle {}
 
 unsafe impl NSSecureCoding for CXHandle {}

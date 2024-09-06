@@ -19,6 +19,10 @@ unsafe impl NSCoding for CKUserIdentity {}
 
 unsafe impl NSCopying for CKUserIdentity {}
 
+unsafe impl CopyingHelper for CKUserIdentity {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CKUserIdentity {}
 
 unsafe impl NSSecureCoding for CKUserIdentity {}

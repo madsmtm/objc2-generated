@@ -115,6 +115,11 @@ unsafe impl NSCoding for NSError {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSError {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSError {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSError {}
 
 #[cfg(feature = "NSObject")]

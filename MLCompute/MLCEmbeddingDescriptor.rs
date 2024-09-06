@@ -18,6 +18,10 @@ extern_class!(
 
 unsafe impl NSCopying for MLCEmbeddingDescriptor {}
 
+unsafe impl CopyingHelper for MLCEmbeddingDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MLCEmbeddingDescriptor {}
 
 extern_methods!(

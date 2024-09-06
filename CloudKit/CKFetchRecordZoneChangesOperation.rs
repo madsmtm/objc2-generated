@@ -249,6 +249,10 @@ unsafe impl NSCoding for CKFetchRecordZoneChangesConfiguration {}
 
 unsafe impl NSCopying for CKFetchRecordZoneChangesConfiguration {}
 
+unsafe impl CopyingHelper for CKFetchRecordZoneChangesConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CKFetchRecordZoneChangesConfiguration {}
 
 unsafe impl NSSecureCoding for CKFetchRecordZoneChangesConfiguration {}
@@ -307,6 +311,10 @@ extern_class!(
 unsafe impl NSCoding for CKFetchRecordZoneChangesOptions {}
 
 unsafe impl NSCopying for CKFetchRecordZoneChangesOptions {}
+
+unsafe impl CopyingHelper for CKFetchRecordZoneChangesOptions {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CKFetchRecordZoneChangesOptions {}
 

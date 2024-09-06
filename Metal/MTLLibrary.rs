@@ -332,6 +332,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLCompileOptions {}
 
+unsafe impl CopyingHelper for MTLCompileOptions {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLCompileOptions {}
 
 extern_methods!(

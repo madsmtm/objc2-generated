@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VNDetectBarcodesRequest {}
 
 #[cfg(feature = "VNRequest")]
+unsafe impl CopyingHelper for VNDetectBarcodesRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNDetectBarcodesRequest {}
 
 extern_methods!(

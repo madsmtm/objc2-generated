@@ -19,6 +19,10 @@ unsafe impl NSCoding for CNPhoneNumber {}
 
 unsafe impl NSCopying for CNPhoneNumber {}
 
+unsafe impl CopyingHelper for CNPhoneNumber {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CNPhoneNumber {}
 
 unsafe impl NSSecureCoding for CNPhoneNumber {}

@@ -195,6 +195,11 @@ unsafe impl NSCoding for VNHumanHandPoseObservation {}
 unsafe impl NSCopying for VNHumanHandPoseObservation {}
 
 #[cfg(feature = "VNObservation")]
+unsafe impl CopyingHelper for VNHumanHandPoseObservation {
+    type Result = Self;
+}
+
+#[cfg(feature = "VNObservation")]
 unsafe impl NSObjectProtocol for VNHumanHandPoseObservation {}
 
 #[cfg(feature = "VNObservation")]
@@ -276,6 +281,11 @@ extern_class!(
 
 #[cfg(feature = "VNRequest")]
 unsafe impl NSCopying for VNDetectHumanHandPoseRequest {}
+
+#[cfg(feature = "VNRequest")]
+unsafe impl CopyingHelper for VNDetectHumanHandPoseRequest {
+    type Result = Self;
+}
 
 #[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNDetectHumanHandPoseRequest {}

@@ -42,6 +42,10 @@ unsafe impl NSCoding for NSGradient {}
 
 unsafe impl NSCopying for NSGradient {}
 
+unsafe impl CopyingHelper for NSGradient {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSGradient {}
 
 unsafe impl NSSecureCoding for NSGradient {}

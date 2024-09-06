@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIFontPickerViewControllerConfiguration {}
 
+unsafe impl CopyingHelper for UIFontPickerViewControllerConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIFontPickerViewControllerConfiguration {}
 
 extern_methods!(

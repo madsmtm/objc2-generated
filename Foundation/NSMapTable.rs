@@ -58,6 +58,13 @@ unsafe impl<KeyType: ?Sized + NSCoding, ObjectType: ?Sized + NSCoding> NSCoding
 #[cfg(feature = "NSObject")]
 unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSCopying for NSMapTable<KeyType, ObjectType> {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> CopyingHelper
+    for NSMapTable<KeyType, ObjectType>
+{
+    type Result = Self;
+}
+
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration
     for NSMapTable<KeyType, ObjectType>

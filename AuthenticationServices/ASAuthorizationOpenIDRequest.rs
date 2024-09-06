@@ -44,6 +44,11 @@ unsafe impl NSCoding for ASAuthorizationOpenIDRequest {}
 unsafe impl NSCopying for ASAuthorizationOpenIDRequest {}
 
 #[cfg(feature = "ASAuthorizationRequest")]
+unsafe impl CopyingHelper for ASAuthorizationOpenIDRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSObjectProtocol for ASAuthorizationOpenIDRequest {}
 
 #[cfg(feature = "ASAuthorizationRequest")]

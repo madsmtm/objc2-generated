@@ -20,6 +20,11 @@ unsafe impl NSCoding for NSTermOfAddress {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSTermOfAddress {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSTermOfAddress {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSTermOfAddress {}
 
 #[cfg(feature = "NSObject")]

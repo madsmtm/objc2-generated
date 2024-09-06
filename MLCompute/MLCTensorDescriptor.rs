@@ -18,6 +18,10 @@ extern_class!(
 
 unsafe impl NSCopying for MLCTensorDescriptor {}
 
+unsafe impl CopyingHelper for MLCTensorDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MLCTensorDescriptor {}
 
 extern_methods!(

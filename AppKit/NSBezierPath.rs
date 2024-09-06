@@ -108,6 +108,10 @@ unsafe impl NSCoding for NSBezierPath {}
 
 unsafe impl NSCopying for NSBezierPath {}
 
+unsafe impl CopyingHelper for NSBezierPath {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSBezierPath {}
 
 unsafe impl NSSecureCoding for NSBezierPath {}

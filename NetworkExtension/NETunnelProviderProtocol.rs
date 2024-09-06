@@ -25,6 +25,11 @@ unsafe impl NSCoding for NETunnelProviderProtocol {}
 unsafe impl NSCopying for NETunnelProviderProtocol {}
 
 #[cfg(feature = "NEVPNProtocol")]
+unsafe impl CopyingHelper for NETunnelProviderProtocol {
+    type Result = Self;
+}
+
+#[cfg(feature = "NEVPNProtocol")]
 unsafe impl NSObjectProtocol for NETunnelProviderProtocol {}
 
 #[cfg(feature = "NEVPNProtocol")]

@@ -19,6 +19,10 @@ unsafe impl NSCoding for NSShadow {}
 
 unsafe impl NSCopying for NSShadow {}
 
+unsafe impl CopyingHelper for NSShadow {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSShadow {}
 
 unsafe impl NSSecureCoding for NSShadow {}

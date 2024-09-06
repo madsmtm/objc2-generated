@@ -27,6 +27,10 @@ unsafe impl<ValueType: ?Sized + NSCoding> NSCoding for CNLabeledValue<ValueType>
 
 unsafe impl<ValueType: ?Sized> NSCopying for CNLabeledValue<ValueType> {}
 
+unsafe impl<ValueType: ?Sized + Message> CopyingHelper for CNLabeledValue<ValueType> {
+    type Result = Self;
+}
+
 unsafe impl<ValueType: ?Sized> NSObjectProtocol for CNLabeledValue<ValueType> {}
 
 unsafe impl<ValueType: ?Sized + NSSecureCoding> NSSecureCoding for CNLabeledValue<ValueType> {}

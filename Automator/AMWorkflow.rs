@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for AMWorkflow {}
 
+unsafe impl CopyingHelper for AMWorkflow {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for AMWorkflow {}
 
 extern_methods!(

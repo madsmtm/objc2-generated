@@ -63,6 +63,10 @@ unsafe impl NSCoding for HKVisionPrism {}
 
 unsafe impl NSCopying for HKVisionPrism {}
 
+unsafe impl CopyingHelper for HKVisionPrism {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKVisionPrism {}
 
 unsafe impl NSSecureCoding for HKVisionPrism {}

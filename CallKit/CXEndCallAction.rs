@@ -25,6 +25,11 @@ unsafe impl NSCoding for CXEndCallAction {}
 unsafe impl NSCopying for CXEndCallAction {}
 
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
+unsafe impl CopyingHelper for CXEndCallAction {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
 unsafe impl NSObjectProtocol for CXEndCallAction {}
 
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]

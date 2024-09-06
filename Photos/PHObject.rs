@@ -21,6 +21,10 @@ unsafe impl Sync for PHObject {}
 
 unsafe impl NSCopying for PHObject {}
 
+unsafe impl CopyingHelper for PHObject {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for PHObject {}
 
 extern_methods!(
@@ -57,6 +61,10 @@ unsafe impl Send for PHObjectPlaceholder {}
 unsafe impl Sync for PHObjectPlaceholder {}
 
 unsafe impl NSCopying for PHObjectPlaceholder {}
+
+unsafe impl CopyingHelper for PHObjectPlaceholder {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for PHObjectPlaceholder {}
 

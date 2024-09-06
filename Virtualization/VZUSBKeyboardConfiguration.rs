@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VZUSBKeyboardConfiguration {}
 
 #[cfg(feature = "VZKeyboardConfiguration")]
+unsafe impl CopyingHelper for VZUSBKeyboardConfiguration {
+    type Result = Self;
+}
+
+#[cfg(feature = "VZKeyboardConfiguration")]
 unsafe impl NSObjectProtocol for VZUSBKeyboardConfiguration {}
 
 extern_methods!(

@@ -68,6 +68,10 @@ unsafe impl NSCoding for NSMenu {}
 
 unsafe impl NSCopying for NSMenu {}
 
+unsafe impl CopyingHelper for NSMenu {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSMenu {}
 
 #[cfg(feature = "NSUserInterfaceItemIdentification")]

@@ -10,7 +10,7 @@ extern_class!(
 
     unsafe impl ClassType for NSIndexSet {
         type Super = NSObject;
-        type Mutability = InteriorMutableWithSubclass<NSMutableIndexSet>;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -21,7 +21,17 @@ unsafe impl NSCoding for NSIndexSet {}
 unsafe impl NSCopying for NSIndexSet {}
 
 #[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSIndexSet {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSObject")]
 unsafe impl NSMutableCopying for NSIndexSet {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl MutableCopyingHelper for NSIndexSet {
+    type Result = NSMutableIndexSet;
+}
 
 unsafe impl NSObjectProtocol for NSIndexSet {}
 
@@ -223,7 +233,7 @@ extern_class!(
     unsafe impl ClassType for NSMutableIndexSet {
         #[inherits(NSObject)]
         type Super = NSIndexSet;
-        type Mutability = InteriorMutableWithSuperclass<NSIndexSet>;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -234,7 +244,17 @@ unsafe impl NSCoding for NSMutableIndexSet {}
 unsafe impl NSCopying for NSMutableIndexSet {}
 
 #[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSMutableIndexSet {
+    type Result = NSIndexSet;
+}
+
+#[cfg(feature = "NSObject")]
 unsafe impl NSMutableCopying for NSMutableIndexSet {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl MutableCopyingHelper for NSMutableIndexSet {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSMutableIndexSet {}
 

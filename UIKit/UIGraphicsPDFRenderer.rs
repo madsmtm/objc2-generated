@@ -26,6 +26,11 @@ extern_class!(
 unsafe impl NSCopying for UIGraphicsPDFRendererFormat {}
 
 #[cfg(feature = "UIGraphicsRenderer")]
+unsafe impl CopyingHelper for UIGraphicsPDFRendererFormat {
+    type Result = Self;
+}
+
+#[cfg(feature = "UIGraphicsRenderer")]
 unsafe impl NSObjectProtocol for UIGraphicsPDFRendererFormat {}
 
 extern_methods!(

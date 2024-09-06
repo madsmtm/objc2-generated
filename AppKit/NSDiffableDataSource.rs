@@ -34,6 +34,12 @@ unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSCopying
 {
 }
 
+unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
+    CopyingHelper for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
+{
+    type Result = Self;
+}
+
 unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
     for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
 {

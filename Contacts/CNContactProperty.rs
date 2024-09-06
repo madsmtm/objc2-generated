@@ -19,6 +19,10 @@ unsafe impl NSCoding for CNContactProperty {}
 
 unsafe impl NSCopying for CNContactProperty {}
 
+unsafe impl CopyingHelper for CNContactProperty {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CNContactProperty {}
 
 unsafe impl NSSecureCoding for CNContactProperty {}

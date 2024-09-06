@@ -70,6 +70,10 @@ unsafe impl NSCoding for HKFHIRResource {}
 
 unsafe impl NSCopying for HKFHIRResource {}
 
+unsafe impl CopyingHelper for HKFHIRResource {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKFHIRResource {}
 
 unsafe impl NSSecureCoding for HKFHIRResource {}

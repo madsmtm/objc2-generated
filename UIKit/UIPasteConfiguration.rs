@@ -19,6 +19,10 @@ unsafe impl NSCoding for UIPasteConfiguration {}
 
 unsafe impl NSCopying for UIPasteConfiguration {}
 
+unsafe impl CopyingHelper for UIPasteConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIPasteConfiguration {}
 
 unsafe impl NSSecureCoding for UIPasteConfiguration {}

@@ -19,6 +19,10 @@ unsafe impl NSCoding for CXAction {}
 
 unsafe impl NSCopying for CXAction {}
 
+unsafe impl CopyingHelper for CXAction {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CXAction {}
 
 unsafe impl NSSecureCoding for CXAction {}

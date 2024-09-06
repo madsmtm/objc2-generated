@@ -19,6 +19,10 @@ unsafe impl NSCoding for NWEndpoint {}
 
 unsafe impl NSCopying for NWEndpoint {}
 
+unsafe impl CopyingHelper for NWEndpoint {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NWEndpoint {}
 
 unsafe impl NSSecureCoding for NWEndpoint {}

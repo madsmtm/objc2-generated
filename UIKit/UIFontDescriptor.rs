@@ -100,6 +100,10 @@ unsafe impl NSCoding for UIFontDescriptor {}
 
 unsafe impl NSCopying for UIFontDescriptor {}
 
+unsafe impl CopyingHelper for UIFontDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIFontDescriptor {}
 
 unsafe impl NSSecureCoding for UIFontDescriptor {}

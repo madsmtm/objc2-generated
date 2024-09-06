@@ -24,6 +24,10 @@ unsafe impl NSCoding for WebArchive {}
 
 unsafe impl NSCopying for WebArchive {}
 
+unsafe impl CopyingHelper for WebArchive {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for WebArchive {}
 
 extern_methods!(

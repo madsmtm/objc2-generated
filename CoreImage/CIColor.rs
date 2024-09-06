@@ -19,6 +19,10 @@ unsafe impl NSCoding for CIColor {}
 
 unsafe impl NSCopying for CIColor {}
 
+unsafe impl CopyingHelper for CIColor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CIColor {}
 
 unsafe impl NSSecureCoding for CIColor {}

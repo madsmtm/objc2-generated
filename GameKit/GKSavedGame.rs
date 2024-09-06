@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for GKSavedGame {}
 
+unsafe impl CopyingHelper for GKSavedGame {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for GKSavedGame {}
 
 extern_methods!(

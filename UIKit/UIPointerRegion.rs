@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIPointerRegion {}
 
+unsafe impl CopyingHelper for UIPointerRegion {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIPointerRegion {}
 
 extern_methods!(

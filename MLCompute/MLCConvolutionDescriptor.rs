@@ -18,6 +18,10 @@ extern_class!(
 
 unsafe impl NSCopying for MLCConvolutionDescriptor {}
 
+unsafe impl CopyingHelper for MLCConvolutionDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MLCConvolutionDescriptor {}
 
 extern_methods!(

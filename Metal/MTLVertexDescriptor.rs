@@ -167,6 +167,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLVertexBufferLayoutDescriptor {}
 
+unsafe impl CopyingHelper for MTLVertexBufferLayoutDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLVertexBufferLayoutDescriptor {}
 
 extern_methods!(
@@ -261,6 +265,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLVertexAttributeDescriptor {}
 
+unsafe impl CopyingHelper for MTLVertexAttributeDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLVertexAttributeDescriptor {}
 
 extern_methods!(
@@ -354,6 +362,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for MTLVertexDescriptor {}
+
+unsafe impl CopyingHelper for MTLVertexDescriptor {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for MTLVertexDescriptor {}
 

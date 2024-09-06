@@ -19,6 +19,10 @@ unsafe impl NSCoding for HKBiologicalSexObject {}
 
 unsafe impl NSCopying for HKBiologicalSexObject {}
 
+unsafe impl CopyingHelper for HKBiologicalSexObject {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKBiologicalSexObject {}
 
 unsafe impl NSSecureCoding for HKBiologicalSexObject {}
@@ -55,6 +59,10 @@ extern_class!(
 unsafe impl NSCoding for HKBloodTypeObject {}
 
 unsafe impl NSCopying for HKBloodTypeObject {}
+
+unsafe impl CopyingHelper for HKBloodTypeObject {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for HKBloodTypeObject {}
 
@@ -93,6 +101,10 @@ unsafe impl NSCoding for HKFitzpatrickSkinTypeObject {}
 
 unsafe impl NSCopying for HKFitzpatrickSkinTypeObject {}
 
+unsafe impl CopyingHelper for HKFitzpatrickSkinTypeObject {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKFitzpatrickSkinTypeObject {}
 
 unsafe impl NSSecureCoding for HKFitzpatrickSkinTypeObject {}
@@ -130,6 +142,10 @@ unsafe impl NSCoding for HKWheelchairUseObject {}
 
 unsafe impl NSCopying for HKWheelchairUseObject {}
 
+unsafe impl CopyingHelper for HKWheelchairUseObject {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKWheelchairUseObject {}
 
 unsafe impl NSSecureCoding for HKWheelchairUseObject {}
@@ -166,6 +182,10 @@ extern_class!(
 unsafe impl NSCoding for HKActivityMoveModeObject {}
 
 unsafe impl NSCopying for HKActivityMoveModeObject {}
+
+unsafe impl CopyingHelper for HKActivityMoveModeObject {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for HKActivityMoveModeObject {}
 

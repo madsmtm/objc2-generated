@@ -22,6 +22,10 @@ extern_class!(
 
 unsafe impl NSCopying for VNRequest {}
 
+unsafe impl CopyingHelper for VNRequest {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNRequest {}
 
 extern_methods!(
@@ -130,6 +134,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for VNImageBasedRequest {}
+
+unsafe impl CopyingHelper for VNImageBasedRequest {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNImageBasedRequest {}
 

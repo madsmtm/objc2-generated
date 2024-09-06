@@ -36,6 +36,10 @@ extern_class!(
 
 unsafe impl NSCopying for NSTableViewRowAction {}
 
+unsafe impl CopyingHelper for NSTableViewRowAction {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSTableViewRowAction {}
 
 extern_methods!(

@@ -46,6 +46,11 @@ unsafe impl NSCoding for NEVPNProtocolIPSec {}
 unsafe impl NSCopying for NEVPNProtocolIPSec {}
 
 #[cfg(feature = "NEVPNProtocol")]
+unsafe impl CopyingHelper for NEVPNProtocolIPSec {
+    type Result = Self;
+}
+
+#[cfg(feature = "NEVPNProtocol")]
 unsafe impl NSObjectProtocol for NEVPNProtocolIPSec {}
 
 #[cfg(feature = "NEVPNProtocol")]

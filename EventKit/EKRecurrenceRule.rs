@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for EKRecurrenceRule {}
 
 #[cfg(feature = "EKObject")]
+unsafe impl CopyingHelper for EKRecurrenceRule {
+    type Result = Self;
+}
+
+#[cfg(feature = "EKObject")]
 unsafe impl NSObjectProtocol for EKRecurrenceRule {}
 
 extern_methods!(

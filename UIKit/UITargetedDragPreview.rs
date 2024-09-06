@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for UIDragPreviewTarget {}
 
 #[cfg(feature = "UITargetedPreview")]
+unsafe impl CopyingHelper for UIDragPreviewTarget {
+    type Result = Self;
+}
+
+#[cfg(feature = "UITargetedPreview")]
 unsafe impl NSObjectProtocol for UIDragPreviewTarget {}
 
 extern_methods!(
@@ -73,6 +78,11 @@ extern_class!(
 
 #[cfg(feature = "UITargetedPreview")]
 unsafe impl NSCopying for UITargetedDragPreview {}
+
+#[cfg(feature = "UITargetedPreview")]
+unsafe impl CopyingHelper for UITargetedDragPreview {
+    type Result = Self;
+}
 
 #[cfg(feature = "UITargetedPreview")]
 unsafe impl NSObjectProtocol for UITargetedDragPreview {}

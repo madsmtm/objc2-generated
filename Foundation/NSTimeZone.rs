@@ -24,6 +24,11 @@ unsafe impl NSCoding for NSTimeZone {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSTimeZone {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSTimeZone {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSTimeZone {}
 
 #[cfg(feature = "NSObject")]

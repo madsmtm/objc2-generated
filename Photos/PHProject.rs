@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for PHProject {}
 
 #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
+unsafe impl CopyingHelper for PHProject {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "PHCollection", feature = "PHObject"))]
 unsafe impl NSObjectProtocol for PHProject {}
 
 extern_methods!(

@@ -65,6 +65,10 @@ unsafe impl NSCoding for CKAllowedSharingOptions {}
 
 unsafe impl NSCopying for CKAllowedSharingOptions {}
 
+unsafe impl CopyingHelper for CKAllowedSharingOptions {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CKAllowedSharingOptions {}
 
 unsafe impl NSSecureCoding for CKAllowedSharingOptions {}

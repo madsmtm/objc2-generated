@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for EKAlarm {}
 
 #[cfg(feature = "EKObject")]
+unsafe impl CopyingHelper for EKAlarm {
+    type Result = Self;
+}
+
+#[cfg(feature = "EKObject")]
 unsafe impl NSObjectProtocol for EKAlarm {}
 
 extern_methods!(

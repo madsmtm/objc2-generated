@@ -47,6 +47,11 @@ unsafe impl NSCoding for NSURLCredential {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLCredential {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSURLCredential {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSURLCredential {}
 
 #[cfg(feature = "NSObject")]

@@ -86,6 +86,15 @@ unsafe impl NSCopying for NSTokenFieldCell {}
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
+unsafe impl CopyingHelper for NSTokenFieldCell {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
 unsafe impl NSObjectProtocol for NSTokenFieldCell {}
 
 #[cfg(all(

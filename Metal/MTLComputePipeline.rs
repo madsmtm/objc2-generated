@@ -53,6 +53,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLComputePipelineDescriptor {}
 
+unsafe impl CopyingHelper for MTLComputePipelineDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLComputePipelineDescriptor {}
 
 extern_methods!(

@@ -25,6 +25,11 @@ unsafe impl NSCoding for NWBonjourServiceEndpoint {}
 unsafe impl NSCopying for NWBonjourServiceEndpoint {}
 
 #[cfg(feature = "NWEndpoint")]
+unsafe impl CopyingHelper for NWBonjourServiceEndpoint {
+    type Result = Self;
+}
+
+#[cfg(feature = "NWEndpoint")]
 unsafe impl NSObjectProtocol for NWBonjourServiceEndpoint {}
 
 #[cfg(feature = "NWEndpoint")]

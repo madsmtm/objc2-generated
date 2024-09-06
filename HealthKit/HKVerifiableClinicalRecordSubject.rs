@@ -19,6 +19,10 @@ unsafe impl NSCoding for HKVerifiableClinicalRecordSubject {}
 
 unsafe impl NSCopying for HKVerifiableClinicalRecordSubject {}
 
+unsafe impl CopyingHelper for HKVerifiableClinicalRecordSubject {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKVerifiableClinicalRecordSubject {}
 
 unsafe impl NSSecureCoding for HKVerifiableClinicalRecordSubject {}

@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIGraphicsRendererFormat {}
 
+unsafe impl CopyingHelper for UIGraphicsRendererFormat {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIGraphicsRendererFormat {}
 
 extern_methods!(

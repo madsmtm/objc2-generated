@@ -46,6 +46,11 @@ unsafe impl NSCoding for CXPlayDTMFCallAction {}
 unsafe impl NSCopying for CXPlayDTMFCallAction {}
 
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
+unsafe impl CopyingHelper for CXPlayDTMFCallAction {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
 unsafe impl NSObjectProtocol for CXPlayDTMFCallAction {}
 
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]

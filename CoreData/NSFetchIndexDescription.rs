@@ -19,6 +19,10 @@ unsafe impl NSCoding for NSFetchIndexDescription {}
 
 unsafe impl NSCopying for NSFetchIndexDescription {}
 
+unsafe impl CopyingHelper for NSFetchIndexDescription {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSFetchIndexDescription {}
 
 extern_methods!(

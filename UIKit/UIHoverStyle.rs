@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIHoverStyle {}
 
+unsafe impl CopyingHelper for UIHoverStyle {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIHoverStyle {}
 
 extern_methods!(

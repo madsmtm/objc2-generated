@@ -39,6 +39,15 @@ unsafe impl NSCopying for DOMCSSUnknownRule {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMCSSUnknownRule {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMCSSUnknownRule {}
 
 extern_methods!(

@@ -31,6 +31,11 @@ unsafe impl NSCoding for NSActionCell {}
 unsafe impl NSCopying for NSActionCell {}
 
 #[cfg(feature = "NSCell")]
+unsafe impl CopyingHelper for NSActionCell {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSCell")]
 unsafe impl NSObjectProtocol for NSActionCell {}
 
 #[cfg(all(feature = "NSCell", feature = "NSUserInterfaceItemIdentification"))]

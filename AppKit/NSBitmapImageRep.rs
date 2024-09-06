@@ -207,6 +207,11 @@ unsafe impl NSCoding for NSBitmapImageRep {}
 unsafe impl NSCopying for NSBitmapImageRep {}
 
 #[cfg(feature = "NSImageRep")]
+unsafe impl CopyingHelper for NSBitmapImageRep {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSImageRep")]
 unsafe impl NSObjectProtocol for NSBitmapImageRep {}
 
 #[cfg(feature = "NSImageRep")]

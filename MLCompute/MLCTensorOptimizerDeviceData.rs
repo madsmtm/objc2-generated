@@ -18,6 +18,10 @@ extern_class!(
 
 unsafe impl NSCopying for MLCTensorOptimizerDeviceData {}
 
+unsafe impl CopyingHelper for MLCTensorOptimizerDeviceData {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MLCTensorOptimizerDeviceData {}
 
 extern_methods!(

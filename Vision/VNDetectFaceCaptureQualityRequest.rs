@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VNDetectFaceCaptureQualityRequest {}
 
 #[cfg(feature = "VNRequest")]
+unsafe impl CopyingHelper for VNDetectFaceCaptureQualityRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNDetectFaceCaptureQualityRequest {}
 
 #[cfg(all(feature = "VNFaceObservationAccepting", feature = "VNRequest"))]

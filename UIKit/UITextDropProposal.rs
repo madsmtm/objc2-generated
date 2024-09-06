@@ -81,6 +81,11 @@ extern_class!(
 unsafe impl NSCopying for UITextDropProposal {}
 
 #[cfg(feature = "UIDropInteraction")]
+unsafe impl CopyingHelper for UITextDropProposal {
+    type Result = Self;
+}
+
+#[cfg(feature = "UIDropInteraction")]
 unsafe impl NSObjectProtocol for UITextDropProposal {}
 
 extern_methods!(

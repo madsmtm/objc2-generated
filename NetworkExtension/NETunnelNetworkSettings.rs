@@ -19,6 +19,10 @@ unsafe impl NSCoding for NETunnelNetworkSettings {}
 
 unsafe impl NSCopying for NETunnelNetworkSettings {}
 
+unsafe impl CopyingHelper for NETunnelNetworkSettings {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NETunnelNetworkSettings {}
 
 unsafe impl NSSecureCoding for NETunnelNetworkSettings {}

@@ -19,6 +19,10 @@ unsafe impl NSCoding for CAEDRMetadata {}
 
 unsafe impl NSCopying for CAEDRMetadata {}
 
+unsafe impl CopyingHelper for CAEDRMetadata {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CAEDRMetadata {}
 
 unsafe impl NSSecureCoding for CAEDRMetadata {}

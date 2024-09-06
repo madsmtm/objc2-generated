@@ -404,6 +404,10 @@ extern_methods!(
 
 unsafe impl NSCopying for NSImage {}
 
+unsafe impl CopyingHelper for NSImage {
+    type Result = Self;
+}
+
 #[cfg(feature = "NSPasteboard")]
 unsafe impl NSPasteboardReading for NSImage {}
 
@@ -1219,6 +1223,10 @@ extern_class!(
 unsafe impl NSCoding for NSImageSymbolConfiguration {}
 
 unsafe impl NSCopying for NSImageSymbolConfiguration {}
+
+unsafe impl CopyingHelper for NSImageSymbolConfiguration {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSImageSymbolConfiguration {}
 

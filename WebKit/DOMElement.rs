@@ -50,6 +50,15 @@ unsafe impl NSCopying for DOMElement {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMElement {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMElement {}
 
 extern_methods!(

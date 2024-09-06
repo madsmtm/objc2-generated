@@ -127,6 +127,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLIOCommandQueueDescriptor {}
 
+unsafe impl CopyingHelper for MTLIOCommandQueueDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLIOCommandQueueDescriptor {}
 
 extern_methods!(

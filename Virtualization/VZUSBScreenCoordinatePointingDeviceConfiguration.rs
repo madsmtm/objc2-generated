@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VZUSBScreenCoordinatePointingDeviceConfiguration {}
 
 #[cfg(feature = "VZPointingDeviceConfiguration")]
+unsafe impl CopyingHelper for VZUSBScreenCoordinatePointingDeviceConfiguration {
+    type Result = Self;
+}
+
+#[cfg(feature = "VZPointingDeviceConfiguration")]
 unsafe impl NSObjectProtocol for VZUSBScreenCoordinatePointingDeviceConfiguration {}
 
 extern_methods!(

@@ -197,6 +197,10 @@ unsafe impl NSCoding for NSCell {}
 
 unsafe impl NSCopying for NSCell {}
 
+unsafe impl CopyingHelper for NSCell {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSCell {}
 
 #[cfg(feature = "NSUserInterfaceItemIdentification")]

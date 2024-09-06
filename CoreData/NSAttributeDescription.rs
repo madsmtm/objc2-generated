@@ -56,6 +56,11 @@ unsafe impl NSCoding for NSAttributeDescription {}
 unsafe impl NSCopying for NSAttributeDescription {}
 
 #[cfg(feature = "NSPropertyDescription")]
+unsafe impl CopyingHelper for NSAttributeDescription {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSPropertyDescription")]
 unsafe impl NSObjectProtocol for NSAttributeDescription {}
 
 extern_methods!(

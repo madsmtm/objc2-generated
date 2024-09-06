@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIPreviewTarget {}
 
+unsafe impl CopyingHelper for UIPreviewTarget {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIPreviewTarget {}
 
 extern_methods!(
@@ -67,6 +71,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for UITargetedPreview {}
+
+unsafe impl CopyingHelper for UITargetedPreview {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UITargetedPreview {}
 

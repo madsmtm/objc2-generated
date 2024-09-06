@@ -84,6 +84,16 @@ unsafe impl NSCopying for NSPopUpButtonCell {}
     feature = "NSActionCell",
     feature = "NSButtonCell",
     feature = "NSCell",
+    feature = "NSMenuItemCell"
+))]
+unsafe impl CopyingHelper for NSPopUpButtonCell {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSButtonCell",
+    feature = "NSCell",
     feature = "NSMenu",
     feature = "NSMenuItemCell"
 ))]

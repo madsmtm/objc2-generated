@@ -203,6 +203,10 @@ unsafe impl NSCoding for NSPrintInfo {}
 
 unsafe impl NSCopying for NSPrintInfo {}
 
+unsafe impl CopyingHelper for NSPrintInfo {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSPrintInfo {}
 
 extern_methods!(

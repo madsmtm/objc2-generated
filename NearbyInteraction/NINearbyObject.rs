@@ -52,6 +52,10 @@ unsafe impl NSCoding for NINearbyObject {}
 
 unsafe impl NSCopying for NINearbyObject {}
 
+unsafe impl CopyingHelper for NINearbyObject {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NINearbyObject {}
 
 unsafe impl NSSecureCoding for NINearbyObject {}

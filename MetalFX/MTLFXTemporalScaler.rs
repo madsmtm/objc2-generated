@@ -18,6 +18,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLFXTemporalScalerDescriptor {}
 
+unsafe impl CopyingHelper for MTLFXTemporalScalerDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLFXTemporalScalerDescriptor {}
 
 extern_methods!(

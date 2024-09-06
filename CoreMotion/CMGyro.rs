@@ -48,6 +48,11 @@ unsafe impl NSCoding for CMGyroData {}
 unsafe impl NSCopying for CMGyroData {}
 
 #[cfg(feature = "CMLogItem")]
+unsafe impl CopyingHelper for CMGyroData {
+    type Result = Self;
+}
+
+#[cfg(feature = "CMLogItem")]
 unsafe impl NSObjectProtocol for CMGyroData {}
 
 #[cfg(feature = "CMLogItem")]

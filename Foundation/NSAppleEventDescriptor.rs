@@ -48,6 +48,11 @@ unsafe impl NSCoding for NSAppleEventDescriptor {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSAppleEventDescriptor {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSAppleEventDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSAppleEventDescriptor {}
 
 #[cfg(feature = "NSObject")]

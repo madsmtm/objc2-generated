@@ -25,6 +25,11 @@ unsafe impl NSCoding for UINavigationBarAppearance {}
 unsafe impl NSCopying for UINavigationBarAppearance {}
 
 #[cfg(feature = "UIBarAppearance")]
+unsafe impl CopyingHelper for UINavigationBarAppearance {
+    type Result = Self;
+}
+
+#[cfg(feature = "UIBarAppearance")]
 unsafe impl NSObjectProtocol for UINavigationBarAppearance {}
 
 #[cfg(feature = "UIBarAppearance")]

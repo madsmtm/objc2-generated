@@ -41,6 +41,11 @@ unsafe impl NSCoding for NSMenuItemCell {}
 unsafe impl NSCopying for NSMenuItemCell {}
 
 #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
+unsafe impl CopyingHelper for NSMenuItemCell {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
 unsafe impl NSObjectProtocol for NSMenuItemCell {}
 
 #[cfg(all(

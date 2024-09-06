@@ -90,6 +90,11 @@ unsafe impl NSCoding for NSComparisonPredicate {}
 #[cfg(all(feature = "NSObject", feature = "NSPredicate"))]
 unsafe impl NSCopying for NSComparisonPredicate {}
 
+#[cfg(all(feature = "NSObject", feature = "NSPredicate"))]
+unsafe impl CopyingHelper for NSComparisonPredicate {
+    type Result = Self;
+}
+
 #[cfg(feature = "NSPredicate")]
 unsafe impl NSObjectProtocol for NSComparisonPredicate {}
 

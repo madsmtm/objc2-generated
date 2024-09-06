@@ -65,6 +65,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTKMeshBuffer {}
 
+unsafe impl CopyingHelper for MTKMeshBuffer {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTKMeshBuffer {}
 
 extern_methods!(

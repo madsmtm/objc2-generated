@@ -45,6 +45,11 @@ extern_class!(
 unsafe impl NSCopying for VNTrackOpticalFlowRequest {}
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
+unsafe impl CopyingHelper for VNTrackOpticalFlowRequest {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 unsafe impl NSObjectProtocol for VNTrackOpticalFlowRequest {}
 
 extern_methods!(

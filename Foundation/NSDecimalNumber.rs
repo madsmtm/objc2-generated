@@ -72,6 +72,11 @@ unsafe impl NSCoding for NSDecimalNumber {}
 #[cfg(all(feature = "NSObject", feature = "NSValue"))]
 unsafe impl NSCopying for NSDecimalNumber {}
 
+#[cfg(all(feature = "NSObject", feature = "NSValue"))]
+unsafe impl CopyingHelper for NSDecimalNumber {
+    type Result = Self;
+}
+
 #[cfg(feature = "NSValue")]
 unsafe impl NSObjectProtocol for NSDecimalNumber {}
 

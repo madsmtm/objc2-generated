@@ -70,6 +70,10 @@ unsafe impl AXDataAxisDescriptor for AXNumericDataAxisDescriptor {}
 
 unsafe impl NSCopying for AXNumericDataAxisDescriptor {}
 
+unsafe impl CopyingHelper for AXNumericDataAxisDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for AXNumericDataAxisDescriptor {}
 
 extern_methods!(
@@ -155,6 +159,10 @@ unsafe impl AXDataAxisDescriptor for AXCategoricalDataAxisDescriptor {}
 
 unsafe impl NSCopying for AXCategoricalDataAxisDescriptor {}
 
+unsafe impl CopyingHelper for AXCategoricalDataAxisDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for AXCategoricalDataAxisDescriptor {}
 
 extern_methods!(
@@ -199,6 +207,10 @@ extern_class!(
 
 unsafe impl NSCopying for AXDataPointValue {}
 
+unsafe impl CopyingHelper for AXDataPointValue {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for AXDataPointValue {}
 
 extern_methods!(
@@ -240,6 +252,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for AXDataPoint {}
+
+unsafe impl CopyingHelper for AXDataPoint {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for AXDataPoint {}
 
@@ -318,6 +334,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for AXDataSeriesDescriptor {}
+
+unsafe impl CopyingHelper for AXDataSeriesDescriptor {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for AXDataSeriesDescriptor {}
 
@@ -403,6 +423,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for AXChartDescriptor {}
+
+unsafe impl CopyingHelper for AXChartDescriptor {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for AXChartDescriptor {}
 

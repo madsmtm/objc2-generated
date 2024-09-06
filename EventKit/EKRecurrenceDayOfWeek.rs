@@ -19,6 +19,10 @@ unsafe impl NSCoding for EKRecurrenceDayOfWeek {}
 
 unsafe impl NSCopying for EKRecurrenceDayOfWeek {}
 
+unsafe impl CopyingHelper for EKRecurrenceDayOfWeek {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for EKRecurrenceDayOfWeek {}
 
 unsafe impl NSSecureCoding for EKRecurrenceDayOfWeek {}

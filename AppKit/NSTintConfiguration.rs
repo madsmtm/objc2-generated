@@ -19,6 +19,10 @@ unsafe impl NSCoding for NSTintConfiguration {}
 
 unsafe impl NSCopying for NSTintConfiguration {}
 
+unsafe impl CopyingHelper for NSTintConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSTintConfiguration {}
 
 unsafe impl NSSecureCoding for NSTintConfiguration {}

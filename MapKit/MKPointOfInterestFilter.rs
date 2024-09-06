@@ -19,6 +19,10 @@ unsafe impl NSCoding for MKPointOfInterestFilter {}
 
 unsafe impl NSCopying for MKPointOfInterestFilter {}
 
+unsafe impl CopyingHelper for MKPointOfInterestFilter {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MKPointOfInterestFilter {}
 
 unsafe impl NSSecureCoding for MKPointOfInterestFilter {}

@@ -19,7 +19,15 @@ unsafe impl NSCoding for CNGroup {}
 
 unsafe impl NSCopying for CNGroup {}
 
+unsafe impl CopyingHelper for CNGroup {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for CNGroup {}
+
+unsafe impl MutableCopyingHelper for CNGroup {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CNGroup {}
 

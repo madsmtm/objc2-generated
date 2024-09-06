@@ -19,6 +19,10 @@ unsafe impl NSCoding for MPMediaQuerySection {}
 
 unsafe impl NSCopying for MPMediaQuerySection {}
 
+unsafe impl CopyingHelper for MPMediaQuerySection {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MPMediaQuerySection {}
 
 unsafe impl NSSecureCoding for MPMediaQuerySection {}

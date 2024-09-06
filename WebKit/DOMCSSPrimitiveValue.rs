@@ -100,6 +100,15 @@ unsafe impl NSCopying for DOMCSSPrimitiveValue {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMCSSPrimitiveValue {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMCSSValue",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMCSSPrimitiveValue {}
 
 extern_methods!(

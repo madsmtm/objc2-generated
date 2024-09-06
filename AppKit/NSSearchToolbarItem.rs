@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for NSSearchToolbarItem {}
 
 #[cfg(feature = "NSToolbarItem")]
+unsafe impl CopyingHelper for NSSearchToolbarItem {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSToolbarItem")]
 unsafe impl NSObjectProtocol for NSSearchToolbarItem {}
 
 extern_methods!(

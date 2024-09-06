@@ -74,6 +74,11 @@ unsafe impl NSCoding for NSTextCheckingResult {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSTextCheckingResult {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSTextCheckingResult {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSTextCheckingResult {}
 
 #[cfg(feature = "NSObject")]

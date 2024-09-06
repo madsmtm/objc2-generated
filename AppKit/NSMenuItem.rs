@@ -25,6 +25,10 @@ unsafe impl NSCoding for NSMenuItem {}
 
 unsafe impl NSCopying for NSMenuItem {}
 
+unsafe impl CopyingHelper for NSMenuItem {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSMenuItem {}
 
 #[cfg(feature = "NSUserInterfaceItemIdentification")]

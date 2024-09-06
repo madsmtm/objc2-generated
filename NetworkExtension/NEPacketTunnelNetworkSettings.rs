@@ -25,6 +25,11 @@ unsafe impl NSCoding for NEPacketTunnelNetworkSettings {}
 unsafe impl NSCopying for NEPacketTunnelNetworkSettings {}
 
 #[cfg(feature = "NETunnelNetworkSettings")]
+unsafe impl CopyingHelper for NEPacketTunnelNetworkSettings {
+    type Result = Self;
+}
+
+#[cfg(feature = "NETunnelNetworkSettings")]
 unsafe impl NSObjectProtocol for NEPacketTunnelNetworkSettings {}
 
 #[cfg(feature = "NETunnelNetworkSettings")]

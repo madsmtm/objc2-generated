@@ -19,6 +19,10 @@ unsafe impl NSCoding for HKActivitySummary {}
 
 unsafe impl NSCopying for HKActivitySummary {}
 
+unsafe impl CopyingHelper for HKActivitySummary {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKActivitySummary {}
 
 unsafe impl NSSecureCoding for HKActivitySummary {}

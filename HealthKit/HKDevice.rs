@@ -51,6 +51,10 @@ unsafe impl NSCoding for HKDevice {}
 
 unsafe impl NSCopying for HKDevice {}
 
+unsafe impl CopyingHelper for HKDevice {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKDevice {}
 
 unsafe impl NSSecureCoding for HKDevice {}

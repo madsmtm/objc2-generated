@@ -42,6 +42,10 @@ unsafe impl NSCoding for CNContainer {}
 
 unsafe impl NSCopying for CNContainer {}
 
+unsafe impl CopyingHelper for CNContainer {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CNContainer {}
 
 unsafe impl NSSecureCoding for CNContainer {}

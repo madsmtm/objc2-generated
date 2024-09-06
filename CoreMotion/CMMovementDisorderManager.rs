@@ -19,6 +19,10 @@ unsafe impl NSCoding for CMDyskineticSymptomResult {}
 
 unsafe impl NSCopying for CMDyskineticSymptomResult {}
 
+unsafe impl CopyingHelper for CMDyskineticSymptomResult {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CMDyskineticSymptomResult {}
 
 unsafe impl NSSecureCoding for CMDyskineticSymptomResult {}
@@ -63,6 +67,10 @@ extern_class!(
 unsafe impl NSCoding for CMTremorResult {}
 
 unsafe impl NSCopying for CMTremorResult {}
+
+unsafe impl CopyingHelper for CMTremorResult {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CMTremorResult {}
 

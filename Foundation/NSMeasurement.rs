@@ -28,6 +28,11 @@ unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for NSMeasurement<UnitType> {}
 #[cfg(feature = "NSObject")]
 unsafe impl<UnitType: ?Sized> NSCopying for NSMeasurement<UnitType> {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl<UnitType: ?Sized + Message> CopyingHelper for NSMeasurement<UnitType> {
+    type Result = Self;
+}
+
 unsafe impl<UnitType: ?Sized> NSObjectProtocol for NSMeasurement<UnitType> {}
 
 #[cfg(feature = "NSObject")]

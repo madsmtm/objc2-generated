@@ -40,6 +40,14 @@ unsafe impl NSCopying for NEEthernetTunnelNetworkSettings {}
     feature = "NEPacketTunnelNetworkSettings",
     feature = "NETunnelNetworkSettings"
 ))]
+unsafe impl CopyingHelper for NEEthernetTunnelNetworkSettings {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "NEPacketTunnelNetworkSettings",
+    feature = "NETunnelNetworkSettings"
+))]
 unsafe impl NSObjectProtocol for NEEthernetTunnelNetworkSettings {}
 
 #[cfg(all(

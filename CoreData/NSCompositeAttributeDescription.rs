@@ -25,6 +25,11 @@ unsafe impl NSCoding for NSCompositeAttributeDescription {}
 unsafe impl NSCopying for NSCompositeAttributeDescription {}
 
 #[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
+unsafe impl CopyingHelper for NSCompositeAttributeDescription {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
 unsafe impl NSObjectProtocol for NSCompositeAttributeDescription {}
 
 extern_methods!(

@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for EKParticipant {}
 
 #[cfg(feature = "EKObject")]
+unsafe impl CopyingHelper for EKParticipant {
+    type Result = Self;
+}
+
+#[cfg(feature = "EKObject")]
 unsafe impl NSObjectProtocol for EKParticipant {}
 
 extern_methods!(

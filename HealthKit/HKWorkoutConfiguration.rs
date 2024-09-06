@@ -40,6 +40,10 @@ unsafe impl NSCoding for HKWorkoutConfiguration {}
 
 unsafe impl NSCopying for HKWorkoutConfiguration {}
 
+unsafe impl CopyingHelper for HKWorkoutConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKWorkoutConfiguration {}
 
 unsafe impl NSSecureCoding for HKWorkoutConfiguration {}

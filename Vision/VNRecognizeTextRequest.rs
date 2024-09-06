@@ -41,6 +41,11 @@ extern_class!(
 unsafe impl NSCopying for VNRecognizeTextRequest {}
 
 #[cfg(feature = "VNRequest")]
+unsafe impl CopyingHelper for VNRecognizeTextRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNRecognizeTextRequest {}
 
 #[cfg(feature = "VNRequest")]

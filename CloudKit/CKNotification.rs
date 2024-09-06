@@ -19,6 +19,10 @@ unsafe impl NSCoding for CKNotificationID {}
 
 unsafe impl NSCopying for CKNotificationID {}
 
+unsafe impl CopyingHelper for CKNotificationID {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CKNotificationID {}
 
 unsafe impl NSSecureCoding for CKNotificationID {}

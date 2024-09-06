@@ -19,6 +19,10 @@ unsafe impl NSCoding for UIContentUnavailableButtonProperties {}
 
 unsafe impl NSCopying for UIContentUnavailableButtonProperties {}
 
+unsafe impl CopyingHelper for UIContentUnavailableButtonProperties {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIContentUnavailableButtonProperties {}
 
 unsafe impl NSSecureCoding for UIContentUnavailableButtonProperties {}

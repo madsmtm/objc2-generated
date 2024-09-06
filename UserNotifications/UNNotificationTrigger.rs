@@ -21,6 +21,10 @@ unsafe impl NSCoding for UNNotificationTrigger {}
 
 unsafe impl NSCopying for UNNotificationTrigger {}
 
+unsafe impl CopyingHelper for UNNotificationTrigger {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UNNotificationTrigger {}
 
 unsafe impl NSSecureCoding for UNNotificationTrigger {}
@@ -57,6 +61,10 @@ extern_class!(
 unsafe impl NSCoding for UNPushNotificationTrigger {}
 
 unsafe impl NSCopying for UNPushNotificationTrigger {}
+
+unsafe impl CopyingHelper for UNPushNotificationTrigger {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UNPushNotificationTrigger {}
 
@@ -96,6 +104,10 @@ extern_class!(
 unsafe impl NSCoding for UNTimeIntervalNotificationTrigger {}
 
 unsafe impl NSCopying for UNTimeIntervalNotificationTrigger {}
+
+unsafe impl CopyingHelper for UNTimeIntervalNotificationTrigger {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UNTimeIntervalNotificationTrigger {}
 
@@ -148,6 +160,10 @@ unsafe impl NSCoding for UNCalendarNotificationTrigger {}
 
 unsafe impl NSCopying for UNCalendarNotificationTrigger {}
 
+unsafe impl CopyingHelper for UNCalendarNotificationTrigger {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UNCalendarNotificationTrigger {}
 
 unsafe impl NSSecureCoding for UNCalendarNotificationTrigger {}
@@ -198,6 +214,10 @@ extern_class!(
 unsafe impl NSCoding for UNLocationNotificationTrigger {}
 
 unsafe impl NSCopying for UNLocationNotificationTrigger {}
+
+unsafe impl CopyingHelper for UNLocationNotificationTrigger {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UNLocationNotificationTrigger {}
 

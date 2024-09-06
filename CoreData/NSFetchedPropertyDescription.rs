@@ -25,6 +25,11 @@ unsafe impl NSCoding for NSFetchedPropertyDescription {}
 unsafe impl NSCopying for NSFetchedPropertyDescription {}
 
 #[cfg(feature = "NSPropertyDescription")]
+unsafe impl CopyingHelper for NSFetchedPropertyDescription {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSPropertyDescription")]
 unsafe impl NSObjectProtocol for NSFetchedPropertyDescription {}
 
 extern_methods!(

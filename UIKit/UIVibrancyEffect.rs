@@ -25,6 +25,11 @@ unsafe impl NSCoding for UIVibrancyEffect {}
 unsafe impl NSCopying for UIVibrancyEffect {}
 
 #[cfg(feature = "UIVisualEffect")]
+unsafe impl CopyingHelper for UIVibrancyEffect {
+    type Result = Self;
+}
+
+#[cfg(feature = "UIVisualEffect")]
 unsafe impl NSObjectProtocol for UIVibrancyEffect {}
 
 #[cfg(feature = "UIVisualEffect")]

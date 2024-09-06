@@ -19,7 +19,15 @@ unsafe impl NSCoding for CNPostalAddress {}
 
 unsafe impl NSCopying for CNPostalAddress {}
 
+unsafe impl CopyingHelper for CNPostalAddress {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for CNPostalAddress {}
+
+unsafe impl MutableCopyingHelper for CNPostalAddress {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CNPostalAddress {}
 

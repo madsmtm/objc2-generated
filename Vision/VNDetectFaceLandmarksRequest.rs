@@ -41,6 +41,11 @@ extern_class!(
 unsafe impl NSCopying for VNDetectFaceLandmarksRequest {}
 
 #[cfg(feature = "VNRequest")]
+unsafe impl CopyingHelper for VNDetectFaceLandmarksRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNDetectFaceLandmarksRequest {}
 
 #[cfg(all(feature = "VNFaceObservationAccepting", feature = "VNRequest"))]

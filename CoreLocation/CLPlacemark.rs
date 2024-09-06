@@ -22,6 +22,10 @@ unsafe impl NSCoding for CLPlacemark {}
 
 unsafe impl NSCopying for CLPlacemark {}
 
+unsafe impl CopyingHelper for CLPlacemark {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CLPlacemark {}
 
 unsafe impl NSSecureCoding for CLPlacemark {}

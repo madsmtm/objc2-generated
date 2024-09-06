@@ -82,6 +82,11 @@ unsafe impl<ResultType: ?Sized + NSCoding> NSCoding for NSFetchRequest<ResultTyp
 unsafe impl<ResultType: ?Sized> NSCopying for NSFetchRequest<ResultType> {}
 
 #[cfg(feature = "NSPersistentStoreRequest")]
+unsafe impl<ResultType: ?Sized + Message> CopyingHelper for NSFetchRequest<ResultType> {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSFetchRequest<ResultType> {}
 
 extern_methods!(
@@ -269,6 +274,11 @@ __inner_extern_class!(
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl<ResultType: ?Sized> NSCopying for NSAsynchronousFetchRequest<ResultType> {}
+
+#[cfg(feature = "NSPersistentStoreRequest")]
+unsafe impl<ResultType: ?Sized + Message> CopyingHelper for NSAsynchronousFetchRequest<ResultType> {
+    type Result = Self;
+}
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSAsynchronousFetchRequest<ResultType> {}

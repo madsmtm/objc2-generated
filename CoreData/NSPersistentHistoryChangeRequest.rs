@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for NSPersistentHistoryChangeRequest {}
 
 #[cfg(feature = "NSPersistentStoreRequest")]
+unsafe impl CopyingHelper for NSPersistentHistoryChangeRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSPersistentHistoryChangeRequest {}
 
 extern_methods!(

@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for VNVideoProcessorCadence {}
 
+unsafe impl CopyingHelper for VNVideoProcessorCadence {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNVideoProcessorCadence {}
 
 extern_methods!(
@@ -46,6 +50,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for VNVideoProcessorFrameRateCadence {}
+
+unsafe impl CopyingHelper for VNVideoProcessorFrameRateCadence {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNVideoProcessorFrameRateCadence {}
 
@@ -86,6 +94,10 @@ extern_class!(
 
 unsafe impl NSCopying for VNVideoProcessorTimeIntervalCadence {}
 
+unsafe impl CopyingHelper for VNVideoProcessorTimeIntervalCadence {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VNVideoProcessorTimeIntervalCadence {}
 
 extern_methods!(
@@ -114,6 +126,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for VNVideoProcessorRequestProcessingOptions {}
+
+unsafe impl CopyingHelper for VNVideoProcessorRequestProcessingOptions {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for VNVideoProcessorRequestProcessingOptions {}
 

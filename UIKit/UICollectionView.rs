@@ -1564,6 +1564,11 @@ extern_class!(
 unsafe impl NSCopying for UICollectionViewDropProposal {}
 
 #[cfg(feature = "UIDropInteraction")]
+unsafe impl CopyingHelper for UICollectionViewDropProposal {
+    type Result = Self;
+}
+
+#[cfg(feature = "UIDropInteraction")]
 unsafe impl NSObjectProtocol for UICollectionViewDropProposal {}
 
 extern_methods!(

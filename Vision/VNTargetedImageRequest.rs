@@ -24,6 +24,11 @@ extern_class!(
 unsafe impl NSCopying for VNTargetedImageRequest {}
 
 #[cfg(feature = "VNRequest")]
+unsafe impl CopyingHelper for VNTargetedImageRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNTargetedImageRequest {}
 
 extern_methods!(

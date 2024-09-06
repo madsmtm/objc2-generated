@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for WKFindConfiguration {}
 
+unsafe impl CopyingHelper for WKFindConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for WKFindConfiguration {}
 
 extern_methods!(

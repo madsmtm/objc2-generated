@@ -69,6 +69,15 @@ unsafe impl NSCopying for NSSearchFieldCell {}
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
+unsafe impl CopyingHelper for NSSearchFieldCell {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
 unsafe impl NSObjectProtocol for NSSearchFieldCell {}
 
 #[cfg(all(

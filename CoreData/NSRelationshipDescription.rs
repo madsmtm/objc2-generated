@@ -44,6 +44,11 @@ unsafe impl NSCoding for NSRelationshipDescription {}
 unsafe impl NSCopying for NSRelationshipDescription {}
 
 #[cfg(feature = "NSPropertyDescription")]
+unsafe impl CopyingHelper for NSRelationshipDescription {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSPropertyDescription")]
 unsafe impl NSObjectProtocol for NSRelationshipDescription {}
 
 extern_methods!(

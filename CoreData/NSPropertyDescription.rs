@@ -19,6 +19,10 @@ unsafe impl NSCoding for NSPropertyDescription {}
 
 unsafe impl NSCopying for NSPropertyDescription {}
 
+unsafe impl CopyingHelper for NSPropertyDescription {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSPropertyDescription {}
 
 extern_methods!(

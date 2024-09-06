@@ -39,6 +39,15 @@ unsafe impl NSCopying for DOMProgressEvent {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMProgressEvent {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMProgressEvent {}
 
 extern_methods!(

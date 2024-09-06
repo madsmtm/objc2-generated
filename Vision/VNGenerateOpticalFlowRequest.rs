@@ -47,6 +47,11 @@ extern_class!(
 unsafe impl NSCopying for VNGenerateOpticalFlowRequest {}
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
+unsafe impl CopyingHelper for VNGenerateOpticalFlowRequest {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 unsafe impl NSObjectProtocol for VNGenerateOpticalFlowRequest {}
 
 extern_methods!(

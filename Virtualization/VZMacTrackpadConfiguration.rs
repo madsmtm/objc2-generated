@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VZMacTrackpadConfiguration {}
 
 #[cfg(feature = "VZPointingDeviceConfiguration")]
+unsafe impl CopyingHelper for VZMacTrackpadConfiguration {
+    type Result = Self;
+}
+
+#[cfg(feature = "VZPointingDeviceConfiguration")]
 unsafe impl NSObjectProtocol for VZMacTrackpadConfiguration {}
 
 extern_methods!(

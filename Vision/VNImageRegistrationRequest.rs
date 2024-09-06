@@ -24,6 +24,11 @@ extern_class!(
 unsafe impl NSCopying for VNImageRegistrationRequest {}
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
+unsafe impl CopyingHelper for VNImageRegistrationRequest {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 unsafe impl NSObjectProtocol for VNImageRegistrationRequest {}
 
 extern_methods!(
@@ -126,6 +131,11 @@ extern_class!(
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 unsafe impl NSCopying for VNTranslationalImageRegistrationRequest {}
+
+#[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
+unsafe impl CopyingHelper for VNTranslationalImageRegistrationRequest {
+    type Result = Self;
+}
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 unsafe impl NSObjectProtocol for VNTranslationalImageRegistrationRequest {}
@@ -238,6 +248,11 @@ extern_class!(
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 unsafe impl NSCopying for VNHomographicImageRegistrationRequest {}
+
+#[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
+unsafe impl CopyingHelper for VNHomographicImageRegistrationRequest {
+    type Result = Self;
+}
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 unsafe impl NSObjectProtocol for VNHomographicImageRegistrationRequest {}

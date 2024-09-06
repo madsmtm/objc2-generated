@@ -40,6 +40,10 @@ extern_class!(
 
 unsafe impl NSCopying for MKLocalSearchRequest {}
 
+unsafe impl CopyingHelper for MKLocalSearchRequest {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MKLocalSearchRequest {}
 
 extern_methods!(

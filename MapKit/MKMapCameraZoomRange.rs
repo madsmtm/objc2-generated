@@ -26,6 +26,10 @@ unsafe impl NSCoding for MKMapCameraZoomRange {}
 
 unsafe impl NSCopying for MKMapCameraZoomRange {}
 
+unsafe impl CopyingHelper for MKMapCameraZoomRange {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MKMapCameraZoomRange {}
 
 unsafe impl NSSecureCoding for MKMapCameraZoomRange {}

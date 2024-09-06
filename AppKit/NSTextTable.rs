@@ -111,6 +111,10 @@ unsafe impl NSCoding for NSTextBlock {}
 
 unsafe impl NSCopying for NSTextBlock {}
 
+unsafe impl CopyingHelper for NSTextBlock {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSTextBlock {}
 
 unsafe impl NSSecureCoding for NSTextBlock {}
@@ -262,6 +266,10 @@ unsafe impl NSCoding for NSTextTableBlock {}
 
 unsafe impl NSCopying for NSTextTableBlock {}
 
+unsafe impl CopyingHelper for NSTextTableBlock {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSTextTableBlock {}
 
 unsafe impl NSSecureCoding for NSTextTableBlock {}
@@ -325,6 +333,10 @@ extern_class!(
 unsafe impl NSCoding for NSTextTable {}
 
 unsafe impl NSCopying for NSTextTable {}
+
+unsafe impl CopyingHelper for NSTextTable {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSTextTable {}
 

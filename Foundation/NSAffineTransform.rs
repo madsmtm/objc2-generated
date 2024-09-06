@@ -58,6 +58,11 @@ unsafe impl NSCoding for NSAffineTransform {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSAffineTransform {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSAffineTransform {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSAffineTransform {}
 
 #[cfg(feature = "NSObject")]

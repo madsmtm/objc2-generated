@@ -185,6 +185,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLTextureDescriptor {}
 
+unsafe impl CopyingHelper for MTLTextureDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLTextureDescriptor {}
 
 extern_methods!(

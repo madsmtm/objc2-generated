@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VNDetectTrajectoriesRequest {}
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
+unsafe impl CopyingHelper for VNDetectTrajectoriesRequest {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 unsafe impl NSObjectProtocol for VNDetectTrajectoriesRequest {}
 
 extern_methods!(

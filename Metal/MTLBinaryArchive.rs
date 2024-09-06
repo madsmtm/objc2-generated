@@ -46,6 +46,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLBinaryArchiveDescriptor {}
 
+unsafe impl CopyingHelper for MTLBinaryArchiveDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLBinaryArchiveDescriptor {}
 
 extern_methods!(

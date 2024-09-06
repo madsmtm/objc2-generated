@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for HKElectrocardiogramVoltageMeasurement {}
 
+unsafe impl CopyingHelper for HKElectrocardiogramVoltageMeasurement {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKElectrocardiogramVoltageMeasurement {}
 
 extern_methods!(

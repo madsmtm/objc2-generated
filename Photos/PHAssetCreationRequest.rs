@@ -20,6 +20,10 @@ extern_class!(
 
 unsafe impl NSCopying for PHAssetResourceCreationOptions {}
 
+unsafe impl CopyingHelper for PHAssetResourceCreationOptions {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for PHAssetResourceCreationOptions {}
 
 extern_methods!(

@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIWindowScenePlacement {}
 
+unsafe impl CopyingHelper for UIWindowScenePlacement {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIWindowScenePlacement {}
 
 extern_methods!(

@@ -19,6 +19,10 @@ unsafe impl NSCoding for MLFeatureDescription {}
 
 unsafe impl NSCopying for MLFeatureDescription {}
 
+unsafe impl CopyingHelper for MLFeatureDescription {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MLFeatureDescription {}
 
 unsafe impl NSSecureCoding for MLFeatureDescription {}

@@ -19,6 +19,10 @@ unsafe impl NSCoding for CLVisit {}
 
 unsafe impl NSCopying for CLVisit {}
 
+unsafe impl CopyingHelper for CLVisit {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CLVisit {}
 
 unsafe impl NSSecureCoding for CLVisit {}

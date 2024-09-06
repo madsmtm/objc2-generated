@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VZNVMExpressControllerDeviceConfiguration {}
 
 #[cfg(feature = "VZStorageDeviceConfiguration")]
+unsafe impl CopyingHelper for VZNVMExpressControllerDeviceConfiguration {
+    type Result = Self;
+}
+
+#[cfg(feature = "VZStorageDeviceConfiguration")]
 unsafe impl NSObjectProtocol for VZNVMExpressControllerDeviceConfiguration {}
 
 extern_methods!(

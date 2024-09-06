@@ -565,6 +565,10 @@ unsafe impl NSCoding for NSEvent {}
 
 unsafe impl NSCopying for NSEvent {}
 
+unsafe impl CopyingHelper for NSEvent {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSEvent {}
 
 extern_methods!(

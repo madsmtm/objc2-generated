@@ -25,6 +25,10 @@ extern_class!(
 
 unsafe impl NSCopying for WebHistoryItem {}
 
+unsafe impl CopyingHelper for WebHistoryItem {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for WebHistoryItem {}
 
 extern_methods!(

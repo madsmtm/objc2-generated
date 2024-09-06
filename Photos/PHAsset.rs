@@ -30,6 +30,11 @@ unsafe impl Sync for PHAsset {}
 unsafe impl NSCopying for PHAsset {}
 
 #[cfg(feature = "PHObject")]
+unsafe impl CopyingHelper for PHAsset {
+    type Result = Self;
+}
+
+#[cfg(feature = "PHObject")]
 unsafe impl NSObjectProtocol for PHAsset {}
 
 extern_methods!(

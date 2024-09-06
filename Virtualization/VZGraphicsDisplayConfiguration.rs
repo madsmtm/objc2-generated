@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for VZGraphicsDisplayConfiguration {}
 
+unsafe impl CopyingHelper for VZGraphicsDisplayConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VZGraphicsDisplayConfiguration {}
 
 extern_methods!(

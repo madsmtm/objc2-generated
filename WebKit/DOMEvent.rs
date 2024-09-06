@@ -32,6 +32,11 @@ extern_class!(
 unsafe impl NSCopying for DOMEvent {}
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+unsafe impl CopyingHelper for DOMEvent {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMEvent {}
 
 extern_methods!(

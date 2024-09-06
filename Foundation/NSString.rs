@@ -83,7 +83,7 @@ extern_class!(
 
     unsafe impl ClassType for NSString {
         type Super = NSObject;
-        type Mutability = InteriorMutableWithSubclass<NSMutableString>;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -94,7 +94,17 @@ unsafe impl NSCoding for NSString {}
 unsafe impl NSCopying for NSString {}
 
 #[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSString {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSObject")]
 unsafe impl NSMutableCopying for NSString {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl MutableCopyingHelper for NSString {
+    type Result = NSMutableString;
+}
 
 unsafe impl NSObjectProtocol for NSString {}
 
@@ -1058,7 +1068,7 @@ extern_class!(
     unsafe impl ClassType for NSMutableString {
         #[inherits(NSObject)]
         type Super = NSString;
-        type Mutability = InteriorMutableWithSuperclass<NSString>;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -1069,7 +1079,17 @@ unsafe impl NSCoding for NSMutableString {}
 unsafe impl NSCopying for NSMutableString {}
 
 #[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSMutableString {
+    type Result = NSString;
+}
+
+#[cfg(feature = "NSObject")]
 unsafe impl NSMutableCopying for NSMutableString {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl MutableCopyingHelper for NSMutableString {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSMutableString {}
 

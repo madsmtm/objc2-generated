@@ -21,6 +21,10 @@ unsafe impl Sync for NSManagedObjectID {}
 
 unsafe impl NSCopying for NSManagedObjectID {}
 
+unsafe impl CopyingHelper for NSManagedObjectID {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSManagedObjectID {}
 
 extern_methods!(

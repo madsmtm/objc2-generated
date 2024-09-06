@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VNDetectDocumentSegmentationRequest {}
 
 #[cfg(feature = "VNRequest")]
+unsafe impl CopyingHelper for VNDetectDocumentSegmentationRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNDetectDocumentSegmentationRequest {}
 
 extern_methods!(

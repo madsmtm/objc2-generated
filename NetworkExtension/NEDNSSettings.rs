@@ -40,6 +40,10 @@ unsafe impl NSCoding for NEDNSSettings {}
 
 unsafe impl NSCopying for NEDNSSettings {}
 
+unsafe impl CopyingHelper for NEDNSSettings {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEDNSSettings {}
 
 unsafe impl NSSecureCoding for NEDNSSettings {}
@@ -110,6 +114,10 @@ unsafe impl NSCoding for NEDNSOverTLSSettings {}
 
 unsafe impl NSCopying for NEDNSOverTLSSettings {}
 
+unsafe impl CopyingHelper for NEDNSOverTLSSettings {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEDNSOverTLSSettings {}
 
 unsafe impl NSSecureCoding for NEDNSOverTLSSettings {}
@@ -166,6 +174,10 @@ extern_class!(
 unsafe impl NSCoding for NEDNSOverHTTPSSettings {}
 
 unsafe impl NSCopying for NEDNSOverHTTPSSettings {}
+
+unsafe impl CopyingHelper for NEDNSOverHTTPSSettings {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NEDNSOverHTTPSSettings {}
 

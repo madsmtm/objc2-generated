@@ -19,6 +19,10 @@ unsafe impl NSCoding for NEFilterProviderConfiguration {}
 
 unsafe impl NSCopying for NEFilterProviderConfiguration {}
 
+unsafe impl CopyingHelper for NEFilterProviderConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEFilterProviderConfiguration {}
 
 unsafe impl NSSecureCoding for NEFilterProviderConfiguration {}

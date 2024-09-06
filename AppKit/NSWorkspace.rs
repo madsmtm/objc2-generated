@@ -251,6 +251,10 @@ extern_class!(
 
 unsafe impl NSCopying for NSWorkspaceOpenConfiguration {}
 
+unsafe impl CopyingHelper for NSWorkspaceOpenConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSWorkspaceOpenConfiguration {}
 
 extern_methods!(

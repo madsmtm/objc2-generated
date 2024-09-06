@@ -19,7 +19,15 @@ unsafe impl NSCoding for CWNetworkProfile {}
 
 unsafe impl NSCopying for CWNetworkProfile {}
 
+unsafe impl CopyingHelper for CWNetworkProfile {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for CWNetworkProfile {}
+
+unsafe impl MutableCopyingHelper for CWNetworkProfile {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CWNetworkProfile {}
 
@@ -82,7 +90,15 @@ unsafe impl NSCoding for CWMutableNetworkProfile {}
 
 unsafe impl NSCopying for CWMutableNetworkProfile {}
 
+unsafe impl CopyingHelper for CWMutableNetworkProfile {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for CWMutableNetworkProfile {}
+
+unsafe impl MutableCopyingHelper for CWMutableNetworkProfile {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CWMutableNetworkProfile {}
 

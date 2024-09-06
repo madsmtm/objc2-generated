@@ -25,6 +25,11 @@ unsafe impl NSCoding for CLCircularGeographicCondition {}
 unsafe impl NSCopying for CLCircularGeographicCondition {}
 
 #[cfg(feature = "CLCondition")]
+unsafe impl CopyingHelper for CLCircularGeographicCondition {
+    type Result = Self;
+}
+
+#[cfg(feature = "CLCondition")]
 unsafe impl NSObjectProtocol for CLCircularGeographicCondition {}
 
 #[cfg(feature = "CLCondition")]

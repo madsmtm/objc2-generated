@@ -116,6 +116,10 @@ unsafe impl NSCoding for CKShareParticipant {}
 
 unsafe impl NSCopying for CKShareParticipant {}
 
+unsafe impl CopyingHelper for CKShareParticipant {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CKShareParticipant {}
 
 unsafe impl NSSecureCoding for CKShareParticipant {}

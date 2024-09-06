@@ -60,6 +60,10 @@ unsafe impl MTLFunctionStitchingNode for MTLFunctionStitchingInputNode {}
 
 unsafe impl NSCopying for MTLFunctionStitchingInputNode {}
 
+unsafe impl CopyingHelper for MTLFunctionStitchingInputNode {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLFunctionStitchingInputNode {}
 
 extern_methods!(
@@ -102,6 +106,10 @@ extern_class!(
 unsafe impl MTLFunctionStitchingNode for MTLFunctionStitchingFunctionNode {}
 
 unsafe impl NSCopying for MTLFunctionStitchingFunctionNode {}
+
+unsafe impl CopyingHelper for MTLFunctionStitchingFunctionNode {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for MTLFunctionStitchingFunctionNode {}
 
@@ -167,6 +175,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for MTLFunctionStitchingGraph {}
+
+unsafe impl CopyingHelper for MTLFunctionStitchingGraph {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for MTLFunctionStitchingGraph {}
 
@@ -234,6 +246,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for MTLStitchedLibraryDescriptor {}
+
+unsafe impl CopyingHelper for MTLStitchedLibraryDescriptor {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for MTLStitchedLibraryDescriptor {}
 

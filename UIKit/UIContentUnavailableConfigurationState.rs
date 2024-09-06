@@ -19,6 +19,10 @@ unsafe impl NSCoding for UIContentUnavailableConfigurationState {}
 
 unsafe impl NSCopying for UIContentUnavailableConfigurationState {}
 
+unsafe impl CopyingHelper for UIContentUnavailableConfigurationState {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIContentUnavailableConfigurationState {}
 
 unsafe impl NSSecureCoding for UIContentUnavailableConfigurationState {}

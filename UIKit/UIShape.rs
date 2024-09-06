@@ -50,6 +50,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIShape {}
 
+unsafe impl CopyingHelper for UIShape {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIShape {}
 
 unsafe impl UIShapeProvider for UIShape {}
@@ -141,6 +145,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for UIResolvedShape {}
+
+unsafe impl CopyingHelper for UIResolvedShape {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UIResolvedShape {}
 

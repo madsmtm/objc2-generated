@@ -42,6 +42,10 @@ unsafe impl NSCoding for CKReference {}
 
 unsafe impl NSCopying for CKReference {}
 
+unsafe impl CopyingHelper for CKReference {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CKReference {}
 
 unsafe impl NSSecureCoding for CKReference {}

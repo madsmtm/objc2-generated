@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for UIPointerStyle {}
 
 #[cfg(feature = "UIHoverStyle")]
+unsafe impl CopyingHelper for UIPointerStyle {
+    type Result = Self;
+}
+
+#[cfg(feature = "UIHoverStyle")]
 unsafe impl NSObjectProtocol for UIPointerStyle {}
 
 extern_methods!(
@@ -90,6 +95,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIPointerEffect {}
 
+unsafe impl CopyingHelper for UIPointerEffect {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIPointerEffect {}
 
 #[cfg(feature = "UIHoverEffect")]
@@ -125,6 +134,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for UIPointerHighlightEffect {}
+
+unsafe impl CopyingHelper for UIPointerHighlightEffect {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UIPointerHighlightEffect {}
 
@@ -162,6 +175,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for UIPointerLiftEffect {}
+
+unsafe impl CopyingHelper for UIPointerLiftEffect {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UIPointerLiftEffect {}
 
@@ -221,6 +238,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIPointerHoverEffect {}
 
+unsafe impl CopyingHelper for UIPointerHoverEffect {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIPointerHoverEffect {}
 
 #[cfg(feature = "UIHoverEffect")]
@@ -274,6 +295,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for UIPointerShape {}
+
+unsafe impl CopyingHelper for UIPointerShape {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UIPointerShape {}
 

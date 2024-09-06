@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for BGTaskRequest {}
 
+unsafe impl CopyingHelper for BGTaskRequest {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for BGTaskRequest {}
 
 extern_methods!(
@@ -50,6 +54,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for BGAppRefreshTaskRequest {}
+
+unsafe impl CopyingHelper for BGAppRefreshTaskRequest {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for BGAppRefreshTaskRequest {}
 
@@ -86,6 +94,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for BGProcessingTaskRequest {}
+
+unsafe impl CopyingHelper for BGProcessingTaskRequest {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for BGProcessingTaskRequest {}
 
@@ -134,6 +146,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for BGHealthResearchTaskRequest {}
+
+unsafe impl CopyingHelper for BGHealthResearchTaskRequest {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for BGHealthResearchTaskRequest {}
 

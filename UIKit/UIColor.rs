@@ -26,6 +26,10 @@ unsafe impl NSCoding for UIColor {}
 
 unsafe impl NSCopying for UIColor {}
 
+unsafe impl CopyingHelper for UIColor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIColor {}
 
 unsafe impl NSSecureCoding for UIColor {}

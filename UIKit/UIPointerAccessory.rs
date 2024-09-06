@@ -70,6 +70,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIPointerAccessory {}
 
+unsafe impl CopyingHelper for UIPointerAccessory {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIPointerAccessory {}
 
 extern_methods!(

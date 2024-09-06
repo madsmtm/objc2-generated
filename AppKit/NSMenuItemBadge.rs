@@ -40,6 +40,10 @@ extern_class!(
 
 unsafe impl NSCopying for NSMenuItemBadge {}
 
+unsafe impl CopyingHelper for NSMenuItemBadge {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSMenuItemBadge {}
 
 extern_methods!(

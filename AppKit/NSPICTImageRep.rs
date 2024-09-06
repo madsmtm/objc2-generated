@@ -25,6 +25,11 @@ unsafe impl NSCoding for NSPICTImageRep {}
 unsafe impl NSCopying for NSPICTImageRep {}
 
 #[cfg(feature = "NSImageRep")]
+unsafe impl CopyingHelper for NSPICTImageRep {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSImageRep")]
 unsafe impl NSObjectProtocol for NSPICTImageRep {}
 
 extern_methods!(

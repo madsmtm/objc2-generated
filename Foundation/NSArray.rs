@@ -14,7 +14,7 @@ __inner_extern_class!(
 
     unsafe impl<ObjectType: ?Sized + Message> ClassType for NSArray<ObjectType> {
         type Super = NSObject;
-        type Mutability = InteriorMutableWithSubclass<NSMutableArray<ObjectType>>;
+        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -28,11 +28,21 @@ unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSArray<ObjectType> {}
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized> NSCopying for NSArray<ObjectType> {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for NSArray<ObjectType> {
+    type Result = Self;
+}
+
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSArray<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSArray<ObjectType> {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl<ObjectType: ?Sized + Message> MutableCopyingHelper for NSArray<ObjectType> {
+    type Result = NSMutableArray<ObjectType>;
+}
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSArray<ObjectType> {}
 
@@ -547,7 +557,7 @@ __inner_extern_class!(
     unsafe impl<ObjectType: ?Sized + Message> ClassType for NSMutableArray<ObjectType> {
         #[inherits(NSObject)]
         type Super = NSArray<ObjectType>;
-        type Mutability = InteriorMutableWithSuperclass<NSArray<ObjectType>>;
+        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -561,11 +571,21 @@ unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSMutableArray<ObjectTyp
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized> NSCopying for NSMutableArray<ObjectType> {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for NSMutableArray<ObjectType> {
+    type Result = NSArray<ObjectType>;
+}
+
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSMutableArray<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSMutableArray<ObjectType> {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl<ObjectType: ?Sized + Message> MutableCopyingHelper for NSMutableArray<ObjectType> {
+    type Result = Self;
+}
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSMutableArray<ObjectType> {}
 

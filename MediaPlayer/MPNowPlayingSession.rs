@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for MPAdTimeRange {}
 
+unsafe impl CopyingHelper for MPAdTimeRange {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MPAdTimeRange {}
 
 extern_methods!(

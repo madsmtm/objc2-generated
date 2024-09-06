@@ -67,6 +67,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLIndirectCommandBufferDescriptor {}
 
+unsafe impl CopyingHelper for MTLIndirectCommandBufferDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLIndirectCommandBufferDescriptor {}
 
 extern_methods!(

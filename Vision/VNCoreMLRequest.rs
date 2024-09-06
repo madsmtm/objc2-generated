@@ -76,6 +76,11 @@ extern_class!(
 unsafe impl NSCopying for VNCoreMLRequest {}
 
 #[cfg(feature = "VNRequest")]
+unsafe impl CopyingHelper for VNCoreMLRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNCoreMLRequest {}
 
 extern_methods!(

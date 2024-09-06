@@ -93,6 +93,11 @@ unsafe impl NSCoding for CMDeviceMotion {}
 unsafe impl NSCopying for CMDeviceMotion {}
 
 #[cfg(feature = "CMLogItem")]
+unsafe impl CopyingHelper for CMDeviceMotion {
+    type Result = Self;
+}
+
+#[cfg(feature = "CMLogItem")]
 unsafe impl NSObjectProtocol for CMDeviceMotion {}
 
 #[cfg(feature = "CMLogItem")]

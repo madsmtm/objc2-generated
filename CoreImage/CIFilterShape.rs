@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for CIFilterShape {}
 
+unsafe impl CopyingHelper for CIFilterShape {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CIFilterShape {}
 
 extern_methods!(

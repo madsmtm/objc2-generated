@@ -17,7 +17,15 @@ extern_class!(
 
 unsafe impl NSCopying for SKPayment {}
 
+unsafe impl CopyingHelper for SKPayment {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for SKPayment {}
+
+unsafe impl MutableCopyingHelper for SKPayment {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for SKPayment {}
 
@@ -76,7 +84,15 @@ extern_class!(
 
 unsafe impl NSCopying for SKMutablePayment {}
 
+unsafe impl CopyingHelper for SKMutablePayment {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for SKMutablePayment {}
+
+unsafe impl MutableCopyingHelper for SKMutablePayment {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for SKMutablePayment {}
 

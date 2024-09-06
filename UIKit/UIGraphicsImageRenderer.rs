@@ -49,6 +49,11 @@ extern_class!(
 unsafe impl NSCopying for UIGraphicsImageRendererFormat {}
 
 #[cfg(feature = "UIGraphicsRenderer")]
+unsafe impl CopyingHelper for UIGraphicsImageRendererFormat {
+    type Result = Self;
+}
+
+#[cfg(feature = "UIGraphicsRenderer")]
 unsafe impl NSObjectProtocol for UIGraphicsImageRendererFormat {}
 
 extern_methods!(

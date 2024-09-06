@@ -46,6 +46,15 @@ unsafe impl NSCopying for DOMOverflowEvent {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMOverflowEvent {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMOverflowEvent {}
 
 extern_methods!(

@@ -48,7 +48,15 @@ unsafe impl NSCoding for UNNotificationContent {}
 
 unsafe impl NSCopying for UNNotificationContent {}
 
+unsafe impl CopyingHelper for UNNotificationContent {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for UNNotificationContent {}
+
+unsafe impl MutableCopyingHelper for UNNotificationContent {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UNNotificationContent {}
 
@@ -142,7 +150,15 @@ unsafe impl NSCoding for UNMutableNotificationContent {}
 
 unsafe impl NSCopying for UNMutableNotificationContent {}
 
+unsafe impl CopyingHelper for UNMutableNotificationContent {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for UNMutableNotificationContent {}
+
+unsafe impl MutableCopyingHelper for UNMutableNotificationContent {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UNMutableNotificationContent {}
 

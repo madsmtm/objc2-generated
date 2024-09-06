@@ -114,6 +114,10 @@ extern_class!(
 
 unsafe impl NSCopying for PHPickerFilter {}
 
+unsafe impl CopyingHelper for PHPickerFilter {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for PHPickerFilter {}
 
 extern_methods!(
@@ -190,6 +194,10 @@ extern_class!(
 
 unsafe impl NSCopying for PHPickerUpdateConfiguration {}
 
+unsafe impl CopyingHelper for PHPickerUpdateConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for PHPickerUpdateConfiguration {}
 
 extern_methods!(
@@ -237,6 +245,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for PHPickerConfiguration {}
+
+unsafe impl CopyingHelper for PHPickerConfiguration {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for PHPickerConfiguration {}
 

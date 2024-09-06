@@ -19,6 +19,10 @@ unsafe impl NSCoding for UNNotificationRequest {}
 
 unsafe impl NSCopying for UNNotificationRequest {}
 
+unsafe impl CopyingHelper for UNNotificationRequest {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UNNotificationRequest {}
 
 unsafe impl NSSecureCoding for UNNotificationRequest {}

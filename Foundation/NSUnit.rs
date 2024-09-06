@@ -106,6 +106,11 @@ unsafe impl NSCoding for NSUnit {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnit {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnit {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSUnit {}
 
 #[cfg(feature = "NSObject")]
@@ -145,6 +150,11 @@ unsafe impl NSCoding for NSDimension {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSDimension {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSDimension {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSDimension {}
 
@@ -204,6 +214,11 @@ unsafe impl NSCoding for NSUnitAcceleration {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitAcceleration {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitAcceleration {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSUnitAcceleration {}
 
@@ -271,6 +286,11 @@ unsafe impl NSCoding for NSUnitAngle {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitAngle {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitAngle {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSUnitAngle {}
 
@@ -350,6 +370,11 @@ unsafe impl NSCoding for NSUnitArea {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitArea {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitArea {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSUnitArea {}
 
@@ -454,6 +479,11 @@ unsafe impl NSCoding for NSUnitConcentrationMass {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitConcentrationMass {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitConcentrationMass {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSUnitConcentrationMass {}
 
 #[cfg(feature = "NSObject")]
@@ -526,6 +556,11 @@ unsafe impl NSCoding for NSUnitDispersion {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitDispersion {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitDispersion {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSUnitDispersion {}
 
 #[cfg(feature = "NSObject")]
@@ -589,6 +624,11 @@ unsafe impl NSCoding for NSUnitDuration {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitDuration {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitDuration {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSUnitDuration {}
 
@@ -672,6 +712,11 @@ unsafe impl NSCoding for NSUnitElectricCharge {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitElectricCharge {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitElectricCharge {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSUnitElectricCharge {}
 
 #[cfg(feature = "NSObject")]
@@ -751,6 +796,11 @@ unsafe impl NSCoding for NSUnitElectricCurrent {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitElectricCurrent {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitElectricCurrent {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSUnitElectricCurrent {}
 
 #[cfg(feature = "NSObject")]
@@ -826,6 +876,11 @@ unsafe impl NSCoding for NSUnitElectricPotentialDifference {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitElectricPotentialDifference {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitElectricPotentialDifference {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSUnitElectricPotentialDifference {}
 
@@ -903,6 +958,11 @@ unsafe impl NSCoding for NSUnitElectricResistance {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitElectricResistance {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitElectricResistance {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSUnitElectricResistance {}
 
 #[cfg(feature = "NSObject")]
@@ -979,6 +1039,11 @@ unsafe impl NSCoding for NSUnitEnergy {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitEnergy {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitEnergy {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSUnitEnergy {}
 
 #[cfg(feature = "NSObject")]
@@ -1054,6 +1119,11 @@ unsafe impl NSCoding for NSUnitFrequency {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitFrequency {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitFrequency {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSUnitFrequency {}
 
@@ -1143,6 +1213,11 @@ unsafe impl NSCoding for NSUnitFuelEfficiency {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitFuelEfficiency {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitFuelEfficiency {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSUnitFuelEfficiency {}
 
 #[cfg(feature = "NSObject")]
@@ -1212,6 +1287,11 @@ unsafe impl NSCoding for NSUnitInformationStorage {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitInformationStorage {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitInformationStorage {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSUnitInformationStorage {}
 
@@ -1379,6 +1459,11 @@ unsafe impl NSCoding for NSUnitLength {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitLength {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitLength {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSUnitLength {}
 
 #[cfg(feature = "NSObject")]
@@ -1506,6 +1591,11 @@ unsafe impl NSCoding for NSUnitIlluminance {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitIlluminance {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitIlluminance {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSUnitIlluminance {}
 
 #[cfg(feature = "NSObject")]
@@ -1569,6 +1659,11 @@ unsafe impl NSCoding for NSUnitMass {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitMass {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitMass {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSUnitMass {}
 
@@ -1679,6 +1774,11 @@ unsafe impl NSCoding for NSUnitPower {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitPower {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitPower {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSUnitPower {}
 
 #[cfg(feature = "NSObject")]
@@ -1773,6 +1873,11 @@ unsafe impl NSCoding for NSUnitPressure {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitPressure {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitPressure {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSUnitPressure {}
 
 #[cfg(feature = "NSObject")]
@@ -1864,6 +1969,11 @@ unsafe impl NSCoding for NSUnitSpeed {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitSpeed {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitSpeed {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSUnitSpeed {}
 
 #[cfg(feature = "NSObject")]
@@ -1937,6 +2047,11 @@ unsafe impl NSCoding for NSUnitTemperature {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitTemperature {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitTemperature {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSUnitTemperature {}
 
 #[cfg(feature = "NSObject")]
@@ -2006,6 +2121,11 @@ unsafe impl NSCoding for NSUnitVolume {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUnitVolume {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUnitVolume {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSUnitVolume {}
 

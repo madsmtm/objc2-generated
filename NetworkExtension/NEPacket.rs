@@ -19,6 +19,10 @@ unsafe impl NSCoding for NEPacket {}
 
 unsafe impl NSCopying for NEPacket {}
 
+unsafe impl CopyingHelper for NEPacket {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEPacket {}
 
 unsafe impl NSSecureCoding for NEPacket {}

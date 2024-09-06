@@ -168,7 +168,15 @@ unsafe impl NSCoding for UIUserNotificationCategory {}
 
 unsafe impl NSCopying for UIUserNotificationCategory {}
 
+unsafe impl CopyingHelper for UIUserNotificationCategory {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for UIUserNotificationCategory {}
+
+unsafe impl MutableCopyingHelper for UIUserNotificationCategory {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UIUserNotificationCategory {}
 
@@ -220,7 +228,15 @@ unsafe impl NSCoding for UIMutableUserNotificationCategory {}
 
 unsafe impl NSCopying for UIMutableUserNotificationCategory {}
 
+unsafe impl CopyingHelper for UIMutableUserNotificationCategory {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for UIMutableUserNotificationCategory {}
+
+unsafe impl MutableCopyingHelper for UIMutableUserNotificationCategory {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UIMutableUserNotificationCategory {}
 
@@ -283,7 +299,15 @@ unsafe impl NSCoding for UIUserNotificationAction {}
 
 unsafe impl NSCopying for UIUserNotificationAction {}
 
+unsafe impl CopyingHelper for UIUserNotificationAction {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for UIUserNotificationAction {}
+
+unsafe impl MutableCopyingHelper for UIUserNotificationAction {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UIUserNotificationAction {}
 
@@ -347,7 +371,15 @@ unsafe impl NSCoding for UIMutableUserNotificationAction {}
 
 unsafe impl NSCopying for UIMutableUserNotificationAction {}
 
+unsafe impl CopyingHelper for UIMutableUserNotificationAction {
+    type Result = Self;
+}
+
 unsafe impl NSMutableCopying for UIMutableUserNotificationAction {}
+
+unsafe impl MutableCopyingHelper for UIMutableUserNotificationAction {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UIMutableUserNotificationAction {}
 

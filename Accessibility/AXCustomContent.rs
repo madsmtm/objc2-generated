@@ -38,6 +38,10 @@ unsafe impl NSCoding for AXCustomContent {}
 
 unsafe impl NSCopying for AXCustomContent {}
 
+unsafe impl CopyingHelper for AXCustomContent {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for AXCustomContent {}
 
 unsafe impl NSSecureCoding for AXCustomContent {}

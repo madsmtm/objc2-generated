@@ -19,6 +19,10 @@ unsafe impl NSCoding for NEFlowMetaData {}
 
 unsafe impl NSCopying for NEFlowMetaData {}
 
+unsafe impl CopyingHelper for NEFlowMetaData {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEFlowMetaData {}
 
 unsafe impl NSSecureCoding for NEFlowMetaData {}

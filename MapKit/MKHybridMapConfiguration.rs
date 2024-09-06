@@ -25,6 +25,11 @@ unsafe impl NSCoding for MKHybridMapConfiguration {}
 unsafe impl NSCopying for MKHybridMapConfiguration {}
 
 #[cfg(feature = "MKMapConfiguration")]
+unsafe impl CopyingHelper for MKHybridMapConfiguration {
+    type Result = Self;
+}
+
+#[cfg(feature = "MKMapConfiguration")]
 unsafe impl NSObjectProtocol for MKHybridMapConfiguration {}
 
 #[cfg(feature = "MKMapConfiguration")]

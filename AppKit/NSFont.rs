@@ -23,6 +23,10 @@ unsafe impl NSCoding for NSFont {}
 
 unsafe impl NSCopying for NSFont {}
 
+unsafe impl CopyingHelper for NSFont {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSFont {}
 
 unsafe impl NSSecureCoding for NSFont {}

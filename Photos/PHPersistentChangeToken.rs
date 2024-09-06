@@ -23,6 +23,10 @@ unsafe impl NSCoding for PHPersistentChangeToken {}
 
 unsafe impl NSCopying for PHPersistentChangeToken {}
 
+unsafe impl CopyingHelper for PHPersistentChangeToken {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for PHPersistentChangeToken {}
 
 unsafe impl NSSecureCoding for PHPersistentChangeToken {}

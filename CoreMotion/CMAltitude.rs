@@ -25,6 +25,11 @@ unsafe impl NSCoding for CMAltitudeData {}
 unsafe impl NSCopying for CMAltitudeData {}
 
 #[cfg(feature = "CMLogItem")]
+unsafe impl CopyingHelper for CMAltitudeData {
+    type Result = Self;
+}
+
+#[cfg(feature = "CMLogItem")]
 unsafe impl NSObjectProtocol for CMAltitudeData {}
 
 #[cfg(feature = "CMLogItem")]

@@ -19,6 +19,10 @@ unsafe impl NSCoding for NSPersistentHistoryToken {}
 
 unsafe impl NSCopying for NSPersistentHistoryToken {}
 
+unsafe impl CopyingHelper for NSPersistentHistoryToken {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSPersistentHistoryToken {}
 
 unsafe impl NSSecureCoding for NSPersistentHistoryToken {}

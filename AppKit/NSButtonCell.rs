@@ -140,6 +140,11 @@ unsafe impl NSCoding for NSButtonCell {}
 unsafe impl NSCopying for NSButtonCell {}
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+unsafe impl CopyingHelper for NSButtonCell {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl NSObjectProtocol for NSButtonCell {}
 
 #[cfg(all(

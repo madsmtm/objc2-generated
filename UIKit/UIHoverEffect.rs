@@ -23,6 +23,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIHoverHighlightEffect {}
 
+unsafe impl CopyingHelper for UIHoverHighlightEffect {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIHoverHighlightEffect {}
 
 unsafe impl UIHoverEffect for UIHoverHighlightEffect {}
@@ -52,6 +56,10 @@ extern_class!(
 
 unsafe impl NSCopying for UIHoverLiftEffect {}
 
+unsafe impl CopyingHelper for UIHoverLiftEffect {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIHoverLiftEffect {}
 
 unsafe impl UIHoverEffect for UIHoverLiftEffect {}
@@ -80,6 +88,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for UIHoverAutomaticEffect {}
+
+unsafe impl CopyingHelper for UIHoverAutomaticEffect {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UIHoverAutomaticEffect {}
 

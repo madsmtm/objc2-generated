@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VZVirtioConsoleDeviceSerialPortConfiguration {}
 
 #[cfg(feature = "VZSerialPortConfiguration")]
+unsafe impl CopyingHelper for VZVirtioConsoleDeviceSerialPortConfiguration {
+    type Result = Self;
+}
+
+#[cfg(feature = "VZSerialPortConfiguration")]
 unsafe impl NSObjectProtocol for VZVirtioConsoleDeviceSerialPortConfiguration {}
 
 extern_methods!(

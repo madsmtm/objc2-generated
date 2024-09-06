@@ -59,6 +59,10 @@ unsafe impl NSCoding for WKWebViewConfiguration {}
 
 unsafe impl NSCopying for WKWebViewConfiguration {}
 
+unsafe impl CopyingHelper for WKWebViewConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for WKWebViewConfiguration {}
 
 unsafe impl NSSecureCoding for WKWebViewConfiguration {}

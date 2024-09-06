@@ -121,7 +121,7 @@ extern_class!(
 
     unsafe impl ClassType for NSData {
         type Super = NSObject;
-        type Mutability = InteriorMutableWithSubclass<NSMutableData>;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -132,7 +132,17 @@ unsafe impl NSCoding for NSData {}
 unsafe impl NSCopying for NSData {}
 
 #[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSData {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSObject")]
 unsafe impl NSMutableCopying for NSData {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl MutableCopyingHelper for NSData {
+    type Result = NSMutableData;
+}
 
 unsafe impl NSObjectProtocol for NSData {}
 
@@ -627,7 +637,7 @@ extern_class!(
     unsafe impl ClassType for NSMutableData {
         #[inherits(NSObject)]
         type Super = NSData;
-        type Mutability = InteriorMutableWithSuperclass<NSData>;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -638,7 +648,17 @@ unsafe impl NSCoding for NSMutableData {}
 unsafe impl NSCopying for NSMutableData {}
 
 #[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSMutableData {
+    type Result = NSData;
+}
+
+#[cfg(feature = "NSObject")]
 unsafe impl NSMutableCopying for NSMutableData {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl MutableCopyingHelper for NSMutableData {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSMutableData {}
 

@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for VZBootLoader {}
 
+unsafe impl CopyingHelper for VZBootLoader {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VZBootLoader {}
 
 extern_methods!(

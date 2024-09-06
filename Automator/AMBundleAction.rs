@@ -27,6 +27,11 @@ unsafe impl NSCoding for AMBundleAction {}
 unsafe impl NSCopying for AMBundleAction {}
 
 #[cfg(feature = "AMAction")]
+unsafe impl CopyingHelper for AMBundleAction {
+    type Result = Self;
+}
+
+#[cfg(feature = "AMAction")]
 unsafe impl NSObjectProtocol for AMBundleAction {}
 
 #[cfg(feature = "AMAction")]

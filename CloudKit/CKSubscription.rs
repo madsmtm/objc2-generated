@@ -42,6 +42,10 @@ unsafe impl NSCoding for CKSubscription {}
 
 unsafe impl NSCopying for CKSubscription {}
 
+unsafe impl CopyingHelper for CKSubscription {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CKSubscription {}
 
 unsafe impl NSSecureCoding for CKSubscription {}
@@ -107,6 +111,10 @@ extern_class!(
 unsafe impl NSCoding for CKQuerySubscription {}
 
 unsafe impl NSCopying for CKQuerySubscription {}
+
+unsafe impl CopyingHelper for CKQuerySubscription {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CKQuerySubscription {}
 
@@ -183,6 +191,10 @@ unsafe impl NSCoding for CKRecordZoneSubscription {}
 
 unsafe impl NSCopying for CKRecordZoneSubscription {}
 
+unsafe impl CopyingHelper for CKRecordZoneSubscription {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CKRecordZoneSubscription {}
 
 unsafe impl NSSecureCoding for CKRecordZoneSubscription {}
@@ -248,6 +260,10 @@ unsafe impl NSCoding for CKDatabaseSubscription {}
 
 unsafe impl NSCopying for CKDatabaseSubscription {}
 
+unsafe impl CopyingHelper for CKDatabaseSubscription {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CKDatabaseSubscription {}
 
 unsafe impl NSSecureCoding for CKDatabaseSubscription {}
@@ -293,6 +309,10 @@ extern_class!(
 unsafe impl NSCoding for CKNotificationInfo {}
 
 unsafe impl NSCopying for CKNotificationInfo {}
+
+unsafe impl CopyingHelper for CKNotificationInfo {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CKNotificationInfo {}
 

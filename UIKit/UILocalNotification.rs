@@ -22,6 +22,10 @@ unsafe impl NSCoding for UILocalNotification {}
 
 unsafe impl NSCopying for UILocalNotification {}
 
+unsafe impl CopyingHelper for UILocalNotification {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UILocalNotification {}
 
 extern_methods!(

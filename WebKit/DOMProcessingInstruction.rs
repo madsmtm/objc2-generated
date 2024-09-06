@@ -52,6 +52,16 @@ unsafe impl NSCopying for DOMProcessingInstruction {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMProcessingInstruction {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMCharacterData",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMProcessingInstruction {}
 
 extern_methods!(

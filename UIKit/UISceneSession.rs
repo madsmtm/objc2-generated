@@ -19,6 +19,10 @@ unsafe impl NSCoding for UISceneConfiguration {}
 
 unsafe impl NSCopying for UISceneConfiguration {}
 
+unsafe impl CopyingHelper for UISceneConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UISceneConfiguration {}
 
 unsafe impl NSSecureCoding for UISceneConfiguration {}

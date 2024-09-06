@@ -45,6 +45,10 @@ unsafe impl NSCoding for NSImageRep {}
 
 unsafe impl NSCopying for NSImageRep {}
 
+unsafe impl CopyingHelper for NSImageRep {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSImageRep {}
 
 extern_methods!(

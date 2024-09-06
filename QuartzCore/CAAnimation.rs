@@ -37,6 +37,10 @@ unsafe impl NSCoding for CAAnimation {}
 
 unsafe impl NSCopying for CAAnimation {}
 
+unsafe impl CopyingHelper for CAAnimation {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CAAnimation {}
 
 unsafe impl NSSecureCoding for CAAnimation {}
@@ -134,6 +138,10 @@ unsafe impl NSCoding for CAPropertyAnimation {}
 
 unsafe impl NSCopying for CAPropertyAnimation {}
 
+unsafe impl CopyingHelper for CAPropertyAnimation {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CAPropertyAnimation {}
 
 unsafe impl NSSecureCoding for CAPropertyAnimation {}
@@ -211,6 +219,10 @@ unsafe impl NSCoding for CABasicAnimation {}
 
 unsafe impl NSCopying for CABasicAnimation {}
 
+unsafe impl CopyingHelper for CABasicAnimation {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CABasicAnimation {}
 
 unsafe impl NSSecureCoding for CABasicAnimation {}
@@ -284,6 +296,10 @@ unsafe impl CAMediaTiming for CAKeyframeAnimation {}
 unsafe impl NSCoding for CAKeyframeAnimation {}
 
 unsafe impl NSCopying for CAKeyframeAnimation {}
+
+unsafe impl CopyingHelper for CAKeyframeAnimation {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CAKeyframeAnimation {}
 
@@ -422,6 +438,10 @@ unsafe impl NSCoding for CASpringAnimation {}
 
 unsafe impl NSCopying for CASpringAnimation {}
 
+unsafe impl CopyingHelper for CASpringAnimation {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CASpringAnimation {}
 
 unsafe impl NSSecureCoding for CASpringAnimation {}
@@ -523,6 +543,10 @@ unsafe impl CAMediaTiming for CATransition {}
 unsafe impl NSCoding for CATransition {}
 
 unsafe impl NSCopying for CATransition {}
+
+unsafe impl CopyingHelper for CATransition {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CATransition {}
 
@@ -633,6 +657,10 @@ unsafe impl CAMediaTiming for CAAnimationGroup {}
 unsafe impl NSCoding for CAAnimationGroup {}
 
 unsafe impl NSCopying for CAAnimationGroup {}
+
+unsafe impl CopyingHelper for CAAnimationGroup {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CAAnimationGroup {}
 

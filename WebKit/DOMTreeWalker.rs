@@ -23,6 +23,11 @@ extern_class!(
 unsafe impl NSCopying for DOMTreeWalker {}
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+unsafe impl CopyingHelper for DOMTreeWalker {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMTreeWalker {}
 
 extern_methods!(

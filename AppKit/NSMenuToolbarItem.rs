@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for NSMenuToolbarItem {}
 
 #[cfg(feature = "NSToolbarItem")]
+unsafe impl CopyingHelper for NSMenuToolbarItem {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSToolbarItem")]
 unsafe impl NSObjectProtocol for NSMenuToolbarItem {}
 
 extern_methods!(

@@ -42,6 +42,11 @@ extern_class!(
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSAppleScript {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSAppleScript {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSAppleScript {}
 
 extern_methods!(

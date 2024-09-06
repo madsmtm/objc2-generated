@@ -19,6 +19,10 @@ unsafe impl NSCoding for NIDiscoveryToken {}
 
 unsafe impl NSCopying for NIDiscoveryToken {}
 
+unsafe impl CopyingHelper for NIDiscoveryToken {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NIDiscoveryToken {}
 
 unsafe impl NSSecureCoding for NIDiscoveryToken {}
@@ -52,6 +56,10 @@ unsafe impl NSCoding for NIConfiguration {}
 
 unsafe impl NSCopying for NIConfiguration {}
 
+unsafe impl CopyingHelper for NIConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NIConfiguration {}
 
 unsafe impl NSSecureCoding for NIConfiguration {}
@@ -80,6 +88,10 @@ extern_class!(
 unsafe impl NSCoding for NINearbyPeerConfiguration {}
 
 unsafe impl NSCopying for NINearbyPeerConfiguration {}
+
+unsafe impl CopyingHelper for NINearbyPeerConfiguration {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NINearbyPeerConfiguration {}
 
@@ -133,6 +145,10 @@ extern_class!(
 unsafe impl NSCoding for NINearbyAccessoryConfiguration {}
 
 unsafe impl NSCopying for NINearbyAccessoryConfiguration {}
+
+unsafe impl CopyingHelper for NINearbyAccessoryConfiguration {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NINearbyAccessoryConfiguration {}
 

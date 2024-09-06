@@ -19,6 +19,10 @@ unsafe impl NSCoding for CIBarcodeDescriptor {}
 
 unsafe impl NSCopying for CIBarcodeDescriptor {}
 
+unsafe impl CopyingHelper for CIBarcodeDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CIBarcodeDescriptor {}
 
 unsafe impl NSSecureCoding for CIBarcodeDescriptor {}
@@ -75,6 +79,10 @@ extern_class!(
 unsafe impl NSCoding for CIQRCodeDescriptor {}
 
 unsafe impl NSCopying for CIQRCodeDescriptor {}
+
+unsafe impl CopyingHelper for CIQRCodeDescriptor {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CIQRCodeDescriptor {}
 
@@ -139,6 +147,10 @@ unsafe impl NSCoding for CIAztecCodeDescriptor {}
 
 unsafe impl NSCopying for CIAztecCodeDescriptor {}
 
+unsafe impl CopyingHelper for CIAztecCodeDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CIAztecCodeDescriptor {}
 
 unsafe impl NSSecureCoding for CIAztecCodeDescriptor {}
@@ -201,6 +213,10 @@ extern_class!(
 unsafe impl NSCoding for CIPDF417CodeDescriptor {}
 
 unsafe impl NSCopying for CIPDF417CodeDescriptor {}
+
+unsafe impl CopyingHelper for CIPDF417CodeDescriptor {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CIPDF417CodeDescriptor {}
 
@@ -285,6 +301,10 @@ extern_class!(
 unsafe impl NSCoding for CIDataMatrixCodeDescriptor {}
 
 unsafe impl NSCopying for CIDataMatrixCodeDescriptor {}
+
+unsafe impl CopyingHelper for CIDataMatrixCodeDescriptor {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for CIDataMatrixCodeDescriptor {}
 

@@ -19,6 +19,10 @@ unsafe impl NSCoding for EKRecurrenceEnd {}
 
 unsafe impl NSCopying for EKRecurrenceEnd {}
 
+unsafe impl CopyingHelper for EKRecurrenceEnd {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for EKRecurrenceEnd {}
 
 unsafe impl NSSecureCoding for EKRecurrenceEnd {}

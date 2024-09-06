@@ -25,6 +25,11 @@ unsafe impl NSCoding for UIToolbarAppearance {}
 unsafe impl NSCopying for UIToolbarAppearance {}
 
 #[cfg(feature = "UIBarAppearance")]
+unsafe impl CopyingHelper for UIToolbarAppearance {
+    type Result = Self;
+}
+
+#[cfg(feature = "UIBarAppearance")]
 unsafe impl NSObjectProtocol for UIToolbarAppearance {}
 
 #[cfg(feature = "UIBarAppearance")]

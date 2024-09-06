@@ -48,6 +48,10 @@ unsafe impl NSCoding for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor
 
 unsafe impl NSCopying for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
 
+unsafe impl CopyingHelper for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
 
 unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}

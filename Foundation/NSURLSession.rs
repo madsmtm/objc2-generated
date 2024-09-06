@@ -383,6 +383,11 @@ unsafe impl Sync for NSURLSessionTask {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLSessionTask {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSURLSessionTask {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSURLSessionTask {}
 
 #[cfg(feature = "NSProgress")]
@@ -534,6 +539,11 @@ unsafe impl Sync for NSURLSessionDataTask {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLSessionDataTask {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSURLSessionDataTask {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSURLSessionDataTask {}
 
 #[cfg(feature = "NSProgress")]
@@ -568,6 +578,11 @@ unsafe impl Sync for NSURLSessionUploadTask {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLSessionUploadTask {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSURLSessionUploadTask {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSURLSessionUploadTask {}
 
@@ -611,6 +626,11 @@ unsafe impl Sync for NSURLSessionDownloadTask {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLSessionDownloadTask {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSURLSessionDownloadTask {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSURLSessionDownloadTask {}
 
 #[cfg(feature = "NSProgress")]
@@ -652,6 +672,11 @@ unsafe impl Sync for NSURLSessionStreamTask {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLSessionStreamTask {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSURLSessionStreamTask {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSURLSessionStreamTask {}
 
@@ -838,6 +863,11 @@ unsafe impl Sync for NSURLSessionWebSocketTask {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLSessionWebSocketTask {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSURLSessionWebSocketTask {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSURLSessionWebSocketTask {}
 
 #[cfg(feature = "NSProgress")]
@@ -937,6 +967,11 @@ unsafe impl Sync for NSURLSessionConfiguration {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLSessionConfiguration {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSURLSessionConfiguration {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSURLSessionConfiguration {}
 

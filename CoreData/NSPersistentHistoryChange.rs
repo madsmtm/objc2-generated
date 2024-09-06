@@ -38,6 +38,10 @@ extern_class!(
 
 unsafe impl NSCopying for NSPersistentHistoryChange {}
 
+unsafe impl CopyingHelper for NSPersistentHistoryChange {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSPersistentHistoryChange {}
 
 extern_methods!(

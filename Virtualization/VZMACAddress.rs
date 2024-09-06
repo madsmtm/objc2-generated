@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for VZMACAddress {}
 
+unsafe impl CopyingHelper for VZMACAddress {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for VZMACAddress {}
 
 extern_methods!(

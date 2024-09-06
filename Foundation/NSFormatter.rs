@@ -68,6 +68,11 @@ unsafe impl NSCoding for NSFormatter {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSFormatter {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSFormatter {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSFormatter {}
 
 extern_methods!(

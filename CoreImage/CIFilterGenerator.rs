@@ -34,6 +34,10 @@ unsafe impl NSCoding for CIFilterGenerator {}
 
 unsafe impl NSCopying for CIFilterGenerator {}
 
+unsafe impl CopyingHelper for CIFilterGenerator {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CIFilterGenerator {}
 
 unsafe impl NSSecureCoding for CIFilterGenerator {}

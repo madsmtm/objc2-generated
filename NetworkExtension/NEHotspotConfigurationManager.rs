@@ -83,6 +83,10 @@ unsafe impl NSCoding for NEHotspotHS20Settings {}
 
 unsafe impl NSCopying for NEHotspotHS20Settings {}
 
+unsafe impl CopyingHelper for NEHotspotHS20Settings {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEHotspotHS20Settings {}
 
 unsafe impl NSSecureCoding for NEHotspotHS20Settings {}
@@ -149,6 +153,10 @@ extern_class!(
 unsafe impl NSCoding for NEHotspotEAPSettings {}
 
 unsafe impl NSCopying for NEHotspotEAPSettings {}
+
+unsafe impl CopyingHelper for NEHotspotEAPSettings {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NEHotspotEAPSettings {}
 
@@ -241,6 +249,10 @@ extern_class!(
 unsafe impl NSCoding for NEHotspotConfiguration {}
 
 unsafe impl NSCopying for NEHotspotConfiguration {}
+
+unsafe impl CopyingHelper for NEHotspotConfiguration {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NEHotspotConfiguration {}
 

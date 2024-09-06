@@ -65,6 +65,10 @@ unsafe impl NSCoding for NEOnDemandRule {}
 
 unsafe impl NSCopying for NEOnDemandRule {}
 
+unsafe impl CopyingHelper for NEOnDemandRule {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEOnDemandRule {}
 
 unsafe impl NSSecureCoding for NEOnDemandRule {}
@@ -141,6 +145,10 @@ unsafe impl NSCoding for NEOnDemandRuleConnect {}
 
 unsafe impl NSCopying for NEOnDemandRuleConnect {}
 
+unsafe impl CopyingHelper for NEOnDemandRuleConnect {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEOnDemandRuleConnect {}
 
 unsafe impl NSSecureCoding for NEOnDemandRuleConnect {}
@@ -174,6 +182,10 @@ extern_class!(
 unsafe impl NSCoding for NEOnDemandRuleDisconnect {}
 
 unsafe impl NSCopying for NEOnDemandRuleDisconnect {}
+
+unsafe impl CopyingHelper for NEOnDemandRuleDisconnect {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NEOnDemandRuleDisconnect {}
 
@@ -209,6 +221,10 @@ unsafe impl NSCoding for NEOnDemandRuleIgnore {}
 
 unsafe impl NSCopying for NEOnDemandRuleIgnore {}
 
+unsafe impl CopyingHelper for NEOnDemandRuleIgnore {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NEOnDemandRuleIgnore {}
 
 unsafe impl NSSecureCoding for NEOnDemandRuleIgnore {}
@@ -242,6 +258,10 @@ extern_class!(
 unsafe impl NSCoding for NEOnDemandRuleEvaluateConnection {}
 
 unsafe impl NSCopying for NEOnDemandRuleEvaluateConnection {}
+
+unsafe impl CopyingHelper for NEOnDemandRuleEvaluateConnection {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NEOnDemandRuleEvaluateConnection {}
 
@@ -304,6 +324,10 @@ extern_class!(
 unsafe impl NSCoding for NEEvaluateConnectionRule {}
 
 unsafe impl NSCopying for NEEvaluateConnectionRule {}
+
+unsafe impl CopyingHelper for NEEvaluateConnectionRule {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NEEvaluateConnectionRule {}
 

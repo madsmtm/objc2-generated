@@ -19,6 +19,10 @@ unsafe impl NSCoding for UIMotionEffect {}
 
 unsafe impl NSCopying for UIMotionEffect {}
 
+unsafe impl CopyingHelper for UIMotionEffect {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIMotionEffect {}
 
 extern_methods!(
@@ -82,6 +86,10 @@ extern_class!(
 unsafe impl NSCoding for UIInterpolatingMotionEffect {}
 
 unsafe impl NSCopying for UIInterpolatingMotionEffect {}
+
+unsafe impl CopyingHelper for UIInterpolatingMotionEffect {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UIInterpolatingMotionEffect {}
 
@@ -150,6 +158,10 @@ extern_class!(
 unsafe impl NSCoding for UIMotionEffectGroup {}
 
 unsafe impl NSCopying for UIMotionEffectGroup {}
+
+unsafe impl CopyingHelper for UIMotionEffectGroup {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UIMotionEffectGroup {}
 

@@ -192,6 +192,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLBufferLayoutDescriptor {}
 
+unsafe impl CopyingHelper for MTLBufferLayoutDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLBufferLayoutDescriptor {}
 
 extern_methods!(
@@ -279,6 +283,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLAttributeDescriptor {}
 
+unsafe impl CopyingHelper for MTLAttributeDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLAttributeDescriptor {}
 
 extern_methods!(
@@ -365,6 +373,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for MTLStageInputOutputDescriptor {}
+
+unsafe impl CopyingHelper for MTLStageInputOutputDescriptor {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for MTLStageInputOutputDescriptor {}
 

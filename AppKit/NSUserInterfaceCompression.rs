@@ -19,6 +19,10 @@ unsafe impl NSCoding for NSUserInterfaceCompressionOptions {}
 
 unsafe impl NSCopying for NSUserInterfaceCompressionOptions {}
 
+unsafe impl CopyingHelper for NSUserInterfaceCompressionOptions {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSUserInterfaceCompressionOptions {}
 
 extern_methods!(

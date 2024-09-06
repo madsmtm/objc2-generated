@@ -20,6 +20,11 @@ unsafe impl NSCoding for NSIndexPath {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSIndexPath {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSIndexPath {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSIndexPath {}
 
 #[cfg(feature = "NSObject")]

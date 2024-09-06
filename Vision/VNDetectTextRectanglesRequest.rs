@@ -22,6 +22,11 @@ extern_class!(
 unsafe impl NSCopying for VNDetectTextRectanglesRequest {}
 
 #[cfg(feature = "VNRequest")]
+unsafe impl CopyingHelper for VNDetectTextRectanglesRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNDetectTextRectanglesRequest {}
 
 extern_methods!(

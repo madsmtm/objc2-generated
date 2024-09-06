@@ -20,6 +20,11 @@ unsafe impl NSCoding for NSPersonNameComponents {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSPersonNameComponents {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSPersonNameComponents {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSPersonNameComponents {}
 
 #[cfg(feature = "NSObject")]

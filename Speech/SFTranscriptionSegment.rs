@@ -19,6 +19,10 @@ unsafe impl NSCoding for SFTranscriptionSegment {}
 
 unsafe impl NSCopying for SFTranscriptionSegment {}
 
+unsafe impl CopyingHelper for SFTranscriptionSegment {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for SFTranscriptionSegment {}
 
 unsafe impl NSSecureCoding for SFTranscriptionSegment {}

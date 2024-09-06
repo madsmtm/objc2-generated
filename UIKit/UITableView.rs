@@ -129,6 +129,10 @@ extern_class!(
 
 unsafe impl NSCopying for UITableViewRowAction {}
 
+unsafe impl CopyingHelper for UITableViewRowAction {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UITableViewRowAction {}
 
 extern_methods!(
@@ -1931,6 +1935,11 @@ extern_class!(
 
 #[cfg(feature = "UIDropInteraction")]
 unsafe impl NSCopying for UITableViewDropProposal {}
+
+#[cfg(feature = "UIDropInteraction")]
+unsafe impl CopyingHelper for UITableViewDropProposal {
+    type Result = Self;
+}
 
 #[cfg(feature = "UIDropInteraction")]
 unsafe impl NSObjectProtocol for UITableViewDropProposal {}

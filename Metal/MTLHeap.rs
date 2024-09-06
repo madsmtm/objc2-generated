@@ -38,6 +38,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLHeapDescriptor {}
 
+unsafe impl CopyingHelper for MTLHeapDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLHeapDescriptor {}
 
 extern_methods!(

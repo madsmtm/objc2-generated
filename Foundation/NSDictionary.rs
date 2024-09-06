@@ -17,7 +17,7 @@ __inner_extern_class!(
         for NSDictionary<KeyType, ObjectType>
     {
         type Super = NSObject;
-        type Mutability = InteriorMutableWithSubclass<NSMutableDictionary<KeyType, ObjectType>>;
+        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -34,6 +34,13 @@ unsafe impl<KeyType: ?Sized + NSCoding, ObjectType: ?Sized + NSCoding> NSCoding
 #[cfg(feature = "NSObject")]
 unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSCopying for NSDictionary<KeyType, ObjectType> {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> CopyingHelper
+    for NSDictionary<KeyType, ObjectType>
+{
+    type Result = Self;
+}
+
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration
     for NSDictionary<KeyType, ObjectType>
@@ -44,6 +51,13 @@ unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration
 unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSMutableCopying
     for NSDictionary<KeyType, ObjectType>
 {
+}
+
+#[cfg(feature = "NSObject")]
+unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> MutableCopyingHelper
+    for NSDictionary<KeyType, ObjectType>
+{
+    type Result = NSMutableDictionary<KeyType, ObjectType>;
 }
 
 unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol
@@ -425,7 +439,7 @@ __inner_extern_class!(
     {
         #[inherits(NSObject)]
         type Super = NSDictionary<KeyType, ObjectType>;
-        type Mutability = InteriorMutableWithSuperclass<NSDictionary<KeyType, ObjectType>>;
+        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -445,6 +459,13 @@ unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSCopying
 {
 }
 
+#[cfg(feature = "NSObject")]
+unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> CopyingHelper
+    for NSMutableDictionary<KeyType, ObjectType>
+{
+    type Result = NSDictionary<KeyType, ObjectType>;
+}
+
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration
     for NSMutableDictionary<KeyType, ObjectType>
@@ -455,6 +476,13 @@ unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration
 unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSMutableCopying
     for NSMutableDictionary<KeyType, ObjectType>
 {
+}
+
+#[cfg(feature = "NSObject")]
+unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> MutableCopyingHelper
+    for NSMutableDictionary<KeyType, ObjectType>
+{
+    type Result = Self;
 }
 
 unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol

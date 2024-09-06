@@ -19,6 +19,10 @@ unsafe impl NSCoding for UIMenuDisplayPreferences {}
 
 unsafe impl NSCopying for UIMenuDisplayPreferences {}
 
+unsafe impl CopyingHelper for UIMenuDisplayPreferences {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIMenuDisplayPreferences {}
 
 unsafe impl NSSecureCoding for UIMenuDisplayPreferences {}

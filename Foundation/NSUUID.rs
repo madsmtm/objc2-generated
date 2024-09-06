@@ -24,6 +24,11 @@ unsafe impl NSCoding for NSUUID {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUUID {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSUUID {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSUUID {}
 
 #[cfg(feature = "NSObject")]

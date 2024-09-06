@@ -18,6 +18,10 @@ extern_class!(
 
 unsafe impl NSCopying for MLCOptimizer {}
 
+unsafe impl CopyingHelper for MLCOptimizer {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MLCOptimizer {}
 
 extern_methods!(

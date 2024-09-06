@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLVisibleFunctionTableDescriptor {}
 
+unsafe impl CopyingHelper for MTLVisibleFunctionTableDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLVisibleFunctionTableDescriptor {}
 
 extern_methods!(

@@ -25,6 +25,10 @@ __inner_extern_class!(
 
 unsafe impl<ObjectType: ?Sized> NSCopying for PHFetchResult<ObjectType> {}
 
+unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for PHFetchResult<ObjectType> {
+    type Result = Self;
+}
+
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for PHFetchResult<ObjectType> {}
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHFetchResult<ObjectType> {}

@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLBlitPassSampleBufferAttachmentDescriptor {}
 
+unsafe impl CopyingHelper for MTLBlitPassSampleBufferAttachmentDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLBlitPassSampleBufferAttachmentDescriptor {}
 
 extern_methods!(
@@ -113,6 +117,10 @@ extern_class!(
 );
 
 unsafe impl NSCopying for MTLBlitPassDescriptor {}
+
+unsafe impl CopyingHelper for MTLBlitPassDescriptor {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for MTLBlitPassDescriptor {}
 

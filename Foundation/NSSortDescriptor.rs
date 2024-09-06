@@ -20,6 +20,11 @@ unsafe impl NSCoding for NSSortDescriptor {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSSortDescriptor {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSSortDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSSortDescriptor {}
 
 #[cfg(feature = "NSObject")]

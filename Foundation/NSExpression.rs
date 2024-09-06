@@ -48,6 +48,11 @@ unsafe impl NSCoding for NSExpression {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSExpression {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSExpression {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSExpression {}
 
 #[cfg(feature = "NSObject")]

@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for AEAssessmentParticipantConfiguration {}
 
+unsafe impl CopyingHelper for AEAssessmentParticipantConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for AEAssessmentParticipantConfiguration {}
 
 extern_methods!(

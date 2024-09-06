@@ -19,6 +19,10 @@ unsafe impl NSCoding for UIBackgroundConfiguration {}
 
 unsafe impl NSCopying for UIBackgroundConfiguration {}
 
+unsafe impl CopyingHelper for UIBackgroundConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIBackgroundConfiguration {}
 
 unsafe impl NSSecureCoding for UIBackgroundConfiguration {}

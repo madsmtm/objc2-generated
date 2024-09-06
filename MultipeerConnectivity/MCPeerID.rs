@@ -19,6 +19,10 @@ unsafe impl NSCoding for MCPeerID {}
 
 unsafe impl NSCopying for MCPeerID {}
 
+unsafe impl CopyingHelper for MCPeerID {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MCPeerID {}
 
 unsafe impl NSSecureCoding for MCPeerID {}

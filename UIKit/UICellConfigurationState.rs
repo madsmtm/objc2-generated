@@ -67,6 +67,11 @@ unsafe impl NSCoding for UICellConfigurationState {}
 unsafe impl NSCopying for UICellConfigurationState {}
 
 #[cfg(feature = "UIViewConfigurationState")]
+unsafe impl CopyingHelper for UICellConfigurationState {
+    type Result = Self;
+}
+
+#[cfg(feature = "UIViewConfigurationState")]
 unsafe impl NSObjectProtocol for UICellConfigurationState {}
 
 #[cfg(feature = "UIViewConfigurationState")]

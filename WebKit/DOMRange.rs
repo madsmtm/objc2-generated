@@ -40,6 +40,11 @@ extern_class!(
 unsafe impl NSCopying for DOMRange {}
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+unsafe impl CopyingHelper for DOMRange {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMRange {}
 
 extern_methods!(

@@ -39,6 +39,11 @@ unsafe impl NSCoding for NSSegmentedCell {}
 unsafe impl NSCopying for NSSegmentedCell {}
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+unsafe impl CopyingHelper for NSSegmentedCell {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl NSObjectProtocol for NSSegmentedCell {}
 
 #[cfg(all(

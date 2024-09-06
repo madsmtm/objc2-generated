@@ -19,6 +19,10 @@ unsafe impl NSCoding for UICubicTimingParameters {}
 
 unsafe impl NSCopying for UICubicTimingParameters {}
 
+unsafe impl CopyingHelper for UICubicTimingParameters {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UICubicTimingParameters {}
 
 #[cfg(feature = "UITimingCurveProvider")]
@@ -82,6 +86,10 @@ extern_class!(
 unsafe impl NSCoding for UISpringTimingParameters {}
 
 unsafe impl NSCopying for UISpringTimingParameters {}
+
+unsafe impl CopyingHelper for UISpringTimingParameters {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for UISpringTimingParameters {}
 

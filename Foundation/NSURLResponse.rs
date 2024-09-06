@@ -24,6 +24,11 @@ unsafe impl NSCoding for NSURLResponse {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLResponse {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSURLResponse {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSURLResponse {}
 
 #[cfg(feature = "NSObject")]
@@ -93,6 +98,11 @@ unsafe impl NSCoding for NSHTTPURLResponse {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSHTTPURLResponse {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSHTTPURLResponse {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSHTTPURLResponse {}
 

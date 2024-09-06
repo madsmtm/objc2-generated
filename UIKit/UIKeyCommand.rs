@@ -25,6 +25,11 @@ unsafe impl NSCoding for UIKeyCommand {}
 unsafe impl NSCopying for UIKeyCommand {}
 
 #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
+unsafe impl CopyingHelper for UIKeyCommand {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
 unsafe impl NSObjectProtocol for UIKeyCommand {}
 
 #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]

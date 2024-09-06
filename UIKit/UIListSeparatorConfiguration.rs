@@ -45,6 +45,10 @@ unsafe impl NSCoding for UIListSeparatorConfiguration {}
 
 unsafe impl NSCopying for UIListSeparatorConfiguration {}
 
+unsafe impl CopyingHelper for UIListSeparatorConfiguration {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIListSeparatorConfiguration {}
 
 unsafe impl NSSecureCoding for UIListSeparatorConfiguration {}

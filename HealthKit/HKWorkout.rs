@@ -236,6 +236,10 @@ unsafe impl NSCoding for HKWorkoutEvent {}
 
 unsafe impl NSCopying for HKWorkoutEvent {}
 
+unsafe impl CopyingHelper for HKWorkoutEvent {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for HKWorkoutEvent {}
 
 unsafe impl NSSecureCoding for HKWorkoutEvent {}

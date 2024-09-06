@@ -25,6 +25,11 @@ unsafe impl NSCoding for ASAuthorizationPasswordRequest {}
 unsafe impl NSCopying for ASAuthorizationPasswordRequest {}
 
 #[cfg(feature = "ASAuthorizationRequest")]
+unsafe impl CopyingHelper for ASAuthorizationPasswordRequest {
+    type Result = Self;
+}
+
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSObjectProtocol for ASAuthorizationPasswordRequest {}
 
 #[cfg(feature = "ASAuthorizationRequest")]

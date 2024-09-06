@@ -25,6 +25,11 @@ unsafe impl NSCoding for CMRecordedAccelerometerData {}
 unsafe impl NSCopying for CMRecordedAccelerometerData {}
 
 #[cfg(all(feature = "CMAccelerometer", feature = "CMLogItem"))]
+unsafe impl CopyingHelper for CMRecordedAccelerometerData {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "CMAccelerometer", feature = "CMLogItem"))]
 unsafe impl NSObjectProtocol for CMRecordedAccelerometerData {}
 
 #[cfg(all(feature = "CMAccelerometer", feature = "CMLogItem"))]

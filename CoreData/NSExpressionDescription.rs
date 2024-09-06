@@ -25,6 +25,11 @@ unsafe impl NSCoding for NSExpressionDescription {}
 unsafe impl NSCopying for NSExpressionDescription {}
 
 #[cfg(feature = "NSPropertyDescription")]
+unsafe impl CopyingHelper for NSExpressionDescription {
+    type Result = Self;
+}
+
+#[cfg(feature = "NSPropertyDescription")]
 unsafe impl NSObjectProtocol for NSExpressionDescription {}
 
 extern_methods!(

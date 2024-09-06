@@ -223,6 +223,10 @@ unsafe impl NSCoding for CIImage {}
 
 unsafe impl NSCopying for CIImage {}
 
+unsafe impl CopyingHelper for CIImage {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CIImage {}
 
 unsafe impl NSSecureCoding for CIImage {}

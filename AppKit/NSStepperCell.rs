@@ -39,6 +39,11 @@ unsafe impl NSCoding for NSStepperCell {}
 unsafe impl NSCopying for NSStepperCell {}
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+unsafe impl CopyingHelper for NSStepperCell {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl NSObjectProtocol for NSStepperCell {}
 
 #[cfg(all(

@@ -28,6 +28,10 @@ extern_class!(
 
 unsafe impl NSCopying for NSToolbarItem {}
 
+unsafe impl CopyingHelper for NSToolbarItem {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSToolbarItem {}
 
 extern_methods!(

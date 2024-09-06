@@ -25,7 +25,17 @@ unsafe impl NSCoding for CNMutablePostalAddress {}
 unsafe impl NSCopying for CNMutablePostalAddress {}
 
 #[cfg(feature = "CNPostalAddress")]
+unsafe impl CopyingHelper for CNMutablePostalAddress {
+    type Result = Self;
+}
+
+#[cfg(feature = "CNPostalAddress")]
 unsafe impl NSMutableCopying for CNMutablePostalAddress {}
+
+#[cfg(feature = "CNPostalAddress")]
+unsafe impl MutableCopyingHelper for CNMutablePostalAddress {
+    type Result = Self;
+}
 
 #[cfg(feature = "CNPostalAddress")]
 unsafe impl NSObjectProtocol for CNMutablePostalAddress {}

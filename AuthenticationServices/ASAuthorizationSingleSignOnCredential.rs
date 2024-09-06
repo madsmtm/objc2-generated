@@ -22,6 +22,10 @@ unsafe impl NSCoding for ASAuthorizationSingleSignOnCredential {}
 
 unsafe impl NSCopying for ASAuthorizationSingleSignOnCredential {}
 
+unsafe impl CopyingHelper for ASAuthorizationSingleSignOnCredential {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for ASAuthorizationSingleSignOnCredential {}
 
 unsafe impl NSSecureCoding for ASAuthorizationSingleSignOnCredential {}

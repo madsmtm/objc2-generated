@@ -105,6 +105,10 @@ extern_class!(
 
 unsafe impl NSCopying for MTLSamplerDescriptor {}
 
+unsafe impl CopyingHelper for MTLSamplerDescriptor {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for MTLSamplerDescriptor {}
 
 extern_methods!(

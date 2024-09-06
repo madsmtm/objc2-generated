@@ -22,6 +22,10 @@ unsafe impl NSCoding for NSPredicateEditorRowTemplate {}
 
 unsafe impl NSCopying for NSPredicateEditorRowTemplate {}
 
+unsafe impl CopyingHelper for NSPredicateEditorRowTemplate {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSPredicateEditorRowTemplate {}
 
 extern_methods!(

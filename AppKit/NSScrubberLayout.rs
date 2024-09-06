@@ -17,6 +17,10 @@ extern_class!(
 
 unsafe impl NSCopying for NSScrubberLayoutAttributes {}
 
+unsafe impl CopyingHelper for NSScrubberLayoutAttributes {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSScrubberLayoutAttributes {}
 
 extern_methods!(

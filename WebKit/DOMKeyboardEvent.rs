@@ -52,6 +52,16 @@ unsafe impl NSCopying for DOMKeyboardEvent {}
     feature = "DOMUIEvent",
     feature = "WebScriptObject"
 ))]
+unsafe impl CopyingHelper for DOMKeyboardEvent {
+    type Result = Self;
+}
+
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "DOMUIEvent",
+    feature = "WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMKeyboardEvent {}
 
 extern_methods!(

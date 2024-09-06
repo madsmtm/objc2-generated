@@ -61,6 +61,10 @@ unsafe impl NSCoding for NENetworkRule {}
 
 unsafe impl NSCopying for NENetworkRule {}
 
+unsafe impl CopyingHelper for NENetworkRule {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NENetworkRule {}
 
 unsafe impl NSSecureCoding for NENetworkRule {}

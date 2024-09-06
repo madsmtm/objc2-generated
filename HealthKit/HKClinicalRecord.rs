@@ -33,6 +33,11 @@ unsafe impl NSCoding for HKClinicalRecord {}
 unsafe impl NSCopying for HKClinicalRecord {}
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
+unsafe impl CopyingHelper for HKClinicalRecord {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSObjectProtocol for HKClinicalRecord {}
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]

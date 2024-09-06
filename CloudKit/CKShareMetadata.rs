@@ -19,6 +19,10 @@ unsafe impl NSCoding for CKShareMetadata {}
 
 unsafe impl NSCopying for CKShareMetadata {}
 
+unsafe impl CopyingHelper for CKShareMetadata {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for CKShareMetadata {}
 
 unsafe impl NSSecureCoding for CKShareMetadata {}

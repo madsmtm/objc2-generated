@@ -48,6 +48,11 @@ unsafe impl NSCoding for NSRegularExpression {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSRegularExpression {}
 
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSRegularExpression {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for NSRegularExpression {}
 
 #[cfg(feature = "NSObject")]
@@ -263,6 +268,11 @@ unsafe impl NSCoding for NSDataDetector {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSDataDetector {}
+
+#[cfg(feature = "NSObject")]
+unsafe impl CopyingHelper for NSDataDetector {
+    type Result = Self;
+}
 
 unsafe impl NSObjectProtocol for NSDataDetector {}
 

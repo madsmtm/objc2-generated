@@ -19,6 +19,10 @@ unsafe impl NSCoding for UIContentUnavailableImageProperties {}
 
 unsafe impl NSCopying for UIContentUnavailableImageProperties {}
 
+unsafe impl CopyingHelper for UIContentUnavailableImageProperties {
+    type Result = Self;
+}
+
 unsafe impl NSObjectProtocol for UIContentUnavailableImageProperties {}
 
 unsafe impl NSSecureCoding for UIContentUnavailableImageProperties {}
