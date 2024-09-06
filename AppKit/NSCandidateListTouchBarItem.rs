@@ -25,10 +25,6 @@ __inner_extern_class!(
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
         }
-
-        fn as_super_mut(&mut self) -> &mut Self::Super {
-            &mut self.__superclass
-        }
     }
 );
 
