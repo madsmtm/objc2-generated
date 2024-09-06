@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for UIDragPreviewParameters {
         #[inherits(NSObject)]
         type Super = UIPreviewParameters;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

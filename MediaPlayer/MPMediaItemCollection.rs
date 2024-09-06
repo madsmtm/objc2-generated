@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for MPMediaItemCollection {
         #[inherits(NSObject)]
         type Super = MPMediaEntity;
-        type Mutability = InteriorMutable;
     }
 );
 

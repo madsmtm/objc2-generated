@@ -40,7 +40,6 @@ extern_class!(
     unsafe impl ClassType for NSViewController {
         #[inherits(NSObject)]
         type Super = NSResponder;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -297,7 +296,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSViewControllerPresentationAnimator:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "NSResponder")]
         #[method(animatePresentationOfViewController:fromViewController:)]

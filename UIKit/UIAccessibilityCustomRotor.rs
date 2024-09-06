@@ -124,7 +124,6 @@ extern_class!(
 
     unsafe impl ClassType for UIAccessibilityCustomRotorSearchPredicate {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -166,7 +165,6 @@ extern_class!(
 
     unsafe impl ClassType for UIAccessibilityCustomRotor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -243,7 +241,6 @@ extern_class!(
 
     unsafe impl ClassType for UIAccessibilityCustomRotorItemResult {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

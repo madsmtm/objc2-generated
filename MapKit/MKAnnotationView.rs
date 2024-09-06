@@ -89,7 +89,6 @@ extern_class!(
     unsafe impl ClassType for MKAnnotationView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
-        type Mutability = MainThreadOnly;
     }
 );
 

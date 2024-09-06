@@ -28,7 +28,6 @@ extern_class!(
 
     unsafe impl ClassType for NSCachedURLResponse {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -110,7 +109,6 @@ extern_class!(
 
     unsafe impl ClassType for NSURLCache {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

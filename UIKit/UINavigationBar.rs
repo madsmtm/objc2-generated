@@ -40,7 +40,7 @@ extern_class!(
     unsafe impl ClassType for UINavigationBar {
         #[inherits(UIResponder, NSObject)]
         type Super = UIView;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -372,7 +372,7 @@ extern_methods!(
 extern_protocol!(
     #[cfg(feature = "UIBarCommon")]
     pub unsafe trait UINavigationBarDelegate:
-        UIBarPositioningDelegate + IsMainThreadOnly
+        UIBarPositioningDelegate + MainThreadOnly
     {
         #[cfg(all(
             feature = "UINavigationItem",

@@ -98,7 +98,6 @@ extern_class!(
 
     unsafe impl ClassType for GKTurnBasedParticipant {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -237,7 +236,6 @@ extern_class!(
 
     unsafe impl ClassType for GKTurnBasedMatch {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -523,7 +521,6 @@ extern_class!(
 
     unsafe impl ClassType for GKTurnBasedExchange {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -599,7 +596,6 @@ extern_class!(
 
     unsafe impl ClassType for GKTurnBasedExchangeReply {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -668,7 +664,6 @@ extern_class!(
 
     unsafe impl ClassType for GKTurnBasedEventHandler {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

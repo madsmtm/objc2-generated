@@ -25,7 +25,6 @@ extern_class!(
     unsafe impl ClassType for DOMComment {
         #[inherits(DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMCharacterData;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -10,7 +10,6 @@ extern_class!(
 
     unsafe impl ClassType for NSFileHandle {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -330,7 +329,6 @@ extern_class!(
 
     unsafe impl ClassType for NSPipe {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

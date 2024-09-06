@@ -42,7 +42,6 @@ extern_class!(
 
     unsafe impl ClassType for NERelayManager {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

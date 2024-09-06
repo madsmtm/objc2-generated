@@ -55,7 +55,7 @@ unsafe impl RefEncode for UIModalPresentationStyle {
 }
 
 extern_protocol!(
-    pub unsafe trait UIContentContainer: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIContentContainer: NSObjectProtocol + MainThreadOnly {
         #[method(preferredContentSize)]
         unsafe fn preferredContentSize(&self) -> CGSize;
 
@@ -114,7 +114,7 @@ extern_class!(
     unsafe impl ClassType for UIViewController {
         #[inherits(NSObject)]
         type Super = UIResponder;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -981,9 +981,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIViewControllerPreviewing:
-        NSObjectProtocol + IsMainThreadOnly
-    {
+    pub unsafe trait UIViewControllerPreviewing: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIGestureRecognizer")]
         #[deprecated = "UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction."]
         #[method_id(@__retain_semantics Other previewingGestureRecognizerForFailureRelationship)]
@@ -1016,7 +1014,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait UIViewControllerPreviewingDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "UIResponder")]
         #[deprecated = "UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction."]
@@ -1212,7 +1210,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIPreviewActionItem: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIPreviewActionItem: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other title)]
         unsafe fn title(&self) -> Retained<NSString>;
     }
@@ -1252,7 +1250,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPreviewAction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -1309,7 +1307,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPreviewActionGroup {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

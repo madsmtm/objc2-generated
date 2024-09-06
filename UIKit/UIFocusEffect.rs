@@ -14,7 +14,6 @@ extern_class!(
 
     unsafe impl ClassType for UIFocusEffect {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -67,7 +66,6 @@ extern_class!(
     unsafe impl ClassType for UIFocusHaloEffect {
         #[inherits(NSObject)]
         type Super = UIFocusEffect;
-        type Mutability = InteriorMutable;
     }
 );
 

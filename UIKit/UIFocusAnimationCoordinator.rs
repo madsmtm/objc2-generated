@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait UIFocusAnimationContext: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIFocusAnimationContext: NSObjectProtocol + MainThreadOnly {
         #[method(duration)]
         unsafe fn duration(&self) -> NSTimeInterval;
     }
@@ -20,7 +20,7 @@ extern_class!(
 
     unsafe impl ClassType for UIFocusAnimationCoordinator {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

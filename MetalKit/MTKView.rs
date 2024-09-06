@@ -22,7 +22,6 @@ extern_class!(
     unsafe impl ClassType for MTKView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
-        type Mutability = MainThreadOnly;
     }
 );
 

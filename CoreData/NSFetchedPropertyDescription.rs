@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSFetchedPropertyDescription {
         #[inherits(NSObject)]
         type Super = NSPropertyDescription;
-        type Mutability = InteriorMutable;
     }
 );
 

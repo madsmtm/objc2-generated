@@ -15,7 +15,6 @@ extern_class!(
     unsafe impl ClassType for GCMicroGamepadSnapshot {
         #[inherits(GCPhysicalInputProfile, NSObject)]
         type Super = GCMicroGamepad;
-        type Mutability = InteriorMutable;
     }
 );
 

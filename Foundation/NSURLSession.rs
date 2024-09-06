@@ -14,7 +14,6 @@ extern_class!(
 
     unsafe impl ClassType for NSURLSession {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -372,7 +371,6 @@ extern_class!(
 
     unsafe impl ClassType for NSURLSessionTask {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -528,7 +526,6 @@ extern_class!(
     unsafe impl ClassType for NSURLSessionDataTask {
         #[inherits(NSObject)]
         type Super = NSURLSessionTask;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -568,7 +565,6 @@ extern_class!(
     unsafe impl ClassType for NSURLSessionUploadTask {
         #[inherits(NSURLSessionTask, NSObject)]
         type Super = NSURLSessionDataTask;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -615,7 +611,6 @@ extern_class!(
     unsafe impl ClassType for NSURLSessionDownloadTask {
         #[inherits(NSObject)]
         type Super = NSURLSessionTask;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -662,7 +657,6 @@ extern_class!(
     unsafe impl ClassType for NSURLSessionStreamTask {
         #[inherits(NSObject)]
         type Super = NSURLSessionTask;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -765,7 +759,6 @@ extern_class!(
 
     unsafe impl ClassType for NSURLSessionWebSocketMessage {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -852,7 +845,6 @@ extern_class!(
     unsafe impl ClassType for NSURLSessionWebSocketTask {
         #[inherits(NSObject)]
         type Super = NSURLSessionTask;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -957,7 +949,6 @@ extern_class!(
 
     unsafe impl ClassType for NSURLSessionConfiguration {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1662,7 +1653,6 @@ extern_class!(
 
     unsafe impl ClassType for NSURLSessionTaskTransactionMetrics {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1814,7 +1804,6 @@ extern_class!(
 
     unsafe impl ClassType for NSURLSessionTaskMetrics {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

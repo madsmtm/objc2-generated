@@ -17,7 +17,6 @@ __inner_extern_class!(
         for NSDictionary<KeyType, ObjectType>
     {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -439,7 +438,6 @@ __inner_extern_class!(
     {
         #[inherits(NSObject)]
         type Super = NSDictionary<KeyType, ObjectType>;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass

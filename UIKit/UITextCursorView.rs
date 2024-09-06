@@ -6,7 +6,7 @@ use crate::*;
 
 extern_protocol!(
     #[cfg(feature = "UIView")]
-    pub unsafe trait UITextCursorView: UICoordinateSpace + IsMainThreadOnly {
+    pub unsafe trait UITextCursorView: UICoordinateSpace + MainThreadOnly {
         #[method(isBlinking)]
         unsafe fn isBlinking(&self) -> bool;
 

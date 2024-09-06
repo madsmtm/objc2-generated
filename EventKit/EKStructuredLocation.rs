@@ -18,7 +18,6 @@ extern_class!(
     unsafe impl ClassType for EKStructuredLocation {
         #[inherits(NSObject)]
         type Super = EKObject;
-        type Mutability = InteriorMutable;
     }
 );
 

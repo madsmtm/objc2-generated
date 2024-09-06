@@ -59,7 +59,6 @@ extern_class!(
 
     unsafe impl ClassType for PHProjectInfo {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -130,7 +129,6 @@ extern_class!(
 
     unsafe impl ClassType for PHProjectSection {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -165,7 +163,6 @@ extern_class!(
 
     unsafe impl ClassType for PHProjectSectionContent {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -209,7 +206,6 @@ extern_class!(
 
     unsafe impl ClassType for PHProjectElement {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -244,7 +240,6 @@ extern_class!(
 
     unsafe impl ClassType for PHProjectRegionOfInterest {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -283,7 +278,6 @@ extern_class!(
     unsafe impl ClassType for PHProjectAssetElement {
         #[inherits(NSObject)]
         type Super = PHProjectElement;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -355,7 +349,6 @@ extern_class!(
     unsafe impl ClassType for PHProjectTextElement {
         #[inherits(NSObject)]
         type Super = PHProjectElement;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -396,7 +389,6 @@ extern_class!(
     unsafe impl ClassType for PHProjectJournalEntryElement {
         #[inherits(NSObject)]
         type Super = PHProjectElement;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -437,7 +429,6 @@ extern_class!(
     unsafe impl ClassType for PHProjectMapElement {
         #[inherits(NSObject)]
         type Super = PHProjectElement;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for UIKeyCommand {
         #[inherits(UIMenuElement, NSObject)]
         type Super = UICommand;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

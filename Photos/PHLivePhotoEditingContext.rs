@@ -23,7 +23,6 @@ extern_class!(
 
     unsafe impl ClassType for PHLivePhotoEditingContext {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -57,7 +57,6 @@ extern_class!(
 
     unsafe impl ClassType for NEOnDemandRule {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -137,7 +136,6 @@ extern_class!(
     unsafe impl ClassType for NEOnDemandRuleConnect {
         #[inherits(NSObject)]
         type Super = NEOnDemandRule;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -175,7 +173,6 @@ extern_class!(
     unsafe impl ClassType for NEOnDemandRuleDisconnect {
         #[inherits(NSObject)]
         type Super = NEOnDemandRule;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -213,7 +210,6 @@ extern_class!(
     unsafe impl ClassType for NEOnDemandRuleIgnore {
         #[inherits(NSObject)]
         type Super = NEOnDemandRule;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -251,7 +247,6 @@ extern_class!(
     unsafe impl ClassType for NEOnDemandRuleEvaluateConnection {
         #[inherits(NSObject)]
         type Super = NEOnDemandRule;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -317,7 +312,6 @@ extern_class!(
 
     unsafe impl ClassType for NEEvaluateConnectionRule {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

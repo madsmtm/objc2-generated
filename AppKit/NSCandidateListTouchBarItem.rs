@@ -20,7 +20,6 @@ __inner_extern_class!(
     {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
-        type Mutability = MainThreadOnly;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -164,7 +163,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSCandidateListTouchBarItemDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "NSTouchBarItem")]
         #[optional]

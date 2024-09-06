@@ -215,7 +215,6 @@ extern_class!(
 
     unsafe impl ClassType for CIImage {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -12,7 +12,7 @@ extern_class!(
 
     unsafe impl ClassType for UISearchDisplayController {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -142,7 +142,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UISearchDisplayDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UISearchDisplayDelegate: NSObjectProtocol + MainThreadOnly {
         #[deprecated]
         #[optional]
         #[method(searchDisplayControllerWillBeginSearch:)]

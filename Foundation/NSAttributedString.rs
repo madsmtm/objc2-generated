@@ -23,7 +23,6 @@ extern_class!(
 
     unsafe impl ClassType for NSAttributedString {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -230,7 +229,6 @@ extern_class!(
     unsafe impl ClassType for NSMutableAttributedString {
         #[inherits(NSObject)]
         type Super = NSAttributedString;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -456,7 +454,6 @@ extern_class!(
 
     unsafe impl ClassType for NSAttributedStringMarkdownSourcePosition {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -522,7 +519,6 @@ extern_class!(
 
     unsafe impl ClassType for NSAttributedStringMarkdownParsingOptions {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -801,7 +797,6 @@ extern_class!(
 
     unsafe impl ClassType for NSPresentationIntent {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

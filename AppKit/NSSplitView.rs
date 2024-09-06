@@ -37,7 +37,6 @@ extern_class!(
     unsafe impl ClassType for NSSplitView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -217,7 +216,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSSplitViewDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSSplitViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(splitView:canCollapseSubview:)]

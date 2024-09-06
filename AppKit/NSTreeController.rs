@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSTreeController {
         #[inherits(NSController, NSObject)]
         type Super = NSObjectController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

@@ -186,7 +186,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLBufferLayoutDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -237,7 +236,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLBufferLayoutDescriptorArray {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -277,7 +275,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLAttributeDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -328,7 +325,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLAttributeDescriptorArray {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -368,7 +364,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLStageInputOutputDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

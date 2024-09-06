@@ -23,7 +23,6 @@ extern_class!(
     unsafe impl ClassType for DOMCSSImportRule {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMCSSRule;
-        type Mutability = InteriorMutable;
     }
 );
 

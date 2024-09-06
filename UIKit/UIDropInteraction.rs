@@ -11,7 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for UIDropInteraction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -79,7 +79,7 @@ extern_class!(
 
     unsafe impl ClassType for UIDropProposal {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -123,7 +123,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIDropInteractionDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIDropInteractionDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIDragSession")]
         #[optional]
         #[method(dropInteraction:canHandleSession:)]

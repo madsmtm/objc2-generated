@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VZVirtioSoundDeviceConfiguration {
         #[inherits(NSObject)]
         type Super = VZAudioDeviceConfiguration;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -123,7 +123,7 @@ extern_class!(
 
     unsafe impl ClassType for UITableViewRowAction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -201,7 +201,7 @@ extern_class!(
     unsafe impl ClassType for UITableViewFocusUpdateContext {
         #[inherits(NSObject)]
         type Super = UIFocusUpdateContext;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -234,7 +234,7 @@ extern_methods!(
 extern_protocol!(
     #[cfg(feature = "UIScrollView")]
     pub unsafe trait UITableViewDelegate:
-        NSObjectProtocol + UIScrollViewDelegate + IsMainThreadOnly
+        NSObjectProtocol + UIScrollViewDelegate + MainThreadOnly
     {
         #[cfg(all(
             feature = "UIResponder",
@@ -848,7 +848,7 @@ extern_class!(
     unsafe impl ClassType for UITableView {
         #[inherits(UIView, UIResponder, NSObject)]
         type Super = UIScrollView;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -1552,7 +1552,7 @@ extern_methods!(
 unsafe impl UISpringLoadedInteractionSupporting for UITableView {}
 
 extern_protocol!(
-    pub unsafe trait UITableViewDataSource: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UITableViewDataSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
         #[method(tableView:numberOfRowsInSection:)]
         unsafe fn tableView_numberOfRowsInSection(
@@ -1664,7 +1664,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait UITableViewDataSourcePrefetching:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
         #[method(tableView:prefetchRowsAtIndexPaths:)]
@@ -1688,7 +1688,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait UITableViewDragDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UITableViewDragDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UIDragItem",
             feature = "UIDragSession",
@@ -1797,7 +1797,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait UITableViewDropDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UITableViewDropDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
         #[method(tableView:performDropWithCoordinator:)]
         unsafe fn tableView_performDropWithCoordinator(
@@ -1929,7 +1929,7 @@ extern_class!(
     unsafe impl ClassType for UITableViewDropProposal {
         #[inherits(NSObject)]
         type Super = UIDropProposal;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -1978,9 +1978,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UITableViewDropCoordinator:
-        NSObjectProtocol + IsMainThreadOnly
-    {
+    pub unsafe trait UITableViewDropCoordinator: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other items)]
         unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UITableViewDropItem>>>;
 
@@ -2043,7 +2041,7 @@ extern_class!(
 
     unsafe impl ClassType for UITableViewPlaceholder {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -2097,7 +2095,7 @@ extern_class!(
     unsafe impl ClassType for UITableViewDropPlaceholder {
         #[inherits(NSObject)]
         type Super = UITableViewPlaceholder;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -2156,7 +2154,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UITableViewDropItem: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UITableViewDropItem: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIDragItem")]
         #[method_id(@__retain_semantics Other dragItem)]
         unsafe fn dragItem(&self) -> Retained<UIDragItem>;
@@ -2174,7 +2172,7 @@ extern_protocol!(
 extern_protocol!(
     #[cfg(feature = "UIDragInteraction")]
     pub unsafe trait UITableViewDropPlaceholderContext:
-        UIDragAnimating + IsMainThreadOnly
+        UIDragAnimating + MainThreadOnly
     {
         #[cfg(feature = "UIDragItem")]
         #[method_id(@__retain_semantics Other dragItem)]

@@ -34,7 +34,6 @@ extern_class!(
 
     unsafe impl ClassType for SCRunningApplication {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -66,7 +65,6 @@ extern_class!(
 
     unsafe impl ClassType for SCWindow {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -106,7 +104,6 @@ extern_class!(
 
     unsafe impl ClassType for SCDisplay {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -137,7 +134,6 @@ extern_class!(
 
     unsafe impl ClassType for SCShareableContentInfo {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -173,7 +169,6 @@ extern_class!(
 
     unsafe impl ClassType for SCShareableContent {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

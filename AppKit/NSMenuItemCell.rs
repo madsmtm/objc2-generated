@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSMenuItemCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSButtonCell;
-        type Mutability = MainThreadOnly;
     }
 );
 

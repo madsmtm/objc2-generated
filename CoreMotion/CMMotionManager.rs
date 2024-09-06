@@ -24,7 +24,6 @@ extern_class!(
 
     unsafe impl ClassType for CMMotionManager {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

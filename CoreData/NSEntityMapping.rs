@@ -32,7 +32,6 @@ extern_class!(
 
     unsafe impl ClassType for NSEntityMapping {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

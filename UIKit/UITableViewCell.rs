@@ -196,7 +196,7 @@ extern_class!(
     unsafe impl ClassType for UITableViewCell {
         #[inherits(UIResponder, NSObject)]
         type Super = UIView;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

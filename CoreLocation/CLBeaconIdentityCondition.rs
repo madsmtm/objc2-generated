@@ -18,7 +18,6 @@ extern_class!(
     unsafe impl ClassType for CLBeaconIdentityCondition {
         #[inherits(NSObject)]
         type Super = CLCondition;
-        type Mutability = InteriorMutable;
     }
 );
 

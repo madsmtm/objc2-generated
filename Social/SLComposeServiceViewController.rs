@@ -19,7 +19,6 @@ extern_class!(
     unsafe impl ClassType for SLComposeServiceViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
-        type Mutability = MainThreadOnly;
     }
 );
 

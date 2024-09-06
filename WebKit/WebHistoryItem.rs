@@ -19,7 +19,6 @@ extern_class!(
 
     unsafe impl ClassType for WebHistoryItem {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -21,7 +21,6 @@ extern_class!(
     unsafe impl ClassType for NETransparentProxyProvider {
         #[inherits(NETunnelProvider, NEProvider, NSObject)]
         type Super = NEAppProxyProvider;
-        type Mutability = InteriorMutable;
     }
 );
 

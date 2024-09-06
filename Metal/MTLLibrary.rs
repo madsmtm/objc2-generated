@@ -32,7 +32,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLVertexAttribute {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -78,7 +77,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLAttribute {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -153,7 +151,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLFunctionConstant {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -326,7 +323,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLCompileOptions {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

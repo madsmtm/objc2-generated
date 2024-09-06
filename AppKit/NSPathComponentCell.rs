@@ -22,7 +22,6 @@ extern_class!(
     unsafe impl ClassType for NSPathComponentCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
-        type Mutability = MainThreadOnly;
     }
 );
 

@@ -37,7 +37,6 @@ extern_class!(
     unsafe impl ClassType for NSLevelIndicatorCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
-        type Mutability = MainThreadOnly;
     }
 );
 

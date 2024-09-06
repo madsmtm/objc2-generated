@@ -31,7 +31,6 @@ extern_class!(
 
     unsafe impl ClassType for CIRenderDestination {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -144,7 +143,6 @@ extern_class!(
 
     unsafe impl ClassType for CIRenderInfo {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -183,7 +181,6 @@ extern_class!(
 
     unsafe impl ClassType for CIRenderTask {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

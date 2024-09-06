@@ -67,7 +67,6 @@ extern_class!(
 
     unsafe impl ClassType for WKWebsiteDataRecord {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

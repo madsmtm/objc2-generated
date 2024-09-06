@@ -35,7 +35,6 @@ extern_class!(
     unsafe impl ClassType for NEVPNProtocolIPSec {
         #[inherits(NSObject)]
         type Super = NEVPNProtocol;
-        type Mutability = InteriorMutable;
     }
 );
 

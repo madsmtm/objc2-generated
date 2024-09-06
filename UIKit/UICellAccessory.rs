@@ -33,7 +33,7 @@ extern_class!(
 
     unsafe impl ClassType for UICellAccessory {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -103,7 +103,7 @@ extern_class!(
     unsafe impl ClassType for UICellAccessoryDisclosureIndicator {
         #[inherits(NSObject)]
         type Super = UICellAccessory;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -152,7 +152,7 @@ extern_class!(
     unsafe impl ClassType for UICellAccessoryDetail {
         #[inherits(NSObject)]
         type Super = UICellAccessory;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -209,7 +209,7 @@ extern_class!(
     unsafe impl ClassType for UICellAccessoryCheckmark {
         #[inherits(NSObject)]
         type Super = UICellAccessory;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -258,7 +258,7 @@ extern_class!(
     unsafe impl ClassType for UICellAccessoryDelete {
         #[inherits(NSObject)]
         type Super = UICellAccessory;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -323,7 +323,7 @@ extern_class!(
     unsafe impl ClassType for UICellAccessoryInsert {
         #[inherits(NSObject)]
         type Super = UICellAccessory;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -388,7 +388,7 @@ extern_class!(
     unsafe impl ClassType for UICellAccessoryReorder {
         #[inherits(NSObject)]
         type Super = UICellAccessory;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -443,7 +443,7 @@ extern_class!(
     unsafe impl ClassType for UICellAccessoryMultiselect {
         #[inherits(NSObject)]
         type Super = UICellAccessory;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -521,7 +521,7 @@ extern_class!(
     unsafe impl ClassType for UICellAccessoryOutlineDisclosure {
         #[inherits(NSObject)]
         type Super = UICellAccessory;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -584,7 +584,7 @@ extern_class!(
     unsafe impl ClassType for UICellAccessoryPopUpMenu {
         #[inherits(NSObject)]
         type Super = UICellAccessory;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -644,7 +644,7 @@ extern_class!(
     unsafe impl ClassType for UICellAccessoryLabel {
         #[inherits(NSObject)]
         type Super = UICellAccessory;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -743,7 +743,7 @@ extern_class!(
     unsafe impl ClassType for UICellAccessoryCustomView {
         #[inherits(NSObject)]
         type Super = UICellAccessory;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for CMSensorDataList {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -40,7 +39,6 @@ extern_class!(
 
     unsafe impl ClassType for CMSensorRecorder {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

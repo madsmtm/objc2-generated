@@ -99,7 +99,6 @@ extern_class!(
 
     unsafe impl ClassType for UNNotificationSettings {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

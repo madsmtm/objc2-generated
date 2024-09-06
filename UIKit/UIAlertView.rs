@@ -41,7 +41,7 @@ extern_class!(
     unsafe impl ClassType for UIAlertView {
         #[inherits(UIResponder, NSObject)]
         type Super = UIView;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -203,7 +203,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIAlertViewDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIAlertViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated = "Use UIAlertController instead."]
         #[optional]

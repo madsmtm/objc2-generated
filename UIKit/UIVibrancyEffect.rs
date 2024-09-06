@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for UIVibrancyEffect {
         #[inherits(NSObject)]
         type Super = UIVisualEffect;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

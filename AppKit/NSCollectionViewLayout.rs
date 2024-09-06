@@ -42,7 +42,6 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionViewLayoutAttributes {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -165,7 +164,6 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionViewUpdateItem {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -201,7 +199,6 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionViewLayoutInvalidationContext {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -280,7 +277,6 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionViewLayout {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

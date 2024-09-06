@@ -58,7 +58,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLAccelerationStructureDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -97,7 +96,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLAccelerationStructureGeometryDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -210,7 +208,6 @@ extern_class!(
     unsafe impl ClassType for MTLPrimitiveAccelerationStructureDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -291,7 +288,6 @@ extern_class!(
     unsafe impl ClassType for MTLAccelerationStructureTriangleGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -406,7 +402,6 @@ extern_class!(
     unsafe impl ClassType for MTLAccelerationStructureBoundingBoxGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -471,7 +466,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLMotionKeyframeData {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -516,7 +510,6 @@ extern_class!(
     unsafe impl ClassType for MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -623,7 +616,6 @@ extern_class!(
     unsafe impl ClassType for MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -744,7 +736,6 @@ extern_class!(
     unsafe impl ClassType for MTLAccelerationStructureCurveGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -898,7 +889,6 @@ extern_class!(
     unsafe impl ClassType for MTLAccelerationStructureMotionCurveGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1236,7 +1226,6 @@ extern_class!(
     unsafe impl ClassType for MTLInstanceAccelerationStructureDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1361,7 +1350,6 @@ extern_class!(
     unsafe impl ClassType for MTLIndirectInstanceAccelerationStructureDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 

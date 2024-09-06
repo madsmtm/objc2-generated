@@ -34,7 +34,6 @@ extern_class!(
     unsafe impl ClassType for DOMKeyboardEvent {
         #[inherits(DOMEvent, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMUIEvent;
-        type Mutability = InteriorMutable;
     }
 );
 

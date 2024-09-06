@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for CKFetchShareParticipantsOperation {
         #[inherits(NSOperation, NSObject)]
         type Super = CKOperation;
-        type Mutability = InteriorMutable;
     }
 );
 

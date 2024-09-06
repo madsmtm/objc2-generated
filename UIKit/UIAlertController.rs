@@ -70,7 +70,7 @@ extern_class!(
 
     unsafe impl ClassType for UIAlertAction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -127,7 +127,7 @@ extern_class!(
     unsafe impl ClassType for UIAlertController {
         #[inherits(UIResponder, NSObject)]
         type Super = UIViewController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

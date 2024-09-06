@@ -34,7 +34,6 @@ extern_class!(
 
     unsafe impl ClassType for CKSubscription {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -104,7 +103,6 @@ extern_class!(
     unsafe impl ClassType for CKQuerySubscription {
         #[inherits(NSObject)]
         type Super = CKSubscription;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -183,7 +181,6 @@ extern_class!(
     unsafe impl ClassType for CKRecordZoneSubscription {
         #[inherits(NSObject)]
         type Super = CKSubscription;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -252,7 +249,6 @@ extern_class!(
     unsafe impl ClassType for CKDatabaseSubscription {
         #[inherits(NSObject)]
         type Super = CKSubscription;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -302,7 +298,6 @@ extern_class!(
 
     unsafe impl ClassType for CKNotificationInfo {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

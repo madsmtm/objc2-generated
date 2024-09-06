@@ -52,7 +52,6 @@ extern_class!(
     unsafe impl ClassType for NSDateFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
-        type Mutability = InteriorMutable;
     }
 );
 

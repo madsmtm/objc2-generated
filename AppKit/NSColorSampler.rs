@@ -10,7 +10,6 @@ extern_class!(
 
     unsafe impl ClassType for NSColorSampler {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

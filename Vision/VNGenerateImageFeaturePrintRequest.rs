@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VNGenerateImageFeaturePrintRequest {
         #[inherits(VNRequest, NSObject)]
         type Super = VNImageBasedRequest;
-        type Mutability = InteriorMutable;
     }
 );
 

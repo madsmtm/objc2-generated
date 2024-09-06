@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSTextField {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -347,7 +346,7 @@ extern_methods!(
 extern_protocol!(
     #[cfg(feature = "NSControl")]
     pub unsafe trait NSTextFieldDelegate:
-        NSControlTextEditingDelegate + IsMainThreadOnly
+        NSControlTextEditingDelegate + MainThreadOnly
     {
         #[cfg(all(
             feature = "NSResponder",

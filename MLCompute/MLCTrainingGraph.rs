@@ -15,7 +15,6 @@ extern_class!(
     unsafe impl ClassType for MLCTrainingGraph {
         #[inherits(NSObject)]
         type Super = MLCGraph;
-        type Mutability = InteriorMutable;
     }
 );
 

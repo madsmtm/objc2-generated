@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for CKSyncEngine {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -119,7 +118,6 @@ extern_class!(
 
     unsafe impl ClassType for CKSyncEngineFetchChangesOptions {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -184,7 +182,6 @@ extern_class!(
 
     unsafe impl ClassType for CKSyncEngineFetchChangesScope {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -247,7 +244,6 @@ extern_class!(
 
     unsafe impl ClassType for CKSyncEngineSendChangesOptions {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -304,7 +300,6 @@ extern_class!(
 
     unsafe impl ClassType for CKSyncEngineSendChangesScope {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -404,7 +399,6 @@ extern_class!(
 
     unsafe impl ClassType for CKSyncEngineFetchChangesContext {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -436,7 +430,6 @@ extern_class!(
 
     unsafe impl ClassType for CKSyncEngineSendChangesContext {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

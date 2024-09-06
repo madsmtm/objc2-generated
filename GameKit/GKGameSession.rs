@@ -50,7 +50,6 @@ extern_class!(
 
     unsafe impl ClassType for GKGameSession {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

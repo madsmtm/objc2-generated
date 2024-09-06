@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for MLCDropoutLayer {
         #[inherits(NSObject)]
         type Super = MLCLayer;
-        type Mutability = InteriorMutable;
     }
 );
 

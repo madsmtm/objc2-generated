@@ -98,7 +98,6 @@ extern_class!(
     unsafe impl ClassType for NSNumberFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -18,7 +18,6 @@ extern_class!(
 
     unsafe impl ClassType for PHAssetResourceRequestOptions {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -65,7 +64,6 @@ extern_class!(
 
     unsafe impl ClassType for PHAssetResourceManager {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

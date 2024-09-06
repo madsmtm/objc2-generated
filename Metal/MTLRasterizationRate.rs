@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLRasterizationRateSampleArray {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -44,7 +43,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLRasterizationRateLayerDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -113,7 +111,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLRasterizationRateLayerArray {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -153,7 +150,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLRasterizationRateMapDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

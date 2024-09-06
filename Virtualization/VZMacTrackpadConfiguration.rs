@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VZMacTrackpadConfiguration {
         #[inherits(NSObject)]
         type Super = VZPointingDeviceConfiguration;
-        type Mutability = InteriorMutable;
     }
 );
 

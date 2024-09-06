@@ -33,7 +33,7 @@ unsafe impl RefEncode for UIEditingInteractionConfiguration {
 
 extern_protocol!(
     pub unsafe trait UIResponderStandardEditActions:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[optional]
         #[method(cut:)]
@@ -157,7 +157,7 @@ extern_class!(
 
     unsafe impl ClassType for UIResponder {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

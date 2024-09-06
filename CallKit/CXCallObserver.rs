@@ -21,7 +21,6 @@ extern_class!(
 
     unsafe impl ClassType for CXCallObserver {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

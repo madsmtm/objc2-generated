@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait UIMenuBuilder: IsMainThreadOnly {
+    pub unsafe trait UIMenuBuilder: MainThreadOnly {
         #[cfg(feature = "UIMenuSystem")]
         #[method_id(@__retain_semantics Other system)]
         unsafe fn system(&self) -> Retained<UIMenuSystem>;

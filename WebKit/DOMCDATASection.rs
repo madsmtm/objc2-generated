@@ -27,7 +27,6 @@ extern_class!(
     unsafe impl ClassType for DOMCDATASection {
         #[inherits(DOMCharacterData, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMText;
-        type Mutability = InteriorMutable;
     }
 );
 

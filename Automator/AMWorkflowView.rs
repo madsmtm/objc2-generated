@@ -16,7 +16,6 @@ extern_class!(
     unsafe impl ClassType for AMWorkflowView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
-        type Mutability = MainThreadOnly;
     }
 );
 

@@ -87,7 +87,6 @@ extern_class!(
     unsafe impl ClassType for NSRuleEditor {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -341,7 +340,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSRuleEditorDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSRuleEditorDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[method(ruleEditor:numberOfChildrenForCriterion:withRowType:)]
         unsafe fn ruleEditor_numberOfChildrenForCriterion_withRowType(

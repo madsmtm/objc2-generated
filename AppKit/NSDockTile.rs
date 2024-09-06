@@ -14,7 +14,6 @@ extern_class!(
 
     unsafe impl ClassType for NSDockTile {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

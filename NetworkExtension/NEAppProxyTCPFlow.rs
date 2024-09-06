@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NEAppProxyTCPFlow {
         #[inherits(NSObject)]
         type Super = NEAppProxyFlow;
-        type Mutability = InteriorMutable;
     }
 );
 

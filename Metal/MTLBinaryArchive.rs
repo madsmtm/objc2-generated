@@ -40,7 +40,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLBinaryArchiveDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

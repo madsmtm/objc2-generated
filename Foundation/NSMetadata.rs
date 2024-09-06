@@ -10,7 +10,6 @@ extern_class!(
 
     unsafe impl ClassType for NSMetadataQuery {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -286,7 +285,6 @@ extern_class!(
 
     unsafe impl ClassType for NSMetadataItem {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -332,7 +330,6 @@ extern_class!(
 
     unsafe impl ClassType for NSMetadataQueryAttributeValueTuple {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -369,7 +366,6 @@ extern_class!(
 
     unsafe impl ClassType for NSMetadataQueryResultGroup {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

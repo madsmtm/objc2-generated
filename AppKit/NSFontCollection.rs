@@ -54,7 +54,6 @@ extern_class!(
 
     unsafe impl ClassType for NSFontCollection {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -178,7 +177,6 @@ extern_class!(
     unsafe impl ClassType for NSMutableFontCollection {
         #[inherits(NSObject)]
         type Super = NSFontCollection;
-        type Mutability = InteriorMutable;
     }
 );
 

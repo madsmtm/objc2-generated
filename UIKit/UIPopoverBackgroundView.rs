@@ -33,7 +33,6 @@ extern_class!(
     unsafe impl ClassType for UIPopoverBackgroundView {
         #[inherits(UIResponder, NSObject)]
         type Super = UIView;
-        type Mutability = MainThreadOnly;
     }
 );
 

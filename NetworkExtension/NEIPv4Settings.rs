@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for NEIPv4Settings {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -82,7 +81,6 @@ extern_class!(
 
     unsafe impl ClassType for NEIPv4Route {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

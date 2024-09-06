@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for CNMutableContact {
         #[inherits(NSObject)]
         type Super = CNContact;
-        type Mutability = InteriorMutable;
     }
 );
 

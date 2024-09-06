@@ -35,7 +35,6 @@ extern_class!(
     unsafe impl ClassType for VNGeneratePersonSegmentationRequest {
         #[inherits(VNImageBasedRequest, VNRequest, NSObject)]
         type Super = VNStatefulRequest;
-        type Mutability = InteriorMutable;
     }
 );
 

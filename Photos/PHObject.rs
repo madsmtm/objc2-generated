@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for PHObject {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -52,7 +51,6 @@ extern_class!(
     unsafe impl ClassType for PHObjectPlaceholder {
         #[inherits(NSObject)]
         type Super = PHObject;
-        type Mutability = InteriorMutable;
     }
 );
 

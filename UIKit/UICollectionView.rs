@@ -94,7 +94,7 @@ extern_class!(
     unsafe impl ClassType for UICollectionViewFocusUpdateContext {
         #[inherits(NSObject)]
         type Super = UIFocusUpdateContext;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -125,9 +125,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UICollectionViewDataSource:
-        NSObjectProtocol + IsMainThreadOnly
-    {
+    pub unsafe trait UICollectionViewDataSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
         #[method(collectionView:numberOfItemsInSection:)]
         unsafe fn collectionView_numberOfItemsInSection(
@@ -215,7 +213,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait UICollectionViewDataSourcePrefetching:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
         #[method(collectionView:prefetchItemsAtIndexPaths:)]
@@ -241,7 +239,7 @@ extern_protocol!(
 extern_protocol!(
     #[cfg(feature = "UIScrollView")]
     pub unsafe trait UICollectionViewDelegate:
-        UIScrollViewDelegate + IsMainThreadOnly
+        UIScrollViewDelegate + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
@@ -723,7 +721,7 @@ extern_class!(
     unsafe impl ClassType for UICollectionView {
         #[inherits(UIView, UIResponder, NSObject)]
         type Super = UIScrollView;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -1314,7 +1312,7 @@ unsafe impl UISpringLoadedInteractionSupporting for UICollectionView {}
 
 extern_protocol!(
     pub unsafe trait UICollectionViewDragDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(
             feature = "UIDragItem",
@@ -1425,7 +1423,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait UICollectionViewDropDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
         #[method(collectionView:performDropWithCoordinator:)]
@@ -1556,7 +1554,7 @@ extern_class!(
     unsafe impl ClassType for UICollectionViewDropProposal {
         #[inherits(NSObject)]
         type Super = UIDropProposal;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -1606,7 +1604,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait UICollectionViewDropCoordinator:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[method_id(@__retain_semantics Other items)]
         unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UICollectionViewDropItem>>>;
@@ -1670,7 +1668,7 @@ extern_class!(
 
     unsafe impl ClassType for UICollectionViewPlaceholder {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -1723,7 +1721,7 @@ extern_class!(
     unsafe impl ClassType for UICollectionViewDropPlaceholder {
         #[inherits(NSObject)]
         type Super = UICollectionViewPlaceholder;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -1783,7 +1781,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UICollectionViewDropItem: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UICollectionViewDropItem: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIDragItem")]
         #[method_id(@__retain_semantics Other dragItem)]
         unsafe fn dragItem(&self) -> Retained<UIDragItem>;
@@ -1801,7 +1799,7 @@ extern_protocol!(
 extern_protocol!(
     #[cfg(feature = "UIDragInteraction")]
     pub unsafe trait UICollectionViewDropPlaceholderContext:
-        UIDragAnimating + IsMainThreadOnly
+        UIDragAnimating + MainThreadOnly
     {
         #[cfg(feature = "UIDragItem")]
         #[method_id(@__retain_semantics Other dragItem)]

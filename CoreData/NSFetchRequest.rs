@@ -67,7 +67,6 @@ __inner_extern_class!(
     unsafe impl<ResultType: ?Sized + Message> ClassType for NSFetchRequest<ResultType> {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -264,7 +263,6 @@ __inner_extern_class!(
     unsafe impl<ResultType: ?Sized + Message> ClassType for NSAsynchronousFetchRequest<ResultType> {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass

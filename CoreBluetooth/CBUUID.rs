@@ -43,7 +43,6 @@ extern_class!(
 
     unsafe impl ClassType for CBUUID {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

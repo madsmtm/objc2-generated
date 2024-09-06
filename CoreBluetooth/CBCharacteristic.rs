@@ -41,7 +41,6 @@ extern_class!(
     unsafe impl ClassType for CBCharacteristic {
         #[inherits(NSObject)]
         type Super = CBAttribute;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -126,7 +125,6 @@ extern_class!(
     unsafe impl ClassType for CBMutableCharacteristic {
         #[inherits(CBAttribute, NSObject)]
         type Super = CBCharacteristic;
-        type Mutability = InteriorMutable;
     }
 );
 

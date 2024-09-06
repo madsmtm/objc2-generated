@@ -13,7 +13,6 @@ extern_class!(
     unsafe impl ClassType for VZVirtioGraphicsScanout {
         #[inherits(NSObject)]
         type Super = VZGraphicsDisplay;
-        type Mutability = InteriorMutable;
     }
 );
 

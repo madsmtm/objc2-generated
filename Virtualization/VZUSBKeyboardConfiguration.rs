@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VZUSBKeyboardConfiguration {
         #[inherits(NSObject)]
         type Super = VZKeyboardConfiguration;
-        type Mutability = InteriorMutable;
     }
 );
 

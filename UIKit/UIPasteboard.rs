@@ -81,7 +81,6 @@ extern_class!(
 
     unsafe impl ClassType for UIPasteboard {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

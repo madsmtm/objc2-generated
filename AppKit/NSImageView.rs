@@ -37,7 +37,6 @@ extern_class!(
     unsafe impl ClassType for NSImageView {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
-        type Mutability = MainThreadOnly;
     }
 );
 

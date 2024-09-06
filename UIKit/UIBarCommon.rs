@@ -57,7 +57,7 @@ unsafe impl RefEncode for UIBarPosition {
 }
 
 extern_protocol!(
-    pub unsafe trait UIBarPositioning: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIBarPositioning: NSObjectProtocol + MainThreadOnly {
         #[method(barPosition)]
         unsafe fn barPosition(&self) -> UIBarPosition;
     }
@@ -66,7 +66,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIBarPositioningDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIBarPositioningDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(positionForBar:)]
         unsafe fn positionForBar(

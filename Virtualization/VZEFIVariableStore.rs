@@ -29,7 +29,6 @@ extern_class!(
 
     unsafe impl ClassType for VZEFIVariableStore {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

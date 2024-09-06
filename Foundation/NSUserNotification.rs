@@ -40,7 +40,6 @@ extern_class!(
 
     unsafe impl ClassType for NSUserNotification {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -249,7 +248,6 @@ extern_class!(
 
     unsafe impl ClassType for NSUserNotificationAction {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -308,7 +306,6 @@ extern_class!(
 
     unsafe impl ClassType for NSUserNotificationCenter {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

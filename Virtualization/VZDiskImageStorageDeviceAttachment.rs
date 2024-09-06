@@ -56,7 +56,6 @@ extern_class!(
     unsafe impl ClassType for VZDiskImageStorageDeviceAttachment {
         #[inherits(NSObject)]
         type Super = VZStorageDeviceAttachment;
-        type Mutability = InteriorMutable;
     }
 );
 

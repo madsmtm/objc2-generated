@@ -22,7 +22,6 @@ extern_class!(
     unsafe impl ClassType for HKGlassesPrescription {
         #[inherits(HKSample, HKObject, NSObject)]
         type Super = HKVisionPrescription;
-        type Mutability = InteriorMutable;
     }
 );
 

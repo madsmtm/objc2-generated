@@ -129,7 +129,7 @@ unsafe impl RefEncode for NSSpringLoadingHighlight {
 }
 
 extern_protocol!(
-    pub unsafe trait NSDraggingInfo: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSDraggingInfo: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method_id(@__retain_semantics Other draggingDestinationWindow)]
         unsafe fn draggingDestinationWindow(&self) -> Option<Retained<NSWindow>>;
@@ -214,7 +214,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSDraggingDestination: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSDraggingDestination: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(draggingEntered:)]
         unsafe fn draggingEntered(
@@ -268,7 +268,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSDraggingSource: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSDraggingSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSDraggingSession")]
         #[method(draggingSession:sourceOperationMaskForDraggingContext:)]
         unsafe fn draggingSession_sourceOperationMaskForDraggingContext(
@@ -336,9 +336,7 @@ unsafe impl RefEncode for NSSpringLoadingOptions {
 }
 
 extern_protocol!(
-    pub unsafe trait NSSpringLoadingDestination:
-        NSObjectProtocol + IsMainThreadOnly
-    {
+    pub unsafe trait NSSpringLoadingDestination: NSObjectProtocol + MainThreadOnly {
         #[method(springLoadingActivated:draggingInfo:)]
         unsafe fn springLoadingActivated_draggingInfo(
             &self,

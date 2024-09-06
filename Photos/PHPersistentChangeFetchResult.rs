@@ -10,7 +10,6 @@ extern_class!(
 
     unsafe impl ClassType for PHPersistentChangeFetchResult {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

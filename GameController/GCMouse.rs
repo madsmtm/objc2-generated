@@ -27,7 +27,6 @@ extern_class!(
 
     unsafe impl ClassType for GCMouse {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

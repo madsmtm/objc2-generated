@@ -25,7 +25,7 @@ extern_class!(
     unsafe impl ClassType for UICollectionViewListCell {
         #[inherits(UICollectionReusableView, UIView, UIResponder, NSObject)]
         type Super = UICollectionViewCell;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

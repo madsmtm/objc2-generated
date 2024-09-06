@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for CKSyncEngineState {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -82,7 +81,6 @@ extern_class!(
 
     unsafe impl ClassType for CKSyncEngineStateSerialization {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -131,7 +129,6 @@ extern_class!(
 
     unsafe impl ClassType for CKSyncEnginePendingRecordZoneChange {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -191,7 +188,6 @@ extern_class!(
 
     unsafe impl ClassType for CKSyncEnginePendingDatabaseChange {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -225,7 +221,6 @@ extern_class!(
     unsafe impl ClassType for CKSyncEnginePendingZoneSave {
         #[inherits(NSObject)]
         type Super = CKSyncEnginePendingDatabaseChange;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -265,7 +260,6 @@ extern_class!(
     unsafe impl ClassType for CKSyncEnginePendingZoneDelete {
         #[inherits(NSObject)]
         type Super = CKSyncEnginePendingDatabaseChange;
-        type Mutability = InteriorMutable;
     }
 );
 

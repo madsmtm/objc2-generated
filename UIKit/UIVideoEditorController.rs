@@ -22,7 +22,7 @@ extern_class!(
     unsafe impl ClassType for UIVideoEditorController {
         #[inherits(UIViewController, UIResponder, NSObject)]
         type Super = UINavigationController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -170,7 +170,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait UIVideoEditorControllerDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(
             feature = "UINavigationController",

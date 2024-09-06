@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait UILargeContentViewerItem: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UILargeContentViewerItem: NSObjectProtocol + MainThreadOnly {
         #[method(showsLargeContentViewer)]
         unsafe fn showsLargeContentViewer(&self) -> bool;
 
@@ -77,7 +77,7 @@ extern_class!(
 
     unsafe impl ClassType for UILargeContentViewerInteraction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -123,7 +123,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait UILargeContentViewerInteractionDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[optional]
         #[method(largeContentViewerInteraction:didEndOnItem:atPoint:)]

@@ -27,7 +27,7 @@ unsafe impl RefEncode for UITextDragOptions {
 
 extern_protocol!(
     #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
-    pub unsafe trait UITextDraggable: UITextInput + IsMainThreadOnly {
+    pub unsafe trait UITextDraggable: UITextInput + MainThreadOnly {
         #[method_id(@__retain_semantics Other textDragDelegate)]
         unsafe fn textDragDelegate(
             &self,
@@ -58,7 +58,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait UITextDragDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UITextDragDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UIDragItem",
             feature = "UIResponder",
@@ -147,7 +147,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait UITextDragRequest: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UITextDragRequest: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other dragRange)]
         unsafe fn dragRange(&self) -> Retained<UITextRange>;

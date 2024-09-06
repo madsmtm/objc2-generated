@@ -32,7 +32,6 @@ extern_class!(
 
     unsafe impl ClassType for CXCallDirectoryManager {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -6,7 +6,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait UIContentSizeCategoryAdjusting:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[method(adjustsFontForContentSizeCategory)]
         unsafe fn adjustsFontForContentSizeCategory(&self) -> bool;

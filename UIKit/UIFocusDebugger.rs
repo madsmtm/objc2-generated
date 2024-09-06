@@ -10,7 +10,7 @@ extern_class!(
 
     unsafe impl ClassType for UIFocusDebugger {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -66,7 +66,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIFocusDebuggerOutput: NSObjectProtocol + IsMainThreadOnly {}
+    pub unsafe trait UIFocusDebuggerOutput: NSObjectProtocol + MainThreadOnly {}
 
     unsafe impl ProtocolType for dyn UIFocusDebuggerOutput {}
 );

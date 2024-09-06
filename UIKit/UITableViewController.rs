@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for UITableViewController {
         #[inherits(UIResponder, NSObject)]
         type Super = UIViewController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

@@ -108,7 +108,6 @@ extern_class!(
 
     unsafe impl ClassType for OSSystemExtensionRequest {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -149,7 +148,6 @@ extern_class!(
 
     unsafe impl ClassType for OSSystemExtensionProperties {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -236,7 +234,6 @@ extern_class!(
 
     unsafe impl ClassType for OSSystemExtensionManager {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -24,7 +24,6 @@ extern_class!(
     unsafe impl ClassType for UIWindowSceneActivationAction {
         #[inherits(UIMenuElement, NSObject)]
         type Super = UIAction;
-        type Mutability = MainThreadOnly;
     }
 );
 

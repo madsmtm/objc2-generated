@@ -15,7 +15,6 @@ extern_class!(
     unsafe impl ClassType for CLBeaconRegion {
         #[inherits(NSObject)]
         type Super = CLRegion;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -180,7 +179,6 @@ extern_class!(
 
     unsafe impl ClassType for CLBeacon {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

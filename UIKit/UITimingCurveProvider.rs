@@ -29,7 +29,7 @@ unsafe impl RefEncode for UITimingCurveType {
 }
 
 extern_protocol!(
-    pub unsafe trait UITimingCurveProvider: NSCoding + NSCopying + IsMainThreadOnly {
+    pub unsafe trait UITimingCurveProvider: NSCoding + NSCopying + MainThreadOnly {
         #[method(timingCurveType)]
         unsafe fn timingCurveType(&self) -> UITimingCurveType;
 

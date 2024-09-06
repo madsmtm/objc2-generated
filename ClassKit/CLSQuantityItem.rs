@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for CLSQuantityItem {
         #[inherits(CLSObject, NSObject)]
         type Super = CLSActivityItem;
-        type Mutability = InteriorMutable;
     }
 );
 

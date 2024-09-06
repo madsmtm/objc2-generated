@@ -53,7 +53,7 @@ extern_class!(
 
     unsafe impl ClassType for UITextSearchOptions {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -86,7 +86,7 @@ extern_class!(
 
     unsafe impl ClassType for UIFindSession {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -169,7 +169,7 @@ extern_class!(
     unsafe impl ClassType for UITextSearchingFindSession {
         #[inherits(NSObject)]
         type Super = UIFindSession;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

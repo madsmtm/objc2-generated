@@ -29,9 +29,7 @@ unsafe impl RefEncode for UICollisionBehaviorMode {
 }
 
 extern_protocol!(
-    pub unsafe trait UICollisionBehaviorDelegate:
-        NSObjectProtocol + IsMainThreadOnly
-    {
+    pub unsafe trait UICollisionBehaviorDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIDynamicBehavior")]
         #[optional]
         #[method(collisionBehavior:beganContactForItem:withItem:atPoint:)]
@@ -87,7 +85,7 @@ extern_class!(
     unsafe impl ClassType for UICollisionBehavior {
         #[inherits(NSObject)]
         type Super = UIDynamicBehavior;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

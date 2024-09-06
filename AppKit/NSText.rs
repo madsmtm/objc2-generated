@@ -35,7 +35,6 @@ extern_class!(
     unsafe impl ClassType for NSText {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -411,7 +410,7 @@ pub const NSCancelTextMovement: c_uint = 0x17;
 pub const NSOtherTextMovement: c_uint = 0;
 
 extern_protocol!(
-    pub unsafe trait NSTextDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSTextDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(textShouldBeginEditing:)]

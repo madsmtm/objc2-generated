@@ -13,7 +13,6 @@ extern_class!(
     unsafe impl ClassType for VZMacGraphicsDevice {
         #[inherits(NSObject)]
         type Super = VZGraphicsDevice;
-        type Mutability = InteriorMutable;
     }
 );
 

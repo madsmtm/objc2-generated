@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for CMRecordedAccelerometerData {
         #[inherits(CMLogItem, NSObject)]
         type Super = CMAccelerometerData;
-        type Mutability = InteriorMutable;
     }
 );
 

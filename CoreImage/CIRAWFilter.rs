@@ -45,7 +45,6 @@ extern_class!(
     unsafe impl ClassType for CIRAWFilter {
         #[inherits(NSObject)]
         type Super = CIFilter;
-        type Mutability = InteriorMutable;
     }
 );
 

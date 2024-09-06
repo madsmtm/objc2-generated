@@ -827,7 +827,6 @@ extern_class!(
 
     unsafe impl ClassType for NSURL {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1277,7 +1276,6 @@ extern_class!(
 
     unsafe impl ClassType for NSURLQueryItem {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1345,7 +1343,6 @@ extern_class!(
 
     unsafe impl ClassType for NSURLComponents {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1719,7 +1716,6 @@ extern_class!(
 
     unsafe impl ClassType for NSFileSecurity {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -135,7 +135,7 @@ extern_class!(
 
     unsafe impl ClassType for UIButtonConfiguration {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

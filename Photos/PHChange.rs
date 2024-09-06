@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for PHChange {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -60,7 +59,6 @@ __inner_extern_class!(
 
     unsafe impl<ObjectType: ?Sized + Message> ClassType for PHObjectChangeDetails<ObjectType> {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -107,7 +105,6 @@ __inner_extern_class!(
 
     unsafe impl<ObjectType: ?Sized + Message> ClassType for PHFetchResultChangeDetails<ObjectType> {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass

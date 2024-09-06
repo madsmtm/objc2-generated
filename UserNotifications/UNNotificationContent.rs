@@ -40,7 +40,6 @@ extern_class!(
 
     unsafe impl ClassType for UNNotificationContent {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -142,7 +141,6 @@ extern_class!(
     unsafe impl ClassType for UNMutableNotificationContent {
         #[inherits(NSObject)]
         type Super = UNNotificationContent;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -123,7 +123,7 @@ extern_class!(
     unsafe impl ClassType for NSView {
         #[inherits(NSObject)]
         type Super = NSResponder;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -816,7 +816,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSViewToolTipOwner: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSViewToolTipOwner: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSResponder")]
         #[method_id(@__retain_semantics Other view:stringForToolTip:point:userData:)]
         unsafe fn view_stringForToolTip_point_userData(

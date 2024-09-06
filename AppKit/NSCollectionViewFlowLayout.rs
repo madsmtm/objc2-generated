@@ -45,7 +45,6 @@ extern_class!(
     unsafe impl ClassType for NSCollectionViewFlowLayoutInvalidationContext {
         #[inherits(NSObject)]
         type Super = NSCollectionViewLayoutInvalidationContext;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -90,7 +89,7 @@ extern_methods!(
 extern_protocol!(
     #[cfg(feature = "NSCollectionView")]
     pub unsafe trait NSCollectionViewDelegateFlowLayout:
-        NSCollectionViewDelegate + IsMainThreadOnly
+        NSCollectionViewDelegate + MainThreadOnly
     {
         #[cfg(all(
             feature = "NSCollectionViewLayout",
@@ -190,7 +189,6 @@ extern_class!(
     unsafe impl ClassType for NSCollectionViewFlowLayout {
         #[inherits(NSObject)]
         type Super = NSCollectionViewLayout;
-        type Mutability = InteriorMutable;
     }
 );
 

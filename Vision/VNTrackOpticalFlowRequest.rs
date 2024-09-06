@@ -37,7 +37,6 @@ extern_class!(
     unsafe impl ClassType for VNTrackOpticalFlowRequest {
         #[inherits(VNImageBasedRequest, VNRequest, NSObject)]
         type Super = VNStatefulRequest;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -55,7 +55,7 @@ pub static UIFocusGroupPriorityPrioritized: UIFocusGroupPriority = 2000;
 pub static UIFocusGroupPriorityCurrentlyFocused: UIFocusGroupPriority = NSIntegerMax as _;
 
 extern_protocol!(
-    pub unsafe trait UIFocusEnvironment: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIFocusEnvironment: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other preferredFocusEnvironments)]
         unsafe fn preferredFocusEnvironments(
             &self,
@@ -110,7 +110,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIFocusItem: UIFocusEnvironment + IsMainThreadOnly {
+    pub unsafe trait UIFocusItem: UIFocusEnvironment + MainThreadOnly {
         #[method(canBecomeFocused)]
         unsafe fn canBecomeFocused(&self) -> bool;
 
@@ -140,7 +140,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIFocusItemContainer: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIFocusItemContainer: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIView")]
         #[method_id(@__retain_semantics Other coordinateSpace)]
         unsafe fn coordinateSpace(&self) -> Retained<ProtocolObject<dyn UICoordinateSpace>>;
@@ -157,7 +157,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait UIFocusItemScrollableContainer:
-        UIFocusItemContainer + IsMainThreadOnly
+        UIFocusItemContainer + MainThreadOnly
     {
         #[method(contentOffset)]
         unsafe fn contentOffset(&self) -> CGPoint;
@@ -181,7 +181,7 @@ extern_class!(
 
     unsafe impl ClassType for UIFocusUpdateContext {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

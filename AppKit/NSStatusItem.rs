@@ -34,7 +34,6 @@ extern_class!(
 
     unsafe impl ClassType for NSStatusItem {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

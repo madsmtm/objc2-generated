@@ -103,7 +103,6 @@ extern_class!(
     unsafe impl ClassType for CBPeripheralManager {
         #[inherits(NSObject)]
         type Super = CBManager;
-        type Mutability = InteriorMutable;
     }
 );
 

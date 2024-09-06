@@ -42,7 +42,6 @@ extern_class!(
 
     unsafe impl ClassType for EKEventStore {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -36,7 +36,6 @@ extern_class!(
     unsafe impl ClassType for NSPathCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -238,7 +237,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSPathCellDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSPathCellDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "NSActionCell",
             feature = "NSCell",

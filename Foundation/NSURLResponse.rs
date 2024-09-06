@@ -10,7 +10,6 @@ extern_class!(
 
     unsafe impl ClassType for NSURLResponse {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -85,7 +84,6 @@ extern_class!(
     unsafe impl ClassType for NSHTTPURLResponse {
         #[inherits(NSObject)]
         type Super = NSURLResponse;
-        type Mutability = InteriorMutable;
     }
 );
 

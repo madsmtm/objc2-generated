@@ -30,7 +30,6 @@ extern_class!(
 
     unsafe impl ClassType for CKReference {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

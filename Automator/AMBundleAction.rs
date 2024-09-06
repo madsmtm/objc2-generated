@@ -16,7 +16,6 @@ extern_class!(
     unsafe impl ClassType for AMBundleAction {
         #[inherits(NSObject)]
         type Super = AMAction;
-        type Mutability = InteriorMutable;
     }
 );
 

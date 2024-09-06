@@ -13,7 +13,6 @@ extern_class!(
 
     unsafe impl ClassType for NSStoryboardSegue {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -64,7 +63,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSSeguePerforming: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSSeguePerforming: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(prepareForSegue:sender:)]
         unsafe fn prepareForSegue_sender(

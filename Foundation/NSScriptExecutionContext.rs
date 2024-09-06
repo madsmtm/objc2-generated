@@ -10,7 +10,6 @@ extern_class!(
 
     unsafe impl ClassType for NSScriptExecutionContext {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

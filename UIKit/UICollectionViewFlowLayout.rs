@@ -36,7 +36,7 @@ extern_class!(
     unsafe impl ClassType for UICollectionViewFlowLayoutInvalidationContext {
         #[inherits(NSObject)]
         type Super = UICollectionViewLayoutInvalidationContext;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -81,7 +81,7 @@ extern_methods!(
 extern_protocol!(
     #[cfg(all(feature = "UICollectionView", feature = "UIScrollView"))]
     pub unsafe trait UICollectionViewDelegateFlowLayout:
-        UICollectionViewDelegate + IsMainThreadOnly
+        UICollectionViewDelegate + MainThreadOnly
     {
         #[cfg(all(
             feature = "UICollectionViewLayout",
@@ -182,7 +182,7 @@ extern_class!(
     unsafe impl ClassType for UICollectionViewFlowLayout {
         #[inherits(NSObject)]
         type Super = UICollectionViewLayout;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

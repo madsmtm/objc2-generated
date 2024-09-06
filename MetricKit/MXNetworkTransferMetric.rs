@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for MXNetworkTransferMetric {
         #[inherits(NSObject)]
         type Super = MXMetric;
-        type Mutability = InteriorMutable;
     }
 );
 

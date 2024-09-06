@@ -10,7 +10,7 @@ extern_class!(
 
     unsafe impl ClassType for UISceneWindowingBehaviors {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

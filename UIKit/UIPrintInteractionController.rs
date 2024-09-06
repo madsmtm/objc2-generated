@@ -40,7 +40,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPrintInteractionController {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -201,7 +201,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait UIPrintInteractionControllerDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]

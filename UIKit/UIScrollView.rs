@@ -112,7 +112,7 @@ extern_class!(
     unsafe impl ClassType for UIScrollView {
         #[inherits(UIResponder, NSObject)]
         type Super = UIView;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -537,7 +537,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIScrollViewDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIScrollViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
         #[method(scrollViewDidScroll:)]

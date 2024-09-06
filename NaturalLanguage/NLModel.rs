@@ -30,7 +30,6 @@ extern_class!(
 
     unsafe impl ClassType for NLModel {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -91,7 +90,6 @@ extern_class!(
 
     unsafe impl ClassType for NLModelConfiguration {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for CATiledLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
-        type Mutability = InteriorMutable;
     }
 );
 

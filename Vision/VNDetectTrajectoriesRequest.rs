@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VNDetectTrajectoriesRequest {
         #[inherits(VNImageBasedRequest, VNRequest, NSObject)]
         type Super = VNStatefulRequest;
-        type Mutability = InteriorMutable;
     }
 );
 

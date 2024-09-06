@@ -78,7 +78,6 @@ extern_class!(
     unsafe impl ClassType for NSStackView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -276,7 +275,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSStackViewDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSStackViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(stackView:willDetachViews:)]

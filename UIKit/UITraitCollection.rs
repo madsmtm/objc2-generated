@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for UITraitCollection {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -232,7 +231,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIMutableTraits: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIMutableTraits: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITrait")]
         #[method(setCGFloatValue:forTrait:)]
         unsafe fn setCGFloatValue_forTrait(&self, value: CGFloat, r#trait: UICGFloatTrait);
@@ -478,7 +477,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UITraitEnvironment: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UITraitEnvironment: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other traitCollection)]
         fn traitCollection(&self) -> Retained<UITraitCollection>;
 
@@ -495,7 +494,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait UITraitChangeRegistration:
-        NSCopying + NSObjectProtocol + IsMainThreadOnly
+        NSCopying + NSObjectProtocol + MainThreadOnly
     {
     }
 
@@ -508,7 +507,7 @@ pub type UITraitChangeHandler = *mut block2::Block<
 >;
 
 extern_protocol!(
-    pub unsafe trait UITraitOverrides: UIMutableTraits + IsMainThreadOnly {
+    pub unsafe trait UITraitOverrides: UIMutableTraits + MainThreadOnly {
         #[cfg(feature = "UITrait")]
         #[method(containsTrait:)]
         unsafe fn containsTrait(&self, r#trait: UITrait) -> bool;
@@ -522,7 +521,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait UITraitChangeObservable: IsMainThreadOnly {
+    pub unsafe trait UITraitChangeObservable: MainThreadOnly {
         #[method(unregisterForTraitChanges:)]
         unsafe fn unregisterForTraitChanges(
             &self,

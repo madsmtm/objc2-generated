@@ -44,7 +44,6 @@ __inner_extern_class!(
         for SCContentSharingPickerConfiguration<NSCopying>
     {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -105,7 +104,6 @@ extern_class!(
 
     unsafe impl ClassType for SCContentSharingPicker {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for MKPolygonRenderer {
         #[inherits(MKOverlayRenderer, NSObject)]
         type Super = MKOverlayPathRenderer;
-        type Mutability = InteriorMutable;
     }
 );
 

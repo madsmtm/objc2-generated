@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSSharingServicePickerToolbarItem {
         #[inherits(NSObject)]
         type Super = NSToolbarItem;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -75,7 +74,7 @@ extern_methods!(
 extern_protocol!(
     #[cfg(feature = "NSSharingService")]
     pub unsafe trait NSSharingServicePickerToolbarItemDelegate:
-        NSSharingServicePickerDelegate + IsMainThreadOnly
+        NSSharingServicePickerDelegate + MainThreadOnly
     {
         #[cfg(feature = "NSToolbarItem")]
         #[method_id(@__retain_semantics Other itemsForSharingServicePickerToolbarItem:)]

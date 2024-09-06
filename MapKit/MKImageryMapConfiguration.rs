@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for MKImageryMapConfiguration {
         #[inherits(NSObject)]
         type Super = MKMapConfiguration;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -93,7 +93,6 @@ extern_class!(
 
     unsafe impl ClassType for NSLayoutManager {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

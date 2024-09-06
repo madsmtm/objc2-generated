@@ -47,7 +47,6 @@ extern_class!(
 
     unsafe impl ClassType for NLContextualEmbedding {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -142,7 +141,6 @@ extern_class!(
 
     unsafe impl ClassType for NLContextualEmbeddingResult {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

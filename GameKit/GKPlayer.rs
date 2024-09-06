@@ -21,7 +21,6 @@ extern_class!(
     unsafe impl ClassType for GKPlayer {
         #[inherits(NSObject)]
         type Super = GKBasePlayer;
-        type Mutability = InteriorMutable;
     }
 );
 

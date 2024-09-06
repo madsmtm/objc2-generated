@@ -16,7 +16,6 @@ extern_class!(
 
     unsafe impl ClassType for NSBundle {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -383,7 +382,6 @@ extern_class!(
 
     unsafe impl ClassType for NSBundleResourceRequest {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

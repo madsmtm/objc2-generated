@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait UIHoverEffect: NSCopying + NSObjectProtocol + IsMainThreadOnly {}
+    pub unsafe trait UIHoverEffect: NSCopying + NSObjectProtocol + MainThreadOnly {}
 
     unsafe impl ProtocolType for dyn UIHoverEffect {}
 );
@@ -17,7 +17,7 @@ extern_class!(
 
     unsafe impl ClassType for UIHoverHighlightEffect {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -50,7 +50,7 @@ extern_class!(
 
     unsafe impl ClassType for UIHoverLiftEffect {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -83,7 +83,7 @@ extern_class!(
 
     unsafe impl ClassType for UIHoverAutomaticEffect {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

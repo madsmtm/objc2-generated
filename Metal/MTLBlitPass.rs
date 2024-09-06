@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLBlitPassSampleBufferAttachmentDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -72,7 +71,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLBlitPassSampleBufferAttachmentDescriptorArray {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -112,7 +110,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLBlitPassDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

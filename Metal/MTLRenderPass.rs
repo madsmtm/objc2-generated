@@ -105,7 +105,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLRenderPassAttachmentDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -209,7 +208,6 @@ extern_class!(
     unsafe impl ClassType for MTLRenderPassColorAttachmentDescriptor {
         #[inherits(NSObject)]
         type Super = MTLRenderPassAttachmentDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -277,7 +275,6 @@ extern_class!(
     unsafe impl ClassType for MTLRenderPassDepthAttachmentDescriptor {
         #[inherits(NSObject)]
         type Super = MTLRenderPassAttachmentDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -342,7 +339,6 @@ extern_class!(
     unsafe impl ClassType for MTLRenderPassStencilAttachmentDescriptor {
         #[inherits(NSObject)]
         type Super = MTLRenderPassAttachmentDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -390,7 +386,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLRenderPassColorAttachmentDescriptorArray {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -430,7 +425,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLRenderPassSampleBufferAttachmentDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -501,7 +495,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLRenderPassSampleBufferAttachmentDescriptorArray {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -541,7 +534,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLRenderPassDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for NSSpeechRecognizer {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -75,9 +74,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSSpeechRecognizerDelegate:
-        NSObjectProtocol + IsMainThreadOnly
-    {
+    pub unsafe trait NSSpeechRecognizerDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(speechRecognizer:didRecognizeCommand:)]
         unsafe fn speechRecognizer_didRecognizeCommand(

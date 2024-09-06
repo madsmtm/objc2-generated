@@ -68,7 +68,7 @@ extern_class!(
     unsafe impl ClassType for UIAttachmentBehavior {
         #[inherits(NSObject)]
         type Super = UIDynamicBehavior;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

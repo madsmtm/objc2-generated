@@ -34,7 +34,6 @@ extern_class!(
 
     unsafe impl ClassType for UIWindowSceneGeometry {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

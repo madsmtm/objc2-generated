@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VNDetectedPoint {
         #[inherits(NSObject)]
         type Super = VNPoint;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -69,7 +68,6 @@ extern_class!(
     unsafe impl ClassType for VNRecognizedPoint {
         #[inherits(VNPoint, NSObject)]
         type Super = VNDetectedPoint;
-        type Mutability = InteriorMutable;
     }
 );
 

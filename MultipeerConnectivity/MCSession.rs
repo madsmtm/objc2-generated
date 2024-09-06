@@ -75,7 +75,6 @@ extern_class!(
 
     unsafe impl ClassType for MCSession {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

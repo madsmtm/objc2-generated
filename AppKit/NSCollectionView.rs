@@ -85,7 +85,7 @@ pub type NSCollectionViewSupplementaryElementKind = NSString;
 extern_protocol!(
     #[cfg(feature = "NSUserInterfaceItemIdentification")]
     pub unsafe trait NSCollectionViewElement:
-        NSObjectProtocol + NSUserInterfaceItemIdentification + IsMainThreadOnly
+        NSObjectProtocol + NSUserInterfaceItemIdentification + MainThreadOnly
     {
         #[optional]
         #[method(prepareForReuse)]
@@ -133,7 +133,7 @@ extern_protocol!(
 extern_protocol!(
     #[cfg(feature = "NSUserInterfaceItemIdentification")]
     pub unsafe trait NSCollectionViewSectionHeaderView:
-        NSCollectionViewElement + IsMainThreadOnly
+        NSCollectionViewElement + MainThreadOnly
     {
         #[cfg(all(
             feature = "NSButton",
@@ -169,7 +169,6 @@ extern_class!(
     unsafe impl ClassType for NSCollectionViewItem {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -304,7 +303,6 @@ extern_class!(
     unsafe impl ClassType for NSCollectionView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -723,9 +721,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSCollectionViewDataSource:
-        NSObjectProtocol + IsMainThreadOnly
-    {
+    pub unsafe trait NSCollectionViewDataSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(collectionView:numberOfItemsInSection:)]
         unsafe fn collectionView_numberOfItemsInSection(
@@ -769,9 +765,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSCollectionViewPrefetching:
-        NSObjectProtocol + IsMainThreadOnly
-    {
+    pub unsafe trait NSCollectionViewPrefetching: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(collectionView:prefetchItemsAtIndexPaths:)]
         unsafe fn collectionView_prefetchItemsAtIndexPaths(

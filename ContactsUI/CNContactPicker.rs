@@ -14,7 +14,6 @@ extern_class!(
 
     unsafe impl ClassType for CNContactPicker {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

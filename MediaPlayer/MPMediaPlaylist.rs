@@ -67,7 +67,6 @@ extern_class!(
     unsafe impl ClassType for MPMediaPlaylist {
         #[inherits(MPMediaEntity, NSObject)]
         type Super = MPMediaItemCollection;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -154,7 +153,6 @@ extern_class!(
 
     unsafe impl ClassType for MPMediaPlaylistCreationMetadata {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

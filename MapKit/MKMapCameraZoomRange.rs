@@ -18,7 +18,6 @@ extern_class!(
 
     unsafe impl ClassType for MKMapCameraZoomRange {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

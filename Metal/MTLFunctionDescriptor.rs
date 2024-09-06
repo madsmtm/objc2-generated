@@ -31,7 +31,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLFunctionDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -114,7 +113,6 @@ extern_class!(
     unsafe impl ClassType for MTLIntersectionFunctionDescriptor {
         #[inherits(NSObject)]
         type Super = MTLFunctionDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 

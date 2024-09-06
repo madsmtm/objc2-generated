@@ -100,7 +100,6 @@ extern_class!(
 
     unsafe impl ClassType for NEHotspotHelperCommand {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -155,7 +154,6 @@ extern_class!(
 
     unsafe impl ClassType for NEHotspotHelperResponse {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -196,7 +194,6 @@ extern_class!(
 
     unsafe impl ClassType for NEHotspotHelper {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

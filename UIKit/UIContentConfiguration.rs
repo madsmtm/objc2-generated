@@ -7,7 +7,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait UIContentConfiguration:
-        NSCopying + NSObjectProtocol + IsMainThreadOnly
+        NSCopying + NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other makeContentView)]
@@ -25,7 +25,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIContentView: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIContentView: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other configuration)]
         unsafe fn configuration(&self) -> Retained<ProtocolObject<dyn UIContentConfiguration>>;
 

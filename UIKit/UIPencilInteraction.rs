@@ -63,7 +63,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPencilInteraction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -128,7 +128,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPencilHoverPose {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -168,7 +168,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPencilInteractionTap {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -196,7 +196,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPencilInteractionSqueeze {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -222,9 +222,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIPencilInteractionDelegate:
-        NSObjectProtocol + IsMainThreadOnly
-    {
+    pub unsafe trait UIPencilInteractionDelegate: NSObjectProtocol + MainThreadOnly {
         #[deprecated = "Use pencilInteraction(_:didReceiveTap:) instead"]
         #[optional]
         #[method(pencilInteractionDidTap:)]

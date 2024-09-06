@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for UIDeferredMenuElement {
         #[inherits(NSObject)]
         type Super = UIMenuElement;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

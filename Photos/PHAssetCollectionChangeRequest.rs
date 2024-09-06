@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for PHAssetCollectionChangeRequest {
         #[inherits(NSObject)]
         type Super = PHChangeRequest;
-        type Mutability = InteriorMutable;
     }
 );
 

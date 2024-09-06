@@ -33,7 +33,6 @@ extern_class!(
 
     unsafe impl ClassType for ASWebAuthenticationSessionRequest {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

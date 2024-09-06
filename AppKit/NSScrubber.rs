@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait NSScrubberDataSource: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSScrubberDataSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(numberOfItemsForScrubber:)]
         unsafe fn numberOfItemsForScrubber(&self, scrubber: &NSScrubber) -> NSInteger;
@@ -28,7 +28,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSScrubberDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSScrubberDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(scrubber:didSelectItemAtIndex:)]
@@ -123,7 +123,7 @@ extern_class!(
 
     unsafe impl ClassType for NSScrubberSelectionStyle {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -176,7 +176,6 @@ extern_class!(
     unsafe impl ClassType for NSScrubber {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
-        type Mutability = MainThreadOnly;
     }
 );
 

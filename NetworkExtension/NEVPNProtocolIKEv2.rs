@@ -173,7 +173,6 @@ extern_class!(
 
     unsafe impl ClassType for NEVPNIKEv2SecurityAssociationParameters {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -246,7 +245,6 @@ extern_class!(
     unsafe impl ClassType for NEVPNProtocolIKEv2 {
         #[inherits(NEVPNProtocol, NSObject)]
         type Super = NEVPNProtocolIPSec;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -10,7 +10,6 @@ extern_class!(
 
     unsafe impl ClassType for NEFilterPacketContext {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -61,7 +60,6 @@ extern_class!(
     unsafe impl ClassType for NEFilterPacketProvider {
         #[inherits(NEProvider, NSObject)]
         type Super = NEFilterProvider;
-        type Mutability = InteriorMutable;
     }
 );
 

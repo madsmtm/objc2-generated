@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSScrubberArrangedView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -117,7 +116,6 @@ extern_class!(
     unsafe impl ClassType for NSScrubberSelectionView {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSScrubberArrangedView;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -204,7 +202,6 @@ extern_class!(
     unsafe impl ClassType for NSScrubberItemView {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSScrubberArrangedView;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -291,7 +288,6 @@ extern_class!(
     unsafe impl ClassType for NSScrubberTextItemView {
         #[inherits(NSScrubberArrangedView, NSView, NSResponder, NSObject)]
         type Super = NSScrubberItemView;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -388,7 +384,6 @@ extern_class!(
     unsafe impl ClassType for NSScrubberImageItemView {
         #[inherits(NSScrubberArrangedView, NSView, NSResponder, NSObject)]
         type Super = NSScrubberItemView;
-        type Mutability = MainThreadOnly;
     }
 );
 

@@ -23,7 +23,6 @@ extern_class!(
     unsafe impl ClassType for DOMCSSValueList {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMCSSValue;
-        type Mutability = InteriorMutable;
     }
 );
 

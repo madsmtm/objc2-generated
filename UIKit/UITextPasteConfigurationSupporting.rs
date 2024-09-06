@@ -7,7 +7,7 @@ use crate::*;
 extern_protocol!(
     #[cfg(feature = "UIPasteConfigurationSupporting")]
     pub unsafe trait UITextPasteConfigurationSupporting:
-        UIPasteConfigurationSupporting + IsMainThreadOnly
+        UIPasteConfigurationSupporting + MainThreadOnly
     {
         #[cfg(feature = "UITextPasteDelegate")]
         #[method_id(@__retain_semantics Other pasteDelegate)]

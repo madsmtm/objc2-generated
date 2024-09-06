@@ -14,7 +14,7 @@ extern_class!(
 
     unsafe impl ClassType for UIAcceleration {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -58,7 +58,7 @@ extern_class!(
 
     unsafe impl ClassType for UIAccelerometer {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -106,7 +106,7 @@ extern_methods!(
 
 extern_protocol!(
     #[deprecated = "UIAcceleration has been replaced by the CoreMotion framework"]
-    pub unsafe trait UIAccelerometerDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIAccelerometerDelegate: NSObjectProtocol + MainThreadOnly {
         #[deprecated]
         #[optional]
         #[method(accelerometer:didAccelerate:)]

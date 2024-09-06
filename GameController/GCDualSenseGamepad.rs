@@ -13,7 +13,6 @@ extern_class!(
     unsafe impl ClassType for GCDualSenseGamepad {
         #[inherits(GCPhysicalInputProfile, NSObject)]
         type Super = GCExtendedGamepad;
-        type Mutability = InteriorMutable;
     }
 );
 

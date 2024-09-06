@@ -186,7 +186,7 @@ extern_class!(
     unsafe impl ClassType for UIApplication {
         #[inherits(NSObject)]
         type Super = UIResponder;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -603,7 +603,7 @@ pub type UIApplicationOpenURLOptionsKey = NSString;
 pub type UIApplicationExtensionPointIdentifier = NSString;
 
 extern_protocol!(
-    pub unsafe trait UIApplicationDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIApplicationDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIResponder")]
         #[optional]
         #[method(applicationDidFinishLaunching:)]

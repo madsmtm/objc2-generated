@@ -41,7 +41,6 @@ __inner_extern_class!(
         for NSMapTable<KeyType, ObjectType>
     {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass

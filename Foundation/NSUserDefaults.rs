@@ -25,7 +25,6 @@ extern_class!(
 
     unsafe impl ClassType for NSUserDefaults {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

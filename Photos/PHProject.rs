@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for PHProject {
         #[inherits(PHCollection, PHObject, NSObject)]
         type Super = PHAssetCollection;
-        type Mutability = InteriorMutable;
     }
 );
 

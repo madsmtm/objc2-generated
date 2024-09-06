@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VZVirtioTraditionalMemoryBalloonDeviceConfiguration {
         #[inherits(NSObject)]
         type Super = VZMemoryBalloonDeviceConfiguration;
-        type Mutability = InteriorMutable;
     }
 );
 

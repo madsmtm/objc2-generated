@@ -31,7 +31,6 @@ __inner_extern_class!(
 
     unsafe impl<ObjectType: ?Sized + Message> ClassType for NSOrderedCollectionChange<ObjectType> {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass

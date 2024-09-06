@@ -29,7 +29,7 @@ extern "C" {
 
 extern_protocol!(
     pub unsafe trait UIViewControllerContextTransitioning:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other containerView)]
@@ -99,7 +99,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait UIViewControllerAnimatedTransitioning:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[method(transitionDuration:)]
         unsafe fn transitionDuration(
@@ -131,7 +131,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait UIViewControllerInteractiveTransitioning:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[method(startInteractiveTransition:)]
         unsafe fn startInteractiveTransition(
@@ -158,7 +158,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait UIViewControllerTransitioningDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
@@ -216,7 +216,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPercentDrivenInteractiveTransition {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

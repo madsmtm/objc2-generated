@@ -19,7 +19,6 @@ extern_class!(
     unsafe impl ClassType for MKPlacemark {
         #[inherits(NSObject)]
         type Super = CLPlacemark;
-        type Mutability = InteriorMutable;
     }
 );
 

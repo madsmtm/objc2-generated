@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSPersistentCloudKitContainerEventRequest {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
-        type Mutability = InteriorMutable;
     }
 );
 

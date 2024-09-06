@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for UICollectionViewTransitionLayout {
         #[inherits(NSObject)]
         type Super = UICollectionViewLayout;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

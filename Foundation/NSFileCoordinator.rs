@@ -53,7 +53,6 @@ extern_class!(
 
     unsafe impl ClassType for NSFileAccessIntent {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -102,7 +101,6 @@ extern_class!(
 
     unsafe impl ClassType for NSFileCoordinator {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

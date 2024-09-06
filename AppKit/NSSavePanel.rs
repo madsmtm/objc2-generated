@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSSavePanel {
         #[inherits(NSWindow, NSResponder, NSObject)]
         type Super = NSPanel;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -291,7 +290,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSOpenSavePanelDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSOpenSavePanelDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(panel:shouldEnableURL:)]
         unsafe fn panel_shouldEnableURL(&self, sender: &AnyObject, url: &NSURL) -> bool;

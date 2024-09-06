@@ -7,7 +7,7 @@ use crate::*;
 
 extern_protocol!(
     #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
-    pub unsafe trait UITextDocumentProxy: UIKeyInput + IsMainThreadOnly {
+    pub unsafe trait UITextDocumentProxy: UIKeyInput + MainThreadOnly {
         #[method_id(@__retain_semantics Other documentContextBeforeInput)]
         unsafe fn documentContextBeforeInput(&self) -> Option<Retained<NSString>>;
 
@@ -50,7 +50,7 @@ extern_class!(
     unsafe impl ClassType for UIInputViewController {
         #[inherits(UIResponder, NSObject)]
         type Super = UIViewController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

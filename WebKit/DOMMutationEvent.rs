@@ -30,7 +30,6 @@ extern_class!(
     unsafe impl ClassType for DOMMutationEvent {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMEvent;
-        type Mutability = InteriorMutable;
     }
 );
 

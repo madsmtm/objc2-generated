@@ -11,7 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for UIMotionEffect {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -79,7 +79,7 @@ extern_class!(
     unsafe impl ClassType for UIInterpolatingMotionEffect {
         #[inherits(NSObject)]
         type Super = UIMotionEffect;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -151,7 +151,7 @@ extern_class!(
     unsafe impl ClassType for UIMotionEffectGroup {
         #[inherits(NSObject)]
         type Super = UIMotionEffect;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

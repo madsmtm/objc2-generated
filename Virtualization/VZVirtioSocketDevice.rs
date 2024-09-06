@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VZVirtioSocketDevice {
         #[inherits(NSObject)]
         type Super = VZSocketDevice;
-        type Mutability = InteriorMutable;
     }
 );
 

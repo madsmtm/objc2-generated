@@ -23,7 +23,6 @@ extern_class!(
 
     unsafe impl ClassType for CAAnimation {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -124,7 +123,6 @@ extern_class!(
     unsafe impl ClassType for CAPropertyAnimation {
         #[inherits(NSObject)]
         type Super = CAAnimation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -205,7 +203,6 @@ extern_class!(
     unsafe impl ClassType for CABasicAnimation {
         #[inherits(CAAnimation, NSObject)]
         type Super = CAPropertyAnimation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -283,7 +280,6 @@ extern_class!(
     unsafe impl ClassType for CAKeyframeAnimation {
         #[inherits(CAAnimation, NSObject)]
         type Super = CAPropertyAnimation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -424,7 +420,6 @@ extern_class!(
     unsafe impl ClassType for CASpringAnimation {
         #[inherits(CAPropertyAnimation, CAAnimation, NSObject)]
         type Super = CABasicAnimation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -530,7 +525,6 @@ extern_class!(
     unsafe impl ClassType for CATransition {
         #[inherits(NSObject)]
         type Super = CAAnimation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -644,7 +638,6 @@ extern_class!(
     unsafe impl ClassType for CAAnimationGroup {
         #[inherits(NSObject)]
         type Super = CAAnimation;
-        type Mutability = InteriorMutable;
     }
 );
 

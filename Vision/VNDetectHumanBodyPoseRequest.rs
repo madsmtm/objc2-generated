@@ -303,7 +303,6 @@ extern_class!(
     unsafe impl ClassType for VNHumanBodyPoseObservation {
         #[inherits(VNObservation, NSObject)]
         type Super = VNRecognizedPointsObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -390,7 +389,6 @@ extern_class!(
     unsafe impl ClassType for VNDetectHumanBodyPoseRequest {
         #[inherits(VNRequest, NSObject)]
         type Super = VNImageBasedRequest;
-        type Mutability = InteriorMutable;
     }
 );
 

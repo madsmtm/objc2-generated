@@ -36,7 +36,6 @@ extern_class!(
 
     unsafe impl ClassType for NEHotspotNetwork {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

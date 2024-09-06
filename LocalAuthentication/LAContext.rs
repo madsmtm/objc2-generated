@@ -111,7 +111,6 @@ extern_class!(
 
     unsafe impl ClassType for LAContext {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

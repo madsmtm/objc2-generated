@@ -15,7 +15,7 @@ extern_class!(
     unsafe impl ClassType for UIStoryboardPopoverSegue {
         #[inherits(NSObject)]
         type Super = UIStoryboardSegue;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

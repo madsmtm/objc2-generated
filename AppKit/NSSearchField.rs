@@ -9,7 +9,7 @@ pub type NSSearchFieldRecentsAutosaveName = NSString;
 
 extern_protocol!(
     #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
-    pub unsafe trait NSSearchFieldDelegate: NSTextFieldDelegate + IsMainThreadOnly {
+    pub unsafe trait NSSearchFieldDelegate: NSTextFieldDelegate + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(searchFieldDidStartSearching:)]
@@ -44,7 +44,6 @@ extern_class!(
     unsafe impl ClassType for NSSearchField {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSTextField;
-        type Mutability = MainThreadOnly;
     }
 );
 

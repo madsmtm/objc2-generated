@@ -11,7 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPreviewInteraction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -63,7 +63,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait UIPreviewInteractionDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[method(previewInteraction:didUpdatePreviewTransition:ended:)]
         unsafe fn previewInteraction_didUpdatePreviewTransition_ended(

@@ -107,7 +107,6 @@ extern_class!(
 
     unsafe impl ClassType for NEVPNConnection {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

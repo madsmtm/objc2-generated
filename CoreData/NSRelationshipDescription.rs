@@ -33,7 +33,6 @@ extern_class!(
     unsafe impl ClassType for NSRelationshipDescription {
         #[inherits(NSObject)]
         type Super = NSPropertyDescription;
-        type Mutability = InteriorMutable;
     }
 );
 

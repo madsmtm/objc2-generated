@@ -71,7 +71,7 @@ extern_class!(
     unsafe impl ClassType for UIBlurEffect {
         #[inherits(NSObject)]
         type Super = UIVisualEffect;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

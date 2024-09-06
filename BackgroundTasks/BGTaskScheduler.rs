@@ -36,7 +36,6 @@ extern_class!(
 
     unsafe impl ClassType for BGTaskScheduler {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

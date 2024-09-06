@@ -69,7 +69,6 @@ extern_class!(
 
     unsafe impl ClassType for UIPress {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

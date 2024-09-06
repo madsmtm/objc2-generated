@@ -7,7 +7,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait UIFontPickerViewControllerDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
@@ -38,7 +38,7 @@ extern_class!(
     unsafe impl ClassType for UIFontPickerViewController {
         #[inherits(UIResponder, NSObject)]
         type Super = UIViewController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

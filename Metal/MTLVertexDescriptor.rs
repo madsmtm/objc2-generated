@@ -161,7 +161,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLVertexBufferLayoutDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -219,7 +218,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLVertexBufferLayoutDescriptorArray {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -259,7 +257,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLVertexAttributeDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -317,7 +314,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLVertexAttributeDescriptorArray {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -357,7 +353,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLVertexDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

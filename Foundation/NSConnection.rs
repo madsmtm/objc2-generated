@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for NSConnection {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -345,7 +344,6 @@ extern_class!(
 
     unsafe impl ClassType for NSDistantObjectRequest {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

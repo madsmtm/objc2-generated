@@ -17,7 +17,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLFunctionStitchingAttributeAlwaysInline {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -52,7 +51,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLFunctionStitchingInputNode {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -99,7 +97,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLFunctionStitchingFunctionNode {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -170,7 +167,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLFunctionStitchingGraph {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -241,7 +237,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLStitchedLibraryDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

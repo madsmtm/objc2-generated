@@ -106,7 +106,6 @@ extern_class!(
 
     unsafe impl ClassType for NSSpellChecker {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -57,7 +57,6 @@ extern_class!(
     unsafe impl ClassType for NSPopover {
         #[inherits(NSObject)]
         type Super = NSResponder;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -215,7 +214,7 @@ extern "C" {
 }
 
 extern_protocol!(
-    pub unsafe trait NSPopoverDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSPopoverDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(popoverShouldClose:)]

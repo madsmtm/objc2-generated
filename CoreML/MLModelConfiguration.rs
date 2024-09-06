@@ -37,7 +37,6 @@ extern_class!(
 
     unsafe impl ClassType for MLModelConfiguration {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

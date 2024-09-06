@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSCalendarDate {
         #[inherits(NSObject)]
         type Super = NSDate;
-        type Mutability = InteriorMutable;
     }
 );
 

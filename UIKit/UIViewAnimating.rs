@@ -48,7 +48,7 @@ unsafe impl RefEncode for UIViewAnimatingPosition {
 }
 
 extern_protocol!(
-    pub unsafe trait UIViewAnimating: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIViewAnimating: NSObjectProtocol + MainThreadOnly {
         #[method(state)]
         unsafe fn state(&self) -> UIViewAnimatingState;
 
@@ -87,7 +87,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIViewImplicitlyAnimating: UIViewAnimating + IsMainThreadOnly {
+    pub unsafe trait UIViewImplicitlyAnimating: UIViewAnimating + MainThreadOnly {
         #[cfg(feature = "block2")]
         #[optional]
         #[method(addAnimations:delayFactor:)]

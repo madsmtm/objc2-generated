@@ -7,7 +7,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait UITextSelectionDisplayInteractionDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
@@ -27,7 +27,7 @@ extern_class!(
 
     unsafe impl ClassType for UITextSelectionDisplayInteraction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

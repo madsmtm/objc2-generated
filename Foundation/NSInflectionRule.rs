@@ -10,7 +10,6 @@ extern_class!(
 
     unsafe impl ClassType for NSInflectionRule {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -55,7 +54,6 @@ extern_class!(
     unsafe impl ClassType for NSInflectionRuleExplicit {
         #[inherits(NSObject)]
         type Super = NSInflectionRule;
-        type Mutability = InteriorMutable;
     }
 );
 

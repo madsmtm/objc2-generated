@@ -19,7 +19,7 @@ extern_class!(
     unsafe impl ClassType for UIHoverEffectLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

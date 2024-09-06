@@ -59,7 +59,6 @@ extern_class!(
 
     unsafe impl ClassType for SKCloudServiceController {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

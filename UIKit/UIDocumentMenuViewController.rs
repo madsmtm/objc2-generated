@@ -29,7 +29,7 @@ unsafe impl RefEncode for UIDocumentMenuOrder {
 
 extern_protocol!(
     #[deprecated = "UIDocumentMenuDelegate is deprecated. Use UIDocumentPickerViewController directly."]
-    pub unsafe trait UIDocumentMenuDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIDocumentMenuDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UIDocumentPickerViewController",
             feature = "UIResponder",
@@ -63,7 +63,7 @@ extern_class!(
     unsafe impl ClassType for UIDocumentMenuViewController {
         #[inherits(UIResponder, NSObject)]
         type Super = UIViewController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for CNMutablePostalAddress {
         #[inherits(NSObject)]
         type Super = CNPostalAddress;
-        type Mutability = InteriorMutable;
     }
 );
 

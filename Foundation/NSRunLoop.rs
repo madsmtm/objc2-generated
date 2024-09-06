@@ -20,7 +20,6 @@ extern_class!(
 
     unsafe impl ClassType for NSRunLoop {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

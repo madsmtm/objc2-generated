@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for BAURLDownload {
         #[inherits(NSObject)]
         type Super = BADownload;
-        type Mutability = InteriorMutable;
     }
 );
 

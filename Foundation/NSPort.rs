@@ -17,7 +17,6 @@ extern_class!(
 
     unsafe impl ClassType for NSPort {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -164,7 +163,6 @@ extern_class!(
     unsafe impl ClassType for NSMachPort {
         #[inherits(NSObject)]
         type Super = NSPort;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -252,7 +250,6 @@ extern_class!(
     unsafe impl ClassType for NSMessagePort {
         #[inherits(NSObject)]
         type Super = NSPort;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -291,7 +288,6 @@ extern_class!(
     unsafe impl ClassType for NSSocketPort {
         #[inherits(NSObject)]
         type Super = NSPort;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -13,7 +13,7 @@ pub type UITransitionContextViewKey = NSString;
 
 extern_protocol!(
     pub unsafe trait UIViewControllerTransitionCoordinatorContext:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[method(isAnimated)]
         unsafe fn isAnimated(&self) -> bool;
@@ -71,7 +71,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait UIViewControllerTransitionCoordinator:
-        UIViewControllerTransitionCoordinatorContext + IsMainThreadOnly
+        UIViewControllerTransitionCoordinatorContext + MainThreadOnly
     {
         #[cfg(feature = "block2")]
         #[method(animateAlongsideTransition:completion:)]

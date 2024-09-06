@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for VNVideoProcessorCadence {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -45,7 +44,6 @@ extern_class!(
     unsafe impl ClassType for VNVideoProcessorFrameRateCadence {
         #[inherits(NSObject)]
         type Super = VNVideoProcessorCadence;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -88,7 +86,6 @@ extern_class!(
     unsafe impl ClassType for VNVideoProcessorTimeIntervalCadence {
         #[inherits(NSObject)]
         type Super = VNVideoProcessorCadence;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -121,7 +118,6 @@ extern_class!(
 
     unsafe impl ClassType for VNVideoProcessorRequestProcessingOptions {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -160,7 +156,6 @@ extern_class!(
 
     unsafe impl ClassType for VNVideoProcessor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

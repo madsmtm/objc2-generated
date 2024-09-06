@@ -73,7 +73,7 @@ extern_class!(
     unsafe impl ClassType for UISearchBar {
         #[inherits(UIResponder, NSObject)]
         type Super = UIView;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -463,9 +463,7 @@ extern_methods!(
 
 extern_protocol!(
     #[cfg(feature = "UIBarCommon")]
-    pub unsafe trait UISearchBarDelegate:
-        UIBarPositioningDelegate + IsMainThreadOnly
-    {
+    pub unsafe trait UISearchBarDelegate: UIBarPositioningDelegate + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
         #[method(searchBarShouldBeginEditing:)]

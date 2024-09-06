@@ -15,7 +15,6 @@ __inner_extern_class!(
 
     unsafe impl<AnchorType: ?Sized + Message> ClassType for NSLayoutAnchor<AnchorType> {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -113,7 +112,6 @@ extern_class!(
     unsafe impl ClassType for NSLayoutXAxisAnchor {
         #[inherits(NSObject)]
         type Super = NSLayoutAnchor;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -179,7 +177,6 @@ extern_class!(
     unsafe impl ClassType for NSLayoutYAxisAnchor {
         #[inherits(NSObject)]
         type Super = NSLayoutAnchor;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -245,7 +242,6 @@ extern_class!(
     unsafe impl ClassType for NSLayoutDimension {
         #[inherits(NSObject)]
         type Super = NSLayoutAnchor;
-        type Mutability = InteriorMutable;
     }
 );
 

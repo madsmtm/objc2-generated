@@ -7,7 +7,7 @@ use crate::*;
 
 extern_protocol!(
     #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
-    pub unsafe trait NSTokenFieldDelegate: NSTextFieldDelegate + IsMainThreadOnly {
+    pub unsafe trait NSTokenFieldDelegate: NSTextFieldDelegate + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenField:completionsForSubstring:indexOfToken:indexOfSelectedItem:)]
@@ -130,7 +130,6 @@ extern_class!(
     unsafe impl ClassType for NSTokenField {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSTextField;
-        type Mutability = MainThreadOnly;
     }
 );
 

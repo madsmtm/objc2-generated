@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for VNPoint {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -83,7 +82,6 @@ extern_class!(
 
     unsafe impl ClassType for VNPoint3D {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -120,7 +118,6 @@ extern_class!(
 
     unsafe impl ClassType for VNVector {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -223,7 +220,6 @@ extern_class!(
 
     unsafe impl ClassType for VNCircle {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -296,7 +292,6 @@ extern_class!(
 
     unsafe impl ClassType for VNContour {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

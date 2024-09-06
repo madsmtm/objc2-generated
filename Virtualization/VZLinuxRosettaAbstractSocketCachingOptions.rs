@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VZLinuxRosettaAbstractSocketCachingOptions {
         #[inherits(NSObject)]
         type Super = VZLinuxRosettaCachingOptions;
-        type Mutability = InteriorMutable;
     }
 );
 

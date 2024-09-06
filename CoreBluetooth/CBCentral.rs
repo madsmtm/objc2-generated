@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for CBCentral {
         #[inherits(NSObject)]
         type Super = CBPeer;
-        type Mutability = InteriorMutable;
     }
 );
 

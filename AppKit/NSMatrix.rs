@@ -33,7 +33,6 @@ extern_class!(
     unsafe impl ClassType for NSMatrix {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
-        type Mutability = MainThreadOnly;
     }
 );
 

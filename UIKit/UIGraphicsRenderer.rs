@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for UIGraphicsRendererFormat {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -54,7 +53,6 @@ extern_class!(
 
     unsafe impl ClassType for UIGraphicsRendererContext {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -93,7 +91,6 @@ extern_class!(
 
     unsafe impl ClassType for UIGraphicsRenderer {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

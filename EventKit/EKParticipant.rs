@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for EKParticipant {
         #[inherits(NSObject)]
         type Super = EKObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSStepperCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
-        type Mutability = MainThreadOnly;
     }
 );
 

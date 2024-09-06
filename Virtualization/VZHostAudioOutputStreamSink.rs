@@ -13,7 +13,6 @@ extern_class!(
     unsafe impl ClassType for VZHostAudioOutputStreamSink {
         #[inherits(NSObject)]
         type Super = VZAudioOutputStreamSink;
-        type Mutability = InteriorMutable;
     }
 );
 

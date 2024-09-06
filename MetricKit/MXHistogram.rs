@@ -15,7 +15,6 @@ __inner_extern_class!(
 
     unsafe impl<UnitType: ?Sized + Message> ClassType for MXHistogramBucket<UnitType> {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -63,7 +62,6 @@ __inner_extern_class!(
 
     unsafe impl<UnitType: ?Sized + Message> ClassType for MXHistogram<UnitType> {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass

@@ -50,7 +50,6 @@ extern_class!(
 
     unsafe impl ClassType for CKSyncEngineEvent {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -128,7 +127,6 @@ extern_class!(
     unsafe impl ClassType for CKSyncEngineStateUpdateEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -185,7 +183,6 @@ extern_class!(
     unsafe impl ClassType for CKSyncEngineAccountChangeEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -228,7 +225,6 @@ extern_class!(
     unsafe impl ClassType for CKSyncEngineFetchedDatabaseChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -267,7 +263,6 @@ extern_class!(
     unsafe impl ClassType for CKSyncEngineFetchedRecordZoneChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -306,7 +301,6 @@ extern_class!(
     unsafe impl ClassType for CKSyncEngineSentDatabaseChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -353,7 +347,6 @@ extern_class!(
     unsafe impl ClassType for CKSyncEngineSentRecordZoneChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -400,7 +393,6 @@ extern_class!(
     unsafe impl ClassType for CKSyncEngineWillFetchChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -436,7 +428,6 @@ extern_class!(
     unsafe impl ClassType for CKSyncEngineWillFetchRecordZoneChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -472,7 +463,6 @@ extern_class!(
     unsafe impl ClassType for CKSyncEngineDidFetchRecordZoneChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -511,7 +501,6 @@ extern_class!(
     unsafe impl ClassType for CKSyncEngineDidFetchChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -547,7 +536,6 @@ extern_class!(
     unsafe impl ClassType for CKSyncEngineWillSendChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -583,7 +571,6 @@ extern_class!(
     unsafe impl ClassType for CKSyncEngineDidSendChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -618,7 +605,6 @@ extern_class!(
 
     unsafe impl ClassType for CKSyncEngineFetchedRecordDeletion {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -673,7 +659,6 @@ extern_class!(
 
     unsafe impl ClassType for CKSyncEngineFetchedZoneDeletion {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -706,7 +691,6 @@ extern_class!(
 
     unsafe impl ClassType for CKSyncEngineFailedRecordSave {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -739,7 +723,6 @@ extern_class!(
 
     unsafe impl ClassType for CKSyncEngineFailedZoneSave {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

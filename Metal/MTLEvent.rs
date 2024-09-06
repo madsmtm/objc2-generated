@@ -27,7 +27,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLSharedEventListener {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -92,7 +91,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLSharedEventHandle {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

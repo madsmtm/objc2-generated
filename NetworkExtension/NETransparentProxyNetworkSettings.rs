@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NETransparentProxyNetworkSettings {
         #[inherits(NSObject)]
         type Super = NETunnelNetworkSettings;
-        type Mutability = InteriorMutable;
     }
 );
 

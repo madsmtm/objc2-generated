@@ -72,7 +72,6 @@ extern_class!(
 
     unsafe impl ClassType for NSImage {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1216,7 +1215,6 @@ extern_class!(
 
     unsafe impl ClassType for NSImageSymbolConfiguration {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

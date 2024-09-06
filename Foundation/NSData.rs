@@ -121,7 +121,6 @@ extern_class!(
 
     unsafe impl ClassType for NSData {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -637,7 +636,6 @@ extern_class!(
     unsafe impl ClassType for NSMutableData {
         #[inherits(NSObject)]
         type Super = NSData;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -773,7 +771,6 @@ extern_class!(
     unsafe impl ClassType for NSPurgeableData {
         #[inherits(NSData, NSObject)]
         type Super = NSMutableData;
-        type Mutability = InteriorMutable;
     }
 );
 

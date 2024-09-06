@@ -121,7 +121,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLIOCommandQueueDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

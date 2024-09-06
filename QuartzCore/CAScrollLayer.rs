@@ -17,7 +17,6 @@ extern_class!(
     unsafe impl ClassType for CAScrollLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
-        type Mutability = InteriorMutable;
     }
 );
 

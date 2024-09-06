@@ -11,7 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPrinterDestination {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -63,7 +63,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPrintServiceExtension {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

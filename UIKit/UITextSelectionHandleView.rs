@@ -7,9 +7,7 @@ use crate::*;
 
 extern_protocol!(
     #[cfg(feature = "UIView")]
-    pub unsafe trait UITextSelectionHandleView:
-        UICoordinateSpace + IsMainThreadOnly
-    {
+    pub unsafe trait UITextSelectionHandleView: UICoordinateSpace + MainThreadOnly {
         #[cfg(feature = "UIGeometry")]
         #[method(direction)]
         unsafe fn direction(&self) -> NSDirectionalRectEdge;

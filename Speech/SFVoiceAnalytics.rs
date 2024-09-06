@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for SFAcousticFeature {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -54,7 +53,6 @@ extern_class!(
 
     unsafe impl ClassType for SFVoiceAnalytics {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -57,7 +57,7 @@ extern_category!(
 
 extern_protocol!(
     pub unsafe trait UIItemProviderPresentationSizeProviding:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[method(preferredPresentationSizeForItemProvider)]
         unsafe fn preferredPresentationSizeForItemProvider(&self) -> CGSize;

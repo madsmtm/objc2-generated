@@ -22,7 +22,6 @@ extern_class!(
 
     unsafe impl ClassType for ASAuthorization {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

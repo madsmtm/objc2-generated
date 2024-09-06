@@ -53,7 +53,6 @@ extern_class!(
 
     unsafe impl ClassType for NENetworkRule {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

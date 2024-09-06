@@ -55,7 +55,7 @@ extern_class!(
 
     unsafe impl ClassType for UIListContentTextProperties {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

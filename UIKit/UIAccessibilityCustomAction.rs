@@ -15,7 +15,6 @@ extern_class!(
 
     unsafe impl ClassType for UIAccessibilityCustomAction {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

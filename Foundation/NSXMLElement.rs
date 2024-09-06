@@ -13,7 +13,6 @@ extern_class!(
     unsafe impl ClassType for NSXMLElement {
         #[inherits(NSObject)]
         type Super = NSXMLNode;
-        type Mutability = InteriorMutable;
     }
 );
 

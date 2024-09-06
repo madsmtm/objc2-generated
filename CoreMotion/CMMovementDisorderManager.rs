@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for CMDyskineticSymptomResult {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -60,7 +59,6 @@ extern_class!(
 
     unsafe impl ClassType for CMTremorResult {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -129,7 +127,6 @@ extern_class!(
 
     unsafe impl ClassType for CMMovementDisorderManager {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

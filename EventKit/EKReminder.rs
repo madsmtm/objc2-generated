@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for EKReminder {
         #[inherits(EKObject, NSObject)]
         type Super = EKCalendarItem;
-        type Mutability = InteriorMutable;
     }
 );
 

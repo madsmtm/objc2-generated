@@ -23,7 +23,6 @@ extern_class!(
 
     unsafe impl ClassType for MTKMeshBufferAllocator {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -59,7 +58,6 @@ extern_class!(
 
     unsafe impl ClassType for MTKMeshBuffer {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -104,7 +102,6 @@ extern_class!(
 
     unsafe impl ClassType for MTKSubmesh {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -152,7 +149,6 @@ extern_class!(
 
     unsafe impl ClassType for MTKMesh {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

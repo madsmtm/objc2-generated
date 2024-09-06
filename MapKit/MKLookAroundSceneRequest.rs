@@ -13,7 +13,6 @@ extern_class!(
 
     unsafe impl ClassType for MKLookAroundSceneRequest {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

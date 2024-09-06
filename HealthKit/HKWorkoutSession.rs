@@ -57,7 +57,6 @@ extern_class!(
 
     unsafe impl ClassType for HKWorkoutSession {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

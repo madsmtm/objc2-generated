@@ -21,7 +21,6 @@ __inner_extern_class!(
         ClassType for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
     {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -264,7 +263,6 @@ __inner_extern_class!(
         for NSDiffableDataSourceSectionTransaction<SectionIdentifierType, ItemIdentifierType>
     {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -332,7 +330,6 @@ __inner_extern_class!(
         ClassType for NSDiffableDataSourceTransaction<SectionIdentifierType, ItemIdentifierType>
     {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -404,7 +401,7 @@ __inner_extern_class!(
         for UICollectionViewDiffableDataSourceReorderingHandlers<SectionType, ItemType>
     {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -512,7 +509,7 @@ __inner_extern_class!(
         for UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType>
     {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -645,7 +642,7 @@ __inner_extern_class!(
         for UICollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
     {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -864,7 +861,7 @@ __inner_extern_class!(
         ClassType for UITableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
     {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass

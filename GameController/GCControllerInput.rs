@@ -10,7 +10,6 @@ extern_class!(
 
     unsafe impl ClassType for GCControllerInputState {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -41,7 +40,6 @@ extern_class!(
     unsafe impl ClassType for GCControllerLiveInput {
         #[inherits(NSObject)]
         type Super = GCControllerInputState;
-        type Mutability = InteriorMutable;
     }
 );
 

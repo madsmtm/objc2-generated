@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VZVirtioEntropyDeviceConfiguration {
         #[inherits(NSObject)]
         type Super = VZEntropyDeviceConfiguration;
-        type Mutability = InteriorMutable;
     }
 );
 

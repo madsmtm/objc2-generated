@@ -31,7 +31,6 @@ extern_class!(
 
     unsafe impl ClassType for EAWiFiUnconfiguredAccessory {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

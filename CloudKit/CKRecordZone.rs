@@ -36,7 +36,6 @@ extern_class!(
 
     unsafe impl ClassType for CKRecordZone {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

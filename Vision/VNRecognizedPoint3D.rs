@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VNRecognizedPoint3D {
         #[inherits(NSObject)]
         type Super = VNPoint3D;
-        type Mutability = InteriorMutable;
     }
 );
 

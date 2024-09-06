@@ -188,7 +188,6 @@ extern_class!(
 
     unsafe impl ClassType for NSSpeechSynthesizer {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -325,9 +324,7 @@ extern_methods!(
 
 extern_protocol!(
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
-    pub unsafe trait NSSpeechSynthesizerDelegate:
-        NSObjectProtocol + IsMainThreadOnly
-    {
+    pub unsafe trait NSSpeechSynthesizerDelegate: NSObjectProtocol + MainThreadOnly {
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[optional]
         #[method(speechSynthesizer:didFinishSpeaking:)]

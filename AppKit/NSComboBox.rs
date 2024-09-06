@@ -22,7 +22,7 @@ extern "C" {
 }
 
 extern_protocol!(
-    pub unsafe trait NSComboBoxDataSource: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSComboBoxDataSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "NSControl",
             feature = "NSResponder",
@@ -81,7 +81,7 @@ extern_protocol!(
 
 extern_protocol!(
     #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
-    pub unsafe trait NSComboBoxDelegate: NSTextFieldDelegate + IsMainThreadOnly {
+    pub unsafe trait NSComboBoxDelegate: NSTextFieldDelegate + MainThreadOnly {
         #[optional]
         #[method(comboBoxWillPopUp:)]
         unsafe fn comboBoxWillPopUp(&self, notification: &NSNotification);
@@ -122,7 +122,6 @@ extern_class!(
     unsafe impl ClassType for NSComboBox {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSTextField;
-        type Mutability = MainThreadOnly;
     }
 );
 

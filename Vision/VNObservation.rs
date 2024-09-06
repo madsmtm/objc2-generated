@@ -15,7 +15,6 @@ extern_class!(
 
     unsafe impl ClassType for VNObservation {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -63,7 +62,6 @@ extern_class!(
     unsafe impl ClassType for VNDetectedObjectObservation {
         #[inherits(NSObject)]
         type Super = VNObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -119,7 +117,6 @@ extern_class!(
     unsafe impl ClassType for VNFaceObservation {
         #[inherits(VNObservation, NSObject)]
         type Super = VNDetectedObjectObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -208,7 +205,6 @@ extern_class!(
     unsafe impl ClassType for VNClassificationObservation {
         #[inherits(NSObject)]
         type Super = VNObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -274,7 +270,6 @@ extern_class!(
     unsafe impl ClassType for VNRecognizedObjectObservation {
         #[inherits(VNObservation, NSObject)]
         type Super = VNDetectedObjectObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -332,7 +327,6 @@ extern_class!(
     unsafe impl ClassType for VNCoreMLFeatureValueObservation {
         #[inherits(NSObject)]
         type Super = VNObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -380,7 +374,6 @@ extern_class!(
     unsafe impl ClassType for VNPixelBufferObservation {
         #[inherits(NSObject)]
         type Super = VNObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -424,7 +417,6 @@ extern_class!(
     unsafe impl ClassType for VNRectangleObservation {
         #[inherits(VNObservation, NSObject)]
         type Super = VNDetectedObjectObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -510,7 +502,6 @@ extern_class!(
     unsafe impl ClassType for VNTrajectoryObservation {
         #[inherits(NSObject)]
         type Super = VNObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -562,7 +553,6 @@ extern_class!(
     unsafe impl ClassType for VNTextObservation {
         #[inherits(VNDetectedObjectObservation, VNObservation, NSObject)]
         type Super = VNRectangleObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -643,7 +633,6 @@ extern_class!(
 
     unsafe impl ClassType for VNRecognizedText {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -697,7 +686,6 @@ extern_class!(
     unsafe impl ClassType for VNRecognizedTextObservation {
         #[inherits(VNDetectedObjectObservation, VNObservation, NSObject)]
         type Super = VNRectangleObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -782,7 +770,6 @@ extern_class!(
     unsafe impl ClassType for VNBarcodeObservation {
         #[inherits(VNDetectedObjectObservation, VNObservation, NSObject)]
         type Super = VNRectangleObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -891,7 +878,6 @@ extern_class!(
     unsafe impl ClassType for VNHorizonObservation {
         #[inherits(NSObject)]
         type Super = VNObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -935,7 +921,6 @@ extern_class!(
     unsafe impl ClassType for VNImageAlignmentObservation {
         #[inherits(NSObject)]
         type Super = VNObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -976,7 +961,6 @@ extern_class!(
     unsafe impl ClassType for VNImageTranslationAlignmentObservation {
         #[inherits(VNObservation, NSObject)]
         type Super = VNImageAlignmentObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1017,7 +1001,6 @@ extern_class!(
     unsafe impl ClassType for VNImageHomographicAlignmentObservation {
         #[inherits(VNObservation, NSObject)]
         type Super = VNImageAlignmentObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1058,7 +1041,6 @@ extern_class!(
     unsafe impl ClassType for VNSaliencyImageObservation {
         #[inherits(VNObservation, NSObject)]
         type Super = VNPixelBufferObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1102,7 +1084,6 @@ extern_class!(
     unsafe impl ClassType for VNFeaturePrintObservation {
         #[inherits(NSObject)]
         type Super = VNObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1160,7 +1141,6 @@ extern_class!(
     unsafe impl ClassType for VNContoursObservation {
         #[inherits(NSObject)]
         type Super = VNObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1230,7 +1210,6 @@ extern_class!(
     unsafe impl ClassType for VNRecognizedPointsObservation {
         #[inherits(NSObject)]
         type Super = VNObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1305,7 +1284,6 @@ extern_class!(
     unsafe impl ClassType for VNHumanObservation {
         #[inherits(VNObservation, NSObject)]
         type Super = VNDetectedObjectObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1363,7 +1341,6 @@ extern_class!(
     unsafe impl ClassType for VNInstanceMaskObservation {
         #[inherits(NSObject)]
         type Super = VNObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1407,7 +1384,6 @@ extern_class!(
     unsafe impl ClassType for VNAnimalBodyPoseObservation {
         #[inherits(VNObservation, NSObject)]
         type Super = VNRecognizedPointsObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1490,7 +1466,6 @@ extern_class!(
     unsafe impl ClassType for VNRecognizedPoints3DObservation {
         #[inherits(NSObject)]
         type Super = VNObservation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1578,7 +1553,6 @@ extern_class!(
     unsafe impl ClassType for VNHumanBodyPose3DObservation {
         #[inherits(VNObservation, NSObject)]
         type Super = VNRecognizedPoints3DObservation;
-        type Mutability = InteriorMutable;
     }
 );
 

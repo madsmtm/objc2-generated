@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for CIFeature {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -61,7 +60,6 @@ extern_class!(
     unsafe impl ClassType for CIFaceFeature {
         #[inherits(NSObject)]
         type Super = CIFeature;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -137,7 +135,6 @@ extern_class!(
     unsafe impl ClassType for CIRectangleFeature {
         #[inherits(NSObject)]
         type Super = CIFeature;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -180,7 +177,6 @@ extern_class!(
     unsafe impl ClassType for CIQRCodeFeature {
         #[inherits(NSObject)]
         type Super = CIFeature;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -240,7 +236,6 @@ extern_class!(
     unsafe impl ClassType for CITextFeature {
         #[inherits(NSObject)]
         type Super = CIFeature;
-        type Mutability = InteriorMutable;
     }
 );
 

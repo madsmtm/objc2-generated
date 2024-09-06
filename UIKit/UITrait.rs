@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait UITraitDefinition: IsMainThreadOnly {
+    pub unsafe trait UITraitDefinition: MainThreadOnly {
         #[optional]
         #[method_id(@__retain_semantics Other identifier)]
         unsafe fn identifier(mtm: MainThreadMarker) -> Retained<NSString>;
@@ -26,7 +26,7 @@ extern_protocol!(
 pub type UITrait = *mut AnyClass;
 
 extern_protocol!(
-    pub unsafe trait UICGFloatTraitDefinition: UITraitDefinition + IsMainThreadOnly {
+    pub unsafe trait UICGFloatTraitDefinition: UITraitDefinition + MainThreadOnly {
         #[method(defaultValue)]
         unsafe fn defaultValue(mtm: MainThreadMarker) -> CGFloat;
     }
@@ -37,9 +37,7 @@ extern_protocol!(
 pub type UICGFloatTrait = *mut AnyClass;
 
 extern_protocol!(
-    pub unsafe trait UINSIntegerTraitDefinition:
-        UITraitDefinition + IsMainThreadOnly
-    {
+    pub unsafe trait UINSIntegerTraitDefinition: UITraitDefinition + MainThreadOnly {
         #[method(defaultValue)]
         unsafe fn defaultValue(mtm: MainThreadMarker) -> NSInteger;
     }
@@ -50,7 +48,7 @@ extern_protocol!(
 pub type UINSIntegerTrait = *mut AnyClass;
 
 extern_protocol!(
-    pub unsafe trait UIObjectTraitDefinition: UITraitDefinition + IsMainThreadOnly {
+    pub unsafe trait UIObjectTraitDefinition: UITraitDefinition + MainThreadOnly {
         #[method_id(@__retain_semantics Other defaultValue)]
         unsafe fn defaultValue(mtm: MainThreadMarker) -> Option<Retained<NSObject>>;
     }
@@ -66,7 +64,7 @@ extern_class!(
 
     unsafe impl ClassType for UITraitUserInterfaceIdiom {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -97,7 +95,7 @@ extern_class!(
 
     unsafe impl ClassType for UITraitUserInterfaceStyle {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -128,7 +126,7 @@ extern_class!(
 
     unsafe impl ClassType for UITraitLayoutDirection {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -159,7 +157,7 @@ extern_class!(
 
     unsafe impl ClassType for UITraitDisplayScale {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -190,7 +188,7 @@ extern_class!(
 
     unsafe impl ClassType for UITraitHorizontalSizeClass {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -221,7 +219,7 @@ extern_class!(
 
     unsafe impl ClassType for UITraitVerticalSizeClass {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -252,7 +250,7 @@ extern_class!(
 
     unsafe impl ClassType for UITraitForceTouchCapability {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -283,7 +281,7 @@ extern_class!(
 
     unsafe impl ClassType for UITraitPreferredContentSizeCategory {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -314,7 +312,7 @@ extern_class!(
 
     unsafe impl ClassType for UITraitDisplayGamut {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -345,7 +343,7 @@ extern_class!(
 
     unsafe impl ClassType for UITraitAccessibilityContrast {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -376,7 +374,7 @@ extern_class!(
 
     unsafe impl ClassType for UITraitUserInterfaceLevel {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -407,7 +405,7 @@ extern_class!(
 
     unsafe impl ClassType for UITraitLegibilityWeight {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -438,7 +436,7 @@ extern_class!(
 
     unsafe impl ClassType for UITraitActiveAppearance {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -469,7 +467,7 @@ extern_class!(
 
     unsafe impl ClassType for UITraitToolbarItemPresentationSize {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -500,7 +498,7 @@ extern_class!(
 
     unsafe impl ClassType for UITraitImageDynamicRange {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -531,7 +529,7 @@ extern_class!(
 
     unsafe impl ClassType for UITraitTypesettingLanguage {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -562,7 +560,7 @@ extern_class!(
 
     unsafe impl ClassType for UITraitSceneCaptureState {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

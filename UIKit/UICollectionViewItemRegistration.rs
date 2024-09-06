@@ -21,7 +21,7 @@ extern_class!(
 
     unsafe impl ClassType for UICollectionViewCellRegistration {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -103,7 +103,7 @@ extern_class!(
 
     unsafe impl ClassType for UICollectionViewSupplementaryRegistration {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

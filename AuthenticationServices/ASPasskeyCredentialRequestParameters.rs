@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for ASPasskeyCredentialRequestParameters {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

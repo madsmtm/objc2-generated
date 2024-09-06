@@ -70,7 +70,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPrintInfo {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

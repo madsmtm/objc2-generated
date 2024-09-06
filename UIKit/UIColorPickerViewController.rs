@@ -7,7 +7,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait UIColorPickerViewControllerDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated]
@@ -53,7 +53,7 @@ extern_class!(
     unsafe impl ClassType for UIColorPickerViewController {
         #[inherits(UIResponder, NSObject)]
         type Super = UIViewController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

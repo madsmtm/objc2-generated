@@ -35,7 +35,6 @@ extern_class!(
     unsafe impl ClassType for CXPlayDTMFCallAction {
         #[inherits(CXAction, NSObject)]
         type Super = CXCallAction;
-        type Mutability = InteriorMutable;
     }
 );
 

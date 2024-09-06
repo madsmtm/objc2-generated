@@ -45,7 +45,6 @@ extern_class!(
 
     unsafe impl ClassType for NSTextViewportLayoutController {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

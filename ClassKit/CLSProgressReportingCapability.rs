@@ -39,7 +39,6 @@ extern_class!(
     unsafe impl ClassType for CLSProgressReportingCapability {
         #[inherits(NSObject)]
         type Super = CLSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for CXCallAction {
         #[inherits(NSObject)]
         type Super = CXAction;
-        type Mutability = InteriorMutable;
     }
 );
 

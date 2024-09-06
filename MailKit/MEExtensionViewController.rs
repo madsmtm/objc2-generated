@@ -16,7 +16,6 @@ extern_class!(
     unsafe impl ClassType for MEExtensionViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
-        type Mutability = MainThreadOnly;
     }
 );
 

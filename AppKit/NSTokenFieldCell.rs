@@ -47,7 +47,6 @@ extern_class!(
     unsafe impl ClassType for NSTokenFieldCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -204,7 +203,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSTokenFieldCellDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSTokenFieldCellDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "NSActionCell",
             feature = "NSCell",

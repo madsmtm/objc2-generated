@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for CWConfiguration {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -88,7 +87,6 @@ extern_class!(
     unsafe impl ClassType for CWMutableConfiguration {
         #[inherits(NSObject)]
         type Super = CWConfiguration;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for NSTextElement {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -74,7 +73,6 @@ extern_class!(
     unsafe impl ClassType for NSTextParagraph {
         #[inherits(NSObject)]
         type Super = NSTextElement;
-        type Mutability = InteriorMutable;
     }
 );
 

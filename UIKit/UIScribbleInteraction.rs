@@ -11,7 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for UIScribbleInteraction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -49,7 +49,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait UIScribbleInteractionDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[optional]
         #[method(scribbleInteraction:shouldBeginAtLocation:)]

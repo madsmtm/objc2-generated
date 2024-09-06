@@ -12,7 +12,6 @@ extern_class!(
     unsafe impl ClassType for MXUnitSignalBars {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -71,7 +70,6 @@ extern_class!(
     unsafe impl ClassType for MXUnitAveragePixelLuminance {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 

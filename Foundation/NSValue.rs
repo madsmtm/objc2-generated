@@ -9,7 +9,6 @@ extern_class!(
 
     unsafe impl ClassType for NSValue {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -98,7 +97,6 @@ extern_class!(
     unsafe impl ClassType for NSNumber {
         #[inherits(NSObject)]
         type Super = NSValue;
-        type Mutability = InteriorMutable;
     }
 );
 

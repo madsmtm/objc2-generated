@@ -10,7 +10,6 @@ extern_class!(
 
     unsafe impl ClassType for MLModelStructureProgramValueType {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

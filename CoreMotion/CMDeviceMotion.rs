@@ -82,7 +82,6 @@ extern_class!(
     unsafe impl ClassType for CMDeviceMotion {
         #[inherits(NSObject)]
         type Super = CMLogItem;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -22,7 +22,6 @@ extern_class!(
     unsafe impl ClassType for UIActivityViewController {
         #[inherits(UIResponder, NSObject)]
         type Super = UIViewController;
-        type Mutability = MainThreadOnly;
     }
 );
 

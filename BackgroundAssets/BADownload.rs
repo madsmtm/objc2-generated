@@ -51,7 +51,6 @@ extern_class!(
 
     unsafe impl ClassType for BADownload {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

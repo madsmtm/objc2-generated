@@ -16,7 +16,6 @@ extern_class!(
     unsafe impl ClassType for MKMultiPoint {
         #[inherits(NSObject)]
         type Super = MKShape;
-        type Mutability = InteriorMutable;
     }
 );
 

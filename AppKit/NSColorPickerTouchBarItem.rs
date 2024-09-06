@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSColorPickerTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
-        type Mutability = MainThreadOnly;
     }
 );
 

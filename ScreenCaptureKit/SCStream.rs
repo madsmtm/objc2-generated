@@ -115,7 +115,6 @@ extern_class!(
 
     unsafe impl ClassType for SCContentFilter {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -203,7 +202,6 @@ extern_class!(
 
     unsafe impl ClassType for SCStreamConfiguration {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -413,7 +411,6 @@ extern_class!(
 
     unsafe impl ClassType for SCStream {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

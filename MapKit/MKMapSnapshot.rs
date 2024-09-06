@@ -16,7 +16,6 @@ extern_class!(
 
     unsafe impl ClassType for MKMapSnapshot {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

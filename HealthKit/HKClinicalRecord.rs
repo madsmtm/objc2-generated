@@ -22,7 +22,6 @@ extern_class!(
     unsafe impl ClassType for HKClinicalRecord {
         #[inherits(HKObject, NSObject)]
         type Super = HKSample;
-        type Mutability = InteriorMutable;
     }
 );
 

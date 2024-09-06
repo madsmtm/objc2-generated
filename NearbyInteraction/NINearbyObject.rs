@@ -44,7 +44,6 @@ extern_class!(
 
     unsafe impl ClassType for NINearbyObject {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

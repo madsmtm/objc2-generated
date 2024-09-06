@@ -14,7 +14,6 @@ __inner_extern_class!(
 
     unsafe impl<ObjectType: ?Sized + Message> ClassType for NSArray<ObjectType> {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -557,7 +556,6 @@ __inner_extern_class!(
     unsafe impl<ObjectType: ?Sized + Message> ClassType for NSMutableArray<ObjectType> {
         #[inherits(NSObject)]
         type Super = NSArray<ObjectType>;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass

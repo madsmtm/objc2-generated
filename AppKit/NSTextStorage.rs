@@ -31,7 +31,6 @@ extern_class!(
     unsafe impl ClassType for NSTextStorage {
         #[inherits(NSAttributedString, NSObject)]
         type Super = NSMutableAttributedString;
-        type Mutability = InteriorMutable;
     }
 );
 

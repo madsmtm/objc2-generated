@@ -35,7 +35,7 @@ extern_class!(
     unsafe impl ClassType for UINotificationFeedbackGenerator {
         #[inherits(NSObject)]
         type Super = UIFeedbackGenerator;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

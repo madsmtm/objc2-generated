@@ -23,7 +23,6 @@ extern_class!(
     unsafe impl ClassType for CAShapeLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
-        type Mutability = InteriorMutable;
     }
 );
 

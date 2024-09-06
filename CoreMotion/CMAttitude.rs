@@ -96,7 +96,6 @@ extern_class!(
 
     unsafe impl ClassType for CMAttitude {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VZMacOSBootLoader {
         #[inherits(NSObject)]
         type Super = VZBootLoader;
-        type Mutability = InteriorMutable;
     }
 );
 

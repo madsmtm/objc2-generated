@@ -22,7 +22,7 @@ extern_class!(
 
     unsafe impl ClassType for NSToolbarItem {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -208,7 +208,7 @@ unsafe impl NSMenuItemValidation for NSToolbarItem {}
 unsafe impl NSValidatedUserInterfaceItem for NSToolbarItem {}
 
 extern_protocol!(
-    pub unsafe trait NSToolbarItemValidation: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSToolbarItemValidation: NSObjectProtocol + MainThreadOnly {
         #[method(validateToolbarItem:)]
         unsafe fn validateToolbarItem(&self, item: &NSToolbarItem) -> bool;
     }

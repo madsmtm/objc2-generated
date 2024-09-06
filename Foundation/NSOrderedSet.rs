@@ -14,7 +14,6 @@ __inner_extern_class!(
 
     unsafe impl<ObjectType: ?Sized + Message> ClassType for NSOrderedSet<ObjectType> {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -559,7 +558,6 @@ __inner_extern_class!(
     unsafe impl<ObjectType: ?Sized + Message> ClassType for NSMutableOrderedSet<ObjectType> {
         #[inherits(NSObject)]
         type Super = NSOrderedSet<ObjectType>;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass

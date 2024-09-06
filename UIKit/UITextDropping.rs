@@ -13,7 +13,7 @@ extern_protocol!(
         feature = "UITextPasteConfigurationSupporting"
     ))]
     pub unsafe trait UITextDroppable:
-        UITextInput + UITextPasteConfigurationSupporting + IsMainThreadOnly
+        UITextInput + UITextPasteConfigurationSupporting + MainThreadOnly
     {
         #[method_id(@__retain_semantics Other textDropDelegate)]
         unsafe fn textDropDelegate(
@@ -65,7 +65,7 @@ unsafe impl RefEncode for UITextDropEditability {
 }
 
 extern_protocol!(
-    pub unsafe trait UITextDropDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UITextDropDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UIPasteConfigurationSupporting",
             feature = "UIResponder",
@@ -207,7 +207,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait UITextDropRequest: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UITextDropRequest: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other dropPosition)]
         unsafe fn dropPosition(&self) -> Retained<UITextPosition>;

@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait UIDataSourceTranslating: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIDataSourceTranslating: NSObjectProtocol + MainThreadOnly {
         #[method(presentationSectionIndexForDataSourceSectionIndex:)]
         unsafe fn presentationSectionIndexForDataSourceSectionIndex(
             &self,

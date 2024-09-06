@@ -144,7 +144,6 @@ extern_class!(
 
     unsafe impl ClassType for NSLayoutConstraint {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

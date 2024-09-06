@@ -12,7 +12,6 @@ extern_class!(
 
     unsafe impl ClassType for NSCharacterSet {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -153,7 +152,6 @@ extern_class!(
     unsafe impl ClassType for NSMutableCharacterSet {
         #[inherits(NSObject)]
         type Super = NSCharacterSet;
-        type Mutability = InteriorMutable;
     }
 );
 

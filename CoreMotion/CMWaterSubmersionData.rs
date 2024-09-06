@@ -61,7 +61,6 @@ extern_class!(
 
     unsafe impl ClassType for CMWaterSubmersionEvent {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -104,7 +103,6 @@ extern_class!(
 
     unsafe impl ClassType for CMWaterSubmersionMeasurement {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -156,7 +154,6 @@ extern_class!(
 
     unsafe impl ClassType for CMWaterTemperature {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

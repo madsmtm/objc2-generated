@@ -71,7 +71,7 @@ extern_class!(
 
     unsafe impl ClassType for NSToolbar {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -218,7 +218,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSToolbarDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSToolbarDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSToolbarItem")]
         #[optional]
         #[method_id(@__retain_semantics Other toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:)]

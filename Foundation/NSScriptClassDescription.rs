@@ -13,7 +13,6 @@ extern_class!(
     unsafe impl ClassType for NSScriptClassDescription {
         #[inherits(NSObject)]
         type Super = NSClassDescription;
-        type Mutability = InteriorMutable;
     }
 );
 

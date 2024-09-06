@@ -19,7 +19,6 @@ extern_class!(
 
     unsafe impl ClassType for GCKeyboard {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

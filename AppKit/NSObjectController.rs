@@ -17,7 +17,7 @@ extern_class!(
     unsafe impl ClassType for NSObjectController {
         #[inherits(NSObject)]
         type Super = NSController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

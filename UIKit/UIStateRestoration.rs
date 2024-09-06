@@ -26,7 +26,7 @@ extern "C" {
 }
 
 extern_protocol!(
-    pub unsafe trait UIViewControllerRestoration: IsMainThreadOnly {
+    pub unsafe trait UIViewControllerRestoration: MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[method_id(@__retain_semantics Other viewControllerWithRestorationIdentifierPath:coder:)]
         unsafe fn viewControllerWithRestorationIdentifierPath_coder(
@@ -40,7 +40,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIDataSourceModelAssociation: IsMainThreadOnly {
+    pub unsafe trait UIDataSourceModelAssociation: MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other modelIdentifierForElementAtIndexPath:inView:)]
         unsafe fn modelIdentifierForElementAtIndexPath_inView(
@@ -62,7 +62,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIStateRestoring: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIStateRestoring: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method_id(@__retain_semantics Other restorationParent)]
         unsafe fn restorationParent(
@@ -90,7 +90,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIObjectRestoration: IsMainThreadOnly {
+    pub unsafe trait UIObjectRestoration: MainThreadOnly {
         #[method_id(@__retain_semantics Other objectWithRestorationIdentifierPath:coder:)]
         unsafe fn objectWithRestorationIdentifierPath_coder(
             identifier_components: &NSArray<NSString>,

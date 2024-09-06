@@ -13,7 +13,6 @@ extern_class!(
 
     unsafe impl ClassType for VNCoreMLModel {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -68,7 +67,6 @@ extern_class!(
     unsafe impl ClassType for VNCoreMLRequest {
         #[inherits(VNRequest, NSObject)]
         type Super = VNImageBasedRequest;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -16,7 +16,6 @@ extern_class!(
     unsafe impl ClassType for AMAppleScriptAction {
         #[inherits(AMAction, NSObject)]
         type Super = AMBundleAction;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for UIKeyboardLayoutGuide {
         #[inherits(UILayoutGuide, NSObject)]
         type Super = UITrackingLayoutGuide;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

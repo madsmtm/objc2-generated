@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VZFileHandleNetworkDeviceAttachment {
         #[inherits(NSObject)]
         type Super = VZNetworkDeviceAttachment;
-        type Mutability = InteriorMutable;
     }
 );
 

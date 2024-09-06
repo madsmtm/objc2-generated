@@ -32,7 +32,6 @@ extern_class!(
     unsafe impl ClassType for NSXMLDocument {
         #[inherits(NSObject)]
         type Super = NSXMLNode;
-        type Mutability = InteriorMutable;
     }
 );
 

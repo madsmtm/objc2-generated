@@ -37,7 +37,6 @@ extern_class!(
 
     unsafe impl ClassType for GKChallenge {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -113,7 +112,6 @@ extern_class!(
     unsafe impl ClassType for GKScoreChallenge {
         #[inherits(NSObject)]
         type Super = GKChallenge;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -154,7 +152,6 @@ extern_class!(
     unsafe impl ClassType for GKAchievementChallenge {
         #[inherits(NSObject)]
         type Super = GKChallenge;
-        type Mutability = InteriorMutable;
     }
 );
 

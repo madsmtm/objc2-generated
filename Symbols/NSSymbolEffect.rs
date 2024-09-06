@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for NSSymbolEffectOptions {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -70,7 +69,6 @@ extern_class!(
 
     unsafe impl ClassType for NSSymbolEffect {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -103,7 +101,6 @@ extern_class!(
     unsafe impl ClassType for NSSymbolPulseEffect {
         #[inherits(NSObject)]
         type Super = NSSymbolEffect;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -150,7 +147,6 @@ extern_class!(
     unsafe impl ClassType for NSSymbolBounceEffect {
         #[inherits(NSObject)]
         type Super = NSSymbolEffect;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -203,7 +199,6 @@ extern_class!(
     unsafe impl ClassType for NSSymbolVariableColorEffect {
         #[inherits(NSObject)]
         type Super = NSSymbolEffect;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -262,7 +257,6 @@ extern_class!(
     unsafe impl ClassType for NSSymbolScaleEffect {
         #[inherits(NSObject)]
         type Super = NSSymbolEffect;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -315,7 +309,6 @@ extern_class!(
     unsafe impl ClassType for NSSymbolAppearEffect {
         #[inherits(NSObject)]
         type Super = NSSymbolEffect;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -368,7 +361,6 @@ extern_class!(
     unsafe impl ClassType for NSSymbolDisappearEffect {
         #[inherits(NSObject)]
         type Super = NSSymbolEffect;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -420,7 +412,6 @@ extern_class!(
 
     unsafe impl ClassType for NSSymbolContentTransition {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -453,7 +444,6 @@ extern_class!(
     unsafe impl ClassType for NSSymbolReplaceContentTransition {
         #[inherits(NSObject)]
         type Super = NSSymbolContentTransition;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -509,7 +499,6 @@ extern_class!(
     unsafe impl ClassType for NSSymbolAutomaticContentTransition {
         #[inherits(NSObject)]
         type Super = NSSymbolContentTransition;
-        type Mutability = InteriorMutable;
     }
 );
 

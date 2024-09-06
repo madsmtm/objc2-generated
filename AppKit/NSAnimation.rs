@@ -58,7 +58,6 @@ extern_class!(
 
     unsafe impl ClassType for NSAnimation {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -260,7 +259,6 @@ extern_class!(
     unsafe impl ClassType for NSViewAnimation {
         #[inherits(NSObject)]
         type Super = NSAnimation;
-        type Mutability = InteriorMutable;
     }
 );
 

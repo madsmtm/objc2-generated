@@ -108,7 +108,6 @@ extern_class!(
 
     unsafe impl ClassType for CKShareParticipant {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

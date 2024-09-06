@@ -16,7 +16,6 @@ extern_class!(
     unsafe impl ClassType for VNImageRegistrationRequest {
         #[inherits(VNImageBasedRequest, VNRequest, NSObject)]
         type Super = VNTargetedImageRequest;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -125,7 +124,6 @@ extern_class!(
     unsafe impl ClassType for VNTranslationalImageRegistrationRequest {
         #[inherits(VNTargetedImageRequest, VNImageBasedRequest, VNRequest, NSObject)]
         type Super = VNImageRegistrationRequest;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -242,7 +240,6 @@ extern_class!(
     unsafe impl ClassType for VNHomographicImageRegistrationRequest {
         #[inherits(VNTargetedImageRequest, VNImageBasedRequest, VNRequest, NSObject)]
         type Super = VNImageRegistrationRequest;
-        type Mutability = InteriorMutable;
     }
 );
 

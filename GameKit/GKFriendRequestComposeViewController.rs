@@ -20,7 +20,6 @@ extern_class!(
     unsafe impl ClassType for GKFriendRequestComposeViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
-        type Mutability = MainThreadOnly;
     }
 );
 

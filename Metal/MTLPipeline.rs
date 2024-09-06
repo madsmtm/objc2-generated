@@ -32,7 +32,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLPipelineBufferDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -71,7 +70,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLPipelineBufferDescriptorArray {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

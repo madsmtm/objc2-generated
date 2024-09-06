@@ -10,7 +10,6 @@ extern_class!(
 
     unsafe impl ClassType for NSUnitConverter {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -44,7 +43,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitConverterLinear {
         #[inherits(NSObject)]
         type Super = NSUnitConverter;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -96,7 +94,6 @@ extern_class!(
 
     unsafe impl ClassType for NSUnit {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -141,7 +138,6 @@ extern_class!(
     unsafe impl ClassType for NSDimension {
         #[inherits(NSObject)]
         type Super = NSUnit;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -201,7 +197,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitAcceleration {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -273,7 +268,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitAngle {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -357,7 +351,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitArea {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -465,7 +458,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitConcentrationMass {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -542,7 +534,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitDispersion {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -611,7 +602,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitDuration {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -698,7 +688,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitElectricCharge {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -782,7 +771,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitElectricCurrent {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -863,7 +851,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitElectricPotentialDifference {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -944,7 +931,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitElectricResistance {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1025,7 +1011,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitEnergy {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1106,7 +1091,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitFrequency {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1199,7 +1183,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitFuelEfficiency {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1274,7 +1257,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitInformationStorage {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1445,7 +1427,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitLength {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1577,7 +1558,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitIlluminance {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1646,7 +1626,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitMass {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1760,7 +1739,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitPower {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1859,7 +1837,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitPressure {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1955,7 +1932,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitSpeed {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -2033,7 +2009,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitTemperature {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -2108,7 +2083,6 @@ extern_class!(
     unsafe impl ClassType for NSUnitVolume {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
-        type Mutability = InteriorMutable;
     }
 );
 

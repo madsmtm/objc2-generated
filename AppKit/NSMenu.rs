@@ -51,7 +51,7 @@ extern_class!(
 
     unsafe impl ClassType for NSMenu {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -369,7 +369,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSMenuItemValidation: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSMenuItemValidation: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSMenuItem")]
         #[method(validateMenuItem:)]
         unsafe fn validateMenuItem(&self, menu_item: &NSMenuItem) -> bool;
@@ -379,7 +379,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSMenuDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSMenuDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(menuNeedsUpdate:)]
         unsafe fn menuNeedsUpdate(&self, menu: &NSMenu);

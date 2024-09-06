@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for CMAltitudeData {
         #[inherits(NSObject)]
         type Super = CMLogItem;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -15,7 +15,6 @@ extern_class!(
     unsafe impl ClassType for MLCAdamOptimizer {
         #[inherits(NSObject)]
         type Super = MLCOptimizer;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -41,7 +41,7 @@ extern_class!(
 
     unsafe impl ClassType for NSAlert {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -177,7 +177,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSAlertDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSAlertDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(alertShowHelp:)]
         unsafe fn alertShowHelp(&self, alert: &NSAlert) -> bool;

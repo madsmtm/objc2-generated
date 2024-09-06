@@ -106,7 +106,7 @@ extern_class!(
     unsafe impl ClassType for UIPageViewController {
         #[inherits(UIResponder, NSObject)]
         type Super = UIViewController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -243,7 +243,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait UIPageViewControllerDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
@@ -308,7 +308,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait UIPageViewControllerDataSource:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[method_id(@__retain_semantics Other pageViewController:viewControllerBeforeViewController:)]

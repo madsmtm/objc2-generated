@@ -36,7 +36,7 @@ extern_class!(
 
     unsafe impl ClassType for UIEditMenuConfiguration {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -80,7 +80,7 @@ extern_class!(
 
     unsafe impl ClassType for UIEditMenuInteraction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -131,7 +131,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait UIEditMenuInteractionAnimating:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "block2")]
         #[method(addAnimations:)]

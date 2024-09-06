@@ -108,7 +108,6 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionViewCompositionalLayoutConfiguration {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -177,7 +176,6 @@ extern_class!(
     unsafe impl ClassType for NSCollectionViewCompositionalLayout {
         #[inherits(NSObject)]
         type Super = NSCollectionViewLayout;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -281,7 +279,6 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionLayoutSection {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -378,7 +375,6 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionLayoutItem {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -435,7 +431,6 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionLayoutGroupCustomItem {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -486,7 +481,6 @@ extern_class!(
     unsafe impl ClassType for NSCollectionLayoutGroup {
         #[inherits(NSObject)]
         type Super = NSCollectionLayoutItem;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -587,7 +581,6 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionLayoutDimension {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -642,7 +635,6 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionLayoutSize {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -682,7 +674,6 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionLayoutSpacing {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -725,7 +716,6 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionLayoutEdgeSpacing {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -774,7 +764,6 @@ extern_class!(
     unsafe impl ClassType for NSCollectionLayoutSupplementaryItem {
         #[inherits(NSObject)]
         type Super = NSCollectionLayoutItem;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -847,7 +836,6 @@ extern_class!(
     unsafe impl ClassType for NSCollectionLayoutBoundarySupplementaryItem {
         #[inherits(NSCollectionLayoutItem, NSObject)]
         type Super = NSCollectionLayoutSupplementaryItem;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -943,7 +931,6 @@ extern_class!(
     unsafe impl ClassType for NSCollectionLayoutDecorationItem {
         #[inherits(NSObject)]
         type Super = NSCollectionLayoutItem;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -999,7 +986,6 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionLayoutAnchor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

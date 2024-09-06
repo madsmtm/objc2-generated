@@ -89,7 +89,7 @@ extern_class!(
     unsafe impl ClassType for UIWebView {
         #[inherits(UIResponder, NSObject)]
         type Super = UIView;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -355,7 +355,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIWebViewDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIWebViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated = "No longer supported."]
         #[optional]

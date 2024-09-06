@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for NEFilterFlow {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -74,7 +73,6 @@ extern_class!(
     unsafe impl ClassType for NEFilterBrowserFlow {
         #[inherits(NSObject)]
         type Super = NEFilterFlow;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -121,7 +119,6 @@ extern_class!(
     unsafe impl ClassType for NEFilterSocketFlow {
         #[inherits(NSObject)]
         type Super = NEFilterFlow;
-        type Mutability = InteriorMutable;
     }
 );
 

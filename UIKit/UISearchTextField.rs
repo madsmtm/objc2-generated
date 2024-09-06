@@ -27,7 +27,7 @@ extern_class!(
     unsafe impl ClassType for UISearchTextField {
         #[inherits(UIControl, UIView, UIResponder, NSObject)]
         type Super = UITextField;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -316,7 +316,7 @@ extern_class!(
 
     unsafe impl ClassType for UISearchToken {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -349,7 +349,7 @@ extern_methods!(
 extern_protocol!(
     #[cfg(feature = "UITextField")]
     pub unsafe trait UISearchTextFieldDelegate:
-        UITextFieldDelegate + IsMainThreadOnly
+        UITextFieldDelegate + MainThreadOnly
     {
         #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
         #[optional]
@@ -381,7 +381,7 @@ extern_protocol!(
 
 extern_protocol!(
     #[cfg(feature = "UITextPasteDelegate")]
-    pub unsafe trait UISearchTextFieldPasteItem: UITextPasteItem + IsMainThreadOnly {
+    pub unsafe trait UISearchTextFieldPasteItem: UITextPasteItem + MainThreadOnly {
         #[method(setSearchTokenResult:)]
         unsafe fn setSearchTokenResult(&self, token: &UISearchToken);
     }

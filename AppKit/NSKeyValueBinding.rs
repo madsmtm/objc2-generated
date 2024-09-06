@@ -20,7 +20,6 @@ extern_class!(
 
     unsafe impl ClassType for NSBindingSelectionMarker {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -147,7 +146,7 @@ extern_category!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSEditor: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSEditor: NSObjectProtocol + MainThreadOnly {
         #[method(discardEditing)]
         unsafe fn discardEditing(&self);
 
@@ -170,7 +169,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSEditorRegistration: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSEditorRegistration: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(objectDidBeginEditing:)]
         unsafe fn objectDidBeginEditing(&self, editor: &ProtocolObject<dyn NSEditor>);

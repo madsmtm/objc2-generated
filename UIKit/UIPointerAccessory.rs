@@ -64,7 +64,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPointerAccessory {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

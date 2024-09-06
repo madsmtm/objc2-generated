@@ -228,7 +228,6 @@ extern_class!(
 
     unsafe impl ClassType for HKWorkoutEvent {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -303,7 +302,6 @@ extern_class!(
     unsafe impl ClassType for HKWorkout {
         #[inherits(HKObject, NSObject)]
         type Super = HKSample;
-        type Mutability = InteriorMutable;
     }
 );
 

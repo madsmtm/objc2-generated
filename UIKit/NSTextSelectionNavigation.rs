@@ -128,7 +128,6 @@ extern_class!(
 
     unsafe impl ClassType for NSTextSelectionNavigation {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

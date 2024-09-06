@@ -17,7 +17,7 @@ extern_class!(
     unsafe impl ClassType for UIPickerView {
         #[inherits(UIResponder, NSObject)]
         type Super = UIView;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -165,7 +165,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIPickerViewDataSource: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIPickerViewDataSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(numberOfComponentsInPickerView:)]
         unsafe fn numberOfComponentsInPickerView(&self, picker_view: &UIPickerView) -> NSInteger;
@@ -183,7 +183,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIPickerViewDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIPickerViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
         #[method(pickerView:widthForComponent:)]

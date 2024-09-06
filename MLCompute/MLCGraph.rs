@@ -12,7 +12,6 @@ extern_class!(
 
     unsafe impl ClassType for MLCGraph {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

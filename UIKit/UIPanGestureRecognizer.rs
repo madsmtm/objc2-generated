@@ -56,7 +56,7 @@ extern_class!(
     unsafe impl ClassType for UIPanGestureRecognizer {
         #[inherits(NSObject)]
         type Super = UIGestureRecognizer;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

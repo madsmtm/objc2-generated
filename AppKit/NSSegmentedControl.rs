@@ -91,7 +91,6 @@ extern_class!(
     unsafe impl ClassType for NSSegmentedControl {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
-        type Mutability = MainThreadOnly;
     }
 );
 

@@ -11,7 +11,7 @@ use crate::*;
 extern_protocol!(
     #[cfg(feature = "UIScrollView")]
     pub unsafe trait UITextViewDelegate:
-        NSObjectProtocol + UIScrollViewDelegate + IsMainThreadOnly
+        NSObjectProtocol + UIScrollViewDelegate + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
@@ -248,7 +248,7 @@ extern_class!(
     unsafe impl ClassType for UITextView {
         #[inherits(UIView, UIResponder, NSObject)]
         type Super = UIScrollView;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

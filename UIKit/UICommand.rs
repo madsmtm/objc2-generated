@@ -34,7 +34,7 @@ extern_class!(
 
     unsafe impl ClassType for UICommandAlternate {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -92,7 +92,7 @@ extern_class!(
     unsafe impl ClassType for UICommand {
         #[inherits(NSObject)]
         type Super = UIMenuElement;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

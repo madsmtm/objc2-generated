@@ -69,7 +69,6 @@ extern_class!(
 
     unsafe impl ClassType for GKChallengeEventHandler {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

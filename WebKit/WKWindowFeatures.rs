@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for WKWindowFeatures {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

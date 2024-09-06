@@ -11,7 +11,7 @@ pub type UIPrinterPickerCompletionHandler =
 
 extern_protocol!(
     pub unsafe trait UIPrinterPickerControllerDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
@@ -75,7 +75,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPrinterPickerController {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

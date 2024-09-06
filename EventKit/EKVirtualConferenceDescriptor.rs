@@ -13,7 +13,6 @@ extern_class!(
 
     unsafe impl ClassType for EKVirtualConferenceRoomTypeDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -48,7 +47,6 @@ extern_class!(
 
     unsafe impl ClassType for EKVirtualConferenceURLDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -83,7 +81,6 @@ extern_class!(
 
     unsafe impl ClassType for EKVirtualConferenceDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

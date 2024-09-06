@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for CNChangeHistoryEvent {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -55,7 +54,6 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryDropEverythingEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -93,7 +91,6 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryAddContactEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -138,7 +135,6 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryUpdateContactEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -180,7 +176,6 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryDeleteContactEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -221,7 +216,6 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryAddGroupEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -266,7 +260,6 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryUpdateGroupEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -308,7 +301,6 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryDeleteGroupEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -349,7 +341,6 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryAddMemberToGroupEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -395,7 +386,6 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryRemoveMemberFromGroupEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -441,7 +431,6 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryAddSubgroupToGroupEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -487,7 +476,6 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryRemoveSubgroupFromGroupEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
-        type Mutability = InteriorMutable;
     }
 );
 

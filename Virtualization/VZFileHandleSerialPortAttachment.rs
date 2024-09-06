@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VZFileHandleSerialPortAttachment {
         #[inherits(NSObject)]
         type Super = VZSerialPortAttachment;
-        type Mutability = InteriorMutable;
     }
 );
 

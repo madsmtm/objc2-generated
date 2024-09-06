@@ -15,7 +15,6 @@ extern_class!(
     unsafe impl ClassType for MLCLSTMLayer {
         #[inherits(NSObject)]
         type Super = MLCLayer;
-        type Mutability = InteriorMutable;
     }
 );
 

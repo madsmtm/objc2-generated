@@ -61,7 +61,6 @@ extern_class!(
 
     unsafe impl ClassType for NSSplitViewItem {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

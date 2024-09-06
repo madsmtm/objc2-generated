@@ -66,7 +66,7 @@ extern_class!(
 
     unsafe impl ClassType for UICollectionViewLayoutAttributes {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -192,7 +192,7 @@ extern_class!(
 
     unsafe impl ClassType for UICollectionViewLayoutInvalidationContext {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -280,7 +280,7 @@ extern_class!(
 
     unsafe impl ClassType for UICollectionViewLayout {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

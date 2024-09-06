@@ -8,7 +8,7 @@ use crate::*;
 extern_protocol!(
     #[cfg(feature = "UIPickerView")]
     pub unsafe trait UIPickerViewAccessibilityDelegate:
-        UIPickerViewDelegate + IsMainThreadOnly
+        UIPickerViewDelegate + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
@@ -72,7 +72,7 @@ extern_protocol!(
 extern_protocol!(
     #[cfg(feature = "UIScrollView")]
     pub unsafe trait UIScrollViewAccessibilityDelegate:
-        UIScrollViewDelegate + IsMainThreadOnly
+        UIScrollViewDelegate + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]

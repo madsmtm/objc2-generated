@@ -50,7 +50,6 @@ extern_class!(
 
     unsafe impl ClassType for NEAppProxyFlow {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

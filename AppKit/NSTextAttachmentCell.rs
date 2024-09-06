@@ -127,7 +127,6 @@ extern_class!(
     unsafe impl ClassType for NSTextAttachmentCell {
         #[inherits(NSObject)]
         type Super = NSCell;
-        type Mutability = MainThreadOnly;
     }
 );
 

@@ -15,7 +15,6 @@ extern_class!(
     unsafe impl ClassType for CKFetchRecordChangesOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
-        type Mutability = InteriorMutable;
     }
 );
 

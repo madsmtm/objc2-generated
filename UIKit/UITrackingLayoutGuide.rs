@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for UITrackingLayoutGuide {
         #[inherits(NSObject)]
         type Super = UILayoutGuide;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

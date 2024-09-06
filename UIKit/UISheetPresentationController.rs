@@ -24,7 +24,7 @@ extern "C" {
 
 extern_protocol!(
     pub unsafe trait UISheetPresentationControllerDetentResolutionContext:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "UITraitCollection")]
         #[method_id(@__retain_semantics Other containerTraitCollection)]
@@ -43,7 +43,7 @@ extern_class!(
 
     unsafe impl ClassType for UISheetPresentationControllerDetent {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -95,7 +95,7 @@ extern "C" {
 extern_protocol!(
     #[cfg(feature = "UIPresentationController")]
     pub unsafe trait UISheetPresentationControllerDelegate:
-        UIAdaptivePresentationControllerDelegate + IsMainThreadOnly
+        UIAdaptivePresentationControllerDelegate + MainThreadOnly
     {
         #[optional]
         #[method(sheetPresentationControllerDidChangeSelectedDetentIdentifier:)]
@@ -118,7 +118,7 @@ extern_class!(
     unsafe impl ClassType for UISheetPresentationController {
         #[inherits(NSObject)]
         type Super = UIPresentationController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

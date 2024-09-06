@@ -37,7 +37,6 @@ extern_class!(
     unsafe impl ClassType for CMHighFrequencyHeartRateData {
         #[inherits(NSObject)]
         type Super = CMLogItem;
-        type Mutability = InteriorMutable;
     }
 );
 

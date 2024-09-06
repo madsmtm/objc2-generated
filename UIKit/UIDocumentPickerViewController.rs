@@ -8,7 +8,7 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait UIDocumentPickerDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIDocumentPickerDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
         #[method(documentPicker:didPickDocumentsAtURLs:)]
@@ -74,7 +74,7 @@ extern_class!(
     unsafe impl ClassType for UIDocumentPickerViewController {
         #[inherits(UIResponder, NSObject)]
         type Super = UIViewController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

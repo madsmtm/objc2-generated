@@ -38,7 +38,7 @@ extern_class!(
     unsafe impl ClassType for UICollectionReusableView {
         #[inherits(UIResponder, NSObject)]
         type Super = UIView;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -178,7 +178,7 @@ extern_class!(
     unsafe impl ClassType for UICollectionViewCell {
         #[inherits(UIView, UIResponder, NSObject)]
         type Super = UICollectionReusableView;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

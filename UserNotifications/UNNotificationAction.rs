@@ -34,7 +34,6 @@ extern_class!(
 
     unsafe impl ClassType for UNNotificationAction {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -101,7 +100,6 @@ extern_class!(
     unsafe impl ClassType for UNTextInputNotificationAction {
         #[inherits(NSObject)]
         type Super = UNNotificationAction;
-        type Mutability = InteriorMutable;
     }
 );
 

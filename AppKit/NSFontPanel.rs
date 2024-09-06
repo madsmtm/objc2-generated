@@ -43,7 +43,7 @@ unsafe impl RefEncode for NSFontPanelModeMask {
 }
 
 extern_protocol!(
-    pub unsafe trait NSFontChanging: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSFontChanging: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSFontManager")]
         #[optional]
         #[method(changeFont:)]
@@ -67,7 +67,6 @@ extern_class!(
     unsafe impl ClassType for NSFontPanel {
         #[inherits(NSWindow, NSResponder, NSObject)]
         type Super = NSPanel;
-        type Mutability = MainThreadOnly;
     }
 );
 

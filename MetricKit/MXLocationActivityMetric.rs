@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for MXLocationActivityMetric {
         #[inherits(NSObject)]
         type Super = MXMetric;
-        type Mutability = InteriorMutable;
     }
 );
 

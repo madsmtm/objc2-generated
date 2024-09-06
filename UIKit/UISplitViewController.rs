@@ -183,7 +183,7 @@ extern_class!(
     unsafe impl ClassType for UISplitViewController {
         #[inherits(UIResponder, NSObject)]
         type Super = UIViewController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -451,7 +451,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UISplitViewControllerDelegate: IsMainThreadOnly {
+    pub unsafe trait UISplitViewControllerDelegate: MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
         #[method(splitViewController:willChangeToDisplayMode:)]

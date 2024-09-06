@@ -38,7 +38,6 @@ extern_class!(
     unsafe impl ClassType for NSMassFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
-        type Mutability = InteriorMutable;
     }
 );
 

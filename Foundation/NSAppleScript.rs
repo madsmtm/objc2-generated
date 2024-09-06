@@ -35,7 +35,6 @@ extern_class!(
 
     unsafe impl ClassType for NSAppleScript {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

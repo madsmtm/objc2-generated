@@ -31,7 +31,6 @@ extern_class!(
     unsafe impl ClassType for CAMetalLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
-        type Mutability = InteriorMutable;
     }
 );
 

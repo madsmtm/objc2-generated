@@ -16,7 +16,6 @@ extern_class!(
     unsafe impl ClassType for MKPolygon {
         #[inherits(MKShape, NSObject)]
         type Super = MKMultiPoint;
-        type Mutability = InteriorMutable;
     }
 );
 

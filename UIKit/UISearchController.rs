@@ -29,9 +29,7 @@ unsafe impl RefEncode for UISearchControllerScopeBarActivation {
 }
 
 extern_protocol!(
-    pub unsafe trait UISearchControllerDelegate:
-        NSObjectProtocol + IsMainThreadOnly
-    {
+    pub unsafe trait UISearchControllerDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
         #[method(willPresentSearchController:)]
@@ -88,7 +86,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait UISearchResultsUpdating: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UISearchResultsUpdating: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[method(updateSearchResultsForSearchController:)]
         unsafe fn updateSearchResultsForSearchController(
@@ -122,7 +120,7 @@ extern_class!(
     unsafe impl ClassType for UISearchController {
         #[inherits(UIResponder, NSObject)]
         type Super = UIViewController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

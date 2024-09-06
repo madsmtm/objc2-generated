@@ -15,7 +15,7 @@ extern_class!(
     unsafe impl ClassType for UIDocumentPickerExtensionViewController {
         #[inherits(UIResponder, NSObject)]
         type Super = UIViewController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

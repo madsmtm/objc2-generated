@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for NSDictionaryControllerKeyValuePair {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -70,7 +69,7 @@ extern_class!(
     unsafe impl ClassType for NSDictionaryController {
         #[inherits(NSObjectController, NSController, NSObject)]
         type Super = NSArrayController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

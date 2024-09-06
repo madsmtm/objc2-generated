@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VZVirtioFileSystemDeviceConfiguration {
         #[inherits(NSObject)]
         type Super = VZDirectorySharingDeviceConfiguration;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -11,7 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for UICubicTimingParameters {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -79,7 +79,7 @@ extern_class!(
 
     unsafe impl ClassType for UISpringTimingParameters {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

@@ -24,7 +24,6 @@ extern_class!(
     unsafe impl ClassType for NSStatusBarButton {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSButton;
-        type Mutability = MainThreadOnly;
     }
 );
 

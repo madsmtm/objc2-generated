@@ -56,7 +56,6 @@ extern_class!(
     unsafe impl ClassType for NSDecimalNumber {
         #[inherits(NSValue, NSObject)]
         type Super = NSNumber;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -311,7 +310,6 @@ extern_class!(
 
     unsafe impl ClassType for NSDecimalNumberHandler {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

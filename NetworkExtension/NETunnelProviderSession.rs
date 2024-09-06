@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NETunnelProviderSession {
         #[inherits(NSObject)]
         type Super = NEVPNConnection;
-        type Mutability = InteriorMutable;
     }
 );
 

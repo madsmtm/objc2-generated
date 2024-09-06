@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for CKFetchRecordZoneChangesOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -241,7 +240,6 @@ extern_class!(
 
     unsafe impl ClassType for CKFetchRecordZoneChangesConfiguration {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -304,7 +302,6 @@ extern_class!(
 
     unsafe impl ClassType for CKFetchRecordZoneChangesOptions {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

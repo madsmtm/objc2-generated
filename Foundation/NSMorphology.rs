@@ -240,7 +240,6 @@ extern_class!(
 
     unsafe impl ClassType for NSMorphology {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -329,7 +328,6 @@ extern_class!(
 
     unsafe impl ClassType for NSMorphologyPronoun {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -407,7 +405,6 @@ extern_class!(
 
     unsafe impl ClassType for NSMorphologyCustomPronoun {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

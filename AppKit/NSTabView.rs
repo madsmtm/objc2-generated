@@ -85,7 +85,6 @@ extern_class!(
     unsafe impl ClassType for NSTabView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -303,7 +302,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSTabViewDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSTabViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSTabViewItem", feature = "NSView"))]
         #[optional]
         #[method(tabView:shouldSelectTabViewItem:)]

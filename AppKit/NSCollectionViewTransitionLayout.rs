@@ -16,7 +16,6 @@ extern_class!(
     unsafe impl ClassType for NSCollectionViewTransitionLayout {
         #[inherits(NSObject)]
         type Super = NSCollectionViewLayout;
-        type Mutability = InteriorMutable;
     }
 );
 

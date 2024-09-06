@@ -94,7 +94,6 @@ extern_class!(
 
     unsafe impl ClassType for NSSharingService {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -217,7 +216,7 @@ unsafe impl RefEncode for NSSharingContentScope {
 }
 
 extern_protocol!(
-    pub unsafe trait NSSharingServiceDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSSharingServiceDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(sharingService:willShareItems:)]
         unsafe fn sharingService_willShareItems(
@@ -336,7 +335,6 @@ extern_class!(
 
     unsafe impl ClassType for NSSharingServicePicker {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

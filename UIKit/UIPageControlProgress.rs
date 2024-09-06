@@ -29,7 +29,6 @@ extern_class!(
 
     unsafe impl ClassType for UIPageControlProgress {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -97,7 +96,6 @@ extern_class!(
     unsafe impl ClassType for UIPageControlTimerProgress {
         #[inherits(NSObject)]
         type Super = UIPageControlProgress;
-        type Mutability = InteriorMutable;
     }
 );
 

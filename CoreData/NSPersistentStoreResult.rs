@@ -95,7 +95,6 @@ extern_class!(
 
     unsafe impl ClassType for NSPersistentStoreResult {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -123,7 +122,6 @@ extern_class!(
     unsafe impl ClassType for NSPersistentStoreAsynchronousResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -168,7 +166,6 @@ __inner_extern_class!(
     unsafe impl<ResultType: ?Sized + Message> ClassType for NSAsynchronousFetchResult<ResultType> {
         #[inherits(NSPersistentStoreResult, NSObject)]
         type Super = NSPersistentStoreAsynchronousResult;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -207,7 +204,6 @@ extern_class!(
     unsafe impl ClassType for NSBatchInsertResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -241,7 +237,6 @@ extern_class!(
     unsafe impl ClassType for NSBatchUpdateResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -275,7 +270,6 @@ extern_class!(
     unsafe impl ClassType for NSBatchDeleteResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -309,7 +303,6 @@ extern_class!(
     unsafe impl ClassType for NSPersistentHistoryResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -362,7 +355,6 @@ extern_class!(
     unsafe impl ClassType for NSPersistentCloudKitContainerEventResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
-        type Mutability = InteriorMutable;
     }
 );
 

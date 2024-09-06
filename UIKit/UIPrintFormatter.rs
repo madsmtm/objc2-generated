@@ -11,7 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPrintFormatter {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -100,7 +100,7 @@ extern_class!(
     unsafe impl ClassType for UISimpleTextPrintFormatter {
         #[inherits(NSObject)]
         type Super = UIPrintFormatter;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -179,7 +179,7 @@ extern_class!(
     unsafe impl ClassType for UIMarkupTextPrintFormatter {
         #[inherits(NSObject)]
         type Super = UIPrintFormatter;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -225,7 +225,7 @@ extern_class!(
     unsafe impl ClassType for UIViewPrintFormatter {
         #[inherits(NSObject)]
         type Super = UIPrintFormatter;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

@@ -107,7 +107,6 @@ extern_class!(
 
     unsafe impl ClassType for CLLocationManager {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

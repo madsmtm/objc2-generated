@@ -28,7 +28,6 @@ extern_class!(
 
     unsafe impl ClassType for VNImageRequestHandler {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -84,7 +83,6 @@ extern_class!(
 
     unsafe impl ClassType for VNSequenceRequestHandler {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

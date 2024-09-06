@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for UIDragPreviewTarget {
         #[inherits(NSObject)]
         type Super = UIPreviewTarget;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -72,7 +72,7 @@ extern_class!(
     unsafe impl ClassType for UITargetedDragPreview {
         #[inherits(NSObject)]
         type Super = UITargetedPreview;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

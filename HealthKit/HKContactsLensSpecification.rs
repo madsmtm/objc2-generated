@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for HKContactsLensSpecification {
         #[inherits(NSObject)]
         type Super = HKLensSpecification;
-        type Mutability = InteriorMutable;
     }
 );
 

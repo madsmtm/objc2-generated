@@ -26,7 +26,6 @@ extern_class!(
 
     unsafe impl ClassType for SKAdNetwork {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

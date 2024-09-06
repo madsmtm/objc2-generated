@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NEDNSProxyProviderProtocol {
         #[inherits(NSObject)]
         type Super = NEVPNProtocol;
-        type Mutability = InteriorMutable;
     }
 );
 

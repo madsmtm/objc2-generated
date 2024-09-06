@@ -34,7 +34,6 @@ extern_class!(
 
     unsafe impl ClassType for SKProductSubscriptionPeriod {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -71,7 +70,6 @@ extern_class!(
 
     unsafe impl ClassType for SKProduct {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

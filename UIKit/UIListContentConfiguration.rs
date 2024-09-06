@@ -14,7 +14,7 @@ extern_class!(
 
     unsafe impl ClassType for UIListContentConfiguration {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -202,7 +202,7 @@ extern_class!(
     unsafe impl ClassType for UIListContentView {
         #[inherits(UIResponder, NSObject)]
         type Super = UIView;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

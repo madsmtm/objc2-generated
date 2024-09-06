@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait UIDynamicAnimatorDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIDynamicAnimatorDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(dynamicAnimatorWillResume:)]
         unsafe fn dynamicAnimatorWillResume(&self, animator: &UIDynamicAnimator);
@@ -25,7 +25,6 @@ extern_class!(
 
     unsafe impl ClassType for UIDynamicAnimator {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

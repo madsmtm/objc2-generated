@@ -38,7 +38,6 @@ extern_class!(
 
     unsafe impl ClassType for MLMultiArray {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

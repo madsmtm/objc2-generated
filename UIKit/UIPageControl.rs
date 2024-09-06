@@ -84,7 +84,7 @@ extern_class!(
     unsafe impl ClassType for UIPageControl {
         #[inherits(UIView, UIResponder, NSObject)]
         type Super = UIControl;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

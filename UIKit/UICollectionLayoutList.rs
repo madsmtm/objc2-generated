@@ -88,7 +88,7 @@ extern_class!(
 
     unsafe impl ClassType for UICollectionLayoutListConfiguration {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

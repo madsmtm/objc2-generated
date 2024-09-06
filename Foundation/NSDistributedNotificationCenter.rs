@@ -74,7 +74,6 @@ extern_class!(
     unsafe impl ClassType for NSDistributedNotificationCenter {
         #[inherits(NSObject)]
         type Super = NSNotificationCenter;
-        type Mutability = InteriorMutable;
     }
 );
 

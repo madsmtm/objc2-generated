@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for MLCYOLOLossLayer {
         #[inherits(MLCLayer, NSObject)]
         type Super = MLCLossLayer;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -56,7 +56,7 @@ extern_class!(
     unsafe impl ClassType for UICellConfigurationState {
         #[inherits(NSObject)]
         type Super = UIViewConfigurationState;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

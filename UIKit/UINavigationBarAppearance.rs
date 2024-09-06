@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for UINavigationBarAppearance {
         #[inherits(NSObject)]
         type Super = UIBarAppearance;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

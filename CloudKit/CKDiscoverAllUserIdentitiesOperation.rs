@@ -15,7 +15,6 @@ extern_class!(
     unsafe impl ClassType for CKDiscoverAllUserIdentitiesOperation {
         #[inherits(NSOperation, NSObject)]
         type Super = CKOperation;
-        type Mutability = InteriorMutable;
     }
 );
 

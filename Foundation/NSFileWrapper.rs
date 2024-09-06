@@ -48,7 +48,6 @@ extern_class!(
 
     unsafe impl ClassType for NSFileWrapper {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -58,7 +58,6 @@ extern_class!(
     unsafe impl ClassType for MKDistanceFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
-        type Mutability = InteriorMutable;
     }
 );
 

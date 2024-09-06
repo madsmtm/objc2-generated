@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for UITapGestureRecognizer {
         #[inherits(NSObject)]
         type Super = UIGestureRecognizer;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

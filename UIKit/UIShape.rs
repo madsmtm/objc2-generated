@@ -44,7 +44,6 @@ extern_class!(
 
     unsafe impl ClassType for UIShape {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -140,7 +139,6 @@ extern_class!(
 
     unsafe impl ClassType for UIResolvedShape {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -188,7 +186,6 @@ extern_class!(
 
     unsafe impl ClassType for UIShapeResolutionContext {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

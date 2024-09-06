@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for PHCloudIdentifier {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -59,7 +58,6 @@ extern_class!(
 
     unsafe impl ClassType for PHCloudIdentifierMapping {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -96,7 +94,6 @@ extern_class!(
 
     unsafe impl ClassType for PHLocalIdentifierMapping {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

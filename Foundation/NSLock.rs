@@ -22,7 +22,6 @@ extern_class!(
 
     unsafe impl ClassType for NSLock {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -77,7 +76,6 @@ extern_class!(
 
     unsafe impl ClassType for NSConditionLock {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -151,7 +149,6 @@ extern_class!(
 
     unsafe impl ClassType for NSRecursiveLock {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -199,7 +196,6 @@ extern_class!(
 
     unsafe impl ClassType for NSCondition {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

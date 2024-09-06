@@ -104,7 +104,7 @@ extern_class!(
 
     unsafe impl ClassType for UIEvent {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

@@ -73,7 +73,7 @@ extern_class!(
     unsafe impl ClassType for UITextDropProposal {
         #[inherits(NSObject)]
         type Super = UIDropProposal;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for PHProjectExtensionContext {
         #[inherits(NSObject)]
         type Super = NSExtensionContext;
-        type Mutability = InteriorMutable;
     }
 );
 

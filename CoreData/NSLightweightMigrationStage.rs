@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSLightweightMigrationStage {
         #[inherits(NSObject)]
         type Super = NSMigrationStage;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -13,7 +13,6 @@ extern_class!(
     unsafe impl ClassType for NSListFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
-        type Mutability = InteriorMutable;
     }
 );
 

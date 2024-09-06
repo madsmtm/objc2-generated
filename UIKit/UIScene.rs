@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for UIScene {
         #[inherits(NSObject)]
         type Super = UIResponder;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -90,7 +90,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UISceneDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UISceneDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UIResponder",
             feature = "UISceneOptions",

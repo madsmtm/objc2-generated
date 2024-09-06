@@ -70,7 +70,6 @@ extern_class!(
 
     unsafe impl ClassType for MPNowPlayingInfoLanguageOption {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -128,7 +127,6 @@ extern_class!(
 
     unsafe impl ClassType for MPNowPlayingInfoLanguageOptionGroup {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

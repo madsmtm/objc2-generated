@@ -16,7 +16,7 @@ extern_class!(
     unsafe impl ClassType for UIWindowScene {
         #[inherits(UIResponder, NSObject)]
         type Super = UIScene;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -137,7 +137,7 @@ unsafe impl UITraitEnvironment for UIWindowScene {}
 
 extern_protocol!(
     #[cfg(feature = "UIScene")]
-    pub unsafe trait UIWindowSceneDelegate: UISceneDelegate + IsMainThreadOnly {
+    pub unsafe trait UIWindowSceneDelegate: UISceneDelegate + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "UIWindow"))]
         #[optional]
         #[method_id(@__retain_semantics Other window)]
@@ -242,7 +242,7 @@ extern_class!(
     unsafe impl ClassType for UIWindowSceneDestructionRequestOptions {
         #[inherits(NSObject)]
         type Super = UISceneDestructionRequestOptions;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -281,7 +281,7 @@ extern_class!(
 
     unsafe impl ClassType for UISceneSizeRestrictions {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

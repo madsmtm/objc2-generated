@@ -73,7 +73,6 @@ extern_class!(
 
     unsafe impl ClassType for GKLeaderboard {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

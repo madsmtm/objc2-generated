@@ -11,7 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for UILexiconEntry {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -50,7 +50,7 @@ extern_class!(
 
     unsafe impl ClassType for UILexicon {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

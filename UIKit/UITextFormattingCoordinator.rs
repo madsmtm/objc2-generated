@@ -7,7 +7,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait UITextFormattingCoordinatorDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
         #[method(updateTextAttributesWithConversionHandler:)]
@@ -26,7 +26,7 @@ extern_class!(
 
     unsafe impl ClassType for UITextFormattingCoordinator {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

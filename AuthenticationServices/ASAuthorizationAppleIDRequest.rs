@@ -20,7 +20,6 @@ extern_class!(
     unsafe impl ClassType for ASAuthorizationAppleIDRequest {
         #[inherits(ASAuthorizationRequest, NSObject)]
         type Super = ASAuthorizationOpenIDRequest;
-        type Mutability = InteriorMutable;
     }
 );
 

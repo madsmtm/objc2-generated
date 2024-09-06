@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for SNAudioStreamAnalyzer {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -56,7 +55,6 @@ extern_class!(
 
     unsafe impl ClassType for SNAudioFileAnalyzer {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

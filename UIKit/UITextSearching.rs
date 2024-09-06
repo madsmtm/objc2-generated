@@ -29,7 +29,7 @@ unsafe impl RefEncode for UITextSearchFoundTextStyle {
 }
 
 extern_protocol!(
-    pub unsafe trait UITextSearchAggregator: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UITextSearchAggregator: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other allFoundRanges)]
         unsafe fn allFoundRanges(&self) -> Retained<NSOrderedSet<UITextRange>>;
@@ -62,7 +62,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait UITextSearching: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UITextSearching: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other selectedTextRange)]
         unsafe fn selectedTextRange(&self) -> Option<Retained<UITextRange>>;

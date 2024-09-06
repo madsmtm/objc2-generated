@@ -20,7 +20,6 @@ extern_class!(
     unsafe impl ClassType for GKAchievementViewController {
         #[inherits(NSViewController, NSResponder, NSObject)]
         type Super = GKGameCenterViewController;
-        type Mutability = MainThreadOnly;
     }
 );
 

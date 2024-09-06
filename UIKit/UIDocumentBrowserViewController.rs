@@ -79,7 +79,6 @@ extern_class!(
     unsafe impl ClassType for UIDocumentBrowserViewController {
         #[inherits(UIResponder, NSObject)]
         type Super = UIViewController;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -396,7 +395,7 @@ extern_class!(
 
     unsafe impl ClassType for UIDocumentBrowserTransitionController {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

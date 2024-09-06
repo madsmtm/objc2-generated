@@ -11,7 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for UIToolTipInteraction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -70,7 +70,6 @@ extern_class!(
 
     unsafe impl ClassType for UIToolTipConfiguration {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

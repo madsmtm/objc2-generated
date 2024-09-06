@@ -12,7 +12,6 @@ extern_class!(
     #[cfg(feature = "NSProxy")]
     unsafe impl ClassType for NSProtocolChecker {
         type Super = NSProxy;
-        type Mutability = InteriorMutable;
     }
 );
 

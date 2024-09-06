@@ -8,7 +8,7 @@ use crate::*;
 extern_protocol!(
     #[cfg(feature = "UIPresentationController")]
     pub unsafe trait UIPopoverPresentationControllerDelegate:
-        UIAdaptivePresentationControllerDelegate + IsMainThreadOnly
+        UIAdaptivePresentationControllerDelegate + MainThreadOnly
     {
         #[optional]
         #[method(prepareForPopoverPresentation:)]
@@ -57,7 +57,7 @@ extern_class!(
     unsafe impl ClassType for UIPopoverPresentationController {
         #[inherits(NSObject)]
         type Super = UIPresentationController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

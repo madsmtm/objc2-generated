@@ -31,7 +31,6 @@ extern_class!(
     unsafe impl ClassType for NEFilterDataProvider {
         #[inherits(NEProvider, NSObject)]
         type Super = NEFilterProvider;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -132,7 +131,6 @@ extern_class!(
     unsafe impl ClassType for NEFilterDataVerdict {
         #[inherits(NSObject)]
         type Super = NEFilterVerdict;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -212,7 +210,6 @@ extern_class!(
     unsafe impl ClassType for NEFilterRemediationVerdict {
         #[inherits(NSObject)]
         type Super = NEFilterVerdict;
-        type Mutability = InteriorMutable;
     }
 );
 

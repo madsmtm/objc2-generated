@@ -98,7 +98,6 @@ extern_class!(
 
     unsafe impl ClassType for NSHTTPCookie {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait NSWindowRestoration: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSWindowRestoration: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "NSResponder",
             feature = "NSUserInterfaceItemIdentification",

@@ -39,7 +39,7 @@ extern_class!(
 
     unsafe impl ClassType for UICollectionViewCompositionalLayoutConfiguration {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -117,7 +117,7 @@ extern_class!(
     unsafe impl ClassType for UICollectionViewCompositionalLayout {
         #[inherits(NSObject)]
         type Super = UICollectionViewLayout;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -272,7 +272,7 @@ extern_class!(
 
     unsafe impl ClassType for UICollectionLayoutSectionOrthogonalScrollingProperties {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -322,7 +322,7 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionLayoutSection {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -435,7 +435,7 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionLayoutItem {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -494,7 +494,7 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionLayoutGroupCustomItem {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -546,7 +546,7 @@ extern_class!(
     unsafe impl ClassType for NSCollectionLayoutGroup {
         #[inherits(NSObject)]
         type Super = NSCollectionLayoutItem;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -647,7 +647,7 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionLayoutDimension {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -723,7 +723,7 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionLayoutSize {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -763,7 +763,7 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionLayoutSpacing {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -810,7 +810,7 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionLayoutEdgeSpacing {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -860,7 +860,7 @@ extern_class!(
     unsafe impl ClassType for NSCollectionLayoutSupplementaryItem {
         #[inherits(NSObject)]
         type Super = NSCollectionLayoutItem;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -933,7 +933,7 @@ extern_class!(
     unsafe impl ClassType for NSCollectionLayoutBoundarySupplementaryItem {
         #[inherits(NSCollectionLayoutItem, NSObject)]
         type Super = NSCollectionLayoutSupplementaryItem;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -1032,7 +1032,7 @@ extern_class!(
     unsafe impl ClassType for NSCollectionLayoutDecorationItem {
         #[inherits(NSObject)]
         type Super = NSCollectionLayoutItem;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -1089,7 +1089,7 @@ extern_class!(
 
     unsafe impl ClassType for NSCollectionLayoutAnchor {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -1148,9 +1148,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSCollectionLayoutContainer:
-        NSObjectProtocol + IsMainThreadOnly
-    {
+    pub unsafe trait NSCollectionLayoutContainer: NSObjectProtocol + MainThreadOnly {
         #[method(contentSize)]
         unsafe fn contentSize(&self) -> CGSize;
 
@@ -1171,7 +1169,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSCollectionLayoutEnvironment:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[method_id(@__retain_semantics Other container)]
         unsafe fn container(&self) -> Retained<ProtocolObject<dyn NSCollectionLayoutContainer>>;
@@ -1187,7 +1185,7 @@ extern_protocol!(
 extern_protocol!(
     #[cfg(feature = "UIDynamicBehavior")]
     pub unsafe trait NSCollectionLayoutVisibleItem:
-        NSObjectProtocol + UIDynamicItem + IsMainThreadOnly
+        NSObjectProtocol + UIDynamicItem + MainThreadOnly
     {
         #[method(alpha)]
         unsafe fn alpha(&self) -> CGFloat;

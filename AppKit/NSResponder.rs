@@ -11,7 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for NSResponder {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -247,7 +247,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSStandardKeyBindingResponding:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[optional]
         #[method(insertText:)]

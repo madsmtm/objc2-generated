@@ -83,7 +83,6 @@ extern_class!(
 
     unsafe impl ClassType for NSString {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1068,7 +1067,6 @@ extern_class!(
     unsafe impl ClassType for NSMutableString {
         #[inherits(NSObject)]
         type Super = NSString;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1371,7 +1369,6 @@ extern_class!(
     unsafe impl ClassType for NSSimpleCString {
         #[inherits(NSObject)]
         type Super = NSString;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1417,7 +1414,6 @@ extern_class!(
     unsafe impl ClassType for NSConstantString {
         #[inherits(NSString, NSObject)]
         type Super = NSSimpleCString;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSIncrementalStore {
         #[inherits(NSObject)]
         type Super = NSPersistentStore;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -30,7 +30,6 @@ extern_class!(
 
     unsafe impl ClassType for NSWorkspace {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -245,7 +244,6 @@ extern_class!(
 
     unsafe impl ClassType for NSWorkspaceOpenConfiguration {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -421,7 +419,6 @@ extern_class!(
 
     unsafe impl ClassType for NSWorkspaceAuthorization {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLComputePipelineReflection {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -47,7 +46,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLComputePipelineDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

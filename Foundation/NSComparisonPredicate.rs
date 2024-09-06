@@ -80,7 +80,6 @@ extern_class!(
     unsafe impl ClassType for NSComparisonPredicate {
         #[inherits(NSObject)]
         type Super = NSPredicate;
-        type Mutability = InteriorMutable;
     }
 );
 

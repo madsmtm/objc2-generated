@@ -108,7 +108,6 @@ extern_class!(
 
     unsafe impl ClassType for PHPickerFilter {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -188,7 +187,6 @@ extern_class!(
 
     unsafe impl ClassType for PHPickerUpdateConfiguration {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -240,7 +238,6 @@ extern_class!(
 
     unsafe impl ClassType for PHPickerConfiguration {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -343,7 +340,6 @@ extern_class!(
 
     unsafe impl ClassType for PHPickerResult {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -367,7 +363,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait PHPickerViewControllerDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
@@ -393,7 +389,6 @@ extern_class!(
     unsafe impl ClassType for PHPickerViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
-        type Mutability = MainThreadOnly;
     }
 );
 

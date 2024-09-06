@@ -15,7 +15,6 @@ extern_class!(
     unsafe impl ClassType for CLCircularRegion {
         #[inherits(NSObject)]
         type Super = CLRegion;
-        type Mutability = InteriorMutable;
     }
 );
 

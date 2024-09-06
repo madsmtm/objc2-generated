@@ -34,7 +34,6 @@ extern_class!(
     unsafe impl ClassType for NSCloneCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -98,7 +97,6 @@ extern_class!(
     unsafe impl ClassType for NSCloseCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -157,7 +155,6 @@ extern_class!(
     unsafe impl ClassType for NSCountCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -213,7 +210,6 @@ extern_class!(
     unsafe impl ClassType for NSCreateCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -277,7 +273,6 @@ extern_class!(
     unsafe impl ClassType for NSDeleteCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -341,7 +336,6 @@ extern_class!(
     unsafe impl ClassType for NSExistsCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -397,7 +391,6 @@ extern_class!(
     unsafe impl ClassType for NSGetCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -453,7 +446,6 @@ extern_class!(
     unsafe impl ClassType for NSMoveCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -517,7 +509,6 @@ extern_class!(
     unsafe impl ClassType for NSQuitCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -576,7 +567,6 @@ extern_class!(
     unsafe impl ClassType for NSSetCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
-        type Mutability = InteriorMutable;
     }
 );
 

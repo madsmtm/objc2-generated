@@ -17,7 +17,6 @@ extern_class!(
     unsafe impl ClassType for HKObserverQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
-        type Mutability = InteriorMutable;
     }
 );
 

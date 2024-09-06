@@ -22,7 +22,6 @@ extern_class!(
     unsafe impl ClassType for NSTableHeaderCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
-        type Mutability = MainThreadOnly;
     }
 );
 

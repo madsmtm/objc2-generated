@@ -15,7 +15,6 @@ __inner_extern_class!(
 
     unsafe impl<ValueType: ?Sized + Message> ClassType for CNLabeledValue<ValueType> {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass

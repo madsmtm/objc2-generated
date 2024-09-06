@@ -89,7 +89,6 @@ extern_class!(
 
     unsafe impl ClassType for CALayer {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

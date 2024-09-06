@@ -25,7 +25,6 @@ extern_class!(
     unsafe impl ClassType for MKGradientPolylineRenderer {
         #[inherits(MKOverlayPathRenderer, MKOverlayRenderer, NSObject)]
         type Super = MKPolylineRenderer;
-        type Mutability = InteriorMutable;
     }
 );
 

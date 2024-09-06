@@ -15,7 +15,6 @@ extern_class!(
 
     unsafe impl ClassType for MKLocalSearch {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

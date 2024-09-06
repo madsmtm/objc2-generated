@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VZVirtioNetworkDeviceConfiguration {
         #[inherits(NSObject)]
         type Super = VZNetworkDeviceConfiguration;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for CMPedometerData {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -94,7 +93,6 @@ extern_class!(
 
     unsafe impl ClassType for CMPedometerEvent {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -143,7 +141,6 @@ extern_class!(
 
     unsafe impl ClassType for CMPedometer {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

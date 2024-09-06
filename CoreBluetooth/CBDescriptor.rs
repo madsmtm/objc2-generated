@@ -13,7 +13,6 @@ extern_class!(
     unsafe impl ClassType for CBDescriptor {
         #[inherits(NSObject)]
         type Super = CBAttribute;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -59,7 +58,6 @@ extern_class!(
     unsafe impl ClassType for CBMutableDescriptor {
         #[inherits(CBAttribute, NSObject)]
         type Super = CBDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 

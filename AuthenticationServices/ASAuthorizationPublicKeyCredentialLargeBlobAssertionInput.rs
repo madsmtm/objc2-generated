@@ -30,7 +30,6 @@ extern_class!(
 
     unsafe impl ClassType for ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

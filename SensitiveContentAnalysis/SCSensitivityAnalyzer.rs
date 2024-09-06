@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for SCSensitivityAnalysis {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -66,7 +65,6 @@ extern_class!(
 
     unsafe impl ClassType for SCSensitivityAnalyzer {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

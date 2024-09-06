@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for NISession {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -110,7 +109,6 @@ extern_class!(
 
     unsafe impl ClassType for NIAlgorithmConvergence {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

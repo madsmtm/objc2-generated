@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for UIImageReaderConfiguration {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -68,7 +67,6 @@ extern_class!(
 
     unsafe impl ClassType for UIImageReader {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

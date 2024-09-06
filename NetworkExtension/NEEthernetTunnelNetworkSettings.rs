@@ -20,7 +20,6 @@ extern_class!(
     unsafe impl ClassType for NEEthernetTunnelNetworkSettings {
         #[inherits(NETunnelNetworkSettings, NSObject)]
         type Super = NEPacketTunnelNetworkSettings;
-        type Mutability = InteriorMutable;
     }
 );
 

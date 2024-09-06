@@ -47,7 +47,7 @@ unsafe impl RefEncode for UIGuidedAccessRestrictionState {
 
 extern_protocol!(
     pub unsafe trait UIGuidedAccessRestrictionDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[method_id(@__retain_semantics Other guidedAccessRestrictionIdentifiers)]
         unsafe fn guidedAccessRestrictionIdentifiers(&self) -> Option<Retained<NSArray<NSString>>>;

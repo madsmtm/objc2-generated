@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSPortCoder {
         #[inherits(NSObject)]
         type Super = NSCoder;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VZNVMExpressControllerDeviceConfiguration {
         #[inherits(NSObject)]
         type Super = VZStorageDeviceConfiguration;
-        type Mutability = InteriorMutable;
     }
 );
 

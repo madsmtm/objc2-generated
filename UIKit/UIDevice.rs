@@ -63,7 +63,7 @@ extern_class!(
 
     unsafe impl ClassType for UIDevice {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -149,7 +149,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIInputViewAudioFeedback: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIInputViewAudioFeedback: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(enableInputClicksWhenVisible)]
         unsafe fn enableInputClicksWhenVisible(&self) -> bool;

@@ -12,7 +12,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPopoverController {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -166,9 +166,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIPopoverControllerDelegate:
-        NSObjectProtocol + IsMainThreadOnly
-    {
+    pub unsafe trait UIPopoverControllerDelegate: NSObjectProtocol + MainThreadOnly {
         #[deprecated]
         #[optional]
         #[method(popoverControllerShouldDismissPopover:)]

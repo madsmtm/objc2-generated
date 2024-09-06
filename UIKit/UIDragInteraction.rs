@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait UIDragAnimating: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIDragAnimating: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "block2")]
         #[method(addAnimations:)]
         unsafe fn addAnimations(&self, animations: &block2::Block<dyn Fn()>);
@@ -25,7 +25,7 @@ extern_class!(
 
     unsafe impl ClassType for UIDragInteraction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -74,7 +74,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIDragInteractionDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIDragInteractionDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIDragItem", feature = "UIDragSession"))]
         #[method_id(@__retain_semantics Other dragInteraction:itemsForBeginningSession:)]
         unsafe fn dragInteraction_itemsForBeginningSession(

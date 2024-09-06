@@ -57,7 +57,6 @@ extern_class!(
     unsafe impl ClassType for NSBrowser {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -564,7 +563,7 @@ extern "C" {
 }
 
 extern_protocol!(
-    pub unsafe trait NSBrowserDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSBrowserDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:numberOfRowsInColumn:)]

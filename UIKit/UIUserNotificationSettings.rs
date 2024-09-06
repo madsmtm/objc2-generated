@@ -116,7 +116,7 @@ extern_class!(
 
     unsafe impl ClassType for UIUserNotificationSettings {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -160,7 +160,7 @@ extern_class!(
 
     unsafe impl ClassType for UIUserNotificationCategory {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -220,7 +220,7 @@ extern_class!(
     unsafe impl ClassType for UIMutableUserNotificationCategory {
         #[inherits(NSObject)]
         type Super = UIUserNotificationCategory;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -291,7 +291,7 @@ extern_class!(
 
     unsafe impl ClassType for UIUserNotificationAction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -363,7 +363,7 @@ extern_class!(
     unsafe impl ClassType for UIMutableUserNotificationAction {
         #[inherits(NSObject)]
         type Super = UIUserNotificationAction;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

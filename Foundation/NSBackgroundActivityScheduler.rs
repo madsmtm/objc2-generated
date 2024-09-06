@@ -33,7 +33,6 @@ extern_class!(
 
     unsafe impl ClassType for NSBackgroundActivityScheduler {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

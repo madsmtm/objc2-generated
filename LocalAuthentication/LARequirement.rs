@@ -10,7 +10,6 @@ extern_class!(
 
     unsafe impl ClassType for LAAuthenticationRequirement {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -51,7 +50,6 @@ extern_class!(
 
     unsafe impl ClassType for LABiometryFallbackRequirement {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

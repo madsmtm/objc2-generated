@@ -45,7 +45,6 @@ extern_class!(
 
     unsafe impl ClassType for NSGlyphGenerator {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

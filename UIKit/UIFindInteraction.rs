@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait UIFindInteractionDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIFindInteractionDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIFindSession", feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other findInteraction:sessionForView:)]
         unsafe fn findInteraction_sessionForView(
@@ -43,7 +43,7 @@ extern_class!(
 
     unsafe impl ClassType for UIFindInteraction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

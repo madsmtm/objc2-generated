@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSTableRowView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
-        type Mutability = MainThreadOnly;
     }
 );
 

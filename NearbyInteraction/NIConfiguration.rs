@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for NIDiscoveryToken {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -48,7 +47,6 @@ extern_class!(
 
     unsafe impl ClassType for NIConfiguration {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -81,7 +79,6 @@ extern_class!(
     unsafe impl ClassType for NINearbyPeerConfiguration {
         #[inherits(NSObject)]
         type Super = NIConfiguration;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -138,7 +135,6 @@ extern_class!(
     unsafe impl ClassType for NINearbyAccessoryConfiguration {
         #[inherits(NSObject)]
         type Super = NIConfiguration;
-        type Mutability = InteriorMutable;
     }
 );
 

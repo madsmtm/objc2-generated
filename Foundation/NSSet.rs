@@ -14,7 +14,6 @@ __inner_extern_class!(
 
     unsafe impl<ObjectType: ?Sized + Message> ClassType for NSSet<ObjectType> {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -286,7 +285,6 @@ __inner_extern_class!(
     unsafe impl<ObjectType: ?Sized + Message> ClassType for NSMutableSet<ObjectType> {
         #[inherits(NSObject)]
         type Super = NSSet<ObjectType>;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -414,7 +412,6 @@ __inner_extern_class!(
     unsafe impl<ObjectType: ?Sized + Message> ClassType for NSCountedSet<ObjectType> {
         #[inherits(NSSet<ObjectType, >, NSObject)]
         type Super = NSMutableSet<ObjectType>;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass

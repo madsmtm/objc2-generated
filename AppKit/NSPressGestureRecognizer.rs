@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSPressGestureRecognizer {
         #[inherits(NSObject)]
         type Super = NSGestureRecognizer;
-        type Mutability = MainThreadOnly;
     }
 );
 

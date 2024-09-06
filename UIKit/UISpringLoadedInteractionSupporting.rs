@@ -6,7 +6,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait UISpringLoadedInteractionSupporting:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[method(isSpringLoaded)]
         unsafe fn isSpringLoaded(&self) -> bool;

@@ -17,7 +17,6 @@ extern_class!(
     unsafe impl ClassType for DOMObject {
         #[inherits(NSObject)]
         type Super = WebScriptObject;
-        type Mutability = InteriorMutable;
     }
 );
 

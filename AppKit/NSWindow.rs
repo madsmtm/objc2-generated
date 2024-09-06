@@ -378,7 +378,7 @@ extern_class!(
     unsafe impl ClassType for NSWindow {
         #[inherits(NSObject)]
         type Super = NSResponder;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -1573,7 +1573,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSWindowDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSWindowDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(windowShouldClose:)]

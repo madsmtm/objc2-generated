@@ -20,7 +20,6 @@ extern_class!(
 
     unsafe impl ClassType for NSSound {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -179,7 +178,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSSoundDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSSoundDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(sound:didFinishPlaying:)]
         unsafe fn sound_didFinishPlaying(&self, sound: &NSSound, flag: bool);

@@ -18,7 +18,6 @@ extern_class!(
 
     unsafe impl ClassType for MKLocalPointsOfInterestRequest {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

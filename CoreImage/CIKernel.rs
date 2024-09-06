@@ -14,7 +14,6 @@ extern_class!(
 
     unsafe impl ClassType for CIKernel {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -88,7 +87,6 @@ extern_class!(
     unsafe impl ClassType for CIColorKernel {
         #[inherits(NSObject)]
         type Super = CIKernel;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -147,7 +145,6 @@ extern_class!(
     unsafe impl ClassType for CIWarpKernel {
         #[inherits(NSObject)]
         type Super = CIKernel;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -208,7 +205,6 @@ extern_class!(
     unsafe impl ClassType for CIBlendKernel {
         #[inherits(CIKernel, NSObject)]
         type Super = CIColorKernel;
-        type Mutability = InteriorMutable;
     }
 );
 

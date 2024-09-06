@@ -18,7 +18,6 @@ extern_class!(
     unsafe impl ClassType for UIWindowSceneGeometryPreferencesVision {
         #[inherits(NSObject)]
         type Super = UIWindowSceneGeometryPreferences;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -32,7 +32,6 @@ extern_class!(
 
     unsafe impl ClassType for NEDNSSettings {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -106,7 +105,6 @@ extern_class!(
     unsafe impl ClassType for NEDNSOverTLSSettings {
         #[inherits(NSObject)]
         type Super = NEDNSSettings;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -167,7 +165,6 @@ extern_class!(
     unsafe impl ClassType for NEDNSOverHTTPSSettings {
         #[inherits(NSObject)]
         type Super = NEDNSSettings;
-        type Mutability = InteriorMutable;
     }
 );
 

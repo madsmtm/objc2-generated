@@ -65,7 +65,7 @@ extern_class!(
     unsafe impl ClassType for UIMenu {
         #[inherits(NSObject)]
         type Super = UIMenuElement;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

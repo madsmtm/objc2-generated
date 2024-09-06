@@ -16,7 +16,6 @@ extern_class!(
 
     unsafe impl ClassType for VNRequest {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -129,7 +128,6 @@ extern_class!(
     unsafe impl ClassType for VNImageBasedRequest {
         #[inherits(NSObject)]
         type Super = VNRequest;
-        type Mutability = InteriorMutable;
     }
 );
 

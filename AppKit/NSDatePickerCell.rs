@@ -77,7 +77,6 @@ extern_class!(
     unsafe impl ClassType for NSDatePickerCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -246,7 +245,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSDatePickerCellDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSDatePickerCellDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
         #[optional]
         #[method(datePickerCell:validateProposedDateValue:timeInterval:)]

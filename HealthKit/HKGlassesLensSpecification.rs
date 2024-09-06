@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for HKGlassesLensSpecification {
         #[inherits(NSObject)]
         type Super = HKLensSpecification;
-        type Mutability = InteriorMutable;
     }
 );
 

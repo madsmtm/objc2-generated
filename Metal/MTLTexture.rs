@@ -93,7 +93,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLSharedTextureHandle {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -179,7 +178,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLTextureDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

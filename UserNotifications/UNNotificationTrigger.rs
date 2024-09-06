@@ -13,7 +13,6 @@ extern_class!(
 
     unsafe impl ClassType for UNNotificationTrigger {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -54,7 +53,6 @@ extern_class!(
     unsafe impl ClassType for UNPushNotificationTrigger {
         #[inherits(NSObject)]
         type Super = UNNotificationTrigger;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -97,7 +95,6 @@ extern_class!(
     unsafe impl ClassType for UNTimeIntervalNotificationTrigger {
         #[inherits(NSObject)]
         type Super = UNNotificationTrigger;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -152,7 +149,6 @@ extern_class!(
     unsafe impl ClassType for UNCalendarNotificationTrigger {
         #[inherits(NSObject)]
         type Super = UNNotificationTrigger;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -207,7 +203,6 @@ extern_class!(
     unsafe impl ClassType for UNLocationNotificationTrigger {
         #[inherits(NSObject)]
         type Super = UNNotificationTrigger;
-        type Mutability = InteriorMutable;
     }
 );
 

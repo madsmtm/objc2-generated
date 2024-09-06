@@ -82,7 +82,7 @@ extern_class!(
     unsafe impl ClassType for UITextField {
         #[inherits(UIView, UIResponder, NSObject)]
         type Super = UIControl;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -510,7 +510,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UITextFieldDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UITextFieldDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
         #[optional]
         #[method(textFieldShouldBeginEditing:)]

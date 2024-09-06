@@ -22,7 +22,6 @@ extern_class!(
     unsafe impl ClassType for HKCumulativeQuantitySample {
         #[inherits(HKSample, HKObject, NSObject)]
         type Super = HKQuantitySample;
-        type Mutability = InteriorMutable;
     }
 );
 

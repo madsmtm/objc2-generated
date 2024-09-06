@@ -31,7 +31,7 @@ unsafe impl RefEncode for UICloudSharingPermissionOptions {
 
 extern_protocol!(
     pub unsafe trait UICloudSharingControllerDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[method(cloudSharingController:failedToSaveShareWithError:)]
@@ -87,7 +87,7 @@ extern_class!(
     unsafe impl ClassType for UICloudSharingController {
         #[inherits(UIResponder, NSObject)]
         type Super = UIViewController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

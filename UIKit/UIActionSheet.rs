@@ -49,7 +49,7 @@ extern_class!(
     unsafe impl ClassType for UIActionSheet {
         #[inherits(UIResponder, NSObject)]
         type Super = UIView;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -237,7 +237,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIActionSheetDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIActionSheetDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated = "Use UIAlertController instead."]
         #[optional]

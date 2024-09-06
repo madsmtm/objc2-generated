@@ -51,7 +51,7 @@ extern "C" {
 
 extern_protocol!(
     pub unsafe trait UIActivityItemsConfigurationReading:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[method_id(@__retain_semantics Other itemProvidersForActivityItemsConfiguration)]
         unsafe fn itemProvidersForActivityItemsConfiguration(

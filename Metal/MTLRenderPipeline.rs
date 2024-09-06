@@ -225,7 +225,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLRenderPipelineColorAttachmentDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -317,7 +316,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLRenderPipelineReflection {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -379,7 +377,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLRenderPipelineDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -692,7 +689,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLRenderPipelineFunctionsDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -857,7 +853,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLRenderPipelineColorAttachmentDescriptorArray {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -897,7 +892,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLTileRenderPipelineColorAttachmentDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -938,7 +932,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLTileRenderPipelineColorAttachmentDescriptorArray {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -978,7 +971,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLTileRenderPipelineDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -1107,7 +1099,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLMeshRenderPipelineDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -86,7 +86,6 @@ extern_class!(
     unsafe impl ClassType for UIActivityItemProvider {
         #[inherits(NSObject)]
         type Super = NSOperation;
-        type Mutability = InteriorMutable;
     }
 );
 

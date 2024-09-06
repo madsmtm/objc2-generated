@@ -52,7 +52,6 @@ extern_class!(
 
     unsafe impl ClassType for GCController {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

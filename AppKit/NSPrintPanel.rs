@@ -77,7 +77,7 @@ extern "C" {
 }
 
 extern_protocol!(
-    pub unsafe trait NSPrintPanelAccessorizing: IsMainThreadOnly {
+    pub unsafe trait NSPrintPanelAccessorizing: MainThreadOnly {
         #[method_id(@__retain_semantics Other localizedSummaryItems)]
         unsafe fn localizedSummaryItems(
             &self,
@@ -97,7 +97,7 @@ extern_class!(
 
     unsafe impl ClassType for NSPrintPanel {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

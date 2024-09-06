@@ -177,7 +177,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -238,7 +237,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -278,7 +276,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLAccelerationStructurePassDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

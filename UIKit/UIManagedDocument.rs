@@ -16,7 +16,7 @@ extern_class!(
     unsafe impl ClassType for UIManagedDocument {
         #[inherits(NSObject)]
         type Super = UIDocument;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

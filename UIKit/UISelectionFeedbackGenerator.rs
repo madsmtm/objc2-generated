@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for UISelectionFeedbackGenerator {
         #[inherits(NSObject)]
         type Super = UIFeedbackGenerator;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

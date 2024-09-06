@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for UIWindowSceneProminentPlacement {
         #[inherits(NSObject)]
         type Super = UIWindowScenePlacement;
-        type Mutability = InteriorMutable;
     }
 );
 

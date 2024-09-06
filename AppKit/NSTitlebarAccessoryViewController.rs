@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSTitlebarAccessoryViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
-        type Mutability = MainThreadOnly;
     }
 );
 

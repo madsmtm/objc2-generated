@@ -74,7 +74,6 @@ extern_class!(
 
     unsafe impl ClassType for PHPhotoLibrary {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

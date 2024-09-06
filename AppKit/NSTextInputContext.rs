@@ -13,7 +13,7 @@ extern_class!(
 
     unsafe impl ClassType for NSTextInputContext {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

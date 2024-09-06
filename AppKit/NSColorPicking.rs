@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait NSColorPickingDefault: IsMainThreadOnly {
+    pub unsafe trait NSColorPickingDefault: MainThreadOnly {
         #[cfg(all(
             feature = "NSColorPanel",
             feature = "NSPanel",
@@ -66,7 +66,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSColorPickingCustom: NSColorPickingDefault + IsMainThreadOnly {
+    pub unsafe trait NSColorPickingCustom: NSColorPickingDefault + MainThreadOnly {
         #[cfg(feature = "NSColorPanel")]
         #[method(supportsMode:)]
         unsafe fn supportsMode(&self, mode: NSColorPanelMode) -> bool;

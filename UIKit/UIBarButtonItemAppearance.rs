@@ -11,7 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for UIBarButtonItemStateAppearance {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -71,7 +71,7 @@ extern_class!(
 
     unsafe impl ClassType for UIBarButtonItemAppearance {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

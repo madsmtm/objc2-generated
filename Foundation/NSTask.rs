@@ -29,7 +29,6 @@ extern_class!(
 
     unsafe impl ClassType for NSTask {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

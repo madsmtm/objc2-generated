@@ -144,7 +144,7 @@ extern_class!(
 
     unsafe impl ClassType for NSLayoutConstraint {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -260,7 +260,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UILayoutSupport: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UILayoutSupport: NSObjectProtocol + MainThreadOnly {
         #[method(length)]
         unsafe fn length(&self) -> CGFloat;
 

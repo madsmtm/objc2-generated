@@ -53,7 +53,7 @@ extern_class!(
 
     unsafe impl ClassType for NSPrintOperation {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

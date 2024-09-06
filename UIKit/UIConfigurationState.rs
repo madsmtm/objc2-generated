@@ -10,7 +10,7 @@ pub type UIConfigurationStateCustomKey = NSString;
 
 extern_protocol!(
     pub unsafe trait UIConfigurationState:
-        NSCopying + NSObjectProtocol + NSSecureCoding + IsMainThreadOnly
+        NSCopying + NSObjectProtocol + NSSecureCoding + MainThreadOnly
     {
         #[cfg(feature = "UITraitCollection")]
         #[method_id(@__retain_semantics Init initWithTraitCollection:)]

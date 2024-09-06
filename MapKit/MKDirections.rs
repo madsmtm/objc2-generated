@@ -17,7 +17,6 @@ extern_class!(
 
     unsafe impl ClassType for MKDirections {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

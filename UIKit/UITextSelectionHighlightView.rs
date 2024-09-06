@@ -8,7 +8,7 @@ use crate::*;
 extern_protocol!(
     #[cfg(feature = "UIView")]
     pub unsafe trait UITextSelectionHighlightView:
-        UICoordinateSpace + IsMainThreadOnly
+        UICoordinateSpace + MainThreadOnly
     {
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other selectionRects)]

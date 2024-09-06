@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait UISearchSuggestion: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UISearchSuggestion: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other localizedSuggestion)]
         unsafe fn localizedSuggestion(&self) -> Option<Retained<NSString>>;
 
@@ -38,7 +38,7 @@ extern_class!(
 
     unsafe impl ClassType for UISearchSuggestionItem {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

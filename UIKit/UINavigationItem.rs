@@ -93,7 +93,7 @@ unsafe impl RefEncode for UINavigationItemStyle {
 
 extern_protocol!(
     pub unsafe trait UINavigationItemRenameDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[method(navigationItem:didEndRenamingWithTitle:)]
         unsafe fn navigationItem_didEndRenamingWithTitle(
@@ -136,7 +136,7 @@ extern_class!(
 
     unsafe impl ClassType for UINavigationItem {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

@@ -11,7 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPointerInteraction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -57,7 +57,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait UIPointerInteractionDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "UIPointerRegion")]
         #[optional]
@@ -112,7 +112,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPointerRegionRequest {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -142,7 +142,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait UIPointerInteractionAnimating:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "block2")]
         #[method(addAnimations:)]

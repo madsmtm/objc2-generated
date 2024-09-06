@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait UIUserActivityRestoring: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIUserActivityRestoring: NSObjectProtocol + MainThreadOnly {
         #[method(restoreUserActivityState:)]
         unsafe fn restoreUserActivityState(&self, user_activity: &NSUserActivity);
     }

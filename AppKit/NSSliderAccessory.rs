@@ -11,7 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for NSSliderAccessory {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -69,7 +69,7 @@ extern_class!(
 
     unsafe impl ClassType for NSSliderAccessoryBehavior {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for CKLocationSortDescriptor {
         #[inherits(NSObject)]
         type Super = NSSortDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 

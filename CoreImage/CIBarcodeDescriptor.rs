@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for CIBarcodeDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -72,7 +71,6 @@ extern_class!(
     unsafe impl ClassType for CIQRCodeDescriptor {
         #[inherits(NSObject)]
         type Super = CIBarcodeDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -139,7 +137,6 @@ extern_class!(
     unsafe impl ClassType for CIAztecCodeDescriptor {
         #[inherits(NSObject)]
         type Super = CIBarcodeDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -206,7 +203,6 @@ extern_class!(
     unsafe impl ClassType for CIPDF417CodeDescriptor {
         #[inherits(NSObject)]
         type Super = CIBarcodeDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -294,7 +290,6 @@ extern_class!(
     unsafe impl ClassType for CIDataMatrixCodeDescriptor {
         #[inherits(NSObject)]
         type Super = CIBarcodeDescriptor;
-        type Mutability = InteriorMutable;
     }
 );
 

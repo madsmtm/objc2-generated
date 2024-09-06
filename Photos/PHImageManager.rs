@@ -81,7 +81,6 @@ extern_class!(
 
     unsafe impl ClassType for PHImageRequestOptions {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -164,7 +163,6 @@ extern_class!(
 
     unsafe impl ClassType for PHLivePhotoRequestOptions {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -269,7 +267,6 @@ extern_class!(
 
     unsafe impl ClassType for PHVideoRequestOptions {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -356,7 +353,6 @@ extern_class!(
 
     unsafe impl ClassType for PHImageManager {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -425,7 +421,6 @@ extern_class!(
     unsafe impl ClassType for PHCachingImageManager {
         #[inherits(NSObject)]
         type Super = PHImageManager;
-        type Mutability = InteriorMutable;
     }
 );
 

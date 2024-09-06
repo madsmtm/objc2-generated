@@ -13,7 +13,7 @@ extern_class!(
 
     unsafe impl ClassType for NSTouchBar {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -152,7 +152,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSTouchBarDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSTouchBarDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSTouchBarItem")]
         #[optional]
         #[method_id(@__retain_semantics Other touchBar:makeItemForIdentifier:)]
@@ -167,7 +167,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSTouchBarProvider: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSTouchBarProvider: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other touchBar)]
         unsafe fn touchBar(&self) -> Option<Retained<NSTouchBar>>;
     }

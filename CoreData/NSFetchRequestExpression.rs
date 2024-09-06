@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSFetchRequestExpression {
         #[inherits(NSObject)]
         type Super = NSExpression;
-        type Mutability = InteriorMutable;
     }
 );
 

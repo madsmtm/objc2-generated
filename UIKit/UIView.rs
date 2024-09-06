@@ -263,7 +263,7 @@ unsafe impl RefEncode for UISemanticContentAttribute {
 }
 
 extern_protocol!(
-    pub unsafe trait UICoordinateSpace: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UICoordinateSpace: NSObjectProtocol + MainThreadOnly {
         #[method(convertPoint:toCoordinateSpace:)]
         fn convertPoint_toCoordinateSpace(
             &self,
@@ -308,7 +308,7 @@ extern_class!(
     unsafe impl ClassType for UIView {
         #[inherits(NSObject)]
         type Super = UIResponder;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

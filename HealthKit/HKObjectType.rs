@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for HKObjectType {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -109,7 +108,6 @@ extern_class!(
     unsafe impl ClassType for HKCharacteristicType {
         #[inherits(NSObject)]
         type Super = HKObjectType;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -156,7 +154,6 @@ extern_class!(
     unsafe impl ClassType for HKSampleType {
         #[inherits(NSObject)]
         type Super = HKObjectType;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -218,7 +215,6 @@ extern_class!(
     unsafe impl ClassType for HKCategoryType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -265,7 +261,6 @@ extern_class!(
     unsafe impl ClassType for HKCorrelationType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -312,7 +307,6 @@ extern_class!(
     unsafe impl ClassType for HKDocumentType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -359,7 +353,6 @@ extern_class!(
     unsafe impl ClassType for HKQuantityType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -414,7 +407,6 @@ extern_class!(
     unsafe impl ClassType for HKWorkoutType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -461,7 +453,6 @@ extern_class!(
     unsafe impl ClassType for HKSeriesType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -514,7 +505,6 @@ extern_class!(
     unsafe impl ClassType for HKActivitySummaryType {
         #[inherits(NSObject)]
         type Super = HKObjectType;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -561,7 +551,6 @@ extern_class!(
     unsafe impl ClassType for HKAudiogramSampleType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -608,7 +597,6 @@ extern_class!(
     unsafe impl ClassType for HKElectrocardiogramType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -655,7 +643,6 @@ extern_class!(
     unsafe impl ClassType for HKPrescriptionType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
-        type Mutability = InteriorMutable;
     }
 );
 

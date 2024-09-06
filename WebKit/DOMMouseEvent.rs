@@ -25,7 +25,6 @@ extern_class!(
     unsafe impl ClassType for DOMMouseEvent {
         #[inherits(DOMEvent, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMUIEvent;
-        type Mutability = InteriorMutable;
     }
 );
 

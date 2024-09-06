@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for CBService {
         #[inherits(NSObject)]
         type Super = CBAttribute;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -67,7 +66,6 @@ extern_class!(
     unsafe impl ClassType for CBMutableService {
         #[inherits(CBAttribute, NSObject)]
         type Super = CBService;
-        type Mutability = InteriorMutable;
     }
 );
 

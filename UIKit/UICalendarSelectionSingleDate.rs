@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for UICalendarSelectionSingleDate {
         #[inherits(NSObject)]
         type Super = UICalendarSelection;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

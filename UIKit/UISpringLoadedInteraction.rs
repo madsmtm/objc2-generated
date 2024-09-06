@@ -34,7 +34,7 @@ extern_class!(
 
     unsafe impl ClassType for UISpringLoadedInteraction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -91,7 +91,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait UISpringLoadedInteractionBehavior:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[method(shouldAllowInteraction:withContext:)]
         unsafe fn shouldAllowInteraction_withContext(
@@ -110,7 +110,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait UISpringLoadedInteractionEffect:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[method(interaction:didChangeWithContext:)]
         unsafe fn interaction_didChangeWithContext(
@@ -125,7 +125,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait UISpringLoadedInteractionContext:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[method(state)]
         unsafe fn state(&self) -> UISpringLoadedInteractionEffectState;

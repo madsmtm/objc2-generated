@@ -67,7 +67,7 @@ extern_category!(
 
 extern_protocol!(
     pub unsafe trait UIAccessibilityContainerDataTableCell:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[method(accessibilityRowRange)]
         unsafe fn accessibilityRowRange(&self) -> NSRange;
@@ -81,7 +81,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait UIAccessibilityContainerDataTable:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[method_id(@__retain_semantics Other accessibilityDataTableCellElementForRow:column:)]
         unsafe fn accessibilityDataTableCellElementForRow_column(

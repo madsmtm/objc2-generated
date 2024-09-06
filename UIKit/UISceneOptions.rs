@@ -15,7 +15,7 @@ extern_class!(
 
     unsafe impl ClassType for UISceneConnectionOptions {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -62,7 +62,7 @@ extern_class!(
 
     unsafe impl ClassType for UISceneOpenURLOptions {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -97,7 +97,7 @@ extern_class!(
 
     unsafe impl ClassType for UISceneOpenExternalURLOptions {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -161,7 +161,7 @@ extern_class!(
 
     unsafe impl ClassType for UISceneActivationRequestOptions {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -205,7 +205,7 @@ extern_class!(
 
     unsafe impl ClassType for UISceneDestructionRequestOptions {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

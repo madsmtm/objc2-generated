@@ -34,7 +34,6 @@ extern_class!(
     unsafe impl ClassType for UIWindowSceneActivationRequestOptions {
         #[inherits(NSObject)]
         type Super = UISceneActivationRequestOptions;
-        type Mutability = MainThreadOnly;
     }
 );
 

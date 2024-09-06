@@ -38,7 +38,6 @@ extern_class!(
     unsafe impl ClassType for CKShare {
         #[inherits(NSObject)]
         type Super = CKRecord;
-        type Mutability = InteriorMutable;
     }
 );
 

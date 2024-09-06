@@ -65,7 +65,6 @@ extern_class!(
 
     unsafe impl ClassType for NSHapticFeedbackManager {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

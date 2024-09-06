@@ -36,7 +36,6 @@ extern_class!(
     unsafe impl ClassType for DOMXPathResult {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
-        type Mutability = InteriorMutable;
     }
 );
 

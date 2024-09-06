@@ -30,7 +30,6 @@ extern_class!(
     unsafe impl ClassType for FIFinderSyncController {
         #[inherits(NSObject)]
         type Super = NSExtensionContext;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -209,7 +208,6 @@ extern_class!(
 
     unsafe impl ClassType for FIFinderSync {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

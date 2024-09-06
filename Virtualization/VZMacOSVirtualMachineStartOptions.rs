@@ -13,7 +13,6 @@ extern_class!(
     unsafe impl ClassType for VZMacOSVirtualMachineStartOptions {
         #[inherits(NSObject)]
         type Super = VZVirtualMachineStartOptions;
-        type Mutability = InteriorMutable;
     }
 );
 

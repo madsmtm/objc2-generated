@@ -254,7 +254,7 @@ extern_class!(
 
     unsafe impl ClassType for UITextInputPasswordRules {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -290,7 +290,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UITextInputTraits: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UITextInputTraits: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(autocapitalizationType)]
         unsafe fn autocapitalizationType(&self) -> UITextAutocapitalizationType;

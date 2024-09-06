@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for CMRotationRateData {
         #[inherits(NSObject)]
         type Super = CMLogItem;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -65,7 +64,6 @@ extern_class!(
     unsafe impl ClassType for CMRecordedRotationRateData {
         #[inherits(CMLogItem, NSObject)]
         type Super = CMRotationRateData;
-        type Mutability = InteriorMutable;
     }
 );
 

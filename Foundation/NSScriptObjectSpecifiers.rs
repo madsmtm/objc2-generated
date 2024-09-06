@@ -75,7 +75,6 @@ extern_class!(
 
     unsafe impl ClassType for NSScriptObjectSpecifier {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -245,7 +244,6 @@ extern_class!(
     unsafe impl ClassType for NSIndexSpecifier {
         #[inherits(NSObject)]
         type Super = NSScriptObjectSpecifier;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -329,7 +327,6 @@ extern_class!(
     unsafe impl ClassType for NSMiddleSpecifier {
         #[inherits(NSObject)]
         type Super = NSScriptObjectSpecifier;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -393,7 +390,6 @@ extern_class!(
     unsafe impl ClassType for NSNameSpecifier {
         #[inherits(NSObject)]
         type Super = NSScriptObjectSpecifier;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -478,7 +474,6 @@ extern_class!(
 
     unsafe impl ClassType for NSPositionalSpecifier {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -542,7 +537,6 @@ extern_class!(
     unsafe impl ClassType for NSPropertySpecifier {
         #[inherits(NSObject)]
         type Super = NSScriptObjectSpecifier;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -606,7 +600,6 @@ extern_class!(
     unsafe impl ClassType for NSRandomSpecifier {
         #[inherits(NSObject)]
         type Super = NSScriptObjectSpecifier;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -670,7 +663,6 @@ extern_class!(
     unsafe impl ClassType for NSRangeSpecifier {
         #[inherits(NSObject)]
         type Super = NSScriptObjectSpecifier;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -761,7 +753,6 @@ extern_class!(
     unsafe impl ClassType for NSRelativeSpecifier {
         #[inherits(NSObject)]
         type Super = NSScriptObjectSpecifier;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -852,7 +843,6 @@ extern_class!(
     unsafe impl ClassType for NSUniqueIDSpecifier {
         #[inherits(NSObject)]
         type Super = NSScriptObjectSpecifier;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -936,7 +926,6 @@ extern_class!(
     unsafe impl ClassType for NSWhoseSpecifier {
         #[inherits(NSObject)]
         type Super = NSScriptObjectSpecifier;
-        type Mutability = InteriorMutable;
     }
 );
 

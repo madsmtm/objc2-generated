@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VNDetectAnimalBodyPoseRequest {
         #[inherits(VNRequest, NSObject)]
         type Super = VNImageBasedRequest;
-        type Mutability = InteriorMutable;
     }
 );
 

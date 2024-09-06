@@ -13,7 +13,6 @@ extern_class!(
 
     unsafe impl ClassType for CBL2CAPChannel {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

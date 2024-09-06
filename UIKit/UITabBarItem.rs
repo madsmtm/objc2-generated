@@ -53,7 +53,7 @@ extern_class!(
     unsafe impl ClassType for UITabBarItem {
         #[inherits(NSObject)]
         type Super = UIBarItem;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

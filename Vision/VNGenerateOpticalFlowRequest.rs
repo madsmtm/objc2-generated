@@ -39,7 +39,6 @@ extern_class!(
     unsafe impl ClassType for VNGenerateOpticalFlowRequest {
         #[inherits(VNImageBasedRequest, VNRequest, NSObject)]
         type Super = VNTargetedImageRequest;
-        type Mutability = InteriorMutable;
     }
 );
 

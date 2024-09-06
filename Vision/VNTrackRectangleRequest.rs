@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VNTrackRectangleRequest {
         #[inherits(VNImageBasedRequest, VNRequest, NSObject)]
         type Super = VNTrackingRequest;
-        type Mutability = InteriorMutable;
     }
 );
 

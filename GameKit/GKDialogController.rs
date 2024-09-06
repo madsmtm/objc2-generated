@@ -25,7 +25,6 @@ extern_class!(
     unsafe impl ClassType for GKDialogController {
         #[inherits(NSObject)]
         type Super = NSResponder;
-        type Mutability = MainThreadOnly;
     }
 );
 

@@ -300,7 +300,6 @@ extern_class!(
     unsafe impl ClassType for NSApplication {
         #[inherits(NSObject)]
         type Super = NSResponder;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -748,7 +747,7 @@ unsafe impl RefEncode for NSApplicationPrintReply {
 }
 
 extern_protocol!(
-    pub unsafe trait NSApplicationDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSApplicationDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(applicationShouldTerminate:)]

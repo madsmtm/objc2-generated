@@ -55,7 +55,6 @@ extern_class!(
 
     unsafe impl ClassType for HKVisionPrism {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

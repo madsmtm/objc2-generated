@@ -64,7 +64,6 @@ extern_class!(
 
     unsafe impl ClassType for NSTextTab {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -125,7 +124,6 @@ extern_class!(
 
     unsafe impl ClassType for NSParagraphStyle {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -248,7 +246,6 @@ extern_class!(
     unsafe impl ClassType for NSMutableParagraphStyle {
         #[inherits(NSObject)]
         type Super = NSParagraphStyle;
-        type Mutability = InteriorMutable;
     }
 );
 

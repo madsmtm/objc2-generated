@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSBatchInsertRequest {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for HKBiologicalSexObject {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -52,7 +51,6 @@ extern_class!(
 
     unsafe impl ClassType for HKBloodTypeObject {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -93,7 +91,6 @@ extern_class!(
 
     unsafe impl ClassType for HKFitzpatrickSkinTypeObject {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -134,7 +131,6 @@ extern_class!(
 
     unsafe impl ClassType for HKWheelchairUseObject {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -175,7 +171,6 @@ extern_class!(
 
     unsafe impl ClassType for HKActivityMoveModeObject {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

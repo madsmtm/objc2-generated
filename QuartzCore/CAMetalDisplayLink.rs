@@ -13,7 +13,6 @@ extern_class!(
 
     unsafe impl ClassType for CAMetalDisplayLinkUpdate {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -63,7 +62,6 @@ extern_class!(
 
     unsafe impl ClassType for CAMetalDisplayLink {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

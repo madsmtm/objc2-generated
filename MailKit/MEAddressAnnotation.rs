@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for MEAddressAnnotation {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

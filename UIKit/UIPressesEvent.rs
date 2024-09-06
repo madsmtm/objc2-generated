@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for UIPressesEvent {
         #[inherits(NSObject)]
         type Super = UIEvent;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

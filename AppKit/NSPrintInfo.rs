@@ -195,7 +195,6 @@ extern_class!(
 
     unsafe impl ClassType for NSPrintInfo {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

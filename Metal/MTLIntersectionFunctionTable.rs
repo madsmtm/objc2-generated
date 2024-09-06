@@ -46,7 +46,6 @@ extern_class!(
 
     unsafe impl ClassType for MTLIntersectionFunctionTableDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

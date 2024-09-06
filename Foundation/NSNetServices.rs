@@ -64,7 +64,6 @@ extern_class!(
 
     unsafe impl ClassType for NSNetService {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -229,7 +228,6 @@ extern_class!(
 
     unsafe impl ClassType for NSNetServiceBrowser {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

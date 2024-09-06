@@ -51,7 +51,7 @@ extern_class!(
 
     unsafe impl ClassType for UIContextMenuInteraction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -100,7 +100,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait UIContextMenuInteractionAnimating:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[method_id(@__retain_semantics Other previewViewController)]
@@ -120,7 +120,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait UIContextMenuInteractionCommitAnimating:
-        UIContextMenuInteractionAnimating + IsMainThreadOnly
+        UIContextMenuInteractionAnimating + MainThreadOnly
     {
         #[method(preferredCommitStyle)]
         unsafe fn preferredCommitStyle(&self) -> UIContextMenuInteractionCommitStyle;
@@ -137,7 +137,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait UIContextMenuInteractionDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "UIContextMenuConfiguration")]
         #[method_id(@__retain_semantics Other contextMenuInteraction:configurationForMenuAtLocation:)]

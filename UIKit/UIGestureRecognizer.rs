@@ -40,7 +40,7 @@ extern_class!(
 
     unsafe impl ClassType for UIGestureRecognizer {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -172,9 +172,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIGestureRecognizerDelegate:
-        NSObjectProtocol + IsMainThreadOnly
-    {
+    pub unsafe trait UIGestureRecognizerDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(gestureRecognizerShouldBegin:)]
         unsafe fn gestureRecognizerShouldBegin(

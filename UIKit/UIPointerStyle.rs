@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for UIPointerStyle {
         #[inherits(NSObject)]
         type Super = UIHoverStyle;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -89,7 +89,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPointerEffect {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -129,7 +129,7 @@ extern_class!(
     unsafe impl ClassType for UIPointerHighlightEffect {
         #[inherits(NSObject)]
         type Super = UIPointerEffect;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -170,7 +170,7 @@ extern_class!(
     unsafe impl ClassType for UIPointerLiftEffect {
         #[inherits(NSObject)]
         type Super = UIPointerEffect;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -232,7 +232,7 @@ extern_class!(
     unsafe impl ClassType for UIPointerHoverEffect {
         #[inherits(NSObject)]
         type Super = UIPointerEffect;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -290,7 +290,7 @@ extern_class!(
 
     unsafe impl ClassType for UIPointerShape {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

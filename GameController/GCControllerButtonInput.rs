@@ -21,7 +21,6 @@ extern_class!(
     unsafe impl ClassType for GCControllerButtonInput {
         #[inherits(NSObject)]
         type Super = GCControllerElement;
-        type Mutability = InteriorMutable;
     }
 );
 

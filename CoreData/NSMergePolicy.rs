@@ -31,7 +31,6 @@ extern_class!(
 
     unsafe impl ClassType for NSMergeConflict {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -90,7 +89,6 @@ extern_class!(
 
     unsafe impl ClassType for NSConstraintConflict {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -150,7 +148,6 @@ extern_class!(
 
     unsafe impl ClassType for NSMergePolicy {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

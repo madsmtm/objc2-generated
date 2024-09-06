@@ -22,7 +22,6 @@ extern_class!(
 
     unsafe impl ClassType for NSScriptCommand {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

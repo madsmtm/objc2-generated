@@ -86,7 +86,6 @@ extern_class!(
 
     unsafe impl ClassType for NSTextFinder {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

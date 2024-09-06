@@ -29,7 +29,6 @@ extern_class!(
     unsafe impl ClassType for SKProductsRequest {
         #[inherits(NSObject)]
         type Super = SKRequest;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -76,7 +75,6 @@ extern_class!(
 
     unsafe impl ClassType for SKProductsResponse {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

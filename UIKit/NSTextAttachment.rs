@@ -83,7 +83,6 @@ extern_class!(
 
     unsafe impl ClassType for NSTextAttachment {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -195,7 +194,6 @@ extern_class!(
 
     unsafe impl ClassType for NSTextAttachmentViewProvider {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

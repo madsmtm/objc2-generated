@@ -98,7 +98,6 @@ extern_class!(
 
     unsafe impl ClassType for CLFloor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -138,7 +137,6 @@ extern_class!(
 
     unsafe impl ClassType for CLLocationSourceInformation {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -188,7 +186,6 @@ extern_class!(
 
     unsafe impl ClassType for CLLocation {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

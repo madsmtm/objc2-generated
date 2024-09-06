@@ -13,7 +13,6 @@ extern_class!(
     unsafe impl ClassType for GCDeviceCursor {
         #[inherits(GCControllerElement, NSObject)]
         type Super = GCControllerDirectionPad;
-        type Mutability = InteriorMutable;
     }
 );
 

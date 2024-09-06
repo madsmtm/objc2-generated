@@ -33,7 +33,6 @@ extern_class!(
     unsafe impl ClassType for NSProgressIndicator {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
-        type Mutability = MainThreadOnly;
     }
 );
 

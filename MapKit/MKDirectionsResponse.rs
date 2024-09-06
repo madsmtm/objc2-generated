@@ -13,7 +13,6 @@ extern_class!(
 
     unsafe impl ClassType for MKDirectionsResponse {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -51,7 +50,6 @@ extern_class!(
 
     unsafe impl ClassType for MKRoute {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -108,7 +106,6 @@ extern_class!(
 
     unsafe impl ClassType for MKRouteStep {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -153,7 +150,6 @@ extern_class!(
 
     unsafe impl ClassType for MKETAResponse {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for CLCircularGeographicCondition {
         #[inherits(NSObject)]
         type Super = CLCondition;
-        type Mutability = InteriorMutable;
     }
 );
 

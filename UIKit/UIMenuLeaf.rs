@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait UIMenuLeaf: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIMenuLeaf: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other title)]
         unsafe fn title(&self) -> Retained<NSString>;
 

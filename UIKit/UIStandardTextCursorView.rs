@@ -17,7 +17,6 @@ extern_class!(
     unsafe impl ClassType for UIStandardTextCursorView {
         #[inherits(UIResponder, NSObject)]
         type Super = UIView;
-        type Mutability = MainThreadOnly;
     }
 );
 

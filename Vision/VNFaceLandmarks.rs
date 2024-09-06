@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for VNFaceLandmarkRegion {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -50,7 +49,6 @@ extern_class!(
     unsafe impl ClassType for VNFaceLandmarkRegion2D {
         #[inherits(NSObject)]
         type Super = VNFaceLandmarkRegion;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -103,7 +101,6 @@ extern_class!(
 
     unsafe impl ClassType for VNFaceLandmarks {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -148,7 +145,6 @@ extern_class!(
     unsafe impl ClassType for VNFaceLandmarks2D {
         #[inherits(NSObject)]
         type Super = VNFaceLandmarks;
-        type Mutability = InteriorMutable;
     }
 );
 

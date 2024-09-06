@@ -30,7 +30,6 @@ extern_class!(
     unsafe impl ClassType for NSSearchFieldCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
-        type Mutability = MainThreadOnly;
     }
 );
 

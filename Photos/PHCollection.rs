@@ -16,7 +16,6 @@ extern_class!(
     unsafe impl ClassType for PHCollection {
         #[inherits(NSObject)]
         type Super = PHObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -92,7 +91,6 @@ extern_class!(
     unsafe impl ClassType for PHAssetCollection {
         #[inherits(PHObject, NSObject)]
         type Super = PHCollection;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -232,7 +230,6 @@ extern_class!(
     unsafe impl ClassType for PHCollectionList {
         #[inherits(PHObject, NSObject)]
         type Super = PHCollection;
-        type Mutability = InteriorMutable;
     }
 );
 

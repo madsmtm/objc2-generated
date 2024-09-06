@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NWHostEndpoint {
         #[inherits(NSObject)]
         type Super = NWEndpoint;
-        type Mutability = InteriorMutable;
     }
 );
 

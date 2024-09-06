@@ -84,7 +84,6 @@ extern_class!(
 
     unsafe impl ClassType for UIApplicationShortcutIcon {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -126,7 +125,6 @@ extern_class!(
 
     unsafe impl ClassType for UIApplicationShortcutItem {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -203,7 +201,6 @@ extern_class!(
     unsafe impl ClassType for UIMutableApplicationShortcutItem {
         #[inherits(NSObject)]
         type Super = UIApplicationShortcutItem;
-        type Mutability = InteriorMutable;
     }
 );
 

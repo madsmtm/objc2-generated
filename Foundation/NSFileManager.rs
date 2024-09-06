@@ -136,7 +136,6 @@ extern_class!(
 
     unsafe impl ClassType for NSFileManager {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -876,7 +875,6 @@ __inner_extern_class!(
     unsafe impl<ObjectType: ?Sized + Message> ClassType for NSDirectoryEnumerator<ObjectType> {
         #[inherits(NSObject)]
         type Super = NSEnumerator<ObjectType>;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -937,7 +935,6 @@ extern_class!(
 
     unsafe impl ClassType for NSFileProviderService {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

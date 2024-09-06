@@ -35,7 +35,6 @@ extern_class!(
 
     unsafe impl ClassType for CLUpdate {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -69,7 +68,6 @@ extern_class!(
 
     unsafe impl ClassType for CLLocationUpdater {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

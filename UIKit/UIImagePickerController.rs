@@ -195,7 +195,7 @@ extern_class!(
     unsafe impl ClassType for UIImagePickerController {
         #[inherits(UIViewController, UIResponder, NSObject)]
         type Super = UINavigationController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -460,7 +460,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait UIImagePickerControllerDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(
             feature = "UIImage",

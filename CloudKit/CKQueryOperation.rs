@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for CKQueryCursor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -50,7 +49,6 @@ extern_class!(
     unsafe impl ClassType for CKQueryOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
-        type Mutability = InteriorMutable;
     }
 );
 

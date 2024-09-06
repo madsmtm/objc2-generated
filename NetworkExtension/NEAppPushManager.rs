@@ -38,7 +38,6 @@ extern_class!(
 
     unsafe impl ClassType for NEPrivateLTENetwork {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -93,7 +92,6 @@ extern_class!(
 
     unsafe impl ClassType for NEAppPushManager {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

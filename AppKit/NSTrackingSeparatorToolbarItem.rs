@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSTrackingSeparatorToolbarItem {
         #[inherits(NSObject)]
         type Super = NSToolbarItem;
-        type Mutability = MainThreadOnly;
     }
 );
 

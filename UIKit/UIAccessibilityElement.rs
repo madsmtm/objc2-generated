@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for UIAccessibilityElement {
         #[inherits(NSObject)]
         type Super = UIResponder;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

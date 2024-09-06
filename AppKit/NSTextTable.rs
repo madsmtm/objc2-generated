@@ -103,7 +103,6 @@ extern_class!(
 
     unsafe impl ClassType for NSTextBlock {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -258,7 +257,6 @@ extern_class!(
     unsafe impl ClassType for NSTextTableBlock {
         #[inherits(NSObject)]
         type Super = NSTextBlock;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -326,7 +324,6 @@ extern_class!(
     unsafe impl ClassType for NSTextTable {
         #[inherits(NSObject)]
         type Super = NSTextBlock;
-        type Mutability = InteriorMutable;
     }
 );
 

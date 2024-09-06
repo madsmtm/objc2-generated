@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for BGTask {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -59,7 +58,6 @@ extern_class!(
     unsafe impl ClassType for BGProcessingTask {
         #[inherits(NSObject)]
         type Super = BGTask;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -92,7 +90,6 @@ extern_class!(
     unsafe impl ClassType for BGHealthResearchTask {
         #[inherits(BGTask, NSObject)]
         type Super = BGProcessingTask;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -125,7 +122,6 @@ extern_class!(
     unsafe impl ClassType for BGAppRefreshTask {
         #[inherits(NSObject)]
         type Super = BGTask;
-        type Mutability = InteriorMutable;
     }
 );
 

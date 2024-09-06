@@ -21,7 +21,6 @@ __inner_extern_class!(
         ClassType for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
     {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -226,7 +225,6 @@ __inner_extern_class!(
         for NSCollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
     {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass

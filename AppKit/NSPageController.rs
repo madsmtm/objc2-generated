@@ -37,7 +37,6 @@ extern_class!(
     unsafe impl ClassType for NSPageController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -166,7 +165,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSPageControllerDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSPageControllerDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[optional]
         #[method_id(@__retain_semantics Other pageController:identifierForObject:)]

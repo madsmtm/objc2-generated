@@ -23,7 +23,6 @@ extern_class!(
 
     unsafe impl ClassType for CIFilterGenerator {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

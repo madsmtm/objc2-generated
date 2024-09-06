@@ -17,7 +17,6 @@ extern_class!(
 
     unsafe impl ClassType for NSDate {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

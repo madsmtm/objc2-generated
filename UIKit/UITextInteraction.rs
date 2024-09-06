@@ -25,7 +25,7 @@ unsafe impl RefEncode for UITextInteractionMode {
 }
 
 extern_protocol!(
-    pub unsafe trait UITextInteractionDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UITextInteractionDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(interactionShouldBegin:atPoint:)]
         unsafe fn interactionShouldBegin_atPoint(
@@ -52,7 +52,7 @@ extern_class!(
 
     unsafe impl ClassType for UITextInteraction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

@@ -48,7 +48,6 @@ extern_class!(
 
     unsafe impl ClassType for WebScriptObject {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -119,7 +118,6 @@ extern_class!(
 
     unsafe impl ClassType for WebUndefined {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

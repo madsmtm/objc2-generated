@@ -125,7 +125,6 @@ extern_class!(
 
     unsafe impl ClassType for NSItemProvider {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

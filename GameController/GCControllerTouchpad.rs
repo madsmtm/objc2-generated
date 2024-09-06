@@ -38,7 +38,6 @@ extern_class!(
     unsafe impl ClassType for GCControllerTouchpad {
         #[inherits(NSObject)]
         type Super = GCControllerElement;
-        type Mutability = InteriorMutable;
     }
 );
 

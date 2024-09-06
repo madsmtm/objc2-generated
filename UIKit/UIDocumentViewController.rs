@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for UIDocumentViewController {
         #[inherits(UIResponder, NSObject)]
         type Super = UIViewController;
-        type Mutability = MainThreadOnly;
     }
 );
 

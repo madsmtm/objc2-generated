@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for SNClassification {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -39,7 +38,6 @@ extern_class!(
 
     unsafe impl ClassType for SNClassificationResult {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

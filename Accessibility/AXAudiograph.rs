@@ -62,7 +62,6 @@ extern_class!(
 
     unsafe impl ClassType for AXNumericDataAxisDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -151,7 +150,6 @@ extern_class!(
 
     unsafe impl ClassType for AXCategoricalDataAxisDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -201,7 +199,6 @@ extern_class!(
 
     unsafe impl ClassType for AXDataPointValue {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -247,7 +244,6 @@ extern_class!(
 
     unsafe impl ClassType for AXDataPoint {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -329,7 +325,6 @@ extern_class!(
 
     unsafe impl ClassType for AXDataSeriesDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -418,7 +413,6 @@ extern_class!(
 
     unsafe impl ClassType for AXChartDescriptor {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -550,7 +544,6 @@ extern_class!(
 
     unsafe impl ClassType for AXLiveAudioGraph {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

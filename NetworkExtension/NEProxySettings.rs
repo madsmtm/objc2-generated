@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for NEProxyServer {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -79,7 +78,6 @@ extern_class!(
 
     unsafe impl ClassType for NEProxySettings {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -7,7 +7,7 @@ use crate::*;
 
 extern_protocol!(
     #[cfg(feature = "UITextInputTraits")]
-    pub unsafe trait UIKeyInput: UITextInputTraits + IsMainThreadOnly {
+    pub unsafe trait UIKeyInput: UITextInputTraits + MainThreadOnly {
         #[method(hasText)]
         unsafe fn hasText(&self) -> bool;
 
@@ -100,7 +100,7 @@ extern_class!(
 
     unsafe impl ClassType for UIDictationPhrase {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -133,7 +133,7 @@ extern_class!(
 
     unsafe impl ClassType for UITextInputAssistantItem {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -188,7 +188,7 @@ extern_class!(
 
     unsafe impl ClassType for UITextPlaceholder {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -233,7 +233,7 @@ unsafe impl RefEncode for UITextAlternativeStyle {
 
 extern_protocol!(
     #[cfg(feature = "UITextInputTraits")]
-    pub unsafe trait UITextInput: UIKeyInput + IsMainThreadOnly {
+    pub unsafe trait UITextInput: UIKeyInput + MainThreadOnly {
         #[method_id(@__retain_semantics Other textInRange:)]
         unsafe fn textInRange(&self, range: &UITextRange) -> Option<Retained<NSString>>;
 
@@ -544,7 +544,7 @@ extern_class!(
 
     unsafe impl ClassType for UITextPosition {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -571,7 +571,7 @@ extern_class!(
 
     unsafe impl ClassType for UITextRange {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -607,7 +607,7 @@ extern_class!(
 
     unsafe impl ClassType for UITextSelectionRect {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -648,7 +648,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UITextInputDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UITextInputDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInputTraits")]
         #[method(selectionWillChange:)]
         unsafe fn selectionWillChange(&self, text_input: Option<&ProtocolObject<dyn UITextInput>>);
@@ -670,7 +670,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait UITextInputTokenizer: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UITextInputTokenizer: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other rangeEnclosingPosition:withGranularity:inDirection:)]
         unsafe fn rangeEnclosingPosition_withGranularity_inDirection(
             &self,
@@ -713,7 +713,7 @@ extern_class!(
 
     unsafe impl ClassType for UITextInputStringTokenizer {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -749,7 +749,7 @@ extern_class!(
 
     unsafe impl ClassType for UITextInputMode {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

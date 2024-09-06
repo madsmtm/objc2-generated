@@ -27,7 +27,7 @@ unsafe impl RefEncode for UIDynamicItemCollisionBoundsType {
 }
 
 extern_protocol!(
-    pub unsafe trait UIDynamicItem: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIDynamicItem: NSObjectProtocol + MainThreadOnly {
         #[method(center)]
         unsafe fn center(&self) -> CGPoint;
 
@@ -62,7 +62,7 @@ extern_class!(
 
     unsafe impl ClassType for UIDynamicItemGroup {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -100,7 +100,7 @@ extern_class!(
 
     unsafe impl ClassType for UIDynamicBehavior {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

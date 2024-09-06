@@ -33,7 +33,6 @@ extern_class!(
 
     unsafe impl ClassType for NSScriptWhoseTest {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -74,7 +73,6 @@ extern_class!(
     unsafe impl ClassType for NSLogicalTest {
         #[inherits(NSObject)]
         type Super = NSScriptWhoseTest;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -137,7 +135,6 @@ extern_class!(
     unsafe impl ClassType for NSSpecifierTest {
         #[inherits(NSObject)]
         type Super = NSScriptWhoseTest;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -11,7 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for UITabBarItemStateAppearance {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -119,7 +119,7 @@ extern_class!(
 
     unsafe impl ClassType for UITabBarItemAppearance {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -186,7 +186,7 @@ extern_class!(
     unsafe impl ClassType for UITabBarAppearance {
         #[inherits(NSObject)]
         type Super = UIBarAppearance;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 

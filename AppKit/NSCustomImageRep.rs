@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSCustomImageRep {
         #[inherits(NSObject)]
         type Super = NSImageRep;
-        type Mutability = InteriorMutable;
     }
 );
 

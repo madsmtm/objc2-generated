@@ -75,7 +75,6 @@ extern_class!(
 
     unsafe impl ClassType for NEHotspotHS20Settings {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -146,7 +145,6 @@ extern_class!(
 
     unsafe impl ClassType for NEHotspotEAPSettings {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -242,7 +240,6 @@ extern_class!(
 
     unsafe impl ClassType for NEHotspotConfiguration {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -393,7 +390,6 @@ extern_class!(
 
     unsafe impl ClassType for NEHotspotConfigurationManager {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

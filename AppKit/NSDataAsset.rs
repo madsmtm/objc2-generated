@@ -13,7 +13,6 @@ extern_class!(
 
     unsafe impl ClassType for NSDataAsset {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

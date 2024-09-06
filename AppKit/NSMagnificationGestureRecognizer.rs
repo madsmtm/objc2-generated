@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSMagnificationGestureRecognizer {
         #[inherits(NSObject)]
         type Super = NSGestureRecognizer;
-        type Mutability = MainThreadOnly;
     }
 );
 

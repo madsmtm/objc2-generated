@@ -6,13 +6,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait UIAppearanceContainer: NSObjectProtocol + IsMainThreadOnly {}
+    pub unsafe trait UIAppearanceContainer: NSObjectProtocol + MainThreadOnly {}
 
     unsafe impl ProtocolType for dyn UIAppearanceContainer {}
 );
 
 extern_protocol!(
-    pub unsafe trait UIAppearance: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIAppearance: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other appearance)]
         unsafe fn appearance(mtm: MainThreadMarker) -> Retained<Self>;
 

@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VZNetworkBlockDeviceStorageDeviceAttachment {
         #[inherits(NSObject)]
         type Super = VZStorageDeviceAttachment;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for UITabBarController {
         #[inherits(UIResponder, NSObject)]
         type Super = UIViewController;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -156,9 +156,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UITabBarControllerDelegate:
-        NSObjectProtocol + IsMainThreadOnly
-    {
+    pub unsafe trait UITabBarControllerDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
         #[method(tabBarController:shouldSelectViewController:)]

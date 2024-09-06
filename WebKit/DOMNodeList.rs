@@ -15,7 +15,6 @@ extern_class!(
     unsafe impl ClassType for DOMNodeList {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
-        type Mutability = InteriorMutable;
     }
 );
 

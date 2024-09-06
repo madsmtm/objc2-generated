@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VZVirtioConsolePortConfiguration {
         #[inherits(NSObject)]
         type Super = VZConsolePortConfiguration;
-        type Mutability = InteriorMutable;
     }
 );
 

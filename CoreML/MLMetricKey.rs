@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for MLMetricKey {
         #[inherits(NSObject)]
         type Super = MLKey;
-        type Mutability = InteriorMutable;
     }
 );
 

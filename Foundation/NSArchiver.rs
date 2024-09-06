@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSArchiver {
         #[inherits(NSObject)]
         type Super = NSCoder;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -100,7 +99,6 @@ extern_class!(
     unsafe impl ClassType for NSUnarchiver {
         #[inherits(NSObject)]
         type Super = NSCoder;
-        type Mutability = InteriorMutable;
     }
 );
 

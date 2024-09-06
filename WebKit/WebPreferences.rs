@@ -41,7 +41,6 @@ extern_class!(
 
     unsafe impl ClassType for WebPreferences {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

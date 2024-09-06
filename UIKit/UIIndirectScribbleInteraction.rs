@@ -11,7 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for UIIndirectScribbleInteraction {
         type Super = NSObject;
-        type Mutability = MainThreadOnly;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -48,7 +48,7 @@ pub type UIScribbleElementIdentifier = TodoProtocols;
 
 extern_protocol!(
     pub unsafe trait UIIndirectScribbleInteractionDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "block2")]
         #[method(indirectScribbleInteraction:requestElementsInRect:completion:)]

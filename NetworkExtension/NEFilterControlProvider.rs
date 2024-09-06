@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NEFilterControlProvider {
         #[inherits(NEProvider, NSObject)]
         type Super = NEFilterProvider;
-        type Mutability = InteriorMutable;
     }
 );
 

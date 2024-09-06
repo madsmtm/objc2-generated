@@ -15,7 +15,6 @@ extern_class!(
     unsafe impl ClassType for MKCircle {
         #[inherits(NSObject)]
         type Super = MKShape;
-        type Mutability = InteriorMutable;
     }
 );
 

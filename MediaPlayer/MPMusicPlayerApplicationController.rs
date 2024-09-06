@@ -11,7 +11,6 @@ extern_class!(
 
     unsafe impl ClassType for MPMusicPlayerControllerQueue {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -38,7 +37,6 @@ extern_class!(
     unsafe impl ClassType for MPMusicPlayerControllerMutableQueue {
         #[inherits(NSObject)]
         type Super = MPMusicPlayerControllerQueue;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -84,7 +82,6 @@ extern_class!(
     unsafe impl ClassType for MPMusicPlayerApplicationController {
         #[inherits(NSObject)]
         type Super = MPMusicPlayerController;
-        type Mutability = InteriorMutable;
     }
 );
 

@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSPathControl {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -205,7 +204,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSPathControlDelegate: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait NSPathControlDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "NSControl",
             feature = "NSPasteboard",

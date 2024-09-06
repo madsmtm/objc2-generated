@@ -68,7 +68,6 @@ extern_class!(
 
     unsafe impl ClassType for GKMatchRequest {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -217,7 +216,6 @@ extern_class!(
 
     unsafe impl ClassType for GKInvite {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -291,7 +289,6 @@ extern_class!(
 
     unsafe impl ClassType for GKMatchedPlayers {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -332,7 +329,6 @@ extern_class!(
 
     unsafe impl ClassType for GKMatchmaker {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

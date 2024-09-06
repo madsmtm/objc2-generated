@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait UIInteraction: NSObjectProtocol + IsMainThreadOnly {
+    pub unsafe trait UIInteraction: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other view)]
         unsafe fn view(&self) -> Option<Retained<UIView>>;

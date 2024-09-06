@@ -14,7 +14,6 @@ extern_class!(
 
     unsafe impl ClassType for AVPictureInPictureController {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -115,7 +114,6 @@ extern_class!(
 
     unsafe impl ClassType for AVPictureInPictureControllerContentSource {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

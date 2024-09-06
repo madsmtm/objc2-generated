@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for VZMultipleDirectoryShare {
         #[inherits(NSObject)]
         type Super = VZDirectoryShare;
-        type Mutability = InteriorMutable;
     }
 );
 

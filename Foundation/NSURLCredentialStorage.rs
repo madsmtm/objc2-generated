@@ -10,7 +10,6 @@ extern_class!(
 
     unsafe impl ClassType for NSURLCredentialStorage {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

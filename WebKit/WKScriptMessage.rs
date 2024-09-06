@@ -14,7 +14,6 @@ extern_class!(
 
     unsafe impl ClassType for WKScriptMessage {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

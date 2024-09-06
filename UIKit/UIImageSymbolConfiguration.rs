@@ -84,7 +84,6 @@ extern_class!(
     unsafe impl ClassType for UIImageSymbolConfiguration {
         #[inherits(NSObject)]
         type Super = UIImageConfiguration;
-        type Mutability = InteriorMutable;
     }
 );
 

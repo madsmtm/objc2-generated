@@ -24,9 +24,7 @@ unsafe impl RefEncode for UILetterformAwareSizingRule {
 }
 
 extern_protocol!(
-    pub unsafe trait UILetterformAwareAdjusting:
-        NSObjectProtocol + IsMainThreadOnly
-    {
+    pub unsafe trait UILetterformAwareAdjusting: NSObjectProtocol + MainThreadOnly {
         #[method(sizingRule)]
         unsafe fn sizingRule(&self) -> UILetterformAwareSizingRule;
 

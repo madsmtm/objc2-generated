@@ -50,7 +50,6 @@ extern_class!(
     unsafe impl ClassType for HKLiveWorkoutBuilder {
         #[inherits(NSObject)]
         type Super = HKWorkoutBuilder;
-        type Mutability = InteriorMutable;
     }
 );
 

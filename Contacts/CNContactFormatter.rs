@@ -52,7 +52,6 @@ extern_class!(
     unsafe impl ClassType for CNContactFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
-        type Mutability = InteriorMutable;
     }
 );
 

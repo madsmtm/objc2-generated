@@ -35,7 +35,6 @@ extern_class!(
     unsafe impl ClassType for VZLinuxRosettaDirectoryShare {
         #[inherits(NSObject)]
         type Super = VZDirectoryShare;
-        type Mutability = InteriorMutable;
     }
 );
 

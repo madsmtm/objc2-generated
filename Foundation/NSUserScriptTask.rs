@@ -13,7 +13,6 @@ extern_class!(
 
     unsafe impl ClassType for NSUserScriptTask {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -62,7 +61,6 @@ extern_class!(
     unsafe impl ClassType for NSUserUnixTask {
         #[inherits(NSObject)]
         type Super = NSUserScriptTask;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -147,7 +145,6 @@ extern_class!(
     unsafe impl ClassType for NSUserAppleScriptTask {
         #[inherits(NSObject)]
         type Super = NSUserScriptTask;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -203,7 +200,6 @@ extern_class!(
     unsafe impl ClassType for NSUserAutomatorTask {
         #[inherits(NSObject)]
         type Super = NSUserScriptTask;
-        type Mutability = InteriorMutable;
     }
 );
 

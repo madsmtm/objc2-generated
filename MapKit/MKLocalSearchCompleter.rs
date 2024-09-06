@@ -58,7 +58,6 @@ extern_class!(
 
     unsafe impl ClassType for MKLocalSearchCompleter {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -162,7 +161,6 @@ extern_class!(
 
     unsafe impl ClassType for MKLocalSearchCompletion {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 

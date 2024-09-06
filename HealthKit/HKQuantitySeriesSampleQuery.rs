@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for HKQuantitySeriesSampleQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
-        type Mutability = InteriorMutable;
     }
 );
 

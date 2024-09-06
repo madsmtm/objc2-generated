@@ -14,7 +14,6 @@ extern_class!(
     unsafe impl ClassType for NSControl {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
-        type Mutability = MainThreadOnly;
     }
 );
 
@@ -322,7 +321,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSControlTextEditingDelegate:
-        NSObjectProtocol + IsMainThreadOnly
+        NSObjectProtocol + MainThreadOnly
     {
         #[optional]
         #[method(controlTextDidBeginEditing:)]

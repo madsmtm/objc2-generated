@@ -34,7 +34,6 @@ extern_class!(
 
     unsafe impl ClassType for NSRegularExpression {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
@@ -259,7 +258,6 @@ extern_class!(
     unsafe impl ClassType for NSDataDetector {
         #[inherits(NSObject)]
         type Super = NSRegularExpression;
-        type Mutability = InteriorMutable;
     }
 );
 

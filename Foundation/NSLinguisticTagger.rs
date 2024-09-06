@@ -254,7 +254,6 @@ extern_class!(
 
     unsafe impl ClassType for NSLinguisticTagger {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
     }
 );
 
