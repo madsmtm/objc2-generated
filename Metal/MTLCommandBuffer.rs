@@ -168,7 +168,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLCommandBufferEncoderInfo: NSObjectProtocol + IsRetainable {
+    pub unsafe trait MTLCommandBufferEncoderInfo: NSObjectProtocol {
         #[method_id(@__retain_semantics Other label)]
         unsafe fn label(&self) -> Retained<NSString>;
 
@@ -206,7 +206,7 @@ unsafe impl RefEncode for MTLDispatchType {
 }
 
 extern_protocol!(
-    pub unsafe trait MTLCommandBuffer: NSObjectProtocol + IsRetainable {
+    pub unsafe trait MTLCommandBuffer: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;

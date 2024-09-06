@@ -45,7 +45,7 @@ extern_methods!(
 
 extern_protocol!(
     #[cfg(feature = "MTLResource")]
-    pub unsafe trait MTLVisibleFunctionTable: MTLResource + IsRetainable {
+    pub unsafe trait MTLVisibleFunctionTable: MTLResource {
         #[cfg(feature = "MTLTypes")]
         #[method(gpuResourceID)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;

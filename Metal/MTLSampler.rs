@@ -222,7 +222,7 @@ impl DefaultRetained for MTLSamplerDescriptor {
 }
 
 extern_protocol!(
-    pub unsafe trait MTLSamplerState: NSObjectProtocol + IsRetainable {
+    pub unsafe trait MTLSamplerState: NSObjectProtocol {
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Retained<NSString>>;
 

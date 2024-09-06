@@ -50,7 +50,7 @@ __inner_extern_class!(
 unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSHashTable<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for NSHashTable<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSCopying for NSHashTable<ObjectType> {}
 
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSHashTable<ObjectType> {}

@@ -36,7 +36,7 @@ unsafe impl RefEncode for MTLStageInRegionIndirectArguments {
 
 extern_protocol!(
     #[cfg(feature = "MTLCommandEncoder")]
-    pub unsafe trait MTLComputeCommandEncoder: MTLCommandEncoder + IsRetainable {
+    pub unsafe trait MTLComputeCommandEncoder: MTLCommandEncoder {
         #[cfg(feature = "MTLCommandBuffer")]
         #[method(dispatchType)]
         unsafe fn dispatchType(&self) -> MTLDispatchType;

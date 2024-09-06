@@ -26,13 +26,13 @@ __inner_extern_class!(
 unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSSet<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for NSSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSCopying for NSSet<ObjectType> {}
 
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSSet<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSMutableCopying for NSSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSSet<ObjectType> {}
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSSet<ObjectType> {}
 
@@ -288,13 +288,13 @@ __inner_extern_class!(
 unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSMutableSet<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for NSMutableSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSCopying for NSMutableSet<ObjectType> {}
 
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSMutableSet<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSMutableCopying for NSMutableSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSMutableSet<ObjectType> {}
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSMutableSet<ObjectType> {}
 
@@ -406,13 +406,13 @@ __inner_extern_class!(
 unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSCountedSet<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for NSCountedSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSCopying for NSCountedSet<ObjectType> {}
 
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSCountedSet<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSMutableCopying for NSCountedSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSCountedSet<ObjectType> {}
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSCountedSet<ObjectType> {}
 

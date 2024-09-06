@@ -198,7 +198,7 @@ impl DefaultRetained for MTLComputePipelineDescriptor {
 }
 
 extern_protocol!(
-    pub unsafe trait MTLComputePipelineState: NSObjectProtocol + IsRetainable {
+    pub unsafe trait MTLComputePipelineState: NSObjectProtocol {
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Retained<NSString>>;
 

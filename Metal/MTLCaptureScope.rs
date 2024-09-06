@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait MTLCaptureScope: NSObjectProtocol + IsRetainable {
+    pub unsafe trait MTLCaptureScope: NSObjectProtocol {
         #[method(beginScope)]
         fn beginScope(&self);
 

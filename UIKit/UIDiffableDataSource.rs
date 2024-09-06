@@ -29,8 +29,8 @@ __inner_extern_class!(
     }
 );
 
-unsafe impl<SectionIdentifierType: ?Sized + IsIdCloneable, ItemIdentifierType: ?Sized + IsIdCloneable>
-    NSCopying for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
+unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSCopying
+    for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
 {
 }
 
@@ -406,7 +406,7 @@ __inner_extern_class!(
     }
 );
 
-unsafe impl<SectionType: ?Sized + IsIdCloneable, ItemType: ?Sized + IsIdCloneable> NSCopying
+unsafe impl<SectionType: ?Sized, ItemType: ?Sized> NSCopying
     for UICollectionViewDiffableDataSourceReorderingHandlers<SectionType, ItemType>
 {
 }
@@ -508,7 +508,7 @@ __inner_extern_class!(
     }
 );
 
-unsafe impl<ItemType: ?Sized + IsIdCloneable> NSCopying
+unsafe impl<ItemType: ?Sized> NSCopying
     for UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType>
 {
 }

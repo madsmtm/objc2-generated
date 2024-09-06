@@ -25,7 +25,7 @@ __inner_extern_class!(
 
 unsafe impl<ValueType: ?Sized + NSCoding> NSCoding for CNLabeledValue<ValueType> {}
 
-unsafe impl<ValueType: ?Sized + IsIdCloneable> NSCopying for CNLabeledValue<ValueType> {}
+unsafe impl<ValueType: ?Sized> NSCopying for CNLabeledValue<ValueType> {}
 
 unsafe impl<ValueType: ?Sized> NSObjectProtocol for CNLabeledValue<ValueType> {}
 

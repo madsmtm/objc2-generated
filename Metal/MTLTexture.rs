@@ -336,7 +336,7 @@ extern_methods!(
 
 extern_protocol!(
     #[cfg(feature = "MTLResource")]
-    pub unsafe trait MTLTexture: MTLResource + IsRetainable {
+    pub unsafe trait MTLTexture: MTLResource {
         #[deprecated = "Use parentTexture or buffer instead"]
         #[method_id(@__retain_semantics Other rootResource)]
         fn rootResource(&self) -> Option<Retained<ProtocolObject<dyn MTLResource>>>;

@@ -32,7 +32,7 @@ unsafe impl RefEncode for MTLBlitOption {
 
 extern_protocol!(
     #[cfg(feature = "MTLCommandEncoder")]
-    pub unsafe trait MTLBlitCommandEncoder: MTLCommandEncoder + IsRetainable {
+    pub unsafe trait MTLBlitCommandEncoder: MTLCommandEncoder {
         #[cfg(feature = "MTLResource")]
         #[method(synchronizeResource:)]
         fn synchronizeResource(&self, resource: &ProtocolObject<dyn MTLResource>);

@@ -26,13 +26,13 @@ __inner_extern_class!(
 unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSOrderedSet<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for NSOrderedSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSCopying for NSOrderedSet<ObjectType> {}
 
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSOrderedSet<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSMutableCopying for NSOrderedSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSOrderedSet<ObjectType> {}
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSOrderedSet<ObjectType> {}
 
@@ -561,16 +561,13 @@ __inner_extern_class!(
 unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSMutableOrderedSet<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for NSMutableOrderedSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSCopying for NSMutableOrderedSet<ObjectType> {}
 
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSMutableOrderedSet<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSMutableCopying
-    for NSMutableOrderedSet<ObjectType>
-{
-}
+unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSMutableOrderedSet<ObjectType> {}
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSMutableOrderedSet<ObjectType> {}
 

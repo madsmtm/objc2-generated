@@ -56,10 +56,7 @@ unsafe impl<KeyType: ?Sized + NSCoding, ObjectType: ?Sized + NSCoding> NSCoding
 }
 
 #[cfg(feature = "NSObject")]
-unsafe impl<KeyType: ?Sized + IsIdCloneable, ObjectType: ?Sized + IsIdCloneable> NSCopying
-    for NSMapTable<KeyType, ObjectType>
-{
-}
+unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSCopying for NSMapTable<KeyType, ObjectType> {}
 
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration

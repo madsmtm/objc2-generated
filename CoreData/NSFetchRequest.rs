@@ -79,7 +79,7 @@ __inner_extern_class!(
 unsafe impl<ResultType: ?Sized + NSCoding> NSCoding for NSFetchRequest<ResultType> {}
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-unsafe impl<ResultType: ?Sized + IsIdCloneable> NSCopying for NSFetchRequest<ResultType> {}
+unsafe impl<ResultType: ?Sized> NSCopying for NSFetchRequest<ResultType> {}
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSFetchRequest<ResultType> {}
@@ -268,10 +268,7 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-unsafe impl<ResultType: ?Sized + IsIdCloneable> NSCopying
-    for NSAsynchronousFetchRequest<ResultType>
-{
-}
+unsafe impl<ResultType: ?Sized> NSCopying for NSAsynchronousFetchRequest<ResultType> {}
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSAsynchronousFetchRequest<ResultType> {}

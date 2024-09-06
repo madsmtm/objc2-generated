@@ -6,9 +6,7 @@ use crate::*;
 
 extern_protocol!(
     #[cfg(feature = "MTLCommandEncoder")]
-    pub unsafe trait MTLParallelRenderCommandEncoder:
-        MTLCommandEncoder + IsRetainable
-    {
+    pub unsafe trait MTLParallelRenderCommandEncoder: MTLCommandEncoder {
         #[cfg(feature = "MTLRenderCommandEncoder")]
         #[method_id(@__retain_semantics Other renderCommandEncoder)]
         fn renderCommandEncoder(

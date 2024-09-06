@@ -195,7 +195,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLDepthStencilState: NSObjectProtocol + IsRetainable {
+    pub unsafe trait MTLDepthStencilState: NSObjectProtocol {
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Retained<NSString>>;
 

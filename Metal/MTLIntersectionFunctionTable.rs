@@ -88,7 +88,7 @@ impl DefaultRetained for MTLIntersectionFunctionTableDescriptor {
 
 extern_protocol!(
     #[cfg(feature = "MTLResource")]
-    pub unsafe trait MTLIntersectionFunctionTable: MTLResource + IsRetainable {
+    pub unsafe trait MTLIntersectionFunctionTable: MTLResource {
         #[cfg(feature = "MTLBuffer")]
         #[method(setBuffer:offset:atIndex:)]
         unsafe fn setBuffer_offset_atIndex(

@@ -29,8 +29,8 @@ __inner_extern_class!(
     }
 );
 
-unsafe impl<SectionIdentifierType: ?Sized + IsIdCloneable, ItemIdentifierType: ?Sized + IsIdCloneable>
-    NSCopying for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
+unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSCopying
+    for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
 {
 }
 

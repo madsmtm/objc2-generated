@@ -160,7 +160,7 @@ unsafe impl RefEncode for MTLCounterResultStatistic {
 }
 
 extern_protocol!(
-    pub unsafe trait MTLCounter: NSObjectProtocol + IsRetainable {
+    pub unsafe trait MTLCounter: NSObjectProtocol {
         #[method_id(@__retain_semantics Other name)]
         unsafe fn name(&self) -> Retained<NSString>;
     }
@@ -169,7 +169,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLCounterSet: NSObjectProtocol + IsRetainable {
+    pub unsafe trait MTLCounterSet: NSObjectProtocol {
         #[method_id(@__retain_semantics Other name)]
         unsafe fn name(&self) -> Retained<NSString>;
 
@@ -236,7 +236,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLCounterSampleBuffer: NSObjectProtocol + IsRetainable {
+    pub unsafe trait MTLCounterSampleBuffer: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;

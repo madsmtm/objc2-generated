@@ -32,10 +32,7 @@ unsafe impl<KeyType: ?Sized + NSCoding, ObjectType: ?Sized + NSCoding> NSCoding
 }
 
 #[cfg(feature = "NSObject")]
-unsafe impl<KeyType: ?Sized + IsIdCloneable, ObjectType: ?Sized + IsIdCloneable> NSCopying
-    for NSDictionary<KeyType, ObjectType>
-{
-}
+unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSCopying for NSDictionary<KeyType, ObjectType> {}
 
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration
@@ -44,7 +41,7 @@ unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration
 }
 
 #[cfg(feature = "NSObject")]
-unsafe impl<KeyType: ?Sized + IsIdCloneable, ObjectType: ?Sized + IsIdCloneable> NSMutableCopying
+unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSMutableCopying
     for NSDictionary<KeyType, ObjectType>
 {
 }
@@ -443,7 +440,7 @@ unsafe impl<KeyType: ?Sized + NSCoding, ObjectType: ?Sized + NSCoding> NSCoding
 }
 
 #[cfg(feature = "NSObject")]
-unsafe impl<KeyType: ?Sized + IsIdCloneable, ObjectType: ?Sized + IsIdCloneable> NSCopying
+unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSCopying
     for NSMutableDictionary<KeyType, ObjectType>
 {
 }
@@ -455,7 +452,7 @@ unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration
 }
 
 #[cfg(feature = "NSObject")]
-unsafe impl<KeyType: ?Sized + IsIdCloneable, ObjectType: ?Sized + IsIdCloneable> NSMutableCopying
+unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSMutableCopying
     for NSMutableDictionary<KeyType, ObjectType>
 {
 }

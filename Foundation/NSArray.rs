@@ -26,13 +26,13 @@ __inner_extern_class!(
 unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSArray<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for NSArray<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSCopying for NSArray<ObjectType> {}
 
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSArray<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSMutableCopying for NSArray<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSArray<ObjectType> {}
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSArray<ObjectType> {}
 
@@ -559,13 +559,13 @@ __inner_extern_class!(
 unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSMutableArray<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for NSMutableArray<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSCopying for NSMutableArray<ObjectType> {}
 
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSMutableArray<ObjectType> {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSMutableCopying for NSMutableArray<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSMutableArray<ObjectType> {}
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSMutableArray<ObjectType> {}
 

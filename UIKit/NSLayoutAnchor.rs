@@ -25,7 +25,7 @@ __inner_extern_class!(
 
 unsafe impl<AnchorType: ?Sized + NSCoding> NSCoding for NSLayoutAnchor<AnchorType> {}
 
-unsafe impl<AnchorType: ?Sized + IsIdCloneable> NSCopying for NSLayoutAnchor<AnchorType> {}
+unsafe impl<AnchorType: ?Sized> NSCopying for NSLayoutAnchor<AnchorType> {}
 
 unsafe impl<AnchorType: ?Sized> NSObjectProtocol for NSLayoutAnchor<AnchorType> {}
 

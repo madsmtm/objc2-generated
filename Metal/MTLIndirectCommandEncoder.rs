@@ -5,7 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait MTLIndirectRenderCommand: NSObjectProtocol + IsRetainable {
+    pub unsafe trait MTLIndirectRenderCommand: NSObjectProtocol {
         #[cfg(feature = "MTLRenderPipeline")]
         #[method(setRenderPipelineState:)]
         unsafe fn setRenderPipelineState(
@@ -162,7 +162,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLIndirectComputeCommand: NSObjectProtocol + IsRetainable {
+    pub unsafe trait MTLIndirectComputeCommand: NSObjectProtocol {
         #[cfg(feature = "MTLComputePipeline")]
         #[method(setComputePipelineState:)]
         unsafe fn setComputePipelineState(

@@ -122,7 +122,7 @@ unsafe impl RefEncode for MTLResourceOptions {
 }
 
 extern_protocol!(
-    pub unsafe trait MTLResource: NSObjectProtocol + IsRetainable {
+    pub unsafe trait MTLResource: NSObjectProtocol {
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Retained<NSString>>;
 

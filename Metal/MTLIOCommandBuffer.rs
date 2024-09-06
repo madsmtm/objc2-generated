@@ -33,7 +33,7 @@ pub type MTLIOCommandBufferHandler =
     *mut block2::Block<dyn Fn(NonNull<ProtocolObject<dyn MTLIOCommandBuffer>>)>;
 
 extern_protocol!(
-    pub unsafe trait MTLIOCommandBuffer: NSObjectProtocol + IsRetainable {
+    pub unsafe trait MTLIOCommandBuffer: NSObjectProtocol {
         #[cfg(feature = "block2")]
         #[method(addCompletedHandler:)]
         unsafe fn addCompletedHandler(&self, block: MTLIOCommandBufferHandler);

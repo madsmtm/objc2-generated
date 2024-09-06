@@ -26,7 +26,7 @@ __inner_extern_class!(
 unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for NSMeasurement<UnitType> {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl<UnitType: ?Sized + IsIdCloneable> NSCopying for NSMeasurement<UnitType> {}
+unsafe impl<UnitType: ?Sized> NSCopying for NSMeasurement<UnitType> {}
 
 unsafe impl<UnitType: ?Sized> NSObjectProtocol for NSMeasurement<UnitType> {}
 

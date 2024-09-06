@@ -77,7 +77,7 @@ impl DefaultRetained for MTLBinaryArchiveDescriptor {
 }
 
 extern_protocol!(
-    pub unsafe trait MTLBinaryArchive: NSObjectProtocol + IsRetainable {
+    pub unsafe trait MTLBinaryArchive: NSObjectProtocol {
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Retained<NSString>>;
 

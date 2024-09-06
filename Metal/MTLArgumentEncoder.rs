@@ -8,7 +8,7 @@ use crate::*;
 pub static MTLAttributeStrideStatic: NSUInteger = NSUIntegerMax as _;
 
 extern_protocol!(
-    pub unsafe trait MTLArgumentEncoder: NSObjectProtocol + IsRetainable {
+    pub unsafe trait MTLArgumentEncoder: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;

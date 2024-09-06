@@ -23,7 +23,7 @@ __inner_extern_class!(
     }
 );
 
-unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for PHFetchResult<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSCopying for PHFetchResult<ObjectType> {}
 
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for PHFetchResult<ObjectType> {}
 
