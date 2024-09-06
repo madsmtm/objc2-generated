@@ -26,7 +26,7 @@ unsafe impl NSCopying for CNMutablePostalAddress {}
 
 #[cfg(feature = "CNPostalAddress")]
 unsafe impl CopyingHelper for CNMutablePostalAddress {
-    type Result = Self;
+    type Result = CNPostalAddress;
 }
 
 #[cfg(feature = "CNPostalAddress")]

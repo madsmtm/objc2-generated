@@ -26,7 +26,7 @@ unsafe impl NSCopying for CNMutableGroup {}
 
 #[cfg(feature = "CNGroup")]
 unsafe impl CopyingHelper for CNMutableGroup {
-    type Result = Self;
+    type Result = CNGroup;
 }
 
 #[cfg(feature = "CNGroup")]

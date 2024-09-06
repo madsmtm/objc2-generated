@@ -26,7 +26,7 @@ unsafe impl NSCopying for CNMutableContact {}
 
 #[cfg(feature = "CNContact")]
 unsafe impl CopyingHelper for CNMutableContact {
-    type Result = Self;
+    type Result = CNContact;
 }
 
 #[cfg(feature = "CNContact")]

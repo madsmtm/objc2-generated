@@ -425,24 +425,8 @@ __inner_extern_class!(
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSCountedSet<ObjectType> {}
 
-#[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized> NSCopying for NSCountedSet<ObjectType> {}
-
-#[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for NSCountedSet<ObjectType> {
-    type Result = Self;
-}
-
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSCountedSet<ObjectType> {}
-
-#[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSCountedSet<ObjectType> {}
-
-#[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + Message> MutableCopyingHelper for NSCountedSet<ObjectType> {
-    type Result = Self;
-}
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSCountedSet<ObjectType> {}
 

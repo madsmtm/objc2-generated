@@ -139,7 +139,7 @@ unsafe impl CopyingHelper for UIApplicationShortcutItem {
 unsafe impl NSMutableCopying for UIApplicationShortcutItem {}
 
 unsafe impl MutableCopyingHelper for UIApplicationShortcutItem {
-    type Result = Self;
+    type Result = UIMutableApplicationShortcutItem;
 }
 
 unsafe impl NSObjectProtocol for UIApplicationShortcutItem {}
@@ -210,7 +210,7 @@ extern_class!(
 unsafe impl NSCopying for UIMutableApplicationShortcutItem {}
 
 unsafe impl CopyingHelper for UIMutableApplicationShortcutItem {
-    type Result = Self;
+    type Result = UIApplicationShortcutItem;
 }
 
 unsafe impl NSMutableCopying for UIMutableApplicationShortcutItem {}

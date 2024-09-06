@@ -140,7 +140,7 @@ unsafe impl CopyingHelper for NSParagraphStyle {
 unsafe impl NSMutableCopying for NSParagraphStyle {}
 
 unsafe impl MutableCopyingHelper for NSParagraphStyle {
-    type Result = Self;
+    type Result = NSMutableParagraphStyle;
 }
 
 unsafe impl NSObjectProtocol for NSParagraphStyle {}
@@ -257,7 +257,7 @@ unsafe impl NSCoding for NSMutableParagraphStyle {}
 unsafe impl NSCopying for NSMutableParagraphStyle {}
 
 unsafe impl CopyingHelper for NSMutableParagraphStyle {
-    type Result = Self;
+    type Result = NSParagraphStyle;
 }
 
 unsafe impl NSMutableCopying for NSMutableParagraphStyle {}

@@ -69,7 +69,7 @@ unsafe impl CopyingHelper for NSFontCollection {
 unsafe impl NSMutableCopying for NSFontCollection {}
 
 unsafe impl MutableCopyingHelper for NSFontCollection {
-    type Result = Self;
+    type Result = NSMutableFontCollection;
 }
 
 unsafe impl NSObjectProtocol for NSFontCollection {}
@@ -187,7 +187,7 @@ unsafe impl NSCoding for NSMutableFontCollection {}
 unsafe impl NSCopying for NSMutableFontCollection {}
 
 unsafe impl CopyingHelper for NSMutableFontCollection {
-    type Result = Self;
+    type Result = NSFontCollection;
 }
 
 unsafe impl NSMutableCopying for NSMutableFontCollection {}

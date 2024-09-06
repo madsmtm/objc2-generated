@@ -25,8 +25,9 @@ unsafe impl CopyingHelper for CNGroup {
 
 unsafe impl NSMutableCopying for CNGroup {}
 
+#[cfg(feature = "CNMutableGroup")]
 unsafe impl MutableCopyingHelper for CNGroup {
-    type Result = Self;
+    type Result = CNMutableGroup;
 }
 
 unsafe impl NSObjectProtocol for CNGroup {}
