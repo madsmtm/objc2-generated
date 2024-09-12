@@ -23,7 +23,7 @@ extern "C" {
         &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports(
     ) -> NonNull<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>>;
 }

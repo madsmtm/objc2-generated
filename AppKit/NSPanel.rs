@@ -141,7 +141,7 @@ extern_methods!(
     }
 );
 
-extern "C" {
+extern "C-unwind" {
     #[deprecated = "Use NSAlert instead"]
     pub fn NSReleaseAlertPanel(panel: Option<&AnyObject>);
 }

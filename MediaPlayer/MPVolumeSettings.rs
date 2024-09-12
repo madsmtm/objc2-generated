@@ -4,17 +4,17 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-extern "C" {
+extern "C-unwind" {
     #[deprecated = "Use MPVolumeView to present volume controls."]
     pub fn MPVolumeSettingsAlertShow();
 }
 
-extern "C" {
+extern "C-unwind" {
     #[deprecated = "Use MPVolumeView to present volume controls."]
     pub fn MPVolumeSettingsAlertHide();
 }
 
-extern "C" {
+extern "C-unwind" {
     #[deprecated = "Use MPVolumeView to present volume controls."]
     pub fn MPVolumeSettingsAlertIsVisible() -> Bool;
 }

@@ -5,12 +5,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     pub fn UIAccessibilityConvertFrameToScreenCoordinates(rect: CGRect, view: &UIView) -> CGRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(all(feature = "UIBezierPath", feature = "UIResponder", feature = "UIView"))]
     pub fn UIAccessibilityConvertPathToScreenCoordinates(
         path: &UIBezierPath,
@@ -582,7 +582,7 @@ extern_category!(
     unsafe impl NSObjectUIAccessibility for NSObject {}
 );
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "UIAccessibilityConstants")]
     pub fn UIAccessibilityFocusedElement(
         assistive_technology_identifier: Option<&UIAccessibilityAssistiveTechnologyIdentifier>,
@@ -755,7 +755,7 @@ extern_category!(
     unsafe impl NSObjectUIAccessibilityDragging for NSObject {}
 );
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "UIAccessibilityConstants")]
     pub fn UIAccessibilityPostNotification(
         notification: UIAccessibilityNotifications,
@@ -763,7 +763,7 @@ extern "C" {
     );
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityIsVoiceOverRunning() -> Bool;
 }
 
@@ -775,7 +775,7 @@ extern "C" {
     pub static UIAccessibilityVoiceOverStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityIsMonoAudioEnabled() -> Bool;
 }
 
@@ -783,7 +783,7 @@ extern "C" {
     pub static UIAccessibilityMonoAudioStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityIsClosedCaptioningEnabled() -> Bool;
 }
 
@@ -792,7 +792,7 @@ extern "C" {
         &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityIsInvertColorsEnabled() -> Bool;
 }
 
@@ -800,7 +800,7 @@ extern "C" {
     pub static UIAccessibilityInvertColorsStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityIsGuidedAccessEnabled() -> Bool;
 }
 
@@ -808,7 +808,7 @@ extern "C" {
     pub static UIAccessibilityGuidedAccessStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityIsBoldTextEnabled() -> Bool;
 }
 
@@ -816,7 +816,7 @@ extern "C" {
     pub static UIAccessibilityBoldTextStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityButtonShapesEnabled() -> Bool;
 }
 
@@ -825,7 +825,7 @@ extern "C" {
         &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityIsGrayscaleEnabled() -> Bool;
 }
 
@@ -833,7 +833,7 @@ extern "C" {
     pub static UIAccessibilityGrayscaleStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityIsReduceTransparencyEnabled() -> Bool;
 }
 
@@ -842,7 +842,7 @@ extern "C" {
         &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityIsReduceMotionEnabled() -> Bool;
 }
 
@@ -850,7 +850,7 @@ extern "C" {
     pub static UIAccessibilityReduceMotionStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityPrefersCrossFadeTransitions() -> Bool;
 }
 
@@ -859,7 +859,7 @@ extern "C" {
         &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityIsVideoAutoplayEnabled() -> Bool;
 }
 
@@ -867,7 +867,7 @@ extern "C" {
     pub static UIAccessibilityVideoAutoplayStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityDarkerSystemColorsEnabled() -> Bool;
 }
 
@@ -876,7 +876,7 @@ extern "C" {
         &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityIsSwitchControlRunning() -> Bool;
 }
 
@@ -884,7 +884,7 @@ extern "C" {
     pub static UIAccessibilitySwitchControlStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityIsSpeakSelectionEnabled() -> Bool;
 }
 
@@ -893,7 +893,7 @@ extern "C" {
         &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityIsSpeakScreenEnabled() -> Bool;
 }
 
@@ -901,7 +901,7 @@ extern "C" {
     pub static UIAccessibilitySpeakScreenStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityIsShakeToUndoEnabled() -> Bool;
 }
 
@@ -909,7 +909,7 @@ extern "C" {
     pub static UIAccessibilityShakeToUndoDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityIsAssistiveTouchRunning() -> Bool;
 }
 
@@ -918,7 +918,7 @@ extern "C" {
         &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityShouldDifferentiateWithoutColor() -> Bool;
 }
 
@@ -927,7 +927,7 @@ extern "C" {
         &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityIsOnOffSwitchLabelsEnabled() -> Bool;
 }
 
@@ -935,7 +935,7 @@ extern "C" {
     pub static UIAccessibilityOnOffSwitchLabelsDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "block2")]
     pub fn UIAccessibilityRequestGuidedAccessSession(
         enable: Bool,
@@ -968,7 +968,7 @@ unsafe impl RefEncode for UIAccessibilityHearingDeviceEar {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityHearingDevicePairedEar() -> UIAccessibilityHearingDeviceEar;
 }
 

@@ -450,19 +450,19 @@ extern "C" {
     pub static NSFileContentsPboardType: &'static NSPasteboardType;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSCreateFilenamePboardType(file_type: &NSString) -> *mut NSPasteboardType;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSCreateFileContentsPboardType(file_type: &NSString) -> *mut NSPasteboardType;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSGetFileType(pboard_type: &NSPasteboardType) -> *mut NSString;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSGetFileTypes(pboard_types: &NSArray<NSPasteboardType>) -> *mut NSArray<NSString>;
 }
 

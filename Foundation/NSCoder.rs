@@ -341,7 +341,7 @@ extern_methods!(
     }
 );
 
-extern "C" {
+extern "C-unwind" {
     #[deprecated = "Not supported"]
     pub fn NXReadNSObjectFromCoder(decoder: &NSCoder) -> *mut NSObject;
 }

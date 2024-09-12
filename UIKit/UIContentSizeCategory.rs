@@ -69,11 +69,11 @@ extern "C" {
     pub static UIContentSizeCategoryNewValueKey: &'static NSString;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIContentSizeCategoryIsAccessibilityCategory(category: &UIContentSizeCategory) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIContentSizeCategoryCompareToCategory(
         lhs: &UIContentSizeCategory,
         rhs: &UIContentSizeCategory,

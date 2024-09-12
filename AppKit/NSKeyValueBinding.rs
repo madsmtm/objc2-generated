@@ -82,7 +82,7 @@ extern "C" {
     pub static NSNotApplicableMarker: &'static AnyObject;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSIsControllerMarker(object: Option<&AnyObject>) -> Bool;
 }
 

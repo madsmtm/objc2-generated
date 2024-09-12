@@ -28,7 +28,7 @@ extern "C" {
         &'static NIAlgorithmConvergenceStatusReason;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NIAlgorithmConvergenceStatusReasonDescription(
         reason: &NIAlgorithmConvergenceStatusReason,
     ) -> NonNull<NSString>;

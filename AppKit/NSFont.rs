@@ -285,7 +285,7 @@ unsafe impl RefEncode for NSMultibyteGlyphPacking {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     #[deprecated]
     pub fn NSConvertGlyphsToPackedGlyphs(
         gl_buf: NonNull<NSGlyph>,

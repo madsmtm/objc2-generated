@@ -48,7 +48,7 @@ extern_methods!(
     }
 );
 
-extern "C" {
+extern "C-unwind" {
     pub fn SKTerminateForInvalidReceipt();
 }
 

@@ -4,11 +4,11 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSDefaultMallocZone() -> NonNull<NSZone>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSCreateZone(
         start_size: NSUInteger,
         granularity: NSUInteger,
@@ -16,29 +16,29 @@ extern "C" {
     ) -> NonNull<NSZone>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSRecycleZone(zone: NonNull<NSZone>);
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSSetZoneName(zone: *mut NSZone, name: &NSString);
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSZoneName(zone: *mut NSZone) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSZoneFromPointer(ptr: NonNull<c_void>) -> *mut NSZone;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSZoneMalloc(zone: *mut NSZone, size: NSUInteger) -> NonNull<c_void>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSZoneCalloc(
         zone: *mut NSZone,
         num_elems: NSUInteger,
@@ -46,22 +46,22 @@ extern "C" {
     ) -> NonNull<c_void>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSZoneRealloc(zone: *mut NSZone, ptr: *mut c_void, size: NSUInteger) -> NonNull<c_void>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSZoneFree(zone: *mut NSZone, ptr: NonNull<c_void>);
 }
 
 pub const NSScannedOption: NSUInteger = 1 << 0;
 pub const NSCollectorDisabledOption: NSUInteger = 1 << 1;
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSAllocateCollectable(size: NSUInteger, options: NSUInteger) -> NonNull<c_void>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSReallocateCollectable(
         ptr: *mut c_void,
         size: NSUInteger,
@@ -69,35 +69,35 @@ extern "C" {
     ) -> NonNull<c_void>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSPageSize() -> NSUInteger;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSLogPageSize() -> NSUInteger;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSRoundUpToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSRoundDownToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSAllocateMemoryPages(bytes: NSUInteger) -> NonNull<c_void>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSDeallocateMemoryPages(ptr: NonNull<c_void>, bytes: NSUInteger);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSCopyMemoryPages(source: NonNull<c_void>, dest: NonNull<c_void>, bytes: NSUInteger);
 }
 
-extern "C" {
+extern "C-unwind" {
     #[deprecated = "Use NSProcessInfo instead"]
     pub fn NSRealMemoryAvailable() -> NSUInteger;
 }

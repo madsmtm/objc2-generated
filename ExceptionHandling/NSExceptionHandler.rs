@@ -17,7 +17,7 @@ extern "C" {
     pub static NSStackTraceKey: Option<&'static NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSExceptionHandlerResume();
 }
 

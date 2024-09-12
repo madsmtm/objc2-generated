@@ -16,37 +16,37 @@ pub type NSExceptionName = NSString;
 #[cfg(feature = "NSString")]
 pub type NSRunLoopMode = NSString;
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSStringFromSelector(a_selector: Sel) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSSelectorFromString(a_selector_name: &NSString) -> Sel;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSStringFromClass(a_class: &AnyClass) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSClassFromString(a_class_name: &NSString) -> *const AnyClass;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSStringFromProtocol(proto: &AnyProtocol) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSProtocolFromString(namestr: &NSString) -> *mut AnyProtocol;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSGetSizeAndAlignment(
         type_ptr: NonNull<c_char>,
         sizep: *mut NSUInteger,

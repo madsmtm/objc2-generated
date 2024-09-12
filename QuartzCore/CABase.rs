@@ -5,8 +5,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 #[inline]
-pub extern "C" fn CACurrentMediaTime() -> CFTimeInterval {
-    extern "C" {
+pub extern "C-unwind" fn CACurrentMediaTime() -> CFTimeInterval {
+    extern "C-unwind" {
         fn CACurrentMediaTime() -> CFTimeInterval;
     }
     unsafe { CACurrentMediaTime() }

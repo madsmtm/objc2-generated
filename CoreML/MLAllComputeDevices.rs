@@ -5,7 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "MLComputeDeviceProtocol")]
     pub fn MLAllComputeDevices() -> NonNull<NSArray<ProtocolObject<dyn MLComputeDeviceProtocol>>>;
 }

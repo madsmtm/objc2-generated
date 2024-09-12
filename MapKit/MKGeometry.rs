@@ -56,7 +56,7 @@ unsafe impl RefEncode for MKCoordinateRegion {
 
 // TODO: pub fn MKCoordinateRegionMake(center_coordinate: CLLocationCoordinate2D,span: MKCoordinateSpan,) -> MKCoordinateRegion;
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "objc2-core-location")]
     pub fn MKCoordinateRegionMakeWithDistance(
         center_coordinate: CLLocationCoordinate2D,
@@ -121,27 +121,27 @@ extern "C" {
     pub static MKMapRectWorld: MKMapRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "objc2-core-location")]
     pub fn MKMapPointForCoordinate(coordinate: CLLocationCoordinate2D) -> MKMapPoint;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "objc2-core-location")]
     pub fn MKCoordinateForMapPoint(map_point: MKMapPoint) -> CLLocationCoordinate2D;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "objc2-core-location")]
     pub fn MKMetersPerMapPointAtLatitude(latitude: CLLocationDegrees) -> CLLocationDistance;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "objc2-core-location")]
     pub fn MKMapPointsPerMeterAtLatitude(latitude: CLLocationDegrees) -> c_double;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "objc2-core-location")]
     pub fn MKMetersBetweenMapPoints(a: MKMapPoint, b: MKMapPoint) -> CLLocationDistance;
 }
@@ -188,44 +188,44 @@ extern "C" {
 
 // TODO: pub fn MKStringFromMapRect(rect: MKMapRect,) -> NonNull<NSString>;
 
-extern "C" {
+extern "C-unwind" {
     pub fn MKMapRectUnion(rect1: MKMapRect, rect2: MKMapRect) -> MKMapRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MKMapRectIntersection(rect1: MKMapRect, rect2: MKMapRect) -> MKMapRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MKMapRectInset(rect: MKMapRect, dx: c_double, dy: c_double) -> MKMapRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MKMapRectOffset(rect: MKMapRect, dx: c_double, dy: c_double) -> MKMapRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MKMapRectContainsPoint(rect: MKMapRect, point: MKMapPoint) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MKMapRectContainsRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MKMapRectIntersectsRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "objc2-core-location")]
     pub fn MKCoordinateRegionForMapRect(rect: MKMapRect) -> MKCoordinateRegion;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MKMapRectSpans180thMeridian(rect: MKMapRect) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MKMapRectRemainder(rect: MKMapRect) -> MKMapRect;
 }
 

@@ -584,64 +584,64 @@ unsafe impl RefEncode for MLCGradientClippingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MLCActivationTypeDebugDescription(
         activation_type: MLCActivationType,
     ) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MLCArithmeticOperationDebugDescription(
         operation: MLCArithmeticOperation,
     ) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MLCPaddingPolicyDebugDescription(padding_policy: MLCPaddingPolicy) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MLCLossTypeDebugDescription(loss_type: MLCLossType) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MLCReductionTypeDebugDescription(reduction_type: MLCReductionType) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MLCPaddingTypeDebugDescription(padding_type: MLCPaddingType) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MLCConvolutionTypeDebugDescription(
         convolution_type: MLCConvolutionType,
     ) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MLCPoolingTypeDebugDescription(pooling_type: MLCPoolingType) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MLCSoftmaxOperationDebugDescription(operation: MLCSoftmaxOperation)
         -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MLCSampleModeDebugDescription(mode: MLCSampleMode) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MLCLSTMResultModeDebugDescription(mode: MLCLSTMResultMode) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MLCComparisonOperationDebugDescription(
         operation: MLCComparisonOperation,
     ) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MLCGradientClippingTypeDebugDescription(
         gradient_clipping_type: MLCGradientClippingType,
     ) -> NonNull<NSString>;

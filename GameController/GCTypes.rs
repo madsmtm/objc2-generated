@@ -29,7 +29,7 @@ extern "C" {
 
 // TODO: pub fn GCPoint2Equal(point1: GCPoint2,point2: GCPoint2,) -> bool;
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSStringFromGCPoint2(point: GCPoint2) -> NonNull<NSString>;
 }
 

@@ -1169,7 +1169,7 @@ extern_methods!(
     }
 );
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIApplicationMain(
         argc: c_int,
         argv: NonNull<*mut c_char>,

@@ -16,7 +16,7 @@ pub const NSMacintoshInterfaceStyle: c_uint = 3;
 
 pub type NSInterfaceStyle = NSUInteger;
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSResponder")]
     #[deprecated]
     pub fn NSInterfaceStyleForKey(

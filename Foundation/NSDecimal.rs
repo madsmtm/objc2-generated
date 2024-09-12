@@ -45,15 +45,15 @@ unsafe impl RefEncode for NSCalculationError {
 
 // TODO: pub fn NSDecimalIsNotANumber(dcm: NonNull<NSDecimal>,) -> Bool;
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSDecimalCopy(destination: NonNull<NSDecimal>, source: NonNull<NSDecimal>);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSDecimalCompact(number: NonNull<NSDecimal>);
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSObjCRuntime")]
     pub fn NSDecimalCompare(
         left_operand: NonNull<NSDecimal>,
@@ -61,7 +61,7 @@ extern "C" {
     ) -> NSComparisonResult;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSDecimalRound(
         result: NonNull<NSDecimal>,
         number: NonNull<NSDecimal>,
@@ -70,7 +70,7 @@ extern "C" {
     );
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSDecimalNormalize(
         number1: NonNull<NSDecimal>,
         number2: NonNull<NSDecimal>,
@@ -78,7 +78,7 @@ extern "C" {
     ) -> NSCalculationError;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSDecimalAdd(
         result: NonNull<NSDecimal>,
         left_operand: NonNull<NSDecimal>,
@@ -87,7 +87,7 @@ extern "C" {
     ) -> NSCalculationError;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSDecimalSubtract(
         result: NonNull<NSDecimal>,
         left_operand: NonNull<NSDecimal>,
@@ -96,7 +96,7 @@ extern "C" {
     ) -> NSCalculationError;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSDecimalMultiply(
         result: NonNull<NSDecimal>,
         left_operand: NonNull<NSDecimal>,
@@ -105,7 +105,7 @@ extern "C" {
     ) -> NSCalculationError;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSDecimalDivide(
         result: NonNull<NSDecimal>,
         left_operand: NonNull<NSDecimal>,
@@ -114,7 +114,7 @@ extern "C" {
     ) -> NSCalculationError;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSDecimalPower(
         result: NonNull<NSDecimal>,
         number: NonNull<NSDecimal>,
@@ -123,7 +123,7 @@ extern "C" {
     ) -> NSCalculationError;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSDecimalMultiplyByPowerOf10(
         result: NonNull<NSDecimal>,
         number: NonNull<NSDecimal>,
@@ -132,7 +132,7 @@ extern "C" {
     ) -> NSCalculationError;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSDecimalString(
         dcm: NonNull<NSDecimal>,

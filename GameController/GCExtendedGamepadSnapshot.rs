@@ -83,7 +83,7 @@ extern "C" {
     pub static GCCurrentExtendedGamepadSnapshotDataVersion: GCExtendedGamepadSnapshotDataVersion;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
     pub fn GCExtendedGamepadSnapshotDataFromNSData(
         snapshot_data: *mut GCExtendedGamepadSnapshotData,
@@ -91,7 +91,7 @@ extern "C" {
     ) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
     pub fn NSDataFromGCExtendedGamepadSnapshotData(
         snapshot_data: *mut GCExtendedGamepadSnapshotData,
@@ -147,7 +147,7 @@ unsafe impl RefEncode for GCExtendedGamepadSnapShotDataV100 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
     pub fn GCExtendedGamepadSnapShotDataV100FromNSData(
         snapshot_data: *mut GCExtendedGamepadSnapShotDataV100,
@@ -155,7 +155,7 @@ extern "C" {
     ) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
     pub fn NSDataFromGCExtendedGamepadSnapShotDataV100(
         snapshot_data: *mut GCExtendedGamepadSnapShotDataV100,

@@ -76,7 +76,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UIGuidedAccessRestrictionDelegate {}
 );
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIGuidedAccessRestrictionStateForIdentifier(
         restriction_identifier: &NSString,
     ) -> UIGuidedAccessRestrictionState;
@@ -109,7 +109,7 @@ unsafe impl RefEncode for UIGuidedAccessAccessibilityFeature {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "block2")]
     pub fn UIGuidedAccessConfigureAccessibilityFeatures(
         features: UIGuidedAccessAccessibilityFeature,

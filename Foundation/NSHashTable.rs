@@ -186,65 +186,65 @@ unsafe impl RefEncode for NSHashEnumerator {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSFreeHashTable(table: &NSHashTable);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSResetHashTable(table: &NSHashTable);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSCompareHashTables(table1: &NSHashTable, table2: &NSHashTable) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSZone")]
     pub fn NSCopyHashTableWithZone(table: &NSHashTable, zone: *mut NSZone) -> NonNull<NSHashTable>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSHashGet(table: &NSHashTable, pointer: *mut c_void) -> NonNull<c_void>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSHashInsert(table: &NSHashTable, pointer: *mut c_void);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSHashInsertKnownAbsent(table: &NSHashTable, pointer: *mut c_void);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSHashInsertIfAbsent(table: &NSHashTable, pointer: *mut c_void) -> *mut c_void;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSHashRemove(table: &NSHashTable, pointer: *mut c_void);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSEnumerateHashTable(table: &NSHashTable) -> NSHashEnumerator;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSNextHashEnumeratorItem(enumerator: NonNull<NSHashEnumerator>) -> *mut c_void;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSEndHashTableEnumeration(enumerator: NonNull<NSHashEnumerator>);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSCountHashTable(table: &NSHashTable) -> NSUInteger;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSStringFromHashTable(table: &NSHashTable) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSArray")]
     pub fn NSAllHashTableObjects(table: &NSHashTable) -> NonNull<NSArray>;
 }
@@ -293,7 +293,7 @@ unsafe impl RefEncode for NSHashTableCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(all(feature = "NSString", feature = "NSZone"))]
     pub fn NSCreateHashTableWithZone(
         call_backs: NSHashTableCallBacks,
@@ -302,7 +302,7 @@ extern "C" {
     ) -> NonNull<NSHashTable>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSCreateHashTable(
         call_backs: NSHashTableCallBacks,

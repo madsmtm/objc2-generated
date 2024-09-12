@@ -510,14 +510,14 @@ extern_category!(
     unsafe impl CIImageUIKitAdditions for CIImage {}
 );
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIImagePNGRepresentation(image: &UIImage) -> *mut NSData;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIImageJPEGRepresentation(image: &UIImage, compression_quality: CGFloat) -> *mut NSData;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIImageHEICRepresentation(image: &UIImage) -> *mut NSData;
 }

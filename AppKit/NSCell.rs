@@ -871,7 +871,7 @@ extern_methods!(
     }
 );
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(all(feature = "NSGraphics", feature = "NSImage"))]
     pub fn NSDrawThreePartImage(
         frame: NSRect,
@@ -885,7 +885,7 @@ extern "C" {
     );
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(all(feature = "NSGraphics", feature = "NSImage"))]
     pub fn NSDrawNinePartImage(
         frame: NSRect,

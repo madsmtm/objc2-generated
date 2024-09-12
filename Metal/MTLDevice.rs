@@ -30,11 +30,11 @@ unsafe impl RefEncode for MTLIOCompressionMethod {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MTLCreateSystemDefaultDevice() -> *mut ProtocolObject<dyn MTLDevice>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MTLCopyAllDevices() -> NonNull<NSArray<ProtocolObject<dyn MTLDevice>>>;
 }
 
@@ -58,7 +58,7 @@ pub type MTLDeviceNotificationHandler = *mut block2::Block<
     dyn Fn(NonNull<ProtocolObject<dyn MTLDevice>>, NonNull<MTLDeviceNotificationName>),
 >;
 
-extern "C" {
+extern "C-unwind" {
     pub fn MTLRemoveDeviceObserver(observer: &NSObject);
 }
 

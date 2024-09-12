@@ -504,7 +504,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UIImagePickerControllerDelegate {}
 );
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "UIImage")]
     pub fn UIImageWriteToSavedPhotosAlbum(
         image: &UIImage,
@@ -514,11 +514,11 @@ extern "C" {
     );
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(video_path: &NSString) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UISaveVideoAtPathToSavedPhotosAlbum(
         video_path: &NSString,
         completion_target: Option<&AnyObject>,

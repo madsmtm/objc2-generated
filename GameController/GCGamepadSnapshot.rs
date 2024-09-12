@@ -96,7 +96,7 @@ unsafe impl RefEncode for GCGamepadSnapShotDataV100 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     #[deprecated = "GCGamepad has been deprecated, use GCExtendedGamepad instead"]
     pub fn GCGamepadSnapShotDataV100FromNSData(
         snapshot_data: *mut GCGamepadSnapShotDataV100,
@@ -104,7 +104,7 @@ extern "C" {
     ) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[deprecated = "GCGamepad has been deprecated, use GCExtendedGamepad instead"]
     pub fn NSDataFromGCGamepadSnapShotDataV100(
         snapshot_data: *mut GCGamepadSnapShotDataV100,

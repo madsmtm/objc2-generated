@@ -65,12 +65,12 @@ unsafe impl RefEncode for UIImageSymbolWeight {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "UIFontDescriptor")]
     pub fn UIFontWeightForImageSymbolWeight(symbol_weight: UIImageSymbolWeight) -> UIFontWeight;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "UIFontDescriptor")]
     pub fn UIImageSymbolWeightForFontWeight(font_weight: UIFontWeight) -> UIImageSymbolWeight;
 }

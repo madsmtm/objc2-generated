@@ -9,11 +9,11 @@ extern "C" {
     pub static VNNormalizedIdentityRect: CGRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn VNNormalizedRectIsIdentityRect(normalized_rect: CGRect) -> bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn VNImagePointForNormalizedPoint(
         normalized_point: CGPoint,
         image_width: usize,
@@ -21,7 +21,7 @@ extern "C" {
     ) -> CGPoint;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn VNImagePointForNormalizedPointUsingRegionOfInterest(
         normalized_point: CGPoint,
         image_width: usize,
@@ -30,7 +30,7 @@ extern "C" {
     ) -> CGPoint;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn VNNormalizedPointForImagePoint(
         image_point: CGPoint,
         image_width: usize,
@@ -38,7 +38,7 @@ extern "C" {
     ) -> CGPoint;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn VNNormalizedPointForImagePointUsingRegionOfInterest(
         image_point: CGPoint,
         image_width: usize,
@@ -47,7 +47,7 @@ extern "C" {
     ) -> CGPoint;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn VNImageRectForNormalizedRect(
         normalized_rect: CGRect,
         image_width: usize,
@@ -55,7 +55,7 @@ extern "C" {
     ) -> CGRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn VNImageRectForNormalizedRectUsingRegionOfInterest(
         normalized_rect: CGRect,
         image_width: usize,
@@ -64,7 +64,7 @@ extern "C" {
     ) -> CGRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn VNNormalizedRectForImageRect(
         image_rect: CGRect,
         image_width: usize,
@@ -72,7 +72,7 @@ extern "C" {
     ) -> CGRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn VNNormalizedRectForImageRectUsingRegionOfInterest(
         image_rect: CGRect,
         image_width: usize,
@@ -81,7 +81,7 @@ extern "C" {
     ) -> CGRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "VNTypes")]
     pub fn VNElementTypeSize(element_type: VNElementType) -> NSUInteger;
 }

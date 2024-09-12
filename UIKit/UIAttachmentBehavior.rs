@@ -51,7 +51,7 @@ extern "C" {
     pub static UIFloatRangeInfinite: UIFloatRange;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIFloatRangeIsInfinite(range: UIFloatRange) -> Bool;
 }
 

@@ -288,67 +288,67 @@ extern "C" {
     pub static UIOffsetZero: UIOffset;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSStringFromCGPoint(point: CGPoint) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSStringFromCGVector(vector: CGVector) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSStringFromCGSize(size: CGSize) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSStringFromCGRect(rect: CGRect) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSStringFromCGAffineTransform(transform: CGAffineTransform) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSStringFromUIEdgeInsets(insets: UIEdgeInsets) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSStringFromDirectionalEdgeInsets(insets: NSDirectionalEdgeInsets) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSStringFromUIOffset(offset: UIOffset) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn CGPointFromString(string: &NSString) -> CGPoint;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn CGVectorFromString(string: &NSString) -> CGVector;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn CGSizeFromString(string: &NSString) -> CGSize;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn CGRectFromString(string: &NSString) -> CGRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn CGAffineTransformFromString(string: &NSString) -> CGAffineTransform;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIEdgeInsetsFromString(string: &NSString) -> UIEdgeInsets;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSDirectionalEdgeInsetsFromString(string: &NSString) -> NSDirectionalEdgeInsets;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIOffsetFromString(string: &NSString) -> UIOffset;
 }
 

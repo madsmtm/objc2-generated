@@ -5,7 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "CWNetwork")]
     pub fn CWMergeNetworks(networks: &NSSet<CWNetwork>) -> NonNull<NSSet<CWNetwork>>;
 }

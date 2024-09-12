@@ -1481,7 +1481,7 @@ extern "C" {
     pub static NSAccessibilityAnnouncementKey: &'static NSAccessibilityNotificationUserInfoKey;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSAccessibilityPostNotificationWithUserInfo(
         element: &AnyObject,
         notification: &NSAccessibilityNotificationName,

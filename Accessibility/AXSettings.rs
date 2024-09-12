@@ -5,7 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern "C" {
+extern "C-unwind" {
     pub fn AXPrefersHorizontalTextLayout() -> Bool;
 }
 
@@ -13,7 +13,7 @@ extern "C" {
     pub static AXPrefersHorizontalTextLayoutDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn AXAnimatedImagesEnabled() -> Bool;
 }
 

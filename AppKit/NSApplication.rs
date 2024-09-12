@@ -1192,38 +1192,38 @@ extern_methods!(
     }
 );
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSApplicationMain(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSApplicationLoad() -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSShowsServicesMenuItem(item_name: &NSString) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSSetShowsServicesMenuItem(item_name: &NSString, enabled: Bool) -> NSInteger;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSUpdateDynamicServices();
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSPasteboard")]
     pub fn NSPerformService(item_name: &NSString, pboard: Option<&NSPasteboard>) -> Bool;
 }
 
 pub type NSServiceProviderName = NSString;
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSRegisterServicesProvider(provider: Option<&AnyObject>, name: &NSServiceProviderName);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSUnregisterServicesProvider(name: &NSServiceProviderName);
 }
 

@@ -94,7 +94,7 @@ unsafe impl RefEncode for UIEventButtonMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIEventButtonMaskForButtonNumber(button_number: NSInteger) -> UIEventButtonMask;
 }
 

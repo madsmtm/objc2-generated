@@ -213,20 +213,20 @@ unsafe impl RefEncode for NSMapEnumerator {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSResetMapTable(table: &NSMapTable);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSCompareMapTables(table1: &NSMapTable, table2: &NSMapTable) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSZone")]
     pub fn NSCopyMapTableWithZone(table: &NSMapTable, zone: *mut NSZone) -> NonNull<NSMapTable>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSMapMember(
         table: &NSMapTable,
         key: NonNull<c_void>,
@@ -235,19 +235,19 @@ extern "C" {
     ) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSMapGet(table: &NSMapTable, key: *mut c_void) -> *mut c_void;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSMapInsert(table: &NSMapTable, key: *mut c_void, value: *mut c_void);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSMapInsertKnownAbsent(table: &NSMapTable, key: *mut c_void, value: *mut c_void);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSMapInsertIfAbsent(
         table: &NSMapTable,
         key: *mut c_void,
@@ -255,15 +255,15 @@ extern "C" {
     ) -> *mut c_void;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSMapRemove(table: &NSMapTable, key: *mut c_void);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSEnumerateMapTable(table: &NSMapTable) -> NSMapEnumerator;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSNextMapEnumeratorPair(
         enumerator: NonNull<NSMapEnumerator>,
         key: *mut *mut c_void,
@@ -271,25 +271,25 @@ extern "C" {
     ) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSEndMapTableEnumeration(enumerator: NonNull<NSMapEnumerator>);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSCountMapTable(table: &NSMapTable) -> NSUInteger;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSStringFromMapTable(table: &NSMapTable) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSArray")]
     pub fn NSAllMapTableKeys(table: &NSMapTable) -> NonNull<NSArray>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSArray")]
     pub fn NSAllMapTableValues(table: &NSMapTable) -> NonNull<NSArray>;
 }
@@ -349,7 +349,7 @@ unsafe impl RefEncode for NSMapTableValueCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(all(feature = "NSString", feature = "NSZone"))]
     pub fn NSCreateMapTableWithZone(
         key_call_backs: NSMapTableKeyCallBacks,
@@ -359,7 +359,7 @@ extern "C" {
     ) -> NonNull<NSMapTable>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSCreateMapTable(
         key_call_backs: NSMapTableKeyCallBacks,

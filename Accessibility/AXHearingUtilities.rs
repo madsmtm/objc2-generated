@@ -30,7 +30,7 @@ unsafe impl RefEncode for AXHearingDeviceEar {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn AXMFiHearingDeviceStreamingEar() -> AXHearingDeviceEar;
 }
 
@@ -38,11 +38,11 @@ extern "C" {
     pub static AXMFiHearingDeviceStreamingEarDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn AXSupportsBidirectionalAXMFiHearingDeviceStreaming() -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn AXMFiHearingDevicePairedUUIDs() -> NonNull<NSArray<NSUUID>>;
 }
 

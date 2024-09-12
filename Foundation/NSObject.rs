@@ -77,7 +77,7 @@ extern_category!(
     unsafe impl NSObjectNSDiscardableContentProxy for NSObject {}
 );
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSZone")]
     pub fn NSAllocateObject(
         a_class: &AnyClass,
@@ -86,11 +86,11 @@ extern "C" {
     ) -> NonNull<AnyObject>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSDeallocateObject(object: &AnyObject);
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSZone")]
     #[deprecated = "Not supported"]
     pub fn NSCopyObject(
@@ -100,19 +100,19 @@ extern "C" {
     ) -> NonNull<AnyObject>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSZone")]
     pub fn NSShouldRetainWithZone(an_object: &AnyObject, requested_zone: *mut NSZone) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSIncrementExtraRefCount(object: &AnyObject);
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSDecrementExtraRefCountWasZero(object: &AnyObject) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSExtraRefCount(object: &AnyObject) -> NSUInteger;
 }

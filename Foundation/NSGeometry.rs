@@ -136,51 +136,51 @@ extern "C" {
 
 // TODO: pub fn NSEdgeInsetsMake(top: CGFloat,left: CGFloat,bottom: CGFloat,right: CGFloat,) -> NSEdgeInsets;
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSEqualPoints(a_point: NSPoint, b_point: NSPoint) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSEqualSizes(a_size: NSSize, b_size: NSSize) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSEqualRects(a_rect: NSRect, b_rect: NSRect) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSIsEmptyRect(a_rect: NSRect) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSEdgeInsetsEqual(a_insets: NSEdgeInsets, b_insets: NSEdgeInsets) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSInsetRect(a_rect: NSRect, d_x: CGFloat, d_y: CGFloat) -> NSRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSIntegralRect(a_rect: NSRect) -> NSRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSIntegralRectWithOptions(a_rect: NSRect, opts: NSAlignmentOptions) -> NSRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSUnionRect(a_rect: NSRect, b_rect: NSRect) -> NSRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSIntersectionRect(a_rect: NSRect, b_rect: NSRect) -> NSRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSOffsetRect(a_rect: NSRect, d_x: CGFloat, d_y: CGFloat) -> NSRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSDivideRect(
         in_rect: NSRect,
         slice: NonNull<NSRect>,
@@ -190,48 +190,48 @@ extern "C" {
     );
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSPointInRect(a_point: NSPoint, a_rect: NSRect) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSMouseInRect(a_point: NSPoint, a_rect: NSRect, flipped: Bool) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSContainsRect(a_rect: NSRect, b_rect: NSRect) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSIntersectsRect(a_rect: NSRect, b_rect: NSRect) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSStringFromPoint(a_point: NSPoint) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSStringFromSize(a_size: NSSize) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSStringFromRect(a_rect: NSRect) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSPointFromString(a_string: &NSString) -> NSPoint;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSSizeFromString(a_string: &NSString) -> NSSize;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSRectFromString(a_string: &NSString) -> NSRect;
 }

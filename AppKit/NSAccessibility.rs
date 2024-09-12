@@ -149,21 +149,21 @@ extern "C" {
         &'static NSNotificationName;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub fn NSAccessibilityFrameInView(parent_view: &NSView, frame: NSRect) -> NSRect;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub fn NSAccessibilityPointInView(parent_view: &NSView, point: NSPoint) -> NSPoint;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSAccessibilitySetMayContainProtectedContent(flag: Bool) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSAccessibilityConstants")]
     pub fn NSAccessibilityRoleDescription(
         role: &NSAccessibilityRole,
@@ -171,16 +171,16 @@ extern "C" {
     ) -> *mut NSString;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSAccessibilityRoleDescriptionForUIElement(element: &AnyObject) -> *mut NSString;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSAccessibilityConstants")]
     pub fn NSAccessibilityActionDescription(action: &NSAccessibilityActionName) -> *mut NSString;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSAccessibilityConstants")]
     #[deprecated = "Exceptions are no longer appropriate for indicating errors in accessibility API. Unexpected values should be handled through appropriate type checking."]
     pub fn NSAccessibilityRaiseBadArgumentException(
@@ -190,25 +190,25 @@ extern "C" {
     );
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSAccessibilityUnignoredAncestor(element: &AnyObject) -> *mut AnyObject;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSAccessibilityUnignoredDescendant(element: &AnyObject) -> *mut AnyObject;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSAccessibilityUnignoredChildren(original_children: &NSArray) -> NonNull<NSArray>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSAccessibilityUnignoredChildrenForOnlyChild(
         original_child: &AnyObject,
     ) -> NonNull<NSArray>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSAccessibilityConstants")]
     pub fn NSAccessibilityPostNotification(
         element: &AnyObject,

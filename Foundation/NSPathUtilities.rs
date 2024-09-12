@@ -94,32 +94,32 @@ extern_methods!(
     }
 );
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSUserName() -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSFullUserName() -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSHomeDirectory() -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSHomeDirectoryForUser(user_name: Option<&NSString>) -> *mut NSString;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSTemporaryDirectory() -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSOpenStepRootDirectory() -> NonNull<NSString>;
 }
@@ -188,7 +188,7 @@ unsafe impl RefEncode for NSSearchPathDomainMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(all(feature = "NSArray", feature = "NSString"))]
     pub fn NSSearchPathForDirectoriesInDomains(
         directory: NSSearchPathDirectory,

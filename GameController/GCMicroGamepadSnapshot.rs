@@ -110,7 +110,7 @@ unsafe impl RefEncode for GCMicroGamepadSnapshotData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
     pub fn GCMicroGamepadSnapshotDataFromNSData(
         snapshot_data: *mut GCMicroGamepadSnapshotData,
@@ -118,7 +118,7 @@ extern "C" {
     ) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
     pub fn NSDataFromGCMicroGamepadSnapshotData(
         snapshot_data: *mut GCMicroGamepadSnapshotData,
@@ -154,7 +154,7 @@ unsafe impl RefEncode for GCMicroGamepadSnapShotDataV100 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
     pub fn GCMicroGamepadSnapShotDataV100FromNSData(
         snapshot_data: *mut GCMicroGamepadSnapShotDataV100,
@@ -162,7 +162,7 @@ extern "C" {
     ) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
     pub fn NSDataFromGCMicroGamepadSnapShotDataV100(
         snapshot_data: *mut GCMicroGamepadSnapShotDataV100,

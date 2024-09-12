@@ -722,14 +722,14 @@ unsafe impl RefEncode for UICellAccessoryPlacement {
 pub type UICellAccessoryPosition =
     *mut block2::Block<dyn Fn(NonNull<NSArray<UICellAccessory>>) -> NSUInteger>;
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "block2")]
     pub fn UICellAccessoryPositionBeforeAccessoryOfClass(
         accessory_class: &AnyClass,
     ) -> UICellAccessoryPosition;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "block2")]
     pub fn UICellAccessoryPositionAfterAccessoryOfClass(
         accessory_class: &AnyClass,

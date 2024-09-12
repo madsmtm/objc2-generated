@@ -59,49 +59,53 @@ extern "C" {
 }
 
 #[inline]
-pub extern "C" fn CATransform3DIsIdentity(t: CATransform3D) -> bool {
-    extern "C" {
+pub extern "C-unwind" fn CATransform3DIsIdentity(t: CATransform3D) -> bool {
+    extern "C-unwind" {
         fn CATransform3DIsIdentity(t: CATransform3D) -> bool;
     }
     unsafe { CATransform3DIsIdentity(t) }
 }
 
 #[inline]
-pub extern "C" fn CATransform3DEqualToTransform(a: CATransform3D, b: CATransform3D) -> bool {
-    extern "C" {
+pub extern "C-unwind" fn CATransform3DEqualToTransform(a: CATransform3D, b: CATransform3D) -> bool {
+    extern "C-unwind" {
         fn CATransform3DEqualToTransform(a: CATransform3D, b: CATransform3D) -> bool;
     }
     unsafe { CATransform3DEqualToTransform(a, b) }
 }
 
 #[inline]
-pub extern "C" fn CATransform3DMakeTranslation(
+pub extern "C-unwind" fn CATransform3DMakeTranslation(
     tx: CGFloat,
     ty: CGFloat,
     tz: CGFloat,
 ) -> CATransform3D {
-    extern "C" {
+    extern "C-unwind" {
         fn CATransform3DMakeTranslation(tx: CGFloat, ty: CGFloat, tz: CGFloat) -> CATransform3D;
     }
     unsafe { CATransform3DMakeTranslation(tx, ty, tz) }
 }
 
 #[inline]
-pub extern "C" fn CATransform3DMakeScale(sx: CGFloat, sy: CGFloat, sz: CGFloat) -> CATransform3D {
-    extern "C" {
+pub extern "C-unwind" fn CATransform3DMakeScale(
+    sx: CGFloat,
+    sy: CGFloat,
+    sz: CGFloat,
+) -> CATransform3D {
+    extern "C-unwind" {
         fn CATransform3DMakeScale(sx: CGFloat, sy: CGFloat, sz: CGFloat) -> CATransform3D;
     }
     unsafe { CATransform3DMakeScale(sx, sy, sz) }
 }
 
 #[inline]
-pub extern "C" fn CATransform3DMakeRotation(
+pub extern "C-unwind" fn CATransform3DMakeRotation(
     angle: CGFloat,
     x: CGFloat,
     y: CGFloat,
     z: CGFloat,
 ) -> CATransform3D {
-    extern "C" {
+    extern "C-unwind" {
         fn CATransform3DMakeRotation(
             angle: CGFloat,
             x: CGFloat,
@@ -113,13 +117,13 @@ pub extern "C" fn CATransform3DMakeRotation(
 }
 
 #[inline]
-pub extern "C" fn CATransform3DTranslate(
+pub extern "C-unwind" fn CATransform3DTranslate(
     t: CATransform3D,
     tx: CGFloat,
     ty: CGFloat,
     tz: CGFloat,
 ) -> CATransform3D {
-    extern "C" {
+    extern "C-unwind" {
         fn CATransform3DTranslate(
             t: CATransform3D,
             tx: CGFloat,
@@ -131,13 +135,13 @@ pub extern "C" fn CATransform3DTranslate(
 }
 
 #[inline]
-pub extern "C" fn CATransform3DScale(
+pub extern "C-unwind" fn CATransform3DScale(
     t: CATransform3D,
     sx: CGFloat,
     sy: CGFloat,
     sz: CGFloat,
 ) -> CATransform3D {
-    extern "C" {
+    extern "C-unwind" {
         fn CATransform3DScale(
             t: CATransform3D,
             sx: CGFloat,
@@ -149,14 +153,14 @@ pub extern "C" fn CATransform3DScale(
 }
 
 #[inline]
-pub extern "C" fn CATransform3DRotate(
+pub extern "C-unwind" fn CATransform3DRotate(
     t: CATransform3D,
     angle: CGFloat,
     x: CGFloat,
     y: CGFloat,
     z: CGFloat,
 ) -> CATransform3D {
-    extern "C" {
+    extern "C-unwind" {
         fn CATransform3DRotate(
             t: CATransform3D,
             angle: CGFloat,
@@ -169,24 +173,24 @@ pub extern "C" fn CATransform3DRotate(
 }
 
 #[inline]
-pub extern "C" fn CATransform3DConcat(a: CATransform3D, b: CATransform3D) -> CATransform3D {
-    extern "C" {
+pub extern "C-unwind" fn CATransform3DConcat(a: CATransform3D, b: CATransform3D) -> CATransform3D {
+    extern "C-unwind" {
         fn CATransform3DConcat(a: CATransform3D, b: CATransform3D) -> CATransform3D;
     }
     unsafe { CATransform3DConcat(a, b) }
 }
 
 #[inline]
-pub extern "C" fn CATransform3DInvert(t: CATransform3D) -> CATransform3D {
-    extern "C" {
+pub extern "C-unwind" fn CATransform3DInvert(t: CATransform3D) -> CATransform3D {
+    extern "C-unwind" {
         fn CATransform3DInvert(t: CATransform3D) -> CATransform3D;
     }
     unsafe { CATransform3DInvert(t) }
 }
 
 #[inline]
-pub extern "C" fn CATransform3DIsAffine(t: CATransform3D) -> bool {
-    extern "C" {
+pub extern "C-unwind" fn CATransform3DIsAffine(t: CATransform3D) -> bool {
+    extern "C-unwind" {
         fn CATransform3DIsAffine(t: CATransform3D) -> bool;
     }
     unsafe { CATransform3DIsAffine(t) }

@@ -22,7 +22,7 @@ unsafe impl RefEncode for UIAccessibilityZoomType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     pub fn UIAccessibilityZoomFocusChanged(
         r#type: UIAccessibilityZoomType,
@@ -31,6 +31,6 @@ extern "C" {
     );
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn UIAccessibilityRegisterGestureConflictWithZoom();
 }

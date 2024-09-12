@@ -26,7 +26,7 @@ unsafe impl RefEncode for HKAppleWalkingSteadinessClassification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "HKQuantity")]
     pub fn HKAppleWalkingSteadinessClassificationForQuantity(
         value: &HKQuantity,
@@ -35,14 +35,14 @@ extern "C" {
     ) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "HKQuantity")]
     pub fn HKAppleWalkingSteadinessMinimumQuantityForClassification(
         classification: HKAppleWalkingSteadinessClassification,
     ) -> NonNull<HKQuantity>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "HKQuantity")]
     pub fn HKAppleWalkingSteadinessMaximumQuantityForClassification(
         classification: HKAppleWalkingSteadinessClassification,

@@ -90,7 +90,7 @@ extern_methods!(
     }
 );
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "MKGeometry")]
     pub fn MKRoadWidthAtZoomScale(zoom_scale: MKZoomScale) -> CGFloat;
 }

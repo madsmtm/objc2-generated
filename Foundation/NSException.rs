@@ -168,11 +168,11 @@ extern_methods!(
 
 pub type NSUncaughtExceptionHandler = TodoFunction;
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSGetUncaughtExceptionHandler() -> *mut NSUncaughtExceptionHandler;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSSetUncaughtExceptionHandler(_: *mut NSUncaughtExceptionHandler);
 }
 

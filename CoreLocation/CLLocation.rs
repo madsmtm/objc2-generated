@@ -81,11 +81,11 @@ extern "C" {
     pub static kCLLocationCoordinate2DInvalid: CLLocationCoordinate2D;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn CLLocationCoordinate2DIsValid(coord: CLLocationCoordinate2D) -> Bool;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn CLLocationCoordinate2DMake(
         latitude: CLLocationDegrees,
         longitude: CLLocationDegrees,

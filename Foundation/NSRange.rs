@@ -14,20 +14,20 @@ pub type NSRangePointer = *mut NSRange;
 
 // TODO: pub fn NSEqualRanges(range1: NSRange,range2: NSRange,) -> Bool;
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSUnionRange(range1: NSRange, range2: NSRange) -> NSRange;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn NSIntersectionRange(range1: NSRange, range2: NSRange) -> NSRange;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSStringFromRange(range: NSRange) -> NonNull<NSString>;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "NSString")]
     pub fn NSRangeFromString(a_string: &NSString) -> NSRange;
 }

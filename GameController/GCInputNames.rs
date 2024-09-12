@@ -43,10 +43,10 @@ extern "C" {
     pub static GCInputRightBumper: Option<&'static GCInputButtonName>;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn GCInputBackLeftButton(position: NSInteger) -> *mut GCInputButtonName;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn GCInputBackRightButton(position: NSInteger) -> *mut GCInputButtonName;
 }

@@ -31,7 +31,7 @@ extern "C" {
     pub static CAFrameRateRangeDefault: CAFrameRateRange;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn CAFrameRateRangeMake(
         minimum: c_float,
         maximum: c_float,
@@ -39,7 +39,7 @@ extern "C" {
     ) -> CAFrameRateRange;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn CAFrameRateRangeIsEqualToRange(range: CAFrameRateRange, other: CAFrameRateRange)
         -> bool;
 }

@@ -25,11 +25,11 @@ unsafe impl RefEncode for MTLIOCompressionStatus {
 
 pub type MTLIOCompressionContext = *mut c_void;
 
-extern "C" {
+extern "C-unwind" {
     pub fn MTLIOCompressionContextDefaultChunkSize() -> usize;
 }
 
-extern "C" {
+extern "C-unwind" {
     #[cfg(feature = "MTLDevice")]
     pub fn MTLIOCreateCompressionContext(
         path: NonNull<c_char>,
@@ -38,7 +38,7 @@ extern "C" {
     ) -> MTLIOCompressionContext;
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MTLIOCompressionContextAppendData(
         context: MTLIOCompressionContext,
         data: NonNull<c_void>,
@@ -46,7 +46,7 @@ extern "C" {
     );
 }
 
-extern "C" {
+extern "C-unwind" {
     pub fn MTLIOFlushAndDestroyCompressionContext(
         context: MTLIOCompressionContext,
     ) -> MTLIOCompressionStatus;
