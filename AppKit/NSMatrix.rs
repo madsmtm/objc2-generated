@@ -180,7 +180,7 @@ extern_methods!(
         #[method(sortUsingFunction:context:)]
         pub unsafe fn sortUsingFunction_context(
             &self,
-            compare: unsafe extern "C" fn(
+            compare: unsafe extern "C-unwind" fn(
                 NonNull<AnyObject>,
                 NonNull<AnyObject>,
                 *mut c_void,

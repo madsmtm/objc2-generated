@@ -71,9 +71,9 @@ extern_methods!(
         pub unsafe fn hashFunction(
             &self,
         ) -> Option<
-            unsafe extern "C" fn(
+            unsafe extern "C-unwind" fn(
                 NonNull<c_void>,
-                Option<unsafe extern "C" fn(NonNull<c_void>) -> NSUInteger>,
+                Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> NSUInteger>,
             ) -> NSUInteger,
         >;
 
@@ -81,9 +81,9 @@ extern_methods!(
         pub unsafe fn setHashFunction(
             &self,
             hash_function: Option<
-                unsafe extern "C" fn(
+                unsafe extern "C-unwind" fn(
                     NonNull<c_void>,
-                    Option<unsafe extern "C" fn(NonNull<c_void>) -> NSUInteger>,
+                    Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> NSUInteger>,
                 ) -> NSUInteger,
             >,
         );
@@ -92,10 +92,10 @@ extern_methods!(
         pub unsafe fn isEqualFunction(
             &self,
         ) -> Option<
-            unsafe extern "C" fn(
+            unsafe extern "C-unwind" fn(
                 NonNull<c_void>,
                 NonNull<c_void>,
-                Option<unsafe extern "C" fn(NonNull<c_void>) -> NSUInteger>,
+                Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> NSUInteger>,
             ) -> Bool,
         >;
 
@@ -103,10 +103,10 @@ extern_methods!(
         pub unsafe fn setIsEqualFunction(
             &self,
             is_equal_function: Option<
-                unsafe extern "C" fn(
+                unsafe extern "C-unwind" fn(
                     NonNull<c_void>,
                     NonNull<c_void>,
-                    Option<unsafe extern "C" fn(NonNull<c_void>) -> NSUInteger>,
+                    Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> NSUInteger>,
                 ) -> Bool,
             >,
         );
@@ -114,34 +114,36 @@ extern_methods!(
         #[method(sizeFunction)]
         pub unsafe fn sizeFunction(
             &self,
-        ) -> Option<unsafe extern "C" fn(NonNull<c_void>) -> NSUInteger>;
+        ) -> Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> NSUInteger>;
 
         #[method(setSizeFunction:)]
         pub unsafe fn setSizeFunction(
             &self,
-            size_function: Option<unsafe extern "C" fn(NonNull<c_void>) -> NSUInteger>,
+            size_function: Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> NSUInteger>,
         );
 
         #[cfg(feature = "NSString")]
         #[method(descriptionFunction)]
         pub unsafe fn descriptionFunction(
             &self,
-        ) -> Option<unsafe extern "C" fn(NonNull<c_void>) -> *mut NSString>;
+        ) -> Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> *mut NSString>;
 
         #[cfg(feature = "NSString")]
         #[method(setDescriptionFunction:)]
         pub unsafe fn setDescriptionFunction(
             &self,
-            description_function: Option<unsafe extern "C" fn(NonNull<c_void>) -> *mut NSString>,
+            description_function: Option<
+                unsafe extern "C-unwind" fn(NonNull<c_void>) -> *mut NSString,
+            >,
         );
 
         #[method(relinquishFunction)]
         pub unsafe fn relinquishFunction(
             &self,
         ) -> Option<
-            unsafe extern "C" fn(
+            unsafe extern "C-unwind" fn(
                 NonNull<c_void>,
-                Option<unsafe extern "C" fn(NonNull<c_void>) -> NSUInteger>,
+                Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> NSUInteger>,
             ),
         >;
 
@@ -149,9 +151,9 @@ extern_methods!(
         pub unsafe fn setRelinquishFunction(
             &self,
             relinquish_function: Option<
-                unsafe extern "C" fn(
+                unsafe extern "C-unwind" fn(
                     NonNull<c_void>,
-                    Option<unsafe extern "C" fn(NonNull<c_void>) -> NSUInteger>,
+                    Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> NSUInteger>,
                 ),
             >,
         );
@@ -160,9 +162,9 @@ extern_methods!(
         pub unsafe fn acquireFunction(
             &self,
         ) -> Option<
-            unsafe extern "C" fn(
+            unsafe extern "C-unwind" fn(
                 NonNull<c_void>,
-                Option<unsafe extern "C" fn(NonNull<c_void>) -> NSUInteger>,
+                Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> NSUInteger>,
                 Bool,
             ) -> NonNull<c_void>,
         >;
@@ -171,9 +173,9 @@ extern_methods!(
         pub unsafe fn setAcquireFunction(
             &self,
             acquire_function: Option<
-                unsafe extern "C" fn(
+                unsafe extern "C-unwind" fn(
                     NonNull<c_void>,
-                    Option<unsafe extern "C" fn(NonNull<c_void>) -> NSUInteger>,
+                    Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> NSUInteger>,
                     Bool,
                 ) -> NonNull<c_void>,
             >,

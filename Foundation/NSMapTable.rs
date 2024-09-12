@@ -298,19 +298,21 @@ extern "C" {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSMapTableKeyCallBacks {
-    pub hash: Option<unsafe extern "C" fn(NonNull<NSMapTable>, NonNull<c_void>) -> NSUInteger>,
-    pub isEqual:
-        Option<unsafe extern "C" fn(NonNull<NSMapTable>, NonNull<c_void>, NonNull<c_void>) -> Bool>,
-    pub retain: Option<unsafe extern "C" fn(NonNull<NSMapTable>, NonNull<c_void>)>,
-    pub release: Option<unsafe extern "C" fn(NonNull<NSMapTable>, NonNull<c_void>)>,
+    pub hash:
+        Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>) -> NSUInteger>,
+    pub isEqual: Option<
+        unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>, NonNull<c_void>) -> Bool,
+    >,
+    pub retain: Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>)>,
+    pub release: Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>)>,
     pub describe:
-        Option<unsafe extern "C" fn(NonNull<NSMapTable>, NonNull<c_void>) -> *mut NSString>,
+        Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>) -> *mut NSString>,
     pub notAKeyMarker: *mut c_void,
 }
 
 #[cfg(feature = "NSString")]
 unsafe impl Encode for NSMapTableKeyCallBacks {
-    const ENCODING: Encoding = Encoding::Struct("?", &[<Option<unsafe extern "C" fn(NonNull<NSMapTable>,NonNull<c_void>,) -> NSUInteger>>::ENCODING,<Option<unsafe extern "C" fn(NonNull<NSMapTable>,NonNull<c_void>,NonNull<c_void>,) -> Bool>>::ENCODING,<Option<unsafe extern "C" fn(NonNull<NSMapTable>,NonNull<c_void>,)>>::ENCODING,<Option<unsafe extern "C" fn(NonNull<NSMapTable>,NonNull<c_void>,)>>::ENCODING,<Option<unsafe extern "C" fn(NonNull<NSMapTable>,NonNull<c_void>,) -> *mut NSString>>::ENCODING,<*mut c_void>::ENCODING,]);
+    const ENCODING: Encoding = Encoding::Struct("?", &[<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,) -> NSUInteger>>::ENCODING,<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,NonNull<c_void>,) -> Bool>>::ENCODING,<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,)>>::ENCODING,<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,)>>::ENCODING,<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,) -> *mut NSString>>::ENCODING,<*mut c_void>::ENCODING,]);
 }
 
 #[cfg(feature = "NSString")]
@@ -322,15 +324,24 @@ unsafe impl RefEncode for NSMapTableKeyCallBacks {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSMapTableValueCallBacks {
-    pub retain: Option<unsafe extern "C" fn(NonNull<NSMapTable>, NonNull<c_void>)>,
-    pub release: Option<unsafe extern "C" fn(NonNull<NSMapTable>, NonNull<c_void>)>,
+    pub retain: Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>)>,
+    pub release: Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>)>,
     pub describe:
-        Option<unsafe extern "C" fn(NonNull<NSMapTable>, NonNull<c_void>) -> *mut NSString>,
+        Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>) -> *mut NSString>,
 }
 
 #[cfg(feature = "NSString")]
 unsafe impl Encode for NSMapTableValueCallBacks {
-    const ENCODING: Encoding = Encoding::Struct("?", &[<Option<unsafe extern "C" fn(NonNull<NSMapTable>,NonNull<c_void>,)>>::ENCODING,<Option<unsafe extern "C" fn(NonNull<NSMapTable>,NonNull<c_void>,)>>::ENCODING,<Option<unsafe extern "C" fn(NonNull<NSMapTable>,NonNull<c_void>,) -> *mut NSString>>::ENCODING,]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>)>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>)>>::ENCODING,
+            <Option<
+                unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>) -> *mut NSString,
+            >>::ENCODING,
+        ],
+    );
 }
 
 #[cfg(feature = "NSString")]

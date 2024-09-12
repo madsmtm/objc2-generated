@@ -228,7 +228,7 @@ extern_methods!(
         #[method(sortSubviewsUsingFunction:context:)]
         pub unsafe fn sortSubviewsUsingFunction_context(
             &self,
-            compare: unsafe extern "C" fn(
+            compare: unsafe extern "C-unwind" fn(
                 NonNull<NSView>,
                 NonNull<NSView>,
                 *mut c_void,

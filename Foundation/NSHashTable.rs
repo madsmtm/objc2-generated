@@ -253,19 +253,39 @@ extern "C" {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSHashTableCallBacks {
-    pub hash: Option<unsafe extern "C" fn(NonNull<NSHashTable>, NonNull<c_void>) -> NSUInteger>,
+    pub hash:
+        Option<unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>) -> NSUInteger>,
     pub isEqual: Option<
-        unsafe extern "C" fn(NonNull<NSHashTable>, NonNull<c_void>, NonNull<c_void>) -> Bool,
+        unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>, NonNull<c_void>) -> Bool,
     >,
-    pub retain: Option<unsafe extern "C" fn(NonNull<NSHashTable>, NonNull<c_void>)>,
-    pub release: Option<unsafe extern "C" fn(NonNull<NSHashTable>, NonNull<c_void>)>,
+    pub retain: Option<unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>)>,
+    pub release: Option<unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>)>,
     pub describe:
-        Option<unsafe extern "C" fn(NonNull<NSHashTable>, NonNull<c_void>) -> *mut NSString>,
+        Option<unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>) -> *mut NSString>,
 }
 
 #[cfg(feature = "NSString")]
 unsafe impl Encode for NSHashTableCallBacks {
-    const ENCODING: Encoding = Encoding::Struct("?", &[<Option<unsafe extern "C" fn(NonNull<NSHashTable>,NonNull<c_void>,) -> NSUInteger>>::ENCODING,<Option<unsafe extern "C" fn(NonNull<NSHashTable>,NonNull<c_void>,NonNull<c_void>,) -> Bool>>::ENCODING,<Option<unsafe extern "C" fn(NonNull<NSHashTable>,NonNull<c_void>,)>>::ENCODING,<Option<unsafe extern "C" fn(NonNull<NSHashTable>,NonNull<c_void>,)>>::ENCODING,<Option<unsafe extern "C" fn(NonNull<NSHashTable>,NonNull<c_void>,) -> *mut NSString>>::ENCODING,]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <Option<
+                unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>) -> NSUInteger,
+            >>::ENCODING,
+            <Option<
+                unsafe extern "C-unwind" fn(
+                    NonNull<NSHashTable>,
+                    NonNull<c_void>,
+                    NonNull<c_void>,
+                ) -> Bool,
+            >>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>)>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>)>>::ENCODING,
+            <Option<
+                unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>) -> *mut NSString,
+            >>::ENCODING,
+        ],
+    );
 }
 
 #[cfg(feature = "NSString")]

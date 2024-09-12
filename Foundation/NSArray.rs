@@ -211,7 +211,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sortedArrayUsingFunction:context:)]
         pub unsafe fn sortedArrayUsingFunction_context(
             &self,
-            comparator: unsafe extern "C" fn(
+            comparator: unsafe extern "C-unwind" fn(
                 NonNull<ObjectType>,
                 NonNull<ObjectType>,
                 *mut c_void,
@@ -223,7 +223,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sortedArrayUsingFunction:context:hint:)]
         pub unsafe fn sortedArrayUsingFunction_context_hint(
             &self,
-            comparator: unsafe extern "C" fn(
+            comparator: unsafe extern "C-unwind" fn(
                 NonNull<ObjectType>,
                 NonNull<ObjectType>,
                 *mut c_void,
@@ -721,7 +721,7 @@ extern_methods!(
         #[method(sortUsingFunction:context:)]
         pub unsafe fn sortUsingFunction_context(
             &self,
-            compare: unsafe extern "C" fn(
+            compare: unsafe extern "C-unwind" fn(
                 NonNull<ObjectType>,
                 NonNull<ObjectType>,
                 *mut c_void,
