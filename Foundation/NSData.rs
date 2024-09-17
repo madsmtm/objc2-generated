@@ -168,7 +168,7 @@ extern_methods!(
 
 impl DefaultRetained for NSData {
     #[inline]
-    fn default_id() -> Retained<Self> {
+    fn default_retained() -> Retained<Self> {
         Self::new()
     }
 }
@@ -683,7 +683,7 @@ extern_methods!(
 
 impl DefaultRetained for NSMutableData {
     #[inline]
-    fn default_id() -> Retained<Self> {
+    fn default_retained() -> Retained<Self> {
         Self::new()
     }
 }

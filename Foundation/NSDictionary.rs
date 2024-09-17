@@ -113,7 +113,7 @@ extern_methods!(
 
 impl<KeyType: Message, ObjectType: Message> DefaultRetained for NSDictionary<KeyType, ObjectType> {
     #[inline]
-    fn default_id() -> Retained<Self> {
+    fn default_retained() -> Retained<Self> {
         Self::new()
     }
 }
@@ -548,7 +548,7 @@ impl<KeyType: Message, ObjectType: Message> DefaultRetained
     for NSMutableDictionary<KeyType, ObjectType>
 {
     #[inline]
-    fn default_id() -> Retained<Self> {
+    fn default_retained() -> Retained<Self> {
         Self::new()
     }
 }

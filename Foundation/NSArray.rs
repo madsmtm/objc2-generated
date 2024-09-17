@@ -85,7 +85,7 @@ extern_methods!(
 
 impl<ObjectType: Message> DefaultRetained for NSArray<ObjectType> {
     #[inline]
-    fn default_id() -> Retained<Self> {
+    fn default_retained() -> Retained<Self> {
         Self::new()
     }
 }
@@ -644,7 +644,7 @@ extern_methods!(
 
 impl<ObjectType: Message> DefaultRetained for NSMutableArray<ObjectType> {
     #[inline]
-    fn default_id() -> Retained<Self> {
+    fn default_retained() -> Retained<Self> {
         Self::new()
     }
 }

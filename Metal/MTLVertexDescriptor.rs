@@ -207,7 +207,7 @@ extern_methods!(
 
 impl DefaultRetained for MTLVertexBufferLayoutDescriptor {
     #[inline]
-    fn default_id() -> Retained<Self> {
+    fn default_retained() -> Retained<Self> {
         Self::new()
     }
 }
@@ -303,7 +303,7 @@ extern_methods!(
 
 impl DefaultRetained for MTLVertexAttributeDescriptor {
     #[inline]
-    fn default_id() -> Retained<Self> {
+    fn default_retained() -> Retained<Self> {
         Self::new()
     }
 }

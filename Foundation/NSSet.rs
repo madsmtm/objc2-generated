@@ -89,7 +89,7 @@ extern_methods!(
 
 impl<ObjectType: Message> DefaultRetained for NSSet<ObjectType> {
     #[inline]
-    fn default_id() -> Retained<Self> {
+    fn default_retained() -> Retained<Self> {
         Self::new()
     }
 }
@@ -364,7 +364,7 @@ extern_methods!(
 
 impl<ObjectType: Message> DefaultRetained for NSMutableSet<ObjectType> {
     #[inline]
-    fn default_id() -> Retained<Self> {
+    fn default_retained() -> Retained<Self> {
         Self::new()
     }
 }

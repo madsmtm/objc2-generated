@@ -79,7 +79,7 @@ extern_methods!(
 
 impl DefaultRetained for NSAttributedString {
     #[inline]
-    fn default_id() -> Retained<Self> {
+    fn default_retained() -> Retained<Self> {
         Self::new()
     }
 }
@@ -285,7 +285,7 @@ extern_methods!(
 
 impl DefaultRetained for NSMutableAttributedString {
     #[inline]
-    fn default_id() -> Retained<Self> {
+    fn default_retained() -> Retained<Self> {
         Self::new()
     }
 }

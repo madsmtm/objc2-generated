@@ -242,7 +242,7 @@ extern_methods!(
 
 impl DefaultRetained for MTLRenderPassColorAttachmentDescriptor {
     #[inline]
-    fn default_id() -> Retained<Self> {
+    fn default_retained() -> Retained<Self> {
         Self::new()
     }
 }

@@ -148,7 +148,7 @@ extern_methods!(
 
 impl DefaultRetained for NSThread {
     #[inline]
-    fn default_id() -> Retained<Self> {
+    fn default_retained() -> Retained<Self> {
         Self::new()
     }
 }
