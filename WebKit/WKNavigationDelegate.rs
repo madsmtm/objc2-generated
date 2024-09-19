@@ -51,7 +51,7 @@ unsafe impl RefEncode for WKNavigationResponsePolicy {
 }
 
 extern_protocol!(
-    pub unsafe trait WKNavigationDelegate: NSObjectProtocol {
+    pub unsafe trait WKNavigationDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "WKNavigationAction",
             feature = "WKWebView",

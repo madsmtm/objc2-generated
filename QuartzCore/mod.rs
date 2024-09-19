@@ -299,6 +299,14 @@ pub use self::__CALayer::CALayerCornerCurve;
 pub use self::__CALayer::CALayerDelegate;
 #[cfg(feature = "CALayer")]
 pub use self::__CALayer::CALayoutManager;
+#[cfg(feature = "CALayer")]
+pub use self::__CALayer::CAToneMapMode;
+#[cfg(feature = "CALayer")]
+pub use self::__CALayer::CAToneMapModeAutomatic;
+#[cfg(feature = "CALayer")]
+pub use self::__CALayer::CAToneMapModeIfSupported;
+#[cfg(feature = "CALayer")]
+pub use self::__CALayer::CAToneMapModeNever;
 #[cfg(feature = "CAMediaTiming")]
 pub use self::__CAMediaTiming::kCAFillModeBackwards;
 #[cfg(feature = "CAMediaTiming")]

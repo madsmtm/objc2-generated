@@ -253,6 +253,17 @@ extern_category!(
             accessibility_direct_touch_options: UIAccessibilityDirectTouchOptions,
         );
 
+        #[cfg(feature = "UIAccessibilityConstants")]
+        #[method(accessibilityExpandedStatus)]
+        unsafe fn accessibilityExpandedStatus(&self) -> UIAccessibilityExpandedStatus;
+
+        #[cfg(feature = "UIAccessibilityConstants")]
+        #[method(setAccessibilityExpandedStatus:)]
+        unsafe fn setAccessibilityExpandedStatus(
+            &self,
+            accessibility_expanded_status: UIAccessibilityExpandedStatus,
+        );
+
         #[cfg(feature = "block2")]
         #[method(isAccessibilityElementBlock)]
         unsafe fn isAccessibilityElementBlock(&self) -> AXBoolReturnBlock;
@@ -442,6 +453,21 @@ extern_category!(
         unsafe fn setAccessibilityShouldGroupAccessibilityChildrenBlock(
             &self,
             accessibility_should_group_accessibility_children_block: AXBoolReturnBlock,
+        );
+
+        #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
+        #[method(accessibilityExpandedStatusBlock)]
+        unsafe fn accessibilityExpandedStatusBlock(
+            &self,
+        ) -> *mut block2::Block<dyn Fn() -> UIAccessibilityExpandedStatus>;
+
+        #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
+        #[method(setAccessibilityExpandedStatusBlock:)]
+        unsafe fn setAccessibilityExpandedStatusBlock(
+            &self,
+            accessibility_expanded_status_block: Option<
+                &block2::Block<dyn Fn() -> UIAccessibilityExpandedStatus>,
+            >,
         );
 
         #[cfg(feature = "block2")]
@@ -753,6 +779,70 @@ extern_category!(
     }
 
     unsafe impl NSObjectUIAccessibilityDragging for NSObject {}
+);
+
+extern_category!(
+    /// Category "UIAccessibilityHitTest" on [`NSObject`].
+    #[doc(alias = "UIAccessibilityHitTest")]
+    pub unsafe trait NSObjectUIAccessibilityHitTest {
+        #[cfg(feature = "UIEvent")]
+        #[method_id(@__retain_semantics Other accessibilityHitTest:withEvent:)]
+        unsafe fn accessibilityHitTest_withEvent(
+            &self,
+            point: CGPoint,
+            event: Option<&UIEvent>,
+        ) -> Option<Retained<AnyObject>>;
+    }
+
+    unsafe impl NSObjectUIAccessibilityHitTest for NSObject {}
+);
+
+extern_category!(
+    /// Category "UIAccessibilityTextNavigation" on [`NSObject`].
+    #[doc(alias = "UIAccessibilityTextNavigation")]
+    pub unsafe trait NSObjectUIAccessibilityTextNavigation {
+        #[method_id(@__retain_semantics Other accessibilityPreviousTextNavigationElement)]
+        unsafe fn accessibilityPreviousTextNavigationElement(&self) -> Option<Retained<AnyObject>>;
+
+        #[method(setAccessibilityPreviousTextNavigationElement:)]
+        unsafe fn setAccessibilityPreviousTextNavigationElement(
+            &self,
+            accessibility_previous_text_navigation_element: Option<&AnyObject>,
+        );
+
+        #[method_id(@__retain_semantics Other accessibilityNextTextNavigationElement)]
+        unsafe fn accessibilityNextTextNavigationElement(&self) -> Option<Retained<AnyObject>>;
+
+        #[method(setAccessibilityNextTextNavigationElement:)]
+        unsafe fn setAccessibilityNextTextNavigationElement(
+            &self,
+            accessibility_next_text_navigation_element: Option<&AnyObject>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(accessibilityPreviousTextNavigationElementBlock)]
+        unsafe fn accessibilityPreviousTextNavigationElementBlock(&self) -> AXObjectReturnBlock;
+
+        #[cfg(feature = "block2")]
+        #[method(setAccessibilityPreviousTextNavigationElementBlock:)]
+        unsafe fn setAccessibilityPreviousTextNavigationElementBlock(
+            &self,
+            accessibility_previous_text_navigation_element_block: AXObjectReturnBlock,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(accessibilityNextTextNavigationElementBlock)]
+        unsafe fn accessibilityNextTextNavigationElementBlock(&self) -> AXObjectReturnBlock;
+
+        #[cfg(feature = "block2")]
+        #[method(setAccessibilityNextTextNavigationElementBlock:)]
+        unsafe fn setAccessibilityNextTextNavigationElementBlock(
+            &self,
+            accessibility_next_text_navigation_element_block: AXObjectReturnBlock,
+        );
+    }
+
+    unsafe impl NSObjectUIAccessibilityTextNavigation for NSObject {}
 );
 
 extern "C-unwind" {

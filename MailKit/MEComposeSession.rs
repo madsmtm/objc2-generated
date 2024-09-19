@@ -72,7 +72,7 @@ unsafe impl RefEncode for MEComposeSessionErrorCode {
 }
 
 extern_protocol!(
-    pub unsafe trait MEComposeSessionHandler: NSObjectProtocol {
+    pub unsafe trait MEComposeSessionHandler: NSObjectProtocol + MainThreadOnly {
         #[method(mailComposeSessionDidBegin:)]
         unsafe fn mailComposeSessionDidBegin(&self, session: &MEComposeSession);
 
@@ -84,7 +84,6 @@ extern_protocol!(
         unsafe fn viewControllerForSession(
             &self,
             session: &MEComposeSession,
-            mtm: MainThreadMarker,
         ) -> Retained<MEExtensionViewController>;
 
         #[cfg(all(

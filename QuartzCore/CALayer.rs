@@ -41,6 +41,21 @@ unsafe impl RefEncode for CAAutoresizingMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+// NS_TYPED_ENUM
+pub type CAToneMapMode = NSString;
+
+extern "C" {
+    pub static CAToneMapModeAutomatic: &'static CAToneMapMode;
+}
+
+extern "C" {
+    pub static CAToneMapModeNever: &'static CAToneMapMode;
+}
+
+extern "C" {
+    pub static CAToneMapModeIfSupported: &'static CAToneMapMode;
+}
+
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -312,6 +327,12 @@ extern_methods!(
             &self,
             wants_extended_dynamic_range_content: bool,
         );
+
+        #[method_id(@__retain_semantics Other toneMapMode)]
+        pub unsafe fn toneMapMode(&self) -> Retained<CAToneMapMode>;
+
+        #[method(setToneMapMode:)]
+        pub unsafe fn setToneMapMode(&self, tone_map_mode: &CAToneMapMode);
 
         #[method_id(@__retain_semantics Other minificationFilter)]
         pub fn minificationFilter(&self) -> Retained<CALayerContentsFilter>;

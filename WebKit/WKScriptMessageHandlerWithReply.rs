@@ -6,7 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait WKScriptMessageHandlerWithReply: NSObjectProtocol {
+    pub unsafe trait WKScriptMessageHandlerWithReply:
+        NSObjectProtocol + MainThreadOnly
+    {
         #[cfg(all(
             feature = "WKScriptMessage",
             feature = "WKUserContentController",

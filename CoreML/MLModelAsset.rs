@@ -23,6 +23,12 @@ extern_methods!(
             specification_data: &NSData,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        #[method_id(@__retain_semantics Other modelAssetWithSpecificationData:blobMapping:error:_)]
+        pub unsafe fn modelAssetWithSpecificationData_blobMapping_error(
+            specification_data: &NSData,
+            blob_mapping: &NSDictionary<NSURL, NSData>,
+        ) -> Result<Retained<Self>, Retained<NSError>>;
+
         #[method_id(@__retain_semantics Other modelAssetWithURL:error:_)]
         pub unsafe fn modelAssetWithURL_error(
             compiled_model_url: &NSURL,

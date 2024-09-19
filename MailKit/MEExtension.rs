@@ -5,7 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait MEExtension: NSObjectProtocol {
+    pub unsafe trait MEExtension: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "MEComposeSession")]
         #[optional]
         #[method_id(@__retain_semantics Other handlerForComposeSession:)]

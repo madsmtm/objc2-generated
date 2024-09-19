@@ -99,42 +99,6 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct BGContinuedProcessingTask;
-
-    unsafe impl ClassType for BGContinuedProcessingTask {
-        #[inherits(NSObject)]
-        type Super = BGTask;
-    }
-);
-
-unsafe impl NSObjectProtocol for BGContinuedProcessingTask {}
-
-extern_methods!(
-    unsafe impl BGContinuedProcessingTask {
-        #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Retained<NSString>;
-
-        #[method_id(@__retain_semantics Other reason)]
-        pub unsafe fn reason(&self) -> Retained<NSString>;
-
-        #[method(updateProgress:)]
-        pub unsafe fn updateProgress(&self, progress: &NSProgress);
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `BGTask`
-    unsafe impl BGContinuedProcessingTask {
-        #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
-    }
-);
-
-extern_class!(
-    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGAppRefreshTask;
 
     unsafe impl ClassType for BGAppRefreshTask {

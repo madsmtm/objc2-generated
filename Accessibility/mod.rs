@@ -34,9 +34,15 @@ mod __AXFoundation;
 #[cfg(feature = "AXHearingUtilities")]
 #[path = "AXHearingUtilities.rs"]
 mod __AXHearingUtilities;
+#[cfg(feature = "AXRequest")]
+#[path = "AXRequest.rs"]
+mod __AXRequest;
 #[cfg(feature = "AXSettings")]
 #[path = "AXSettings.rs"]
 mod __AXSettings;
+#[cfg(feature = "AXTechnology")]
+#[path = "AXTechnology.rs"]
+mod __AXTechnology;
 
 #[cfg(feature = "AXAudiograph")]
 pub use self::__AXAudiograph::AXCategoricalDataAxisDescriptor;
@@ -84,6 +90,8 @@ pub use self::__AXHearingUtilities::AXMFiHearingDeviceStreamingEar;
 pub use self::__AXHearingUtilities::AXMFiHearingDeviceStreamingEarDidChangeNotification;
 #[cfg(feature = "AXHearingUtilities")]
 pub use self::__AXHearingUtilities::AXSupportsBidirectionalAXMFiHearingDeviceStreaming;
+#[cfg(feature = "AXRequest")]
+pub use self::__AXRequest::AXRequest;
 #[cfg(feature = "AXSettings")]
 pub use self::__AXSettings::AXAnimatedImagesEnabled;
 #[cfg(feature = "AXSettings")]
@@ -102,3 +110,21 @@ pub use self::__AXSettings::AXPrefersNonBlinkingTextInsertionIndicator;
 pub use self::__AXSettings::AXPrefersNonBlinkingTextInsertionIndicatorDidChangeNotification;
 #[cfg(feature = "AXSettings")]
 pub use self::__AXSettings::AXSettingsFeature;
+#[cfg(feature = "AXTechnology")]
+pub use self::__AXTechnology::AXTechnology;
+#[cfg(feature = "AXTechnology")]
+pub use self::__AXTechnology::AXTechnologyAutomation;
+#[cfg(feature = "AXTechnology")]
+pub use self::__AXTechnology::AXTechnologyFullKeyboardAccess;
+#[cfg(feature = "AXTechnology")]
+pub use self::__AXTechnology::AXTechnologyHoverText;
+#[cfg(feature = "AXTechnology")]
+pub use self::__AXTechnology::AXTechnologySpeakScreen;
+#[cfg(feature = "AXTechnology")]
+pub use self::__AXTechnology::AXTechnologySwitchControl;
+#[cfg(feature = "AXTechnology")]
+pub use self::__AXTechnology::AXTechnologyVoiceControl;
+#[cfg(feature = "AXTechnology")]
+pub use self::__AXTechnology::AXTechnologyVoiceOver;
+#[cfg(feature = "AXTechnology")]
+pub use self::__AXTechnology::AXTechnologyZoom;

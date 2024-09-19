@@ -20,7 +20,7 @@ extern "C" {
 
 extern_protocol!(
     pub unsafe trait ASAuthorizationProviderExtensionAuthorizationRequestHandler:
-        NSObjectProtocol
+        NSObjectProtocol + MainThreadOnly
     {
         #[method(beginAuthorizationWithRequest:)]
         unsafe fn beginAuthorizationWithRequest(

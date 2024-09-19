@@ -61,8 +61,10 @@ bitflags::bitflags! {
         const PlainText = 1<<0;
         #[doc(alias = "NSWritingToolsAllowedInputOptionsRichText")]
         const RichText = 1<<1;
+        #[doc(alias = "NSWritingToolsAllowedInputOptionsList")]
+        const List = 1<<2;
         #[doc(alias = "NSWritingToolsAllowedInputOptionsTable")]
-        const Table = 1<<2;
+        const Table = 1<<3;
     }
 }
 

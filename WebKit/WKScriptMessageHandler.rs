@@ -5,7 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait WKScriptMessageHandler: NSObjectProtocol {
+    pub unsafe trait WKScriptMessageHandler: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "WKScriptMessage", feature = "WKUserContentController"))]
         #[method(userContentController:didReceiveScriptMessage:)]
         unsafe fn userContentController_didReceiveScriptMessage(

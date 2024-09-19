@@ -8,7 +8,7 @@ use objc2_app_kit::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait WKURLSchemeHandler: NSObjectProtocol {
+    pub unsafe trait WKURLSchemeHandler: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "WKURLSchemeTask",
             feature = "WKWebView",

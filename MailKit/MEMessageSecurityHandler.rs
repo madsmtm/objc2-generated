@@ -30,7 +30,9 @@ unsafe impl RefEncode for MEMessageSecurityErrorCode {
 
 extern_protocol!(
     #[cfg(all(feature = "MEMessageDecoder", feature = "MEMessageEncoder"))]
-    pub unsafe trait MEMessageSecurityHandler: MEMessageDecoder + MEMessageEncoder {
+    pub unsafe trait MEMessageSecurityHandler:
+        MEMessageDecoder + MEMessageEncoder + MainThreadOnly
+    {
         #[cfg(all(
             feature = "MEExtensionViewController",
             feature = "MEMessageSigner",
@@ -40,7 +42,6 @@ extern_protocol!(
         unsafe fn extensionViewControllerForMessageSigners(
             &self,
             message_signers: &NSArray<MEMessageSigner>,
-            mtm: MainThreadMarker,
         ) -> Option<Retained<MEExtensionViewController>>;
 
         #[cfg(all(feature = "MEExtensionViewController", feature = "objc2-app-kit"))]
@@ -48,7 +49,6 @@ extern_protocol!(
         unsafe fn extensionViewControllerForMessageContext(
             &self,
             context: &NSData,
-            mtm: MainThreadMarker,
         ) -> Option<Retained<MEExtensionViewController>>;
 
         #[cfg(all(

@@ -666,7 +666,9 @@ extern_protocol!(
 
 extern_protocol!(
     #[cfg(feature = "NSControl")]
-    pub unsafe trait NSOutlineViewDelegate: NSControlTextEditingDelegate {
+    pub unsafe trait NSOutlineViewDelegate:
+        NSControlTextEditingDelegate + MainThreadOnly
+    {
         #[cfg(all(
             feature = "NSResponder",
             feature = "NSTableColumn",

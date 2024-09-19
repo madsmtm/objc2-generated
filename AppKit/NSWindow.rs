@@ -623,6 +623,9 @@ extern_methods!(
         #[method(cascadeTopLeftFromPoint:)]
         pub unsafe fn cascadeTopLeftFromPoint(&self, top_left_point: NSPoint) -> NSPoint;
 
+        #[method(cascadingReferenceFrame)]
+        pub unsafe fn cascadingReferenceFrame(&self) -> NSRect;
+
         #[method(frame)]
         pub fn frame(&self) -> NSRect;
 

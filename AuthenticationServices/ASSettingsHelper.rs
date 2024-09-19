@@ -30,6 +30,12 @@ extern_methods!(
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
 
+        #[cfg(feature = "block2")]
+        #[method(requestCredentialProviderExtensionEnablementWithCompletionHandler:)]
+        pub unsafe fn requestCredentialProviderExtensionEnablementWithCompletionHandler(
+            completion_handler: &block2::Block<dyn Fn(Bool)>,
+        );
+
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 

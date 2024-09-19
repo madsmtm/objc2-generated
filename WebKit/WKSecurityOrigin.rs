@@ -11,6 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for WKSecurityOrigin {
         type Super = NSObject;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -36,6 +37,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKSecurityOrigin {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

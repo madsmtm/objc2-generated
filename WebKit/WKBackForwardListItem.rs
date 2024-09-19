@@ -11,6 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for WKBackForwardListItem {
         type Super = NSObject;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -24,7 +25,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
-        #[deprecated = "No longer supported"]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
@@ -37,6 +37,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKBackForwardListItem {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

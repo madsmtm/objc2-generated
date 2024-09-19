@@ -202,6 +202,9 @@ mod __MLSequence;
 #[cfg(feature = "MLSequenceConstraint")]
 #[path = "MLSequenceConstraint.rs"]
 mod __MLSequenceConstraint;
+#[cfg(feature = "MLSpecializationStrategy")]
+#[path = "MLSpecializationStrategy.rs"]
+mod __MLSpecializationStrategy;
 #[cfg(feature = "MLState")]
 #[path = "MLState.rs"]
 mod __MLState;
@@ -365,6 +368,8 @@ pub use self::__MLReshapeFrequencyHint::MLReshapeFrequencyHint;
 pub use self::__MLSequence::MLSequence;
 #[cfg(feature = "MLSequenceConstraint")]
 pub use self::__MLSequenceConstraint::MLSequenceConstraint;
+#[cfg(feature = "MLSpecializationStrategy")]
+pub use self::__MLSpecializationStrategy::MLSpecializationStrategy;
 #[cfg(feature = "MLState")]
 pub use self::__MLState::MLState;
 #[cfg(feature = "MLStateConstraint")]

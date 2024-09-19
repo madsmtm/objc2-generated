@@ -268,6 +268,27 @@ extern "C" {
     pub static UIAccessibilityPriorityLow: &'static UIAccessibilityPriority;
 }
 
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UIAccessibilityExpandedStatus(pub NSInteger);
+impl UIAccessibilityExpandedStatus {
+    #[doc(alias = "UIAccessibilityExpandedStatusUnsupported")]
+    pub const Unsupported: Self = Self(0);
+    #[doc(alias = "UIAccessibilityExpandedStatusExpanded")]
+    pub const Expanded: Self = Self(1);
+    #[doc(alias = "UIAccessibilityExpandedStatusCollapsed")]
+    pub const Collapsed: Self = Self(2);
+}
+
+unsafe impl Encode for UIAccessibilityExpandedStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIAccessibilityExpandedStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern "C" {
     pub static UIAccessibilitySpeechAttributePunctuation: &'static NSAttributedStringKey;
 }

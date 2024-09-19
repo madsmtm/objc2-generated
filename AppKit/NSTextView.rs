@@ -950,6 +950,28 @@ extern_methods!(
 
         #[method(isWritingToolsActive)]
         pub unsafe fn isWritingToolsActive(&self) -> bool;
+
+        #[cfg(feature = "NSTextCheckingClient")]
+        #[method(writingToolsBehavior)]
+        pub unsafe fn writingToolsBehavior(&self) -> NSWritingToolsBehavior;
+
+        #[cfg(feature = "NSTextCheckingClient")]
+        #[method(setWritingToolsBehavior:)]
+        pub unsafe fn setWritingToolsBehavior(
+            &self,
+            writing_tools_behavior: NSWritingToolsBehavior,
+        );
+
+        #[cfg(feature = "NSTextCheckingClient")]
+        #[method(writingToolsAllowedInputOptions)]
+        pub unsafe fn writingToolsAllowedInputOptions(&self) -> NSWritingToolsAllowedInputOptions;
+
+        #[cfg(feature = "NSTextCheckingClient")]
+        #[method(setWritingToolsAllowedInputOptions:)]
+        pub unsafe fn setWritingToolsAllowedInputOptions(
+            &self,
+            writing_tools_allowed_input_options: NSWritingToolsAllowedInputOptions,
+        );
     }
 );
 

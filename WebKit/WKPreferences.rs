@@ -32,6 +32,7 @@ extern_class!(
 
     unsafe impl ClassType for WKPreferences {
         type Super = NSObject;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -118,7 +119,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

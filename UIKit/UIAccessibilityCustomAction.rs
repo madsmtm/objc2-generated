@@ -131,6 +131,12 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[method(setActionHandler:)]
         pub unsafe fn setActionHandler(&self, action_handler: UIAccessibilityCustomActionHandler);
+
+        #[method_id(@__retain_semantics Other category)]
+        pub unsafe fn category(&self) -> Option<Retained<NSString>>;
+
+        #[method(setCategory:)]
+        pub unsafe fn setCategory(&self, category: Option<&NSString>);
     }
 );
 
@@ -144,3 +150,7 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
     }
 );
+
+extern "C" {
+    pub static UIAccessibilityCustomActionCategoryEdit: &'static NSString;
+}

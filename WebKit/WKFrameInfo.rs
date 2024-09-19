@@ -14,6 +14,7 @@ extern_class!(
 
     unsafe impl ClassType for WKFrameInfo {
         type Super = NSObject;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -40,7 +41,7 @@ extern_methods!(
         #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other webView)]
-        pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Retained<WKWebView>>;
+        pub unsafe fn webView(&self) -> Option<Retained<WKWebView>>;
     }
 );
 
@@ -51,6 +52,6 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

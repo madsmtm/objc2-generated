@@ -11,6 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for WKContentRuleListStore {
         type Super = NSObject;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -19,10 +20,13 @@ unsafe impl NSObjectProtocol for WKContentRuleListStore {}
 extern_methods!(
     unsafe impl WKContentRuleListStore {
         #[method_id(@__retain_semantics Other defaultStore)]
-        pub unsafe fn defaultStore() -> Option<Retained<Self>>;
+        pub unsafe fn defaultStore(mtm: MainThreadMarker) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other storeWithURL:)]
-        pub unsafe fn storeWithURL(url: Option<&NSURL>) -> Option<Retained<Self>>;
+        pub unsafe fn storeWithURL(
+            url: Option<&NSURL>,
+            mtm: MainThreadMarker,
+        ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "WKContentRuleList", feature = "block2"))]
         #[method(compileContentRuleListForIdentifier:encodedContentRuleList:completionHandler:)]
@@ -69,6 +73,6 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

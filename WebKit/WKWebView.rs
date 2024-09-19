@@ -86,6 +86,7 @@ extern_class!(
     unsafe impl ClassType for WKWebView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -565,6 +566,9 @@ extern_methods!(
 
         #[method(setInspectable:)]
         pub unsafe fn setInspectable(&self, inspectable: bool);
+
+        #[method(isWritingToolsActive)]
+        pub unsafe fn isWritingToolsActive(&self) -> bool;
     }
 );
 

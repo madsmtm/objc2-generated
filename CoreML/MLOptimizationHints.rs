@@ -35,6 +35,17 @@ extern_methods!(
         #[cfg(feature = "MLReshapeFrequencyHint")]
         #[method(setReshapeFrequency:)]
         pub unsafe fn setReshapeFrequency(&self, reshape_frequency: MLReshapeFrequencyHint);
+
+        #[cfg(feature = "MLSpecializationStrategy")]
+        #[method(specializationStrategy)]
+        pub unsafe fn specializationStrategy(&self) -> MLSpecializationStrategy;
+
+        #[cfg(feature = "MLSpecializationStrategy")]
+        #[method(setSpecializationStrategy:)]
+        pub unsafe fn setSpecializationStrategy(
+            &self,
+            specialization_strategy: MLSpecializationStrategy,
+        );
     }
 );
 

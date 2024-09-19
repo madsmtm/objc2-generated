@@ -25,7 +25,7 @@ unsafe impl RefEncode for WKDownloadRedirectPolicy {
 }
 
 extern_protocol!(
-    pub unsafe trait WKDownloadDelegate: NSObjectProtocol {
+    pub unsafe trait WKDownloadDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "WKDownload", feature = "block2"))]
         #[method(download:decideDestinationUsingResponse:suggestedFilename:completionHandler:)]
         unsafe fn download_decideDestinationUsingResponse_suggestedFilename_completionHandler(

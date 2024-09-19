@@ -11,6 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for WKWebsiteDataStore {
         type Super = NSObject;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -23,10 +24,11 @@ unsafe impl NSSecureCoding for WKWebsiteDataStore {}
 extern_methods!(
     unsafe impl WKWebsiteDataStore {
         #[method_id(@__retain_semantics Other defaultDataStore)]
-        pub unsafe fn defaultDataStore() -> Retained<WKWebsiteDataStore>;
+        pub unsafe fn defaultDataStore(mtm: MainThreadMarker) -> Retained<WKWebsiteDataStore>;
 
         #[method_id(@__retain_semantics Other nonPersistentDataStore)]
-        pub unsafe fn nonPersistentDataStore() -> Retained<WKWebsiteDataStore>;
+        pub unsafe fn nonPersistentDataStore(mtm: MainThreadMarker)
+            -> Retained<WKWebsiteDataStore>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(&self) -> Retained<Self>;
@@ -38,7 +40,7 @@ extern_methods!(
         pub unsafe fn isPersistent(&self) -> bool;
 
         #[method_id(@__retain_semantics Other allWebsiteDataTypes)]
-        pub unsafe fn allWebsiteDataTypes() -> Retained<NSSet<NSString>>;
+        pub unsafe fn allWebsiteDataTypes(mtm: MainThreadMarker) -> Retained<NSSet<NSString>>;
 
         #[cfg(all(feature = "WKWebsiteDataRecord", feature = "block2"))]
         #[method(fetchDataRecordsOfTypes:completionHandler:)]
@@ -74,19 +76,24 @@ extern_methods!(
         pub unsafe fn identifier(&self) -> Option<Retained<NSUUID>>;
 
         #[method_id(@__retain_semantics Other dataStoreForIdentifier:)]
-        pub unsafe fn dataStoreForIdentifier(identifier: &NSUUID) -> Retained<WKWebsiteDataStore>;
+        pub unsafe fn dataStoreForIdentifier(
+            identifier: &NSUUID,
+            mtm: MainThreadMarker,
+        ) -> Retained<WKWebsiteDataStore>;
 
         #[cfg(feature = "block2")]
         #[method(removeDataStoreForIdentifier:completionHandler:)]
         pub unsafe fn removeDataStoreForIdentifier_completionHandler(
             identifier: &NSUUID,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            mtm: MainThreadMarker,
         );
 
         #[cfg(feature = "block2")]
         #[method(fetchAllDataStoreIdentifiers:)]
         pub unsafe fn fetchAllDataStoreIdentifiers(
             completion_handler: &block2::Block<dyn Fn(NonNull<NSArray<NSUUID>>)>,
+            mtm: MainThreadMarker,
         );
     }
 );
@@ -95,6 +102,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKWebsiteDataStore {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new_class() -> Retained<Self>;
+        pub unsafe fn new_class(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

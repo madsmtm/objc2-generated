@@ -88,6 +88,14 @@ extern_methods!(
             data_type: MLMultiArrayDataType,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        #[method_id(@__retain_semantics Init initWithShape:dataType:strides:)]
+        pub unsafe fn initWithShape_dataType_strides(
+            this: Allocated<Self>,
+            shape: &NSArray<NSNumber>,
+            data_type: MLMultiArrayDataType,
+            strides: &NSArray<NSNumber>,
+        ) -> Retained<Self>;
+
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithDataPointer:shape:dataType:strides:deallocator:error:_)]
         pub unsafe fn initWithDataPointer_shape_dataType_strides_deallocator_error(
@@ -149,5 +157,13 @@ extern_methods!(
 
         #[method(setObject:forKeyedSubscript:)]
         pub unsafe fn setObject_forKeyedSubscript(&self, obj: &NSNumber, key: &NSArray<NSNumber>);
+    }
+);
+
+extern_methods!(
+    /// Transferring
+    unsafe impl MLMultiArray {
+        #[method(transferToMultiArray:)]
+        pub unsafe fn transferToMultiArray(&self, destination_multi_array: &MLMultiArray);
     }
 );

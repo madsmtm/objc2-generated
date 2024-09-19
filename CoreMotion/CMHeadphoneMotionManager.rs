@@ -39,6 +39,9 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn CMHeadphoneMotionManagerDelegate>>,
         );
 
+        #[method(isConnectionStatusActive)]
+        pub unsafe fn isConnectionStatusActive(&self) -> bool;
+
         #[method(isDeviceMotionAvailable)]
         pub unsafe fn isDeviceMotionAvailable(&self) -> bool;
 
@@ -62,6 +65,12 @@ extern_methods!(
 
         #[method(stopDeviceMotionUpdates)]
         pub unsafe fn stopDeviceMotionUpdates(&self);
+
+        #[method(startConnectionStatusUpdates)]
+        pub unsafe fn startConnectionStatusUpdates(&self);
+
+        #[method(stopConnectionStatusUpdates)]
+        pub unsafe fn stopConnectionStatusUpdates(&self);
     }
 );
 

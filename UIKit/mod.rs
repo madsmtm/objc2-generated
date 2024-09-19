@@ -1685,6 +1685,10 @@ pub use self::__UIAccessibility::NSObjectUIAccessibilityDragging;
 #[cfg(feature = "UIAccessibility")]
 pub use self::__UIAccessibility::NSObjectUIAccessibilityFocus;
 #[cfg(feature = "UIAccessibility")]
+pub use self::__UIAccessibility::NSObjectUIAccessibilityHitTest;
+#[cfg(feature = "UIAccessibility")]
+pub use self::__UIAccessibility::NSObjectUIAccessibilityTextNavigation;
+#[cfg(feature = "UIAccessibility")]
 pub use self::__UIAccessibility::UIAccessibilityAssistiveTouchStatusDidChangeNotification;
 #[cfg(feature = "UIAccessibility")]
 pub use self::__UIAccessibility::UIAccessibilityBoldTextStatusDidChangeNotification;
@@ -1818,6 +1822,8 @@ pub use self::__UIAccessibilityConstants::UIAccessibilityDirectTouchOptions;
 #[cfg(feature = "UIAccessibilityConstants")]
 pub use self::__UIAccessibilityConstants::UIAccessibilityElementFocusedNotification;
 #[cfg(feature = "UIAccessibilityConstants")]
+pub use self::__UIAccessibilityConstants::UIAccessibilityExpandedStatus;
+#[cfg(feature = "UIAccessibilityConstants")]
 pub use self::__UIAccessibilityConstants::UIAccessibilityFocusedElementKey;
 #[cfg(feature = "UIAccessibilityConstants")]
 pub use self::__UIAccessibilityConstants::UIAccessibilityLayoutChangedNotification;
@@ -1935,6 +1941,8 @@ pub use self::__UIAccessibilityContainer::UIAccessibilityContainerDataTableCell;
 pub use self::__UIAccessibilityContentSizeCategoryImageAdjusting::UIAccessibilityContentSizeCategoryImageAdjusting;
 #[cfg(feature = "UIAccessibilityCustomAction")]
 pub use self::__UIAccessibilityCustomAction::UIAccessibilityCustomAction;
+#[cfg(feature = "UIAccessibilityCustomAction")]
+pub use self::__UIAccessibilityCustomAction::UIAccessibilityCustomActionCategoryEdit;
 #[cfg(all(feature = "UIAccessibilityCustomAction", feature = "block2"))]
 pub use self::__UIAccessibilityCustomAction::UIAccessibilityCustomActionHandler;
 #[cfg(all(feature = "UIAccessibilityCustomRotor", feature = "block2"))]

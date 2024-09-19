@@ -72,7 +72,7 @@ unsafe impl RefEncode for WKDialogResult {
 }
 
 extern_protocol!(
-    pub unsafe trait WKUIDelegate: NSObjectProtocol {
+    pub unsafe trait WKUIDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "WKNavigationAction",
             feature = "WKWebView",

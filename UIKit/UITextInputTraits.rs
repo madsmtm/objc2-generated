@@ -301,8 +301,10 @@ bitflags::bitflags! {
         const PlainText = 1<<0;
         #[doc(alias = "UIWritingToolsAllowedInputOptionsRichText")]
         const RichText = 1<<1;
+        #[doc(alias = "UIWritingToolsAllowedInputOptionsList")]
+        const List = 1<<2;
         #[doc(alias = "UIWritingToolsAllowedInputOptionsTable")]
-        const Table = 1<<2;
+        const Table = 1<<3;
     }
 }
 

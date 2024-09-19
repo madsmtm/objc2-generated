@@ -11,6 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for WKContentWorld {
         type Super = NSObject;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -19,19 +20,22 @@ unsafe impl NSObjectProtocol for WKContentWorld {}
 extern_methods!(
     unsafe impl WKContentWorld {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other pageWorld)]
-        pub unsafe fn pageWorld() -> Retained<WKContentWorld>;
+        pub unsafe fn pageWorld(mtm: MainThreadMarker) -> Retained<WKContentWorld>;
 
         #[method_id(@__retain_semantics Other defaultClientWorld)]
-        pub unsafe fn defaultClientWorld() -> Retained<WKContentWorld>;
+        pub unsafe fn defaultClientWorld(mtm: MainThreadMarker) -> Retained<WKContentWorld>;
 
         #[method_id(@__retain_semantics Other worldWithName:)]
-        pub unsafe fn worldWithName(name: &NSString) -> Retained<WKContentWorld>;
+        pub unsafe fn worldWithName(
+            name: &NSString,
+            mtm: MainThreadMarker,
+        ) -> Retained<WKContentWorld>;
 
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;

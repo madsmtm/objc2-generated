@@ -605,6 +605,28 @@ extern_methods!(
 
         #[method(isWritingToolsActive)]
         pub unsafe fn isWritingToolsActive(&self) -> bool;
+
+        #[cfg(feature = "UITextInputTraits")]
+        #[method(writingToolsBehavior)]
+        pub unsafe fn writingToolsBehavior(&self) -> UIWritingToolsBehavior;
+
+        #[cfg(feature = "UITextInputTraits")]
+        #[method(setWritingToolsBehavior:)]
+        pub unsafe fn setWritingToolsBehavior(
+            &self,
+            writing_tools_behavior: UIWritingToolsBehavior,
+        );
+
+        #[cfg(feature = "UITextInputTraits")]
+        #[method(writingToolsAllowedInputOptions)]
+        pub unsafe fn writingToolsAllowedInputOptions(&self) -> UIWritingToolsAllowedInputOptions;
+
+        #[cfg(feature = "UITextInputTraits")]
+        #[method(setWritingToolsAllowedInputOptions:)]
+        pub unsafe fn setWritingToolsAllowedInputOptions(
+            &self,
+            writing_tools_allowed_input_options: UIWritingToolsAllowedInputOptions,
+        );
     }
 );
 
