@@ -207,10 +207,6 @@ extern "C" {
     pub static MPMediaItemPropertyIsPreorder: &'static NSString;
 }
 
-extern "C" {
-    pub static MPMediaItemPropertyStoreCanonicalId: &'static NSString;
-}
-
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPMediaEntity")]
@@ -351,9 +347,6 @@ extern_methods!(
 
         #[method(isPreorder)]
         pub unsafe fn isPreorder(&self) -> bool;
-
-        #[method_id(@__retain_semantics Other storeCanonicalID)]
-        pub unsafe fn storeCanonicalID(&self) -> Retained<NSString>;
     }
 );
 

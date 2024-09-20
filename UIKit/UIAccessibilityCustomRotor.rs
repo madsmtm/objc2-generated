@@ -95,23 +95,29 @@ extern_category!(
         #[method_id(@__retain_semantics Other accessibilityCustomRotors)]
         unsafe fn accessibilityCustomRotors(
             &self,
+            mtm: MainThreadMarker,
         ) -> Option<Retained<NSArray<UIAccessibilityCustomRotor>>>;
 
         #[method(setAccessibilityCustomRotors:)]
         unsafe fn setAccessibilityCustomRotors(
             &self,
             accessibility_custom_rotors: Option<&NSArray<UIAccessibilityCustomRotor>>,
+            mtm: MainThreadMarker,
         );
 
         #[cfg(feature = "block2")]
         #[method(accessibilityCustomRotorsBlock)]
-        unsafe fn accessibilityCustomRotorsBlock(&self) -> AXCustomRotorsReturnBlock;
+        unsafe fn accessibilityCustomRotorsBlock(
+            &self,
+            mtm: MainThreadMarker,
+        ) -> AXCustomRotorsReturnBlock;
 
         #[cfg(feature = "block2")]
         #[method(setAccessibilityCustomRotorsBlock:)]
         unsafe fn setAccessibilityCustomRotorsBlock(
             &self,
             accessibility_custom_rotors_block: AXCustomRotorsReturnBlock,
+            mtm: MainThreadMarker,
         );
     }
 
@@ -124,6 +130,7 @@ extern_class!(
 
     unsafe impl ClassType for UIAccessibilityCustomRotorSearchPredicate {
         type Super = NSObject;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -155,7 +162,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -165,6 +172,7 @@ extern_class!(
 
     unsafe impl ClassType for UIAccessibilityCustomRotor {
         type Super = NSObject;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -231,7 +239,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -241,6 +249,7 @@ extern_class!(
 
     unsafe impl ClassType for UIAccessibilityCustomRotorItemResult {
         type Super = NSObject;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -264,7 +273,7 @@ extern_methods!(
 
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other targetRange)]
-        pub unsafe fn targetRange(&self, mtm: MainThreadMarker) -> Option<Retained<UITextRange>>;
+        pub unsafe fn targetRange(&self) -> Option<Retained<UITextRange>>;
 
         #[cfg(feature = "UITextInput")]
         #[method(setTargetRange:)]
@@ -279,6 +288,6 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

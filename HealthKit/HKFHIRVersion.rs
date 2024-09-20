@@ -14,6 +14,10 @@ extern_class!(
     }
 );
 
+unsafe impl Send for HKFHIRVersion {}
+
+unsafe impl Sync for HKFHIRVersion {}
+
 unsafe impl NSCoding for HKFHIRVersion {}
 
 unsafe impl NSCopying for HKFHIRVersion {}

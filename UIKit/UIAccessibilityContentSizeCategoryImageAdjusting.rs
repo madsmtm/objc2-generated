@@ -6,7 +6,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait UIAccessibilityContentSizeCategoryImageAdjusting:
-        NSObjectProtocol
+        NSObjectProtocol + MainThreadOnly
     {
         #[method(adjustsImageSizeForAccessibilityContentSizeCategory)]
         unsafe fn adjustsImageSizeForAccessibilityContentSizeCategory(&self) -> bool;
@@ -54,6 +54,3 @@ extern_methods!(
     #[cfg(feature = "NSTextAttachment")]
     unsafe impl NSTextAttachment {}
 );
-
-#[cfg(feature = "NSTextAttachment")]
-unsafe impl UIAccessibilityContentSizeCategoryImageAdjusting for NSTextAttachment {}

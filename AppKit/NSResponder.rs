@@ -179,6 +179,10 @@ extern_methods!(
         #[method(pressureChangeWithEvent:)]
         pub unsafe fn pressureChangeWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "NSEvent")]
+        #[method(contextMenuKeyDown:)]
+        pub unsafe fn contextMenuKeyDown(&self, event: &NSEvent);
+
         #[method(noResponderFor:)]
         pub unsafe fn noResponderFor(&self, event_selector: Sel);
 
@@ -628,6 +632,10 @@ extern_protocol!(
         #[optional]
         #[method(quickLookPreviewItems:)]
         unsafe fn quickLookPreviewItems(&self, sender: Option<&AnyObject>);
+
+        #[optional]
+        #[method(showContextMenuForSelection:)]
+        unsafe fn showContextMenuForSelection(&self, sender: Option<&AnyObject>);
     }
 
     unsafe impl ProtocolType for dyn NSStandardKeyBindingResponding {}

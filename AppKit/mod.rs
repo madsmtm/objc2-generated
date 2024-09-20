@@ -2267,6 +2267,8 @@ pub use self::__NSAttributedString::NSTextHighlightStyleAttributeName;
 #[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextHighlightStyleDefault;
 #[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextKit1ListMarkerFormatDocumentOption;
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextLayoutSectionKey;
 #[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextLayoutSectionOrientation;
@@ -6851,6 +6853,8 @@ pub use self::__NSView::NSTrackingRectTag;
 pub use self::__NSView::NSView;
 #[cfg(feature = "NSView")]
 pub use self::__NSView::NSViewBoundsDidChangeNotification;
+#[cfg(feature = "NSView")]
+pub use self::__NSView::NSViewContentSelectionInfo;
 #[cfg(feature = "NSView")]
 pub use self::__NSView::NSViewDidUpdateTrackingAreasNotification;
 #[cfg(feature = "NSView")]

@@ -207,8 +207,6 @@ pub use self::__MPMediaItem::MPMediaItemPropertyReleaseDate;
 #[cfg(feature = "MPMediaItem")]
 pub use self::__MPMediaItem::MPMediaItemPropertySkipCount;
 #[cfg(feature = "MPMediaItem")]
-pub use self::__MPMediaItem::MPMediaItemPropertyStoreCanonicalId;
-#[cfg(feature = "MPMediaItem")]
 pub use self::__MPMediaItem::MPMediaItemPropertyTitle;
 #[cfg(feature = "MPMediaItem")]
 pub use self::__MPMediaItem::MPMediaItemPropertyUserGrouping;

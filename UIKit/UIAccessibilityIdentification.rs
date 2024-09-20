@@ -6,7 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait UIAccessibilityIdentification: NSObjectProtocol {
+    pub unsafe trait UIAccessibilityIdentification:
+        NSObjectProtocol + MainThreadOnly
+    {
         #[method_id(@__retain_semantics Other accessibilityIdentifier)]
         unsafe fn accessibilityIdentifier(&self) -> Option<Retained<NSString>>;
 
@@ -58,6 +60,3 @@ extern_methods!(
     #[cfg(feature = "UIImage")]
     unsafe impl UIImage {}
 );
-
-#[cfg(feature = "UIImage")]
-unsafe impl UIAccessibilityIdentification for UIImage {}

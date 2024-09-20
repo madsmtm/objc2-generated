@@ -16,9 +16,6 @@
 #[link(name = "Speech", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "PhoneticEmbedderEnums")]
-#[path = "PhoneticEmbedderEnums.rs"]
-mod __PhoneticEmbedderEnums;
 #[cfg(feature = "SFErrors")]
 #[path = "SFErrors.rs"]
 mod __SFErrors;
@@ -53,10 +50,6 @@ mod __SFTranscriptionSegment;
 #[path = "SFVoiceAnalytics.rs"]
 mod __SFVoiceAnalytics;
 
-#[cfg(feature = "PhoneticEmbedderEnums")]
-pub use self::__PhoneticEmbedderEnums::PhoneticEmbedderInitFlag;
-#[cfg(feature = "PhoneticEmbedderEnums")]
-pub use self::__PhoneticEmbedderEnums::PhoneticEncoderType;
 #[cfg(feature = "SFErrors")]
 pub use self::__SFErrors::SFSpeechErrorCode;
 #[cfg(feature = "SFErrors")]

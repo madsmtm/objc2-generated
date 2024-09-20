@@ -212,6 +212,12 @@ extern_class!(
 );
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
+unsafe impl Send for HKStateOfMind {}
+
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+unsafe impl Sync for HKStateOfMind {}
+
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSCoding for HKStateOfMind {}
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]

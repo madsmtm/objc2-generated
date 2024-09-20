@@ -31,8 +31,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(requestCredentialProviderExtensionEnablementWithCompletionHandler:)]
-        pub unsafe fn requestCredentialProviderExtensionEnablementWithCompletionHandler(
+        #[method(requestToTurnOnCredentialProviderExtensionWithCompletionHandler:)]
+        pub unsafe fn requestToTurnOnCredentialProviderExtensionWithCompletionHandler(
             completion_handler: &block2::Block<dyn Fn(Bool)>,
         );
 

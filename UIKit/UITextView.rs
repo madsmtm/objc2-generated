@@ -233,6 +233,62 @@ extern_protocol!(
             text_attachment: &NSTextAttachment,
             character_range: NSRange,
         ) -> bool;
+
+        #[cfg(all(
+            feature = "UIResponder",
+            feature = "UITextFormattingViewController",
+            feature = "UIView",
+            feature = "UIViewController"
+        ))]
+        #[optional]
+        #[method(textView:willBeginFormattingWithViewController:)]
+        unsafe fn textView_willBeginFormattingWithViewController(
+            &self,
+            text_view: &UITextView,
+            view_controller: &UITextFormattingViewController,
+        );
+
+        #[cfg(all(
+            feature = "UIResponder",
+            feature = "UITextFormattingViewController",
+            feature = "UIView",
+            feature = "UIViewController"
+        ))]
+        #[optional]
+        #[method(textView:didBeginFormattingWithViewController:)]
+        unsafe fn textView_didBeginFormattingWithViewController(
+            &self,
+            text_view: &UITextView,
+            view_controller: &UITextFormattingViewController,
+        );
+
+        #[cfg(all(
+            feature = "UIResponder",
+            feature = "UITextFormattingViewController",
+            feature = "UIView",
+            feature = "UIViewController"
+        ))]
+        #[optional]
+        #[method(textView:willEndFormattingWithViewController:)]
+        unsafe fn textView_willEndFormattingWithViewController(
+            &self,
+            text_view: &UITextView,
+            view_controller: &UITextFormattingViewController,
+        );
+
+        #[cfg(all(
+            feature = "UIResponder",
+            feature = "UITextFormattingViewController",
+            feature = "UIView",
+            feature = "UIViewController"
+        ))]
+        #[optional]
+        #[method(textView:didEndFormattingWithViewController:)]
+        unsafe fn textView_didEndFormattingWithViewController(
+            &self,
+            text_view: &UITextView,
+            view_controller: &UITextFormattingViewController,
+        );
     }
 
     #[cfg(feature = "UIScrollView")]
@@ -626,6 +682,19 @@ extern_methods!(
         pub unsafe fn setWritingToolsAllowedInputOptions(
             &self,
             writing_tools_allowed_input_options: UIWritingToolsAllowedInputOptions,
+        );
+
+        #[cfg(feature = "UITextFormattingViewControllerConfiguration")]
+        #[method_id(@__retain_semantics Other textFormattingConfiguration)]
+        pub unsafe fn textFormattingConfiguration(
+            &self,
+        ) -> Option<Retained<UITextFormattingViewControllerConfiguration>>;
+
+        #[cfg(feature = "UITextFormattingViewControllerConfiguration")]
+        #[method(setTextFormattingConfiguration:)]
+        pub unsafe fn setTextFormattingConfiguration(
+            &self,
+            text_formatting_configuration: Option<&UITextFormattingViewControllerConfiguration>,
         );
     }
 );

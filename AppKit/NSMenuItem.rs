@@ -102,6 +102,12 @@ extern_methods!(
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
+        #[method_id(@__retain_semantics Other subtitle)]
+        pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
+
+        #[method(setSubtitle:)]
+        pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
+
         #[method(isSeparatorItem)]
         pub unsafe fn isSeparatorItem(&self) -> bool;
 

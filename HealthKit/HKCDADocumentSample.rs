@@ -30,6 +30,20 @@ extern_class!(
     feature = "HKObject",
     feature = "HKSample"
 ))]
+unsafe impl Send for HKCDADocumentSample {}
+
+#[cfg(all(
+    feature = "HKDocumentSample",
+    feature = "HKObject",
+    feature = "HKSample"
+))]
+unsafe impl Sync for HKCDADocumentSample {}
+
+#[cfg(all(
+    feature = "HKDocumentSample",
+    feature = "HKObject",
+    feature = "HKSample"
+))]
 unsafe impl NSCoding for HKCDADocumentSample {}
 
 #[cfg(all(
@@ -100,6 +114,10 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+unsafe impl Send for HKCDADocument {}
+
+unsafe impl Sync for HKCDADocument {}
 
 unsafe impl NSObjectProtocol for HKCDADocument {}
 

@@ -552,6 +552,18 @@ extern_protocol!(
         #[optional]
         #[method(isEditable)]
         unsafe fn isEditable(&self) -> bool;
+
+        #[optional]
+        #[method(insertAttributedText:)]
+        unsafe fn insertAttributedText(&self, string: &NSAttributedString);
+
+        #[optional]
+        #[method(replaceRange:withAttributedText:)]
+        unsafe fn replaceRange_withAttributedText(
+            &self,
+            range: &UITextRange,
+            attributed_text: &NSAttributedString,
+        );
     }
 
     #[cfg(feature = "UITextInputTraits")]

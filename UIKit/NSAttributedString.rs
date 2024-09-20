@@ -345,6 +345,11 @@ extern "C" {
         &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
+extern "C" {
+    pub static NSTextKit1ListMarkerFormatDocumentOption:
+        &'static NSAttributedStringDocumentReadingOptionKey;
+}
+
 extern_category!(
     /// Category on [`NSAttributedString`].
     pub unsafe trait NSAttributedStringDocumentFormats {

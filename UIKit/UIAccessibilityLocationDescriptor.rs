@@ -11,6 +11,7 @@ extern_class!(
 
     unsafe impl ClassType for UIAccessibilityLocationDescriptor {
         type Super = NSObject;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -22,7 +23,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Init initWithName:view:)]
@@ -52,7 +53,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Retained<UIView>>;
+        pub unsafe fn view(&self) -> Option<Retained<UIView>>;
 
         #[method(point)]
         pub unsafe fn point(&self) -> CGPoint;

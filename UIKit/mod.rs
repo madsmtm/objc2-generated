@@ -901,6 +901,9 @@ mod __UISegmentedControl;
 #[cfg(feature = "UISelectionFeedbackGenerator")]
 #[path = "UISelectionFeedbackGenerator.rs"]
 mod __UISelectionFeedbackGenerator;
+#[cfg(feature = "UIShadowProperties")]
+#[path = "UIShadowProperties.rs"]
+mod __UIShadowProperties;
 #[cfg(feature = "UIShape")]
 #[path = "UIShape.rs"]
 mod __UIShape;
@@ -1036,6 +1039,24 @@ mod __UITextField;
 #[cfg(feature = "UITextFormattingCoordinator")]
 #[path = "UITextFormattingCoordinator.rs"]
 mod __UITextFormattingCoordinator;
+#[cfg(feature = "UITextFormattingViewController")]
+#[path = "UITextFormattingViewController.rs"]
+mod __UITextFormattingViewController;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+#[path = "UITextFormattingViewControllerChangeValue.rs"]
+mod __UITextFormattingViewControllerChangeValue;
+#[cfg(feature = "UITextFormattingViewControllerComponent")]
+#[path = "UITextFormattingViewControllerComponent.rs"]
+mod __UITextFormattingViewControllerComponent;
+#[cfg(feature = "UITextFormattingViewControllerConfiguration")]
+#[path = "UITextFormattingViewControllerConfiguration.rs"]
+mod __UITextFormattingViewControllerConfiguration;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+#[path = "UITextFormattingViewControllerFormattingDescriptor.rs"]
+mod __UITextFormattingViewControllerFormattingDescriptor;
+#[cfg(feature = "UITextFormattingViewControllerFormattingStyle")]
+#[path = "UITextFormattingViewControllerFormattingStyle.rs"]
+mod __UITextFormattingViewControllerFormattingStyle;
 #[cfg(feature = "UITextInput")]
 #[path = "UITextInput.rs"]
 mod __UITextInput;
@@ -1342,6 +1363,8 @@ pub use self::__NSAttributedString::NSTextHighlightStyle;
 pub use self::__NSAttributedString::NSTextHighlightStyleAttributeName;
 #[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextHighlightStyleDefault;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextKit1ListMarkerFormatDocumentOption;
 #[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextLayoutSectionKey;
 #[cfg(feature = "NSAttributedString")]
@@ -4414,6 +4437,8 @@ pub use self::__UISegmentedControl::UISegmentedControlStyle;
     feature = "UISelectionFeedbackGenerator"
 ))]
 pub use self::__UISelectionFeedbackGenerator::UISelectionFeedbackGenerator;
+#[cfg(feature = "UIShadowProperties")]
+pub use self::__UIShadowProperties::UIShadowProperties;
 #[cfg(feature = "UIShape")]
 pub use self::__UIShape::UICornerCurve;
 #[cfg(feature = "UIShape")]
@@ -4817,6 +4842,136 @@ pub use self::__UITextField::UITextFieldViewMode;
 pub use self::__UITextFormattingCoordinator::UITextFormattingCoordinator;
 #[cfg(feature = "UITextFormattingCoordinator")]
 pub use self::__UITextFormattingCoordinator::UITextFormattingCoordinatorDelegate;
+#[cfg(all(
+    feature = "UIResponder",
+    feature = "UITextFormattingViewController",
+    feature = "UIViewController"
+))]
+pub use self::__UITextFormattingViewController::UITextFormattingViewController;
+#[cfg(feature = "UITextFormattingViewController")]
+pub use self::__UITextFormattingViewController::UITextFormattingViewControllerDelegate;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerChangeValue;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerDecreaseFontSizeChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerDecreaseIndentationChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerFontChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerFontSizeChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerFormattingStyleChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerHighlightChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerIncreaseFontSizeChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerIncreaseIndentationChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerLineHeightPointSizeChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerRemoveBoldChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerRemoveItalicChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerRemoveStrikethroughChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerRemoveUnderlineChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerSetBoldChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerSetItalicChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerSetStrikethroughChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerSetUnderlineChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerTextAlignmentChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerTextColorChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerTextListChangeType;
+#[cfg(feature = "UITextFormattingViewControllerChangeValue")]
+pub use self::__UITextFormattingViewControllerChangeValue::UITextFormattingViewControllerUndefinedChangeType;
+#[cfg(feature = "UITextFormattingViewControllerComponent")]
+pub use self::__UITextFormattingViewControllerComponent::UITextFormattingViewControllerComponent;
+#[cfg(feature = "UITextFormattingViewControllerComponent")]
+pub use self::__UITextFormattingViewControllerComponent::UITextFormattingViewControllerComponentGroup;
+#[cfg(feature = "UITextFormattingViewControllerComponent")]
+pub use self::__UITextFormattingViewControllerComponent::UITextFormattingViewControllerComponentKey;
+#[cfg(feature = "UITextFormattingViewControllerComponent")]
+pub use self::__UITextFormattingViewControllerComponent::UITextFormattingViewControllerComponentSize;
+#[cfg(feature = "UITextFormattingViewControllerComponent")]
+pub use self::__UITextFormattingViewControllerComponent::UITextFormattingViewControllerFontAttributesComponentKey;
+#[cfg(feature = "UITextFormattingViewControllerComponent")]
+pub use self::__UITextFormattingViewControllerComponent::UITextFormattingViewControllerFontPickerComponentKey;
+#[cfg(feature = "UITextFormattingViewControllerComponent")]
+pub use self::__UITextFormattingViewControllerComponent::UITextFormattingViewControllerFontPointSizeComponentKey;
+#[cfg(feature = "UITextFormattingViewControllerComponent")]
+pub use self::__UITextFormattingViewControllerComponent::UITextFormattingViewControllerFontSizeComponentKey;
+#[cfg(feature = "UITextFormattingViewControllerComponent")]
+pub use self::__UITextFormattingViewControllerComponent::UITextFormattingViewControllerFormattingStylesComponentKey;
+#[cfg(feature = "UITextFormattingViewControllerComponent")]
+pub use self::__UITextFormattingViewControllerComponent::UITextFormattingViewControllerHighlightComponentKey;
+#[cfg(feature = "UITextFormattingViewControllerComponent")]
+pub use self::__UITextFormattingViewControllerComponent::UITextFormattingViewControllerHighlightPickerComponentKey;
+#[cfg(feature = "UITextFormattingViewControllerComponent")]
+pub use self::__UITextFormattingViewControllerComponent::UITextFormattingViewControllerLineHeightComponentKey;
+#[cfg(feature = "UITextFormattingViewControllerComponent")]
+pub use self::__UITextFormattingViewControllerComponent::UITextFormattingViewControllerListStylesComponentKey;
+#[cfg(feature = "UITextFormattingViewControllerComponent")]
+pub use self::__UITextFormattingViewControllerComponent::UITextFormattingViewControllerTextAlignmentAndJustificationComponentKey;
+#[cfg(feature = "UITextFormattingViewControllerComponent")]
+pub use self::__UITextFormattingViewControllerComponent::UITextFormattingViewControllerTextAlignmentComponentKey;
+#[cfg(feature = "UITextFormattingViewControllerComponent")]
+pub use self::__UITextFormattingViewControllerComponent::UITextFormattingViewControllerTextColorComponentKey;
+#[cfg(feature = "UITextFormattingViewControllerComponent")]
+pub use self::__UITextFormattingViewControllerComponent::UITextFormattingViewControllerTextIndentationComponentKey;
+#[cfg(feature = "UITextFormattingViewControllerConfiguration")]
+pub use self::__UITextFormattingViewControllerConfiguration::UITextFormattingViewControllerConfiguration;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerFormattingDescriptor;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerHighlight;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerHighlightBlue;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerHighlightDefault;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerHighlightMint;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerHighlightOrange;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerHighlightPink;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerHighlightPurple;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerTextAlignment;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerTextAlignmentCenter;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerTextAlignmentJustified;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerTextAlignmentLeft;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerTextAlignmentNatural;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerTextAlignmentRight;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerTextList;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerTextListDecimal;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerTextListDisc;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerTextListHyphen;
+#[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+pub use self::__UITextFormattingViewControllerFormattingDescriptor::UITextFormattingViewControllerTextListOther;
+#[cfg(feature = "UITextFormattingViewControllerFormattingStyle")]
+pub use self::__UITextFormattingViewControllerFormattingStyle::UITextFormattingViewControllerFormattingStyle;
 #[cfg(feature = "UITextInput")]
 pub use self::__UITextInput::UIDictationPhrase;
 #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]

@@ -55,6 +55,10 @@ extern_class!(
     }
 );
 
+unsafe impl Send for NSProcessInfo {}
+
+unsafe impl Sync for NSProcessInfo {}
+
 unsafe impl NSObjectProtocol for NSProcessInfo {}
 
 extern_methods!(

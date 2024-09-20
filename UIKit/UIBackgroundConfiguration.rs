@@ -196,6 +196,10 @@ extern_methods!(
         #[method(setStrokeOutset:)]
         pub unsafe fn setStrokeOutset(&self, stroke_outset: CGFloat);
 
+        #[cfg(feature = "UIShadowProperties")]
+        #[method_id(@__retain_semantics Other shadowProperties)]
+        pub unsafe fn shadowProperties(&self) -> Retained<UIShadowProperties>;
+
         #[deprecated]
         #[method_id(@__retain_semantics Other listPlainCellConfiguration)]
         pub unsafe fn listPlainCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;

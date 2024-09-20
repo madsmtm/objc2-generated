@@ -176,6 +176,12 @@ extern_methods!(
             text_to_secondary_text_vertical_padding: CGFloat,
         );
 
+        #[method(alpha)]
+        pub unsafe fn alpha(&self) -> CGFloat;
+
+        #[method(setAlpha:)]
+        pub unsafe fn setAlpha(&self, alpha: CGFloat);
+
         #[deprecated]
         #[method_id(@__retain_semantics Other sidebarCellConfiguration)]
         pub unsafe fn sidebarCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;

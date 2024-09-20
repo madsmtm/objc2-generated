@@ -40,6 +40,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other masculine)]
         pub unsafe fn masculine() -> Retained<Self>;
 
+        #[method_id(@__retain_semantics Other currentUser)]
+        pub unsafe fn currentUser() -> Retained<Self>;
+
         #[cfg(all(feature = "NSArray", feature = "NSMorphology", feature = "NSString"))]
         #[method_id(@__retain_semantics Other localizedForLanguageIdentifier:withPronouns:)]
         pub unsafe fn localizedForLanguageIdentifier_withPronouns(

@@ -108,6 +108,46 @@ extern_methods!(
             &self,
             accessibility_ignores_invert_colors: bool,
         );
+
+        #[method(strokeWidth)]
+        pub unsafe fn strokeWidth(&self) -> CGFloat;
+
+        #[method(setStrokeWidth:)]
+        pub unsafe fn setStrokeWidth(&self, stroke_width: CGFloat);
+
+        #[cfg(feature = "UIColor")]
+        #[method_id(@__retain_semantics Other strokeColor)]
+        pub unsafe fn strokeColor(&self) -> Option<Retained<UIColor>>;
+
+        #[cfg(feature = "UIColor")]
+        #[method(setStrokeColor:)]
+        pub unsafe fn setStrokeColor(&self, stroke_color: Option<&UIColor>);
+
+        #[cfg(all(
+            feature = "UIColor",
+            feature = "UIConfigurationColorTransformer",
+            feature = "block2"
+        ))]
+        #[method(strokeColorTransformer)]
+        pub unsafe fn strokeColorTransformer(&self) -> UIConfigurationColorTransformer;
+
+        #[cfg(all(
+            feature = "UIColor",
+            feature = "UIConfigurationColorTransformer",
+            feature = "block2"
+        ))]
+        #[method(setStrokeColorTransformer:)]
+        pub unsafe fn setStrokeColorTransformer(
+            &self,
+            stroke_color_transformer: UIConfigurationColorTransformer,
+        );
+
+        #[cfg(feature = "UIColor")]
+        #[method_id(@__retain_semantics Other resolvedStrokeColorForTintColor:)]
+        pub unsafe fn resolvedStrokeColorForTintColor(
+            &self,
+            tint_color: &UIColor,
+        ) -> Retained<UIColor>;
     }
 );
 

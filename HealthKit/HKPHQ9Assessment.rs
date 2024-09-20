@@ -88,6 +88,20 @@ extern_class!(
     feature = "HKSample",
     feature = "HKScoredAssessment"
 ))]
+unsafe impl Send for HKPHQ9Assessment {}
+
+#[cfg(all(
+    feature = "HKObject",
+    feature = "HKSample",
+    feature = "HKScoredAssessment"
+))]
+unsafe impl Sync for HKPHQ9Assessment {}
+
+#[cfg(all(
+    feature = "HKObject",
+    feature = "HKSample",
+    feature = "HKScoredAssessment"
+))]
 unsafe impl NSCoding for HKPHQ9Assessment {}
 
 #[cfg(all(

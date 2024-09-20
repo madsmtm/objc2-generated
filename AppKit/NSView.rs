@@ -831,6 +831,16 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSViewToolTipOwner {}
 );
 
+extern_protocol!(
+    pub unsafe trait NSViewContentSelectionInfo: NSObjectProtocol {
+        #[optional]
+        #[method(selectionAnchorRect)]
+        unsafe fn selectionAnchorRect(&self) -> NSRect;
+    }
+
+    unsafe impl ProtocolType for dyn NSViewContentSelectionInfo {}
+);
+
 extern_methods!(
     /// NSKeyboardUI
     #[cfg(feature = "NSResponder")]

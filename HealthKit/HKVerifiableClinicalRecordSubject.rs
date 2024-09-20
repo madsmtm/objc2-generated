@@ -14,6 +14,10 @@ extern_class!(
     }
 );
 
+unsafe impl Send for HKVerifiableClinicalRecordSubject {}
+
+unsafe impl Sync for HKVerifiableClinicalRecordSubject {}
+
 unsafe impl NSCoding for HKVerifiableClinicalRecordSubject {}
 
 unsafe impl NSCopying for HKVerifiableClinicalRecordSubject {}
