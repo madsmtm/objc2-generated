@@ -25,6 +25,9 @@ mod __HKActivitySummaryQuery;
 #[cfg(feature = "HKAnchoredObjectQuery")]
 #[path = "HKAnchoredObjectQuery.rs"]
 mod __HKAnchoredObjectQuery;
+#[cfg(feature = "HKAppleSleepingBreathingDisturbancesClassification")]
+#[path = "HKAppleSleepingBreathingDisturbancesClassification.rs"]
+mod __HKAppleSleepingBreathingDisturbancesClassification;
 #[cfg(feature = "HKAppleWalkingSteadinessClassification")]
 #[path = "HKAppleWalkingSteadinessClassification.rs"]
 mod __HKAppleWalkingSteadinessClassification;
@@ -274,6 +277,18 @@ pub use self::__HKActivitySummary::HKPredicateKeyPathDateComponents;
 pub use self::__HKActivitySummaryQuery::HKActivitySummaryQuery;
 #[cfg(all(feature = "HKAnchoredObjectQuery", feature = "HKQuery"))]
 pub use self::__HKAnchoredObjectQuery::HKAnchoredObjectQuery;
+#[cfg(feature = "HKAppleSleepingBreathingDisturbancesClassification")]
+pub use self::__HKAppleSleepingBreathingDisturbancesClassification::HKAppleSleepingBreathingDisturbancesClassification;
+#[cfg(all(
+    feature = "HKAppleSleepingBreathingDisturbancesClassification",
+    feature = "HKQuantity"
+))]
+pub use self::__HKAppleSleepingBreathingDisturbancesClassification::HKAppleSleepingBreathingDisturbancesClassificationForQuantity;
+#[cfg(all(
+    feature = "HKAppleSleepingBreathingDisturbancesClassification",
+    feature = "HKQuantity"
+))]
+pub use self::__HKAppleSleepingBreathingDisturbancesClassification::HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification;
 #[cfg(feature = "HKAppleWalkingSteadinessClassification")]
 pub use self::__HKAppleWalkingSteadinessClassification::HKAppleWalkingSteadinessClassification;
 #[cfg(all(
@@ -1072,6 +1087,8 @@ pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierSkippedHeartbeat;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierSleepAnalysis;
 #[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierSleepApneaEvent;
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierSleepChanges;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierSoreThroat;
@@ -1119,6 +1136,8 @@ pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierActiveEnergyBurned;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierAppleExerciseTime;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierAppleMoveTime;
+#[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierAppleSleepingBreathingDisturbances;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierAppleSleepingWristTemperature;
 #[cfg(feature = "HKTypeIdentifiers")]

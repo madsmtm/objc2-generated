@@ -465,6 +465,11 @@ extern "C" {
 }
 
 extern "C" {
+    pub static HKQuantityTypeIdentifierAppleSleepingBreathingDisturbances:
+        &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
     pub static HKQuantityTypeIdentifierForcedExpiratoryVolume1: &'static HKQuantityTypeIdentifier;
 }
 
@@ -609,6 +614,10 @@ extern "C" {
 
 extern "C" {
     pub static HKCategoryTypeIdentifierSexualActivity: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    pub static HKCategoryTypeIdentifierSleepApneaEvent: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
