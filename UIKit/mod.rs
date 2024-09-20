@@ -850,6 +850,9 @@ mod __UISceneSession;
 #[cfg(feature = "UISceneSessionActivationRequest")]
 #[path = "UISceneSessionActivationRequest.rs"]
 mod __UISceneSessionActivationRequest;
+#[cfg(feature = "UISceneSystemProtectionManager")]
+#[path = "UISceneSystemProtectionManager.rs"]
+mod __UISceneSystemProtectionManager;
 #[cfg(feature = "UISceneWindowingBehaviors")]
 #[path = "UISceneWindowingBehaviors.rs"]
 mod __UISceneWindowingBehaviors;
@@ -3147,6 +3150,8 @@ pub use self::__UIFocus::UIFocusItem;
 #[cfg(feature = "UIFocus")]
 pub use self::__UIFocus::UIFocusItemContainer;
 #[cfg(feature = "UIFocus")]
+pub use self::__UIFocus::UIFocusItemDeferralMode;
+#[cfg(feature = "UIFocus")]
 pub use self::__UIFocus::UIFocusItemScrollableContainer;
 #[cfg(feature = "UIFocus")]
 pub use self::__UIFocus::UIFocusMovementDidFailNotification;
@@ -4313,6 +4318,10 @@ pub use self::__UISceneSession::UISceneConfiguration;
 pub use self::__UISceneSession::UISceneSession;
 #[cfg(feature = "UISceneSessionActivationRequest")]
 pub use self::__UISceneSessionActivationRequest::UISceneSessionActivationRequest;
+#[cfg(feature = "UISceneSystemProtectionManager")]
+pub use self::__UISceneSystemProtectionManager::UISceneSystemProtectionDidChangeNotification;
+#[cfg(feature = "UISceneSystemProtectionManager")]
+pub use self::__UISceneSystemProtectionManager::UISceneSystemProtectionManager;
 #[cfg(feature = "UISceneWindowingBehaviors")]
 pub use self::__UISceneWindowingBehaviors::UISceneWindowingBehaviors;
 #[cfg(feature = "UIScreen")]
@@ -5136,8 +5145,6 @@ pub use self::__UITextInputTraits::UITextSmartInsertDeleteType;
 pub use self::__UITextInputTraits::UITextSmartQuotesType;
 #[cfg(feature = "UITextInputTraits")]
 pub use self::__UITextInputTraits::UITextSpellCheckingType;
-#[cfg(feature = "UITextInputTraits")]
-pub use self::__UITextInputTraits::UIWritingToolsAllowedInputOptions;
 #[cfg(feature = "UITextInputTraits")]
 pub use self::__UITextInputTraits::UIWritingToolsBehavior;
 #[cfg(feature = "UITextInputTraits")]

@@ -20,8 +20,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other checkForSupport)]
         pub unsafe fn checkForSupport() -> Retained<Self>;
 
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionInput")]
+        #[method_id(@__retain_semantics Init initWithInputValues:)]
+        pub unsafe fn initWithInputValues(
+            this: Allocated<Self>,
+            input_values: Option<&ASAuthorizationPublicKeyCredentialPRFAssertionInputValues>,
+        ) -> Retained<Self>;
+
         #[method(shouldCheckForSupport)]
         pub unsafe fn shouldCheckForSupport(&self) -> bool;
+
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionInput")]
+        #[method_id(@__retain_semantics Other inputValues)]
+        pub unsafe fn inputValues(
+            &self,
+        ) -> Option<Retained<ASAuthorizationPublicKeyCredentialPRFAssertionInputValues>>;
     }
 );
 

@@ -31,6 +31,10 @@ unsafe impl RefEncode for PHPickerConfigurationAssetRepresentationMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+unsafe impl Send for PHPickerConfigurationAssetRepresentationMode {}
+
+unsafe impl Sync for PHPickerConfigurationAssetRepresentationMode {}
+
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -53,6 +57,10 @@ unsafe impl Encode for PHPickerConfigurationSelection {
 unsafe impl RefEncode for PHPickerConfigurationSelection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
+
+unsafe impl Send for PHPickerConfigurationSelection {}
+
+unsafe impl Sync for PHPickerConfigurationSelection {}
 
 // NS_ENUM
 #[repr(transparent)]

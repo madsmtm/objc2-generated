@@ -18,6 +18,12 @@ extern_class!(
 );
 
 #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
+unsafe impl Send for PHProject {}
+
+#[cfg(all(feature = "PHCollection", feature = "PHObject"))]
+unsafe impl Sync for PHProject {}
+
+#[cfg(all(feature = "PHCollection", feature = "PHObject"))]
 unsafe impl NSCopying for PHProject {}
 
 #[cfg(all(feature = "PHCollection", feature = "PHObject"))]

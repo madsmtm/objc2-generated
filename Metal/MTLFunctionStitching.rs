@@ -13,7 +13,7 @@ bitflags::bitflags! {
     impl MTLStitchedLibraryOptions: NSUInteger {
         const MTLStitchedLibraryOptionNone = 0;
         const MTLStitchedLibraryOptionFailOnBinaryArchiveMiss = 1<<0;
-        const MTLStitchedLibraryOptionStoreLibraryInMetalScript = 1<<1;
+        const MTLStitchedLibraryOptionStoreLibraryInMetalPipelinesScript = 1<<1;
     }
 }
 

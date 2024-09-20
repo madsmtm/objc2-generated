@@ -334,6 +334,12 @@ extern_methods!(
         #[method(setToneMapMode:)]
         pub unsafe fn setToneMapMode(&self, tone_map_mode: &CAToneMapMode);
 
+        #[method(wantsDynamicContentScaling)]
+        pub unsafe fn wantsDynamicContentScaling(&self) -> bool;
+
+        #[method(setWantsDynamicContentScaling:)]
+        pub unsafe fn setWantsDynamicContentScaling(&self, wants_dynamic_content_scaling: bool);
+
         #[method_id(@__retain_semantics Other minificationFilter)]
         pub fn minificationFilter(&self) -> Retained<CALayerContentsFilter>;
 

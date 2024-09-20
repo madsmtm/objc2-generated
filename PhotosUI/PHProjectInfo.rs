@@ -62,6 +62,10 @@ extern_class!(
     }
 );
 
+unsafe impl Send for PHProjectInfo {}
+
+unsafe impl Sync for PHProjectInfo {}
+
 unsafe impl NSCoding for PHProjectInfo {}
 
 unsafe impl NSObjectProtocol for PHProjectInfo {}
@@ -123,6 +127,10 @@ unsafe impl RefEncode for PHProjectSectionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+unsafe impl Send for PHProjectSectionType {}
+
+unsafe impl Sync for PHProjectSectionType {}
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectSection;
@@ -131,6 +139,10 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+unsafe impl Send for PHProjectSection {}
+
+unsafe impl Sync for PHProjectSection {}
 
 unsafe impl NSCoding for PHProjectSection {}
 
@@ -165,6 +177,10 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+unsafe impl Send for PHProjectSectionContent {}
+
+unsafe impl Sync for PHProjectSectionContent {}
 
 unsafe impl NSCoding for PHProjectSectionContent {}
 
@@ -208,6 +224,10 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+unsafe impl Send for PHProjectElement {}
+
+unsafe impl Sync for PHProjectElement {}
 
 unsafe impl NSCoding for PHProjectElement {}
 
@@ -281,6 +301,10 @@ extern_class!(
     }
 );
 
+unsafe impl Send for PHProjectAssetElement {}
+
+unsafe impl Sync for PHProjectAssetElement {}
+
 unsafe impl NSCoding for PHProjectAssetElement {}
 
 unsafe impl NSObjectProtocol for PHProjectAssetElement {}
@@ -342,6 +366,10 @@ unsafe impl RefEncode for PHProjectTextElementType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+unsafe impl Send for PHProjectTextElementType {}
+
+unsafe impl Sync for PHProjectTextElementType {}
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectTextElement;
@@ -351,6 +379,10 @@ extern_class!(
         type Super = PHProjectElement;
     }
 );
+
+unsafe impl Send for PHProjectTextElement {}
+
+unsafe impl Sync for PHProjectTextElement {}
 
 unsafe impl NSCoding for PHProjectTextElement {}
 
@@ -392,6 +424,10 @@ extern_class!(
     }
 );
 
+unsafe impl Send for PHProjectJournalEntryElement {}
+
+unsafe impl Sync for PHProjectJournalEntryElement {}
+
 unsafe impl NSCoding for PHProjectJournalEntryElement {}
 
 unsafe impl NSObjectProtocol for PHProjectJournalEntryElement {}
@@ -431,6 +467,10 @@ extern_class!(
         type Super = PHProjectElement;
     }
 );
+
+unsafe impl Send for PHProjectMapElement {}
+
+unsafe impl Sync for PHProjectMapElement {}
 
 unsafe impl NSCoding for PHProjectMapElement {}
 

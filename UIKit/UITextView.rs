@@ -674,19 +674,6 @@ extern_methods!(
         );
 
         #[cfg(feature = "UITextInputTraits")]
-        #[deprecated]
-        #[method(writingToolsAllowedInputOptions)]
-        pub unsafe fn writingToolsAllowedInputOptions(&self) -> UIWritingToolsAllowedInputOptions;
-
-        #[cfg(feature = "UITextInputTraits")]
-        #[deprecated]
-        #[method(setWritingToolsAllowedInputOptions:)]
-        pub unsafe fn setWritingToolsAllowedInputOptions(
-            &self,
-            writing_tools_allowed_input_options: UIWritingToolsAllowedInputOptions,
-        );
-
-        #[cfg(feature = "UITextInputTraits")]
         #[method(allowedWritingToolsResultOptions)]
         pub unsafe fn allowedWritingToolsResultOptions(&self) -> UIWritingToolsResultOptions;
 

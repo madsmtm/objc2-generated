@@ -81,6 +81,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other displayOrder)]
         pub unsafe fn displayOrder(&self) -> Retained<NSArray<UITab>>;
 
+        #[method_id(@__retain_semantics Other tabForIdentifier:)]
+        pub unsafe fn tabForIdentifier(&self, identifier: &NSString) -> Option<Retained<UITab>>;
+
         #[cfg(all(
             feature = "UINavigationController",
             feature = "UIResponder",
@@ -101,9 +104,6 @@ extern_methods!(
             &self,
             managing_navigation_controller: Option<&UINavigationController>,
         );
-
-        #[method_id(@__retain_semantics Other tabForIdentifier:)]
-        pub unsafe fn tabForIdentifier(&self, identifier: &NSString) -> Option<Retained<UITab>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         #[method_id(@__retain_semantics Other sidebarActions)]

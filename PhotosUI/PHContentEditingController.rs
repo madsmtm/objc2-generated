@@ -10,7 +10,7 @@ use objc2_photos::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait PHContentEditingController: NSObjectProtocol {
+    pub unsafe trait PHContentEditingController: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-photos")]
         #[method(canHandleAdjustmentData:)]
         unsafe fn canHandleAdjustmentData(&self, adjustment_data: &PHAdjustmentData) -> bool;

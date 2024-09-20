@@ -40,6 +40,27 @@ unsafe impl RefEncode for UIFocusHeading {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UIFocusItemDeferralMode(pub NSInteger);
+impl UIFocusItemDeferralMode {
+    #[doc(alias = "UIFocusItemDeferralModeAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "UIFocusItemDeferralModeAlways")]
+    pub const Always: Self = Self(1);
+    #[doc(alias = "UIFocusItemDeferralModeNever")]
+    pub const Never: Self = Self(2);
+}
+
+unsafe impl Encode for UIFocusItemDeferralMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIFocusItemDeferralMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIFocusSoundIdentifier = NSString;
 
@@ -125,6 +146,10 @@ extern_protocol!(
         #[optional]
         #[method(focusGroupPriority)]
         unsafe fn focusGroupPriority(&self) -> UIFocusGroupPriority;
+
+        #[optional]
+        #[method(focusItemDeferralMode)]
+        unsafe fn focusItemDeferralMode(&self) -> UIFocusItemDeferralMode;
 
         #[optional]
         #[method(isTransparentFocusItem)]

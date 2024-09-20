@@ -42,8 +42,8 @@ extern_methods!(
         #[method(setActivityMoveMode:)]
         pub unsafe fn setActivityMoveMode(&self, activity_move_mode: HKActivityMoveMode);
 
-        #[method(paused)]
-        pub unsafe fn paused(&self) -> bool;
+        #[method(isPaused)]
+        pub unsafe fn isPaused(&self) -> bool;
 
         #[method(setPaused:)]
         pub unsafe fn setPaused(&self, paused: bool);

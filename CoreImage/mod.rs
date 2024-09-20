@@ -137,6 +137,8 @@ pub use self::__CIContext::kCIImageRepresentationDepthImage;
 #[cfg(feature = "CIContext")]
 pub use self::__CIContext::kCIImageRepresentationDisparityImage;
 #[cfg(feature = "CIContext")]
+pub use self::__CIContext::kCIImageRepresentationHDRGainMapImage;
+#[cfg(feature = "CIContext")]
 pub use self::__CIContext::kCIImageRepresentationHDRImage;
 #[cfg(feature = "CIContext")]
 pub use self::__CIContext::kCIImageRepresentationPortraitEffectsMatteImage;

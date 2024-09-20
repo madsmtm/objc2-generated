@@ -105,6 +105,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other viewController)]
         pub unsafe fn viewController(&self) -> Option<Retained<UIViewController>>;
 
+        #[cfg(feature = "UITabGroup")]
+        #[method_id(@__retain_semantics Other managingTabGroup)]
+        pub unsafe fn managingTabGroup(&self) -> Option<Retained<UITabGroup>>;
+
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 

@@ -13,6 +13,8 @@ bitflags::bitflags! {
     impl MTLFunctionOptions: NSUInteger {
         const MTLFunctionOptionNone = 0;
         const MTLFunctionOptionCompileToBinary = 1<<0;
+        const MTLFunctionOptionStoreFunctionInMetalPipelinesScript = 1<<1;
+#[deprecated]
         const MTLFunctionOptionStoreFunctionInMetalScript = 1<<1;
         const MTLFunctionOptionFailOnBinaryArchiveMiss = 1<<2;
     }

@@ -17,6 +17,10 @@ extern_class!(
     }
 );
 
+unsafe impl Send for PHProjectTypeDescription {}
+
+unsafe impl Sync for PHProjectTypeDescription {}
+
 unsafe impl NSCoding for PHProjectTypeDescription {}
 
 unsafe impl NSObjectProtocol for PHProjectTypeDescription {}

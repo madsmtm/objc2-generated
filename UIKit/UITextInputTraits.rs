@@ -290,39 +290,6 @@ unsafe impl RefEncode for UIWritingToolsBehavior {
 }
 
 // NS_OPTIONS
-#[deprecated = "Use UIWritingToolsResultOptions instead"]
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct UIWritingToolsAllowedInputOptions(pub NSUInteger);
-bitflags::bitflags! {
-    impl UIWritingToolsAllowedInputOptions: NSUInteger {
-#[deprecated = "Use UIWritingToolsResultOptions instead"]
-        #[doc(alias = "UIWritingToolsAllowedInputOptionsDefault")]
-        const Default = 0;
-#[deprecated = "Use UIWritingToolsResultOptions instead"]
-        #[doc(alias = "UIWritingToolsAllowedInputOptionsPlainText")]
-        const PlainText = 1<<0;
-#[deprecated = "Use UIWritingToolsResultOptions instead"]
-        #[doc(alias = "UIWritingToolsAllowedInputOptionsRichText")]
-        const RichText = 1<<1;
-#[deprecated = "Use UIWritingToolsResultOptions instead"]
-        #[doc(alias = "UIWritingToolsAllowedInputOptionsList")]
-        const List = 1<<2;
-#[deprecated = "Use UIWritingToolsResultOptions instead"]
-        #[doc(alias = "UIWritingToolsAllowedInputOptionsTable")]
-        const Table = 1<<3;
-    }
-}
-
-unsafe impl Encode for UIWritingToolsAllowedInputOptions {
-    const ENCODING: Encoding = NSUInteger::ENCODING;
-}
-
-unsafe impl RefEncode for UIWritingToolsAllowedInputOptions {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
-// NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIWritingToolsResultOptions(pub NSUInteger);
@@ -529,19 +496,6 @@ extern_protocol!(
         #[optional]
         #[method(setWritingToolsBehavior:)]
         unsafe fn setWritingToolsBehavior(&self, writing_tools_behavior: UIWritingToolsBehavior);
-
-        #[deprecated]
-        #[optional]
-        #[method(writingToolsAllowedInputOptions)]
-        unsafe fn writingToolsAllowedInputOptions(&self) -> UIWritingToolsAllowedInputOptions;
-
-        #[deprecated]
-        #[optional]
-        #[method(setWritingToolsAllowedInputOptions:)]
-        unsafe fn setWritingToolsAllowedInputOptions(
-            &self,
-            writing_tools_allowed_input_options: UIWritingToolsAllowedInputOptions,
-        );
 
         #[optional]
         #[method(allowedWritingToolsResultOptions)]

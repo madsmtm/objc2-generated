@@ -266,8 +266,8 @@ extern_protocol!(
         unsafe fn tabBarController_didSelectTab_previousTab(
             &self,
             tab_bar_controller: &UITabBarController,
-            tab: &UITab,
-            tab: Option<&UITab>,
+            selected_tab: &UITab,
+            previous_tab: Option<&UITab>,
         );
 
         #[cfg(all(
@@ -337,6 +337,20 @@ extern_protocol!(
             tab_bar_controller: &UITabBarController,
             group: &UITabGroup,
         );
+
+        #[cfg(all(
+            feature = "UIResponder",
+            feature = "UITab",
+            feature = "UIViewController"
+        ))]
+        #[optional]
+        #[method_id(@__retain_semantics Other tabBarController:displayedViewControllersForTab:proposedViewControllers:)]
+        unsafe fn tabBarController_displayedViewControllersForTab_proposedViewControllers(
+            &self,
+            tab_bar_controller: &UITabBarController,
+            tab: &UITab,
+            proposed_view_controllers: &NSArray<UIViewController>,
+        ) -> Retained<NSArray<UIViewController>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]

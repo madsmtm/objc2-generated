@@ -31,6 +31,10 @@ unsafe impl RefEncode for PHLivePhotoViewPlaybackStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+unsafe impl Send for PHLivePhotoViewPlaybackStyle {}
+
+unsafe impl Sync for PHLivePhotoViewPlaybackStyle {}
+
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -49,6 +53,10 @@ unsafe impl Encode for PHLivePhotoViewContentMode {
 unsafe impl RefEncode for PHLivePhotoViewContentMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
+
+unsafe impl Send for PHLivePhotoViewContentMode {}
+
+unsafe impl Sync for PHLivePhotoViewContentMode {}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -194,7 +202,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait PHLivePhotoViewDelegate: NSObjectProtocol {
+    pub unsafe trait PHLivePhotoViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[optional]
