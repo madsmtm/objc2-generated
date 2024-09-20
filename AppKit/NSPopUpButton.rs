@@ -132,6 +132,36 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSPopUpButton {
+        #[cfg(feature = "NSMenu")]
+        #[method_id(@__retain_semantics Other popUpButtonWithMenu:target:action:)]
+        pub unsafe fn popUpButtonWithMenu_target_action(
+            menu: &NSMenu,
+            target: Option<&AnyObject>,
+            action: Option<Sel>,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "NSMenu")]
+        #[method_id(@__retain_semantics Other pullDownButtonWithTitle:menu:)]
+        pub unsafe fn pullDownButtonWithTitle_menu(
+            title: &NSString,
+            menu: &NSMenu,
+        ) -> Retained<Self>;
+
+        #[cfg(all(feature = "NSImage", feature = "NSMenu"))]
+        #[method_id(@__retain_semantics Other pullDownButtonWithImage:menu:)]
+        pub unsafe fn pullDownButtonWithImage_menu(
+            image: &NSImage,
+            menu: &NSMenu,
+        ) -> Retained<Self>;
+
+        #[cfg(all(feature = "NSImage", feature = "NSMenu"))]
+        #[method_id(@__retain_semantics Other pullDownButtonWithTitle:image:menu:)]
+        pub unsafe fn pullDownButtonWithTitle_image_menu(
+            title: &NSString,
+            image: &NSImage,
+            menu: &NSMenu,
+        ) -> Retained<Self>;
+
         #[method_id(@__retain_semantics Init initWithFrame:pullsDown:)]
         pub unsafe fn initWithFrame_pullsDown(
             this: Allocated<Self>,
@@ -164,6 +194,18 @@ extern_methods!(
 
         #[method(setPreferredEdge:)]
         pub unsafe fn setPreferredEdge(&self, preferred_edge: NSRectEdge);
+
+        #[method(usesItemFromMenu)]
+        pub unsafe fn usesItemFromMenu(&self) -> bool;
+
+        #[method(setUsesItemFromMenu:)]
+        pub unsafe fn setUsesItemFromMenu(&self, uses_item_from_menu: bool);
+
+        #[method(altersStateOfSelectedItem)]
+        pub unsafe fn altersStateOfSelectedItem(&self) -> bool;
+
+        #[method(setAltersStateOfSelectedItem:)]
+        pub unsafe fn setAltersStateOfSelectedItem(&self, alters_state_of_selected_item: bool);
 
         #[method(addItemWithTitle:)]
         pub unsafe fn addItemWithTitle(&self, title: &NSString);

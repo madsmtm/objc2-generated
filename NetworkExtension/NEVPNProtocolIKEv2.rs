@@ -238,6 +238,57 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEVPNIKEv2PPKConfiguration;
+
+    unsafe impl ClassType for NEVPNIKEv2PPKConfiguration {
+        type Super = NSObject;
+    }
+);
+
+unsafe impl NSCopying for NEVPNIKEv2PPKConfiguration {}
+
+unsafe impl CopyingHelper for NEVPNIKEv2PPKConfiguration {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEVPNIKEv2PPKConfiguration {}
+
+extern_methods!(
+    unsafe impl NEVPNIKEv2PPKConfiguration {
+        #[method_id(@__retain_semantics Init initWithIdentifier:keychainReference:)]
+        pub unsafe fn initWithIdentifier_keychainReference(
+            this: Allocated<Self>,
+            identifier: &NSString,
+            keychain_reference: &NSData,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other identifier)]
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
+
+        #[method_id(@__retain_semantics Other keychainReference)]
+        pub unsafe fn keychainReference(&self) -> Retained<NSData>;
+
+        #[method(isMandatory)]
+        pub unsafe fn isMandatory(&self) -> bool;
+
+        #[method(setIsMandatory:)]
+        pub unsafe fn setIsMandatory(&self, is_mandatory: bool);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEVPNIKEv2PPKConfiguration {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NEVPNProtocol", feature = "NEVPNProtocolIPSec"))]
     pub struct NEVPNProtocolIKEv2;
 
@@ -373,6 +424,15 @@ extern_methods!(
 
         #[method(setMtu:)]
         pub unsafe fn setMtu(&self, mtu: NSUInteger);
+
+        #[method_id(@__retain_semantics Other ppkConfiguration)]
+        pub unsafe fn ppkConfiguration(&self) -> Option<Retained<NEVPNIKEv2PPKConfiguration>>;
+
+        #[method(setPpkConfiguration:)]
+        pub unsafe fn setPpkConfiguration(
+            &self,
+            ppk_configuration: Option<&NEVPNIKEv2PPKConfiguration>,
+        );
     }
 );
 

@@ -77,3 +77,22 @@ unsafe impl Encode for MKFeatureVisibility {
 unsafe impl RefEncode for MKFeatureVisibility {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKLocalSearchRegionPriority(pub NSInteger);
+impl MKLocalSearchRegionPriority {
+    #[doc(alias = "MKLocalSearchRegionPriorityDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "MKLocalSearchRegionPriorityRequired")]
+    pub const Required: Self = Self(1);
+}
+
+unsafe impl Encode for MKLocalSearchRegionPriority {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for MKLocalSearchRegionPriority {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

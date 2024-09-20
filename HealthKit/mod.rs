@@ -37,6 +37,9 @@ mod __HKAttachmentStore;
 #[cfg(feature = "HKAudiogramSample")]
 #[path = "HKAudiogramSample.rs"]
 mod __HKAudiogramSample;
+#[cfg(feature = "HKAudiogramSensitivityPoint")]
+#[path = "HKAudiogramSensitivityPoint.rs"]
+mod __HKAudiogramSensitivityPoint;
 #[cfg(feature = "HKCDADocumentSample")]
 #[path = "HKCDADocumentSample.rs"]
 mod __HKCDADocumentSample;
@@ -109,6 +112,9 @@ mod __HKFHIRResource;
 #[cfg(feature = "HKFHIRVersion")]
 #[path = "HKFHIRVersion.rs"]
 mod __HKFHIRVersion;
+#[cfg(feature = "HKGAD7Assessment")]
+#[path = "HKGAD7Assessment.rs"]
+mod __HKGAD7Assessment;
 #[cfg(feature = "HKGlassesLensSpecification")]
 #[path = "HKGlassesLensSpecification.rs"]
 mod __HKGlassesLensSpecification;
@@ -148,6 +154,9 @@ mod __HKObjectType;
 #[cfg(feature = "HKObserverQuery")]
 #[path = "HKObserverQuery.rs"]
 mod __HKObserverQuery;
+#[cfg(feature = "HKPHQ9Assessment")]
+#[path = "HKPHQ9Assessment.rs"]
+mod __HKPHQ9Assessment;
 #[cfg(feature = "HKQuantity")]
 #[path = "HKQuantity.rs"]
 mod __HKQuantity;
@@ -178,6 +187,9 @@ mod __HKSample;
 #[cfg(feature = "HKSampleQuery")]
 #[path = "HKSampleQuery.rs"]
 mod __HKSampleQuery;
+#[cfg(feature = "HKScoredAssessment")]
+#[path = "HKScoredAssessment.rs"]
+mod __HKScoredAssessment;
 #[cfg(feature = "HKSeriesBuilder")]
 #[path = "HKSeriesBuilder.rs"]
 mod __HKSeriesBuilder;
@@ -193,6 +205,9 @@ mod __HKSourceQuery;
 #[cfg(feature = "HKSourceRevision")]
 #[path = "HKSourceRevision.rs"]
 mod __HKSourceRevision;
+#[cfg(feature = "HKStateOfMind")]
+#[path = "HKStateOfMind.rs"]
+mod __HKStateOfMind;
 #[cfg(feature = "HKStatistics")]
 #[path = "HKStatistics.rs"]
 mod __HKStatistics;
@@ -235,6 +250,9 @@ mod __HKWorkoutBuilder;
 #[cfg(feature = "HKWorkoutConfiguration")]
 #[path = "HKWorkoutConfiguration.rs"]
 mod __HKWorkoutConfiguration;
+#[cfg(feature = "HKWorkoutEffortRelationshipQuery")]
+#[path = "HKWorkoutEffortRelationshipQuery.rs"]
+mod __HKWorkoutEffortRelationshipQuery;
 #[cfg(feature = "HKWorkoutRoute")]
 #[path = "HKWorkoutRoute.rs"]
 mod __HKWorkoutRoute;
@@ -283,8 +301,8 @@ pub use self::__HKAttachmentStore::HKAttachmentStore;
     feature = "HKSample"
 ))]
 pub use self::__HKAudiogramSample::HKAudiogramSample;
-#[cfg(feature = "HKAudiogramSample")]
-pub use self::__HKAudiogramSample::HKAudiogramSensitivityPoint;
+#[cfg(feature = "HKAudiogramSensitivityPoint")]
+pub use self::__HKAudiogramSensitivityPoint::HKAudiogramSensitivityPoint;
 #[cfg(feature = "HKCDADocumentSample")]
 pub use self::__HKCDADocumentSample::HKCDADocument;
 #[cfg(all(
@@ -346,6 +364,8 @@ pub use self::__HKCategoryValues::HKCategoryValueProgesteroneTestResult;
 pub use self::__HKCategoryValues::HKCategoryValueSeverity;
 #[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValueSleepAnalysis;
+#[cfg(feature = "HKCategoryValues")]
+pub use self::__HKCategoryValues::HKCategoryValueVaginalBleeding;
 #[cfg(feature = "HKCharacteristicObjects")]
 pub use self::__HKCharacteristicObjects::HKActivityMoveModeObject;
 #[cfg(feature = "HKCharacteristicObjects")]
@@ -552,6 +572,21 @@ pub use self::__HKFHIRResource::HKFHIRResourceTypeObservation;
 pub use self::__HKFHIRResource::HKFHIRResourceTypeProcedure;
 #[cfg(feature = "HKFHIRVersion")]
 pub use self::__HKFHIRVersion::HKFHIRVersion;
+#[cfg(all(
+    feature = "HKGAD7Assessment",
+    feature = "HKObject",
+    feature = "HKSample",
+    feature = "HKScoredAssessment"
+))]
+pub use self::__HKGAD7Assessment::HKGAD7Assessment;
+#[cfg(feature = "HKGAD7Assessment")]
+pub use self::__HKGAD7Assessment::HKGAD7AssessmentAnswer;
+#[cfg(feature = "HKGAD7Assessment")]
+pub use self::__HKGAD7Assessment::HKGAD7AssessmentRisk;
+#[cfg(feature = "HKGAD7Assessment")]
+pub use self::__HKGAD7Assessment::HKMaximumScoreForGAD7AssessmentRisk;
+#[cfg(feature = "HKGAD7Assessment")]
+pub use self::__HKGAD7Assessment::HKMinimumScoreForGAD7AssessmentRisk;
 #[cfg(all(
     feature = "HKGlassesLensSpecification",
     feature = "HKLensSpecification"
@@ -775,6 +810,8 @@ pub use self::__HKObject::HKPredicateKeyPathSourceRevision;
 pub use self::__HKObject::HKPredicateKeyPathUUID;
 #[cfg(feature = "HKObject")]
 pub use self::__HKObject::HKPredicateKeyPathWorkout;
+#[cfg(feature = "HKObject")]
+pub use self::__HKObject::HKPredicateKeyPathWorkoutEffortRelationship;
 #[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKActivitySummaryType;
 #[cfg(feature = "HKObjectType")]
@@ -798,13 +835,32 @@ pub use self::__HKObjectType::HKQuantityType;
 #[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKSampleType;
 #[cfg(feature = "HKObjectType")]
+pub use self::__HKObjectType::HKScoredAssessmentType;
+#[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKSeriesType;
+#[cfg(feature = "HKObjectType")]
+pub use self::__HKObjectType::HKStateOfMindType;
 #[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKWorkoutType;
 #[cfg(all(feature = "HKObserverQuery", feature = "HKQuery"))]
 pub use self::__HKObserverQuery::HKObserverQuery;
 #[cfg(all(feature = "HKObserverQuery", feature = "block2"))]
 pub use self::__HKObserverQuery::HKObserverQueryCompletionHandler;
+#[cfg(feature = "HKPHQ9Assessment")]
+pub use self::__HKPHQ9Assessment::HKMaximumScoreForPHQ9AssessmentRisk;
+#[cfg(feature = "HKPHQ9Assessment")]
+pub use self::__HKPHQ9Assessment::HKMinimumScoreForPHQ9AssessmentRisk;
+#[cfg(all(
+    feature = "HKObject",
+    feature = "HKPHQ9Assessment",
+    feature = "HKSample",
+    feature = "HKScoredAssessment"
+))]
+pub use self::__HKPHQ9Assessment::HKPHQ9Assessment;
+#[cfg(feature = "HKPHQ9Assessment")]
+pub use self::__HKPHQ9Assessment::HKPHQ9AssessmentAnswer;
+#[cfg(feature = "HKPHQ9Assessment")]
+pub use self::__HKPHQ9Assessment::HKPHQ9AssessmentRisk;
 #[cfg(feature = "HKQuantity")]
 pub use self::__HKQuantity::HKQuantity;
 #[cfg(feature = "HKQuantityAggregationStyle")]
@@ -845,6 +901,12 @@ pub use self::__HKSample::HKSampleSortIdentifierStartDate;
 pub use self::__HKSampleQuery::HKObjectQueryNoLimit;
 #[cfg(all(feature = "HKQuery", feature = "HKSampleQuery"))]
 pub use self::__HKSampleQuery::HKSampleQuery;
+#[cfg(all(
+    feature = "HKObject",
+    feature = "HKSample",
+    feature = "HKScoredAssessment"
+))]
+pub use self::__HKScoredAssessment::HKScoredAssessment;
 #[cfg(feature = "HKSeriesBuilder")]
 pub use self::__HKSeriesBuilder::HKSeriesBuilder;
 #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKSeriesSample"))]
@@ -861,6 +923,18 @@ pub use self::__HKSourceRevision::HKSourceRevisionAnyOperatingSystem;
 pub use self::__HKSourceRevision::HKSourceRevisionAnyProductType;
 #[cfg(feature = "HKSourceRevision")]
 pub use self::__HKSourceRevision::HKSourceRevisionAnyVersion;
+#[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKStateOfMind"))]
+pub use self::__HKStateOfMind::HKStateOfMind;
+#[cfg(feature = "HKStateOfMind")]
+pub use self::__HKStateOfMind::HKStateOfMindAssociation;
+#[cfg(feature = "HKStateOfMind")]
+pub use self::__HKStateOfMind::HKStateOfMindKind;
+#[cfg(feature = "HKStateOfMind")]
+pub use self::__HKStateOfMind::HKStateOfMindLabel;
+#[cfg(feature = "HKStateOfMind")]
+pub use self::__HKStateOfMind::HKStateOfMindValenceClassification;
+#[cfg(feature = "HKStateOfMind")]
+pub use self::__HKStateOfMind::HKStateOfMindValenceClassificationForValence;
 #[cfg(feature = "HKStatistics")]
 pub use self::__HKStatistics::HKStatistics;
 #[cfg(feature = "HKStatistics")]
@@ -887,6 +961,10 @@ pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierAppleWalkingSteadines
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierAudioExposureEvent;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierBladderIncontinence;
+#[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierBleedingAfterPregnancy;
+#[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierBleedingDuringPregnancy;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierBloating;
 #[cfg(feature = "HKTypeIdentifiers")]
@@ -1028,6 +1106,8 @@ pub use self::__HKTypeIdentifiers::HKCorrelationTypeIdentifierFood;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKDataTypeIdentifierHeartbeatSeries;
 #[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKDataTypeIdentifierStateOfMind;
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKDocumentTypeIdentifier;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKDocumentTypeIdentifierCDA;
@@ -1067,6 +1147,8 @@ pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierBodyMass;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierBodyMassIndex;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierBodyTemperature;
+#[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierCrossCountrySkiingSpeed;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierCyclingCadence;
 #[cfg(feature = "HKTypeIdentifiers")]
@@ -1154,9 +1236,17 @@ pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryWater;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryZinc;
 #[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDistanceCrossCountrySkiing;
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDistanceCycling;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDistanceDownhillSnowSports;
+#[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDistancePaddleSports;
+#[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDistanceRowing;
+#[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDistanceSkatingSports;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDistanceSwimming;
 #[cfg(feature = "HKTypeIdentifiers")]
@@ -1169,6 +1259,8 @@ pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierElectrodermalActivity
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierEnvironmentalAudioExposure;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierEnvironmentalSoundReduction;
+#[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierEstimatedWorkoutEffortScore;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierFlightsClimbed;
 #[cfg(feature = "HKTypeIdentifiers")]
@@ -1200,6 +1292,8 @@ pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierNumberOfTimesFallen;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierOxygenSaturation;
 #[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierPaddleSportsSpeed;
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierPeakExpiratoryFlowRate;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierPeripheralPerfusionIndex;
@@ -1211,6 +1305,8 @@ pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierPushCount;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierRespiratoryRate;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierRestingHeartRate;
+#[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierRowingSpeed;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierRunningGroundContactTime;
 #[cfg(feature = "HKTypeIdentifiers")]
@@ -1253,6 +1349,14 @@ pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierWalkingSpeed;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierWalkingStepLength;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierWaterTemperature;
+#[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierWorkoutEffortScore;
+#[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKScoredAssessmentTypeIdentifier;
+#[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKScoredAssessmentTypeIdentifierGAD7;
+#[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKScoredAssessmentTypeIdentifierPHQ9;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKVisionPrescriptionTypeIdentifier;
 #[cfg(feature = "HKTypeIdentifiers")]
@@ -1367,6 +1471,12 @@ pub use self::__HKWorkoutBuilder::HKWorkoutBuilder;
 pub use self::__HKWorkoutConfiguration::HKWorkoutConfiguration;
 #[cfg(feature = "HKWorkoutConfiguration")]
 pub use self::__HKWorkoutConfiguration::HKWorkoutSessionLocationType;
+#[cfg(feature = "HKWorkoutEffortRelationshipQuery")]
+pub use self::__HKWorkoutEffortRelationshipQuery::HKWorkoutEffortRelationship;
+#[cfg(all(feature = "HKQuery", feature = "HKWorkoutEffortRelationshipQuery"))]
+pub use self::__HKWorkoutEffortRelationshipQuery::HKWorkoutEffortRelationshipQuery;
+#[cfg(feature = "HKWorkoutEffortRelationshipQuery")]
+pub use self::__HKWorkoutEffortRelationshipQuery::HKWorkoutEffortRelationshipQueryOptions;
 #[cfg(all(
     feature = "HKObject",
     feature = "HKSample",

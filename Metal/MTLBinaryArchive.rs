@@ -112,6 +112,20 @@ extern_protocol!(
             descriptor: &MTLTileRenderPipelineDescriptor,
         ) -> Result<(), Retained<NSError>>;
 
+        #[cfg(feature = "MTLRenderPipeline")]
+        #[method(addMeshRenderPipelineFunctionsWithDescriptor:error:_)]
+        unsafe fn addMeshRenderPipelineFunctionsWithDescriptor_error(
+            &self,
+            descriptor: &MTLMeshRenderPipelineDescriptor,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "MTLFunctionStitching")]
+        #[method(addLibraryWithDescriptor:error:_)]
+        unsafe fn addLibraryWithDescriptor_error(
+            &self,
+            descriptor: &MTLStitchedLibraryDescriptor,
+        ) -> Result<(), Retained<NSError>>;
+
         #[method(serializeToURL:error:_)]
         fn serializeToURL_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
 

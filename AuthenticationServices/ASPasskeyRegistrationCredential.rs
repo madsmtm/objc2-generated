@@ -40,6 +40,17 @@ extern_methods!(
             attestation_object: &NSData,
         ) -> Retained<Self>;
 
+        #[cfg(feature = "ASPasskeyRegistrationCredentialExtensionOutput")]
+        #[method_id(@__retain_semantics Init initWithRelyingParty:clientDataHash:credentialID:attestationObject:extensionOutput:)]
+        pub unsafe fn initWithRelyingParty_clientDataHash_credentialID_attestationObject_extensionOutput(
+            this: Allocated<Self>,
+            relying_party: &NSString,
+            client_data_hash: &NSData,
+            credential_id: &NSData,
+            attestation_object: &NSData,
+            extension_output: Option<&ASPasskeyRegistrationCredentialExtensionOutput>,
+        ) -> Retained<Self>;
+
         #[method_id(@__retain_semantics Other credentialWithRelyingParty:clientDataHash:credentialID:attestationObject:)]
         pub unsafe fn credentialWithRelyingParty_clientDataHash_credentialID_attestationObject(
             relying_party: &NSString,
@@ -59,6 +70,19 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other attestationObject)]
         pub unsafe fn attestationObject(&self) -> Retained<NSData>;
+
+        #[cfg(feature = "ASPasskeyRegistrationCredentialExtensionOutput")]
+        #[method_id(@__retain_semantics Other extensionOutput)]
+        pub unsafe fn extensionOutput(
+            &self,
+        ) -> Option<Retained<ASPasskeyRegistrationCredentialExtensionOutput>>;
+
+        #[cfg(feature = "ASPasskeyRegistrationCredentialExtensionOutput")]
+        #[method(setExtensionOutput:)]
+        pub unsafe fn setExtensionOutput(
+            &self,
+            extension_output: Option<&ASPasskeyRegistrationCredentialExtensionOutput>,
+        );
     }
 );
 

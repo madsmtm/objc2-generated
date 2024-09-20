@@ -157,5 +157,8 @@ extern_methods!(
 
         #[method(setPermission:)]
         pub unsafe fn setPermission(&self, permission: CKShareParticipantPermission);
+
+        #[method_id(@__retain_semantics Other participantID)]
+        pub unsafe fn participantID(&self) -> Retained<NSString>;
     }
 );

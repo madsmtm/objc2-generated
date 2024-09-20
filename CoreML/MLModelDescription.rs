@@ -34,6 +34,12 @@ extern_methods!(
             &self,
         ) -> Retained<NSDictionary<NSString, MLFeatureDescription>>;
 
+        #[cfg(feature = "MLFeatureDescription")]
+        #[method_id(@__retain_semantics Other stateDescriptionsByName)]
+        pub unsafe fn stateDescriptionsByName(
+            &self,
+        ) -> Retained<NSDictionary<NSString, MLFeatureDescription>>;
+
         #[method_id(@__retain_semantics Other predictedFeatureName)]
         pub unsafe fn predictedFeatureName(&self) -> Option<Retained<NSString>>;
 

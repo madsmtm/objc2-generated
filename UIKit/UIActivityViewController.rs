@@ -5,6 +5,27 @@ use objc2_foundation::*;
 
 use crate::*;
 
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UIActivitySectionTypes(pub NSUInteger);
+bitflags::bitflags! {
+    impl UIActivitySectionTypes: NSUInteger {
+        #[doc(alias = "UIActivitySectionTypesNone")]
+        const None = 0;
+        #[doc(alias = "UIActivitySectionTypesPeopleSuggestions")]
+        const PeopleSuggestions = 1<<0;
+    }
+}
+
+unsafe impl Encode for UIActivitySectionTypes {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIActivitySectionTypes {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 #[cfg(all(feature = "UIActivity", feature = "block2"))]
 pub type UIActivityViewControllerCompletionHandler =
     *mut block2::Block<dyn Fn(*mut UIActivityType, Bool)>;
@@ -120,6 +141,15 @@ extern_methods!(
         pub unsafe fn setExcludedActivityTypes(
             &self,
             excluded_activity_types: Option<&NSArray<UIActivityType>>,
+        );
+
+        #[method(excludedActivitySectionTypes)]
+        pub unsafe fn excludedActivitySectionTypes(&self) -> UIActivitySectionTypes;
+
+        #[method(setExcludedActivitySectionTypes:)]
+        pub unsafe fn setExcludedActivitySectionTypes(
+            &self,
+            excluded_activity_section_types: UIActivitySectionTypes,
         );
 
         #[method(allowsProminentActivity)]

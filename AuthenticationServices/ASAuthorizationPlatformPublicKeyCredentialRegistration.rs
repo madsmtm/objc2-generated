@@ -62,5 +62,11 @@ extern_methods!(
         pub unsafe fn largeBlob(
             &self,
         ) -> Option<Retained<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput>>;
+
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFRegistrationOutput")]
+        #[method_id(@__retain_semantics Other prf)]
+        pub unsafe fn prf(
+            &self,
+        ) -> Option<Retained<ASAuthorizationPublicKeyCredentialPRFRegistrationOutput>>;
     }
 );

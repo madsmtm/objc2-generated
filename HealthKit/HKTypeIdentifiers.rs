@@ -62,6 +62,10 @@ extern "C" {
 }
 
 extern "C" {
+    pub static HKQuantityTypeIdentifierCrossCountrySkiingSpeed: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
     pub static HKQuantityTypeIdentifierCyclingCadence: &'static HKQuantityTypeIdentifier;
 }
 
@@ -79,12 +83,29 @@ extern "C" {
 }
 
 extern "C" {
+    pub static HKQuantityTypeIdentifierDistanceCrossCountrySkiing:
+        &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
     pub static HKQuantityTypeIdentifierDistanceCycling: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
     pub static HKQuantityTypeIdentifierDistanceDownhillSnowSports:
         &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    pub static HKQuantityTypeIdentifierDistancePaddleSports: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    pub static HKQuantityTypeIdentifierDistanceRowing: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    pub static HKQuantityTypeIdentifierDistanceSkatingSports: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
@@ -100,6 +121,11 @@ extern "C" {
 }
 
 extern "C" {
+    pub static HKQuantityTypeIdentifierEstimatedWorkoutEffortScore:
+        &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
     pub static HKQuantityTypeIdentifierFlightsClimbed: &'static HKQuantityTypeIdentifier;
 }
 
@@ -108,11 +134,19 @@ extern "C" {
 }
 
 extern "C" {
+    pub static HKQuantityTypeIdentifierPaddleSportsSpeed: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
     pub static HKQuantityTypeIdentifierPhysicalEffort: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
     pub static HKQuantityTypeIdentifierPushCount: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    pub static HKQuantityTypeIdentifierRowingSpeed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
@@ -133,6 +167,10 @@ extern "C" {
 
 extern "C" {
     pub static HKQuantityTypeIdentifierUnderwaterDepth: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    pub static HKQuantityTypeIdentifierWorkoutEffortScore: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
@@ -509,6 +547,14 @@ extern "C" {
 }
 
 extern "C" {
+    pub static HKCategoryTypeIdentifierBleedingAfterPregnancy: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    pub static HKCategoryTypeIdentifierBleedingDuringPregnancy: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
     pub static HKCategoryTypeIdentifierCervicalMucusQuality: &'static HKCategoryTypeIdentifier;
 }
 
@@ -730,6 +776,11 @@ extern "C" {
 pub type HKCharacteristicTypeIdentifier = NSString;
 
 extern "C" {
+    pub static HKCharacteristicTypeIdentifierActivityMoveMode:
+        &'static HKCharacteristicTypeIdentifier;
+}
+
+extern "C" {
     pub static HKCharacteristicTypeIdentifierBiologicalSex: &'static HKCharacteristicTypeIdentifier;
 }
 
@@ -750,11 +801,6 @@ extern "C" {
     pub static HKCharacteristicTypeIdentifierWheelchairUse: &'static HKCharacteristicTypeIdentifier;
 }
 
-extern "C" {
-    pub static HKCharacteristicTypeIdentifierActivityMoveMode:
-        &'static HKCharacteristicTypeIdentifier;
-}
-
 // NS_TYPED_ENUM
 pub type HKCorrelationTypeIdentifier = NSString;
 
@@ -773,6 +819,17 @@ extern "C" {
     pub static HKDocumentTypeIdentifierCDA: &'static HKDocumentTypeIdentifier;
 }
 
+// NS_TYPED_ENUM
+pub type HKScoredAssessmentTypeIdentifier = NSString;
+
+extern "C" {
+    pub static HKScoredAssessmentTypeIdentifierGAD7: &'static HKScoredAssessmentTypeIdentifier;
+}
+
+extern "C" {
+    pub static HKScoredAssessmentTypeIdentifierPHQ9: &'static HKScoredAssessmentTypeIdentifier;
+}
+
 extern "C" {
     pub static HKWorkoutTypeIdentifier: &'static NSString;
 }
@@ -787,6 +844,10 @@ extern "C" {
 
 extern "C" {
     pub static HKVisionPrescriptionTypeIdentifier: &'static NSString;
+}
+
+extern "C" {
+    pub static HKDataTypeIdentifierStateOfMind: &'static NSString;
 }
 
 extern "C" {

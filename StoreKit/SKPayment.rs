@@ -7,6 +7,7 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use Product.purchase(confirmIn:options:)"]
     pub struct SKPayment;
 
     unsafe impl ClassType for SKPayment {
@@ -31,6 +32,7 @@ unsafe impl NSObjectProtocol for SKPayment {}
 extern_methods!(
     unsafe impl SKPayment {
         #[cfg(feature = "SKProduct")]
+        #[deprecated = "Use Product.purchase(confirmIn:options:)"]
         #[method_id(@__retain_semantics Other paymentWithProduct:)]
         pub unsafe fn paymentWithProduct(product: &SKProduct) -> Retained<Self>;
 
@@ -38,22 +40,28 @@ extern_methods!(
         #[method_id(@__retain_semantics Other paymentWithProductIdentifier:)]
         pub unsafe fn paymentWithProductIdentifier(identifier: &NSString) -> Retained<AnyObject>;
 
+        #[deprecated = "Use Product.purchase(confirmIn:options:)"]
         #[method_id(@__retain_semantics Other productIdentifier)]
         pub unsafe fn productIdentifier(&self) -> Retained<NSString>;
 
+        #[deprecated = "Create Product.PurchaseOption.custom values to use in Product.purchase(confirmIn:options:)"]
         #[method_id(@__retain_semantics Other requestData)]
         pub unsafe fn requestData(&self) -> Option<Retained<NSData>>;
 
+        #[deprecated = "Create a Product.PurchaseOption.quantity to use in Product.purchase(confirmIn:options:)"]
         #[method(quantity)]
         pub unsafe fn quantity(&self) -> NSInteger;
 
+        #[deprecated = "Create a Product.PurchaseOption.appAccountToken to use in Product.purchase(confirmIn:options:)"]
         #[method_id(@__retain_semantics Other applicationUsername)]
         pub unsafe fn applicationUsername(&self) -> Option<Retained<NSString>>;
 
+        #[deprecated = "Create a Product.PurchaseOption.simulatesAskToBuyInSandbox to use in Product.purchase(confirmIn:options:)"]
         #[method(simulatesAskToBuyInSandbox)]
         pub unsafe fn simulatesAskToBuyInSandbox(&self) -> bool;
 
         #[cfg(feature = "SKPaymentDiscount")]
+        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
         #[method_id(@__retain_semantics Other paymentDiscount)]
         pub unsafe fn paymentDiscount(&self) -> Option<Retained<SKPaymentDiscount>>;
     }
@@ -72,6 +80,7 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use Product.purchase(confirmIn:options:)"]
     pub struct SKMutablePayment;
 
     unsafe impl ClassType for SKMutablePayment {
@@ -96,41 +105,53 @@ unsafe impl NSObjectProtocol for SKMutablePayment {}
 
 extern_methods!(
     unsafe impl SKMutablePayment {
+        #[deprecated = "Create a Product.PurchaseOption.appAccountToken to use in Product.purchase(confirmIn:options:)"]
         #[method_id(@__retain_semantics Other applicationUsername)]
         pub unsafe fn applicationUsername(&self) -> Option<Retained<NSString>>;
 
+        #[deprecated = "Create a Product.PurchaseOption.appAccountToken to use in Product.purchase(confirmIn:options:)"]
         #[method(setApplicationUsername:)]
         pub unsafe fn setApplicationUsername(&self, application_username: Option<&NSString>);
 
         #[cfg(feature = "SKPaymentDiscount")]
+        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
         #[method_id(@__retain_semantics Other paymentDiscount)]
         pub unsafe fn paymentDiscount(&self) -> Option<Retained<SKPaymentDiscount>>;
 
         #[cfg(feature = "SKPaymentDiscount")]
+        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
         #[method(setPaymentDiscount:)]
         pub unsafe fn setPaymentDiscount(&self, payment_discount: Option<&SKPaymentDiscount>);
 
+        #[deprecated = "Use Product.purchase(confirmIn:options:)"]
         #[method_id(@__retain_semantics Other productIdentifier)]
         pub unsafe fn productIdentifier(&self) -> Retained<NSString>;
 
+        #[deprecated = "Use Product.purchase(confirmIn:options:)"]
         #[method(setProductIdentifier:)]
         pub unsafe fn setProductIdentifier(&self, product_identifier: &NSString);
 
+        #[deprecated = "Create a Product.PurchaseOption.quantity to use in Product.purchase(confirmIn:options:)"]
         #[method(quantity)]
         pub unsafe fn quantity(&self) -> NSInteger;
 
+        #[deprecated = "Create a Product.PurchaseOption.quantity to use in Product.purchase(confirmIn:options:)"]
         #[method(setQuantity:)]
         pub unsafe fn setQuantity(&self, quantity: NSInteger);
 
+        #[deprecated = "Create Product.PurchaseOption.custom values to use in Product.purchase(confirmIn:options:)"]
         #[method_id(@__retain_semantics Other requestData)]
         pub unsafe fn requestData(&self) -> Option<Retained<NSData>>;
 
+        #[deprecated = "Create Product.PurchaseOption.custom values to use in Product.purchase(confirmIn:options:)"]
         #[method(setRequestData:)]
         pub unsafe fn setRequestData(&self, request_data: Option<&NSData>);
 
+        #[deprecated = "Create a Product.PurchaseOption.simulatesAskToBuyInSandbox to use in Product.purchase(confirmIn:options:)"]
         #[method(simulatesAskToBuyInSandbox)]
         pub unsafe fn simulatesAskToBuyInSandbox(&self) -> bool;
 
+        #[deprecated = "Create a Product.PurchaseOption.simulatesAskToBuyInSandbox to use in Product.purchase(confirmIn:options:)"]
         #[method(setSimulatesAskToBuyInSandbox:)]
         pub unsafe fn setSimulatesAskToBuyInSandbox(&self, simulates_ask_to_buy_in_sandbox: bool);
     }
@@ -140,6 +161,7 @@ extern_methods!(
     /// Methods declared on superclass `SKPayment`
     unsafe impl SKMutablePayment {
         #[cfg(feature = "SKProduct")]
+        #[deprecated = "Use Product.purchase(confirmIn:options:)"]
         #[method_id(@__retain_semantics Other paymentWithProduct:)]
         pub unsafe fn paymentWithProduct(product: &SKProduct) -> Retained<Self>;
     }

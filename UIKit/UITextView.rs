@@ -156,6 +156,25 @@ extern_protocol!(
             animator: &ProtocolObject<dyn UIContextMenuInteractionAnimating>,
         );
 
+        #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        #[optional]
+        #[method(textViewWritingToolsWillBegin:)]
+        unsafe fn textViewWritingToolsWillBegin(&self, text_view: &UITextView);
+
+        #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        #[optional]
+        #[method(textViewWritingToolsDidEnd:)]
+        unsafe fn textViewWritingToolsDidEnd(&self, text_view: &UITextView);
+
+        #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        #[optional]
+        #[method_id(@__retain_semantics Other textView:writingToolsIgnoredRangesInEnclosingRange:)]
+        unsafe fn textView_writingToolsIgnoredRangesInEnclosingRange(
+            &self,
+            text_view: &UITextView,
+            enclosing_range: NSRange,
+        ) -> Retained<NSArray<NSValue>>;
+
         #[cfg(all(
             feature = "UIResponder",
             feature = "UITextItemInteraction",
@@ -564,6 +583,28 @@ extern_methods!(
 
         #[method(setBorderStyle:)]
         pub unsafe fn setBorderStyle(&self, border_style: UITextViewBorderStyle);
+
+        #[method_id(@__retain_semantics Other textHighlightAttributes)]
+        pub unsafe fn textHighlightAttributes(
+            &self,
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
+
+        #[method(setTextHighlightAttributes:)]
+        pub unsafe fn setTextHighlightAttributes(
+            &self,
+            text_highlight_attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
+        );
+
+        #[cfg(feature = "NSTextRange")]
+        #[method(drawTextHighlightBackgroundForTextRange:origin:)]
+        pub unsafe fn drawTextHighlightBackgroundForTextRange_origin(
+            &self,
+            text_range: &NSTextRange,
+            origin: CGPoint,
+        );
+
+        #[method(isWritingToolsActive)]
+        pub unsafe fn isWritingToolsActive(&self) -> bool;
     }
 );
 

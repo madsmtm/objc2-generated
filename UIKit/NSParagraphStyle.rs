@@ -86,19 +86,6 @@ extern_methods!(
             a_locale: Option<&NSLocale>,
         ) -> Retained<NSCharacterSet>;
 
-        #[cfg(feature = "NSText")]
-        #[method_id(@__retain_semantics Init initWithTextAlignment:location:options:)]
-        pub unsafe fn initWithTextAlignment_location_options(
-            this: Allocated<Self>,
-            alignment: NSTextAlignment,
-            loc: CGFloat,
-            options: &NSDictionary<NSTextTabOptionKey, AnyObject>,
-        ) -> Retained<Self>;
-
-        #[cfg(feature = "NSText")]
-        #[method(alignment)]
-        pub unsafe fn alignment(&self) -> NSTextAlignment;
-
         #[method(location)]
         pub unsafe fn location(&self) -> CGFloat;
 
@@ -161,10 +148,6 @@ extern_methods!(
 
         #[method(paragraphSpacing)]
         pub unsafe fn paragraphSpacing(&self) -> CGFloat;
-
-        #[cfg(feature = "NSText")]
-        #[method(alignment)]
-        pub unsafe fn alignment(&self) -> NSTextAlignment;
 
         #[method(headIndent)]
         pub unsafe fn headIndent(&self) -> CGFloat;
@@ -270,14 +253,6 @@ extern_methods!(
 
         #[method(setParagraphSpacing:)]
         pub unsafe fn setParagraphSpacing(&self, paragraph_spacing: CGFloat);
-
-        #[cfg(feature = "NSText")]
-        #[method(alignment)]
-        pub unsafe fn alignment(&self) -> NSTextAlignment;
-
-        #[cfg(feature = "NSText")]
-        #[method(setAlignment:)]
-        pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
 
         #[method(firstLineHeadIndent)]
         pub unsafe fn firstLineHeadIndent(&self) -> CGFloat;
@@ -401,5 +376,42 @@ extern_methods!(
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_methods!(
+    unsafe impl NSTextTab {
+        #[cfg(feature = "NSText")]
+        #[method_id(@__retain_semantics Init initWithTextAlignment:location:options:)]
+        pub unsafe fn initWithTextAlignment_location_options(
+            this: Allocated<Self>,
+            alignment: NSTextAlignment,
+            loc: CGFloat,
+            options: &NSDictionary<NSTextTabOptionKey, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "NSText")]
+        #[method(alignment)]
+        pub unsafe fn alignment(&self) -> NSTextAlignment;
+    }
+);
+
+extern_methods!(
+    unsafe impl NSParagraphStyle {
+        #[cfg(feature = "NSText")]
+        #[method(alignment)]
+        pub unsafe fn alignment(&self) -> NSTextAlignment;
+    }
+);
+
+extern_methods!(
+    unsafe impl NSMutableParagraphStyle {
+        #[cfg(feature = "NSText")]
+        #[method(alignment)]
+        pub unsafe fn alignment(&self) -> NSTextAlignment;
+
+        #[cfg(feature = "NSText")]
+        #[method(setAlignment:)]
+        pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
     }
 );

@@ -19,6 +19,9 @@ extern "C" {}
 #[cfg(feature = "DocumentManager")]
 #[path = "DocumentManager.rs"]
 mod __DocumentManager;
+#[cfg(feature = "NSAdaptiveImageGlyph")]
+#[path = "NSAdaptiveImageGlyph.rs"]
+mod __NSAdaptiveImageGlyph;
 #[cfg(feature = "NSAttributedString")]
 #[path = "NSAttributedString.rs"]
 mod __NSAttributedString;
@@ -160,6 +163,9 @@ mod __UIActionSheet;
 #[cfg(feature = "UIActivity")]
 #[path = "UIActivity.rs"]
 mod __UIActivity;
+#[cfg(feature = "UIActivityCollaborationModeRestriction")]
+#[path = "UIActivityCollaborationModeRestriction.rs"]
+mod __UIActivityCollaborationModeRestriction;
 #[cfg(feature = "UIActivityIndicatorView")]
 #[path = "UIActivityIndicatorView.rs"]
 mod __UIActivityIndicatorView;
@@ -172,6 +178,9 @@ mod __UIActivityItemsConfiguration;
 #[cfg(feature = "UIActivityItemsConfigurationReading")]
 #[path = "UIActivityItemsConfigurationReading.rs"]
 mod __UIActivityItemsConfigurationReading;
+#[cfg(feature = "UIActivityItemsConfigurationReading_ShareSheet")]
+#[path = "UIActivityItemsConfigurationReading_ShareSheet.rs"]
+mod __UIActivityItemsConfigurationReading_ShareSheet;
 #[cfg(feature = "UIActivityViewController")]
 #[path = "UIActivityViewController.rs"]
 mod __UIActivityViewController;
@@ -244,6 +253,9 @@ mod __UICalendarSelectionMultiDate;
 #[cfg(feature = "UICalendarSelectionSingleDate")]
 #[path = "UICalendarSelectionSingleDate.rs"]
 mod __UICalendarSelectionSingleDate;
+#[cfg(feature = "UICalendarSelectionWeekOfYear")]
+#[path = "UICalendarSelectionWeekOfYear.rs"]
+mod __UICalendarSelectionWeekOfYear;
 #[cfg(feature = "UICalendarView")]
 #[path = "UICalendarView.rs"]
 mod __UICalendarView;
@@ -400,6 +412,9 @@ mod __UIDocumentProperties;
 #[cfg(feature = "UIDocumentViewController")]
 #[path = "UIDocumentViewController.rs"]
 mod __UIDocumentViewController;
+#[cfg(feature = "UIDocumentViewControllerLaunchOptions")]
+#[path = "UIDocumentViewControllerLaunchOptions.rs"]
+mod __UIDocumentViewControllerLaunchOptions;
 #[cfg(feature = "UIDragInteraction")]
 #[path = "UIDragInteraction.rs"]
 mod __UIDragInteraction;
@@ -874,6 +889,9 @@ mod __UISearchDisplayController;
 #[cfg(feature = "UISearchSuggestion")]
 #[path = "UISearchSuggestion.rs"]
 mod __UISearchSuggestion;
+#[cfg(feature = "UISearchTab")]
+#[path = "UISearchTab.rs"]
+mod __UISearchTab;
 #[cfg(feature = "UISearchTextField")]
 #[path = "UISearchTextField.rs"]
 mod __UISearchTextField;
@@ -943,6 +961,9 @@ mod __UISwitch;
 #[cfg(feature = "UISymbolEffectCompletion")]
 #[path = "UISymbolEffectCompletion.rs"]
 mod __UISymbolEffectCompletion;
+#[cfg(feature = "UITab")]
+#[path = "UITab.rs"]
+mod __UITab;
 #[cfg(feature = "UITabBar")]
 #[path = "UITabBar.rs"]
 mod __UITabBar;
@@ -952,9 +973,18 @@ mod __UITabBarAppearance;
 #[cfg(feature = "UITabBarController")]
 #[path = "UITabBarController.rs"]
 mod __UITabBarController;
+#[cfg(feature = "UITabBarControllerSidebar")]
+#[path = "UITabBarControllerSidebar.rs"]
+mod __UITabBarControllerSidebar;
 #[cfg(feature = "UITabBarItem")]
 #[path = "UITabBarItem.rs"]
 mod __UITabBarItem;
+#[cfg(feature = "UITabGroup")]
+#[path = "UITabGroup.rs"]
+mod __UITabGroup;
+#[cfg(feature = "UITabSidebarItem")]
+#[path = "UITabSidebarItem.rs"]
+mod __UITabSidebarItem;
 #[cfg(feature = "UITableView")]
 #[path = "UITableView.rs"]
 mod __UITableView;
@@ -1075,6 +1105,18 @@ mod __UITrait;
 #[cfg(feature = "UITraitCollection")]
 #[path = "UITraitCollection.rs"]
 mod __UITraitCollection;
+#[cfg(feature = "UITraitListEnvironment")]
+#[path = "UITraitListEnvironment.rs"]
+mod __UITraitListEnvironment;
+#[cfg(feature = "UIUpdateActionPhase")]
+#[path = "UIUpdateActionPhase.rs"]
+mod __UIUpdateActionPhase;
+#[cfg(feature = "UIUpdateInfo")]
+#[path = "UIUpdateInfo.rs"]
+mod __UIUpdateInfo;
+#[cfg(feature = "UIUpdateLink")]
+#[path = "UIUpdateLink.rs"]
+mod __UIUpdateLink;
 #[cfg(feature = "UIUserActivity")]
 #[path = "UIUserActivity.rs"]
 mod __UIUserActivity;
@@ -1099,6 +1141,9 @@ mod __UIViewConfigurationState;
 #[cfg(feature = "UIViewController")]
 #[path = "UIViewController.rs"]
 mod __UIViewController;
+#[cfg(feature = "UIViewControllerTransition")]
+#[path = "UIViewControllerTransition.rs"]
+mod __UIViewControllerTransition;
 #[cfg(feature = "UIViewControllerTransitionCoordinator")]
 #[path = "UIViewControllerTransitionCoordinator.rs"]
 mod __UIViewControllerTransitionCoordinator;
@@ -1159,13 +1204,28 @@ mod __UIWindowScenePlacement;
 #[cfg(feature = "UIWindowSceneProminentPlacement")]
 #[path = "UIWindowSceneProminentPlacement.rs"]
 mod __UIWindowSceneProminentPlacement;
+#[cfg(feature = "UIWindowScenePushPlacement")]
+#[path = "UIWindowScenePushPlacement.rs"]
+mod __UIWindowScenePushPlacement;
+#[cfg(feature = "UIWindowSceneReplacePlacement")]
+#[path = "UIWindowSceneReplacePlacement.rs"]
+mod __UIWindowSceneReplacePlacement;
 #[cfg(feature = "UIWindowSceneStandardPlacement")]
 #[path = "UIWindowSceneStandardPlacement.rs"]
 mod __UIWindowSceneStandardPlacement;
+#[cfg(feature = "UIZoomTransitionOptions")]
+#[path = "UIZoomTransitionOptions.rs"]
+mod __UIZoomTransitionOptions;
 #[cfg(feature = "UNNotificationResponse_UIKitAdditions")]
 #[path = "UNNotificationResponse_UIKitAdditions.rs"]
 mod __UNNotificationResponse_UIKitAdditions;
 
+#[cfg(feature = "NSAdaptiveImageGlyph")]
+pub use self::__NSAdaptiveImageGlyph::NSAdaptiveImageGlyph;
+#[cfg(feature = "NSAdaptiveImageGlyph")]
+pub use self::__NSAdaptiveImageGlyph::NSAttributedStringAdaptiveImageGlyphConveniences;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSAdaptiveImageGlyphAttributeName;
 #[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttachmentAttributeName;
 #[cfg(feature = "NSAttributedString")]
@@ -1260,6 +1320,28 @@ pub use self::__NSAttributedString::NSTextEffectAttributeName;
 pub use self::__NSAttributedString::NSTextEffectLetterpressStyle;
 #[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextEffectStyle;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightColorScheme;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightColorSchemeAttributeName;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightColorSchemeBlue;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightColorSchemeDefault;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightColorSchemeMint;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightColorSchemeOrange;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightColorSchemePink;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightColorSchemePurple;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightStyle;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightStyleAttributeName;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightStyleDefault;
 #[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextLayoutSectionKey;
 #[cfg(feature = "NSAttributedString")]
@@ -1953,6 +2035,15 @@ pub use self::__UIActivity::UIActivityTypePrint;
 pub use self::__UIActivity::UIActivityTypeSaveToCameraRoll;
 #[cfg(feature = "UIActivity")]
 pub use self::__UIActivity::UIActivityTypeSharePlay;
+#[cfg(feature = "UIActivityCollaborationModeRestriction")]
+pub use self::__UIActivityCollaborationModeRestriction::UIActivityCollaborationMode;
+#[cfg(feature = "UIActivityCollaborationModeRestriction")]
+pub use self::__UIActivityCollaborationModeRestriction::UIActivityCollaborationModeRestriction;
+#[cfg(all(
+    feature = "UIActivityCollaborationModeRestriction",
+    feature = "UIActivityItemsConfigurationReading"
+))]
+pub use self::__UIActivityCollaborationModeRestriction::UIActivityItemsConfigurationMetadataKeyCollaborationModeRestrictions;
 #[cfg(all(
     feature = "UIActivityIndicatorView",
     feature = "UIResponder",
@@ -1991,6 +2082,13 @@ pub use self::__UIActivityItemsConfigurationReading::UIActivityItemsConfiguratio
 pub use self::__UIActivityItemsConfigurationReading::UIActivityItemsConfigurationProviding;
 #[cfg(feature = "UIActivityItemsConfigurationReading")]
 pub use self::__UIActivityItemsConfigurationReading::UIActivityItemsConfigurationReading;
+#[cfg(all(
+    feature = "UIActivityItemsConfigurationReading",
+    feature = "UIActivityItemsConfigurationReading_ShareSheet"
+))]
+pub use self::__UIActivityItemsConfigurationReading_ShareSheet::UIActivityItemsConfigurationMetadataKeyShareRecipients;
+#[cfg(feature = "UIActivityViewController")]
+pub use self::__UIActivityViewController::UIActivitySectionTypes;
 #[cfg(all(
     feature = "UIActivityViewController",
     feature = "UIResponder",
@@ -2273,6 +2371,13 @@ pub use self::__UICalendarSelectionSingleDate::UICalendarSelectionSingleDate;
 #[cfg(feature = "UICalendarSelectionSingleDate")]
 pub use self::__UICalendarSelectionSingleDate::UICalendarSelectionSingleDateDelegate;
 #[cfg(all(
+    feature = "UICalendarSelection",
+    feature = "UICalendarSelectionWeekOfYear"
+))]
+pub use self::__UICalendarSelectionWeekOfYear::UICalendarSelectionWeekOfYear;
+#[cfg(feature = "UICalendarSelectionWeekOfYear")]
+pub use self::__UICalendarSelectionWeekOfYear::UICalendarSelectionWeekOfYearDelegate;
+#[cfg(all(
     feature = "UICalendarView",
     feature = "UIResponder",
     feature = "UIView"
@@ -2347,6 +2452,8 @@ pub use self::__UICloudSharingController::UICloudSharingPermissionOptions;
 pub use self::__UICollectionLayoutList::UICollectionLayoutListAppearance;
 #[cfg(feature = "UICollectionLayoutList")]
 pub use self::__UICollectionLayoutList::UICollectionLayoutListConfiguration;
+#[cfg(feature = "UICollectionLayoutList")]
+pub use self::__UICollectionLayoutList::UICollectionLayoutListContentHuggingElements;
 #[cfg(feature = "UICollectionLayoutList")]
 pub use self::__UICollectionLayoutList::UICollectionLayoutListFooterMode;
 #[cfg(feature = "UICollectionLayoutList")]
@@ -2581,6 +2688,8 @@ pub use self::__UICollisionBehavior::UICollisionBehaviorMode;
 pub use self::__UIColor::CIColorUIKitAdditions;
 #[cfg(feature = "UIColor")]
 pub use self::__UIColor::UIColor;
+#[cfg(feature = "UIColor")]
+pub use self::__UIColor::UIColorProminence;
 #[cfg(all(
     feature = "UIColorPickerViewController",
     feature = "UIResponder",
@@ -2827,6 +2936,10 @@ pub use self::__UIDocument::UIDocument;
 #[cfg(feature = "UIDocument")]
 pub use self::__UIDocument::UIDocumentChangeKind;
 #[cfg(feature = "UIDocument")]
+pub use self::__UIDocument::UIDocumentCreationIntent;
+#[cfg(feature = "UIDocument")]
+pub use self::__UIDocument::UIDocumentCreationIntentDefault;
+#[cfg(feature = "UIDocument")]
 pub use self::__UIDocument::UIDocumentSaveOperation;
 #[cfg(feature = "UIDocument")]
 pub use self::__UIDocument::UIDocumentState;
@@ -2892,6 +3005,8 @@ pub use self::__UIDocumentProperties::UIDocumentProperties;
     feature = "UIViewController"
 ))]
 pub use self::__UIDocumentViewController::UIDocumentViewController;
+#[cfg(feature = "UIDocumentViewControllerLaunchOptions")]
+pub use self::__UIDocumentViewControllerLaunchOptions::UIDocumentViewControllerLaunchOptions;
 #[cfg(feature = "UIDragInteraction")]
 pub use self::__UIDragInteraction::UIDragAnimating;
 #[cfg(feature = "UIDragInteraction")]
@@ -4257,6 +4372,8 @@ pub use self::__UISearchDisplayController::UISearchDisplayDelegate;
 pub use self::__UISearchSuggestion::UISearchSuggestion;
 #[cfg(feature = "UISearchSuggestion")]
 pub use self::__UISearchSuggestion::UISearchSuggestionItem;
+#[cfg(all(feature = "UISearchTab", feature = "UITab"))]
+pub use self::__UISearchTab::UISearchTab;
 #[cfg(all(
     feature = "UIControl",
     feature = "UIResponder",
@@ -4459,6 +4576,10 @@ pub use self::__UISwitch::UISwitchStyle;
 pub use self::__UISymbolEffectCompletion::UISymbolEffectCompletion;
 #[cfg(feature = "UISymbolEffectCompletion")]
 pub use self::__UISymbolEffectCompletion::UISymbolEffectCompletionContext;
+#[cfg(feature = "UITab")]
+pub use self::__UITab::UITab;
+#[cfg(feature = "UITab")]
+pub use self::__UITab::UITabPlacement;
 #[cfg(all(feature = "UIResponder", feature = "UITabBar", feature = "UIView"))]
 pub use self::__UITabBar::UITabBar;
 #[cfg(feature = "UITabBar")]
@@ -4481,10 +4602,28 @@ pub use self::__UITabBarAppearance::UITabBarItemStateAppearance;
 pub use self::__UITabBarController::UITabBarController;
 #[cfg(feature = "UITabBarController")]
 pub use self::__UITabBarController::UITabBarControllerDelegate;
+#[cfg(feature = "UITabBarController")]
+pub use self::__UITabBarController::UITabBarControllerMode;
+#[cfg(feature = "UITabBarControllerSidebar")]
+pub use self::__UITabBarControllerSidebar::UITabBarControllerSidebar;
+#[cfg(feature = "UITabBarControllerSidebar")]
+pub use self::__UITabBarControllerSidebar::UITabBarControllerSidebarDelegate;
+#[cfg(feature = "UITabBarControllerSidebar")]
+pub use self::__UITabBarControllerSidebar::UITabBarControllerSidebarLayout;
+#[cfg(feature = "UITabBarControllerSidebar")]
+pub use self::__UITabBarControllerSidebar::UITabSidebarScrollTarget;
 #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
 pub use self::__UITabBarItem::UITabBarItem;
 #[cfg(feature = "UITabBarItem")]
 pub use self::__UITabBarItem::UITabBarSystemItem;
+#[cfg(all(feature = "UITab", feature = "UITabGroup"))]
+pub use self::__UITabGroup::UITabGroup;
+#[cfg(feature = "UITabGroup")]
+pub use self::__UITabGroup::UITabGroupSidebarAppearance;
+#[cfg(feature = "UITabSidebarItem")]
+pub use self::__UITabSidebarItem::UITabSidebarItem;
+#[cfg(feature = "UITabSidebarItem")]
+pub use self::__UITabSidebarItem::UITabSidebarItemRequest;
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIScrollView",
@@ -4494,6 +4633,8 @@ pub use self::__UITabBarItem::UITabBarSystemItem;
 pub use self::__UITableView::UITableView;
 #[cfg(feature = "UITableView")]
 pub use self::__UITableView::UITableViewAutomaticDimension;
+#[cfg(feature = "UITableView")]
+pub use self::__UITableView::UITableViewContentHuggingElements;
 #[cfg(feature = "UITableView")]
 pub use self::__UITableView::UITableViewDataSource;
 #[cfg(feature = "UITableView")]
@@ -4821,6 +4962,8 @@ pub use self::__UITextInputTraits::UITextInputPasswordRules;
 #[cfg(feature = "UITextInputTraits")]
 pub use self::__UITextInputTraits::UITextInputTraits;
 #[cfg(feature = "UITextInputTraits")]
+pub use self::__UITextInputTraits::UITextMathExpressionCompletionType;
+#[cfg(feature = "UITextInputTraits")]
 pub use self::__UITextInputTraits::UITextSmartDashesType;
 #[cfg(feature = "UITextInputTraits")]
 pub use self::__UITextInputTraits::UITextSmartInsertDeleteType;
@@ -4828,6 +4971,10 @@ pub use self::__UITextInputTraits::UITextSmartInsertDeleteType;
 pub use self::__UITextInputTraits::UITextSmartQuotesType;
 #[cfg(feature = "UITextInputTraits")]
 pub use self::__UITextInputTraits::UITextSpellCheckingType;
+#[cfg(feature = "UITextInputTraits")]
+pub use self::__UITextInputTraits::UIWritingToolsAllowedInputOptions;
+#[cfg(feature = "UITextInputTraits")]
+pub use self::__UITextInputTraits::UIWritingToolsBehavior;
 #[cfg(feature = "UITextInteraction")]
 pub use self::__UITextInteraction::UITextInteraction;
 #[cfg(feature = "UITextInteraction")]
@@ -4988,6 +5135,16 @@ pub use self::__UITraitCollection::UITraitEnvironment;
 pub use self::__UITraitCollection::UITraitMutations;
 #[cfg(feature = "UITraitCollection")]
 pub use self::__UITraitCollection::UITraitOverrides;
+#[cfg(feature = "UITraitListEnvironment")]
+pub use self::__UITraitListEnvironment::UIListEnvironment;
+#[cfg(feature = "UITraitListEnvironment")]
+pub use self::__UITraitListEnvironment::UITraitListEnvironment;
+#[cfg(feature = "UIUpdateActionPhase")]
+pub use self::__UIUpdateActionPhase::UIUpdateActionPhase;
+#[cfg(feature = "UIUpdateInfo")]
+pub use self::__UIUpdateInfo::UIUpdateInfo;
+#[cfg(feature = "UIUpdateLink")]
+pub use self::__UIUpdateLink::UIUpdateLink;
 #[cfg(feature = "UIUserActivity")]
 pub use self::__UIUserActivity::UIUserActivityRestoring;
 #[cfg(feature = "UIUserNotificationSettings")]
@@ -5091,6 +5248,10 @@ pub use self::__UIViewController::UIViewControllerPreviewing;
 pub use self::__UIViewController::UIViewControllerPreviewingDelegate;
 #[cfg(feature = "UIViewController")]
 pub use self::__UIViewController::UIViewControllerShowDetailTargetDidChangeNotification;
+#[cfg(feature = "UIViewControllerTransition")]
+pub use self::__UIViewControllerTransition::UIViewControllerTransition;
+#[cfg(feature = "UIViewControllerTransition")]
+pub use self::__UIViewControllerTransition::UIZoomTransitionSourceViewProviderContext;
 #[cfg(feature = "UIViewControllerTransitionCoordinator")]
 pub use self::__UIViewControllerTransitionCoordinator::UITransitionContextViewControllerKey;
 #[cfg(feature = "UIViewControllerTransitionCoordinator")]
@@ -5284,8 +5445,24 @@ pub use self::__UIWindowScenePlacement::UIWindowScenePlacement;
 pub use self::__UIWindowSceneProminentPlacement::UIWindowSceneProminentPlacement;
 #[cfg(all(
     feature = "UIWindowScenePlacement",
+    feature = "UIWindowScenePushPlacement"
+))]
+pub use self::__UIWindowScenePushPlacement::UIWindowScenePushPlacement;
+#[cfg(all(
+    feature = "UIWindowScenePlacement",
+    feature = "UIWindowSceneReplacePlacement"
+))]
+pub use self::__UIWindowSceneReplacePlacement::UIWindowSceneReplacePlacement;
+#[cfg(all(
+    feature = "UIWindowScenePlacement",
     feature = "UIWindowSceneStandardPlacement"
 ))]
 pub use self::__UIWindowSceneStandardPlacement::UIWindowSceneStandardPlacement;
+#[cfg(feature = "UIZoomTransitionOptions")]
+pub use self::__UIZoomTransitionOptions::UIZoomTransitionAlignmentRectContext;
+#[cfg(feature = "UIZoomTransitionOptions")]
+pub use self::__UIZoomTransitionOptions::UIZoomTransitionInteractionContext;
+#[cfg(feature = "UIZoomTransitionOptions")]
+pub use self::__UIZoomTransitionOptions::UIZoomTransitionOptions;
 #[cfg(feature = "UNNotificationResponse_UIKitAdditions")]
 pub use self::__UNNotificationResponse_UIKitAdditions::UNNotificationResponseUIKitAdditions;

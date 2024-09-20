@@ -22,6 +22,9 @@ mod __SCContentSharingPicker;
 #[cfg(feature = "SCError")]
 #[path = "SCError.rs"]
 mod __SCError;
+#[cfg(feature = "SCRecordingOutput")]
+#[path = "SCRecordingOutput.rs"]
+mod __SCRecordingOutput;
 #[cfg(feature = "SCScreenshotManager")]
 #[path = "SCScreenshotManager.rs"]
 mod __SCScreenshotManager;
@@ -44,6 +47,12 @@ pub use self::__SCContentSharingPicker::SCContentSharingPickerObserver;
 pub use self::__SCError::SCStreamErrorCode;
 #[cfg(feature = "SCError")]
 pub use self::__SCError::SCStreamErrorDomain;
+#[cfg(feature = "SCRecordingOutput")]
+pub use self::__SCRecordingOutput::SCRecordingOutput;
+#[cfg(feature = "SCRecordingOutput")]
+pub use self::__SCRecordingOutput::SCRecordingOutputConfiguration;
+#[cfg(feature = "SCRecordingOutput")]
+pub use self::__SCRecordingOutput::SCRecordingOutputDelegate;
 #[cfg(feature = "SCScreenshotManager")]
 pub use self::__SCScreenshotManager::SCScreenshotManager;
 #[cfg(feature = "SCShareableContent")]
@@ -59,6 +68,8 @@ pub use self::__SCShareableContent::SCShareableContentStyle;
 #[cfg(feature = "SCShareableContent")]
 pub use self::__SCShareableContent::SCWindow;
 #[cfg(feature = "SCStream")]
+pub use self::__SCStream::SCCaptureDynamicRange;
+#[cfg(feature = "SCStream")]
 pub use self::__SCStream::SCCaptureResolutionType;
 #[cfg(feature = "SCStream")]
 pub use self::__SCStream::SCContentFilter;
@@ -70,6 +81,8 @@ pub use self::__SCStream::SCPresenterOverlayAlertSetting;
 pub use self::__SCStream::SCStream;
 #[cfg(feature = "SCStream")]
 pub use self::__SCStream::SCStreamConfiguration;
+#[cfg(feature = "SCStream")]
+pub use self::__SCStream::SCStreamConfigurationPreset;
 #[cfg(feature = "SCStream")]
 pub use self::__SCStream::SCStreamDelegate;
 #[cfg(feature = "SCStream")]

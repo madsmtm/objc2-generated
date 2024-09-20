@@ -26,6 +26,27 @@ unsafe impl RefEncode for MTLMutability {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLShaderValidation(pub NSInteger);
+impl MTLShaderValidation {
+    #[doc(alias = "MTLShaderValidationDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "MTLShaderValidationEnabled")]
+    pub const Enabled: Self = Self(1);
+    #[doc(alias = "MTLShaderValidationDisabled")]
+    pub const Disabled: Self = Self(2);
+}
+
+unsafe impl Encode for MTLShaderValidation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for MTLShaderValidation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLPipelineBufferDescriptor;

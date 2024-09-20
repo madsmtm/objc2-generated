@@ -101,6 +101,40 @@ extern_methods!(
             state: GKGameCenterViewControllerState,
             handler: &block2::Block<dyn Fn()>,
         );
+
+        #[cfg(feature = "block2")]
+        #[method(triggerAccessPointWithAchievementID:handler:)]
+        pub unsafe fn triggerAccessPointWithAchievementID_handler(
+            &self,
+            achievement_id: &NSString,
+            handler: Option<&block2::Block<dyn Fn()>>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(triggerAccessPointWithLeaderboardSetID:handler:)]
+        pub unsafe fn triggerAccessPointWithLeaderboardSetID_handler(
+            &self,
+            leaderboard_set_id: &NSString,
+            handler: Option<&block2::Block<dyn Fn()>>,
+        );
+
+        #[cfg(all(feature = "GKLeaderboard", feature = "block2"))]
+        #[method(triggerAccessPointWithLeaderboardID:playerScope:timeScope:handler:)]
+        pub unsafe fn triggerAccessPointWithLeaderboardID_playerScope_timeScope_handler(
+            &self,
+            leaderboard_id: &NSString,
+            player_scope: GKLeaderboardPlayerScope,
+            time_scope: GKLeaderboardTimeScope,
+            handler: Option<&block2::Block<dyn Fn()>>,
+        );
+
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
+        #[method(triggerAccessPointWithPlayer:handler:)]
+        pub unsafe fn triggerAccessPointWithPlayer_handler(
+            &self,
+            player: &GKPlayer,
+            handler: Option<&block2::Block<dyn Fn()>>,
+        );
     }
 );
 

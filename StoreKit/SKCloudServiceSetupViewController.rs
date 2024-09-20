@@ -21,6 +21,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
+    #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
     pub struct SKCloudServiceSetupViewController;
 
     #[cfg(feature = "objc2-app-kit")]
@@ -55,11 +56,13 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKCloudServiceSetupViewController {
+        #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn SKCloudServiceSetupViewControllerDelegate>>>;
 
+        #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -67,6 +70,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
         #[method(loadWithOptions:completionHandler:)]
         pub unsafe fn loadWithOptions_completionHandler(
             &self,
@@ -117,9 +121,11 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
     pub unsafe trait SKCloudServiceSetupViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
         #[optional]
         #[method(cloudServiceSetupViewControllerDidDismiss:)]
         unsafe fn cloudServiceSetupViewControllerDidDismiss(

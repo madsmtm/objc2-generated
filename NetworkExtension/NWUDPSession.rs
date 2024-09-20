@@ -6,20 +6,27 @@ use objc2_foundation::*;
 use crate::*;
 
 // NS_ENUM
+#[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NWUDPSessionState(pub NSInteger);
 impl NWUDPSessionState {
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     #[doc(alias = "NWUDPSessionStateInvalid")]
     pub const Invalid: Self = Self(0);
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     #[doc(alias = "NWUDPSessionStateWaiting")]
     pub const Waiting: Self = Self(1);
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     #[doc(alias = "NWUDPSessionStatePreparing")]
     pub const Preparing: Self = Self(2);
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     #[doc(alias = "NWUDPSessionStateReady")]
     pub const Ready: Self = Self(3);
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     #[doc(alias = "NWUDPSessionStateFailed")]
     pub const Failed: Self = Self(4);
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     #[doc(alias = "NWUDPSessionStateCancelled")]
     pub const Cancelled: Self = Self(5);
 }
@@ -34,6 +41,7 @@ unsafe impl RefEncode for NWUDPSessionState {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use `nw_connection_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub struct NWUDPSession;
 
     unsafe impl ClassType for NWUDPSession {
@@ -45,40 +53,50 @@ unsafe impl NSObjectProtocol for NWUDPSession {}
 
 extern_methods!(
     unsafe impl NWUDPSession {
+        #[deprecated = "Use `nw_connection_create` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
         #[method_id(@__retain_semantics Init initWithUpgradeForSession:)]
         pub unsafe fn initWithUpgradeForSession(
             this: Allocated<Self>,
             session: &NWUDPSession,
         ) -> Retained<Self>;
 
+        #[deprecated = "Use `nw_connection_set_state_changed_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
         #[method(state)]
         pub unsafe fn state(&self) -> NWUDPSessionState;
 
         #[cfg(feature = "NWEndpoint")]
+        #[deprecated = "Use `nw_connection_copy_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
         #[method_id(@__retain_semantics Other endpoint)]
         pub unsafe fn endpoint(&self) -> Retained<NWEndpoint>;
 
         #[cfg(feature = "NWEndpoint")]
+        #[deprecated = "Use `nw_connection_copy_current_path` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
         #[method_id(@__retain_semantics Other resolvedEndpoint)]
         pub unsafe fn resolvedEndpoint(&self) -> Option<Retained<NWEndpoint>>;
 
+        #[deprecated = "Use `nw_connection_set_viability_changed_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
         #[method(isViable)]
         pub unsafe fn isViable(&self) -> bool;
 
+        #[deprecated = "Use `nw_connection_set_better_path_available_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
         #[method(hasBetterPath)]
         pub unsafe fn hasBetterPath(&self) -> bool;
 
         #[cfg(feature = "NWPath")]
+        #[deprecated = "Use `nw_connection_copy_current_path` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
         #[method_id(@__retain_semantics Other currentPath)]
         pub unsafe fn currentPath(&self) -> Option<Retained<NWPath>>;
 
+        #[deprecated = "Use `nw_connection_cancel_current_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
         #[method(tryNextResolvedEndpoint)]
         pub unsafe fn tryNextResolvedEndpoint(&self);
 
+        #[deprecated = "Use `nw_connection_get_maximum_datagram_size` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
         #[method(maximumDatagramLength)]
         pub unsafe fn maximumDatagramLength(&self) -> NSUInteger;
 
         #[cfg(feature = "block2")]
+        #[deprecated = "Use `nw_connection_receive` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
         #[method(setReadHandler:maxDatagrams:)]
         pub unsafe fn setReadHandler_maxDatagrams(
             &self,
@@ -87,6 +105,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        #[deprecated = "Use `nw_connection_send` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
         #[method(writeMultipleDatagrams:completionHandler:)]
         pub unsafe fn writeMultipleDatagrams_completionHandler(
             &self,
@@ -95,6 +114,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        #[deprecated = "Use `nw_connection_send` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
         #[method(writeDatagram:completionHandler:)]
         pub unsafe fn writeDatagram_completionHandler(
             &self,
@@ -102,6 +122,7 @@ extern_methods!(
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
 
+        #[deprecated = "Use `nw_connection_cancel` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
         #[method(cancel)]
         pub unsafe fn cancel(&self);
     }

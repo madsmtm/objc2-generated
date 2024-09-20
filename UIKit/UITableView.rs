@@ -83,6 +83,27 @@ unsafe impl RefEncode for UITableViewRowAnimation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UITableViewContentHuggingElements(pub NSInteger);
+bitflags::bitflags! {
+    impl UITableViewContentHuggingElements: NSInteger {
+        #[doc(alias = "UITableViewContentHuggingElementsNone")]
+        const None = 0;
+        #[doc(alias = "UITableViewContentHuggingElementsSectionHeaders")]
+        const SectionHeaders = 1<<0;
+    }
+}
+
+unsafe impl Encode for UITableViewContentHuggingElements {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UITableViewContentHuggingElements {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern "C" {
     pub static UITableViewIndexSearch: &'static NSString;
 }
@@ -1513,6 +1534,15 @@ extern_methods!(
 
         #[method(hasActiveDrop)]
         pub unsafe fn hasActiveDrop(&self) -> bool;
+
+        #[method(contentHuggingElements)]
+        pub unsafe fn contentHuggingElements(&self) -> UITableViewContentHuggingElements;
+
+        #[method(setContentHuggingElements:)]
+        pub unsafe fn setContentHuggingElements(
+            &self,
+            content_hugging_elements: UITableViewContentHuggingElements,
+        );
     }
 );
 

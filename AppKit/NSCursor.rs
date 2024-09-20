@@ -5,6 +5,63 @@ use objc2_foundation::*;
 
 use crate::*;
 
+// NS_CLOSED_ENUM
+#[repr(usize)] // NSUInteger
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub enum NSCursorFrameResizePosition {
+    #[doc(alias = "NSCursorFrameResizePositionTop")]
+    Top = 1 << 0,
+    #[doc(alias = "NSCursorFrameResizePositionLeft")]
+    Left = 1 << 1,
+    #[doc(alias = "NSCursorFrameResizePositionBottom")]
+    Bottom = 1 << 2,
+    #[doc(alias = "NSCursorFrameResizePositionRight")]
+    Right = 1 << 3,
+    #[doc(alias = "NSCursorFrameResizePositionTopLeft")]
+    TopLeft =
+        NSCursorFrameResizePosition::Top as usize | NSCursorFrameResizePosition::Left as usize,
+    #[doc(alias = "NSCursorFrameResizePositionTopRight")]
+    TopRight =
+        NSCursorFrameResizePosition::Top as usize | NSCursorFrameResizePosition::Right as usize,
+    #[doc(alias = "NSCursorFrameResizePositionBottomLeft")]
+    BottomLeft =
+        NSCursorFrameResizePosition::Bottom as usize | NSCursorFrameResizePosition::Left as usize,
+    #[doc(alias = "NSCursorFrameResizePositionBottomRight")]
+    BottomRight =
+        NSCursorFrameResizePosition::Bottom as usize | NSCursorFrameResizePosition::Right as usize,
+}
+
+unsafe impl Encode for NSCursorFrameResizePosition {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSCursorFrameResizePosition {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCursorFrameResizeDirections(pub NSUInteger);
+bitflags::bitflags! {
+    impl NSCursorFrameResizeDirections: NSUInteger {
+        #[doc(alias = "NSCursorFrameResizeDirectionsInward")]
+        const Inward = 1<<0;
+        #[doc(alias = "NSCursorFrameResizeDirectionsOutward")]
+        const Outward = 1<<1;
+        #[doc(alias = "NSCursorFrameResizeDirectionsAll")]
+        const All = NSCursorFrameResizeDirections::Inward.0|NSCursorFrameResizeDirections::Outward.0;
+    }
+}
+
+unsafe impl Encode for NSCursorFrameResizeDirections {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSCursorFrameResizeDirections {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCursor;
@@ -22,44 +79,50 @@ unsafe impl NSSecureCoding for NSCursor {}
 
 extern_methods!(
     unsafe impl NSCursor {
+        #[cfg(feature = "NSImage")]
+        #[method_id(@__retain_semantics Init initWithImage:hotSpot:)]
+        pub fn initWithImage_hotSpot(
+            this: Allocated<Self>,
+            new_image: &NSImage,
+            point: NSPoint,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Init initWithCoder:)]
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
+
+        #[cfg(feature = "NSImage")]
+        #[method_id(@__retain_semantics Other image)]
+        pub unsafe fn image(&self) -> Retained<NSImage>;
+
+        #[method(hotSpot)]
+        pub unsafe fn hotSpot(&self) -> NSPoint;
+
+        #[method(hide)]
+        pub unsafe fn hide();
+
+        #[method(unhide)]
+        pub unsafe fn unhide();
+
+        #[method(setHiddenUntilMouseMoves:)]
+        pub unsafe fn setHiddenUntilMouseMoves(flag: bool);
+
+        #[method(pop)]
+        pub unsafe fn pop_class();
+
+        #[method(pop)]
+        pub unsafe fn pop(&self);
+
+        #[method(push)]
+        pub unsafe fn push(&self);
+
+        #[method(set)]
+        pub unsafe fn set(&self);
+
         #[method_id(@__retain_semantics Other currentCursor)]
         pub unsafe fn currentCursor() -> Retained<NSCursor>;
 
-        #[method_id(@__retain_semantics Other currentSystemCursor)]
-        pub unsafe fn currentSystemCursor() -> Option<Retained<NSCursor>>;
-
         #[method_id(@__retain_semantics Other arrowCursor)]
         pub fn arrowCursor() -> Retained<NSCursor>;
-
-        #[method_id(@__retain_semantics Other IBeamCursor)]
-        pub fn IBeamCursor() -> Retained<NSCursor>;
-
-        #[method_id(@__retain_semantics Other pointingHandCursor)]
-        pub fn pointingHandCursor() -> Retained<NSCursor>;
-
-        #[method_id(@__retain_semantics Other closedHandCursor)]
-        pub fn closedHandCursor() -> Retained<NSCursor>;
-
-        #[method_id(@__retain_semantics Other openHandCursor)]
-        pub fn openHandCursor() -> Retained<NSCursor>;
-
-        #[method_id(@__retain_semantics Other resizeLeftCursor)]
-        pub fn resizeLeftCursor() -> Retained<NSCursor>;
-
-        #[method_id(@__retain_semantics Other resizeRightCursor)]
-        pub fn resizeRightCursor() -> Retained<NSCursor>;
-
-        #[method_id(@__retain_semantics Other resizeLeftRightCursor)]
-        pub fn resizeLeftRightCursor() -> Retained<NSCursor>;
-
-        #[method_id(@__retain_semantics Other resizeUpCursor)]
-        pub fn resizeUpCursor() -> Retained<NSCursor>;
-
-        #[method_id(@__retain_semantics Other resizeDownCursor)]
-        pub fn resizeDownCursor() -> Retained<NSCursor>;
-
-        #[method_id(@__retain_semantics Other resizeUpDownCursor)]
-        pub fn resizeUpDownCursor() -> Retained<NSCursor>;
 
         #[method_id(@__retain_semantics Other crosshairCursor)]
         pub fn crosshairCursor() -> Retained<NSCursor>;
@@ -79,47 +142,50 @@ extern_methods!(
         #[method_id(@__retain_semantics Other contextualMenuCursor)]
         pub fn contextualMenuCursor() -> Retained<NSCursor>;
 
+        #[method_id(@__retain_semantics Other pointingHandCursor)]
+        pub fn pointingHandCursor() -> Retained<NSCursor>;
+
+        #[method_id(@__retain_semantics Other closedHandCursor)]
+        pub fn closedHandCursor() -> Retained<NSCursor>;
+
+        #[method_id(@__retain_semantics Other openHandCursor)]
+        pub fn openHandCursor() -> Retained<NSCursor>;
+
+        #[method_id(@__retain_semantics Other IBeamCursor)]
+        pub fn IBeamCursor() -> Retained<NSCursor>;
+
         #[method_id(@__retain_semantics Other IBeamCursorForVerticalLayout)]
         pub fn IBeamCursorForVerticalLayout() -> Retained<NSCursor>;
 
-        #[cfg(feature = "NSImage")]
-        #[method_id(@__retain_semantics Init initWithImage:hotSpot:)]
-        pub fn initWithImage_hotSpot(
-            this: Allocated<Self>,
-            new_image: &NSImage,
-            point: NSPoint,
-        ) -> Retained<Self>;
+        #[method_id(@__retain_semantics Other zoomInCursor)]
+        pub unsafe fn zoomInCursor() -> Retained<NSCursor>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
+        #[method_id(@__retain_semantics Other zoomOutCursor)]
+        pub unsafe fn zoomOutCursor() -> Retained<NSCursor>;
 
-        #[method(hide)]
-        pub unsafe fn hide();
+        #[method_id(@__retain_semantics Other columnResizeCursor)]
+        pub unsafe fn columnResizeCursor() -> Retained<NSCursor>;
 
-        #[method(unhide)]
-        pub unsafe fn unhide();
+        #[cfg(feature = "NSDirection")]
+        #[method_id(@__retain_semantics Other columnResizeCursorInDirections:)]
+        pub unsafe fn columnResizeCursorInDirections(
+            directions: NSHorizontalDirections,
+        ) -> Retained<NSCursor>;
 
-        #[method(setHiddenUntilMouseMoves:)]
-        pub unsafe fn setHiddenUntilMouseMoves(flag: bool);
+        #[method_id(@__retain_semantics Other rowResizeCursor)]
+        pub unsafe fn rowResizeCursor() -> Retained<NSCursor>;
 
-        #[method(pop)]
-        pub unsafe fn pop_class();
+        #[cfg(feature = "NSDirection")]
+        #[method_id(@__retain_semantics Other rowResizeCursorInDirections:)]
+        pub unsafe fn rowResizeCursorInDirections(
+            directions: NSVerticalDirections,
+        ) -> Retained<NSCursor>;
 
-        #[cfg(feature = "NSImage")]
-        #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Retained<NSImage>;
-
-        #[method(hotSpot)]
-        pub unsafe fn hotSpot(&self) -> NSPoint;
-
-        #[method(push)]
-        pub unsafe fn push(&self);
-
-        #[method(pop)]
-        pub unsafe fn pop(&self);
-
-        #[method(set)]
-        pub unsafe fn set(&self);
+        #[method_id(@__retain_semantics Other frameResizeCursorFromPosition:inDirections:)]
+        pub unsafe fn frameResizeCursorFromPosition_inDirections(
+            position: NSCursorFrameResizePosition,
+            directions: NSCursorFrameResizeDirections,
+        ) -> Retained<NSCursor>;
     }
 );
 
@@ -136,6 +202,39 @@ extern_methods!(
 
 #[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithCursorSizeSupport: NSAppKitVersion = 682.0 as _;
+
+extern_methods!(
+    /// Deprecated
+    unsafe impl NSCursor {
+        #[deprecated = "No longer recommended. Use ScreenCaptureKit to capture the screen. Use the `showsCursor` property on `SCStreamConfiguration` to control whether or not to include the cursor in the capture. Or, use `NSCursor.currentCursor` if needing to just get the current cursor for this application."]
+        #[method_id(@__retain_semantics Other currentSystemCursor)]
+        pub unsafe fn currentSystemCursor() -> Option<Retained<NSCursor>>;
+
+        #[deprecated = "Use either `+[NSCursor columnResizeCursorInDirections:]` or `+[NSCursor frameResizeCursorFromPosition:inDirections:]` instead, depending on whether a divider is being re-positioned or a rectangular frame is being resized."]
+        #[method_id(@__retain_semantics Other resizeLeftCursor)]
+        pub fn resizeLeftCursor() -> Retained<NSCursor>;
+
+        #[deprecated = "Use either `+[NSCursor columnResizeCursorInDirections:]` or `+[NSCursor frameResizeCursorFromPosition:inDirections:]` instead, depending on whether a divider is being re-positioned or a rectangular frame is being resized."]
+        #[method_id(@__retain_semantics Other resizeRightCursor)]
+        pub fn resizeRightCursor() -> Retained<NSCursor>;
+
+        #[deprecated = "Use either `+[NSCursor columnResizeCursorInDirections:]` or `+[NSCursor frameResizeCursorFromPosition:inDirections:]` instead, depending on whether a divider is being re-positioned or a rectangular frame is being resized."]
+        #[method_id(@__retain_semantics Other resizeLeftRightCursor)]
+        pub fn resizeLeftRightCursor() -> Retained<NSCursor>;
+
+        #[deprecated = "Use either `+[NSCursor rowResizeCursorInDirections:]` or `+[NSCursor frameResizeCursorFromPosition:inDirections:]` instead, depending on whether a divider is being re-positioned or a rectangular frame is being resized."]
+        #[method_id(@__retain_semantics Other resizeUpCursor)]
+        pub fn resizeUpCursor() -> Retained<NSCursor>;
+
+        #[deprecated = "Use either `+[NSCursor rowResizeCursorInDirections:]` or `+[NSCursor frameResizeCursorFromPosition:inDirections:]` instead, depending on whether a divider is being re-positioned or a rectangular frame is being resized."]
+        #[method_id(@__retain_semantics Other resizeDownCursor)]
+        pub fn resizeDownCursor() -> Retained<NSCursor>;
+
+        #[deprecated = "Use either `+[NSCursor rowResizeCursorInDirections:]` or `+[NSCursor frameResizeCursorFromPosition:inDirections:]` instead, depending on whether a divider is being re-positioned or a rectangular frame is being resized."]
+        #[method_id(@__retain_semantics Other resizeUpDownCursor)]
+        pub fn resizeUpDownCursor() -> Retained<NSCursor>;
+    }
+);
 
 extern_methods!(
     /// NSDeprecated

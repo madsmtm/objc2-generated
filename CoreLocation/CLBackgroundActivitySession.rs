@@ -6,6 +6,50 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct CLBackgroundActivitySessionDiagnostic;
+
+    unsafe impl ClassType for CLBackgroundActivitySessionDiagnostic {
+        type Super = NSObject;
+    }
+);
+
+unsafe impl NSObjectProtocol for CLBackgroundActivitySessionDiagnostic {}
+
+extern_methods!(
+    unsafe impl CLBackgroundActivitySessionDiagnostic {
+        #[method(authorizationDenied)]
+        pub unsafe fn authorizationDenied(&self) -> bool;
+
+        #[method(authorizationDeniedGlobally)]
+        pub unsafe fn authorizationDeniedGlobally(&self) -> bool;
+
+        #[method(authorizationRestricted)]
+        pub unsafe fn authorizationRestricted(&self) -> bool;
+
+        #[method(insufficientlyInUse)]
+        pub unsafe fn insufficientlyInUse(&self) -> bool;
+
+        #[method(serviceSessionRequired)]
+        pub unsafe fn serviceSessionRequired(&self) -> bool;
+
+        #[method(authorizationRequestInProgress)]
+        pub unsafe fn authorizationRequestInProgress(&self) -> bool;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl CLBackgroundActivitySessionDiagnostic {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLBackgroundActivitySession;
 
     unsafe impl ClassType for CLBackgroundActivitySession {

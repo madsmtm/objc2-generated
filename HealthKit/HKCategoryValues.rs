@@ -192,18 +192,24 @@ unsafe impl RefEncode for HKCategoryValueLowCardioFitnessEvent {
 }
 
 // NS_ENUM
+#[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValueMenstrualFlow(pub NSInteger);
 impl HKCategoryValueMenstrualFlow {
+    #[deprecated]
     #[doc(alias = "HKCategoryValueMenstrualFlowUnspecified")]
     pub const Unspecified: Self = Self(1);
+    #[deprecated]
     #[doc(alias = "HKCategoryValueMenstrualFlowLight")]
     pub const Light: Self = Self(2);
+    #[deprecated]
     #[doc(alias = "HKCategoryValueMenstrualFlowMedium")]
     pub const Medium: Self = Self(3);
+    #[deprecated]
     #[doc(alias = "HKCategoryValueMenstrualFlowHeavy")]
     pub const Heavy: Self = Self(4);
+    #[deprecated]
     #[doc(alias = "HKCategoryValueMenstrualFlowNone")]
     pub const None: Self = Self(5);
 }
@@ -355,6 +361,31 @@ unsafe impl Encode for HKCategoryValueSleepAnalysis {
 }
 
 unsafe impl RefEncode for HKCategoryValueSleepAnalysis {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValueVaginalBleeding(pub NSInteger);
+impl HKCategoryValueVaginalBleeding {
+    #[doc(alias = "HKCategoryValueVaginalBleedingUnspecified")]
+    pub const Unspecified: Self = Self(1);
+    #[doc(alias = "HKCategoryValueVaginalBleedingLight")]
+    pub const Light: Self = Self(2);
+    #[doc(alias = "HKCategoryValueVaginalBleedingMedium")]
+    pub const Medium: Self = Self(3);
+    #[doc(alias = "HKCategoryValueVaginalBleedingHeavy")]
+    pub const Heavy: Self = Self(4);
+    #[doc(alias = "HKCategoryValueVaginalBleedingNone")]
+    pub const None: Self = Self(5);
+}
+
+unsafe impl Encode for HKCategoryValueVaginalBleeding {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for HKCategoryValueVaginalBleeding {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 

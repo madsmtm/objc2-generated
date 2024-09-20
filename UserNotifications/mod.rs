@@ -34,6 +34,9 @@ mod __UNNotificationActionIcon;
 #[cfg(feature = "UNNotificationAttachment")]
 #[path = "UNNotificationAttachment.rs"]
 mod __UNNotificationAttachment;
+#[cfg(feature = "UNNotificationAttributedMessageContext")]
+#[path = "UNNotificationAttributedMessageContext.rs"]
+mod __UNNotificationAttributedMessageContext;
 #[cfg(feature = "UNNotificationCategory")]
 #[path = "UNNotificationCategory.rs"]
 mod __UNNotificationCategory;
@@ -90,6 +93,8 @@ pub use self::__UNNotificationAttachment::UNNotificationAttachmentOptionsThumbna
 pub use self::__UNNotificationAttachment::UNNotificationAttachmentOptionsThumbnailTimeKey;
 #[cfg(feature = "UNNotificationAttachment")]
 pub use self::__UNNotificationAttachment::UNNotificationAttachmentOptionsTypeHintKey;
+#[cfg(feature = "UNNotificationAttributedMessageContext")]
+pub use self::__UNNotificationAttributedMessageContext::UNNotificationAttributedMessageContext;
 #[cfg(feature = "UNNotificationCategory")]
 pub use self::__UNNotificationCategory::UNNotificationCategory;
 #[cfg(feature = "UNNotificationCategory")]

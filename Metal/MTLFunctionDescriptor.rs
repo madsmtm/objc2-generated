@@ -14,6 +14,7 @@ bitflags::bitflags! {
         const MTLFunctionOptionNone = 0;
         const MTLFunctionOptionCompileToBinary = 1<<0;
         const MTLFunctionOptionStoreFunctionInMetalScript = 1<<1;
+        const MTLFunctionOptionFailOnBinaryArchiveMiss = 1<<2;
     }
 }
 

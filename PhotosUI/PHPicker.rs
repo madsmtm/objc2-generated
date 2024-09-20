@@ -154,6 +154,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other timelapseVideosFilter)]
         pub unsafe fn timelapseVideosFilter() -> Retained<PHPickerFilter>;
 
+        #[method_id(@__retain_semantics Other spatialMediaFilter)]
+        pub unsafe fn spatialMediaFilter() -> Retained<PHPickerFilter>;
+
         #[cfg(feature = "objc2-photos")]
         #[method_id(@__retain_semantics Other playbackStyleFilter:)]
         pub unsafe fn playbackStyleFilter(

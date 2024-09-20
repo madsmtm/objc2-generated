@@ -20,6 +20,14 @@ unsafe impl NSObjectProtocol for MKMapItem {}
 
 extern_methods!(
     unsafe impl MKMapItem {
+        #[cfg(feature = "MKMapItemIdentifier")]
+        #[method_id(@__retain_semantics Other identifier)]
+        pub unsafe fn identifier(&self) -> Option<Retained<MKMapItemIdentifier>>;
+
+        #[cfg(feature = "MKMapItemIdentifier")]
+        #[method_id(@__retain_semantics Other alternateIdentifiers)]
+        pub unsafe fn alternateIdentifiers(&self) -> Retained<NSSet<MKMapItemIdentifier>>;
+
         #[cfg(all(feature = "MKPlacemark", feature = "objc2-core-location"))]
         #[method_id(@__retain_semantics Other placemark)]
         pub unsafe fn placemark(&self) -> Retained<MKPlacemark>;

@@ -86,19 +86,6 @@ extern_methods!(
             a_locale: Option<&NSLocale>,
         ) -> Retained<NSCharacterSet>;
 
-        #[cfg(feature = "NSText")]
-        #[method_id(@__retain_semantics Init initWithTextAlignment:location:options:)]
-        pub unsafe fn initWithTextAlignment_location_options(
-            this: Allocated<Self>,
-            alignment: NSTextAlignment,
-            loc: CGFloat,
-            options: &NSDictionary<NSTextTabOptionKey, AnyObject>,
-        ) -> Retained<Self>;
-
-        #[cfg(feature = "NSText")]
-        #[method(alignment)]
-        pub unsafe fn alignment(&self) -> NSTextAlignment;
-
         #[method(location)]
         pub unsafe fn location(&self) -> CGFloat;
 
@@ -162,10 +149,6 @@ extern_methods!(
         #[method(paragraphSpacing)]
         pub unsafe fn paragraphSpacing(&self) -> CGFloat;
 
-        #[cfg(feature = "NSText")]
-        #[method(alignment)]
-        pub unsafe fn alignment(&self) -> NSTextAlignment;
-
         #[method(headIndent)]
         pub unsafe fn headIndent(&self) -> CGFloat;
 
@@ -206,22 +189,12 @@ extern_methods!(
         #[method(defaultTabInterval)]
         pub unsafe fn defaultTabInterval(&self) -> CGFloat;
 
-        #[method(allowsDefaultTighteningForTruncation)]
-        pub unsafe fn allowsDefaultTighteningForTruncation(&self) -> bool;
-
-        #[method(tighteningFactorForTruncation)]
-        pub unsafe fn tighteningFactorForTruncation(&self) -> c_float;
-
-        #[cfg(feature = "NSTextTable")]
-        #[method_id(@__retain_semantics Other textBlocks)]
-        pub unsafe fn textBlocks(&self) -> Retained<NSArray<NSTextBlock>>;
-
         #[cfg(feature = "NSTextList")]
         #[method_id(@__retain_semantics Other textLists)]
         pub unsafe fn textLists(&self) -> Retained<NSArray<NSTextList>>;
 
-        #[method(headerLevel)]
-        pub unsafe fn headerLevel(&self) -> NSInteger;
+        #[method(allowsDefaultTighteningForTruncation)]
+        pub unsafe fn allowsDefaultTighteningForTruncation(&self) -> bool;
 
         #[method(lineBreakStrategy)]
         pub unsafe fn lineBreakStrategy(&self) -> NSLineBreakStrategy;
@@ -280,14 +253,6 @@ extern_methods!(
 
         #[method(setParagraphSpacing:)]
         pub unsafe fn setParagraphSpacing(&self, paragraph_spacing: CGFloat);
-
-        #[cfg(feature = "NSText")]
-        #[method(alignment)]
-        pub unsafe fn alignment(&self) -> NSTextAlignment;
-
-        #[cfg(feature = "NSText")]
-        #[method(setAlignment:)]
-        pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
 
         #[method(firstLineHeadIndent)]
         pub unsafe fn firstLineHeadIndent(&self) -> CGFloat;
@@ -378,6 +343,20 @@ extern_methods!(
             allows_default_tightening_for_truncation: bool,
         );
 
+        #[method(lineBreakStrategy)]
+        pub unsafe fn lineBreakStrategy(&self) -> NSLineBreakStrategy;
+
+        #[method(setLineBreakStrategy:)]
+        pub unsafe fn setLineBreakStrategy(&self, line_break_strategy: NSLineBreakStrategy);
+
+        #[cfg(feature = "NSTextList")]
+        #[method_id(@__retain_semantics Other textLists)]
+        pub unsafe fn textLists(&self) -> Retained<NSArray<NSTextList>>;
+
+        #[cfg(feature = "NSTextList")]
+        #[method(setTextLists:)]
+        pub unsafe fn setTextLists(&self, text_lists: &NSArray<NSTextList>);
+
         #[method(addTabStop:)]
         pub unsafe fn addTabStop(&self, an_object: &NSTextTab);
 
@@ -386,6 +365,64 @@ extern_methods!(
 
         #[method(setParagraphStyle:)]
         pub unsafe fn setParagraphStyle(&self, obj: &NSParagraphStyle);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NSMutableParagraphStyle {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_methods!(
+    unsafe impl NSTextTab {
+        #[cfg(feature = "NSText")]
+        #[method_id(@__retain_semantics Init initWithTextAlignment:location:options:)]
+        pub unsafe fn initWithTextAlignment_location_options(
+            this: Allocated<Self>,
+            alignment: NSTextAlignment,
+            loc: CGFloat,
+            options: &NSDictionary<NSTextTabOptionKey, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "NSText")]
+        #[method(alignment)]
+        pub unsafe fn alignment(&self) -> NSTextAlignment;
+    }
+);
+
+extern_methods!(
+    unsafe impl NSParagraphStyle {
+        #[cfg(feature = "NSText")]
+        #[method(alignment)]
+        pub unsafe fn alignment(&self) -> NSTextAlignment;
+
+        #[method(tighteningFactorForTruncation)]
+        pub unsafe fn tighteningFactorForTruncation(&self) -> c_float;
+
+        #[cfg(feature = "NSTextTable")]
+        #[method_id(@__retain_semantics Other textBlocks)]
+        pub unsafe fn textBlocks(&self) -> Retained<NSArray<NSTextBlock>>;
+
+        #[method(headerLevel)]
+        pub unsafe fn headerLevel(&self) -> NSInteger;
+    }
+);
+
+extern_methods!(
+    unsafe impl NSMutableParagraphStyle {
+        #[cfg(feature = "NSText")]
+        #[method(alignment)]
+        pub unsafe fn alignment(&self) -> NSTextAlignment;
+
+        #[cfg(feature = "NSText")]
+        #[method(setAlignment:)]
+        pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
 
         #[method(tighteningFactorForTruncation)]
         pub unsafe fn tighteningFactorForTruncation(&self) -> c_float;
@@ -404,36 +441,11 @@ extern_methods!(
         #[method(setTextBlocks:)]
         pub unsafe fn setTextBlocks(&self, text_blocks: &NSArray<NSTextBlock>);
 
-        #[cfg(feature = "NSTextList")]
-        #[method_id(@__retain_semantics Other textLists)]
-        pub unsafe fn textLists(&self) -> Retained<NSArray<NSTextList>>;
-
-        #[cfg(feature = "NSTextList")]
-        #[method(setTextLists:)]
-        pub unsafe fn setTextLists(&self, text_lists: &NSArray<NSTextList>);
-
         #[method(headerLevel)]
         pub unsafe fn headerLevel(&self) -> NSInteger;
 
         #[method(setHeaderLevel:)]
         pub unsafe fn setHeaderLevel(&self, header_level: NSInteger);
-
-        #[method(lineBreakStrategy)]
-        pub unsafe fn lineBreakStrategy(&self) -> NSLineBreakStrategy;
-
-        #[method(setLineBreakStrategy:)]
-        pub unsafe fn setLineBreakStrategy(&self, line_break_strategy: NSLineBreakStrategy);
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMutableParagraphStyle {
-        #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
     }
 );
 

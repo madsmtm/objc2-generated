@@ -416,6 +416,17 @@ extern_methods!(
             modal_transition_style: UIModalTransitionStyle,
         );
 
+        #[cfg(feature = "UIViewControllerTransition")]
+        #[method_id(@__retain_semantics Other preferredTransition)]
+        pub unsafe fn preferredTransition(&self) -> Retained<UIViewControllerTransition>;
+
+        #[cfg(feature = "UIViewControllerTransition")]
+        #[method(setPreferredTransition:)]
+        pub unsafe fn setPreferredTransition(
+            &self,
+            preferred_transition: &UIViewControllerTransition,
+        );
+
         #[method(modalPresentationStyle)]
         pub unsafe fn modalPresentationStyle(&self) -> UIModalPresentationStyle;
 
@@ -1267,7 +1278,6 @@ unsafe impl UIPreviewActionItem for UIPreviewAction {}
 extern_methods!(
     unsafe impl UIPreviewAction {
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
-        #[deprecated = "Please use UIContextMenuInteraction."]
         #[method(handler)]
         pub unsafe fn handler(
             &self,
@@ -1278,7 +1288,6 @@ extern_methods!(
         >;
 
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
-        #[deprecated = "Please use UIContextMenuInteraction."]
         #[method_id(@__retain_semantics Other actionWithTitle:style:handler:)]
         pub unsafe fn actionWithTitle_style_handler(
             title: &NSString,
@@ -1323,7 +1332,6 @@ unsafe impl UIPreviewActionItem for UIPreviewActionGroup {}
 
 extern_methods!(
     unsafe impl UIPreviewActionGroup {
-        #[deprecated = "Please use UIContextMenuInteraction."]
         #[method_id(@__retain_semantics Other actionGroupWithTitle:style:actions:)]
         pub unsafe fn actionGroupWithTitle_style_actions(
             title: &NSString,

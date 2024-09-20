@@ -24,6 +24,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
+        #[deprecated = "No longer supported"]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 

@@ -7,6 +7,7 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use nw_endpoint_t in Network framework instead, see deprecation notice in <NetworkExtension/NWEndpoint.h>"]
     pub struct NWEndpoint;
 
     unsafe impl ClassType for NWEndpoint {

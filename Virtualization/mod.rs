@@ -229,15 +229,33 @@ mod __VZSocketDeviceConfiguration;
 #[cfg(feature = "VZSpiceAgentPortAttachment")]
 #[path = "VZSpiceAgentPortAttachment.rs"]
 mod __VZSpiceAgentPortAttachment;
+#[cfg(feature = "VZStorageDevice")]
+#[path = "VZStorageDevice.rs"]
+mod __VZStorageDevice;
 #[cfg(feature = "VZStorageDeviceAttachment")]
 #[path = "VZStorageDeviceAttachment.rs"]
 mod __VZStorageDeviceAttachment;
 #[cfg(feature = "VZStorageDeviceConfiguration")]
 #[path = "VZStorageDeviceConfiguration.rs"]
 mod __VZStorageDeviceConfiguration;
+#[cfg(feature = "VZUSBController")]
+#[path = "VZUSBController.rs"]
+mod __VZUSBController;
+#[cfg(feature = "VZUSBControllerConfiguration")]
+#[path = "VZUSBControllerConfiguration.rs"]
+mod __VZUSBControllerConfiguration;
+#[cfg(feature = "VZUSBDevice")]
+#[path = "VZUSBDevice.rs"]
+mod __VZUSBDevice;
+#[cfg(feature = "VZUSBDeviceConfiguration")]
+#[path = "VZUSBDeviceConfiguration.rs"]
+mod __VZUSBDeviceConfiguration;
 #[cfg(feature = "VZUSBKeyboardConfiguration")]
 #[path = "VZUSBKeyboardConfiguration.rs"]
 mod __VZUSBKeyboardConfiguration;
+#[cfg(feature = "VZUSBMassStorageDevice")]
+#[path = "VZUSBMassStorageDevice.rs"]
+mod __VZUSBMassStorageDevice;
 #[cfg(feature = "VZUSBMassStorageDeviceConfiguration")]
 #[path = "VZUSBMassStorageDeviceConfiguration.rs"]
 mod __VZUSBMassStorageDeviceConfiguration;
@@ -337,6 +355,12 @@ mod __VZVirtualMachineStartOptions;
 #[cfg(feature = "VZVirtualMachineView")]
 #[path = "VZVirtualMachineView.rs"]
 mod __VZVirtualMachineView;
+#[cfg(feature = "VZXHCIController")]
+#[path = "VZXHCIController.rs"]
+mod __VZXHCIController;
+#[cfg(feature = "VZXHCIControllerConfiguration")]
+#[path = "VZXHCIControllerConfiguration.rs"]
+mod __VZXHCIControllerConfiguration;
 
 #[cfg(feature = "VZAudioDeviceConfiguration")]
 pub use self::__VZAudioDeviceConfiguration::VZAudioDeviceConfiguration;
@@ -557,15 +581,27 @@ pub use self::__VZSocketDeviceConfiguration::VZSocketDeviceConfiguration;
     feature = "VZSpiceAgentPortAttachment"
 ))]
 pub use self::__VZSpiceAgentPortAttachment::VZSpiceAgentPortAttachment;
+#[cfg(feature = "VZStorageDevice")]
+pub use self::__VZStorageDevice::VZStorageDevice;
 #[cfg(feature = "VZStorageDeviceAttachment")]
 pub use self::__VZStorageDeviceAttachment::VZStorageDeviceAttachment;
 #[cfg(feature = "VZStorageDeviceConfiguration")]
 pub use self::__VZStorageDeviceConfiguration::VZStorageDeviceConfiguration;
+#[cfg(feature = "VZUSBController")]
+pub use self::__VZUSBController::VZUSBController;
+#[cfg(feature = "VZUSBControllerConfiguration")]
+pub use self::__VZUSBControllerConfiguration::VZUSBControllerConfiguration;
+#[cfg(feature = "VZUSBDevice")]
+pub use self::__VZUSBDevice::VZUSBDevice;
+#[cfg(feature = "VZUSBDeviceConfiguration")]
+pub use self::__VZUSBDeviceConfiguration::VZUSBDeviceConfiguration;
 #[cfg(all(
     feature = "VZKeyboardConfiguration",
     feature = "VZUSBKeyboardConfiguration"
 ))]
 pub use self::__VZUSBKeyboardConfiguration::VZUSBKeyboardConfiguration;
+#[cfg(all(feature = "VZStorageDevice", feature = "VZUSBMassStorageDevice"))]
+pub use self::__VZUSBMassStorageDevice::VZUSBMassStorageDevice;
 #[cfg(all(
     feature = "VZStorageDeviceConfiguration",
     feature = "VZUSBMassStorageDeviceConfiguration"
@@ -692,3 +728,10 @@ pub use self::__VZVirtualMachineDelegate::VZVirtualMachineDelegate;
 pub use self::__VZVirtualMachineStartOptions::VZVirtualMachineStartOptions;
 #[cfg(all(feature = "VZVirtualMachineView", feature = "objc2-app-kit"))]
 pub use self::__VZVirtualMachineView::VZVirtualMachineView;
+#[cfg(all(feature = "VZUSBController", feature = "VZXHCIController"))]
+pub use self::__VZXHCIController::VZXHCIController;
+#[cfg(all(
+    feature = "VZUSBControllerConfiguration",
+    feature = "VZXHCIControllerConfiguration"
+))]
+pub use self::__VZXHCIControllerConfiguration::VZXHCIControllerConfiguration;

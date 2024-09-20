@@ -107,6 +107,12 @@ extern_methods!(
             login_configuration: &ASAuthorizationProviderExtensionLoginConfiguration,
         ) -> Result<(), Retained<NSError>>;
 
+        #[method(completeKeyRotationForKeyType:)]
+        pub unsafe fn completeKeyRotationForKeyType(
+            &self,
+            key_type: ASAuthorizationProviderExtensionKeyType,
+        );
+
         #[cfg(feature = "block2")]
         #[method(userNeedsReauthenticationWithCompletion:)]
         pub unsafe fn userNeedsReauthenticationWithCompletion(

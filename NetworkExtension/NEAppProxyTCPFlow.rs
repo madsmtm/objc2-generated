@@ -39,6 +39,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NWEndpoint")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other remoteEndpoint)]
         pub unsafe fn remoteEndpoint(&self) -> Retained<NWEndpoint>;
     }

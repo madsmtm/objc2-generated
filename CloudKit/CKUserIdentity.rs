@@ -34,6 +34,10 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        #[cfg(feature = "CKRecordID")]
+        #[method_id(@__retain_semantics Other userRecordID)]
+        pub unsafe fn userRecordID(&self) -> Option<Retained<CKRecordID>>;
+
         #[cfg(feature = "CKUserIdentityLookupInfo")]
         #[method_id(@__retain_semantics Other lookupInfo)]
         pub unsafe fn lookupInfo(&self) -> Option<Retained<CKUserIdentityLookupInfo>>;
@@ -41,14 +45,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other nameComponents)]
         pub unsafe fn nameComponents(&self) -> Option<Retained<NSPersonNameComponents>>;
 
-        #[cfg(feature = "CKRecordID")]
-        #[method_id(@__retain_semantics Other userRecordID)]
-        pub unsafe fn userRecordID(&self) -> Option<Retained<CKRecordID>>;
-
-        #[method_id(@__retain_semantics Other contactIdentifiers)]
-        pub unsafe fn contactIdentifiers(&self) -> Retained<NSArray<NSString>>;
-
         #[method(hasiCloudAccount)]
         pub unsafe fn hasiCloudAccount(&self) -> bool;
+
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
+        #[method_id(@__retain_semantics Other contactIdentifiers)]
+        pub unsafe fn contactIdentifiers(&self) -> Retained<NSArray<NSString>>;
     }
 );

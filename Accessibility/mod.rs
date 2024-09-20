@@ -89,6 +89,16 @@ pub use self::__AXSettings::AXAnimatedImagesEnabled;
 #[cfg(feature = "AXSettings")]
 pub use self::__AXSettings::AXAnimatedImagesEnabledDidChangeNotification;
 #[cfg(feature = "AXSettings")]
+pub use self::__AXSettings::AXAssistiveAccessEnabled;
+#[cfg(all(feature = "AXSettings", feature = "block2"))]
+pub use self::__AXSettings::AXOpenSettingsFeature;
+#[cfg(feature = "AXSettings")]
 pub use self::__AXSettings::AXPrefersHorizontalTextLayout;
 #[cfg(feature = "AXSettings")]
 pub use self::__AXSettings::AXPrefersHorizontalTextLayoutDidChangeNotification;
+#[cfg(feature = "AXSettings")]
+pub use self::__AXSettings::AXPrefersNonBlinkingTextInsertionIndicator;
+#[cfg(feature = "AXSettings")]
+pub use self::__AXSettings::AXPrefersNonBlinkingTextInsertionIndicatorDidChangeNotification;
+#[cfg(feature = "AXSettings")]
+pub use self::__AXSettings::AXSettingsFeature;

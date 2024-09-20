@@ -156,6 +156,14 @@ extern_methods!(
 
         #[method(setErrorOptions:)]
         pub unsafe fn setErrorOptions(&self, error_options: MTLCommandBufferErrorOption);
+
+        #[cfg(feature = "MTLLogState")]
+        #[method_id(@__retain_semantics Other logState)]
+        pub unsafe fn logState(&self) -> Option<Retained<ProtocolObject<dyn MTLLogState>>>;
+
+        #[cfg(feature = "MTLLogState")]
+        #[method(setLogState:)]
+        pub unsafe fn setLogState(&self, log_state: Option<&ProtocolObject<dyn MTLLogState>>);
     }
 );
 
@@ -406,6 +414,18 @@ extern_protocol!(
 
         #[method(popDebugGroup)]
         fn popDebugGroup(&self);
+
+        #[cfg(feature = "MTLResidencySet")]
+        #[method(useResidencySet:)]
+        unsafe fn useResidencySet(&self, residency_set: &ProtocolObject<dyn MTLResidencySet>);
+
+        #[cfg(feature = "MTLResidencySet")]
+        #[method(useResidencySets:count:)]
+        unsafe fn useResidencySets_count(
+            &self,
+            residency_sets: NonNull<NonNull<ProtocolObject<dyn MTLResidencySet>>>,
+            count: NSUInteger,
+        );
     }
 
     unsafe impl ProtocolType for dyn MTLCommandBuffer {}

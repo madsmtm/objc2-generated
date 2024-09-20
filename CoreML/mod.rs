@@ -160,6 +160,9 @@ mod __MLModel_MLComputeDevice;
 #[cfg(feature = "MLModel_MLModelCompilation")]
 #[path = "MLModel_MLModelCompilation.rs"]
 mod __MLModel_MLModelCompilation;
+#[cfg(feature = "MLModel_MLState")]
+#[path = "MLModel_MLState.rs"]
+mod __MLModel_MLState;
 #[cfg(feature = "MLMultiArray")]
 #[path = "MLMultiArray.rs"]
 mod __MLMultiArray;
@@ -199,6 +202,12 @@ mod __MLSequence;
 #[cfg(feature = "MLSequenceConstraint")]
 #[path = "MLSequenceConstraint.rs"]
 mod __MLSequenceConstraint;
+#[cfg(feature = "MLState")]
+#[path = "MLState.rs"]
+mod __MLState;
+#[cfg(feature = "MLStateConstraint")]
+#[path = "MLStateConstraint.rs"]
+mod __MLStateConstraint;
 #[cfg(feature = "MLTask")]
 #[path = "MLTask.rs"]
 mod __MLTask;
@@ -356,6 +365,10 @@ pub use self::__MLReshapeFrequencyHint::MLReshapeFrequencyHint;
 pub use self::__MLSequence::MLSequence;
 #[cfg(feature = "MLSequenceConstraint")]
 pub use self::__MLSequenceConstraint::MLSequenceConstraint;
+#[cfg(feature = "MLState")]
+pub use self::__MLState::MLState;
+#[cfg(feature = "MLStateConstraint")]
+pub use self::__MLStateConstraint::MLStateConstraint;
 #[cfg(feature = "MLTask")]
 pub use self::__MLTask::MLTask;
 #[cfg(feature = "MLTask")]

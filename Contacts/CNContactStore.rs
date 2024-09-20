@@ -35,6 +35,8 @@ impl CNAuthorizationStatus {
     pub const Denied: Self = Self(2);
     #[doc(alias = "CNAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
+    #[doc(alias = "CNAuthorizationStatusLimited")]
+    pub const Limited: Self = Self(4);
 }
 
 unsafe impl Encode for CNAuthorizationStatus {

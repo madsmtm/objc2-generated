@@ -37,7 +37,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait ASAccountAuthenticationModificationControllerPresentationContextProviding:
-        NSObjectProtocol
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "ASFoundation")]
         #[cfg(target_os = "macos")]
@@ -45,7 +45,6 @@ extern_protocol!(
         unsafe fn presentationAnchorForAccountAuthenticationModificationController(
             &self,
             controller: &ASAccountAuthenticationModificationController,
-            mtm: MainThreadMarker,
         ) -> Retained<ASPresentationAnchor>;
     }
 
@@ -86,6 +85,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other presentationContextProvider)]
         pub unsafe fn presentationContextProvider(
             &self,
+            mtm: MainThreadMarker,
         ) -> Option<
             Retained<
                 ProtocolObject<

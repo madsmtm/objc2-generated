@@ -73,5 +73,9 @@ extern_methods!(
         #[cfg(feature = "MLSequenceConstraint")]
         #[method_id(@__retain_semantics Other sequenceConstraint)]
         pub unsafe fn sequenceConstraint(&self) -> Option<Retained<MLSequenceConstraint>>;
+
+        #[cfg(feature = "MLStateConstraint")]
+        #[method_id(@__retain_semantics Other stateConstraint)]
+        pub unsafe fn stateConstraint(&self) -> Option<Retained<MLStateConstraint>>;
     }
 );

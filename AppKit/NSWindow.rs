@@ -71,7 +71,6 @@ pub struct NSWindowSharingType(pub NSUInteger);
 impl NSWindowSharingType {
     pub const NSWindowSharingNone: Self = Self(0);
     pub const NSWindowSharingReadOnly: Self = Self(1);
-    pub const NSWindowSharingReadWrite: Self = Self(2);
 }
 
 unsafe impl Encode for NSWindowSharingType {
@@ -1023,9 +1022,6 @@ extern_methods!(
             displays_when_screen_profile_changes: bool,
         );
 
-        #[method(disableScreenUpdatesUntilFlush)]
-        pub unsafe fn disableScreenUpdatesUntilFlush(&self);
-
         #[method(canBecomeVisibleWithoutLogin)]
         pub unsafe fn canBecomeVisibleWithoutLogin(&self) -> bool;
 
@@ -1411,6 +1407,23 @@ extern_methods!(
         #[method(hasActiveWindowSharingSession)]
         pub unsafe fn hasActiveWindowSharingSession(&self) -> bool;
 
+        #[cfg(feature = "block2")]
+        #[method(requestSharingOfWindow:completionHandler:)]
+        pub unsafe fn requestSharingOfWindow_completionHandler(
+            &self,
+            window: &NSWindow,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(all(feature = "NSImage", feature = "block2"))]
+        #[method(requestSharingOfWindowUsingPreview:title:completionHandler:)]
+        pub unsafe fn requestSharingOfWindowUsingPreview_title_completionHandler(
+            &self,
+            image: &NSImage,
+            title: &NSString,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
         #[cfg(feature = "NSUserInterfaceLayout")]
         #[method(windowTitlebarLayoutDirection)]
         pub unsafe fn windowTitlebarLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
@@ -1529,7 +1542,22 @@ extern_methods!(
     /// NSDrag
     #[cfg(feature = "NSResponder")]
     unsafe impl NSWindow {
+        #[cfg(all(
+            feature = "NSDragging",
+            feature = "NSDraggingItem",
+            feature = "NSDraggingSession",
+            feature = "NSEvent"
+        ))]
+        #[method_id(@__retain_semantics Other beginDraggingSessionWithItems:event:source:)]
+        pub unsafe fn beginDraggingSessionWithItems_event_source(
+            &self,
+            items: &NSArray<NSDraggingItem>,
+            event: &NSEvent,
+            source: &ProtocolObject<dyn NSDraggingSource>,
+        ) -> Retained<NSDraggingSession>;
+
         #[cfg(all(feature = "NSEvent", feature = "NSImage", feature = "NSPasteboard"))]
+        #[deprecated = "Use -[NSWindow beginDraggingSessionWithItems:event:source:] instead."]
         #[method(dragImage:at:offset:event:pasteboard:source:slideBack:)]
         pub unsafe fn dragImage_at_offset_event_pasteboard_source_slideBack(
             &self,
@@ -1548,21 +1576,6 @@ extern_methods!(
 
         #[method(unregisterDraggedTypes)]
         pub unsafe fn unregisterDraggedTypes(&self);
-    }
-);
-
-extern_methods!(
-    /// NSCarbonExtensions
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSWindow {
-        #[method_id(@__retain_semantics Init initWithWindowRef:)]
-        pub unsafe fn initWithWindowRef(
-            this: Allocated<Self>,
-            window_ref: NonNull<c_void>,
-        ) -> Option<Retained<NSWindow>>;
-
-        #[method(windowRef)]
-        pub unsafe fn windowRef(&self) -> NonNull<c_void>;
     }
 );
 
@@ -1753,6 +1766,14 @@ extern_protocol!(
             &self,
             window: &NSWindow,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn NSPreviewRepresentableActivityItem>>>>;
+
+        #[cfg(feature = "NSResponder")]
+        #[optional]
+        #[method_id(@__retain_semantics Other windowForSharingRequestFromWindow:)]
+        unsafe fn windowForSharingRequestFromWindow(
+            &self,
+            window: &NSWindow,
+        ) -> Option<Retained<NSWindow>>;
 
         #[optional]
         #[method(windowDidResize:)]
@@ -2121,11 +2142,28 @@ extern_methods!(
         #[method(backingLocation)]
         pub unsafe fn backingLocation(&self) -> NSWindowBackingLocation;
 
+        #[deprecated = "This property does not do anything and should not be used."]
         #[method(showsResizeIndicator)]
         pub unsafe fn showsResizeIndicator(&self) -> bool;
 
+        #[deprecated = "This property does not do anything and should not be used."]
         #[method(setShowsResizeIndicator:)]
         pub unsafe fn setShowsResizeIndicator(&self, shows_resize_indicator: bool);
+
+        #[deprecated = "This method should not be used."]
+        #[method_id(@__retain_semantics Init initWithWindowRef:)]
+        pub unsafe fn initWithWindowRef(
+            this: Allocated<Self>,
+            window_ref: NonNull<c_void>,
+        ) -> Option<Retained<NSWindow>>;
+
+        #[deprecated = "This method should not be used."]
+        #[method(windowRef)]
+        pub unsafe fn windowRef(&self) -> NonNull<c_void>;
+
+        #[deprecated = "This method does not do anything and should not be called."]
+        #[method(disableScreenUpdatesUntilFlush)]
+        pub unsafe fn disableScreenUpdatesUntilFlush(&self);
     }
 );
 
@@ -2171,3 +2209,5 @@ pub static NSUnscaledWindowMask: NSWindowStyleMask = NSWindowStyleMask(1 << 11);
 pub static NSWindowFullScreenButton: NSWindowButton = NSWindowButton(7);
 
 pub static NSDockWindowLevel: NSWindowLevel = 20;
+
+pub static NSWindowSharingReadWrite: NSWindowSharingType = NSWindowSharingType(2);

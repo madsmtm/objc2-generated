@@ -122,7 +122,8 @@ unsafe impl RefEncode for MTLResourceOptions {
 }
 
 extern_protocol!(
-    pub unsafe trait MTLResource: NSObjectProtocol {
+    #[cfg(feature = "MTLAllocation")]
+    pub unsafe trait MTLResource: MTLAllocation {
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Retained<NSString>>;
 
@@ -165,5 +166,6 @@ extern_protocol!(
         fn isAliasable(&self) -> bool;
     }
 
+    #[cfg(feature = "MTLAllocation")]
     unsafe impl ProtocolType for dyn MTLResource {}
 );

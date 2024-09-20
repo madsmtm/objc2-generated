@@ -58,6 +58,7 @@ unsafe impl NSObjectProtocol for NEAppProxyFlow {}
 extern_methods!(
     unsafe impl NEAppProxyFlow {
         #[cfg(all(feature = "NWEndpoint", feature = "NWHostEndpoint", feature = "block2"))]
+        #[deprecated]
         #[method(openWithLocalEndpoint:completionHandler:)]
         pub unsafe fn openWithLocalEndpoint_completionHandler(
             &self,

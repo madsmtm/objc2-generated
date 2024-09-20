@@ -29,6 +29,8 @@ mod __SMLoginItem;
 #[cfg(feature = "SMAppService")]
 pub use self::__SMAppService::SMAppService;
 #[cfg(feature = "SMAppService")]
+pub use self::__SMAppService::SMAppServiceErrorDomain;
+#[cfg(feature = "SMAppService")]
 pub use self::__SMAppService::SMAppServiceStatus;
 #[cfg(feature = "SMErrors")]
 pub use self::__SMErrors::kSMErrorAlreadyRegistered;

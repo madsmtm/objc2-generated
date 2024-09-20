@@ -133,3 +133,14 @@ extern_methods!(
         );
     }
 );
+
+extern_methods!(
+    /// MultiFunctions
+    unsafe impl MLModelConfiguration {
+        #[method_id(@__retain_semantics Other functionName)]
+        pub unsafe fn functionName(&self) -> Option<Retained<NSString>>;
+
+        #[method(setFunctionName:)]
+        pub unsafe fn setFunctionName(&self, function_name: Option<&NSString>);
+    }
+);

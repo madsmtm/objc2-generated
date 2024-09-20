@@ -184,6 +184,8 @@ impl PHAssetCollectionSubtype {
     pub const SmartAlbumRAW: Self = Self(217);
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumCinematic")]
     pub const SmartAlbumCinematic: Self = Self(218);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumSpatial")]
+    pub const SmartAlbumSpatial: Self = Self(219);
     #[doc(alias = "PHAssetCollectionSubtypeAny")]
     pub const Any: Self = Self(NSIntegerMax as _);
 }
@@ -285,6 +287,8 @@ bitflags::bitflags! {
         const PhotoLive = 1<<3;
         #[doc(alias = "PHAssetMediaSubtypePhotoDepthEffect")]
         const PhotoDepthEffect = 1<<4;
+        #[doc(alias = "PHAssetMediaSubtypeSpatialMedia")]
+        const SpatialMedia = 1<<10;
         #[doc(alias = "PHAssetMediaSubtypeVideoStreamed")]
         const VideoStreamed = 1<<16;
         #[doc(alias = "PHAssetMediaSubtypeVideoHighFrameRate")]

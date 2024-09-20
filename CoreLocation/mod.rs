@@ -91,12 +91,17 @@ mod __CLPlacemark;
 #[cfg(feature = "CLRegion")]
 #[path = "CLRegion.rs"]
 mod __CLRegion;
+#[cfg(feature = "CLServiceSession")]
+#[path = "CLServiceSession.rs"]
+mod __CLServiceSession;
 #[cfg(feature = "CLVisit")]
 #[path = "CLVisit.rs"]
 mod __CLVisit;
 
 #[cfg(feature = "CLBackgroundActivitySession")]
 pub use self::__CLBackgroundActivitySession::CLBackgroundActivitySession;
+#[cfg(feature = "CLBackgroundActivitySession")]
+pub use self::__CLBackgroundActivitySession::CLBackgroundActivitySessionDiagnostic;
 #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
 pub use self::__CLBeaconIdentityCondition::CLBeaconIdentityCondition;
 #[cfg(feature = "CLBeaconIdentityCondition")]
@@ -225,5 +230,11 @@ pub use self::__CLRegion::CLProximity;
 pub use self::__CLRegion::CLRegion;
 #[cfg(feature = "CLRegion")]
 pub use self::__CLRegion::CLRegionState;
+#[cfg(feature = "CLServiceSession")]
+pub use self::__CLServiceSession::CLServiceSession;
+#[cfg(feature = "CLServiceSession")]
+pub use self::__CLServiceSession::CLServiceSessionAuthorizationRequirement;
+#[cfg(feature = "CLServiceSession")]
+pub use self::__CLServiceSession::CLServiceSessionDiagnostic;
 #[cfg(feature = "CLVisit")]
 pub use self::__CLVisit::CLVisit;

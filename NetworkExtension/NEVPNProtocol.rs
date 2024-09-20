@@ -113,6 +113,12 @@ extern_methods!(
 
         #[method(setEnforceRoutes:)]
         pub unsafe fn setEnforceRoutes(&self, enforce_routes: bool);
+
+        #[method_id(@__retain_semantics Other sliceUUID)]
+        pub unsafe fn sliceUUID(&self) -> Option<Retained<NSString>>;
+
+        #[method(setSliceUUID:)]
+        pub unsafe fn setSliceUUID(&self, slice_uuid: Option<&NSString>);
     }
 );
 

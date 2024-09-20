@@ -160,6 +160,12 @@ extern_methods!(
         #[method(setDefaultFormatterBehavior:)]
         pub unsafe fn setDefaultFormatterBehavior(behavior: NSNumberFormatterBehavior);
 
+        #[method(minimumGroupingDigits)]
+        pub unsafe fn minimumGroupingDigits(&self) -> NSInteger;
+
+        #[method(setMinimumGroupingDigits:)]
+        pub unsafe fn setMinimumGroupingDigits(&self, minimum_grouping_digits: NSInteger);
+
         #[method(numberStyle)]
         pub unsafe fn numberStyle(&self) -> NSNumberFormatterStyle;
 

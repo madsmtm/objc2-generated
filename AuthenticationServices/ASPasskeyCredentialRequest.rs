@@ -49,6 +49,36 @@ extern_methods!(
 
         #[cfg(all(
             feature = "ASAuthorizationPublicKeyCredentialConstants",
+            feature = "ASPasskeyAssertionCredentialExtensionInput",
+            feature = "ASPasskeyCredentialIdentity"
+        ))]
+        #[method_id(@__retain_semantics Init initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:assertionExtensionInput:)]
+        pub unsafe fn initWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms_assertionExtensionInput(
+            this: Allocated<Self>,
+            credential_identity: &ASPasskeyCredentialIdentity,
+            client_data_hash: &NSData,
+            user_verification_preference: &ASAuthorizationPublicKeyCredentialUserVerificationPreference,
+            supported_algorithms: &NSArray<NSNumber>,
+            assertion_extension_input: Option<&ASPasskeyAssertionCredentialExtensionInput>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "ASAuthorizationPublicKeyCredentialConstants",
+            feature = "ASPasskeyCredentialIdentity",
+            feature = "ASPasskeyRegistrationCredentialExtensionInput"
+        ))]
+        #[method_id(@__retain_semantics Init initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:registrationExtensionInput:)]
+        pub unsafe fn initWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms_registrationExtensionInput(
+            this: Allocated<Self>,
+            credential_identity: &ASPasskeyCredentialIdentity,
+            client_data_hash: &NSData,
+            user_verification_preference: &ASAuthorizationPublicKeyCredentialUserVerificationPreference,
+            supported_algorithms: &NSArray<NSNumber>,
+            registration_extension_input: Option<&ASPasskeyRegistrationCredentialExtensionInput>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "ASAuthorizationPublicKeyCredentialConstants",
             feature = "ASPasskeyCredentialIdentity"
         ))]
         #[method_id(@__retain_semantics Other requestWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:)]
@@ -77,6 +107,24 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other supportedAlgorithms)]
         pub unsafe fn supportedAlgorithms(&self) -> Retained<NSArray<NSNumber>>;
+
+        #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
+        #[method_id(@__retain_semantics Other excludedCredentials)]
+        pub unsafe fn excludedCredentials(
+            &self,
+        ) -> Option<Retained<NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor>>>;
+
+        #[cfg(feature = "ASPasskeyAssertionCredentialExtensionInput")]
+        #[method_id(@__retain_semantics Other assertionExtensionInput)]
+        pub unsafe fn assertionExtensionInput(
+            &self,
+        ) -> Option<Retained<ASPasskeyAssertionCredentialExtensionInput>>;
+
+        #[cfg(feature = "ASPasskeyRegistrationCredentialExtensionInput")]
+        #[method_id(@__retain_semantics Other registrationExtensionInput)]
+        pub unsafe fn registrationExtensionInput(
+            &self,
+        ) -> Option<Retained<ASPasskeyRegistrationCredentialExtensionInput>>;
     }
 );
 

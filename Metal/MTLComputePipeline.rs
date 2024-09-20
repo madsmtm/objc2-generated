@@ -178,6 +178,14 @@ extern_methods!(
 
         #[method(setMaxCallStackDepth:)]
         pub fn setMaxCallStackDepth(&self, max_call_stack_depth: NSUInteger);
+
+        #[cfg(feature = "MTLPipeline")]
+        #[method(shaderValidation)]
+        pub unsafe fn shaderValidation(&self) -> MTLShaderValidation;
+
+        #[cfg(feature = "MTLPipeline")]
+        #[method(setShaderValidation:)]
+        pub unsafe fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
     }
 );
 
@@ -245,19 +253,31 @@ extern_protocol!(
             functions: &NSArray<ProtocolObject<dyn MTLFunction>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLComputePipelineState>>, Retained<NSError>>;
 
-        #[cfg(all(feature = "MTLResource", feature = "MTLVisibleFunctionTable"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLVisibleFunctionTable"
+        ))]
         #[method_id(@__retain_semantics New newVisibleFunctionTableWithDescriptor:)]
         fn newVisibleFunctionTableWithDescriptor(
             &self,
             descriptor: &MTLVisibleFunctionTableDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTLVisibleFunctionTable>>>;
 
-        #[cfg(all(feature = "MTLIntersectionFunctionTable", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLIntersectionFunctionTable",
+            feature = "MTLResource"
+        ))]
         #[method_id(@__retain_semantics New newIntersectionFunctionTableWithDescriptor:)]
         fn newIntersectionFunctionTableWithDescriptor(
             &self,
             descriptor: &MTLIntersectionFunctionTableDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTLIntersectionFunctionTable>>>;
+
+        #[cfg(feature = "MTLPipeline")]
+        #[method(shaderValidation)]
+        unsafe fn shaderValidation(&self) -> MTLShaderValidation;
     }
 
     unsafe impl ProtocolType for dyn MTLComputePipelineState {}

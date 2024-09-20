@@ -168,6 +168,17 @@ extern_methods!(
             &self,
             trailing_bar_button_groups: &NSArray<UIBarButtonItemGroup>,
         );
+
+        #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
+        #[method_id(@__retain_semantics Other keyboardActionButtonItem)]
+        pub unsafe fn keyboardActionButtonItem(&self) -> Option<Retained<UIBarButtonItem>>;
+
+        #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
+        #[method(setKeyboardActionButtonItem:)]
+        pub unsafe fn setKeyboardActionButtonItem(
+            &self,
+            keyboard_action_button_item: Option<&UIBarButtonItem>,
+        );
     }
 );
 
@@ -520,6 +531,27 @@ extern_protocol!(
             &self,
             animator: &ProtocolObject<dyn UIEditMenuInteractionAnimating>,
         );
+
+        #[optional]
+        #[method(supportsAdaptiveImageGlyph)]
+        unsafe fn supportsAdaptiveImageGlyph(&self) -> bool;
+
+        #[optional]
+        #[method(setSupportsAdaptiveImageGlyph:)]
+        unsafe fn setSupportsAdaptiveImageGlyph(&self, supports_adaptive_image_glyph: bool);
+
+        #[cfg(feature = "NSAdaptiveImageGlyph")]
+        #[optional]
+        #[method(insertAdaptiveImageGlyph:replacementRange:)]
+        unsafe fn insertAdaptiveImageGlyph_replacementRange(
+            &self,
+            adaptive_image_glyph: &NSAdaptiveImageGlyph,
+            replacement_range: &UITextRange,
+        );
+
+        #[optional]
+        #[method(isEditable)]
+        unsafe fn isEditable(&self) -> bool;
     }
 
     #[cfg(feature = "UITextInputTraits")]

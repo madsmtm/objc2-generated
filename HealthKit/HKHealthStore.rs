@@ -315,3 +315,40 @@ extern_methods!(
         );
     }
 );
+
+extern_methods!(
+    /// HKWorkoutRelationship
+    unsafe impl HKHealthStore {
+        #[cfg(all(
+            feature = "HKObject",
+            feature = "HKSample",
+            feature = "HKWorkout",
+            feature = "HKWorkoutActivity",
+            feature = "block2"
+        ))]
+        #[method(relateWorkoutEffortSample:withWorkout:activity:completion:)]
+        pub unsafe fn relateWorkoutEffortSample_withWorkout_activity_completion(
+            &self,
+            sample: &HKSample,
+            workout: &HKWorkout,
+            activity: Option<&HKWorkoutActivity>,
+            completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+        );
+
+        #[cfg(all(
+            feature = "HKObject",
+            feature = "HKSample",
+            feature = "HKWorkout",
+            feature = "HKWorkoutActivity",
+            feature = "block2"
+        ))]
+        #[method(unrelateWorkoutEffortSample:fromWorkout:activity:completion:)]
+        pub unsafe fn unrelateWorkoutEffortSample_fromWorkout_activity_completion(
+            &self,
+            sample: &HKSample,
+            workout: &HKWorkout,
+            activity: Option<&HKWorkoutActivity>,
+            completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+        );
+    }
+);

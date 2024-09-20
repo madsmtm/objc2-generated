@@ -42,6 +42,8 @@ bitflags::bitflags! {
         const Password = 1;
         #[doc(alias = "ASCredentialIdentityTypesPasskey")]
         const Passkey = 1<<1;
+        #[doc(alias = "ASCredentialIdentityTypesOneTimeCode")]
+        const OneTimeCode = 1<<2;
     }
 }
 

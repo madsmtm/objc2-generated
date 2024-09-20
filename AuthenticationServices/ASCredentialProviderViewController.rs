@@ -47,6 +47,13 @@ extern_methods!(
             request_parameters: &ASPasskeyCredentialRequestParameters,
         );
 
+        #[cfg(feature = "ASCredentialServiceIdentifier")]
+        #[method(prepareOneTimeCodeCredentialListForServiceIdentifiers:)]
+        pub unsafe fn prepareOneTimeCodeCredentialListForServiceIdentifiers(
+            &self,
+            service_identifiers: &NSArray<ASCredentialServiceIdentifier>,
+        );
+
         #[cfg(feature = "ASPasswordCredentialIdentity")]
         #[deprecated]
         #[method(provideCredentialWithoutUserInteractionForIdentity:)]
@@ -85,6 +92,13 @@ extern_methods!(
         pub unsafe fn prepareInterfaceForPasskeyRegistration(
             &self,
             registration_request: &ProtocolObject<dyn ASCredentialRequest>,
+        );
+
+        #[cfg(feature = "ASPasskeyCredentialRequest")]
+        #[method(performPasskeyRegistrationWithoutUserInteractionIfPossible:)]
+        pub unsafe fn performPasskeyRegistrationWithoutUserInteractionIfPossible(
+            &self,
+            registration_request: &ASPasskeyCredentialRequest,
         );
     }
 );

@@ -42,6 +42,19 @@ extern_methods!(
             credential_id: &NSData,
         ) -> Retained<Self>;
 
+        #[cfg(feature = "ASPasskeyAssertionCredentialExtensionOutput")]
+        #[method_id(@__retain_semantics Init initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:extensionOutput:)]
+        pub unsafe fn initWithUserHandle_relyingParty_signature_clientDataHash_authenticatorData_credentialID_extensionOutput(
+            this: Allocated<Self>,
+            user_handle: &NSData,
+            relying_party: &NSString,
+            signature: &NSData,
+            client_data_hash: &NSData,
+            authenticator_data: &NSData,
+            credential_id: &NSData,
+            extension_output: Option<&ASPasskeyAssertionCredentialExtensionOutput>,
+        ) -> Retained<Self>;
+
         #[method_id(@__retain_semantics Other credentialWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:)]
         pub unsafe fn credentialWithUserHandle_relyingParty_signature_clientDataHash_authenticatorData_credentialID(
             user_handle: &NSData,
@@ -69,6 +82,19 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other credentialID)]
         pub unsafe fn credentialID(&self) -> Retained<NSData>;
+
+        #[cfg(feature = "ASPasskeyAssertionCredentialExtensionOutput")]
+        #[method_id(@__retain_semantics Other extensionOutput)]
+        pub unsafe fn extensionOutput(
+            &self,
+        ) -> Option<Retained<ASPasskeyAssertionCredentialExtensionOutput>>;
+
+        #[cfg(feature = "ASPasskeyAssertionCredentialExtensionOutput")]
+        #[method(setExtensionOutput:)]
+        pub unsafe fn setExtensionOutput(
+            &self,
+            extension_output: Option<&ASPasskeyAssertionCredentialExtensionOutput>,
+        );
     }
 );
 

@@ -19,6 +19,8 @@ impl UIPasteControlDisplayMode {
     pub const IconOnly: Self = Self(1);
     #[doc(alias = "UIPasteControlDisplayModeLabelOnly")]
     pub const LabelOnly: Self = Self(2);
+    #[doc(alias = "UIPasteControlDisplayModeArrowAndLabel")]
+    pub const ArrowAndLabel: Self = Self(3);
 }
 
 unsafe impl Encode for UIPasteControlDisplayMode {
@@ -66,6 +68,14 @@ extern_methods!(
 
         #[method(setCornerRadius:)]
         pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
+
+        #[cfg(feature = "UIGeometry")]
+        #[method(imagePlacement)]
+        pub unsafe fn imagePlacement(&self) -> NSDirectionalRectEdge;
+
+        #[cfg(feature = "UIGeometry")]
+        #[method(setImagePlacement:)]
+        pub unsafe fn setImagePlacement(&self, image_placement: NSDirectionalRectEdge);
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other baseForegroundColor)]

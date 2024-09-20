@@ -35,6 +35,10 @@ impl VZErrorCode {
     pub const VZErrorInstallationFailed: Self = Self(10007);
     pub const VZErrorNetworkBlockDeviceNegotiationFailed: Self = Self(20001);
     pub const VZErrorNetworkBlockDeviceDisconnected: Self = Self(20002);
+    pub const VZErrorUSBControllerNotFound: Self = Self(30001);
+    pub const VZErrorDeviceAlreadyAttached: Self = Self(30002);
+    pub const VZErrorDeviceInitializationFailure: Self = Self(30003);
+    pub const VZErrorDeviceNotFound: Self = Self(30004);
 }
 
 unsafe impl Encode for VZErrorCode {

@@ -373,7 +373,7 @@ extern_methods!(
 
         #[deprecated = "This method will be deprecated in a future release. Use NSApp.activate instead."]
         #[method(activateIgnoringOtherApps:)]
-        pub fn activateIgnoringOtherApps(&self, flag: bool);
+        pub fn activateIgnoringOtherApps(&self, ignore_other_apps: bool);
 
         #[method(activate)]
         pub unsafe fn activate(&self);
@@ -592,7 +592,7 @@ extern_methods!(
 
         #[cfg(feature = "NSEvent")]
         #[method(postEvent:atStart:)]
-        pub fn postEvent_atStart(&self, event: &NSEvent, flag: bool);
+        pub fn postEvent_atStart(&self, event: &NSEvent, at_start: bool);
 
         #[cfg(feature = "NSEvent")]
         #[method_id(@__retain_semantics Other currentEvent)]
@@ -833,7 +833,7 @@ extern_protocol!(
         unsafe fn applicationShouldHandleReopen_hasVisibleWindows(
             &self,
             sender: &NSApplication,
-            flag: bool,
+            has_visible_windows: bool,
         ) -> bool;
 
         #[cfg(all(feature = "NSMenu", feature = "NSResponder"))]
@@ -1374,7 +1374,7 @@ extern_methods!(
         pub unsafe fn makeWindowsPerform_inOrder(
             &self,
             selector: Sel,
-            flag: bool,
+            in_order: bool,
         ) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "NSGraphicsContext")]

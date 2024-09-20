@@ -133,6 +133,18 @@ extern_methods!(
         pub unsafe fn predicateForObjectsAssociatedWithElectrocardiogram(
             electrocardiogram: &HKElectrocardiogram,
         ) -> Retained<NSPredicate>;
+
+        #[cfg(all(
+            feature = "HKObject",
+            feature = "HKSample",
+            feature = "HKWorkout",
+            feature = "HKWorkoutActivity"
+        ))]
+        #[method_id(@__retain_semantics Other predicateForWorkoutEffortSamplesRelatedToWorkout:activity:)]
+        pub unsafe fn predicateForWorkoutEffortSamplesRelatedToWorkout_activity(
+            workout: &HKWorkout,
+            activity: Option<&HKWorkoutActivity>,
+        ) -> Retained<NSPredicate>;
     }
 );
 
@@ -208,7 +220,7 @@ extern_methods!(
         ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "HKQuantity")]
-        #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity:"]
+        #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount"]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:totalSwimmingStrokeCount:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_totalSwimmingStrokeCount(
             operator_type: NSPredicateOperatorType,
@@ -216,7 +228,7 @@ extern_methods!(
         ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "HKQuantity")]
-        #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount"]
+        #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierFlightsClimbed"]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:totalFlightsClimbed:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_totalFlightsClimbed(
             operator_type: NSPredicateOperatorType,
@@ -376,6 +388,35 @@ extern_methods!(
         #[method_id(@__retain_semantics Other predicateForVerifiableClinicalRecordsWithRelevantDateWithinDateInterval:)]
         pub unsafe fn predicateForVerifiableClinicalRecordsWithRelevantDateWithinDateInterval(
             date_interval: &NSDateInterval,
+        ) -> Retained<NSPredicate>;
+    }
+);
+
+extern_methods!(
+    /// HKStateOfMind
+    unsafe impl HKQuery {
+        #[method_id(@__retain_semantics Other predicateForStatesOfMindWithValence:operatorType:)]
+        pub unsafe fn predicateForStatesOfMindWithValence_operatorType(
+            valence: c_double,
+            operator_type: NSPredicateOperatorType,
+        ) -> Retained<NSPredicate>;
+
+        #[cfg(feature = "HKStateOfMind")]
+        #[method_id(@__retain_semantics Other predicateForStatesOfMindWithKind:)]
+        pub unsafe fn predicateForStatesOfMindWithKind(
+            kind: HKStateOfMindKind,
+        ) -> Retained<NSPredicate>;
+
+        #[cfg(feature = "HKStateOfMind")]
+        #[method_id(@__retain_semantics Other predicateForStatesOfMindWithLabel:)]
+        pub unsafe fn predicateForStatesOfMindWithLabel(
+            label: HKStateOfMindLabel,
+        ) -> Retained<NSPredicate>;
+
+        #[cfg(feature = "HKStateOfMind")]
+        #[method_id(@__retain_semantics Other predicateForStatesOfMindWithAssociation:)]
+        pub unsafe fn predicateForStatesOfMindWithAssociation(
+            association: HKStateOfMindAssociation,
         ) -> Retained<NSPredicate>;
     }
 );

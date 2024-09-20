@@ -28,6 +28,10 @@ unsafe impl RefEncode for SMAppServiceStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+extern "C" {
+    pub static SMAppServiceErrorDomain: &'static NSString;
+}
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SMAppService;

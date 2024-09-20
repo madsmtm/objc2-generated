@@ -6,6 +6,10 @@ use crate::*;
 
 pub static NSUndoCloseGroupingRunLoopOrdering: NSUInteger = 350000;
 
+// NS_TYPED_EXTENSIBLE_ENUM
+#[cfg(feature = "NSString")]
+pub type NSUndoManagerUserInfoKey = NSString;
+
 extern "C" {
     #[cfg(feature = "NSString")]
     pub static NSUndoManagerGroupIsDiscardableKey: &'static NSString;
@@ -135,6 +139,28 @@ extern_methods!(
         #[cfg(feature = "NSString")]
         #[method(setActionName:)]
         pub unsafe fn setActionName(&self, action_name: &NSString);
+
+        #[cfg(feature = "NSString")]
+        #[method_id(@__retain_semantics Other undoActionUserInfoValueForKey:)]
+        pub unsafe fn undoActionUserInfoValueForKey(
+            &self,
+            key: &NSUndoManagerUserInfoKey,
+        ) -> Option<Retained<AnyObject>>;
+
+        #[cfg(feature = "NSString")]
+        #[method_id(@__retain_semantics Other redoActionUserInfoValueForKey:)]
+        pub unsafe fn redoActionUserInfoValueForKey(
+            &self,
+            key: &NSUndoManagerUserInfoKey,
+        ) -> Option<Retained<AnyObject>>;
+
+        #[cfg(feature = "NSString")]
+        #[method(setActionUserInfoValue:forKey:)]
+        pub unsafe fn setActionUserInfoValue_forKey(
+            &self,
+            info: Option<&AnyObject>,
+            key: &NSUndoManagerUserInfoKey,
+        );
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other undoMenuItemTitle)]

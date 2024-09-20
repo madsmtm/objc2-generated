@@ -6,13 +6,17 @@ use objc2_foundation::*;
 use crate::*;
 
 // NS_CLOSED_ENUM
+#[deprecated = "Use Product.PromotionInfo.Visibility"]
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum SKProductStorePromotionVisibility {
+    #[deprecated = "Use Product.PromotionInfo.Visibility"]
     #[doc(alias = "SKProductStorePromotionVisibilityDefault")]
     Default = 0,
+    #[deprecated = "Use Product.PromotionInfo.Visibility"]
     #[doc(alias = "SKProductStorePromotionVisibilityShow")]
     Show = 1,
+    #[deprecated = "Use Product.PromotionInfo.Visibility"]
     #[doc(alias = "SKProductStorePromotionVisibilityHide")]
     Hide = 2,
 }
@@ -27,6 +31,7 @@ unsafe impl RefEncode for SKProductStorePromotionVisibility {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use Product.PromotionInfo"]
     pub struct SKProductStorePromotionController;
 
     unsafe impl ClassType for SKProductStorePromotionController {
@@ -38,10 +43,12 @@ unsafe impl NSObjectProtocol for SKProductStorePromotionController {}
 
 extern_methods!(
     unsafe impl SKProductStorePromotionController {
+        #[deprecated = "Use Product.PromotionInfo"]
         #[method_id(@__retain_semantics Other defaultController)]
         pub unsafe fn defaultController() -> Retained<Self>;
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
+        #[deprecated = "Get visibility from Product.PromotionInfo.currentOrder"]
         #[method(fetchStorePromotionVisibilityForProduct:completionHandler:)]
         pub unsafe fn fetchStorePromotionVisibilityForProduct_completionHandler(
             &self,
@@ -52,6 +59,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
+        #[deprecated = "Use Product.PromotionInfo.updateProductVisibility(_:for:)"]
         #[method(updateStorePromotionVisibility:forProduct:completionHandler:)]
         pub unsafe fn updateStorePromotionVisibility_forProduct_completionHandler(
             &self,
@@ -61,6 +69,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
+        #[deprecated = "Use Product.PromotionInfo.currentOrder"]
         #[method(fetchStorePromotionOrderWithCompletionHandler:)]
         pub unsafe fn fetchStorePromotionOrderWithCompletionHandler(
             &self,
@@ -70,6 +79,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
+        #[deprecated = "Use Product.PromotionInfo.updateProductOrder(byID:)"]
         #[method(updateStorePromotionOrder:completionHandler:)]
         pub unsafe fn updateStorePromotionOrder_completionHandler(
             &self,

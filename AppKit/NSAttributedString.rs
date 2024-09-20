@@ -82,31 +82,15 @@ extern "C" {
 }
 
 extern "C" {
-    pub static NSCursorAttributeName: &'static NSAttributedStringKey;
+    pub static NSTextHighlightStyleAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    pub static NSToolTipAttributeName: &'static NSAttributedStringKey;
+    pub static NSTextHighlightColorSchemeAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    pub static NSMarkedClauseSegmentAttributeName: &'static NSAttributedStringKey;
-}
-
-extern "C" {
-    pub static NSTextAlternativesAttributeName: &'static NSAttributedStringKey;
-}
-
-extern "C" {
-    pub static NSSpellingStateAttributeName: &'static NSAttributedStringKey;
-}
-
-extern "C" {
-    pub static NSSuperscriptAttributeName: &'static NSAttributedStringKey;
-}
-
-extern "C" {
-    pub static NSGlyphInfoAttributeName: &'static NSAttributedStringKey;
+    pub static NSAdaptiveImageGlyphAttributeName: &'static NSAttributedStringKey;
 }
 
 // NS_OPTIONS
@@ -170,23 +154,38 @@ extern "C" {
     pub static NSTextEffectLetterpressStyle: &'static NSTextEffectStyle;
 }
 
-// NS_ENUM
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct NSSpellingState(pub NSInteger);
-impl NSSpellingState {
-    #[doc(alias = "NSSpellingStateSpellingFlag")]
-    pub const SpellingFlag: Self = Self(1 << 0);
-    #[doc(alias = "NSSpellingStateGrammarFlag")]
-    pub const GrammarFlag: Self = Self(1 << 1);
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type NSTextHighlightStyle = NSString;
+
+extern "C" {
+    pub static NSTextHighlightStyleDefault: &'static NSTextHighlightStyle;
 }
 
-unsafe impl Encode for NSSpellingState {
-    const ENCODING: Encoding = NSInteger::ENCODING;
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type NSTextHighlightColorScheme = NSString;
+
+extern "C" {
+    pub static NSTextHighlightColorSchemeDefault: &'static NSTextHighlightColorScheme;
 }
 
-unsafe impl RefEncode for NSSpellingState {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+extern "C" {
+    pub static NSTextHighlightColorSchemePurple: &'static NSTextHighlightColorScheme;
+}
+
+extern "C" {
+    pub static NSTextHighlightColorSchemePink: &'static NSTextHighlightColorScheme;
+}
+
+extern "C" {
+    pub static NSTextHighlightColorSchemeOrange: &'static NSTextHighlightColorScheme;
+}
+
+extern "C" {
+    pub static NSTextHighlightColorSchemeMint: &'static NSTextHighlightColorScheme;
+}
+
+extern "C" {
+    pub static NSTextHighlightColorSchemeBlue: &'static NSTextHighlightColorScheme;
 }
 
 extern_category!(
@@ -194,15 +193,6 @@ extern_category!(
     pub unsafe trait NSAttributedStringAttributeFixing {
         #[method(fixAttributesInRange:)]
         unsafe fn fixAttributesInRange(&self, range: NSRange);
-
-        #[method(fixFontAttributeInRange:)]
-        unsafe fn fixFontAttributeInRange(&self, range: NSRange);
-
-        #[method(fixParagraphStyleAttributeInRange:)]
-        unsafe fn fixParagraphStyleAttributeInRange(&self, range: NSRange);
-
-        #[method(fixAttachmentAttributeInRange:)]
-        unsafe fn fixAttachmentAttributeInRange(&self, range: NSRange);
     }
 
     unsafe impl NSAttributedStringAttributeFixing for NSMutableAttributedString {}
@@ -225,30 +215,6 @@ extern "C" {
 
 extern "C" {
     pub static NSHTMLTextDocumentType: &'static NSAttributedStringDocumentType;
-}
-
-extern "C" {
-    pub static NSMacSimpleTextDocumentType: &'static NSAttributedStringDocumentType;
-}
-
-extern "C" {
-    pub static NSDocFormatTextDocumentType: &'static NSAttributedStringDocumentType;
-}
-
-extern "C" {
-    pub static NSWordMLTextDocumentType: &'static NSAttributedStringDocumentType;
-}
-
-extern "C" {
-    pub static NSWebArchiveTextDocumentType: &'static NSAttributedStringDocumentType;
-}
-
-extern "C" {
-    pub static NSOfficeOpenXMLTextDocumentType: &'static NSAttributedStringDocumentType;
-}
-
-extern "C" {
-    pub static NSOpenDocumentTextDocumentType: &'static NSAttributedStringDocumentType;
 }
 
 // NS_TYPED_ENUM
@@ -287,11 +253,276 @@ extern "C" {
 }
 
 extern "C" {
-    pub static NSConvertedDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+    pub static NSCharacterEncodingDocumentAttribute:
+        &'static NSAttributedStringDocumentAttributeKey;
+}
+
+extern "C" {
+    pub static NSDefaultAttributesDocumentAttribute:
+        &'static NSAttributedStringDocumentAttributeKey;
+}
+
+extern "C" {
+    pub static NSPaperSizeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
+
+extern "C" {
+    pub static NSViewSizeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
+
+extern "C" {
+    pub static NSViewZoomDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
+
+extern "C" {
+    pub static NSViewModeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
+
+extern "C" {
+    pub static NSDefaultFontExcludedDocumentAttribute:
+        &'static NSAttributedStringDocumentAttributeKey;
+}
+
+extern "C" {
+    pub static NSReadOnlyDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
+
+extern "C" {
+    pub static NSBackgroundColorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
+
+extern "C" {
+    pub static NSHyphenationFactorDocumentAttribute:
+        &'static NSAttributedStringDocumentAttributeKey;
+}
+
+extern "C" {
+    pub static NSDefaultTabIntervalDocumentAttribute:
+        &'static NSAttributedStringDocumentAttributeKey;
+}
+
+extern "C" {
+    pub static NSTextLayoutSectionsAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
+
+extern "C" {
+    pub static NSTextScalingDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
+
+extern "C" {
+    pub static NSSourceTextScalingDocumentAttribute:
+        &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
     pub static NSCocoaVersionDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type NSAttributedStringDocumentReadingOptionKey = NSString;
+
+extern "C" {
+    pub static NSDocumentTypeDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
+}
+
+extern "C" {
+    pub static NSDefaultAttributesDocumentOption:
+        &'static NSAttributedStringDocumentReadingOptionKey;
+}
+
+extern "C" {
+    pub static NSCharacterEncodingDocumentOption:
+        &'static NSAttributedStringDocumentReadingOptionKey;
+}
+
+extern "C" {
+    pub static NSTargetTextScalingDocumentOption:
+        &'static NSAttributedStringDocumentReadingOptionKey;
+}
+
+extern "C" {
+    pub static NSSourceTextScalingDocumentOption:
+        &'static NSAttributedStringDocumentReadingOptionKey;
+}
+
+extern_category!(
+    /// Category on [`NSAttributedString`].
+    pub unsafe trait NSAttributedStringDocumentFormats {
+        #[method_id(@__retain_semantics Init initWithURL:options:documentAttributes:error:_)]
+        unsafe fn initWithURL_options_documentAttributes_error(
+            this: Allocated<Self>,
+            url: &NSURL,
+            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
+            dict: Option<
+                &mut Option<
+                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
+                >,
+            >,
+        ) -> Result<Retained<Self>, Retained<NSError>>;
+
+        #[method_id(@__retain_semantics Init initWithData:options:documentAttributes:error:_)]
+        unsafe fn initWithData_options_documentAttributes_error(
+            this: Allocated<Self>,
+            data: &NSData,
+            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
+            dict: Option<
+                &mut Option<
+                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
+                >,
+            >,
+        ) -> Result<Retained<Self>, Retained<NSError>>;
+
+        #[method_id(@__retain_semantics Other dataFromRange:documentAttributes:error:_)]
+        unsafe fn dataFromRange_documentAttributes_error(
+            &self,
+            range: NSRange,
+            dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
+        ) -> Result<Retained<NSData>, Retained<NSError>>;
+
+        #[method_id(@__retain_semantics Other fileWrapperFromRange:documentAttributes:error:_)]
+        unsafe fn fileWrapperFromRange_documentAttributes_error(
+            &self,
+            range: NSRange,
+            dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
+        ) -> Result<Retained<NSFileWrapper>, Retained<NSError>>;
+    }
+
+    unsafe impl NSAttributedStringDocumentFormats for NSAttributedString {}
+);
+
+extern_category!(
+    /// Category on [`NSMutableAttributedString`].
+    pub unsafe trait NSMutableAttributedStringDocumentFormats {
+        #[method(readFromURL:options:documentAttributes:error:_)]
+        unsafe fn readFromURL_options_documentAttributes_error(
+            &self,
+            url: &NSURL,
+            opts: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
+            dict: Option<
+                &mut Option<
+                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
+                >,
+            >,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[method(readFromData:options:documentAttributes:error:_)]
+        unsafe fn readFromData_options_documentAttributes_error(
+            &self,
+            data: &NSData,
+            opts: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
+            dict: Option<
+                &mut Option<
+                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
+                >,
+            >,
+        ) -> Result<(), Retained<NSError>>;
+    }
+
+    unsafe impl NSMutableAttributedStringDocumentFormats for NSMutableAttributedString {}
+);
+
+extern_category!(
+    /// Category on [`NSAttributedString`].
+    pub unsafe trait NSAttributedStringKitAdditions {
+        #[method(containsAttachmentsInRange:)]
+        unsafe fn containsAttachmentsInRange(&self, range: NSRange) -> bool;
+
+        #[method(prefersRTFDInRange:)]
+        unsafe fn prefersRTFDInRange(&self, range: NSRange) -> bool;
+    }
+
+    unsafe impl NSAttributedStringKitAdditions for NSAttributedString {}
+);
+
+extern "C" {
+    pub static NSCursorAttributeName: &'static NSAttributedStringKey;
+}
+
+extern "C" {
+    pub static NSToolTipAttributeName: &'static NSAttributedStringKey;
+}
+
+extern "C" {
+    pub static NSMarkedClauseSegmentAttributeName: &'static NSAttributedStringKey;
+}
+
+extern "C" {
+    pub static NSTextAlternativesAttributeName: &'static NSAttributedStringKey;
+}
+
+extern "C" {
+    pub static NSSpellingStateAttributeName: &'static NSAttributedStringKey;
+}
+
+extern "C" {
+    pub static NSSuperscriptAttributeName: &'static NSAttributedStringKey;
+}
+
+extern "C" {
+    pub static NSGlyphInfoAttributeName: &'static NSAttributedStringKey;
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSpellingState(pub NSInteger);
+impl NSSpellingState {
+    #[doc(alias = "NSSpellingStateSpellingFlag")]
+    pub const SpellingFlag: Self = Self(1 << 0);
+    #[doc(alias = "NSSpellingStateGrammarFlag")]
+    pub const GrammarFlag: Self = Self(1 << 1);
+}
+
+unsafe impl Encode for NSSpellingState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSSpellingState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_category!(
+    /// Category on [`NSMutableAttributedString`].
+    pub unsafe trait NSAttributedStringAppKitAttributeFixing {
+        #[method(fixFontAttributeInRange:)]
+        unsafe fn fixFontAttributeInRange(&self, range: NSRange);
+
+        #[method(fixParagraphStyleAttributeInRange:)]
+        unsafe fn fixParagraphStyleAttributeInRange(&self, range: NSRange);
+
+        #[method(fixAttachmentAttributeInRange:)]
+        unsafe fn fixAttachmentAttributeInRange(&self, range: NSRange);
+    }
+
+    unsafe impl NSAttributedStringAppKitAttributeFixing for NSMutableAttributedString {}
+);
+
+extern "C" {
+    pub static NSMacSimpleTextDocumentType: &'static NSAttributedStringDocumentType;
+}
+
+extern "C" {
+    pub static NSDocFormatTextDocumentType: &'static NSAttributedStringDocumentType;
+}
+
+extern "C" {
+    pub static NSWordMLTextDocumentType: &'static NSAttributedStringDocumentType;
+}
+
+extern "C" {
+    pub static NSWebArchiveTextDocumentType: &'static NSAttributedStringDocumentType;
+}
+
+extern "C" {
+    pub static NSOfficeOpenXMLTextDocumentType: &'static NSAttributedStringDocumentType;
+}
+
+extern "C" {
+    pub static NSOpenDocumentTextDocumentType: &'static NSAttributedStringDocumentType;
+}
+
+extern "C" {
+    pub static NSConvertedDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
@@ -351,17 +582,15 @@ extern "C" {
 }
 
 extern "C" {
-    pub static NSCharacterEncodingDocumentAttribute:
-        &'static NSAttributedStringDocumentAttributeKey;
+    pub static NSExcludedElementsDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
-    pub static NSDefaultAttributesDocumentAttribute:
-        &'static NSAttributedStringDocumentAttributeKey;
+    pub static NSTextEncodingNameDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
-    pub static NSPaperSizeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+    pub static NSPrefixSpacesDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
@@ -378,83 +607,6 @@ extern "C" {
 
 extern "C" {
     pub static NSBottomMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
-}
-
-extern "C" {
-    pub static NSViewSizeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
-}
-
-extern "C" {
-    pub static NSViewZoomDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
-}
-
-extern "C" {
-    pub static NSViewModeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
-}
-
-extern "C" {
-    pub static NSReadOnlyDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
-}
-
-extern "C" {
-    pub static NSBackgroundColorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
-}
-
-extern "C" {
-    pub static NSHyphenationFactorDocumentAttribute:
-        &'static NSAttributedStringDocumentAttributeKey;
-}
-
-extern "C" {
-    pub static NSDefaultTabIntervalDocumentAttribute:
-        &'static NSAttributedStringDocumentAttributeKey;
-}
-
-extern "C" {
-    pub static NSTextLayoutSectionsAttribute: &'static NSAttributedStringDocumentAttributeKey;
-}
-
-extern "C" {
-    pub static NSExcludedElementsDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
-}
-
-extern "C" {
-    pub static NSTextEncodingNameDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
-}
-
-extern "C" {
-    pub static NSPrefixSpacesDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
-}
-
-extern "C" {
-    pub static NSDefaultFontExcludedDocumentAttribute:
-        &'static NSAttributedStringDocumentAttributeKey;
-}
-
-extern "C" {
-    pub static NSTextScalingDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
-}
-
-extern "C" {
-    pub static NSSourceTextScalingDocumentAttribute:
-        &'static NSAttributedStringDocumentAttributeKey;
-}
-
-// NS_TYPED_EXTENSIBLE_ENUM
-pub type NSAttributedStringDocumentReadingOptionKey = NSString;
-
-extern "C" {
-    pub static NSDocumentTypeDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
-}
-
-extern "C" {
-    pub static NSDefaultAttributesDocumentOption:
-        &'static NSAttributedStringDocumentReadingOptionKey;
-}
-
-extern "C" {
-    pub static NSCharacterEncodingDocumentOption:
-        &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
 extern "C" {
@@ -488,57 +640,9 @@ extern "C" {
     pub static NSFileTypeDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
-extern "C" {
-    pub static NSTargetTextScalingDocumentOption:
-        &'static NSAttributedStringDocumentReadingOptionKey;
-}
-
-extern "C" {
-    pub static NSSourceTextScalingDocumentOption:
-        &'static NSAttributedStringDocumentReadingOptionKey;
-}
-
 extern_category!(
     /// Category on [`NSAttributedString`].
-    pub unsafe trait NSAttributedStringDocumentFormats {
-        #[method_id(@__retain_semantics Init initWithURL:options:documentAttributes:error:_)]
-        unsafe fn initWithURL_options_documentAttributes_error(
-            this: Allocated<Self>,
-            url: &NSURL,
-            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
-            dict: Option<
-                &mut Option<
-                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
-                >,
-            >,
-        ) -> Result<Retained<Self>, Retained<NSError>>;
-
-        #[method_id(@__retain_semantics Init initWithData:options:documentAttributes:error:_)]
-        unsafe fn initWithData_options_documentAttributes_error(
-            this: Allocated<Self>,
-            data: &NSData,
-            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
-            dict: Option<
-                &mut Option<
-                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
-                >,
-            >,
-        ) -> Result<Retained<Self>, Retained<NSError>>;
-
-        #[method_id(@__retain_semantics Other dataFromRange:documentAttributes:error:_)]
-        unsafe fn dataFromRange_documentAttributes_error(
-            &self,
-            range: NSRange,
-            dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
-        ) -> Result<Retained<NSData>, Retained<NSError>>;
-
-        #[method_id(@__retain_semantics Other fileWrapperFromRange:documentAttributes:error:_)]
-        unsafe fn fileWrapperFromRange_documentAttributes_error(
-            &self,
-            range: NSRange,
-            dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
-        ) -> Result<Retained<NSFileWrapper>, Retained<NSError>>;
-
+    pub unsafe trait NSAttributedStringAppKitDocumentFormats {
         #[method_id(@__retain_semantics Init initWithRTF:documentAttributes:)]
         unsafe fn initWithRTF_documentAttributes(
             this: Allocated<Self>,
@@ -647,43 +751,12 @@ extern_category!(
         ) -> Option<Retained<NSData>>;
     }
 
-    unsafe impl NSAttributedStringDocumentFormats for NSAttributedString {}
-);
-
-extern_category!(
-    /// Category on [`NSMutableAttributedString`].
-    pub unsafe trait NSMutableAttributedStringDocumentFormats {
-        #[method(readFromURL:options:documentAttributes:error:_)]
-        unsafe fn readFromURL_options_documentAttributes_error(
-            &self,
-            url: &NSURL,
-            opts: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
-            dict: Option<
-                &mut Option<
-                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
-                >,
-            >,
-        ) -> Result<(), Retained<NSError>>;
-
-        #[method(readFromData:options:documentAttributes:error:_)]
-        unsafe fn readFromData_options_documentAttributes_error(
-            &self,
-            data: &NSData,
-            opts: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
-            dict: Option<
-                &mut Option<
-                    Retained<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>,
-                >,
-            >,
-        ) -> Result<(), Retained<NSError>>;
-    }
-
-    unsafe impl NSMutableAttributedStringDocumentFormats for NSMutableAttributedString {}
+    unsafe impl NSAttributedStringAppKitDocumentFormats for NSAttributedString {}
 );
 
 extern_category!(
     /// Category on [`NSAttributedString`].
-    pub unsafe trait NSAttributedStringKitAdditions {
+    pub unsafe trait NSAttributedStringAppKitAdditions {
         #[method_id(@__retain_semantics Other fontAttributesInRange:)]
         unsafe fn fontAttributesInRange(
             &self,
@@ -695,9 +768,6 @@ extern_category!(
             &self,
             range: NSRange,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
-
-        #[method(containsAttachmentsInRange:)]
-        unsafe fn containsAttachmentsInRange(&self, range: NSRange) -> bool;
 
         #[method(lineBreakBeforeIndex:withinRange:)]
         unsafe fn lineBreakBeforeIndex_withinRange(
@@ -756,7 +826,7 @@ extern_category!(
         ) -> NSInteger;
     }
 
-    unsafe impl NSAttributedStringKitAdditions for NSAttributedString {}
+    unsafe impl NSAttributedStringAppKitAdditions for NSAttributedString {}
 );
 
 extern_category!(
@@ -780,7 +850,7 @@ unsafe impl NSPasteboardWriting for NSAttributedString {}
 
 extern_category!(
     /// Category on [`NSMutableAttributedString`].
-    pub unsafe trait NSMutableAttributedStringKitAdditions {
+    pub unsafe trait NSMutableAttributedStringAppKitAdditions {
         #[method(superscriptRange:)]
         unsafe fn superscriptRange(&self, range: NSRange);
 
@@ -807,7 +877,7 @@ extern_category!(
         );
     }
 
-    unsafe impl NSMutableAttributedStringKitAdditions for NSMutableAttributedString {}
+    unsafe impl NSMutableAttributedStringAppKitAdditions for NSMutableAttributedString {}
 );
 
 pub static NSUnderlinePatternSolid: NSUnderlineStyle =

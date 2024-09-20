@@ -95,10 +95,6 @@ extern_methods!(
         #[method(disconnect)]
         pub unsafe fn disconnect(&self);
 
-        #[cfg(feature = "GKVoiceChat")]
-        #[method_id(@__retain_semantics Other voiceChatWithName:)]
-        pub unsafe fn voiceChatWithName(&self, name: &NSString) -> Option<Retained<GKVoiceChat>>;
-
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         #[method(chooseBestHostingPlayerWithCompletionHandler:)]
         pub unsafe fn chooseBestHostingPlayerWithCompletionHandler(
@@ -112,6 +108,11 @@ extern_methods!(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut GKMatch, *mut NSError)>>,
         );
+
+        #[cfg(feature = "GKVoiceChat")]
+        #[deprecated = "No longer supported"]
+        #[method_id(@__retain_semantics Other voiceChatWithName:)]
+        pub unsafe fn voiceChatWithName(&self, name: &NSString) -> Option<Retained<GKVoiceChat>>;
     }
 );
 

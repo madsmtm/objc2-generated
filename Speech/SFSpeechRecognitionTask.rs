@@ -113,6 +113,14 @@ extern_protocol!(
             task: &SFSpeechRecognitionTask,
             successfully: bool,
         );
+
+        #[optional]
+        #[method(speechRecognitionTask:didProcessAudioDuration:)]
+        unsafe fn speechRecognitionTask_didProcessAudioDuration(
+            &self,
+            task: &SFSpeechRecognitionTask,
+            duration: NSTimeInterval,
+        );
     }
 
     unsafe impl ProtocolType for dyn SFSpeechRecognitionTaskDelegate {}

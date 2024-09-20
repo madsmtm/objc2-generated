@@ -31,6 +31,7 @@ impl HKErrorCode {
     pub const HKErrorWorkoutActivityNotAllowed: Self = Self(12);
     pub const HKErrorDataSizeExceeded: Self = Self(13);
     pub const HKErrorBackgroundWorkoutSessionNotAllowed: Self = Self(14);
+    pub const HKErrorNotPermissibleForGuestUserMode: Self = Self(15);
 }
 
 unsafe impl Encode for HKErrorCode {

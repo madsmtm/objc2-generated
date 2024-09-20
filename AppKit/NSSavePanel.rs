@@ -2,6 +2,9 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-uniform-type-identifiers")]
+#[cfg(target_vendor = "apple")]
+use objc2_uniform_type_identifiers::*;
 
 use crate::*;
 
@@ -108,6 +111,16 @@ extern_methods!(
         #[method(setAllowsOtherFileTypes:)]
         pub unsafe fn setAllowsOtherFileTypes(&self, allows_other_file_types: bool);
 
+        #[cfg(feature = "objc2-uniform-type-identifiers")]
+        #[cfg(target_vendor = "apple")]
+        #[method_id(@__retain_semantics Other currentContentType)]
+        pub unsafe fn currentContentType(&self) -> Option<Retained<UTType>>;
+
+        #[cfg(feature = "objc2-uniform-type-identifiers")]
+        #[cfg(target_vendor = "apple")]
+        #[method(setCurrentContentType:)]
+        pub unsafe fn setCurrentContentType(&self, current_content_type: Option<&UTType>);
+
         #[cfg(feature = "NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;
@@ -187,9 +200,6 @@ extern_methods!(
         #[method(setMessage:)]
         pub unsafe fn setMessage(&self, message: Option<&NSString>);
 
-        #[method(validateVisibleColumns)]
-        pub unsafe fn validateVisibleColumns(&self);
-
         #[method(showsHiddenFiles)]
         pub unsafe fn showsHiddenFiles(&self) -> bool;
 
@@ -207,6 +217,15 @@ extern_methods!(
 
         #[method(setTagNames:)]
         pub unsafe fn setTagNames(&self, tag_names: Option<&NSArray<NSString>>);
+
+        #[method(showsContentTypes)]
+        pub unsafe fn showsContentTypes(&self) -> bool;
+
+        #[method(setShowsContentTypes:)]
+        pub unsafe fn setShowsContentTypes(&self, shows_content_types: bool);
+
+        #[method(validateVisibleColumns)]
+        pub unsafe fn validateVisibleColumns(&self);
 
         #[method(ok:)]
         pub unsafe fn ok(&self, sender: Option<&AnyObject>);
@@ -323,6 +342,22 @@ extern_protocol!(
         #[optional]
         #[method(panelSelectionDidChange:)]
         unsafe fn panelSelectionDidChange(&self, sender: Option<&AnyObject>);
+
+        #[cfg(feature = "objc2-uniform-type-identifiers")]
+        #[cfg(target_vendor = "apple")]
+        #[optional]
+        #[method_id(@__retain_semantics Other panel:displayNameForType:)]
+        unsafe fn panel_displayNameForType(
+            &self,
+            sender: &AnyObject,
+            r#type: &UTType,
+        ) -> Option<Retained<NSString>>;
+
+        #[cfg(feature = "objc2-uniform-type-identifiers")]
+        #[cfg(target_vendor = "apple")]
+        #[optional]
+        #[method(panel:didSelectType:)]
+        unsafe fn panel_didSelectType(&self, sender: &AnyObject, r#type: Option<&UTType>);
     }
 
     unsafe impl ProtocolType for dyn NSOpenSavePanelDelegate {}
@@ -344,11 +379,11 @@ extern_methods!(
         #[method(setDirectory:)]
         pub unsafe fn setDirectory(&self, path: Option<&NSString>);
 
-        #[deprecated = "Use -allowedFileTypes instead"]
+        #[deprecated = "Use -allowedContentTypes instead"]
         #[method_id(@__retain_semantics Other requiredFileType)]
         pub unsafe fn requiredFileType(&self) -> Option<Retained<NSString>>;
 
-        #[deprecated = "Use -setAllowedFileTypes: instead"]
+        #[deprecated = "Use -allowedContentTypes: instead"]
         #[method(setRequiredFileType:)]
         pub unsafe fn setRequiredFileType(&self, r#type: Option<&NSString>);
 

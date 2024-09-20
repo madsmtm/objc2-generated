@@ -14,10 +14,16 @@ impl LAPolicy {
     pub const DeviceOwnerAuthenticationWithBiometrics: Self = Self(1);
     #[doc(alias = "LAPolicyDeviceOwnerAuthentication")]
     pub const DeviceOwnerAuthentication: Self = Self(2);
+    #[deprecated]
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithWatch")]
     pub const DeviceOwnerAuthenticationWithWatch: Self = Self(3);
+    #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithCompanion")]
+    pub const DeviceOwnerAuthenticationWithCompanion: Self = Self(3);
+    #[deprecated]
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch")]
     pub const DeviceOwnerAuthenticationWithBiometricsOrWatch: Self = Self(4);
+    #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion")]
+    pub const DeviceOwnerAuthenticationWithBiometricsOrCompanion: Self = Self(4);
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithWristDetection")]
     pub const DeviceOwnerAuthenticationWithWristDetection: Self = Self(5);
 }
@@ -77,31 +83,6 @@ unsafe impl Encode for LAAccessControlOperation {
 }
 
 unsafe impl RefEncode for LAAccessControlOperation {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
-// NS_ENUM
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct LABiometryType(pub NSInteger);
-impl LABiometryType {
-    #[doc(alias = "LABiometryTypeNone")]
-    pub const None: Self = Self(0);
-    #[deprecated]
-    pub const LABiometryNone: Self = Self(LABiometryType::None.0);
-    #[doc(alias = "LABiometryTypeTouchID")]
-    pub const TouchID: Self = Self(1);
-    #[doc(alias = "LABiometryTypeFaceID")]
-    pub const FaceID: Self = Self(2);
-    #[doc(alias = "LABiometryTypeOpticID")]
-    pub const OpticID: Self = Self(4);
-}
-
-unsafe impl Encode for LABiometryType {
-    const ENCODING: Encoding = NSInteger::ENCODING;
-}
-
-unsafe impl RefEncode for LABiometryType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
@@ -166,9 +147,6 @@ extern_methods!(
         #[method(setLocalizedCancelTitle:)]
         pub unsafe fn setLocalizedCancelTitle(&self, localized_cancel_title: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other evaluatedPolicyDomainState)]
-        pub unsafe fn evaluatedPolicyDomainState(&self) -> Option<Retained<NSData>>;
-
         #[method(touchIDAuthenticationAllowableReuseDuration)]
         pub unsafe fn touchIDAuthenticationAllowableReuseDuration(&self) -> NSTimeInterval;
 
@@ -190,8 +168,17 @@ extern_methods!(
         #[method(setInteractionNotAllowed:)]
         pub unsafe fn setInteractionNotAllowed(&self, interaction_not_allowed: bool);
 
+        #[cfg(feature = "LABiometryType")]
         #[method(biometryType)]
         pub unsafe fn biometryType(&self) -> LABiometryType;
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Other evaluatedPolicyDomainState)]
+        pub unsafe fn evaluatedPolicyDomainState(&self) -> Option<Retained<NSData>>;
+
+        #[cfg(feature = "LADomainState")]
+        #[method_id(@__retain_semantics Other domainState)]
+        pub unsafe fn domainState(&self) -> Retained<LADomainState>;
     }
 );
 

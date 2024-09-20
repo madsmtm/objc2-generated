@@ -41,6 +41,15 @@ extern_methods!(
         #[cfg(feature = "VZGenericMachineIdentifier")]
         #[method(setMachineIdentifier:)]
         pub unsafe fn setMachineIdentifier(&self, machine_identifier: &VZGenericMachineIdentifier);
+
+        #[method(isNestedVirtualizationSupported)]
+        pub unsafe fn isNestedVirtualizationSupported() -> bool;
+
+        #[method(isNestedVirtualizationEnabled)]
+        pub unsafe fn isNestedVirtualizationEnabled(&self) -> bool;
+
+        #[method(setNestedVirtualizationEnabled:)]
+        pub unsafe fn setNestedVirtualizationEnabled(&self, nested_virtualization_enabled: bool);
     }
 );
 

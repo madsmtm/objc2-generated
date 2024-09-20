@@ -337,7 +337,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    #[cfg(feature = "MTLResource")]
+    #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     pub unsafe trait MTLTexture: MTLResource {
         #[deprecated = "Use parentTexture or buffer instead"]
         #[method_id(@__retain_semantics Other rootResource)]
@@ -510,6 +510,6 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
     }
 
-    #[cfg(feature = "MTLResource")]
+    #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     unsafe impl ProtocolType for dyn MTLTexture {}
 );

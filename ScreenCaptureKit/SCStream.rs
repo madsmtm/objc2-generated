@@ -14,6 +14,8 @@ impl SCStreamOutputType {
     pub const Screen: Self = Self(0);
     #[doc(alias = "SCStreamOutputTypeAudio")]
     pub const Audio: Self = Self(1);
+    #[doc(alias = "SCStreamOutputTypeMicrophone")]
+    pub const Microphone: Self = Self(2);
 }
 
 unsafe impl Encode for SCStreamOutputType {
@@ -73,12 +75,15 @@ unsafe impl RefEncode for SCPresenterOverlayAlertSetting {
 }
 
 // NS_ENUM
+#[deprecated = "Use SCShareableContentStyle instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SCStreamType(pub NSInteger);
 impl SCStreamType {
+    #[deprecated = "Use SCShareableContentStyle instead"]
     #[doc(alias = "SCStreamTypeWindow")]
     pub const Window: Self = Self(0);
+    #[deprecated = "Use SCShareableContentStyle instead"]
     #[doc(alias = "SCStreamTypeDisplay")]
     pub const Display: Self = Self(1);
 }
@@ -106,6 +111,27 @@ unsafe impl Encode for SCCaptureResolutionType {
 }
 
 unsafe impl RefEncode for SCCaptureResolutionType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SCCaptureDynamicRange(pub NSInteger);
+impl SCCaptureDynamicRange {
+    #[doc(alias = "SCCaptureDynamicRangeSDR")]
+    pub const SDR: Self = Self(0);
+    #[doc(alias = "SCCaptureDynamicRangeHDRLocalDisplay")]
+    pub const HDRLocalDisplay: Self = Self(1);
+    #[doc(alias = "SCCaptureDynamicRangeHDRCanonicalDisplay")]
+    pub const HDRCanonicalDisplay: Self = Self(2);
+}
+
+unsafe impl Encode for SCCaptureDynamicRange {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for SCCaptureDynamicRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
@@ -196,6 +222,29 @@ extern_methods!(
     }
 );
 
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SCStreamConfigurationPreset(pub NSInteger);
+impl SCStreamConfigurationPreset {
+    #[doc(alias = "SCStreamConfigurationPresetCaptureHDRStreamLocalDisplay")]
+    pub const CaptureHDRStreamLocalDisplay: Self = Self(0);
+    #[doc(alias = "SCStreamConfigurationPresetCaptureHDRStreamCanonicalDisplay")]
+    pub const CaptureHDRStreamCanonicalDisplay: Self = Self(1);
+    #[doc(alias = "SCStreamConfigurationPresetCaptureHDRScreenshotLocalDisplay")]
+    pub const CaptureHDRScreenshotLocalDisplay: Self = Self(2);
+    #[doc(alias = "SCStreamConfigurationPresetCaptureHDRScreenshotCanonicalDisplay")]
+    pub const CaptureHDRScreenshotCanonicalDisplay: Self = Self(3);
+}
+
+unsafe impl Encode for SCStreamConfigurationPreset {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for SCStreamConfigurationPreset {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCStreamConfiguration;
@@ -250,6 +299,12 @@ extern_methods!(
 
         #[method(setShowsCursor:)]
         pub unsafe fn setShowsCursor(&self, shows_cursor: bool);
+
+        #[method(showMouseClicks)]
+        pub unsafe fn showMouseClicks(&self) -> bool;
+
+        #[method(setShowMouseClicks:)]
+        pub unsafe fn setShowMouseClicks(&self, show_mouse_clicks: bool);
 
         #[method(sourceRect)]
         pub unsafe fn sourceRect(&self) -> CGRect;
@@ -352,6 +407,32 @@ extern_methods!(
 
         #[method(setIncludeChildWindows:)]
         pub unsafe fn setIncludeChildWindows(&self, include_child_windows: bool);
+
+        #[method(captureMicrophone)]
+        pub unsafe fn captureMicrophone(&self) -> bool;
+
+        #[method(setCaptureMicrophone:)]
+        pub unsafe fn setCaptureMicrophone(&self, capture_microphone: bool);
+
+        #[method_id(@__retain_semantics Other microphoneCaptureDeviceID)]
+        pub unsafe fn microphoneCaptureDeviceID(&self) -> Option<Retained<NSString>>;
+
+        #[method(setMicrophoneCaptureDeviceID:)]
+        pub unsafe fn setMicrophoneCaptureDeviceID(
+            &self,
+            microphone_capture_device_id: Option<&NSString>,
+        );
+
+        #[method(captureDynamicRange)]
+        pub unsafe fn captureDynamicRange(&self) -> SCCaptureDynamicRange;
+
+        #[method(setCaptureDynamicRange:)]
+        pub unsafe fn setCaptureDynamicRange(&self, capture_dynamic_range: SCCaptureDynamicRange);
+
+        #[method_id(@__retain_semantics Other streamConfigurationWithPreset:)]
+        pub unsafe fn streamConfigurationWithPreset(
+            preset: SCStreamConfigurationPreset,
+        ) -> Retained<Self>;
     }
 );
 
@@ -468,6 +549,20 @@ extern_methods!(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
+
+        #[cfg(feature = "SCRecordingOutput")]
+        #[method(addRecordingOutput:error:_)]
+        pub unsafe fn addRecordingOutput_error(
+            &self,
+            recording_output: &SCRecordingOutput,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "SCRecordingOutput")]
+        #[method(removeRecordingOutput:error:_)]
+        pub unsafe fn removeRecordingOutput_error(
+            &self,
+            recording_output: &SCRecordingOutput,
+        ) -> Result<(), Retained<NSError>>;
     }
 );
 
@@ -482,10 +577,6 @@ extern_protocol!(
         #[optional]
         #[method(stream:didStopWithError:)]
         unsafe fn stream_didStopWithError(&self, stream: &SCStream, error: &NSError);
-
-        #[optional]
-        #[method(userDidStopStream:)]
-        unsafe fn userDidStopStream(&self, stream: &SCStream);
 
         #[optional]
         #[method(outputVideoEffectDidStartForStream:)]

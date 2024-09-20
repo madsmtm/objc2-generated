@@ -5,16 +5,21 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 // NS_ENUM
+#[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NWPathStatus(pub NSInteger);
 impl NWPathStatus {
+    #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     #[doc(alias = "NWPathStatusInvalid")]
     pub const Invalid: Self = Self(0);
+    #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     #[doc(alias = "NWPathStatusSatisfied")]
     pub const Satisfied: Self = Self(1);
+    #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     #[doc(alias = "NWPathStatusUnsatisfied")]
     pub const Unsatisfied: Self = Self(2);
+    #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     #[doc(alias = "NWPathStatusSatisfiable")]
     pub const Satisfiable: Self = Self(3);
 }
@@ -29,6 +34,7 @@ unsafe impl RefEncode for NWPathStatus {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use `nw_path_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     pub struct NWPath;
 
     unsafe impl ClassType for NWPath {
@@ -40,15 +46,19 @@ unsafe impl NSObjectProtocol for NWPath {}
 
 extern_methods!(
     unsafe impl NWPath {
+        #[deprecated = "Use `nw_path_get_status` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
         #[method(status)]
         pub unsafe fn status(&self) -> NWPathStatus;
 
+        #[deprecated = "Use `nw_path_is_expensive` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
         #[method(isExpensive)]
         pub unsafe fn isExpensive(&self) -> bool;
 
+        #[deprecated = "Use `nw_path_is_constrained` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
         #[method(isConstrained)]
         pub unsafe fn isConstrained(&self) -> bool;
 
+        #[deprecated = "Use `nw_path_is_equal` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
         #[method(isEqualToPath:)]
         pub unsafe fn isEqualToPath(&self, path: &NWPath) -> bool;
     }

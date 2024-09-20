@@ -5,6 +5,26 @@ use objc2_foundation::*;
 
 use crate::*;
 
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLStitchedLibraryOptions(pub NSUInteger);
+bitflags::bitflags! {
+    impl MTLStitchedLibraryOptions: NSUInteger {
+        const MTLStitchedLibraryOptionNone = 0;
+        const MTLStitchedLibraryOptionFailOnBinaryArchiveMiss = 1<<0;
+        const MTLStitchedLibraryOptionStoreLibraryInMetalScript = 1<<1;
+    }
+}
+
+unsafe impl Encode for MTLStitchedLibraryOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for MTLStitchedLibraryOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_protocol!(
     pub unsafe trait MTLFunctionStitchingAttribute: NSObjectProtocol {}
 
@@ -266,6 +286,25 @@ extern_methods!(
         #[cfg(feature = "MTLLibrary")]
         #[method(setFunctions:)]
         pub unsafe fn setFunctions(&self, functions: &NSArray<ProtocolObject<dyn MTLFunction>>);
+
+        #[cfg(feature = "MTLBinaryArchive")]
+        #[method_id(@__retain_semantics Other binaryArchives)]
+        pub unsafe fn binaryArchives(
+            &self,
+        ) -> Retained<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>;
+
+        #[cfg(feature = "MTLBinaryArchive")]
+        #[method(setBinaryArchives:)]
+        pub unsafe fn setBinaryArchives(
+            &self,
+            binary_archives: &NSArray<ProtocolObject<dyn MTLBinaryArchive>>,
+        );
+
+        #[method(options)]
+        pub unsafe fn options(&self) -> MTLStitchedLibraryOptions;
+
+        #[method(setOptions:)]
+        pub unsafe fn setOptions(&self, options: MTLStitchedLibraryOptions);
     }
 );
 

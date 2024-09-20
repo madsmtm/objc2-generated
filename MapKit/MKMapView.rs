@@ -647,7 +647,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait MKMapViewDelegate: NSObjectProtocol {
+    pub unsafe trait MKMapViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[optional]
@@ -763,6 +763,20 @@ extern_protocol!(
             map_view: &MKMapView,
             annotation: &ProtocolObject<dyn MKAnnotation>,
         );
+
+        #[cfg(all(
+            feature = "MKAnnotation",
+            feature = "MKSelectionAccessory",
+            feature = "objc2-app-kit"
+        ))]
+        #[cfg(target_os = "macos")]
+        #[optional]
+        #[method_id(@__retain_semantics Other mapView:selectionAccessoryForAnnotation:)]
+        unsafe fn mapView_selectionAccessoryForAnnotation(
+            &self,
+            map_view: &MKMapView,
+            annotation: &ProtocolObject<dyn MKAnnotation>,
+        ) -> Option<Retained<MKSelectionAccessory>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

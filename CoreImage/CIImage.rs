@@ -150,6 +150,10 @@ extern "C" {
 }
 
 extern "C" {
+    pub static kCIImageContentHeadroom: &'static CIImageOption;
+}
+
+extern "C" {
     pub static kCIImageNearestSampling: &'static CIImageOption;
 }
 
@@ -406,8 +410,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imageByInsertingIntermediate:)]
         pub unsafe fn imageByInsertingIntermediate_(&self, cache: bool) -> Retained<CIImage>;
 
+        #[method_id(@__retain_semantics Other imageByApplyingGainMap:)]
+        pub unsafe fn imageByApplyingGainMap(&self, gainmap: &CIImage) -> Retained<CIImage>;
+
+        #[method_id(@__retain_semantics Other imageByApplyingGainMap:headroom:)]
+        pub unsafe fn imageByApplyingGainMap_headroom(
+            &self,
+            gainmap: &CIImage,
+            headroom: c_float,
+        ) -> Retained<CIImage>;
+
         #[method(extent)]
         pub unsafe fn extent(&self) -> CGRect;
+
+        #[method(isOpaque)]
+        pub unsafe fn isOpaque(&self) -> bool;
 
         #[method_id(@__retain_semantics Other properties)]
         pub unsafe fn properties(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
@@ -418,6 +435,13 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other url)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
+
+        #[method(contentHeadroom)]
+        pub unsafe fn contentHeadroom(&self) -> c_float;
+
+        #[cfg(feature = "objc2-metal")]
+        #[method_id(@__retain_semantics Other metalTexture)]
+        pub unsafe fn metalTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(regionOfInterestForImage:inRect:)]
         pub unsafe fn regionOfInterestForImage_inRect(

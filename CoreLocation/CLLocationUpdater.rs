@@ -42,8 +42,36 @@ unsafe impl NSObjectProtocol for CLUpdate {}
 
 extern_methods!(
     unsafe impl CLUpdate {
+        #[method(authorizationDenied)]
+        pub unsafe fn authorizationDenied(&self) -> bool;
+
+        #[method(authorizationDeniedGlobally)]
+        pub unsafe fn authorizationDeniedGlobally(&self) -> bool;
+
+        #[method(authorizationRestricted)]
+        pub unsafe fn authorizationRestricted(&self) -> bool;
+
+        #[deprecated]
         #[method(isStationary)]
         pub unsafe fn isStationary(&self) -> bool;
+
+        #[method(stationary)]
+        pub unsafe fn stationary(&self) -> bool;
+
+        #[method(insufficientlyInUse)]
+        pub unsafe fn insufficientlyInUse(&self) -> bool;
+
+        #[method(locationUnavailable)]
+        pub unsafe fn locationUnavailable(&self) -> bool;
+
+        #[method(accuracyLimited)]
+        pub unsafe fn accuracyLimited(&self) -> bool;
+
+        #[method(serviceSessionRequired)]
+        pub unsafe fn serviceSessionRequired(&self) -> bool;
+
+        #[method(authorizationRequestInProgress)]
+        pub unsafe fn authorizationRequestInProgress(&self) -> bool;
 
         #[cfg(feature = "CLLocation")]
         #[method_id(@__retain_semantics Other location)]

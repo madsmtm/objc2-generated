@@ -20,46 +20,23 @@ unsafe impl NSObjectProtocol for NSTextContainer {}
 
 unsafe impl NSSecureCoding for NSTextContainer {}
 
-#[cfg(feature = "NSLayoutManager")]
-unsafe impl NSTextLayoutOrientationProvider for NSTextContainer {}
-
 extern_methods!(
     unsafe impl NSTextContainer {
         #[method_id(@__retain_semantics Init initWithSize:)]
-        pub unsafe fn initWithSize(this: Allocated<Self>, size: NSSize) -> Retained<Self>;
+        pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-
-        #[cfg(feature = "NSLayoutManager")]
-        #[method_id(@__retain_semantics Other layoutManager)]
-        pub unsafe fn layoutManager(&self) -> Option<Retained<NSLayoutManager>>;
-
-        #[cfg(feature = "NSLayoutManager")]
-        #[method(setLayoutManager:)]
-        pub unsafe fn setLayoutManager(&self, layout_manager: Option<&NSLayoutManager>);
-
-        #[cfg(feature = "NSLayoutManager")]
-        #[method(replaceLayoutManager:)]
-        pub unsafe fn replaceLayoutManager(&self, new_layout_manager: &NSLayoutManager);
 
         #[cfg(feature = "NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other textLayoutManager)]
         pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[method(size)]
-        pub unsafe fn size(&self) -> NSSize;
+        pub unsafe fn size(&self) -> CGSize;
 
         #[method(setSize:)]
-        pub unsafe fn setSize(&self, size: NSSize);
-
-        #[cfg(feature = "NSBezierPath")]
-        #[method_id(@__retain_semantics Other exclusionPaths)]
-        pub unsafe fn exclusionPaths(&self) -> Retained<NSArray<NSBezierPath>>;
-
-        #[cfg(feature = "NSBezierPath")]
-        #[method(setExclusionPaths:)]
-        pub unsafe fn setExclusionPaths(&self, exclusion_paths: &NSArray<NSBezierPath>);
+        pub unsafe fn setSize(&self, size: CGSize);
 
         #[cfg(feature = "NSParagraphStyle")]
         #[method(lineBreakMode)]
@@ -85,11 +62,11 @@ extern_methods!(
         #[method(lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:)]
         pub unsafe fn lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect(
             &self,
-            proposed_rect: NSRect,
+            proposed_rect: CGRect,
             character_index: NSUInteger,
             base_writing_direction: NSWritingDirection,
-            remaining_rect: *mut NSRect,
-        ) -> NSRect;
+            remaining_rect: *mut CGRect,
+        ) -> CGRect;
 
         #[method(isSimpleRectangularTextContainer)]
         pub unsafe fn isSimpleRectangularTextContainer(&self) -> bool;
@@ -105,6 +82,41 @@ extern_methods!(
 
         #[method(setHeightTracksTextView:)]
         pub unsafe fn setHeightTracksTextView(&self, height_tracks_text_view: bool);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NSTextContainer {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_methods!(
+    unsafe impl NSTextContainer {
+        #[cfg(feature = "NSLayoutManager")]
+        #[method_id(@__retain_semantics Other layoutManager)]
+        pub unsafe fn layoutManager(&self) -> Option<Retained<NSLayoutManager>>;
+
+        #[cfg(feature = "NSLayoutManager")]
+        #[method(setLayoutManager:)]
+        pub unsafe fn setLayoutManager(&self, layout_manager: Option<&NSLayoutManager>);
+
+        #[cfg(feature = "NSLayoutManager")]
+        #[method(replaceLayoutManager:)]
+        pub unsafe fn replaceLayoutManager(&self, new_layout_manager: &NSLayoutManager);
+
+        #[cfg(feature = "NSBezierPath")]
+        #[method_id(@__retain_semantics Other exclusionPaths)]
+        pub unsafe fn exclusionPaths(&self) -> Retained<NSArray<NSBezierPath>>;
+
+        #[cfg(feature = "NSBezierPath")]
+        #[method(setExclusionPaths:)]
+        pub unsafe fn setExclusionPaths(&self, exclusion_paths: &NSArray<NSBezierPath>);
 
         #[cfg(all(
             feature = "NSResponder",
@@ -126,16 +138,8 @@ extern_methods!(
     }
 );
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextContainer {
-        #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
-    }
-);
+#[cfg(feature = "NSLayoutManager")]
+unsafe impl NSTextLayoutOrientationProvider for NSTextContainer {}
 
 // NS_ENUM
 #[repr(transparent)]

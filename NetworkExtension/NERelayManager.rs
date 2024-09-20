@@ -32,6 +32,45 @@ extern "C" {
     pub static NERelayErrorDomain: &'static NSString;
 }
 
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NERelayManagerClientError(pub NSInteger);
+impl NERelayManagerClientError {
+    #[doc(alias = "NERelayManagerClientErrorNone")]
+    pub const None: Self = Self(1);
+    #[doc(alias = "NERelayManagerClientErrorDNSFailed")]
+    pub const DNSFailed: Self = Self(2);
+    #[doc(alias = "NERelayManagerClientErrorServerUnreachable")]
+    pub const ServerUnreachable: Self = Self(3);
+    #[doc(alias = "NERelayManagerClientErrorServerDisconnected")]
+    pub const ServerDisconnected: Self = Self(4);
+    #[doc(alias = "NERelayManagerClientErrorCertificateMissing")]
+    pub const CertificateMissing: Self = Self(5);
+    #[doc(alias = "NERelayManagerClientErrorCertificateInvalid")]
+    pub const CertificateInvalid: Self = Self(6);
+    #[doc(alias = "NERelayManagerClientErrorCertificateExpired")]
+    pub const CertificateExpired: Self = Self(7);
+    #[doc(alias = "NERelayManagerClientErrorServerCertificateInvalid")]
+    pub const ServerCertificateInvalid: Self = Self(8);
+    #[doc(alias = "NERelayManagerClientErrorServerCertificateExpired")]
+    pub const ServerCertificateExpired: Self = Self(9);
+    #[doc(alias = "NERelayManagerClientErrorOther")]
+    pub const Other: Self = Self(10);
+}
+
+unsafe impl Encode for NERelayManagerClientError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NERelayManagerClientError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern "C" {
+    pub static NERelayClientErrorDomain: &'static NSString;
+}
+
 extern "C" {
     pub static NERelayConfigurationDidChangeNotification: &'static NSString;
 }
@@ -71,6 +110,14 @@ extern_methods!(
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(getLastClientErrors:completionHandler:)]
+        pub unsafe fn getLastClientErrors_completionHandler(
+            &self,
+            seconds: NSTimeInterval,
+            completion_handler: &block2::Block<dyn Fn(*mut NSArray<NSError>)>,
         );
 
         #[method_id(@__retain_semantics Other localizedDescription)]

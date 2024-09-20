@@ -125,6 +125,7 @@ extern_methods!(
         ) -> Retained<NEHotspotHelperResponse>;
 
         #[cfg(all(feature = "NWEndpoint", feature = "NWTCPConnection"))]
+        #[deprecated = "Use the `interface` property with `nw_parameters_require_interface`"]
         #[method_id(@__retain_semantics Other createTCPConnection:)]
         pub unsafe fn createTCPConnection(
             &self,
@@ -132,6 +133,7 @@ extern_methods!(
         ) -> Retained<NWTCPConnection>;
 
         #[cfg(all(feature = "NWEndpoint", feature = "NWUDPSession"))]
+        #[deprecated = "Use the `interface` property with `nw_parameters_require_interface`"]
         #[method_id(@__retain_semantics Other createUDPSession:)]
         pub unsafe fn createUDPSession(&self, endpoint: &NWEndpoint) -> Retained<NWUDPSession>;
     }

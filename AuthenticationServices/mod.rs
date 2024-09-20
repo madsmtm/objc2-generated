@@ -133,6 +133,18 @@ mod __ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput;
 #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput")]
 #[path = "ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput.rs"]
 mod __ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput;
+#[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionInput")]
+#[path = "ASAuthorizationPublicKeyCredentialPRFAssertionInput.rs"]
+mod __ASAuthorizationPublicKeyCredentialPRFAssertionInput;
+#[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionOutput")]
+#[path = "ASAuthorizationPublicKeyCredentialPRFAssertionOutput.rs"]
+mod __ASAuthorizationPublicKeyCredentialPRFAssertionOutput;
+#[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFRegistrationInput")]
+#[path = "ASAuthorizationPublicKeyCredentialPRFRegistrationInput.rs"]
+mod __ASAuthorizationPublicKeyCredentialPRFRegistrationInput;
+#[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFRegistrationOutput")]
+#[path = "ASAuthorizationPublicKeyCredentialPRFRegistrationOutput.rs"]
+mod __ASAuthorizationPublicKeyCredentialPRFRegistrationOutput;
 #[cfg(feature = "ASAuthorizationPublicKeyCredentialParameters")]
 #[path = "ASAuthorizationPublicKeyCredentialParameters.rs"]
 mod __ASAuthorizationPublicKeyCredentialParameters;
@@ -229,9 +241,24 @@ mod __ASExtensionErrors;
 #[cfg(feature = "ASFoundation")]
 #[path = "ASFoundation.rs"]
 mod __ASFoundation;
+#[cfg(feature = "ASOneTimeCodeCredential")]
+#[path = "ASOneTimeCodeCredential.rs"]
+mod __ASOneTimeCodeCredential;
+#[cfg(feature = "ASOneTimeCodeCredentialIdentity")]
+#[path = "ASOneTimeCodeCredentialIdentity.rs"]
+mod __ASOneTimeCodeCredentialIdentity;
+#[cfg(feature = "ASOneTimeCodeCredentialRequest")]
+#[path = "ASOneTimeCodeCredentialRequest.rs"]
+mod __ASOneTimeCodeCredentialRequest;
 #[cfg(feature = "ASPasskeyAssertionCredential")]
 #[path = "ASPasskeyAssertionCredential.rs"]
 mod __ASPasskeyAssertionCredential;
+#[cfg(feature = "ASPasskeyAssertionCredentialExtensionInput")]
+#[path = "ASPasskeyAssertionCredentialExtensionInput.rs"]
+mod __ASPasskeyAssertionCredentialExtensionInput;
+#[cfg(feature = "ASPasskeyAssertionCredentialExtensionOutput")]
+#[path = "ASPasskeyAssertionCredentialExtensionOutput.rs"]
+mod __ASPasskeyAssertionCredentialExtensionOutput;
 #[cfg(feature = "ASPasskeyCredentialIdentity")]
 #[path = "ASPasskeyCredentialIdentity.rs"]
 mod __ASPasskeyCredentialIdentity;
@@ -244,6 +271,12 @@ mod __ASPasskeyCredentialRequestParameters;
 #[cfg(feature = "ASPasskeyRegistrationCredential")]
 #[path = "ASPasskeyRegistrationCredential.rs"]
 mod __ASPasskeyRegistrationCredential;
+#[cfg(feature = "ASPasskeyRegistrationCredentialExtensionInput")]
+#[path = "ASPasskeyRegistrationCredentialExtensionInput.rs"]
+mod __ASPasskeyRegistrationCredentialExtensionInput;
+#[cfg(feature = "ASPasskeyRegistrationCredentialExtensionOutput")]
+#[path = "ASPasskeyRegistrationCredentialExtensionOutput.rs"]
+mod __ASPasskeyRegistrationCredentialExtensionOutput;
 #[cfg(feature = "ASPasswordCredential")]
 #[path = "ASPasswordCredential.rs"]
 mod __ASPasswordCredential;
@@ -390,6 +423,8 @@ pub use self::__ASAuthorizationPlatformPublicKeyCredentialRegistration::ASAuthor
     feature = "ASAuthorizationRequest"
 ))]
 pub use self::__ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest::ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest;
+#[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest")]
+pub use self::__ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest::ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle;
 #[cfg(feature = "ASAuthorizationProvider")]
 pub use self::__ASAuthorizationProvider::ASAuthorizationProvider;
 #[cfg(feature = "ASAuthorizationProviderExtensionAuthorizationRequest")]
@@ -405,11 +440,29 @@ pub use self::__ASAuthorizationProviderExtensionAuthorizationRequest::ASAuthoriz
 #[cfg(feature = "ASAuthorizationProviderExtensionAuthorizationResult")]
 pub use self::__ASAuthorizationProviderExtensionAuthorizationResult::ASAuthorizationProviderExtensionAuthorizationResult;
 #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
+pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionEncryptionAlgorithm;
+#[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
+pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionEncryptionAlgorithmECDHE_A256GCM;
+#[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
+pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionEncryptionAlgorithmHPKE_Curve25519_SHA256_ChachaPoly;
+#[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
+pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionEncryptionAlgorithmHPKE_P256_SHA256_AES_GCM_256;
+#[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
+pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionEncryptionAlgorithmHPKE_P384_SHA384_AES_GCM_256;
+#[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
 pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionFederationType;
 #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
 pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionKerberosMapping;
 #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
 pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionLoginConfiguration;
+#[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
+pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionSigningAlgorithm;
+#[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
+pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionSigningAlgorithmES256;
+#[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
+pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionSigningAlgorithmES384;
+#[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
+pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionSigningAlgorithmEd25519;
 #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
 pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy;
 #[cfg(feature = "ASAuthorizationProviderExtensionLoginManager")]
@@ -480,6 +533,16 @@ pub use self::__ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput::AS
 pub use self::__ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput::ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirement;
 #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput")]
 pub use self::__ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput::ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput;
+#[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionInput")]
+pub use self::__ASAuthorizationPublicKeyCredentialPRFAssertionInput::ASAuthorizationPublicKeyCredentialPRFAssertionInput;
+#[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionInput")]
+pub use self::__ASAuthorizationPublicKeyCredentialPRFAssertionInput::ASAuthorizationPublicKeyCredentialPRFAssertionInputValues;
+#[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionOutput")]
+pub use self::__ASAuthorizationPublicKeyCredentialPRFAssertionOutput::ASAuthorizationPublicKeyCredentialPRFAssertionOutput;
+#[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFRegistrationInput")]
+pub use self::__ASAuthorizationPublicKeyCredentialPRFRegistrationInput::ASAuthorizationPublicKeyCredentialPRFRegistrationInput;
+#[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFRegistrationOutput")]
+pub use self::__ASAuthorizationPublicKeyCredentialPRFRegistrationOutput::ASAuthorizationPublicKeyCredentialPRFRegistrationOutput;
 #[cfg(feature = "ASAuthorizationPublicKeyCredentialParameters")]
 pub use self::__ASAuthorizationPublicKeyCredentialParameters::ASAuthorizationPublicKeyCredentialParameters;
 #[cfg(all(
@@ -586,8 +649,18 @@ pub use self::__ASExtensionErrors::ASExtensionErrorCode;
 pub use self::__ASExtensionErrors::ASExtensionErrorDomain;
 #[cfg(feature = "ASExtensionErrors")]
 pub use self::__ASExtensionErrors::ASExtensionLocalizedFailureReasonErrorKey;
+#[cfg(feature = "ASOneTimeCodeCredential")]
+pub use self::__ASOneTimeCodeCredential::ASOneTimeCodeCredential;
+#[cfg(feature = "ASOneTimeCodeCredentialIdentity")]
+pub use self::__ASOneTimeCodeCredentialIdentity::ASOneTimeCodeCredentialIdentity;
+#[cfg(feature = "ASOneTimeCodeCredentialRequest")]
+pub use self::__ASOneTimeCodeCredentialRequest::ASOneTimeCodeCredentialRequest;
 #[cfg(feature = "ASPasskeyAssertionCredential")]
 pub use self::__ASPasskeyAssertionCredential::ASPasskeyAssertionCredential;
+#[cfg(feature = "ASPasskeyAssertionCredentialExtensionInput")]
+pub use self::__ASPasskeyAssertionCredentialExtensionInput::ASPasskeyAssertionCredentialExtensionInput;
+#[cfg(feature = "ASPasskeyAssertionCredentialExtensionOutput")]
+pub use self::__ASPasskeyAssertionCredentialExtensionOutput::ASPasskeyAssertionCredentialExtensionOutput;
 #[cfg(feature = "ASPasskeyCredentialIdentity")]
 pub use self::__ASPasskeyCredentialIdentity::ASPasskeyCredentialIdentity;
 #[cfg(feature = "ASPasskeyCredentialRequest")]
@@ -596,6 +669,10 @@ pub use self::__ASPasskeyCredentialRequest::ASPasskeyCredentialRequest;
 pub use self::__ASPasskeyCredentialRequestParameters::ASPasskeyCredentialRequestParameters;
 #[cfg(feature = "ASPasskeyRegistrationCredential")]
 pub use self::__ASPasskeyRegistrationCredential::ASPasskeyRegistrationCredential;
+#[cfg(feature = "ASPasskeyRegistrationCredentialExtensionInput")]
+pub use self::__ASPasskeyRegistrationCredentialExtensionInput::ASPasskeyRegistrationCredentialExtensionInput;
+#[cfg(feature = "ASPasskeyRegistrationCredentialExtensionOutput")]
+pub use self::__ASPasskeyRegistrationCredentialExtensionOutput::ASPasskeyRegistrationCredentialExtensionOutput;
 #[cfg(feature = "ASPasswordCredential")]
 pub use self::__ASPasswordCredential::ASPasswordCredential;
 #[cfg(feature = "ASPasswordCredentialIdentity")]

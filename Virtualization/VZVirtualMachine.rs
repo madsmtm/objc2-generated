@@ -125,6 +125,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other socketDevices)]
         pub unsafe fn socketDevices(&self) -> Retained<NSArray<VZSocketDevice>>;
 
+        #[cfg(feature = "VZUSBController")]
+        #[method_id(@__retain_semantics Other usbControllers)]
+        pub unsafe fn usbControllers(&self) -> Retained<NSArray<VZUSBController>>;
+
         #[cfg(feature = "block2")]
         #[method(startWithCompletionHandler:)]
         pub unsafe fn startWithCompletionHandler(

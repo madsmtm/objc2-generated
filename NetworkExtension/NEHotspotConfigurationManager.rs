@@ -374,6 +374,10 @@ impl NEHotspotConfigurationError {
     pub const ApplicationIsNotInForeground: Self = Self(14);
     #[doc(alias = "NEHotspotConfigurationErrorInvalidSSIDPrefix")]
     pub const InvalidSSIDPrefix: Self = Self(15);
+    #[doc(alias = "NEHotspotConfigurationErrorUserUnauthorized")]
+    pub const UserUnauthorized: Self = Self(16);
+    #[doc(alias = "NEHotspotConfigurationErrorSystemDenied")]
+    pub const SystemDenied: Self = Self(17);
 }
 
 unsafe impl Encode for NEHotspotConfigurationError {

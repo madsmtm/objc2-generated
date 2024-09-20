@@ -82,6 +82,27 @@ pub type UICollectionLayoutListItemSeparatorHandler = *mut block2::Block<
     ) -> NonNull<UIListSeparatorConfiguration>,
 >;
 
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UICollectionLayoutListContentHuggingElements(pub NSUInteger);
+bitflags::bitflags! {
+    impl UICollectionLayoutListContentHuggingElements: NSUInteger {
+        #[doc(alias = "UICollectionLayoutListContentHuggingElementsNone")]
+        const None = 0;
+        #[doc(alias = "UICollectionLayoutListContentHuggingElementsSupplementaryHeader")]
+        const SupplementaryHeader = 1<<0;
+    }
+}
+
+unsafe impl Encode for UICollectionLayoutListContentHuggingElements {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UICollectionLayoutListContentHuggingElements {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICollectionLayoutListConfiguration;
@@ -196,6 +217,16 @@ extern_methods!(
 
         #[method(setHeaderTopPadding:)]
         pub unsafe fn setHeaderTopPadding(&self, header_top_padding: CGFloat);
+
+        #[method(contentHuggingElements)]
+        pub unsafe fn contentHuggingElements(&self)
+            -> UICollectionLayoutListContentHuggingElements;
+
+        #[method(setContentHuggingElements:)]
+        pub unsafe fn setContentHuggingElements(
+            &self,
+            content_hugging_elements: UICollectionLayoutListContentHuggingElements,
+        );
     }
 );
 

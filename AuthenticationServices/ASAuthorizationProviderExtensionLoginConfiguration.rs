@@ -124,6 +124,47 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionUserSecureEnclaveKeyBi
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type ASAuthorizationProviderExtensionEncryptionAlgorithm = NSNumber;
+
+extern "C" {
+    pub static ASAuthorizationProviderExtensionEncryptionAlgorithmECDHE_A256GCM:
+        &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
+}
+
+extern "C" {
+    pub static ASAuthorizationProviderExtensionEncryptionAlgorithmHPKE_P256_SHA256_AES_GCM_256:
+        &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
+}
+
+extern "C" {
+    pub static ASAuthorizationProviderExtensionEncryptionAlgorithmHPKE_P384_SHA384_AES_GCM_256:
+        &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
+}
+
+extern "C" {
+    pub static ASAuthorizationProviderExtensionEncryptionAlgorithmHPKE_Curve25519_SHA256_ChachaPoly:
+        &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type ASAuthorizationProviderExtensionSigningAlgorithm = NSNumber;
+
+extern "C" {
+    pub static ASAuthorizationProviderExtensionSigningAlgorithmES256:
+        &'static ASAuthorizationProviderExtensionSigningAlgorithm;
+}
+
+extern "C" {
+    pub static ASAuthorizationProviderExtensionSigningAlgorithmES384:
+        &'static ASAuthorizationProviderExtensionSigningAlgorithm;
+}
+
+extern "C" {
+    pub static ASAuthorizationProviderExtensionSigningAlgorithmEd25519:
+        &'static ASAuthorizationProviderExtensionSigningAlgorithm;
+}
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationProviderExtensionLoginConfiguration;
@@ -458,6 +499,35 @@ extern_methods!(
             login_request_encryption_apv_prefix: Option<&NSData>,
         );
 
+        #[method_id(@__retain_semantics Other loginRequestEncryptionAlgorithm)]
+        pub unsafe fn loginRequestEncryptionAlgorithm(
+            &self,
+        ) -> Retained<ASAuthorizationProviderExtensionEncryptionAlgorithm>;
+
+        #[method(setLoginRequestEncryptionAlgorithm:)]
+        pub unsafe fn setLoginRequestEncryptionAlgorithm(
+            &self,
+            login_request_encryption_algorithm: &ASAuthorizationProviderExtensionEncryptionAlgorithm,
+        );
+
+        #[method_id(@__retain_semantics Other loginRequestHPKEPreSharedKey)]
+        pub unsafe fn loginRequestHPKEPreSharedKey(&self) -> Option<Retained<NSData>>;
+
+        #[method(setLoginRequestHPKEPreSharedKey:)]
+        pub unsafe fn setLoginRequestHPKEPreSharedKey(
+            &self,
+            login_request_hpke_pre_shared_key: Option<&NSData>,
+        );
+
+        #[method_id(@__retain_semantics Other loginRequestHPKEPreSharedKeyID)]
+        pub unsafe fn loginRequestHPKEPreSharedKeyID(&self) -> Option<Retained<NSData>>;
+
+        #[method(setLoginRequestHPKEPreSharedKeyID:)]
+        pub unsafe fn setLoginRequestHPKEPreSharedKeyID(
+            &self,
+            login_request_hpke_pre_shared_key_id: Option<&NSData>,
+        );
+
         #[method_id(@__retain_semantics Other keyEndpointURL)]
         pub unsafe fn keyEndpointURL(&self) -> Option<Retained<NSURL>>;
 
@@ -505,5 +575,17 @@ extern_methods!(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
+
+        #[method_id(@__retain_semantics Other hpkePreSharedKey)]
+        pub unsafe fn hpkePreSharedKey(&self) -> Option<Retained<NSData>>;
+
+        #[method(setHpkePreSharedKey:)]
+        pub unsafe fn setHpkePreSharedKey(&self, hpke_pre_shared_key: Option<&NSData>);
+
+        #[method_id(@__retain_semantics Other hpkePreSharedKeyID)]
+        pub unsafe fn hpkePreSharedKeyID(&self) -> Option<Retained<NSData>>;
+
+        #[method(setHpkePreSharedKeyID:)]
+        pub unsafe fn setHpkePreSharedKeyID(&self, hpke_pre_shared_key_id: Option<&NSData>);
     }
 );

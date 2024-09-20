@@ -22,6 +22,8 @@ impl ASExtensionErrorCode {
     pub const UserInteractionRequired: Self = Self(100);
     #[doc(alias = "ASExtensionErrorCodeCredentialIdentityNotFound")]
     pub const CredentialIdentityNotFound: Self = Self(101);
+    #[doc(alias = "ASExtensionErrorCodeMatchedExcludedCredential")]
+    pub const MatchedExcludedCredential: Self = Self(102);
 }
 
 unsafe impl Encode for ASExtensionErrorCode {

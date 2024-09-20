@@ -7,6 +7,55 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NSSymbolEffectOptionsRepeatBehavior;
+
+    unsafe impl ClassType for NSSymbolEffectOptionsRepeatBehavior {
+        type Super = NSObject;
+    }
+);
+
+unsafe impl NSCoding for NSSymbolEffectOptionsRepeatBehavior {}
+
+unsafe impl NSCopying for NSSymbolEffectOptionsRepeatBehavior {}
+
+unsafe impl CopyingHelper for NSSymbolEffectOptionsRepeatBehavior {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NSSymbolEffectOptionsRepeatBehavior {}
+
+unsafe impl NSSecureCoding for NSSymbolEffectOptionsRepeatBehavior {}
+
+extern_methods!(
+    unsafe impl NSSymbolEffectOptionsRepeatBehavior {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other behaviorPeriodic)]
+        pub unsafe fn behaviorPeriodic() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other behaviorPeriodicWithCount:)]
+        pub unsafe fn behaviorPeriodicWithCount(count: NSInteger) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other behaviorPeriodicWithDelay:)]
+        pub unsafe fn behaviorPeriodicWithDelay(delay: c_double) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other behaviorPeriodicWithCount:delay:)]
+        pub unsafe fn behaviorPeriodicWithCount_delay(
+            count: NSInteger,
+            delay: c_double,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other behaviorContinuous)]
+        pub unsafe fn behaviorContinuous() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolEffectOptions;
 
     unsafe impl ClassType for NSSymbolEffectOptions {
@@ -37,9 +86,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other options)]
         pub unsafe fn options() -> Retained<Self>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other optionsWithRepeating)]
         pub unsafe fn optionsWithRepeating_class() -> Retained<Self>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other optionsWithRepeating)]
         pub unsafe fn optionsWithRepeating(&self) -> Retained<Self>;
 
@@ -49,9 +100,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other optionsWithNonRepeating)]
         pub unsafe fn optionsWithNonRepeating(&self) -> Retained<Self>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other optionsWithRepeatCount:)]
         pub unsafe fn optionsWithRepeatCount_class(count: NSInteger) -> Retained<Self>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other optionsWithRepeatCount:)]
         pub unsafe fn optionsWithRepeatCount(&self, count: NSInteger) -> Retained<Self>;
 
@@ -60,6 +113,17 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other optionsWithSpeed:)]
         pub unsafe fn optionsWithSpeed(&self, speed: c_double) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other optionsWithRepeatBehavior:)]
+        pub unsafe fn optionsWithRepeatBehavior_class(
+            behavior: &NSSymbolEffectOptionsRepeatBehavior,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other optionsWithRepeatBehavior:)]
+        pub unsafe fn optionsWithRepeatBehavior(
+            &self,
+            behavior: &NSSymbolEffectOptionsRepeatBehavior,
+        ) -> Retained<Self>;
     }
 );
 
@@ -408,6 +472,183 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NSSymbolWiggleEffect;
+
+    unsafe impl ClassType for NSSymbolWiggleEffect {
+        #[inherits(NSObject)]
+        type Super = NSSymbolEffect;
+    }
+);
+
+unsafe impl NSCoding for NSSymbolWiggleEffect {}
+
+unsafe impl NSCopying for NSSymbolWiggleEffect {}
+
+unsafe impl CopyingHelper for NSSymbolWiggleEffect {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NSSymbolWiggleEffect {}
+
+unsafe impl NSSecureCoding for NSSymbolWiggleEffect {}
+
+extern_methods!(
+    unsafe impl NSSymbolWiggleEffect {
+        #[method_id(@__retain_semantics Other effect)]
+        pub unsafe fn effect() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other wiggleClockwiseEffect)]
+        pub unsafe fn wiggleClockwiseEffect() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other wiggleCounterClockwiseEffect)]
+        pub unsafe fn wiggleCounterClockwiseEffect() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other wiggleLeftEffect)]
+        pub unsafe fn wiggleLeftEffect() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other wiggleRightEffect)]
+        pub unsafe fn wiggleRightEffect() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other wiggleUpEffect)]
+        pub unsafe fn wiggleUpEffect() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other wiggleDownEffect)]
+        pub unsafe fn wiggleDownEffect() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other wiggleForwardEffect)]
+        pub unsafe fn wiggleForwardEffect() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other wiggleBackwardEffect)]
+        pub unsafe fn wiggleBackwardEffect() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other wiggleCustomAngleEffect:)]
+        pub unsafe fn wiggleCustomAngleEffect(angle: c_double) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other effectWithByLayer)]
+        pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other effectWithWholeSymbol)]
+        pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSSymbolEffect`
+    unsafe impl NSSymbolWiggleEffect {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NSSymbolRotateEffect;
+
+    unsafe impl ClassType for NSSymbolRotateEffect {
+        #[inherits(NSObject)]
+        type Super = NSSymbolEffect;
+    }
+);
+
+unsafe impl NSCoding for NSSymbolRotateEffect {}
+
+unsafe impl NSCopying for NSSymbolRotateEffect {}
+
+unsafe impl CopyingHelper for NSSymbolRotateEffect {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NSSymbolRotateEffect {}
+
+unsafe impl NSSecureCoding for NSSymbolRotateEffect {}
+
+extern_methods!(
+    unsafe impl NSSymbolRotateEffect {
+        #[method_id(@__retain_semantics Other effect)]
+        pub unsafe fn effect() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other rotateClockwiseEffect)]
+        pub unsafe fn rotateClockwiseEffect() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other rotateCounterClockwiseEffect)]
+        pub unsafe fn rotateCounterClockwiseEffect() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other effectWithByLayer)]
+        pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other effectWithWholeSymbol)]
+        pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSSymbolEffect`
+    unsafe impl NSSymbolRotateEffect {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NSSymbolBreatheEffect;
+
+    unsafe impl ClassType for NSSymbolBreatheEffect {
+        #[inherits(NSObject)]
+        type Super = NSSymbolEffect;
+    }
+);
+
+unsafe impl NSCoding for NSSymbolBreatheEffect {}
+
+unsafe impl NSCopying for NSSymbolBreatheEffect {}
+
+unsafe impl CopyingHelper for NSSymbolBreatheEffect {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NSSymbolBreatheEffect {}
+
+unsafe impl NSSecureCoding for NSSymbolBreatheEffect {}
+
+extern_methods!(
+    unsafe impl NSSymbolBreatheEffect {
+        #[method_id(@__retain_semantics Other effect)]
+        pub unsafe fn effect() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other breathePulseEffect)]
+        pub unsafe fn breathePulseEffect() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other breathePlainEffect)]
+        pub unsafe fn breathePlainEffect() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other effectWithByLayer)]
+        pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other effectWithWholeSymbol)]
+        pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSSymbolEffect`
+    unsafe impl NSSymbolBreatheEffect {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolContentTransition;
 
     unsafe impl ClassType for NSSymbolContentTransition {
@@ -429,6 +670,43 @@ unsafe impl NSSecureCoding for NSSymbolContentTransition {}
 
 extern_methods!(
     unsafe impl NSSymbolContentTransition {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NSSymbolMagicReplaceContentTransition;
+
+    unsafe impl ClassType for NSSymbolMagicReplaceContentTransition {
+        #[inherits(NSObject)]
+        type Super = NSSymbolContentTransition;
+    }
+);
+
+unsafe impl NSCoding for NSSymbolMagicReplaceContentTransition {}
+
+unsafe impl NSCopying for NSSymbolMagicReplaceContentTransition {}
+
+unsafe impl CopyingHelper for NSSymbolMagicReplaceContentTransition {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NSSymbolMagicReplaceContentTransition {}
+
+unsafe impl NSSecureCoding for NSSymbolMagicReplaceContentTransition {}
+
+extern_methods!(
+    unsafe impl NSSymbolMagicReplaceContentTransition {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSSymbolContentTransition`
+    unsafe impl NSSymbolMagicReplaceContentTransition {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -478,6 +756,11 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other transitionWithWholeSymbol)]
         pub unsafe fn transitionWithWholeSymbol(&self) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other magicTransitionWithFallback:)]
+        pub unsafe fn magicTransitionWithFallback(
+            fallback: &NSSymbolReplaceContentTransition,
+        ) -> Retained<NSSymbolMagicReplaceContentTransition>;
     }
 );
 

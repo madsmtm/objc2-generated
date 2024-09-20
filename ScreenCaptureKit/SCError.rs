@@ -33,6 +33,8 @@ impl SCStreamErrorCode {
     pub const SCStreamErrorUserStopped: Self = Self(-3817);
     pub const SCStreamErrorFailedToStartAudioCapture: Self = Self(-3818);
     pub const SCStreamErrorFailedToStopAudioCapture: Self = Self(-3819);
+    pub const SCStreamErrorFailedToStartMicrophoneCapture: Self = Self(-3820);
+    pub const SCStreamErrorSystemStoppedStream: Self = Self(-3821);
 }
 
 unsafe impl Encode for SCStreamErrorCode {

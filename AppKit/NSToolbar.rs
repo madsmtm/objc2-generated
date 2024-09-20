@@ -17,6 +17,10 @@ extern "C" {
     pub static NSToolbarItemKey: &'static NSToolbarUserInfoKey;
 }
 
+extern "C" {
+    pub static NSToolbarNewIndexKey: &'static NSToolbarUserInfoKey;
+}
+
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -98,6 +102,12 @@ extern_methods!(
         #[method(removeItemAtIndex:)]
         pub unsafe fn removeItemAtIndex(&self, index: NSInteger);
 
+        #[method(removeItemWithItemIdentifier:)]
+        pub unsafe fn removeItemWithItemIdentifier(
+            &self,
+            item_identifier: &NSToolbarItemIdentifier,
+        );
+
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSToolbarDelegate>>>;
 
@@ -131,25 +141,20 @@ extern_methods!(
             selected_item_identifier: Option<&NSToolbarItemIdentifier>,
         );
 
-        #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
-        #[method(sizeMode)]
-        pub unsafe fn sizeMode(&self) -> NSToolbarSizeMode;
-
-        #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
-        #[method(setSizeMode:)]
-        pub unsafe fn setSizeMode(&self, size_mode: NSToolbarSizeMode);
-
-        #[method(showsBaselineSeparator)]
-        pub unsafe fn showsBaselineSeparator(&self) -> bool;
-
-        #[method(setShowsBaselineSeparator:)]
-        pub unsafe fn setShowsBaselineSeparator(&self, shows_baseline_separator: bool);
-
         #[method(allowsUserCustomization)]
         pub unsafe fn allowsUserCustomization(&self) -> bool;
 
         #[method(setAllowsUserCustomization:)]
         pub unsafe fn setAllowsUserCustomization(&self, allows_user_customization: bool);
+
+        #[method(allowsDisplayModeCustomization)]
+        pub unsafe fn allowsDisplayModeCustomization(&self) -> bool;
+
+        #[method(setAllowsDisplayModeCustomization:)]
+        pub unsafe fn setAllowsDisplayModeCustomization(
+            &self,
+            allows_display_mode_customization: bool,
+        );
 
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSToolbarIdentifier>;
@@ -162,6 +167,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other visibleItems)]
         pub unsafe fn visibleItems(&self) -> Option<Retained<NSArray<NSToolbarItem>>>;
 
+        #[method_id(@__retain_semantics Other itemIdentifiers)]
+        pub unsafe fn itemIdentifiers(&self) -> Retained<NSArray<NSToolbarItemIdentifier>>;
+
+        #[method(setItemIdentifiers:)]
+        pub unsafe fn setItemIdentifiers(
+            &self,
+            item_identifiers: &NSArray<NSToolbarItemIdentifier>,
+        );
+
         #[method_id(@__retain_semantics Other centeredItemIdentifiers)]
         pub unsafe fn centeredItemIdentifiers(&self) -> Retained<NSSet<NSToolbarItemIdentifier>>;
 
@@ -171,32 +185,11 @@ extern_methods!(
             centered_item_identifiers: &NSSet<NSToolbarItemIdentifier>,
         );
 
-        #[deprecated = "Use the centeredItemIdentifiers property instead"]
-        #[method_id(@__retain_semantics Other centeredItemIdentifier)]
-        pub unsafe fn centeredItemIdentifier(&self) -> Option<Retained<NSToolbarItemIdentifier>>;
-
-        #[deprecated = "Use the centeredItemIdentifiers property instead"]
-        #[method(setCenteredItemIdentifier:)]
-        pub unsafe fn setCenteredItemIdentifier(
-            &self,
-            centered_item_identifier: Option<&NSToolbarItemIdentifier>,
-        );
-
         #[method(autosavesConfiguration)]
         pub unsafe fn autosavesConfiguration(&self) -> bool;
 
         #[method(setAutosavesConfiguration:)]
         pub unsafe fn setAutosavesConfiguration(&self, autosaves_configuration: bool);
-
-        #[method(setConfigurationFromDictionary:)]
-        pub unsafe fn setConfigurationFromDictionary(
-            &self,
-            config_dict: &NSDictionary<NSString, AnyObject>,
-        );
-
-        #[method_id(@__retain_semantics Other configurationDictionary)]
-        pub unsafe fn configurationDictionary(&self)
-            -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[method(validateVisibleItems)]
         pub unsafe fn validateVisibleItems(&self);
@@ -289,6 +282,25 @@ extern "C" {
 extern_methods!(
     /// NSDeprecated
     unsafe impl NSToolbar {
+        #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
+        #[method(sizeMode)]
+        pub unsafe fn sizeMode(&self) -> NSToolbarSizeMode;
+
+        #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
+        #[method(setSizeMode:)]
+        pub unsafe fn setSizeMode(&self, size_mode: NSToolbarSizeMode);
+
+        #[deprecated = "Use the centeredItemIdentifiers property instead"]
+        #[method_id(@__retain_semantics Other centeredItemIdentifier)]
+        pub unsafe fn centeredItemIdentifier(&self) -> Option<Retained<NSToolbarItemIdentifier>>;
+
+        #[deprecated = "Use the centeredItemIdentifiers property instead"]
+        #[method(setCenteredItemIdentifier:)]
+        pub unsafe fn setCenteredItemIdentifier(
+            &self,
+            centered_item_identifier: Option<&NSToolbarItemIdentifier>,
+        );
+
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use NSTitlebarAccessoryViewController with NSWindow instead"]
         #[method_id(@__retain_semantics Other fullScreenAccessoryView)]
@@ -322,6 +334,26 @@ extern_methods!(
         pub unsafe fn setFullScreenAccessoryViewMaxHeight(
             &self,
             full_screen_accessory_view_max_height: CGFloat,
+        );
+
+        #[deprecated = "No longer supported"]
+        #[method(showsBaselineSeparator)]
+        pub unsafe fn showsBaselineSeparator(&self) -> bool;
+
+        #[deprecated = "No longer supported"]
+        #[method(setShowsBaselineSeparator:)]
+        pub unsafe fn setShowsBaselineSeparator(&self, shows_baseline_separator: bool);
+
+        #[deprecated = "Use -itemIdentifiers and -displayMode instead."]
+        #[method_id(@__retain_semantics Other configurationDictionary)]
+        pub unsafe fn configurationDictionary(&self)
+            -> Retained<NSDictionary<NSString, AnyObject>>;
+
+        #[deprecated = "Use -setItemIdentifiers: and -setDisplayMode: instead."]
+        #[method(setConfigurationFromDictionary:)]
+        pub unsafe fn setConfigurationFromDictionary(
+            &self,
+            config_dict: &NSDictionary<NSString, AnyObject>,
         );
     }
 );

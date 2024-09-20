@@ -37,7 +37,77 @@ extern_protocol!(
         #[deprecated = "Use MTLCaptureScope instead"]
         #[method(insertDebugCaptureBoundary)]
         unsafe fn insertDebugCaptureBoundary(&self);
+
+        #[cfg(feature = "MTLResidencySet")]
+        #[method(addResidencySet:)]
+        unsafe fn addResidencySet(&self, residency_set: &ProtocolObject<dyn MTLResidencySet>);
+
+        #[cfg(feature = "MTLResidencySet")]
+        #[method(addResidencySets:count:)]
+        unsafe fn addResidencySets_count(
+            &self,
+            residency_sets: NonNull<NonNull<ProtocolObject<dyn MTLResidencySet>>>,
+            count: NSUInteger,
+        );
+
+        #[cfg(feature = "MTLResidencySet")]
+        #[method(removeResidencySet:)]
+        unsafe fn removeResidencySet(&self, residency_set: &ProtocolObject<dyn MTLResidencySet>);
+
+        #[cfg(feature = "MTLResidencySet")]
+        #[method(removeResidencySets:count:)]
+        unsafe fn removeResidencySets_count(
+            &self,
+            residency_sets: NonNull<NonNull<ProtocolObject<dyn MTLResidencySet>>>,
+            count: NSUInteger,
+        );
     }
 
     unsafe impl ProtocolType for dyn MTLCommandQueue {}
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct MTLCommandQueueDescriptor;
+
+    unsafe impl ClassType for MTLCommandQueueDescriptor {
+        type Super = NSObject;
+    }
+);
+
+unsafe impl NSCopying for MTLCommandQueueDescriptor {}
+
+unsafe impl CopyingHelper for MTLCommandQueueDescriptor {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for MTLCommandQueueDescriptor {}
+
+extern_methods!(
+    unsafe impl MTLCommandQueueDescriptor {
+        #[method(maxCommandBufferCount)]
+        pub unsafe fn maxCommandBufferCount(&self) -> NSUInteger;
+
+        #[method(setMaxCommandBufferCount:)]
+        pub unsafe fn setMaxCommandBufferCount(&self, max_command_buffer_count: NSUInteger);
+
+        #[cfg(feature = "MTLLogState")]
+        #[method_id(@__retain_semantics Other logState)]
+        pub unsafe fn logState(&self) -> Option<Retained<ProtocolObject<dyn MTLLogState>>>;
+
+        #[cfg(feature = "MTLLogState")]
+        #[method(setLogState:)]
+        pub unsafe fn setLogState(&self, log_state: Option<&ProtocolObject<dyn MTLLogState>>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl MTLCommandQueueDescriptor {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
 );

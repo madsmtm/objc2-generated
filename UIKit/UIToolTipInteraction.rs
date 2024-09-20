@@ -70,6 +70,7 @@ extern_class!(
 
     unsafe impl ClassType for UIToolTipConfiguration {
         type Super = NSObject;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -84,16 +85,20 @@ extern_methods!(
         pub unsafe fn sourceRect(&self) -> CGRect;
 
         #[method_id(@__retain_semantics Other configurationWithToolTip:)]
-        pub unsafe fn configurationWithToolTip(tool_tip: &NSString) -> Retained<Self>;
+        pub unsafe fn configurationWithToolTip(
+            tool_tip: &NSString,
+            mtm: MainThreadMarker,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configurationWithToolTip:inRect:)]
         pub unsafe fn configurationWithToolTip_inRect(
             tool_tip: &NSString,
             source_rect: CGRect,
+            mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -101,7 +106,9 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait UIToolTipInteractionDelegate: NSObjectProtocol {
+    pub unsafe trait UIToolTipInteractionDelegate:
+        NSObjectProtocol + MainThreadOnly
+    {
         #[optional]
         #[method_id(@__retain_semantics Other toolTipInteraction:configurationAtPoint:)]
         unsafe fn toolTipInteraction_configurationAtPoint(

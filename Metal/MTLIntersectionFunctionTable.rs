@@ -90,7 +90,7 @@ impl DefaultRetained for MTLIntersectionFunctionTableDescriptor {
 }
 
 extern_protocol!(
-    #[cfg(feature = "MTLResource")]
+    #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     pub unsafe trait MTLIntersectionFunctionTable: MTLResource {
         #[cfg(feature = "MTLBuffer")]
         #[method(setBuffer:offset:atIndex:)]
@@ -175,6 +175,6 @@ extern_protocol!(
         );
     }
 
-    #[cfg(feature = "MTLResource")]
+    #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     unsafe impl ProtocolType for dyn MTLIntersectionFunctionTable {}
 );

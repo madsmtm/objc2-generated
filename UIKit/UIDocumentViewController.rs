@@ -68,6 +68,17 @@ extern_methods!(
         #[method(setDocument:)]
         pub unsafe fn setDocument(&self, document: Option<&UIDocument>);
 
+        #[cfg(feature = "UIDocumentViewControllerLaunchOptions")]
+        #[method_id(@__retain_semantics Other launchOptions)]
+        pub unsafe fn launchOptions(&self) -> Retained<UIDocumentViewControllerLaunchOptions>;
+
+        #[cfg(feature = "UIDocumentViewControllerLaunchOptions")]
+        #[method(setLaunchOptions:)]
+        pub unsafe fn setLaunchOptions(
+            &self,
+            launch_options: &UIDocumentViewControllerLaunchOptions,
+        );
+
         #[method(navigationItemDidUpdate)]
         pub unsafe fn navigationItemDidUpdate(&self);
 

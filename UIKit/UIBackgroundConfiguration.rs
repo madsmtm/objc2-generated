@@ -32,24 +32,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other clearConfiguration)]
         pub unsafe fn clearConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other listPlainCellConfiguration)]
-        pub unsafe fn listPlainCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
+        #[method_id(@__retain_semantics Other listCellConfiguration)]
+        pub unsafe fn listCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other listPlainHeaderFooterConfiguration)]
-        pub unsafe fn listPlainHeaderFooterConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
+        #[method_id(@__retain_semantics Other listHeaderConfiguration)]
+        pub unsafe fn listHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other listGroupedCellConfiguration)]
-        pub unsafe fn listGroupedCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
-
-        #[method_id(@__retain_semantics Other listGroupedHeaderFooterConfiguration)]
-        pub unsafe fn listGroupedHeaderFooterConfiguration(mtm: MainThreadMarker)
-            -> Retained<Self>;
-
-        #[method_id(@__retain_semantics Other listSidebarHeaderConfiguration)]
-        pub unsafe fn listSidebarHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
-
-        #[method_id(@__retain_semantics Other listSidebarCellConfiguration)]
-        pub unsafe fn listSidebarCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
+        #[method_id(@__retain_semantics Other listFooterConfiguration)]
+        pub unsafe fn listFooterConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other listAccompaniedSidebarCellConfiguration)]
         pub unsafe fn listAccompaniedSidebarCellConfiguration(
@@ -205,5 +195,30 @@ extern_methods!(
 
         #[method(setStrokeOutset:)]
         pub unsafe fn setStrokeOutset(&self, stroke_outset: CGFloat);
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Other listPlainCellConfiguration)]
+        pub unsafe fn listPlainCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Other listGroupedCellConfiguration)]
+        pub unsafe fn listGroupedCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Other listSidebarCellConfiguration)]
+        pub unsafe fn listSidebarCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
+
+        #[deprecated = "Use +listHeaderConfiguration or +listFooterConfiguration"]
+        #[method_id(@__retain_semantics Other listPlainHeaderFooterConfiguration)]
+        pub unsafe fn listPlainHeaderFooterConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
+
+        #[deprecated = "Use +listHeaderConfiguration or +listFooterConfiguration"]
+        #[method_id(@__retain_semantics Other listGroupedHeaderFooterConfiguration)]
+        pub unsafe fn listGroupedHeaderFooterConfiguration(mtm: MainThreadMarker)
+            -> Retained<Self>;
+
+        #[deprecated = "Use +listHeaderConfiguration or +listFooterConfiguration"]
+        #[method_id(@__retain_semantics Other listSidebarHeaderConfiguration)]
+        pub unsafe fn listSidebarHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

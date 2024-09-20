@@ -14,6 +14,10 @@ extern_class!(
     }
 );
 
+unsafe impl Send for HKQueryAnchor {}
+
+unsafe impl Sync for HKQueryAnchor {}
+
 unsafe impl NSCoding for HKQueryAnchor {}
 
 unsafe impl NSCopying for HKQueryAnchor {}

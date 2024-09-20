@@ -61,6 +61,9 @@ mod __CMFallDetectionManager;
 #[cfg(feature = "CMGyro")]
 #[path = "CMGyro.rs"]
 mod __CMGyro;
+#[cfg(feature = "CMHeadphoneActivityManager")]
+#[path = "CMHeadphoneActivityManager.rs"]
+mod __CMHeadphoneActivityManager;
 #[cfg(feature = "CMHeadphoneMotionManager")]
 #[path = "CMHeadphoneMotionManager.rs"]
 mod __CMHeadphoneMotionManager;
@@ -178,6 +181,19 @@ pub use self::__CMFallDetectionManager::CMFallDetectionManager;
 pub use self::__CMGyro::CMGyroData;
 #[cfg(feature = "CMGyro")]
 pub use self::__CMGyro::CMRotationRate;
+#[cfg(all(
+    feature = "CMHeadphoneActivityManager",
+    feature = "CMLogItem",
+    feature = "CMMotionActivity",
+    feature = "block2"
+))]
+pub use self::__CMHeadphoneActivityManager::CMHeadphoneActivityHandler;
+#[cfg(feature = "CMHeadphoneActivityManager")]
+pub use self::__CMHeadphoneActivityManager::CMHeadphoneActivityManager;
+#[cfg(feature = "CMHeadphoneActivityManager")]
+pub use self::__CMHeadphoneActivityManager::CMHeadphoneActivityStatus;
+#[cfg(all(feature = "CMHeadphoneActivityManager", feature = "block2"))]
+pub use self::__CMHeadphoneActivityManager::CMHeadphoneActivityStatusHandler;
 #[cfg(all(
     feature = "CMDeviceMotion",
     feature = "CMHeadphoneMotionManager",

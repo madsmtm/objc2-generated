@@ -23,7 +23,7 @@ unsafe impl RefEncode for MTLFunctionLogType {
 }
 
 extern_protocol!(
-    pub unsafe trait MTLLogContainer: NSFastEnumeration {}
+    pub unsafe trait MTLLogContainer: NSFastEnumeration + NSObjectProtocol {}
 
     unsafe impl ProtocolType for dyn MTLLogContainer {}
 );

@@ -42,6 +42,8 @@ bitflags::bitflags! {
         const RegistrationSharedDeviceKeys = 1<<2;
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationDeviceKeyMigration")]
         const RegistrationDeviceKeyMigration = 1<<3;
+        #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsStrongerKeyAvailable")]
+        const StrongerKeyAvailable = 1<<4;
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsUserKeyInvalid")]
         const UserKeyInvalid = 1<<5;
     }
@@ -170,6 +172,27 @@ extern_protocol!(
         unsafe fn protocolVersion(
             &self,
         ) -> ASAuthorizationProviderExtensionPlatformSSOProtocolVersion;
+
+        #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
+        #[optional]
+        #[method_id(@__retain_semantics Other supportedDeviceSigningAlgorithms)]
+        unsafe fn supportedDeviceSigningAlgorithms(
+            &self,
+        ) -> Retained<NSArray<ASAuthorizationProviderExtensionSigningAlgorithm>>;
+
+        #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
+        #[optional]
+        #[method_id(@__retain_semantics Other supportedDeviceEncryptionAlgorithms)]
+        unsafe fn supportedDeviceEncryptionAlgorithms(
+            &self,
+        ) -> Retained<NSArray<ASAuthorizationProviderExtensionEncryptionAlgorithm>>;
+
+        #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
+        #[optional]
+        #[method_id(@__retain_semantics Other supportedUserSecureEnclaveKeySigningAlgorithms)]
+        unsafe fn supportedUserSecureEnclaveKeySigningAlgorithms(
+            &self,
+        ) -> Retained<NSArray<ASAuthorizationProviderExtensionSigningAlgorithm>>;
     }
 
     unsafe impl ProtocolType for dyn ASAuthorizationProviderExtensionRegistrationHandler {}

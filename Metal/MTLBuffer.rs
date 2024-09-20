@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    #[cfg(feature = "MTLResource")]
+    #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     pub unsafe trait MTLBuffer: MTLResource {
         #[method(length)]
         fn length(&self) -> NSUInteger;
@@ -46,6 +46,6 @@ extern_protocol!(
         fn gpuAddress(&self) -> u64;
     }
 
-    #[cfg(feature = "MTLResource")]
+    #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     unsafe impl ProtocolType for dyn MTLBuffer {}
 );

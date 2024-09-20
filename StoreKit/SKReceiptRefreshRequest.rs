@@ -8,6 +8,7 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SKRequest")]
+    #[deprecated = "Use Transaction.all and AppTransaction.shared"]
     pub struct SKReceiptRefreshRequest;
 
     #[cfg(feature = "SKRequest")]
@@ -23,12 +24,14 @@ unsafe impl NSObjectProtocol for SKReceiptRefreshRequest {}
 extern_methods!(
     #[cfg(feature = "SKRequest")]
     unsafe impl SKReceiptRefreshRequest {
+        #[deprecated = "Use Transaction.all and AppTransaction.shared"]
         #[method_id(@__retain_semantics Init initWithReceiptProperties:)]
         pub unsafe fn initWithReceiptProperties(
             this: Allocated<Self>,
             properties: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
+        #[deprecated = "Use Transaction.all and AppTransaction.shared"]
         #[method_id(@__retain_semantics Other receiptProperties)]
         pub unsafe fn receiptProperties(
             &self,

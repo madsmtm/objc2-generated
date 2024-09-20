@@ -250,6 +250,7 @@ impl MTLLanguageVersion {
     pub const MTLLanguageVersion2_4: Self = Self((2 << 16) + 4);
     pub const MTLLanguageVersion3_0: Self = Self((3 << 16) + 0);
     pub const MTLLanguageVersion3_1: Self = Self((3 << 16) + 1);
+    pub const MTLLanguageVersion3_2: Self = Self((3 << 16) + 2);
 }
 
 unsafe impl Encode for MTLLanguageVersion {
@@ -317,6 +318,46 @@ unsafe impl RefEncode for MTLCompileSymbolVisibility {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLMathMode(pub NSInteger);
+impl MTLMathMode {
+    #[doc(alias = "MTLMathModeSafe")]
+    pub const Safe: Self = Self(0);
+    #[doc(alias = "MTLMathModeRelaxed")]
+    pub const Relaxed: Self = Self(1);
+    #[doc(alias = "MTLMathModeFast")]
+    pub const Fast: Self = Self(2);
+}
+
+unsafe impl Encode for MTLMathMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for MTLMathMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLMathFloatingPointFunctions(pub NSInteger);
+impl MTLMathFloatingPointFunctions {
+    #[doc(alias = "MTLMathFloatingPointFunctionsFast")]
+    pub const Fast: Self = Self(0);
+    #[doc(alias = "MTLMathFloatingPointFunctionsPrecise")]
+    pub const Precise: Self = Self(1);
+}
+
+unsafe impl Encode for MTLMathFloatingPointFunctions {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for MTLMathFloatingPointFunctions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLCompileOptions;
@@ -345,11 +386,28 @@ extern_methods!(
             preprocessor_macros: Option<&NSDictionary<NSString, NSObject>>,
         );
 
+        #[deprecated = "Use mathMode instead"]
         #[method(fastMathEnabled)]
         pub fn fastMathEnabled(&self) -> bool;
 
+        #[deprecated = "Use mathMode instead"]
         #[method(setFastMathEnabled:)]
         pub fn setFastMathEnabled(&self, fast_math_enabled: bool);
+
+        #[method(mathMode)]
+        pub unsafe fn mathMode(&self) -> MTLMathMode;
+
+        #[method(setMathMode:)]
+        pub unsafe fn setMathMode(&self, math_mode: MTLMathMode);
+
+        #[method(mathFloatingPointFunctions)]
+        pub unsafe fn mathFloatingPointFunctions(&self) -> MTLMathFloatingPointFunctions;
+
+        #[method(setMathFloatingPointFunctions:)]
+        pub unsafe fn setMathFloatingPointFunctions(
+            &self,
+            math_floating_point_functions: MTLMathFloatingPointFunctions,
+        );
 
         #[method(languageVersion)]
         pub fn languageVersion(&self) -> MTLLanguageVersion;
@@ -419,6 +477,12 @@ extern_methods!(
             &self,
             max_total_threads_per_threadgroup: NSUInteger,
         );
+
+        #[method(enableLogging)]
+        pub unsafe fn enableLogging(&self) -> bool;
+
+        #[method(setEnableLogging:)]
+        pub unsafe fn setEnableLogging(&self, enable_logging: bool);
     }
 );
 

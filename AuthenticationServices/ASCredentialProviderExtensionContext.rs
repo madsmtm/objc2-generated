@@ -43,6 +43,14 @@ extern_methods!(
             completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
         );
 
+        #[cfg(all(feature = "ASOneTimeCodeCredential", feature = "block2"))]
+        #[method(completeOneTimeCodeRequestWithSelectedCredential:completionHandler:)]
+        pub unsafe fn completeOneTimeCodeRequestWithSelectedCredential_completionHandler(
+            &self,
+            credential: &ASOneTimeCodeCredential,
+            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+        );
+
         #[method(completeExtensionConfigurationRequest)]
         pub unsafe fn completeExtensionConfigurationRequest(&self);
 

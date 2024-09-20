@@ -25,6 +25,8 @@ impl MLFeatureType {
     pub const Dictionary: Self = Self(6);
     #[doc(alias = "MLFeatureTypeSequence")]
     pub const Sequence: Self = Self(7);
+    #[doc(alias = "MLFeatureTypeState")]
+    pub const State: Self = Self(8);
 }
 
 unsafe impl Encode for MLFeatureType {

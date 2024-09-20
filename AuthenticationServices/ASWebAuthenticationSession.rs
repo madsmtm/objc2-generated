@@ -71,6 +71,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other presentationContextProvider)]
         pub unsafe fn presentationContextProvider(
             &self,
+            mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn ASWebAuthenticationPresentationContextProviding>>>;
 
         #[method(setPresentationContextProvider:)]
@@ -120,7 +121,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait ASWebAuthenticationPresentationContextProviding:
-        NSObjectProtocol
+        NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "ASFoundation")]
         #[cfg(target_os = "macos")]
@@ -128,7 +129,6 @@ extern_protocol!(
         unsafe fn presentationAnchorForWebAuthenticationSession(
             &self,
             session: &ASWebAuthenticationSession,
-            mtm: MainThreadMarker,
         ) -> Retained<ASPresentationAnchor>;
     }
 

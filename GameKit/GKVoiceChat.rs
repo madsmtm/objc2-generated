@@ -6,14 +6,20 @@ use objc2_foundation::*;
 use crate::*;
 
 // NS_ENUM
+#[deprecated = "No longer supported"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GKVoiceChatPlayerState(pub NSInteger);
 impl GKVoiceChatPlayerState {
+    #[deprecated = "No longer supported"]
     pub const GKVoiceChatPlayerConnected: Self = Self(0);
+    #[deprecated = "No longer supported"]
     pub const GKVoiceChatPlayerDisconnected: Self = Self(1);
+    #[deprecated = "No longer supported"]
     pub const GKVoiceChatPlayerSpeaking: Self = Self(2);
+    #[deprecated = "No longer supported"]
     pub const GKVoiceChatPlayerSilent: Self = Self(3);
+    #[deprecated = "No longer supported"]
     pub const GKVoiceChatPlayerConnecting: Self = Self(4);
 }
 
@@ -27,6 +33,7 @@ unsafe impl RefEncode for GKVoiceChatPlayerState {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "No longer supported"]
     pub struct GKVoiceChat;
 
     unsafe impl ClassType for GKVoiceChat {
@@ -38,9 +45,11 @@ unsafe impl NSObjectProtocol for GKVoiceChat {}
 
 extern_methods!(
     unsafe impl GKVoiceChat {
+        #[deprecated = "No longer supported"]
         #[method(start)]
         pub unsafe fn start(&self);
 
+        #[deprecated = "No longer supported"]
         #[method(stop)]
         pub unsafe fn stop(&self);
 
@@ -63,18 +72,23 @@ extern_methods!(
             >,
         );
 
+        #[deprecated = "No longer supported"]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        #[deprecated = "No longer supported"]
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
 
+        #[deprecated = "No longer supported"]
         #[method(setActive:)]
         pub unsafe fn setActive(&self, active: bool);
 
+        #[deprecated = "No longer supported"]
         #[method(volume)]
         pub unsafe fn volume(&self) -> c_float;
 
+        #[deprecated = "No longer supported"]
         #[method(setVolume:)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
@@ -82,6 +96,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other players)]
         pub unsafe fn players(&self) -> Retained<NSArray<GKPlayer>>;
 
+        #[deprecated = "No longer supported"]
         #[method(isVoIPAllowed)]
         pub unsafe fn isVoIPAllowed() -> bool;
     }

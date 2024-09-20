@@ -92,6 +92,8 @@ pub use self::__UTCoreTypes::UTTypeCPlusPlusHeader;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeCPlusPlusSource;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
+pub use self::__UTCoreTypes::UTTypeCSS;
+#[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeCSource;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeCalendarEvent;
@@ -103,6 +105,8 @@ pub use self::__UTCoreTypes::UTTypeCompositeContent;
 pub use self::__UTCoreTypes::UTTypeContact;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeContent;
+#[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
+pub use self::__UTCoreTypes::UTTypeDNG;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeData;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
@@ -117,6 +121,8 @@ pub use self::__UTCoreTypes::UTTypeDiskImage;
 pub use self::__UTCoreTypes::UTTypeEPUB;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeEXE;
+#[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
+pub use self::__UTCoreTypes::UTTypeEXR;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeEmailMessage;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
@@ -136,7 +142,11 @@ pub use self::__UTCoreTypes::UTTypeGIF;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeGZIP;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
+pub use self::__UTCoreTypes::UTTypeGeoJSON;
+#[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeHEIC;
+#[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
+pub use self::__UTCoreTypes::UTTypeHEICS;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeHEIF;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
@@ -159,6 +169,8 @@ pub use self::__UTCoreTypes::UTTypeJPEG;
 pub use self::__UTCoreTypes::UTTypeJSON;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeJavaScript;
+#[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
+pub use self::__UTCoreTypes::UTTypeLinkPresentationMetadata;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeLivePhoto;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
@@ -259,6 +271,8 @@ pub use self::__UTCoreTypes::UTTypeSystemPreferencesPane;
 pub use self::__UTCoreTypes::UTTypeTIFF;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeTabSeparatedText;
+#[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
+pub use self::__UTCoreTypes::UTTypeTarArchive;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeText;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]

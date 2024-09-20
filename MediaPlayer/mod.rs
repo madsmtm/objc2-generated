@@ -207,6 +207,8 @@ pub use self::__MPMediaItem::MPMediaItemPropertyReleaseDate;
 #[cfg(feature = "MPMediaItem")]
 pub use self::__MPMediaItem::MPMediaItemPropertySkipCount;
 #[cfg(feature = "MPMediaItem")]
+pub use self::__MPMediaItem::MPMediaItemPropertyStoreCanonicalId;
+#[cfg(feature = "MPMediaItem")]
 pub use self::__MPMediaItem::MPMediaItemPropertyTitle;
 #[cfg(feature = "MPMediaItem")]
 pub use self::__MPMediaItem::MPMediaItemPropertyUserGrouping;
@@ -324,9 +326,13 @@ pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyDefaultPlaybackR
 #[cfg(feature = "MPNowPlayingInfoCenter")]
 pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyElapsedPlaybackTime;
 #[cfg(feature = "MPNowPlayingInfoCenter")]
+pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyExcludeFromSuggestions;
+#[cfg(feature = "MPNowPlayingInfoCenter")]
 pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyExternalContentIdentifier;
 #[cfg(feature = "MPNowPlayingInfoCenter")]
 pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyExternalUserProfileIdentifier;
+#[cfg(feature = "MPNowPlayingInfoCenter")]
+pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyInternationalStandardRecordingCode;
 #[cfg(feature = "MPNowPlayingInfoCenter")]
 pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyIsLiveStream;
 #[cfg(feature = "MPNowPlayingInfoCenter")]

@@ -27,6 +27,8 @@ pub use self::__NSSymbolEffect::NSSymbolAutomaticContentTransition;
 #[cfg(feature = "NSSymbolEffect")]
 pub use self::__NSSymbolEffect::NSSymbolBounceEffect;
 #[cfg(feature = "NSSymbolEffect")]
+pub use self::__NSSymbolEffect::NSSymbolBreatheEffect;
+#[cfg(feature = "NSSymbolEffect")]
 pub use self::__NSSymbolEffect::NSSymbolContentTransition;
 #[cfg(feature = "NSSymbolEffect")]
 pub use self::__NSSymbolEffect::NSSymbolDisappearEffect;
@@ -35,10 +37,18 @@ pub use self::__NSSymbolEffect::NSSymbolEffect;
 #[cfg(feature = "NSSymbolEffect")]
 pub use self::__NSSymbolEffect::NSSymbolEffectOptions;
 #[cfg(feature = "NSSymbolEffect")]
+pub use self::__NSSymbolEffect::NSSymbolEffectOptionsRepeatBehavior;
+#[cfg(feature = "NSSymbolEffect")]
+pub use self::__NSSymbolEffect::NSSymbolMagicReplaceContentTransition;
+#[cfg(feature = "NSSymbolEffect")]
 pub use self::__NSSymbolEffect::NSSymbolPulseEffect;
 #[cfg(feature = "NSSymbolEffect")]
 pub use self::__NSSymbolEffect::NSSymbolReplaceContentTransition;
 #[cfg(feature = "NSSymbolEffect")]
+pub use self::__NSSymbolEffect::NSSymbolRotateEffect;
+#[cfg(feature = "NSSymbolEffect")]
 pub use self::__NSSymbolEffect::NSSymbolScaleEffect;
 #[cfg(feature = "NSSymbolEffect")]
 pub use self::__NSSymbolEffect::NSSymbolVariableColorEffect;
+#[cfg(feature = "NSSymbolEffect")]
+pub use self::__NSSymbolEffect::NSSymbolWiggleEffect;

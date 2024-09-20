@@ -6,14 +6,18 @@ use objc2_foundation::*;
 use crate::*;
 
 // NS_ENUM
+#[deprecated = "Use Product.SubscriptionOffer.PaymentMode"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SKProductDiscountPaymentMode(pub NSUInteger);
 impl SKProductDiscountPaymentMode {
+    #[deprecated = "Use Product.SubscriptionOffer.PaymentMode"]
     #[doc(alias = "SKProductDiscountPaymentModePayAsYouGo")]
     pub const PayAsYouGo: Self = Self(0);
+    #[deprecated = "Use Product.SubscriptionOffer.PaymentMode"]
     #[doc(alias = "SKProductDiscountPaymentModePayUpFront")]
     pub const PayUpFront: Self = Self(1);
+    #[deprecated = "Use Product.SubscriptionOffer.PaymentMode"]
     #[doc(alias = "SKProductDiscountPaymentModeFreeTrial")]
     pub const FreeTrial: Self = Self(2);
 }
@@ -27,12 +31,15 @@ unsafe impl RefEncode for SKProductDiscountPaymentMode {
 }
 
 // NS_ENUM
+#[deprecated = "Use Product.SubscriptionOffer.OfferType"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SKProductDiscountType(pub NSUInteger);
 impl SKProductDiscountType {
+    #[deprecated = "Use Product.SubscriptionOffer.OfferType"]
     #[doc(alias = "SKProductDiscountTypeIntroductory")]
     pub const Introductory: Self = Self(0);
+    #[deprecated = "Use Product.SubscriptionOffer.OfferType"]
     #[doc(alias = "SKProductDiscountTypeSubscription")]
     pub const Subscription: Self = Self(1);
 }
@@ -47,6 +54,7 @@ unsafe impl RefEncode for SKProductDiscountType {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use Product.SubscriptionOffer"]
     pub struct SKProductDiscount;
 
     unsafe impl ClassType for SKProductDiscount {
@@ -62,25 +70,32 @@ unsafe impl NSObjectProtocol for SKProductDiscount {}
 
 extern_methods!(
     unsafe impl SKProductDiscount {
+        #[deprecated = "Use Product.SubscriptionOffer.displayPrice"]
         #[method_id(@__retain_semantics Other price)]
         pub unsafe fn price(&self) -> Retained<NSDecimalNumber>;
 
+        #[deprecated = "Use Product.SubscriptionOffer.displayPrice"]
         #[method_id(@__retain_semantics Other priceLocale)]
         pub unsafe fn priceLocale(&self) -> Retained<NSLocale>;
 
+        #[deprecated = "Use Product.SubscriptionOffer.id"]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "SKProduct")]
+        #[deprecated = "Use Product.SubscriptionOffer.period"]
         #[method_id(@__retain_semantics Other subscriptionPeriod)]
         pub unsafe fn subscriptionPeriod(&self) -> Retained<SKProductSubscriptionPeriod>;
 
+        #[deprecated = "Use Product.SubscriptionOffer.periodCount"]
         #[method(numberOfPeriods)]
         pub unsafe fn numberOfPeriods(&self) -> NSUInteger;
 
+        #[deprecated = "Use Product.SubscriptionOffer.paymentMode"]
         #[method(paymentMode)]
         pub unsafe fn paymentMode(&self) -> SKProductDiscountPaymentMode;
 
+        #[deprecated = "Use Product.SubscriptionOffer.type"]
         #[method(type)]
         pub unsafe fn r#type(&self) -> SKProductDiscountType;
     }

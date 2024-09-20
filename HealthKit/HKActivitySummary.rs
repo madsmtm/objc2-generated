@@ -42,6 +42,12 @@ extern_methods!(
         #[method(setActivityMoveMode:)]
         pub unsafe fn setActivityMoveMode(&self, activity_move_mode: HKActivityMoveMode);
 
+        #[method(paused)]
+        pub unsafe fn paused(&self) -> bool;
+
+        #[method(setPaused:)]
+        pub unsafe fn setPaused(&self, paused: bool);
+
         #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other activeEnergyBurned)]
         pub unsafe fn activeEnergyBurned(&self) -> Retained<HKQuantity>;

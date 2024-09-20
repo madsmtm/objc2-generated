@@ -240,6 +240,23 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// InheritedAndUnavailable
+    #[cfg(all(
+        feature = "NSPanel",
+        feature = "NSResponder",
+        feature = "NSSavePanel",
+        feature = "NSWindow"
+    ))]
+    unsafe impl NSOpenPanel {
+        #[method(showsContentTypes)]
+        pub unsafe fn showsContentTypes(&self) -> bool;
+
+        #[method(setShowsContentTypes:)]
+        pub unsafe fn setShowsContentTypes(&self, shows_content_types: bool);
+    }
+);
+
+extern_methods!(
     /// NSDeprecated
     #[cfg(all(
         feature = "NSPanel",

@@ -14,6 +14,10 @@ extern_class!(
     }
 );
 
+unsafe impl Send for HKUnit {}
+
+unsafe impl Sync for HKUnit {}
+
 unsafe impl NSCoding for HKUnit {}
 
 unsafe impl NSCopying for HKUnit {}
@@ -403,5 +407,13 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other luxUnit)]
         pub unsafe fn luxUnit() -> Retained<Self>;
+    }
+);
+
+extern_methods!(
+    /// UnitLess
+    unsafe impl HKUnit {
+        #[method_id(@__retain_semantics Other appleEffortScoreUnit)]
+        pub unsafe fn appleEffortScoreUnit() -> Retained<Self>;
     }
 );

@@ -71,6 +71,7 @@ unsafe impl NSSecureCoding for NENetworkRule {}
 extern_methods!(
     unsafe impl NENetworkRule {
         #[cfg(all(feature = "NWEndpoint", feature = "NWHostEndpoint"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithDestinationNetwork:prefix:protocol:)]
         pub unsafe fn initWithDestinationNetwork_prefix_protocol(
             this: Allocated<Self>,
@@ -80,6 +81,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NWEndpoint", feature = "NWHostEndpoint"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithDestinationHost:protocol:)]
         pub unsafe fn initWithDestinationHost_protocol(
             this: Allocated<Self>,
@@ -88,6 +90,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NWEndpoint", feature = "NWHostEndpoint"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithRemoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:)]
         pub unsafe fn initWithRemoteNetwork_remotePrefix_localNetwork_localPrefix_protocol_direction(
             this: Allocated<Self>,
@@ -100,6 +103,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NWEndpoint", feature = "NWHostEndpoint"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other matchRemoteEndpoint)]
         pub unsafe fn matchRemoteEndpoint(&self) -> Option<Retained<NWHostEndpoint>>;
 
@@ -107,6 +111,7 @@ extern_methods!(
         pub unsafe fn matchRemotePrefix(&self) -> NSUInteger;
 
         #[cfg(all(feature = "NWEndpoint", feature = "NWHostEndpoint"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other matchLocalNetwork)]
         pub unsafe fn matchLocalNetwork(&self) -> Option<Retained<NWHostEndpoint>>;
 

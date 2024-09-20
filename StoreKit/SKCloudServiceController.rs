@@ -6,16 +6,21 @@ use objc2_foundation::*;
 use crate::*;
 
 // NS_ENUM
+#[deprecated = "Use MusicAuthorization.Status from MusicKit"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SKCloudServiceAuthorizationStatus(pub NSInteger);
 impl SKCloudServiceAuthorizationStatus {
+    #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
     #[doc(alias = "SKCloudServiceAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
     #[doc(alias = "SKCloudServiceAuthorizationStatusDenied")]
     pub const Denied: Self = Self(1);
+    #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
     #[doc(alias = "SKCloudServiceAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(2);
+    #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
     #[doc(alias = "SKCloudServiceAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }
@@ -29,17 +34,22 @@ unsafe impl RefEncode for SKCloudServiceAuthorizationStatus {
 }
 
 // NS_OPTIONS
+#[deprecated = "Use MusicSubscription from MusicKit"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SKCloudServiceCapability(pub NSUInteger);
 bitflags::bitflags! {
     impl SKCloudServiceCapability: NSUInteger {
+#[deprecated = "Use MusicSubscription from MusicKit"]
         #[doc(alias = "SKCloudServiceCapabilityNone")]
         const None = 0;
+#[deprecated = "Use MusicSubscription from MusicKit"]
         #[doc(alias = "SKCloudServiceCapabilityMusicCatalogPlayback")]
         const MusicCatalogPlayback = 1<<0;
+#[deprecated = "Use the canBecomeSubscriber property of MusicSubscription from MusicKit"]
         #[doc(alias = "SKCloudServiceCapabilityMusicCatalogSubscriptionEligible")]
         const MusicCatalogSubscriptionEligible = 1<<1;
+#[deprecated = "Use MusicSubscription from MusicKit"]
         #[doc(alias = "SKCloudServiceCapabilityAddToCloudMusicLibrary")]
         const AddToCloudMusicLibrary = 1<<8;
     }
@@ -55,6 +65,7 @@ unsafe impl RefEncode for SKCloudServiceCapability {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use MusicKit"]
     pub struct SKCloudServiceController;
 
     unsafe impl ClassType for SKCloudServiceController {
@@ -66,16 +77,19 @@ unsafe impl NSObjectProtocol for SKCloudServiceController {}
 
 extern_methods!(
     unsafe impl SKCloudServiceController {
+        #[deprecated = "Use MusicAuthorization.currentStatus from MusicKit"]
         #[method(authorizationStatus)]
         pub unsafe fn authorizationStatus() -> SKCloudServiceAuthorizationStatus;
 
         #[cfg(feature = "block2")]
+        #[deprecated = "Use MusicAuthorization.request() from MusicKit"]
         #[method(requestAuthorization:)]
         pub unsafe fn requestAuthorization(
             completion_handler: &block2::Block<dyn Fn(SKCloudServiceAuthorizationStatus)>,
         );
 
         #[cfg(feature = "block2")]
+        #[deprecated = "Use MusicSubscription.current from MusicKit"]
         #[method(requestCapabilitiesWithCompletionHandler:)]
         pub unsafe fn requestCapabilitiesWithCompletionHandler(
             &self,
@@ -83,6 +97,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        #[deprecated = "Use MusicDataRequest.currentCountryCode from MusicKit"]
         #[method(requestStorefrontCountryCodeWithCompletionHandler:)]
         pub unsafe fn requestStorefrontCountryCodeWithCompletionHandler(
             &self,
@@ -90,6 +105,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        #[deprecated = "Use Storefront.current.id"]
         #[method(requestStorefrontIdentifierWithCompletionHandler:)]
         pub unsafe fn requestStorefrontIdentifierWithCompletionHandler(
             &self,
@@ -97,6 +113,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        #[deprecated = "Use MusicKit"]
         #[method(requestUserTokenForDeveloperToken:completionHandler:)]
         pub unsafe fn requestUserTokenForDeveloperToken_completionHandler(
             &self,

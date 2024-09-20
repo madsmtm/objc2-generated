@@ -141,6 +141,11 @@ extern "C" {
 
 extern "C" {
     #[cfg(feature = "UTType")]
+    pub static UTTypeCSS: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UTType")]
     pub static UTTypeSourceCode: &'static UTType;
 }
 
@@ -346,7 +351,22 @@ extern "C" {
 
 extern "C" {
     #[cfg(feature = "UTType")]
+    pub static UTTypeHEICS: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UTType")]
     pub static UTTypeWebP: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UTType")]
+    pub static UTTypeEXR: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UTType")]
+    pub static UTTypeDNG: &'static UTType;
 }
 
 extern "C" {
@@ -576,6 +596,11 @@ extern "C" {
 
 extern "C" {
     #[cfg(feature = "UTType")]
+    pub static UTTypeTarArchive: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UTType")]
     pub static UTTypeSpreadsheet: &'static UTType;
 }
 
@@ -662,4 +687,14 @@ extern "C" {
 extern "C" {
     #[cfg(feature = "UTType")]
     pub static UTTypeAHAP: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UTType")]
+    pub static UTTypeGeoJSON: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UTType")]
+    pub static UTTypeLinkPresentationMetadata: &'static UTType;
 }

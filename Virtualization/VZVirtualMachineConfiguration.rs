@@ -178,6 +178,17 @@ extern_methods!(
             &self,
             graphics_devices: &NSArray<VZGraphicsDeviceConfiguration>,
         );
+
+        #[cfg(feature = "VZUSBControllerConfiguration")]
+        #[method_id(@__retain_semantics Other usbControllers)]
+        pub unsafe fn usbControllers(&self) -> Retained<NSArray<VZUSBControllerConfiguration>>;
+
+        #[cfg(feature = "VZUSBControllerConfiguration")]
+        #[method(setUsbControllers:)]
+        pub unsafe fn setUsbControllers(
+            &self,
+            usb_controllers: &NSArray<VZUSBControllerConfiguration>,
+        );
     }
 );
 

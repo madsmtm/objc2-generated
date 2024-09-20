@@ -79,6 +79,15 @@ extern_methods!(
         #[method(setAutoExposureEnabled:)]
         pub unsafe fn setAutoExposureEnabled(&self, auto_exposure_enabled: bool);
 
+        #[method(requiresSynchronousInitialization)]
+        pub unsafe fn requiresSynchronousInitialization(&self) -> bool;
+
+        #[method(setRequiresSynchronousInitialization:)]
+        pub unsafe fn setRequiresSynchronousInitialization(
+            &self,
+            requires_synchronous_initialization: bool,
+        );
+
         #[method(isInputContentPropertiesEnabled)]
         pub unsafe fn isInputContentPropertiesEnabled(&self) -> bool;
 

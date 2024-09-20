@@ -13,7 +13,11 @@ extern_protocol!(
             pipeline_state: &ProtocolObject<dyn MTLRenderPipelineState>,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setVertexBuffer:offset:atIndex:)]
         unsafe fn setVertexBuffer_offset_atIndex(
             &self,
@@ -22,7 +26,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setFragmentBuffer:offset:atIndex:)]
         unsafe fn setFragmentBuffer_offset_atIndex(
             &self,
@@ -31,7 +39,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setVertexBuffer:offset:attributeStride:atIndex:)]
         unsafe fn setVertexBuffer_offset_attributeStride_atIndex(
             &self,
@@ -41,7 +53,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:)]
         unsafe fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(
             &self,
@@ -57,7 +73,11 @@ extern_protocol!(
             instance_stride: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:)]
         unsafe fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(
             &self,
@@ -87,6 +107,7 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "MTLAllocation",
             feature = "MTLBuffer",
             feature = "MTLRenderCommandEncoder",
             feature = "MTLResource",
@@ -112,7 +133,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setObjectBuffer:offset:atIndex:)]
         unsafe fn setObjectBuffer_offset_atIndex(
             &self,
@@ -121,7 +146,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setMeshBuffer:offset:atIndex:)]
         unsafe fn setMeshBuffer_offset_atIndex(
             &self,
@@ -170,7 +199,11 @@ extern_protocol!(
             pipeline_state: &ProtocolObject<dyn MTLComputePipelineState>,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setKernelBuffer:offset:atIndex:)]
         unsafe fn setKernelBuffer_offset_atIndex(
             &self,
@@ -179,7 +212,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setKernelBuffer:offset:attributeStride:atIndex:)]
         unsafe fn setKernelBuffer_offset_attributeStride_atIndex(
             &self,

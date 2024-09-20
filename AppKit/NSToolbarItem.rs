@@ -147,6 +147,12 @@ extern_methods!(
         #[method(isVisible)]
         pub unsafe fn isVisible(&self) -> bool;
 
+        #[method(isHidden)]
+        pub unsafe fn isHidden(&self) -> bool;
+
+        #[method(setHidden:)]
+        pub unsafe fn setHidden(&self, hidden: bool);
+
         #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
         #[method(minSize)]
         pub unsafe fn minSize(&self) -> NSSize;
@@ -181,6 +187,7 @@ extern_methods!(
         #[method(setAutovalidates:)]
         pub unsafe fn setAutovalidates(&self, autovalidates: bool);
 
+        #[deprecated = "Duplicates are no longer supported."]
         #[method(allowsDuplicatesInToolbar)]
         pub unsafe fn allowsDuplicatesInToolbar(&self) -> bool;
     }

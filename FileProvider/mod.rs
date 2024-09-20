@@ -40,6 +40,9 @@ mod __NSFileProviderItem;
 #[cfg(feature = "NSFileProviderItemDecoration")]
 #[path = "NSFileProviderItemDecoration.rs"]
 mod __NSFileProviderItemDecoration;
+#[cfg(feature = "NSFileProviderKnownFolders")]
+#[path = "NSFileProviderKnownFolders.rs"]
+mod __NSFileProviderKnownFolders;
 #[cfg(feature = "NSFileProviderManager")]
 #[path = "NSFileProviderManager.rs"]
 mod __NSFileProviderManager;
@@ -74,6 +77,8 @@ pub use self::__NSFileProviderDomain::NSFileProviderDomainIdentifier;
 pub use self::__NSFileProviderDomain::NSFileProviderDomainTestingModes;
 #[cfg(feature = "NSFileProviderDomain")]
 pub use self::__NSFileProviderDomain::NSFileProviderDomainVersion;
+#[cfg(feature = "NSFileProviderDomain")]
+pub use self::__NSFileProviderDomain::NSFileProviderKnownFolders;
 #[cfg(feature = "NSFileProviderEnumerating")]
 pub use self::__NSFileProviderEnumerating::NSFileProviderChangeObserver;
 #[cfg(feature = "NSFileProviderEnumerating")]
@@ -135,6 +140,12 @@ pub use self::__NSFileProviderItem::NSFileProviderWorkingSetContainerItemIdentif
 pub use self::__NSFileProviderItemDecoration::NSFileProviderItemDecorating;
 #[cfg(feature = "NSFileProviderItemDecoration")]
 pub use self::__NSFileProviderItemDecoration::NSFileProviderItemDecorationIdentifier;
+#[cfg(feature = "NSFileProviderKnownFolders")]
+pub use self::__NSFileProviderKnownFolders::NSFileProviderKnownFolderLocation;
+#[cfg(feature = "NSFileProviderKnownFolders")]
+pub use self::__NSFileProviderKnownFolders::NSFileProviderKnownFolderLocations;
+#[cfg(feature = "NSFileProviderKnownFolders")]
+pub use self::__NSFileProviderKnownFolders::NSFileProviderKnownFolderSupporting;
 #[cfg(feature = "NSFileProviderManager")]
 pub use self::__NSFileProviderManager::NSFileProviderDomainRemovalMode;
 #[cfg(feature = "NSFileProviderManager")]
@@ -150,6 +161,8 @@ pub use self::__NSFileProviderManager::NSFileProviderPendingSetDidChange;
     feature = "NSFileProviderManager"
 ))]
 pub use self::__NSFileProviderManager::NSFileProviderPendingSetEnumerator;
+#[cfg(feature = "NSFileProviderManager")]
+pub use self::__NSFileProviderManager::NSFileProviderVolumeUnsupportedReason;
 #[cfg(feature = "NSFileProviderModifyItemOptions")]
 pub use self::__NSFileProviderModifyItemOptions::NSFileProviderModifyItemOptions;
 #[cfg(feature = "NSFileProviderReplicatedExtension")]
@@ -162,6 +175,8 @@ pub use self::__NSFileProviderReplicatedExtension::NSFileProviderDeleteItemOptio
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderDomainState;
 #[cfg(feature = "NSFileProviderReplicatedExtension")]
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderEnumerating;
+#[cfg(feature = "NSFileProviderReplicatedExtension")]
+pub use self::__NSFileProviderReplicatedExtension::NSFileProviderExternalVolumeHandling;
 #[cfg(feature = "NSFileProviderReplicatedExtension")]
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderFetchContentsOptions;
 #[cfg(feature = "NSFileProviderReplicatedExtension")]

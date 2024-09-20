@@ -40,6 +40,19 @@ extern_methods!(
         ) -> Retained<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest>;
 
         #[cfg(all(
+            feature = "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest",
+            feature = "ASAuthorizationRequest"
+        ))]
+        #[method_id(@__retain_semantics Other createCredentialRegistrationRequestWithChallenge:name:userID:requestStyle:)]
+        pub unsafe fn createCredentialRegistrationRequestWithChallenge_name_userID_requestStyle(
+            &self,
+            challenge: &NSData,
+            name: &NSString,
+            user_id: &NSData,
+            request_style: ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle,
+        ) -> Retained<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest>;
+
+        #[cfg(all(
             feature = "ASAuthorizationPlatformPublicKeyCredentialAssertionRequest",
             feature = "ASAuthorizationRequest"
         ))]

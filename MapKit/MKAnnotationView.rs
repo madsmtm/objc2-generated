@@ -171,6 +171,12 @@ extern_methods!(
         #[method(setCenterOffset:)]
         pub unsafe fn setCenterOffset(&self, center_offset: CGPoint);
 
+        #[method(accessoryOffset)]
+        pub unsafe fn accessoryOffset(&self) -> CGPoint;
+
+        #[method(setAccessoryOffset:)]
+        pub unsafe fn setAccessoryOffset(&self, accessory_offset: CGPoint);
+
         #[method(calloutOffset)]
         pub unsafe fn calloutOffset(&self) -> CGPoint;
 

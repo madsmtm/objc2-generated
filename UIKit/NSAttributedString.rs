@@ -81,6 +81,18 @@ extern "C" {
     pub static NSWritingDirectionAttributeName: &'static NSAttributedStringKey;
 }
 
+extern "C" {
+    pub static NSTextHighlightStyleAttributeName: &'static NSAttributedStringKey;
+}
+
+extern "C" {
+    pub static NSTextHighlightColorSchemeAttributeName: &'static NSAttributedStringKey;
+}
+
+extern "C" {
+    pub static NSAdaptiveImageGlyphAttributeName: &'static NSAttributedStringKey;
+}
+
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -140,6 +152,40 @@ pub type NSTextEffectStyle = NSString;
 
 extern "C" {
     pub static NSTextEffectLetterpressStyle: &'static NSTextEffectStyle;
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type NSTextHighlightStyle = NSString;
+
+extern "C" {
+    pub static NSTextHighlightStyleDefault: &'static NSTextHighlightStyle;
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type NSTextHighlightColorScheme = NSString;
+
+extern "C" {
+    pub static NSTextHighlightColorSchemeDefault: &'static NSTextHighlightColorScheme;
+}
+
+extern "C" {
+    pub static NSTextHighlightColorSchemePurple: &'static NSTextHighlightColorScheme;
+}
+
+extern "C" {
+    pub static NSTextHighlightColorSchemePink: &'static NSTextHighlightColorScheme;
+}
+
+extern "C" {
+    pub static NSTextHighlightColorSchemeOrange: &'static NSTextHighlightColorScheme;
+}
+
+extern "C" {
+    pub static NSTextHighlightColorSchemeMint: &'static NSTextHighlightColorScheme;
+}
+
+extern "C" {
+    pub static NSTextHighlightColorSchemeBlue: &'static NSTextHighlightColorScheme;
 }
 
 extern_category!(
@@ -218,10 +264,6 @@ extern "C" {
 
 extern "C" {
     pub static NSPaperSizeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
-}
-
-extern "C" {
-    pub static NSPaperMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
@@ -384,10 +426,17 @@ extern_category!(
     pub unsafe trait NSAttributedStringKitAdditions {
         #[method(containsAttachmentsInRange:)]
         unsafe fn containsAttachmentsInRange(&self, range: NSRange) -> bool;
+
+        #[method(prefersRTFDInRange:)]
+        unsafe fn prefersRTFDInRange(&self, range: NSRange) -> bool;
     }
 
     unsafe impl NSAttributedStringKitAdditions for NSAttributedString {}
 );
+
+extern "C" {
+    pub static NSPaperMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
 extern "C" {
     pub static NSObliquenessAttributeName: &'static NSAttributedStringKey;

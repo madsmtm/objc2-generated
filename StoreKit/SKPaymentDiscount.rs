@@ -7,6 +7,7 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
     pub struct SKPaymentDiscount;
 
     unsafe impl ClassType for SKPaymentDiscount {
@@ -22,6 +23,7 @@ unsafe impl NSObjectProtocol for SKPaymentDiscount {}
 
 extern_methods!(
     unsafe impl SKPaymentDiscount {
+        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
         #[method_id(@__retain_semantics Init initWithIdentifier:keyIdentifier:nonce:signature:timestamp:)]
         pub unsafe fn initWithIdentifier_keyIdentifier_nonce_signature_timestamp(
             this: Allocated<Self>,
@@ -32,18 +34,23 @@ extern_methods!(
             timestamp: &NSNumber,
         ) -> Retained<Self>;
 
+        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
+        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
         #[method_id(@__retain_semantics Other keyIdentifier)]
         pub unsafe fn keyIdentifier(&self) -> Retained<NSString>;
 
+        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
         #[method_id(@__retain_semantics Other nonce)]
         pub unsafe fn nonce(&self) -> Retained<NSUUID>;
 
+        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
         #[method_id(@__retain_semantics Other signature)]
         pub unsafe fn signature(&self) -> Retained<NSString>;
 
+        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
         #[method_id(@__retain_semantics Other timestamp)]
         pub unsafe fn timestamp(&self) -> Retained<NSNumber>;
     }

@@ -8,6 +8,7 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NWEndpoint")]
+    #[deprecated = "Use `nw_endpoint_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>"]
     pub struct NWBonjourServiceEndpoint;
 
     #[cfg(feature = "NWEndpoint")]
@@ -37,6 +38,7 @@ unsafe impl NSSecureCoding for NWBonjourServiceEndpoint {}
 extern_methods!(
     #[cfg(feature = "NWEndpoint")]
     unsafe impl NWBonjourServiceEndpoint {
+        #[deprecated = "Use `nw_endpoint_create_bonjour_service` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>"]
         #[method_id(@__retain_semantics Other endpointWithName:type:domain:)]
         pub unsafe fn endpointWithName_type_domain(
             name: &NSString,
@@ -44,12 +46,15 @@ extern_methods!(
             domain: &NSString,
         ) -> Retained<Self>;
 
+        #[deprecated = "Use `nw_endpoint_get_bonjour_service_name` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>"]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        #[deprecated = "Use `nw_endpoint_get_bonjour_service_type` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>"]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
+        #[deprecated = "Use `nw_endpoint_get_bonjour_service_domain` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>"]
         #[method_id(@__retain_semantics Other domain)]
         pub unsafe fn domain(&self) -> Retained<NSString>;
     }

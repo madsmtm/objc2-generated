@@ -7,6 +7,7 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use Storefront"]
     pub struct SKStorefront;
 
     unsafe impl ClassType for SKStorefront {
@@ -22,9 +23,11 @@ unsafe impl NSObjectProtocol for SKStorefront {}
 
 extern_methods!(
     unsafe impl SKStorefront {
+        #[deprecated = "Use 'Storefront.countryCode'"]
         #[method_id(@__retain_semantics Other countryCode)]
         pub unsafe fn countryCode(&self) -> Retained<NSString>;
 
+        #[deprecated = "Use 'Storefront.id'"]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
     }

@@ -20,9 +20,6 @@ unsafe impl NSObjectProtocol for NSTextContainer {}
 
 unsafe impl NSSecureCoding for NSTextContainer {}
 
-#[cfg(feature = "NSLayoutManager")]
-unsafe impl NSTextLayoutOrientationProvider for NSTextContainer {}
-
 extern_methods!(
     unsafe impl NSTextContainer {
         #[method_id(@__retain_semantics Init initWithSize:)]
@@ -30,18 +27,6 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-
-        #[cfg(feature = "NSLayoutManager")]
-        #[method_id(@__retain_semantics Other layoutManager)]
-        pub unsafe fn layoutManager(&self) -> Option<Retained<NSLayoutManager>>;
-
-        #[cfg(feature = "NSLayoutManager")]
-        #[method(setLayoutManager:)]
-        pub unsafe fn setLayoutManager(&self, layout_manager: Option<&NSLayoutManager>);
-
-        #[cfg(feature = "NSLayoutManager")]
-        #[method(replaceLayoutManager:)]
-        pub unsafe fn replaceLayoutManager(&self, new_layout_manager: &NSLayoutManager);
 
         #[cfg(feature = "NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other textLayoutManager)]
@@ -52,14 +37,6 @@ extern_methods!(
 
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: CGSize);
-
-        #[cfg(feature = "UIBezierPath")]
-        #[method_id(@__retain_semantics Other exclusionPaths)]
-        pub unsafe fn exclusionPaths(&self) -> Retained<NSArray<UIBezierPath>>;
-
-        #[cfg(feature = "UIBezierPath")]
-        #[method(setExclusionPaths:)]
-        pub unsafe fn setExclusionPaths(&self, exclusion_paths: &NSArray<UIBezierPath>);
 
         #[cfg(feature = "NSParagraphStyle")]
         #[method(lineBreakMode)]
@@ -118,3 +95,30 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
     }
 );
+
+extern_methods!(
+    unsafe impl NSTextContainer {
+        #[cfg(feature = "NSLayoutManager")]
+        #[method_id(@__retain_semantics Other layoutManager)]
+        pub unsafe fn layoutManager(&self) -> Option<Retained<NSLayoutManager>>;
+
+        #[cfg(feature = "NSLayoutManager")]
+        #[method(setLayoutManager:)]
+        pub unsafe fn setLayoutManager(&self, layout_manager: Option<&NSLayoutManager>);
+
+        #[cfg(feature = "NSLayoutManager")]
+        #[method(replaceLayoutManager:)]
+        pub unsafe fn replaceLayoutManager(&self, new_layout_manager: &NSLayoutManager);
+
+        #[cfg(feature = "UIBezierPath")]
+        #[method_id(@__retain_semantics Other exclusionPaths)]
+        pub unsafe fn exclusionPaths(&self) -> Retained<NSArray<UIBezierPath>>;
+
+        #[cfg(feature = "UIBezierPath")]
+        #[method(setExclusionPaths:)]
+        pub unsafe fn setExclusionPaths(&self, exclusion_paths: &NSArray<UIBezierPath>);
+    }
+);
+
+#[cfg(feature = "NSLayoutManager")]
+unsafe impl NSTextLayoutOrientationProvider for NSTextContainer {}

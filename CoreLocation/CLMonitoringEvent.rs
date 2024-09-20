@@ -58,6 +58,36 @@ extern_methods!(
         #[method_id(@__retain_semantics Other date)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
+        #[method(authorizationDenied)]
+        pub unsafe fn authorizationDenied(&self) -> bool;
+
+        #[method(authorizationDeniedGlobally)]
+        pub unsafe fn authorizationDeniedGlobally(&self) -> bool;
+
+        #[method(authorizationRestricted)]
+        pub unsafe fn authorizationRestricted(&self) -> bool;
+
+        #[method(insufficientlyInUse)]
+        pub unsafe fn insufficientlyInUse(&self) -> bool;
+
+        #[method(accuracyLimited)]
+        pub unsafe fn accuracyLimited(&self) -> bool;
+
+        #[method(conditionUnsupported)]
+        pub unsafe fn conditionUnsupported(&self) -> bool;
+
+        #[method(conditionLimitExceeded)]
+        pub unsafe fn conditionLimitExceeded(&self) -> bool;
+
+        #[method(persistenceUnavailable)]
+        pub unsafe fn persistenceUnavailable(&self) -> bool;
+
+        #[method(serviceSessionRequired)]
+        pub unsafe fn serviceSessionRequired(&self) -> bool;
+
+        #[method(authorizationRequestInProgress)]
+        pub unsafe fn authorizationRequestInProgress(&self) -> bool;
+
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 

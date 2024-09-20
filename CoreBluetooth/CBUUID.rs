@@ -34,6 +34,10 @@ extern "C" {
 }
 
 extern "C" {
+    pub static CBUUIDCharacteristicObservationScheduleString: &'static NSString;
+}
+
+extern "C" {
     pub static CBUUIDL2CAPPSMCharacteristicString: &'static NSString;
 }
 

@@ -169,6 +169,9 @@ extern_methods!(
 
         #[method(requiresDNSSECValidation)]
         pub unsafe fn requiresDNSSECValidation(&self) -> bool;
+
+        #[method(allowsPersistentDNS)]
+        pub unsafe fn allowsPersistentDNS(&self) -> bool;
     }
 );
 
@@ -296,6 +299,12 @@ extern_methods!(
 
         #[method(setRequiresDNSSECValidation:)]
         pub unsafe fn setRequiresDNSSECValidation(&self, requires_dnssec_validation: bool);
+
+        #[method(allowsPersistentDNS)]
+        pub unsafe fn allowsPersistentDNS(&self) -> bool;
+
+        #[method(setAllowsPersistentDNS:)]
+        pub unsafe fn setAllowsPersistentDNS(&self, allows_persistent_dns: bool);
     }
 );
 

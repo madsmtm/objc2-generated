@@ -137,6 +137,7 @@ unsafe impl NSSecureCoding for NEFilterSocketFlow {}
 extern_methods!(
     unsafe impl NEFilterSocketFlow {
         #[cfg(feature = "NWEndpoint")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other remoteEndpoint)]
         pub unsafe fn remoteEndpoint(&self) -> Option<Retained<NWEndpoint>>;
 
@@ -144,6 +145,7 @@ extern_methods!(
         pub unsafe fn remoteHostname(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NWEndpoint")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other localEndpoint)]
         pub unsafe fn localEndpoint(&self) -> Option<Retained<NWEndpoint>>;
 

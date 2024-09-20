@@ -41,6 +41,8 @@ bitflags::bitflags! {
         const PointOfInterest = 1<<1;
         #[doc(alias = "MKLocalSearchCompleterResultTypeQuery")]
         const Query = 1<<2;
+        #[doc(alias = "MKLocalSearchCompleterResultTypePhysicalFeature")]
+        const PhysicalFeature = 1<<3;
     }
 }
 
@@ -79,6 +81,14 @@ extern_methods!(
         #[method(setRegion:)]
         pub unsafe fn setRegion(&self, region: MKCoordinateRegion);
 
+        #[cfg(feature = "MKTypes")]
+        #[method(regionPriority)]
+        pub unsafe fn regionPriority(&self) -> MKLocalSearchRegionPriority;
+
+        #[cfg(feature = "MKTypes")]
+        #[method(setRegionPriority:)]
+        pub unsafe fn setRegionPriority(&self, region_priority: MKLocalSearchRegionPriority);
+
         #[deprecated = "Use resultTypes"]
         #[method(filterType)]
         pub unsafe fn filterType(&self) -> MKSearchCompletionFilterType;
@@ -103,6 +113,14 @@ extern_methods!(
             &self,
             point_of_interest_filter: Option<&MKPointOfInterestFilter>,
         );
+
+        #[cfg(feature = "MKAddressFilter")]
+        #[method_id(@__retain_semantics Other addressFilter)]
+        pub unsafe fn addressFilter(&self) -> Option<Retained<MKAddressFilter>>;
+
+        #[cfg(feature = "MKAddressFilter")]
+        #[method(setAddressFilter:)]
+        pub unsafe fn setAddressFilter(&self, address_filter: Option<&MKAddressFilter>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(

@@ -17,6 +17,10 @@ extern_class!(
     }
 );
 
+unsafe impl Send for CLPlacemark {}
+
+unsafe impl Sync for CLPlacemark {}
+
 unsafe impl NSCoding for CLPlacemark {}
 
 unsafe impl NSCopying for CLPlacemark {}

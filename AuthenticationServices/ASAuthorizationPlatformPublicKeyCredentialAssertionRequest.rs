@@ -72,6 +72,19 @@ extern_methods!(
             large_blob: Option<&ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput>,
         );
 
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionInput")]
+        #[method_id(@__retain_semantics Other prf)]
+        pub unsafe fn prf(
+            &self,
+        ) -> Option<Retained<ASAuthorizationPublicKeyCredentialPRFAssertionInput>>;
+
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionInput")]
+        #[method(setPrf:)]
+        pub unsafe fn setPrf(
+            &self,
+            prf: Option<&ASAuthorizationPublicKeyCredentialPRFAssertionInput>,
+        );
+
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 

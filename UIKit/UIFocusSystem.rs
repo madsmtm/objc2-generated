@@ -51,7 +51,12 @@ extern_methods!(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
             other_environment: &ProtocolObject<dyn UIFocusEnvironment>,
         ) -> bool;
+    }
+);
 
+extern_methods!(
+    /// Sound
+    unsafe impl UIFocusSystem {
         #[cfg(feature = "UIFocus")]
         #[method(registerURL:forSoundIdentifier:)]
         pub unsafe fn registerURL_forSoundIdentifier(

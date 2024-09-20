@@ -30,6 +30,15 @@ extern_methods!(
         #[method(setAllowsNetworkAccess:)]
         pub unsafe fn setAllowsNetworkAccess(&self, allows_network_access: bool);
 
+        #[method_id(@__retain_semantics Other configurationInfo)]
+        pub unsafe fn configurationInfo(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
+
+        #[method(setConfigurationInfo:)]
+        pub unsafe fn setConfigurationInfo(
+            &self,
+            configuration_info: &NSDictionary<NSString, AnyObject>,
+        );
+
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 

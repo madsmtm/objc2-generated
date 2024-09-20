@@ -122,6 +122,8 @@ bitflags::bitflags! {
         const YearForWeekOfYear = 16384;
         #[doc(alias = "NSCalendarUnitNanosecond")]
         const Nanosecond = 32768;
+        #[doc(alias = "NSCalendarUnitDayOfYear")]
+        const DayOfYear = 65536;
         #[doc(alias = "NSCalendarUnitCalendar")]
         const Calendar = 1048576;
         #[doc(alias = "NSCalendarUnitTimeZone")]
@@ -790,6 +792,12 @@ extern_methods!(
 
         #[method(setYearForWeekOfYear:)]
         pub unsafe fn setYearForWeekOfYear(&self, year_for_week_of_year: NSInteger);
+
+        #[method(dayOfYear)]
+        pub unsafe fn dayOfYear(&self) -> NSInteger;
+
+        #[method(setDayOfYear:)]
+        pub unsafe fn setDayOfYear(&self, day_of_year: NSInteger);
 
         #[method(isLeapMonth)]
         pub unsafe fn isLeapMonth(&self) -> bool;

@@ -81,3 +81,7 @@ extern "C" {
 extern "C" {
     pub static HKPredicateKeyPathSourceRevision: &'static NSString;
 }
+
+extern "C" {
+    pub static HKPredicateKeyPathWorkoutEffortRelationship: &'static NSString;
+}

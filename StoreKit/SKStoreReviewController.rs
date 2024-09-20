@@ -6,6 +6,7 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use AppStore.requestReview(in:)"]
     pub struct SKStoreReviewController;
 
     unsafe impl ClassType for SKStoreReviewController {
@@ -21,7 +22,7 @@ unsafe impl NSObjectProtocol for SKStoreReviewController {}
 
 extern_methods!(
     unsafe impl SKStoreReviewController {
-        #[deprecated]
+        #[deprecated = "Use AppStore.requestReview(in:)"]
         #[method(requestReview)]
         pub unsafe fn requestReview();
     }

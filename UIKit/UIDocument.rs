@@ -70,6 +70,13 @@ unsafe impl RefEncode for UIDocumentState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type UIDocumentCreationIntent = NSString;
+
+extern "C" {
+    pub static UIDocumentCreationIntentDefault: &'static UIDocumentCreationIntent;
+}
+
 extern "C" {
     pub static UIDocumentStateChangedNotification: &'static NSNotificationName;
 }

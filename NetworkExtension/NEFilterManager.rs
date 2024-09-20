@@ -126,6 +126,12 @@ extern_methods!(
 
         #[method(setGrade:)]
         pub unsafe fn setGrade(&self, grade: NEFilterManagerGrade);
+
+        #[method(disableEncryptedDNSSettings)]
+        pub unsafe fn disableEncryptedDNSSettings(&self) -> bool;
+
+        #[method(setDisableEncryptedDNSSettings:)]
+        pub unsafe fn setDisableEncryptedDNSSettings(&self, disable_encrypted_dns_settings: bool);
     }
 );
 

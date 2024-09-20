@@ -438,11 +438,15 @@ pub use self::__NEProxySettings::NEProxySettings;
 #[cfg(feature = "NERelay")]
 pub use self::__NERelay::NERelay;
 #[cfg(feature = "NERelayManager")]
+pub use self::__NERelayManager::NERelayClientErrorDomain;
+#[cfg(feature = "NERelayManager")]
 pub use self::__NERelayManager::NERelayConfigurationDidChangeNotification;
 #[cfg(feature = "NERelayManager")]
 pub use self::__NERelayManager::NERelayErrorDomain;
 #[cfg(feature = "NERelayManager")]
 pub use self::__NERelayManager::NERelayManager;
+#[cfg(feature = "NERelayManager")]
+pub use self::__NERelayManager::NERelayManagerClientError;
 #[cfg(feature = "NERelayManager")]
 pub use self::__NERelayManager::NERelayManagerError;
 #[cfg(all(feature = "NETransparentProxyManager", feature = "NEVPNManager"))]
@@ -509,6 +513,8 @@ pub use self::__NEVPNProtocolIKEv2::NEVPNIKEv2DiffieHellmanGroup;
 pub use self::__NEVPNProtocolIKEv2::NEVPNIKEv2EncryptionAlgorithm;
 #[cfg(feature = "NEVPNProtocolIKEv2")]
 pub use self::__NEVPNProtocolIKEv2::NEVPNIKEv2IntegrityAlgorithm;
+#[cfg(feature = "NEVPNProtocolIKEv2")]
+pub use self::__NEVPNProtocolIKEv2::NEVPNIKEv2PPKConfiguration;
 #[cfg(feature = "NEVPNProtocolIKEv2")]
 pub use self::__NEVPNProtocolIKEv2::NEVPNIKEv2SecurityAssociationParameters;
 #[cfg(feature = "NEVPNProtocolIKEv2")]

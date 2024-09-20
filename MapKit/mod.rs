@@ -16,6 +16,9 @@
 #[link(name = "MapKit", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "MKAddressFilter")]
+#[path = "MKAddressFilter.rs"]
+mod __MKAddressFilter;
 #[cfg(feature = "MKAnnotation")]
 #[path = "MKAnnotation.rs"]
 mod __MKAnnotation;
@@ -118,6 +121,18 @@ mod __MKMapConfiguration;
 #[cfg(feature = "MKMapItem")]
 #[path = "MKMapItem.rs"]
 mod __MKMapItem;
+#[cfg(feature = "MKMapItemAnnotation")]
+#[path = "MKMapItemAnnotation.rs"]
+mod __MKMapItemAnnotation;
+#[cfg(feature = "MKMapItemDetailViewController")]
+#[path = "MKMapItemDetailViewController.rs"]
+mod __MKMapItemDetailViewController;
+#[cfg(feature = "MKMapItemIdentifier")]
+#[path = "MKMapItemIdentifier.rs"]
+mod __MKMapItemIdentifier;
+#[cfg(feature = "MKMapItemRequest")]
+#[path = "MKMapItemRequest.rs"]
+mod __MKMapItemRequest;
 #[cfg(feature = "MKMapSnapshot")]
 #[path = "MKMapSnapshot.rs"]
 mod __MKMapSnapshot;
@@ -187,6 +202,9 @@ mod __MKPolyline;
 #[cfg(feature = "MKPolylineRenderer")]
 #[path = "MKPolylineRenderer.rs"]
 mod __MKPolylineRenderer;
+#[cfg(feature = "MKSelectionAccessory")]
+#[path = "MKSelectionAccessory.rs"]
+mod __MKSelectionAccessory;
 #[cfg(feature = "MKShape")]
 #[path = "MKShape.rs"]
 mod __MKShape;
@@ -215,6 +233,10 @@ mod __MKZoomControl;
 #[path = "NSUserActivity_MKMapItem.rs"]
 mod __NSUserActivity_MKMapItem;
 
+#[cfg(feature = "MKAddressFilter")]
+pub use self::__MKAddressFilter::MKAddressFilter;
+#[cfg(feature = "MKAddressFilter")]
+pub use self::__MKAddressFilter::MKAddressFilterOption;
 #[cfg(feature = "MKAnnotation")]
 pub use self::__MKAnnotation::MKAnnotation;
 #[cfg(feature = "MKAnnotationView")]
@@ -451,6 +473,17 @@ pub use self::__MKMapItem::MKLaunchOptionsShowsTrafficKey;
 pub use self::__MKMapItem::MKMapItem;
 #[cfg(feature = "MKMapItem")]
 pub use self::__MKMapItem::MKMapItemTypeIdentifier;
+#[cfg(feature = "MKMapItemAnnotation")]
+pub use self::__MKMapItemAnnotation::MKMapItemAnnotation;
+#[cfg(all(feature = "MKMapItemDetailViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+pub use self::__MKMapItemDetailViewController::MKMapItemDetailViewController;
+#[cfg(feature = "MKMapItemDetailViewController")]
+pub use self::__MKMapItemDetailViewController::MKMapItemDetailViewControllerDelegate;
+#[cfg(feature = "MKMapItemIdentifier")]
+pub use self::__MKMapItemIdentifier::MKMapItemIdentifier;
+#[cfg(feature = "MKMapItemRequest")]
+pub use self::__MKMapItemRequest::MKMapItemRequest;
 #[cfg(feature = "MKMapSnapshot")]
 pub use self::__MKMapSnapshot::MKMapSnapshot;
 #[cfg(feature = "MKMapSnapshotOptions")]
@@ -534,13 +567,25 @@ pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryAirport;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryAmusementPark;
 #[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryAnimalService;
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryAquarium;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryAutomotiveRepair;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryBakery;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryBank;
 #[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryBaseball;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryBasketball;
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryBeach;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryBeauty;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryBowling;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryBrewery;
 #[cfg(feature = "MKPointOfInterestCategory")]
@@ -550,29 +595,59 @@ pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryCampground;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryCarRental;
 #[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryCastle;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryConventionCenter;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryDistillery;
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryEVCharger;
 #[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryFairground;
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryFireStation;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryFishing;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryFitnessCenter;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryFoodMarket;
 #[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryFortress;
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryGasStation;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryGoKart;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryGolf;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryHiking;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryHospital;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryHotel;
 #[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryKayaking;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryLandmark;
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryLaundry;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryLibrary;
 #[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryMailbox;
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryMarina;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryMiniGolf;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryMovieTheater;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryMuseum;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryMusicVenue;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryNationalMonument;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryNationalPark;
 #[cfg(feature = "MKPointOfInterestCategory")]
@@ -584,25 +659,49 @@ pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryParking;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryPharmacy;
 #[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryPlanetarium;
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryPolice;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryPostOffice;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryPublicTransport;
 #[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryRVPark;
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryRestaurant;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryRestroom;
 #[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryRockClimbing;
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategorySchool;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategorySkatePark;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategorySkating;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategorySkiing;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategorySoccer;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategorySpa;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryStadium;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryStore;
 #[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategorySurfing;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategorySwimming;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryTennis;
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryTheater;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryUniversity;
+#[cfg(feature = "MKPointOfInterestCategory")]
+pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryVolleyball;
 #[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryWinery;
 #[cfg(feature = "MKPointOfInterestCategory")]
@@ -625,6 +724,12 @@ pub use self::__MKPolyline::MKPolyline;
     feature = "MKPolylineRenderer"
 ))]
 pub use self::__MKPolylineRenderer::MKPolylineRenderer;
+#[cfg(feature = "MKSelectionAccessory")]
+pub use self::__MKSelectionAccessory::MKMapItemDetailSelectionAccessoryCalloutStyle;
+#[cfg(feature = "MKSelectionAccessory")]
+pub use self::__MKSelectionAccessory::MKMapItemDetailSelectionAccessoryPresentationStyle;
+#[cfg(feature = "MKSelectionAccessory")]
+pub use self::__MKSelectionAccessory::MKSelectionAccessory;
 #[cfg(feature = "MKShape")]
 pub use self::__MKShape::MKShape;
 #[cfg(all(feature = "MKMapConfiguration", feature = "MKStandardMapConfiguration"))]
@@ -643,6 +748,8 @@ pub use self::__MKTypes::MKErrorCode;
 pub use self::__MKTypes::MKErrorDomain;
 #[cfg(feature = "MKTypes")]
 pub use self::__MKTypes::MKFeatureVisibility;
+#[cfg(feature = "MKTypes")]
+pub use self::__MKTypes::MKLocalSearchRegionPriority;
 #[cfg(feature = "MKTypes")]
 pub use self::__MKTypes::MKMapType;
 #[cfg(feature = "MKUserLocation")]

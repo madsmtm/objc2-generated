@@ -6,16 +6,21 @@ use objc2_foundation::*;
 use crate::*;
 
 // NS_ENUM
+#[deprecated = "Use Product.SubscriptionPeriod.Unit"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SKProductPeriodUnit(pub NSUInteger);
 impl SKProductPeriodUnit {
+    #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
     #[doc(alias = "SKProductPeriodUnitDay")]
     pub const Day: Self = Self(0);
+    #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
     #[doc(alias = "SKProductPeriodUnitWeek")]
     pub const Week: Self = Self(1);
+    #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
     #[doc(alias = "SKProductPeriodUnitMonth")]
     pub const Month: Self = Self(2);
+    #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
     #[doc(alias = "SKProductPeriodUnitYear")]
     pub const Year: Self = Self(3);
 }
@@ -30,6 +35,7 @@ unsafe impl RefEncode for SKProductPeriodUnit {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use Product.SubscriptionPeriod"]
     pub struct SKProductSubscriptionPeriod;
 
     unsafe impl ClassType for SKProductSubscriptionPeriod {
@@ -45,9 +51,11 @@ unsafe impl NSObjectProtocol for SKProductSubscriptionPeriod {}
 
 extern_methods!(
     unsafe impl SKProductSubscriptionPeriod {
+        #[deprecated = "Use Product.SubscriptionPeriod"]
         #[method(numberOfUnits)]
         pub unsafe fn numberOfUnits(&self) -> NSUInteger;
 
+        #[deprecated = "Use Product.SubscriptionPeriod"]
         #[method(unit)]
         pub unsafe fn unit(&self) -> SKProductPeriodUnit;
     }
@@ -66,6 +74,7 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use Product"]
     pub struct SKProduct;
 
     unsafe impl ClassType for SKProduct {
@@ -81,21 +90,27 @@ unsafe impl NSObjectProtocol for SKProduct {}
 
 extern_methods!(
     unsafe impl SKProduct {
+        #[deprecated = "Use Product.description"]
         #[method_id(@__retain_semantics Other localizedDescription)]
         pub unsafe fn localizedDescription(&self) -> Retained<NSString>;
 
+        #[deprecated = "Use Product.displayName"]
         #[method_id(@__retain_semantics Other localizedTitle)]
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
+        #[deprecated = "Use Product.displayPrice"]
         #[method_id(@__retain_semantics Other price)]
         pub unsafe fn price(&self) -> Retained<NSDecimalNumber>;
 
+        #[deprecated = "Use Product.displayPrice"]
         #[method_id(@__retain_semantics Other priceLocale)]
         pub unsafe fn priceLocale(&self) -> Retained<NSLocale>;
 
+        #[deprecated = "Use Product.id"]
         #[method_id(@__retain_semantics Other productIdentifier)]
         pub unsafe fn productIdentifier(&self) -> Retained<NSString>;
 
+        #[deprecated = "Hosted content is no longer supported"]
         #[method(isDownloadable)]
         pub unsafe fn isDownloadable(&self) -> bool;
 
@@ -103,6 +118,7 @@ extern_methods!(
         #[method(downloadable)]
         pub unsafe fn downloadable(&self) -> bool;
 
+        #[deprecated = "Use Product.isFamilyShareable"]
         #[method(isFamilyShareable)]
         pub unsafe fn isFamilyShareable(&self) -> bool;
 
@@ -110,6 +126,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other contentLengths)]
         pub unsafe fn contentLengths(&self) -> Retained<NSArray<NSNumber>>;
 
+        #[deprecated = "Hosted content is no longer supported"]
         #[method_id(@__retain_semantics Other downloadContentLengths)]
         pub unsafe fn downloadContentLengths(&self) -> Retained<NSArray<NSNumber>>;
 
@@ -117,20 +134,25 @@ extern_methods!(
         #[method_id(@__retain_semantics Other contentVersion)]
         pub unsafe fn contentVersion(&self) -> Retained<NSString>;
 
+        #[deprecated = "Hosted content is no longer supported"]
         #[method_id(@__retain_semantics Other downloadContentVersion)]
         pub unsafe fn downloadContentVersion(&self) -> Retained<NSString>;
 
+        #[deprecated = "Use Product.subscription.subscriptionPeriod"]
         #[method_id(@__retain_semantics Other subscriptionPeriod)]
         pub unsafe fn subscriptionPeriod(&self) -> Option<Retained<SKProductSubscriptionPeriod>>;
 
         #[cfg(feature = "SKProductDiscount")]
+        #[deprecated = "Use Product.subscription.introductionaryOffer"]
         #[method_id(@__retain_semantics Other introductoryPrice)]
         pub unsafe fn introductoryPrice(&self) -> Option<Retained<SKProductDiscount>>;
 
+        #[deprecated = "Use Product.subscription.subscriptionGroupID"]
         #[method_id(@__retain_semantics Other subscriptionGroupIdentifier)]
         pub unsafe fn subscriptionGroupIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "SKProductDiscount")]
+        #[deprecated = "Use Product.subscription.promotionalOffers"]
         #[method_id(@__retain_semantics Other discounts)]
         pub unsafe fn discounts(&self) -> Retained<NSArray<SKProductDiscount>>;
     }

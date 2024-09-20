@@ -24,6 +24,7 @@ extern_methods!(
     #[cfg(feature = "NEAppProxyFlow")]
     unsafe impl NEAppProxyUDPFlow {
         #[cfg(all(feature = "NWEndpoint", feature = "block2"))]
+        #[deprecated]
         #[method(readDatagramsWithCompletionHandler:)]
         pub unsafe fn readDatagramsWithCompletionHandler(
             &self,
@@ -33,6 +34,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NWEndpoint", feature = "block2"))]
+        #[deprecated]
         #[method(writeDatagrams:sentByEndpoints:completionHandler:)]
         pub unsafe fn writeDatagrams_sentByEndpoints_completionHandler(
             &self,
@@ -42,6 +44,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NWEndpoint")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other localEndpoint)]
         pub unsafe fn localEndpoint(&self) -> Option<Retained<NWEndpoint>>;
     }

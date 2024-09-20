@@ -121,6 +121,19 @@ extern_protocol!(
         #[optional]
         #[method(documentVisibleRect)]
         unsafe fn documentVisibleRect(&self) -> NSRect;
+
+        #[optional]
+        #[method(supportsAdaptiveImageGlyph)]
+        unsafe fn supportsAdaptiveImageGlyph(&self) -> bool;
+
+        #[cfg(feature = "NSAdaptiveImageGlyph")]
+        #[optional]
+        #[method(insertAdaptiveImageGlyph:replacementRange:)]
+        unsafe fn insertAdaptiveImageGlyph_replacementRange(
+            &self,
+            adaptive_image_glyph: &NSAdaptiveImageGlyph,
+            replacement_range: NSRange,
+        );
     }
 
     unsafe impl ProtocolType for dyn NSTextInputClient {}

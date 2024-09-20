@@ -157,6 +157,27 @@ unsafe impl RefEncode for UITextInlinePredictionType {
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UITextMathExpressionCompletionType(pub NSInteger);
+impl UITextMathExpressionCompletionType {
+    #[doc(alias = "UITextMathExpressionCompletionTypeDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "UITextMathExpressionCompletionTypeNo")]
+    pub const No: Self = Self(1);
+    #[doc(alias = "UITextMathExpressionCompletionTypeYes")]
+    pub const Yes: Self = Self(2);
+}
+
+unsafe impl Encode for UITextMathExpressionCompletionType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UITextMathExpressionCompletionType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIKeyboardType(pub NSInteger);
 impl UIKeyboardType {
     #[doc(alias = "UIKeyboardTypeDefault")]
@@ -242,6 +263,54 @@ unsafe impl Encode for UIReturnKeyType {
 }
 
 unsafe impl RefEncode for UIReturnKeyType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UIWritingToolsBehavior(pub NSInteger);
+impl UIWritingToolsBehavior {
+    #[doc(alias = "UIWritingToolsBehaviorNone")]
+    pub const None: Self = Self(-1);
+    #[doc(alias = "UIWritingToolsBehaviorDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "UIWritingToolsBehaviorComplete")]
+    pub const Complete: Self = Self(1);
+    #[doc(alias = "UIWritingToolsBehaviorLimited")]
+    pub const Limited: Self = Self(2);
+}
+
+unsafe impl Encode for UIWritingToolsBehavior {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIWritingToolsBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UIWritingToolsAllowedInputOptions(pub NSUInteger);
+bitflags::bitflags! {
+    impl UIWritingToolsAllowedInputOptions: NSUInteger {
+        #[doc(alias = "UIWritingToolsAllowedInputOptionsDefault")]
+        const Default = 0;
+        #[doc(alias = "UIWritingToolsAllowedInputOptionsPlainText")]
+        const PlainText = 1<<0;
+        #[doc(alias = "UIWritingToolsAllowedInputOptionsRichText")]
+        const RichText = 1<<1;
+        #[doc(alias = "UIWritingToolsAllowedInputOptionsTable")]
+        const Table = 1<<2;
+    }
+}
+
+unsafe impl Encode for UIWritingToolsAllowedInputOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIWritingToolsAllowedInputOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
@@ -357,6 +426,17 @@ extern_protocol!(
         );
 
         #[optional]
+        #[method(mathExpressionCompletionType)]
+        unsafe fn mathExpressionCompletionType(&self) -> UITextMathExpressionCompletionType;
+
+        #[optional]
+        #[method(setMathExpressionCompletionType:)]
+        unsafe fn setMathExpressionCompletionType(
+            &self,
+            math_expression_completion_type: UITextMathExpressionCompletionType,
+        );
+
+        #[optional]
         #[method(keyboardType)]
         unsafe fn keyboardType(&self) -> UIKeyboardType;
 
@@ -411,6 +491,25 @@ extern_protocol!(
         #[optional]
         #[method(setPasswordRules:)]
         unsafe fn setPasswordRules(&self, password_rules: Option<&UITextInputPasswordRules>);
+
+        #[optional]
+        #[method(writingToolsBehavior)]
+        unsafe fn writingToolsBehavior(&self) -> UIWritingToolsBehavior;
+
+        #[optional]
+        #[method(setWritingToolsBehavior:)]
+        unsafe fn setWritingToolsBehavior(&self, writing_tools_behavior: UIWritingToolsBehavior);
+
+        #[optional]
+        #[method(writingToolsAllowedInputOptions)]
+        unsafe fn writingToolsAllowedInputOptions(&self) -> UIWritingToolsAllowedInputOptions;
+
+        #[optional]
+        #[method(setWritingToolsAllowedInputOptions:)]
+        unsafe fn setWritingToolsAllowedInputOptions(
+            &self,
+            writing_tools_allowed_input_options: UIWritingToolsAllowedInputOptions,
+        );
     }
 
     unsafe impl ProtocolType for dyn UITextInputTraits {}

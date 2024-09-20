@@ -208,6 +208,8 @@ pub use self::__CBUUID::CBUUIDCharacteristicExtendedPropertiesString;
 #[cfg(feature = "CBUUID")]
 pub use self::__CBUUID::CBUUIDCharacteristicFormatString;
 #[cfg(feature = "CBUUID")]
+pub use self::__CBUUID::CBUUIDCharacteristicObservationScheduleString;
+#[cfg(feature = "CBUUID")]
 pub use self::__CBUUID::CBUUIDCharacteristicUserDescriptionString;
 #[cfg(feature = "CBUUID")]
 pub use self::__CBUUID::CBUUIDCharacteristicValidRangeString;

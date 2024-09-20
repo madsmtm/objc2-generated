@@ -169,3 +169,11 @@ extern "C" {
 extern "C" {
     pub static MPNowPlayingInfoPropertyCreditsStartTime: &'static NSString;
 }
+
+extern "C" {
+    pub static MPNowPlayingInfoPropertyInternationalStandardRecordingCode: &'static NSString;
+}
+
+extern "C" {
+    pub static MPNowPlayingInfoPropertyExcludeFromSuggestions: &'static NSString;
+}

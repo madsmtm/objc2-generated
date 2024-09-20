@@ -8,31 +8,6 @@ use crate::*;
 pub const NSAttachmentCharacter: c_uint = 0xFFFC;
 
 extern_protocol!(
-    pub unsafe trait NSTextAttachmentContainer: NSObjectProtocol {
-        #[cfg(all(feature = "NSTextContainer", feature = "UIImage"))]
-        #[method_id(@__retain_semantics Other imageForBounds:textContainer:characterIndex:)]
-        unsafe fn imageForBounds_textContainer_characterIndex(
-            &self,
-            image_bounds: CGRect,
-            text_container: Option<&NSTextContainer>,
-            char_index: NSUInteger,
-        ) -> Option<Retained<UIImage>>;
-
-        #[cfg(feature = "NSTextContainer")]
-        #[method(attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
-        unsafe fn attachmentBoundsForTextContainer_proposedLineFragment_glyphPosition_characterIndex(
-            &self,
-            text_container: Option<&NSTextContainer>,
-            line_frag: CGRect,
-            position: CGPoint,
-            char_index: NSUInteger,
-        ) -> CGRect;
-    }
-
-    unsafe impl ProtocolType for dyn NSTextAttachmentContainer {}
-);
-
-extern_protocol!(
     pub unsafe trait NSTextAttachmentLayout: NSObjectProtocol {
         #[cfg(all(
             feature = "NSTextContainer",
@@ -91,8 +66,6 @@ unsafe impl NSCoding for NSTextAttachment {}
 unsafe impl NSObjectProtocol for NSTextAttachment {}
 
 unsafe impl NSSecureCoding for NSTextAttachment {}
-
-unsafe impl NSTextAttachmentContainer for NSTextAttachment {}
 
 unsafe impl NSTextAttachmentLayout for NSTextAttachment {}
 
@@ -183,6 +156,12 @@ extern_category!(
         unsafe fn attributedStringWithAttachment(
             attachment: &NSTextAttachment,
         ) -> Retained<NSAttributedString>;
+
+        #[method_id(@__retain_semantics Other attributedStringWithAttachment:attributes:)]
+        unsafe fn attributedStringWithAttachment_attributes(
+            attachment: &NSTextAttachment,
+            attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
+        ) -> Retained<Self>;
     }
 
     unsafe impl NSAttributedStringAttachmentConveniences for NSAttributedString {}
@@ -265,3 +244,35 @@ extern_methods!(
         ) -> CGRect;
     }
 );
+
+extern_protocol!(
+    pub unsafe trait NSTextAttachmentContainer: NSObjectProtocol {
+        #[cfg(all(feature = "NSTextContainer", feature = "UIImage"))]
+        #[method_id(@__retain_semantics Other imageForBounds:textContainer:characterIndex:)]
+        unsafe fn imageForBounds_textContainer_characterIndex(
+            &self,
+            image_bounds: CGRect,
+            text_container: Option<&NSTextContainer>,
+            char_index: NSUInteger,
+        ) -> Option<Retained<UIImage>>;
+
+        #[cfg(feature = "NSTextContainer")]
+        #[method(attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
+        unsafe fn attachmentBoundsForTextContainer_proposedLineFragment_glyphPosition_characterIndex(
+            &self,
+            text_container: Option<&NSTextContainer>,
+            line_frag: CGRect,
+            position: CGPoint,
+            char_index: NSUInteger,
+        ) -> CGRect;
+    }
+
+    unsafe impl ProtocolType for dyn NSTextAttachmentContainer {}
+);
+
+extern_methods!(
+    /// NSTextAttachment_Deprecation
+    unsafe impl NSTextAttachment {}
+);
+
+unsafe impl NSTextAttachmentContainer for NSTextAttachment {}

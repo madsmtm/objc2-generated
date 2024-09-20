@@ -5,6 +5,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle(pub NSInteger);
+impl ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle {
+    #[doc(alias = "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyleStandard")]
+    pub const Standard: Self = Self(0);
+    #[doc(alias = "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyleConditional")]
+    pub const Conditional: Self = Self(1);
+}
+
+unsafe impl Encode for ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ASAuthorizationRequest")]
@@ -63,6 +82,30 @@ extern_methods!(
         pub unsafe fn setLargeBlob(
             &self,
             large_blob: Option<&ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput>,
+        );
+
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFRegistrationInput")]
+        #[method_id(@__retain_semantics Other prf)]
+        pub unsafe fn prf(
+            &self,
+        ) -> Option<Retained<ASAuthorizationPublicKeyCredentialPRFRegistrationInput>>;
+
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFRegistrationInput")]
+        #[method(setPrf:)]
+        pub unsafe fn setPrf(
+            &self,
+            prf: Option<&ASAuthorizationPublicKeyCredentialPRFRegistrationInput>,
+        );
+
+        #[method(requestStyle)]
+        pub unsafe fn requestStyle(
+            &self,
+        ) -> ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle;
+
+        #[method(setRequestStyle:)]
+        pub unsafe fn setRequestStyle(
+            &self,
+            request_style: ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle,
         );
     }
 );

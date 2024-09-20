@@ -137,6 +137,8 @@ pub use self::__CIContext::kCIImageRepresentationDepthImage;
 #[cfg(feature = "CIContext")]
 pub use self::__CIContext::kCIImageRepresentationDisparityImage;
 #[cfg(feature = "CIContext")]
+pub use self::__CIContext::kCIImageRepresentationHDRImage;
+#[cfg(feature = "CIContext")]
 pub use self::__CIContext::kCIImageRepresentationPortraitEffectsMatteImage;
 #[cfg(feature = "CIContext")]
 pub use self::__CIContext::kCIImageRepresentationSemanticSegmentationGlassesMatteImage;
@@ -508,6 +510,8 @@ pub use self::__CIImage::kCIImageAuxiliarySemanticSegmentationTeethMatte;
 pub use self::__CIImage::kCIImageCacheImmediately;
 #[cfg(feature = "CIImage")]
 pub use self::__CIImage::kCIImageColorSpace;
+#[cfg(feature = "CIImage")]
+pub use self::__CIImage::kCIImageContentHeadroom;
 #[cfg(feature = "CIImage")]
 pub use self::__CIImage::kCIImageExpandToHDR;
 #[cfg(feature = "CIImage")]

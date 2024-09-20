@@ -68,6 +68,12 @@ extern_methods!(
             identifier: &HKDocumentTypeIdentifier,
         ) -> Option<Retained<HKDocumentType>>;
 
+        #[cfg(feature = "HKTypeIdentifiers")]
+        #[method_id(@__retain_semantics Other scoredAssessmentTypeForIdentifier:)]
+        pub unsafe fn scoredAssessmentTypeForIdentifier(
+            identifier: &HKScoredAssessmentTypeIdentifier,
+        ) -> Option<Retained<HKScoredAssessmentType>>;
+
         #[method_id(@__retain_semantics Other seriesTypeForIdentifier:)]
         pub unsafe fn seriesTypeForIdentifier(
             identifier: &NSString,
@@ -87,6 +93,9 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other visionPrescriptionType)]
         pub unsafe fn visionPrescriptionType() -> Retained<HKPrescriptionType>;
+
+        #[method_id(@__retain_semantics Other stateOfMindType)]
+        pub unsafe fn stateOfMindType() -> Retained<HKStateOfMindType>;
 
         #[method(requiresPerObjectAuthorization)]
         pub unsafe fn requiresPerObjectAuthorization(&self) -> bool;
@@ -677,6 +686,90 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKPrescriptionType {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct HKScoredAssessmentType;
+
+    unsafe impl ClassType for HKScoredAssessmentType {
+        #[inherits(HKObjectType, NSObject)]
+        type Super = HKSampleType;
+    }
+);
+
+unsafe impl NSCoding for HKScoredAssessmentType {}
+
+unsafe impl NSCopying for HKScoredAssessmentType {}
+
+unsafe impl CopyingHelper for HKScoredAssessmentType {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for HKScoredAssessmentType {}
+
+unsafe impl NSSecureCoding for HKScoredAssessmentType {}
+
+extern_methods!(
+    unsafe impl HKScoredAssessmentType {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `HKObjectType`
+    unsafe impl HKScoredAssessmentType {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl HKScoredAssessmentType {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct HKStateOfMindType;
+
+    unsafe impl ClassType for HKStateOfMindType {
+        #[inherits(HKObjectType, NSObject)]
+        type Super = HKSampleType;
+    }
+);
+
+unsafe impl NSCoding for HKStateOfMindType {}
+
+unsafe impl NSCopying for HKStateOfMindType {}
+
+unsafe impl CopyingHelper for HKStateOfMindType {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for HKStateOfMindType {}
+
+unsafe impl NSSecureCoding for HKStateOfMindType {}
+
+extern_methods!(
+    unsafe impl HKStateOfMindType {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `HKObjectType`
+    unsafe impl HKStateOfMindType {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl HKStateOfMindType {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
     }

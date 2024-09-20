@@ -51,6 +51,7 @@ extern_methods!(
             feature = "NEAppProxyUDPFlow",
             feature = "NWEndpoint"
         ))]
+        #[deprecated]
         #[method(handleNewUDPFlow:initialRemoteEndpoint:)]
         pub unsafe fn handleNewUDPFlow_initialRemoteEndpoint(
             &self,

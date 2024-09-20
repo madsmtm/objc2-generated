@@ -728,6 +728,11 @@ extern "C" {
 
 extern "C" {
     #[cfg(feature = "NSString")]
+    pub static NSLocalizedNumberFormatAttributeName: &'static NSAttributedStringKey;
+}
+
+extern "C" {
+    #[cfg(feature = "NSString")]
     pub static NSPresentationIntentAttributeName: &'static NSAttributedStringKey;
 }
 

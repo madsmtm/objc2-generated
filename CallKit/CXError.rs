@@ -65,6 +65,8 @@ impl CXErrorCodeIncomingCallError {
     pub const FilteredByBlockList: Self = Self(4);
     #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredDuringRestrictedSharingMode")]
     pub const FilteredDuringRestrictedSharingMode: Self = Self(5);
+    #[doc(alias = "CXErrorCodeIncomingCallErrorCallIsProtected")]
+    pub const CallIsProtected: Self = Self(6);
 }
 
 unsafe impl Encode for CXErrorCodeIncomingCallError {
@@ -96,6 +98,8 @@ impl CXErrorCodeRequestTransactionError {
     pub const InvalidAction: Self = Self(6);
     #[doc(alias = "CXErrorCodeRequestTransactionErrorMaximumCallGroupsReached")]
     pub const MaximumCallGroupsReached: Self = Self(7);
+    #[doc(alias = "CXErrorCodeRequestTransactionErrorCallIsProtected")]
+    pub const CallIsProtected: Self = Self(8);
 }
 
 unsafe impl Encode for CXErrorCodeRequestTransactionError {

@@ -26,6 +26,8 @@ impl ASAuthorizationError {
     pub const Failed: Self = Self(1004);
     #[doc(alias = "ASAuthorizationErrorNotInteractive")]
     pub const NotInteractive: Self = Self(1005);
+    #[doc(alias = "ASAuthorizationErrorMatchedExcludedCredential")]
+    pub const MatchedExcludedCredential: Self = Self(1006);
 }
 
 unsafe impl Encode for ASAuthorizationError {

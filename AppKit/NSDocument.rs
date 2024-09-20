@@ -279,8 +279,8 @@ extern_methods!(
             context_info: *mut c_void,
         );
 
-        #[method(shouldRunSavePanelWithAccessoryView)]
-        pub unsafe fn shouldRunSavePanelWithAccessoryView(&self) -> bool;
+        #[method(savePanelShowsFileFormatsControl)]
+        pub unsafe fn savePanelShowsFileFormatsControl(&self) -> bool;
 
         #[cfg(all(
             feature = "NSPanel",
@@ -783,6 +783,10 @@ extern_methods!(
 extern_methods!(
     /// NSDeprecated
     unsafe impl NSDocument {
+        #[deprecated]
+        #[method(shouldRunSavePanelWithAccessoryView)]
+        pub unsafe fn shouldRunSavePanelWithAccessoryView(&self) -> bool;
+
         #[deprecated = "Use -saveToURL:ofType:forSaveOperation:completionHandler: instead"]
         #[method(saveToURL:ofType:forSaveOperation:error:_)]
         pub unsafe fn saveToURL_ofType_forSaveOperation_error(

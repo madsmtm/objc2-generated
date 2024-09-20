@@ -286,12 +286,6 @@ extern_methods!(
         #[method(scrollIntoViewIfNeeded:)]
         pub unsafe fn scrollIntoViewIfNeeded(&self, center_if_needed: bool);
 
-        #[method(scrollByLines:)]
-        pub unsafe fn scrollByLines(&self, lines: c_int);
-
-        #[method(scrollByPages:)]
-        pub unsafe fn scrollByPages(&self, pages: c_int);
-
         #[cfg(feature = "DOMNodeList")]
         #[method_id(@__retain_semantics Other getElementsByClassName:)]
         pub unsafe fn getElementsByClassName(
@@ -406,5 +400,13 @@ extern_methods!(
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
         ) -> bool;
+
+        #[deprecated]
+        #[method(scrollByLines:)]
+        pub unsafe fn scrollByLines(&self, lines: c_int);
+
+        #[deprecated]
+        #[method(scrollByPages:)]
+        pub unsafe fn scrollByPages(&self, pages: c_int);
     }
 );

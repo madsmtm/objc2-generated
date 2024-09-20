@@ -45,15 +45,18 @@ extern_methods!(
         #[method(setFilteredTraits:)]
         pub unsafe fn setFilteredTraits(&self, filtered_traits: UIFontDescriptorSymbolicTraits);
 
+        #[deprecated = "Use languageFilter"]
         #[method_id(@__retain_semantics Other filteredLanguagesPredicate)]
         pub unsafe fn filteredLanguagesPredicate(&self) -> Option<Retained<NSPredicate>>;
 
+        #[deprecated = "Use languageFilter"]
         #[method(setFilteredLanguagesPredicate:)]
         pub unsafe fn setFilteredLanguagesPredicate(
             &self,
             filtered_languages_predicate: Option<&NSPredicate>,
         );
 
+        #[deprecated = "Use languageFilter"]
         #[method_id(@__retain_semantics Other filterPredicateForFilteredLanguages:)]
         pub unsafe fn filterPredicateForFilteredLanguages(
             filtered_languages: &NSArray<NSString>,

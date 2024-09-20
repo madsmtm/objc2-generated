@@ -22,6 +22,7 @@ extern_class!(
     unsafe impl ClassType for MTKView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
+        type ThreadKind = dyn MainThreadOnly;
     }
 );
 
@@ -255,7 +256,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTKViewDelegate: NSObjectProtocol {
+    pub unsafe trait MTKViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[method(mtkView:drawableSizeWillChange:)]

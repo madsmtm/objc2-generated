@@ -8,6 +8,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UIColorProminence(pub NSInteger);
+impl UIColorProminence {
+    #[doc(alias = "UIColorProminencePrimary")]
+    pub const Primary: Self = Self(0);
+    #[doc(alias = "UIColorProminenceSecondary")]
+    pub const Secondary: Self = Self(1);
+    #[doc(alias = "UIColorProminenceTertiary")]
+    pub const Tertiary: Self = Self(2);
+    #[doc(alias = "UIColorProminenceQuaternary")]
+    pub const Quaternary: Self = Self(3);
+}
+
+unsafe impl Encode for UIColorProminence {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIColorProminence {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIColor;
@@ -280,5 +303,19 @@ extern_methods!(
             &self,
             trait_collection: &UITraitCollection,
         ) -> Retained<UIColor>;
+    }
+);
+
+extern_methods!(
+    /// ProminenceSupport
+    unsafe impl UIColor {
+        #[method_id(@__retain_semantics Other colorWithProminence:)]
+        pub unsafe fn colorWithProminence(
+            &self,
+            prominence: UIColorProminence,
+        ) -> Retained<UIColor>;
+
+        #[method(prominence)]
+        pub unsafe fn prominence(&self) -> UIColorProminence;
     }
 );

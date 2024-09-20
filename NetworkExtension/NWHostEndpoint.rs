@@ -8,6 +8,7 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NWEndpoint")]
+    #[deprecated = "Use `nw_endpoint_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>"]
     pub struct NWHostEndpoint;
 
     #[cfg(feature = "NWEndpoint")]
@@ -37,15 +38,18 @@ unsafe impl NSSecureCoding for NWHostEndpoint {}
 extern_methods!(
     #[cfg(feature = "NWEndpoint")]
     unsafe impl NWHostEndpoint {
+        #[deprecated = "Use `nw_endpoint_create_host` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>"]
         #[method_id(@__retain_semantics Other endpointWithHostname:port:)]
         pub unsafe fn endpointWithHostname_port(
             hostname: &NSString,
             port: &NSString,
         ) -> Retained<Self>;
 
+        #[deprecated = "Use `nw_endpoint_get_hostname` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>"]
         #[method_id(@__retain_semantics Other hostname)]
         pub unsafe fn hostname(&self) -> Retained<NSString>;
 
+        #[deprecated = "Use `nw_endpoint_get_port` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>"]
         #[method_id(@__retain_semantics Other port)]
         pub unsafe fn port(&self) -> Retained<NSString>;
     }

@@ -345,7 +345,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setVertexBuffer:offset:atIndex:)]
         unsafe fn setVertexBuffer_offset_atIndex(
             &self,
@@ -357,7 +361,11 @@ extern_protocol!(
         #[method(setVertexBufferOffset:atIndex:)]
         unsafe fn setVertexBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setVertexBuffers:offsets:withRange:)]
         unsafe fn setVertexBuffers_offsets_withRange(
             &self,
@@ -366,7 +374,11 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setVertexBuffer:offset:attributeStride:atIndex:)]
         unsafe fn setVertexBuffer_offset_attributeStride_atIndex(
             &self,
@@ -376,7 +388,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setVertexBuffers:offsets:attributeStrides:withRange:)]
         unsafe fn setVertexBuffers_offsets_attributeStrides_withRange(
             &self,
@@ -403,7 +419,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLTexture"
+        ))]
         #[method(setVertexTexture:atIndex:)]
         unsafe fn setVertexTexture_atIndex(
             &self,
@@ -411,7 +431,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLTexture"
+        ))]
         #[method(setVertexTextures:withRange:)]
         unsafe fn setVertexTextures_withRange(
             &self,
@@ -455,7 +479,11 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "MTLResource", feature = "MTLVisibleFunctionTable"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLVisibleFunctionTable"
+        ))]
         #[method(setVertexVisibleFunctionTable:atBufferIndex:)]
         unsafe fn setVertexVisibleFunctionTable_atBufferIndex(
             &self,
@@ -463,7 +491,11 @@ extern_protocol!(
             buffer_index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLResource", feature = "MTLVisibleFunctionTable"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLVisibleFunctionTable"
+        ))]
         #[method(setVertexVisibleFunctionTables:withBufferRange:)]
         unsafe fn setVertexVisibleFunctionTables_withBufferRange(
             &self,
@@ -471,7 +503,11 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "MTLIntersectionFunctionTable", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLIntersectionFunctionTable",
+            feature = "MTLResource"
+        ))]
         #[method(setVertexIntersectionFunctionTable:atBufferIndex:)]
         unsafe fn setVertexIntersectionFunctionTable_atBufferIndex(
             &self,
@@ -479,7 +515,11 @@ extern_protocol!(
             buffer_index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLIntersectionFunctionTable", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLIntersectionFunctionTable",
+            feature = "MTLResource"
+        ))]
         #[method(setVertexIntersectionFunctionTables:withBufferRange:)]
         unsafe fn setVertexIntersectionFunctionTables_withBufferRange(
             &self,
@@ -489,7 +529,11 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAccelerationStructure",
+            feature = "MTLAllocation",
+            feature = "MTLResource"
+        ))]
         #[method(setVertexAccelerationStructure:atBufferIndex:)]
         unsafe fn setVertexAccelerationStructure_atBufferIndex(
             &self,
@@ -548,7 +592,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setFragmentBuffer:offset:atIndex:)]
         unsafe fn setFragmentBuffer_offset_atIndex(
             &self,
@@ -560,7 +608,11 @@ extern_protocol!(
         #[method(setFragmentBufferOffset:atIndex:)]
         unsafe fn setFragmentBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setFragmentBuffers:offsets:withRange:)]
         unsafe fn setFragmentBuffers_offsets_withRange(
             &self,
@@ -569,7 +621,11 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLTexture"
+        ))]
         #[method(setFragmentTexture:atIndex:)]
         unsafe fn setFragmentTexture_atIndex(
             &self,
@@ -577,7 +633,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLTexture"
+        ))]
         #[method(setFragmentTextures:withRange:)]
         unsafe fn setFragmentTextures_withRange(
             &self,
@@ -621,7 +681,11 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "MTLResource", feature = "MTLVisibleFunctionTable"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLVisibleFunctionTable"
+        ))]
         #[method(setFragmentVisibleFunctionTable:atBufferIndex:)]
         unsafe fn setFragmentVisibleFunctionTable_atBufferIndex(
             &self,
@@ -629,7 +693,11 @@ extern_protocol!(
             buffer_index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLResource", feature = "MTLVisibleFunctionTable"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLVisibleFunctionTable"
+        ))]
         #[method(setFragmentVisibleFunctionTables:withBufferRange:)]
         unsafe fn setFragmentVisibleFunctionTables_withBufferRange(
             &self,
@@ -637,7 +705,11 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "MTLIntersectionFunctionTable", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLIntersectionFunctionTable",
+            feature = "MTLResource"
+        ))]
         #[method(setFragmentIntersectionFunctionTable:atBufferIndex:)]
         unsafe fn setFragmentIntersectionFunctionTable_atBufferIndex(
             &self,
@@ -645,7 +717,11 @@ extern_protocol!(
             buffer_index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLIntersectionFunctionTable", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLIntersectionFunctionTable",
+            feature = "MTLResource"
+        ))]
         #[method(setFragmentIntersectionFunctionTables:withBufferRange:)]
         unsafe fn setFragmentIntersectionFunctionTables_withBufferRange(
             &self,
@@ -655,7 +731,11 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAccelerationStructure",
+            feature = "MTLAllocation",
+            feature = "MTLResource"
+        ))]
         #[method(setFragmentAccelerationStructure:atBufferIndex:)]
         unsafe fn setFragmentAccelerationStructure_atBufferIndex(
             &self,
@@ -732,7 +812,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setObjectBuffer:offset:atIndex:)]
         unsafe fn setObjectBuffer_offset_atIndex(
             &self,
@@ -744,7 +828,11 @@ extern_protocol!(
         #[method(setObjectBufferOffset:atIndex:)]
         unsafe fn setObjectBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setObjectBuffers:offsets:withRange:)]
         unsafe fn setObjectBuffers_offsets_withRange(
             &self,
@@ -753,7 +841,11 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLTexture"
+        ))]
         #[method(setObjectTexture:atIndex:)]
         unsafe fn setObjectTexture_atIndex(
             &self,
@@ -761,7 +853,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLTexture"
+        ))]
         #[method(setObjectTextures:withRange:)]
         unsafe fn setObjectTextures_withRange(
             &self,
@@ -820,7 +916,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setMeshBuffer:offset:atIndex:)]
         unsafe fn setMeshBuffer_offset_atIndex(
             &self,
@@ -832,7 +932,11 @@ extern_protocol!(
         #[method(setMeshBufferOffset:atIndex:)]
         unsafe fn setMeshBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setMeshBuffers:offsets:withRange:)]
         unsafe fn setMeshBuffers_offsets_withRange(
             &self,
@@ -841,7 +945,11 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLTexture"
+        ))]
         #[method(setMeshTexture:atIndex:)]
         unsafe fn setMeshTexture_atIndex(
             &self,
@@ -849,7 +957,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLTexture"
+        ))]
         #[method(setMeshTextures:withRange:)]
         unsafe fn setMeshTextures_withRange(
             &self,
@@ -911,7 +1023,12 @@ extern_protocol!(
             threads_per_mesh_threadgroup: MTLSize,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource", feature = "MTLTypes"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource",
+            feature = "MTLTypes"
+        ))]
         #[method(drawMeshThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)]
         unsafe fn drawMeshThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
@@ -939,6 +1056,7 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "MTLAllocation",
             feature = "MTLBuffer",
             feature = "MTLResource",
             feature = "MTLStageInputOutputDescriptor"
@@ -955,6 +1073,7 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "MTLAllocation",
             feature = "MTLBuffer",
             feature = "MTLResource",
             feature = "MTLStageInputOutputDescriptor"
@@ -980,6 +1099,7 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "MTLAllocation",
             feature = "MTLBuffer",
             feature = "MTLResource",
             feature = "MTLStageInputOutputDescriptor"
@@ -997,7 +1117,11 @@ extern_protocol!(
             base_instance: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(drawPrimitives:indirectBuffer:indirectBufferOffset:)]
         unsafe fn drawPrimitives_indirectBuffer_indirectBufferOffset(
             &self,
@@ -1007,6 +1131,7 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "MTLAllocation",
             feature = "MTLBuffer",
             feature = "MTLResource",
             feature = "MTLStageInputOutputDescriptor"
@@ -1042,7 +1167,11 @@ extern_protocol!(
             stages: MTLRenderStages,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setTessellationFactorBuffer:offset:instanceStride:)]
         unsafe fn setTessellationFactorBuffer_offset_instanceStride(
             &self,
@@ -1054,7 +1183,11 @@ extern_protocol!(
         #[method(setTessellationFactorScale:)]
         unsafe fn setTessellationFactorScale(&self, scale: c_float);
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:)]
         unsafe fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance(
             &self,
@@ -1067,7 +1200,11 @@ extern_protocol!(
             base_instance: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(drawPatches:patchIndexBuffer:patchIndexBufferOffset:indirectBuffer:indirectBufferOffset:)]
         unsafe fn drawPatches_patchIndexBuffer_patchIndexBufferOffset_indirectBuffer_indirectBufferOffset(
             &self,
@@ -1078,7 +1215,11 @@ extern_protocol!(
             indirect_buffer_offset: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:)]
         unsafe fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance(
             &self,
@@ -1093,7 +1234,11 @@ extern_protocol!(
             base_instance: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(drawIndexedPatches:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:indirectBuffer:indirectBufferOffset:)]
         unsafe fn drawIndexedPatches_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_indirectBuffer_indirectBufferOffset(
             &self,
@@ -1120,7 +1265,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setTileBuffer:offset:atIndex:)]
         unsafe fn setTileBuffer_offset_atIndex(
             &self,
@@ -1132,7 +1281,11 @@ extern_protocol!(
         #[method(setTileBufferOffset:atIndex:)]
         unsafe fn setTileBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(setTileBuffers:offsets:withRange:)]
         unsafe fn setTileBuffers_offsets_withRange(
             &self,
@@ -1141,7 +1294,11 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLTexture"
+        ))]
         #[method(setTileTexture:atIndex:)]
         unsafe fn setTileTexture_atIndex(
             &self,
@@ -1149,7 +1306,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLTexture"
+        ))]
         #[method(setTileTextures:withRange:)]
         unsafe fn setTileTextures_withRange(
             &self,
@@ -1193,7 +1354,11 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "MTLResource", feature = "MTLVisibleFunctionTable"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLVisibleFunctionTable"
+        ))]
         #[method(setTileVisibleFunctionTable:atBufferIndex:)]
         unsafe fn setTileVisibleFunctionTable_atBufferIndex(
             &self,
@@ -1201,7 +1366,11 @@ extern_protocol!(
             buffer_index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLResource", feature = "MTLVisibleFunctionTable"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLVisibleFunctionTable"
+        ))]
         #[method(setTileVisibleFunctionTables:withBufferRange:)]
         unsafe fn setTileVisibleFunctionTables_withBufferRange(
             &self,
@@ -1209,7 +1378,11 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "MTLIntersectionFunctionTable", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLIntersectionFunctionTable",
+            feature = "MTLResource"
+        ))]
         #[method(setTileIntersectionFunctionTable:atBufferIndex:)]
         unsafe fn setTileIntersectionFunctionTable_atBufferIndex(
             &self,
@@ -1217,7 +1390,11 @@ extern_protocol!(
             buffer_index: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLIntersectionFunctionTable", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLIntersectionFunctionTable",
+            feature = "MTLResource"
+        ))]
         #[method(setTileIntersectionFunctionTables:withBufferRange:)]
         unsafe fn setTileIntersectionFunctionTables_withBufferRange(
             &self,
@@ -1227,7 +1404,11 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAccelerationStructure",
+            feature = "MTLAllocation",
+            feature = "MTLResource"
+        ))]
         #[method(setTileAccelerationStructure:atBufferIndex:)]
         unsafe fn setTileAccelerationStructure_atBufferIndex(
             &self,
@@ -1247,7 +1428,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(feature = "MTLResource")]
+        #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
         #[deprecated]
         #[method(useResource:usage:)]
         fn useResource_usage(
@@ -1256,7 +1437,7 @@ extern_protocol!(
             usage: MTLResourceUsage,
         );
 
-        #[cfg(feature = "MTLResource")]
+        #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
         #[deprecated]
         #[method(useResources:count:usage:)]
         unsafe fn useResources_count_usage(
@@ -1266,7 +1447,7 @@ extern_protocol!(
             usage: MTLResourceUsage,
         );
 
-        #[cfg(feature = "MTLResource")]
+        #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
         #[method(useResource:usage:stages:)]
         fn useResource_usage_stages(
             &self,
@@ -1275,7 +1456,7 @@ extern_protocol!(
             stages: MTLRenderStages,
         );
 
-        #[cfg(feature = "MTLResource")]
+        #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
         #[method(useResources:count:usage:stages:)]
         unsafe fn useResources_count_usage_stages(
             &self,
@@ -1285,12 +1466,12 @@ extern_protocol!(
             stages: MTLRenderStages,
         );
 
-        #[cfg(feature = "MTLHeap")]
+        #[cfg(all(feature = "MTLAllocation", feature = "MTLHeap"))]
         #[deprecated]
         #[method(useHeap:)]
         fn useHeap(&self, heap: &ProtocolObject<dyn MTLHeap>);
 
-        #[cfg(feature = "MTLHeap")]
+        #[cfg(all(feature = "MTLAllocation", feature = "MTLHeap"))]
         #[deprecated]
         #[method(useHeaps:count:)]
         unsafe fn useHeaps_count(
@@ -1299,11 +1480,11 @@ extern_protocol!(
             count: NSUInteger,
         );
 
-        #[cfg(feature = "MTLHeap")]
+        #[cfg(all(feature = "MTLAllocation", feature = "MTLHeap"))]
         #[method(useHeap:stages:)]
         fn useHeap_stages(&self, heap: &ProtocolObject<dyn MTLHeap>, stages: MTLRenderStages);
 
-        #[cfg(feature = "MTLHeap")]
+        #[cfg(all(feature = "MTLAllocation", feature = "MTLHeap"))]
         #[method(useHeaps:count:stages:)]
         unsafe fn useHeaps_count_stages(
             &self,
@@ -1312,7 +1493,11 @@ extern_protocol!(
             stages: MTLRenderStages,
         );
 
-        #[cfg(all(feature = "MTLIndirectCommandBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLIndirectCommandBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(executeCommandsInBuffer:withRange:)]
         unsafe fn executeCommandsInBuffer_withRange(
             &self,
@@ -1321,6 +1506,7 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "MTLAllocation",
             feature = "MTLBuffer",
             feature = "MTLIndirectCommandBuffer",
             feature = "MTLResource"
@@ -1341,7 +1527,7 @@ extern_protocol!(
             before: MTLRenderStages,
         );
 
-        #[cfg(feature = "MTLResource")]
+        #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
         #[method(memoryBarrierWithResources:count:afterStages:beforeStages:)]
         unsafe fn memoryBarrierWithResources_count_afterStages_beforeStages(
             &self,

@@ -156,6 +156,12 @@ extern_methods!(
         #[method(setAllowsDocumentCreation:)]
         pub unsafe fn setAllowsDocumentCreation(&self, allows_document_creation: bool);
 
+        #[cfg(feature = "UIDocument")]
+        #[method_id(@__retain_semantics Other activeDocumentCreationIntent)]
+        pub unsafe fn activeDocumentCreationIntent(
+            &self,
+        ) -> Option<Retained<UIDocumentCreationIntent>>;
+
         #[method(allowsPickingMultipleItems)]
         pub unsafe fn allowsPickingMultipleItems(&self) -> bool;
 

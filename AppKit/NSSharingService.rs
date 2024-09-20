@@ -412,6 +412,14 @@ extern_protocol!(
             sharing_service_picker: &NSSharingServicePicker,
             service: Option<&NSSharingService>,
         );
+
+        #[cfg(feature = "NSSharingCollaborationModeRestriction")]
+        #[optional]
+        #[method_id(@__retain_semantics Other sharingServicePickerCollaborationModeRestrictions:)]
+        unsafe fn sharingServicePickerCollaborationModeRestrictions(
+            &self,
+            sharing_service_picker: &NSSharingServicePicker,
+        ) -> Option<Retained<NSArray<NSSharingCollaborationModeRestriction>>>;
     }
 
     unsafe impl ProtocolType for dyn NSSharingServicePickerDelegate {}

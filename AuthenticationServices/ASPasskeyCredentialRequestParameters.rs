@@ -49,6 +49,12 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other allowedCredentials)]
         pub unsafe fn allowedCredentials(&self) -> Retained<NSArray<NSData>>;
+
+        #[cfg(feature = "ASPasskeyAssertionCredentialExtensionInput")]
+        #[method_id(@__retain_semantics Other extensionInput)]
+        pub unsafe fn extensionInput(
+            &self,
+        ) -> Option<Retained<ASPasskeyAssertionCredentialExtensionInput>>;
     }
 );
 

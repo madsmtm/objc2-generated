@@ -1123,6 +1123,13 @@ extern_methods!(
         ) -> Option<Retained<NSIndexPath>>;
 
         #[cfg(feature = "UICollectionViewCell")]
+        #[method_id(@__retain_semantics Other indexPathForSupplementaryView:)]
+        pub unsafe fn indexPathForSupplementaryView(
+            &self,
+            supplementary_view: &UICollectionReusableView,
+        ) -> Option<Retained<NSIndexPath>>;
+
+        #[cfg(feature = "UICollectionViewCell")]
         #[method_id(@__retain_semantics Other cellForItemAtIndexPath:)]
         pub unsafe fn cellForItemAtIndexPath(
             &self,

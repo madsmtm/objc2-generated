@@ -365,3 +365,16 @@ extern_protocol!(
 
     unsafe impl ProtocolType for dyn NSFileProviderPartialContentFetching {}
 );
+
+extern_protocol!(
+    pub unsafe trait NSFileProviderExternalVolumeHandling: NSObjectProtocol {
+        #[cfg(feature = "block2")]
+        #[method(shouldConnectExternalDomainWithCompletionHandler:)]
+        unsafe fn shouldConnectExternalDomainWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+    }
+
+    unsafe impl ProtocolType for dyn NSFileProviderExternalVolumeHandling {}
+);

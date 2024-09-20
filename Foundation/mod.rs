@@ -214,6 +214,9 @@ mod __NSKeyValueCoding;
 #[cfg(feature = "NSKeyValueObserving")]
 #[path = "NSKeyValueObserving.rs"]
 mod __NSKeyValueObserving;
+#[cfg(feature = "NSKeyValueSharedObservers")]
+#[path = "NSKeyValueSharedObservers.rs"]
+mod __NSKeyValueSharedObservers;
 #[cfg(feature = "NSKeyedArchiver")]
 #[path = "NSKeyedArchiver.rs"]
 mod __NSKeyedArchiver;
@@ -229,6 +232,9 @@ mod __NSListFormatter;
 #[cfg(feature = "NSLocale")]
 #[path = "NSLocale.rs"]
 mod __NSLocale;
+#[cfg(feature = "NSLocalizedNumberFormatRule")]
+#[path = "NSLocalizedNumberFormatRule.rs"]
+mod __NSLocalizedNumberFormatRule;
 #[cfg(feature = "NSLock")]
 #[path = "NSLock.rs"]
 mod __NSLock;
@@ -772,6 +778,8 @@ pub use self::__NSAttributedString::NSInlinePresentationIntent;
 pub use self::__NSAttributedString::NSInlinePresentationIntentAttributeName;
 #[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSLanguageIdentifierAttributeName;
+#[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
+pub use self::__NSAttributedString::NSLocalizedNumberFormatAttributeName;
 #[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSMarkdownSourcePositionAttributeName;
 #[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
@@ -1726,6 +1734,12 @@ pub use self::__NSKeyValueObserving::NSObjectNSKeyValueObserverRegistration;
 pub use self::__NSKeyValueObserving::NSObjectNSKeyValueObserving;
 #[cfg(feature = "NSKeyValueObserving")]
 pub use self::__NSKeyValueObserving::NSObjectNSKeyValueObservingCustomization;
+#[cfg(feature = "NSKeyValueSharedObservers")]
+pub use self::__NSKeyValueSharedObservers::NSKeyValueSharedObservers;
+#[cfg(feature = "NSKeyValueSharedObservers")]
+pub use self::__NSKeyValueSharedObservers::NSKeyValueSharedObserversSnapshot;
+#[cfg(feature = "NSKeyValueSharedObservers")]
+pub use self::__NSKeyValueSharedObservers::NSObjectNSKeyValueSharedObserverRegistration;
 #[cfg(all(
     feature = "NSKeyedArchiver",
     feature = "NSObjCRuntime",
@@ -1912,6 +1926,8 @@ pub use self::__NSLocale::NSLocaleVariantCode;
 pub use self::__NSLocale::NSPersianCalendar;
 #[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSRepublicOfChinaCalendar;
+#[cfg(feature = "NSLocalizedNumberFormatRule")]
+pub use self::__NSLocalizedNumberFormatRule::NSLocalizedNumberFormatRule;
 #[cfg(feature = "NSLock")]
 pub use self::__NSLock::NSCondition;
 #[cfg(feature = "NSLock")]
@@ -3544,6 +3560,8 @@ pub use self::__NSUndoManager::NSUndoManagerDidRedoChangeNotification;
 pub use self::__NSUndoManager::NSUndoManagerDidUndoChangeNotification;
 #[cfg(all(feature = "NSString", feature = "NSUndoManager"))]
 pub use self::__NSUndoManager::NSUndoManagerGroupIsDiscardableKey;
+#[cfg(all(feature = "NSString", feature = "NSUndoManager"))]
+pub use self::__NSUndoManager::NSUndoManagerUserInfoKey;
 #[cfg(all(
     feature = "NSNotification",
     feature = "NSString",

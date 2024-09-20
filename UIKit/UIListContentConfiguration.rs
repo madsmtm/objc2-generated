@@ -44,17 +44,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other valueCellConfiguration)]
         pub unsafe fn valueCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other plainHeaderConfiguration)]
-        pub unsafe fn plainHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
+        #[method_id(@__retain_semantics Other headerConfiguration)]
+        pub unsafe fn headerConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other plainFooterConfiguration)]
-        pub unsafe fn plainFooterConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
-
-        #[method_id(@__retain_semantics Other groupedHeaderConfiguration)]
-        pub unsafe fn groupedHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
-
-        #[method_id(@__retain_semantics Other groupedFooterConfiguration)]
-        pub unsafe fn groupedFooterConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
+        #[method_id(@__retain_semantics Other footerConfiguration)]
+        pub unsafe fn footerConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other prominentInsetGroupedHeaderConfiguration)]
         pub unsafe fn prominentInsetGroupedHeaderConfiguration(
@@ -66,12 +60,6 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other sidebarCellConfiguration)]
-        pub unsafe fn sidebarCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
-
-        #[method_id(@__retain_semantics Other sidebarSubtitleCellConfiguration)]
-        pub unsafe fn sidebarSubtitleCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
-
         #[method_id(@__retain_semantics Other accompaniedSidebarCellConfiguration)]
         pub unsafe fn accompaniedSidebarCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
@@ -79,9 +67,6 @@ extern_methods!(
         pub unsafe fn accompaniedSidebarSubtitleCellConfiguration(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-
-        #[method_id(@__retain_semantics Other sidebarHeaderConfiguration)]
-        pub unsafe fn sidebarHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
@@ -190,6 +175,34 @@ extern_methods!(
             &self,
             text_to_secondary_text_vertical_padding: CGFloat,
         );
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Other sidebarCellConfiguration)]
+        pub unsafe fn sidebarCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Other sidebarSubtitleCellConfiguration)]
+        pub unsafe fn sidebarSubtitleCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Other plainHeaderConfiguration)]
+        pub unsafe fn plainHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Other plainFooterConfiguration)]
+        pub unsafe fn plainFooterConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Other groupedHeaderConfiguration)]
+        pub unsafe fn groupedHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Other groupedFooterConfiguration)]
+        pub unsafe fn groupedFooterConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Other sidebarHeaderConfiguration)]
+        pub unsafe fn sidebarHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

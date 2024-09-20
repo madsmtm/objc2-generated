@@ -82,6 +82,7 @@ extern_methods!(
             feature = "NWTCPConnection",
             feature = "NWTLSParameters"
         ))]
+        #[deprecated = "Use nw_connection_t in Network framework instead"]
         #[method_id(@__retain_semantics Other createTCPConnectionToEndpoint:enableTLS:TLSParameters:delegate:)]
         pub unsafe fn createTCPConnectionToEndpoint_enableTLS_TLSParameters_delegate(
             &self,
@@ -96,6 +97,7 @@ extern_methods!(
             feature = "NWHostEndpoint",
             feature = "NWUDPSession"
         ))]
+        #[deprecated = "Use nw_connection_t in Network framework instead"]
         #[method_id(@__retain_semantics Other createUDPSessionToEndpoint:fromEndpoint:)]
         pub unsafe fn createUDPSessionToEndpoint_fromEndpoint(
             &self,
@@ -116,6 +118,7 @@ extern_methods!(
         pub unsafe fn startSystemExtensionMode();
 
         #[cfg(feature = "NWPath")]
+        #[deprecated = "Use nw_path_monitor_t in Network framework instead"]
         #[method_id(@__retain_semantics Other defaultPath)]
         pub unsafe fn defaultPath(&self) -> Option<Retained<NWPath>>;
     }

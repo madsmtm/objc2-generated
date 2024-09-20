@@ -7,6 +7,7 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "No longer supported"]
     pub struct SKRequest;
 
     unsafe impl ClassType for SKRequest {
@@ -18,15 +19,19 @@ unsafe impl NSObjectProtocol for SKRequest {}
 
 extern_methods!(
     unsafe impl SKRequest {
+        #[deprecated = "No longer supported"]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn SKRequestDelegate>>>;
 
+        #[deprecated = "No longer supported"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn SKRequestDelegate>>);
 
+        #[deprecated = "No longer supported"]
         #[method(cancel)]
         pub unsafe fn cancel(&self);
 
+        #[deprecated = "No longer supported"]
         #[method(start)]
         pub unsafe fn start(&self);
     }
@@ -44,11 +49,14 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[deprecated = "No longer supported"]
     pub unsafe trait SKRequestDelegate: NSObjectProtocol {
+        #[deprecated = "No longer supported"]
         #[optional]
         #[method(requestDidFinish:)]
         unsafe fn requestDidFinish(&self, request: &SKRequest);
 
+        #[deprecated = "No longer supported"]
         #[optional]
         #[method(request:didFailWithError:)]
         unsafe fn request_didFailWithError(&self, request: &SKRequest, error: &NSError);

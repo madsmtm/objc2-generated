@@ -159,11 +159,21 @@ extern_methods!(
             player_scope: GKLeaderboardPlayerScope,
         ) -> Retained<Self>;
 
+        #[method_id(@__retain_semantics Init initWithLeaderboardSetID:)]
+        pub unsafe fn initWithLeaderboardSetID(
+            this: Allocated<Self>,
+            leaderboard_set_id: &NSString,
+        ) -> Retained<Self>;
+
         #[method_id(@__retain_semantics Init initWithAchievementID:)]
         pub unsafe fn initWithAchievementID(
             this: Allocated<Self>,
             achievement_id: &NSString,
         ) -> Retained<Self>;
+
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        #[method_id(@__retain_semantics Init initWithPlayer:)]
+        pub unsafe fn initWithPlayer(this: Allocated<Self>, player: &GKPlayer) -> Retained<Self>;
     }
 );
 

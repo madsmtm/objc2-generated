@@ -95,7 +95,11 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait MTLIOScratchBuffer: NSObjectProtocol {
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method_id(@__retain_semantics Other buffer)]
         unsafe fn buffer(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
     }

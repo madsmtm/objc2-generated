@@ -74,10 +74,6 @@ extern_methods!(
             attributes: &NSDictionary<NSGraphicsContextAttributeKey, AnyObject>,
         ) -> Option<Retained<NSGraphicsContext>>;
 
-        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-        #[method_id(@__retain_semantics Other graphicsContextWithWindow:)]
-        pub unsafe fn graphicsContextWithWindow(window: &NSWindow) -> Retained<NSGraphicsContext>;
-
         #[cfg(all(feature = "NSBitmapImageRep", feature = "NSImageRep"))]
         #[method_id(@__retain_semantics Other graphicsContextWithBitmapImageRep:)]
         pub unsafe fn graphicsContextWithBitmapImageRep(
@@ -209,5 +205,10 @@ extern_methods!(
         #[deprecated]
         #[method(graphicsPort)]
         pub unsafe fn graphicsPort(&self) -> NonNull<c_void>;
+
+        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
+        #[deprecated = "Add instances of NSView to display content in a window"]
+        #[method_id(@__retain_semantics Other graphicsContextWithWindow:)]
+        pub unsafe fn graphicsContextWithWindow(window: &NSWindow) -> Retained<NSGraphicsContext>;
     }
 );

@@ -16,6 +16,9 @@
 #[link(name = "Vision", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "VNCalculateImageAestheticsScoresRequest")]
+#[path = "VNCalculateImageAestheticsScoresRequest.rs"]
+mod __VNCalculateImageAestheticsScoresRequest;
 #[cfg(feature = "VNClassifyImageRequest")]
 #[path = "VNClassifyImageRequest.rs"]
 mod __VNClassifyImageRequest;
@@ -170,6 +173,13 @@ mod __VNUtils;
 #[path = "VNVideoProcessor.rs"]
 mod __VNVideoProcessor;
 
+#[cfg(all(
+    feature = "VNCalculateImageAestheticsScoresRequest",
+    feature = "VNRequest"
+))]
+pub use self::__VNCalculateImageAestheticsScoresRequest::VNCalculateImageAestheticsScoresRequest;
+#[cfg(feature = "VNCalculateImageAestheticsScoresRequest")]
+pub use self::__VNCalculateImageAestheticsScoresRequest::VNCalculateImageAestheticsScoresRequestRevision1;
 #[cfg(all(feature = "VNClassifyImageRequest", feature = "VNRequest"))]
 pub use self::__VNClassifyImageRequest::VNClassifyImageRequest;
 #[cfg(feature = "VNClassifyImageRequest")]
@@ -579,6 +589,8 @@ pub use self::__VNObservation::VNHumanBodyPose3DObservation;
 pub use self::__VNObservation::VNHumanBodyPose3DObservationHeightEstimation;
 #[cfg(feature = "VNObservation")]
 pub use self::__VNObservation::VNHumanObservation;
+#[cfg(feature = "VNObservation")]
+pub use self::__VNObservation::VNImageAestheticsScoresObservation;
 #[cfg(feature = "VNObservation")]
 pub use self::__VNObservation::VNImageAlignmentObservation;
 #[cfg(feature = "VNObservation")]

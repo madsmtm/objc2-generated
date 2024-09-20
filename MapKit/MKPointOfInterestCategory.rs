@@ -9,6 +9,10 @@ use crate::*;
 pub type MKPointOfInterestCategory = NSString;
 
 extern "C" {
+    pub static MKPointOfInterestCategoryAnimalService: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
     pub static MKPointOfInterestCategoryAirport: Option<&'static MKPointOfInterestCategory>;
 }
 
@@ -25,6 +29,11 @@ extern "C" {
 }
 
 extern "C" {
+    pub static MKPointOfInterestCategoryAutomotiveRepair:
+        Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
     pub static MKPointOfInterestCategoryBakery: Option<&'static MKPointOfInterestCategory>;
 }
 
@@ -33,7 +42,23 @@ extern "C" {
 }
 
 extern "C" {
+    pub static MKPointOfInterestCategoryBaseball: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategoryBasketball: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
     pub static MKPointOfInterestCategoryBeach: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategoryBeauty: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategoryBowling: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
@@ -53,11 +78,32 @@ extern "C" {
 }
 
 extern "C" {
+    pub static MKPointOfInterestCategoryCastle: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategoryConventionCenter:
+        Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategoryDistillery: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
     pub static MKPointOfInterestCategoryEVCharger: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
+    pub static MKPointOfInterestCategoryFairground: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
     pub static MKPointOfInterestCategoryFireStation: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategoryFishing: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
@@ -69,7 +115,23 @@ extern "C" {
 }
 
 extern "C" {
+    pub static MKPointOfInterestCategoryFortress: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
     pub static MKPointOfInterestCategoryGasStation: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategoryGolf: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategoryGoKart: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategoryHiking: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
@@ -81,6 +143,14 @@ extern "C" {
 }
 
 extern "C" {
+    pub static MKPointOfInterestCategoryKayaking: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategoryLandmark: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
     pub static MKPointOfInterestCategoryLaundry: Option<&'static MKPointOfInterestCategory>;
 }
 
@@ -89,7 +159,15 @@ extern "C" {
 }
 
 extern "C" {
+    pub static MKPointOfInterestCategoryMailbox: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
     pub static MKPointOfInterestCategoryMarina: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategoryMiniGolf: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
@@ -98,6 +176,15 @@ extern "C" {
 
 extern "C" {
     pub static MKPointOfInterestCategoryMuseum: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategoryMusicVenue: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategoryNationalMonument:
+        Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
@@ -121,6 +208,10 @@ extern "C" {
 }
 
 extern "C" {
+    pub static MKPointOfInterestCategoryPlanetarium: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
     pub static MKPointOfInterestCategoryPolice: Option<&'static MKPointOfInterestCategory>;
 }
 
@@ -141,7 +232,35 @@ extern "C" {
 }
 
 extern "C" {
+    pub static MKPointOfInterestCategoryRockClimbing: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategoryRVPark: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
     pub static MKPointOfInterestCategorySchool: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategorySkatePark: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategorySkating: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategorySkiing: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategorySoccer: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategorySpa: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
@@ -150,6 +269,18 @@ extern "C" {
 
 extern "C" {
     pub static MKPointOfInterestCategoryStore: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategorySurfing: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategorySwimming: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategoryTennis: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
@@ -162,6 +293,10 @@ extern "C" {
 
 extern "C" {
     pub static MKPointOfInterestCategoryWinery: Option<&'static MKPointOfInterestCategory>;
+}
+
+extern "C" {
+    pub static MKPointOfInterestCategoryVolleyball: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {

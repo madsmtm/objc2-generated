@@ -19,9 +19,36 @@ extern "C" {}
 #[cfg(feature = "LABase")]
 #[path = "LABase.rs"]
 mod __LABase;
+#[cfg(feature = "LABiometryType")]
+#[path = "LABiometryType.rs"]
+mod __LABiometryType;
+#[cfg(feature = "LACompanionType")]
+#[path = "LACompanionType.rs"]
+mod __LACompanionType;
 #[cfg(feature = "LAContext")]
 #[path = "LAContext.rs"]
 mod __LAContext;
+#[cfg(feature = "LADomainState")]
+#[path = "LADomainState.rs"]
+mod __LADomainState;
+#[cfg(feature = "LAEnvironment")]
+#[path = "LAEnvironment.rs"]
+mod __LAEnvironment;
+#[cfg(feature = "LAEnvironmentMechanism")]
+#[path = "LAEnvironmentMechanism.rs"]
+mod __LAEnvironmentMechanism;
+#[cfg(feature = "LAEnvironmentMechanismBiometry")]
+#[path = "LAEnvironmentMechanismBiometry.rs"]
+mod __LAEnvironmentMechanismBiometry;
+#[cfg(feature = "LAEnvironmentMechanismCompanion")]
+#[path = "LAEnvironmentMechanismCompanion.rs"]
+mod __LAEnvironmentMechanismCompanion;
+#[cfg(feature = "LAEnvironmentMechanismUserPassword")]
+#[path = "LAEnvironmentMechanismUserPassword.rs"]
+mod __LAEnvironmentMechanismUserPassword;
+#[cfg(feature = "LAEnvironmentState")]
+#[path = "LAEnvironmentState.rs"]
+mod __LAEnvironmentState;
 #[cfg(feature = "LAError")]
 #[path = "LAError.rs"]
 mod __LAError;
@@ -50,10 +77,12 @@ mod __LARightStore;
 #[path = "LASecret.rs"]
 mod __LASecret;
 
+#[cfg(feature = "LABiometryType")]
+pub use self::__LABiometryType::LABiometryType;
+#[cfg(feature = "LACompanionType")]
+pub use self::__LACompanionType::LACompanionType;
 #[cfg(feature = "LAContext")]
 pub use self::__LAContext::LAAccessControlOperation;
-#[cfg(feature = "LAContext")]
-pub use self::__LAContext::LABiometryType;
 #[cfg(feature = "LAContext")]
 pub use self::__LAContext::LAContext;
 #[cfg(feature = "LAContext")]
@@ -62,6 +91,35 @@ pub use self::__LAContext::LACredentialType;
 pub use self::__LAContext::LAPolicy;
 #[cfg(feature = "LAContext")]
 pub use self::__LAContext::LATouchIDAuthenticationMaximumAllowableReuseDuration;
+#[cfg(feature = "LADomainState")]
+pub use self::__LADomainState::LADomainState;
+#[cfg(feature = "LADomainState")]
+pub use self::__LADomainState::LADomainStateBiometry;
+#[cfg(feature = "LADomainState")]
+pub use self::__LADomainState::LADomainStateCompanion;
+#[cfg(feature = "LAEnvironment")]
+pub use self::__LAEnvironment::LAEnvironment;
+#[cfg(feature = "LAEnvironment")]
+pub use self::__LAEnvironment::LAEnvironmentObserver;
+#[cfg(feature = "LAEnvironmentMechanism")]
+pub use self::__LAEnvironmentMechanism::LAEnvironmentMechanism;
+#[cfg(all(
+    feature = "LAEnvironmentMechanism",
+    feature = "LAEnvironmentMechanismBiometry"
+))]
+pub use self::__LAEnvironmentMechanismBiometry::LAEnvironmentMechanismBiometry;
+#[cfg(all(
+    feature = "LAEnvironmentMechanism",
+    feature = "LAEnvironmentMechanismCompanion"
+))]
+pub use self::__LAEnvironmentMechanismCompanion::LAEnvironmentMechanismCompanion;
+#[cfg(all(
+    feature = "LAEnvironmentMechanism",
+    feature = "LAEnvironmentMechanismUserPassword"
+))]
+pub use self::__LAEnvironmentMechanismUserPassword::LAEnvironmentMechanismUserPassword;
+#[cfg(feature = "LAEnvironmentState")]
+pub use self::__LAEnvironmentState::LAEnvironmentState;
 #[cfg(feature = "LAError")]
 pub use self::__LAError::LAError;
 #[cfg(feature = "LAError")]

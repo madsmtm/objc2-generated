@@ -346,3 +346,56 @@ extern_methods!(
         );
     }
 );
+
+extern_methods!(
+    /// StateDirectory
+    unsafe impl NSFileProviderManager {
+        #[method_id(@__retain_semantics Other stateDirectoryURLWithError:_)]
+        pub unsafe fn stateDirectoryURLWithError(
+            &self,
+        ) -> Result<Retained<NSURL>, Retained<NSError>>;
+    }
+);
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileProviderVolumeUnsupportedReason(pub NSUInteger);
+bitflags::bitflags! {
+    impl NSFileProviderVolumeUnsupportedReason: NSUInteger {
+        #[doc(alias = "NSFileProviderVolumeUnsupportedReasonNone")]
+        const None = 0;
+        #[doc(alias = "NSFileProviderVolumeUnsupportedReasonUnknown")]
+        const Unknown = 1<<0;
+        #[doc(alias = "NSFileProviderVolumeUnsupportedReasonNonAPFS")]
+        const NonAPFS = 1<<1;
+        #[doc(alias = "NSFileProviderVolumeUnsupportedReasonNonEncrypted")]
+        const NonEncrypted = 1<<2;
+        #[doc(alias = "NSFileProviderVolumeUnsupportedReasonReadOnly")]
+        const ReadOnly = 1<<3;
+        #[doc(alias = "NSFileProviderVolumeUnsupportedReasonNetwork")]
+        const Network = 1<<4;
+        #[doc(alias = "NSFileProviderVolumeUnsupportedReasonQuarantined")]
+        const Quarantined = 1<<5;
+    }
+}
+
+unsafe impl Encode for NSFileProviderVolumeUnsupportedReason {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSFileProviderVolumeUnsupportedReason {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_methods!(
+    /// ExternalDomain
+    unsafe impl NSFileProviderManager {
+        #[method(checkDomainsCanBeStored:onVolumeAtURL:unsupportedReason:error:_)]
+        pub unsafe fn checkDomainsCanBeStored_onVolumeAtURL_unsupportedReason_error(
+            eligible: NonNull<Bool>,
+            url: &NSURL,
+            unsupported_reason: *mut NSFileProviderVolumeUnsupportedReason,
+        ) -> Result<(), Retained<NSError>>;
+    }
+);

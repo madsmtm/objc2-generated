@@ -219,6 +219,16 @@ extern_methods!(
         #[cfg(feature = "UISceneDefinitions")]
         #[method(sceneCaptureState)]
         pub unsafe fn sceneCaptureState(&self) -> UISceneCaptureState;
+
+        #[cfg(feature = "UITraitListEnvironment")]
+        #[method_id(@__retain_semantics Other traitCollectionWithListEnvironment:)]
+        pub unsafe fn traitCollectionWithListEnvironment(
+            list_environment: UIListEnvironment,
+        ) -> Retained<UITraitCollection>;
+
+        #[cfg(feature = "UITraitListEnvironment")]
+        #[method(listEnvironment)]
+        pub unsafe fn listEnvironment(&self) -> UIListEnvironment;
     }
 );
 
@@ -393,6 +403,14 @@ extern_protocol!(
 
         #[method(setTypesettingLanguage:)]
         unsafe fn setTypesettingLanguage(&self, typesetting_language: &NSString);
+
+        #[cfg(feature = "UITraitListEnvironment")]
+        #[method(listEnvironment)]
+        unsafe fn listEnvironment(&self) -> UIListEnvironment;
+
+        #[cfg(feature = "UITraitListEnvironment")]
+        #[method(setListEnvironment:)]
+        unsafe fn setListEnvironment(&self, list_environment: UIListEnvironment);
     }
 
     unsafe impl ProtocolType for dyn UIMutableTraits {}

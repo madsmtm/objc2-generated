@@ -49,6 +49,9 @@ mod __NSAccessibilityProtocols;
 #[cfg(feature = "NSActionCell")]
 #[path = "NSActionCell.rs"]
 mod __NSActionCell;
+#[cfg(feature = "NSAdaptiveImageGlyph")]
+#[path = "NSAdaptiveImageGlyph.rs"]
+mod __NSAdaptiveImageGlyph;
 #[cfg(feature = "NSAffineTransform")]
 #[path = "NSAffineTransform.rs"]
 mod __NSAffineTransform;
@@ -208,6 +211,9 @@ mod __NSDictionaryController;
 #[cfg(feature = "NSDiffableDataSource")]
 #[path = "NSDiffableDataSource.rs"]
 mod __NSDiffableDataSource;
+#[cfg(feature = "NSDirection")]
+#[path = "NSDirection.rs"]
+mod __NSDirection;
 #[cfg(feature = "NSDockTile")]
 #[path = "NSDockTile.rs"]
 mod __NSDockTile;
@@ -556,6 +562,9 @@ mod __NSSegmentedControl;
 #[cfg(feature = "NSShadow")]
 #[path = "NSShadow.rs"]
 mod __NSShadow;
+#[cfg(feature = "NSSharingCollaborationModeRestriction")]
+#[path = "NSSharingCollaborationModeRestriction.rs"]
+mod __NSSharingCollaborationModeRestriction;
 #[cfg(feature = "NSSharingService")]
 #[path = "NSSharingService.rs"]
 mod __NSSharingService;
@@ -1683,6 +1692,10 @@ pub use self::__NSAccessibilityProtocols::NSAccessibilitySwitch;
 pub use self::__NSAccessibilityProtocols::NSAccessibilityTable;
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 pub use self::__NSActionCell::NSActionCell;
+#[cfg(feature = "NSAdaptiveImageGlyph")]
+pub use self::__NSAdaptiveImageGlyph::NSAdaptiveImageGlyph;
+#[cfg(feature = "NSAdaptiveImageGlyph")]
+pub use self::__NSAdaptiveImageGlyph::NSAttributedStringAdaptiveImageGlyphConveniences;
 #[cfg(feature = "NSAffineTransform")]
 pub use self::__NSAffineTransform::NSAffineTransformNSAppKitAdditions;
 #[cfg(feature = "NSAlert")]
@@ -2052,9 +2065,17 @@ pub use self::__NSApplication::NSWindowListOptions;
 ))]
 pub use self::__NSArrayController::NSArrayController;
 #[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSAdaptiveImageGlyphAttributeName;
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAppearanceDocumentAttribute;
 #[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttachmentAttributeName;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSAttributedStringAppKitAdditions;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSAttributedStringAppKitAttributeFixing;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSAttributedStringAppKitDocumentFormats;
 #[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringAttributeFixing;
 #[cfg(feature = "NSAttributedString")]
@@ -2158,9 +2179,9 @@ pub use self::__NSAttributedString::NSMarkedClauseSegmentAttributeName;
 #[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSModificationTimeDocumentAttribute;
 #[cfg(feature = "NSAttributedString")]
-pub use self::__NSAttributedString::NSMutableAttributedStringDocumentFormats;
+pub use self::__NSAttributedString::NSMutableAttributedStringAppKitAdditions;
 #[cfg(feature = "NSAttributedString")]
-pub use self::__NSAttributedString::NSMutableAttributedStringKitAdditions;
+pub use self::__NSAttributedString::NSMutableAttributedStringDocumentFormats;
 #[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSNoUnderlineStyle;
 #[cfg(feature = "NSAttributedString")]
@@ -2223,6 +2244,28 @@ pub use self::__NSAttributedString::NSTextEffectStyle;
 pub use self::__NSAttributedString::NSTextEncodingNameDocumentAttribute;
 #[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextEncodingNameDocumentOption;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightColorScheme;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightColorSchemeAttributeName;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightColorSchemeBlue;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightColorSchemeDefault;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightColorSchemeMint;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightColorSchemeOrange;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightColorSchemePink;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightColorSchemePurple;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightStyle;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightStyleAttributeName;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSTextHighlightStyleDefault;
 #[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextLayoutSectionKey;
 #[cfg(feature = "NSAttributedString")]
@@ -2866,6 +2909,10 @@ pub use self::__NSController::NSController;
 pub use self::__NSCursor::NSAppKitVersionNumberWithCursorSizeSupport;
 #[cfg(feature = "NSCursor")]
 pub use self::__NSCursor::NSCursor;
+#[cfg(feature = "NSCursor")]
+pub use self::__NSCursor::NSCursorFrameResizeDirections;
+#[cfg(feature = "NSCursor")]
+pub use self::__NSCursor::NSCursorFrameResizePosition;
 #[cfg(all(feature = "NSCustomImageRep", feature = "NSImageRep"))]
 pub use self::__NSCustomImageRep::NSCustomImageRep;
 #[cfg(all(feature = "NSCustomTouchBarItem", feature = "NSTouchBarItem"))]
@@ -2938,6 +2985,10 @@ pub use self::__NSDiffableDataSource::NSCollectionViewDiffableDataSource;
 pub use self::__NSDiffableDataSource::NSCollectionViewDiffableDataSourceSupplementaryViewProvider;
 #[cfg(feature = "NSDiffableDataSource")]
 pub use self::__NSDiffableDataSource::NSDiffableDataSourceSnapshot;
+#[cfg(feature = "NSDirection")]
+pub use self::__NSDirection::NSHorizontalDirections;
+#[cfg(feature = "NSDirection")]
+pub use self::__NSDirection::NSVerticalDirections;
 #[cfg(all(feature = "NSApplication", feature = "NSDockTile"))]
 pub use self::__NSDockTile::NSAppKitVersionNumberWithDockTilePlugInSupport;
 #[cfg(feature = "NSDockTile")]
@@ -5579,6 +5630,10 @@ pub use self::__NSSegmentedControl::NSSegmentSwitchTracking;
 pub use self::__NSSegmentedControl::NSSegmentedControl;
 #[cfg(feature = "NSShadow")]
 pub use self::__NSShadow::NSShadow;
+#[cfg(feature = "NSSharingCollaborationModeRestriction")]
+pub use self::__NSSharingCollaborationModeRestriction::NSSharingCollaborationMode;
+#[cfg(feature = "NSSharingCollaborationModeRestriction")]
+pub use self::__NSSharingCollaborationModeRestriction::NSSharingCollaborationModeRestriction;
 #[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSCloudKitSharingServiceOptions;
 #[cfg(feature = "NSSharingService")]
@@ -6245,6 +6300,10 @@ pub use self::__NSTextCheckingClient::NSTextCheckingClient;
 pub use self::__NSTextCheckingClient::NSTextInputTraitType;
 #[cfg(feature = "NSTextCheckingClient")]
 pub use self::__NSTextCheckingClient::NSTextInputTraits;
+#[cfg(feature = "NSTextCheckingClient")]
+pub use self::__NSTextCheckingClient::NSWritingToolsAllowedInputOptions;
+#[cfg(feature = "NSTextCheckingClient")]
+pub use self::__NSTextCheckingClient::NSWritingToolsBehavior;
 #[cfg(feature = "NSTextCheckingController")]
 pub use self::__NSTextCheckingController::NSTextCheckingController;
 #[cfg(feature = "NSTextContainer")]
@@ -6633,6 +6692,8 @@ pub use self::__NSToolbar::NSToolbarItemIdentifier;
 #[cfg(feature = "NSToolbar")]
 pub use self::__NSToolbar::NSToolbarItemKey;
 #[cfg(feature = "NSToolbar")]
+pub use self::__NSToolbar::NSToolbarNewIndexKey;
+#[cfg(feature = "NSToolbar")]
 pub use self::__NSToolbar::NSToolbarSizeMode;
 #[cfg(feature = "NSToolbar")]
 pub use self::__NSToolbar::NSToolbarUserInfoKey;
@@ -6960,6 +7021,8 @@ pub use self::__NSWindow::NSWindowNumberListOptions;
 pub use self::__NSWindow::NSWindowOcclusionState;
 #[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowPersistableFrameDescriptor;
+#[cfg(feature = "NSWindow")]
+pub use self::__NSWindow::NSWindowSharingReadWrite;
 #[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowSharingType;
 #[cfg(feature = "NSWindow")]

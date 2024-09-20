@@ -66,6 +66,25 @@ unsafe impl RefEncode for NSFileProviderDomainTestingModes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileProviderKnownFolders(pub NSUInteger);
+bitflags::bitflags! {
+    impl NSFileProviderKnownFolders: NSUInteger {
+        const NSFileProviderDesktop = 1<<0;
+        const NSFileProviderDocuments = 1<<1;
+    }
+}
+
+unsafe impl Encode for NSFileProviderKnownFolders {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSFileProviderKnownFolders {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderDomain;
@@ -92,6 +111,14 @@ extern_methods!(
             this: Allocated<Self>,
             identifier: &NSFileProviderDomainIdentifier,
             display_name: &NSString,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Init initWithDisplayName:userInfo:volumeURL:)]
+        pub unsafe fn initWithDisplayName_userInfo_volumeURL(
+            this: Allocated<Self>,
+            display_name: &NSString,
+            user_info: &NSDictionary,
+            volume_url: Option<&NSURL>,
         ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other identifier)]
@@ -132,6 +159,27 @@ extern_methods!(
 
         #[method(setSupportsSyncingTrash:)]
         pub unsafe fn setSupportsSyncingTrash(&self, supports_syncing_trash: bool);
+
+        #[method_id(@__retain_semantics Other volumeUUID)]
+        pub unsafe fn volumeUUID(&self) -> Option<Retained<NSUUID>>;
+
+        #[method_id(@__retain_semantics Other userInfo)]
+        pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
+
+        #[method(setUserInfo:)]
+        pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
+
+        #[method(replicatedKnownFolders)]
+        pub unsafe fn replicatedKnownFolders(&self) -> NSFileProviderKnownFolders;
+
+        #[method(supportedKnownFolders)]
+        pub unsafe fn supportedKnownFolders(&self) -> NSFileProviderKnownFolders;
+
+        #[method(setSupportedKnownFolders:)]
+        pub unsafe fn setSupportedKnownFolders(
+            &self,
+            supported_known_folders: NSFileProviderKnownFolders,
+        );
     }
 );
 

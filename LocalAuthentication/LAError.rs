@@ -45,8 +45,11 @@ impl LAError {
     pub const BiometryLockout: Self = Self(-8);
     #[doc(alias = "LAErrorNotInteractive")]
     pub const NotInteractive: Self = Self(-1004);
+    #[deprecated]
     #[doc(alias = "LAErrorWatchNotAvailable")]
     pub const WatchNotAvailable: Self = Self(-11);
+    #[doc(alias = "LAErrorCompanionNotAvailable")]
+    pub const CompanionNotAvailable: Self = Self(-11);
     #[doc(alias = "LAErrorBiometryNotPaired")]
     pub const BiometryNotPaired: Self = Self(-12);
     #[doc(alias = "LAErrorBiometryDisconnected")]

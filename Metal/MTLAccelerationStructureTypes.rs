@@ -6,6 +6,33 @@ use crate::*;
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLPackedFloatQuaternion {
+    pub x: c_float,
+    pub y: c_float,
+    pub z: c_float,
+    pub w: c_float,
+}
+
+unsafe impl Encode for MTLPackedFloatQuaternion {
+    const ENCODING: Encoding = Encoding::Struct(
+        "MTLPackedFloatQuaternion",
+        &[
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+        ],
+    );
+}
+
+unsafe impl RefEncode for MTLPackedFloatQuaternion {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// TODO: pub fn MTLPackedFloatQuaternionMake(x: c_float,y: c_float,z: c_float,w: c_float,) -> MTLPackedFloatQuaternion;
+
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _MTLPackedFloat4x3 {
     pub columns: [MTLPackedFloat3; 4],
 }
@@ -40,3 +67,30 @@ unsafe impl RefEncode for _MTLAxisAlignedBoundingBox {
 }
 
 pub type MTLAxisAlignedBoundingBox = _MTLAxisAlignedBoundingBox;
+
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLComponentTransform {
+    pub scale: MTLPackedFloat3,
+    pub shear: MTLPackedFloat3,
+    pub pivot: MTLPackedFloat3,
+    pub rotation: MTLPackedFloatQuaternion,
+    pub translation: MTLPackedFloat3,
+}
+
+unsafe impl Encode for MTLComponentTransform {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <MTLPackedFloat3>::ENCODING,
+            <MTLPackedFloat3>::ENCODING,
+            <MTLPackedFloat3>::ENCODING,
+            <MTLPackedFloatQuaternion>::ENCODING,
+            <MTLPackedFloat3>::ENCODING,
+        ],
+    );
+}
+
+unsafe impl RefEncode for MTLComponentTransform {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

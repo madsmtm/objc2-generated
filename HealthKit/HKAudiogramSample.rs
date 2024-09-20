@@ -29,9 +29,11 @@ unsafe impl NSSecureCoding for HKAudiogramSample {}
 extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKAudiogramSample {
+        #[cfg(feature = "HKAudiogramSensitivityPoint")]
         #[method_id(@__retain_semantics Other sensitivityPoints)]
         pub unsafe fn sensitivityPoints(&self) -> Retained<NSArray<HKAudiogramSensitivityPoint>>;
 
+        #[cfg(feature = "HKAudiogramSensitivityPoint")]
         #[method_id(@__retain_semantics Other audiogramSampleWithSensitivityPoints:startDate:endDate:metadata:)]
         pub unsafe fn audiogramSampleWithSensitivityPoints_startDate_endDate_metadata(
             sensitivity_points: &NSArray<HKAudiogramSensitivityPoint>,
@@ -55,52 +57,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKAudiogramSample {
-        #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
-    }
-);
-
-extern_class!(
-    #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct HKAudiogramSensitivityPoint;
-
-    unsafe impl ClassType for HKAudiogramSensitivityPoint {
-        type Super = NSObject;
-    }
-);
-
-unsafe impl NSObjectProtocol for HKAudiogramSensitivityPoint {}
-
-extern_methods!(
-    unsafe impl HKAudiogramSensitivityPoint {
-        #[cfg(feature = "HKQuantity")]
-        #[method_id(@__retain_semantics Other frequency)]
-        pub unsafe fn frequency(&self) -> Retained<HKQuantity>;
-
-        #[cfg(feature = "HKQuantity")]
-        #[method_id(@__retain_semantics Other leftEarSensitivity)]
-        pub unsafe fn leftEarSensitivity(&self) -> Option<Retained<HKQuantity>>;
-
-        #[cfg(feature = "HKQuantity")]
-        #[method_id(@__retain_semantics Other rightEarSensitivity)]
-        pub unsafe fn rightEarSensitivity(&self) -> Option<Retained<HKQuantity>>;
-
-        #[cfg(feature = "HKQuantity")]
-        #[method_id(@__retain_semantics Other sensitivityPointWithFrequency:leftEarSensitivity:rightEarSensitivity:error:_)]
-        pub unsafe fn sensitivityPointWithFrequency_leftEarSensitivity_rightEarSensitivity_error(
-            frequency: &HKQuantity,
-            left_ear_sensitivity: Option<&HKQuantity>,
-            right_ear_sensitivity: Option<&HKQuantity>,
-        ) -> Result<Retained<Self>, Retained<NSError>>;
-
-        #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKAudiogramSensitivityPoint {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
     }

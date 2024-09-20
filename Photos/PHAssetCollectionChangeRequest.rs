@@ -52,7 +52,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other changeRequestForAssetCollection:assets:)]
         pub unsafe fn changeRequestForAssetCollection_assets(
             asset_collection: &PHAssetCollection,
-            assets: &PHFetchResult<PHAsset>,
+            assets: Option<&PHFetchResult<PHAsset>>,
         ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other title)]

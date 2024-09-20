@@ -74,6 +74,11 @@ extern_methods!(
             quality_level: VNGeneratePersonSegmentationRequestQualityLevel,
         );
 
+        #[method_id(@__retain_semantics Other supportedOutputPixelFormatsAndReturnError:_)]
+        pub unsafe fn supportedOutputPixelFormatsAndReturnError(
+            &self,
+        ) -> Result<Retained<NSArray<NSNumber>>, Retained<NSError>>;
+
         #[method(outputPixelFormat)]
         pub unsafe fn outputPixelFormat(&self) -> OSType;
 

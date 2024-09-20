@@ -183,3 +183,54 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
     }
 );
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct BGContinuedProcessingTaskRequest;
+
+    unsafe impl ClassType for BGContinuedProcessingTaskRequest {
+        #[inherits(NSObject)]
+        type Super = BGTaskRequest;
+    }
+);
+
+unsafe impl NSCopying for BGContinuedProcessingTaskRequest {}
+
+unsafe impl CopyingHelper for BGContinuedProcessingTaskRequest {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for BGContinuedProcessingTaskRequest {}
+
+extern_methods!(
+    unsafe impl BGContinuedProcessingTaskRequest {
+        #[method_id(@__retain_semantics Init initWithIdentifier:)]
+        pub unsafe fn initWithIdentifier(
+            this: Allocated<Self>,
+            identifier: &NSString,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other title)]
+        pub unsafe fn title(&self) -> Retained<NSString>;
+
+        #[method(setTitle:)]
+        pub unsafe fn setTitle(&self, title: &NSString);
+
+        #[method_id(@__retain_semantics Other reason)]
+        pub unsafe fn reason(&self) -> Retained<NSString>;
+
+        #[method(setReason:)]
+        pub unsafe fn setReason(&self, reason: &NSString);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `BGTaskRequest`
+    unsafe impl BGContinuedProcessingTaskRequest {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);

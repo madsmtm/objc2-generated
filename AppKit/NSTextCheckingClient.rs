@@ -26,6 +26,54 @@ unsafe impl RefEncode for NSTextInputTraitType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWritingToolsBehavior(pub NSInteger);
+impl NSWritingToolsBehavior {
+    #[doc(alias = "NSWritingToolsBehaviorNone")]
+    pub const None: Self = Self(-1);
+    #[doc(alias = "NSWritingToolsBehaviorDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSWritingToolsBehaviorComplete")]
+    pub const Complete: Self = Self(1);
+    #[doc(alias = "NSWritingToolsBehaviorLimited")]
+    pub const Limited: Self = Self(2);
+}
+
+unsafe impl Encode for NSWritingToolsBehavior {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSWritingToolsBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWritingToolsAllowedInputOptions(pub NSUInteger);
+bitflags::bitflags! {
+    impl NSWritingToolsAllowedInputOptions: NSUInteger {
+        #[doc(alias = "NSWritingToolsAllowedInputOptionsDefault")]
+        const Default = 0;
+        #[doc(alias = "NSWritingToolsAllowedInputOptionsPlainText")]
+        const PlainText = 1<<0;
+        #[doc(alias = "NSWritingToolsAllowedInputOptionsRichText")]
+        const RichText = 1<<1;
+        #[doc(alias = "NSWritingToolsAllowedInputOptionsTable")]
+        const Table = 1<<2;
+    }
+}
+
+unsafe impl Encode for NSWritingToolsAllowedInputOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSWritingToolsAllowedInputOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_protocol!(
     pub unsafe trait NSTextInputTraits {
         #[optional]
@@ -115,6 +163,36 @@ extern_protocol!(
         #[optional]
         #[method(setInlinePredictionType:)]
         unsafe fn setInlinePredictionType(&self, inline_prediction_type: NSTextInputTraitType);
+
+        #[optional]
+        #[method(mathExpressionCompletionType)]
+        unsafe fn mathExpressionCompletionType(&self) -> NSTextInputTraitType;
+
+        #[optional]
+        #[method(setMathExpressionCompletionType:)]
+        unsafe fn setMathExpressionCompletionType(
+            &self,
+            math_expression_completion_type: NSTextInputTraitType,
+        );
+
+        #[optional]
+        #[method(writingToolsBehavior)]
+        unsafe fn writingToolsBehavior(&self) -> NSWritingToolsBehavior;
+
+        #[optional]
+        #[method(setWritingToolsBehavior:)]
+        unsafe fn setWritingToolsBehavior(&self, writing_tools_behavior: NSWritingToolsBehavior);
+
+        #[optional]
+        #[method(writingToolsAllowedInputOptions)]
+        unsafe fn writingToolsAllowedInputOptions(&self) -> NSWritingToolsAllowedInputOptions;
+
+        #[optional]
+        #[method(setWritingToolsAllowedInputOptions:)]
+        unsafe fn setWritingToolsAllowedInputOptions(
+            &self,
+            writing_tools_allowed_input_options: NSWritingToolsAllowedInputOptions,
+        );
     }
 
     unsafe impl ProtocolType for dyn NSTextInputTraits {}

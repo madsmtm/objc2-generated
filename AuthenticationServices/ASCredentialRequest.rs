@@ -14,6 +14,10 @@ impl ASCredentialRequestType {
     pub const Password: Self = Self(0);
     #[doc(alias = "ASCredentialRequestTypePasskeyAssertion")]
     pub const PasskeyAssertion: Self = Self(1);
+    #[doc(alias = "ASCredentialRequestTypePasskeyRegistration")]
+    pub const PasskeyRegistration: Self = Self(2);
+    #[doc(alias = "ASCredentialRequestTypeOneTimeCode")]
+    pub const OneTimeCode: Self = Self(3);
 }
 
 unsafe impl Encode for ASCredentialRequestType {

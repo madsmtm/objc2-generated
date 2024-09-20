@@ -49,6 +49,7 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "MTLAllocation",
             feature = "MTLBuffer",
             feature = "MTLIOCommandQueue",
             feature = "MTLResource"
@@ -64,6 +65,7 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "MTLAllocation",
             feature = "MTLIOCommandQueue",
             feature = "MTLResource",
             feature = "MTLTexture",
@@ -83,7 +85,11 @@ extern_protocol!(
             source_handle_offset: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(copyStatusToBuffer:offset:)]
         unsafe fn copyStatusToBuffer_offset(
             &self,

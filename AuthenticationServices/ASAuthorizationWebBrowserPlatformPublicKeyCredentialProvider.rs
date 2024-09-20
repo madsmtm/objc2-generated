@@ -21,6 +21,20 @@ extern_protocol!(
         ) -> Retained<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest>;
 
         #[cfg(all(
+            feature = "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest",
+            feature = "ASAuthorizationRequest",
+            feature = "ASPublicKeyCredentialClientData"
+        ))]
+        #[method_id(@__retain_semantics Other createCredentialRegistrationRequestWithClientData:name:userID:requestStyle:)]
+        unsafe fn createCredentialRegistrationRequestWithClientData_name_userID_requestStyle(
+            &self,
+            client_data: &ASPublicKeyCredentialClientData,
+            name: &NSString,
+            user_id: &NSData,
+            request_style: ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle,
+        ) -> Retained<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest>;
+
+        #[cfg(all(
             feature = "ASAuthorizationPlatformPublicKeyCredentialAssertionRequest",
             feature = "ASAuthorizationRequest",
             feature = "ASPublicKeyCredentialClientData"

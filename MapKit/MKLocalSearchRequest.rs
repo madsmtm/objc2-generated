@@ -17,6 +17,8 @@ bitflags::bitflags! {
         const Address = 1<<0;
         #[doc(alias = "MKLocalSearchResultTypePointOfInterest")]
         const PointOfInterest = 1<<1;
+        #[doc(alias = "MKLocalSearchResultTypePhysicalFeature")]
+        const PhysicalFeature = 1<<2;
     }
 }
 
@@ -78,6 +80,14 @@ extern_methods!(
         #[method(setRegion:)]
         pub unsafe fn setRegion(&self, region: MKCoordinateRegion);
 
+        #[cfg(feature = "MKTypes")]
+        #[method(regionPriority)]
+        pub unsafe fn regionPriority(&self) -> MKLocalSearchRegionPriority;
+
+        #[cfg(feature = "MKTypes")]
+        #[method(setRegionPriority:)]
+        pub unsafe fn setRegionPriority(&self, region_priority: MKLocalSearchRegionPriority);
+
         #[method(resultTypes)]
         pub unsafe fn resultTypes(&self) -> MKLocalSearchResultType;
 
@@ -94,6 +104,14 @@ extern_methods!(
             &self,
             point_of_interest_filter: Option<&MKPointOfInterestFilter>,
         );
+
+        #[cfg(feature = "MKAddressFilter")]
+        #[method_id(@__retain_semantics Other addressFilter)]
+        pub unsafe fn addressFilter(&self) -> Option<Retained<MKAddressFilter>>;
+
+        #[cfg(feature = "MKAddressFilter")]
+        #[method(setAddressFilter:)]
+        pub unsafe fn setAddressFilter(&self, address_filter: Option<&MKAddressFilter>);
     }
 );
 

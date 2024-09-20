@@ -5,6 +5,27 @@ use objc2_foundation::*;
 
 use crate::*;
 
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UITabBarControllerMode(pub NSInteger);
+impl UITabBarControllerMode {
+    #[doc(alias = "UITabBarControllerModeAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "UITabBarControllerModeTabBar")]
+    pub const TabBar: Self = Self(1);
+    #[doc(alias = "UITabBarControllerModeTabSidebar")]
+    pub const TabSidebar: Self = Self(2);
+}
+
+unsafe impl Encode for UITabBarControllerMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UITabBarControllerMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
@@ -61,6 +82,82 @@ unsafe impl UITraitEnvironment for UITabBarController {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UITabBarController {
+        #[method_id(@__retain_semantics Other delegate)]
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn UITabBarControllerDelegate>>>;
+
+        #[method(setDelegate:)]
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn UITabBarControllerDelegate>>,
+        );
+
+        #[method(mode)]
+        pub unsafe fn mode(&self) -> UITabBarControllerMode;
+
+        #[method(setMode:)]
+        pub unsafe fn setMode(&self, mode: UITabBarControllerMode);
+
+        #[cfg(feature = "UITabBarControllerSidebar")]
+        #[method_id(@__retain_semantics Other sidebar)]
+        pub unsafe fn sidebar(&self) -> Retained<UITabBarControllerSidebar>;
+
+        #[method_id(@__retain_semantics Other customizationIdentifier)]
+        pub unsafe fn customizationIdentifier(&self) -> Option<Retained<NSString>>;
+
+        #[method(setCustomizationIdentifier:)]
+        pub unsafe fn setCustomizationIdentifier(
+            &self,
+            customization_identifier: Option<&NSString>,
+        );
+
+        #[method_id(@__retain_semantics Other compactTabIdentifiers)]
+        pub unsafe fn compactTabIdentifiers(&self) -> Option<Retained<NSArray<NSString>>>;
+
+        #[method(setCompactTabIdentifiers:)]
+        pub unsafe fn setCompactTabIdentifiers(
+            &self,
+            compact_tab_identifiers: Option<&NSArray<NSString>>,
+        );
+
+        #[cfg(feature = "UITab")]
+        #[method_id(@__retain_semantics Other selectedTab)]
+        pub unsafe fn selectedTab(&self) -> Option<Retained<UITab>>;
+
+        #[cfg(feature = "UITab")]
+        #[method(setSelectedTab:)]
+        pub unsafe fn setSelectedTab(&self, selected_tab: Option<&UITab>);
+
+        #[cfg(feature = "UITab")]
+        #[method_id(@__retain_semantics Other tabs)]
+        pub unsafe fn tabs(&self) -> Retained<NSArray<UITab>>;
+
+        #[cfg(feature = "UITab")]
+        #[method(setTabs:)]
+        pub unsafe fn setTabs(&self, tabs: &NSArray<UITab>);
+
+        #[cfg(feature = "UITab")]
+        #[method(setTabs:animated:)]
+        pub unsafe fn setTabs_animated(&self, tabs: &NSArray<UITab>, animated: bool);
+
+        #[cfg(feature = "UITab")]
+        #[method_id(@__retain_semantics Other tabForIdentifier:)]
+        pub unsafe fn tabForIdentifier(&self, identifier: &NSString) -> Option<Retained<UITab>>;
+
+        #[cfg(feature = "UITab")]
+        #[method_id(@__retain_semantics Init initWithTabs:)]
+        pub unsafe fn initWithTabs(this: Allocated<Self>, tabs: &NSArray<UITab>) -> Retained<Self>;
+
+        #[method(isTabBarHidden)]
+        pub unsafe fn isTabBarHidden(&self) -> bool;
+
+        #[method(setTabBarHidden:)]
+        pub unsafe fn setTabBarHidden(&self, tab_bar_hidden: bool);
+
+        #[method(setTabBarHidden:animated:)]
+        pub unsafe fn setTabBarHidden_animated(&self, hidden: bool, animated: bool);
+
         #[method_id(@__retain_semantics Other viewControllers)]
         pub unsafe fn viewControllers(&self) -> Option<Retained<NSArray<UIViewController>>>;
 
@@ -110,17 +207,6 @@ extern_methods!(
         #[cfg(all(feature = "UITabBar", feature = "UIView"))]
         #[method_id(@__retain_semantics Other tabBar)]
         pub unsafe fn tabBar(&self) -> Retained<UITabBar>;
-
-        #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Retained<ProtocolObject<dyn UITabBarControllerDelegate>>>;
-
-        #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn UITabBarControllerDelegate>>,
-        );
     }
 );
 
@@ -157,6 +243,101 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait UITabBarControllerDelegate: NSObjectProtocol + MainThreadOnly {
+        #[cfg(all(
+            feature = "UIResponder",
+            feature = "UITab",
+            feature = "UIViewController"
+        ))]
+        #[optional]
+        #[method(tabBarController:shouldSelectTab:)]
+        unsafe fn tabBarController_shouldSelectTab(
+            &self,
+            tab_bar_controller: &UITabBarController,
+            tab: &UITab,
+        ) -> bool;
+
+        #[cfg(all(
+            feature = "UIResponder",
+            feature = "UITab",
+            feature = "UIViewController"
+        ))]
+        #[optional]
+        #[method(tabBarController:didSelectTab:previousTab:)]
+        unsafe fn tabBarController_didSelectTab_previousTab(
+            &self,
+            tab_bar_controller: &UITabBarController,
+            tab: &UITab,
+            tab: Option<&UITab>,
+        );
+
+        #[cfg(all(
+            feature = "UIDragSession",
+            feature = "UIDropInteraction",
+            feature = "UIResponder",
+            feature = "UITab",
+            feature = "UIViewController"
+        ))]
+        #[optional]
+        #[method(tabBarController:tab:operationForAcceptingItemsFromDropSession:)]
+        unsafe fn tabBarController_tab_operationForAcceptingItemsFromDropSession(
+            &self,
+            tab_bar_controller: &UITabBarController,
+            tab: &UITab,
+            session: &ProtocolObject<dyn UIDropSession>,
+        ) -> UIDropOperation;
+
+        #[cfg(all(
+            feature = "UIDragSession",
+            feature = "UIResponder",
+            feature = "UITab",
+            feature = "UIViewController"
+        ))]
+        #[optional]
+        #[method(tabBarController:tab:acceptItemsFromDropSession:)]
+        unsafe fn tabBarController_tab_acceptItemsFromDropSession(
+            &self,
+            tab_bar_controller: &UITabBarController,
+            tab: &UITab,
+            session: &ProtocolObject<dyn UIDropSession>,
+        );
+
+        #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+        #[optional]
+        #[method(tabBarControllerWillBeginEditing:)]
+        unsafe fn tabBarControllerWillBeginEditing(&self, tab_bar_controller: &UITabBarController);
+
+        #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+        #[optional]
+        #[method(tabBarControllerDidEndEditing:)]
+        unsafe fn tabBarControllerDidEndEditing(&self, tab_bar_controller: &UITabBarController);
+
+        #[cfg(all(
+            feature = "UIResponder",
+            feature = "UITab",
+            feature = "UIViewController"
+        ))]
+        #[optional]
+        #[method(tabBarController:visibilityDidChangeForTabs:)]
+        unsafe fn tabBarController_visibilityDidChangeForTabs(
+            &self,
+            tab_bar_controller: &UITabBarController,
+            tabs: &NSArray<UITab>,
+        );
+
+        #[cfg(all(
+            feature = "UIResponder",
+            feature = "UITab",
+            feature = "UITabGroup",
+            feature = "UIViewController"
+        ))]
+        #[optional]
+        #[method(tabBarController:displayOrderDidChangeForGroup:)]
+        unsafe fn tabBarController_displayOrderDidChangeForGroup(
+            &self,
+            tab_bar_controller: &UITabBarController,
+            group: &UITabGroup,
+        );
+
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
         #[method(tabBarController:shouldSelectViewController:)]

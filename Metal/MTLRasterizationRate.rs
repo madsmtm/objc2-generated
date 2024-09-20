@@ -254,7 +254,11 @@ extern_protocol!(
         #[method(parameterBufferSizeAndAlign)]
         unsafe fn parameterBufferSizeAndAlign(&self) -> MTLSizeAndAlign;
 
-        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
         #[method(copyParameterDataToBuffer:offset:)]
         unsafe fn copyParameterDataToBuffer_offset(
             &self,
