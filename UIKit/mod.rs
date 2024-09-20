@@ -4640,6 +4640,8 @@ pub use self::__UITabBarController::UITabBarControllerMode;
 #[cfg(feature = "UITabBarControllerSidebar")]
 pub use self::__UITabBarControllerSidebar::UITabBarControllerSidebar;
 #[cfg(feature = "UITabBarControllerSidebar")]
+pub use self::__UITabBarControllerSidebar::UITabBarControllerSidebarAnimating;
+#[cfg(feature = "UITabBarControllerSidebar")]
 pub use self::__UITabBarControllerSidebar::UITabBarControllerSidebarDelegate;
 #[cfg(feature = "UITabBarControllerSidebar")]
 pub use self::__UITabBarControllerSidebar::UITabBarControllerSidebarLayout;
@@ -5138,6 +5140,8 @@ pub use self::__UITextInputTraits::UITextSpellCheckingType;
 pub use self::__UITextInputTraits::UIWritingToolsAllowedInputOptions;
 #[cfg(feature = "UITextInputTraits")]
 pub use self::__UITextInputTraits::UIWritingToolsBehavior;
+#[cfg(feature = "UITextInputTraits")]
+pub use self::__UITextInputTraits::UIWritingToolsResultOptions;
 #[cfg(feature = "UITextInteraction")]
 pub use self::__UITextInteraction::UITextInteraction;
 #[cfg(feature = "UITextInteraction")]

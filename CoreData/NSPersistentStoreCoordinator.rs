@@ -193,6 +193,10 @@ extern "C" {
     pub static NSPersistentStoreDeferredLightweightMigrationOptionKey: &'static NSString;
 }
 
+extern "C" {
+    pub static NSPersistentStoreModelVersionChecksumKey: &'static NSString;
+}
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentStoreCoordinator;
@@ -402,6 +406,14 @@ extern_methods!(
         pub unsafe fn finishDeferredLightweightMigrationTask(
             &self,
         ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "NSManagedObjectID")]
+        #[method_id(@__retain_semantics Other managedObjectIDFromUTF8String:length:)]
+        pub unsafe fn managedObjectIDFromUTF8String_length(
+            &self,
+            utf8string: NonNull<c_char>,
+            len: NSUInteger,
+        ) -> Retained<NSManagedObjectID>;
 
         #[deprecated = "Use -metadataForPersistentStoreOfType:URL:options:error: and pass in an options dictionary matching addPersistentStoreWithType"]
         #[method_id(@__retain_semantics Other metadataForPersistentStoreWithURL:error:_)]

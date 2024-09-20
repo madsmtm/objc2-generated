@@ -550,6 +550,8 @@ pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreFileProtectionKey
 #[cfg(feature = "NSPersistentStoreCoordinator")]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreForceDestroyOption;
 #[cfg(feature = "NSPersistentStoreCoordinator")]
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreModelVersionChecksumKey;
+#[cfg(feature = "NSPersistentStoreCoordinator")]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreOSCompatibility;
 #[cfg(feature = "NSPersistentStoreCoordinator")]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreRebuildFromUbiquitousContentOption;

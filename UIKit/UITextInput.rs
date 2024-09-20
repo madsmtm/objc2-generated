@@ -558,12 +558,25 @@ extern_protocol!(
         unsafe fn insertAttributedText(&self, string: &NSAttributedString);
 
         #[optional]
+        #[method_id(@__retain_semantics Other attributedTextInRange:)]
+        unsafe fn attributedTextInRange(&self, range: &UITextRange)
+            -> Retained<NSAttributedString>;
+
+        #[optional]
         #[method(replaceRange:withAttributedText:)]
         unsafe fn replaceRange_withAttributedText(
             &self,
             range: &UITextRange,
             attributed_text: &NSAttributedString,
         );
+
+        #[optional]
+        #[method(willPresentWritingTools)]
+        unsafe fn willPresentWritingTools(&self);
+
+        #[optional]
+        #[method(didDismissWritingTools)]
+        unsafe fn didDismissWritingTools(&self);
     }
 
     #[cfg(feature = "UITextInputTraits")]

@@ -418,13 +418,13 @@ extern_methods!(
 
         #[cfg(feature = "UIViewControllerTransition")]
         #[method_id(@__retain_semantics Other preferredTransition)]
-        pub unsafe fn preferredTransition(&self) -> Retained<UIViewControllerTransition>;
+        pub unsafe fn preferredTransition(&self) -> Option<Retained<UIViewControllerTransition>>;
 
         #[cfg(feature = "UIViewControllerTransition")]
         #[method(setPreferredTransition:)]
         pub unsafe fn setPreferredTransition(
             &self,
-            preferred_transition: &UIViewControllerTransition,
+            preferred_transition: Option<&UIViewControllerTransition>,
         );
 
         #[method(modalPresentationStyle)]

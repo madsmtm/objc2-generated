@@ -154,6 +154,22 @@ extern_methods!(
 );
 
 extern_protocol!(
+    pub unsafe trait UITabBarControllerSidebarAnimating:
+        NSObjectProtocol + MainThreadOnly
+    {
+        #[cfg(feature = "block2")]
+        #[method(addAnimations:)]
+        unsafe fn addAnimations(&self, animations: &block2::Block<dyn Fn()>);
+
+        #[cfg(feature = "block2")]
+        #[method(addCompletion:)]
+        unsafe fn addCompletion(&self, completion: &block2::Block<dyn Fn()>);
+    }
+
+    unsafe impl ProtocolType for dyn UITabBarControllerSidebarAnimating {}
+);
+
+extern_protocol!(
     pub unsafe trait UITabBarControllerSidebarDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "UIResponder",
@@ -161,11 +177,12 @@ extern_protocol!(
             feature = "UIViewController"
         ))]
         #[optional]
-        #[method(tabBarController:sidebarVisibilityDidChange:)]
-        unsafe fn tabBarController_sidebarVisibilityDidChange(
+        #[method(tabBarController:sidebarVisibilityWillChange:animator:)]
+        unsafe fn tabBarController_sidebarVisibilityWillChange_animator(
             &self,
             tab_bar_controller: &UITabBarController,
             sidebar: &UITabBarControllerSidebar,
+            animator: &ProtocolObject<dyn UITabBarControllerSidebarAnimating>,
         );
 
         #[cfg(all(

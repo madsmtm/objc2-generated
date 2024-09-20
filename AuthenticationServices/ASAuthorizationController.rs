@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait ASAuthorizationControllerDelegate: NSObjectProtocol {
+    pub unsafe trait ASAuthorizationControllerDelegate:
+        NSObjectProtocol + MainThreadOnly
+    {
         #[cfg(feature = "ASAuthorization")]
         #[optional]
         #[method(authorizationController:didCompleteWithAuthorization:)]
@@ -93,6 +95,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
+            mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn ASAuthorizationControllerDelegate>>>;
 
         #[method(setDelegate:)]
