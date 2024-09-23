@@ -75,6 +75,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UIActivityItemsConfigurationProviding>>>;
 
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setActivityItemsConfigurationSource:)]
         pub unsafe fn setActivityItemsConfigurationSource(
             &self,

@@ -114,6 +114,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UINavigationBarDelegate>>>;
 
         #[cfg(feature = "UIBarCommon")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

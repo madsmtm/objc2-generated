@@ -52,6 +52,7 @@ extern_methods!(
             feature = "NSTextInputClient",
             feature = "NSView"
         ))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setClient:)]
         pub unsafe fn setClient(&self, client: Option<&NSView>);
 
@@ -60,6 +61,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSCandidateListTouchBarItemDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

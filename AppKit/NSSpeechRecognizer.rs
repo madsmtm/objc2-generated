@@ -33,6 +33,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn NSSpeechRecognizerDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

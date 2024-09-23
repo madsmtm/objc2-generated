@@ -33,6 +33,7 @@ extern_protocol!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITextDragDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setTextDragDelegate:)]
         unsafe fn setTextDragDelegate(
             &self,

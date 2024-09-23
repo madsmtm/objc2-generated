@@ -209,6 +209,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UIPasteConfigurationSupporting>>>;
 
         #[cfg(feature = "UIPasteConfigurationSupporting")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setTarget:)]
         pub unsafe fn setTarget(
             &self,

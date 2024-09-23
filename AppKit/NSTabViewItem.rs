@@ -112,6 +112,7 @@ extern_methods!(
         ) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setInitialFirstResponder:)]
         pub unsafe fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
 

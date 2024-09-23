@@ -251,6 +251,7 @@ extern_methods!(
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn NSTokenFieldDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

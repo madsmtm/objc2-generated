@@ -98,6 +98,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn ASAuthorizationControllerDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -112,6 +113,7 @@ extern_methods!(
             Retained<ProtocolObject<dyn ASAuthorizationControllerPresentationContextProviding>>,
         >;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setPresentationContextProvider:)]
         pub unsafe fn setPresentationContextProvider(
             &self,

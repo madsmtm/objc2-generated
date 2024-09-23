@@ -151,6 +151,7 @@ extern_protocol!(
             feature = "NSResponder",
             feature = "NSView"
         ))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[optional]
         #[method(setSectionCollapseButton:)]
         unsafe fn setSectionCollapseButton(&self, section_collapse_button: Option<&NSButton>);
@@ -238,6 +239,7 @@ extern_methods!(
         pub unsafe fn imageView(&self) -> Option<Retained<NSImageView>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSImageView", feature = "NSView"))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setImageView:)]
         pub unsafe fn setImageView(&self, image_view: Option<&NSImageView>);
 
@@ -246,6 +248,7 @@ extern_methods!(
         pub unsafe fn textField(&self) -> Option<Retained<NSTextField>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSTextField", feature = "NSView"))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setTextField:)]
         pub unsafe fn setTextField(&self, text_field: Option<&NSTextField>);
 
@@ -353,6 +356,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSCollectionViewDataSource>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
@@ -364,6 +368,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSCollectionViewPrefetching>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setPrefetchDataSource:)]
         pub unsafe fn setPrefetchDataSource(
             &self,
@@ -384,6 +389,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSCollectionViewDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

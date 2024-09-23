@@ -52,6 +52,7 @@ extern_methods!(
         pub unsafe fn preferredFocusedView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated]
         #[method(setPreferredFocusedView:)]
         pub unsafe fn setPreferredFocusedView(&self, preferred_focused_view: Option<&UIView>);

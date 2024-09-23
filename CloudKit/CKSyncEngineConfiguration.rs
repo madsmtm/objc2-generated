@@ -67,6 +67,7 @@ extern_methods!(
             -> Option<Retained<ProtocolObject<dyn CKSyncEngineDelegate>>>;
 
         #[cfg(feature = "CKSyncEngine")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

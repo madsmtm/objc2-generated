@@ -127,6 +127,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSAccessibilityCustomRotorItemSearchDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setItemSearchDelegate:)]
         pub unsafe fn setItemSearchDelegate(
             &self,
@@ -142,6 +143,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSAccessibilityElementLoading>>>;
 
         #[cfg(feature = "NSAccessibilityProtocols")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setItemLoadingDelegate:)]
         pub unsafe fn setItemLoadingDelegate(
             &self,

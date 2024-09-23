@@ -54,6 +54,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn SKProductsRequestDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "Use Product.products(for:)"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(

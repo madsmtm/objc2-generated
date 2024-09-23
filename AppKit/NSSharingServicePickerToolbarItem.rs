@@ -38,6 +38,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSSharingServicePickerToolbarItemDelegate>>>;
 
         #[cfg(feature = "NSSharingService")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

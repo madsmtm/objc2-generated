@@ -851,6 +851,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICollectionViewDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -862,6 +863,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICollectionViewDataSource>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
@@ -873,6 +875,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICollectionViewDataSourcePrefetching>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setPrefetchDataSource:)]
         pub unsafe fn setPrefetchDataSource(
             &self,
@@ -892,6 +895,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICollectionViewDragDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDragDelegate:)]
         pub unsafe fn setDragDelegate(
             &self,
@@ -903,6 +907,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICollectionViewDropDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDropDelegate:)]
         pub unsafe fn setDropDelegate(
             &self,

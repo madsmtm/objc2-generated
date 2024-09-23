@@ -74,6 +74,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn ASWebAuthenticationPresentationContextProviding>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setPresentationContextProvider:)]
         pub unsafe fn setPresentationContextProvider(
             &self,

@@ -78,6 +78,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPickerViewDataSource>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
@@ -88,6 +89,7 @@ extern_methods!(
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn UIPickerViewDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

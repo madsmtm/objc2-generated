@@ -133,6 +133,7 @@ extern_methods!(
             feature = "NSTextView",
             feature = "NSView"
         ))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setTextView:)]
         pub unsafe fn setTextView(&self, text_view: Option<&NSTextView>);
     }

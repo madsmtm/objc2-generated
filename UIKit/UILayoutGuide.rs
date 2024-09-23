@@ -29,6 +29,7 @@ extern_methods!(
         pub unsafe fn owningView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setOwningView:)]
         pub unsafe fn setOwningView(&self, owning_view: Option<&UIView>);
 

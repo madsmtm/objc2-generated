@@ -57,6 +57,7 @@ extern_methods!(
         pub unsafe fn workflowController(&self) -> Option<Retained<AMWorkflowController>>;
 
         #[cfg(feature = "AMWorkflowController")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setWorkflowController:)]
         pub unsafe fn setWorkflowController(
             &self,

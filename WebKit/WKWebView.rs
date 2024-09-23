@@ -137,6 +137,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn WKNavigationDelegate>>>;
 
         #[cfg(feature = "WKNavigationDelegate")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setNavigationDelegate:)]
         pub unsafe fn setNavigationDelegate(
             &self,
@@ -148,6 +149,7 @@ extern_methods!(
         pub unsafe fn UIDelegate(&self) -> Option<Retained<ProtocolObject<dyn WKUIDelegate>>>;
 
         #[cfg(feature = "WKUIDelegate")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setUIDelegate:)]
         pub unsafe fn setUIDelegate(&self, ui_delegate: Option<&ProtocolObject<dyn WKUIDelegate>>);
 

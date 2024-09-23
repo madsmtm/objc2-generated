@@ -100,6 +100,7 @@ extern_methods!(
         pub unsafe fn containerView(&self, mtm: MainThreadMarker) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setContainerView:)]
         pub unsafe fn setContainerView(&self, container_view: Option<&UIView>);
 
@@ -108,6 +109,7 @@ extern_methods!(
         pub unsafe fn referenceView(&self, mtm: MainThreadMarker) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setReferenceView:)]
         pub unsafe fn setReferenceView(&self, reference_view: Option<&UIView>);
 

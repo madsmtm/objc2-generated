@@ -149,6 +149,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other pulldownTarget)]
         pub unsafe fn pulldownTarget(&self) -> Option<Retained<AnyObject>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setPulldownTarget:)]
         pub unsafe fn setPulldownTarget(&self, pulldown_target: Option<&AnyObject>);
 

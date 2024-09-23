@@ -87,6 +87,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDataSource>>>;
 
         #[cfg(feature = "UITableView")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[method(setSearchResultsDataSource:)]
         pub unsafe fn setSearchResultsDataSource(
@@ -102,6 +103,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDelegate>>>;
 
         #[cfg(all(feature = "UIScrollView", feature = "UITableView"))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[method(setSearchResultsDelegate:)]
         pub unsafe fn setSearchResultsDelegate(

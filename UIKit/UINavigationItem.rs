@@ -235,6 +235,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UINavigationItemRenameDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setRenameDelegate:)]
         pub unsafe fn setRenameDelegate(
             &self,

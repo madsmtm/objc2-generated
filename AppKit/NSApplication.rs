@@ -332,6 +332,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSApplicationDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSApplicationDelegate>>);
 

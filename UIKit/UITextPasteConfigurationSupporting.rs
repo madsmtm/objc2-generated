@@ -15,6 +15,7 @@ extern_protocol!(
             -> Option<Retained<ProtocolObject<dyn UITextPasteDelegate>>>;
 
         #[cfg(feature = "UITextPasteDelegate")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setPasteDelegate:)]
         unsafe fn setPasteDelegate(
             &self,

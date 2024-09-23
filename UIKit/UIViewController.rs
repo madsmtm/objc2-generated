@@ -855,6 +855,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UIViewControllerTransitioningDelegate>>>;
 
         #[cfg(feature = "UIViewControllerTransitioning")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setTransitioningDelegate:)]
         pub unsafe fn setTransitioningDelegate(
             &self,

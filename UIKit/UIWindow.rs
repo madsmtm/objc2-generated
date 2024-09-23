@@ -88,6 +88,7 @@ extern_methods!(
         pub unsafe fn windowScene(&self) -> Option<Retained<UIWindowScene>>;
 
         #[cfg(all(feature = "UIScene", feature = "UIWindowScene"))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setWindowScene:)]
         pub unsafe fn setWindowScene(&self, window_scene: Option<&UIWindowScene>);
 

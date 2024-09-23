@@ -30,6 +30,7 @@ extern_methods!(
         pub unsafe fn textContentManager(&self) -> Option<Retained<NSTextContentManager>>;
 
         #[cfg(feature = "NSTextContentManager")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setTextContentManager:)]
         pub unsafe fn setTextContentManager(
             &self,

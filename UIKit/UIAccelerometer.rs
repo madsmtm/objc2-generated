@@ -84,6 +84,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIAccelerometerDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(

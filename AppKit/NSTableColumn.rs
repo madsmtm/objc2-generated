@@ -76,6 +76,7 @@ extern_methods!(
             feature = "NSTableView",
             feature = "NSView"
         ))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setTableView:)]
         pub unsafe fn setTableView(&self, table_view: Option<&NSTableView>);
 

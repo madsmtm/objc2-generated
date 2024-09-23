@@ -577,6 +577,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSWindowDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSWindowDelegate>>);
 
@@ -1127,6 +1128,7 @@ extern_methods!(
         pub unsafe fn windowController(&self) -> Option<Retained<NSWindowController>>;
 
         #[cfg(feature = "NSWindowController")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setWindowController:)]
         pub unsafe fn setWindowController(&self, window_controller: Option<&NSWindowController>);
 
@@ -1198,6 +1200,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other parentWindow)]
         pub unsafe fn parentWindow(&self) -> Option<Retained<NSWindow>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setParentWindow:)]
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
 
@@ -1206,6 +1209,7 @@ extern_methods!(
         pub unsafe fn appearanceSource(&self) -> Option<Retained<NSObject>>;
 
         #[cfg(feature = "NSAppearance")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setAppearanceSource:)]
         pub unsafe fn setAppearanceSource(&self, appearance_source: Option<&NSObject>);
 
@@ -1272,6 +1276,7 @@ extern_methods!(
         pub unsafe fn initialFirstResponder(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setInitialFirstResponder:)]
         pub fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
 

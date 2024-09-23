@@ -574,6 +574,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn CALayerDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn CALayerDelegate>>);
 

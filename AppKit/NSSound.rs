@@ -108,6 +108,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn NSSoundDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSSoundDelegate>>);
 

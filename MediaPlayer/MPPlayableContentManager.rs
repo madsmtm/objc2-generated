@@ -27,6 +27,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn MPPlayableContentDataSource>>>;
 
         #[cfg(feature = "MPPlayableContentDataSource")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "Use CarPlay framework"]
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
@@ -42,6 +43,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn MPPlayableContentDelegate>>>;
 
         #[cfg(feature = "MPPlayableContentDelegate")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "Use CarPlay framework"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(

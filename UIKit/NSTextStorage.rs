@@ -68,6 +68,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextStorageDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -99,6 +100,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextStorageObserving>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setTextStorageObserver:)]
         pub unsafe fn setTextStorageObserver(
             &self,

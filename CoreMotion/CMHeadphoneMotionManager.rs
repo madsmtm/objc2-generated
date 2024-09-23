@@ -33,6 +33,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn CMHeadphoneMotionManagerDelegate>>>;
 
         #[cfg(feature = "CMHeadphoneMotionManagerDelegate")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

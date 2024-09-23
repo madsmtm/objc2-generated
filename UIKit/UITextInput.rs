@@ -327,6 +327,7 @@ extern_protocol!(
         unsafe fn inputDelegate(&self)
             -> Option<Retained<ProtocolObject<dyn UITextInputDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setInputDelegate:)]
         unsafe fn setInputDelegate(
             &self,

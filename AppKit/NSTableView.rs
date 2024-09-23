@@ -336,6 +336,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTableViewDataSource>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
@@ -345,6 +346,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTableViewDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -551,6 +553,7 @@ extern_methods!(
         pub unsafe fn highlightedTableColumn(&self) -> Option<Retained<NSTableColumn>>;
 
         #[cfg(feature = "NSTableColumn")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setHighlightedTableColumn:)]
         pub unsafe fn setHighlightedTableColumn(
             &self,

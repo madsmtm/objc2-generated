@@ -79,6 +79,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn VZVirtualMachineDelegate>>>;
 
         #[cfg(feature = "VZVirtualMachineDelegate")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

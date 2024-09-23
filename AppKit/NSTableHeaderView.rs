@@ -64,6 +64,7 @@ extern_methods!(
         pub unsafe fn tableView(&self) -> Option<Retained<NSTableView>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSTableView"))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setTableView:)]
         pub unsafe fn setTableView(&self, table_view: Option<&NSTableView>);
 

@@ -165,6 +165,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPageViewControllerDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -176,6 +177,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPageViewControllerDataSource>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,

@@ -97,6 +97,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UITabBarDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UITabBarDelegate>>);
 
@@ -113,6 +114,7 @@ extern_methods!(
         pub unsafe fn selectedItem(&self) -> Option<Retained<UITabBarItem>>;
 
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setSelectedItem:)]
         pub unsafe fn setSelectedItem(&self, selected_item: Option<&UITabBarItem>);
 

@@ -174,6 +174,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICollisionBehaviorDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setCollisionDelegate:)]
         pub unsafe fn setCollisionDelegate(
             &self,

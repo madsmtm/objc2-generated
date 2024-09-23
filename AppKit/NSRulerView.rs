@@ -118,6 +118,7 @@ extern_methods!(
         pub unsafe fn scrollView(&self) -> Option<Retained<NSScrollView>>;
 
         #[cfg(feature = "NSScrollView")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setScrollView:)]
         pub unsafe fn setScrollView(&self, scroll_view: Option<&NSScrollView>);
 
@@ -172,6 +173,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other clientView)]
         pub unsafe fn clientView(&self) -> Option<Retained<NSView>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setClientView:)]
         pub unsafe fn setClientView(&self, client_view: Option<&NSView>);
 

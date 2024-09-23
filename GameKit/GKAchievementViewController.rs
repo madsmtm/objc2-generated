@@ -61,6 +61,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKAchievementViewControllerDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated]
         #[method(setAchievementDelegate:)]
         pub unsafe fn setAchievementDelegate(

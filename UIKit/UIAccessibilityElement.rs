@@ -39,6 +39,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other accessibilityContainer)]
         pub unsafe fn accessibilityContainer(&self) -> Option<Retained<AnyObject>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setAccessibilityContainer:)]
         pub unsafe fn setAccessibilityContainer(&self, accessibility_container: Option<&AnyObject>);
 

@@ -130,6 +130,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKGameCenterControllerDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setGameCenterDelegate:)]
         pub unsafe fn setGameCenterDelegate(
             &self,

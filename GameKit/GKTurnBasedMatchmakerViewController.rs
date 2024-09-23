@@ -101,6 +101,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKTurnBasedMatchmakerViewControllerDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setTurnBasedMatchmakerDelegate:)]
         pub unsafe fn setTurnBasedMatchmakerDelegate(
             &self,

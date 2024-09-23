@@ -123,6 +123,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKFriendRequestComposeViewControllerDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated]
         #[method(setComposeViewDelegate:)]
         pub unsafe fn setComposeViewDelegate(

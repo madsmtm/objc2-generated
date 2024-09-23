@@ -41,6 +41,7 @@ extern_methods!(
         pub unsafe fn selectedWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setSelectedWindow:)]
         pub fn setSelectedWindow(&self, selected_window: Option<&NSWindow>);
 

@@ -144,6 +144,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIDocumentBrowserViewControllerDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -426,6 +427,7 @@ extern_methods!(
         pub unsafe fn targetView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setTargetView:)]
         pub unsafe fn setTargetView(&self, target_view: Option<&UIView>);
     }

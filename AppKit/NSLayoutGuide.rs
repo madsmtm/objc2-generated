@@ -31,6 +31,7 @@ extern_methods!(
         pub unsafe fn owningView(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setOwningView:)]
         pub unsafe fn setOwningView(&self, owning_view: Option<&NSView>);
 

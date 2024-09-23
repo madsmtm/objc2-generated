@@ -56,6 +56,7 @@ extern_methods!(
         pub unsafe fn containerView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setContainerView:)]
         pub unsafe fn setContainerView(&self, container_view: Option<&UIView>);
 

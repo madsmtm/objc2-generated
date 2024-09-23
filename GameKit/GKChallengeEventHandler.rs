@@ -86,6 +86,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKChallengeEventHandlerDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(

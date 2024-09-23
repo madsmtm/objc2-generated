@@ -37,6 +37,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPopoverControllerDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(

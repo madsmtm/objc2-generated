@@ -111,6 +111,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIActionSheetDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(

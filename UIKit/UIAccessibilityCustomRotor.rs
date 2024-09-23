@@ -268,6 +268,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other targetElement)]
         pub unsafe fn targetElement(&self) -> Option<Retained<NSObject>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setTargetElement:)]
         pub unsafe fn setTargetElement(&self, target_element: Option<&NSObject>);
 

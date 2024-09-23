@@ -990,6 +990,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDataSource>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
@@ -999,6 +1000,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UITableViewDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -1010,6 +1012,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDataSourcePrefetching>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setPrefetchDataSource:)]
         pub unsafe fn setPrefetchDataSource(
             &self,
@@ -1027,6 +1030,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDragDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDragDelegate:)]
         pub unsafe fn setDragDelegate(
             &self,
@@ -1038,6 +1042,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDropDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDropDelegate:)]
         pub unsafe fn setDropDelegate(
             &self,

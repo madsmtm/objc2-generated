@@ -359,6 +359,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityTopLevelUIElement)]
         unsafe fn accessibilityTopLevelUIElement(&self) -> Option<Retained<AnyObject>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setAccessibilityTopLevelUIElement:)]
         unsafe fn setAccessibilityTopLevelUIElement(
             &self,
@@ -415,6 +416,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityTitleUIElement)]
         unsafe fn accessibilityTitleUIElement(&self) -> Option<Retained<AnyObject>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setAccessibilityTitleUIElement:)]
         unsafe fn setAccessibilityTitleUIElement(
             &self,
@@ -453,6 +455,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityParent)]
         unsafe fn accessibilityParent(&self) -> Option<Retained<AnyObject>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setAccessibilityParent:)]
         unsafe fn setAccessibilityParent(&self, accessibility_parent: Option<&AnyObject>);
 
@@ -560,6 +563,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityWindow)]
         unsafe fn accessibilityWindow(&self) -> Option<Retained<AnyObject>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setAccessibilityWindow:)]
         unsafe fn setAccessibilityWindow(&self, accessibility_window: Option<&AnyObject>);
 
@@ -755,6 +759,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityExtrasMenuBar)]
         unsafe fn accessibilityExtrasMenuBar(&self) -> Option<Retained<AnyObject>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setAccessibilityExtrasMenuBar:)]
         unsafe fn setAccessibilityExtrasMenuBar(
             &self,
@@ -764,6 +769,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityMenuBar)]
         unsafe fn accessibilityMenuBar(&self) -> Option<Retained<AnyObject>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setAccessibilityMenuBar:)]
         unsafe fn setAccessibilityMenuBar(&self, accessibility_menu_bar: Option<&AnyObject>);
 
@@ -867,6 +873,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityDisclosedByRow)]
         unsafe fn accessibilityDisclosedByRow(&self) -> Option<Retained<AnyObject>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[method(setAccessibilityDisclosedByRow:)]
         unsafe fn setAccessibilityDisclosedByRow(
             &self,

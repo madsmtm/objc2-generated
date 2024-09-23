@@ -234,6 +234,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn NSSpeechSynthesizerDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(

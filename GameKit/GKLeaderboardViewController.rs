@@ -125,6 +125,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKLeaderboardViewControllerDelegate>>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated]
         #[method(setLeaderboardDelegate:)]
         pub unsafe fn setLeaderboardDelegate(

@@ -123,6 +123,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "Use the receiver's button.target instead"]
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);

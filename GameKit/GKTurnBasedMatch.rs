@@ -679,6 +679,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<NSObject>>;
 
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSObject>);

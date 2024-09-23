@@ -35,6 +35,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn GKSessionDelegate>>>;
 
         #[cfg(feature = "GKPublicProtocols")]
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn GKSessionDelegate>>);
