@@ -105,6 +105,16 @@ extern_methods!(
         #[method(setDirectoryURL:)]
         pub unsafe fn setDirectoryURL(&self, directory_url: Option<&NSURL>);
 
+        #[cfg(feature = "objc2-uniform-type-identifiers")]
+        #[cfg(target_vendor = "apple")]
+        #[method_id(@__retain_semantics Other allowedContentTypes)]
+        pub unsafe fn allowedContentTypes(&self) -> Retained<NSArray<UTType>>;
+
+        #[cfg(feature = "objc2-uniform-type-identifiers")]
+        #[cfg(target_vendor = "apple")]
+        #[method(setAllowedContentTypes:)]
+        pub unsafe fn setAllowedContentTypes(&self, allowed_content_types: &NSArray<UTType>);
+
         #[method(allowsOtherFileTypes)]
         pub unsafe fn allowsOtherFileTypes(&self) -> bool;
 

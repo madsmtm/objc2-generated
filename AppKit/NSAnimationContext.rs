@@ -2,6 +2,9 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(target_vendor = "apple")]
+use objc2_quartz_core::*;
 
 use crate::*;
 
@@ -45,6 +48,16 @@ extern_methods!(
 
         #[method(setDuration:)]
         pub unsafe fn setDuration(&self, duration: NSTimeInterval);
+
+        #[cfg(feature = "objc2-quartz-core")]
+        #[cfg(target_vendor = "apple")]
+        #[method_id(@__retain_semantics Other timingFunction)]
+        pub unsafe fn timingFunction(&self) -> Option<Retained<CAMediaTimingFunction>>;
+
+        #[cfg(feature = "objc2-quartz-core")]
+        #[cfg(target_vendor = "apple")]
+        #[method(setTimingFunction:)]
+        pub unsafe fn setTimingFunction(&self, timing_function: Option<&CAMediaTimingFunction>);
 
         #[cfg(feature = "block2")]
         #[method(completionHandler)]

@@ -5641,6 +5641,8 @@ pub use self::__NSSharingService::NSCloudKitSharingServiceOptions;
 #[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSCloudSharingServiceDelegate;
 #[cfg(feature = "NSSharingService")]
+pub use self::__NSSharingService::NSItemProviderNSCloudKitSharing;
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingContentScope;
 #[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingService;
@@ -6703,6 +6705,8 @@ pub use self::__NSToolbar::NSToolbarSizeMode;
 pub use self::__NSToolbar::NSToolbarUserInfoKey;
 #[cfg(feature = "NSToolbar")]
 pub use self::__NSToolbar::NSToolbarWillAddItemNotification;
+#[cfg(feature = "NSToolbarItem")]
+pub use self::__NSToolbarItem::NSCloudSharingValidation;
 #[cfg(all(feature = "NSToolbar", feature = "NSToolbarItem"))]
 pub use self::__NSToolbarItem::NSToolbarCloudSharingItemIdentifier;
 #[cfg(all(feature = "NSToolbar", feature = "NSToolbarItem"))]

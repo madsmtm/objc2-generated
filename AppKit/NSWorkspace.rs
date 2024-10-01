@@ -2,6 +2,9 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-uniform-type-identifiers")]
+#[cfg(target_vendor = "apple")]
+use objc2_uniform_type_identifiers::*;
 
 use crate::*;
 
@@ -110,6 +113,11 @@ extern_methods!(
             full_paths: &NSArray<NSString>,
         ) -> Option<Retained<NSImage>>;
 
+        #[cfg(all(feature = "NSImage", feature = "objc2-uniform-type-identifiers"))]
+        #[cfg(target_vendor = "apple")]
+        #[method_id(@__retain_semantics Other iconForContentType:)]
+        pub unsafe fn iconForContentType(&self, content_type: &UTType) -> Retained<NSImage>;
+
         #[cfg(feature = "NSImage")]
         #[method(setIcon:forFile:options:)]
         pub unsafe fn setIcon_forFile_options(
@@ -214,6 +222,32 @@ extern_methods!(
             &self,
             application_url: &NSURL,
             url: &NSURL,
+            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+        );
+
+        #[cfg(feature = "objc2-uniform-type-identifiers")]
+        #[cfg(target_vendor = "apple")]
+        #[method_id(@__retain_semantics Other URLForApplicationToOpenContentType:)]
+        pub unsafe fn URLForApplicationToOpenContentType(
+            &self,
+            content_type: &UTType,
+        ) -> Option<Retained<NSURL>>;
+
+        #[cfg(feature = "objc2-uniform-type-identifiers")]
+        #[cfg(target_vendor = "apple")]
+        #[method_id(@__retain_semantics Other URLsForApplicationsToOpenContentType:)]
+        pub unsafe fn URLsForApplicationsToOpenContentType(
+            &self,
+            content_type: &UTType,
+        ) -> Retained<NSArray<NSURL>>;
+
+        #[cfg(all(feature = "block2", feature = "objc2-uniform-type-identifiers"))]
+        #[cfg(target_vendor = "apple")]
+        #[method(setDefaultApplicationAtURL:toOpenContentType:completionHandler:)]
+        pub unsafe fn setDefaultApplicationAtURL_toOpenContentType_completionHandler(
+            &self,
+            application_url: &NSURL,
+            content_type: &UTType,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
 

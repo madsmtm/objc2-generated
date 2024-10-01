@@ -2,6 +2,9 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(target_vendor = "apple")]
+use objc2_quartz_core::*;
 
 use crate::*;
 
@@ -138,7 +141,16 @@ extern_methods!(
 
 extern_methods!(
     /// NSDisplayLink
-    unsafe impl NSScreen {}
+    unsafe impl NSScreen {
+        #[cfg(feature = "objc2-quartz-core")]
+        #[cfg(target_vendor = "apple")]
+        #[method_id(@__retain_semantics Other displayLinkWithTarget:selector:)]
+        pub unsafe fn displayLinkWithTarget_selector(
+            &self,
+            target: &AnyObject,
+            selector: Sel,
+        ) -> Retained<CADisplayLink>;
+    }
 );
 
 extern_methods!(
