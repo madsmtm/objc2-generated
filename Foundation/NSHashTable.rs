@@ -166,9 +166,9 @@ extern_methods!(
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSHashEnumerator {
-    _pi: NSUInteger,
-    _si: NSUInteger,
-    _bs: *mut c_void,
+    pub(crate) _pi: NSUInteger,
+    pub(crate) _si: NSUInteger,
+    pub(crate) _bs: *mut c_void,
 }
 
 unsafe impl Encode for NSHashEnumerator {

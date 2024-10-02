@@ -99,7 +99,7 @@ pub type MTLCoordinate2D = MTLSamplePosition;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLResourceID {
-    _impl: u64,
+    pub(crate) _impl: u64,
 }
 
 unsafe impl Encode for MTLResourceID {
