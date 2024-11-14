@@ -2,14 +2,12 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-image")]
-#[cfg(not(target_os = "watchos"))]
 use objc2_core_image::*;
 use objc2_foundation::*;
 
 use crate::*;
 
 #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
-#[cfg(not(target_os = "watchos"))]
 pub type PHLivePhotoFrameProcessingBlock = *mut block2::Block<
     dyn Fn(NonNull<ProtocolObject<dyn PHLivePhotoFrame>>, NonNull<*mut NSError>) -> *mut CIImage,
 >;
@@ -41,17 +39,14 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-image")]
-        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other fullSizeImage)]
         pub unsafe fn fullSizeImage(&self) -> Retained<CIImage>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
-        #[cfg(not(target_os = "watchos"))]
         #[method(frameProcessor)]
         pub unsafe fn frameProcessor(&self) -> PHLivePhotoFrameProcessingBlock;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
-        #[cfg(not(target_os = "watchos"))]
         #[method(setFrameProcessor:)]
         pub unsafe fn setFrameProcessor(&self, frame_processor: PHLivePhotoFrameProcessingBlock);
 
@@ -114,7 +109,6 @@ unsafe impl RefEncode for PHLivePhotoFrameType {
 extern_protocol!(
     pub unsafe trait PHLivePhotoFrame {
         #[cfg(feature = "objc2-core-image")]
-        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other image)]
         unsafe fn image(&self) -> Retained<CIImage>;
 

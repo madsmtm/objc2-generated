@@ -10,6 +10,7 @@ use objc2_foundation::*;
 #[cfg(feature = "objc2-map-kit")]
 use objc2_map_kit::*;
 #[cfg(feature = "objc2-photos")]
+#[cfg(not(target_os = "watchos"))]
 use objc2_photos::*;
 
 use crate::*;
@@ -200,6 +201,7 @@ extern_methods!(
         pub unsafe fn aspectRatio(&self) -> c_double;
 
         #[cfg(feature = "objc2-photos")]
+        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other cloudAssetIdentifiers)]
         pub unsafe fn cloudAssetIdentifiers(&self) -> Retained<NSArray<PHCloudIdentifier>>;
 
@@ -314,6 +316,7 @@ unsafe impl NSSecureCoding for PHProjectAssetElement {}
 extern_methods!(
     unsafe impl PHProjectAssetElement {
         #[cfg(feature = "objc2-photos")]
+        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other cloudAssetIdentifier)]
         pub unsafe fn cloudAssetIdentifier(&self) -> Retained<PHCloudIdentifier>;
 

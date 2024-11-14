@@ -6,6 +6,7 @@ use objc2::__framework_prelude::*;
 use objc2_app_kit::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-photos")]
+#[cfg(not(target_os = "watchos"))]
 use objc2_photos::*;
 
 use crate::*;
@@ -166,6 +167,7 @@ extern_methods!(
         pub unsafe fn spatialMediaFilter() -> Retained<PHPickerFilter>;
 
         #[cfg(feature = "objc2-photos")]
+        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other playbackStyleFilter:)]
         pub unsafe fn playbackStyleFilter(
             playback_style: PHAssetPlaybackStyle,
@@ -326,6 +328,7 @@ extern_methods!(
         pub unsafe fn setDisabledCapabilities(&self, disabled_capabilities: PHPickerCapabilities);
 
         #[cfg(feature = "objc2-photos")]
+        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Init initWithPhotoLibrary:)]
         pub unsafe fn initWithPhotoLibrary(
             this: Allocated<Self>,

@@ -3,6 +3,7 @@
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-photos")]
+#[cfg(not(target_os = "watchos"))]
 use objc2_photos::*;
 
 use crate::*;
@@ -22,14 +23,17 @@ unsafe impl NSObjectProtocol for PHProjectExtensionContext {}
 extern_methods!(
     unsafe impl PHProjectExtensionContext {
         #[cfg(feature = "objc2-photos")]
+        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other photoLibrary)]
         pub unsafe fn photoLibrary(&self) -> Retained<PHPhotoLibrary>;
 
         #[cfg(feature = "objc2-photos")]
+        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other project)]
         pub unsafe fn project(&self) -> Retained<PHProject>;
 
         #[cfg(feature = "objc2-photos")]
+        #[cfg(not(target_os = "watchos"))]
         #[method(showEditorForAsset:)]
         pub unsafe fn showEditorForAsset(&self, asset: &PHAsset);
 

@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 #[cfg(feature = "objc2-photos")]
+#[cfg(not(target_os = "watchos"))]
 use objc2_photos::*;
 
 use crate::*;
@@ -12,6 +13,7 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait PHContentEditingController: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-photos")]
+        #[cfg(not(target_os = "watchos"))]
         #[method(canHandleAdjustmentData:)]
         unsafe fn canHandleAdjustmentData(&self, adjustment_data: &PHAdjustmentData) -> bool;
 
@@ -25,6 +27,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-photos"))]
+        #[cfg(not(target_os = "watchos"))]
         #[method(finishContentEditingWithCompletionHandler:)]
         unsafe fn finishContentEditingWithCompletionHandler(
             &self,

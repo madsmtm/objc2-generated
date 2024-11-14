@@ -6,6 +6,7 @@ use objc2::__framework_prelude::*;
 use objc2_app_kit::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-photos")]
+#[cfg(not(target_os = "watchos"))]
 use objc2_photos::*;
 
 use crate::*;

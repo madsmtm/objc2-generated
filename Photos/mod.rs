@@ -250,7 +250,6 @@ pub use self::__PHLivePhotoEditingContext::PHLivePhotoFrame;
     feature = "block2",
     feature = "objc2-core-image"
 ))]
-#[cfg(not(target_os = "watchos"))]
 pub use self::__PHLivePhotoEditingContext::PHLivePhotoFrameProcessingBlock;
 #[cfg(feature = "PHLivePhotoEditingContext")]
 pub use self::__PHLivePhotoEditingContext::PHLivePhotoFrameType;
