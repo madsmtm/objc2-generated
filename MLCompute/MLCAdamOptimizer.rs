@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(MLCOptimizer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCOptimizer")]
     #[deprecated]
     pub struct MLCAdamOptimizer;
-
-    #[cfg(feature = "MLCOptimizer")]
-    unsafe impl ClassType for MLCAdamOptimizer {
-        #[inherits(NSObject)]
-        type Super = MLCOptimizer;
-    }
 );
 
 #[cfg(feature = "MLCOptimizer")]

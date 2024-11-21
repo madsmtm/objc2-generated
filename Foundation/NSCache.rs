@@ -4,24 +4,10 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct NSCache<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject> {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut KeyType>,
-        _inner1: PhantomData<*mut ObjectType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> ClassType
-        for NSCache<KeyType, ObjectType>
-    {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSCache<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject>;
 );
 
 unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol for NSCache<KeyType, ObjectType> {}

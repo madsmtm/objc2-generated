@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIImageAccumulator;
-
-    unsafe impl ClassType for CIImageAccumulator {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CIImageAccumulator {}

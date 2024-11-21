@@ -37,12 +37,9 @@ pub type ASWebAuthenticationSessionCompletionHandler =
     *mut block2::Block<dyn Fn(*mut NSURL, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASWebAuthenticationSession;
-
-    unsafe impl ClassType for ASWebAuthenticationSession {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for ASWebAuthenticationSession {}

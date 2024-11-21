@@ -76,15 +76,10 @@ extern "C-unwind" {
 }
 
 extern_class!(
+    #[unsafe(super(UIImageConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIImageConfiguration")]
     pub struct UIImageSymbolConfiguration;
-
-    #[cfg(feature = "UIImageConfiguration")]
-    unsafe impl ClassType for UIImageSymbolConfiguration {
-        #[inherits(NSObject)]
-        type Super = UIImageConfiguration;
-    }
 );
 
 #[cfg(feature = "UIImageConfiguration")]

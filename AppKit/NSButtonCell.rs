@@ -107,15 +107,10 @@ unsafe impl RefEncode for NSBezelStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     pub struct NSButtonCell;
-
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl ClassType for NSButtonCell {
-        #[inherits(NSCell, NSObject)]
-        type Super = NSActionCell;
-    }
 );
 
 #[cfg(all(

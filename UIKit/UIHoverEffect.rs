@@ -12,13 +12,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIHoverHighlightEffect;
-
-    unsafe impl ClassType for UIHoverHighlightEffect {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UIHoverHighlightEffect {}
@@ -45,13 +42,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIHoverLiftEffect;
-
-    unsafe impl ClassType for UIHoverLiftEffect {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UIHoverLiftEffect {}
@@ -78,13 +72,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIHoverAutomaticEffect;
-
-    unsafe impl ClassType for UIHoverAutomaticEffect {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UIHoverAutomaticEffect {}

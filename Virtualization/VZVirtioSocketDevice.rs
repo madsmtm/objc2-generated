@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VZSocketDevice, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZSocketDevice")]
     pub struct VZVirtioSocketDevice;
-
-    #[cfg(feature = "VZSocketDevice")]
-    unsafe impl ClassType for VZVirtioSocketDevice {
-        #[inherits(NSObject)]
-        type Super = VZSocketDevice;
-    }
 );
 
 #[cfg(feature = "VZSocketDevice")]

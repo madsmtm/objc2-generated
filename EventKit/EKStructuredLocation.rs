@@ -10,15 +10,10 @@ use objc2_map_kit::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(EKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "EKObject")]
     pub struct EKStructuredLocation;
-
-    #[cfg(feature = "EKObject")]
-    unsafe impl ClassType for EKStructuredLocation {
-        #[inherits(NSObject)]
-        type Super = EKObject;
-    }
 );
 
 #[cfg(feature = "EKObject")]

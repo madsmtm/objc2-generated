@@ -23,15 +23,10 @@ unsafe impl RefEncode for NSTextFieldBezelStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     pub struct NSTextFieldCell;
-
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl ClassType for NSTextFieldCell {
-        #[inherits(NSCell, NSObject)]
-        type Super = NSActionCell;
-    }
 );
 
 #[cfg(all(

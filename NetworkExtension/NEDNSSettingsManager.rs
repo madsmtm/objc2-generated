@@ -37,12 +37,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEDNSSettingsManager;
-
-    unsafe impl ClassType for NEDNSSettingsManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NEDNSSettingsManager {}

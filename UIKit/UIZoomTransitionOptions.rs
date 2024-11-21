@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIZoomTransitionOptions;
-
-    unsafe impl ClassType for UIZoomTransitionOptions {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for UIZoomTransitionOptions {}
@@ -87,12 +84,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIZoomTransitionInteractionContext;
-
-    unsafe impl ClassType for UIZoomTransitionInteractionContext {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIZoomTransitionInteractionContext {}
@@ -122,12 +116,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIZoomTransitionAlignmentRectContext;
-
-    unsafe impl ClassType for UIZoomTransitionAlignmentRectContext {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIZoomTransitionAlignmentRectContext {}

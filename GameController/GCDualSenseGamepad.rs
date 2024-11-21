@@ -5,15 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(GCExtendedGamepad, GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
     pub struct GCDualSenseGamepad;
-
-    #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
-    unsafe impl ClassType for GCDualSenseGamepad {
-        #[inherits(GCPhysicalInputProfile, NSObject)]
-        type Super = GCExtendedGamepad;
-    }
 );
 
 #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]

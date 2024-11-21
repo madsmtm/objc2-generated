@@ -8,13 +8,10 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIUpdateLink;
-
-    unsafe impl ClassType for UIUpdateLink {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIUpdateLink {}

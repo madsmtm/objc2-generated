@@ -27,15 +27,10 @@ unsafe impl RefEncode for VNGeneratePersonSegmentationRequestQualityLevel {
 }
 
 extern_class!(
+    #[unsafe(super(VNStatefulRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     pub struct VNGeneratePersonSegmentationRequest;
-
-    #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-    unsafe impl ClassType for VNGeneratePersonSegmentationRequest {
-        #[inherits(VNImageBasedRequest, VNRequest, NSObject)]
-        type Super = VNStatefulRequest;
-    }
 );
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]

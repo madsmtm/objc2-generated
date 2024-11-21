@@ -822,12 +822,9 @@ unsafe impl RefEncode for NSURLBookmarkResolutionOptions {
 pub type NSURLBookmarkFileCreationOptions = NSUInteger;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURL;
-
-    unsafe impl ClassType for NSURL {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSURL {}
@@ -1271,12 +1268,9 @@ unsafe impl NSItemProviderReading for NSURL {}
 unsafe impl NSItemProviderWriting for NSURL {}
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLQueryItem;
-
-    unsafe impl ClassType for NSURLQueryItem {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSURLQueryItem {}
@@ -1338,12 +1332,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLComponents;
-
-    unsafe impl ClassType for NSURLComponents {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -1711,12 +1702,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileSecurity;
-
-    unsafe impl ClassType for NSFileSecurity {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]

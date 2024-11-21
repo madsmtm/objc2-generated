@@ -9,12 +9,9 @@ use crate::*;
 pub type NSNotificationName = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNotification;
-
-    unsafe impl ClassType for NSNotification {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -82,12 +79,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNotificationCenter;
-
-    unsafe impl ClassType for NSNotificationCenter {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSNotificationCenter {}

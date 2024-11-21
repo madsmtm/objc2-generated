@@ -27,15 +27,10 @@ unsafe impl RefEncode for VZLinuxRosettaAvailability {
 }
 
 extern_class!(
+    #[unsafe(super(VZDirectoryShare, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZDirectoryShare")]
     pub struct VZLinuxRosettaDirectoryShare;
-
-    #[cfg(feature = "VZDirectoryShare")]
-    unsafe impl ClassType for VZLinuxRosettaDirectoryShare {
-        #[inherits(NSObject)]
-        type Super = VZDirectoryShare;
-    }
 );
 
 #[cfg(feature = "VZDirectoryShare")]

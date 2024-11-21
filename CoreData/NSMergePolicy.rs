@@ -26,12 +26,9 @@ unsafe impl RefEncode for NSMergePolicyType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMergeConflict;
-
-    unsafe impl ClassType for NSMergeConflict {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSMergeConflict {}
@@ -84,12 +81,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSConstraintConflict;
-
-    unsafe impl ClassType for NSConstraintConflict {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSConstraintConflict {}
@@ -143,12 +137,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMergePolicy;
-
-    unsafe impl ClassType for NSMergePolicy {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSMergePolicy {}

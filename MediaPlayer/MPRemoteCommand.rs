@@ -31,12 +31,9 @@ unsafe impl RefEncode for MPRemoteCommandHandlerStatus {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPRemoteCommand;
-
-    unsafe impl ClassType for MPRemoteCommand {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPRemoteCommand {}
@@ -76,13 +73,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSkipIntervalCommand;
-
-    unsafe impl ClassType for MPSkipIntervalCommand {
-        #[inherits(NSObject)]
-        type Super = MPRemoteCommand;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPSkipIntervalCommand {}
@@ -109,13 +102,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPFeedbackCommand;
-
-    unsafe impl ClassType for MPFeedbackCommand {
-        #[inherits(NSObject)]
-        type Super = MPRemoteCommand;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPFeedbackCommand {}
@@ -154,13 +143,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPRatingCommand;
-
-    unsafe impl ClassType for MPRatingCommand {
-        #[inherits(NSObject)]
-        type Super = MPRemoteCommand;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPRatingCommand {}
@@ -193,13 +178,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangePlaybackRateCommand;
-
-    unsafe impl ClassType for MPChangePlaybackRateCommand {
-        #[inherits(NSObject)]
-        type Super = MPRemoteCommand;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPChangePlaybackRateCommand {}
@@ -229,13 +210,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangePlaybackPositionCommand;
-
-    unsafe impl ClassType for MPChangePlaybackPositionCommand {
-        #[inherits(NSObject)]
-        type Super = MPRemoteCommand;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPChangePlaybackPositionCommand {}
@@ -256,13 +233,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangeShuffleModeCommand;
-
-    unsafe impl ClassType for MPChangeShuffleModeCommand {
-        #[inherits(NSObject)]
-        type Super = MPRemoteCommand;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPChangeShuffleModeCommand {}
@@ -291,13 +264,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangeRepeatModeCommand;
-
-    unsafe impl ClassType for MPChangeRepeatModeCommand {
-        #[inherits(NSObject)]
-        type Super = MPRemoteCommand;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPChangeRepeatModeCommand {}

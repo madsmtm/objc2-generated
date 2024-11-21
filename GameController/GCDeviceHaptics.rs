@@ -45,12 +45,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCDeviceHaptics;
-
-    unsafe impl ClassType for GCDeviceHaptics {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GCDeviceHaptics {}

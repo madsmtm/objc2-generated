@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "No longer supported"]
     pub struct SKPaymentQueue;
-
-    unsafe impl ClassType for SKPaymentQueue {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for SKPaymentQueue {}

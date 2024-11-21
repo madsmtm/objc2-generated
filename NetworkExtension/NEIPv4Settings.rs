@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEIPv4Settings;
-
-    unsafe impl ClassType for NEIPv4Settings {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NEIPv4Settings {}
@@ -76,12 +73,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEIPv4Route;
-
-    unsafe impl ClassType for NEIPv4Route {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NEIPv4Route {}

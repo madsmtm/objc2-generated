@@ -18,12 +18,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIFilterGenerator;
-
-    unsafe impl ClassType for CIFilterGenerator {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "CIFilterConstructor")]

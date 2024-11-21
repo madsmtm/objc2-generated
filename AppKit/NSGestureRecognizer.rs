@@ -35,13 +35,10 @@ unsafe impl RefEncode for NSGestureRecognizerState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGestureRecognizer;
-
-    unsafe impl ClassType for NSGestureRecognizer {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for NSGestureRecognizer {}

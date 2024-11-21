@@ -9,15 +9,10 @@ use crate::*;
 pub type CAGradientLayerType = NSString;
 
 extern_class!(
+    #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]
     pub struct CAGradientLayer;
-
-    #[cfg(feature = "CALayer")]
-    unsafe impl ClassType for CAGradientLayer {
-        #[inherits(NSObject)]
-        type Super = CALayer;
-    }
 );
 
 #[cfg(all(feature = "CALayer", feature = "CAMediaTiming"))]

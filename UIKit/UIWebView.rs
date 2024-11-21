@@ -80,17 +80,12 @@ unsafe impl RefEncode for UIWebPaginationBreakingMode {
 }
 
 extern_class!(
+    #[unsafe(super(UIView, UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     #[deprecated = "No longer supported; please adopt WKWebView."]
     pub struct UIWebView;
-
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl ClassType for UIWebView {
-        #[inherits(UIResponder, NSObject)]
-        type Super = UIView;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(

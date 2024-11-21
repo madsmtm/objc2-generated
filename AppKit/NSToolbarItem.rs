@@ -20,13 +20,10 @@ pub static NSToolbarItemVisibilityPriorityHigh: NSToolbarItemVisibilityPriority 
 pub static NSToolbarItemVisibilityPriorityUser: NSToolbarItemVisibilityPriority = 2000;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSToolbarItem;
-
-    unsafe impl ClassType for NSToolbarItem {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for NSToolbarItem {}

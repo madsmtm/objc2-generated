@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKElectrocardiogramVoltageMeasurement;
-
-    unsafe impl ClassType for HKElectrocardiogramVoltageMeasurement {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for HKElectrocardiogramVoltageMeasurement {}
@@ -48,15 +45,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]
     pub struct HKElectrocardiogramQuery;
-
-    #[cfg(feature = "HKQuery")]
-    unsafe impl ClassType for HKElectrocardiogramQuery {
-        #[inherits(NSObject)]
-        type Super = HKQuery;
-    }
 );
 
 #[cfg(feature = "HKQuery")]

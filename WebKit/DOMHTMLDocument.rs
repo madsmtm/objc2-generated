@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(DOMDocument, DOMNode, DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "DOMDocument",
@@ -15,17 +16,6 @@ extern_class!(
     ))]
     #[deprecated]
     pub struct DOMHTMLDocument;
-
-    #[cfg(all(
-        feature = "DOMDocument",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl ClassType for DOMHTMLDocument {
-        #[inherits(DOMNode, DOMObject, WebScriptObject, NSObject)]
-        type Super = DOMDocument;
-    }
 );
 
 #[cfg(all(

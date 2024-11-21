@@ -5,11 +5,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    pub struct NSValue;
+    #[unsafe(super(NSObject))]
 
-    unsafe impl ClassType for NSValue {
-        type Super = NSObject;
-    }
+    pub struct NSValue;
 );
 
 #[cfg(feature = "NSObject")]
@@ -92,12 +90,9 @@ extern_methods!(
 );
 
 extern_class!(
-    pub struct NSNumber;
+    #[unsafe(super(NSValue, NSObject))]
 
-    unsafe impl ClassType for NSNumber {
-        #[inherits(NSObject)]
-        type Super = NSValue;
-    }
+    pub struct NSNumber;
 );
 
 unsafe impl Send for NSNumber {}

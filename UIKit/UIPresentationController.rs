@@ -91,13 +91,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPresentationController;
-
-    unsafe impl ClassType for UIPresentationController {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIPresentationController {}

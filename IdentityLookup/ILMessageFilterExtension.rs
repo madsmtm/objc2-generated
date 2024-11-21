@@ -5,12 +5,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ILMessageFilterExtension;
-
-    unsafe impl ClassType for ILMessageFilterExtension {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for ILMessageFilterExtension {}

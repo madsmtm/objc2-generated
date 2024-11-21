@@ -88,12 +88,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLayoutManager;
-
-    unsafe impl ClassType for NSLayoutManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSLayoutManager {}

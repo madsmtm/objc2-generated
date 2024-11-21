@@ -93,12 +93,9 @@ unsafe impl RefEncode for GKTurnBasedMatchOutcome {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKTurnBasedParticipant;
-
-    unsafe impl ClassType for GKTurnBasedParticipant {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GKTurnBasedParticipant {}
@@ -231,12 +228,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKTurnBasedMatch;
-
-    unsafe impl ClassType for GKTurnBasedMatch {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GKTurnBasedMatch {}
@@ -516,12 +510,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKTurnBasedExchange;
-
-    unsafe impl ClassType for GKTurnBasedExchange {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GKTurnBasedExchange {}
@@ -591,12 +582,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKTurnBasedExchangeReply;
-
-    unsafe impl ClassType for GKTurnBasedExchangeReply {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GKTurnBasedExchangeReply {}
@@ -658,13 +646,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
     pub struct GKTurnBasedEventHandler;
-
-    unsafe impl ClassType for GKTurnBasedEventHandler {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GKTurnBasedEventHandler {}

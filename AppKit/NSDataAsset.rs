@@ -8,12 +8,9 @@ use crate::*;
 pub type NSDataAssetName = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDataAsset;
-
-    unsafe impl ClassType for NSDataAsset {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSDataAsset {}

@@ -208,15 +208,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(MPMediaEntity, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPMediaEntity")]
     pub struct MPMediaItem;
-
-    #[cfg(feature = "MPMediaEntity")]
-    unsafe impl ClassType for MPMediaItem {
-        #[inherits(NSObject)]
-        type Super = MPMediaEntity;
-    }
 );
 
 #[cfg(feature = "MPMediaEntity")]
@@ -363,12 +358,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMediaItemArtwork;
-
-    unsafe impl ClassType for MPMediaItemArtwork {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPMediaItemArtwork {}

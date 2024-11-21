@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]
     pub struct HKSourceQuery;
-
-    #[cfg(feature = "HKQuery")]
-    unsafe impl ClassType for HKSourceQuery {
-        #[inherits(NSObject)]
-        type Super = HKQuery;
-    }
 );
 
 #[cfg(feature = "HKQuery")]

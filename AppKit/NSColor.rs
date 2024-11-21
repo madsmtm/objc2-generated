@@ -58,12 +58,9 @@ unsafe impl RefEncode for NSColorSystemEffect {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSColor;
-
-    unsafe impl ClassType for NSColor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSColor {}

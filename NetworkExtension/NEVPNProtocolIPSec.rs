@@ -27,15 +27,10 @@ unsafe impl RefEncode for NEVPNIKEAuthenticationMethod {
 }
 
 extern_class!(
+    #[unsafe(super(NEVPNProtocol, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NEVPNProtocol")]
     pub struct NEVPNProtocolIPSec;
-
-    #[cfg(feature = "NEVPNProtocol")]
-    unsafe impl ClassType for NEVPNProtocolIPSec {
-        #[inherits(NSObject)]
-        type Super = NEVPNProtocol;
-    }
 );
 
 #[cfg(feature = "NEVPNProtocol")]

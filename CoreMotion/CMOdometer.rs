@@ -29,12 +29,9 @@ unsafe impl RefEncode for CMOdometerOriginDevice {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMOdometerData;
-
-    unsafe impl ClassType for CMOdometerData {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CMOdometerData {}

@@ -41,12 +41,9 @@ unsafe impl RefEncode for MTLIntersectionFunctionSignature {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLIntersectionFunctionTableDescriptor;
-
-    unsafe impl ClassType for MTLIntersectionFunctionTableDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLIntersectionFunctionTableDescriptor {}

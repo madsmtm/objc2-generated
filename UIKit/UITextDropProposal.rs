@@ -65,16 +65,11 @@ unsafe impl RefEncode for UITextDropPerformer {
 }
 
 extern_class!(
+    #[unsafe(super(UIDropProposal, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIDropInteraction")]
     pub struct UITextDropProposal;
-
-    #[cfg(feature = "UIDropInteraction")]
-    unsafe impl ClassType for UITextDropProposal {
-        #[inherits(NSObject)]
-        type Super = UIDropProposal;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIDropInteraction")]

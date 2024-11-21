@@ -21,12 +21,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKAdNetwork;
-
-    unsafe impl ClassType for SKAdNetwork {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SKAdNetwork {}

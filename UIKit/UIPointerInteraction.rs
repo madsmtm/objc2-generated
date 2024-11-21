@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPointerInteraction;
-
-    unsafe impl ClassType for UIPointerInteraction {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIPointerInteraction {}
@@ -107,13 +104,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPointerRegionRequest;
-
-    unsafe impl ClassType for UIPointerRegionRequest {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIPointerRegionRequest {}

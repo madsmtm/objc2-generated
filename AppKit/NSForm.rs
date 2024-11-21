@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSMatrix, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "NSControl",
@@ -15,17 +16,6 @@ extern_class!(
     ))]
     #[deprecated = "Use NSTextField directly instead, and consider NSStackView for layout assistance"]
     pub struct NSForm;
-
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSMatrix",
-        feature = "NSResponder",
-        feature = "NSView"
-    ))]
-    unsafe impl ClassType for NSForm {
-        #[inherits(NSControl, NSView, NSResponder, NSObject)]
-        type Super = NSMatrix;
-    }
 );
 
 #[cfg(all(

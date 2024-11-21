@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use `sec_protocol_options_t` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
     pub struct NWTLSParameters;
-
-    unsafe impl ClassType for NWTLSParameters {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NWTLSParameters {}

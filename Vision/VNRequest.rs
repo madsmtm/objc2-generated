@@ -11,12 +11,9 @@ use crate::*;
 pub type VNRequestCompletionHandler = *mut block2::Block<dyn Fn(NonNull<VNRequest>, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRequest;
-
-    unsafe impl ClassType for VNRequest {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for VNRequest {}
@@ -122,13 +119,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageBasedRequest;
-
-    unsafe impl ClassType for VNImageBasedRequest {
-        #[inherits(NSObject)]
-        type Super = VNRequest;
-    }
 );
 
 unsafe impl NSCopying for VNImageBasedRequest {}

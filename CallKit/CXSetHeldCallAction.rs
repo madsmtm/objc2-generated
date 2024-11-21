@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CXCallAction, CXAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     pub struct CXSetHeldCallAction;
-
-    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-    unsafe impl ClassType for CXSetHeldCallAction {
-        #[inherits(CXAction, NSObject)]
-        type Super = CXCallAction;
-    }
 );
 
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]

@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPasskeyCredentialRequestParameters;
-
-    unsafe impl ClassType for ASPasskeyCredentialRequestParameters {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for ASPasskeyCredentialRequestParameters {}

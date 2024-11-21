@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIDropInteraction;
-
-    unsafe impl ClassType for UIDropInteraction {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIDropInteraction {}
@@ -74,13 +71,10 @@ unsafe impl RefEncode for UIDropOperation {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIDropProposal;
-
-    unsafe impl ClassType for UIDropProposal {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UIDropProposal {}

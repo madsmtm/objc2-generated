@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use CarPlay framework"]
     pub struct MPPlayableContentManager;
-
-    unsafe impl ClassType for MPPlayableContentManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPPlayableContentManager {}

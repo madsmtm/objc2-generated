@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VZConsoleDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZConsoleDeviceConfiguration")]
     pub struct VZVirtioConsoleDeviceConfiguration;
-
-    #[cfg(feature = "VZConsoleDeviceConfiguration")]
-    unsafe impl ClassType for VZVirtioConsoleDeviceConfiguration {
-        #[inherits(NSObject)]
-        type Super = VZConsoleDeviceConfiguration;
-    }
 );
 
 #[cfg(feature = "VZConsoleDeviceConfiguration")]

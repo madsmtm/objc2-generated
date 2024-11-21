@@ -6,17 +6,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIStoryboardSegue, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIStoryboardSegue")]
     #[deprecated = "Access destinationViewController.popoverPresentationController from your segue's performHandler or override of -perform"]
     pub struct UIStoryboardPopoverSegue;
-
-    #[cfg(feature = "UIStoryboardSegue")]
-    unsafe impl ClassType for UIStoryboardPopoverSegue {
-        #[inherits(NSObject)]
-        type Super = UIStoryboardSegue;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIStoryboardSegue")]

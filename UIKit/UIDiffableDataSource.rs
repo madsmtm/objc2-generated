@@ -5,27 +5,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDiffableDataSourceSnapshot<
         SectionIdentifierType: ?Sized = AnyObject,
         ItemIdentifierType: ?Sized = AnyObject,
-    > {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut SectionIdentifierType>,
-        _inner1: PhantomData<*mut ItemIdentifierType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
-        ClassType for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
-    {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    >;
 );
 
 unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSCopying
@@ -246,28 +232,13 @@ pub type UICollectionViewDiffableDataSourceSupplementaryViewProvider = *mut bloc
     ) -> *mut UICollectionReusableView,
 >;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDiffableDataSourceSectionTransaction<
         SectionIdentifierType: ?Sized = AnyObject,
         ItemIdentifierType: ?Sized = AnyObject,
-    > {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut SectionIdentifierType>,
-        _inner1: PhantomData<*mut ItemIdentifierType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
-        ClassType
-        for NSDiffableDataSourceSectionTransaction<SectionIdentifierType, ItemIdentifierType>
-    {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    >;
 );
 
 unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
@@ -314,27 +285,13 @@ extern_methods!(
     }
 );
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDiffableDataSourceTransaction<
         SectionIdentifierType: ?Sized = AnyObject,
         ItemIdentifierType: ?Sized = AnyObject,
-    > {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut SectionIdentifierType>,
-        _inner1: PhantomData<*mut ItemIdentifierType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
-        ClassType for NSDiffableDataSourceTransaction<SectionIdentifierType, ItemIdentifierType>
-    {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    >;
 );
 
 unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
@@ -385,28 +342,14 @@ extern_methods!(
     }
 );
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICollectionViewDiffableDataSourceReorderingHandlers<
         SectionType: ?Sized = AnyObject,
         ItemType: ?Sized = AnyObject,
-    > {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut SectionType>,
-        _inner1: PhantomData<*mut ItemType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<SectionType: ?Sized + Message, ItemType: ?Sized + Message> ClassType
-        for UICollectionViewDiffableDataSourceReorderingHandlers<SectionType, ItemType>
-    {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    >;
 );
 
 unsafe impl<SectionType: ?Sized, ItemType: ?Sized> NSCopying
@@ -495,26 +438,13 @@ extern_methods!(
     }
 );
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICollectionViewDiffableDataSourceSectionSnapshotHandlers<
         ItemType: ?Sized = AnyObject,
-    > {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut ItemType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<ItemType: ?Sized + Message> ClassType
-        for UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType>
-    {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    >;
 );
 
 unsafe impl<ItemType: ?Sized> NSCopying
@@ -625,29 +555,14 @@ extern_methods!(
     }
 );
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICollectionViewDiffableDataSource<
         SectionIdentifierType: ?Sized = AnyObject,
         ItemIdentifierType: ?Sized = AnyObject,
-    > {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut SectionIdentifierType>,
-        _inner1: PhantomData<*mut ItemIdentifierType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
-        ClassType
-        for UICollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
-    {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    >;
 );
 
 unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
@@ -845,28 +760,14 @@ pub type UITableViewDiffableDataSourceCellProvider = *mut block2::Block<
     dyn Fn(NonNull<UITableView>, NonNull<NSIndexPath>, NonNull<AnyObject>) -> *mut UITableViewCell,
 >;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITableViewDiffableDataSource<
         SectionIdentifierType: ?Sized = AnyObject,
         ItemIdentifierType: ?Sized = AnyObject,
-    > {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut SectionIdentifierType>,
-        _inner1: PhantomData<*mut ItemIdentifierType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
-        ClassType for UITableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
-    {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    >;
 );
 
 unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol

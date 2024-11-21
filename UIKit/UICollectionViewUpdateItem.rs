@@ -31,13 +31,10 @@ unsafe impl RefEncode for UICollectionUpdateAction {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICollectionViewUpdateItem;
-
-    unsafe impl ClassType for UICollectionViewUpdateItem {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UICollectionViewUpdateItem {}

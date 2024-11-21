@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMPedometerData;
-
-    unsafe impl ClassType for CMPedometerData {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CMPedometerData {}
@@ -88,12 +85,9 @@ unsafe impl RefEncode for CMPedometerEventType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMPedometerEvent;
-
-    unsafe impl ClassType for CMPedometerEvent {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CMPedometerEvent {}
@@ -136,12 +130,9 @@ pub type CMPedometerHandler = *mut block2::Block<dyn Fn(*mut CMPedometerData, *m
 pub type CMPedometerEventHandler = *mut block2::Block<dyn Fn(*mut CMPedometerEvent, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMPedometer;
-
-    unsafe impl ClassType for CMPedometer {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CMPedometer {}

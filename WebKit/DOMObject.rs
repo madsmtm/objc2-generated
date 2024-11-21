@@ -8,16 +8,11 @@ use crate::*;
 pub type DOMTimeStamp = c_ulonglong;
 
 extern_class!(
+    #[unsafe(super(WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WebScriptObject")]
     #[deprecated]
     pub struct DOMObject;
-
-    #[cfg(feature = "WebScriptObject")]
-    unsafe impl ClassType for DOMObject {
-        #[inherits(NSObject)]
-        type Super = WebScriptObject;
-    }
 );
 
 #[cfg(feature = "WebScriptObject")]

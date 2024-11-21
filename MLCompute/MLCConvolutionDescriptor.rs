@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
     pub struct MLCConvolutionDescriptor;
-
-    unsafe impl ClassType for MLCConvolutionDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MLCConvolutionDescriptor {}

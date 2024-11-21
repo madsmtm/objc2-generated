@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPAdTimeRange;
-
-    unsafe impl ClassType for MPAdTimeRange {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MPAdTimeRange {}
@@ -33,12 +30,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPNowPlayingSession;
-
-    unsafe impl ClassType for MPNowPlayingSession {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPNowPlayingSession {}

@@ -223,12 +223,9 @@ unsafe impl RefEncode for HKWorkoutEventType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutEvent;
-
-    unsafe impl ClassType for HKWorkoutEvent {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for HKWorkoutEvent {}
@@ -294,15 +291,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     pub struct HKWorkout;
-
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl ClassType for HKWorkout {
-        #[inherits(HKObject, NSObject)]
-        type Super = HKSample;
-    }
 );
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]

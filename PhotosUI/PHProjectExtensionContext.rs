@@ -9,13 +9,9 @@ use objc2_photos::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectExtensionContext;
-
-    unsafe impl ClassType for PHProjectExtensionContext {
-        #[inherits(NSObject)]
-        type Super = NSExtensionContext;
-    }
 );
 
 unsafe impl NSObjectProtocol for PHProjectExtensionContext {}

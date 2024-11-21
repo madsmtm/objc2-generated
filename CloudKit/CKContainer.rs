@@ -14,12 +14,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKContainer;
-
-    unsafe impl ClassType for CKContainer {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKContainer {}

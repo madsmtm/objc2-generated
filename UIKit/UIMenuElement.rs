@@ -52,13 +52,10 @@ unsafe impl RefEncode for UIMenuElementAttributes {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIMenuElement;
-
-    unsafe impl ClassType for UIMenuElement {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UIMenuElement {}

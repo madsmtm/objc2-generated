@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     #[deprecated]
     pub struct DOMNodeList;
-
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl ClassType for DOMNodeList {
-        #[inherits(WebScriptObject, NSObject)]
-        type Super = DOMObject;
-    }
 );
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]

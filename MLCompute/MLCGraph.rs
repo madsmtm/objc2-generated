@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
     pub struct MLCGraph;
-
-    unsafe impl ClassType for MLCGraph {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MLCGraph {}

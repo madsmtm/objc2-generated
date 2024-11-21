@@ -25,13 +25,10 @@ unsafe impl RefEncode for WKUserScriptInjectionTime {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKUserScript;
-
-    unsafe impl ClassType for WKUserScript {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for WKUserScript {}

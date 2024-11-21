@@ -5,13 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSPortNameServer;
-
-    unsafe impl ClassType for NSPortNameServer {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSPortNameServer {}
@@ -60,14 +57,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSPortNameServer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSMachBootstrapServer;
-
-    unsafe impl ClassType for NSMachBootstrapServer {
-        #[inherits(NSObject)]
-        type Super = NSPortNameServer;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSMachBootstrapServer {}
@@ -115,14 +108,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSPortNameServer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSMessagePortNameServer;
-
-    unsafe impl ClassType for NSMessagePortNameServer {
-        #[inherits(NSObject)]
-        type Super = NSPortNameServer;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSMessagePortNameServer {}
@@ -161,14 +150,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSPortNameServer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSSocketPortNameServer;
-
-    unsafe impl ClassType for NSSocketPortNameServer {
-        #[inherits(NSObject)]
-        type Super = NSPortNameServer;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSSocketPortNameServer {}

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(DOMCSSValue, DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "DOMCSSValue",
@@ -14,16 +15,6 @@ extern_class!(
     ))]
     #[deprecated]
     pub struct DOMCSSValueList;
-
-    #[cfg(all(
-        feature = "DOMCSSValue",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl ClassType for DOMCSSValueList {
-        #[inherits(DOMObject, WebScriptObject, NSObject)]
-        type Super = DOMCSSValue;
-    }
 );
 
 #[cfg(all(

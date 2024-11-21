@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPrintFormatter;
-
-    unsafe impl ClassType for UIPrintFormatter {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UIPrintFormatter {}
@@ -94,14 +91,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIPrintFormatter, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UISimpleTextPrintFormatter;
-
-    unsafe impl ClassType for UISimpleTextPrintFormatter {
-        #[inherits(NSObject)]
-        type Super = UIPrintFormatter;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UISimpleTextPrintFormatter {}
@@ -173,14 +166,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIPrintFormatter, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIMarkupTextPrintFormatter;
-
-    unsafe impl ClassType for UIMarkupTextPrintFormatter {
-        #[inherits(NSObject)]
-        type Super = UIPrintFormatter;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UIMarkupTextPrintFormatter {}
@@ -219,14 +208,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIPrintFormatter, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIViewPrintFormatter;
-
-    unsafe impl ClassType for UIViewPrintFormatter {
-        #[inherits(NSObject)]
-        type Super = UIPrintFormatter;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UIViewPrintFormatter {}

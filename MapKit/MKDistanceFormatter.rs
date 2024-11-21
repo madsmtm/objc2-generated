@@ -52,13 +52,9 @@ unsafe impl RefEncode for MKDistanceFormatterUnitStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKDistanceFormatter;
-
-    unsafe impl ClassType for MKDistanceFormatter {
-        #[inherits(NSObject)]
-        type Super = NSFormatter;
-    }
 );
 
 unsafe impl NSCoding for MKDistanceFormatter {}

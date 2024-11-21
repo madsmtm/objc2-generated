@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(MKMapConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MKMapConfiguration")]
     pub struct MKHybridMapConfiguration;
-
-    #[cfg(feature = "MKMapConfiguration")]
-    unsafe impl ClassType for MKHybridMapConfiguration {
-        #[inherits(NSObject)]
-        type Super = MKMapConfiguration;
-    }
 );
 
 #[cfg(feature = "MKMapConfiguration")]

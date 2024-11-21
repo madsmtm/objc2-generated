@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Product.purchase(confirmIn:options:)"]
     pub struct SKPayment;
-
-    unsafe impl ClassType for SKPayment {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for SKPayment {}
@@ -79,14 +76,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(SKPayment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Product.purchase(confirmIn:options:)"]
     pub struct SKMutablePayment;
-
-    unsafe impl ClassType for SKMutablePayment {
-        #[inherits(NSObject)]
-        type Super = SKPayment;
-    }
 );
 
 unsafe impl NSCopying for SKMutablePayment {}

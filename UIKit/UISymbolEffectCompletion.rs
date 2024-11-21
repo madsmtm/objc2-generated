@@ -11,13 +11,10 @@ pub type UISymbolEffectCompletion =
     *mut block2::Block<dyn Fn(NonNull<UISymbolEffectCompletionContext>)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UISymbolEffectCompletionContext;
-
-    unsafe impl ClassType for UISymbolEffectCompletionContext {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UISymbolEffectCompletionContext {}

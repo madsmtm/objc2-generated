@@ -24,12 +24,9 @@ unsafe impl RefEncode for VZEFIVariableStoreInitializationOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZEFIVariableStore;
-
-    unsafe impl ClassType for VZEFIVariableStore {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for VZEFIVariableStore {}

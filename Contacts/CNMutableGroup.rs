@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CNGroup, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CNGroup")]
     pub struct CNMutableGroup;
-
-    #[cfg(feature = "CNGroup")]
-    unsafe impl ClassType for CNMutableGroup {
-        #[inherits(NSObject)]
-        type Super = CNGroup;
-    }
 );
 
 #[cfg(feature = "CNGroup")]

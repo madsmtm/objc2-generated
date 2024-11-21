@@ -18,12 +18,9 @@ pub type CATransitionType = NSString;
 pub type CATransitionSubtype = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAAnimation;
-
-    unsafe impl ClassType for CAAnimation {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "CALayer")]
@@ -117,13 +114,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAPropertyAnimation;
-
-    unsafe impl ClassType for CAPropertyAnimation {
-        #[inherits(NSObject)]
-        type Super = CAAnimation;
-    }
 );
 
 #[cfg(feature = "CALayer")]
@@ -197,13 +190,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CAPropertyAnimation, CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CABasicAnimation;
-
-    unsafe impl ClassType for CABasicAnimation {
-        #[inherits(CAAnimation, NSObject)]
-        type Super = CAPropertyAnimation;
-    }
 );
 
 #[cfg(feature = "CALayer")]
@@ -274,13 +263,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CAPropertyAnimation, CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAKeyframeAnimation;
-
-    unsafe impl ClassType for CAKeyframeAnimation {
-        #[inherits(CAAnimation, NSObject)]
-        type Super = CAPropertyAnimation;
-    }
 );
 
 #[cfg(feature = "CALayer")]
@@ -414,13 +399,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(CABasicAnimation, CAPropertyAnimation, CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CASpringAnimation;
-
-    unsafe impl ClassType for CASpringAnimation {
-        #[inherits(CAPropertyAnimation, CAAnimation, NSObject)]
-        type Super = CABasicAnimation;
-    }
 );
 
 #[cfg(feature = "CALayer")]
@@ -519,13 +500,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CATransition;
-
-    unsafe impl ClassType for CATransition {
-        #[inherits(NSObject)]
-        type Super = CAAnimation;
-    }
 );
 
 #[cfg(feature = "CALayer")]
@@ -632,13 +609,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAAnimationGroup;
-
-    unsafe impl ClassType for CAAnimationGroup {
-        #[inherits(NSObject)]
-        type Super = CAAnimation;
-    }
 );
 
 #[cfg(feature = "CALayer")]

@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionConstantValues;
-
-    unsafe impl ClassType for MTLFunctionConstantValues {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLFunctionConstantValues {}

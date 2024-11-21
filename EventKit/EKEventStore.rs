@@ -37,12 +37,9 @@ pub type EKEventStoreRequestAccessCompletionHandler =
     *mut block2::Block<dyn Fn(Bool, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKEventStore;
-
-    unsafe impl ClassType for EKEventStore {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for EKEventStore {}

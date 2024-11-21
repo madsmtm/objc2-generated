@@ -58,13 +58,10 @@ unsafe impl RefEncode for UIPencilInteractionPhase {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPencilInteraction;
-
-    unsafe impl ClassType for UIPencilInteraction {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIPencilInteraction {}
@@ -124,13 +121,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPencilHoverPose;
-
-    unsafe impl ClassType for UIPencilHoverPose {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIPencilHoverPose {}
@@ -164,13 +158,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPencilInteractionTap;
-
-    unsafe impl ClassType for UIPencilInteractionTap {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIPencilInteractionTap {}
@@ -192,13 +183,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPencilInteractionSqueeze;
-
-    unsafe impl ClassType for UIPencilInteractionSqueeze {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIPencilInteractionSqueeze {}

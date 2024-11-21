@@ -131,13 +131,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UINavigationItem;
-
-    unsafe impl ClassType for UINavigationItem {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UINavigationItem {}

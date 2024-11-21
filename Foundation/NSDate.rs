@@ -12,12 +12,9 @@ extern "C" {
 pub type NSTimeInterval = c_double;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDate;
-
-    unsafe impl ClassType for NSDate {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSDate {}

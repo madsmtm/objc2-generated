@@ -5,14 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSProxy))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSProxy")]
     pub struct NSProtocolChecker;
-
-    #[cfg(feature = "NSProxy")]
-    unsafe impl ClassType for NSProtocolChecker {
-        type Super = NSProxy;
-    }
 );
 
 #[cfg(feature = "NSProxy")]

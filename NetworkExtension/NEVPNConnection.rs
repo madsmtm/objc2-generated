@@ -102,12 +102,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEVPNConnection;
-
-    unsafe impl ClassType for NEVPNConnection {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NEVPNConnection {}

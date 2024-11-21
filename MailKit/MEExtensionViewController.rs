@@ -8,15 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
     pub struct MEExtensionViewController;
-
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl ClassType for MEExtensionViewController {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSViewController;
-    }
 );
 
 #[cfg(feature = "objc2-app-kit")]

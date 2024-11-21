@@ -13,15 +13,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(GKBasePlayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GKBasePlayer")]
     pub struct GKPlayer;
-
-    #[cfg(feature = "GKBasePlayer")]
-    unsafe impl ClassType for GKPlayer {
-        #[inherits(NSObject)]
-        type Super = GKBasePlayer;
-    }
 );
 
 #[cfg(feature = "GKBasePlayer")]

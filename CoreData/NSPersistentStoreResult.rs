@@ -90,12 +90,9 @@ unsafe impl RefEncode for NSPersistentHistoryResultType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentStoreResult;
-
-    unsafe impl ClassType for NSPersistentStoreResult {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSPersistentStoreResult {}
@@ -116,13 +113,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSPersistentStoreResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentStoreAsynchronousResult;
-
-    unsafe impl ClassType for NSPersistentStoreAsynchronousResult {
-        #[inherits(NSObject)]
-        type Super = NSPersistentStoreResult;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSPersistentStoreAsynchronousResult {}
@@ -155,22 +148,10 @@ extern_methods!(
     }
 );
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSPersistentStoreAsynchronousResult, NSPersistentStoreResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct NSAsynchronousFetchResult<ResultType: ?Sized = AnyObject> {
-        __superclass: NSPersistentStoreAsynchronousResult,
-        _inner0: PhantomData<*mut ResultType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<ResultType: ?Sized + Message> ClassType for NSAsynchronousFetchResult<ResultType> {
-        #[inherits(NSPersistentStoreResult, NSObject)]
-        type Super = NSPersistentStoreAsynchronousResult;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSAsynchronousFetchResult<ResultType: ?Sized = AnyObject>;
 );
 
 unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSAsynchronousFetchResult<ResultType> {}
@@ -198,13 +179,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSPersistentStoreResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBatchInsertResult;
-
-    unsafe impl ClassType for NSBatchInsertResult {
-        #[inherits(NSObject)]
-        type Super = NSPersistentStoreResult;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSBatchInsertResult {}
@@ -231,13 +208,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSPersistentStoreResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBatchUpdateResult;
-
-    unsafe impl ClassType for NSBatchUpdateResult {
-        #[inherits(NSObject)]
-        type Super = NSPersistentStoreResult;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSBatchUpdateResult {}
@@ -264,13 +237,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSPersistentStoreResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBatchDeleteResult;
-
-    unsafe impl ClassType for NSBatchDeleteResult {
-        #[inherits(NSObject)]
-        type Super = NSPersistentStoreResult;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSBatchDeleteResult {}
@@ -297,13 +266,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSPersistentStoreResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentHistoryResult;
-
-    unsafe impl ClassType for NSPersistentHistoryResult {
-        #[inherits(NSObject)]
-        type Super = NSPersistentStoreResult;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSPersistentHistoryResult {}
@@ -349,13 +314,9 @@ unsafe impl RefEncode for NSPersistentCloudKitContainerEventResultType {
 }
 
 extern_class!(
+    #[unsafe(super(NSPersistentStoreResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentCloudKitContainerEventResult;
-
-    unsafe impl ClassType for NSPersistentCloudKitContainerEventResult {
-        #[inherits(NSObject)]
-        type Super = NSPersistentStoreResult;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEventResult {}

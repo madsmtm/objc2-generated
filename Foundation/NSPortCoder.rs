@@ -5,16 +5,11 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSCoder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCoder")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSPortCoder;
-
-    #[cfg(feature = "NSCoder")]
-    unsafe impl ClassType for NSPortCoder {
-        #[inherits(NSObject)]
-        type Super = NSCoder;
-    }
 );
 
 #[cfg(feature = "NSCoder")]

@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
     pub struct ACAccountCredential;
-
-    unsafe impl ClassType for ACAccountCredential {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for ACAccountCredential {}

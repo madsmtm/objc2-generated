@@ -50,12 +50,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKRecord;
-
-    unsafe impl ClassType for CKRecord {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CKRecord {}

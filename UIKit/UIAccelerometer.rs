@@ -8,14 +8,11 @@ use crate::*;
 pub type UIAccelerationValue = c_double;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "UIAcceleration has been replaced by the CoreMotion framework"]
     pub struct UIAcceleration;
-
-    unsafe impl ClassType for UIAcceleration {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIAcceleration {}
@@ -52,14 +49,11 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
     pub struct UIAccelerometer;
-
-    unsafe impl ClassType for UIAccelerometer {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIAccelerometer {}

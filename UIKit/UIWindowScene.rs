@@ -8,16 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIScene, UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
     pub struct UIWindowScene;
-
-    #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
-    unsafe impl ClassType for UIWindowScene {
-        #[inherits(UIResponder, NSObject)]
-        type Super = UIScene;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
@@ -235,16 +230,11 @@ unsafe impl RefEncode for UIWindowSceneDismissalAnimation {
 }
 
 extern_class!(
+    #[unsafe(super(UISceneDestructionRequestOptions, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UISceneOptions")]
     pub struct UIWindowSceneDestructionRequestOptions;
-
-    #[cfg(feature = "UISceneOptions")]
-    unsafe impl ClassType for UIWindowSceneDestructionRequestOptions {
-        #[inherits(NSObject)]
-        type Super = UISceneDestructionRequestOptions;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UISceneOptions")]
@@ -277,13 +267,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UISceneSizeRestrictions;
-
-    unsafe impl ClassType for UISceneSizeRestrictions {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UISceneSizeRestrictions {}

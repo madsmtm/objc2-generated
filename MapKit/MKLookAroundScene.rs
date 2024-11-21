@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLookAroundScene;
-
-    unsafe impl ClassType for MKLookAroundScene {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MKLookAroundScene {}

@@ -95,12 +95,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEHotspotHelperCommand;
-
-    unsafe impl ClassType for NEHotspotHelperCommand {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NEHotspotHelperCommand {}
@@ -151,12 +148,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEHotspotHelperResponse;
-
-    unsafe impl ClassType for NEHotspotHelperResponse {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NEHotspotHelperResponse {}
@@ -191,12 +185,9 @@ extern_methods!(
 pub type NEHotspotHelperHandler = *mut block2::Block<dyn Fn(NonNull<NEHotspotHelperCommand>)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEHotspotHelper;
-
-    unsafe impl ClassType for NEHotspotHelper {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NEHotspotHelper {}

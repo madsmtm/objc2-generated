@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NEAppProxyFlow, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NEAppProxyFlow")]
     pub struct NEAppProxyUDPFlow;
-
-    #[cfg(feature = "NEAppProxyFlow")]
-    unsafe impl ClassType for NEAppProxyUDPFlow {
-        #[inherits(NSObject)]
-        type Super = NEAppProxyFlow;
-    }
 );
 
 #[cfg(feature = "NEAppProxyFlow")]

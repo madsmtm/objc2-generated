@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutEffortRelationship;
-
-    unsafe impl ClassType for HKWorkoutEffortRelationship {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for HKWorkoutEffortRelationship {}
@@ -73,15 +70,10 @@ unsafe impl RefEncode for HKWorkoutEffortRelationshipQueryOptions {
 }
 
 extern_class!(
+    #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]
     pub struct HKWorkoutEffortRelationshipQuery;
-
-    #[cfg(feature = "HKQuery")]
-    unsafe impl ClassType for HKWorkoutEffortRelationshipQuery {
-        #[inherits(NSObject)]
-        type Super = HKQuery;
-    }
 );
 
 #[cfg(feature = "HKQuery")]

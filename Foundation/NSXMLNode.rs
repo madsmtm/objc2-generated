@@ -33,12 +33,9 @@ unsafe impl RefEncode for NSXMLNodeKind {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXMLNode;
-
-    unsafe impl ClassType for NSXMLNode {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]

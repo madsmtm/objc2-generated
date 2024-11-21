@@ -57,12 +57,9 @@ unsafe impl RefEncode for NSImageInterpolation {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGraphicsContext;
-
-    unsafe impl ClassType for NSGraphicsContext {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSGraphicsContext {}

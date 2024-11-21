@@ -315,16 +315,11 @@ unsafe impl RefEncode for UITextViewBorderStyle {
 }
 
 extern_class!(
+    #[unsafe(super(UIScrollView, UIView, UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
     pub struct UITextView;
-
-    #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-    unsafe impl ClassType for UITextView {
-        #[inherits(UIView, UIResponder, NSObject)]
-        type Super = UIScrollView;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(

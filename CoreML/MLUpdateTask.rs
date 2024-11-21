@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(MLTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLTask")]
     pub struct MLUpdateTask;
-
-    #[cfg(feature = "MLTask")]
-    unsafe impl ClassType for MLUpdateTask {
-        #[inherits(NSObject)]
-        type Super = MLTask;
-    }
 );
 
 #[cfg(feature = "MLTask")]

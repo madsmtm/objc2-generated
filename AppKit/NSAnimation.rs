@@ -53,12 +53,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAnimation;
-
-    unsafe impl ClassType for NSAnimation {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSAnimation {}
@@ -254,13 +251,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSViewAnimation;
-
-    unsafe impl ClassType for NSViewAnimation {
-        #[inherits(NSObject)]
-        type Super = NSAnimation;
-    }
 );
 
 unsafe impl NSCoding for NSViewAnimation {}

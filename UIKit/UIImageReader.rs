@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIImageReaderConfiguration;
-
-    unsafe impl ClassType for UIImageReaderConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for UIImageReaderConfiguration {}
@@ -62,12 +59,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIImageReader;
-
-    unsafe impl ClassType for UIImageReader {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIImageReader {}

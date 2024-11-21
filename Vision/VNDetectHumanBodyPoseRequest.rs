@@ -295,15 +295,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(VNRecognizedPointsObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNObservation")]
     pub struct VNHumanBodyPoseObservation;
-
-    #[cfg(feature = "VNObservation")]
-    unsafe impl ClassType for VNHumanBodyPoseObservation {
-        #[inherits(VNObservation, NSObject)]
-        type Super = VNRecognizedPointsObservation;
-    }
 );
 
 #[cfg(feature = "VNObservation")]
@@ -381,15 +376,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
     pub struct VNDetectHumanBodyPoseRequest;
-
-    #[cfg(feature = "VNRequest")]
-    unsafe impl ClassType for VNDetectHumanBodyPoseRequest {
-        #[inherits(VNRequest, NSObject)]
-        type Super = VNImageBasedRequest;
-    }
 );
 
 #[cfg(feature = "VNRequest")]

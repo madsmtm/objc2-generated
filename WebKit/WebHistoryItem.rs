@@ -13,13 +13,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
     pub struct WebHistoryItem;
-
-    unsafe impl ClassType for WebHistoryItem {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for WebHistoryItem {}

@@ -37,15 +37,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(CIFilter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CIFilter")]
     pub struct CIRAWFilter;
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ClassType for CIRAWFilter {
-        #[inherits(NSObject)]
-        type Super = CIFilter;
-    }
 );
 
 #[cfg(feature = "CIFilter")]

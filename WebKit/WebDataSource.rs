@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
     pub struct WebDataSource;
-
-    unsafe impl ClassType for WebDataSource {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for WebDataSource {}

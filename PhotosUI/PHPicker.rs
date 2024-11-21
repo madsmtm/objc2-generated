@@ -112,12 +112,9 @@ unsafe impl RefEncode for PHPickerCapabilities {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerFilter;
-
-    unsafe impl ClassType for PHPickerFilter {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for PHPickerFilter {}
@@ -195,12 +192,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerUpdateConfiguration;
-
-    unsafe impl ClassType for PHPickerUpdateConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for PHPickerUpdateConfiguration {}
@@ -246,12 +240,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerConfiguration;
-
-    unsafe impl ClassType for PHPickerConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for PHPickerConfiguration {}
@@ -349,12 +340,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerResult;
-
-    unsafe impl ClassType for PHPickerResult {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for PHPickerResult {}
@@ -393,17 +381,11 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     pub struct PHPickerViewController;
-
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl ClassType for PHPickerViewController {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSViewController;
-    }
 );
 
 #[cfg(feature = "objc2-app-kit")]

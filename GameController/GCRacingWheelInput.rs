@@ -5,12 +5,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCRacingWheelInputState;
-
-    unsafe impl ClassType for GCRacingWheelInputState {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "GCDevicePhysicalInputState")]
@@ -56,13 +53,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(GCRacingWheelInputState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCRacingWheelInput;
-
-    unsafe impl ClassType for GCRacingWheelInput {
-        #[inherits(NSObject)]
-        type Super = GCRacingWheelInputState;
-    }
 );
 
 #[cfg(all(

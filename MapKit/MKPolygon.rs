@@ -8,15 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(MKMultiPoint, MKShape, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
     pub struct MKPolygon;
-
-    #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
-    unsafe impl ClassType for MKPolygon {
-        #[inherits(MKShape, NSObject)]
-        type Super = MKMultiPoint;
-    }
 );
 
 #[cfg(all(

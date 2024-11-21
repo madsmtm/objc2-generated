@@ -47,12 +47,9 @@ pub type NSPropertyListReadOptions = NSPropertyListMutabilityOptions;
 pub type NSPropertyListWriteOptions = NSUInteger;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPropertyListSerialization;
-
-    unsafe impl ClassType for NSPropertyListSerialization {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSPropertyListSerialization {}

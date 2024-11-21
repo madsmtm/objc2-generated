@@ -9,17 +9,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     pub struct LPLinkView;
-
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl ClassType for LPLinkView {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSView;
-    }
 );
 
 #[cfg(feature = "objc2-app-kit")]

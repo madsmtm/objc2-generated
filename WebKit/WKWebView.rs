@@ -76,18 +76,12 @@ unsafe impl RefEncode for WKFullscreenState {
 }
 
 extern_class!(
+    #[unsafe(super(NSView, NSResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     pub struct WKWebView;
-
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl ClassType for WKWebView {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSView;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "objc2-app-kit")]

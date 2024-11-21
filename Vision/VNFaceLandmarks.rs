@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceLandmarkRegion;
-
-    unsafe impl ClassType for VNFaceLandmarkRegion {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for VNFaceLandmarkRegion {}
@@ -43,13 +40,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNFaceLandmarkRegion, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceLandmarkRegion2D;
-
-    unsafe impl ClassType for VNFaceLandmarkRegion2D {
-        #[inherits(NSObject)]
-        type Super = VNFaceLandmarkRegion;
-    }
 );
 
 unsafe impl NSCoding for VNFaceLandmarkRegion2D {}
@@ -96,12 +89,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceLandmarks;
-
-    unsafe impl ClassType for VNFaceLandmarks {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for VNFaceLandmarks {}
@@ -139,13 +129,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNFaceLandmarks, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceLandmarks2D;
-
-    unsafe impl ClassType for VNFaceLandmarks2D {
-        #[inherits(NSObject)]
-        type Super = VNFaceLandmarks;
-    }
 );
 
 unsafe impl NSCoding for VNFaceLandmarks2D {}

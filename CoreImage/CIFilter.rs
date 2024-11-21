@@ -382,12 +382,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIFilter;
-
-    unsafe impl ClassType for CIFilter {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CIFilter {}

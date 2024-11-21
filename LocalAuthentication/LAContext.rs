@@ -87,12 +87,9 @@ unsafe impl RefEncode for LAAccessControlOperation {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LAContext;
-
-    unsafe impl ClassType for LAContext {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for LAContext {}

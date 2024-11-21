@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CBPeer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBPeer")]
     pub struct CBCentral;
-
-    #[cfg(feature = "CBPeer")]
-    unsafe impl ClassType for CBCentral {
-        #[inherits(NSObject)]
-        type Super = CBPeer;
-    }
 );
 
 #[cfg(feature = "CBPeer")]

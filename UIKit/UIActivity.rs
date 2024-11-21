@@ -108,12 +108,9 @@ unsafe impl RefEncode for UIActivityCategory {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIActivity;
-
-    unsafe impl ClassType for UIActivity {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIActivity {}

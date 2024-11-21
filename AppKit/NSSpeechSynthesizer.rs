@@ -182,13 +182,10 @@ unsafe impl RefEncode for NSSpeechBoundary {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub struct NSSpeechSynthesizer;
-
-    unsafe impl ClassType for NSSpeechSynthesizer {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSSpeechSynthesizer {}

@@ -37,15 +37,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSCollectionViewLayoutInvalidationContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCollectionViewLayout")]
     pub struct NSCollectionViewFlowLayoutInvalidationContext;
-
-    #[cfg(feature = "NSCollectionViewLayout")]
-    unsafe impl ClassType for NSCollectionViewFlowLayoutInvalidationContext {
-        #[inherits(NSObject)]
-        type Super = NSCollectionViewLayoutInvalidationContext;
-    }
 );
 
 #[cfg(feature = "NSCollectionViewLayout")]
@@ -181,15 +176,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSCollectionViewLayout, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCollectionViewLayout")]
     pub struct NSCollectionViewFlowLayout;
-
-    #[cfg(feature = "NSCollectionViewLayout")]
-    unsafe impl ClassType for NSCollectionViewFlowLayout {
-        #[inherits(NSObject)]
-        type Super = NSCollectionViewLayout;
-    }
 );
 
 #[cfg(feature = "NSCollectionViewLayout")]

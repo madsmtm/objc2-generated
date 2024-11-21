@@ -27,12 +27,9 @@ unsafe impl RefEncode for NLModelType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NLModel;
-
-    unsafe impl ClassType for NLModel {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NLModel {}
@@ -93,12 +90,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NLModelConfiguration;
-
-    unsafe impl ClassType for NLModelConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NLModelConfiguration {}

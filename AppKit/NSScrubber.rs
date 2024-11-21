@@ -118,13 +118,10 @@ unsafe impl RefEncode for NSScrubberAlignment {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScrubberSelectionStyle;
-
-    unsafe impl ClassType for NSScrubberSelectionStyle {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for NSScrubberSelectionStyle {}
@@ -168,15 +165,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub struct NSScrubber;
-
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl ClassType for NSScrubber {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSView;
-    }
 );
 
 #[cfg(all(

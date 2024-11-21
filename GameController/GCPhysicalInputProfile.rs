@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCPhysicalInputProfile;
-
-    unsafe impl ClassType for GCPhysicalInputProfile {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GCPhysicalInputProfile {}

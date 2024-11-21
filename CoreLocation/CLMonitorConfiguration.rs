@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLMonitorConfiguration;
-
-    unsafe impl ClassType for CLMonitorConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CLMonitorConfiguration {}

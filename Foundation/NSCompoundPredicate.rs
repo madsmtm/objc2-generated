@@ -23,15 +23,10 @@ unsafe impl RefEncode for NSCompoundPredicateType {
 }
 
 extern_class!(
+    #[unsafe(super(NSPredicate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPredicate")]
     pub struct NSCompoundPredicate;
-
-    #[cfg(feature = "NSPredicate")]
-    unsafe impl ClassType for NSCompoundPredicate {
-        #[inherits(NSObject)]
-        type Super = NSPredicate;
-    }
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSPredicate"))]

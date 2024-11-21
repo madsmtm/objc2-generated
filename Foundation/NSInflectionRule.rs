@@ -5,12 +5,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInflectionRule;
-
-    unsafe impl ClassType for NSInflectionRule {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -48,13 +45,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSInflectionRule, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInflectionRuleExplicit;
-
-    unsafe impl ClassType for NSInflectionRuleExplicit {
-        #[inherits(NSObject)]
-        type Super = NSInflectionRule;
-    }
 );
 
 #[cfg(feature = "NSObject")]

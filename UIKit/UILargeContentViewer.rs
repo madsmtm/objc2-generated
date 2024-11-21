@@ -72,13 +72,10 @@ extern_methods!(
 unsafe impl UILargeContentViewerItem for UIView {}
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UILargeContentViewerInteraction;
-
-    unsafe impl ClassType for UILargeContentViewerInteraction {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UILargeContentViewerInteraction {}

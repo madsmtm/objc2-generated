@@ -25,12 +25,9 @@ unsafe impl RefEncode for NSTableViewRowActionStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTableViewRowAction;
-
-    unsafe impl ClassType for NSTableViewRowAction {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSTableViewRowAction {}

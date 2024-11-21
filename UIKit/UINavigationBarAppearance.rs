@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIBarAppearance, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIBarAppearance")]
     pub struct UINavigationBarAppearance;
-
-    #[cfg(feature = "UIBarAppearance")]
-    unsafe impl ClassType for UINavigationBarAppearance {
-        #[inherits(NSObject)]
-        type Super = UIBarAppearance;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIBarAppearance")]

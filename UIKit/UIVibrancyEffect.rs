@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIVisualEffect, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIVisualEffect")]
     pub struct UIVibrancyEffect;
-
-    #[cfg(feature = "UIVisualEffect")]
-    unsafe impl ClassType for UIVibrancyEffect {
-        #[inherits(NSObject)]
-        type Super = UIVisualEffect;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIVisualEffect")]

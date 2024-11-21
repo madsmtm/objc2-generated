@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CMAmbientPressureData, CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CMAmbientPressure", feature = "CMLogItem"))]
     pub struct CMRecordedPressureData;
-
-    #[cfg(all(feature = "CMAmbientPressure", feature = "CMLogItem"))]
-    unsafe impl ClassType for CMRecordedPressureData {
-        #[inherits(CMLogItem, NSObject)]
-        type Super = CMAmbientPressureData;
-    }
 );
 
 #[cfg(all(feature = "CMAmbientPressure", feature = "CMLogItem"))]

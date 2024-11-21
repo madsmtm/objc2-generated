@@ -30,15 +30,10 @@ pub type GCMicroGamepadValueChangedHandler =
     *mut block2::Block<dyn Fn(NonNull<GCMicroGamepad>, NonNull<GCControllerElement>)>;
 
 extern_class!(
+    #[unsafe(super(GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCPhysicalInputProfile")]
     pub struct GCMicroGamepad;
-
-    #[cfg(feature = "GCPhysicalInputProfile")]
-    unsafe impl ClassType for GCMicroGamepad {
-        #[inherits(NSObject)]
-        type Super = GCPhysicalInputProfile;
-    }
 );
 
 #[cfg(feature = "GCPhysicalInputProfile")]

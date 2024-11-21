@@ -30,16 +30,11 @@ unsafe impl RefEncode for BCChatButtonStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(target_os = "macos")]
     #[deprecated]
     pub struct BCChatButton;
-
-    #[cfg(target_os = "macos")]
-    unsafe impl ClassType for BCChatButton {
-        #[inherits(NSView, NSResponder, NSObject)]
-        type Super = NSControl;
-    }
 );
 
 #[cfg(target_os = "macos")]

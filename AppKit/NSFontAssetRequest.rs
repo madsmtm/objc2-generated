@@ -24,12 +24,9 @@ unsafe impl RefEncode for NSFontAssetRequestOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFontAssetRequest;
-
-    unsafe impl ClassType for NSFontAssetRequest {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSFontAssetRequest {}

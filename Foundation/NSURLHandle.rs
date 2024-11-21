@@ -116,12 +116,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLHandle;
-
-    unsafe impl ClassType for NSURLHandle {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSURLHandle {}

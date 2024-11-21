@@ -10,13 +10,10 @@ pub type UIAccessibilityCustomActionHandler =
     *mut block2::Block<dyn Fn(NonNull<UIAccessibilityCustomAction>) -> Bool>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIAccessibilityCustomAction;
-
-    unsafe impl ClassType for UIAccessibilityCustomAction {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIAccessibilityCustomAction {}

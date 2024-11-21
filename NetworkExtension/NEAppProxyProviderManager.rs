@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NETunnelProviderManager, NEVPNManager, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NETunnelProviderManager", feature = "NEVPNManager"))]
     pub struct NEAppProxyProviderManager;
-
-    #[cfg(all(feature = "NETunnelProviderManager", feature = "NEVPNManager"))]
-    unsafe impl ClassType for NEAppProxyProviderManager {
-        #[inherits(NEVPNManager, NSObject)]
-        type Super = NETunnelProviderManager;
-    }
 );
 
 #[cfg(all(feature = "NETunnelProviderManager", feature = "NEVPNManager"))]

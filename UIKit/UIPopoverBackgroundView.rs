@@ -25,15 +25,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     pub struct UIPopoverBackgroundView;
-
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl ClassType for UIPopoverBackgroundView {
-        #[inherits(UIResponder, NSObject)]
-        type Super = UIView;
-    }
 );
 
 #[cfg(all(

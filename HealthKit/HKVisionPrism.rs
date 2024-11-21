@@ -50,12 +50,9 @@ unsafe impl RefEncode for HKVisionEye {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKVisionPrism;
-
-    unsafe impl ClassType for HKVisionPrism {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for HKVisionPrism {}

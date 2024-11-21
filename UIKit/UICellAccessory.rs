@@ -28,13 +28,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICellAccessory;
-
-    unsafe impl ClassType for UICellAccessory {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UICellAccessory {}
@@ -97,14 +94,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UICellAccessory, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICellAccessoryDisclosureIndicator;
-
-    unsafe impl ClassType for UICellAccessoryDisclosureIndicator {
-        #[inherits(NSObject)]
-        type Super = UICellAccessory;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UICellAccessoryDisclosureIndicator {}
@@ -146,14 +139,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UICellAccessory, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICellAccessoryDetail;
-
-    unsafe impl ClassType for UICellAccessoryDetail {
-        #[inherits(NSObject)]
-        type Super = UICellAccessory;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UICellAccessoryDetail {}
@@ -203,14 +192,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UICellAccessory, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICellAccessoryCheckmark;
-
-    unsafe impl ClassType for UICellAccessoryCheckmark {
-        #[inherits(NSObject)]
-        type Super = UICellAccessory;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UICellAccessoryCheckmark {}
@@ -252,14 +237,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UICellAccessory, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICellAccessoryDelete;
-
-    unsafe impl ClassType for UICellAccessoryDelete {
-        #[inherits(NSObject)]
-        type Super = UICellAccessory;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UICellAccessoryDelete {}
@@ -317,14 +298,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UICellAccessory, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICellAccessoryInsert;
-
-    unsafe impl ClassType for UICellAccessoryInsert {
-        #[inherits(NSObject)]
-        type Super = UICellAccessory;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UICellAccessoryInsert {}
@@ -382,14 +359,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UICellAccessory, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICellAccessoryReorder;
-
-    unsafe impl ClassType for UICellAccessoryReorder {
-        #[inherits(NSObject)]
-        type Super = UICellAccessory;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UICellAccessoryReorder {}
@@ -437,14 +410,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UICellAccessory, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICellAccessoryMultiselect;
-
-    unsafe impl ClassType for UICellAccessoryMultiselect {
-        #[inherits(NSObject)]
-        type Super = UICellAccessory;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UICellAccessoryMultiselect {}
@@ -515,14 +484,10 @@ unsafe impl RefEncode for UICellAccessoryOutlineDisclosureStyle {
 }
 
 extern_class!(
+    #[unsafe(super(UICellAccessory, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICellAccessoryOutlineDisclosure;
-
-    unsafe impl ClassType for UICellAccessoryOutlineDisclosure {
-        #[inherits(NSObject)]
-        type Super = UICellAccessory;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UICellAccessoryOutlineDisclosure {}
@@ -578,14 +543,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UICellAccessory, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICellAccessoryPopUpMenu;
-
-    unsafe impl ClassType for UICellAccessoryPopUpMenu {
-        #[inherits(NSObject)]
-        type Super = UICellAccessory;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UICellAccessoryPopUpMenu {}
@@ -638,14 +599,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UICellAccessory, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICellAccessoryLabel;
-
-    unsafe impl ClassType for UICellAccessoryLabel {
-        #[inherits(NSObject)]
-        type Super = UICellAccessory;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UICellAccessoryLabel {}
@@ -737,14 +694,10 @@ extern "C-unwind" {
 }
 
 extern_class!(
+    #[unsafe(super(UICellAccessory, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICellAccessoryCustomView;
-
-    unsafe impl ClassType for UICellAccessoryCustomView {
-        #[inherits(NSObject)]
-        type Super = UICellAccessory;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UICellAccessoryCustomView {}

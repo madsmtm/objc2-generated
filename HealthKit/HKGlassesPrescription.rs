@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(HKVisionPrescription, HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "HKObject",
@@ -13,16 +14,6 @@ extern_class!(
         feature = "HKVisionPrescription"
     ))]
     pub struct HKGlassesPrescription;
-
-    #[cfg(all(
-        feature = "HKObject",
-        feature = "HKSample",
-        feature = "HKVisionPrescription"
-    ))]
-    unsafe impl ClassType for HKGlassesPrescription {
-        #[inherits(HKSample, HKObject, NSObject)]
-        type Super = HKVisionPrescription;
-    }
 );
 
 #[cfg(all(

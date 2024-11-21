@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(ASAuthorizationRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ASAuthorizationRequest")]
     pub struct ASAuthorizationPlatformPublicKeyCredentialAssertionRequest;
-
-    #[cfg(feature = "ASAuthorizationRequest")]
-    unsafe impl ClassType for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
-        #[inherits(NSObject)]
-        type Super = ASAuthorizationRequest;
-    }
 );
 
 #[cfg(all(

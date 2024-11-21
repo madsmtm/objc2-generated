@@ -27,16 +27,11 @@ pub const DOM_ANY_UNORDERED_NODE_TYPE: c_uint = 8;
 pub const DOM_FIRST_ORDERED_NODE_TYPE: c_uint = 9;
 
 extern_class!(
+    #[unsafe(super(DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     #[deprecated]
     pub struct DOMXPathResult;
-
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl ClassType for DOMXPathResult {
-        #[inherits(WebScriptObject, NSObject)]
-        type Super = DOMObject;
-    }
 );
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]

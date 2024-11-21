@@ -6,14 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
     pub struct UINib;
-
-    unsafe impl ClassType for UINib {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UINib {}

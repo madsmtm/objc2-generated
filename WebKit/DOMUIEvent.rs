@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(DOMEvent, DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "DOMEvent",
@@ -14,16 +15,6 @@ extern_class!(
     ))]
     #[deprecated]
     pub struct DOMUIEvent;
-
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl ClassType for DOMUIEvent {
-        #[inherits(DOMObject, WebScriptObject, NSObject)]
-        type Super = DOMEvent;
-    }
 );
 
 #[cfg(all(

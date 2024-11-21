@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     pub struct NSSegmentedCell;
-
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl ClassType for NSSegmentedCell {
-        #[inherits(NSCell, NSObject)]
-        type Super = NSActionCell;
-    }
 );
 
 #[cfg(all(

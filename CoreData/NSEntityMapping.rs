@@ -27,12 +27,9 @@ unsafe impl RefEncode for NSEntityMappingType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSEntityMapping;
-
-    unsafe impl ClassType for NSEntityMapping {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSEntityMapping {}

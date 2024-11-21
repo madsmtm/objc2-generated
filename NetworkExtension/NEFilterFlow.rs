@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterFlow;
-
-    unsafe impl ClassType for NEFilterFlow {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NEFilterFlow {}
@@ -67,13 +64,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NEFilterFlow, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterBrowserFlow;
-
-    unsafe impl ClassType for NEFilterBrowserFlow {
-        #[inherits(NSObject)]
-        type Super = NEFilterFlow;
-    }
 );
 
 unsafe impl NSCoding for NEFilterBrowserFlow {}
@@ -113,13 +106,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NEFilterFlow, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterSocketFlow;
-
-    unsafe impl ClassType for NEFilterSocketFlow {
-        #[inherits(NSObject)]
-        type Super = NEFilterFlow;
-    }
 );
 
 unsafe impl NSCoding for NEFilterSocketFlow {}

@@ -12,12 +12,9 @@ pub type MKDirectionsHandler = *mut block2::Block<dyn Fn(*mut MKDirectionsRespon
 pub type MKETAHandler = *mut block2::Block<dyn Fn(*mut MKETAResponse, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKDirections;
-
-    unsafe impl ClassType for MKDirections {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MKDirections {}

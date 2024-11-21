@@ -25,12 +25,9 @@ unsafe impl RefEncode for NSSharingCollaborationMode {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSharingCollaborationModeRestriction;
-
-    unsafe impl ClassType for NSSharingCollaborationModeRestriction {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSSharingCollaborationModeRestriction {}

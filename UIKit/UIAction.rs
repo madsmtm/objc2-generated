@@ -28,16 +28,11 @@ extern "C" {
 pub type UIActionHandler = *mut block2::Block<dyn Fn(NonNull<UIAction>)>;
 
 extern_class!(
+    #[unsafe(super(UIMenuElement, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIMenuElement")]
     pub struct UIAction;
-
-    #[cfg(feature = "UIMenuElement")]
-    unsafe impl ClassType for UIAction {
-        #[inherits(NSObject)]
-        type Super = UIMenuElement;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIMenuElement")]

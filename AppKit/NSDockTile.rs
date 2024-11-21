@@ -9,12 +9,9 @@ use crate::*;
 pub static NSAppKitVersionNumberWithDockTilePlugInSupport: NSAppKitVersion = 1001.0 as _;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDockTile;
-
-    unsafe impl ClassType for NSDockTile {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSDockTile {}

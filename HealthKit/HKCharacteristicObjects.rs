@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKBiologicalSexObject;
-
-    unsafe impl ClassType for HKBiologicalSexObject {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for HKBiologicalSexObject {}
@@ -46,12 +43,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKBloodTypeObject;
-
-    unsafe impl ClassType for HKBloodTypeObject {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for HKBloodTypeObject {}
@@ -86,12 +80,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKFitzpatrickSkinTypeObject;
-
-    unsafe impl ClassType for HKFitzpatrickSkinTypeObject {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for HKFitzpatrickSkinTypeObject {}
@@ -126,12 +117,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWheelchairUseObject;
-
-    unsafe impl ClassType for HKWheelchairUseObject {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for HKWheelchairUseObject {}
@@ -166,12 +154,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKActivityMoveModeObject;
-
-    unsafe impl ClassType for HKActivityMoveModeObject {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for HKActivityMoveModeObject {}

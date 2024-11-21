@@ -9,15 +9,10 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     pub struct UIStandardTextCursorView;
-
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl ClassType for UIStandardTextCursorView {
-        #[inherits(UIResponder, NSObject)]
-        type Super = UIView;
-    }
 );
 
 #[cfg(all(

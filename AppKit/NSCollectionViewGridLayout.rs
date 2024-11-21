@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSCollectionViewLayout, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCollectionViewLayout")]
     pub struct NSCollectionViewGridLayout;
-
-    #[cfg(feature = "NSCollectionViewLayout")]
-    unsafe impl ClassType for NSCollectionViewGridLayout {
-        #[inherits(NSObject)]
-        type Super = NSCollectionViewLayout;
-    }
 );
 
 #[cfg(feature = "NSCollectionViewLayout")]

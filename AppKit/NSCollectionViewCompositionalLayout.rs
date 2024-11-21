@@ -103,12 +103,9 @@ unsafe impl RefEncode for NSRectAlignment {
 // TODO: pub fn NSDirectionalEdgeInsetsMake(top: CGFloat,leading: CGFloat,bottom: CGFloat,trailing: CGFloat,) -> NSDirectionalEdgeInsets;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewCompositionalLayoutConfiguration;
-
-    unsafe impl ClassType for NSCollectionViewCompositionalLayoutConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionViewCompositionalLayoutConfiguration {}
@@ -168,15 +165,10 @@ pub type NSCollectionViewCompositionalLayoutSectionProvider = *mut block2::Block
 >;
 
 extern_class!(
+    #[unsafe(super(NSCollectionViewLayout, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCollectionViewLayout")]
     pub struct NSCollectionViewCompositionalLayout;
-
-    #[cfg(feature = "NSCollectionViewLayout")]
-    unsafe impl ClassType for NSCollectionViewCompositionalLayout {
-        #[inherits(NSObject)]
-        type Super = NSCollectionViewLayout;
-    }
 );
 
 #[cfg(feature = "NSCollectionViewLayout")]
@@ -274,12 +266,9 @@ pub type NSCollectionLayoutSectionVisibleItemsInvalidationHandler = *mut block2:
 >;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutSection;
-
-    unsafe impl ClassType for NSCollectionLayoutSection {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutSection {}
@@ -370,12 +359,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutItem;
-
-    unsafe impl ClassType for NSCollectionLayoutItem {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutItem {}
@@ -426,12 +412,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutGroupCustomItem;
-
-    unsafe impl ClassType for NSCollectionLayoutGroupCustomItem {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutGroupCustomItem {}
@@ -475,13 +458,9 @@ pub type NSCollectionLayoutGroupCustomItemProvider = *mut block2::Block<
 >;
 
 extern_class!(
+    #[unsafe(super(NSCollectionLayoutItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutGroup;
-
-    unsafe impl ClassType for NSCollectionLayoutGroup {
-        #[inherits(NSObject)]
-        type Super = NSCollectionLayoutItem;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutGroup {}
@@ -576,12 +555,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutDimension;
-
-    unsafe impl ClassType for NSCollectionLayoutDimension {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutDimension {}
@@ -630,12 +606,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutSize;
-
-    unsafe impl ClassType for NSCollectionLayoutSize {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutSize {}
@@ -669,12 +642,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutSpacing;
-
-    unsafe impl ClassType for NSCollectionLayoutSpacing {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutSpacing {}
@@ -711,12 +681,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutEdgeSpacing;
-
-    unsafe impl ClassType for NSCollectionLayoutEdgeSpacing {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutEdgeSpacing {}
@@ -758,13 +725,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSCollectionLayoutItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutSupplementaryItem;
-
-    unsafe impl ClassType for NSCollectionLayoutSupplementaryItem {
-        #[inherits(NSObject)]
-        type Super = NSCollectionLayoutItem;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutSupplementaryItem {}
@@ -830,13 +793,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSCollectionLayoutSupplementaryItem, NSCollectionLayoutItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutBoundarySupplementaryItem;
-
-    unsafe impl ClassType for NSCollectionLayoutBoundarySupplementaryItem {
-        #[inherits(NSCollectionLayoutItem, NSObject)]
-        type Super = NSCollectionLayoutSupplementaryItem;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutBoundarySupplementaryItem {}
@@ -925,13 +884,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSCollectionLayoutItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutDecorationItem;
-
-    unsafe impl ClassType for NSCollectionLayoutDecorationItem {
-        #[inherits(NSObject)]
-        type Super = NSCollectionLayoutItem;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutDecorationItem {}
@@ -981,12 +936,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutAnchor;
-
-    unsafe impl ClassType for NSCollectionLayoutAnchor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutAnchor {}

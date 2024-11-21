@@ -28,12 +28,9 @@ unsafe impl RefEncode for GCDeviceBatteryState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCDeviceBattery;
-
-    unsafe impl ClassType for GCDeviceBattery {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GCDeviceBattery {}

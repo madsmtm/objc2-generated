@@ -52,12 +52,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKOverlay;
-
-    unsafe impl ClassType for SKOverlay {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SKOverlay {}

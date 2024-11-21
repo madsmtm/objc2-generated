@@ -24,12 +24,9 @@ unsafe impl RefEncode for NSTaskTerminationReason {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTask;
-
-    unsafe impl ClassType for NSTask {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSTask {}

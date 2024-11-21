@@ -33,12 +33,9 @@ unsafe impl RefEncode for NSAppleEventSendOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAppleEventDescriptor;
-
-    unsafe impl ClassType for NSAppleEventDescriptor {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]

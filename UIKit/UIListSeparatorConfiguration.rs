@@ -32,13 +32,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIListSeparatorConfiguration;
-
-    unsafe impl ClassType for UIListSeparatorConfiguration {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UIListSeparatorConfiguration {}

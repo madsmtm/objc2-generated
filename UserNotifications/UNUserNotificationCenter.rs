@@ -36,12 +36,9 @@ unsafe impl RefEncode for UNAuthorizationOptions {
 pub static UNAuthorizationOptionNone: UNAuthorizationOptions = UNAuthorizationOptions(0);
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNUserNotificationCenter;
-
-    unsafe impl ClassType for UNUserNotificationCenter {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for UNUserNotificationCenter {}

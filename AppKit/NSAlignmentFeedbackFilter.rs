@@ -12,12 +12,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAlignmentFeedbackFilter;
-
-    unsafe impl ClassType for NSAlignmentFeedbackFilter {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSAlignmentFeedbackFilter {}

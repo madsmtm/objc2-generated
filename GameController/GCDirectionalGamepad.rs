@@ -22,15 +22,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(GCMicroGamepad, GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
     pub struct GCDirectionalGamepad;
-
-    #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
-    unsafe impl ClassType for GCDirectionalGamepad {
-        #[inherits(GCPhysicalInputProfile, NSObject)]
-        type Super = GCMicroGamepad;
-    }
 );
 
 #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]

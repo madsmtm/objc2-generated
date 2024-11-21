@@ -4,24 +4,10 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
-    pub struct NSDictionary<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject> {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut KeyType>,
-        _inner1: PhantomData<*mut ObjectType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> ClassType
-        for NSDictionary<KeyType, ObjectType>
-    {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSDictionary<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject>;
 );
 
 #[cfg(feature = "NSObject")]
@@ -424,25 +410,10 @@ extern_methods!(
     }
 );
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSDictionary<KeyType, ObjectType, >, NSObject))]
     #[derive(PartialEq, Eq, Hash)]
-    pub struct NSMutableDictionary<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject> {
-        __superclass: NSDictionary<KeyType, ObjectType>,
-        _inner0: PhantomData<*mut KeyType>,
-        _inner1: PhantomData<*mut ObjectType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> ClassType
-        for NSMutableDictionary<KeyType, ObjectType>
-    {
-        #[inherits(NSObject)]
-        type Super = NSDictionary<KeyType, ObjectType>;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSMutableDictionary<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject>;
 );
 
 #[cfg(feature = "NSObject")]

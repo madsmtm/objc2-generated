@@ -49,16 +49,11 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(UIPresentationController, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIPresentationController")]
     pub struct UIPopoverPresentationController;
-
-    #[cfg(feature = "UIPresentationController")]
-    unsafe impl ClassType for UIPopoverPresentationController {
-        #[inherits(NSObject)]
-        type Super = UIPresentationController;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIPresentationController")]

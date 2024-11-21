@@ -30,12 +30,9 @@ unsafe impl RefEncode for NSOperationQueuePriority {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOperation;
-
-    unsafe impl ClassType for NSOperation {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSOperation {}
@@ -138,13 +135,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBlockOperation;
-
-    unsafe impl ClassType for NSBlockOperation {
-        #[inherits(NSObject)]
-        type Super = NSOperation;
-    }
 );
 
 unsafe impl Send for NSBlockOperation {}
@@ -177,13 +170,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInvocationOperation;
-
-    unsafe impl ClassType for NSInvocationOperation {
-        #[inherits(NSObject)]
-        type Super = NSOperation;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSInvocationOperation {}
@@ -238,12 +227,9 @@ extern "C" {
 pub static NSOperationQueueDefaultMaxConcurrentOperationCount: NSInteger = -1;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOperationQueue;
-
-    unsafe impl ClassType for NSOperationQueue {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSOperationQueue {}

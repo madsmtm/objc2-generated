@@ -4,21 +4,10 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct NSMeasurement<UnitType: ?Sized = AnyObject> {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut UnitType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<UnitType: ?Sized + Message> ClassType for NSMeasurement<UnitType> {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSMeasurement<UnitType: ?Sized = AnyObject>;
 );
 
 #[cfg(feature = "NSObject")]

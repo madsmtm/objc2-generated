@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCRecordingOutputConfiguration;
-
-    unsafe impl ClassType for SCRecordingOutputConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SCRecordingOutputConfiguration {}
@@ -60,12 +57,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCRecordingOutput;
-
-    unsafe impl ClassType for SCRecordingOutput {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SCRecordingOutput {}

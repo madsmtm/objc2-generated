@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNPoint;
-
-    unsafe impl ClassType for VNPoint {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for VNPoint {}
@@ -77,12 +74,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNPoint3D;
-
-    unsafe impl ClassType for VNPoint3D {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for VNPoint3D {}
@@ -113,12 +107,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVector;
-
-    unsafe impl ClassType for VNVector {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for VNVector {}
@@ -215,12 +206,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNCircle;
-
-    unsafe impl ClassType for VNCircle {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for VNCircle {}
@@ -287,12 +275,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNContour;
-
-    unsafe impl ClassType for VNContour {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for VNContour {}

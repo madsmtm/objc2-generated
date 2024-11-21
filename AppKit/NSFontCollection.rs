@@ -49,12 +49,9 @@ extern "C" {
 pub type NSFontCollectionName = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFontCollection;
-
-    unsafe impl ClassType for NSFontCollection {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSFontCollection {}
@@ -171,13 +168,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSFontCollection, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableFontCollection;
-
-    unsafe impl ClassType for NSMutableFontCollection {
-        #[inherits(NSObject)]
-        type Super = NSFontCollection;
-    }
 );
 
 unsafe impl NSCoding for NSMutableFontCollection {}

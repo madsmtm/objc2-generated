@@ -41,12 +41,9 @@ unsafe impl RefEncode for GKPlayerConnectionState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKMatch;
-
-    unsafe impl ClassType for GKMatch {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GKMatch {}

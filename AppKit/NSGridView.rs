@@ -64,15 +64,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub struct NSGridView;
-
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl ClassType for NSGridView {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSView;
-    }
 );
 
 #[cfg(all(
@@ -254,13 +249,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGridRow;
-
-    unsafe impl ClassType for NSGridRow {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for NSGridRow {}
@@ -332,13 +324,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGridColumn;
-
-    unsafe impl ClassType for NSGridColumn {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for NSGridColumn {}
@@ -404,13 +393,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGridCell;
-
-    unsafe impl ClassType for NSGridCell {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for NSGridCell {}

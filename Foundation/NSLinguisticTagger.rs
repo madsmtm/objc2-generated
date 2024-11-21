@@ -248,13 +248,10 @@ unsafe impl RefEncode for NSLinguisticTaggerOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub struct NSLinguisticTagger;
-
-    unsafe impl ClassType for NSLinguisticTagger {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSLinguisticTagger {}

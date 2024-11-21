@@ -48,15 +48,10 @@ unsafe impl RefEncode for NSSliderType {
 }
 
 extern_class!(
+    #[unsafe(super(NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     pub struct NSSliderCell;
-
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl ClassType for NSSliderCell {
-        #[inherits(NSCell, NSObject)]
-        type Super = NSActionCell;
-    }
 );
 
 #[cfg(all(

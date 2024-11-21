@@ -9,6 +9,7 @@ use crate::*;
 pub const DOM_ALLOW_KEYBOARD_INPUT: c_uint = 1;
 
 extern_class!(
+    #[unsafe(super(DOMNode, DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "DOMNode",
@@ -17,16 +18,6 @@ extern_class!(
     ))]
     #[deprecated]
     pub struct DOMElement;
-
-    #[cfg(all(
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl ClassType for DOMElement {
-        #[inherits(DOMObject, WebScriptObject, NSObject)]
-        type Super = DOMNode;
-    }
 );
 
 #[cfg(all(

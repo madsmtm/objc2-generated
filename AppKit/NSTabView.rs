@@ -77,15 +77,10 @@ unsafe impl RefEncode for NSTabViewBorderType {
 }
 
 extern_class!(
+    #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub struct NSTabView;
-
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl ClassType for NSTabView {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSView;
-    }
 );
 
 #[cfg(all(

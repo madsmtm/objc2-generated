@@ -30,12 +30,9 @@ unsafe impl RefEncode for CLLiveUpdateConfiguration {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLUpdate;
-
-    unsafe impl ClassType for CLUpdate {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CLUpdate {}
@@ -91,12 +88,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLLocationUpdater;
-
-    unsafe impl ClassType for CLLocationUpdater {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CLLocationUpdater {}

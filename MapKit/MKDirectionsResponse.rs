@@ -8,12 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKDirectionsResponse;
-
-    unsafe impl ClassType for MKDirectionsResponse {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MKDirectionsResponse {}
@@ -45,12 +42,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKRoute;
-
-    unsafe impl ClassType for MKRoute {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MKRoute {}
@@ -101,12 +95,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKRouteStep;
-
-    unsafe impl ClassType for MKRouteStep {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MKRouteStep {}
@@ -145,12 +136,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKETAResponse;
-
-    unsafe impl ClassType for MKETAResponse {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MKETAResponse {}

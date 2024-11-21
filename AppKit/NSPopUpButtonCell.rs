@@ -24,6 +24,7 @@ unsafe impl RefEncode for NSPopUpArrowPosition {
 }
 
 extern_class!(
+    #[unsafe(super(NSMenuItemCell, NSButtonCell, NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "NSActionCell",
@@ -32,17 +33,6 @@ extern_class!(
         feature = "NSMenuItemCell"
     ))]
     pub struct NSPopUpButtonCell;
-
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSButtonCell",
-        feature = "NSCell",
-        feature = "NSMenuItemCell"
-    ))]
-    unsafe impl ClassType for NSPopUpButtonCell {
-        #[inherits(NSButtonCell, NSActionCell, NSCell, NSObject)]
-        type Super = NSMenuItemCell;
-    }
 );
 
 #[cfg(all(

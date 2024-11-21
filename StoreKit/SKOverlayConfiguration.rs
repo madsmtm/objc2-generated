@@ -25,12 +25,9 @@ unsafe impl RefEncode for SKOverlayPosition {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKOverlayConfiguration;
-
-    unsafe impl ClassType for SKOverlayConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SKOverlayConfiguration {}
@@ -46,13 +43,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(SKOverlayConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKOverlayAppConfiguration;
-
-    unsafe impl ClassType for SKOverlayAppConfiguration {
-        #[inherits(NSObject)]
-        type Super = SKOverlayConfiguration;
-    }
 );
 
 unsafe impl NSObjectProtocol for SKOverlayAppConfiguration {}
@@ -130,13 +123,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(SKOverlayConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKOverlayAppClipConfiguration;
-
-    unsafe impl ClassType for SKOverlayAppClipConfiguration {
-        #[inherits(NSObject)]
-        type Super = SKOverlayConfiguration;
-    }
 );
 
 unsafe impl NSObjectProtocol for SKOverlayAppClipConfiguration {}

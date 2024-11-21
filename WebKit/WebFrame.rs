@@ -9,13 +9,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
     pub struct WebFrame;
-
-    unsafe impl ClassType for WebFrame {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for WebFrame {}

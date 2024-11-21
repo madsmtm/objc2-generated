@@ -56,12 +56,9 @@ unsafe impl RefEncode for NSTextLayoutFragmentState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextLayoutFragment;
-
-    unsafe impl ClassType for NSTextLayoutFragment {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSTextLayoutFragment {}

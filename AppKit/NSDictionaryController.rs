@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDictionaryControllerKeyValuePair;
-
-    unsafe impl ClassType for NSDictionaryControllerKeyValuePair {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSDictionaryControllerKeyValuePair {}
@@ -53,6 +50,8 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSArrayController, NSObjectController, NSController, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "NSArrayController",
@@ -60,17 +59,6 @@ extern_class!(
         feature = "NSObjectController"
     ))]
     pub struct NSDictionaryController;
-
-    #[cfg(all(
-        feature = "NSArrayController",
-        feature = "NSController",
-        feature = "NSObjectController"
-    ))]
-    unsafe impl ClassType for NSDictionaryController {
-        #[inherits(NSObjectController, NSController, NSObject)]
-        type Super = NSArrayController;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(

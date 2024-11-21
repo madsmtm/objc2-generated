@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(GCGamepad, GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCGamepad", feature = "GCPhysicalInputProfile"))]
     #[deprecated = "GCGamepad has been deprecated, use GCExtendedGamepad instead"]
     pub struct GCGamepadSnapshot;
-
-    #[cfg(all(feature = "GCGamepad", feature = "GCPhysicalInputProfile"))]
-    unsafe impl ClassType for GCGamepadSnapshot {
-        #[inherits(GCPhysicalInputProfile, NSObject)]
-        type Super = GCGamepad;
-    }
 );
 
 #[cfg(all(feature = "GCGamepad", feature = "GCPhysicalInputProfile"))]

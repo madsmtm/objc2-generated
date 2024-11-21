@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSImageRep, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSImageRep")]
     #[deprecated = "`NSEPSImageRep` instances cannot be created on macOS 14.0 and later"]
     pub struct NSEPSImageRep;
-
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl ClassType for NSEPSImageRep {
-        #[inherits(NSObject)]
-        type Super = NSImageRep;
-    }
 );
 
 #[cfg(feature = "NSImageRep")]

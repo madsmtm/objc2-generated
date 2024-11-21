@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationPublicKeyCredentialPRFAssertionInputValues;
-
-    unsafe impl ClassType for ASAuthorizationPublicKeyCredentialPRFAssertionInputValues {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialPRFAssertionInputValues {}
@@ -45,12 +42,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationPublicKeyCredentialPRFAssertionInput;
-
-    unsafe impl ClassType for ASAuthorizationPublicKeyCredentialPRFAssertionInput {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialPRFAssertionInput {}

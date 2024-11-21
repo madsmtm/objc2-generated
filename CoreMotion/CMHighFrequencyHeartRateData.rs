@@ -29,15 +29,10 @@ unsafe impl RefEncode for CMHighFrequencyHeartRateDataConfidence {
 }
 
 extern_class!(
+    #[unsafe(super(CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CMLogItem")]
     pub struct CMHighFrequencyHeartRateData;
-
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl ClassType for CMHighFrequencyHeartRateData {
-        #[inherits(NSObject)]
-        type Super = CMLogItem;
-    }
 );
 
 #[cfg(feature = "CMLogItem")]

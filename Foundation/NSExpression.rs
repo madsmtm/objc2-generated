@@ -33,12 +33,9 @@ unsafe impl RefEncode for NSExpressionType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSExpression;
-
-    unsafe impl ClassType for NSExpression {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]

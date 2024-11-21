@@ -8,12 +8,9 @@ use objc2_app_kit::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKSelectionAccessory;
-
-    unsafe impl ClassType for MKSelectionAccessory {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MKSelectionAccessory {}
@@ -55,12 +52,9 @@ unsafe impl RefEncode for MKMapItemDetailSelectionAccessoryCalloutStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapItemDetailSelectionAccessoryPresentationStyle;
-
-    unsafe impl ClassType for MKMapItemDetailSelectionAccessoryPresentationStyle {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MKMapItemDetailSelectionAccessoryPresentationStyle {}

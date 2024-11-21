@@ -9,13 +9,10 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIListContentConfiguration;
-
-    unsafe impl ClassType for UIListContentConfiguration {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UIListContentConfiguration {}
@@ -213,16 +210,11 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIView, UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     pub struct UIListContentView;
-
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl ClassType for UIListContentView {
-        #[inherits(UIResponder, NSObject)]
-        type Super = UIView;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(

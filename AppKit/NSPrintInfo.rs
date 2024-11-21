@@ -190,12 +190,9 @@ extern "C" {
 pub type NSPrintInfoSettingKey = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPrintInfo;
-
-    unsafe impl ClassType for NSPrintInfo {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSPrintInfo {}

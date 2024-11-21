@@ -25,15 +25,10 @@ unsafe impl RefEncode for ASAuthorizationPlatformPublicKeyCredentialRegistration
 }
 
 extern_class!(
+    #[unsafe(super(ASAuthorizationRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ASAuthorizationRequest")]
     pub struct ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest;
-
-    #[cfg(feature = "ASAuthorizationRequest")]
-    unsafe impl ClassType for ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {
-        #[inherits(NSObject)]
-        type Super = ASAuthorizationRequest;
-    }
 );
 
 #[cfg(all(

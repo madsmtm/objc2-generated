@@ -181,12 +181,9 @@ unsafe impl RefEncode for MTLStepFunction {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLBufferLayoutDescriptor;
-
-    unsafe impl ClassType for MTLBufferLayoutDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLBufferLayoutDescriptor {}
@@ -231,12 +228,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLBufferLayoutDescriptorArray;
-
-    unsafe impl ClassType for MTLBufferLayoutDescriptorArray {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLBufferLayoutDescriptorArray {}
@@ -270,12 +264,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAttributeDescriptor;
-
-    unsafe impl ClassType for MTLAttributeDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLAttributeDescriptor {}
@@ -320,12 +311,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAttributeDescriptorArray;
-
-    unsafe impl ClassType for MTLAttributeDescriptorArray {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLAttributeDescriptorArray {}
@@ -359,12 +347,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLStageInputOutputDescriptor;
-
-    unsafe impl ClassType for MTLStageInputOutputDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLStageInputOutputDescriptor {}

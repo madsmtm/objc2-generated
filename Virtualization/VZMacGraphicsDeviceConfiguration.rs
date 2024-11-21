@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VZGraphicsDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZGraphicsDeviceConfiguration")]
     pub struct VZMacGraphicsDeviceConfiguration;
-
-    #[cfg(feature = "VZGraphicsDeviceConfiguration")]
-    unsafe impl ClassType for VZMacGraphicsDeviceConfiguration {
-        #[inherits(NSObject)]
-        type Super = VZGraphicsDeviceConfiguration;
-    }
 );
 
 #[cfg(feature = "VZGraphicsDeviceConfiguration")]

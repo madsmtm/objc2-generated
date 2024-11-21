@@ -105,12 +105,9 @@ unsafe impl RefEncode for OSAStorageOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSAScript;
-
-    unsafe impl ClassType for OSAScript {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for OSAScript {}

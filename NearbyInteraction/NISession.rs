@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NISession;
-
-    unsafe impl ClassType for NISession {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NISession {}
@@ -105,12 +102,9 @@ unsafe impl RefEncode for NIAlgorithmConvergenceStatus {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NIAlgorithmConvergence;
-
-    unsafe impl ClassType for NIAlgorithmConvergence {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NIAlgorithmConvergence {}

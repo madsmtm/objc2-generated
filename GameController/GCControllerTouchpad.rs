@@ -30,15 +30,10 @@ pub type GCControllerTouchpadHandler =
     *mut block2::Block<dyn Fn(NonNull<GCControllerTouchpad>, c_float, c_float, c_float, Bool)>;
 
 extern_class!(
+    #[unsafe(super(GCControllerElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCControllerElement")]
     pub struct GCControllerTouchpad;
-
-    #[cfg(feature = "GCControllerElement")]
-    unsafe impl ClassType for GCControllerTouchpad {
-        #[inherits(NSObject)]
-        type Super = GCControllerElement;
-    }
 );
 
 #[cfg(feature = "GCControllerElement")]

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(DOMStyleSheet, DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "DOMObject",
@@ -14,16 +15,6 @@ extern_class!(
     ))]
     #[deprecated]
     pub struct DOMCSSStyleSheet;
-
-    #[cfg(all(
-        feature = "DOMObject",
-        feature = "DOMStyleSheet",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl ClassType for DOMCSSStyleSheet {
-        #[inherits(DOMObject, WebScriptObject, NSObject)]
-        type Super = DOMStyleSheet;
-    }
 );
 
 #[cfg(all(

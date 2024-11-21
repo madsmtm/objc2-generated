@@ -80,13 +80,10 @@ unsafe impl RefEncode for UIScreenReferenceDisplayModeStatus {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIScreen;
-
-    unsafe impl ClassType for UIScreen {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIScreen {}

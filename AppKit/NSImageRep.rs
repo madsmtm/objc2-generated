@@ -32,12 +32,9 @@ unsafe impl RefEncode for NSImageLayoutDirection {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSImageRep;
-
-    unsafe impl ClassType for NSImageRep {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSImageRep {}

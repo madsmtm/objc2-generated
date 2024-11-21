@@ -70,12 +70,9 @@ unsafe impl RefEncode for MEMessageActionFlag {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEMessageAction;
-
-    unsafe impl ClassType for MEMessageAction {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MEMessageAction {}

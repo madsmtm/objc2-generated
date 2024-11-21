@@ -34,13 +34,10 @@ unsafe impl RefEncode for UIContentInsetsReference {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICollectionViewCompositionalLayoutConfiguration;
-
-    unsafe impl ClassType for UICollectionViewCompositionalLayoutConfiguration {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UICollectionViewCompositionalLayoutConfiguration {}
@@ -109,16 +106,11 @@ pub type UICollectionViewCompositionalLayoutSectionProvider = *mut block2::Block
 >;
 
 extern_class!(
+    #[unsafe(super(UICollectionViewLayout, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UICollectionViewLayout")]
     pub struct UICollectionViewCompositionalLayout;
-
-    #[cfg(feature = "UICollectionViewLayout")]
-    unsafe impl ClassType for UICollectionViewCompositionalLayout {
-        #[inherits(NSObject)]
-        type Super = UICollectionViewLayout;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UICollectionViewLayout")]
@@ -267,13 +259,10 @@ unsafe impl RefEncode for UICollectionLayoutSectionOrthogonalScrollingBounce {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICollectionLayoutSectionOrthogonalScrollingProperties;
-
-    unsafe impl ClassType for UICollectionLayoutSectionOrthogonalScrollingProperties {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UICollectionLayoutSectionOrthogonalScrollingProperties {}
@@ -317,13 +306,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutSection;
-
-    unsafe impl ClassType for NSCollectionLayoutSection {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutSection {}
@@ -430,13 +416,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutItem;
-
-    unsafe impl ClassType for NSCollectionLayoutItem {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutItem {}
@@ -489,13 +472,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutGroupCustomItem;
-
-    unsafe impl ClassType for NSCollectionLayoutGroupCustomItem {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutGroupCustomItem {}
@@ -540,14 +520,10 @@ pub type NSCollectionLayoutGroupCustomItemProvider = *mut block2::Block<
 >;
 
 extern_class!(
+    #[unsafe(super(NSCollectionLayoutItem, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutGroup;
-
-    unsafe impl ClassType for NSCollectionLayoutGroup {
-        #[inherits(NSObject)]
-        type Super = NSCollectionLayoutItem;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutGroup {}
@@ -642,13 +618,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutDimension;
-
-    unsafe impl ClassType for NSCollectionLayoutDimension {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutDimension {}
@@ -718,13 +691,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutSize;
-
-    unsafe impl ClassType for NSCollectionLayoutSize {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutSize {}
@@ -758,13 +728,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutSpacing;
-
-    unsafe impl ClassType for NSCollectionLayoutSpacing {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutSpacing {}
@@ -805,13 +772,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutEdgeSpacing;
-
-    unsafe impl ClassType for NSCollectionLayoutEdgeSpacing {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutEdgeSpacing {}
@@ -854,14 +818,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSCollectionLayoutItem, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutSupplementaryItem;
-
-    unsafe impl ClassType for NSCollectionLayoutSupplementaryItem {
-        #[inherits(NSObject)]
-        type Super = NSCollectionLayoutItem;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutSupplementaryItem {}
@@ -927,14 +887,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSCollectionLayoutSupplementaryItem, NSCollectionLayoutItem, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutBoundarySupplementaryItem;
-
-    unsafe impl ClassType for NSCollectionLayoutBoundarySupplementaryItem {
-        #[inherits(NSCollectionLayoutItem, NSObject)]
-        type Super = NSCollectionLayoutSupplementaryItem;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutBoundarySupplementaryItem {}
@@ -1026,14 +982,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSCollectionLayoutItem, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutDecorationItem;
-
-    unsafe impl ClassType for NSCollectionLayoutDecorationItem {
-        #[inherits(NSObject)]
-        type Super = NSCollectionLayoutItem;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutDecorationItem {}
@@ -1084,13 +1036,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutAnchor;
-
-    unsafe impl ClassType for NSCollectionLayoutAnchor {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionLayoutAnchor {}

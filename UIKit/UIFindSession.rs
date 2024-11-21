@@ -48,13 +48,10 @@ unsafe impl RefEncode for UITextSearchMatchMethod {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextSearchOptions;
-
-    unsafe impl ClassType for UITextSearchOptions {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITextSearchOptions {}
@@ -81,13 +78,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIFindSession;
-
-    unsafe impl ClassType for UIFindSession {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIFindSession {}
@@ -163,14 +157,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIFindSession, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextSearchingFindSession;
-
-    unsafe impl ClassType for UITextSearchingFindSession {
-        #[inherits(NSObject)]
-        type Super = UIFindSession;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITextSearchingFindSession {}

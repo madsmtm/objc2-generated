@@ -42,12 +42,9 @@ unsafe impl RefEncode for NLContextualEmbeddingAssetsResult {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NLContextualEmbedding;
-
-    unsafe impl ClassType for NLContextualEmbedding {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NLContextualEmbedding {}
@@ -136,12 +133,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NLContextualEmbeddingResult;
-
-    unsafe impl ClassType for NLContextualEmbeddingResult {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NLContextualEmbeddingResult {}

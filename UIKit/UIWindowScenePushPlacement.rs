@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIWindowScenePlacement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowScenePlacement")]
     pub struct UIWindowScenePushPlacement;
-
-    #[cfg(feature = "UIWindowScenePlacement")]
-    unsafe impl ClassType for UIWindowScenePushPlacement {
-        #[inherits(NSObject)]
-        type Super = UIWindowScenePlacement;
-    }
 );
 
 #[cfg(feature = "UIWindowScenePlacement")]

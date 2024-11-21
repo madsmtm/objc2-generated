@@ -39,12 +39,9 @@ unsafe impl RefEncode for NINearbyObjectVerticalDirectionEstimate {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NINearbyObject;
-
-    unsafe impl ClassType for NINearbyObject {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NINearbyObject {}

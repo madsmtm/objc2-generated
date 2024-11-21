@@ -25,15 +25,10 @@ unsafe impl RefEncode for MKStandardMapEmphasisStyle {
 }
 
 extern_class!(
+    #[unsafe(super(MKMapConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MKMapConfiguration")]
     pub struct MKStandardMapConfiguration;
-
-    #[cfg(feature = "MKMapConfiguration")]
-    unsafe impl ClassType for MKStandardMapConfiguration {
-        #[inherits(NSObject)]
-        type Super = MKMapConfiguration;
-    }
 );
 
 #[cfg(feature = "MKMapConfiguration")]

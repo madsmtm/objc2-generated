@@ -5,12 +5,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileHandle;
-
-    unsafe impl ClassType for NSFileHandle {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSFileHandle {}
@@ -324,12 +321,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPipe;
-
-    unsafe impl ClassType for NSPipe {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSPipe {}

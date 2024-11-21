@@ -8,12 +8,9 @@ use objc2_app_kit::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLookAroundSnapshot;
-
-    unsafe impl ClassType for MKLookAroundSnapshot {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MKLookAroundSnapshot {}

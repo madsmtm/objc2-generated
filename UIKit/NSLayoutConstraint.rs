@@ -139,13 +139,10 @@ unsafe impl RefEncode for NSLayoutFormatOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLayoutConstraint;
-
-    unsafe impl ClassType for NSLayoutConstraint {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSLayoutConstraint {}

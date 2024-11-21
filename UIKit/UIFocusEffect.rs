@@ -9,12 +9,9 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIFocusEffect;
-
-    unsafe impl ClassType for UIFocusEffect {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for UIFocusEffect {}
@@ -60,13 +57,9 @@ unsafe impl RefEncode for UIFocusHaloEffectPosition {
 }
 
 extern_class!(
+    #[unsafe(super(UIFocusEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIFocusHaloEffect;
-
-    unsafe impl ClassType for UIFocusHaloEffect {
-        #[inherits(NSObject)]
-        type Super = UIFocusEffect;
-    }
 );
 
 unsafe impl NSCopying for UIFocusHaloEffect {}

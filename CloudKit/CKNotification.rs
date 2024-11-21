@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKNotificationID;
-
-    unsafe impl ClassType for CKNotificationID {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CKNotificationID {}
@@ -65,12 +62,9 @@ unsafe impl RefEncode for CKNotificationType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKNotification;
-
-    unsafe impl ClassType for CKNotification {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKNotification {}
@@ -190,13 +184,9 @@ unsafe impl RefEncode for CKQueryNotificationReason {
 }
 
 extern_class!(
+    #[unsafe(super(CKNotification, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKQueryNotification;
-
-    unsafe impl ClassType for CKQueryNotification {
-        #[inherits(NSObject)]
-        type Super = CKNotification;
-    }
 );
 
 unsafe impl Send for CKQueryNotification {}
@@ -240,13 +230,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CKNotification, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKRecordZoneNotification;
-
-    unsafe impl ClassType for CKRecordZoneNotification {
-        #[inherits(NSObject)]
-        type Super = CKNotification;
-    }
 );
 
 unsafe impl Send for CKRecordZoneNotification {}
@@ -284,13 +270,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CKNotification, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKDatabaseNotification;
-
-    unsafe impl ClassType for CKDatabaseNotification {
-        #[inherits(NSObject)]
-        type Super = CKNotification;
-    }
 );
 
 unsafe impl Send for CKDatabaseNotification {}

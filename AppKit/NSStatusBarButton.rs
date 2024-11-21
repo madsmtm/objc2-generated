@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSButton, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "NSButton",
@@ -14,17 +15,6 @@ extern_class!(
         feature = "NSView"
     ))]
     pub struct NSStatusBarButton;
-
-    #[cfg(all(
-        feature = "NSButton",
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSView"
-    ))]
-    unsafe impl ClassType for NSStatusBarButton {
-        #[inherits(NSControl, NSView, NSResponder, NSObject)]
-        type Super = NSButton;
-    }
 );
 
 #[cfg(all(

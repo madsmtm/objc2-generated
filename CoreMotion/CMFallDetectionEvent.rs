@@ -29,12 +29,9 @@ unsafe impl RefEncode for CMFallDetectionEventUserResolution {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMFallDetectionEvent;
-
-    unsafe impl ClassType for CMFallDetectionEvent {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CMFallDetectionEvent {}

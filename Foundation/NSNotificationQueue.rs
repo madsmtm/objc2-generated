@@ -45,12 +45,9 @@ unsafe impl RefEncode for NSNotificationCoalescing {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNotificationQueue;
-
-    unsafe impl ClassType for NSNotificationQueue {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSNotificationQueue {}

@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UILayoutGuide, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UILayoutGuide")]
     pub struct UITrackingLayoutGuide;
-
-    #[cfg(feature = "UILayoutGuide")]
-    unsafe impl ClassType for UITrackingLayoutGuide {
-        #[inherits(NSObject)]
-        type Super = UILayoutGuide;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UILayoutGuide")]

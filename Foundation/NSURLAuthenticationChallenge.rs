@@ -42,12 +42,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLAuthenticationChallenge;
-
-    unsafe impl ClassType for NSURLAuthenticationChallenge {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSURLAuthenticationChallenge {}

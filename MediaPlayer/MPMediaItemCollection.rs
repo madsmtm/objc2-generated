@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(MPMediaEntity, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPMediaEntity")]
     pub struct MPMediaItemCollection;
-
-    #[cfg(feature = "MPMediaEntity")]
-    unsafe impl ClassType for MPMediaItemCollection {
-        #[inherits(NSObject)]
-        type Super = MPMediaEntity;
-    }
 );
 
 #[cfg(feature = "MPMediaEntity")]

@@ -9,12 +9,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPredicateEditorRowTemplate;
-
-    unsafe impl ClassType for NSPredicateEditorRowTemplate {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSPredicateEditorRowTemplate {}

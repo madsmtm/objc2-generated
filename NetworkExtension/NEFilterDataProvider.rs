@@ -23,15 +23,10 @@ unsafe impl RefEncode for NEFilterDataAttribute {
 }
 
 extern_class!(
+    #[unsafe(super(NEFilterProvider, NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NEFilterProvider", feature = "NEProvider"))]
     pub struct NEFilterDataProvider;
-
-    #[cfg(all(feature = "NEFilterProvider", feature = "NEProvider"))]
-    unsafe impl ClassType for NEFilterDataProvider {
-        #[inherits(NEProvider, NSObject)]
-        type Super = NEFilterProvider;
-    }
 );
 
 #[cfg(all(feature = "NEFilterProvider", feature = "NEProvider"))]
@@ -123,15 +118,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NEFilterVerdict, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NEFilterProvider")]
     pub struct NEFilterDataVerdict;
-
-    #[cfg(feature = "NEFilterProvider")]
-    unsafe impl ClassType for NEFilterDataVerdict {
-        #[inherits(NSObject)]
-        type Super = NEFilterVerdict;
-    }
 );
 
 #[cfg(feature = "NEFilterProvider")]
@@ -202,15 +192,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NEFilterVerdict, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NEFilterProvider")]
     pub struct NEFilterRemediationVerdict;
-
-    #[cfg(feature = "NEFilterProvider")]
-    unsafe impl ClassType for NEFilterRemediationVerdict {
-        #[inherits(NSObject)]
-        type Super = NEFilterVerdict;
-    }
 );
 
 #[cfg(feature = "NEFilterProvider")]

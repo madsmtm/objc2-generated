@@ -48,15 +48,10 @@ unsafe impl RefEncode for NSTextInsertionIndicatorAutomaticModeOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub struct NSTextInsertionIndicator;
-
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl ClassType for NSTextInsertionIndicator {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSView;
-    }
 );
 
 #[cfg(all(

@@ -101,12 +101,9 @@ unsafe impl RefEncode for UITextFormattingViewControllerComponentSize {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextFormattingViewControllerComponent;
-
-    unsafe impl ClassType for UITextFormattingViewControllerComponent {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for UITextFormattingViewControllerComponent {}
@@ -145,12 +142,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextFormattingViewControllerComponentGroup;
-
-    unsafe impl ClassType for UITextFormattingViewControllerComponentGroup {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for UITextFormattingViewControllerComponentGroup {}

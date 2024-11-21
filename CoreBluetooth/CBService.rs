@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]
     pub struct CBService;
-
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl ClassType for CBService {
-        #[inherits(NSObject)]
-        type Super = CBAttribute;
-    }
 );
 
 #[cfg(feature = "CBAttribute")]
@@ -58,15 +53,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CBService, CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]
     pub struct CBMutableService;
-
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl ClassType for CBMutableService {
-        #[inherits(CBAttribute, NSObject)]
-        type Super = CBService;
-    }
 );
 
 #[cfg(feature = "CBAttribute")]

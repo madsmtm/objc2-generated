@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(GKBasePlayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GKBasePlayer")]
     #[deprecated]
     pub struct GKCloudPlayer;
-
-    #[cfg(feature = "GKBasePlayer")]
-    unsafe impl ClassType for GKCloudPlayer {
-        #[inherits(NSObject)]
-        type Super = GKBasePlayer;
-    }
 );
 
 #[cfg(feature = "GKBasePlayer")]

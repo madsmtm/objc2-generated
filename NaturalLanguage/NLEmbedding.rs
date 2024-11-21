@@ -25,12 +25,9 @@ unsafe impl RefEncode for NLDistanceType {
 pub type NLDistance = c_double;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NLEmbedding;
-
-    unsafe impl ClassType for NLEmbedding {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NLEmbedding {}

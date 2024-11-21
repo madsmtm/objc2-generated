@@ -31,12 +31,9 @@ unsafe impl RefEncode for ASAuthorizationWebBrowserPublicKeyCredentialManagerAut
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationWebBrowserPublicKeyCredentialManager;
-
-    unsafe impl ClassType for ASAuthorizationWebBrowserPublicKeyCredentialManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for ASAuthorizationWebBrowserPublicKeyCredentialManager {}

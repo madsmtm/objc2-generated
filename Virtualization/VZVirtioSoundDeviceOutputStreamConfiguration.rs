@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VZVirtioSoundDeviceStreamConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
     pub struct VZVirtioSoundDeviceOutputStreamConfiguration;
-
-    #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
-    unsafe impl ClassType for VZVirtioSoundDeviceOutputStreamConfiguration {
-        #[inherits(NSObject)]
-        type Super = VZVirtioSoundDeviceStreamConfiguration;
-    }
 );
 
 #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]

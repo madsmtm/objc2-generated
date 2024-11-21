@@ -104,15 +104,10 @@ unsafe impl RefEncode for NSVisualEffectState {
 }
 
 extern_class!(
+    #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub struct NSVisualEffectView;
-
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl ClassType for NSVisualEffectView {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSView;
-    }
 );
 
 #[cfg(all(

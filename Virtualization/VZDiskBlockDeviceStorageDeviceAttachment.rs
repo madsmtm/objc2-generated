@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VZStorageDeviceAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZStorageDeviceAttachment")]
     pub struct VZDiskBlockDeviceStorageDeviceAttachment;
-
-    #[cfg(feature = "VZStorageDeviceAttachment")]
-    unsafe impl ClassType for VZDiskBlockDeviceStorageDeviceAttachment {
-        #[inherits(NSObject)]
-        type Super = VZStorageDeviceAttachment;
-    }
 );
 
 #[cfg(feature = "VZStorageDeviceAttachment")]

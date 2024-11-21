@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(BADownload, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "BADownload")]
     pub struct BAURLDownload;
-
-    #[cfg(feature = "BADownload")]
-    unsafe impl ClassType for BAURLDownload {
-        #[inherits(NSObject)]
-        type Super = BADownload;
-    }
 );
 
 #[cfg(feature = "BADownload")]

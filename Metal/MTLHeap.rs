@@ -27,12 +27,9 @@ unsafe impl RefEncode for MTLHeapType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLHeapDescriptor;
-
-    unsafe impl ClassType for MTLHeapDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLHeapDescriptor {}

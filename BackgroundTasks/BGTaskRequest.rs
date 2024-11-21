@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGTaskRequest;
-
-    unsafe impl ClassType for BGTaskRequest {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for BGTaskRequest {}
@@ -42,13 +39,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(BGTaskRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGAppRefreshTaskRequest;
-
-    unsafe impl ClassType for BGAppRefreshTaskRequest {
-        #[inherits(NSObject)]
-        type Super = BGTaskRequest;
-    }
 );
 
 unsafe impl NSCopying for BGAppRefreshTaskRequest {}
@@ -81,13 +74,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(BGTaskRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGProcessingTaskRequest;
-
-    unsafe impl ClassType for BGProcessingTaskRequest {
-        #[inherits(NSObject)]
-        type Super = BGTaskRequest;
-    }
 );
 
 unsafe impl NSCopying for BGProcessingTaskRequest {}
@@ -132,13 +121,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(BGProcessingTaskRequest, BGTaskRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGHealthResearchTaskRequest;
-
-    unsafe impl ClassType for BGHealthResearchTaskRequest {
-        #[inherits(BGTaskRequest, NSObject)]
-        type Super = BGProcessingTaskRequest;
-    }
 );
 
 unsafe impl NSCopying for BGHealthResearchTaskRequest {}

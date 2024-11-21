@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
     pub struct NSPanel;
-
-    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl ClassType for NSPanel {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSWindow;
-    }
 );
 
 #[cfg(all(

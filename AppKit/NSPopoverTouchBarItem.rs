@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSTouchBarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSTouchBarItem")]
     pub struct NSPopoverTouchBarItem;
-
-    #[cfg(feature = "NSTouchBarItem")]
-    unsafe impl ClassType for NSPopoverTouchBarItem {
-        #[inherits(NSObject)]
-        type Super = NSTouchBarItem;
-    }
 );
 
 #[cfg(feature = "NSTouchBarItem")]

@@ -31,16 +31,11 @@ unsafe impl RefEncode for UISwipeGestureRecognizerDirection {
 }
 
 extern_class!(
+    #[unsafe(super(UIGestureRecognizer, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGestureRecognizer")]
     pub struct UISwipeGestureRecognizer;
-
-    #[cfg(feature = "UIGestureRecognizer")]
-    unsafe impl ClassType for UISwipeGestureRecognizer {
-        #[inherits(NSObject)]
-        type Super = UIGestureRecognizer;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIGestureRecognizer")]

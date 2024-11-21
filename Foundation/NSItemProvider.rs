@@ -120,12 +120,9 @@ pub type NSItemProviderLoadHandler =
     *mut block2::Block<dyn Fn(NSItemProviderCompletionHandler, *const AnyClass, *mut NSDictionary)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSItemProvider;
-
-    unsafe impl ClassType for NSItemProvider {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]

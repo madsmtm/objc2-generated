@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSToolbarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSToolbarItem")]
     pub struct NSSharingServicePickerToolbarItem;
-
-    #[cfg(feature = "NSToolbarItem")]
-    unsafe impl ClassType for NSSharingServicePickerToolbarItem {
-        #[inherits(NSObject)]
-        type Super = NSToolbarItem;
-    }
 );
 
 #[cfg(feature = "NSToolbarItem")]

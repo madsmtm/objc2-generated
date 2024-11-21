@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LASecret;
-
-    unsafe impl ClassType for LASecret {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for LASecret {}

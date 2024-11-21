@@ -5,16 +5,11 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(MLCLossLayer, MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MLCLayer", feature = "MLCLossLayer"))]
     #[deprecated]
     pub struct MLCYOLOLossLayer;
-
-    #[cfg(all(feature = "MLCLayer", feature = "MLCLossLayer"))]
-    unsafe impl ClassType for MLCYOLOLossLayer {
-        #[inherits(MLCLayer, NSObject)]
-        type Super = MLCLossLayer;
-    }
 );
 
 #[cfg(all(feature = "MLCLayer", feature = "MLCLossLayer"))]

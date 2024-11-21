@@ -28,12 +28,9 @@ unsafe impl RefEncode for NSWorkspaceIconCreationOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWorkspace;
-
-    unsafe impl ClassType for NSWorkspace {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSWorkspace {}
@@ -273,12 +270,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWorkspaceOpenConfiguration;
-
-    unsafe impl ClassType for NSWorkspaceOpenConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSWorkspaceOpenConfiguration {}
@@ -448,12 +442,9 @@ unsafe impl RefEncode for NSWorkspaceAuthorizationType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWorkspaceAuthorization;
-
-    unsafe impl ClassType for NSWorkspaceAuthorization {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSWorkspaceAuthorization {}

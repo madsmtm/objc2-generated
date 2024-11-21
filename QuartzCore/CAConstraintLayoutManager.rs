@@ -44,12 +44,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAConstraintLayoutManager;
-
-    unsafe impl ClassType for CAConstraintLayoutManager {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "CALayer")]
@@ -76,12 +73,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAConstraint;
-
-    unsafe impl ClassType for CAConstraint {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CAConstraint {}

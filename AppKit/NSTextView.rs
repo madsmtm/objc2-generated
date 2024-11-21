@@ -47,15 +47,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSText, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
     pub struct NSTextView;
-
-    #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-    unsafe impl ClassType for NSTextView {
-        #[inherits(NSView, NSResponder, NSObject)]
-        type Super = NSText;
-    }
 );
 
 #[cfg(all(

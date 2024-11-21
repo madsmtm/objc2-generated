@@ -15,15 +15,10 @@ pub type CAEmitterLayerEmitterMode = NSString;
 pub type CAEmitterLayerRenderMode = NSString;
 
 extern_class!(
+    #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]
     pub struct CAEmitterLayer;
-
-    #[cfg(feature = "CALayer")]
-    unsafe impl ClassType for CAEmitterLayer {
-        #[inherits(NSObject)]
-        type Super = CALayer;
-    }
 );
 
 #[cfg(all(feature = "CALayer", feature = "CAMediaTiming"))]

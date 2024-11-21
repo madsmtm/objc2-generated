@@ -25,16 +25,11 @@ unsafe impl RefEncode for UIPushBehaviorMode {
 }
 
 extern_class!(
+    #[unsafe(super(UIDynamicBehavior, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIDynamicBehavior")]
     pub struct UIPushBehavior;
-
-    #[cfg(feature = "UIDynamicBehavior")]
-    unsafe impl ClassType for UIPushBehavior {
-        #[inherits(NSObject)]
-        type Super = UIDynamicBehavior;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIDynamicBehavior")]

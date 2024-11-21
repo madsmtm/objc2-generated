@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BAAppExtensionInfo;
-
-    unsafe impl ClassType for BAAppExtensionInfo {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for BAAppExtensionInfo {}

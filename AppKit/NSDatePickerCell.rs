@@ -69,15 +69,10 @@ unsafe impl RefEncode for NSDatePickerElementFlags {
 }
 
 extern_class!(
+    #[unsafe(super(NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     pub struct NSDatePickerCell;
-
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl ClassType for NSDatePickerCell {
-        #[inherits(NSCell, NSObject)]
-        type Super = NSActionCell;
-    }
 );
 
 #[cfg(all(

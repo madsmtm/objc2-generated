@@ -39,12 +39,9 @@ pub const NSHangOnTopLevelExceptionMask: c_uint = 1 << 3;
 pub const NSHangOnOtherExceptionMask: c_uint = 1 << 4;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSExceptionHandler;
-
-    unsafe impl ClassType for NSExceptionHandler {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSExceptionHandler {}

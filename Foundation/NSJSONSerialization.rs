@@ -50,12 +50,9 @@ unsafe impl RefEncode for NSJSONWritingOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSJSONSerialization;
-
-    unsafe impl ClassType for NSJSONSerialization {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSJSONSerialization {}

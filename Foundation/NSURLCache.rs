@@ -23,12 +23,9 @@ unsafe impl RefEncode for NSURLCacheStoragePolicy {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCachedURLResponse;
-
-    unsafe impl ClassType for NSCachedURLResponse {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSCachedURLResponse {}
@@ -104,12 +101,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLCache;
-
-    unsafe impl ClassType for NSURLCache {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSURLCache {}

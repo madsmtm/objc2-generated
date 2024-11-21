@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VZBootLoader, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZBootLoader")]
     pub struct VZLinuxBootLoader;
-
-    #[cfg(feature = "VZBootLoader")]
-    unsafe impl ClassType for VZLinuxBootLoader {
-        #[inherits(NSObject)]
-        type Super = VZBootLoader;
-    }
 );
 
 #[cfg(feature = "VZBootLoader")]

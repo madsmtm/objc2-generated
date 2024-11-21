@@ -8,15 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(PHObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHObject")]
     pub struct PHAsset;
-
-    #[cfg(feature = "PHObject")]
-    unsafe impl ClassType for PHAsset {
-        #[inherits(NSObject)]
-        type Super = PHObject;
-    }
 );
 
 #[cfg(feature = "PHObject")]

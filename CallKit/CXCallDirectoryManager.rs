@@ -27,12 +27,9 @@ unsafe impl RefEncode for CXCallDirectoryEnabledStatus {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CXCallDirectoryManager;
-
-    unsafe impl ClassType for CXCallDirectoryManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CXCallDirectoryManager {}

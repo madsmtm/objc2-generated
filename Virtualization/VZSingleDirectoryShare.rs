@@ -5,15 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VZDirectoryShare, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZDirectoryShare")]
     pub struct VZSingleDirectoryShare;
-
-    #[cfg(feature = "VZDirectoryShare")]
-    unsafe impl ClassType for VZSingleDirectoryShare {
-        #[inherits(NSObject)]
-        type Super = VZDirectoryShare;
-    }
 );
 
 #[cfg(feature = "VZDirectoryShare")]

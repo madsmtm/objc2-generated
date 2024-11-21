@@ -64,13 +64,10 @@ unsafe impl RefEncode for SKCloudServiceCapability {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use MusicKit"]
     pub struct SKCloudServiceController;
-
-    unsafe impl ClassType for SKCloudServiceController {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SKCloudServiceController {}

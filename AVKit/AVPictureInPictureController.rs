@@ -9,12 +9,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPictureInPictureController;
-
-    unsafe impl ClassType for AVPictureInPictureController {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for AVPictureInPictureController {}
@@ -110,12 +107,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPictureInPictureControllerContentSource;
-
-    unsafe impl ClassType for AVPictureInPictureControllerContentSource {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for AVPictureInPictureControllerContentSource {}

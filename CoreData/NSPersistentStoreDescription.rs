@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentStoreDescription;
-
-    unsafe impl ClassType for NSPersistentStoreDescription {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSPersistentStoreDescription {}

@@ -130,13 +130,10 @@ unsafe impl RefEncode for UIButtonConfigurationIndicator {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIButtonConfiguration;
-
-    unsafe impl ClassType for UIButtonConfiguration {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UIButtonConfiguration {}

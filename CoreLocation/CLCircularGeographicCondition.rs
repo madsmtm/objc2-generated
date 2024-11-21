@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CLCondition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CLCondition")]
     pub struct CLCircularGeographicCondition;
-
-    #[cfg(feature = "CLCondition")]
-    unsafe impl ClassType for CLCircularGeographicCondition {
-        #[inherits(NSObject)]
-        type Super = CLCondition;
-    }
 );
 
 #[cfg(feature = "CLCondition")]

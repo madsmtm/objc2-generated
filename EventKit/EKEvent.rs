@@ -54,15 +54,10 @@ unsafe impl RefEncode for EKEventStatus {
 }
 
 extern_class!(
+    #[unsafe(super(EKCalendarItem, EKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
     pub struct EKEvent;
-
-    #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
-    unsafe impl ClassType for EKEvent {
-        #[inherits(EKObject, NSObject)]
-        type Super = EKCalendarItem;
-    }
 );
 
 #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]

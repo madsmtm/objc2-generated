@@ -95,15 +95,10 @@ unsafe impl RefEncode for CBPeripheralManagerConnectionLatency {
 }
 
 extern_class!(
+    #[unsafe(super(CBManager, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBManager")]
     pub struct CBPeripheralManager;
-
-    #[cfg(feature = "CBManager")]
-    unsafe impl ClassType for CBPeripheralManager {
-        #[inherits(NSObject)]
-        type Super = CBManager;
-    }
 );
 
 #[cfg(feature = "CBManager")]

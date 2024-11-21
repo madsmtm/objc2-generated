@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIScreenMode;
-
-    unsafe impl ClassType for UIScreenMode {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for UIScreenMode {}

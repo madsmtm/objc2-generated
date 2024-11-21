@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtioSoundDeviceStreamConfiguration;
-
-    unsafe impl ClassType for VZVirtioSoundDeviceStreamConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for VZVirtioSoundDeviceStreamConfiguration {}

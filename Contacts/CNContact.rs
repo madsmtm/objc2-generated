@@ -56,12 +56,9 @@ extern_protocol!(
 unsafe impl CNKeyDescriptor for NSString {}
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContact;
-
-    unsafe impl ClassType for CNContact {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CNContact {}

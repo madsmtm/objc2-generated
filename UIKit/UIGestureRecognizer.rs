@@ -35,13 +35,10 @@ unsafe impl RefEncode for UIGestureRecognizerState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIGestureRecognizer;
-
-    unsafe impl ClassType for UIGestureRecognizer {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIGestureRecognizer {}

@@ -139,12 +139,9 @@ unsafe impl RefEncode for NSLayoutFormatOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLayoutConstraint;
-
-    unsafe impl ClassType for NSLayoutConstraint {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSLayoutConstraint {}

@@ -28,12 +28,9 @@ unsafe impl RefEncode for NSTestComparisonOperation {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptWhoseTest;
-
-    unsafe impl ClassType for NSScriptWhoseTest {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -67,13 +64,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptWhoseTest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLogicalTest;
-
-    unsafe impl ClassType for NSLogicalTest {
-        #[inherits(NSObject)]
-        type Super = NSScriptWhoseTest;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -129,13 +122,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptWhoseTest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSpecifierTest;
-
-    unsafe impl ClassType for NSSpecifierTest {
-        #[inherits(NSObject)]
-        type Super = NSScriptWhoseTest;
-    }
 );
 
 #[cfg(feature = "NSObject")]

@@ -37,12 +37,9 @@ unsafe impl RefEncode for NSColorSpaceModel {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSColorSpace;
-
-    unsafe impl ClassType for NSColorSpace {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSColorSpace {}

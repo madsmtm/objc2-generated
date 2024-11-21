@@ -8,15 +8,10 @@ use objc2_osa_kit::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(AMBundleAction, AMAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
     pub struct AMAppleScriptAction;
-
-    #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
-    unsafe impl ClassType for AMAppleScriptAction {
-        #[inherits(AMAction, NSObject)]
-        type Super = AMBundleAction;
-    }
 );
 
 #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]

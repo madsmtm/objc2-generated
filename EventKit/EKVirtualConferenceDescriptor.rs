@@ -8,12 +8,9 @@ use crate::*;
 pub type EKVirtualConferenceRoomTypeIdentifier = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKVirtualConferenceRoomTypeDescriptor;
-
-    unsafe impl ClassType for EKVirtualConferenceRoomTypeDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for EKVirtualConferenceRoomTypeDescriptor {}
@@ -42,12 +39,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKVirtualConferenceURLDescriptor;
-
-    unsafe impl ClassType for EKVirtualConferenceURLDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for EKVirtualConferenceURLDescriptor {}
@@ -76,12 +70,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKVirtualConferenceDescriptor;
-
-    unsafe impl ClassType for EKVirtualConferenceDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for EKVirtualConferenceDescriptor {}

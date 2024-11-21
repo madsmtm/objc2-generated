@@ -21,12 +21,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLSDataStore;
-
-    unsafe impl ClassType for CLSDataStore {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CLSDataStore {}

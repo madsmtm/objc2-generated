@@ -25,15 +25,10 @@ unsafe impl RefEncode for NSDeleteRule {
 }
 
 extern_class!(
+    #[unsafe(super(NSPropertyDescription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPropertyDescription")]
     pub struct NSRelationshipDescription;
-
-    #[cfg(feature = "NSPropertyDescription")]
-    unsafe impl ClassType for NSRelationshipDescription {
-        #[inherits(NSObject)]
-        type Super = NSPropertyDescription;
-    }
 );
 
 #[cfg(feature = "NSPropertyDescription")]

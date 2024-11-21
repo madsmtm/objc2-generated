@@ -32,17 +32,11 @@ unsafe impl RefEncode for GKMatchmakingMode {
 }
 
 extern_class!(
+    #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     pub struct GKMatchmakerViewController;
-
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl ClassType for GKMatchmakerViewController {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSViewController;
-    }
 );
 
 #[cfg(all(feature = "GKDialogController", feature = "objc2-app-kit"))]

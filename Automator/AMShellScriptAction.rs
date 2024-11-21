@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(AMBundleAction, AMAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
     pub struct AMShellScriptAction;
-
-    #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
-    unsafe impl ClassType for AMShellScriptAction {
-        #[inherits(AMAction, NSObject)]
-        type Super = AMBundleAction;
-    }
 );
 
 #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]

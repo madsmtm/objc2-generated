@@ -25,12 +25,9 @@ unsafe impl RefEncode for CLServiceSessionAuthorizationRequirement {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLServiceSessionDiagnostic;
-
-    unsafe impl ClassType for CLServiceSessionDiagnostic {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CLServiceSessionDiagnostic {}
@@ -75,12 +72,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLServiceSession;
-
-    unsafe impl ClassType for CLServiceSession {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CLServiceSession {}

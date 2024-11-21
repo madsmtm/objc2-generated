@@ -17,12 +17,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDraggingImageComponent;
-
-    unsafe impl ClassType for NSDraggingImageComponent {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSDraggingImageComponent {}
@@ -72,12 +69,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDraggingItem;
-
-    unsafe impl ClassType for NSDraggingItem {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSDraggingItem {}

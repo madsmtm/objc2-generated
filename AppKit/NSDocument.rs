@@ -51,13 +51,10 @@ unsafe impl RefEncode for NSSaveOperationType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDocument;
-
-    unsafe impl ClassType for NSDocument {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "NSKeyValueBinding")]

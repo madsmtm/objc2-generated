@@ -18,12 +18,9 @@ extern "C" {
 }
 
 extern_class!(
-    #[derive(PartialEq, Eq, Hash)]
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAttributedString;
-
-    unsafe impl ClassType for NSAttributedString {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -223,13 +220,9 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(PartialEq, Eq, Hash)]
+    #[unsafe(super(NSAttributedString, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableAttributedString;
-
-    unsafe impl ClassType for NSMutableAttributedString {
-        #[inherits(NSObject)]
-        type Super = NSAttributedString;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -449,12 +442,9 @@ unsafe impl RefEncode for NSAttributedStringMarkdownInterpretedSyntax {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAttributedStringMarkdownSourcePosition;
-
-    unsafe impl ClassType for NSAttributedStringMarkdownSourcePosition {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -514,12 +504,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAttributedStringMarkdownParsingOptions;
-
-    unsafe impl ClassType for NSAttributedStringMarkdownParsingOptions {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -797,12 +784,9 @@ unsafe impl RefEncode for NSPresentationIntentTableColumnAlignment {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPresentationIntent;
-
-    unsafe impl ClassType for NSPresentationIntent {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]

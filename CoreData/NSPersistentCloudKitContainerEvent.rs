@@ -35,12 +35,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentCloudKitContainerEvent;
-
-    unsafe impl ClassType for NSPersistentCloudKitContainerEvent {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSPersistentCloudKitContainerEvent {}

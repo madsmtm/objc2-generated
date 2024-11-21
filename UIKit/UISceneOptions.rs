@@ -10,13 +10,10 @@ use objc2_user_notifications::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UISceneConnectionOptions;
-
-    unsafe impl ClassType for UISceneConnectionOptions {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UISceneConnectionOptions {}
@@ -57,13 +54,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UISceneOpenURLOptions;
-
-    unsafe impl ClassType for UISceneOpenURLOptions {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UISceneOpenURLOptions {}
@@ -92,13 +86,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UISceneOpenExternalURLOptions;
-
-    unsafe impl ClassType for UISceneOpenExternalURLOptions {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UISceneOpenExternalURLOptions {}
@@ -156,13 +147,10 @@ unsafe impl RefEncode for UISceneCollectionJoinBehavior {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UISceneActivationRequestOptions;
-
-    unsafe impl ClassType for UISceneActivationRequestOptions {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UISceneActivationRequestOptions {}
@@ -200,13 +188,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UISceneDestructionRequestOptions;
-
-    unsafe impl ClassType for UISceneDestructionRequestOptions {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UISceneDestructionRequestOptions {}

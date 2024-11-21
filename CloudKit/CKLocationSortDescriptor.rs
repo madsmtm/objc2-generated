@@ -8,13 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSSortDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKLocationSortDescriptor;
-
-    unsafe impl ClassType for CKLocationSortDescriptor {
-        #[inherits(NSObject)]
-        type Super = NSSortDescriptor;
-    }
 );
 
 unsafe impl NSCoding for CKLocationSortDescriptor {}

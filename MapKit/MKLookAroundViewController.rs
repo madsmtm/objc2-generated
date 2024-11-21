@@ -30,17 +30,11 @@ unsafe impl RefEncode for MKLookAroundBadgePosition {
 }
 
 extern_class!(
+    #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     pub struct MKLookAroundViewController;
-
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl ClassType for MKLookAroundViewController {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSViewController;
-    }
 );
 
 #[cfg(feature = "objc2-app-kit")]

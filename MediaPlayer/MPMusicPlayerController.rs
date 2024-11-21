@@ -89,12 +89,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerController;
-
-    unsafe impl ClassType for MPMusicPlayerController {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "MPMediaPlayback")]

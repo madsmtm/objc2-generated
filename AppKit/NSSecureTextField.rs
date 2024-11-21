@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSTextField, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "NSControl",
@@ -14,17 +15,6 @@ extern_class!(
         feature = "NSView"
     ))]
     pub struct NSSecureTextField;
-
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl ClassType for NSSecureTextField {
-        #[inherits(NSControl, NSView, NSResponder, NSObject)]
-        type Super = NSTextField;
-    }
 );
 
 #[cfg(all(
@@ -192,6 +182,7 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSTextFieldCell, NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "NSActionCell",
@@ -199,16 +190,6 @@ extern_class!(
         feature = "NSTextFieldCell"
     ))]
     pub struct NSSecureTextFieldCell;
-
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl ClassType for NSSecureTextFieldCell {
-        #[inherits(NSActionCell, NSCell, NSObject)]
-        type Super = NSTextFieldCell;
-    }
 );
 
 #[cfg(all(

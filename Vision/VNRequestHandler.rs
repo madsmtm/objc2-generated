@@ -23,12 +23,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageRequestHandler;
-
-    unsafe impl ClassType for VNImageRequestHandler {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for VNImageRequestHandler {}
@@ -78,12 +75,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNSequenceRequestHandler;
-
-    unsafe impl ClassType for VNSequenceRequestHandler {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for VNSequenceRequestHandler {}

@@ -9,18 +9,12 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CALayer, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     pub struct UIHoverEffectLayer;
-
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl ClassType for UIHoverEffectLayer {
-        #[inherits(NSObject)]
-        type Super = CALayer;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "objc2-quartz-core")]

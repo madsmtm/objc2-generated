@@ -59,13 +59,10 @@ extern_protocol!(
 pub type UIObjectTrait = *mut AnyClass;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitUserInterfaceIdiom;
-
-    unsafe impl ClassType for UITraitUserInterfaceIdiom {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITraitUserInterfaceIdiom {}
@@ -90,13 +87,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitUserInterfaceStyle;
-
-    unsafe impl ClassType for UITraitUserInterfaceStyle {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITraitUserInterfaceStyle {}
@@ -121,13 +115,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitLayoutDirection;
-
-    unsafe impl ClassType for UITraitLayoutDirection {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITraitLayoutDirection {}
@@ -152,13 +143,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitDisplayScale;
-
-    unsafe impl ClassType for UITraitDisplayScale {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITraitDisplayScale {}
@@ -183,13 +171,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitHorizontalSizeClass;
-
-    unsafe impl ClassType for UITraitHorizontalSizeClass {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITraitHorizontalSizeClass {}
@@ -214,13 +199,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitVerticalSizeClass;
-
-    unsafe impl ClassType for UITraitVerticalSizeClass {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITraitVerticalSizeClass {}
@@ -245,13 +227,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitForceTouchCapability;
-
-    unsafe impl ClassType for UITraitForceTouchCapability {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITraitForceTouchCapability {}
@@ -276,13 +255,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitPreferredContentSizeCategory;
-
-    unsafe impl ClassType for UITraitPreferredContentSizeCategory {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITraitPreferredContentSizeCategory {}
@@ -307,13 +283,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitDisplayGamut;
-
-    unsafe impl ClassType for UITraitDisplayGamut {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITraitDisplayGamut {}
@@ -338,13 +311,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitAccessibilityContrast;
-
-    unsafe impl ClassType for UITraitAccessibilityContrast {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITraitAccessibilityContrast {}
@@ -369,13 +339,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitUserInterfaceLevel;
-
-    unsafe impl ClassType for UITraitUserInterfaceLevel {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITraitUserInterfaceLevel {}
@@ -400,13 +367,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitLegibilityWeight;
-
-    unsafe impl ClassType for UITraitLegibilityWeight {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITraitLegibilityWeight {}
@@ -431,13 +395,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitActiveAppearance;
-
-    unsafe impl ClassType for UITraitActiveAppearance {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITraitActiveAppearance {}
@@ -462,13 +423,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitToolbarItemPresentationSize;
-
-    unsafe impl ClassType for UITraitToolbarItemPresentationSize {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITraitToolbarItemPresentationSize {}
@@ -493,13 +451,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitImageDynamicRange;
-
-    unsafe impl ClassType for UITraitImageDynamicRange {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITraitImageDynamicRange {}
@@ -524,13 +479,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitTypesettingLanguage;
-
-    unsafe impl ClassType for UITraitTypesettingLanguage {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITraitTypesettingLanguage {}
@@ -555,13 +507,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitSceneCaptureState;
-
-    unsafe impl ClassType for UITraitSceneCaptureState {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITraitSceneCaptureState {}

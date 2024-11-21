@@ -24,15 +24,10 @@ unsafe impl RefEncode for NSXMLDocumentContentKind {
 }
 
 extern_class!(
+    #[unsafe(super(NSXMLNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSXMLNode")]
     pub struct NSXMLDocument;
-
-    #[cfg(feature = "NSXMLNode")]
-    unsafe impl ClassType for NSXMLDocument {
-        #[inherits(NSObject)]
-        type Super = NSXMLNode;
-    }
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSXMLNode"))]

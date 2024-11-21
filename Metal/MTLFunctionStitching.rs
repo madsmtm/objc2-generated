@@ -32,12 +32,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionStitchingAttributeAlwaysInline;
-
-    unsafe impl ClassType for MTLFunctionStitchingAttributeAlwaysInline {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl MTLFunctionStitchingAttribute for MTLFunctionStitchingAttributeAlwaysInline {}
@@ -66,12 +63,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionStitchingInputNode;
-
-    unsafe impl ClassType for MTLFunctionStitchingInputNode {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl MTLFunctionStitchingNode for MTLFunctionStitchingInputNode {}
@@ -112,12 +106,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionStitchingFunctionNode;
-
-    unsafe impl ClassType for MTLFunctionStitchingFunctionNode {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl MTLFunctionStitchingNode for MTLFunctionStitchingFunctionNode {}
@@ -182,12 +173,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionStitchingGraph;
-
-    unsafe impl ClassType for MTLFunctionStitchingGraph {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLFunctionStitchingGraph {}
@@ -252,12 +240,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLStitchedLibraryDescriptor;
-
-    unsafe impl ClassType for MTLStitchedLibraryDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLStitchedLibraryDescriptor {}

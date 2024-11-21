@@ -35,12 +35,9 @@ unsafe impl RefEncode for MKAddressFilterOption {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKAddressFilter;
-
-    unsafe impl ClassType for MKAddressFilter {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MKAddressFilter {}

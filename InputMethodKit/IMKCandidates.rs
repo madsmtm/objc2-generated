@@ -27,15 +27,10 @@ pub const kIMKLocateCandidatesRightHint: c_uint = 4;
 pub type IMKCandidatesLocationHint = NSUInteger;
 
 extern_class!(
+    #[unsafe(super(NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
     pub struct IMKCandidates;
-
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl ClassType for IMKCandidates {
-        #[inherits(NSObject)]
-        type Super = NSResponder;
-    }
 );
 
 #[cfg(feature = "objc2-app-kit")]

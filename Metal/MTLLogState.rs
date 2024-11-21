@@ -48,12 +48,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLLogStateDescriptor;
-
-    unsafe impl ClassType for MTLLogStateDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLLogStateDescriptor {}

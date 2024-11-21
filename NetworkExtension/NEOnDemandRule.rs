@@ -52,12 +52,9 @@ unsafe impl RefEncode for NEOnDemandRuleInterfaceType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEOnDemandRule;
-
-    unsafe impl ClassType for NEOnDemandRule {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NEOnDemandRule {}
@@ -130,13 +127,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NEOnDemandRule, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEOnDemandRuleConnect;
-
-    unsafe impl ClassType for NEOnDemandRuleConnect {
-        #[inherits(NSObject)]
-        type Super = NEOnDemandRule;
-    }
 );
 
 unsafe impl NSCoding for NEOnDemandRuleConnect {}
@@ -167,13 +160,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NEOnDemandRule, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEOnDemandRuleDisconnect;
-
-    unsafe impl ClassType for NEOnDemandRuleDisconnect {
-        #[inherits(NSObject)]
-        type Super = NEOnDemandRule;
-    }
 );
 
 unsafe impl NSCoding for NEOnDemandRuleDisconnect {}
@@ -204,13 +193,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NEOnDemandRule, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEOnDemandRuleIgnore;
-
-    unsafe impl ClassType for NEOnDemandRuleIgnore {
-        #[inherits(NSObject)]
-        type Super = NEOnDemandRule;
-    }
 );
 
 unsafe impl NSCoding for NEOnDemandRuleIgnore {}
@@ -241,13 +226,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NEOnDemandRule, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEOnDemandRuleEvaluateConnection;
-
-    unsafe impl ClassType for NEOnDemandRuleEvaluateConnection {
-        #[inherits(NSObject)]
-        type Super = NEOnDemandRule;
-    }
 );
 
 unsafe impl NSCoding for NEOnDemandRuleEvaluateConnection {}
@@ -307,12 +288,9 @@ unsafe impl RefEncode for NEEvaluateConnectionRuleAction {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEEvaluateConnectionRule;
-
-    unsafe impl ClassType for NEEvaluateConnectionRule {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NEEvaluateConnectionRule {}

@@ -90,15 +90,10 @@ unsafe impl RefEncode for NSNumberFormatterRoundingMode {
 }
 
 extern_class!(
+    #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]
     pub struct NSNumberFormatter;
-
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl ClassType for NSNumberFormatter {
-        #[inherits(NSObject)]
-        type Super = NSFormatter;
-    }
 );
 
 #[cfg(feature = "NSFormatter")]

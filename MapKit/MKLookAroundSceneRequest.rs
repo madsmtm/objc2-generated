@@ -8,12 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLookAroundSceneRequest;
-
-    unsafe impl ClassType for MKLookAroundSceneRequest {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MKLookAroundSceneRequest {}

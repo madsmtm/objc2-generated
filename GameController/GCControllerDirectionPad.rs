@@ -9,15 +9,10 @@ pub type GCControllerDirectionPadValueChangedHandler =
     *mut block2::Block<dyn Fn(NonNull<GCControllerDirectionPad>, c_float, c_float)>;
 
 extern_class!(
+    #[unsafe(super(GCControllerElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCControllerElement")]
     pub struct GCControllerDirectionPad;
-
-    #[cfg(feature = "GCControllerElement")]
-    unsafe impl ClassType for GCControllerDirectionPad {
-        #[inherits(NSObject)]
-        type Super = GCControllerElement;
-    }
 );
 
 #[cfg(feature = "GCControllerElement")]

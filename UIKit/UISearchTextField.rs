@@ -9,6 +9,8 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UITextField, UIControl, UIView, UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "UIControl",
@@ -17,18 +19,6 @@ extern_class!(
         feature = "UIView"
     ))]
     pub struct UISearchTextField;
-
-    #[cfg(all(
-        feature = "UIControl",
-        feature = "UIResponder",
-        feature = "UITextField",
-        feature = "UIView"
-    ))]
-    unsafe impl ClassType for UISearchTextField {
-        #[inherits(UIControl, UIView, UIResponder, NSObject)]
-        type Super = UITextField;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(
@@ -311,13 +301,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UISearchToken;
-
-    unsafe impl ClassType for UISearchToken {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UISearchToken {}

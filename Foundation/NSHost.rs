@@ -5,13 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
     pub struct NSHost;
-
-    unsafe impl ClassType for NSHost {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSHost {}

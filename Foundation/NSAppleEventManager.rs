@@ -20,12 +20,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAppleEventManager;
-
-    unsafe impl ClassType for NSAppleEventManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSAppleEventManager {}

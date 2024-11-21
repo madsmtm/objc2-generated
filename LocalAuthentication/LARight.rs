@@ -29,12 +29,9 @@ unsafe impl RefEncode for LARightState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LARight;
-
-    unsafe impl ClassType for LARight {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for LARight {}

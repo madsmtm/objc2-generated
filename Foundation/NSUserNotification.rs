@@ -34,13 +34,10 @@ unsafe impl RefEncode for NSUserNotificationActivationType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub struct NSUserNotification;
-
-    unsafe impl ClassType for NSUserNotification {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -242,13 +239,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub struct NSUserNotificationAction;
-
-    unsafe impl ClassType for NSUserNotificationAction {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -300,13 +294,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub struct NSUserNotificationCenter;
-
-    unsafe impl ClassType for NSUserNotificationCenter {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSUserNotificationCenter {}

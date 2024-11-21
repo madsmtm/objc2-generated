@@ -77,16 +77,11 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(UIDynamicBehavior, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIDynamicBehavior")]
     pub struct UICollisionBehavior;
-
-    #[cfg(feature = "UIDynamicBehavior")]
-    unsafe impl ClassType for UICollisionBehavior {
-        #[inherits(NSObject)]
-        type Super = UIDynamicBehavior;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIDynamicBehavior")]

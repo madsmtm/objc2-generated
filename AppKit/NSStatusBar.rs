@@ -10,12 +10,9 @@ pub static NSVariableStatusItemLength: CGFloat = -1.0 as _;
 pub static NSSquareStatusItemLength: CGFloat = -2.0 as _;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStatusBar;
-
-    unsafe impl ClassType for NSStatusBar {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSStatusBar {}

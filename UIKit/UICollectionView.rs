@@ -86,16 +86,11 @@ pub type UICollectionViewLayoutInteractiveTransitionCompletion =
     *mut block2::Block<dyn Fn(Bool, Bool)>;
 
 extern_class!(
+    #[unsafe(super(UIFocusUpdateContext, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIFocus")]
     pub struct UICollectionViewFocusUpdateContext;
-
-    #[cfg(feature = "UIFocus")]
-    unsafe impl ClassType for UICollectionViewFocusUpdateContext {
-        #[inherits(NSObject)]
-        type Super = UIFocusUpdateContext;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIFocus")]
@@ -713,16 +708,11 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(UIScrollView, UIView, UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
     pub struct UICollectionView;
-
-    #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-    unsafe impl ClassType for UICollectionView {
-        #[inherits(UIView, UIResponder, NSObject)]
-        type Super = UIScrollView;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(
@@ -1558,16 +1548,11 @@ unsafe impl RefEncode for UICollectionViewDropIntent {
 }
 
 extern_class!(
+    #[unsafe(super(UIDropProposal, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIDropInteraction")]
     pub struct UICollectionViewDropProposal;
-
-    #[cfg(feature = "UIDropInteraction")]
-    unsafe impl ClassType for UICollectionViewDropProposal {
-        #[inherits(NSObject)]
-        type Super = UIDropProposal;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIDropInteraction")]
@@ -1675,13 +1660,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICollectionViewPlaceholder;
-
-    unsafe impl ClassType for UICollectionViewPlaceholder {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UICollectionViewPlaceholder {}
@@ -1727,14 +1709,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UICollectionViewPlaceholder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICollectionViewDropPlaceholder;
-
-    unsafe impl ClassType for UICollectionViewDropPlaceholder {
-        #[inherits(NSObject)]
-        type Super = UICollectionViewPlaceholder;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UICollectionViewDropPlaceholder {}

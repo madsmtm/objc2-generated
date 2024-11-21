@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(HKLensSpecification, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKLensSpecification")]
     pub struct HKGlassesLensSpecification;
-
-    #[cfg(feature = "HKLensSpecification")]
-    unsafe impl ClassType for HKGlassesLensSpecification {
-        #[inherits(NSObject)]
-        type Super = HKLensSpecification;
-    }
 );
 
 #[cfg(feature = "HKLensSpecification")]

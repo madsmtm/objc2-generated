@@ -39,12 +39,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMWaterSubmersionManager;
-
-    unsafe impl ClassType for CMWaterSubmersionManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CMWaterSubmersionManager {}

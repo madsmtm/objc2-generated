@@ -92,12 +92,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSharingService;
-
-    unsafe impl ClassType for NSSharingService {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSSharingService {}
@@ -379,12 +376,9 @@ extern_category!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSharingServicePicker;
-
-    unsafe impl ClassType for NSSharingServicePicker {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSSharingServicePicker {}

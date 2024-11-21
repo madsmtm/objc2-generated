@@ -32,12 +32,9 @@ unsafe impl RefEncode for UIColorProminence {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIColor;
-
-    unsafe impl ClassType for UIColor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for UIColor {}

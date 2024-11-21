@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(DOMCSSRule, DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "DOMCSSRule",
@@ -14,16 +15,6 @@ extern_class!(
     ))]
     #[deprecated]
     pub struct DOMCSSCharsetRule;
-
-    #[cfg(all(
-        feature = "DOMCSSRule",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl ClassType for DOMCSSCharsetRule {
-        #[inherits(DOMObject, WebScriptObject, NSObject)]
-        type Super = DOMCSSRule;
-    }
 );
 
 #[cfg(all(

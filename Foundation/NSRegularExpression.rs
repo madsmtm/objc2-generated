@@ -29,12 +29,9 @@ unsafe impl RefEncode for NSRegularExpressionOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRegularExpression;
-
-    unsafe impl ClassType for NSRegularExpression {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSRegularExpression {}
@@ -252,13 +249,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSRegularExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDataDetector;
-
-    unsafe impl ClassType for NSDataDetector {
-        #[inherits(NSObject)]
-        type Super = NSRegularExpression;
-    }
 );
 
 #[cfg(feature = "NSObject")]

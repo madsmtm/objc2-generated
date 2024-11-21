@@ -63,13 +63,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
     pub struct GKChallengeEventHandler;
-
-    unsafe impl ClassType for GKChallengeEventHandler {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GKChallengeEventHandler {}

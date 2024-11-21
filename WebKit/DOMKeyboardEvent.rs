@@ -15,6 +15,7 @@ pub const DOM_KEY_LOCATION_RIGHT: c_uint = 0x02;
 pub const DOM_KEY_LOCATION_NUMPAD: c_uint = 0x03;
 
 extern_class!(
+    #[unsafe(super(DOMUIEvent, DOMEvent, DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "DOMEvent",
@@ -24,17 +25,6 @@ extern_class!(
     ))]
     #[deprecated]
     pub struct DOMKeyboardEvent;
-
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "DOMUIEvent",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl ClassType for DOMKeyboardEvent {
-        #[inherits(DOMEvent, DOMObject, WebScriptObject, NSObject)]
-        type Super = DOMUIEvent;
-    }
 );
 
 #[cfg(all(

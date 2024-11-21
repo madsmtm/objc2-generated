@@ -9,12 +9,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKAchievementDescription;
-
-    unsafe impl ClassType for GKAchievementDescription {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for GKAchievementDescription {}

@@ -4,21 +4,10 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
-    pub struct NSArray<ObjectType: ?Sized = AnyObject> {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut ObjectType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<ObjectType: ?Sized + Message> ClassType for NSArray<ObjectType> {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSArray<ObjectType: ?Sized = AnyObject>;
 );
 
 #[cfg(feature = "NSObject")]
@@ -545,22 +534,10 @@ extern_methods!(
     }
 );
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSArray<ObjectType, >, NSObject))]
     #[derive(PartialEq, Eq, Hash)]
-    pub struct NSMutableArray<ObjectType: ?Sized = AnyObject> {
-        __superclass: NSArray<ObjectType>,
-        _inner0: PhantomData<*mut ObjectType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<ObjectType: ?Sized + Message> ClassType for NSMutableArray<ObjectType> {
-        #[inherits(NSObject)]
-        type Super = NSArray<ObjectType>;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSMutableArray<ObjectType: ?Sized = AnyObject>;
 );
 
 #[cfg(feature = "NSObject")]

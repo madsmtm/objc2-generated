@@ -25,12 +25,9 @@ unsafe impl RefEncode for MKDirectionsRoutePreference {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKDirectionsRequest;
-
-    unsafe impl ClassType for MKDirectionsRequest {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MKDirectionsRequest {}

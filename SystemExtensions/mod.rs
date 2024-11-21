@@ -103,12 +103,9 @@ unsafe impl RefEncode for OSSystemExtensionRequestResult {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSSystemExtensionRequest;
-
-    unsafe impl ClassType for OSSystemExtensionRequest {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for OSSystemExtensionRequest {}
@@ -144,12 +141,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSSystemExtensionProperties;
-
-    unsafe impl ClassType for OSSystemExtensionProperties {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for OSSystemExtensionProperties {}
@@ -230,12 +224,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSSystemExtensionManager;
-
-    unsafe impl ClassType for OSSystemExtensionManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for OSSystemExtensionManager {}

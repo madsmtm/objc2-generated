@@ -31,15 +31,10 @@ unsafe impl RefEncode for VNGenerateOpticalFlowRequestComputationAccuracy {
 }
 
 extern_class!(
+    #[unsafe(super(VNTargetedImageRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
     pub struct VNGenerateOpticalFlowRequest;
-
-    #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-    unsafe impl ClassType for VNGenerateOpticalFlowRequest {
-        #[inherits(VNImageBasedRequest, VNRequest, NSObject)]
-        type Super = VNTargetedImageRequest;
-    }
 );
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]

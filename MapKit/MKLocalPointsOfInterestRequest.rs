@@ -13,12 +13,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLocalPointsOfInterestRequest;
-
-    unsafe impl ClassType for MKLocalPointsOfInterestRequest {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MKLocalPointsOfInterestRequest {}

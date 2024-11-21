@@ -13,6 +13,14 @@ pub const DOM_DOM_DELTA_LINE: c_uint = 0x01;
 pub const DOM_DOM_DELTA_PAGE: c_uint = 0x02;
 
 extern_class!(
+    #[unsafe(super(
+        DOMMouseEvent,
+        DOMUIEvent,
+        DOMEvent,
+        DOMObject,
+        WebScriptObject,
+        NSObject
+    ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "DOMEvent",
@@ -23,18 +31,6 @@ extern_class!(
     ))]
     #[deprecated]
     pub struct DOMWheelEvent;
-
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMMouseEvent",
-        feature = "DOMObject",
-        feature = "DOMUIEvent",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl ClassType for DOMWheelEvent {
-        #[inherits(DOMUIEvent, DOMEvent, DOMObject, WebScriptObject, NSObject)]
-        type Super = DOMMouseEvent;
-    }
 );
 
 #[cfg(all(

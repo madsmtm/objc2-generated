@@ -70,13 +70,10 @@ unsafe impl RefEncode for NSToolbarSizeMode {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSToolbar;
-
-    unsafe impl ClassType for NSToolbar {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSToolbar {}

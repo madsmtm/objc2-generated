@@ -27,12 +27,9 @@ unsafe impl RefEncode for CXHandleType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CXHandle;
-
-    unsafe impl ClassType for CXHandle {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CXHandle {}

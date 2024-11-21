@@ -25,15 +25,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(ASAuthorizationRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ASAuthorizationRequest")]
     pub struct ASAuthorizationOpenIDRequest;
-
-    #[cfg(feature = "ASAuthorizationRequest")]
-    unsafe impl ClassType for ASAuthorizationOpenIDRequest {
-        #[inherits(NSObject)]
-        type Super = ASAuthorizationRequest;
-    }
 );
 
 #[cfg(feature = "ASAuthorizationRequest")]

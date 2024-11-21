@@ -27,12 +27,9 @@ unsafe impl RefEncode for UIDocumentBrowserActionAvailability {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIDocumentBrowserAction;
-
-    unsafe impl ClassType for UIDocumentBrowserAction {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIDocumentBrowserAction {}

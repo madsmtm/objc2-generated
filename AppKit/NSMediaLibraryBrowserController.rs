@@ -29,12 +29,9 @@ unsafe impl RefEncode for NSMediaLibrary {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMediaLibraryBrowserController;
-
-    unsafe impl ClassType for NSMediaLibraryBrowserController {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSMediaLibraryBrowserController {}

@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFetchIndexDescription;
-
-    unsafe impl ClassType for NSFetchIndexDescription {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSFetchIndexDescription {}

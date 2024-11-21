@@ -27,12 +27,9 @@ unsafe impl RefEncode for GCSystemGestureState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCControllerElement;
-
-    unsafe impl ClassType for GCControllerElement {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GCControllerElement {}

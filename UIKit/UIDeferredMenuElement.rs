@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIMenuElement, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIMenuElement")]
     pub struct UIDeferredMenuElement;
-
-    #[cfg(feature = "UIMenuElement")]
-    unsafe impl ClassType for UIDeferredMenuElement {
-        #[inherits(NSObject)]
-        type Super = UIMenuElement;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIMenuElement")]

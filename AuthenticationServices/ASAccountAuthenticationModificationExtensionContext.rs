@@ -6,13 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAccountAuthenticationModificationExtensionContext;
-
-    unsafe impl ClassType for ASAccountAuthenticationModificationExtensionContext {
-        #[inherits(NSObject)]
-        type Super = NSExtensionContext;
-    }
 );
 
 unsafe impl NSObjectProtocol for ASAccountAuthenticationModificationExtensionContext {}

@@ -5,12 +5,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterPacketContext;
-
-    unsafe impl ClassType for NEFilterPacketContext {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NEFilterPacketContext {}
@@ -52,15 +49,10 @@ unsafe impl RefEncode for NEFilterPacketProviderVerdict {
 }
 
 extern_class!(
+    #[unsafe(super(NEFilterProvider, NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NEFilterProvider", feature = "NEProvider"))]
     pub struct NEFilterPacketProvider;
-
-    #[cfg(all(feature = "NEFilterProvider", feature = "NEProvider"))]
-    unsafe impl ClassType for NEFilterPacketProvider {
-        #[inherits(NEProvider, NSObject)]
-        type Super = NEFilterProvider;
-    }
 );
 
 #[cfg(all(feature = "NEFilterProvider", feature = "NEProvider"))]

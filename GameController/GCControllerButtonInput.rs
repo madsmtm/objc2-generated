@@ -13,15 +13,10 @@ pub type GCControllerButtonTouchedChangedHandler =
     *mut block2::Block<dyn Fn(NonNull<GCControllerButtonInput>, c_float, Bool, Bool)>;
 
 extern_class!(
+    #[unsafe(super(GCControllerElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCControllerElement")]
     pub struct GCControllerButtonInput;
-
-    #[cfg(feature = "GCControllerElement")]
-    unsafe impl ClassType for GCControllerButtonInput {
-        #[inherits(NSObject)]
-        type Super = GCControllerElement;
-    }
 );
 
 #[cfg(feature = "GCControllerElement")]

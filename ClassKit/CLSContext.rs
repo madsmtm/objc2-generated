@@ -92,15 +92,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(CLSObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CLSObject")]
     pub struct CLSContext;
-
-    #[cfg(feature = "CLSObject")]
-    unsafe impl ClassType for CLSContext {
-        #[inherits(NSObject)]
-        type Super = CLSObject;
-    }
 );
 
 #[cfg(feature = "CLSObject")]

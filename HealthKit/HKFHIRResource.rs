@@ -57,12 +57,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKFHIRResource;
-
-    unsafe impl ClassType for HKFHIRResource {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for HKFHIRResource {}

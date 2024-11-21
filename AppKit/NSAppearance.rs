@@ -9,12 +9,9 @@ use crate::*;
 pub type NSAppearanceName = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAppearance;
-
-    unsafe impl ClassType for NSAppearance {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSAppearance {}

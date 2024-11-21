@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIPanGestureRecognizer, UIGestureRecognizer, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
     pub struct UIScreenEdgePanGestureRecognizer;
-
-    #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
-    unsafe impl ClassType for UIScreenEdgePanGestureRecognizer {
-        #[inherits(UIGestureRecognizer, NSObject)]
-        type Super = UIPanGestureRecognizer;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]

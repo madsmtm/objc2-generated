@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMSensorDataList;
-
-    unsafe impl ClassType for CMSensorDataList {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSFastEnumeration for CMSensorDataList {}
@@ -34,12 +31,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMSensorRecorder;
-
-    unsafe impl ClassType for CMSensorRecorder {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CMSensorRecorder {}

@@ -10,15 +10,10 @@ pub type CLBeaconMajorValue = u16;
 pub type CLBeaconMinorValue = u16;
 
 extern_class!(
+    #[unsafe(super(CLCondition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CLCondition")]
     pub struct CLBeaconIdentityCondition;
-
-    #[cfg(feature = "CLCondition")]
-    unsafe impl ClassType for CLBeaconIdentityCondition {
-        #[inherits(NSObject)]
-        type Super = CLCondition;
-    }
 );
 
 #[cfg(feature = "CLCondition")]

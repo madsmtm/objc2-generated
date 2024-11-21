@@ -27,12 +27,9 @@ unsafe impl RefEncode for NSPersistentHistoryChangeType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentHistoryChange;
-
-    unsafe impl ClassType for NSPersistentHistoryChange {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSPersistentHistoryChange {}

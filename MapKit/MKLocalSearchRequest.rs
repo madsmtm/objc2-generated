@@ -31,12 +31,9 @@ unsafe impl RefEncode for MKLocalSearchResultType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLocalSearchRequest;
-
-    unsafe impl ClassType for MKLocalSearchRequest {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MKLocalSearchRequest {}

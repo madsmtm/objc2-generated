@@ -53,12 +53,9 @@ unsafe impl RefEncode for NSFormattingUnitStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFormatter;
-
-    unsafe impl ClassType for NSFormatter {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]

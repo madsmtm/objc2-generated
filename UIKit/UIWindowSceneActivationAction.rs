@@ -16,15 +16,10 @@ pub type UIWindowSceneActivationActionConfigurationProvider = *mut block2::Block
 >;
 
 extern_class!(
+    #[unsafe(super(UIAction, UIMenuElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
     pub struct UIWindowSceneActivationAction;
-
-    #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
-    unsafe impl ClassType for UIWindowSceneActivationAction {
-        #[inherits(UIMenuElement, NSObject)]
-        type Super = UIAction;
-    }
 );
 
 #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]

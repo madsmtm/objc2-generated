@@ -56,12 +56,9 @@ unsafe impl RefEncode for ASCredentialIdentityTypes {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASCredentialIdentityStore;
-
-    unsafe impl ClassType for ASCredentialIdentityStore {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for ASCredentialIdentityStore {}

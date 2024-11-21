@@ -53,12 +53,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextAttachment;
-
-    unsafe impl ClassType for NSTextAttachment {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSTextAttachment {}
@@ -187,12 +184,9 @@ extern_category!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextAttachmentViewProvider;
-
-    unsafe impl ClassType for NSTextAttachmentViewProvider {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSTextAttachmentViewProvider {}

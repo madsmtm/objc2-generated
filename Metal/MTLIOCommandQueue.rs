@@ -120,12 +120,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLIOCommandQueueDescriptor;
-
-    unsafe impl ClassType for MTLIOCommandQueueDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLIOCommandQueueDescriptor {}

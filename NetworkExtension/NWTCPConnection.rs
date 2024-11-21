@@ -40,13 +40,10 @@ unsafe impl RefEncode for NWTCPConnectionState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use `nw_connection_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub struct NWTCPConnection;
-
-    unsafe impl ClassType for NWTCPConnection {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NWTCPConnection {}

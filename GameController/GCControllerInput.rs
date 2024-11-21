@@ -5,12 +5,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCControllerInputState;
-
-    unsafe impl ClassType for GCControllerInputState {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "GCDevicePhysicalInputState")]
@@ -34,13 +31,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(GCControllerInputState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCControllerLiveInput;
-
-    unsafe impl ClassType for GCControllerLiveInput {
-        #[inherits(NSObject)]
-        type Super = GCControllerInputState;
-    }
 );
 
 #[cfg(all(

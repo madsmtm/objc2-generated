@@ -37,12 +37,9 @@ unsafe impl RefEncode for MPMediaGrouping {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMediaQuery;
-
-    unsafe impl ClassType for MPMediaQuery {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MPMediaQuery {}
@@ -143,12 +140,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMediaPredicate;
-
-    unsafe impl ClassType for MPMediaPredicate {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MPMediaPredicate {}
@@ -192,13 +186,9 @@ unsafe impl RefEncode for MPMediaPredicateComparison {
 }
 
 extern_class!(
+    #[unsafe(super(MPMediaPredicate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMediaPropertyPredicate;
-
-    unsafe impl ClassType for MPMediaPropertyPredicate {
-        #[inherits(NSObject)]
-        type Super = MPMediaPredicate;
-    }
 );
 
 unsafe impl NSCoding for MPMediaPropertyPredicate {}

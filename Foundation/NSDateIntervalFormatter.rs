@@ -25,15 +25,10 @@ unsafe impl RefEncode for NSDateIntervalFormatterStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]
     pub struct NSDateIntervalFormatter;
-
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl ClassType for NSDateIntervalFormatter {
-        #[inherits(NSObject)]
-        type Super = NSFormatter;
-    }
 );
 
 #[cfg(feature = "NSFormatter")]

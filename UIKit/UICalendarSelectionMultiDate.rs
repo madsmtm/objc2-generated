@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UICalendarSelection, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UICalendarSelection")]
     pub struct UICalendarSelectionMultiDate;
-
-    #[cfg(feature = "UICalendarSelection")]
-    unsafe impl ClassType for UICalendarSelectionMultiDate {
-        #[inherits(NSObject)]
-        type Super = UICalendarSelection;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UICalendarSelection")]

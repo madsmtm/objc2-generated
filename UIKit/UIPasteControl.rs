@@ -32,13 +32,10 @@ unsafe impl RefEncode for UIPasteControlDisplayMode {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPasteControlConfiguration;
-
-    unsafe impl ClassType for UIPasteControlConfiguration {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UIPasteControlConfiguration {}
@@ -107,16 +104,11 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIControl, UIView, UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     pub struct UIPasteControl;
-
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl ClassType for UIPasteControl {
-        #[inherits(UIView, UIResponder, NSObject)]
-        type Super = UIControl;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(

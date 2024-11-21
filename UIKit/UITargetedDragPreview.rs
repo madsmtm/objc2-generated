@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIPreviewTarget, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UITargetedPreview")]
     pub struct UIDragPreviewTarget;
-
-    #[cfg(feature = "UITargetedPreview")]
-    unsafe impl ClassType for UIDragPreviewTarget {
-        #[inherits(NSObject)]
-        type Super = UIPreviewTarget;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UITargetedPreview")]
@@ -64,16 +59,11 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UITargetedPreview, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UITargetedPreview")]
     pub struct UITargetedDragPreview;
-
-    #[cfg(feature = "UITargetedPreview")]
-    unsafe impl ClassType for UITargetedDragPreview {
-        #[inherits(NSObject)]
-        type Super = UITargetedPreview;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UITargetedPreview")]

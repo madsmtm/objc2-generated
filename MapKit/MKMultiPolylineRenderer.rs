@@ -5,15 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(MKOverlayPathRenderer, MKOverlayRenderer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     pub struct MKMultiPolylineRenderer;
-
-    #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
-    unsafe impl ClassType for MKMultiPolylineRenderer {
-        #[inherits(MKOverlayRenderer, NSObject)]
-        type Super = MKOverlayPathRenderer;
-    }
 );
 
 #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]

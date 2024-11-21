@@ -32,12 +32,9 @@ unsafe impl RefEncode for GKChallengeState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKChallenge;
-
-    unsafe impl ClassType for GKChallenge {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for GKChallenge {}
@@ -106,13 +103,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(GKChallenge, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKScoreChallenge;
-
-    unsafe impl ClassType for GKScoreChallenge {
-        #[inherits(NSObject)]
-        type Super = GKChallenge;
-    }
 );
 
 unsafe impl NSCoding for GKScoreChallenge {}
@@ -146,13 +139,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(GKChallenge, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKAchievementChallenge;
-
-    unsafe impl ClassType for GKAchievementChallenge {
-        #[inherits(NSObject)]
-        type Super = GKChallenge;
-    }
 );
 
 unsafe impl NSCoding for GKAchievementChallenge {}

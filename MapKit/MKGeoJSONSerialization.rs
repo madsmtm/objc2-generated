@@ -12,12 +12,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKGeoJSONDecoder;
-
-    unsafe impl ClassType for MKGeoJSONDecoder {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MKGeoJSONDecoder {}
@@ -44,12 +41,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKGeoJSONFeature;
-
-    unsafe impl ClassType for MKGeoJSONFeature {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl MKGeoJSONObject for MKGeoJSONFeature {}

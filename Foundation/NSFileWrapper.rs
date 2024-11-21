@@ -43,12 +43,9 @@ unsafe impl RefEncode for NSFileWrapperWritingOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileWrapper;
-
-    unsafe impl ClassType for NSFileWrapper {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]

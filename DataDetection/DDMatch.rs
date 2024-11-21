@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatch;
-
-    unsafe impl ClassType for DDMatch {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for DDMatch {}
@@ -35,13 +32,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchLink;
-
-    unsafe impl ClassType for DDMatchLink {
-        #[inherits(NSObject)]
-        type Super = DDMatch;
-    }
 );
 
 unsafe impl NSObjectProtocol for DDMatchLink {}
@@ -70,13 +63,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchPhoneNumber;
-
-    unsafe impl ClassType for DDMatchPhoneNumber {
-        #[inherits(NSObject)]
-        type Super = DDMatch;
-    }
 );
 
 unsafe impl NSObjectProtocol for DDMatchPhoneNumber {}
@@ -108,13 +97,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchEmailAddress;
-
-    unsafe impl ClassType for DDMatchEmailAddress {
-        #[inherits(NSObject)]
-        type Super = DDMatch;
-    }
 );
 
 unsafe impl NSObjectProtocol for DDMatchEmailAddress {}
@@ -146,13 +131,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchPostalAddress;
-
-    unsafe impl ClassType for DDMatchPostalAddress {
-        #[inherits(NSObject)]
-        type Super = DDMatch;
-    }
 );
 
 unsafe impl NSObjectProtocol for DDMatchPostalAddress {}
@@ -193,13 +174,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchCalendarEvent;
-
-    unsafe impl ClassType for DDMatchCalendarEvent {
-        #[inherits(NSObject)]
-        type Super = DDMatch;
-    }
 );
 
 unsafe impl NSObjectProtocol for DDMatchCalendarEvent {}
@@ -240,13 +217,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchShipmentTrackingNumber;
-
-    unsafe impl ClassType for DDMatchShipmentTrackingNumber {
-        #[inherits(NSObject)]
-        type Super = DDMatch;
-    }
 );
 
 unsafe impl NSObjectProtocol for DDMatchShipmentTrackingNumber {}
@@ -278,13 +251,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchFlightNumber;
-
-    unsafe impl ClassType for DDMatchFlightNumber {
-        #[inherits(NSObject)]
-        type Super = DDMatch;
-    }
 );
 
 unsafe impl NSObjectProtocol for DDMatchFlightNumber {}
@@ -316,13 +285,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchMoneyAmount;
-
-    unsafe impl ClassType for DDMatchMoneyAmount {
-        #[inherits(NSObject)]
-        type Super = DDMatch;
-    }
 );
 
 unsafe impl NSObjectProtocol for DDMatchMoneyAmount {}

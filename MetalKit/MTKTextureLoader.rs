@@ -90,12 +90,9 @@ pub type MTKTextureLoaderArrayCallback =
     *mut block2::Block<dyn Fn(NonNull<NSArray<ProtocolObject<dyn MTLTexture>>>, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTKTextureLoader;
-
-    unsafe impl ClassType for MTKTextureLoader {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTKTextureLoader {}

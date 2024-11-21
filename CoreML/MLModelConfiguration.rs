@@ -32,12 +32,9 @@ unsafe impl RefEncode for MLComputeUnits {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelConfiguration;
-
-    unsafe impl ClassType for MLModelConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MLModelConfiguration {}

@@ -178,16 +178,11 @@ extern "C" {
 pub type UIApplicationOpenExternalURLOptionsKey = NSString;
 
 extern_class!(
+    #[unsafe(super(UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIResponder")]
     pub struct UIApplication;
-
-    #[cfg(feature = "UIResponder")]
-    unsafe impl ClassType for UIApplication {
-        #[inherits(NSObject)]
-        type Super = UIResponder;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIResponder")]

@@ -27,12 +27,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPreviewRepresentingActivityItem;
-
-    unsafe impl ClassType for NSPreviewRepresentingActivityItem {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSPreviewRepresentingActivityItem {}

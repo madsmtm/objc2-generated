@@ -56,12 +56,9 @@ unsafe impl RefEncode for MTLIndirectCommandBufferExecutionRange {
 // TODO: pub fn MTLIndirectCommandBufferExecutionRangeMake(location: u32,length: u32,) -> MTLIndirectCommandBufferExecutionRange;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLIndirectCommandBufferDescriptor;
-
-    unsafe impl ClassType for MTLIndirectCommandBufferDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLIndirectCommandBufferDescriptor {}

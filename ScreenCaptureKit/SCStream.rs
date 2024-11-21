@@ -136,12 +136,9 @@ unsafe impl RefEncode for SCCaptureDynamicRange {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCContentFilter;
-
-    unsafe impl ClassType for SCContentFilter {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SCContentFilter {}
@@ -246,12 +243,9 @@ unsafe impl RefEncode for SCStreamConfigurationPreset {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCStreamConfiguration;
-
-    unsafe impl ClassType for SCStreamConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SCStreamConfiguration {}
@@ -487,12 +481,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCStream;
-
-    unsafe impl ClassType for SCStream {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SCStream {}

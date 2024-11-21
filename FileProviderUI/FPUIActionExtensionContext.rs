@@ -33,13 +33,9 @@ unsafe impl RefEncode for FPUIExtensionErrorCode {
 }
 
 extern_class!(
+    #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FPUIActionExtensionContext;
-
-    unsafe impl ClassType for FPUIActionExtensionContext {
-        #[inherits(NSObject)]
-        type Super = NSExtensionContext;
-    }
 );
 
 unsafe impl NSObjectProtocol for FPUIActionExtensionContext {}

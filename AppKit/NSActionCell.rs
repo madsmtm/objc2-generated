@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCell")]
     pub struct NSActionCell;
-
-    #[cfg(feature = "NSCell")]
-    unsafe impl ClassType for NSActionCell {
-        #[inherits(NSObject)]
-        type Super = NSCell;
-    }
 );
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSCell"))]

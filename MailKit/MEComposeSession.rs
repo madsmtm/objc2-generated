@@ -8,12 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEComposeSession;
-
-    unsafe impl ClassType for MEComposeSession {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MEComposeSession {}

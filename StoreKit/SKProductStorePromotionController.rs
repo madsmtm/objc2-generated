@@ -30,13 +30,10 @@ unsafe impl RefEncode for SKProductStorePromotionVisibility {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Product.PromotionInfo"]
     pub struct SKProductStorePromotionController;
-
-    unsafe impl ClassType for SKProductStorePromotionController {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SKProductStorePromotionController {}

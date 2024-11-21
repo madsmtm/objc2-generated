@@ -18,18 +18,12 @@ pub type SKCloudServiceSetupAction = NSString;
 pub type SKCloudServiceSetupMessageIdentifier = NSString;
 
 extern_class!(
+    #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
     pub struct SKCloudServiceSetupViewController;
-
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl ClassType for SKCloudServiceSetupViewController {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSViewController;
-    }
 );
 
 #[cfg(feature = "objc2-app-kit")]

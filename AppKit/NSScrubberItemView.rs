@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub struct NSScrubberArrangedView;
-
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl ClassType for NSScrubberArrangedView {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSView;
-    }
 );
 
 #[cfg(all(
@@ -108,15 +103,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScrubberArrangedView, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub struct NSScrubberSelectionView;
-
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl ClassType for NSScrubberSelectionView {
-        #[inherits(NSView, NSResponder, NSObject)]
-        type Super = NSScrubberArrangedView;
-    }
 );
 
 #[cfg(all(
@@ -194,15 +184,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScrubberArrangedView, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub struct NSScrubberItemView;
-
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl ClassType for NSScrubberItemView {
-        #[inherits(NSView, NSResponder, NSObject)]
-        type Super = NSScrubberArrangedView;
-    }
 );
 
 #[cfg(all(
@@ -280,15 +265,16 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(
+        NSScrubberItemView,
+        NSScrubberArrangedView,
+        NSView,
+        NSResponder,
+        NSObject
+    ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub struct NSScrubberTextItemView;
-
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl ClassType for NSScrubberTextItemView {
-        #[inherits(NSScrubberArrangedView, NSView, NSResponder, NSObject)]
-        type Super = NSScrubberItemView;
-    }
 );
 
 #[cfg(all(
@@ -376,15 +362,16 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(
+        NSScrubberItemView,
+        NSScrubberArrangedView,
+        NSView,
+        NSResponder,
+        NSObject
+    ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub struct NSScrubberImageItemView;
-
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl ClassType for NSScrubberImageItemView {
-        #[inherits(NSScrubberArrangedView, NSView, NSResponder, NSObject)]
-        type Super = NSScrubberItemView;
-    }
 );
 
 #[cfg(all(

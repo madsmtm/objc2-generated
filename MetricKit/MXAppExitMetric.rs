@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXForegroundExitData;
-
-    unsafe impl ClassType for MXForegroundExitData {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MXForegroundExitData {}
@@ -54,12 +51,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXBackgroundExitData;
-
-    unsafe impl ClassType for MXBackgroundExitData {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MXBackgroundExitData {}
@@ -114,15 +108,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
     pub struct MXAppExitMetric;
-
-    #[cfg(feature = "MXMetric")]
-    unsafe impl ClassType for MXAppExitMetric {
-        #[inherits(NSObject)]
-        type Super = MXMetric;
-    }
 );
 
 #[cfg(feature = "MXMetric")]

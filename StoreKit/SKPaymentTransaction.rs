@@ -37,13 +37,10 @@ unsafe impl RefEncode for SKPaymentTransactionState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
     pub struct SKPaymentTransaction;
-
-    unsafe impl ClassType for SKPaymentTransaction {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for SKPaymentTransaction {}

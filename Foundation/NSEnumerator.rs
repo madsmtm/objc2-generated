@@ -18,21 +18,10 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSFastEnumeration {}
 );
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct NSEnumerator<ObjectType: ?Sized = AnyObject> {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut ObjectType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<ObjectType: ?Sized + Message> ClassType for NSEnumerator<ObjectType> {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSEnumerator<ObjectType: ?Sized = AnyObject>;
 );
 
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSEnumerator<ObjectType> {}

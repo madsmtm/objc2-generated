@@ -178,13 +178,10 @@ unsafe impl RefEncode for NSControlSize {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCell;
-
-    unsafe impl ClassType for NSCell {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "NSAccessibilityProtocols")]

@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIHoverStyle, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIHoverStyle")]
     pub struct UIPointerStyle;
-
-    #[cfg(feature = "UIHoverStyle")]
-    unsafe impl ClassType for UIPointerStyle {
-        #[inherits(NSObject)]
-        type Super = UIHoverStyle;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIHoverStyle")]
@@ -84,13 +79,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPointerEffect;
-
-    unsafe impl ClassType for UIPointerEffect {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UIPointerEffect {}
@@ -123,14 +115,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIPointerEffect, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPointerHighlightEffect;
-
-    unsafe impl ClassType for UIPointerHighlightEffect {
-        #[inherits(NSObject)]
-        type Super = UIPointerEffect;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UIPointerHighlightEffect {}
@@ -164,14 +152,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIPointerEffect, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPointerLiftEffect;
-
-    unsafe impl ClassType for UIPointerLiftEffect {
-        #[inherits(NSObject)]
-        type Super = UIPointerEffect;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UIPointerLiftEffect {}
@@ -226,14 +210,10 @@ unsafe impl RefEncode for UIPointerEffectTintMode {
 }
 
 extern_class!(
+    #[unsafe(super(UIPointerEffect, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPointerHoverEffect;
-
-    unsafe impl ClassType for UIPointerHoverEffect {
-        #[inherits(NSObject)]
-        type Super = UIPointerEffect;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UIPointerHoverEffect {}
@@ -285,13 +265,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPointerShape;
-
-    unsafe impl ClassType for UIPointerShape {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UIPointerShape {}

@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObjectController, NSController, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     pub struct NSArrayController;
-
-    #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
-    unsafe impl ClassType for NSArrayController {
-        #[inherits(NSController, NSObject)]
-        type Super = NSObjectController;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(feature = "NSController", feature = "NSObjectController"))]

@@ -9,15 +9,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(GKPlayer, GKBasePlayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     pub struct GKLocalPlayer;
-
-    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-    unsafe impl ClassType for GKLocalPlayer {
-        #[inherits(GKBasePlayer, NSObject)]
-        type Super = GKPlayer;
-    }
 );
 
 #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]

@@ -4,21 +4,10 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct NSOrderedSet<ObjectType: ?Sized = AnyObject> {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut ObjectType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<ObjectType: ?Sized + Message> ClassType for NSOrderedSet<ObjectType> {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSOrderedSet<ObjectType: ?Sized = AnyObject>;
 );
 
 #[cfg(feature = "NSObject")]
@@ -547,22 +536,10 @@ extern_methods!(
     }
 );
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSOrderedSet<ObjectType, >, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct NSMutableOrderedSet<ObjectType: ?Sized = AnyObject> {
-        __superclass: NSOrderedSet<ObjectType>,
-        _inner0: PhantomData<*mut ObjectType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<ObjectType: ?Sized + Message> ClassType for NSMutableOrderedSet<ObjectType> {
-        #[inherits(NSObject)]
-        type Super = NSOrderedSet<ObjectType>;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSMutableOrderedSet<ObjectType: ?Sized = AnyObject>;
 );
 
 #[cfg(feature = "NSObject")]

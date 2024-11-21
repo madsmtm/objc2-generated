@@ -80,13 +80,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIActivityItemProvider;
-
-    unsafe impl ClassType for UIActivityItemProvider {
-        #[inherits(NSObject)]
-        type Super = NSOperation;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIActivityItemProvider {}

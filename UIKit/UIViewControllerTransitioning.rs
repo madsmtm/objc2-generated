@@ -211,13 +211,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPercentDrivenInteractiveTransition;
-
-    unsafe impl ClassType for UIPercentDrivenInteractiveTransition {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIPercentDrivenInteractiveTransition {}

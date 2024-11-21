@@ -29,12 +29,9 @@ unsafe impl RefEncode for AEAutocorrectMode {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AEAssessmentConfiguration;
-
-    unsafe impl ClassType for AEAssessmentConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for AEAssessmentConfiguration {}

@@ -35,13 +35,10 @@ unsafe impl RefEncode for UIPrinterCutterBehavior {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPrintInteractionController;
-
-    unsafe impl ClassType for UIPrintInteractionController {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIPrintInteractionController {}

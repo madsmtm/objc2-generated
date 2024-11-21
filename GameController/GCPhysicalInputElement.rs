@@ -20,27 +20,13 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn GCPhysicalInputElement {}
 );
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCPhysicalInputElementCollection<
         Key: ?Sized = AnyObject,
         Element: ?Sized = AnyObject,
-    > {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut Key>,
-        _inner1: PhantomData<*mut Element>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<Key: ?Sized + Message, Element: ?Sized + Message> ClassType
-        for GCPhysicalInputElementCollection<Key, Element>
-    {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    >;
 );
 
 unsafe impl<Key: ?Sized, Element: ?Sized> NSFastEnumeration

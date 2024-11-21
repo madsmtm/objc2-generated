@@ -30,12 +30,9 @@ pub type NSPrinterTypeName = NSString;
 pub type NSPrinterPaperName = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPrinter;
-
-    unsafe impl ClassType for NSPrinter {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSPrinter {}

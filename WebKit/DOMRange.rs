@@ -23,16 +23,11 @@ pub const DOM_NODE_BEFORE_AND_AFTER: c_uint = 2;
 pub const DOM_NODE_INSIDE: c_uint = 3;
 
 extern_class!(
+    #[unsafe(super(DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     #[deprecated]
     pub struct DOMRange;
-
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl ClassType for DOMRange {
-        #[inherits(WebScriptObject, NSObject)]
-        type Super = DOMObject;
-    }
 );
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]

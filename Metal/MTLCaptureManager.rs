@@ -50,12 +50,9 @@ unsafe impl RefEncode for MTLCaptureDestination {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLCaptureDescriptor;
-
-    unsafe impl ClassType for MTLCaptureDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLCaptureDescriptor {}
@@ -107,12 +104,9 @@ impl DefaultRetained for MTLCaptureDescriptor {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLCaptureManager;
-
-    unsafe impl ClassType for MTLCaptureManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLCaptureManager {}

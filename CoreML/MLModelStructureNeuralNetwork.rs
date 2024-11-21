@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelStructureNeuralNetwork;
-
-    unsafe impl ClassType for MLModelStructureNeuralNetwork {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for MLModelStructureNeuralNetwork {}

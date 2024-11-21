@@ -156,12 +156,9 @@ unsafe impl RefEncode for MTLVertexStepFunction {
 pub static MTLBufferLayoutStrideDynamic: NSUInteger = NSUIntegerMax as _;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLVertexBufferLayoutDescriptor;
-
-    unsafe impl ClassType for MTLVertexBufferLayoutDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLVertexBufferLayoutDescriptor {}
@@ -213,12 +210,9 @@ impl DefaultRetained for MTLVertexBufferLayoutDescriptor {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLVertexBufferLayoutDescriptorArray;
-
-    unsafe impl ClassType for MTLVertexBufferLayoutDescriptorArray {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLVertexBufferLayoutDescriptorArray {}
@@ -252,12 +246,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLVertexAttributeDescriptor;
-
-    unsafe impl ClassType for MTLVertexAttributeDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLVertexAttributeDescriptor {}
@@ -309,12 +300,9 @@ impl DefaultRetained for MTLVertexAttributeDescriptor {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLVertexAttributeDescriptorArray;
-
-    unsafe impl ClassType for MTLVertexAttributeDescriptorArray {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLVertexAttributeDescriptorArray {}
@@ -348,12 +336,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLVertexDescriptor;
-
-    unsafe impl ClassType for MTLVertexDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLVertexDescriptor {}

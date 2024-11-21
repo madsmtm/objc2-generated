@@ -36,12 +36,9 @@ unsafe impl RefEncode for NSPointerFunctionsOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPointerFunctions;
-
-    unsafe impl ClassType for NSPointerFunctions {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]

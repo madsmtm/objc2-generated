@@ -24,15 +24,10 @@ unsafe impl RefEncode for CKRecordSavePolicy {
 }
 
 extern_class!(
+    #[unsafe(super(CKDatabaseOperation, CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     pub struct CKModifyRecordsOperation;
-
-    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
-    unsafe impl ClassType for CKModifyRecordsOperation {
-        #[inherits(CKOperation, NSOperation, NSObject)]
-        type Super = CKDatabaseOperation;
-    }
 );
 
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]

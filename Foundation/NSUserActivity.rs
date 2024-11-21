@@ -8,12 +8,9 @@ use crate::*;
 pub type NSUserActivityPersistentIdentifier = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserActivity;
-
-    unsafe impl ClassType for NSUserActivity {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSUserActivity {}

@@ -28,16 +28,11 @@ unsafe impl RefEncode for UICollectionViewFlowLayoutSectionInsetReference {
 }
 
 extern_class!(
+    #[unsafe(super(UICollectionViewLayoutInvalidationContext, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UICollectionViewLayout")]
     pub struct UICollectionViewFlowLayoutInvalidationContext;
-
-    #[cfg(feature = "UICollectionViewLayout")]
-    unsafe impl ClassType for UICollectionViewFlowLayoutInvalidationContext {
-        #[inherits(NSObject)]
-        type Super = UICollectionViewLayoutInvalidationContext;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UICollectionViewLayout")]
@@ -174,16 +169,11 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(UICollectionViewLayout, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UICollectionViewLayout")]
     pub struct UICollectionViewFlowLayout;
-
-    #[cfg(feature = "UICollectionViewLayout")]
-    unsafe impl ClassType for UICollectionViewFlowLayout {
-        #[inherits(NSObject)]
-        type Super = UICollectionViewLayout;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UICollectionViewLayout")]

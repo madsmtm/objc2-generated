@@ -29,15 +29,10 @@ unsafe impl RefEncode for NSImageDynamicRange {
 }
 
 extern_class!(
+    #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     pub struct NSImageView;
-
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl ClassType for NSImageView {
-        #[inherits(NSView, NSResponder, NSObject)]
-        type Super = NSControl;
-    }
 );
 
 #[cfg(all(

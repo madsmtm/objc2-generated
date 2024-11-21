@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationSecurityKeyPublicKeyCredentialProvider;
-
-    unsafe impl ClassType for ASAuthorizationSecurityKeyPublicKeyCredentialProvider {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "ASAuthorizationProvider")]

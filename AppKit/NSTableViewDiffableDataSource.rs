@@ -44,27 +44,13 @@ pub type NSTableViewDiffableDataSourceSectionHeaderViewProvider = *mut block2::B
     dyn Fn(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>) -> NonNull<NSView>,
 >;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTableViewDiffableDataSource<
         SectionIdentifierType: ?Sized = AnyObject,
         ItemIdentifierType: ?Sized = AnyObject,
-    > {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut SectionIdentifierType>,
-        _inner1: PhantomData<*mut ItemIdentifierType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
-        ClassType for NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
-    {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    >;
 );
 
 unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol

@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CMLogItem")]
     pub struct CMRotationRateData;
-
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl ClassType for CMRotationRateData {
-        #[inherits(NSObject)]
-        type Super = CMLogItem;
-    }
 );
 
 #[cfg(feature = "CMLogItem")]
@@ -56,15 +51,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CMRotationRateData, CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CMLogItem")]
     pub struct CMRecordedRotationRateData;
-
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl ClassType for CMRecordedRotationRateData {
-        #[inherits(CMLogItem, NSObject)]
-        type Super = CMRotationRateData;
-    }
 );
 
 #[cfg(feature = "CMLogItem")]

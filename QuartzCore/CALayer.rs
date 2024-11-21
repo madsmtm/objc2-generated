@@ -99,12 +99,9 @@ unsafe impl RefEncode for CACornerMask {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CALayer;
-
-    unsafe impl ClassType for CALayer {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "CAMediaTiming")]

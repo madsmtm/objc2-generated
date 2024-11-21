@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorCadence;
-
-    unsafe impl ClassType for VNVideoProcessorCadence {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for VNVideoProcessorCadence {}
@@ -38,13 +35,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNVideoProcessorCadence, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorFrameRateCadence;
-
-    unsafe impl ClassType for VNVideoProcessorFrameRateCadence {
-        #[inherits(NSObject)]
-        type Super = VNVideoProcessorCadence;
-    }
 );
 
 unsafe impl NSCopying for VNVideoProcessorFrameRateCadence {}
@@ -80,13 +73,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNVideoProcessorCadence, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorTimeIntervalCadence;
-
-    unsafe impl ClassType for VNVideoProcessorTimeIntervalCadence {
-        #[inherits(NSObject)]
-        type Super = VNVideoProcessorCadence;
-    }
 );
 
 unsafe impl NSCopying for VNVideoProcessorTimeIntervalCadence {}
@@ -113,12 +102,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorRequestProcessingOptions;
-
-    unsafe impl ClassType for VNVideoProcessorRequestProcessingOptions {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for VNVideoProcessorRequestProcessingOptions {}
@@ -151,12 +137,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessor;
-
-    unsafe impl ClassType for VNVideoProcessor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for VNVideoProcessor {}

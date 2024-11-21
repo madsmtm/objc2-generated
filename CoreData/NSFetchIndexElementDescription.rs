@@ -25,12 +25,9 @@ unsafe impl RefEncode for NSFetchIndexElementType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFetchIndexElementDescription;
-
-    unsafe impl ClassType for NSFetchIndexElementDescription {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSFetchIndexElementDescription {}

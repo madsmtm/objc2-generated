@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerControllerQueue;
-
-    unsafe impl ClassType for MPMusicPlayerControllerQueue {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPMusicPlayerControllerQueue {}
@@ -31,13 +28,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPMusicPlayerControllerQueue, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerControllerMutableQueue;
-
-    unsafe impl ClassType for MPMusicPlayerControllerMutableQueue {
-        #[inherits(NSObject)]
-        type Super = MPMusicPlayerControllerQueue;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPMusicPlayerControllerMutableQueue {}
@@ -74,15 +67,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPMusicPlayerController, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPMusicPlayerController")]
     pub struct MPMusicPlayerApplicationController;
-
-    #[cfg(feature = "MPMusicPlayerController")]
-    unsafe impl ClassType for MPMusicPlayerApplicationController {
-        #[inherits(NSObject)]
-        type Super = MPMusicPlayerController;
-    }
 );
 
 #[cfg(all(feature = "MPMediaPlayback", feature = "MPMusicPlayerController"))]

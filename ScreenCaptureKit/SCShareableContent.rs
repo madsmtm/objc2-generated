@@ -29,12 +29,9 @@ unsafe impl RefEncode for SCShareableContentStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCRunningApplication;
-
-    unsafe impl ClassType for SCRunningApplication {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SCRunningApplication {}
@@ -60,12 +57,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCWindow;
-
-    unsafe impl ClassType for SCWindow {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SCWindow {}
@@ -99,12 +93,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCDisplay;
-
-    unsafe impl ClassType for SCDisplay {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SCDisplay {}
@@ -129,12 +120,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCShareableContentInfo;
-
-    unsafe impl ClassType for SCShareableContentInfo {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SCShareableContentInfo {}
@@ -164,12 +152,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCShareableContent;
-
-    unsafe impl ClassType for SCShareableContent {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SCShareableContent {}

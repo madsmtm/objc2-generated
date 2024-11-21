@@ -27,12 +27,9 @@ unsafe impl RefEncode for NEDNSProtocol {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEDNSSettings;
-
-    unsafe impl ClassType for NEDNSSettings {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NEDNSSettings {}
@@ -99,13 +96,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NEDNSSettings, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEDNSOverTLSSettings;
-
-    unsafe impl ClassType for NEDNSOverTLSSettings {
-        #[inherits(NSObject)]
-        type Super = NEDNSSettings;
-    }
 );
 
 unsafe impl NSCoding for NEDNSOverTLSSettings {}
@@ -159,13 +152,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NEDNSSettings, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEDNSOverHTTPSSettings;
-
-    unsafe impl ClassType for NEDNSOverHTTPSSettings {
-        #[inherits(NSObject)]
-        type Super = NEDNSSettings;
-    }
 );
 
 unsafe impl NSCoding for NEDNSOverHTTPSSettings {}

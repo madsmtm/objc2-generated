@@ -5,21 +5,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct MXHistogramBucket<UnitType: ?Sized = AnyObject> {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut UnitType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<UnitType: ?Sized + Message> ClassType for MXHistogramBucket<UnitType> {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct MXHistogramBucket<UnitType: ?Sized = AnyObject>;
 );
 
 unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXHistogramBucket<UnitType> {}
@@ -52,21 +41,10 @@ extern_methods!(
     }
 );
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct MXHistogram<UnitType: ?Sized = AnyObject> {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut UnitType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<UnitType: ?Sized + Message> ClassType for MXHistogram<UnitType> {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct MXHistogram<UnitType: ?Sized = AnyObject>;
 );
 
 unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXHistogram<UnitType> {}

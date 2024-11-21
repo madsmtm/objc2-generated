@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(HKDocumentSample, HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "HKDocumentSample",
@@ -13,16 +14,6 @@ extern_class!(
         feature = "HKSample"
     ))]
     pub struct HKCDADocumentSample;
-
-    #[cfg(all(
-        feature = "HKDocumentSample",
-        feature = "HKObject",
-        feature = "HKSample"
-    ))]
-    unsafe impl ClassType for HKCDADocumentSample {
-        #[inherits(HKSample, HKObject, NSObject)]
-        type Super = HKDocumentSample;
-    }
 );
 
 #[cfg(all(
@@ -107,12 +98,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKCDADocument;
-
-    unsafe impl ClassType for HKCDADocument {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for HKCDADocument {}

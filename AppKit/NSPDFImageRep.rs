@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSImageRep, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSImageRep")]
     pub struct NSPDFImageRep;
-
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl ClassType for NSPDFImageRep {
-        #[inherits(NSObject)]
-        type Super = NSImageRep;
-    }
 );
 
 #[cfg(feature = "NSImageRep")]

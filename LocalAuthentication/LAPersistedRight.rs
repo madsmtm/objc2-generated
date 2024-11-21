@@ -5,15 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(LARight, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "LARight")]
     pub struct LAPersistedRight;
-
-    #[cfg(feature = "LARight")]
-    unsafe impl ClassType for LAPersistedRight {
-        #[inherits(NSObject)]
-        type Super = LARight;
-    }
 );
 
 #[cfg(feature = "LARight")]

@@ -42,13 +42,10 @@ extern_category!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
     pub struct WebScriptObject;
-
-    unsafe impl ClassType for WebScriptObject {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for WebScriptObject {}
@@ -112,13 +109,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
     pub struct WebUndefined;
-
-    unsafe impl ClassType for WebUndefined {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for WebUndefined {}

@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Background Assets or NSURLSession instead."]
     pub struct MLModelCollectionEntry;
-
-    unsafe impl ClassType for MLModelCollectionEntry {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MLModelCollectionEntry {}

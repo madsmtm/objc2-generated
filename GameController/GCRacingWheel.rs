@@ -14,12 +14,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCRacingWheel;
-
-    unsafe impl ClassType for GCRacingWheel {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "GCDevice")]

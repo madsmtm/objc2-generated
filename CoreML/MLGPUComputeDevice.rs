@@ -8,12 +8,9 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLGPUComputeDevice;
-
-    unsafe impl ClassType for MLGPUComputeDevice {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for MLGPUComputeDevice {}

@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VNTrackingRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
     pub struct VNTrackObjectRequest;
-
-    #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
-    unsafe impl ClassType for VNTrackObjectRequest {
-        #[inherits(VNImageBasedRequest, VNRequest, NSObject)]
-        type Super = VNTrackingRequest;
-    }
 );
 
 #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]

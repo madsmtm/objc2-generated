@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIBarcodeDescriptor;
-
-    unsafe impl ClassType for CIBarcodeDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CIBarcodeDescriptor {}
@@ -65,13 +62,9 @@ unsafe impl RefEncode for CIQRCodeErrorCorrectionLevel {
 }
 
 extern_class!(
+    #[unsafe(super(CIBarcodeDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIQRCodeDescriptor;
-
-    unsafe impl ClassType for CIQRCodeDescriptor {
-        #[inherits(NSObject)]
-        type Super = CIBarcodeDescriptor;
-    }
 );
 
 unsafe impl NSCoding for CIQRCodeDescriptor {}
@@ -131,13 +124,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CIBarcodeDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIAztecCodeDescriptor;
-
-    unsafe impl ClassType for CIAztecCodeDescriptor {
-        #[inherits(NSObject)]
-        type Super = CIBarcodeDescriptor;
-    }
 );
 
 unsafe impl NSCoding for CIAztecCodeDescriptor {}
@@ -197,13 +186,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CIBarcodeDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIPDF417CodeDescriptor;
-
-    unsafe impl ClassType for CIPDF417CodeDescriptor {
-        #[inherits(NSObject)]
-        type Super = CIBarcodeDescriptor;
-    }
 );
 
 unsafe impl NSCoding for CIPDF417CodeDescriptor {}
@@ -284,13 +269,9 @@ unsafe impl RefEncode for CIDataMatrixCodeECCVersion {
 }
 
 extern_class!(
+    #[unsafe(super(CIBarcodeDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIDataMatrixCodeDescriptor;
-
-    unsafe impl ClassType for CIDataMatrixCodeDescriptor {
-        #[inherits(NSObject)]
-        type Super = CIBarcodeDescriptor;
-    }
 );
 
 unsafe impl NSCoding for CIDataMatrixCodeDescriptor {}

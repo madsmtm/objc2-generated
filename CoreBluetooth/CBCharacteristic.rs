@@ -33,15 +33,10 @@ unsafe impl RefEncode for CBCharacteristicProperties {
 }
 
 extern_class!(
+    #[unsafe(super(CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]
     pub struct CBCharacteristic;
-
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl ClassType for CBCharacteristic {
-        #[inherits(NSObject)]
-        type Super = CBAttribute;
-    }
 );
 
 #[cfg(feature = "CBAttribute")]
@@ -117,15 +112,10 @@ unsafe impl RefEncode for CBAttributePermissions {
 }
 
 extern_class!(
+    #[unsafe(super(CBCharacteristic, CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]
     pub struct CBMutableCharacteristic;
-
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl ClassType for CBMutableCharacteristic {
-        #[inherits(CBAttribute, NSObject)]
-        type Super = CBCharacteristic;
-    }
 );
 
 #[cfg(feature = "CBAttribute")]

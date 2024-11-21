@@ -12,16 +12,11 @@ use crate::*;
 pub type UIWindowLevel = CGFloat;
 
 extern_class!(
+    #[unsafe(super(UIView, UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     pub struct UIWindow;
-
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl ClassType for UIWindow {
-        #[inherits(UIResponder, NSObject)]
-        type Super = UIView;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(

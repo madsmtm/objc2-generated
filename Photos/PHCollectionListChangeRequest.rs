@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(PHChangeRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHChangeRequest")]
     pub struct PHCollectionListChangeRequest;
-
-    #[cfg(feature = "PHChangeRequest")]
-    unsafe impl ClassType for PHCollectionListChangeRequest {
-        #[inherits(NSObject)]
-        type Super = PHChangeRequest;
-    }
 );
 
 #[cfg(feature = "PHChangeRequest")]

@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASSettingsHelper;
-
-    unsafe impl ClassType for ASSettingsHelper {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for ASSettingsHelper {}

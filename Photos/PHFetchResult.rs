@@ -5,21 +5,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct PHFetchResult<ObjectType: ?Sized = AnyObject> {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut ObjectType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<ObjectType: ?Sized + Message> ClassType for PHFetchResult<ObjectType> {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct PHFetchResult<ObjectType: ?Sized = AnyObject>;
 );
 
 unsafe impl<ObjectType: ?Sized> NSCopying for PHFetchResult<ObjectType> {}

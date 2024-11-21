@@ -35,16 +35,11 @@ pub const DOM_WEBKIT_KEYFRAMES_RULE: c_uint = 7;
 pub const DOM_WEBKIT_KEYFRAME_RULE: c_uint = 8;
 
 extern_class!(
+    #[unsafe(super(DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     #[deprecated]
     pub struct DOMCSSRule;
-
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl ClassType for DOMCSSRule {
-        #[inherits(WebScriptObject, NSObject)]
-        type Super = DOMObject;
-    }
 );
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]

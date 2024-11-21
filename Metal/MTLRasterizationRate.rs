@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRasterizationRateSampleArray;
-
-    unsafe impl ClassType for MTLRasterizationRateSampleArray {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLRasterizationRateSampleArray {}
@@ -38,12 +35,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRasterizationRateLayerDescriptor;
-
-    unsafe impl ClassType for MTLRasterizationRateLayerDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLRasterizationRateLayerDescriptor {}
@@ -106,12 +100,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRasterizationRateLayerArray;
-
-    unsafe impl ClassType for MTLRasterizationRateLayerArray {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLRasterizationRateLayerArray {}
@@ -145,12 +136,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRasterizationRateMapDescriptor;
-
-    unsafe impl ClassType for MTLRasterizationRateMapDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLRasterizationRateMapDescriptor {}

@@ -69,12 +69,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPhotoLibrary;
-
-    unsafe impl ClassType for PHPhotoLibrary {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for PHPhotoLibrary {}

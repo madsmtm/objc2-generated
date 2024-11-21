@@ -55,12 +55,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAccountAuthenticationModificationController;
-
-    unsafe impl ClassType for ASAccountAuthenticationModificationController {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for ASAccountAuthenticationModificationController {}

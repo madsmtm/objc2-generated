@@ -8,12 +8,9 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHContentEditingOutput;
-
-    unsafe impl ClassType for PHContentEditingOutput {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for PHContentEditingOutput {}

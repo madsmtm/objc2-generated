@@ -32,15 +32,10 @@ unsafe impl RefEncode for NSViewControllerTransitionOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSResponder")]
     pub struct NSViewController;
-
-    #[cfg(feature = "NSResponder")]
-    unsafe impl ClassType for NSViewController {
-        #[inherits(NSObject)]
-        type Super = NSResponder;
-    }
 );
 
 #[cfg(feature = "NSResponder")]

@@ -18,13 +18,10 @@ pub static NSTouchBarItemPriorityNormal: NSTouchBarItemPriority = 0 as _;
 pub static NSTouchBarItemPriorityLow: NSTouchBarItemPriority = -1000 as _;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTouchBarItem;
-
-    unsafe impl ClassType for NSTouchBarItem {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for NSTouchBarItem {}

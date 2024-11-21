@@ -101,12 +101,9 @@ unsafe impl RefEncode for NSCorrectionIndicatorType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSpellChecker;
-
-    unsafe impl ClassType for NSSpellChecker {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSSpellChecker {}

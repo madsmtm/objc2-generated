@@ -27,13 +27,10 @@ unsafe impl RefEncode for UITabBarControllerSidebarLayout {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITabSidebarScrollTarget;
-
-    unsafe impl ClassType for UITabSidebarScrollTarget {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITabSidebarScrollTarget {}
@@ -64,13 +61,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITabBarControllerSidebar;
-
-    unsafe impl ClassType for UITabBarControllerSidebar {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITabBarControllerSidebar {}

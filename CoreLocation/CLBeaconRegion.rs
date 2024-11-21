@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CLRegion, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CLRegion")]
     #[deprecated]
     pub struct CLBeaconRegion;
-
-    #[cfg(feature = "CLRegion")]
-    unsafe impl ClassType for CLBeaconRegion {
-        #[inherits(NSObject)]
-        type Super = CLRegion;
-    }
 );
 
 #[cfg(feature = "CLRegion")]
@@ -174,12 +169,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLBeacon;
-
-    unsafe impl ClassType for CLBeacon {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CLBeacon {}

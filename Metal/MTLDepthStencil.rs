@@ -68,12 +68,9 @@ unsafe impl RefEncode for MTLStencilOperation {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLStencilDescriptor;
-
-    unsafe impl ClassType for MTLStencilDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLStencilDescriptor {}
@@ -139,12 +136,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLDepthStencilDescriptor;
-
-    unsafe impl ClassType for MTLDepthStencilDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLDepthStencilDescriptor {}

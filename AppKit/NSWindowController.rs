@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSResponder")]
     pub struct NSWindowController;
-
-    #[cfg(feature = "NSResponder")]
-    unsafe impl ClassType for NSWindowController {
-        #[inherits(NSObject)]
-        type Super = NSResponder;
-    }
 );
 
 #[cfg(feature = "NSResponder")]

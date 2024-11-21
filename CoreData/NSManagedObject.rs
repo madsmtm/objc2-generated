@@ -29,12 +29,9 @@ unsafe impl RefEncode for NSSnapshotEventType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSManagedObject;
-
-    unsafe impl ClassType for NSManagedObject {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSManagedObject {}

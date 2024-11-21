@@ -25,12 +25,9 @@ unsafe impl RefEncode for AXCustomContentImportance {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXCustomContent;
-
-    unsafe impl ClassType for AXCustomContent {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for AXCustomContent {}

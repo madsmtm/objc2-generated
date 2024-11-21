@@ -168,12 +168,9 @@ unsafe impl RefEncode for NEVPNIKEv2TLSVersion {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEVPNIKEv2SecurityAssociationParameters;
-
-    unsafe impl ClassType for NEVPNIKEv2SecurityAssociationParameters {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NEVPNIKEv2SecurityAssociationParameters {}
@@ -237,12 +234,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEVPNIKEv2PPKConfiguration;
-
-    unsafe impl ClassType for NEVPNIKEv2PPKConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NEVPNIKEv2PPKConfiguration {}
@@ -288,15 +282,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NEVPNProtocolIPSec, NEVPNProtocol, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NEVPNProtocol", feature = "NEVPNProtocolIPSec"))]
     pub struct NEVPNProtocolIKEv2;
-
-    #[cfg(all(feature = "NEVPNProtocol", feature = "NEVPNProtocolIPSec"))]
-    unsafe impl ClassType for NEVPNProtocolIKEv2 {
-        #[inherits(NEVPNProtocol, NSObject)]
-        type Super = NEVPNProtocolIPSec;
-    }
 );
 
 #[cfg(all(feature = "NEVPNProtocol", feature = "NEVPNProtocolIPSec"))]

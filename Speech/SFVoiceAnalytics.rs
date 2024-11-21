@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFAcousticFeature;
-
-    unsafe impl ClassType for SFAcousticFeature {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for SFAcousticFeature {}
@@ -48,12 +45,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFVoiceAnalytics;
-
-    unsafe impl ClassType for SFVoiceAnalytics {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for SFVoiceAnalytics {}

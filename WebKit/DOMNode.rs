@@ -43,16 +43,11 @@ pub const DOM_DOCUMENT_POSITION_CONTAINED_BY: c_uint = 0x10;
 pub const DOM_DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC: c_uint = 0x20;
 
 extern_class!(
+    #[unsafe(super(DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     #[deprecated]
     pub struct DOMNode;
-
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl ClassType for DOMNode {
-        #[inherits(WebScriptObject, NSObject)]
-        type Super = DOMObject;
-    }
 );
 
 #[cfg(all(

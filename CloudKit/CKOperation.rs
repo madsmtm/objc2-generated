@@ -8,13 +8,9 @@ use crate::*;
 pub type CKOperationID = NSString;
 
 extern_class!(
+    #[unsafe(super(NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKOperation;
-
-    unsafe impl ClassType for CKOperation {
-        #[inherits(NSObject)]
-        type Super = NSOperation;
-    }
 );
 
 unsafe impl NSObjectProtocol for CKOperation {}
@@ -63,12 +59,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKOperationConfiguration;
-
-    unsafe impl ClassType for CKOperationConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CKOperationConfiguration {}

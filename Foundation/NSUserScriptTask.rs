@@ -8,12 +8,9 @@ use crate::*;
 pub type NSUserScriptTaskCompletionHandler = *mut block2::Block<dyn Fn(*mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserScriptTask;
-
-    unsafe impl ClassType for NSUserScriptTask {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSUserScriptTask {}
@@ -55,13 +52,9 @@ extern_methods!(
 pub type NSUserUnixTaskCompletionHandler = *mut block2::Block<dyn Fn(*mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSUserScriptTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserUnixTask;
-
-    unsafe impl ClassType for NSUserUnixTask {
-        #[inherits(NSObject)]
-        type Super = NSUserScriptTask;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSUserUnixTask {}
@@ -139,13 +132,9 @@ pub type NSUserAppleScriptTaskCompletionHandler =
     *mut block2::Block<dyn Fn(*mut NSAppleEventDescriptor, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSUserScriptTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserAppleScriptTask;
-
-    unsafe impl ClassType for NSUserAppleScriptTask {
-        #[inherits(NSObject)]
-        type Super = NSUserScriptTask;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSUserAppleScriptTask {}
@@ -194,13 +183,9 @@ pub type NSUserAutomatorTaskCompletionHandler =
     *mut block2::Block<dyn Fn(*mut AnyObject, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSUserScriptTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserAutomatorTask;
-
-    unsafe impl ClassType for NSUserAutomatorTask {
-        #[inherits(NSObject)]
-        type Super = NSUserScriptTask;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSUserAutomatorTask {}

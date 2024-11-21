@@ -9,15 +9,10 @@ use crate::*;
 pub type CAScrollLayerScrollMode = NSString;
 
 extern_class!(
+    #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]
     pub struct CAScrollLayer;
-
-    #[cfg(feature = "CALayer")]
-    unsafe impl ClassType for CAScrollLayer {
-        #[inherits(NSObject)]
-        type Super = CALayer;
-    }
 );
 
 #[cfg(all(feature = "CALayer", feature = "CAMediaTiming"))]

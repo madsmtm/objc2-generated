@@ -29,15 +29,10 @@ unsafe impl RefEncode for CMMagneticField {
 }
 
 extern_class!(
+    #[unsafe(super(CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CMLogItem")]
     pub struct CMMagnetometerData;
-
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl ClassType for CMMagnetometerData {
-        #[inherits(NSObject)]
-        type Super = CMLogItem;
-    }
 );
 
 #[cfg(feature = "CMLogItem")]

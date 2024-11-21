@@ -5,15 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(MKOverlayRenderer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MKOverlayRenderer")]
     pub struct MKTileOverlayRenderer;
-
-    #[cfg(feature = "MKOverlayRenderer")]
-    unsafe impl ClassType for MKTileOverlayRenderer {
-        #[inherits(NSObject)]
-        type Super = MKOverlayRenderer;
-    }
 );
 
 #[cfg(feature = "MKOverlayRenderer")]

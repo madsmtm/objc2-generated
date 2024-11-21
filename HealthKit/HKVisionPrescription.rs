@@ -25,15 +25,10 @@ unsafe impl RefEncode for HKVisionPrescriptionType {
 }
 
 extern_class!(
+    #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     pub struct HKVisionPrescription;
-
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl ClassType for HKVisionPrescription {
-        #[inherits(HKObject, NSObject)]
-        type Super = HKSample;
-    }
 );
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]

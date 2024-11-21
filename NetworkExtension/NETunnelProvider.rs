@@ -52,15 +52,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NEProvider")]
     pub struct NETunnelProvider;
-
-    #[cfg(feature = "NEProvider")]
-    unsafe impl ClassType for NETunnelProvider {
-        #[inherits(NSObject)]
-        type Super = NEProvider;
-    }
 );
 
 #[cfg(feature = "NEProvider")]

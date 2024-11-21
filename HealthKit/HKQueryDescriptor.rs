@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKQueryDescriptor;
-
-    unsafe impl ClassType for HKQueryDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for HKQueryDescriptor {}

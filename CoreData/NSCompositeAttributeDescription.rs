@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSAttributeDescription, NSPropertyDescription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
     pub struct NSCompositeAttributeDescription;
-
-    #[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
-    unsafe impl ClassType for NSCompositeAttributeDescription {
-        #[inherits(NSPropertyDescription, NSObject)]
-        type Super = NSAttributeDescription;
-    }
 );
 
 #[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]

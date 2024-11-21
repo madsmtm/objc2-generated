@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
     pub struct MLCOptimizerDescriptor;
-
-    unsafe impl ClassType for MLCOptimizerDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MLCOptimizerDescriptor {}

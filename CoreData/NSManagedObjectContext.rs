@@ -93,12 +93,9 @@ unsafe impl RefEncode for NSManagedObjectContextConcurrencyType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSManagedObjectContext;
-
-    unsafe impl ClassType for NSManagedObjectContext {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSManagedObjectContext {}

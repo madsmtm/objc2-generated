@@ -24,12 +24,9 @@ unsafe impl RefEncode for NSTabState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTabViewItem;
-
-    unsafe impl ClassType for NSTabViewItem {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSTabViewItem {}

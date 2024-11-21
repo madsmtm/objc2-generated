@@ -32,12 +32,9 @@ unsafe impl RefEncode for GKAccessPointLocation {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKAccessPoint;
-
-    unsafe impl ClassType for GKAccessPoint {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GKAccessPoint {}

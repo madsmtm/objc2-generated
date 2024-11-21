@@ -48,15 +48,10 @@ unsafe impl RefEncode for NSToolbarItemGroupControlRepresentation {
 }
 
 extern_class!(
+    #[unsafe(super(NSToolbarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSToolbarItem")]
     pub struct NSToolbarItemGroup;
-
-    #[cfg(feature = "NSToolbarItem")]
-    unsafe impl ClassType for NSToolbarItemGroup {
-        #[inherits(NSObject)]
-        type Super = NSToolbarItem;
-    }
 );
 
 #[cfg(feature = "NSToolbarItem")]

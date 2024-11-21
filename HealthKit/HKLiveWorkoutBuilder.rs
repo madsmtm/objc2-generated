@@ -42,15 +42,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(HKWorkoutBuilder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKWorkoutBuilder")]
     pub struct HKLiveWorkoutBuilder;
-
-    #[cfg(feature = "HKWorkoutBuilder")]
-    unsafe impl ClassType for HKLiveWorkoutBuilder {
-        #[inherits(NSObject)]
-        type Super = HKWorkoutBuilder;
-    }
 );
 
 #[cfg(feature = "HKWorkoutBuilder")]

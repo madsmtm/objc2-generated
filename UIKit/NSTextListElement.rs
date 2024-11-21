@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSTextParagraph, NSTextElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSTextElement")]
     pub struct NSTextListElement;
-
-    #[cfg(feature = "NSTextElement")]
-    unsafe impl ClassType for NSTextListElement {
-        #[inherits(NSTextElement, NSObject)]
-        type Super = NSTextParagraph;
-    }
 );
 
 #[cfg(feature = "NSTextElement")]

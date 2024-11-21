@@ -20,15 +20,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSCoder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCoder")]
     pub struct NSKeyedArchiver;
-
-    #[cfg(feature = "NSCoder")]
-    unsafe impl ClassType for NSKeyedArchiver {
-        #[inherits(NSObject)]
-        type Super = NSCoder;
-    }
 );
 
 #[cfg(feature = "NSCoder")]
@@ -177,15 +172,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSCoder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCoder")]
     pub struct NSKeyedUnarchiver;
-
-    #[cfg(feature = "NSCoder")]
-    unsafe impl ClassType for NSKeyedUnarchiver {
-        #[inherits(NSObject)]
-        type Super = NSCoder;
-    }
 );
 
 #[cfg(feature = "NSCoder")]

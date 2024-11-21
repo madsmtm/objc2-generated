@@ -26,15 +26,10 @@ unsafe impl RefEncode for UIWindowScenePresentationStyle {
 }
 
 extern_class!(
+    #[unsafe(super(UISceneActivationRequestOptions, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UISceneOptions")]
     pub struct UIWindowSceneActivationRequestOptions;
-
-    #[cfg(feature = "UISceneOptions")]
-    unsafe impl ClassType for UIWindowSceneActivationRequestOptions {
-        #[inherits(NSObject)]
-        type Super = UISceneActivationRequestOptions;
-    }
 );
 
 #[cfg(feature = "UISceneOptions")]

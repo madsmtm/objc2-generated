@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CLSActivityItem, CLSObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
     pub struct CLSQuantityItem;
-
-    #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
-    unsafe impl ClassType for CLSQuantityItem {
-        #[inherits(CLSObject, NSObject)]
-        type Super = CLSActivityItem;
-    }
 );
 
 #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]

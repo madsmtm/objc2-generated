@@ -45,12 +45,9 @@ unsafe impl RefEncode for CKSyncEngineEventType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineEvent;
-
-    unsafe impl ClassType for CKSyncEngineEvent {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKSyncEngineEvent {}
@@ -121,13 +118,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineStateUpdateEvent;
-
-    unsafe impl ClassType for CKSyncEngineStateUpdateEvent {
-        #[inherits(NSObject)]
-        type Super = CKSyncEngineEvent;
-    }
 );
 
 unsafe impl Send for CKSyncEngineStateUpdateEvent {}
@@ -177,13 +170,9 @@ unsafe impl RefEncode for CKSyncEngineAccountChangeType {
 }
 
 extern_class!(
+    #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineAccountChangeEvent;
-
-    unsafe impl ClassType for CKSyncEngineAccountChangeEvent {
-        #[inherits(NSObject)]
-        type Super = CKSyncEngineEvent;
-    }
 );
 
 unsafe impl Send for CKSyncEngineAccountChangeEvent {}
@@ -219,13 +208,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFetchedDatabaseChangesEvent;
-
-    unsafe impl ClassType for CKSyncEngineFetchedDatabaseChangesEvent {
-        #[inherits(NSObject)]
-        type Super = CKSyncEngineEvent;
-    }
 );
 
 unsafe impl Send for CKSyncEngineFetchedDatabaseChangesEvent {}
@@ -257,13 +242,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFetchedRecordZoneChangesEvent;
-
-    unsafe impl ClassType for CKSyncEngineFetchedRecordZoneChangesEvent {
-        #[inherits(NSObject)]
-        type Super = CKSyncEngineEvent;
-    }
 );
 
 unsafe impl Send for CKSyncEngineFetchedRecordZoneChangesEvent {}
@@ -295,13 +276,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineSentDatabaseChangesEvent;
-
-    unsafe impl ClassType for CKSyncEngineSentDatabaseChangesEvent {
-        #[inherits(NSObject)]
-        type Super = CKSyncEngineEvent;
-    }
 );
 
 unsafe impl Send for CKSyncEngineSentDatabaseChangesEvent {}
@@ -341,13 +318,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineSentRecordZoneChangesEvent;
-
-    unsafe impl ClassType for CKSyncEngineSentRecordZoneChangesEvent {
-        #[inherits(NSObject)]
-        type Super = CKSyncEngineEvent;
-    }
 );
 
 unsafe impl Send for CKSyncEngineSentRecordZoneChangesEvent {}
@@ -387,13 +360,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineWillFetchChangesEvent;
-
-    unsafe impl ClassType for CKSyncEngineWillFetchChangesEvent {
-        #[inherits(NSObject)]
-        type Super = CKSyncEngineEvent;
-    }
 );
 
 unsafe impl Send for CKSyncEngineWillFetchChangesEvent {}
@@ -422,13 +391,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineWillFetchRecordZoneChangesEvent;
-
-    unsafe impl ClassType for CKSyncEngineWillFetchRecordZoneChangesEvent {
-        #[inherits(NSObject)]
-        type Super = CKSyncEngineEvent;
-    }
 );
 
 unsafe impl Send for CKSyncEngineWillFetchRecordZoneChangesEvent {}
@@ -457,13 +422,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineDidFetchRecordZoneChangesEvent;
-
-    unsafe impl ClassType for CKSyncEngineDidFetchRecordZoneChangesEvent {
-        #[inherits(NSObject)]
-        type Super = CKSyncEngineEvent;
-    }
 );
 
 unsafe impl Send for CKSyncEngineDidFetchRecordZoneChangesEvent {}
@@ -495,13 +456,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineDidFetchChangesEvent;
-
-    unsafe impl ClassType for CKSyncEngineDidFetchChangesEvent {
-        #[inherits(NSObject)]
-        type Super = CKSyncEngineEvent;
-    }
 );
 
 unsafe impl Send for CKSyncEngineDidFetchChangesEvent {}
@@ -530,13 +487,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineWillSendChangesEvent;
-
-    unsafe impl ClassType for CKSyncEngineWillSendChangesEvent {
-        #[inherits(NSObject)]
-        type Super = CKSyncEngineEvent;
-    }
 );
 
 unsafe impl Send for CKSyncEngineWillSendChangesEvent {}
@@ -565,13 +518,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineDidSendChangesEvent;
-
-    unsafe impl ClassType for CKSyncEngineDidSendChangesEvent {
-        #[inherits(NSObject)]
-        type Super = CKSyncEngineEvent;
-    }
 );
 
 unsafe impl Send for CKSyncEngineDidSendChangesEvent {}
@@ -600,12 +549,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFetchedRecordDeletion;
-
-    unsafe impl ClassType for CKSyncEngineFetchedRecordDeletion {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKSyncEngineFetchedRecordDeletion {}
@@ -654,12 +600,9 @@ unsafe impl RefEncode for CKSyncEngineZoneDeletionReason {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFetchedZoneDeletion;
-
-    unsafe impl ClassType for CKSyncEngineFetchedZoneDeletion {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKSyncEngineFetchedZoneDeletion {}
@@ -686,12 +629,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFailedRecordSave;
-
-    unsafe impl ClassType for CKSyncEngineFailedRecordSave {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKSyncEngineFailedRecordSave {}
@@ -718,12 +658,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFailedZoneSave;
-
-    unsafe impl ClassType for CKSyncEngineFailedZoneSave {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKSyncEngineFailedZoneSave {}

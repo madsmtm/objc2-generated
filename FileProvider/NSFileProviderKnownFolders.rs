@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderKnownFolderLocation;
-
-    unsafe impl ClassType for NSFileProviderKnownFolderLocation {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSFileProviderKnownFolderLocation {}
@@ -47,12 +44,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderKnownFolderLocations;
-
-    unsafe impl ClassType for NSFileProviderKnownFolderLocations {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSFileProviderKnownFolderLocations {}

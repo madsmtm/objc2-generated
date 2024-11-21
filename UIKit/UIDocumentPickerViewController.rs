@@ -66,16 +66,11 @@ unsafe impl RefEncode for UIDocumentPickerMode {
 }
 
 extern_class!(
+    #[unsafe(super(UIViewController, UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     pub struct UIDocumentPickerViewController;
-
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl ClassType for UIDocumentPickerViewController {
-        #[inherits(UIResponder, NSObject)]
-        type Super = UIViewController;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]

@@ -72,12 +72,9 @@ unsafe impl RefEncode for NSURLRequestAttribution {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLRequest;
-
-    unsafe impl ClassType for NSURLRequest {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -187,13 +184,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSURLRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableURLRequest;
-
-    unsafe impl ClassType for NSMutableURLRequest {
-        #[inherits(NSObject)]
-        type Super = NSURLRequest;
-    }
 );
 
 #[cfg(feature = "NSObject")]

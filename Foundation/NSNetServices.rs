@@ -58,13 +58,10 @@ unsafe impl RefEncode for NSNetServiceOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
     pub struct NSNetService;
-
-    unsafe impl ClassType for NSNetService {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSNetService {}
@@ -222,13 +219,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use nw_browser_t in Network framework instead"]
     pub struct NSNetServiceBrowser;
-
-    unsafe impl ClassType for NSNetServiceBrowser {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSNetServiceBrowser {}

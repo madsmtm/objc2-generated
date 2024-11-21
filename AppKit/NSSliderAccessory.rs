@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSliderAccessory;
-
-    unsafe impl ClassType for NSSliderAccessory {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for NSSliderAccessory {}
@@ -64,13 +61,10 @@ unsafe impl NSAccessibility for NSSliderAccessory {}
 unsafe impl NSAccessibilityElementProtocol for NSSliderAccessory {}
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSliderAccessoryBehavior;
-
-    unsafe impl ClassType for NSSliderAccessoryBehavior {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for NSSliderAccessoryBehavior {}

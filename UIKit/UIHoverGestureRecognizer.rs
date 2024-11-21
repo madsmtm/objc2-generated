@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIGestureRecognizer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGestureRecognizer")]
     pub struct UIHoverGestureRecognizer;
-
-    #[cfg(feature = "UIGestureRecognizer")]
-    unsafe impl ClassType for UIHoverGestureRecognizer {
-        #[inherits(NSObject)]
-        type Super = UIGestureRecognizer;
-    }
 );
 
 #[cfg(feature = "UIGestureRecognizer")]

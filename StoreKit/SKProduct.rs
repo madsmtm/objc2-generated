@@ -34,13 +34,10 @@ unsafe impl RefEncode for SKProductPeriodUnit {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Product.SubscriptionPeriod"]
     pub struct SKProductSubscriptionPeriod;
-
-    unsafe impl ClassType for SKProductSubscriptionPeriod {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for SKProductSubscriptionPeriod {}
@@ -73,13 +70,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Product"]
     pub struct SKProduct;
-
-    unsafe impl ClassType for SKProduct {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for SKProduct {}

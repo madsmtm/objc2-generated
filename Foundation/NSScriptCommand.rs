@@ -17,12 +17,9 @@ pub const NSOperationNotSupportedForKeyScriptError: NSInteger = 9;
 pub const NSCannotCreateScriptCommandError: NSInteger = 10;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptCommand;
-
-    unsafe impl ClassType for NSScriptCommand {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]

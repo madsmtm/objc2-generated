@@ -55,12 +55,9 @@ unsafe impl RefEncode for PHProjectCreationSource {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectInfo;
-
-    unsafe impl ClassType for PHProjectInfo {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for PHProjectInfo {}
@@ -133,12 +130,9 @@ unsafe impl Send for PHProjectSectionType {}
 unsafe impl Sync for PHProjectSectionType {}
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectSection;
-
-    unsafe impl ClassType for PHProjectSection {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for PHProjectSection {}
@@ -171,12 +165,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectSectionContent;
-
-    unsafe impl ClassType for PHProjectSectionContent {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for PHProjectSectionContent {}
@@ -219,12 +210,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectElement;
-
-    unsafe impl ClassType for PHProjectElement {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for PHProjectElement {}
@@ -257,12 +245,9 @@ extern_methods!(
 pub type PHProjectRegionOfInterestIdentifier = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectRegionOfInterest;
-
-    unsafe impl ClassType for PHProjectRegionOfInterest {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for PHProjectRegionOfInterest {}
@@ -294,13 +279,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(PHProjectElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectAssetElement;
-
-    unsafe impl ClassType for PHProjectAssetElement {
-        #[inherits(NSObject)]
-        type Super = PHProjectElement;
-    }
 );
 
 unsafe impl Send for PHProjectAssetElement {}
@@ -374,13 +355,9 @@ unsafe impl Send for PHProjectTextElementType {}
 unsafe impl Sync for PHProjectTextElementType {}
 
 extern_class!(
+    #[unsafe(super(PHProjectElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectTextElement;
-
-    unsafe impl ClassType for PHProjectTextElement {
-        #[inherits(NSObject)]
-        type Super = PHProjectElement;
-    }
 );
 
 unsafe impl Send for PHProjectTextElement {}
@@ -418,13 +395,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(PHProjectElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectJournalEntryElement;
-
-    unsafe impl ClassType for PHProjectJournalEntryElement {
-        #[inherits(NSObject)]
-        type Super = PHProjectElement;
-    }
 );
 
 unsafe impl Send for PHProjectJournalEntryElement {}
@@ -462,13 +435,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(PHProjectElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectMapElement;
-
-    unsafe impl ClassType for PHProjectMapElement {
-        #[inherits(NSObject)]
-        type Super = PHProjectElement;
-    }
 );
 
 unsafe impl Send for PHProjectMapElement {}

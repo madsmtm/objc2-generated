@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechRecognitionRequest;
-
-    unsafe impl ClassType for SFSpeechRecognitionRequest {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SFSpeechRecognitionRequest {}
@@ -85,13 +82,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(SFSpeechRecognitionRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechURLRecognitionRequest;
-
-    unsafe impl ClassType for SFSpeechURLRecognitionRequest {
-        #[inherits(NSObject)]
-        type Super = SFSpeechRecognitionRequest;
-    }
 );
 
 unsafe impl NSObjectProtocol for SFSpeechURLRecognitionRequest {}
@@ -118,13 +111,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(SFSpeechRecognitionRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechAudioBufferRecognitionRequest;
-
-    unsafe impl ClassType for SFSpeechAudioBufferRecognitionRequest {
-        #[inherits(NSObject)]
-        type Super = SFSpeechRecognitionRequest;
-    }
 );
 
 unsafe impl NSObjectProtocol for SFSpeechAudioBufferRecognitionRequest {}

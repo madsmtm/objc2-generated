@@ -5,12 +5,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataQuery;
-
-    unsafe impl ClassType for NSMetadataQuery {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSMetadataQuery {}
@@ -280,12 +277,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataItem;
-
-    unsafe impl ClassType for NSMetadataItem {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSMetadataItem {}
@@ -325,12 +319,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataQueryAttributeValueTuple;
-
-    unsafe impl ClassType for NSMetadataQueryAttributeValueTuple {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSMetadataQueryAttributeValueTuple {}
@@ -361,12 +352,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataQueryResultGroup;
-
-    unsafe impl ClassType for NSMetadataQueryResultGroup {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSMetadataQueryResultGroup {}

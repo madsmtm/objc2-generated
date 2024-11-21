@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]
     pub struct CAReplicatorLayer;
-
-    #[cfg(feature = "CALayer")]
-    unsafe impl ClassType for CAReplicatorLayer {
-        #[inherits(NSObject)]
-        type Super = CALayer;
-    }
 );
 
 #[cfg(all(feature = "CALayer", feature = "CAMediaTiming"))]

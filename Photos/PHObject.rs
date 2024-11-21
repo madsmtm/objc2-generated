@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHObject;
-
-    unsafe impl ClassType for PHObject {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for PHObject {}
@@ -45,13 +42,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(PHObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHObjectPlaceholder;
-
-    unsafe impl ClassType for PHObjectPlaceholder {
-        #[inherits(NSObject)]
-        type Super = PHObject;
-    }
 );
 
 unsafe impl Send for PHObjectPlaceholder {}

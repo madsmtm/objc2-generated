@@ -10,15 +10,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(UIWindowSceneGeometryPreferences, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]
     pub struct UIWindowSceneGeometryPreferencesVision;
-
-    #[cfg(feature = "UIWindowSceneGeometryPreferences")]
-    unsafe impl ClassType for UIWindowSceneGeometryPreferencesVision {
-        #[inherits(NSObject)]
-        type Super = UIWindowSceneGeometryPreferences;
-    }
 );
 
 #[cfg(feature = "UIWindowSceneGeometryPreferences")]

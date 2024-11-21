@@ -68,12 +68,9 @@ unsafe impl RefEncode for GKLeaderboardType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKLeaderboard;
-
-    unsafe impl ClassType for GKLeaderboard {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GKLeaderboard {}

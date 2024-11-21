@@ -300,16 +300,11 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIResponder")]
     pub struct UIView;
-
-    #[cfg(feature = "UIResponder")]
-    unsafe impl ClassType for UIView {
-        #[inherits(NSObject)]
-        type Super = UIResponder;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(feature = "UIResponder", feature = "objc2-quartz-core"))]

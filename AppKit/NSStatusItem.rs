@@ -29,12 +29,9 @@ unsafe impl RefEncode for NSStatusItemBehavior {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStatusItem;
-
-    unsafe impl ClassType for NSStatusItem {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSStatusItem {}

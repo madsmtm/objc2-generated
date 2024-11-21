@@ -5,16 +5,11 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSDate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSDate")]
     #[deprecated = "Use NSCalendar and NSDateComponents and NSDateFormatter instead"]
     pub struct NSCalendarDate;
-
-    #[cfg(feature = "NSDate")]
-    unsafe impl ClassType for NSCalendarDate {
-        #[inherits(NSObject)]
-        type Super = NSDate;
-    }
 );
 
 #[cfg(all(feature = "NSDate", feature = "NSObject"))]

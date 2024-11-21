@@ -12,12 +12,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMediaEntity;
-
-    unsafe impl ClassType for MPMediaEntity {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MPMediaEntity {}

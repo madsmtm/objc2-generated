@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CNFetchRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CNFetchRequest")]
     pub struct CNChangeHistoryFetchRequest;
-
-    #[cfg(feature = "CNFetchRequest")]
-    unsafe impl ClassType for CNChangeHistoryFetchRequest {
-        #[inherits(NSObject)]
-        type Super = CNFetchRequest;
-    }
 );
 
 #[cfg(feature = "CNFetchRequest")]

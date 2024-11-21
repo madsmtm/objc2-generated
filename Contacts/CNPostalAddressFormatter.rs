@@ -23,13 +23,9 @@ unsafe impl RefEncode for CNPostalAddressFormatterStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNPostalAddressFormatter;
-
-    unsafe impl ClassType for CNPostalAddressFormatter {
-        #[inherits(NSObject)]
-        type Super = NSFormatter;
-    }
 );
 
 unsafe impl NSCoding for CNPostalAddressFormatter {}

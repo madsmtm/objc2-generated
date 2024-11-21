@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryEvent;
-
-    unsafe impl ClassType for CNChangeHistoryEvent {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CNChangeHistoryEvent {}
@@ -48,13 +45,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryDropEverythingEvent;
-
-    unsafe impl ClassType for CNChangeHistoryDropEverythingEvent {
-        #[inherits(NSObject)]
-        type Super = CNChangeHistoryEvent;
-    }
 );
 
 unsafe impl NSCoding for CNChangeHistoryDropEverythingEvent {}
@@ -85,13 +78,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryAddContactEvent;
-
-    unsafe impl ClassType for CNChangeHistoryAddContactEvent {
-        #[inherits(NSObject)]
-        type Super = CNChangeHistoryEvent;
-    }
 );
 
 unsafe impl NSCoding for CNChangeHistoryAddContactEvent {}
@@ -129,13 +118,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryUpdateContactEvent;
-
-    unsafe impl ClassType for CNChangeHistoryUpdateContactEvent {
-        #[inherits(NSObject)]
-        type Super = CNChangeHistoryEvent;
-    }
 );
 
 unsafe impl NSCoding for CNChangeHistoryUpdateContactEvent {}
@@ -170,13 +155,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryDeleteContactEvent;
-
-    unsafe impl ClassType for CNChangeHistoryDeleteContactEvent {
-        #[inherits(NSObject)]
-        type Super = CNChangeHistoryEvent;
-    }
 );
 
 unsafe impl NSCoding for CNChangeHistoryDeleteContactEvent {}
@@ -210,13 +191,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryAddGroupEvent;
-
-    unsafe impl ClassType for CNChangeHistoryAddGroupEvent {
-        #[inherits(NSObject)]
-        type Super = CNChangeHistoryEvent;
-    }
 );
 
 unsafe impl NSCoding for CNChangeHistoryAddGroupEvent {}
@@ -254,13 +231,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryUpdateGroupEvent;
-
-    unsafe impl ClassType for CNChangeHistoryUpdateGroupEvent {
-        #[inherits(NSObject)]
-        type Super = CNChangeHistoryEvent;
-    }
 );
 
 unsafe impl NSCoding for CNChangeHistoryUpdateGroupEvent {}
@@ -295,13 +268,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryDeleteGroupEvent;
-
-    unsafe impl ClassType for CNChangeHistoryDeleteGroupEvent {
-        #[inherits(NSObject)]
-        type Super = CNChangeHistoryEvent;
-    }
 );
 
 unsafe impl NSCoding for CNChangeHistoryDeleteGroupEvent {}
@@ -335,13 +304,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryAddMemberToGroupEvent;
-
-    unsafe impl ClassType for CNChangeHistoryAddMemberToGroupEvent {
-        #[inherits(NSObject)]
-        type Super = CNChangeHistoryEvent;
-    }
 );
 
 unsafe impl NSCoding for CNChangeHistoryAddMemberToGroupEvent {}
@@ -380,13 +345,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryRemoveMemberFromGroupEvent;
-
-    unsafe impl ClassType for CNChangeHistoryRemoveMemberFromGroupEvent {
-        #[inherits(NSObject)]
-        type Super = CNChangeHistoryEvent;
-    }
 );
 
 unsafe impl NSCoding for CNChangeHistoryRemoveMemberFromGroupEvent {}
@@ -425,13 +386,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryAddSubgroupToGroupEvent;
-
-    unsafe impl ClassType for CNChangeHistoryAddSubgroupToGroupEvent {
-        #[inherits(NSObject)]
-        type Super = CNChangeHistoryEvent;
-    }
 );
 
 unsafe impl NSCoding for CNChangeHistoryAddSubgroupToGroupEvent {}
@@ -470,13 +427,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryRemoveSubgroupFromGroupEvent;
-
-    unsafe impl ClassType for CNChangeHistoryRemoveSubgroupFromGroupEvent {
-        #[inherits(NSObject)]
-        type Super = CNChangeHistoryEvent;
-    }
 );
 
 unsafe impl NSCoding for CNChangeHistoryRemoveSubgroupFromGroupEvent {}

@@ -48,15 +48,10 @@ unsafe impl RefEncode for VZDiskImageSynchronizationMode {
 }
 
 extern_class!(
+    #[unsafe(super(VZStorageDeviceAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZStorageDeviceAttachment")]
     pub struct VZDiskImageStorageDeviceAttachment;
-
-    #[cfg(feature = "VZStorageDeviceAttachment")]
-    unsafe impl ClassType for VZDiskImageStorageDeviceAttachment {
-        #[inherits(NSObject)]
-        type Super = VZStorageDeviceAttachment;
-    }
 );
 
 #[cfg(feature = "VZStorageDeviceAttachment")]

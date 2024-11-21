@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHFetchOptions;
-
-    unsafe impl ClassType for PHFetchOptions {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for PHFetchOptions {}

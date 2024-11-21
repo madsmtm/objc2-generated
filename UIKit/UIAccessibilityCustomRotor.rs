@@ -125,13 +125,10 @@ extern_category!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIAccessibilityCustomRotorSearchPredicate;
-
-    unsafe impl ClassType for UIAccessibilityCustomRotorSearchPredicate {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIAccessibilityCustomRotorSearchPredicate {}
@@ -167,13 +164,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIAccessibilityCustomRotor;
-
-    unsafe impl ClassType for UIAccessibilityCustomRotor {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIAccessibilityCustomRotor {}
@@ -244,13 +238,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIAccessibilityCustomRotorItemResult;
-
-    unsafe impl ClassType for UIAccessibilityCustomRotorItemResult {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIAccessibilityCustomRotorItemResult {}

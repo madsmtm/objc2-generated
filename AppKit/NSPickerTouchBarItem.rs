@@ -48,15 +48,10 @@ unsafe impl RefEncode for NSPickerTouchBarItemControlRepresentation {
 }
 
 extern_class!(
+    #[unsafe(super(NSTouchBarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSTouchBarItem")]
     pub struct NSPickerTouchBarItem;
-
-    #[cfg(feature = "NSTouchBarItem")]
-    unsafe impl ClassType for NSPickerTouchBarItem {
-        #[inherits(NSObject)]
-        type Super = NSTouchBarItem;
-    }
 );
 
 #[cfg(feature = "NSTouchBarItem")]

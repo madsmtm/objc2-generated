@@ -8,12 +8,9 @@ use crate::*;
 pub type NSStoryboardSegueIdentifier = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStoryboardSegue;
-
-    unsafe impl ClassType for NSStoryboardSegue {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSStoryboardSegue {}

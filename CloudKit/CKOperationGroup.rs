@@ -37,12 +37,9 @@ unsafe impl RefEncode for CKOperationGroupTransferSize {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKOperationGroup;
-
-    unsafe impl ClassType for CKOperationGroup {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CKOperationGroup {}

@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UICommand, UIMenuElement, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
     pub struct UIKeyCommand;
-
-    #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
-    unsafe impl ClassType for UIKeyCommand {
-        #[inherits(UIMenuElement, NSObject)]
-        type Super = UICommand;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]

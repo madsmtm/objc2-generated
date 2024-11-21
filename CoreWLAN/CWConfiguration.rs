@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWConfiguration;
-
-    unsafe impl ClassType for CWConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CWConfiguration {}
@@ -81,13 +78,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CWConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWMutableConfiguration;
-
-    unsafe impl ClassType for CWMutableConfiguration {
-        #[inherits(NSObject)]
-        type Super = CWConfiguration;
-    }
 );
 
 unsafe impl NSCoding for CWMutableConfiguration {}

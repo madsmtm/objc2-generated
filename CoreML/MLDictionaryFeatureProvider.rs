@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLDictionaryFeatureProvider;
-
-    unsafe impl ClassType for MLDictionaryFeatureProvider {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "MLFeatureProvider")]

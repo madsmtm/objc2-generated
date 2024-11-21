@@ -63,12 +63,9 @@ unsafe impl RefEncode for NSCursorFrameResizeDirections {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCursor;
-
-    unsafe impl ClassType for NSCursor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSCursor {}

@@ -63,16 +63,11 @@ unsafe impl RefEncode for UIBlurEffectStyle {
 }
 
 extern_class!(
+    #[unsafe(super(UIVisualEffect, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIVisualEffect")]
     pub struct UIBlurEffect;
-
-    #[cfg(feature = "UIVisualEffect")]
-    unsafe impl ClassType for UIBlurEffect {
-        #[inherits(NSObject)]
-        type Super = UIVisualEffect;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIVisualEffect")]

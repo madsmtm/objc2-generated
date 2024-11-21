@@ -59,13 +59,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPointerAccessory;
-
-    unsafe impl ClassType for UIPointerAccessory {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UIPointerAccessory {}

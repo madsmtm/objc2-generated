@@ -33,12 +33,9 @@ unsafe impl RefEncode for MLMultiArrayDataType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLMultiArray;
-
-    unsafe impl ClassType for MLMultiArray {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MLMultiArray {}

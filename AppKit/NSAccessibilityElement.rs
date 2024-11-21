@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityElement;
-
-    unsafe impl ClassType for NSAccessibilityElement {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSAccessibilityProtocols")]

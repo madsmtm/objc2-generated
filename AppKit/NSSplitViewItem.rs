@@ -56,12 +56,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSplitViewItem;
-
-    unsafe impl ClassType for NSSplitViewItem {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSAnimation")]

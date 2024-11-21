@@ -14,13 +14,10 @@ pub type UIWindowSceneActivationInteractionConfigurationProvider = *mut block2::
 >;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIWindowSceneActivationInteraction;
-
-    unsafe impl ClassType for UIWindowSceneActivationInteraction {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIWindowSceneActivationInteraction {}

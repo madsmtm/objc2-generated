@@ -94,12 +94,9 @@ unsafe impl RefEncode for MTLSamplerBorderColor {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLSamplerDescriptor;
-
-    unsafe impl ClassType for MTLSamplerDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLSamplerDescriptor {}

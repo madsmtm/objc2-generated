@@ -29,12 +29,9 @@ unsafe impl RefEncode for UIWindowSceneResizingRestrictions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIWindowSceneGeometry;
-
-    unsafe impl ClassType for UIWindowSceneGeometry {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for UIWindowSceneGeometry {}

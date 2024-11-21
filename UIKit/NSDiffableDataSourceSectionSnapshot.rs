@@ -5,23 +5,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct NSDiffableDataSourceSectionSnapshot<ItemIdentifierType: ?Sized = AnyObject> {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut ItemIdentifierType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<ItemIdentifierType: ?Sized + Message> ClassType
-        for NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>
-    {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSDiffableDataSourceSectionSnapshot<ItemIdentifierType: ?Sized = AnyObject>;
 );
 
 unsafe impl<ItemIdentifierType: ?Sized> NSCopying

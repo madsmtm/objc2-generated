@@ -8,13 +8,10 @@ use crate::*;
 pub type NSTextInputSourceIdentifier = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextInputContext;
-
-    unsafe impl ClassType for NSTextInputContext {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSTextInputContext {}

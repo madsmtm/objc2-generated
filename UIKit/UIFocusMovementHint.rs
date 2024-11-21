@@ -9,12 +9,9 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIFocusMovementHint;
-
-    unsafe impl ClassType for UIFocusMovementHint {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for UIFocusMovementHint {}

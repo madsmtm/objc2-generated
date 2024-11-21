@@ -18,12 +18,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextRange;
-
-    unsafe impl ClassType for NSTextRange {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSTextRange {}

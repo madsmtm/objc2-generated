@@ -72,12 +72,9 @@ unsafe impl RefEncode for MTLMatrixLayout {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureDescriptor;
-
-    unsafe impl ClassType for MTLAccelerationStructureDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLAccelerationStructureDescriptor {}
@@ -110,12 +107,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureGeometryDescriptor;
-
-    unsafe impl ClassType for MTLAccelerationStructureGeometryDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLAccelerationStructureGeometryDescriptor {}
@@ -229,13 +223,9 @@ unsafe impl RefEncode for MTLMotionBorderMode {
 }
 
 extern_class!(
+    #[unsafe(super(MTLAccelerationStructureDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLPrimitiveAccelerationStructureDescriptor;
-
-    unsafe impl ClassType for MTLPrimitiveAccelerationStructureDescriptor {
-        #[inherits(NSObject)]
-        type Super = MTLAccelerationStructureDescriptor;
-    }
 );
 
 unsafe impl NSCopying for MTLPrimitiveAccelerationStructureDescriptor {}
@@ -309,13 +299,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MTLAccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureTriangleGeometryDescriptor;
-
-    unsafe impl ClassType for MTLAccelerationStructureTriangleGeometryDescriptor {
-        #[inherits(NSObject)]
-        type Super = MTLAccelerationStructureGeometryDescriptor;
-    }
 );
 
 unsafe impl NSCopying for MTLAccelerationStructureTriangleGeometryDescriptor {}
@@ -456,13 +442,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MTLAccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureBoundingBoxGeometryDescriptor;
-
-    unsafe impl ClassType for MTLAccelerationStructureBoundingBoxGeometryDescriptor {
-        #[inherits(NSObject)]
-        type Super = MTLAccelerationStructureGeometryDescriptor;
-    }
 );
 
 unsafe impl NSCopying for MTLAccelerationStructureBoundingBoxGeometryDescriptor {}
@@ -529,12 +511,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLMotionKeyframeData;
-
-    unsafe impl ClassType for MTLMotionKeyframeData {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLMotionKeyframeData {}
@@ -580,13 +559,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MTLAccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureMotionTriangleGeometryDescriptor;
-
-    unsafe impl ClassType for MTLAccelerationStructureMotionTriangleGeometryDescriptor {
-        #[inherits(NSObject)]
-        type Super = MTLAccelerationStructureGeometryDescriptor;
-    }
 );
 
 unsafe impl NSCopying for MTLAccelerationStructureMotionTriangleGeometryDescriptor {}
@@ -711,13 +686,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MTLAccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor;
-
-    unsafe impl ClassType for MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
-        #[inherits(NSObject)]
-        type Super = MTLAccelerationStructureGeometryDescriptor;
-    }
 );
 
 unsafe impl NSCopying for MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {}
@@ -831,13 +802,9 @@ unsafe impl RefEncode for MTLCurveEndCaps {
 }
 
 extern_class!(
+    #[unsafe(super(MTLAccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureCurveGeometryDescriptor;
-
-    unsafe impl ClassType for MTLAccelerationStructureCurveGeometryDescriptor {
-        #[inherits(NSObject)]
-        type Super = MTLAccelerationStructureGeometryDescriptor;
-    }
 );
 
 unsafe impl NSCopying for MTLAccelerationStructureCurveGeometryDescriptor {}
@@ -1008,13 +975,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MTLAccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureMotionCurveGeometryDescriptor;
-
-    unsafe impl ClassType for MTLAccelerationStructureMotionCurveGeometryDescriptor {
-        #[inherits(NSObject)]
-        type Super = MTLAccelerationStructureGeometryDescriptor;
-    }
 );
 
 unsafe impl NSCopying for MTLAccelerationStructureMotionCurveGeometryDescriptor {}
@@ -1372,13 +1335,9 @@ unsafe impl RefEncode for MTLTransformType {
 }
 
 extern_class!(
+    #[unsafe(super(MTLAccelerationStructureDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLInstanceAccelerationStructureDescriptor;
-
-    unsafe impl ClassType for MTLInstanceAccelerationStructureDescriptor {
-        #[inherits(NSObject)]
-        type Super = MTLAccelerationStructureDescriptor;
-    }
 );
 
 unsafe impl NSCopying for MTLInstanceAccelerationStructureDescriptor {}
@@ -1533,13 +1492,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MTLAccelerationStructureDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLIndirectInstanceAccelerationStructureDescriptor;
-
-    unsafe impl ClassType for MTLIndirectInstanceAccelerationStructureDescriptor {
-        #[inherits(NSObject)]
-        type Super = MTLAccelerationStructureDescriptor;
-    }
 );
 
 unsafe impl NSCopying for MTLIndirectInstanceAccelerationStructureDescriptor {}

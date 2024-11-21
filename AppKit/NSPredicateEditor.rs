@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSRuleEditor, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "NSControl",
@@ -14,17 +15,6 @@ extern_class!(
         feature = "NSView"
     ))]
     pub struct NSPredicateEditor;
-
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSRuleEditor",
-        feature = "NSView"
-    ))]
-    unsafe impl ClassType for NSPredicateEditor {
-        #[inherits(NSControl, NSView, NSResponder, NSObject)]
-        type Super = NSRuleEditor;
-    }
 );
 
 #[cfg(all(

@@ -32,23 +32,10 @@ unsafe impl RefEncode for SCContentSharingPickerMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct SCContentSharingPickerConfiguration<NSCopying: ?Sized = AnyObject> {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut NSCopying>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<NSCopying: ?Sized + Message> ClassType
-        for SCContentSharingPickerConfiguration<NSCopying>
-    {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct SCContentSharingPickerConfiguration<NSCopying: ?Sized = AnyObject>;
 );
 
 unsafe impl<NSCopying: ?Sized> NSObjectProtocol for SCContentSharingPickerConfiguration<NSCopying> {}
@@ -99,12 +86,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCContentSharingPicker;
-
-    unsafe impl ClassType for SCContentSharingPicker {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SCContentSharingPicker {}

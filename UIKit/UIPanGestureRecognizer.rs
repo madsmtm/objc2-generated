@@ -48,16 +48,11 @@ unsafe impl RefEncode for UIScrollTypeMask {
 }
 
 extern_class!(
+    #[unsafe(super(UIGestureRecognizer, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGestureRecognizer")]
     pub struct UIPanGestureRecognizer;
-
-    #[cfg(feature = "UIGestureRecognizer")]
-    unsafe impl ClassType for UIPanGestureRecognizer {
-        #[inherits(NSObject)]
-        type Super = UIGestureRecognizer;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIGestureRecognizer")]

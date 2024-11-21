@@ -123,12 +123,9 @@ unsafe impl RefEncode for NSTextSelectionNavigationLayoutOrientation {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextSelectionNavigation;
-
-    unsafe impl ClassType for NSTextSelectionNavigation {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSTextSelectionNavigation {}

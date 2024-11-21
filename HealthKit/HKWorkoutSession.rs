@@ -52,12 +52,9 @@ unsafe impl RefEncode for HKWorkoutSessionType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutSession;
-
-    unsafe impl ClassType for HKWorkoutSession {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for HKWorkoutSession {}

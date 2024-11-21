@@ -44,15 +44,10 @@ unsafe impl RefEncode for NSDateFormatterBehavior {
 }
 
 extern_class!(
+    #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]
     pub struct NSDateFormatter;
-
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl ClassType for NSDateFormatter {
-        #[inherits(NSObject)]
-        type Super = NSFormatter;
-    }
 );
 
 #[cfg(feature = "NSFormatter")]

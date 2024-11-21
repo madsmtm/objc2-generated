@@ -235,12 +235,9 @@ unsafe impl RefEncode for NSGrammaticalDefiniteness {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMorphology;
-
-    unsafe impl ClassType for NSMorphology {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -323,12 +320,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMorphologyPronoun;
-
-    unsafe impl ClassType for NSMorphologyPronoun {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -399,13 +393,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSTermOfAddress instead"]
     pub struct NSMorphologyCustomPronoun;
-
-    unsafe impl ClassType for NSMorphologyCustomPronoun {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]

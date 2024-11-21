@@ -71,15 +71,10 @@ unsafe impl RefEncode for UIDocumentBrowserUserInterfaceStyle {
 }
 
 extern_class!(
+    #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     pub struct UIDocumentBrowserViewController;
-
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl ClassType for UIDocumentBrowserViewController {
-        #[inherits(UIResponder, NSObject)]
-        type Super = UIViewController;
-    }
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
@@ -397,13 +392,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIDocumentBrowserTransitionController;
-
-    unsafe impl ClassType for UIDocumentBrowserTransitionController {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIDocumentBrowserTransitionController {}

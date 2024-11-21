@@ -9,15 +9,10 @@ use crate::*;
 pub type GCMouseMoved = *mut block2::Block<dyn Fn(NonNull<GCMouseInput>, c_float, c_float)>;
 
 extern_class!(
+    #[unsafe(super(GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCPhysicalInputProfile")]
     pub struct GCMouseInput;
-
-    #[cfg(feature = "GCPhysicalInputProfile")]
-    unsafe impl ClassType for GCMouseInput {
-        #[inherits(NSObject)]
-        type Super = GCPhysicalInputProfile;
-    }
 );
 
 #[cfg(feature = "GCPhysicalInputProfile")]

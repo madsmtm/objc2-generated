@@ -43,13 +43,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Hosted content is no longer supported"]
     pub struct SKDownload;
-
-    unsafe impl ClassType for SKDownload {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SKDownload {}

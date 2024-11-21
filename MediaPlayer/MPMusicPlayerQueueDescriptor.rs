@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerQueueDescriptor;
-
-    unsafe impl ClassType for MPMusicPlayerQueueDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPMusicPlayerQueueDescriptor {}
@@ -27,13 +24,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPMusicPlayerQueueDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerMediaItemQueueDescriptor;
-
-    unsafe impl ClassType for MPMusicPlayerMediaItemQueueDescriptor {
-        #[inherits(NSObject)]
-        type Super = MPMusicPlayerQueueDescriptor;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPMusicPlayerMediaItemQueueDescriptor {}
@@ -93,13 +86,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPMusicPlayerQueueDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerStoreQueueDescriptor;
-
-    unsafe impl ClassType for MPMusicPlayerStoreQueueDescriptor {
-        #[inherits(NSObject)]
-        type Super = MPMusicPlayerQueueDescriptor;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPMusicPlayerStoreQueueDescriptor {}
@@ -152,12 +141,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerPlayParameters;
-
-    unsafe impl ClassType for MPMusicPlayerPlayParameters {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPMusicPlayerPlayParameters {}
@@ -187,13 +173,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPMusicPlayerQueueDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerPlayParametersQueueDescriptor;
-
-    unsafe impl ClassType for MPMusicPlayerPlayParametersQueueDescriptor {
-        #[inherits(NSObject)]
-        type Super = MPMusicPlayerQueueDescriptor;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPMusicPlayerPlayParametersQueueDescriptor {}

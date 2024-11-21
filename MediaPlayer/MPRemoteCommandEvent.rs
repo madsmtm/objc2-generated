@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPRemoteCommandEvent;
-
-    unsafe impl ClassType for MPRemoteCommandEvent {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPRemoteCommandEvent {}
@@ -39,13 +36,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPRemoteCommandEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSkipIntervalCommandEvent;
-
-    unsafe impl ClassType for MPSkipIntervalCommandEvent {
-        #[inherits(NSObject)]
-        type Super = MPRemoteCommandEvent;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPSkipIntervalCommandEvent {}
@@ -88,13 +81,9 @@ unsafe impl RefEncode for MPSeekCommandEventType {
 }
 
 extern_class!(
+    #[unsafe(super(MPRemoteCommandEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSeekCommandEvent;
-
-    unsafe impl ClassType for MPSeekCommandEvent {
-        #[inherits(NSObject)]
-        type Super = MPRemoteCommandEvent;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPSeekCommandEvent {}
@@ -118,13 +107,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPRemoteCommandEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPRatingCommandEvent;
-
-    unsafe impl ClassType for MPRatingCommandEvent {
-        #[inherits(NSObject)]
-        type Super = MPRemoteCommandEvent;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPRatingCommandEvent {}
@@ -148,13 +133,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPRemoteCommandEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangePlaybackRateCommandEvent;
-
-    unsafe impl ClassType for MPChangePlaybackRateCommandEvent {
-        #[inherits(NSObject)]
-        type Super = MPRemoteCommandEvent;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPChangePlaybackRateCommandEvent {}
@@ -178,13 +159,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPRemoteCommandEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPFeedbackCommandEvent;
-
-    unsafe impl ClassType for MPFeedbackCommandEvent {
-        #[inherits(NSObject)]
-        type Super = MPRemoteCommandEvent;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPFeedbackCommandEvent {}
@@ -208,13 +185,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPRemoteCommandEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangeLanguageOptionCommandEvent;
-
-    unsafe impl ClassType for MPChangeLanguageOptionCommandEvent {
-        #[inherits(NSObject)]
-        type Super = MPRemoteCommandEvent;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPChangeLanguageOptionCommandEvent {}
@@ -243,13 +216,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPRemoteCommandEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangePlaybackPositionCommandEvent;
-
-    unsafe impl ClassType for MPChangePlaybackPositionCommandEvent {
-        #[inherits(NSObject)]
-        type Super = MPRemoteCommandEvent;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPChangePlaybackPositionCommandEvent {}
@@ -273,13 +242,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPRemoteCommandEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangeShuffleModeCommandEvent;
-
-    unsafe impl ClassType for MPChangeShuffleModeCommandEvent {
-        #[inherits(NSObject)]
-        type Super = MPRemoteCommandEvent;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPChangeShuffleModeCommandEvent {}
@@ -307,13 +272,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MPRemoteCommandEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangeRepeatModeCommandEvent;
-
-    unsafe impl ClassType for MPChangeRepeatModeCommandEvent {
-        #[inherits(NSObject)]
-        type Super = MPRemoteCommandEvent;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPChangeRepeatModeCommandEvent {}

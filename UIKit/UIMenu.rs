@@ -57,16 +57,11 @@ unsafe impl RefEncode for UIMenuElementSize {
 }
 
 extern_class!(
+    #[unsafe(super(UIMenuElement, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIMenuElement")]
     pub struct UIMenu;
-
-    #[cfg(feature = "UIMenuElement")]
-    unsafe impl ClassType for UIMenu {
-        #[inherits(NSObject)]
-        type Super = UIMenuElement;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIMenuElement")]

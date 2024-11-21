@@ -27,12 +27,9 @@ unsafe impl RefEncode for MTLPatchType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLVertexAttribute;
-
-    unsafe impl ClassType for MTLVertexAttribute {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLVertexAttribute {}
@@ -72,12 +69,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAttribute;
-
-    unsafe impl ClassType for MTLAttribute {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLAttribute {}
@@ -146,12 +140,9 @@ unsafe impl RefEncode for MTLFunctionType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionConstant;
-
-    unsafe impl ClassType for MTLFunctionConstant {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLFunctionConstant {}
@@ -359,12 +350,9 @@ unsafe impl RefEncode for MTLMathFloatingPointFunctions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLCompileOptions;
-
-    unsafe impl ClassType for MTLCompileOptions {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLCompileOptions {}

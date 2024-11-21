@@ -8,13 +8,9 @@ use crate::*;
 pub static NSFetchRequestExpressionType: NSExpressionType = NSExpressionType(50);
 
 extern_class!(
+    #[unsafe(super(NSExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFetchRequestExpression;
-
-    unsafe impl ClassType for NSFetchRequestExpression {
-        #[inherits(NSObject)]
-        type Super = NSExpression;
-    }
 );
 
 unsafe impl NSCoding for NSFetchRequestExpression {}

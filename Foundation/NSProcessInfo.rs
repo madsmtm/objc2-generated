@@ -47,12 +47,9 @@ unsafe impl Send for NSOperatingSystemVersion {}
 unsafe impl Sync for NSOperatingSystemVersion {}
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSProcessInfo;
-
-    unsafe impl ClassType for NSProcessInfo {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSProcessInfo {}

@@ -65,12 +65,9 @@ unsafe impl RefEncode for MPNowPlayingInfoLanguageOptionType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPNowPlayingInfoLanguageOption;
-
-    unsafe impl ClassType for MPNowPlayingInfoLanguageOption {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPNowPlayingInfoLanguageOption {}
@@ -122,12 +119,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPNowPlayingInfoLanguageOptionGroup;
-
-    unsafe impl ClassType for MPNowPlayingInfoLanguageOptionGroup {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPNowPlayingInfoLanguageOptionGroup {}

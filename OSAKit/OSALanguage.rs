@@ -31,12 +31,9 @@ unsafe impl RefEncode for OSALanguageFeatures {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSALanguage;
-
-    unsafe impl ClassType for OSALanguage {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for OSALanguage {}

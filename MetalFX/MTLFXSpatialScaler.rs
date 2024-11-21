@@ -28,12 +28,9 @@ unsafe impl RefEncode for MTLFXSpatialScalerColorProcessingMode {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFXSpatialScalerDescriptor;
-
-    unsafe impl ClassType for MTLFXSpatialScalerDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLFXSpatialScalerDescriptor {}

@@ -9,12 +9,9 @@ use crate::*;
 pub type CIKernelROICallback = *mut block2::Block<dyn Fn(c_int, CGRect) -> CGRect>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIKernel;
-
-    unsafe impl ClassType for CIKernel {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CIKernel {}
@@ -81,13 +78,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CIKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIColorKernel;
-
-    unsafe impl ClassType for CIColorKernel {
-        #[inherits(NSObject)]
-        type Super = CIKernel;
-    }
 );
 
 unsafe impl NSObjectProtocol for CIColorKernel {}
@@ -139,13 +132,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CIKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIWarpKernel;
-
-    unsafe impl ClassType for CIWarpKernel {
-        #[inherits(NSObject)]
-        type Super = CIKernel;
-    }
 );
 
 unsafe impl NSObjectProtocol for CIWarpKernel {}
@@ -199,13 +188,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CIColorKernel, CIKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIBlendKernel;
-
-    unsafe impl ClassType for CIBlendKernel {
-        #[inherits(CIKernel, NSObject)]
-        type Super = CIColorKernel;
-    }
 );
 
 unsafe impl NSObjectProtocol for CIBlendKernel {}

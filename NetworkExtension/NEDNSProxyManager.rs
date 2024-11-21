@@ -37,12 +37,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEDNSProxyManager;
-
-    unsafe impl ClassType for NEDNSProxyManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NEDNSProxyManager {}

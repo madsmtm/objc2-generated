@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CXCall;
-
-    unsafe impl ClassType for CXCall {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CXCall {}

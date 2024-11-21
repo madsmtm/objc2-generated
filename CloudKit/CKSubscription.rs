@@ -29,12 +29,9 @@ unsafe impl RefEncode for CKSubscriptionType {
 pub type CKSubscriptionID = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSubscription;
-
-    unsafe impl ClassType for CKSubscription {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CKSubscription {}
@@ -97,13 +94,9 @@ unsafe impl RefEncode for CKQuerySubscriptionOptions {
 }
 
 extern_class!(
+    #[unsafe(super(CKSubscription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKQuerySubscription;
-
-    unsafe impl ClassType for CKQuerySubscription {
-        #[inherits(NSObject)]
-        type Super = CKSubscription;
-    }
 );
 
 unsafe impl NSCoding for CKQuerySubscription {}
@@ -175,13 +168,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CKSubscription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKRecordZoneSubscription;
-
-    unsafe impl ClassType for CKRecordZoneSubscription {
-        #[inherits(NSObject)]
-        type Super = CKSubscription;
-    }
 );
 
 unsafe impl NSCoding for CKRecordZoneSubscription {}
@@ -243,13 +232,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CKSubscription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKDatabaseSubscription;
-
-    unsafe impl ClassType for CKDatabaseSubscription {
-        #[inherits(NSObject)]
-        type Super = CKSubscription;
-    }
 );
 
 unsafe impl NSCoding for CKDatabaseSubscription {}
@@ -293,12 +278,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKNotificationInfo;
-
-    unsafe impl ClassType for CKNotificationInfo {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CKNotificationInfo {}

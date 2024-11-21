@@ -79,12 +79,9 @@ unsafe impl RefEncode for UIApplicationShortcutIconType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIApplicationShortcutIcon;
-
-    unsafe impl ClassType for UIApplicationShortcutIcon {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for UIApplicationShortcutIcon {}
@@ -120,12 +117,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIApplicationShortcutItem;
-
-    unsafe impl ClassType for UIApplicationShortcutItem {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for UIApplicationShortcutItem {}
@@ -195,13 +189,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIApplicationShortcutItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIMutableApplicationShortcutItem;
-
-    unsafe impl ClassType for UIMutableApplicationShortcutItem {
-        #[inherits(NSObject)]
-        type Super = UIApplicationShortcutItem;
-    }
 );
 
 unsafe impl NSCopying for UIMutableApplicationShortcutItem {}

@@ -9,15 +9,10 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSPanel, NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     pub struct NSSavePanel;
-
-    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl ClassType for NSSavePanel {
-        #[inherits(NSWindow, NSResponder, NSObject)]
-        type Super = NSPanel;
-    }
 );
 
 #[cfg(all(

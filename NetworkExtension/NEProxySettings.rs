@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEProxyServer;
-
-    unsafe impl ClassType for NEProxyServer {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NEProxyServer {}
@@ -73,12 +70,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEProxySettings;
-
-    unsafe impl ClassType for NEProxySettings {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NEProxySettings {}

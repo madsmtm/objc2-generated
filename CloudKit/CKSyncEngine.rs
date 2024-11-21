@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngine;
-
-    unsafe impl ClassType for CKSyncEngine {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKSyncEngine {}
@@ -113,12 +110,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFetchChangesOptions;
-
-    unsafe impl ClassType for CKSyncEngineFetchChangesOptions {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKSyncEngineFetchChangesOptions {}
@@ -177,12 +171,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFetchChangesScope;
-
-    unsafe impl ClassType for CKSyncEngineFetchChangesScope {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKSyncEngineFetchChangesScope {}
@@ -239,12 +230,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineSendChangesOptions;
-
-    unsafe impl ClassType for CKSyncEngineSendChangesOptions {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKSyncEngineSendChangesOptions {}
@@ -295,12 +283,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineSendChangesScope;
-
-    unsafe impl ClassType for CKSyncEngineSendChangesScope {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKSyncEngineSendChangesScope {}
@@ -394,12 +379,9 @@ unsafe impl RefEncode for CKSyncEngineSyncReason {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFetchChangesContext;
-
-    unsafe impl ClassType for CKSyncEngineFetchChangesContext {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKSyncEngineFetchChangesContext {}
@@ -425,12 +407,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineSendChangesContext;
-
-    unsafe impl ClassType for CKSyncEngineSendChangesContext {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKSyncEngineSendChangesContext {}

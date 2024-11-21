@@ -22,12 +22,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLSharedEventListener;
-
-    unsafe impl ClassType for MTLSharedEventListener {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLSharedEventListener {}
@@ -86,12 +83,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLSharedEventHandle;
-
-    unsafe impl ClassType for MTLSharedEventHandle {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MTLSharedEventHandle {}

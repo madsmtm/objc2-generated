@@ -36,15 +36,10 @@ unsafe impl RefEncode for NSISO8601DateFormatOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]
     pub struct NSISO8601DateFormatter;
-
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl ClassType for NSISO8601DateFormatter {
-        #[inherits(NSObject)]
-        type Super = NSFormatter;
-    }
 );
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]

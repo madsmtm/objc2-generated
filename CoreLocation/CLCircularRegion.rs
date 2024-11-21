@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CLRegion, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CLRegion")]
     #[deprecated]
     pub struct CLCircularRegion;
-
-    #[cfg(feature = "CLRegion")]
-    unsafe impl ClassType for CLCircularRegion {
-        #[inherits(NSObject)]
-        type Super = CLRegion;
-    }
 );
 
 #[cfg(feature = "CLRegion")]

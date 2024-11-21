@@ -8,14 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
     pub struct UILocalNotification;
-
-    unsafe impl ClassType for UILocalNotification {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UILocalNotification {}

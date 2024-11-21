@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(EKCalendarItem, EKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
     pub struct EKReminder;
-
-    #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
-    unsafe impl ClassType for EKReminder {
-        #[inherits(EKObject, NSObject)]
-        type Super = EKCalendarItem;
-    }
 );
 
 #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]

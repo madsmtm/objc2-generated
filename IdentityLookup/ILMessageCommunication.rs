@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(ILCommunication, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ILCommunication")]
     pub struct ILMessageCommunication;
-
-    #[cfg(feature = "ILCommunication")]
-    unsafe impl ClassType for ILMessageCommunication {
-        #[inherits(NSObject)]
-        type Super = ILCommunication;
-    }
 );
 
 #[cfg(feature = "ILCommunication")]

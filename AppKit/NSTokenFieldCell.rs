@@ -31,6 +31,7 @@ unsafe impl RefEncode for NSTokenStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSTextFieldCell, NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "NSActionCell",
@@ -38,16 +39,6 @@ extern_class!(
         feature = "NSTextFieldCell"
     ))]
     pub struct NSTokenFieldCell;
-
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl ClassType for NSTokenFieldCell {
-        #[inherits(NSActionCell, NSCell, NSObject)]
-        type Super = NSTextFieldCell;
-    }
 );
 
 #[cfg(all(

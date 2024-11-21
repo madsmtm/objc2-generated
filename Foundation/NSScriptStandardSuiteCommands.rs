@@ -26,15 +26,10 @@ unsafe impl RefEncode for NSSaveOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
     pub struct NSCloneCommand;
-
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl ClassType for NSCloneCommand {
-        #[inherits(NSObject)]
-        type Super = NSScriptCommand;
-    }
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
@@ -89,15 +84,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
     pub struct NSCloseCommand;
-
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl ClassType for NSCloseCommand {
-        #[inherits(NSObject)]
-        type Super = NSScriptCommand;
-    }
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
@@ -147,15 +137,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
     pub struct NSCountCommand;
-
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl ClassType for NSCountCommand {
-        #[inherits(NSObject)]
-        type Super = NSScriptCommand;
-    }
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
@@ -202,15 +187,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
     pub struct NSCreateCommand;
-
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl ClassType for NSCreateCommand {
-        #[inherits(NSObject)]
-        type Super = NSScriptCommand;
-    }
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
@@ -265,15 +245,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
     pub struct NSDeleteCommand;
-
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl ClassType for NSDeleteCommand {
-        #[inherits(NSObject)]
-        type Super = NSScriptCommand;
-    }
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
@@ -328,15 +303,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
     pub struct NSExistsCommand;
-
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl ClassType for NSExistsCommand {
-        #[inherits(NSObject)]
-        type Super = NSScriptCommand;
-    }
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
@@ -383,15 +353,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
     pub struct NSGetCommand;
-
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl ClassType for NSGetCommand {
-        #[inherits(NSObject)]
-        type Super = NSScriptCommand;
-    }
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
@@ -438,15 +403,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
     pub struct NSMoveCommand;
-
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl ClassType for NSMoveCommand {
-        #[inherits(NSObject)]
-        type Super = NSScriptCommand;
-    }
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
@@ -501,15 +461,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
     pub struct NSQuitCommand;
-
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl ClassType for NSQuitCommand {
-        #[inherits(NSObject)]
-        type Super = NSScriptCommand;
-    }
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
@@ -559,15 +514,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
     pub struct NSSetCommand;
-
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl ClassType for NSSetCommand {
-        #[inherits(NSObject)]
-        type Super = NSScriptCommand;
-    }
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]

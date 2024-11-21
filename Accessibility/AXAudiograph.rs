@@ -57,12 +57,9 @@ unsafe impl RefEncode for AXNumericDataAxisDescriptorScale {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXNumericDataAxisDescriptor;
-
-    unsafe impl ClassType for AXNumericDataAxisDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl AXDataAxisDescriptor for AXNumericDataAxisDescriptor {}
@@ -145,12 +142,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXCategoricalDataAxisDescriptor;
-
-    unsafe impl ClassType for AXCategoricalDataAxisDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl AXDataAxisDescriptor for AXCategoricalDataAxisDescriptor {}
@@ -194,12 +188,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXDataPointValue;
-
-    unsafe impl ClassType for AXDataPointValue {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for AXDataPointValue {}
@@ -239,12 +230,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXDataPoint;
-
-    unsafe impl ClassType for AXDataPoint {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for AXDataPoint {}
@@ -320,12 +308,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXDataSeriesDescriptor;
-
-    unsafe impl ClassType for AXDataSeriesDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for AXDataSeriesDescriptor {}
@@ -408,12 +393,9 @@ unsafe impl RefEncode for AXChartDescriptorContentDirection {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXChartDescriptor;
-
-    unsafe impl ClassType for AXChartDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for AXChartDescriptor {}
@@ -539,12 +521,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXLiveAudioGraph;
-
-    unsafe impl ClassType for AXLiveAudioGraph {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for AXLiveAudioGraph {}

@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NIDiscoveryToken;
-
-    unsafe impl ClassType for NIDiscoveryToken {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NIDiscoveryToken {}
@@ -42,12 +39,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NIConfiguration;
-
-    unsafe impl ClassType for NIConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NIConfiguration {}
@@ -73,13 +67,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NIConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NINearbyPeerConfiguration;
-
-    unsafe impl ClassType for NINearbyPeerConfiguration {
-        #[inherits(NSObject)]
-        type Super = NIConfiguration;
-    }
 );
 
 unsafe impl NSCoding for NINearbyPeerConfiguration {}
@@ -129,13 +119,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NIConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NINearbyAccessoryConfiguration;
-
-    unsafe impl ClassType for NINearbyAccessoryConfiguration {
-        #[inherits(NSObject)]
-        type Super = NIConfiguration;
-    }
 );
 
 unsafe impl NSCoding for NINearbyAccessoryConfiguration {}

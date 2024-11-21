@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZMemoryBalloonDeviceConfiguration;
-
-    unsafe impl ClassType for VZMemoryBalloonDeviceConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for VZMemoryBalloonDeviceConfiguration {}

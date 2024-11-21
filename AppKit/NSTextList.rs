@@ -95,12 +95,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextList;
-
-    unsafe impl ClassType for NSTextList {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSTextList {}

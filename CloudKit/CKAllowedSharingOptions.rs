@@ -52,12 +52,9 @@ unsafe impl RefEncode for CKSharingParticipantPermissionOption {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKAllowedSharingOptions;
-
-    unsafe impl ClassType for CKAllowedSharingOptions {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CKAllowedSharingOptions {}

@@ -63,12 +63,9 @@ unsafe impl RefEncode for GKMatchType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKMatchRequest;
-
-    unsafe impl ClassType for GKMatchRequest {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GKMatchRequest {}
@@ -211,12 +208,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKInvite;
-
-    unsafe impl ClassType for GKInvite {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GKInvite {}
@@ -284,12 +278,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKMatchedPlayers;
-
-    unsafe impl ClassType for GKMatchedPlayers {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GKMatchedPlayers {}
@@ -324,12 +315,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKMatchmaker;
-
-    unsafe impl ClassType for GKMatchmaker {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GKMatchmaker {}

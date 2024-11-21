@@ -5,16 +5,11 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
     #[deprecated]
     pub struct MLCArithmeticLayer;
-
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl ClassType for MLCArithmeticLayer {
-        #[inherits(NSObject)]
-        type Super = MLCLayer;
-    }
 );
 
 #[cfg(feature = "MLCLayer")]

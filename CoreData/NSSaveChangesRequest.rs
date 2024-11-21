@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSPersistentStoreRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPersistentStoreRequest")]
     pub struct NSSaveChangesRequest;
-
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl ClassType for NSSaveChangesRequest {
-        #[inherits(NSObject)]
-        type Super = NSPersistentStoreRequest;
-    }
 );
 
 #[cfg(feature = "NSPersistentStoreRequest")]

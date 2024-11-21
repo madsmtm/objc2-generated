@@ -55,12 +55,9 @@ unsafe impl RefEncode for MKLocalSearchCompleterResultType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLocalSearchCompleter;
-
-    unsafe impl ClassType for MKLocalSearchCompleter {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MKLocalSearchCompleter {}
@@ -175,12 +172,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLocalSearchCompletion;
-
-    unsafe impl ClassType for MKLocalSearchCompletion {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MKLocalSearchCompletion {}

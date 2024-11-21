@@ -49,12 +49,9 @@ unsafe impl RefEncode for CLProximity {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLRegion;
-
-    unsafe impl ClassType for CLRegion {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CLRegion {}

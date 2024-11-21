@@ -41,13 +41,10 @@ pub type ACAccountStoreCredentialRenewalHandler =
     *mut block2::Block<dyn Fn(ACAccountCredentialRenewResult, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
     pub struct ACAccountStore;
-
-    unsafe impl ClassType for ACAccountStore {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for ACAccountStore {}

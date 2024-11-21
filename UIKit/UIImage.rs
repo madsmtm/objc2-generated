@@ -80,12 +80,9 @@ unsafe impl RefEncode for UIImageRenderingMode {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIImage;
-
-    unsafe impl ClassType for UIImage {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for UIImage {}

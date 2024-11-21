@@ -16,15 +16,10 @@ pub type GCKeyboardValueChangedHandler = *mut block2::Block<
 >;
 
 extern_class!(
+    #[unsafe(super(GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCPhysicalInputProfile")]
     pub struct GCKeyboardInput;
-
-    #[cfg(feature = "GCPhysicalInputProfile")]
-    unsafe impl ClassType for GCKeyboardInput {
-        #[inherits(NSObject)]
-        type Super = GCPhysicalInputProfile;
-    }
 );
 
 #[cfg(feature = "GCPhysicalInputProfile")]

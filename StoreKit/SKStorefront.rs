@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Storefront"]
     pub struct SKStorefront;
-
-    unsafe impl ClassType for SKStorefront {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for SKStorefront {}

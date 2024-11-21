@@ -70,15 +70,10 @@ pub static NSStackViewVisibilityPriorityNotVisible: NSStackViewVisibilityPriorit
 pub static NSStackViewSpacingUseDefault: CGFloat = c_float::MAX as _;
 
 extern_class!(
+    #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub struct NSStackView;
-
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl ClassType for NSStackView {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSView;
-    }
 );
 
 #[cfg(all(

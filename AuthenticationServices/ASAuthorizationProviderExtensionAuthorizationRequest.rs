@@ -40,12 +40,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationProviderExtensionAuthorizationRequest;
-
-    unsafe impl ClassType for ASAuthorizationProviderExtensionAuthorizationRequest {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionAuthorizationRequest {}

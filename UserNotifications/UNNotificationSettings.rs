@@ -94,12 +94,9 @@ unsafe impl RefEncode for UNAlertStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationSettings;
-
-    unsafe impl ClassType for UNNotificationSettings {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for UNNotificationSettings {}

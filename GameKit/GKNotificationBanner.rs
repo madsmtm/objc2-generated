@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use UNNotificationRequest or provide custom UI instead. This method will become a no-op in a future version of GameKit."]
     pub struct GKNotificationBanner;
-
-    unsafe impl ClassType for GKNotificationBanner {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GKNotificationBanner {}

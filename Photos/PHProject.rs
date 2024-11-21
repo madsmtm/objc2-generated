@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(PHAssetCollection, PHCollection, PHObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
     pub struct PHProject;
-
-    #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
-    unsafe impl ClassType for PHProject {
-        #[inherits(PHCollection, PHObject, NSObject)]
-        type Super = PHAssetCollection;
-    }
 );
 
 #[cfg(all(feature = "PHCollection", feature = "PHObject"))]

@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIGestureRecognizer, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGestureRecognizer")]
     pub struct UIRotationGestureRecognizer;
-
-    #[cfg(feature = "UIGestureRecognizer")]
-    unsafe impl ClassType for UIRotationGestureRecognizer {
-        #[inherits(NSObject)]
-        type Super = UIGestureRecognizer;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIGestureRecognizer")]

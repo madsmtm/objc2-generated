@@ -55,12 +55,9 @@ unsafe impl RefEncode for CBManagerAuthorization {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CBManager;
-
-    unsafe impl ClassType for CBManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CBManager {}

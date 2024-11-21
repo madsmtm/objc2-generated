@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLVisit;
-
-    unsafe impl ClassType for CLVisit {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CLVisit {}

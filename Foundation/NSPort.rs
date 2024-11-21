@@ -12,12 +12,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPort;
-
-    unsafe impl ClassType for NSPort {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -157,13 +154,9 @@ unsafe impl RefEncode for NSMachPortOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSPort, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMachPort;
-
-    unsafe impl ClassType for NSMachPort {
-        #[inherits(NSObject)]
-        type Super = NSPort;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -244,13 +237,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSPort, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMessagePort;
-
-    unsafe impl ClassType for NSMessagePort {
-        #[inherits(NSObject)]
-        type Super = NSPort;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -282,13 +271,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSPort, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSocketPort;
-
-    unsafe impl ClassType for NSSocketPort {
-        #[inherits(NSObject)]
-        type Super = NSPort;
-    }
 );
 
 #[cfg(feature = "NSObject")]

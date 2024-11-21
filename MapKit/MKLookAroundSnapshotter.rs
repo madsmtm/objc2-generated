@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLookAroundSnapshotter;
-
-    unsafe impl ClassType for MKLookAroundSnapshotter {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MKLookAroundSnapshotter {}

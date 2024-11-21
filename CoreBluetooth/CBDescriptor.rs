@@ -5,15 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]
     pub struct CBDescriptor;
-
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl ClassType for CBDescriptor {
-        #[inherits(NSObject)]
-        type Super = CBAttribute;
-    }
 );
 
 #[cfg(feature = "CBAttribute")]
@@ -50,15 +45,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CBDescriptor, CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]
     pub struct CBMutableDescriptor;
-
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl ClassType for CBMutableDescriptor {
-        #[inherits(CBAttribute, NSObject)]
-        type Super = CBDescriptor;
-    }
 );
 
 #[cfg(feature = "CBAttribute")]

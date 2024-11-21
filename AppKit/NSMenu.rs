@@ -46,13 +46,10 @@ unsafe impl RefEncode for NSMenuSelectionMode {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMenu;
-
-    unsafe impl ClassType for NSMenu {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "NSAccessibilityProtocols")]

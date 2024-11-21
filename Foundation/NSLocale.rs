@@ -9,12 +9,9 @@ use crate::*;
 pub type NSLocaleKey = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLocale;
-
-    unsafe impl ClassType for NSLocale {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSLocale {}

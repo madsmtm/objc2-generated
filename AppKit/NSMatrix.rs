@@ -25,15 +25,10 @@ unsafe impl RefEncode for NSMatrixMode {
 }
 
 extern_class!(
+    #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     pub struct NSMatrix;
-
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl ClassType for NSMatrix {
-        #[inherits(NSView, NSResponder, NSObject)]
-        type Super = NSControl;
-    }
 );
 
 #[cfg(all(

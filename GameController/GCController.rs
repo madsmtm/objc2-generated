@@ -47,12 +47,9 @@ unsafe impl RefEncode for GCControllerPlayerIndex {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCController;
-
-    unsafe impl ClassType for GCController {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "GCDevice")]

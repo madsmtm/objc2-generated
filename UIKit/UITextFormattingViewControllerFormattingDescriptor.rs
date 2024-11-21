@@ -90,12 +90,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextFormattingViewControllerFormattingDescriptor;
-
-    unsafe impl ClassType for UITextFormattingViewControllerFormattingDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for UITextFormattingViewControllerFormattingDescriptor {}

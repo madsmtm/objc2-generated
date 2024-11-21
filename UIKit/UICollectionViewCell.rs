@@ -30,16 +30,11 @@ unsafe impl RefEncode for UICollectionViewCellDragState {
 }
 
 extern_class!(
+    #[unsafe(super(UIView, UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     pub struct UICollectionReusableView;
-
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl ClassType for UICollectionReusableView {
-        #[inherits(UIResponder, NSObject)]
-        type Super = UIView;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(
@@ -170,16 +165,11 @@ pub type UICollectionViewCellConfigurationUpdateHandler =
     *mut block2::Block<dyn Fn(NonNull<UICollectionViewCell>, NonNull<UICellConfigurationState>)>;
 
 extern_class!(
+    #[unsafe(super(UICollectionReusableView, UIView, UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     pub struct UICollectionViewCell;
-
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl ClassType for UICollectionViewCell {
-        #[inherits(UIView, UIResponder, NSObject)]
-        type Super = UICollectionReusableView;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(

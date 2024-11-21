@@ -48,12 +48,9 @@ unsafe impl RefEncode for NETrafficDirection {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NENetworkRule;
-
-    unsafe impl ClassType for NENetworkRule {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NENetworkRule {}

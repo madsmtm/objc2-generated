@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CNContact, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CNContact")]
     pub struct CNMutableContact;
-
-    #[cfg(feature = "CNContact")]
-    unsafe impl ClassType for CNMutableContact {
-        #[inherits(NSObject)]
-        type Super = CNContact;
-    }
 );
 
 #[cfg(feature = "CNContact")]

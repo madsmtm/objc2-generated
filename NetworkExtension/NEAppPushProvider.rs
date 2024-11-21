@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NEProvider")]
     pub struct NEAppPushProvider;
-
-    #[cfg(feature = "NEProvider")]
-    unsafe impl ClassType for NEAppPushProvider {
-        #[inherits(NSObject)]
-        type Super = NEProvider;
-    }
 );
 
 #[cfg(feature = "NEProvider")]

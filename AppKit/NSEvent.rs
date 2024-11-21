@@ -552,12 +552,9 @@ unsafe impl RefEncode for NSPressureBehavior {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSEvent;
-
-    unsafe impl ClassType for NSEvent {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSEvent {}

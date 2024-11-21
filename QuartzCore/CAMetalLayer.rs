@@ -23,15 +23,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]
     pub struct CAMetalLayer;
-
-    #[cfg(feature = "CALayer")]
-    unsafe impl ClassType for CAMetalLayer {
-        #[inherits(NSObject)]
-        type Super = CALayer;
-    }
 );
 
 #[cfg(all(feature = "CALayer", feature = "CAMediaTiming"))]

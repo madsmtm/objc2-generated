@@ -9,12 +9,9 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAnimationContext;
-
-    unsafe impl ClassType for NSAnimationContext {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSAnimationContext {}

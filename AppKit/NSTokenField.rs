@@ -112,6 +112,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSTextField, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "NSControl",
@@ -120,17 +121,6 @@ extern_class!(
         feature = "NSView"
     ))]
     pub struct NSTokenField;
-
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl ClassType for NSTokenField {
-        #[inherits(NSControl, NSView, NSResponder, NSObject)]
-        type Super = NSTextField;
-    }
 );
 
 #[cfg(all(

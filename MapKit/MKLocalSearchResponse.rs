@@ -8,12 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLocalSearchResponse;
-
-    unsafe impl ClassType for MKLocalSearchResponse {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MKLocalSearchResponse {}

@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIDynamicBehavior, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIDynamicBehavior")]
     pub struct UISnapBehavior;
-
-    #[cfg(feature = "UIDynamicBehavior")]
-    unsafe impl ClassType for UISnapBehavior {
-        #[inherits(NSObject)]
-        type Super = UIDynamicBehavior;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIDynamicBehavior")]

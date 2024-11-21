@@ -84,12 +84,9 @@ unsafe impl RefEncode for NSAccessibilityCustomRotorType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityCustomRotor;
-
-    unsafe impl ClassType for NSAccessibilityCustomRotor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSAccessibilityCustomRotor {}
@@ -164,12 +161,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityCustomRotorSearchParameters;
-
-    unsafe impl ClassType for NSAccessibilityCustomRotorSearchParameters {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSAccessibilityCustomRotorSearchParameters {}
@@ -214,12 +208,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityCustomRotorItemResult;
-
-    unsafe impl ClassType for NSAccessibilityCustomRotorItemResult {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSAccessibilityCustomRotorItemResult {}

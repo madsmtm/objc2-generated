@@ -103,12 +103,9 @@ unsafe impl RefEncode for CKShareParticipantType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKShareParticipant;
-
-    unsafe impl ClassType for CKShareParticipant {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CKShareParticipant {}

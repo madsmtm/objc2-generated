@@ -28,21 +28,10 @@ pub static NSHashTableWeakMemory: NSPointerFunctionsOptions =
 
 pub type NSHashTableOptions = NSUInteger;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct NSHashTable<ObjectType: ?Sized = AnyObject> {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut ObjectType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<ObjectType: ?Sized + Message> ClassType for NSHashTable<ObjectType> {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSHashTable<ObjectType: ?Sized = AnyObject>;
 );
 
 #[cfg(feature = "NSObject")]

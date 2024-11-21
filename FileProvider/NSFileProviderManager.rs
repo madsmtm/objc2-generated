@@ -27,12 +27,9 @@ unsafe impl RefEncode for NSFileProviderDomainRemovalMode {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderManager;
-
-    unsafe impl ClassType for NSFileProviderManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSFileProviderManager {}

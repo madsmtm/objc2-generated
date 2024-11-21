@@ -84,15 +84,10 @@ unsafe impl RefEncode for CBCentralManagerFeature {
 }
 
 extern_class!(
+    #[unsafe(super(CBManager, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBManager")]
     pub struct CBCentralManager;
-
-    #[cfg(feature = "CBManager")]
-    unsafe impl ClassType for CBCentralManager {
-        #[inherits(NSObject)]
-        type Super = CBManager;
-    }
 );
 
 #[cfg(feature = "CBManager")]

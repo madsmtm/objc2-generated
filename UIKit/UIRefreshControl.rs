@@ -9,16 +9,11 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIControl, UIView, UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     pub struct UIRefreshControl;
-
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl ClassType for UIRefreshControl {
-        #[inherits(UIView, UIResponder, NSObject)]
-        type Super = UIControl;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(

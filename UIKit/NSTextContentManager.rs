@@ -88,12 +88,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextContentManager;
-
-    unsafe impl ClassType for NSTextContentManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSTextContentManager {}
@@ -251,13 +248,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSTextContentManager, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextContentStorage;
-
-    unsafe impl ClassType for NSTextContentStorage {
-        #[inherits(NSObject)]
-        type Super = NSTextContentManager;
-    }
 );
 
 unsafe impl NSCoding for NSTextContentStorage {}

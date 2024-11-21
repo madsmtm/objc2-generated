@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKStatisticsCollection;
-
-    unsafe impl ClassType for HKStatisticsCollection {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for HKStatisticsCollection {}
@@ -53,15 +50,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]
     pub struct HKStatisticsCollectionQuery;
-
-    #[cfg(feature = "HKQuery")]
-    unsafe impl ClassType for HKStatisticsCollectionQuery {
-        #[inherits(NSObject)]
-        type Super = HKQuery;
-    }
 );
 
 #[cfg(feature = "HKQuery")]

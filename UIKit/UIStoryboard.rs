@@ -14,14 +14,11 @@ pub type UIStoryboardViewControllerCreator =
     *mut block2::Block<dyn Fn(NonNull<NSCoder>) -> *mut UIViewController>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
     pub struct UIStoryboard;
-
-    unsafe impl ClassType for UIStoryboard {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIStoryboard {}

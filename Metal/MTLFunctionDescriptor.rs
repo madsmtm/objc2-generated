@@ -29,12 +29,9 @@ unsafe impl RefEncode for MTLFunctionOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionDescriptor;
-
-    unsafe impl ClassType for MTLFunctionDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLFunctionDescriptor {}
@@ -110,13 +107,9 @@ impl DefaultRetained for MTLFunctionDescriptor {
 }
 
 extern_class!(
+    #[unsafe(super(MTLFunctionDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLIntersectionFunctionDescriptor;
-
-    unsafe impl ClassType for MTLIntersectionFunctionDescriptor {
-        #[inherits(NSObject)]
-        type Super = MTLFunctionDescriptor;
-    }
 );
 
 unsafe impl NSCopying for MTLIntersectionFunctionDescriptor {}

@@ -5,15 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(GCControllerDirectionPad, GCControllerElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
     pub struct GCDeviceCursor;
-
-    #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
-    unsafe impl ClassType for GCDeviceCursor {
-        #[inherits(GCControllerElement, NSObject)]
-        type Super = GCControllerDirectionPad;
-    }
 );
 
 #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]

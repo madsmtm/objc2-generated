@@ -26,12 +26,9 @@ unsafe impl RefEncode for NSHTTPCookieAcceptPolicy {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHTTPCookieStorage;
-
-    unsafe impl ClassType for NSHTTPCookieStorage {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSHTTPCookieStorage {}

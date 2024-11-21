@@ -89,16 +89,11 @@ pub type UIButtonPointerStyleProvider = *mut block2::Block<
 pub type UIButtonConfigurationUpdateHandler = *mut block2::Block<dyn Fn(NonNull<UIButton>)>;
 
 extern_class!(
+    #[unsafe(super(UIControl, UIView, UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     pub struct UIButton;
-
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl ClassType for UIButton {
-        #[inherits(UIView, UIResponder, NSObject)]
-        type Super = UIControl;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(

@@ -28,24 +28,10 @@ pub static NSMapTableWeakMemory: NSPointerFunctionsOptions =
 
 pub type NSMapTableOptions = NSUInteger;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct NSMapTable<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject> {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut KeyType>,
-        _inner1: PhantomData<*mut ObjectType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> ClassType
-        for NSMapTable<KeyType, ObjectType>
-    {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSMapTable<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject>;
 );
 
 #[cfg(feature = "NSObject")]

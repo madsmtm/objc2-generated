@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NEProvider")]
     pub struct NEFilterProvider;
-
-    #[cfg(feature = "NEProvider")]
-    unsafe impl ClassType for NEFilterProvider {
-        #[inherits(NSObject)]
-        type Super = NEProvider;
-    }
 );
 
 #[cfg(feature = "NEProvider")]
@@ -83,12 +78,9 @@ unsafe impl RefEncode for NEFilterReportFrequency {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterVerdict;
-
-    unsafe impl ClassType for NEFilterVerdict {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NEFilterVerdict {}
@@ -125,13 +117,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NEFilterVerdict, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterNewFlowVerdict;
-
-    unsafe impl ClassType for NEFilterNewFlowVerdict {
-        #[inherits(NSObject)]
-        type Super = NEFilterVerdict;
-    }
 );
 
 unsafe impl NSCoding for NEFilterNewFlowVerdict {}
@@ -202,13 +190,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NEFilterNewFlowVerdict, NEFilterVerdict, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterControlVerdict;
-
-    unsafe impl ClassType for NEFilterControlVerdict {
-        #[inherits(NEFilterVerdict, NSObject)]
-        type Super = NEFilterNewFlowVerdict;
-    }
 );
 
 unsafe impl NSCoding for NEFilterControlVerdict {}
@@ -300,12 +284,9 @@ unsafe impl RefEncode for NEFilterReportEvent {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterReport;
-
-    unsafe impl ClassType for NEFilterReport {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NEFilterReport {}

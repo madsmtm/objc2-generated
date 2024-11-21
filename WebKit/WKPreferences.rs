@@ -27,13 +27,10 @@ unsafe impl RefEncode for WKInactiveSchedulingPolicy {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKPreferences;
-
-    unsafe impl ClassType for WKPreferences {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for WKPreferences {}

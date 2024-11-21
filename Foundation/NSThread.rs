@@ -5,12 +5,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    #[derive(PartialEq, Eq, Hash)]
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSThread;
-
-    unsafe impl ClassType for NSThread {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSThread {}

@@ -13,12 +13,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapCameraZoomRange;
-
-    unsafe impl ClassType for MKMapCameraZoomRange {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MKMapCameraZoomRange {}

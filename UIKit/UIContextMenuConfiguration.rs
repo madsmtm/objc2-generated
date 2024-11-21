@@ -39,13 +39,10 @@ pub type UIContextMenuContentPreviewProvider =
     *mut block2::Block<dyn Fn() -> *mut UIViewController>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIContextMenuConfiguration;
-
-    unsafe impl ClassType for UIContextMenuConfiguration {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIContextMenuConfiguration {}

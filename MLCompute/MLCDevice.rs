@@ -8,13 +8,10 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
     pub struct MLCDevice;
-
-    unsafe impl ClassType for MLCDevice {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MLCDevice {}

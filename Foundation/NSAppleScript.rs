@@ -30,12 +30,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAppleScript;
-
-    unsafe impl ClassType for NSAppleScript {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]

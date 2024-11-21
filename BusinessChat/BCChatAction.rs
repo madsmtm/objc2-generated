@@ -21,13 +21,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
     pub struct BCChatAction;
-
-    unsafe impl ClassType for BCChatAction {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for BCChatAction {}

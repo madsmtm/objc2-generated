@@ -33,13 +33,10 @@ unsafe impl RefEncode for NWPathStatus {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use `nw_path_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     pub struct NWPath;
-
-    unsafe impl ClassType for NWPath {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NWPath {}

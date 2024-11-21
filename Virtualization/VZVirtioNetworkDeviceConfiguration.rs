@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VZNetworkDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZNetworkDeviceConfiguration")]
     pub struct VZVirtioNetworkDeviceConfiguration;
-
-    #[cfg(feature = "VZNetworkDeviceConfiguration")]
-    unsafe impl ClassType for VZVirtioNetworkDeviceConfiguration {
-        #[inherits(NSObject)]
-        type Super = VZNetworkDeviceConfiguration;
-    }
 );
 
 #[cfg(feature = "VZNetworkDeviceConfiguration")]

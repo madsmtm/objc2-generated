@@ -11,15 +11,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(PHChangeRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHChangeRequest")]
     pub struct PHAssetChangeRequest;
-
-    #[cfg(feature = "PHChangeRequest")]
-    unsafe impl ClassType for PHAssetChangeRequest {
-        #[inherits(NSObject)]
-        type Super = PHChangeRequest;
-    }
 );
 
 #[cfg(feature = "PHChangeRequest")]
@@ -111,12 +106,9 @@ extern_methods!(
 pub type PHContentEditingInputRequestID = NSUInteger;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHContentEditingInputRequestOptions;
-
-    unsafe impl ClassType for PHContentEditingInputRequestOptions {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for PHContentEditingInputRequestOptions {}

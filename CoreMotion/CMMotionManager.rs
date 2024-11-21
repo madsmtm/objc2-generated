@@ -19,12 +19,9 @@ pub type CMDeviceMotionHandler = *mut block2::Block<dyn Fn(*mut CMDeviceMotion, 
 pub type CMMagnetometerHandler = *mut block2::Block<dyn Fn(*mut CMMagnetometerData, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMMotionManager;
-
-    unsafe impl ClassType for CMMotionManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CMMotionManager {}

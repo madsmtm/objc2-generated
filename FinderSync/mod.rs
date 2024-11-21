@@ -24,13 +24,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FIFinderSyncController;
-
-    unsafe impl ClassType for FIFinderSyncController {
-        #[inherits(NSObject)]
-        type Super = NSExtensionContext;
-    }
 );
 
 unsafe impl NSObjectProtocol for FIFinderSyncController {}
@@ -203,12 +199,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FIFinderSync;
-
-    unsafe impl ClassType for FIFinderSync {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl FIFinderSyncProtocol for FIFinderSync {}

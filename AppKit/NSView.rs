@@ -118,16 +118,11 @@ pub type NSTrackingRectTag = NSInteger;
 pub type NSToolTipTag = NSInteger;
 
 extern_class!(
+    #[unsafe(super(NSResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSResponder")]
     pub struct NSView;
-
-    #[cfg(feature = "NSResponder")]
-    unsafe impl ClassType for NSView {
-        #[inherits(NSObject)]
-        type Super = NSResponder;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSResponder"))]

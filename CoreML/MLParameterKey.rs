@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(MLKey, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLKey")]
     pub struct MLParameterKey;
-
-    #[cfg(feature = "MLKey")]
-    unsafe impl ClassType for MLParameterKey {
-        #[inherits(NSObject)]
-        type Super = MLKey;
-    }
 );
 
 #[cfg(feature = "MLKey")]

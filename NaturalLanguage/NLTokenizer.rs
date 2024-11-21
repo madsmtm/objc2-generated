@@ -49,12 +49,9 @@ unsafe impl RefEncode for NLTokenizerAttributes {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NLTokenizer;
-
-    unsafe impl ClassType for NLTokenizer {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NLTokenizer {}

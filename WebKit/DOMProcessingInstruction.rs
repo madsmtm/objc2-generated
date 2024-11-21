@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(DOMCharacterData, DOMNode, DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "DOMCharacterData",
@@ -15,17 +16,6 @@ extern_class!(
     ))]
     #[deprecated]
     pub struct DOMProcessingInstruction;
-
-    #[cfg(all(
-        feature = "DOMCharacterData",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl ClassType for DOMProcessingInstruction {
-        #[inherits(DOMNode, DOMObject, WebScriptObject, NSObject)]
-        type Super = DOMCharacterData;
-    }
 );
 
 #[cfg(all(

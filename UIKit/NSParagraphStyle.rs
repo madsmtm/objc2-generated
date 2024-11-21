@@ -59,12 +59,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextTab;
-
-    unsafe impl ClassType for NSTextTab {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSTextTab {}
@@ -106,12 +103,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSParagraphStyle;
-
-    unsafe impl ClassType for NSParagraphStyle {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSParagraphStyle {}
@@ -213,13 +207,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSParagraphStyle, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableParagraphStyle;
-
-    unsafe impl ClassType for NSMutableParagraphStyle {
-        #[inherits(NSObject)]
-        type Super = NSParagraphStyle;
-    }
 );
 
 unsafe impl NSCoding for NSMutableParagraphStyle {}

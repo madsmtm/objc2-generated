@@ -35,12 +35,9 @@ unsafe impl RefEncode for MTLBinaryArchiveError {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLBinaryArchiveDescriptor;
-
-    unsafe impl ClassType for MTLBinaryArchiveDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLBinaryArchiveDescriptor {}

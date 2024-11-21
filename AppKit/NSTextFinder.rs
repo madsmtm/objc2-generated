@@ -81,12 +81,9 @@ unsafe impl RefEncode for NSTextFinderMatchingType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextFinder;
-
-    unsafe impl ClassType for NSTextFinder {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSTextFinder {}

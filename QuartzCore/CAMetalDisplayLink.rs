@@ -8,12 +8,9 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAMetalDisplayLinkUpdate;
-
-    unsafe impl ClassType for CAMetalDisplayLinkUpdate {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CAMetalDisplayLinkUpdate {}
@@ -57,12 +54,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAMetalDisplayLink;
-
-    unsafe impl ClassType for CAMetalDisplayLink {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CAMetalDisplayLink {}

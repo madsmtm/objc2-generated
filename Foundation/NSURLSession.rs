@@ -9,12 +9,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSession;
-
-    unsafe impl ClassType for NSURLSession {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSURLSession {}
@@ -366,12 +363,9 @@ unsafe impl RefEncode for NSURLSessionTaskState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionTask;
-
-    unsafe impl ClassType for NSURLSessionTask {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSURLSessionTask {}
@@ -520,13 +514,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionDataTask;
-
-    unsafe impl ClassType for NSURLSessionDataTask {
-        #[inherits(NSObject)]
-        type Super = NSURLSessionTask;
-    }
 );
 
 unsafe impl Send for NSURLSessionDataTask {}
@@ -559,13 +549,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSURLSessionDataTask, NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionUploadTask;
-
-    unsafe impl ClassType for NSURLSessionUploadTask {
-        #[inherits(NSURLSessionTask, NSObject)]
-        type Super = NSURLSessionDataTask;
-    }
 );
 
 unsafe impl Send for NSURLSessionUploadTask {}
@@ -605,13 +591,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionDownloadTask;
-
-    unsafe impl ClassType for NSURLSessionDownloadTask {
-        #[inherits(NSObject)]
-        type Super = NSURLSessionTask;
-    }
 );
 
 unsafe impl Send for NSURLSessionDownloadTask {}
@@ -651,13 +633,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionStreamTask;
-
-    unsafe impl ClassType for NSURLSessionStreamTask {
-        #[inherits(NSObject)]
-        type Super = NSURLSessionTask;
-    }
 );
 
 unsafe impl Send for NSURLSessionStreamTask {}
@@ -754,12 +732,9 @@ unsafe impl RefEncode for NSURLSessionWebSocketMessageType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionWebSocketMessage;
-
-    unsafe impl ClassType for NSURLSessionWebSocketMessage {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSURLSessionWebSocketMessage {}
@@ -839,13 +814,9 @@ unsafe impl RefEncode for NSURLSessionWebSocketCloseCode {
 }
 
 extern_class!(
+    #[unsafe(super(NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionWebSocketTask;
-
-    unsafe impl ClassType for NSURLSessionWebSocketTask {
-        #[inherits(NSObject)]
-        type Super = NSURLSessionTask;
-    }
 );
 
 unsafe impl Send for NSURLSessionWebSocketTask {}
@@ -944,12 +915,9 @@ unsafe impl RefEncode for NSURLSessionMultipathServiceType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionConfiguration;
-
-    unsafe impl ClassType for NSURLSessionConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSURLSessionConfiguration {}
@@ -1648,12 +1616,9 @@ unsafe impl RefEncode for NSURLSessionTaskMetricsDomainResolutionProtocol {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionTaskTransactionMetrics;
-
-    unsafe impl ClassType for NSURLSessionTaskTransactionMetrics {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSURLSessionTaskTransactionMetrics {}
@@ -1799,12 +1764,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionTaskMetrics;
-
-    unsafe impl ClassType for NSURLSessionTaskMetrics {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSURLSessionTaskMetrics {}

@@ -8,15 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VNTargetedImageRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
     pub struct VNImageRegistrationRequest;
-
-    #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-    unsafe impl ClassType for VNImageRegistrationRequest {
-        #[inherits(VNImageBasedRequest, VNRequest, NSObject)]
-        type Super = VNTargetedImageRequest;
-    }
 );
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
@@ -116,15 +111,16 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(
+        VNImageRegistrationRequest,
+        VNTargetedImageRequest,
+        VNImageBasedRequest,
+        VNRequest,
+        NSObject
+    ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
     pub struct VNTranslationalImageRegistrationRequest;
-
-    #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-    unsafe impl ClassType for VNTranslationalImageRegistrationRequest {
-        #[inherits(VNTargetedImageRequest, VNImageBasedRequest, VNRequest, NSObject)]
-        type Super = VNImageRegistrationRequest;
-    }
 );
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
@@ -232,15 +228,16 @@ extern_methods!(
 pub static VNTranslationalImageRegistrationRequestRevision1: NSUInteger = 1;
 
 extern_class!(
+    #[unsafe(super(
+        VNImageRegistrationRequest,
+        VNTargetedImageRequest,
+        VNImageBasedRequest,
+        VNRequest,
+        NSObject
+    ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
     pub struct VNHomographicImageRegistrationRequest;
-
-    #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-    unsafe impl ClassType for VNHomographicImageRegistrationRequest {
-        #[inherits(VNTargetedImageRequest, VNImageBasedRequest, VNRequest, NSObject)]
-        type Super = VNImageRegistrationRequest;
-    }
 );
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]

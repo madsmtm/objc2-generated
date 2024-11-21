@@ -45,16 +45,11 @@ unsafe impl RefEncode for UITabBarSystemItem {
 }
 
 extern_class!(
+    #[unsafe(super(UIBarItem, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIBarItem")]
     pub struct UITabBarItem;
-
-    #[cfg(feature = "UIBarItem")]
-    unsafe impl ClassType for UITabBarItem {
-        #[inherits(NSObject)]
-        type Super = UIBarItem;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIBarItem")]

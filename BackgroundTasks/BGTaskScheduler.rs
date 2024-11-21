@@ -31,12 +31,9 @@ unsafe impl RefEncode for BGTaskSchedulerErrorCode {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGTaskScheduler;
-
-    unsafe impl ClassType for BGTaskScheduler {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for BGTaskScheduler {}

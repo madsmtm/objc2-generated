@@ -29,12 +29,9 @@ unsafe impl RefEncode for CLMonitoringState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLMonitoringEvent;
-
-    unsafe impl ClassType for CLMonitoringEvent {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CLMonitoringEvent {}

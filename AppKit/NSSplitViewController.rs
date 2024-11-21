@@ -10,15 +10,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     pub struct NSSplitViewController;
-
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl ClassType for NSSplitViewController {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSViewController;
-    }
 );
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]

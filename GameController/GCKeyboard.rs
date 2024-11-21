@@ -14,12 +14,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCKeyboard;
-
-    unsafe impl ClassType for GCKeyboard {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "GCDevice")]

@@ -28,15 +28,10 @@ unsafe impl RefEncode for NSEnergyFormatterUnit {
 }
 
 extern_class!(
+    #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]
     pub struct NSEnergyFormatter;
-
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl ClassType for NSEnergyFormatter {
-        #[inherits(NSObject)]
-        type Super = NSFormatter;
-    }
 );
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]

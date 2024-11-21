@@ -9,12 +9,9 @@ use crate::*;
 pub type CAValueFunctionName = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAValueFunction;
-
-    unsafe impl ClassType for CAValueFunction {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CAValueFunction {}

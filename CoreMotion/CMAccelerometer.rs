@@ -29,15 +29,10 @@ unsafe impl RefEncode for CMAcceleration {
 }
 
 extern_class!(
+    #[unsafe(super(CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CMLogItem")]
     pub struct CMAccelerometerData;
-
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl ClassType for CMAccelerometerData {
-        #[inherits(NSObject)]
-        type Super = CMLogItem;
-    }
 );
 
 #[cfg(feature = "CMLogItem")]

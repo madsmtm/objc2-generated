@@ -95,12 +95,9 @@ unsafe impl RefEncode for NSBezierPathElement {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBezierPath;
-
-    unsafe impl ClassType for NSBezierPath {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSBezierPath {}

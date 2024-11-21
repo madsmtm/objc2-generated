@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLComputePipelineReflection;
-
-    unsafe impl ClassType for MTLComputePipelineReflection {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLComputePipelineReflection {}
@@ -41,12 +38,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLComputePipelineDescriptor;
-
-    unsafe impl ClassType for MTLComputePipelineDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLComputePipelineDescriptor {}

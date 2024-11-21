@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKObjectType;
-
-    unsafe impl ClassType for HKObjectType {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for HKObjectType {}
@@ -111,13 +108,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKCharacteristicType;
-
-    unsafe impl ClassType for HKCharacteristicType {
-        #[inherits(NSObject)]
-        type Super = HKObjectType;
-    }
 );
 
 unsafe impl Send for HKCharacteristicType {}
@@ -157,13 +150,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKSampleType;
-
-    unsafe impl ClassType for HKSampleType {
-        #[inherits(NSObject)]
-        type Super = HKObjectType;
-    }
 );
 
 unsafe impl Send for HKSampleType {}
@@ -218,13 +207,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKCategoryType;
-
-    unsafe impl ClassType for HKCategoryType {
-        #[inherits(HKObjectType, NSObject)]
-        type Super = HKSampleType;
-    }
 );
 
 unsafe impl Send for HKCategoryType {}
@@ -264,13 +249,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKCorrelationType;
-
-    unsafe impl ClassType for HKCorrelationType {
-        #[inherits(HKObjectType, NSObject)]
-        type Super = HKSampleType;
-    }
 );
 
 unsafe impl Send for HKCorrelationType {}
@@ -310,13 +291,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKDocumentType;
-
-    unsafe impl ClassType for HKDocumentType {
-        #[inherits(HKObjectType, NSObject)]
-        type Super = HKSampleType;
-    }
 );
 
 unsafe impl Send for HKDocumentType {}
@@ -356,13 +333,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKQuantityType;
-
-    unsafe impl ClassType for HKQuantityType {
-        #[inherits(HKObjectType, NSObject)]
-        type Super = HKSampleType;
-    }
 );
 
 unsafe impl Send for HKQuantityType {}
@@ -410,13 +383,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutType;
-
-    unsafe impl ClassType for HKWorkoutType {
-        #[inherits(HKObjectType, NSObject)]
-        type Super = HKSampleType;
-    }
 );
 
 unsafe impl Send for HKWorkoutType {}
@@ -456,13 +425,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKSeriesType;
-
-    unsafe impl ClassType for HKSeriesType {
-        #[inherits(HKObjectType, NSObject)]
-        type Super = HKSampleType;
-    }
 );
 
 unsafe impl Send for HKSeriesType {}
@@ -508,13 +473,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKActivitySummaryType;
-
-    unsafe impl ClassType for HKActivitySummaryType {
-        #[inherits(NSObject)]
-        type Super = HKObjectType;
-    }
 );
 
 unsafe impl Send for HKActivitySummaryType {}
@@ -554,13 +515,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKAudiogramSampleType;
-
-    unsafe impl ClassType for HKAudiogramSampleType {
-        #[inherits(HKObjectType, NSObject)]
-        type Super = HKSampleType;
-    }
 );
 
 unsafe impl Send for HKAudiogramSampleType {}
@@ -600,13 +557,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKElectrocardiogramType;
-
-    unsafe impl ClassType for HKElectrocardiogramType {
-        #[inherits(HKObjectType, NSObject)]
-        type Super = HKSampleType;
-    }
 );
 
 unsafe impl Send for HKElectrocardiogramType {}
@@ -646,13 +599,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKPrescriptionType;
-
-    unsafe impl ClassType for HKPrescriptionType {
-        #[inherits(HKObjectType, NSObject)]
-        type Super = HKSampleType;
-    }
 );
 
 unsafe impl Send for HKPrescriptionType {}
@@ -692,13 +641,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKScoredAssessmentType;
-
-    unsafe impl ClassType for HKScoredAssessmentType {
-        #[inherits(HKObjectType, NSObject)]
-        type Super = HKSampleType;
-    }
 );
 
 unsafe impl NSCoding for HKScoredAssessmentType {}
@@ -734,13 +679,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKStateOfMindType;
-
-    unsafe impl ClassType for HKStateOfMindType {
-        #[inherits(HKObjectType, NSObject)]
-        type Super = HKSampleType;
-    }
 );
 
 unsafe impl NSCoding for HKStateOfMindType {}

@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSButtonCell, NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
     pub struct NSMenuItemCell;
-
-    #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
-    unsafe impl ClassType for NSMenuItemCell {
-        #[inherits(NSActionCell, NSCell, NSObject)]
-        type Super = NSButtonCell;
-    }
 );
 
 #[cfg(all(

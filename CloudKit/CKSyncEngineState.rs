@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineState;
-
-    unsafe impl ClassType for CKSyncEngineState {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKSyncEngineState {}
@@ -76,12 +73,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineStateSerialization;
-
-    unsafe impl ClassType for CKSyncEngineStateSerialization {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKSyncEngineStateSerialization {}
@@ -124,12 +118,9 @@ unsafe impl RefEncode for CKSyncEnginePendingRecordZoneChangeType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEnginePendingRecordZoneChange;
-
-    unsafe impl ClassType for CKSyncEnginePendingRecordZoneChange {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKSyncEnginePendingRecordZoneChange {}
@@ -183,12 +174,9 @@ unsafe impl RefEncode for CKSyncEnginePendingDatabaseChangeType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEnginePendingDatabaseChange;
-
-    unsafe impl ClassType for CKSyncEnginePendingDatabaseChange {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKSyncEnginePendingDatabaseChange {}
@@ -215,13 +203,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CKSyncEnginePendingDatabaseChange, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEnginePendingZoneSave;
-
-    unsafe impl ClassType for CKSyncEnginePendingZoneSave {
-        #[inherits(NSObject)]
-        type Super = CKSyncEnginePendingDatabaseChange;
-    }
 );
 
 unsafe impl Send for CKSyncEnginePendingZoneSave {}
@@ -254,13 +238,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CKSyncEnginePendingDatabaseChange, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEnginePendingZoneDelete;
-
-    unsafe impl ClassType for CKSyncEnginePendingZoneDelete {
-        #[inherits(NSObject)]
-        type Super = CKSyncEnginePendingDatabaseChange;
-    }
 );
 
 unsafe impl Send for CKSyncEnginePendingZoneDelete {}

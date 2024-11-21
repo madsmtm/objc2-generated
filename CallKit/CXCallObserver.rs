@@ -16,12 +16,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CXCallObserver;
-
-    unsafe impl ClassType for CXCallObserver {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CXCallObserver {}

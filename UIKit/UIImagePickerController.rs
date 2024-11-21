@@ -179,6 +179,8 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(UINavigationController, UIViewController, UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "UINavigationController",
@@ -186,17 +188,6 @@ extern_class!(
         feature = "UIViewController"
     ))]
     pub struct UIImagePickerController;
-
-    #[cfg(all(
-        feature = "UINavigationController",
-        feature = "UIResponder",
-        feature = "UIViewController"
-    ))]
-    unsafe impl ClassType for UIImagePickerController {
-        #[inherits(UIViewController, UIResponder, NSObject)]
-        type Super = UINavigationController;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(

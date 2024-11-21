@@ -37,12 +37,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewLayoutAttributes;
-
-    unsafe impl ClassType for NSCollectionViewLayoutAttributes {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSCollectionViewLayoutAttributes {}
@@ -159,12 +156,9 @@ unsafe impl RefEncode for NSCollectionUpdateAction {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewUpdateItem;
-
-    unsafe impl ClassType for NSCollectionViewUpdateItem {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSCollectionViewUpdateItem {}
@@ -194,12 +188,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewLayoutInvalidationContext;
-
-    unsafe impl ClassType for NSCollectionViewLayoutInvalidationContext {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSCollectionViewLayoutInvalidationContext {}
@@ -272,12 +263,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewLayout;
-
-    unsafe impl ClassType for NSCollectionViewLayout {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSCollectionViewLayout {}

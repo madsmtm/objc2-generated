@@ -25,13 +25,9 @@ unsafe impl RefEncode for NSTextStorageEditActions {
 }
 
 extern_class!(
+    #[unsafe(super(NSMutableAttributedString, NSAttributedString, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextStorage;
-
-    unsafe impl ClassType for NSTextStorage {
-        #[inherits(NSAttributedString, NSObject)]
-        type Super = NSMutableAttributedString;
-    }
 );
 
 unsafe impl NSCoding for NSTextStorage {}

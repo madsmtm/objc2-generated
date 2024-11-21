@@ -74,15 +74,10 @@ unsafe impl RefEncode for CMCalibratedMagneticField {
 }
 
 extern_class!(
+    #[unsafe(super(CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CMLogItem")]
     pub struct CMDeviceMotion;
-
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl ClassType for CMDeviceMotion {
-        #[inherits(NSObject)]
-        type Super = CMLogItem;
-    }
 );
 
 #[cfg(feature = "CMLogItem")]

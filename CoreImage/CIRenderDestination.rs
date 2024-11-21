@@ -26,12 +26,9 @@ unsafe impl RefEncode for CIRenderDestinationAlphaMode {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIRenderDestination;
-
-    unsafe impl ClassType for CIRenderDestination {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CIRenderDestination {}
@@ -138,12 +135,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIRenderInfo;
-
-    unsafe impl ClassType for CIRenderInfo {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CIRenderInfo {}
@@ -176,12 +170,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIRenderTask;
-
-    unsafe impl ClassType for CIRenderTask {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CIRenderTask {}

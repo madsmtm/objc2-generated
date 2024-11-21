@@ -31,12 +31,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKRecordZone;
-
-    unsafe impl ClassType for CKRecordZone {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CKRecordZone {}

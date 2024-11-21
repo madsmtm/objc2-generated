@@ -16,13 +16,10 @@ pub type UICollectionViewCellRegistrationConfigurationHandler = *mut block2::Blo
 >;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICollectionViewCellRegistration;
-
-    unsafe impl ClassType for UICollectionViewCellRegistration {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UICollectionViewCellRegistration {}
@@ -98,13 +95,10 @@ pub type UICollectionViewSupplementaryRegistrationConfigurationHandler = *mut bl
 >;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICollectionViewSupplementaryRegistration;
-
-    unsafe impl ClassType for UICollectionViewSupplementaryRegistration {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UICollectionViewSupplementaryRegistration {}

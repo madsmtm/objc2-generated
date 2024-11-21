@@ -29,15 +29,10 @@ unsafe impl RefEncode for NSPersistentCloudKitContainerSchemaInitializationOptio
 }
 
 extern_class!(
+    #[unsafe(super(NSPersistentContainer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPersistentContainer")]
     pub struct NSPersistentCloudKitContainer;
-
-    #[cfg(feature = "NSPersistentContainer")]
-    unsafe impl ClassType for NSPersistentCloudKitContainer {
-        #[inherits(NSObject)]
-        type Super = NSPersistentContainer;
-    }
 );
 
 #[cfg(feature = "NSPersistentContainer")]

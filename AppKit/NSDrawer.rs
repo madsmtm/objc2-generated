@@ -29,16 +29,11 @@ unsafe impl RefEncode for NSDrawerState {
 }
 
 extern_class!(
+    #[unsafe(super(NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSResponder")]
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub struct NSDrawer;
-
-    #[cfg(feature = "NSResponder")]
-    unsafe impl ClassType for NSDrawer {
-        #[inherits(NSObject)]
-        type Super = NSResponder;
-    }
 );
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSResponder"))]

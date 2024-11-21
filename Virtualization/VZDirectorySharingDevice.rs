@@ -5,12 +5,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZDirectorySharingDevice;
-
-    unsafe impl ClassType for VZDirectorySharingDevice {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for VZDirectorySharingDevice {}

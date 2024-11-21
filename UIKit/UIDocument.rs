@@ -82,13 +82,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIDocument;
-
-    unsafe impl ClassType for UIDocument {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSFilePresenter for UIDocument {}

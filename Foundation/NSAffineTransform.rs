@@ -43,12 +43,9 @@ unsafe impl Send for NSAffineTransformStruct {}
 unsafe impl Sync for NSAffineTransformStruct {}
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAffineTransform;
-
-    unsafe impl ClassType for NSAffineTransform {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]

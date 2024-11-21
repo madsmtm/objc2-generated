@@ -27,12 +27,9 @@ unsafe impl RefEncode for ASPublicKeyCredentialClientDataCrossOriginValue {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPublicKeyCredentialClientData;
-
-    unsafe impl ClassType for ASPublicKeyCredentialClientData {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for ASPublicKeyCredentialClientData {}

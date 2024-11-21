@@ -13,15 +13,10 @@ pub type GCExtendedGamepadValueChangedHandler =
     *mut block2::Block<dyn Fn(NonNull<GCExtendedGamepad>, NonNull<GCControllerElement>)>;
 
 extern_class!(
+    #[unsafe(super(GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCPhysicalInputProfile")]
     pub struct GCExtendedGamepad;
-
-    #[cfg(feature = "GCPhysicalInputProfile")]
-    unsafe impl ClassType for GCExtendedGamepad {
-        #[inherits(NSObject)]
-        type Super = GCPhysicalInputProfile;
-    }
 );
 
 #[cfg(feature = "GCPhysicalInputProfile")]

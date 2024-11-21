@@ -76,12 +76,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPasteboard;
-
-    unsafe impl ClassType for UIPasteboard {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for UIPasteboard {}

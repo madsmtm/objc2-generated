@@ -29,12 +29,9 @@ extern "C-unwind" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor;
-
-    unsafe impl ClassType for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "ASAuthorizationPublicKeyCredentialDescriptor")]

@@ -41,12 +41,9 @@ unsafe impl RefEncode for VZVirtualMachineState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtualMachine;
-
-    unsafe impl ClassType for VZVirtualMachine {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for VZVirtualMachine {}

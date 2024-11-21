@@ -10,12 +10,9 @@ pub type CMHeadphoneDeviceMotionHandler =
     *mut block2::Block<dyn Fn(*mut CMDeviceMotion, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMHeadphoneMotionManager;
-
-    unsafe impl ClassType for CMHeadphoneMotionManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CMHeadphoneMotionManager {}

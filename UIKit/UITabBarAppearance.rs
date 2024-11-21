@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITabBarItemStateAppearance;
-
-    unsafe impl ClassType for UITabBarItemStateAppearance {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITabBarItemStateAppearance {}
@@ -114,13 +111,10 @@ unsafe impl RefEncode for UITabBarItemAppearanceStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITabBarItemAppearance;
-
-    unsafe impl ClassType for UITabBarItemAppearance {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UITabBarItemAppearance {}
@@ -178,16 +172,11 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIBarAppearance, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIBarAppearance")]
     pub struct UITabBarAppearance;
-
-    #[cfg(feature = "UIBarAppearance")]
-    unsafe impl ClassType for UITabBarAppearance {
-        #[inherits(NSObject)]
-        type Super = UIBarAppearance;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIBarAppearance")]

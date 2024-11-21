@@ -70,12 +70,9 @@ unsafe impl RefEncode for NEHotspotConfigurationEAPTLSVersion {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEHotspotHS20Settings;
-
-    unsafe impl ClassType for NEHotspotHS20Settings {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NEHotspotHS20Settings {}
@@ -140,12 +137,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEHotspotEAPSettings;
-
-    unsafe impl ClassType for NEHotspotEAPSettings {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NEHotspotEAPSettings {}
@@ -235,12 +229,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEHotspotConfiguration;
-
-    unsafe impl ClassType for NEHotspotConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NEHotspotConfiguration {}
@@ -389,12 +380,9 @@ unsafe impl RefEncode for NEHotspotConfigurationError {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEHotspotConfigurationManager;
-
-    unsafe impl ClassType for NEHotspotConfigurationManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NEHotspotConfigurationManager {}

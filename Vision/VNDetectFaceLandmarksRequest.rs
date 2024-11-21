@@ -25,15 +25,10 @@ unsafe impl RefEncode for VNRequestFaceLandmarksConstellation {
 }
 
 extern_class!(
+    #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
     pub struct VNDetectFaceLandmarksRequest;
-
-    #[cfg(feature = "VNRequest")]
-    unsafe impl ClassType for VNDetectFaceLandmarksRequest {
-        #[inherits(VNRequest, NSObject)]
-        type Super = VNImageBasedRequest;
-    }
 );
 
 #[cfg(feature = "VNRequest")]

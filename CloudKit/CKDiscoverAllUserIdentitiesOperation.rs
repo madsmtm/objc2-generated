@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CKOperation")]
     #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     pub struct CKDiscoverAllUserIdentitiesOperation;
-
-    #[cfg(feature = "CKOperation")]
-    unsafe impl ClassType for CKDiscoverAllUserIdentitiesOperation {
-        #[inherits(NSOperation, NSObject)]
-        type Super = CKOperation;
-    }
 );
 
 #[cfg(feature = "CKOperation")]

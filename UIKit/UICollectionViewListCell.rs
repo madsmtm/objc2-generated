@@ -9,6 +9,14 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(
+        UICollectionViewCell,
+        UICollectionReusableView,
+        UIView,
+        UIResponder,
+        NSObject
+    ))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "UICollectionViewCell",
@@ -16,17 +24,6 @@ extern_class!(
         feature = "UIView"
     ))]
     pub struct UICollectionViewListCell;
-
-    #[cfg(all(
-        feature = "UICollectionViewCell",
-        feature = "UIResponder",
-        feature = "UIView"
-    ))]
-    unsafe impl ClassType for UICollectionViewListCell {
-        #[inherits(UICollectionReusableView, UIView, UIResponder, NSObject)]
-        type Super = UICollectionViewCell;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(

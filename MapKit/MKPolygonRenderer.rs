@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(MKOverlayPathRenderer, MKOverlayRenderer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     pub struct MKPolygonRenderer;
-
-    #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
-    unsafe impl ClassType for MKPolygonRenderer {
-        #[inherits(MKOverlayRenderer, NSObject)]
-        type Super = MKOverlayPathRenderer;
-    }
 );
 
 #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]

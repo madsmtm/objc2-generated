@@ -28,12 +28,9 @@ unsafe impl RefEncode for ATTrackingManagerAuthorizationStatus {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ATTrackingManager;
-
-    unsafe impl ClassType for ATTrackingManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for ATTrackingManager {}

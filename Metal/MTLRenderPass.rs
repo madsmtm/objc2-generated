@@ -100,12 +100,9 @@ unsafe impl RefEncode for MTLStoreActionOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassAttachmentDescriptor;
-
-    unsafe impl ClassType for MTLRenderPassAttachmentDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLRenderPassAttachmentDescriptor {}
@@ -218,13 +215,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MTLRenderPassAttachmentDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassColorAttachmentDescriptor;
-
-    unsafe impl ClassType for MTLRenderPassColorAttachmentDescriptor {
-        #[inherits(NSObject)]
-        type Super = MTLRenderPassAttachmentDescriptor;
-    }
 );
 
 unsafe impl NSCopying for MTLRenderPassColorAttachmentDescriptor {}
@@ -285,13 +278,9 @@ unsafe impl RefEncode for MTLMultisampleDepthResolveFilter {
 }
 
 extern_class!(
+    #[unsafe(super(MTLRenderPassAttachmentDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassDepthAttachmentDescriptor;
-
-    unsafe impl ClassType for MTLRenderPassDepthAttachmentDescriptor {
-        #[inherits(NSObject)]
-        type Super = MTLRenderPassAttachmentDescriptor;
-    }
 );
 
 unsafe impl NSCopying for MTLRenderPassDepthAttachmentDescriptor {}
@@ -349,13 +338,9 @@ unsafe impl RefEncode for MTLMultisampleStencilResolveFilter {
 }
 
 extern_class!(
+    #[unsafe(super(MTLRenderPassAttachmentDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassStencilAttachmentDescriptor;
-
-    unsafe impl ClassType for MTLRenderPassStencilAttachmentDescriptor {
-        #[inherits(NSObject)]
-        type Super = MTLRenderPassAttachmentDescriptor;
-    }
 );
 
 unsafe impl NSCopying for MTLRenderPassStencilAttachmentDescriptor {}
@@ -397,12 +382,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassColorAttachmentDescriptorArray;
-
-    unsafe impl ClassType for MTLRenderPassColorAttachmentDescriptorArray {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLRenderPassColorAttachmentDescriptorArray {}
@@ -436,12 +418,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassSampleBufferAttachmentDescriptor;
-
-    unsafe impl ClassType for MTLRenderPassSampleBufferAttachmentDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLRenderPassSampleBufferAttachmentDescriptor {}
@@ -506,12 +485,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassSampleBufferAttachmentDescriptorArray;
-
-    unsafe impl ClassType for MTLRenderPassSampleBufferAttachmentDescriptorArray {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLRenderPassSampleBufferAttachmentDescriptorArray {}
@@ -545,12 +521,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassDescriptor;
-
-    unsafe impl ClassType for MTLRenderPassDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLRenderPassDescriptor {}

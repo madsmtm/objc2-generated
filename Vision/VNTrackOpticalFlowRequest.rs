@@ -29,15 +29,10 @@ unsafe impl RefEncode for VNTrackOpticalFlowRequestComputationAccuracy {
 }
 
 extern_class!(
+    #[unsafe(super(VNStatefulRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     pub struct VNTrackOpticalFlowRequest;
-
-    #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-    unsafe impl ClassType for VNTrackOpticalFlowRequest {
-        #[inherits(VNImageBasedRequest, VNRequest, NSObject)]
-        type Super = VNStatefulRequest;
-    }
 );
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]

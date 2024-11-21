@@ -38,13 +38,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UISheetPresentationControllerDetent;
-
-    unsafe impl ClassType for UISheetPresentationControllerDetent {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UISheetPresentationControllerDetent {}
@@ -110,16 +107,11 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(UIPresentationController, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIPresentationController")]
     pub struct UISheetPresentationController;
-
-    #[cfg(feature = "UIPresentationController")]
-    unsafe impl ClassType for UISheetPresentationController {
-        #[inherits(NSObject)]
-        type Super = UIPresentationController;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIPresentationController")]

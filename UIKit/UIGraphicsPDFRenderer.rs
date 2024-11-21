@@ -10,15 +10,10 @@ pub type UIGraphicsPDFDrawingActions =
     *mut block2::Block<dyn Fn(NonNull<UIGraphicsPDFRendererContext>)>;
 
 extern_class!(
+    #[unsafe(super(UIGraphicsRendererFormat, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGraphicsRenderer")]
     pub struct UIGraphicsPDFRendererFormat;
-
-    #[cfg(feature = "UIGraphicsRenderer")]
-    unsafe impl ClassType for UIGraphicsPDFRendererFormat {
-        #[inherits(NSObject)]
-        type Super = UIGraphicsRendererFormat;
-    }
 );
 
 #[cfg(feature = "UIGraphicsRenderer")]
@@ -69,15 +64,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIGraphicsRendererContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGraphicsRenderer")]
     pub struct UIGraphicsPDFRendererContext;
-
-    #[cfg(feature = "UIGraphicsRenderer")]
-    unsafe impl ClassType for UIGraphicsPDFRendererContext {
-        #[inherits(NSObject)]
-        type Super = UIGraphicsRendererContext;
-    }
 );
 
 #[cfg(feature = "UIGraphicsRenderer")]
@@ -123,15 +113,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIGraphicsRenderer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGraphicsRenderer")]
     pub struct UIGraphicsPDFRenderer;
-
-    #[cfg(feature = "UIGraphicsRenderer")]
-    unsafe impl ClassType for UIGraphicsPDFRenderer {
-        #[inherits(NSObject)]
-        type Super = UIGraphicsRenderer;
-    }
 );
 
 #[cfg(feature = "UIGraphicsRenderer")]

@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKDeletedObject;
-
-    unsafe impl ClassType for HKDeletedObject {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for HKDeletedObject {}

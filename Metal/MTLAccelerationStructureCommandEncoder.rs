@@ -185,12 +185,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructurePassSampleBufferAttachmentDescriptor;
-
-    unsafe impl ClassType for MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {}
@@ -245,12 +242,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray;
-
-    unsafe impl ClassType for MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {}
@@ -284,12 +278,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructurePassDescriptor;
-
-    unsafe impl ClassType for MTLAccelerationStructurePassDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLAccelerationStructurePassDescriptor {}

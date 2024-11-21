@@ -62,13 +62,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKWebsiteDataRecord;
-
-    unsafe impl ClassType for WKWebsiteDataRecord {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for WKWebsiteDataRecord {}

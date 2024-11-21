@@ -102,12 +102,9 @@ unsafe impl RefEncode for CLActivityType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLLocationManager;
-
-    unsafe impl ClassType for CLLocationManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CLLocationManager {}

@@ -35,13 +35,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
     pub struct WebPreferences;
-
-    unsafe impl ClassType for WebPreferences {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for WebPreferences {}

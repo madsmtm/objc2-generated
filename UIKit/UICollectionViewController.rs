@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIViewController, UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     pub struct UICollectionViewController;
-
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl ClassType for UICollectionViewController {
-        #[inherits(UIResponder, NSObject)]
-        type Super = UIViewController;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]

@@ -17,12 +17,9 @@ pub type CMAbsoluteAltitudeHandler =
     *mut block2::Block<dyn Fn(*mut CMAbsoluteAltitudeData, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMAltimeter;
-
-    unsafe impl ClassType for CMAltimeter {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CMAltimeter {}

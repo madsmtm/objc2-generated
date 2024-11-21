@@ -9,12 +9,9 @@ use crate::*;
 pub type CAMediaTimingFunctionName = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAMediaTimingFunction;
-
-    unsafe impl ClassType for CAMediaTimingFunction {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CAMediaTimingFunction {}

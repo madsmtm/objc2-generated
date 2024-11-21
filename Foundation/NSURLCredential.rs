@@ -28,12 +28,9 @@ unsafe impl RefEncode for NSURLCredentialPersistence {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLCredential;
-
-    unsafe impl ClassType for NSURLCredential {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSURLCredential {}

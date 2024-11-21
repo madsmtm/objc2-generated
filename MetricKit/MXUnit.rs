@@ -6,13 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXUnitSignalBars;
-
-    unsafe impl ClassType for MXUnitSignalBars {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl NSCoding for MXUnitSignalBars {}
@@ -64,13 +60,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXUnitAveragePixelLuminance;
-
-    unsafe impl ClassType for MXUnitAveragePixelLuminance {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl NSCoding for MXUnitAveragePixelLuminance {}

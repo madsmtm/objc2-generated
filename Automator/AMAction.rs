@@ -29,12 +29,9 @@ unsafe impl RefEncode for AMLogLevel {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AMAction;
-
-    unsafe impl ClassType for AMAction {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for AMAction {}

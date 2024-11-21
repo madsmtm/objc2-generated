@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VZKeyboardConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZKeyboardConfiguration")]
     pub struct VZUSBKeyboardConfiguration;
-
-    #[cfg(feature = "VZKeyboardConfiguration")]
-    unsafe impl ClassType for VZUSBKeyboardConfiguration {
-        #[inherits(NSObject)]
-        type Super = VZKeyboardConfiguration;
-    }
 );
 
 #[cfg(feature = "VZKeyboardConfiguration")]

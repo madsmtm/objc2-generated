@@ -66,15 +66,10 @@ pub static NSNotificationPostToAllSessions: NSDistributedNotificationOptions =
     );
 
 extern_class!(
+    #[unsafe(super(NSNotificationCenter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSNotification")]
     pub struct NSDistributedNotificationCenter;
-
-    #[cfg(feature = "NSNotification")]
-    unsafe impl ClassType for NSDistributedNotificationCenter {
-        #[inherits(NSObject)]
-        type Super = NSNotificationCenter;
-    }
 );
 
 #[cfg(feature = "NSNotification")]

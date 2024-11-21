@@ -30,12 +30,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationAppleIDProvider;
-
-    unsafe impl ClassType for ASAuthorizationAppleIDProvider {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "ASAuthorizationProvider")]

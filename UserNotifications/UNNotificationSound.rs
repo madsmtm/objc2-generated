@@ -9,12 +9,9 @@ use crate::*;
 pub type UNNotificationSoundName = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationSound;
-
-    unsafe impl ClassType for UNNotificationSound {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for UNNotificationSound {}

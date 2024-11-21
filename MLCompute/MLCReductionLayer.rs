@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
     #[deprecated]
     pub struct MLCReductionLayer;
-
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl ClassType for MLCReductionLayer {
-        #[inherits(NSObject)]
-        type Super = MLCLayer;
-    }
 );
 
 #[cfg(feature = "MLCLayer")]

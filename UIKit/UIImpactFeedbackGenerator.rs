@@ -31,16 +31,11 @@ unsafe impl RefEncode for UIImpactFeedbackStyle {
 }
 
 extern_class!(
+    #[unsafe(super(UIFeedbackGenerator, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIFeedbackGenerator")]
     pub struct UIImpactFeedbackGenerator;
-
-    #[cfg(feature = "UIFeedbackGenerator")]
-    unsafe impl ClassType for UIImpactFeedbackGenerator {
-        #[inherits(NSObject)]
-        type Super = UIFeedbackGenerator;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIFeedbackGenerator")]

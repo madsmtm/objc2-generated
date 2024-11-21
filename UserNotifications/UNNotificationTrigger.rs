@@ -8,12 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationTrigger;
-
-    unsafe impl ClassType for UNNotificationTrigger {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for UNNotificationTrigger {}
@@ -47,13 +44,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UNNotificationTrigger, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNPushNotificationTrigger;
-
-    unsafe impl ClassType for UNPushNotificationTrigger {
-        #[inherits(NSObject)]
-        type Super = UNNotificationTrigger;
-    }
 );
 
 unsafe impl NSCoding for UNPushNotificationTrigger {}
@@ -89,13 +82,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UNNotificationTrigger, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNTimeIntervalNotificationTrigger;
-
-    unsafe impl ClassType for UNTimeIntervalNotificationTrigger {
-        #[inherits(NSObject)]
-        type Super = UNNotificationTrigger;
-    }
 );
 
 unsafe impl NSCoding for UNTimeIntervalNotificationTrigger {}
@@ -143,13 +132,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UNNotificationTrigger, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNCalendarNotificationTrigger;
-
-    unsafe impl ClassType for UNCalendarNotificationTrigger {
-        #[inherits(NSObject)]
-        type Super = UNNotificationTrigger;
-    }
 );
 
 unsafe impl NSCoding for UNCalendarNotificationTrigger {}
@@ -197,13 +182,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UNNotificationTrigger, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNLocationNotificationTrigger;
-
-    unsafe impl ClassType for UNLocationNotificationTrigger {
-        #[inherits(NSObject)]
-        type Super = UNNotificationTrigger;
-    }
 );
 
 unsafe impl NSCoding for UNLocationNotificationTrigger {}

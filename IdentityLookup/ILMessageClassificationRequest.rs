@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(ILClassificationRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ILClassificationRequest")]
     pub struct ILMessageClassificationRequest;
-
-    #[cfg(feature = "ILClassificationRequest")]
-    unsafe impl ClassType for ILMessageClassificationRequest {
-        #[inherits(NSObject)]
-        type Super = ILClassificationRequest;
-    }
 );
 
 #[cfg(feature = "ILClassificationRequest")]

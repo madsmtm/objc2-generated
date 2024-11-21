@@ -138,14 +138,11 @@ unsafe impl RefEncode for UITableViewRowActionStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use UIContextualAction and related APIs instead."]
     pub struct UITableViewRowAction;
-
-    unsafe impl ClassType for UITableViewRowAction {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UITableViewRowAction {}
@@ -214,16 +211,11 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIFocusUpdateContext, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIFocus")]
     pub struct UITableViewFocusUpdateContext;
-
-    #[cfg(feature = "UIFocus")]
-    unsafe impl ClassType for UITableViewFocusUpdateContext {
-        #[inherits(NSObject)]
-        type Super = UIFocusUpdateContext;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIFocus")]
@@ -861,16 +853,11 @@ unsafe impl RefEncode for UITableViewSelfSizingInvalidation {
 }
 
 extern_class!(
+    #[unsafe(super(UIScrollView, UIView, UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
     pub struct UITableView;
-
-    #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-    unsafe impl ClassType for UITableView {
-        #[inherits(UIView, UIResponder, NSObject)]
-        type Super = UIScrollView;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(
@@ -1956,16 +1943,11 @@ unsafe impl RefEncode for UITableViewDropIntent {
 }
 
 extern_class!(
+    #[unsafe(super(UIDropProposal, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIDropInteraction")]
     pub struct UITableViewDropProposal;
-
-    #[cfg(feature = "UIDropInteraction")]
-    unsafe impl ClassType for UITableViewDropProposal {
-        #[inherits(NSObject)]
-        type Super = UIDropProposal;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIDropInteraction")]
@@ -2071,13 +2053,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITableViewPlaceholder;
-
-    unsafe impl ClassType for UITableViewPlaceholder {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITableViewPlaceholder {}
@@ -2124,14 +2103,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UITableViewPlaceholder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITableViewDropPlaceholder;
-
-    unsafe impl ClassType for UITableViewDropPlaceholder {
-        #[inherits(NSObject)]
-        type Super = UITableViewPlaceholder;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UITableViewDropPlaceholder {}

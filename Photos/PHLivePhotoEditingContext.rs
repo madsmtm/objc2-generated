@@ -16,12 +16,9 @@ pub type PHLivePhotoFrameProcessingBlock = *mut block2::Block<
 pub type PHLivePhotoEditingOption = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHLivePhotoEditingContext;
-
-    unsafe impl ClassType for PHLivePhotoEditingContext {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for PHLivePhotoEditingContext {}

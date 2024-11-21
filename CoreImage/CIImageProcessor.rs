@@ -8,12 +8,9 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIImageProcessorKernel;
-
-    unsafe impl ClassType for CIImageProcessorKernel {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CIImageProcessorKernel {}

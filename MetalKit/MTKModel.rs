@@ -18,12 +18,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTKMeshBufferAllocator;
-
-    unsafe impl ClassType for MTKMeshBufferAllocator {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTKMeshBufferAllocator {}
@@ -53,12 +50,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTKMeshBuffer;
-
-    unsafe impl ClassType for MTKMeshBuffer {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTKMeshBuffer {}
@@ -97,12 +91,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTKSubmesh;
-
-    unsafe impl ClassType for MTKSubmesh {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTKSubmesh {}
@@ -144,12 +135,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTKMesh;
-
-    unsafe impl ClassType for MTKMesh {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTKMesh {}

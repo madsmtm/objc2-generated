@@ -15,15 +15,10 @@ pub type CAShapeLayerLineJoin = NSString;
 pub type CAShapeLayerLineCap = NSString;
 
 extern_class!(
+    #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]
     pub struct CAShapeLayer;
-
-    #[cfg(feature = "CALayer")]
-    unsafe impl ClassType for CAShapeLayer {
-        #[inherits(NSObject)]
-        type Super = CALayer;
-    }
 );
 
 #[cfg(all(feature = "CALayer", feature = "CAMediaTiming"))]

@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKRecordID;
-
-    unsafe impl ClassType for CKRecordID {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKRecordID {}

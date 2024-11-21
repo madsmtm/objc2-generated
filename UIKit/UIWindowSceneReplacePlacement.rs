@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIWindowScenePlacement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowScenePlacement")]
     #[deprecated = "UIWindowSceneReplacePlacement has been replaced with UIWindowScenePushPlacement"]
     pub struct UIWindowSceneReplacePlacement;
-
-    #[cfg(feature = "UIWindowScenePlacement")]
-    unsafe impl ClassType for UIWindowSceneReplacePlacement {
-        #[inherits(NSObject)]
-        type Super = UIWindowScenePlacement;
-    }
 );
 
 #[cfg(feature = "UIWindowScenePlacement")]

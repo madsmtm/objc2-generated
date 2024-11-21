@@ -24,12 +24,9 @@ unsafe impl RefEncode for VZMacAuxiliaryStorageInitializationOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZMacAuxiliaryStorage;
-
-    unsafe impl ClassType for VZMacAuxiliaryStorage {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for VZMacAuxiliaryStorage {}

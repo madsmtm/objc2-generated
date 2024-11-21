@@ -76,12 +76,9 @@ unsafe impl RefEncode for ASAuthorizationControllerRequestOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationController;
-
-    unsafe impl ClassType for ASAuthorizationController {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for ASAuthorizationController {}

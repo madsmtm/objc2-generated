@@ -27,12 +27,9 @@ unsafe impl RefEncode for CKDatabaseScope {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKDatabase;
-
-    unsafe impl ClassType for CKDatabase {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKDatabase {}

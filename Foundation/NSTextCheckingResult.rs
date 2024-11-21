@@ -59,12 +59,9 @@ pub const NSTextCheckingAllTypes: NSTextCheckingTypes =
 pub type NSTextCheckingKey = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextCheckingResult;
-
-    unsafe impl ClassType for NSTextCheckingResult {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]

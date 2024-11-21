@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIFeature;
-
-    unsafe impl ClassType for CIFeature {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CIFeature {}
@@ -54,13 +51,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(CIFeature, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIFaceFeature;
-
-    unsafe impl ClassType for CIFaceFeature {
-        #[inherits(NSObject)]
-        type Super = CIFeature;
-    }
 );
 
 unsafe impl NSObjectProtocol for CIFaceFeature {}
@@ -129,13 +122,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CIFeature, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIRectangleFeature;
-
-    unsafe impl ClassType for CIRectangleFeature {
-        #[inherits(NSObject)]
-        type Super = CIFeature;
-    }
 );
 
 unsafe impl NSObjectProtocol for CIRectangleFeature {}
@@ -171,13 +160,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CIFeature, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIQRCodeFeature;
-
-    unsafe impl ClassType for CIQRCodeFeature {
-        #[inherits(NSObject)]
-        type Super = CIFeature;
-    }
 );
 
 unsafe impl NSCoding for CIQRCodeFeature {}
@@ -230,13 +215,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CIFeature, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CITextFeature;
-
-    unsafe impl ClassType for CITextFeature {
-        #[inherits(NSObject)]
-        type Super = CIFeature;
-    }
 );
 
 unsafe impl NSObjectProtocol for CITextFeature {}

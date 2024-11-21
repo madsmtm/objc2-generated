@@ -60,6 +60,7 @@ extern "C-unwind" {
 }
 
 extern_class!(
+    #[unsafe(super(HKScoredAssessment, HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "HKObject",
@@ -67,16 +68,6 @@ extern_class!(
         feature = "HKScoredAssessment"
     ))]
     pub struct HKGAD7Assessment;
-
-    #[cfg(all(
-        feature = "HKObject",
-        feature = "HKSample",
-        feature = "HKScoredAssessment"
-    ))]
-    unsafe impl ClassType for HKGAD7Assessment {
-        #[inherits(HKSample, HKObject, NSObject)]
-        type Super = HKScoredAssessment;
-    }
 );
 
 #[cfg(all(

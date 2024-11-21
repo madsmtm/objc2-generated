@@ -33,12 +33,9 @@ unsafe impl RefEncode for HKStatisticsOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKStatistics;
-
-    unsafe impl ClassType for HKStatistics {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for HKStatistics {}

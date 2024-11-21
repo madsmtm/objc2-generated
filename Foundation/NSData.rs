@@ -116,12 +116,9 @@ unsafe impl RefEncode for NSDataBase64DecodingOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSData;
-
-    unsafe impl ClassType for NSData {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -630,13 +627,9 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(PartialEq, Eq, Hash)]
+    #[unsafe(super(NSData, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableData;
-
-    unsafe impl ClassType for NSMutableData {
-        #[inherits(NSObject)]
-        type Super = NSData;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -765,13 +758,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSMutableData, NSData, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPurgeableData;
-
-    unsafe impl ClassType for NSPurgeableData {
-        #[inherits(NSData, NSObject)]
-        type Super = NSMutableData;
-    }
 );
 
 #[cfg(feature = "NSObject")]

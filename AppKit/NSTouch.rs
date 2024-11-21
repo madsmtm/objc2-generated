@@ -79,12 +79,9 @@ unsafe impl RefEncode for NSTouchTypeMask {
 // TODO: pub fn NSTouchTypeMaskFromType(r#type: NSTouchType,) -> NSTouchTypeMask;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTouch;
-
-    unsafe impl ClassType for NSTouch {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSTouch {}

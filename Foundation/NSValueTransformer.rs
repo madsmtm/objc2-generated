@@ -39,12 +39,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSValueTransformer;
-
-    unsafe impl ClassType for NSValueTransformer {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSValueTransformer {}
@@ -100,13 +97,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSValueTransformer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSecureUnarchiveFromDataTransformer;
-
-    unsafe impl ClassType for NSSecureUnarchiveFromDataTransformer {
-        #[inherits(NSObject)]
-        type Super = NSValueTransformer;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSSecureUnarchiveFromDataTransformer {}

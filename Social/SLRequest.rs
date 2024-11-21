@@ -35,12 +35,9 @@ pub type SLRequestHandler =
     *mut block2::Block<dyn Fn(*mut NSData, *mut NSHTTPURLResponse, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SLRequest;
-
-    unsafe impl ClassType for SLRequest {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SLRequest {}

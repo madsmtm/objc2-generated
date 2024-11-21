@@ -33,15 +33,10 @@ unsafe impl RefEncode for UIGraphicsImageRendererFormatRange {
 }
 
 extern_class!(
+    #[unsafe(super(UIGraphicsRendererFormat, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGraphicsRenderer")]
     pub struct UIGraphicsImageRendererFormat;
-
-    #[cfg(feature = "UIGraphicsRenderer")]
-    unsafe impl ClassType for UIGraphicsImageRendererFormat {
-        #[inherits(NSObject)]
-        type Super = UIGraphicsRendererFormat;
-    }
 );
 
 #[cfg(feature = "UIGraphicsRenderer")]
@@ -121,15 +116,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIGraphicsRendererContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGraphicsRenderer")]
     pub struct UIGraphicsImageRendererContext;
-
-    #[cfg(feature = "UIGraphicsRenderer")]
-    unsafe impl ClassType for UIGraphicsImageRendererContext {
-        #[inherits(NSObject)]
-        type Super = UIGraphicsRendererContext;
-    }
 );
 
 #[cfg(feature = "UIGraphicsRenderer")]
@@ -157,15 +147,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIGraphicsRenderer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGraphicsRenderer")]
     pub struct UIGraphicsImageRenderer;
-
-    #[cfg(feature = "UIGraphicsRenderer")]
-    unsafe impl ClassType for UIGraphicsImageRenderer {
-        #[inherits(NSObject)]
-        type Super = UIGraphicsRenderer;
-    }
 );
 
 #[cfg(feature = "UIGraphicsRenderer")]

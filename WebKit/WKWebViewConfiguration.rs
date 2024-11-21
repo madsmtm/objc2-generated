@@ -46,13 +46,10 @@ unsafe impl RefEncode for WKAudiovisualMediaTypes {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKWebViewConfiguration;
-
-    unsafe impl ClassType for WKWebViewConfiguration {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for WKWebViewConfiguration {}

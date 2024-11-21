@@ -36,15 +36,10 @@ unsafe impl RefEncode for NSLengthFormatterUnit {
 }
 
 extern_class!(
+    #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]
     pub struct NSLengthFormatter;
-
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl ClassType for NSLengthFormatter {
-        #[inherits(NSObject)]
-        type Super = NSFormatter;
-    }
 );
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]

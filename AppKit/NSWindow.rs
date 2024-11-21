@@ -372,16 +372,11 @@ pub type NSWindowPersistableFrameDescriptor = NSString;
 pub type NSWindowTabbingIdentifier = NSString;
 
 extern_class!(
+    #[unsafe(super(NSResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSResponder")]
     pub struct NSWindow;
-
-    #[cfg(feature = "NSResponder")]
-    unsafe impl ClassType for NSWindow {
-        #[inherits(NSObject)]
-        type Super = NSResponder;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSResponder"))]

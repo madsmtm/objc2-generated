@@ -317,12 +317,9 @@ unsafe impl RefEncode for MTLBindingAccess {
 pub type MTLArgumentAccess = MTLBindingAccess;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLType;
-
-    unsafe impl ClassType for MTLType {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLType {}
@@ -346,12 +343,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLStructMember;
-
-    unsafe impl ClassType for MTLStructMember {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLStructMember {}
@@ -396,13 +390,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MTLType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLStructType;
-
-    unsafe impl ClassType for MTLStructType {
-        #[inherits(NSObject)]
-        type Super = MTLType;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLStructType {}
@@ -429,13 +419,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MTLType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLArrayType;
-
-    unsafe impl ClassType for MTLArrayType {
-        #[inherits(NSObject)]
-        type Super = MTLType;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLArrayType {}
@@ -482,13 +468,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MTLType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLPointerType;
-
-    unsafe impl ClassType for MTLPointerType {
-        #[inherits(NSObject)]
-        type Super = MTLType;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLPointerType {}
@@ -530,13 +512,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MTLType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLTextureReferenceType;
-
-    unsafe impl ClassType for MTLTextureReferenceType {
-        #[inherits(NSObject)]
-        type Super = MTLType;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLTextureReferenceType {}
@@ -570,13 +548,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
     pub struct MTLArgument;
-
-    unsafe impl ClassType for MTLArgument {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLArgument {}

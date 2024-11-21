@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLResourceStatePassSampleBufferAttachmentDescriptor;
-
-    unsafe impl ClassType for MTLResourceStatePassSampleBufferAttachmentDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLResourceStatePassSampleBufferAttachmentDescriptor {}
@@ -66,12 +63,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLResourceStatePassSampleBufferAttachmentDescriptorArray;
-
-    unsafe impl ClassType for MTLResourceStatePassSampleBufferAttachmentDescriptorArray {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLResourceStatePassSampleBufferAttachmentDescriptorArray {}
@@ -105,12 +99,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLResourceStatePassDescriptor;
-
-    unsafe impl ClassType for MTLResourceStatePassDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLResourceStatePassDescriptor {}

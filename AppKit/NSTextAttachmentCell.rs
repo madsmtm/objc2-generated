@@ -119,15 +119,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCell")]
     pub struct NSTextAttachmentCell;
-
-    #[cfg(feature = "NSCell")]
-    unsafe impl ClassType for NSTextAttachmentCell {
-        #[inherits(NSObject)]
-        type Super = NSCell;
-    }
 );
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSCell"))]

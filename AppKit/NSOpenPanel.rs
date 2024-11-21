@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSSavePanel, NSPanel, NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "NSPanel",
@@ -14,17 +15,6 @@ extern_class!(
         feature = "NSWindow"
     ))]
     pub struct NSOpenPanel;
-
-    #[cfg(all(
-        feature = "NSPanel",
-        feature = "NSResponder",
-        feature = "NSSavePanel",
-        feature = "NSWindow"
-    ))]
-    unsafe impl ClassType for NSOpenPanel {
-        #[inherits(NSPanel, NSWindow, NSResponder, NSObject)]
-        type Super = NSSavePanel;
-    }
 );
 
 #[cfg(all(

@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWNetworkProfile;
-
-    unsafe impl ClassType for CWNetworkProfile {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CWNetworkProfile {}
@@ -75,13 +72,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(CWNetworkProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWMutableNetworkProfile;
-
-    unsafe impl ClassType for CWMutableNetworkProfile {
-        #[inherits(NSObject)]
-        type Super = CWNetworkProfile;
-    }
 );
 
 unsafe impl NSCoding for CWMutableNetworkProfile {}

@@ -8,12 +8,9 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKAttachmentStore;
-
-    unsafe impl ClassType for HKAttachmentStore {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for HKAttachmentStore {}

@@ -5,12 +5,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCSteeringWheelElement;
-
-    unsafe impl ClassType for GCSteeringWheelElement {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(all(feature = "GCAxisElement", feature = "GCPhysicalInputElement"))]

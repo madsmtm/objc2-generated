@@ -27,16 +27,11 @@ unsafe impl RefEncode for UITabGroupSidebarAppearance {
 }
 
 extern_class!(
+    #[unsafe(super(UITab, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UITab")]
     pub struct UITabGroup;
-
-    #[cfg(feature = "UITab")]
-    unsafe impl ClassType for UITabGroup {
-        #[inherits(NSObject)]
-        type Super = UITab;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UITab")]

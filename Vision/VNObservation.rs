@@ -10,12 +10,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNObservation;
-
-    unsafe impl ClassType for VNObservation {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for VNObservation {}
@@ -56,13 +53,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNDetectedObjectObservation;
-
-    unsafe impl ClassType for VNDetectedObjectObservation {
-        #[inherits(NSObject)]
-        type Super = VNObservation;
-    }
 );
 
 unsafe impl NSCoding for VNDetectedObjectObservation {}
@@ -111,13 +104,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNDetectedObjectObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceObservation;
-
-    unsafe impl ClassType for VNFaceObservation {
-        #[inherits(VNObservation, NSObject)]
-        type Super = VNDetectedObjectObservation;
-    }
 );
 
 unsafe impl NSCoding for VNFaceObservation {}
@@ -199,13 +188,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNClassificationObservation;
-
-    unsafe impl ClassType for VNClassificationObservation {
-        #[inherits(NSObject)]
-        type Super = VNObservation;
-    }
 );
 
 unsafe impl NSCoding for VNClassificationObservation {}
@@ -264,13 +249,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNDetectedObjectObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRecognizedObjectObservation;
-
-    unsafe impl ClassType for VNRecognizedObjectObservation {
-        #[inherits(VNObservation, NSObject)]
-        type Super = VNDetectedObjectObservation;
-    }
 );
 
 unsafe impl NSCoding for VNRecognizedObjectObservation {}
@@ -321,13 +302,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNCoreMLFeatureValueObservation;
-
-    unsafe impl ClassType for VNCoreMLFeatureValueObservation {
-        #[inherits(NSObject)]
-        type Super = VNObservation;
-    }
 );
 
 unsafe impl NSCoding for VNCoreMLFeatureValueObservation {}
@@ -368,13 +345,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNPixelBufferObservation;
-
-    unsafe impl ClassType for VNPixelBufferObservation {
-        #[inherits(NSObject)]
-        type Super = VNObservation;
-    }
 );
 
 unsafe impl NSCoding for VNPixelBufferObservation {}
@@ -411,13 +384,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNDetectedObjectObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRectangleObservation;
-
-    unsafe impl ClassType for VNRectangleObservation {
-        #[inherits(VNObservation, NSObject)]
-        type Super = VNDetectedObjectObservation;
-    }
 );
 
 unsafe impl NSCoding for VNRectangleObservation {}
@@ -496,13 +465,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNTrajectoryObservation;
-
-    unsafe impl ClassType for VNTrajectoryObservation {
-        #[inherits(NSObject)]
-        type Super = VNObservation;
-    }
 );
 
 unsafe impl NSCoding for VNTrajectoryObservation {}
@@ -547,13 +512,14 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(
+        VNRectangleObservation,
+        VNDetectedObjectObservation,
+        VNObservation,
+        NSObject
+    ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNTextObservation;
-
-    unsafe impl ClassType for VNTextObservation {
-        #[inherits(VNDetectedObjectObservation, VNObservation, NSObject)]
-        type Super = VNRectangleObservation;
-    }
 );
 
 unsafe impl NSCoding for VNTextObservation {}
@@ -628,12 +594,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRecognizedText;
-
-    unsafe impl ClassType for VNRecognizedText {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for VNRecognizedText {}
@@ -680,13 +643,14 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(
+        VNRectangleObservation,
+        VNDetectedObjectObservation,
+        VNObservation,
+        NSObject
+    ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRecognizedTextObservation;
-
-    unsafe impl ClassType for VNRecognizedTextObservation {
-        #[inherits(VNDetectedObjectObservation, VNObservation, NSObject)]
-        type Super = VNRectangleObservation;
-    }
 );
 
 unsafe impl NSCoding for VNRecognizedTextObservation {}
@@ -764,13 +728,14 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(
+        VNRectangleObservation,
+        VNDetectedObjectObservation,
+        VNObservation,
+        NSObject
+    ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNBarcodeObservation;
-
-    unsafe impl ClassType for VNBarcodeObservation {
-        #[inherits(VNDetectedObjectObservation, VNObservation, NSObject)]
-        type Super = VNRectangleObservation;
-    }
 );
 
 unsafe impl NSCoding for VNBarcodeObservation {}
@@ -872,13 +837,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNHorizonObservation;
-
-    unsafe impl ClassType for VNHorizonObservation {
-        #[inherits(NSObject)]
-        type Super = VNObservation;
-    }
 );
 
 unsafe impl NSCoding for VNHorizonObservation {}
@@ -915,13 +876,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageAlignmentObservation;
-
-    unsafe impl ClassType for VNImageAlignmentObservation {
-        #[inherits(NSObject)]
-        type Super = VNObservation;
-    }
 );
 
 unsafe impl NSCoding for VNImageAlignmentObservation {}
@@ -955,13 +912,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNImageAlignmentObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageTranslationAlignmentObservation;
-
-    unsafe impl ClassType for VNImageTranslationAlignmentObservation {
-        #[inherits(VNObservation, NSObject)]
-        type Super = VNImageAlignmentObservation;
-    }
 );
 
 unsafe impl NSCoding for VNImageTranslationAlignmentObservation {}
@@ -995,13 +948,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNImageAlignmentObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageHomographicAlignmentObservation;
-
-    unsafe impl ClassType for VNImageHomographicAlignmentObservation {
-        #[inherits(VNObservation, NSObject)]
-        type Super = VNImageAlignmentObservation;
-    }
 );
 
 unsafe impl NSCoding for VNImageHomographicAlignmentObservation {}
@@ -1035,13 +984,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNPixelBufferObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNSaliencyImageObservation;
-
-    unsafe impl ClassType for VNSaliencyImageObservation {
-        #[inherits(VNObservation, NSObject)]
-        type Super = VNPixelBufferObservation;
-    }
 );
 
 unsafe impl NSCoding for VNSaliencyImageObservation {}
@@ -1078,13 +1023,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFeaturePrintObservation;
-
-    unsafe impl ClassType for VNFeaturePrintObservation {
-        #[inherits(NSObject)]
-        type Super = VNObservation;
-    }
 );
 
 unsafe impl NSCoding for VNFeaturePrintObservation {}
@@ -1135,13 +1076,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNContoursObservation;
-
-    unsafe impl ClassType for VNContoursObservation {
-        #[inherits(NSObject)]
-        type Super = VNObservation;
-    }
 );
 
 unsafe impl NSCoding for VNContoursObservation {}
@@ -1204,13 +1141,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRecognizedPointsObservation;
-
-    unsafe impl ClassType for VNRecognizedPointsObservation {
-        #[inherits(NSObject)]
-        type Super = VNObservation;
-    }
 );
 
 unsafe impl NSCoding for VNRecognizedPointsObservation {}
@@ -1278,13 +1211,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNDetectedObjectObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNHumanObservation;
-
-    unsafe impl ClassType for VNHumanObservation {
-        #[inherits(VNObservation, NSObject)]
-        type Super = VNDetectedObjectObservation;
-    }
 );
 
 unsafe impl NSCoding for VNHumanObservation {}
@@ -1335,13 +1264,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNInstanceMaskObservation;
-
-    unsafe impl ClassType for VNInstanceMaskObservation {
-        #[inherits(NSObject)]
-        type Super = VNObservation;
-    }
 );
 
 unsafe impl NSCoding for VNInstanceMaskObservation {}
@@ -1378,13 +1303,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNRecognizedPointsObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNAnimalBodyPoseObservation;
-
-    unsafe impl ClassType for VNAnimalBodyPoseObservation {
-        #[inherits(VNObservation, NSObject)]
-        type Super = VNRecognizedPointsObservation;
-    }
 );
 
 unsafe impl NSCoding for VNAnimalBodyPoseObservation {}
@@ -1460,13 +1381,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRecognizedPoints3DObservation;
-
-    unsafe impl ClassType for VNRecognizedPoints3DObservation {
-        #[inherits(NSObject)]
-        type Super = VNObservation;
-    }
 );
 
 unsafe impl NSCoding for VNRecognizedPoints3DObservation {}
@@ -1547,13 +1464,9 @@ unsafe impl RefEncode for VNHumanBodyPose3DObservationHeightEstimation {
 }
 
 extern_class!(
+    #[unsafe(super(VNRecognizedPoints3DObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNHumanBodyPose3DObservation;
-
-    unsafe impl ClassType for VNHumanBodyPose3DObservation {
-        #[inherits(VNObservation, NSObject)]
-        type Super = VNRecognizedPoints3DObservation;
-    }
 );
 
 unsafe impl NSCoding for VNHumanBodyPose3DObservation {}
@@ -1648,13 +1561,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageAestheticsScoresObservation;
-
-    unsafe impl ClassType for VNImageAestheticsScoresObservation {
-        #[inherits(NSObject)]
-        type Super = VNObservation;
-    }
 );
 
 unsafe impl NSCoding for VNImageAestheticsScoresObservation {}

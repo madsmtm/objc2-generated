@@ -34,18 +34,12 @@ unsafe impl RefEncode for MKPinAnnotationColor {
 }
 
 extern_class!(
+    #[unsafe(super(MKAnnotationView, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     #[deprecated]
     pub struct MKPinAnnotationView;
-
-    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl ClassType for MKPinAnnotationView {
-        #[inherits(NSView, NSResponder, NSObject)]
-        type Super = MKAnnotationView;
-    }
 );
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]

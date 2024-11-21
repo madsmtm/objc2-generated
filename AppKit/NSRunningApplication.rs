@@ -47,12 +47,9 @@ unsafe impl RefEncode for NSApplicationActivationPolicy {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRunningApplication;
-
-    unsafe impl ClassType for NSRunningApplication {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSRunningApplication {}

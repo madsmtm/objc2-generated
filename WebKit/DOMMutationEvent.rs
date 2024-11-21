@@ -13,6 +13,7 @@ pub const DOM_ADDITION: c_uint = 2;
 pub const DOM_REMOVAL: c_uint = 3;
 
 extern_class!(
+    #[unsafe(super(DOMEvent, DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "DOMEvent",
@@ -21,16 +22,6 @@ extern_class!(
     ))]
     #[deprecated]
     pub struct DOMMutationEvent;
-
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl ClassType for DOMMutationEvent {
-        #[inherits(DOMObject, WebScriptObject, NSObject)]
-        type Super = DOMEvent;
-    }
 );
 
 #[cfg(all(

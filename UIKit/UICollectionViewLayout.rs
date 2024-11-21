@@ -61,13 +61,10 @@ unsafe impl RefEncode for UICollectionElementCategory {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICollectionViewLayoutAttributes;
-
-    unsafe impl ClassType for UICollectionViewLayoutAttributes {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UICollectionViewLayoutAttributes {}
@@ -187,13 +184,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICollectionViewLayoutInvalidationContext;
-
-    unsafe impl ClassType for UICollectionViewLayoutInvalidationContext {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UICollectionViewLayoutInvalidationContext {}
@@ -275,13 +269,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICollectionViewLayout;
-
-    unsafe impl ClassType for UICollectionViewLayout {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UICollectionViewLayout {}

@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIEvent, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIEvent")]
     pub struct UIPressesEvent;
-
-    #[cfg(feature = "UIEvent")]
-    unsafe impl ClassType for UIPressesEvent {
-        #[inherits(NSObject)]
-        type Super = UIEvent;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIEvent")]

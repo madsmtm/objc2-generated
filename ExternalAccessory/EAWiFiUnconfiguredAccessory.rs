@@ -26,12 +26,9 @@ unsafe impl RefEncode for EAWiFiUnconfiguredAccessoryProperties {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EAWiFiUnconfiguredAccessory;
-
-    unsafe impl ClassType for EAWiFiUnconfiguredAccessory {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for EAWiFiUnconfiguredAccessory {}

@@ -28,14 +28,11 @@ unsafe impl RefEncode for UIMenuControllerArrowDirection {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
     pub struct UIMenuController;
-
-    unsafe impl ClassType for UIMenuController {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIMenuController {}
@@ -128,14 +125,11 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "UIMenuItem is deprecated. Use UIEditMenuInteraction instead."]
     pub struct UIMenuItem;
-
-    unsafe impl ClassType for UIMenuItem {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIMenuItem {}

@@ -5,15 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VZVirtualMachineStartOptions, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZVirtualMachineStartOptions")]
     pub struct VZMacOSVirtualMachineStartOptions;
-
-    #[cfg(feature = "VZVirtualMachineStartOptions")]
-    unsafe impl ClassType for VZMacOSVirtualMachineStartOptions {
-        #[inherits(NSObject)]
-        type Super = VZVirtualMachineStartOptions;
-    }
 );
 
 #[cfg(feature = "VZVirtualMachineStartOptions")]

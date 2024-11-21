@@ -7,12 +7,9 @@ use crate::*;
 pub const NSOpenStepUnicodeReservedBase: c_uint = 0xF400;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCharacterSet;
-
-    unsafe impl ClassType for NSCharacterSet {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -146,13 +143,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSCharacterSet, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableCharacterSet;
-
-    unsafe impl ClassType for NSMutableCharacterSet {
-        #[inherits(NSObject)]
-        type Super = NSCharacterSet;
-    }
 );
 
 #[cfg(feature = "NSObject")]

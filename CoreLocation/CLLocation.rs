@@ -93,12 +93,9 @@ extern "C-unwind" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLFloor;
-
-    unsafe impl ClassType for CLFloor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CLFloor {}
@@ -132,12 +129,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLLocationSourceInformation;
-
-    unsafe impl ClassType for CLLocationSourceInformation {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CLLocationSourceInformation {}
@@ -181,12 +175,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLLocation;
-
-    unsafe impl ClassType for CLLocation {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CLLocation {}

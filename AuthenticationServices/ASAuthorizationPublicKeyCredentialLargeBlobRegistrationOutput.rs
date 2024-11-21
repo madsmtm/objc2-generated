@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput;
-
-    unsafe impl ClassType for ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {}

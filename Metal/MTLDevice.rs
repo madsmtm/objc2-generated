@@ -416,12 +416,9 @@ pub type MTLNewComputePipelineStateWithReflectionCompletionHandler = *mut block2
 >;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLArgumentDescriptor;
-
-    unsafe impl ClassType for MTLArgumentDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLArgumentDescriptor {}
@@ -493,12 +490,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLArchitecture;
-
-    unsafe impl ClassType for MTLArchitecture {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLArchitecture {}

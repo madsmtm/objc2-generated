@@ -31,12 +31,9 @@ unsafe impl RefEncode for AAAttributionErrorCode {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AAAttribution;
-
-    unsafe impl ClassType for AAAttribution {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for AAAttribution {}

@@ -23,16 +23,11 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(SKRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SKRequest")]
     #[deprecated = "Use Product.products(for:)"]
     pub struct SKProductsRequest;
-
-    #[cfg(feature = "SKRequest")]
-    unsafe impl ClassType for SKProductsRequest {
-        #[inherits(NSObject)]
-        type Super = SKRequest;
-    }
 );
 
 #[cfg(feature = "SKRequest")]
@@ -77,13 +72,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Get products using Product.products(for:)"]
     pub struct SKProductsResponse;
-
-    unsafe impl ClassType for SKProductsResponse {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for SKProductsResponse {}

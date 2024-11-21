@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(EKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "EKObject")]
     pub struct EKAlarm;
-
-    #[cfg(feature = "EKObject")]
-    unsafe impl ClassType for EKAlarm {
-        #[inherits(NSObject)]
-        type Super = EKObject;
-    }
 );
 
 #[cfg(feature = "EKObject")]

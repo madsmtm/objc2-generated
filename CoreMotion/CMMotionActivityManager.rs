@@ -21,12 +21,9 @@ pub type CMMotionActivityQueryHandler =
     *mut block2::Block<dyn Fn(*mut NSArray<CMMotionActivity>, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMMotionActivityManager;
-
-    unsafe impl ClassType for CMMotionActivityManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CMMotionActivityManager {}

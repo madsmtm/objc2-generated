@@ -31,12 +31,9 @@ unsafe impl RefEncode for SFSpeechRecognitionTaskState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechRecognitionTask;
-
-    unsafe impl ClassType for SFSpeechRecognitionTask {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SFSpeechRecognitionTask {}

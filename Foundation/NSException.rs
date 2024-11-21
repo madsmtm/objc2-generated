@@ -80,12 +80,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSException;
-
-    unsafe impl ClassType for NSException {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -182,12 +179,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAssertionHandler;
-
-    unsafe impl ClassType for NSAssertionHandler {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSAssertionHandler {}

@@ -27,15 +27,10 @@ unsafe impl RefEncode for CXPlayDTMFCallActionType {
 }
 
 extern_class!(
+    #[unsafe(super(CXCallAction, CXAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     pub struct CXPlayDTMFCallAction;
-
-    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-    unsafe impl ClassType for CXPlayDTMFCallAction {
-        #[inherits(CXAction, NSObject)]
-        type Super = CXCallAction;
-    }
 );
 
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]

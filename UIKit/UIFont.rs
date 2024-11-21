@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIFont;
-
-    unsafe impl ClassType for UIFont {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for UIFont {}

@@ -5,22 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct NSLayoutAnchor<AnchorType: ?Sized = AnyObject> {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut AnchorType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<AnchorType: ?Sized + Message> ClassType for NSLayoutAnchor<AnchorType> {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSLayoutAnchor<AnchorType: ?Sized = AnyObject>;
 );
 
 unsafe impl<AnchorType: ?Sized + NSCoding> NSCoding for NSLayoutAnchor<AnchorType> {}
@@ -107,14 +96,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSLayoutAnchor, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug)]
     pub struct NSLayoutXAxisAnchor;
-
-    unsafe impl ClassType for NSLayoutXAxisAnchor {
-        #[inherits(NSObject)]
-        type Super = NSLayoutAnchor;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for NSLayoutXAxisAnchor {}
@@ -149,14 +134,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSLayoutAnchor, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug)]
     pub struct NSLayoutYAxisAnchor;
-
-    unsafe impl ClassType for NSLayoutYAxisAnchor {
-        #[inherits(NSObject)]
-        type Super = NSLayoutAnchor;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for NSLayoutYAxisAnchor {}
@@ -191,14 +172,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSLayoutAnchor, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug)]
     pub struct NSLayoutDimension;
-
-    unsafe impl ClassType for NSLayoutDimension {
-        #[inherits(NSObject)]
-        type Super = NSLayoutAnchor;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for NSLayoutDimension {}

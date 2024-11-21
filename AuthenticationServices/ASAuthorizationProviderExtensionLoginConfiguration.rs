@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationProviderExtensionKerberosMapping;
-
-    unsafe impl ClassType for ASAuthorizationProviderExtensionKerberosMapping {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionKerberosMapping {}
@@ -166,12 +163,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationProviderExtensionLoginConfiguration;
-
-    unsafe impl ClassType for ASAuthorizationProviderExtensionLoginConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionLoginConfiguration {}

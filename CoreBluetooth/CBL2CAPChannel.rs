@@ -8,12 +8,9 @@ use crate::*;
 pub type CBL2CAPPSM = u16;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CBL2CAPChannel;
-
-    unsafe impl ClassType for CBL2CAPChannel {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CBL2CAPChannel {}

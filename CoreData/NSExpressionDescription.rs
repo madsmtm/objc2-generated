@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSPropertyDescription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPropertyDescription")]
     pub struct NSExpressionDescription;
-
-    #[cfg(feature = "NSPropertyDescription")]
-    unsafe impl ClassType for NSExpressionDescription {
-        #[inherits(NSObject)]
-        type Super = NSPropertyDescription;
-    }
 );
 
 #[cfg(feature = "NSPropertyDescription")]

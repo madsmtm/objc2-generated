@@ -30,16 +30,11 @@ unsafe impl RefEncode for UISwitchStyle {
 }
 
 extern_class!(
+    #[unsafe(super(UIControl, UIView, UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     pub struct UISwitch;
-
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl ClassType for UISwitch {
-        #[inherits(UIView, UIResponder, NSObject)]
-        type Super = UIControl;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(

@@ -9,15 +9,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSDocument, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSDocument")]
     pub struct NSPersistentDocument;
-
-    #[cfg(feature = "NSDocument")]
-    unsafe impl ClassType for NSPersistentDocument {
-        #[inherits(NSObject)]
-        type Super = NSDocument;
-    }
 );
 
 #[cfg(all(feature = "NSDocument", feature = "NSKeyValueBinding"))]

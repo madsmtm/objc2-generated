@@ -78,12 +78,9 @@ unsafe impl RefEncode for NSStringEncodingConversionOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSString;
-
-    unsafe impl ClassType for NSString {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -1061,13 +1058,9 @@ unsafe impl NSItemProviderReading for NSString {}
 unsafe impl NSItemProviderWriting for NSString {}
 
 extern_class!(
-    #[derive(PartialEq, Eq, Hash)]
+    #[unsafe(super(NSString, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableString;
-
-    unsafe impl ClassType for NSMutableString {
-        #[inherits(NSObject)]
-        type Super = NSString;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -1363,13 +1356,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSString, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSimpleCString;
-
-    unsafe impl ClassType for NSSimpleCString {
-        #[inherits(NSObject)]
-        type Super = NSString;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -1408,13 +1397,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSSimpleCString, NSString, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSConstantString;
-
-    unsafe impl ClassType for NSConstantString {
-        #[inherits(NSString, NSObject)]
-        type Super = NSSimpleCString;
-    }
 );
 
 #[cfg(feature = "NSObject")]

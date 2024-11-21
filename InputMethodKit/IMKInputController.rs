@@ -132,12 +132,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IMKInputController;
-
-    unsafe impl ClassType for IMKInputController {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl IMKMouseHandling for IMKInputController {}

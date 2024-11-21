@@ -6,14 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
     pub struct UIStoryboardSegue;
-
-    unsafe impl ClassType for UIStoryboardSegue {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIStoryboardSegue {}
@@ -76,13 +73,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIStoryboardUnwindSegueSource;
-
-    unsafe impl ClassType for UIStoryboardUnwindSegueSource {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIStoryboardUnwindSegueSource {}

@@ -35,15 +35,10 @@ pub type UIActivityViewControllerCompletionWithItemsHandler =
     *mut block2::Block<dyn Fn(*mut UIActivityType, Bool, *mut NSArray, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     pub struct UIActivityViewController;
-
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl ClassType for UIActivityViewController {
-        #[inherits(UIResponder, NSObject)]
-        type Super = UIViewController;
-    }
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]

@@ -64,12 +64,9 @@ unsafe impl RefEncode for UIPressType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPress;
-
-    unsafe impl ClassType for UIPress {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIPress {}

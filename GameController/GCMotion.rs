@@ -102,12 +102,9 @@ unsafe impl RefEncode for GCQuaternion {
 pub type GCMotionValueChangedHandler = *mut block2::Block<dyn Fn(NonNull<GCMotion>)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCMotion;
-
-    unsafe impl ClassType for GCMotion {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GCMotion {}

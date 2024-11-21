@@ -29,15 +29,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(VZConsoleDevice, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZConsoleDevice")]
     pub struct VZVirtioConsoleDevice;
-
-    #[cfg(feature = "VZConsoleDevice")]
-    unsafe impl ClassType for VZVirtioConsoleDevice {
-        #[inherits(NSObject)]
-        type Super = VZConsoleDevice;
-    }
 );
 
 #[cfg(feature = "VZConsoleDevice")]

@@ -8,13 +8,10 @@ use crate::*;
 pub type NSTouchBarCustomizationIdentifier = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTouchBar;
-
-    unsafe impl ClassType for NSTouchBar {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for NSTouchBar {}

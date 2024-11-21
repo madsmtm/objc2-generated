@@ -40,13 +40,10 @@ unsafe impl RefEncode for NWUDPSessionState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use `nw_connection_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub struct NWUDPSession;
-
-    unsafe impl ClassType for NWUDPSession {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NWUDPSession {}

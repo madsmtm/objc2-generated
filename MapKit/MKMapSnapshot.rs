@@ -11,12 +11,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapSnapshot;
-
-    unsafe impl ClassType for MKMapSnapshot {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MKMapSnapshot {}

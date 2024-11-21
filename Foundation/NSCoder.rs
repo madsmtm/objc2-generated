@@ -24,12 +24,9 @@ unsafe impl RefEncode for NSDecodingFailurePolicy {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCoder;
-
-    unsafe impl ClassType for NSCoder {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSCoder {}

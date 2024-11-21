@@ -25,13 +25,10 @@ unsafe impl RefEncode for UIPrintRenderingQuality {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPrintPageRenderer;
-
-    unsafe impl ClassType for UIPrintPageRenderer {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIPrintPageRenderer {}

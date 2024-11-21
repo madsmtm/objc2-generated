@@ -26,13 +26,10 @@ unsafe impl RefEncode for NSPDFPanelOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPDFPanel;
-
-    unsafe impl ClassType for NSPDFPanel {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSPDFPanel {}

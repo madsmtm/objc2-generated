@@ -15,17 +15,11 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     pub struct GKDialogController;
-
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl ClassType for GKDialogController {
-        #[inherits(NSObject)]
-        type Super = NSResponder;
-    }
 );
 
 #[cfg(feature = "objc2-app-kit")]

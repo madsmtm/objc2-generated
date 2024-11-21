@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VNPoint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNGeometry")]
     pub struct VNDetectedPoint;
-
-    #[cfg(feature = "VNGeometry")]
-    unsafe impl ClassType for VNDetectedPoint {
-        #[inherits(NSObject)]
-        type Super = VNPoint;
-    }
 );
 
 #[cfg(feature = "VNGeometry")]
@@ -60,15 +55,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(VNDetectedPoint, VNPoint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNGeometry")]
     pub struct VNRecognizedPoint;
-
-    #[cfg(feature = "VNGeometry")]
-    unsafe impl ClassType for VNRecognizedPoint {
-        #[inherits(VNPoint, NSObject)]
-        type Super = VNDetectedPoint;
-    }
 );
 
 #[cfg(feature = "VNGeometry")]

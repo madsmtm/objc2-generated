@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIFeedbackGenerator, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIFeedbackGenerator")]
     pub struct UISelectionFeedbackGenerator;
-
-    #[cfg(feature = "UIFeedbackGenerator")]
-    unsafe impl ClassType for UISelectionFeedbackGenerator {
-        #[inherits(NSObject)]
-        type Super = UIFeedbackGenerator;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIFeedbackGenerator")]

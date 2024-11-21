@@ -13,6 +13,7 @@ pub const DOM_VERTICAL: c_uint = 1;
 pub const DOM_BOTH: c_uint = 2;
 
 extern_class!(
+    #[unsafe(super(DOMEvent, DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "DOMEvent",
@@ -21,16 +22,6 @@ extern_class!(
     ))]
     #[deprecated]
     pub struct DOMOverflowEvent;
-
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl ClassType for DOMOverflowEvent {
-        #[inherits(DOMObject, WebScriptObject, NSObject)]
-        type Super = DOMEvent;
-    }
 );
 
 #[cfg(all(

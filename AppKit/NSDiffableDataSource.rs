@@ -5,27 +5,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDiffableDataSourceSnapshot<
         SectionIdentifierType: ?Sized = AnyObject,
         ItemIdentifierType: ?Sized = AnyObject,
-    > {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut SectionIdentifierType>,
-        _inner1: PhantomData<*mut ItemIdentifierType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
-        ClassType for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
-    {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    >;
 );
 
 unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSCopying
@@ -208,28 +194,13 @@ pub type NSCollectionViewDiffableDataSourceSupplementaryViewProvider = *mut bloc
     dyn Fn(NonNull<NSCollectionView>, NonNull<NSString>, NonNull<NSIndexPath>) -> *mut NSView,
 >;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewDiffableDataSource<
         SectionIdentifierType: ?Sized = AnyObject,
         ItemIdentifierType: ?Sized = AnyObject,
-    > {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut SectionIdentifierType>,
-        _inner1: PhantomData<*mut ItemIdentifierType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
-        ClassType
-        for NSCollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
-    {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    >;
 );
 
 unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol

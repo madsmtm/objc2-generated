@@ -8,16 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIDocument, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIDocument")]
     pub struct UIManagedDocument;
-
-    #[cfg(feature = "UIDocument")]
-    unsafe impl ClassType for UIManagedDocument {
-        #[inherits(NSObject)]
-        type Super = UIDocument;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIDocument")]

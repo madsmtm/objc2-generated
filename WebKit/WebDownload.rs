@@ -9,14 +9,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSURLDownload, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
     pub struct WebDownload;
-
-    unsafe impl ClassType for WebDownload {
-        #[inherits(NSObject)]
-        type Super = NSURLDownload;
-    }
 );
 
 unsafe impl NSObjectProtocol for WebDownload {}

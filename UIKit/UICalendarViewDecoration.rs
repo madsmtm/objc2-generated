@@ -26,13 +26,10 @@ unsafe impl RefEncode for UICalendarViewDecorationSize {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICalendarViewDecoration;
-
-    unsafe impl ClassType for UICalendarViewDecoration {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UICalendarViewDecoration {}

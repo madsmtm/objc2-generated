@@ -10,12 +10,9 @@ pub type MKLocalSearchCompletionHandler =
     *mut block2::Block<dyn Fn(*mut MKLocalSearchResponse, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLocalSearch;
-
-    unsafe impl ClassType for MKLocalSearch {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MKLocalSearch {}

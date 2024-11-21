@@ -42,12 +42,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CBUUID;
-
-    unsafe impl ClassType for CBUUID {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for CBUUID {}

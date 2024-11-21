@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CKDatabaseOperation, CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     pub struct CKFetchRecordZoneChangesOperation;
-
-    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
-    unsafe impl ClassType for CKFetchRecordZoneChangesOperation {
-        #[inherits(CKOperation, NSOperation, NSObject)]
-        type Super = CKDatabaseOperation;
-    }
 );
 
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
@@ -235,12 +230,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKFetchRecordZoneChangesConfiguration;
-
-    unsafe impl ClassType for CKFetchRecordZoneChangesConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CKFetchRecordZoneChangesConfiguration {}
@@ -296,13 +288,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
     pub struct CKFetchRecordZoneChangesOptions;
-
-    unsafe impl ClassType for CKFetchRecordZoneChangesOptions {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CKFetchRecordZoneChangesOptions {}

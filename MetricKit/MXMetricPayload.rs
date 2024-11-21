@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXMetricPayload;
-
-    unsafe impl ClassType for MXMetricPayload {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MXMetricPayload {}

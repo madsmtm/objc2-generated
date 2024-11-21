@@ -5,21 +5,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct MXAverage<UnitType: ?Sized = AnyObject> {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut UnitType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<UnitType: ?Sized + Message> ClassType for MXAverage<UnitType> {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct MXAverage<UnitType: ?Sized = AnyObject>;
 );
 
 unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXAverage<UnitType> {}

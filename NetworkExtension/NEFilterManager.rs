@@ -60,12 +60,9 @@ unsafe impl RefEncode for NEFilterManagerGrade {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterManager;
-
-    unsafe impl ClassType for NEFilterManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NEFilterManager {}

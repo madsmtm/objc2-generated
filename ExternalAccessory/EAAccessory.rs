@@ -8,12 +8,9 @@ use crate::*;
 pub const EAConnectionIDNone: c_uint = 0;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EAAccessory;
-
-    unsafe impl ClassType for EAAccessory {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for EAAccessory {}

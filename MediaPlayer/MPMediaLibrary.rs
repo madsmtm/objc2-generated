@@ -29,12 +29,9 @@ unsafe impl RefEncode for MPMediaLibraryAuthorizationStatus {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMediaLibrary;
-
-    unsafe impl ClassType for MPMediaLibrary {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MPMediaLibrary {}

@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SNAudioStreamAnalyzer;
-
-    unsafe impl ClassType for SNAudioStreamAnalyzer {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SNAudioStreamAnalyzer {}
@@ -50,12 +47,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SNAudioFileAnalyzer;
-
-    unsafe impl ClassType for SNAudioFileAnalyzer {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SNAudioFileAnalyzer {}

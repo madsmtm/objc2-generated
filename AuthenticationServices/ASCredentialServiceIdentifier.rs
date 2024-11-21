@@ -25,12 +25,9 @@ unsafe impl RefEncode for ASCredentialServiceIdentifierType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASCredentialServiceIdentifier;
-
-    unsafe impl ClassType for ASCredentialServiceIdentifier {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for ASCredentialServiceIdentifier {}

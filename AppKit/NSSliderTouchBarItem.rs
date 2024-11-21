@@ -17,15 +17,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSTouchBarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSTouchBarItem")]
     pub struct NSSliderTouchBarItem;
-
-    #[cfg(feature = "NSTouchBarItem")]
-    unsafe impl ClassType for NSSliderTouchBarItem {
-        #[inherits(NSObject)]
-        type Super = NSTouchBarItem;
-    }
 );
 
 #[cfg(feature = "NSTouchBarItem")]

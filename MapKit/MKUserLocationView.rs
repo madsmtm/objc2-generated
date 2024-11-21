@@ -9,17 +9,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(MKAnnotationView, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     pub struct MKUserLocationView;
-
-    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl ClassType for MKUserLocationView {
-        #[inherits(NSView, NSResponder, NSObject)]
-        type Super = MKAnnotationView;
-    }
 );
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]

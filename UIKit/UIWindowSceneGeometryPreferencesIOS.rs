@@ -5,15 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIWindowSceneGeometryPreferences, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]
     pub struct UIWindowSceneGeometryPreferencesIOS;
-
-    #[cfg(feature = "UIWindowSceneGeometryPreferences")]
-    unsafe impl ClassType for UIWindowSceneGeometryPreferencesIOS {
-        #[inherits(NSObject)]
-        type Super = UIWindowSceneGeometryPreferences;
-    }
 );
 
 #[cfg(feature = "UIWindowSceneGeometryPreferences")]

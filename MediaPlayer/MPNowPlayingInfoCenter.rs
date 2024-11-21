@@ -52,12 +52,9 @@ unsafe impl RefEncode for MPNowPlayingPlaybackState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPNowPlayingInfoCenter;
-
-    unsafe impl ClassType for MPNowPlayingInfoCenter {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MPNowPlayingInfoCenter {}

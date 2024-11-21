@@ -37,12 +37,9 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionKeyType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationProviderExtensionLoginManager;
-
-    unsafe impl ClassType for ASAuthorizationProviderExtensionLoginManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionLoginManager {}

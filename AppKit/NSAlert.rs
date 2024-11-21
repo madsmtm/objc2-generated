@@ -36,13 +36,10 @@ pub static NSAlertSecondButtonReturn: NSModalResponse = 1001;
 pub static NSAlertThirdButtonReturn: NSModalResponse = 1002;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAlert;
-
-    unsafe impl ClassType for NSAlert {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSAlert {}

@@ -9,12 +9,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHAssetResourceCreationOptions;
-
-    unsafe impl ClassType for PHAssetResourceCreationOptions {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for PHAssetResourceCreationOptions {}
@@ -59,15 +56,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(PHAssetChangeRequest, PHChangeRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
     pub struct PHAssetCreationRequest;
-
-    #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
-    unsafe impl ClassType for PHAssetCreationRequest {
-        #[inherits(PHChangeRequest, NSObject)]
-        type Super = PHAssetChangeRequest;
-    }
 );
 
 #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]

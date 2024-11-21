@@ -70,12 +70,9 @@ unsafe impl RefEncode for NSWhoseSubelementIdentifier {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptObjectSpecifier;
-
-    unsafe impl ClassType for NSScriptObjectSpecifier {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -238,13 +235,9 @@ extern_category!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSIndexSpecifier;
-
-    unsafe impl ClassType for NSIndexSpecifier {
-        #[inherits(NSObject)]
-        type Super = NSScriptObjectSpecifier;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -321,13 +314,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMiddleSpecifier;
-
-    unsafe impl ClassType for NSMiddleSpecifier {
-        #[inherits(NSObject)]
-        type Super = NSScriptObjectSpecifier;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -384,13 +373,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNameSpecifier;
-
-    unsafe impl ClassType for NSNameSpecifier {
-        #[inherits(NSObject)]
-        type Super = NSScriptObjectSpecifier;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -469,12 +454,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPositionalSpecifier;
-
-    unsafe impl ClassType for NSPositionalSpecifier {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSPositionalSpecifier {}
@@ -531,13 +513,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPropertySpecifier;
-
-    unsafe impl ClassType for NSPropertySpecifier {
-        #[inherits(NSObject)]
-        type Super = NSScriptObjectSpecifier;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -594,13 +572,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRandomSpecifier;
-
-    unsafe impl ClassType for NSRandomSpecifier {
-        #[inherits(NSObject)]
-        type Super = NSScriptObjectSpecifier;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -657,13 +631,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRangeSpecifier;
-
-    unsafe impl ClassType for NSRangeSpecifier {
-        #[inherits(NSObject)]
-        type Super = NSScriptObjectSpecifier;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -747,13 +717,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRelativeSpecifier;
-
-    unsafe impl ClassType for NSRelativeSpecifier {
-        #[inherits(NSObject)]
-        type Super = NSScriptObjectSpecifier;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -837,13 +803,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUniqueIDSpecifier;
-
-    unsafe impl ClassType for NSUniqueIDSpecifier {
-        #[inherits(NSObject)]
-        type Super = NSScriptObjectSpecifier;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -920,13 +882,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWhoseSpecifier;
-
-    unsafe impl ClassType for NSWhoseSpecifier {
-        #[inherits(NSObject)]
-        type Super = NSScriptObjectSpecifier;
-    }
 );
 
 #[cfg(feature = "NSObject")]

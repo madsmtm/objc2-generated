@@ -295,15 +295,10 @@ unsafe impl RefEncode for NSApplicationDelegateReply {
 }
 
 extern_class!(
+    #[unsafe(super(NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSResponder")]
     pub struct NSApplication;
-
-    #[cfg(feature = "NSResponder")]
-    unsafe impl ClassType for NSApplication {
-        #[inherits(NSObject)]
-        type Super = NSResponder;
-    }
 );
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSResponder"))]

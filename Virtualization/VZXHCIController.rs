@@ -5,15 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VZUSBController, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZUSBController")]
     pub struct VZXHCIController;
-
-    #[cfg(feature = "VZUSBController")]
-    unsafe impl ClassType for VZXHCIController {
-        #[inherits(NSObject)]
-        type Super = VZUSBController;
-    }
 );
 
 #[cfg(feature = "VZUSBController")]

@@ -69,12 +69,9 @@ unsafe impl RefEncode for NSStreamEvent {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStream;
-
-    unsafe impl ClassType for NSStream {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSStream {}
@@ -145,13 +142,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSStream, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInputStream;
-
-    unsafe impl ClassType for NSInputStream {
-        #[inherits(NSObject)]
-        type Super = NSStream;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSInputStream {}
@@ -193,13 +186,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSStream, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOutputStream;
-
-    unsafe impl ClassType for NSOutputStream {
-        #[inherits(NSObject)]
-        type Super = NSStream;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSOutputStream {}

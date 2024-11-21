@@ -88,12 +88,9 @@ unsafe impl RefEncode for MTLTextureSwizzleChannels {
 // TODO: pub fn MTLTextureSwizzleChannelsMake(r: MTLTextureSwizzle,g: MTLTextureSwizzle,b: MTLTextureSwizzle,a: MTLTextureSwizzle,) -> MTLTextureSwizzleChannels;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLSharedTextureHandle;
-
-    unsafe impl ClassType for MTLSharedTextureHandle {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MTLSharedTextureHandle {}
@@ -173,12 +170,9 @@ unsafe impl RefEncode for MTLTextureCompressionType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLTextureDescriptor;
-
-    unsafe impl ClassType for MTLTextureDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLTextureDescriptor {}

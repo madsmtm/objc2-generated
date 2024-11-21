@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "No longer supported"]
     pub struct SKRequest;
-
-    unsafe impl ClassType for SKRequest {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SKRequest {}

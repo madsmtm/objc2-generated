@@ -56,15 +56,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKObjectType")]
     pub struct HKClinicalType;
-
-    #[cfg(feature = "HKObjectType")]
-    unsafe impl ClassType for HKClinicalType {
-        #[inherits(HKObjectType, NSObject)]
-        type Super = HKSampleType;
-    }
 );
 
 #[cfg(feature = "HKObjectType")]

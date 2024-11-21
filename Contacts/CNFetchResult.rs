@@ -5,21 +5,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct CNFetchResult<ValueType: ?Sized = AnyObject> {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut ValueType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<ValueType: ?Sized + Message> ClassType for CNFetchResult<ValueType> {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct CNFetchResult<ValueType: ?Sized = AnyObject>;
 );
 
 unsafe impl<ValueType: ?Sized> NSObjectProtocol for CNFetchResult<ValueType> {}

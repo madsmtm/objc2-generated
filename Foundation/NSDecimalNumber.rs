@@ -48,15 +48,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSNumber, NSValue, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSValue")]
     pub struct NSDecimalNumber;
-
-    #[cfg(feature = "NSValue")]
-    unsafe impl ClassType for NSDecimalNumber {
-        #[inherits(NSValue, NSObject)]
-        type Super = NSNumber;
-    }
 );
 
 #[cfg(feature = "NSValue")]
@@ -305,12 +300,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDecimalNumberHandler;
-
-    unsafe impl ClassType for NSDecimalNumberHandler {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSDecimalNumberHandler {}

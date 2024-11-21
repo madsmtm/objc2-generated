@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(SKRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SKRequest")]
     #[deprecated = "Use Transaction.all and AppTransaction.shared"]
     pub struct SKReceiptRefreshRequest;
-
-    #[cfg(feature = "SKRequest")]
-    unsafe impl ClassType for SKReceiptRefreshRequest {
-        #[inherits(NSObject)]
-        type Super = SKRequest;
-    }
 );
 
 #[cfg(feature = "SKRequest")]

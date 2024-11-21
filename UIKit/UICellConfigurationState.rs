@@ -48,16 +48,11 @@ unsafe impl RefEncode for UICellConfigurationDropState {
 }
 
 extern_class!(
+    #[unsafe(super(UIViewConfigurationState, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIViewConfigurationState")]
     pub struct UICellConfigurationState;
-
-    #[cfg(feature = "UIViewConfigurationState")]
-    unsafe impl ClassType for UICellConfigurationState {
-        #[inherits(NSObject)]
-        type Super = UIViewConfigurationState;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIViewConfigurationState")]

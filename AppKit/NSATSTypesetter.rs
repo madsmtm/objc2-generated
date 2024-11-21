@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSTypesetter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSTypesetter")]
     pub struct NSATSTypesetter;
-
-    #[cfg(feature = "NSTypesetter")]
-    unsafe impl ClassType for NSATSTypesetter {
-        #[inherits(NSObject)]
-        type Super = NSTypesetter;
-    }
 );
 
 #[cfg(feature = "NSTypesetter")]

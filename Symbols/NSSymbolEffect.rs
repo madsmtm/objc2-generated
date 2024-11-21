@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolEffectOptionsRepeatBehavior;
-
-    unsafe impl ClassType for NSSymbolEffectOptionsRepeatBehavior {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSSymbolEffectOptionsRepeatBehavior {}
@@ -55,12 +52,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolEffectOptions;
-
-    unsafe impl ClassType for NSSymbolEffectOptions {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSSymbolEffectOptions {}
@@ -128,12 +122,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolEffect;
-
-    unsafe impl ClassType for NSSymbolEffect {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSSymbolEffect {}
@@ -159,13 +150,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolPulseEffect;
-
-    unsafe impl ClassType for NSSymbolPulseEffect {
-        #[inherits(NSObject)]
-        type Super = NSSymbolEffect;
-    }
 );
 
 unsafe impl NSCoding for NSSymbolPulseEffect {}
@@ -205,13 +192,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolBounceEffect;
-
-    unsafe impl ClassType for NSSymbolBounceEffect {
-        #[inherits(NSObject)]
-        type Super = NSSymbolEffect;
-    }
 );
 
 unsafe impl NSCoding for NSSymbolBounceEffect {}
@@ -257,13 +240,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolVariableColorEffect;
-
-    unsafe impl ClassType for NSSymbolVariableColorEffect {
-        #[inherits(NSObject)]
-        type Super = NSSymbolEffect;
-    }
 );
 
 unsafe impl NSCoding for NSSymbolVariableColorEffect {}
@@ -315,13 +294,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolScaleEffect;
-
-    unsafe impl ClassType for NSSymbolScaleEffect {
-        #[inherits(NSObject)]
-        type Super = NSSymbolEffect;
-    }
 );
 
 unsafe impl NSCoding for NSSymbolScaleEffect {}
@@ -367,13 +342,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolAppearEffect;
-
-    unsafe impl ClassType for NSSymbolAppearEffect {
-        #[inherits(NSObject)]
-        type Super = NSSymbolEffect;
-    }
 );
 
 unsafe impl NSCoding for NSSymbolAppearEffect {}
@@ -419,13 +390,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolDisappearEffect;
-
-    unsafe impl ClassType for NSSymbolDisappearEffect {
-        #[inherits(NSObject)]
-        type Super = NSSymbolEffect;
-    }
 );
 
 unsafe impl NSCoding for NSSymbolDisappearEffect {}
@@ -471,13 +438,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolWiggleEffect;
-
-    unsafe impl ClassType for NSSymbolWiggleEffect {
-        #[inherits(NSObject)]
-        type Super = NSSymbolEffect;
-    }
 );
 
 unsafe impl NSCoding for NSSymbolWiggleEffect {}
@@ -544,13 +507,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolRotateEffect;
-
-    unsafe impl ClassType for NSSymbolRotateEffect {
-        #[inherits(NSObject)]
-        type Super = NSSymbolEffect;
-    }
 );
 
 unsafe impl NSCoding for NSSymbolRotateEffect {}
@@ -596,13 +555,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolBreatheEffect;
-
-    unsafe impl ClassType for NSSymbolBreatheEffect {
-        #[inherits(NSObject)]
-        type Super = NSSymbolEffect;
-    }
 );
 
 unsafe impl NSCoding for NSSymbolBreatheEffect {}
@@ -648,12 +603,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolContentTransition;
-
-    unsafe impl ClassType for NSSymbolContentTransition {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSSymbolContentTransition {}
@@ -679,13 +631,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSSymbolContentTransition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolMagicReplaceContentTransition;
-
-    unsafe impl ClassType for NSSymbolMagicReplaceContentTransition {
-        #[inherits(NSObject)]
-        type Super = NSSymbolContentTransition;
-    }
 );
 
 unsafe impl NSCoding for NSSymbolMagicReplaceContentTransition {}
@@ -716,13 +664,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSSymbolContentTransition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolReplaceContentTransition;
-
-    unsafe impl ClassType for NSSymbolReplaceContentTransition {
-        #[inherits(NSObject)]
-        type Super = NSSymbolContentTransition;
-    }
 );
 
 unsafe impl NSCoding for NSSymbolReplaceContentTransition {}
@@ -776,13 +720,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSSymbolContentTransition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolAutomaticContentTransition;
-
-    unsafe impl ClassType for NSSymbolAutomaticContentTransition {
-        #[inherits(NSObject)]
-        type Super = NSSymbolContentTransition;
-    }
 );
 
 unsafe impl NSCoding for NSSymbolAutomaticContentTransition {}

@@ -5,12 +5,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLResponse;
-
-    unsafe impl ClassType for NSURLResponse {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSURLResponse {}
@@ -78,13 +75,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSURLResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHTTPURLResponse;
-
-    unsafe impl ClassType for NSHTTPURLResponse {
-        #[inherits(NSObject)]
-        type Super = NSURLResponse;
-    }
 );
 
 unsafe impl Send for NSHTTPURLResponse {}

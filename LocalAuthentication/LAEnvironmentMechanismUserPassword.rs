@@ -5,15 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(LAEnvironmentMechanism, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "LAEnvironmentMechanism")]
     pub struct LAEnvironmentMechanismUserPassword;
-
-    #[cfg(feature = "LAEnvironmentMechanism")]
-    unsafe impl ClassType for LAEnvironmentMechanismUserPassword {
-        #[inherits(NSObject)]
-        type Super = LAEnvironmentMechanism;
-    }
 );
 
 #[cfg(feature = "LAEnvironmentMechanism")]

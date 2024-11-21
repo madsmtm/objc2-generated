@@ -4,21 +4,10 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
-    pub struct NSSet<ObjectType: ?Sized = AnyObject> {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut ObjectType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<ObjectType: ?Sized + Message> ClassType for NSSet<ObjectType> {
-        type Super = NSObject;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSSet<ObjectType: ?Sized = AnyObject>;
 );
 
 #[cfg(feature = "NSObject")]
@@ -274,22 +263,10 @@ extern_methods!(
     }
 );
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSSet<ObjectType, >, NSObject))]
     #[derive(PartialEq, Eq, Hash)]
-    pub struct NSMutableSet<ObjectType: ?Sized = AnyObject> {
-        __superclass: NSSet<ObjectType>,
-        _inner0: PhantomData<*mut ObjectType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<ObjectType: ?Sized + Message> ClassType for NSMutableSet<ObjectType> {
-        #[inherits(NSObject)]
-        type Super = NSSet<ObjectType>;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSMutableSet<ObjectType: ?Sized = AnyObject>;
 );
 
 #[cfg(feature = "NSObject")]
@@ -401,22 +378,10 @@ extern_methods!(
     }
 );
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSMutableSet<ObjectType, >, NSSet<ObjectType, >, NSObject))]
     #[derive(PartialEq, Eq, Hash)]
-    pub struct NSCountedSet<ObjectType: ?Sized = AnyObject> {
-        __superclass: NSMutableSet<ObjectType>,
-        _inner0: PhantomData<*mut ObjectType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    unsafe impl<ObjectType: ?Sized + Message> ClassType for NSCountedSet<ObjectType> {
-        #[inherits(NSSet<ObjectType, >, NSObject)]
-        type Super = NSMutableSet<ObjectType>;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSCountedSet<ObjectType: ?Sized = AnyObject>;
 );
 
 #[cfg(feature = "NSObject")]

@@ -104,13 +104,10 @@ unsafe impl RefEncode for UICollectionLayoutListContentHuggingElements {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICollectionLayoutListConfiguration;
-
-    unsafe impl ClassType for UICollectionLayoutListConfiguration {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UICollectionLayoutListConfiguration {}

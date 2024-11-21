@@ -67,12 +67,9 @@ unsafe impl RefEncode for NSImageCacheMode {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSImage;
-
-    unsafe impl ClassType for NSImage {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSImage {}
@@ -1211,12 +1208,9 @@ unsafe impl RefEncode for NSImageSymbolScale {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSImageSymbolConfiguration;
-
-    unsafe impl ClassType for NSImageSymbolConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSImageSymbolConfiguration {}

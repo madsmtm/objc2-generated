@@ -91,12 +91,9 @@ unsafe impl RefEncode for CMAttitudeReferenceFrame {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMAttitude;
-
-    unsafe impl ClassType for CMAttitude {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CMAttitude {}

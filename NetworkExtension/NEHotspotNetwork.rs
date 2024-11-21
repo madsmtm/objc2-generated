@@ -31,12 +31,9 @@ unsafe impl RefEncode for NEHotspotNetworkSecurityType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEHotspotNetwork;
-
-    unsafe impl ClassType for NEHotspotNetwork {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NEHotspotNetwork {}

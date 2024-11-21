@@ -7,12 +7,9 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFXTemporalScalerDescriptor;
-
-    unsafe impl ClassType for MTLFXTemporalScalerDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLFXTemporalScalerDescriptor {}

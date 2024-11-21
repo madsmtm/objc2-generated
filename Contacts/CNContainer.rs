@@ -29,12 +29,9 @@ unsafe impl RefEncode for CNContainerType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContainer;
-
-    unsafe impl ClassType for CNContainer {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CNContainer {}

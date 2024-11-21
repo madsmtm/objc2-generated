@@ -198,12 +198,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentStoreCoordinator;
-
-    unsafe impl ClassType for NSPersistentStoreCoordinator {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSPersistentStoreCoordinator {}

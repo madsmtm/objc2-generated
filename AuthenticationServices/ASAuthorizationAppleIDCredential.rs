@@ -48,12 +48,9 @@ unsafe impl RefEncode for ASUserAgeRange {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationAppleIDCredential;
-
-    unsafe impl ClassType for ASAuthorizationAppleIDCredential {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "ASAuthorizationCredential")]

@@ -29,15 +29,10 @@ unsafe impl RefEncode for NSPageControllerTransitionStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     pub struct NSPageController;
-
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl ClassType for NSPageController {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSViewController;
-    }
 );
 
 #[cfg(all(

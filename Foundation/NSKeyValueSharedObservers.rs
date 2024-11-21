@@ -5,12 +5,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSKeyValueSharedObserversSnapshot;
-
-    unsafe impl ClassType for NSKeyValueSharedObserversSnapshot {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSKeyValueSharedObserversSnapshot {}
@@ -26,12 +23,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSKeyValueSharedObservers;
-
-    unsafe impl ClassType for NSKeyValueSharedObservers {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSKeyValueSharedObservers {}

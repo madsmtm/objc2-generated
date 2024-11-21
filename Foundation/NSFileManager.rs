@@ -131,12 +131,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileManager;
-
-    unsafe impl ClassType for NSFileManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSFileManager {}
@@ -862,24 +859,11 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSFileManagerDelegate {}
 );
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSEnumerator<ObjectType, >, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSEnumerator")]
-    pub struct NSDirectoryEnumerator<ObjectType: ?Sized = AnyObject> {
-        __superclass: NSEnumerator<ObjectType>,
-        _inner0: PhantomData<*mut ObjectType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    #[cfg(feature = "NSEnumerator")]
-    unsafe impl<ObjectType: ?Sized + Message> ClassType for NSDirectoryEnumerator<ObjectType> {
-        #[inherits(NSObject)]
-        type Super = NSEnumerator<ObjectType>;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSDirectoryEnumerator<ObjectType: ?Sized = AnyObject>;
 );
 
 #[cfg(feature = "NSEnumerator")]
@@ -930,12 +914,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderService;
-
-    unsafe impl ClassType for NSFileProviderService {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSFileProviderService {}

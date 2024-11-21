@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCSensitivityAnalysis;
-
-    unsafe impl ClassType for SCSensitivityAnalysis {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for SCSensitivityAnalysis {}
@@ -60,12 +57,9 @@ unsafe impl RefEncode for SCSensitivityAnalysisPolicy {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCSensitivityAnalyzer;
-
-    unsafe impl ClassType for SCSensitivityAnalyzer {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for SCSensitivityAnalyzer {}

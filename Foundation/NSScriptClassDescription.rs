@@ -5,15 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSClassDescription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSClassDescription")]
     pub struct NSScriptClassDescription;
-
-    #[cfg(feature = "NSClassDescription")]
-    unsafe impl ClassType for NSScriptClassDescription {
-        #[inherits(NSObject)]
-        type Super = NSClassDescription;
-    }
 );
 
 #[cfg(feature = "NSClassDescription")]

@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXSignpostIntervalData;
-
-    unsafe impl ClassType for MXSignpostIntervalData {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MXSignpostIntervalData {}
@@ -56,15 +53,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
     pub struct MXSignpostMetric;
-
-    #[cfg(feature = "MXMetric")]
-    unsafe impl ClassType for MXSignpostMetric {
-        #[inherits(NSObject)]
-        type Super = MXMetric;
-    }
 );
 
 #[cfg(feature = "MXMetric")]

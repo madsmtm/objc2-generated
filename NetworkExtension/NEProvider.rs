@@ -55,12 +55,9 @@ unsafe impl RefEncode for NEProviderStopReason {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEProvider;
-
-    unsafe impl ClassType for NEProvider {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NEProvider {}

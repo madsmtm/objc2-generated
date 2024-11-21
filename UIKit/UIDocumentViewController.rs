@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     pub struct UIDocumentViewController;
-
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl ClassType for UIDocumentViewController {
-        #[inherits(UIResponder, NSObject)]
-        type Super = UIViewController;
-    }
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]

@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPersistentChangeToken;
-
-    unsafe impl ClassType for PHPersistentChangeToken {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for PHPersistentChangeToken {}

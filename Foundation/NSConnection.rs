@@ -5,13 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSConnection;
-
-    unsafe impl ClassType for NSConnection {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSConnection {}
@@ -338,13 +335,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSDistantObjectRequest;
-
-    unsafe impl ClassType for NSDistantObjectRequest {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSDistantObjectRequest {}

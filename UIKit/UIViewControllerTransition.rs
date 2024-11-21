@@ -5,12 +5,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIViewControllerTransition;
-
-    unsafe impl ClassType for UIViewControllerTransition {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIViewControllerTransition {}
@@ -52,12 +49,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIZoomTransitionSourceViewProviderContext;
-
-    unsafe impl ClassType for UIZoomTransitionSourceViewProviderContext {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIZoomTransitionSourceViewProviderContext {}

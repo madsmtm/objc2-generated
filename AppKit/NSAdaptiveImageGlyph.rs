@@ -9,12 +9,9 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAdaptiveImageGlyph;
-
-    unsafe impl ClassType for NSAdaptiveImageGlyph {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSAdaptiveImageGlyph {}

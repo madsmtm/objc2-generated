@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UISceneSessionActivationRequest;
-
-    unsafe impl ClassType for UISceneSessionActivationRequest {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for UISceneSessionActivationRequest {}

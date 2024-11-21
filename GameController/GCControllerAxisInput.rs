@@ -9,15 +9,10 @@ pub type GCControllerAxisValueChangedHandler =
     *mut block2::Block<dyn Fn(NonNull<GCControllerAxisInput>, c_float)>;
 
 extern_class!(
+    #[unsafe(super(GCControllerElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCControllerElement")]
     pub struct GCControllerAxisInput;
-
-    #[cfg(feature = "GCControllerElement")]
-    unsafe impl ClassType for GCControllerAxisInput {
-        #[inherits(NSObject)]
-        type Super = GCControllerElement;
-    }
 );
 
 #[cfg(feature = "GCControllerElement")]

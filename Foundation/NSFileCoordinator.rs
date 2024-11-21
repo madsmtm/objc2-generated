@@ -48,12 +48,9 @@ unsafe impl RefEncode for NSFileCoordinatorWritingOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileAccessIntent;
-
-    unsafe impl ClassType for NSFileAccessIntent {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSFileAccessIntent {}
@@ -96,12 +93,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileCoordinator;
-
-    unsafe impl ClassType for NSFileCoordinator {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSFileCoordinator {}

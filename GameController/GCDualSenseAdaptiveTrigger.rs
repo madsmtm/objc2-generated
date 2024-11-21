@@ -97,15 +97,10 @@ unsafe impl RefEncode for GCDualSenseAdaptiveTriggerPositionalResistiveStrengths
 }
 
 extern_class!(
+    #[unsafe(super(GCControllerButtonInput, GCControllerElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
     pub struct GCDualSenseAdaptiveTrigger;
-
-    #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-    unsafe impl ClassType for GCDualSenseAdaptiveTrigger {
-        #[inherits(GCControllerElement, NSObject)]
-        type Super = GCControllerButtonInput;
-    }
 );
 
 #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]

@@ -35,12 +35,9 @@ unsafe impl RefEncode for UNNotificationInterruptionLevel {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationContent;
-
-    unsafe impl ClassType for UNNotificationContent {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for UNNotificationContent {}
@@ -135,13 +132,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UNNotificationContent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNMutableNotificationContent;
-
-    unsafe impl ClassType for UNMutableNotificationContent {
-        #[inherits(NSObject)]
-        type Super = UNNotificationContent;
-    }
 );
 
 unsafe impl NSCoding for UNMutableNotificationContent {}

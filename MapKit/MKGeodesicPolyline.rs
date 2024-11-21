@@ -7,15 +7,10 @@ use objc2_core_location::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(MKPolyline, MKMultiPoint, MKShape, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
     pub struct MKGeodesicPolyline;
-
-    #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
-    unsafe impl ClassType for MKGeodesicPolyline {
-        #[inherits(MKMultiPoint, MKShape, NSObject)]
-        type Super = MKPolyline;
-    }
 );
 
 #[cfg(all(

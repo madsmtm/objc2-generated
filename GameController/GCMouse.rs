@@ -22,12 +22,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCMouse;
-
-    unsafe impl ClassType for GCMouse {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "GCDevice")]

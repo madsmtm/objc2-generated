@@ -5,12 +5,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitConverter;
-
-    unsafe impl ClassType for NSUnitConverter {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSUnitConverter {}
@@ -37,13 +34,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSUnitConverter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitConverterLinear;
-
-    unsafe impl ClassType for NSUnitConverterLinear {
-        #[inherits(NSObject)]
-        type Super = NSUnitConverter;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -89,12 +82,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnit;
-
-    unsafe impl ClassType for NSUnit {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -132,13 +122,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDimension;
-
-    unsafe impl ClassType for NSDimension {
-        #[inherits(NSObject)]
-        type Super = NSUnit;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -191,13 +177,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitAcceleration;
-
-    unsafe impl ClassType for NSUnitAcceleration {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitAcceleration {}
@@ -262,13 +244,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitAngle;
-
-    unsafe impl ClassType for NSUnitAngle {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitAngle {}
@@ -345,13 +323,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitArea;
-
-    unsafe impl ClassType for NSUnitArea {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitArea {}
@@ -452,13 +426,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitConcentrationMass;
-
-    unsafe impl ClassType for NSUnitConcentrationMass {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitConcentrationMass {}
@@ -528,13 +498,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitDispersion;
-
-    unsafe impl ClassType for NSUnitDispersion {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitDispersion {}
@@ -596,13 +562,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitDuration;
-
-    unsafe impl ClassType for NSUnitDuration {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitDuration {}
@@ -682,13 +644,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricCharge;
-
-    unsafe impl ClassType for NSUnitElectricCharge {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitElectricCharge {}
@@ -765,13 +723,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricCurrent;
-
-    unsafe impl ClassType for NSUnitElectricCurrent {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitElectricCurrent {}
@@ -845,13 +799,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricPotentialDifference;
-
-    unsafe impl ClassType for NSUnitElectricPotentialDifference {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitElectricPotentialDifference {}
@@ -925,13 +875,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricResistance;
-
-    unsafe impl ClassType for NSUnitElectricResistance {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitElectricResistance {}
@@ -1005,13 +951,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitEnergy;
-
-    unsafe impl ClassType for NSUnitEnergy {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitEnergy {}
@@ -1085,13 +1027,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitFrequency;
-
-    unsafe impl ClassType for NSUnitFrequency {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitFrequency {}
@@ -1177,13 +1115,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitFuelEfficiency;
-
-    unsafe impl ClassType for NSUnitFuelEfficiency {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitFuelEfficiency {}
@@ -1251,13 +1185,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitInformationStorage;
-
-    unsafe impl ClassType for NSUnitInformationStorage {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitInformationStorage {}
@@ -1421,13 +1351,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitLength;
-
-    unsafe impl ClassType for NSUnitLength {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitLength {}
@@ -1552,13 +1478,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitIlluminance;
-
-    unsafe impl ClassType for NSUnitIlluminance {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitIlluminance {}
@@ -1620,13 +1542,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitMass;
-
-    unsafe impl ClassType for NSUnitMass {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitMass {}
@@ -1733,13 +1651,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitPower;
-
-    unsafe impl ClassType for NSUnitPower {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitPower {}
@@ -1831,13 +1745,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitPressure;
-
-    unsafe impl ClassType for NSUnitPressure {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitPressure {}
@@ -1926,13 +1836,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitSpeed;
-
-    unsafe impl ClassType for NSUnitSpeed {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitSpeed {}
@@ -2003,13 +1909,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitTemperature;
-
-    unsafe impl ClassType for NSUnitTemperature {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitTemperature {}
@@ -2077,13 +1979,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitVolume;
-
-    unsafe impl ClassType for NSUnitVolume {
-        #[inherits(NSUnit, NSObject)]
-        type Super = NSDimension;
-    }
 );
 
 unsafe impl Send for NSUnitVolume {}

@@ -5,15 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VZAudioInputStreamSource, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZAudioInputStreamSource")]
     pub struct VZHostAudioInputStreamSource;
-
-    #[cfg(feature = "VZAudioInputStreamSource")]
-    unsafe impl ClassType for VZHostAudioInputStreamSource {
-        #[inherits(NSObject)]
-        type Super = VZAudioInputStreamSource;
-    }
 );
 
 #[cfg(feature = "VZAudioInputStreamSource")]

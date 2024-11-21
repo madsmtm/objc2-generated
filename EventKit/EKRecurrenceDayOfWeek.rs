@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKRecurrenceDayOfWeek;
-
-    unsafe impl ClassType for EKRecurrenceDayOfWeek {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for EKRecurrenceDayOfWeek {}

@@ -25,13 +25,10 @@ unsafe impl RefEncode for UIContentUnavailableAlignment {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIContentUnavailableConfiguration;
-
-    unsafe impl ClassType for UIContentUnavailableConfiguration {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UIContentUnavailableConfiguration {}

@@ -13,12 +13,9 @@ pub type CLGeocodeCompletionHandler =
     *mut block2::Block<dyn Fn(*mut NSArray<CLPlacemark>, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLGeocoder;
-
-    unsafe impl ClassType for CLGeocoder {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CLGeocoder {}

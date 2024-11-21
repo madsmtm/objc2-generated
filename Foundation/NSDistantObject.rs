@@ -5,15 +5,11 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSProxy))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSProxy")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSDistantObject;
-
-    #[cfg(feature = "NSProxy")]
-    unsafe impl ClassType for NSDistantObject {
-        type Super = NSProxy;
-    }
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSProxy"))]

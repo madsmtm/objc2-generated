@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CNPostalAddress, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CNPostalAddress")]
     pub struct CNMutablePostalAddress;
-
-    #[cfg(feature = "CNPostalAddress")]
-    unsafe impl ClassType for CNMutablePostalAddress {
-        #[inherits(NSObject)]
-        type Super = CNPostalAddress;
-    }
 );
 
 #[cfg(feature = "CNPostalAddress")]

@@ -12,12 +12,9 @@ pub type CMStepQueryHandler = *mut block2::Block<dyn Fn(NSInteger, *mut NSError)
 pub type CMStepUpdateHandler = *mut block2::Block<dyn Fn(NSInteger, NonNull<NSDate>, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMStepCounter;
-
-    unsafe impl ClassType for CMStepCounter {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CMStepCounter {}

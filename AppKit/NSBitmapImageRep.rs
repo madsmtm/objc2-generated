@@ -188,15 +188,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSImageRep, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSImageRep")]
     pub struct NSBitmapImageRep;
-
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl ClassType for NSBitmapImageRep {
-        #[inherits(NSObject)]
-        type Super = NSImageRep;
-    }
 );
 
 #[cfg(feature = "NSImageRep")]

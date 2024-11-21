@@ -9,18 +9,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(GKGameCenterViewController, NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     #[deprecated]
     pub struct GKAchievementViewController;
-
-    #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl ClassType for GKAchievementViewController {
-        #[inherits(NSViewController, NSResponder, NSObject)]
-        type Super = GKGameCenterViewController;
-    }
 );
 
 #[cfg(all(

@@ -41,12 +41,9 @@ unsafe impl RefEncode for NSFileVersionReplacingOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileVersion;
-
-    unsafe impl ClassType for NSFileVersion {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSFileVersion {}

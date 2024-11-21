@@ -65,13 +65,10 @@ unsafe impl RefEncode for UIAlertControllerSeverity {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIAlertAction;
-
-    unsafe impl ClassType for UIAlertAction {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UIAlertAction {}
@@ -119,16 +116,11 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIViewController, UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     pub struct UIAlertController;
-
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl ClassType for UIAlertController {
-        #[inherits(UIResponder, NSObject)]
-        type Super = UIViewController;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]

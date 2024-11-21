@@ -96,12 +96,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSError;
-
-    unsafe impl ClassType for NSError {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSError {}

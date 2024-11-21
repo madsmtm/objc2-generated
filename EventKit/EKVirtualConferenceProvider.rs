@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKVirtualConferenceProvider;
-
-    unsafe impl ClassType for EKVirtualConferenceProvider {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSExtensionRequestHandling for EKVirtualConferenceProvider {}

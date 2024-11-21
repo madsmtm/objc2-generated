@@ -50,12 +50,9 @@ unsafe impl RefEncode for NSTextSelectionAffinity {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextSelection;
-
-    unsafe impl ClassType for NSTextSelection {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSTextSelection {}

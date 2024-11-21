@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZBootLoader;
-
-    unsafe impl ClassType for VZBootLoader {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for VZBootLoader {}

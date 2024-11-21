@@ -6,13 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIMotionEffect;
-
-    unsafe impl ClassType for UIMotionEffect {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UIMotionEffect {}
@@ -73,14 +70,10 @@ unsafe impl RefEncode for UIInterpolatingMotionEffectType {
 }
 
 extern_class!(
+    #[unsafe(super(UIMotionEffect, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIInterpolatingMotionEffect;
-
-    unsafe impl ClassType for UIInterpolatingMotionEffect {
-        #[inherits(NSObject)]
-        type Super = UIMotionEffect;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UIInterpolatingMotionEffect {}
@@ -145,14 +138,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIMotionEffect, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIMotionEffectGroup;
-
-    unsafe impl ClassType for UIMotionEffectGroup {
-        #[inherits(NSObject)]
-        type Super = UIMotionEffect;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UIMotionEffectGroup {}

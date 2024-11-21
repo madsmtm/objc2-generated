@@ -29,12 +29,9 @@ unsafe impl RefEncode for MEComposeUserAction {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEComposeContext;
-
-    unsafe impl ClassType for MEComposeContext {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MEComposeContext {}

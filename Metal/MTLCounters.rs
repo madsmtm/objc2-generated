@@ -181,12 +181,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLCounterSampleBufferDescriptor;
-
-    unsafe impl ClassType for MTLCounterSampleBufferDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLCounterSampleBufferDescriptor {}

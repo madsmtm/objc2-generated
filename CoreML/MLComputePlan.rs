@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLComputePlan;
-
-    unsafe impl ClassType for MLComputePlan {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MLComputePlan {}

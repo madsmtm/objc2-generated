@@ -11,12 +11,9 @@ pub const NSBundleExecutableArchitecturePPC64: c_uint = 0x01000012;
 pub const NSBundleExecutableArchitectureARM64: c_uint = 0x0100000c;
 
 extern_class!(
-    #[derive(PartialEq, Eq, Hash)]
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBundle;
-
-    unsafe impl ClassType for NSBundle {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSBundle {}
@@ -377,12 +374,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBundleResourceRequest;
-
-    unsafe impl ClassType for NSBundleResourceRequest {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSBundleResourceRequest {}

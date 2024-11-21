@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIGraphicsRendererFormat;
-
-    unsafe impl ClassType for UIGraphicsRendererFormat {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for UIGraphicsRendererFormat {}
@@ -48,12 +45,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIGraphicsRendererContext;
-
-    unsafe impl ClassType for UIGraphicsRendererContext {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIGraphicsRendererContext {}
@@ -86,12 +80,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIGraphicsRenderer;
-
-    unsafe impl ClassType for UIGraphicsRenderer {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIGraphicsRenderer {}

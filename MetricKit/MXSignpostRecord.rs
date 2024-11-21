@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXSignpostRecord;
-
-    unsafe impl ClassType for MXSignpostRecord {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MXSignpostRecord {}

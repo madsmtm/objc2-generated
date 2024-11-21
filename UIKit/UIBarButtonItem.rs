@@ -96,16 +96,11 @@ unsafe impl RefEncode for UIBarButtonSystemItem {
 }
 
 extern_class!(
+    #[unsafe(super(UIBarItem, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIBarItem")]
     pub struct UIBarButtonItem;
-
-    #[cfg(feature = "UIBarItem")]
-    unsafe impl ClassType for UIBarButtonItem {
-        #[inherits(NSObject)]
-        type Super = UIBarItem;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIBarItem")]

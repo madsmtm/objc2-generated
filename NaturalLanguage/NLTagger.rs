@@ -50,12 +50,9 @@ unsafe impl RefEncode for NLTaggerAssetsResult {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NLTagger;
-
-    unsafe impl ClassType for NLTagger {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NLTagger {}

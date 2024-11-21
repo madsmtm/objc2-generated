@@ -53,13 +53,10 @@ unsafe impl RefEncode for SKProductDiscountType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Product.SubscriptionOffer"]
     pub struct SKProductDiscount;
-
-    unsafe impl ClassType for SKProductDiscount {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for SKProductDiscount {}

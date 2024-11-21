@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKObject")]
     pub struct HKSample;
-
-    #[cfg(feature = "HKObject")]
-    unsafe impl ClassType for HKSample {
-        #[inherits(NSObject)]
-        type Super = HKObject;
-    }
 );
 
 #[cfg(feature = "HKObject")]

@@ -65,13 +65,10 @@ unsafe impl RefEncode for UIPrintInfoDuplex {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPrintInfo;
-
-    unsafe impl ClassType for UIPrintInfo {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UIPrintInfo {}

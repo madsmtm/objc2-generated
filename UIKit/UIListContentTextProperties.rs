@@ -50,13 +50,10 @@ unsafe impl RefEncode for UIListContentTextTransform {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIListContentTextProperties;
-
-    unsafe impl ClassType for UIListContentTextProperties {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UIListContentTextProperties {}

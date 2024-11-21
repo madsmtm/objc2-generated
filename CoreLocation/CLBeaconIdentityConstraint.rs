@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CLBeaconIdentityCondition, CLCondition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
     #[deprecated]
     pub struct CLBeaconIdentityConstraint;
-
-    #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
-    unsafe impl ClassType for CLBeaconIdentityConstraint {
-        #[inherits(CLCondition, NSObject)]
-        type Super = CLBeaconIdentityCondition;
-    }
 );
 
 #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]

@@ -26,12 +26,9 @@ unsafe impl RefEncode for NSPersistentStoreRequestType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentStoreRequest;
-
-    unsafe impl ClassType for NSPersistentStoreRequest {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSPersistentStoreRequest {}

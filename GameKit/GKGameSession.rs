@@ -44,13 +44,10 @@ unsafe impl RefEncode for GKTransportType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
     pub struct GKGameSession;
-
-    unsafe impl ClassType for GKGameSession {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GKGameSession {}

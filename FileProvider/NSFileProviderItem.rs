@@ -24,12 +24,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderItemVersion;
-
-    unsafe impl ClassType for NSFileProviderItemVersion {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSFileProviderItemVersion {}

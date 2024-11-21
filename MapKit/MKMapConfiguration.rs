@@ -25,12 +25,9 @@ unsafe impl RefEncode for MKMapElevationStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapConfiguration;
-
-    unsafe impl ClassType for MKMapConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MKMapConfiguration {}

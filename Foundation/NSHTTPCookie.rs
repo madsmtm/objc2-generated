@@ -93,12 +93,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHTTPCookie;
-
-    unsafe impl ClassType for NSHTTPCookie {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSHTTPCookie {}

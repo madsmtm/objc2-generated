@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScrubberLayoutAttributes;
-
-    unsafe impl ClassType for NSScrubberLayoutAttributes {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSScrubberLayoutAttributes {}
@@ -59,13 +56,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScrubberLayout;
-
-    unsafe impl ClassType for NSScrubberLayout {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for NSScrubberLayout {}
@@ -156,13 +150,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScrubberLayout, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScrubberFlowLayout;
-
-    unsafe impl ClassType for NSScrubberFlowLayout {
-        #[inherits(NSObject)]
-        type Super = NSScrubberLayout;
-    }
 );
 
 unsafe impl NSCoding for NSScrubberFlowLayout {}
@@ -208,13 +198,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSScrubberLayout, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScrubberProportionalLayout;
-
-    unsafe impl ClassType for NSScrubberProportionalLayout {
-        #[inherits(NSObject)]
-        type Super = NSScrubberLayout;
-    }
 );
 
 unsafe impl NSCoding for NSScrubberProportionalLayout {}

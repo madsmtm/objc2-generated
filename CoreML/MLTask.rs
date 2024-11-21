@@ -31,12 +31,9 @@ unsafe impl RefEncode for MLTaskState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLTask;
-
-    unsafe impl ClassType for MLTask {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MLTask {}

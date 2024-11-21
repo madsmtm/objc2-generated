@@ -25,12 +25,9 @@ unsafe impl RefEncode for CKReferenceAction {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKReference;
-
-    unsafe impl ClassType for CKReference {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CKReference {}

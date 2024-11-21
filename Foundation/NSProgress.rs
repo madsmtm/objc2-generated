@@ -24,12 +24,9 @@ pub type NSProgressPublishingHandler =
     *mut block2::Block<dyn Fn(NonNull<NSProgress>) -> NSProgressUnpublishingHandler>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSProgress;
-
-    unsafe impl ClassType for NSProgress {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSProgress {}

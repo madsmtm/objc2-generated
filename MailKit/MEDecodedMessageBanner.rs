@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEDecodedMessageBanner;
-
-    unsafe impl ClassType for MEDecodedMessageBanner {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MEDecodedMessageBanner {}

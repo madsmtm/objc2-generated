@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SNClassification;
-
-    unsafe impl ClassType for SNClassification {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SNClassification {}
@@ -33,12 +30,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SNClassificationResult;
-
-    unsafe impl ClassType for SNClassificationResult {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SNClassificationResult {}

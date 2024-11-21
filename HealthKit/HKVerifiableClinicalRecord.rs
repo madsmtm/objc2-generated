@@ -42,15 +42,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     pub struct HKVerifiableClinicalRecord;
-
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl ClassType for HKVerifiableClinicalRecord {
-        #[inherits(HKObject, NSObject)]
-        type Super = HKSample;
-    }
 );
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]

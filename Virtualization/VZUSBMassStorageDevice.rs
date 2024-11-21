@@ -5,15 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VZStorageDevice, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZStorageDevice")]
     pub struct VZUSBMassStorageDevice;
-
-    #[cfg(feature = "VZStorageDevice")]
-    unsafe impl ClassType for VZUSBMassStorageDevice {
-        #[inherits(NSObject)]
-        type Super = VZStorageDevice;
-    }
 );
 
 #[cfg(feature = "VZStorageDevice")]

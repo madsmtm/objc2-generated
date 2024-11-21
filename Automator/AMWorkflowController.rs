@@ -8,16 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSController, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
     pub struct AMWorkflowController;
-
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl ClassType for AMWorkflowController {
-        #[inherits(NSObject)]
-        type Super = NSController;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "objc2-app-kit")]

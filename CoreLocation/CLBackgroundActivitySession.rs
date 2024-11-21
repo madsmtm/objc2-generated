@@ -5,12 +5,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLBackgroundActivitySessionDiagnostic;
-
-    unsafe impl ClassType for CLBackgroundActivitySessionDiagnostic {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CLBackgroundActivitySessionDiagnostic {}
@@ -49,12 +46,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLBackgroundActivitySession;
-
-    unsafe impl ClassType for CLBackgroundActivitySession {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CLBackgroundActivitySession {}

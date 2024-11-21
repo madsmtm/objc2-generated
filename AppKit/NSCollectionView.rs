@@ -162,15 +162,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     pub struct NSCollectionViewItem;
-
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl ClassType for NSCollectionViewItem {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSViewController;
-    }
 );
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
@@ -298,15 +293,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub struct NSCollectionView;
-
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl ClassType for NSCollectionView {
-        #[inherits(NSResponder, NSObject)]
-        type Super = NSView;
-    }
 );
 
 #[cfg(all(

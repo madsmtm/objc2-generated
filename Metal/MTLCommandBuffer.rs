@@ -127,12 +127,9 @@ unsafe impl RefEncode for MTLCommandEncoderErrorState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLCommandBufferDescriptor;
-
-    unsafe impl ClassType for MTLCommandBufferDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLCommandBufferDescriptor {}

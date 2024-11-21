@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LADomainStateBiometry;
-
-    unsafe impl ClassType for LADomainStateBiometry {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for LADomainStateBiometry {}
@@ -34,12 +31,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LADomainStateCompanion;
-
-    unsafe impl ClassType for LADomainStateCompanion {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for LADomainStateCompanion {}
@@ -68,12 +62,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LADomainState;
-
-    unsafe impl ClassType for LADomainState {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for LADomainState {}

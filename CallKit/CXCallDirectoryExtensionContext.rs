@@ -19,13 +19,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CXCallDirectoryExtensionContext;
-
-    unsafe impl ClassType for CXCallDirectoryExtensionContext {
-        #[inherits(NSObject)]
-        type Super = NSExtensionContext;
-    }
 );
 
 unsafe impl NSObjectProtocol for CXCallDirectoryExtensionContext {}

@@ -32,12 +32,9 @@ pub static UNNotificationCategoryOptionNone: UNNotificationCategoryOptions =
     UNNotificationCategoryOptions(0);
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationCategory;
-
-    unsafe impl ClassType for UNNotificationCategory {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for UNNotificationCategory {}

@@ -6,13 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSUserDefaults, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ScreenSaverDefaults;
-
-    unsafe impl ClassType for ScreenSaverDefaults {
-        #[inherits(NSObject)]
-        type Super = NSUserDefaults;
-    }
 );
 
 unsafe impl NSObjectProtocol for ScreenSaverDefaults {}

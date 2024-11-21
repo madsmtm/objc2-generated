@@ -124,13 +124,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
     pub struct NSInputServer;
-
-    unsafe impl ClassType for NSInputServer {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSInputServerMouseTracker for NSInputServer {}

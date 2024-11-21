@@ -7,13 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSTextView, NSText, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSAScriptView;
-
-    unsafe impl ClassType for OSAScriptView {
-        #[inherits(NSText, NSView, NSResponder, NSObject)]
-        type Super = NSTextView;
-    }
 );
 
 unsafe impl NSAccessibility for OSAScriptView {}

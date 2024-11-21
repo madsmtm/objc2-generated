@@ -56,12 +56,9 @@ unsafe impl RefEncode for CMWaterSubmersionDepthState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMWaterSubmersionEvent;
-
-    unsafe impl ClassType for CMWaterSubmersionEvent {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CMWaterSubmersionEvent {}
@@ -98,12 +95,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMWaterSubmersionMeasurement;
-
-    unsafe impl ClassType for CMWaterSubmersionMeasurement {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CMWaterSubmersionMeasurement {}
@@ -149,12 +143,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMWaterTemperature;
-
-    unsafe impl ClassType for CMWaterTemperature {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CMWaterTemperature {}

@@ -27,15 +27,10 @@ unsafe impl RefEncode for CMMotionActivityConfidence {
 }
 
 extern_class!(
+    #[unsafe(super(CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CMLogItem")]
     pub struct CMMotionActivity;
-
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl ClassType for CMMotionActivity {
-        #[inherits(NSObject)]
-        type Super = CMLogItem;
-    }
 );
 
 #[cfg(feature = "CMLogItem")]

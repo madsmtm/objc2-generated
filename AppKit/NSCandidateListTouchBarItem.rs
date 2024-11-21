@@ -5,26 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSTouchBarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSTouchBarItem")]
-    pub struct NSCandidateListTouchBarItem<CandidateType: ?Sized = AnyObject> {
-        __superclass: NSTouchBarItem,
-        _inner0: PhantomData<*mut CandidateType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    #[cfg(feature = "NSTouchBarItem")]
-    unsafe impl<CandidateType: ?Sized + Message> ClassType
-        for NSCandidateListTouchBarItem<CandidateType>
-    {
-        #[inherits(NSObject)]
-        type Super = NSTouchBarItem;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSCandidateListTouchBarItem<CandidateType: ?Sized = AnyObject>;
 );
 
 #[cfg(feature = "NSTouchBarItem")]

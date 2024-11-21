@@ -8,12 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapItem;
-
-    unsafe impl ClassType for MKMapItem {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MKMapItem {}

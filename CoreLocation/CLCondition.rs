@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLCondition;
-
-    unsafe impl ClassType for CLCondition {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for CLCondition {}

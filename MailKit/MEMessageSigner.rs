@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEMessageSigner;
-
-    unsafe impl ClassType for MEMessageSigner {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for MEMessageSigner {}

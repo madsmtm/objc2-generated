@@ -5,13 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Building Garbage Collected apps is no longer supported."]
     pub struct NSGarbageCollector;
-
-    unsafe impl ClassType for NSGarbageCollector {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSGarbageCollector {}

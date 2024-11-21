@@ -25,15 +25,10 @@ unsafe impl RefEncode for VNRequestTrackingLevel {
 }
 
 extern_class!(
+    #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
     pub struct VNTrackingRequest;
-
-    #[cfg(feature = "VNRequest")]
-    unsafe impl ClassType for VNTrackingRequest {
-        #[inherits(VNRequest, NSObject)]
-        type Super = VNImageBasedRequest;
-    }
 );
 
 #[cfg(feature = "VNRequest")]

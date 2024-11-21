@@ -47,12 +47,9 @@ unsafe impl RefEncode for NSXPCConnectionOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXPCConnection;
-
-    unsafe impl ClassType for NSXPCConnection {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSXPCConnection {}
@@ -198,12 +195,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXPCListener;
-
-    unsafe impl ClassType for NSXPCListener {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSXPCListener {}
@@ -282,12 +276,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXPCInterface;
-
-    unsafe impl ClassType for NSXPCInterface {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSXPCInterface {}
@@ -353,12 +344,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXPCListenerEndpoint;
-
-    unsafe impl ClassType for NSXPCListenerEndpoint {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSXPCListenerEndpoint {}
@@ -389,15 +377,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSCoder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCoder")]
     pub struct NSXPCCoder;
-
-    #[cfg(feature = "NSCoder")]
-    unsafe impl ClassType for NSXPCCoder {
-        #[inherits(NSObject)]
-        type Super = NSCoder;
-    }
 );
 
 #[cfg(feature = "NSCoder")]

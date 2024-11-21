@@ -5,12 +5,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSUUID;
-
-    unsafe impl ClassType for NSUUID {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSUUID {}

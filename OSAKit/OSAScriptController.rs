@@ -25,13 +25,9 @@ unsafe impl RefEncode for OSAScriptState {
 }
 
 extern_class!(
+    #[unsafe(super(NSController, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSAScriptController;
-
-    unsafe impl ClassType for OSAScriptController {
-        #[inherits(NSObject)]
-        type Super = NSController;
-    }
 );
 
 unsafe impl NSCoding for OSAScriptController {}

@@ -30,15 +30,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(CKRecord, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CKRecord")]
     pub struct CKShare;
-
-    #[cfg(feature = "CKRecord")]
-    unsafe impl ClassType for CKShare {
-        #[inherits(NSObject)]
-        type Super = CKRecord;
-    }
 );
 
 #[cfg(feature = "CKRecord")]

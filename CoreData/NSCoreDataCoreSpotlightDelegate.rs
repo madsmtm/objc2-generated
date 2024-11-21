@@ -11,12 +11,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCoreDataCoreSpotlightDelegate;
-
-    unsafe impl ClassType for NSCoreDataCoreSpotlightDelegate {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSCoreDataCoreSpotlightDelegate {}

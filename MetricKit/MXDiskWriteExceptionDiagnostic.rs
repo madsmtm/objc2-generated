@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(MXDiagnostic, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXDiagnostic")]
     pub struct MXDiskWriteExceptionDiagnostic;
-
-    #[cfg(feature = "MXDiagnostic")]
-    unsafe impl ClassType for MXDiskWriteExceptionDiagnostic {
-        #[inherits(NSObject)]
-        type Super = MXDiagnostic;
-    }
 );
 
 #[cfg(feature = "MXDiagnostic")]

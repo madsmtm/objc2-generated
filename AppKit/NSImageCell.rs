@@ -50,15 +50,10 @@ unsafe impl RefEncode for NSImageFrameStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCell")]
     pub struct NSImageCell;
-
-    #[cfg(feature = "NSCell")]
-    unsafe impl ClassType for NSImageCell {
-        #[inherits(NSObject)]
-        type Super = NSCell;
-    }
 );
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSCell"))]

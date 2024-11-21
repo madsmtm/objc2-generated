@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKQueryCursor;
-
-    unsafe impl ClassType for CKQueryCursor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CKQueryCursor {}
@@ -41,15 +38,10 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(CKDatabaseOperation, CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     pub struct CKQueryOperation;
-
-    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
-    unsafe impl ClassType for CKQueryOperation {
-        #[inherits(CKOperation, NSOperation, NSObject)]
-        type Super = CKDatabaseOperation;
-    }
 );
 
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]

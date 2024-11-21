@@ -8,15 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(AMAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AMAction")]
     pub struct AMBundleAction;
-
-    #[cfg(feature = "AMAction")]
-    unsafe impl ClassType for AMBundleAction {
-        #[inherits(NSObject)]
-        type Super = AMAction;
-    }
 );
 
 #[cfg(feature = "AMAction")]

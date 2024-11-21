@@ -5,12 +5,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LAAuthenticationRequirement;
-
-    unsafe impl ClassType for LAAuthenticationRequirement {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for LAAuthenticationRequirement {}
@@ -45,12 +42,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LABiometryFallbackRequirement;
-
-    unsafe impl ClassType for LABiometryFallbackRequirement {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for LABiometryFallbackRequirement {}

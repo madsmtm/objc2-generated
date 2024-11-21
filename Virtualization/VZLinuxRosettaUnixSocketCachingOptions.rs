@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VZLinuxRosettaCachingOptions, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZLinuxRosettaCachingOptions")]
     pub struct VZLinuxRosettaUnixSocketCachingOptions;
-
-    #[cfg(feature = "VZLinuxRosettaCachingOptions")]
-    unsafe impl ClassType for VZLinuxRosettaUnixSocketCachingOptions {
-        #[inherits(NSObject)]
-        type Super = VZLinuxRosettaCachingOptions;
-    }
 );
 
 #[cfg(feature = "VZLinuxRosettaCachingOptions")]

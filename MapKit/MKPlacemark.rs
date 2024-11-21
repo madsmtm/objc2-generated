@@ -11,15 +11,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(CLPlacemark, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-core-location")]
     pub struct MKPlacemark;
-
-    #[cfg(feature = "objc2-core-location")]
-    unsafe impl ClassType for MKPlacemark {
-        #[inherits(NSObject)]
-        type Super = CLPlacemark;
-    }
 );
 
 #[cfg(all(feature = "MKAnnotation", feature = "objc2-core-location"))]

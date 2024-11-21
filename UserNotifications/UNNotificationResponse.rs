@@ -14,12 +14,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationResponse;
-
-    unsafe impl ClassType for UNNotificationResponse {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for UNNotificationResponse {}
@@ -57,13 +54,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UNNotificationResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNTextInputNotificationResponse;
-
-    unsafe impl ClassType for UNTextInputNotificationResponse {
-        #[inherits(NSObject)]
-        type Super = UNNotificationResponse;
-    }
 );
 
 unsafe impl NSCoding for UNTextInputNotificationResponse {}

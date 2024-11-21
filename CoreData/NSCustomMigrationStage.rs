@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSMigrationStage, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSMigrationStage")]
     pub struct NSCustomMigrationStage;
-
-    #[cfg(feature = "NSMigrationStage")]
-    unsafe impl ClassType for NSCustomMigrationStage {
-        #[inherits(NSObject)]
-        type Super = NSMigrationStage;
-    }
 );
 
 #[cfg(feature = "NSMigrationStage")]

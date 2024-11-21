@@ -26,13 +26,10 @@ unsafe impl RefEncode for WKContentMode {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKWebpagePreferences;
-
-    unsafe impl ClassType for WKWebpagePreferences {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for WKWebpagePreferences {}

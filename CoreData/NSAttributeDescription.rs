@@ -37,15 +37,10 @@ unsafe impl RefEncode for NSAttributeType {
 }
 
 extern_class!(
+    #[unsafe(super(NSPropertyDescription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPropertyDescription")]
     pub struct NSAttributeDescription;
-
-    #[cfg(feature = "NSPropertyDescription")]
-    unsafe impl ClassType for NSAttributeDescription {
-        #[inherits(NSObject)]
-        type Super = NSPropertyDescription;
-    }
 );
 
 #[cfg(feature = "NSPropertyDescription")]

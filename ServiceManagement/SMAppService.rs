@@ -33,12 +33,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SMAppService;
-
-    unsafe impl ClassType for SMAppService {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for SMAppService {}

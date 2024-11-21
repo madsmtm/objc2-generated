@@ -106,16 +106,11 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(UIResponder, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIResponder")]
     pub struct UIViewController;
-
-    #[cfg(feature = "UIResponder")]
-    unsafe impl ClassType for UIViewController {
-        #[inherits(NSObject)]
-        type Super = UIResponder;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIResponder")]
@@ -1256,14 +1251,11 @@ unsafe impl RefEncode for UIPreviewActionStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use UIContextMenuInteraction."]
     pub struct UIPreviewAction;
-
-    unsafe impl ClassType for UIPreviewAction {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UIPreviewAction {}
@@ -1311,14 +1303,11 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use UIContextMenuInteraction."]
     pub struct UIPreviewActionGroup;
-
-    unsafe impl ClassType for UIPreviewActionGroup {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCopying for UIPreviewActionGroup {}

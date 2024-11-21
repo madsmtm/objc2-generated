@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UIPreviewParameters, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIPreviewParameters")]
     pub struct UIDragPreviewParameters;
-
-    #[cfg(feature = "UIPreviewParameters")]
-    unsafe impl ClassType for UIDragPreviewParameters {
-        #[inherits(NSObject)]
-        type Super = UIPreviewParameters;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UIPreviewParameters")]

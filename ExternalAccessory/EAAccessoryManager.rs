@@ -48,12 +48,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EAAccessoryManager;
-
-    unsafe impl ClassType for EAAccessoryManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for EAAccessoryManager {}

@@ -46,15 +46,10 @@ unsafe impl RefEncode for CBCharacteristicWriteType {
 }
 
 extern_class!(
+    #[unsafe(super(CBPeer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBPeer")]
     pub struct CBPeripheral;
-
-    #[cfg(feature = "CBPeer")]
-    unsafe impl ClassType for CBPeripheral {
-        #[inherits(NSObject)]
-        type Super = CBPeer;
-    }
 );
 
 #[cfg(feature = "CBPeer")]

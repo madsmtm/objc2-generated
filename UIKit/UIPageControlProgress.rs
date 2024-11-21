@@ -24,12 +24,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPageControlProgress;
-
-    unsafe impl ClassType for UIPageControlProgress {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIPageControlProgress {}
@@ -91,13 +88,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(UIPageControlProgress, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPageControlTimerProgress;
-
-    unsafe impl ClassType for UIPageControlTimerProgress {
-        #[inherits(NSObject)]
-        type Super = UIPageControlProgress;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIPageControlTimerProgress {}

@@ -83,12 +83,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIFontDescriptor;
-
-    unsafe impl ClassType for UIFontDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for UIFontDescriptor {}

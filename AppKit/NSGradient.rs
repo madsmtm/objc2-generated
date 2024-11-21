@@ -25,12 +25,9 @@ unsafe impl RefEncode for NSGradientDrawingOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGradient;
-
-    unsafe impl ClassType for NSGradient {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSGradient {}

@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMDyskineticSymptomResult;
-
-    unsafe impl ClassType for CMDyskineticSymptomResult {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CMDyskineticSymptomResult {}
@@ -54,12 +51,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMTremorResult;
-
-    unsafe impl ClassType for CMTremorResult {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CMTremorResult {}
@@ -122,12 +116,9 @@ pub type CMTremorResultHandler =
     *mut block2::Block<dyn Fn(NonNull<NSArray<CMTremorResult>>, *mut NSError)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMMovementDisorderManager;
-
-    unsafe impl ClassType for CMMovementDisorderManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CMMovementDisorderManager {}

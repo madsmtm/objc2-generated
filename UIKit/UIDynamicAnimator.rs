@@ -20,12 +20,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIDynamicAnimator;
-
-    unsafe impl ClassType for UIDynamicAnimator {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIDynamicAnimator {}

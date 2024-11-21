@@ -14,6 +14,7 @@ pub static NSSearchFieldClearRecentsMenuItemTag: NSInteger = 1002;
 pub static NSSearchFieldNoRecentsMenuItemTag: NSInteger = 1003;
 
 extern_class!(
+    #[unsafe(super(NSTextFieldCell, NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "NSActionCell",
@@ -21,16 +22,6 @@ extern_class!(
         feature = "NSTextFieldCell"
     ))]
     pub struct NSSearchFieldCell;
-
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl ClassType for NSSearchFieldCell {
-        #[inherits(NSActionCell, NSCell, NSObject)]
-        type Super = NSTextFieldCell;
-    }
 );
 
 #[cfg(all(

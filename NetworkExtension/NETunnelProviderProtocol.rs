@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NEVPNProtocol, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NEVPNProtocol")]
     pub struct NETunnelProviderProtocol;
-
-    #[cfg(feature = "NEVPNProtocol")]
-    unsafe impl ClassType for NETunnelProviderProtocol {
-        #[inherits(NSObject)]
-        type Super = NEVPNProtocol;
-    }
 );
 
 #[cfg(feature = "NEVPNProtocol")]

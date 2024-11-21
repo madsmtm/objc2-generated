@@ -40,12 +40,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextViewportLayoutController;
-
-    unsafe impl ClassType for NSTextViewportLayoutController {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSTextViewportLayoutController {}

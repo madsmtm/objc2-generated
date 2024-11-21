@@ -315,13 +315,10 @@ unsafe impl RefEncode for UIWritingToolsResultOptions {
 pub type UITextContentType = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextInputPasswordRules;
-
-    unsafe impl ClassType for UITextInputPasswordRules {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UITextInputPasswordRules {}

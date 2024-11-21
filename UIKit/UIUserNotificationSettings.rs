@@ -110,14 +110,11 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use UserNotifications Framework's UNNotificationSettings"]
     pub struct UIUserNotificationSettings;
-
-    unsafe impl ClassType for UIUserNotificationSettings {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIUserNotificationSettings {}
@@ -154,14 +151,11 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use UserNotifications Framework's UNNotificationCategory"]
     pub struct UIUserNotificationCategory;
-
-    unsafe impl ClassType for UIUserNotificationCategory {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UIUserNotificationCategory {}
@@ -213,15 +207,11 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIUserNotificationCategory, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use UserNotifications Framework's UNNotificationCategory"]
     pub struct UIMutableUserNotificationCategory;
-
-    unsafe impl ClassType for UIMutableUserNotificationCategory {
-        #[inherits(NSObject)]
-        type Super = UIUserNotificationCategory;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UIMutableUserNotificationCategory {}
@@ -285,14 +275,11 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use UserNotifications Framework's UNNotificationAction"]
     pub struct UIUserNotificationAction;
-
-    unsafe impl ClassType for UIUserNotificationAction {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UIUserNotificationAction {}
@@ -356,15 +343,11 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UIUserNotificationAction, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use UserNotifications Framework's UNNotificationAction"]
     pub struct UIMutableUserNotificationAction;
-
-    unsafe impl ClassType for UIMutableUserNotificationAction {
-        #[inherits(NSObject)]
-        type Super = UIUserNotificationAction;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSCoding for UIMutableUserNotificationAction {}

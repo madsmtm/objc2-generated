@@ -24,12 +24,9 @@ unsafe impl RefEncode for NSXMLParserExternalEntityResolvingPolicy {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXMLParser;
-
-    unsafe impl ClassType for NSXMLParser {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSXMLParser {}

@@ -46,13 +46,9 @@ unsafe impl RefEncode for CNContactDisplayNameOrder {
 }
 
 extern_class!(
+    #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContactFormatter;
-
-    unsafe impl ClassType for CNContactFormatter {
-        #[inherits(NSObject)]
-        type Super = NSFormatter;
-    }
 );
 
 unsafe impl NSCoding for CNContactFormatter {}

@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NWEndpoint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NWEndpoint")]
     #[deprecated = "Use `nw_endpoint_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>"]
     pub struct NWHostEndpoint;
-
-    #[cfg(feature = "NWEndpoint")]
-    unsafe impl ClassType for NWHostEndpoint {
-        #[inherits(NSObject)]
-        type Super = NWEndpoint;
-    }
 );
 
 #[cfg(feature = "NWEndpoint")]

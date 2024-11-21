@@ -8,12 +8,9 @@ use crate::*;
 pub type NSNibName = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNib;
-
-    unsafe impl ClassType for NSNib {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSNib {}

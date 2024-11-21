@@ -9,6 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(MKPolylineRenderer, MKOverlayPathRenderer, MKOverlayRenderer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "MKOverlayPathRenderer",
@@ -16,16 +17,6 @@ extern_class!(
         feature = "MKPolylineRenderer"
     ))]
     pub struct MKGradientPolylineRenderer;
-
-    #[cfg(all(
-        feature = "MKOverlayPathRenderer",
-        feature = "MKOverlayRenderer",
-        feature = "MKPolylineRenderer"
-    ))]
-    unsafe impl ClassType for MKGradientPolylineRenderer {
-        #[inherits(MKOverlayPathRenderer, MKOverlayRenderer, NSObject)]
-        type Super = MKPolylineRenderer;
-    }
 );
 
 #[cfg(all(

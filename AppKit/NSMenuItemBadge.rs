@@ -29,12 +29,9 @@ unsafe impl RefEncode for NSMenuItemBadgeType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMenuItemBadge;
-
-    unsafe impl ClassType for NSMenuItemBadge {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSMenuItemBadge {}

@@ -27,12 +27,9 @@ unsafe impl RefEncode for HKWorkoutSessionLocationType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutConfiguration;
-
-    unsafe impl ClassType for HKWorkoutConfiguration {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for HKWorkoutConfiguration {}

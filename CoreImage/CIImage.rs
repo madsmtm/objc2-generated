@@ -214,12 +214,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIImage;
-
-    unsafe impl ClassType for CIImage {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CIImage {}

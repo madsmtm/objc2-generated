@@ -80,12 +80,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLProtectionSpace;
-
-    unsafe impl ClassType for NSURLProtectionSpace {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for NSURLProtectionSpace {}

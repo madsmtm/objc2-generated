@@ -45,12 +45,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEAppProxyFlow;
-
-    unsafe impl ClassType for NEAppProxyFlow {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NEAppProxyFlow {}

@@ -197,12 +197,9 @@ unsafe impl RefEncode for NSCalendarOptions {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCalendar;
-
-    unsafe impl ClassType for NSCalendar {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]
@@ -669,12 +666,9 @@ pub const NSDateComponentUndefined: NSInteger = NSIntegerMax as _;
 pub const NSUndefinedDateComponent: NSInteger = NSDateComponentUndefined;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDateComponents;
-
-    unsafe impl ClassType for NSDateComponents {
-        type Super = NSObject;
-    }
 );
 
 #[cfg(feature = "NSObject")]

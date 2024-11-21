@@ -9,15 +9,10 @@ use crate::*;
 pub type HKObserverQueryCompletionHandler = *mut block2::Block<dyn Fn()>;
 
 extern_class!(
+    #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]
     pub struct HKObserverQuery;
-
-    #[cfg(feature = "HKQuery")]
-    unsafe impl ClassType for HKObserverQuery {
-        #[inherits(NSObject)]
-        type Super = HKQuery;
-    }
 );
 
 #[cfg(feature = "HKQuery")]

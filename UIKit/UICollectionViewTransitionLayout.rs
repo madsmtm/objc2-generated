@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(UICollectionViewLayout, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UICollectionViewLayout")]
     pub struct UICollectionViewTransitionLayout;
-
-    #[cfg(feature = "UICollectionViewLayout")]
-    unsafe impl ClassType for UICollectionViewTransitionLayout {
-        #[inherits(NSObject)]
-        type Super = UICollectionViewLayout;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 #[cfg(feature = "UICollectionViewLayout")]

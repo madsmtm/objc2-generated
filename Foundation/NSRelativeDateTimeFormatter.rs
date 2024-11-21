@@ -47,15 +47,10 @@ unsafe impl RefEncode for NSRelativeDateTimeFormatterUnitsStyle {
 }
 
 extern_class!(
+    #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]
     pub struct NSRelativeDateTimeFormatter;
-
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl ClassType for NSRelativeDateTimeFormatter {
-        #[inherits(NSObject)]
-        type Super = NSFormatter;
-    }
 );
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]

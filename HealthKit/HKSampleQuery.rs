@@ -8,15 +8,10 @@ use crate::*;
 pub static HKObjectQueryNoLimit: NSUInteger = 0;
 
 extern_class!(
+    #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]
     pub struct HKSampleQuery;
-
-    #[cfg(feature = "HKQuery")]
-    unsafe impl ClassType for HKSampleQuery {
-        #[inherits(NSObject)]
-        type Super = HKQuery;
-    }
 );
 
 #[cfg(feature = "HKQuery")]

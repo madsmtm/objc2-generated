@@ -6,14 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
     pub struct UISearchDisplayController;
-
-    unsafe impl ClassType for UISearchDisplayController {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UISearchDisplayController {}

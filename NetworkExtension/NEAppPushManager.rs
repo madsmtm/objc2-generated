@@ -33,12 +33,9 @@ unsafe impl RefEncode for NEAppPushManagerError {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEPrivateLTENetwork;
-
-    unsafe impl ClassType for NEPrivateLTENetwork {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NEPrivateLTENetwork {}
@@ -87,12 +84,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEAppPushManager;
-
-    unsafe impl ClassType for NEAppPushManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NEAppPushManager {}

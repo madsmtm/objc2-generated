@@ -54,24 +54,11 @@ extern_methods!(
 #[cfg(feature = "NSManagedObjectID")]
 unsafe impl NSFetchRequestResult for NSManagedObjectID {}
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSPersistentStoreRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPersistentStoreRequest")]
-    pub struct NSFetchRequest<ResultType: ?Sized = AnyObject> {
-        __superclass: NSPersistentStoreRequest,
-        _inner0: PhantomData<*mut ResultType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl<ResultType: ?Sized + Message> ClassType for NSFetchRequest<ResultType> {
-        #[inherits(NSObject)]
-        type Super = NSPersistentStoreRequest;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSFetchRequest<ResultType: ?Sized = AnyObject>;
 );
 
 #[cfg(feature = "NSPersistentStoreRequest")]
@@ -250,24 +237,11 @@ extern_methods!(
 pub type NSPersistentStoreAsynchronousFetchResultCompletionBlock =
     *mut block2::Block<dyn Fn(NonNull<NSAsynchronousFetchResult>)>;
 
-__inner_extern_class!(
+extern_class!(
+    #[unsafe(super(NSPersistentStoreRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPersistentStoreRequest")]
-    pub struct NSAsynchronousFetchRequest<ResultType: ?Sized = AnyObject> {
-        __superclass: NSPersistentStoreRequest,
-        _inner0: PhantomData<*mut ResultType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl<ResultType: ?Sized + Message> ClassType for NSAsynchronousFetchRequest<ResultType> {
-        #[inherits(NSObject)]
-        type Super = NSPersistentStoreRequest;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-    }
+    pub struct NSAsynchronousFetchRequest<ResultType: ?Sized = AnyObject>;
 );
 
 #[cfg(feature = "NSPersistentStoreRequest")]

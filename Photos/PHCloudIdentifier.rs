@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHCloudIdentifier;
-
-    unsafe impl ClassType for PHCloudIdentifier {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for PHCloudIdentifier {}
@@ -53,12 +50,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHCloudIdentifierMapping;
-
-    unsafe impl ClassType for PHCloudIdentifierMapping {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for PHCloudIdentifierMapping {}
@@ -89,12 +83,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHLocalIdentifierMapping;
-
-    unsafe impl ClassType for PHLocalIdentifierMapping {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl Send for PHLocalIdentifierMapping {}

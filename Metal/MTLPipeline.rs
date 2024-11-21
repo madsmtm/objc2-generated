@@ -48,12 +48,9 @@ unsafe impl RefEncode for MTLShaderValidation {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLPipelineBufferDescriptor;
-
-    unsafe impl ClassType for MTLPipelineBufferDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLPipelineBufferDescriptor {}
@@ -86,12 +83,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLPipelineBufferDescriptorArray;
-
-    unsafe impl ClassType for MTLPipelineBufferDescriptorArray {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLPipelineBufferDescriptorArray {}

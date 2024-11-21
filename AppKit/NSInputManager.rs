@@ -67,13 +67,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSTextInputContext instead"]
     pub struct NSInputManager;
-
-    unsafe impl ClassType for NSInputManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSInputManager {}

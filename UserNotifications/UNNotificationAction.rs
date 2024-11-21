@@ -29,12 +29,9 @@ pub static UNNotificationActionOptionNone: UNNotificationActionOptions =
     UNNotificationActionOptions(0);
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationAction;
-
-    unsafe impl ClassType for UNNotificationAction {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for UNNotificationAction {}
@@ -94,13 +91,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(UNNotificationAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNTextInputNotificationAction;
-
-    unsafe impl ClassType for UNTextInputNotificationAction {
-        #[inherits(NSObject)]
-        type Super = UNNotificationAction;
-    }
 );
 
 unsafe impl NSCoding for UNTextInputNotificationAction {}

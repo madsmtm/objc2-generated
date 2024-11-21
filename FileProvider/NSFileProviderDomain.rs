@@ -9,12 +9,9 @@ use crate::*;
 pub type NSFileProviderDomainIdentifier = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderDomainVersion;
-
-    unsafe impl ClassType for NSFileProviderDomainVersion {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSFileProviderDomainVersion {}
@@ -86,12 +83,9 @@ unsafe impl RefEncode for NSFileProviderKnownFolders {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderDomain;
-
-    unsafe impl ClassType for NSFileProviderDomain {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSFileProviderDomain {}

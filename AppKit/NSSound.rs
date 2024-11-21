@@ -15,12 +15,9 @@ pub type NSSoundName = NSString;
 pub type NSSoundPlaybackDeviceIdentifier = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSound;
-
-    unsafe impl ClassType for NSSound {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSSound {}

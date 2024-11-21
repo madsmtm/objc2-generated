@@ -98,12 +98,9 @@ unsafe impl RefEncode for NSTextTableLayoutAlgorithm {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextBlock;
-
-    unsafe impl ClassType for NSTextBlock {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for NSTextBlock {}
@@ -251,13 +248,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSTextBlock, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextTableBlock;
-
-    unsafe impl ClassType for NSTextTableBlock {
-        #[inherits(NSObject)]
-        type Super = NSTextBlock;
-    }
 );
 
 unsafe impl NSCoding for NSTextTableBlock {}
@@ -318,13 +311,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSTextBlock, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextTable;
-
-    unsafe impl ClassType for NSTextTable {
-        #[inherits(NSObject)]
-        type Super = NSTextBlock;
-    }
 );
 
 unsafe impl NSCoding for NSTextTable {}

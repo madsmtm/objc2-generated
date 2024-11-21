@@ -39,12 +39,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIShape;
-
-    unsafe impl ClassType for UIShape {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for UIShape {}
@@ -134,12 +131,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIResolvedShape;
-
-    unsafe impl ClassType for UIResolvedShape {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for UIResolvedShape {}
@@ -181,12 +175,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIShapeResolutionContext;
-
-    unsafe impl ClassType for UIShapeResolutionContext {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIShapeResolutionContext {}

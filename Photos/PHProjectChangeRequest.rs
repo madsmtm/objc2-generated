@@ -9,15 +9,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(PHChangeRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHChangeRequest")]
     pub struct PHProjectChangeRequest;
-
-    #[cfg(feature = "PHChangeRequest")]
-    unsafe impl ClassType for PHProjectChangeRequest {
-        #[inherits(NSObject)]
-        type Super = PHChangeRequest;
-    }
 );
 
 #[cfg(feature = "PHChangeRequest")]

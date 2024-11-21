@@ -67,6 +67,7 @@ pub const DOM_CSS_VMIN: c_uint = 28;
 pub const DOM_CSS_VMAX: c_uint = 29;
 
 extern_class!(
+    #[unsafe(super(DOMCSSValue, DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "DOMCSSValue",
@@ -75,16 +76,6 @@ extern_class!(
     ))]
     #[deprecated]
     pub struct DOMCSSPrimitiveValue;
-
-    #[cfg(all(
-        feature = "DOMCSSValue",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl ClassType for DOMCSSPrimitiveValue {
-        #[inherits(DOMObject, WebScriptObject, NSObject)]
-        type Super = DOMCSSValue;
-    }
 );
 
 #[cfg(all(

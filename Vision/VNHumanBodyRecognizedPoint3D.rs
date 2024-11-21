@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VNRecognizedPoint3D, VNPoint3D, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNGeometry", feature = "VNRecognizedPoint3D"))]
     pub struct VNHumanBodyRecognizedPoint3D;
-
-    #[cfg(all(feature = "VNGeometry", feature = "VNRecognizedPoint3D"))]
-    unsafe impl ClassType for VNHumanBodyRecognizedPoint3D {
-        #[inherits(VNPoint3D, NSObject)]
-        type Super = VNRecognizedPoint3D;
-    }
 );
 
 #[cfg(all(feature = "VNGeometry", feature = "VNRecognizedPoint3D"))]

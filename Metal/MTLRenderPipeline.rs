@@ -220,12 +220,9 @@ unsafe impl RefEncode for MTLTessellationControlPointIndexType {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPipelineColorAttachmentDescriptor;
-
-    unsafe impl ClassType for MTLRenderPipelineColorAttachmentDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLRenderPipelineColorAttachmentDescriptor {}
@@ -311,12 +308,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPipelineReflection;
-
-    unsafe impl ClassType for MTLRenderPipelineReflection {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLRenderPipelineReflection {}
@@ -372,12 +366,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPipelineDescriptor;
-
-    unsafe impl ClassType for MTLRenderPipelineDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLRenderPipelineDescriptor {}
@@ -692,12 +683,9 @@ impl DefaultRetained for MTLRenderPipelineDescriptor {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPipelineFunctionsDescriptor;
-
-    unsafe impl ClassType for MTLRenderPipelineFunctionsDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLRenderPipelineFunctionsDescriptor {}
@@ -862,12 +850,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPipelineColorAttachmentDescriptorArray;
-
-    unsafe impl ClassType for MTLRenderPipelineColorAttachmentDescriptorArray {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLRenderPipelineColorAttachmentDescriptorArray {}
@@ -901,12 +886,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLTileRenderPipelineColorAttachmentDescriptor;
-
-    unsafe impl ClassType for MTLTileRenderPipelineColorAttachmentDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLTileRenderPipelineColorAttachmentDescriptor {}
@@ -941,12 +923,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLTileRenderPipelineColorAttachmentDescriptorArray;
-
-    unsafe impl ClassType for MTLTileRenderPipelineColorAttachmentDescriptorArray {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for MTLTileRenderPipelineColorAttachmentDescriptorArray {}
@@ -980,12 +959,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLTileRenderPipelineDescriptor;
-
-    unsafe impl ClassType for MTLTileRenderPipelineDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLTileRenderPipelineDescriptor {}
@@ -1116,12 +1092,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLMeshRenderPipelineDescriptor;
-
-    unsafe impl ClassType for MTLMeshRenderPipelineDescriptor {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for MTLMeshRenderPipelineDescriptor {}

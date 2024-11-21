@@ -46,13 +46,10 @@ unsafe impl RefEncode for UIContextMenuInteractionAppearance {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIContextMenuInteraction;
-
-    unsafe impl ClassType for UIContextMenuInteraction {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIContextMenuInteraction {}

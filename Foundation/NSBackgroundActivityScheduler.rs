@@ -28,12 +28,9 @@ pub type NSBackgroundActivityCompletionHandler =
     *mut block2::Block<dyn Fn(NSBackgroundActivityResult)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBackgroundActivityScheduler;
-
-    unsafe impl ClassType for NSBackgroundActivityScheduler {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSBackgroundActivityScheduler {}

@@ -8,15 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(PHObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHObject")]
     pub struct PHCollection;
-
-    #[cfg(feature = "PHObject")]
-    unsafe impl ClassType for PHCollection {
-        #[inherits(NSObject)]
-        type Super = PHObject;
-    }
 );
 
 #[cfg(feature = "PHObject")]
@@ -83,15 +78,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(PHCollection, PHObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHObject")]
     pub struct PHAssetCollection;
-
-    #[cfg(feature = "PHObject")]
-    unsafe impl ClassType for PHAssetCollection {
-        #[inherits(PHObject, NSObject)]
-        type Super = PHCollection;
-    }
 );
 
 #[cfg(feature = "PHObject")]
@@ -222,15 +212,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(PHCollection, PHObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHObject")]
     pub struct PHCollectionList;
-
-    #[cfg(feature = "PHObject")]
-    unsafe impl ClassType for PHCollectionList {
-        #[inherits(PHObject, NSObject)]
-        type Super = PHCollection;
-    }
 );
 
 #[cfg(feature = "PHObject")]

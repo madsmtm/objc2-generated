@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSPersistentStore, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPersistentStore")]
     pub struct NSAtomicStore;
-
-    #[cfg(feature = "NSPersistentStore")]
-    unsafe impl ClassType for NSAtomicStore {
-        #[inherits(NSObject)]
-        type Super = NSPersistentStore;
-    }
 );
 
 #[cfg(feature = "NSPersistentStore")]

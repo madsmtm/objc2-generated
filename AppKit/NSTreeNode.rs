@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTreeNode;
-
-    unsafe impl ClassType for NSTreeNode {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSTreeNode {}

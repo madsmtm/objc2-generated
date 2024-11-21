@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGTask;
-
-    unsafe impl ClassType for BGTask {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for BGTask {}
@@ -44,13 +41,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(BGTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGProcessingTask;
-
-    unsafe impl ClassType for BGProcessingTask {
-        #[inherits(NSObject)]
-        type Super = BGTask;
-    }
 );
 
 unsafe impl NSObjectProtocol for BGProcessingTask {}
@@ -71,13 +64,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(BGProcessingTask, BGTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGHealthResearchTask;
-
-    unsafe impl ClassType for BGHealthResearchTask {
-        #[inherits(BGTask, NSObject)]
-        type Super = BGProcessingTask;
-    }
 );
 
 unsafe impl NSObjectProtocol for BGHealthResearchTask {}
@@ -98,13 +87,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(BGTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGAppRefreshTask;
-
-    unsafe impl ClassType for BGAppRefreshTask {
-        #[inherits(NSObject)]
-        type Super = BGTask;
-    }
 );
 
 unsafe impl NSObjectProtocol for BGAppRefreshTask {}

@@ -13,12 +13,9 @@ pub static PHInvalidAssetResourceDataRequestID: PHAssetResourceDataRequestID = 0
 pub type PHAssetResourceProgressHandler = *mut block2::Block<dyn Fn(c_double)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHAssetResourceRequestOptions;
-
-    unsafe impl ClassType for PHAssetResourceRequestOptions {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for PHAssetResourceRequestOptions {}
@@ -59,12 +56,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHAssetResourceManager;
-
-    unsafe impl ClassType for PHAssetResourceManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for PHAssetResourceManager {}

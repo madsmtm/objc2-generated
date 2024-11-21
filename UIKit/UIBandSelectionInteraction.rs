@@ -29,13 +29,10 @@ unsafe impl RefEncode for UIBandSelectionInteractionState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIBandSelectionInteraction;
-
-    unsafe impl ClassType for UIBandSelectionInteraction {
-        type Super = NSObject;
-        type ThreadKind = dyn MainThreadOnly;
-    }
 );
 
 unsafe impl NSObjectProtocol for UIBandSelectionInteraction {}

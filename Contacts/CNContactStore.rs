@@ -48,12 +48,9 @@ unsafe impl RefEncode for CNAuthorizationStatus {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContactStore;
-
-    unsafe impl ClassType for CNContactStore {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for CNContactStore {}

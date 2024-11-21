@@ -6,12 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextElement;
-
-    unsafe impl ClassType for NSTextElement {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSTextElement {}
@@ -68,13 +65,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSTextElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextParagraph;
-
-    unsafe impl ClassType for NSTextParagraph {
-        #[inherits(NSObject)]
-        type Super = NSTextElement;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSTextParagraph {}

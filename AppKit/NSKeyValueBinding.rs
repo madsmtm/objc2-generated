@@ -15,12 +15,9 @@ pub type NSBindingName = NSString;
 pub type NSBindingOption = NSString;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBindingSelectionMarker;
-
-    unsafe impl ClassType for NSBindingSelectionMarker {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for NSBindingSelectionMarker {}

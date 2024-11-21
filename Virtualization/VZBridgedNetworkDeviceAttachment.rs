@@ -5,15 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(VZNetworkDeviceAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZNetworkDeviceAttachment")]
     pub struct VZBridgedNetworkDeviceAttachment;
-
-    #[cfg(feature = "VZNetworkDeviceAttachment")]
-    unsafe impl ClassType for VZBridgedNetworkDeviceAttachment {
-        #[inherits(NSObject)]
-        type Super = VZNetworkDeviceAttachment;
-    }
 );
 
 #[cfg(feature = "VZNetworkDeviceAttachment")]

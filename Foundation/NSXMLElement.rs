@@ -5,15 +5,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSXMLNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSXMLNode")]
     pub struct NSXMLElement;
-
-    #[cfg(feature = "NSXMLNode")]
-    unsafe impl ClassType for NSXMLElement {
-        #[inherits(NSObject)]
-        type Super = NSXMLNode;
-    }
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSXMLNode"))]

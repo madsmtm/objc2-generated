@@ -32,13 +32,10 @@ unsafe impl RefEncode for GKVoiceChatPlayerState {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "No longer supported"]
     pub struct GKVoiceChat;
-
-    unsafe impl ClassType for GKVoiceChat {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for GKVoiceChat {}

@@ -13,12 +13,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLHeading;
-
-    unsafe impl ClassType for CLHeading {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCoding for CLHeading {}

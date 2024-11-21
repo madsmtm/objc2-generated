@@ -6,16 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(MLCGraph, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCGraph")]
     #[deprecated]
     pub struct MLCTrainingGraph;
-
-    #[cfg(feature = "MLCGraph")]
-    unsafe impl ClassType for MLCTrainingGraph {
-        #[inherits(NSObject)]
-        type Super = MLCGraph;
-    }
 );
 
 #[cfg(feature = "MLCGraph")]

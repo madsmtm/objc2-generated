@@ -5,16 +5,11 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(NSCoder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCoder")]
     #[deprecated = "Use NSKeyedArchiver instead"]
     pub struct NSArchiver;
-
-    #[cfg(feature = "NSCoder")]
-    unsafe impl ClassType for NSArchiver {
-        #[inherits(NSObject)]
-        type Super = NSCoder;
-    }
 );
 
 #[cfg(feature = "NSCoder")]
@@ -90,16 +85,11 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSCoder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCoder")]
     #[deprecated = "Use NSKeyedUnarchiver instead"]
     pub struct NSUnarchiver;
-
-    #[cfg(feature = "NSCoder")]
-    unsafe impl ClassType for NSUnarchiver {
-        #[inherits(NSObject)]
-        type Super = NSCoder;
-    }
 );
 
 #[cfg(feature = "NSCoder")]

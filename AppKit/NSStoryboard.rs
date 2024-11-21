@@ -14,12 +14,9 @@ pub type NSStoryboardControllerCreator =
     *mut block2::Block<dyn Fn(NonNull<NSCoder>) -> *mut AnyObject>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStoryboard;
-
-    unsafe impl ClassType for NSStoryboard {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for NSStoryboard {}

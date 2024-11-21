@@ -25,12 +25,9 @@ unsafe impl RefEncode for ASAuthorizationPublicKeyCredentialLargeBlobAssertionOp
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput;
-
-    unsafe impl ClassType for ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput {}

@@ -76,12 +76,9 @@ pub type PHAssetImageProgressHandler =
     *mut block2::Block<dyn Fn(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHImageRequestOptions;
-
-    unsafe impl ClassType for PHImageRequestOptions {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for PHImageRequestOptions {}
@@ -158,12 +155,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHLivePhotoRequestOptions;
-
-    unsafe impl ClassType for PHLivePhotoRequestOptions {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for PHLivePhotoRequestOptions {}
@@ -262,12 +256,9 @@ pub type PHAssetVideoProgressHandler =
     *mut block2::Block<dyn Fn(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary)>;
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHVideoRequestOptions;
-
-    unsafe impl ClassType for PHVideoRequestOptions {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSCopying for PHVideoRequestOptions {}
@@ -348,12 +339,9 @@ extern "C" {
 }
 
 extern_class!(
+    #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHImageManager;
-
-    unsafe impl ClassType for PHImageManager {
-        type Super = NSObject;
-    }
 );
 
 unsafe impl NSObjectProtocol for PHImageManager {}
@@ -415,13 +403,9 @@ extern_methods!(
 );
 
 extern_class!(
+    #[unsafe(super(PHImageManager, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHCachingImageManager;
-
-    unsafe impl ClassType for PHCachingImageManager {
-        #[inherits(NSObject)]
-        type Super = PHImageManager;
-    }
 );
 
 unsafe impl NSObjectProtocol for PHCachingImageManager {}

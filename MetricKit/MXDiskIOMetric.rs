@@ -6,15 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
     pub struct MXDiskIOMetric;
-
-    #[cfg(feature = "MXMetric")]
-    unsafe impl ClassType for MXDiskIOMetric {
-        #[inherits(NSObject)]
-        type Super = MXMetric;
-    }
 );
 
 #[cfg(feature = "MXMetric")]

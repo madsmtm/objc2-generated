@@ -6,17 +6,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    #[unsafe(super(ASAccountAuthenticationModificationRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
     pub struct ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest;
-
-    #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
-    unsafe impl ClassType
-        for ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest
-    {
-        #[inherits(NSObject)]
-        type Super = ASAccountAuthenticationModificationRequest;
-    }
 );
 
 #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
