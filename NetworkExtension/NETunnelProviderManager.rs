@@ -35,7 +35,7 @@ extern_methods!(
         pub unsafe fn forPerAppVPN() -> Retained<Self>;
 
         #[cfg(feature = "NEAppRule")]
-        #[method_id(@__retain_semantics CopyOrMutCopy copyAppRules)]
+        #[method_id(@__retain_semantics Copy copyAppRules)]
         pub unsafe fn copyAppRules(&self) -> Option<Retained<NSArray<NEAppRule>>>;
 
         #[cfg(feature = "NETunnelProvider")]

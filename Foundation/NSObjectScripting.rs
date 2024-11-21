@@ -28,7 +28,7 @@ extern_category!(
         );
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__retain_semantics CopyOrMutCopy copyScriptingValue:forKey:withProperties:)]
+        #[method_id(@__retain_semantics Copy copyScriptingValue:forKey:withProperties:)]
         unsafe fn copyScriptingValue_forKey_withProperties(
             &self,
             value: &AnyObject,

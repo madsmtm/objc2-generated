@@ -52,7 +52,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics CopyOrMutCopy copy)]
+        #[method_id(@__retain_semantics Copy copy)]
         pub unsafe fn copy(&self) -> Retained<Self>;
 
         #[method(configureWithDefaultBackground)]
