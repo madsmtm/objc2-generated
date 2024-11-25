@@ -99,7 +99,7 @@ unsafe impl NSObjectProtocol for NSTouch {}
 extern_methods!(
     unsafe impl NSTouch {
         #[method_id(@__retain_semantics Other identity)]
-        pub unsafe fn identity(&self) -> Retained<TodoProtocols>;
+        pub unsafe fn identity(&self) -> Retained<AnyObject /* NSObjectProtocol+ NSCopying */>;
 
         #[method(phase)]
         pub unsafe fn phase(&self) -> NSTouchPhase;

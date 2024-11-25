@@ -1507,7 +1507,7 @@ unsafe impl RefEncode for NSAccessibilityPriorityLevel {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-pub type NSAccessibilityLoadingToken = TodoProtocols;
+pub type NSAccessibilityLoadingToken = AnyObject;
 
 extern "C" {
     pub static NSAccessibilitySortButtonRole: &'static NSAccessibilityRole;

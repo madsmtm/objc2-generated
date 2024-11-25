@@ -5,7 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-pub type UITextSearchDocumentIdentifier = TodoProtocols;
+pub type UITextSearchDocumentIdentifier = AnyObject;
 
 // NS_ENUM
 #[repr(transparent)]

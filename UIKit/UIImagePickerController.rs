@@ -280,11 +280,22 @@ extern_methods!(
         ) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Retained<TodoProtocols>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<
+            Retained<
+                AnyObject, /* UINavigationControllerDelegate+ UIImagePickerControllerDelegate */
+            >,
+        >;
 
         /// This is a [weak property][objc2::topics::weak_property].
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&TodoProtocols>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<
+                &AnyObject, /* UINavigationControllerDelegate+ UIImagePickerControllerDelegate */
+            >,
+        );
 
         #[method(sourceType)]
         pub unsafe fn sourceType(&self) -> UIImagePickerControllerSourceType;

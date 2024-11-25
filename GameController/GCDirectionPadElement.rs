@@ -21,19 +21,19 @@ extern_protocol!(
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         #[method_id(@__retain_semantics Other up)]
-        unsafe fn up(&self) -> Retained<TodoProtocols>;
+        unsafe fn up(&self) -> Retained<AnyObject /* GCLinearInput+ GCPressedStateInput */>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         #[method_id(@__retain_semantics Other down)]
-        unsafe fn down(&self) -> Retained<TodoProtocols>;
+        unsafe fn down(&self) -> Retained<AnyObject /* GCLinearInput+ GCPressedStateInput */>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         #[method_id(@__retain_semantics Other left)]
-        unsafe fn left(&self) -> Retained<TodoProtocols>;
+        unsafe fn left(&self) -> Retained<AnyObject /* GCLinearInput+ GCPressedStateInput */>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         #[method_id(@__retain_semantics Other right)]
-        unsafe fn right(&self) -> Retained<TodoProtocols>;
+        unsafe fn right(&self) -> Retained<AnyObject /* GCLinearInput+ GCPressedStateInput */>;
     }
 
     #[cfg(feature = "GCPhysicalInputElement")]

@@ -41,7 +41,7 @@ extern_methods!(
     }
 );
 
-pub type UIScribbleElementIdentifier = TodoProtocols;
+pub type UIScribbleElementIdentifier = AnyObject;
 
 extern_protocol!(
     pub unsafe trait UIIndirectScribbleInteractionDelegate:

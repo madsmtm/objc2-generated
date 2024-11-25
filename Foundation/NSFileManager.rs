@@ -631,7 +631,9 @@ extern_methods!(
 
         #[cfg(feature = "NSObject")]
         #[method_id(@__retain_semantics Other ubiquityIdentityToken)]
-        pub unsafe fn ubiquityIdentityToken(&self) -> Option<Retained<TodoProtocols>>;
+        pub unsafe fn ubiquityIdentityToken(
+            &self,
+        ) -> Option<Retained<AnyObject /* NSObjectProtocol+ NSCopying+ NSCoding */>>;
 
         #[cfg(all(
             feature = "NSDictionary",

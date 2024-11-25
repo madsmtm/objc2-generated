@@ -80,10 +80,21 @@ extern_methods!(
         pub unsafe fn canEditVideoAtPath(video_path: &NSString, mtm: MainThreadMarker) -> bool;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Retained<TodoProtocols>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<
+            Retained<
+                AnyObject, /* UINavigationControllerDelegate+ UIVideoEditorControllerDelegate */
+            >,
+        >;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&TodoProtocols>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<
+                &AnyObject, /* UINavigationControllerDelegate+ UIVideoEditorControllerDelegate */
+            >,
+        );
 
         #[method_id(@__retain_semantics Other videoPath)]
         pub unsafe fn videoPath(&self) -> Retained<NSString>;

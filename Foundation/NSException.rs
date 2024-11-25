@@ -163,7 +163,7 @@ extern_methods!(
     unsafe impl NSException {}
 );
 
-pub type NSUncaughtExceptionHandler = TodoFunction;
+pub type NSUncaughtExceptionHandler = core::ffi::c_void;
 
 extern "C-unwind" {
     pub fn NSGetUncaughtExceptionHandler() -> *mut NSUncaughtExceptionHandler;

@@ -62,7 +62,13 @@ extern_protocol!(
 
         #[cfg(feature = "GCDevicePhysicalInputStateDiff")]
         #[method_id(@__retain_semantics Other nextInputState)]
-        unsafe fn nextInputState(&self) -> Option<Retained<TodoProtocols>>;
+        unsafe fn nextInputState(
+            &self,
+        ) -> Option<
+            Retained<
+                AnyObject, /* GCDevicePhysicalInputState+ GCDevicePhysicalInputStateDiff */
+            >,
+        >;
     }
 
     #[cfg(feature = "GCDevicePhysicalInputState")]
