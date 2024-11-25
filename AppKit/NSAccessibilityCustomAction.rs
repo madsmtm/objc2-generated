@@ -27,7 +27,7 @@ extern_methods!(
         pub unsafe fn initWithName_target_selector(
             this: Allocated<Self>,
             name: &NSString,
-            target: &NSObject,
+            target: &ProtocolObject<dyn NSObjectProtocol>,
             selector: Sel,
         ) -> Retained<Self>;
 
@@ -46,11 +46,11 @@ extern_methods!(
         pub unsafe fn setHandler(&self, handler: Option<&block2::Block<dyn Fn() -> Bool>>);
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Retained<NSObject>>;
+        pub unsafe fn target(&self) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         #[method(setTarget:)]
-        pub unsafe fn setTarget(&self, target: Option<&NSObject>);
+        pub unsafe fn setTarget(&self, target: Option<&ProtocolObject<dyn NSObjectProtocol>>);
 
         #[method(selector)]
         pub unsafe fn selector(&self) -> Option<Sel>;

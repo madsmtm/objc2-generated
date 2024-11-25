@@ -50,7 +50,9 @@ pub type UINSIntegerTrait = AnyClass;
 extern_protocol!(
     pub unsafe trait UIObjectTraitDefinition: UITraitDefinition + MainThreadOnly {
         #[method_id(@__retain_semantics Other defaultValue)]
-        unsafe fn defaultValue(mtm: MainThreadMarker) -> Option<Retained<NSObject>>;
+        unsafe fn defaultValue(
+            mtm: MainThreadMarker,
+        ) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
     }
 
     unsafe impl ProtocolType for dyn UIObjectTraitDefinition {}

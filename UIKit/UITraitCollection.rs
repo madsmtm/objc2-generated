@@ -257,11 +257,18 @@ extern_protocol!(
 
         #[cfg(feature = "UITrait")]
         #[method(setObject:forTrait:)]
-        unsafe fn setObject_forTrait(&self, object: Option<&NSObject>, r#trait: &UIObjectTrait);
+        unsafe fn setObject_forTrait(
+            &self,
+            object: Option<&ProtocolObject<dyn NSObjectProtocol>>,
+            r#trait: &UIObjectTrait,
+        );
 
         #[cfg(feature = "UITrait")]
         #[method_id(@__retain_semantics Other objectForTrait:)]
-        unsafe fn objectForTrait(&self, r#trait: &UIObjectTrait) -> Option<Retained<NSObject>>;
+        unsafe fn objectForTrait(
+            &self,
+            r#trait: &UIObjectTrait,
+        ) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
 
         #[cfg(feature = "UIDevice")]
         #[method(userInterfaceIdiom)]
@@ -473,7 +480,7 @@ extern_methods!(
         #[cfg(feature = "UITrait")]
         #[method_id(@__retain_semantics Other traitCollectionWithObject:forTrait:)]
         pub unsafe fn traitCollectionWithObject_forTrait(
-            object: Option<&NSObject>,
+            object: Option<&ProtocolObject<dyn NSObjectProtocol>>,
             r#trait: &UIObjectTrait,
         ) -> Retained<UITraitCollection>;
 
@@ -481,13 +488,16 @@ extern_methods!(
         #[method_id(@__retain_semantics Other traitCollectionByReplacingObject:forTrait:)]
         pub unsafe fn traitCollectionByReplacingObject_forTrait(
             &self,
-            object: Option<&NSObject>,
+            object: Option<&ProtocolObject<dyn NSObjectProtocol>>,
             r#trait: &UIObjectTrait,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITrait")]
         #[method_id(@__retain_semantics Other objectForTrait:)]
-        pub unsafe fn objectForTrait(&self, r#trait: &UIObjectTrait) -> Option<Retained<NSObject>>;
+        pub unsafe fn objectForTrait(
+            &self,
+            r#trait: &UIObjectTrait,
+        ) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
     }
 );
 

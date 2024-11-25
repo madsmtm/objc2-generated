@@ -26,7 +26,7 @@ extern_methods!(
         pub unsafe fn rect(&self) -> CGRect;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Retained<NSObject>>;
+        pub unsafe fn identifier(&self) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
 
         #[cfg(feature = "UIGeometry")]
         #[method(latchingAxes)]
@@ -39,7 +39,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other regionWithRect:identifier:)]
         pub unsafe fn regionWithRect_identifier(
             rect: CGRect,
-            identifier: Option<&NSObject>,
+            identifier: Option<&ProtocolObject<dyn NSObjectProtocol>>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 

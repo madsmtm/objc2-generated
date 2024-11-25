@@ -59,7 +59,7 @@ pub type MTLDeviceNotificationHandler = *mut block2::Block<
 >;
 
 extern "C-unwind" {
-    pub fn MTLRemoveDeviceObserver(observer: &NSObject);
+    pub fn MTLRemoveDeviceObserver(observer: &ProtocolObject<dyn NSObjectProtocol>);
 }
 
 // NS_ENUM

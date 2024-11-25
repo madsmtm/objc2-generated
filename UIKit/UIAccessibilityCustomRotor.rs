@@ -252,16 +252,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetElement:targetRange:)]
         pub unsafe fn initWithTargetElement_targetRange(
             this: Allocated<Self>,
-            target_element: &NSObject,
+            target_element: &ProtocolObject<dyn NSObjectProtocol>,
             target_range: Option<&UITextRange>,
         ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other targetElement)]
-        pub unsafe fn targetElement(&self) -> Option<Retained<NSObject>>;
+        pub unsafe fn targetElement(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         #[method(setTargetElement:)]
-        pub unsafe fn setTargetElement(&self, target_element: Option<&NSObject>);
+        pub unsafe fn setTargetElement(
+            &self,
+            target_element: Option<&ProtocolObject<dyn NSObjectProtocol>>,
+        );
 
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other targetRange)]

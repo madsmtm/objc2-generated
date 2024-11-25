@@ -145,7 +145,7 @@ extern_methods!(
             obj: Option<&AnyObject>,
             queue: Option<&NSOperationQueue>,
             block: &block2::Block<dyn Fn(NonNull<NSNotification>)>,
-        ) -> Retained<NSObject>;
+        ) -> Retained<ProtocolObject<dyn NSObjectProtocol>>;
     }
 );
 
