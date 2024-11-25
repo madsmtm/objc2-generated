@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbdevice?language=objc)
     pub unsafe trait VZUSBDevice: NSObjectProtocol {
         #[cfg(feature = "VZUSBController")]
         #[method_id(@__retain_semantics Other usbController)]

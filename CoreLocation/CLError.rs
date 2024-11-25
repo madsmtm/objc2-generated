@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -41,5 +42,6 @@ unsafe impl RefEncode for CLError {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/kclerroruserinfoalternateregionkey?language=objc)
     pub static kCLErrorUserInfoAlternateRegionKey: &'static NSString;
 }

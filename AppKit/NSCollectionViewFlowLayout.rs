@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewscrolldirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -25,18 +26,21 @@ unsafe impl RefEncode for NSCollectionViewScrollDirection {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionelementkindsectionheader?language=objc)
     #[cfg(feature = "NSCollectionView")]
     pub static NSCollectionElementKindSectionHeader:
         &'static NSCollectionViewSupplementaryElementKind;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionelementkindsectionfooter?language=objc)
     #[cfg(feature = "NSCollectionView")]
     pub static NSCollectionElementKindSectionFooter:
         &'static NSCollectionViewSupplementaryElementKind;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewflowlayoutinvalidationcontext?language=objc)
     #[unsafe(super(NSCollectionViewLayoutInvalidationContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCollectionViewLayout")]
@@ -82,6 +86,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewdelegateflowlayout?language=objc)
     #[cfg(feature = "NSCollectionView")]
     pub unsafe trait NSCollectionViewDelegateFlowLayout:
         NSCollectionViewDelegate + MainThreadOnly
@@ -176,6 +181,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout?language=objc)
     #[unsafe(super(NSCollectionViewLayout, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCollectionViewLayout")]

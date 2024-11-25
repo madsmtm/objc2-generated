@@ -11,6 +11,7 @@ use objc2_photos::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phcontenteditingcontroller?language=objc)
     pub unsafe trait PHContentEditingController: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-photos")]
         #[cfg(not(target_os = "watchos"))]

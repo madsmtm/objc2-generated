@@ -8,6 +8,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webnavigationtype?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -43,26 +44,32 @@ unsafe impl RefEncode for WebNavigationType {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webactionnavigationtypekey?language=objc)
     pub static WebActionNavigationTypeKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webactionelementkey?language=objc)
     pub static WebActionElementKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webactionbuttonkey?language=objc)
     pub static WebActionButtonKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webactionmodifierflagskey?language=objc)
     pub static WebActionModifierFlagsKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webactionoriginalurlkey?language=objc)
     pub static WebActionOriginalURLKey: Option<&'static NSString>;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webpolicydecisionlistener?language=objc)
     #[deprecated]
     pub unsafe trait WebPolicyDecisionListener: NSObjectProtocol {
         #[deprecated]
@@ -82,6 +89,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webpolicydelegate?language=objc)
     #[deprecated]
     pub unsafe trait WebPolicyDelegate: NSObjectProtocol {
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]

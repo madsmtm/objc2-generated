@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengeeventhandlerdelegate?language=objc)
     #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
     pub unsafe trait GKChallengeEventHandlerDelegate: NSObjectProtocol {
         #[cfg(feature = "GKChallenge")]
@@ -63,6 +64,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengeeventhandler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]

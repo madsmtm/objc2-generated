@@ -5,9 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchrequestexpressiontype?language=objc)
 pub static NSFetchRequestExpressionType: NSExpressionType = NSExpressionType(50);
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchrequestexpression?language=objc)
     #[unsafe(super(NSExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFetchRequestExpression;

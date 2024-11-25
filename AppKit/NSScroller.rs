@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsusablescrollerparts?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -24,6 +25,7 @@ unsafe impl RefEncode for NSUsableScrollerParts {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollerpart?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -48,6 +50,7 @@ unsafe impl RefEncode for NSScrollerPart {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollerstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -67,6 +70,7 @@ unsafe impl RefEncode for NSScrollerStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollerknobstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -89,6 +93,7 @@ unsafe impl RefEncode for NSScrollerKnobStyle {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller?language=objc)
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
@@ -253,9 +258,11 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspreferredscrollerstyledidchangenotification?language=objc)
     pub static NSPreferredScrollerStyleDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollarrowposition?language=objc)
 // NS_ENUM
 #[deprecated = "Scroller arrows are not used anymore."]
 #[repr(transparent)]
@@ -276,6 +283,7 @@ unsafe impl RefEncode for NSScrollArrowPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollerarrow?language=objc)
 // NS_ENUM
 #[deprecated = "Scroller arrows are not used anymore."]
 #[repr(transparent)]

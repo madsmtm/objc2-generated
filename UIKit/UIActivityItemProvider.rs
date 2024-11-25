@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsource?language=objc)
     pub unsafe trait UIActivityItemSource: NSObjectProtocol {
         #[cfg(all(
             feature = "UIActivityViewController",
@@ -80,6 +81,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemprovider?language=objc)
     #[unsafe(super(NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIActivityItemProvider;

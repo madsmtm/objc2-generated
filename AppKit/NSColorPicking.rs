@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpickingdefault?language=objc)
     pub unsafe trait NSColorPickingDefault: MainThreadOnly {
         #[cfg(all(
             feature = "NSColorPanel",
@@ -66,6 +67,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpickingcustom?language=objc)
     pub unsafe trait NSColorPickingCustom: NSColorPickingDefault + MainThreadOnly {
         #[cfg(feature = "NSColorPanel")]
         #[method(supportsMode:)]

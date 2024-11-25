@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistoryboardviewcontrollercreator?language=objc)
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIViewController",
@@ -14,6 +15,7 @@ pub type UIStoryboardViewControllerCreator =
     *mut block2::Block<dyn Fn(NonNull<NSCoder>) -> *mut UIViewController>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistoryboard?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

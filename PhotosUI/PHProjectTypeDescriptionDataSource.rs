@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttypedescriptiondatasource?language=objc)
     pub unsafe trait PHProjectTypeDescriptionDataSource: NSObjectProtocol {
         #[cfg(all(feature = "PHProjectTypeDescription", feature = "PhotosUITypes"))]
         #[method_id(@__retain_semantics Other subtypesForProjectType:)]
@@ -37,6 +38,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttypedescriptioninvalidator?language=objc)
     pub unsafe trait PHProjectTypeDescriptionInvalidator: NSObjectProtocol {
         #[cfg(feature = "PhotosUITypes")]
         #[method(invalidateTypeDescriptionForProjectType:)]

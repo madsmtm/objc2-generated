@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gknotificationbanner?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use UNNotificationRequest or provide custom UI instead. This method will become a no-op in a future version of GameKit."]

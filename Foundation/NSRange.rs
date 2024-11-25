@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrangepointer?language=objc)
 pub type NSRangePointer = *mut NSRange;
 
 // TODO: pub fn NSMakeRange(loc: NSUInteger,len: NSUInteger,) -> NSRange;

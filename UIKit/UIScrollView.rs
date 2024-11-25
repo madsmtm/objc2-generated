@@ -8,6 +8,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewindicatorstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,6 +30,7 @@ unsafe impl RefEncode for UIScrollViewIndicatorStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewkeyboarddismissmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -54,6 +56,7 @@ unsafe impl RefEncode for UIScrollViewKeyboardDismissMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewindexdisplaymode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -73,6 +76,7 @@ unsafe impl RefEncode for UIScrollViewIndexDisplayMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewcontentinsetadjustmentbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -92,18 +96,22 @@ unsafe impl RefEncode for UIScrollViewContentInsetAdjustmentBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewdecelerationrate?language=objc)
 // NS_TYPED_ENUM
 pub type UIScrollViewDecelerationRate = CGFloat;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewdecelerationratenormal?language=objc)
     pub static UIScrollViewDecelerationRateNormal: UIScrollViewDecelerationRate;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewdecelerationratefast?language=objc)
     pub static UIScrollViewDecelerationRateFast: UIScrollViewDecelerationRate;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview?language=objc)
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -533,6 +541,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewdelegate?language=objc)
     pub unsafe trait UIScrollViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]

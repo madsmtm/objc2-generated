@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerauthorizationstatus?language=objc)
 // NS_ENUM
 #[deprecated = "Use CBManagerAuthorization instead"]
 #[repr(transparent)]
@@ -33,6 +34,7 @@ unsafe impl RefEncode for CBPeripheralManagerAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerstate?language=objc)
 // NS_ENUM
 #[deprecated = "Use CBManagerState instead"]
 #[repr(transparent)]
@@ -73,6 +75,7 @@ unsafe impl RefEncode for CBPeripheralManagerState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerconnectionlatency?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -95,6 +98,7 @@ unsafe impl RefEncode for CBPeripheralManagerConnectionLatency {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager?language=objc)
     #[unsafe(super(CBManager, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBManager")]
@@ -198,6 +202,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerdelegate?language=objc)
     pub unsafe trait CBPeripheralManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "CBManager")]
         #[method(peripheralManagerDidUpdateState:)]

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdictionarycontrollerkeyvaluepair?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDictionaryControllerKeyValuePair;
@@ -50,6 +51,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdictionarycontroller?language=objc)
     #[unsafe(super(NSArrayController, NSObjectController, NSController, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

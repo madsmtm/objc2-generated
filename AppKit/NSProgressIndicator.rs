@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicatorstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -25,6 +26,7 @@ unsafe impl RefEncode for NSProgressIndicatorStyle {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicator?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -187,6 +189,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicatorthickness?language=objc)
 // NS_ENUM
 #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
 #[repr(transparent)]
@@ -211,9 +214,11 @@ unsafe impl RefEncode for NSProgressIndicatorThickness {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicatorbarstyle?language=objc)
 pub static NSProgressIndicatorBarStyle: NSProgressIndicatorStyle =
     NSProgressIndicatorStyle(NSProgressIndicatorStyle::Bar.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicatorspinningstyle?language=objc)
 pub static NSProgressIndicatorSpinningStyle: NSProgressIndicatorStyle =
     NSProgressIndicatorStyle(NSProgressIndicatorStyle::Spinning.0);
 

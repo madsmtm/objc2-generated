@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmrecordedaccelerometerdata?language=objc)
     #[unsafe(super(CMAccelerometerData, CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CMAccelerometer", feature = "CMLogItem"))]

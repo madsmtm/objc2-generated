@@ -8,6 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cklocationsortdescriptor?language=objc)
     #[unsafe(super(NSSortDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKLocationSortDescriptor;

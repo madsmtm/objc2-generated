@@ -8,6 +8,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationbarnstoolbarsection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -32,6 +33,7 @@ unsafe impl RefEncode for UINavigationBarNSToolbarSection {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationbar?language=objc)
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -366,6 +368,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationbardelegate?language=objc)
     #[cfg(feature = "UIBarCommon")]
     pub unsafe trait UINavigationBarDelegate:
         UIBarPositioningDelegate + MainThreadOnly

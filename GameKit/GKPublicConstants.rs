@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksenddatamode?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -25,6 +26,7 @@ unsafe impl RefEncode for GKSendDataMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionmode?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -50,6 +52,7 @@ unsafe impl RefEncode for GKSessionMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkpeerconnectionstate?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -79,9 +82,11 @@ unsafe impl RefEncode for GKPeerConnectionState {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerrordomain?language=objc)
     pub static GKVoiceChatServiceErrorDomain: Option<&'static NSString>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

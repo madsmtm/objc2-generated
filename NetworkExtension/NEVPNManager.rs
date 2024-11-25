@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -33,14 +34,17 @@ unsafe impl RefEncode for NEVPNError {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerrordomain?language=objc)
     pub static NEVPNErrorDomain: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconfigurationchangenotification?language=objc)
     pub static NEVPNConfigurationChangeNotification: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEVPNManager;

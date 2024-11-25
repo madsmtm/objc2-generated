@@ -5,43 +5,52 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsourcetype?language=objc)
 // NS_TYPED_ENUM
 pub type HKVerifiableClinicalRecordSourceType = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsourcetypesmarthealthcard?language=objc)
     pub static HKVerifiableClinicalRecordSourceTypeSMARTHealthCard:
         &'static HKVerifiableClinicalRecordSourceType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsourcetypeeudigitalcovidcertificate?language=objc)
     pub static HKVerifiableClinicalRecordSourceTypeEUDigitalCOVIDCertificate:
         &'static HKVerifiableClinicalRecordSourceType;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtype?language=objc)
 // NS_TYPED_ENUM
 pub type HKVerifiableClinicalRecordCredentialType = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtypecovid19?language=objc)
     pub static HKVerifiableClinicalRecordCredentialTypeCOVID19:
         &'static HKVerifiableClinicalRecordCredentialType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtypeimmunization?language=objc)
     pub static HKVerifiableClinicalRecordCredentialTypeImmunization:
         &'static HKVerifiableClinicalRecordCredentialType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtypelaboratory?language=objc)
     pub static HKVerifiableClinicalRecordCredentialTypeLaboratory:
         &'static HKVerifiableClinicalRecordCredentialType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtyperecovery?language=objc)
     pub static HKVerifiableClinicalRecordCredentialTypeRecovery:
         &'static HKVerifiableClinicalRecordCredentialType;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord?language=objc)
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]

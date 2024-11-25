@@ -4,8 +4,10 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/unichar?language=objc)
 pub type unichar = c_ushort;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringcompareoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -32,32 +34,57 @@ unsafe impl RefEncode for NSStringCompareOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencoding?language=objc)
 pub type NSStringEncoding = NSUInteger;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsasciistringencoding?language=objc)
 pub const NSASCIIStringEncoding: NSStringEncoding = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnextstepstringencoding?language=objc)
 pub const NSNEXTSTEPStringEncoding: NSStringEncoding = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsjapaneseeucstringencoding?language=objc)
 pub const NSJapaneseEUCStringEncoding: NSStringEncoding = 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf8stringencoding?language=objc)
 pub const NSUTF8StringEncoding: NSStringEncoding = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisolatin1stringencoding?language=objc)
 pub const NSISOLatin1StringEncoding: NSStringEncoding = 5;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssymbolstringencoding?language=objc)
 pub const NSSymbolStringEncoding: NSStringEncoding = 6;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnonlossyasciistringencoding?language=objc)
 pub const NSNonLossyASCIIStringEncoding: NSStringEncoding = 7;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsshiftjisstringencoding?language=objc)
 pub const NSShiftJISStringEncoding: NSStringEncoding = 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisolatin2stringencoding?language=objc)
 pub const NSISOLatin2StringEncoding: NSStringEncoding = 9;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunicodestringencoding?language=objc)
 pub const NSUnicodeStringEncoding: NSStringEncoding = 10;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1251stringencoding?language=objc)
 pub const NSWindowsCP1251StringEncoding: NSStringEncoding = 11;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1252stringencoding?language=objc)
 pub const NSWindowsCP1252StringEncoding: NSStringEncoding = 12;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1253stringencoding?language=objc)
 pub const NSWindowsCP1253StringEncoding: NSStringEncoding = 13;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1254stringencoding?language=objc)
 pub const NSWindowsCP1254StringEncoding: NSStringEncoding = 14;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1250stringencoding?language=objc)
 pub const NSWindowsCP1250StringEncoding: NSStringEncoding = 15;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsiso2022jpstringencoding?language=objc)
 pub const NSISO2022JPStringEncoding: NSStringEncoding = 21;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmacosromanstringencoding?language=objc)
 pub const NSMacOSRomanStringEncoding: NSStringEncoding = 30;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf16stringencoding?language=objc)
 pub const NSUTF16StringEncoding: NSStringEncoding = NSUnicodeStringEncoding;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf16bigendianstringencoding?language=objc)
 pub const NSUTF16BigEndianStringEncoding: NSStringEncoding = 0x90000100;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf16littleendianstringencoding?language=objc)
 pub const NSUTF16LittleEndianStringEncoding: NSStringEncoding = 0x94000100;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf32stringencoding?language=objc)
 pub const NSUTF32StringEncoding: NSStringEncoding = 0x8c000100;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf32bigendianstringencoding?language=objc)
 pub const NSUTF32BigEndianStringEncoding: NSStringEncoding = 0x98000100;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf32littleendianstringencoding?language=objc)
 pub const NSUTF32LittleEndianStringEncoding: NSStringEncoding = 0x9c000100;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingconversionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -78,6 +105,7 @@ unsafe impl RefEncode for NSStringEncodingConversionOptions {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSString;
@@ -142,6 +170,7 @@ impl DefaultRetained for NSString {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -169,70 +198,87 @@ unsafe impl RefEncode for NSStringEnumerationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransform?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSStringTransform = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintokatakana?language=objc)
     pub static NSStringTransformLatinToKatakana: &'static NSStringTransform;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintohiragana?language=objc)
     pub static NSStringTransformLatinToHiragana: &'static NSStringTransform;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintohangul?language=objc)
     pub static NSStringTransformLatinToHangul: &'static NSStringTransform;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintoarabic?language=objc)
     pub static NSStringTransformLatinToArabic: &'static NSStringTransform;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintohebrew?language=objc)
     pub static NSStringTransformLatinToHebrew: &'static NSStringTransform;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintothai?language=objc)
     pub static NSStringTransformLatinToThai: &'static NSStringTransform;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintocyrillic?language=objc)
     pub static NSStringTransformLatinToCyrillic: &'static NSStringTransform;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintogreek?language=objc)
     pub static NSStringTransformLatinToGreek: &'static NSStringTransform;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformtolatin?language=objc)
     pub static NSStringTransformToLatin: &'static NSStringTransform;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformmandarintolatin?language=objc)
     pub static NSStringTransformMandarinToLatin: &'static NSStringTransform;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformhiraganatokatakana?language=objc)
     pub static NSStringTransformHiraganaToKatakana: &'static NSStringTransform;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformfullwidthtohalfwidth?language=objc)
     pub static NSStringTransformFullwidthToHalfwidth: &'static NSStringTransform;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformtoxmlhex?language=objc)
     pub static NSStringTransformToXMLHex: &'static NSStringTransform;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformtounicodename?language=objc)
     pub static NSStringTransformToUnicodeName: &'static NSStringTransform;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformstripcombiningmarks?language=objc)
     pub static NSStringTransformStripCombiningMarks: &'static NSStringTransform;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformstripdiacritics?language=objc)
     pub static NSStringTransformStripDiacritics: &'static NSStringTransform;
 }
 
@@ -995,39 +1041,47 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionoptionskey?language=objc)
 // NS_TYPED_ENUM
 pub type NSStringEncodingDetectionOptionsKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionsuggestedencodingskey?language=objc)
     pub static NSStringEncodingDetectionSuggestedEncodingsKey:
         &'static NSStringEncodingDetectionOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectiondisallowedencodingskey?language=objc)
     pub static NSStringEncodingDetectionDisallowedEncodingsKey:
         &'static NSStringEncodingDetectionOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionuseonlysuggestedencodingskey?language=objc)
     pub static NSStringEncodingDetectionUseOnlySuggestedEncodingsKey:
         &'static NSStringEncodingDetectionOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionallowlossykey?language=objc)
     pub static NSStringEncodingDetectionAllowLossyKey: &'static NSStringEncodingDetectionOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionfromwindowskey?language=objc)
     pub static NSStringEncodingDetectionFromWindowsKey:
         &'static NSStringEncodingDetectionOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionlossysubstitutionkey?language=objc)
     pub static NSStringEncodingDetectionLossySubstitutionKey:
         &'static NSStringEncodingDetectionOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionlikelylanguagekey?language=objc)
     pub static NSStringEncodingDetectionLikelyLanguageKey:
         &'static NSStringEncodingDetectionOptionsKey;
 }
@@ -1058,6 +1112,7 @@ unsafe impl NSItemProviderReading for NSString {}
 unsafe impl NSItemProviderWriting for NSString {}
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutablestring?language=objc)
     #[unsafe(super(NSString, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableString;
@@ -1177,11 +1232,13 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscharacterconversionexception?language=objc)
     #[cfg(feature = "NSObjCRuntime")]
     pub static NSCharacterConversionException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsparseerrorexception?language=objc)
     #[cfg(feature = "NSObjCRuntime")]
     pub static NSParseErrorException: &'static NSExceptionName;
 }
@@ -1356,6 +1413,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssimplecstring?language=objc)
     #[unsafe(super(NSString, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSimpleCString;
@@ -1397,6 +1455,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconstantstring?language=objc)
     #[unsafe(super(NSSimpleCString, NSString, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSConstantString;

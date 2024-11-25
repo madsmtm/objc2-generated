@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutroute?language=objc)
     #[unsafe(super(HKSeriesSample, HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKSeriesSample"))]

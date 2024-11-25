@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagecommunication?language=objc)
     #[unsafe(super(ILCommunication, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ILCommunication")]

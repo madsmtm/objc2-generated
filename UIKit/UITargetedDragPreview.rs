@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidragpreviewtarget?language=objc)
     #[unsafe(super(UIPreviewTarget, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -59,6 +60,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitargeteddragpreview?language=objc)
     #[unsafe(super(UITargetedPreview, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

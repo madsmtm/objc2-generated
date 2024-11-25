@@ -6,14 +6,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcracingwheeldidconnectnotification?language=objc)
     pub static GCRacingWheelDidConnectNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcracingwheeldiddisconnectnotification?language=objc)
     pub static GCRacingWheelDidDisconnectNotification: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcracingwheel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCRacingWheel;

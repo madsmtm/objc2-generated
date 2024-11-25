@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontacttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -24,6 +25,7 @@ unsafe impl RefEncode for CNContactType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactsortorder?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -48,6 +50,7 @@ unsafe impl RefEncode for CNContactSortOrder {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnkeydescriptor?language=objc)
     pub unsafe trait CNKeyDescriptor: NSCopying + NSObjectProtocol + NSSecureCoding {}
 
     unsafe impl ProtocolType for dyn CNKeyDescriptor {}
@@ -56,6 +59,7 @@ extern_protocol!(
 unsafe impl CNKeyDescriptor for NSString {}
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontact?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContact;
@@ -224,125 +228,156 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactpropertynotfetchedexceptionname?language=objc)
     pub static CNContactPropertyNotFetchedExceptionName: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactidentifierkey?language=objc)
     pub static CNContactIdentifierKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactnameprefixkey?language=objc)
     pub static CNContactNamePrefixKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactgivennamekey?language=objc)
     pub static CNContactGivenNameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactmiddlenamekey?language=objc)
     pub static CNContactMiddleNameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactfamilynamekey?language=objc)
     pub static CNContactFamilyNameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactpreviousfamilynamekey?language=objc)
     pub static CNContactPreviousFamilyNameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactnamesuffixkey?language=objc)
     pub static CNContactNameSuffixKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactnicknamekey?language=objc)
     pub static CNContactNicknameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactorganizationnamekey?language=objc)
     pub static CNContactOrganizationNameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactdepartmentnamekey?language=objc)
     pub static CNContactDepartmentNameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactjobtitlekey?language=objc)
     pub static CNContactJobTitleKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactphoneticgivennamekey?language=objc)
     pub static CNContactPhoneticGivenNameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactphoneticmiddlenamekey?language=objc)
     pub static CNContactPhoneticMiddleNameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactphoneticfamilynamekey?language=objc)
     pub static CNContactPhoneticFamilyNameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactphoneticorganizationnamekey?language=objc)
     pub static CNContactPhoneticOrganizationNameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactbirthdaykey?language=objc)
     pub static CNContactBirthdayKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactnongregorianbirthdaykey?language=objc)
     pub static CNContactNonGregorianBirthdayKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactnotekey?language=objc)
     pub static CNContactNoteKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactimagedatakey?language=objc)
     pub static CNContactImageDataKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactthumbnailimagedatakey?language=objc)
     pub static CNContactThumbnailImageDataKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactimagedataavailablekey?language=objc)
     pub static CNContactImageDataAvailableKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontacttypekey?language=objc)
     pub static CNContactTypeKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactphonenumberskey?language=objc)
     pub static CNContactPhoneNumbersKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactemailaddresseskey?language=objc)
     pub static CNContactEmailAddressesKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactpostaladdresseskey?language=objc)
     pub static CNContactPostalAddressesKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactdateskey?language=objc)
     pub static CNContactDatesKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontacturladdresseskey?language=objc)
     pub static CNContactUrlAddressesKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactrelationskey?language=objc)
     pub static CNContactRelationsKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactsocialprofileskey?language=objc)
     pub static CNContactSocialProfilesKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactinstantmessageaddresseskey?language=objc)
     pub static CNContactInstantMessageAddressesKey: &'static NSString;
 }

@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpackedfloatquaternion?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLPackedFloatQuaternion {
@@ -31,6 +32,7 @@ unsafe impl RefEncode for MTLPackedFloatQuaternion {
 
 // TODO: pub fn MTLPackedFloatQuaternionMake(x: c_float,y: c_float,z: c_float,w: c_float,) -> MTLPackedFloatQuaternion;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/_mtlpackedfloat4x3?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _MTLPackedFloat4x3 {
@@ -46,8 +48,10 @@ unsafe impl RefEncode for _MTLPackedFloat4x3 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpackedfloat4x3?language=objc)
 pub type MTLPackedFloat4x3 = _MTLPackedFloat4x3;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/_mtlaxisalignedboundingbox?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _MTLAxisAlignedBoundingBox {
@@ -66,8 +70,10 @@ unsafe impl RefEncode for _MTLAxisAlignedBoundingBox {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaxisalignedboundingbox?language=objc)
 pub type MTLAxisAlignedBoundingBox = _MTLAxisAlignedBoundingBox;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomponenttransform?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLComponentTransform {

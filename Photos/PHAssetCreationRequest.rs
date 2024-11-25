@@ -9,6 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcecreationoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHAssetResourceCreationOptions;
@@ -56,6 +57,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcreationrequest?language=objc)
     #[unsafe(super(PHAssetChangeRequest, PHChangeRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]

@@ -6,9 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerrordomain?language=objc)
     pub static GKSessionErrorDomain: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

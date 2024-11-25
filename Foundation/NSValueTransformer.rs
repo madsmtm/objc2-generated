@@ -4,41 +4,49 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvaluetransformername?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSValueTransformerName = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnegatebooleantransformername?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSNegateBooleanTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisniltransformername?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIsNilTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisnotniltransformername?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIsNotNilTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunarchivefromdatatransformername?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSUnarchiveFromDataTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyedunarchivefromdatatransformername?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSKeyedUnarchiveFromDataTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssecureunarchivefromdatatransformername?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSSecureUnarchiveFromDataTransformerName: &'static NSValueTransformerName;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvaluetransformer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSValueTransformer;
@@ -97,6 +105,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssecureunarchivefromdatatransformer?language=objc)
     #[unsafe(super(NSValueTransformer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSecureUnarchiveFromDataTransformer;

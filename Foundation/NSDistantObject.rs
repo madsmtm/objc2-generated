@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistantobject?language=objc)
     #[unsafe(super(NSProxy))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSProxy")]

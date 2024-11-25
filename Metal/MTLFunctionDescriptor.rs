@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,6 +30,7 @@ unsafe impl RefEncode for MTLFunctionOptions {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiondescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionDescriptor;
@@ -107,6 +109,7 @@ impl DefaultRetained for MTLFunctionDescriptor {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctiondescriptor?language=objc)
     #[unsafe(super(MTLFunctionDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLIntersectionFunctionDescriptor;

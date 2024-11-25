@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevicebatterystate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,6 +29,7 @@ unsafe impl RefEncode for UIDeviceBatteryState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -58,6 +60,7 @@ unsafe impl RefEncode for UIUserInterfaceIdiom {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -146,6 +149,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinputviewaudiofeedback?language=objc)
     pub unsafe trait UIInputViewAudioFeedback: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(enableInputClicksWhenVisible)]
@@ -158,17 +162,21 @@ extern_protocol!(
 // TODO: pub fn UI_USER_INTERFACE_IDIOM() -> UIUserInterfaceIdiom;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientationdidchangenotification?language=objc)
     pub static UIDeviceOrientationDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevicebatterystatedidchangenotification?language=objc)
     pub static UIDeviceBatteryStateDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevicebatteryleveldidchangenotification?language=objc)
     pub static UIDeviceBatteryLevelDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceproximitystatedidchangenotification?language=objc)
     pub static UIDeviceProximityStateDidChangeNotification: &'static NSNotificationName;
 }

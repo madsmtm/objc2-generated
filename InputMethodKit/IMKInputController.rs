@@ -62,6 +62,7 @@ extern_category!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkstatesetting?language=objc)
     pub unsafe trait IMKStateSetting {
         #[method(activateServer:)]
         unsafe fn activateServer(&self, sender: Option<&AnyObject>);
@@ -98,6 +99,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkmousehandling?language=objc)
     pub unsafe trait IMKMouseHandling {
         #[method(mouseDownOnCharacterIndex:coordinate:withModifier:continueTracking:client:)]
         unsafe fn mouseDownOnCharacterIndex_coordinate_withModifier_continueTracking_client(
@@ -132,6 +134,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkinputcontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IMKInputController;

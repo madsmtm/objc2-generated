@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetector?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIDetector;
@@ -49,69 +50,86 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectortypeface?language=objc)
     pub static CIDetectorTypeFace: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectortyperectangle?language=objc)
     pub static CIDetectorTypeRectangle: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectortypeqrcode?language=objc)
     pub static CIDetectorTypeQRCode: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectortypetext?language=objc)
     pub static CIDetectorTypeText: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectoraccuracy?language=objc)
     pub static CIDetectorAccuracy: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectoraccuracylow?language=objc)
     pub static CIDetectorAccuracyLow: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectoraccuracyhigh?language=objc)
     pub static CIDetectorAccuracyHigh: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectortracking?language=objc)
     pub static CIDetectorTracking: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectorminfeaturesize?language=objc)
     pub static CIDetectorMinFeatureSize: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectormaxfeaturecount?language=objc)
     pub static CIDetectorMaxFeatureCount: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectornumberofangles?language=objc)
     pub static CIDetectorNumberOfAngles: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectorimageorientation?language=objc)
     pub static CIDetectorImageOrientation: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectoreyeblink?language=objc)
     pub static CIDetectorEyeBlink: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectorsmile?language=objc)
     pub static CIDetectorSmile: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectorfocallength?language=objc)
     pub static CIDetectorFocalLength: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectoraspectratio?language=objc)
     pub static CIDetectorAspectRatio: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectorreturnsubfeatures?language=objc)
     pub static CIDetectorReturnSubFeatures: &'static NSString;
 }

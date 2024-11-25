@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimatingstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -26,6 +27,7 @@ unsafe impl RefEncode for UIViewAnimatingState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimatingposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -48,6 +50,7 @@ unsafe impl RefEncode for UIViewAnimatingPosition {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimating?language=objc)
     pub unsafe trait UIViewAnimating: NSObjectProtocol + MainThreadOnly {
         #[method(state)]
         unsafe fn state(&self) -> UIViewAnimatingState;
@@ -87,6 +90,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewimplicitlyanimating?language=objc)
     pub unsafe trait UIViewImplicitlyAnimating: UIViewAnimating + MainThreadOnly {
         #[cfg(feature = "block2")]
         #[optional]

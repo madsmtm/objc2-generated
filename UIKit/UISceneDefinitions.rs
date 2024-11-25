@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneactivationstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,6 +29,7 @@ unsafe impl RefEncode for UISceneActivationState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecapturestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -49,13 +51,16 @@ unsafe impl RefEncode for UISceneCaptureState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesessionrole?language=objc)
 // NS_TYPED_ENUM
 pub type UISceneSessionRole = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneerrordomain?language=objc)
     pub static UISceneErrorDomain: Option<&'static NSErrorDomain>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneerrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

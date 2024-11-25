@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchrequestresulttype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -27,6 +28,7 @@ unsafe impl RefEncode for NSFetchRequestResultType {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchrequestresult?language=objc)
     pub unsafe trait NSFetchRequestResult: NSObjectProtocol {}
 
     unsafe impl ProtocolType for dyn NSFetchRequestResult {}
@@ -55,6 +57,7 @@ extern_methods!(
 unsafe impl NSFetchRequestResult for NSManagedObjectID {}
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchrequest?language=objc)
     #[unsafe(super(NSPersistentStoreRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPersistentStoreRequest")]
@@ -233,11 +236,13 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreasynchronousfetchresultcompletionblock?language=objc)
 #[cfg(all(feature = "NSPersistentStoreResult", feature = "block2"))]
 pub type NSPersistentStoreAsynchronousFetchResultCompletionBlock =
     *mut block2::Block<dyn Fn(NonNull<NSAsynchronousFetchResult>)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsasynchronousfetchrequest?language=objc)
     #[unsafe(super(NSPersistentStoreRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPersistentStoreRequest")]

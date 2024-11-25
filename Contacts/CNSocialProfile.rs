@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofile?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNSocialProfile;
@@ -66,53 +67,66 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileurlstringkey?language=objc)
     pub static CNSocialProfileURLStringKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileusernamekey?language=objc)
     pub static CNSocialProfileUsernameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileuseridentifierkey?language=objc)
     pub static CNSocialProfileUserIdentifierKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileservicekey?language=objc)
     pub static CNSocialProfileServiceKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileservicefacebook?language=objc)
     pub static CNSocialProfileServiceFacebook: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileserviceflickr?language=objc)
     pub static CNSocialProfileServiceFlickr: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileservicelinkedin?language=objc)
     pub static CNSocialProfileServiceLinkedIn: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileservicemyspace?language=objc)
     pub static CNSocialProfileServiceMySpace: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileservicesinaweibo?language=objc)
     pub static CNSocialProfileServiceSinaWeibo: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileservicetencentweibo?language=objc)
     pub static CNSocialProfileServiceTencentWeibo: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileservicetwitter?language=objc)
     pub static CNSocialProfileServiceTwitter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileserviceyelp?language=objc)
     pub static CNSocialProfileServiceYelp: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileservicegamecenter?language=objc)
     pub static CNSocialProfileServiceGameCenter: &'static NSString;
 }

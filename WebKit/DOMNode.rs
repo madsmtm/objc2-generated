@@ -5,44 +5,63 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_element_node?language=objc)
 #[deprecated]
 pub const DOM_ELEMENT_NODE: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_attribute_node?language=objc)
 #[deprecated]
 pub const DOM_ATTRIBUTE_NODE: c_uint = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_text_node?language=objc)
 #[deprecated]
 pub const DOM_TEXT_NODE: c_uint = 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_cdata_section_node?language=objc)
 #[deprecated]
 pub const DOM_CDATA_SECTION_NODE: c_uint = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_entity_reference_node?language=objc)
 #[deprecated]
 pub const DOM_ENTITY_REFERENCE_NODE: c_uint = 5;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_entity_node?language=objc)
 #[deprecated]
 pub const DOM_ENTITY_NODE: c_uint = 6;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_processing_instruction_node?language=objc)
 #[deprecated]
 pub const DOM_PROCESSING_INSTRUCTION_NODE: c_uint = 7;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_comment_node?language=objc)
 #[deprecated]
 pub const DOM_COMMENT_NODE: c_uint = 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_document_node?language=objc)
 #[deprecated]
 pub const DOM_DOCUMENT_NODE: c_uint = 9;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_document_type_node?language=objc)
 #[deprecated]
 pub const DOM_DOCUMENT_TYPE_NODE: c_uint = 10;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_document_fragment_node?language=objc)
 #[deprecated]
 pub const DOM_DOCUMENT_FRAGMENT_NODE: c_uint = 11;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_notation_node?language=objc)
 #[deprecated]
 pub const DOM_NOTATION_NODE: c_uint = 12;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_document_position_disconnected?language=objc)
 #[deprecated]
 pub const DOM_DOCUMENT_POSITION_DISCONNECTED: c_uint = 0x01;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_document_position_preceding?language=objc)
 #[deprecated]
 pub const DOM_DOCUMENT_POSITION_PRECEDING: c_uint = 0x02;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_document_position_following?language=objc)
 #[deprecated]
 pub const DOM_DOCUMENT_POSITION_FOLLOWING: c_uint = 0x04;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_document_position_contains?language=objc)
 #[deprecated]
 pub const DOM_DOCUMENT_POSITION_CONTAINS: c_uint = 0x08;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_document_position_contained_by?language=objc)
 #[deprecated]
 pub const DOM_DOCUMENT_POSITION_CONTAINED_BY: c_uint = 0x10;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_document_position_implementation_specific?language=objc)
 #[deprecated]
 pub const DOM_DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC: c_uint = 0x20;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domnode?language=objc)
     #[unsafe(super(DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]

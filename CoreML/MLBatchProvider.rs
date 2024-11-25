@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlbatchprovider?language=objc)
     pub unsafe trait MLBatchProvider {
         #[method(count)]
         unsafe fn count(&self) -> NSInteger;

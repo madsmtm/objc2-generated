@@ -9,6 +9,7 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssavepanel?language=objc)
     #[unsafe(super(NSPanel, NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
@@ -315,6 +316,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopensavepaneldelegate?language=objc)
     pub unsafe trait NSOpenSavePanelDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(panel:shouldEnableURL:)]

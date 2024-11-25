@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "No longer supported"]
@@ -47,6 +48,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skrequestdelegate?language=objc)
     #[deprecated = "No longer supported"]
     pub unsafe trait SKRequestDelegate: NSObjectProtocol {
         #[deprecated = "No longer supported"]

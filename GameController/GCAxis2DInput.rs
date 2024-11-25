@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcaxis2dinput?language=objc)
     pub unsafe trait GCAxis2DInput: NSObjectProtocol {
         #[cfg(all(
             feature = "GCPhysicalInputElement",

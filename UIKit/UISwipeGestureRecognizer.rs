@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswipegesturerecognizerdirection?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -31,6 +32,7 @@ unsafe impl RefEncode for UISwipeGestureRecognizerDirection {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswipegesturerecognizer?language=objc)
     #[unsafe(super(UIGestureRecognizer, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

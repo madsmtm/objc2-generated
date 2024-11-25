@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosocketlistener?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtioSocketListener;
@@ -40,6 +41,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosocketlistenerdelegate?language=objc)
     pub unsafe trait VZVirtioSocketListenerDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "VZSocketDevice",

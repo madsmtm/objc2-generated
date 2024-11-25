@@ -9,62 +9,77 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementdomnodekey?language=objc)
     pub static WebElementDOMNodeKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementframekey?language=objc)
     pub static WebElementFrameKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementimagealtstringkey?language=objc)
     pub static WebElementImageAltStringKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementimagekey?language=objc)
     pub static WebElementImageKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementimagerectkey?language=objc)
     pub static WebElementImageRectKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementimageurlkey?language=objc)
     pub static WebElementImageURLKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementisselectedkey?language=objc)
     pub static WebElementIsSelectedKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementlinkurlkey?language=objc)
     pub static WebElementLinkURLKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementlinktargetframekey?language=objc)
     pub static WebElementLinkTargetFrameKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementlinktitlekey?language=objc)
     pub static WebElementLinkTitleKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementlinklabelkey?language=objc)
     pub static WebElementLinkLabelKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewprogressstartednotification?language=objc)
     pub static WebViewProgressStartedNotification: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewprogressestimatechangednotification?language=objc)
     pub static WebViewProgressEstimateChangedNotification: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewprogressfinishednotification?language=objc)
     pub static WebViewProgressFinishedNotification: Option<&'static NSString>;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -592,22 +607,27 @@ extern_methods!(
 unsafe impl NSUserInterfaceValidations for WebView {}
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewdidbegineditingnotification?language=objc)
     pub static WebViewDidBeginEditingNotification: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewdidchangenotification?language=objc)
     pub static WebViewDidChangeNotification: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewdidendeditingnotification?language=objc)
     pub static WebViewDidEndEditingNotification: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewdidchangetypingstylenotification?language=objc)
     pub static WebViewDidChangeTypingStyleNotification: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewdidchangeselectionnotification?language=objc)
     pub static WebViewDidChangeSelectionNotification: Option<&'static NSString>;
 }
 

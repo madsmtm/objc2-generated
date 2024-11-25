@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcbuttonelement?language=objc)
     #[cfg(feature = "GCPhysicalInputElement")]
     pub unsafe trait GCButtonElement: GCPhysicalInputElement {
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]

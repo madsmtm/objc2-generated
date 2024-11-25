@@ -8,6 +8,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -52,162 +53,202 @@ unsafe impl RefEncode for MPMediaType {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertypersistentid?language=objc)
     pub static MPMediaItemPropertyPersistentID: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertymediatype?language=objc)
     pub static MPMediaItemPropertyMediaType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertytitle?language=objc)
     pub static MPMediaItemPropertyTitle: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyalbumtitle?language=objc)
     pub static MPMediaItemPropertyAlbumTitle: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyalbumpersistentid?language=objc)
     pub static MPMediaItemPropertyAlbumPersistentID: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyartist?language=objc)
     pub static MPMediaItemPropertyArtist: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyartistpersistentid?language=objc)
     pub static MPMediaItemPropertyArtistPersistentID: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyalbumartist?language=objc)
     pub static MPMediaItemPropertyAlbumArtist: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyalbumartistpersistentid?language=objc)
     pub static MPMediaItemPropertyAlbumArtistPersistentID: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertygenre?language=objc)
     pub static MPMediaItemPropertyGenre: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertygenrepersistentid?language=objc)
     pub static MPMediaItemPropertyGenrePersistentID: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertycomposer?language=objc)
     pub static MPMediaItemPropertyComposer: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertycomposerpersistentid?language=objc)
     pub static MPMediaItemPropertyComposerPersistentID: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyplaybackduration?language=objc)
     pub static MPMediaItemPropertyPlaybackDuration: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyalbumtracknumber?language=objc)
     pub static MPMediaItemPropertyAlbumTrackNumber: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyalbumtrackcount?language=objc)
     pub static MPMediaItemPropertyAlbumTrackCount: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertydiscnumber?language=objc)
     pub static MPMediaItemPropertyDiscNumber: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertydisccount?language=objc)
     pub static MPMediaItemPropertyDiscCount: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyartwork?language=objc)
     pub static MPMediaItemPropertyArtwork: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyisexplicit?language=objc)
     pub static MPMediaItemPropertyIsExplicit: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertylyrics?language=objc)
     pub static MPMediaItemPropertyLyrics: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyiscompilation?language=objc)
     pub static MPMediaItemPropertyIsCompilation: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyreleasedate?language=objc)
     pub static MPMediaItemPropertyReleaseDate: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertybeatsperminute?language=objc)
     pub static MPMediaItemPropertyBeatsPerMinute: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertycomments?language=objc)
     pub static MPMediaItemPropertyComments: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyasseturl?language=objc)
     pub static MPMediaItemPropertyAssetURL: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyisclouditem?language=objc)
     pub static MPMediaItemPropertyIsCloudItem: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyhasprotectedasset?language=objc)
     pub static MPMediaItemPropertyHasProtectedAsset: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertypodcasttitle?language=objc)
     pub static MPMediaItemPropertyPodcastTitle: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertypodcastpersistentid?language=objc)
     pub static MPMediaItemPropertyPodcastPersistentID: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyplaycount?language=objc)
     pub static MPMediaItemPropertyPlayCount: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyskipcount?language=objc)
     pub static MPMediaItemPropertySkipCount: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyrating?language=objc)
     pub static MPMediaItemPropertyRating: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertylastplayeddate?language=objc)
     pub static MPMediaItemPropertyLastPlayedDate: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyusergrouping?language=objc)
     pub static MPMediaItemPropertyUserGrouping: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertybookmarktime?language=objc)
     pub static MPMediaItemPropertyBookmarkTime: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertydateadded?language=objc)
     pub static MPMediaItemPropertyDateAdded: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyplaybackstoreid?language=objc)
     pub static MPMediaItemPropertyPlaybackStoreID: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyispreorder?language=objc)
     pub static MPMediaItemPropertyIsPreorder: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitem?language=objc)
     #[unsafe(super(MPMediaEntity, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPMediaEntity")]
@@ -358,6 +399,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMediaItemArtwork;

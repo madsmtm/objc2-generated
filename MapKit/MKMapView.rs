@@ -10,6 +10,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkoverlaylevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,6 +30,7 @@ unsafe impl RefEncode for MKOverlayLevel {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkusertrackingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -51,14 +53,17 @@ unsafe impl RefEncode for MKUserTrackingMode {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapviewdefaultannotationviewreuseidentifier?language=objc)
     pub static MKMapViewDefaultAnnotationViewReuseIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapviewdefaultclusterannotationviewreuseidentifier?language=objc)
     pub static MKMapViewDefaultClusterAnnotationViewReuseIdentifier: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -642,6 +647,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapviewdelegate?language=objc)
     pub unsafe trait MKMapViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

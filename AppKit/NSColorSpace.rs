@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacemodel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -37,6 +38,7 @@ unsafe impl RefEncode for NSColorSpaceModel {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSColorSpace;
@@ -135,22 +137,30 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunknowncolorspacemodel?language=objc)
 pub static NSUnknownColorSpaceModel: NSColorSpaceModel =
     NSColorSpaceModel(NSColorSpaceModel::Unknown.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraycolorspacemodel?language=objc)
 pub static NSGrayColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::Gray.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrgbcolorspacemodel?language=objc)
 pub static NSRGBColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::RGB.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscmykcolorspacemodel?language=objc)
 pub static NSCMYKColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::CMYK.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslabcolorspacemodel?language=objc)
 pub static NSLABColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::LAB.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicencolorspacemodel?language=objc)
 pub static NSDeviceNColorSpaceModel: NSColorSpaceModel =
     NSColorSpaceModel(NSColorSpaceModel::DeviceN.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsindexedcolorspacemodel?language=objc)
 pub static NSIndexedColorSpaceModel: NSColorSpaceModel =
     NSColorSpaceModel(NSColorSpaceModel::Indexed.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspatterncolorspacemodel?language=objc)
 pub static NSPatternColorSpaceModel: NSColorSpaceModel =
     NSColorSpaceModel(NSColorSpaceModel::Patterned.0);

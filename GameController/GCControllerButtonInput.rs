@@ -4,15 +4,18 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttonvaluechangedhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerButtonValueChangedHandler =
     *mut block2::Block<dyn Fn(NonNull<GCControllerButtonInput>, c_float, Bool)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttontouchedchangedhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerButtonTouchedChangedHandler =
     *mut block2::Block<dyn Fn(NonNull<GCControllerButtonInput>, c_float, Bool, Bool)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput?language=objc)
     #[unsafe(super(GCControllerElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCControllerElement")]

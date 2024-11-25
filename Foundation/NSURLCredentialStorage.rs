@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredentialstorage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLCredentialStorage;
@@ -182,11 +183,13 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredentialstoragechangednotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSURLCredentialStorageChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredentialstorageremovesynchronizablecredentials?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLCredentialStorageRemoveSynchronizableCredentials: &'static NSString;
 }

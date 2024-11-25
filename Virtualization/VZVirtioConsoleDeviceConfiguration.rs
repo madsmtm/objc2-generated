@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledeviceconfiguration?language=objc)
     #[unsafe(super(VZConsoleDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZConsoleDeviceConfiguration")]

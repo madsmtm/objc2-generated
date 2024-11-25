@@ -8,6 +8,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimationcurve?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -31,6 +32,7 @@ unsafe impl RefEncode for UIViewAnimationCurve {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontentmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -72,6 +74,7 @@ unsafe impl RefEncode for UIViewContentMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimationtransition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -97,6 +100,7 @@ unsafe impl RefEncode for UIViewAnimationTransition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewautoresizing?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -128,6 +132,7 @@ unsafe impl RefEncode for UIViewAutoresizing {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -170,6 +175,7 @@ unsafe impl RefEncode for UIViewAnimationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewkeyframeanimationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -199,6 +205,7 @@ unsafe impl RefEncode for UIViewKeyframeAnimationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisystemanimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -216,6 +223,7 @@ unsafe impl RefEncode for UISystemAnimation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewtintadjustmentmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -237,6 +245,7 @@ unsafe impl RefEncode for UIViewTintAdjustmentMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisemanticcontentattribute?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -263,6 +272,7 @@ unsafe impl RefEncode for UISemanticContentAttribute {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicoordinatespace?language=objc)
     pub unsafe trait UICoordinateSpace: NSObjectProtocol + MainThreadOnly {
         #[method(convertPoint:toCoordinateSpace:)]
         fn convertPoint_toCoordinateSpace(
@@ -300,6 +310,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview?language=objc)
     #[unsafe(super(UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -990,6 +1001,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutconstraintaxis?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1072,6 +1084,7 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewnointrinsicmetric?language=objc)
     pub static UIViewNoIntrinsicMetric: CGFloat;
 }
 
@@ -1138,10 +1151,12 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutfittingcompressedsize?language=objc)
     pub static UILayoutFittingCompressedSize: CGSize;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutfittingexpandedsize?language=objc)
     pub static UILayoutFittingExpandedSize: CGSize;
 }
 

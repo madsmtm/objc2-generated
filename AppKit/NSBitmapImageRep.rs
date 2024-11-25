@@ -8,6 +8,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstiffcompression?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -39,6 +40,7 @@ unsafe impl RefEncode for NSTIFFCompression {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagefiletype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -66,6 +68,7 @@ unsafe impl RefEncode for NSBitmapImageFileType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagereploadstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -93,6 +96,7 @@ unsafe impl RefEncode for NSImageRepLoadStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapformat?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -124,70 +128,87 @@ unsafe impl RefEncode for NSBitmapFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagereppropertykey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSBitmapImageRepPropertyKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagecompressionmethod?language=objc)
     pub static NSImageCompressionMethod: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagecompressionfactor?language=objc)
     pub static NSImageCompressionFactor: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagedithertransparency?language=objc)
     pub static NSImageDitherTransparency: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagergbcolortable?language=objc)
     pub static NSImageRGBColorTable: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageinterlaced?language=objc)
     pub static NSImageInterlaced: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagecolorsyncprofiledata?language=objc)
     pub static NSImageColorSyncProfileData: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageframecount?language=objc)
     pub static NSImageFrameCount: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagecurrentframe?language=objc)
     pub static NSImageCurrentFrame: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagecurrentframeduration?language=objc)
     pub static NSImageCurrentFrameDuration: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageloopcount?language=objc)
     pub static NSImageLoopCount: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagegamma?language=objc)
     pub static NSImageGamma: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageprogressive?language=objc)
     pub static NSImageProgressive: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageexifdata?language=objc)
     pub static NSImageEXIFData: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageiptcdata?language=objc)
     pub static NSImageIPTCData: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagefallbackbackgroundcolor?language=objc)
     pub static NSImageFallbackBackgroundColor: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep?language=objc)
     #[unsafe(super(NSImageRep, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSImageRep")]
@@ -453,40 +474,53 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstifffiletype?language=objc)
 pub static NSTIFFFileType: NSBitmapImageFileType =
     NSBitmapImageFileType(NSBitmapImageFileType::TIFF.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbmpfiletype?language=objc)
 pub static NSBMPFileType: NSBitmapImageFileType =
     NSBitmapImageFileType(NSBitmapImageFileType::BMP.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgiffiletype?language=objc)
 pub static NSGIFFileType: NSBitmapImageFileType =
     NSBitmapImageFileType(NSBitmapImageFileType::GIF.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsjpegfiletype?language=objc)
 pub static NSJPEGFileType: NSBitmapImageFileType =
     NSBitmapImageFileType(NSBitmapImageFileType::JPEG.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspngfiletype?language=objc)
 pub static NSPNGFileType: NSBitmapImageFileType =
     NSBitmapImageFileType(NSBitmapImageFileType::PNG.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsjpeg2000filetype?language=objc)
 pub static NSJPEG2000FileType: NSBitmapImageFileType =
     NSBitmapImageFileType(NSBitmapImageFileType::JPEG2000.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalphafirstbitmapformat?language=objc)
 pub static NSAlphaFirstBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormat::AlphaFirst.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalphanonpremultipliedbitmapformat?language=objc)
 pub static NSAlphaNonpremultipliedBitmapFormat: NSBitmapFormat =
     NSBitmapFormat(NSBitmapFormat::AlphaNonpremultiplied.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfloatingpointsamplesbitmapformat?language=objc)
 pub static NSFloatingPointSamplesBitmapFormat: NSBitmapFormat =
     NSBitmapFormat(NSBitmapFormat::FloatingPointSamples.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/ns16bitlittleendianbitmapformat?language=objc)
 pub static NS16BitLittleEndianBitmapFormat: NSBitmapFormat =
     NSBitmapFormat(NSBitmapFormat::SixteenBitLittleEndian.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/ns32bitlittleendianbitmapformat?language=objc)
 pub static NS32BitLittleEndianBitmapFormat: NSBitmapFormat =
     NSBitmapFormat(NSBitmapFormat::ThirtyTwoBitLittleEndian.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/ns16bitbigendianbitmapformat?language=objc)
 pub static NS16BitBigEndianBitmapFormat: NSBitmapFormat =
     NSBitmapFormat(NSBitmapFormat::SixteenBitBigEndian.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/ns32bitbigendianbitmapformat?language=objc)
 pub static NS32BitBigEndianBitmapFormat: NSBitmapFormat =
     NSBitmapFormat(NSBitmapFormat::ThirtyTwoBitBigEndian.0);

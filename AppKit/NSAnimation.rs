@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationcurve?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -24,6 +25,7 @@ unsafe impl RefEncode for NSAnimationCurve {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationblockingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -42,17 +44,21 @@ unsafe impl RefEncode for NSAnimationBlockingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationprogress?language=objc)
 pub type NSAnimationProgress = c_float;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationprogressmarknotification?language=objc)
     pub static NSAnimationProgressMarkNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationprogressmark?language=objc)
     pub static NSAnimationProgressMark: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAnimation;
@@ -187,6 +193,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationdelegate?language=objc)
     pub unsafe trait NSAnimationDelegate: NSObjectProtocol {
         #[optional]
         #[method(animationShouldStart:)]
@@ -220,37 +227,46 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSAnimationDelegate {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimationkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSViewAnimationKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimationtargetkey?language=objc)
     pub static NSViewAnimationTargetKey: &'static NSViewAnimationKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimationstartframekey?language=objc)
     pub static NSViewAnimationStartFrameKey: &'static NSViewAnimationKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimationendframekey?language=objc)
     pub static NSViewAnimationEndFrameKey: &'static NSViewAnimationKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimationeffectkey?language=objc)
     pub static NSViewAnimationEffectKey: &'static NSViewAnimationKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimationeffectname?language=objc)
 // NS_TYPED_ENUM
 pub type NSViewAnimationEffectName = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimationfadeineffect?language=objc)
     pub static NSViewAnimationFadeInEffect: &'static NSViewAnimationEffectName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimationfadeouteffect?language=objc)
     pub static NSViewAnimationFadeOutEffect: &'static NSViewAnimationEffectName;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimation?language=objc)
     #[unsafe(super(NSAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSViewAnimation;
@@ -316,9 +332,11 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimatablepropertykey?language=objc)
 pub type NSAnimatablePropertyKey = NSString;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimatablepropertycontainer?language=objc)
     pub unsafe trait NSAnimatablePropertyContainer {
         #[method_id(@__retain_semantics Other animator)]
         unsafe fn animator(&self) -> Retained<Self>;
@@ -348,9 +366,11 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationtriggerorderin?language=objc)
     pub static NSAnimationTriggerOrderIn: &'static NSAnimatablePropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationtriggerorderout?language=objc)
     pub static NSAnimationTriggerOrderOut: &'static NSAnimatablePropertyKey;
 }

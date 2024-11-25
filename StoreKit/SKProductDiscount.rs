@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductdiscountpaymentmode?language=objc)
 // NS_ENUM
 #[deprecated = "Use Product.SubscriptionOffer.PaymentMode"]
 #[repr(transparent)]
@@ -30,6 +31,7 @@ unsafe impl RefEncode for SKProductDiscountPaymentMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductdiscounttype?language=objc)
 // NS_ENUM
 #[deprecated = "Use Product.SubscriptionOffer.OfferType"]
 #[repr(transparent)]
@@ -53,6 +55,7 @@ unsafe impl RefEncode for SKProductDiscountType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductdiscount?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Product.SubscriptionOffer"]

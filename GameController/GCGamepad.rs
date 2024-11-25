@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcgamepadvaluechangedhandler?language=objc)
 #[cfg(all(
     feature = "GCControllerElement",
     feature = "GCPhysicalInputProfile",
@@ -13,6 +14,7 @@ pub type GCGamepadValueChangedHandler =
     *mut block2::Block<dyn Fn(NonNull<GCGamepad>, NonNull<GCControllerElement>)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcgamepad?language=objc)
     #[unsafe(super(GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCPhysicalInputProfile")]

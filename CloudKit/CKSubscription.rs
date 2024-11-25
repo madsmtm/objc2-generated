@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksubscriptiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -26,9 +27,11 @@ unsafe impl RefEncode for CKSubscriptionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksubscriptionid?language=objc)
 pub type CKSubscriptionID = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksubscription?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSubscription;
@@ -68,6 +71,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerysubscriptionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -94,6 +98,7 @@ unsafe impl RefEncode for CKQuerySubscriptionOptions {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerysubscription?language=objc)
     #[unsafe(super(CKSubscription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKQuerySubscription;
@@ -168,6 +173,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzonesubscription?language=objc)
     #[unsafe(super(CKSubscription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKRecordZoneSubscription;
@@ -232,6 +238,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdatabasesubscription?language=objc)
     #[unsafe(super(CKSubscription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKDatabaseSubscription;
@@ -278,6 +285,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cknotificationinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKNotificationInfo;

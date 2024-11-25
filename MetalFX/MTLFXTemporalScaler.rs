@@ -7,6 +7,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFXTemporalScalerDescriptor;
@@ -154,6 +155,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscaler?language=objc)
     pub unsafe trait MTLFXTemporalScaler: NSObjectProtocol {
         #[method(colorTextureUsage)]
         unsafe fn colorTextureUsage(&self) -> MTLTextureUsage;

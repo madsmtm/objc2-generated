@@ -8,6 +8,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontrollerstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -38,6 +39,7 @@ unsafe impl RefEncode for GKGameCenterViewControllerState {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -217,6 +219,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecentercontrollerdelegate?language=objc)
     pub unsafe trait GKGameCenterControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

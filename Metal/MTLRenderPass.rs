@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlclearcolor?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLClearColor {
@@ -32,6 +33,7 @@ unsafe impl RefEncode for MTLClearColor {
 
 // TODO: pub fn MTLClearColorMake(red: c_double,green: c_double,blue: c_double,alpha: c_double,) -> MTLClearColor;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloadaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -53,6 +55,7 @@ unsafe impl RefEncode for MTLLoadAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -80,6 +83,7 @@ unsafe impl RefEncode for MTLStoreAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreactionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -100,6 +104,7 @@ unsafe impl RefEncode for MTLStoreActionOptions {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassAttachmentDescriptor;
@@ -215,6 +220,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpasscolorattachmentdescriptor?language=objc)
     #[unsafe(super(MTLRenderPassAttachmentDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassColorAttachmentDescriptor;
@@ -256,6 +262,7 @@ impl DefaultRetained for MTLRenderPassColorAttachmentDescriptor {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmultisampledepthresolvefilter?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -278,6 +285,7 @@ unsafe impl RefEncode for MTLMultisampleDepthResolveFilter {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpassdepthattachmentdescriptor?language=objc)
     #[unsafe(super(MTLRenderPassAttachmentDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassDepthAttachmentDescriptor;
@@ -318,6 +326,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmultisamplestencilresolvefilter?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -338,6 +347,7 @@ unsafe impl RefEncode for MTLMultisampleStencilResolveFilter {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpassstencilattachmentdescriptor?language=objc)
     #[unsafe(super(MTLRenderPassAttachmentDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassStencilAttachmentDescriptor;
@@ -382,6 +392,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpasscolorattachmentdescriptorarray?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassColorAttachmentDescriptorArray;
@@ -418,6 +429,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpasssamplebufferattachmentdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassSampleBufferAttachmentDescriptor;
@@ -485,6 +497,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpasssamplebufferattachmentdescriptorarray?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassSampleBufferAttachmentDescriptorArray;
@@ -521,6 +534,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpassdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassDescriptor;

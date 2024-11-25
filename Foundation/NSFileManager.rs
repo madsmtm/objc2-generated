@@ -4,22 +4,27 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileattributekey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSFileAttributeKey = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileattributetype?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSFileAttributeType = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileprotectiontype?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSFileProtectionType = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileproviderservicename?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSFileProviderServiceName = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvolumeenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -39,6 +44,7 @@ unsafe impl RefEncode for NSVolumeEnumerationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdirectoryenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -61,6 +67,7 @@ unsafe impl RefEncode for NSDirectoryEnumerationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanageritemreplacementoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -80,6 +87,7 @@ unsafe impl RefEncode for NSFileManagerItemReplacementOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrelationship?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -101,6 +109,7 @@ unsafe impl RefEncode for NSURLRelationship {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerunmountoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -121,16 +130,19 @@ unsafe impl RefEncode for NSFileManagerUnmountOptions {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerunmountdissentingprocessidentifiererrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileManagerUnmountDissentingProcessIdentifierErrorKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquityidentitydidchangenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUbiquityIdentityDidChangeNotification: &'static NSNotificationName;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileManager;
@@ -692,6 +704,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerdelegate?language=objc)
     pub unsafe trait NSFileManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "NSString")]
         #[optional]
@@ -862,6 +875,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdirectoryenumerator?language=objc)
     #[unsafe(super(NSEnumerator<ObjectType, >, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSEnumerator")]
@@ -916,6 +930,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileproviderservice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderService;
@@ -950,181 +965,217 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfiletype?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileType: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfiletypedirectory?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileTypeDirectory: &'static NSFileAttributeType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfiletyperegular?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileTypeRegular: &'static NSFileAttributeType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfiletypesymboliclink?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileTypeSymbolicLink: &'static NSFileAttributeType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfiletypesocket?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileTypeSocket: &'static NSFileAttributeType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfiletypecharacterspecial?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileTypeCharacterSpecial: &'static NSFileAttributeType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfiletypeblockspecial?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileTypeBlockSpecial: &'static NSFileAttributeType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfiletypeunknown?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileTypeUnknown: &'static NSFileAttributeType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilesize?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileSize: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemodificationdate?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileModificationDate: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereferencecount?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileReferenceCount: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfiledeviceidentifier?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileDeviceIdentifier: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileowneraccountname?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileOwnerAccountName: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilegroupowneraccountname?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileGroupOwnerAccountName: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileposixpermissions?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFilePosixPermissions: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilesystemnumber?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileSystemNumber: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilesystemfilenumber?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileSystemFileNumber: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileextensionhidden?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileExtensionHidden: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehfscreatorcode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileHFSCreatorCode: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehfstypecode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileHFSTypeCode: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileimmutable?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileImmutable: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileappendonly?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileAppendOnly: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecreationdate?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileCreationDate: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileowneraccountid?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileOwnerAccountID: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilegroupowneraccountid?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileGroupOwnerAccountID: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilebusy?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileBusy: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileprotectionkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileProtectionKey: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileprotectionnone?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileProtectionNone: &'static NSFileProtectionType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileprotectioncomplete?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileProtectionComplete: &'static NSFileProtectionType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileprotectioncompleteunlessopen?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileProtectionCompleteUnlessOpen: &'static NSFileProtectionType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileprotectioncompleteuntilfirstuserauthentication?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileProtectionCompleteUntilFirstUserAuthentication: &'static NSFileProtectionType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileprotectioncompletewhenuserinactive?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileProtectionCompleteWhenUserInactive: &'static NSFileProtectionType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilesystemsize?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileSystemSize: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilesystemfreesize?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileSystemFreeSize: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilesystemnodes?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileSystemNodes: &'static NSFileAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilesystemfreenodes?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileSystemFreeNodes: &'static NSFileAttributeKey;
 }

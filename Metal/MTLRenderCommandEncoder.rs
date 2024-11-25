@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -30,6 +31,7 @@ unsafe impl RefEncode for MTLPrimitiveType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisibilityresultmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -51,6 +53,7 @@ unsafe impl RefEncode for MTLVisibilityResultMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlscissorrect?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLScissorRect {
@@ -76,6 +79,7 @@ unsafe impl RefEncode for MTLScissorRect {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlviewport?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLViewport {
@@ -105,6 +109,7 @@ unsafe impl RefEncode for MTLViewport {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcullmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -126,6 +131,7 @@ unsafe impl RefEncode for MTLCullMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlwinding?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -145,6 +151,7 @@ unsafe impl RefEncode for MTLWinding {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldepthclipmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -164,6 +171,7 @@ unsafe impl RefEncode for MTLDepthClipMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltrianglefillmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -183,6 +191,7 @@ unsafe impl RefEncode for MTLTriangleFillMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawprimitivesindirectarguments?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLDrawPrimitivesIndirectArguments {
@@ -208,6 +217,7 @@ unsafe impl RefEncode for MTLDrawPrimitivesIndirectArguments {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawindexedprimitivesindirectarguments?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLDrawIndexedPrimitivesIndirectArguments {
@@ -235,6 +245,7 @@ unsafe impl RefEncode for MTLDrawIndexedPrimitivesIndirectArguments {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexamplificationviewmapping?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLVertexAmplificationViewMapping {
@@ -250,6 +261,7 @@ unsafe impl RefEncode for MTLVertexAmplificationViewMapping {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawpatchindirectarguments?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLDrawPatchIndirectArguments {
@@ -275,6 +287,7 @@ unsafe impl RefEncode for MTLDrawPatchIndirectArguments {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlquadtessellationfactorshalf?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLQuadTessellationFactorsHalf {
@@ -290,6 +303,7 @@ unsafe impl RefEncode for MTLQuadTessellationFactorsHalf {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltriangletessellationfactorshalf?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLTriangleTessellationFactorsHalf {
@@ -305,6 +319,7 @@ unsafe impl RefEncode for MTLTriangleTessellationFactorsHalf {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderstages?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -328,6 +343,7 @@ unsafe impl RefEncode for MTLRenderStages {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrendercommandencoder?language=objc)
     #[cfg(feature = "MTLCommandEncoder")]
     pub unsafe trait MTLRenderCommandEncoder: MTLCommandEncoder {
         #[cfg(feature = "MTLRenderPipeline")]

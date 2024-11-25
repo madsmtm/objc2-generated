@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspellserver?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSpellServer;
@@ -58,21 +59,25 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammarrange?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSGrammarRange: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaruserdescription?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSGrammarUserDescription: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammarcorrections?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSGrammarCorrections: &'static NSString;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspellserverdelegate?language=objc)
     pub unsafe trait NSSpellServerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
         #[optional]

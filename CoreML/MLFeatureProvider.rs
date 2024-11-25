@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeatureprovider?language=objc)
     pub unsafe trait MLFeatureProvider {
         #[method_id(@__retain_semantics Other featureNames)]
         unsafe fn featureNames(&self) -> Retained<NSSet<NSString>>;

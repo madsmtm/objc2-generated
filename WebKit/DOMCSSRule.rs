@@ -5,36 +5,51 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_unknown_rule?language=objc)
 #[deprecated]
 pub const DOM_UNKNOWN_RULE: c_uint = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_style_rule?language=objc)
 #[deprecated]
 pub const DOM_STYLE_RULE: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_charset_rule?language=objc)
 #[deprecated]
 pub const DOM_CHARSET_RULE: c_uint = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_import_rule?language=objc)
 #[deprecated]
 pub const DOM_IMPORT_RULE: c_uint = 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_media_rule?language=objc)
 #[deprecated]
 pub const DOM_MEDIA_RULE: c_uint = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_font_face_rule?language=objc)
 #[deprecated]
 pub const DOM_FONT_FACE_RULE: c_uint = 5;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_page_rule?language=objc)
 #[deprecated]
 pub const DOM_PAGE_RULE: c_uint = 6;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_keyframes_rule?language=objc)
 #[deprecated]
 pub const DOM_KEYFRAMES_RULE: c_uint = 7;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_keyframe_rule?language=objc)
 #[deprecated]
 pub const DOM_KEYFRAME_RULE: c_uint = 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_namespace_rule?language=objc)
 #[deprecated]
 pub const DOM_NAMESPACE_RULE: c_uint = 10;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_supports_rule?language=objc)
 #[deprecated]
 pub const DOM_SUPPORTS_RULE: c_uint = 12;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_webkit_region_rule?language=objc)
 #[deprecated]
 pub const DOM_WEBKIT_REGION_RULE: c_uint = 16;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_webkit_keyframes_rule?language=objc)
 #[deprecated]
 pub const DOM_WEBKIT_KEYFRAMES_RULE: c_uint = 7;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_webkit_keyframe_rule?language=objc)
 #[deprecated]
 pub const DOM_WEBKIT_KEYFRAME_RULE: c_uint = 8;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domcssrule?language=objc)
     #[unsafe(super(DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]

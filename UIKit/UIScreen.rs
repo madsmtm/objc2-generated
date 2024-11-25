@@ -9,29 +9,36 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreendidconnectnotification?language=objc)
     pub static UIScreenDidConnectNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreendiddisconnectnotification?language=objc)
     pub static UIScreenDidDisconnectNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenmodedidchangenotification?language=objc)
     pub static UIScreenModeDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenbrightnessdidchangenotification?language=objc)
     pub static UIScreenBrightnessDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreencaptureddidchangenotification?language=objc)
     pub static UIScreenCapturedDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenreferencedisplaymodestatusdidchangenotification?language=objc)
     pub static UIScreenReferenceDisplayModeStatusDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenoverscancompensation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -56,6 +63,7 @@ unsafe impl RefEncode for UIScreenOverscanCompensation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenreferencedisplaymodestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -80,6 +88,7 @@ unsafe impl RefEncode for UIScreenReferenceDisplayModeStatus {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

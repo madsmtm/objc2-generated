@@ -5,9 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdataassetname?language=objc)
 pub type NSDataAssetName = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdataasset?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDataAsset;

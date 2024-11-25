@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbuttontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -40,6 +41,7 @@ unsafe impl RefEncode for NSButtonType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezelstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -107,6 +109,7 @@ unsafe impl RefEncode for NSBezelStyle {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbuttoncell?language=objc)
     #[unsafe(super(NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
@@ -352,6 +355,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgradienttype?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -373,63 +377,91 @@ unsafe impl RefEncode for NSGradientType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmomentarylightbutton?language=objc)
 pub static NSMomentaryLightButton: NSButtonType = NSButtonType(NSButtonType::MomentaryLight.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspushonpushoffbutton?language=objc)
 pub static NSPushOnPushOffButton: NSButtonType = NSButtonType(NSButtonType::PushOnPushOff.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstogglebutton?language=objc)
 pub static NSToggleButton: NSButtonType = NSButtonType(NSButtonType::Toggle.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsswitchbutton?language=objc)
 pub static NSSwitchButton: NSButtonType = NSButtonType(NSButtonType::Switch.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsradiobutton?language=objc)
 pub static NSRadioButton: NSButtonType = NSButtonType(NSButtonType::Radio.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmomentarychangebutton?language=objc)
 pub static NSMomentaryChangeButton: NSButtonType = NSButtonType(NSButtonType::MomentaryChange.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsonoffbutton?language=objc)
 pub static NSOnOffButton: NSButtonType = NSButtonType(NSButtonType::OnOff.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmomentarypushinbutton?language=objc)
 pub static NSMomentaryPushInButton: NSButtonType = NSButtonType(NSButtonType::MomentaryPushIn.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsacceleratorbutton?language=objc)
 pub static NSAcceleratorButton: NSButtonType = NSButtonType(NSButtonType::Accelerator.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmultilevelacceleratorbutton?language=objc)
 pub static NSMultiLevelAcceleratorButton: NSButtonType =
     NSButtonType(NSButtonType::MultiLevelAccelerator.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmomentarypushbutton?language=objc)
 pub static NSMomentaryPushButton: NSButtonType = NSButtonType(NSButtonType::MomentaryLight.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmomentarylight?language=objc)
 pub static NSMomentaryLight: NSButtonType = NSButtonType(NSButtonType::MomentaryPushIn.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsroundedbezelstyle?language=objc)
 pub static NSRoundedBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::Push.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsregularsquarebezelstyle?language=objc)
 pub static NSRegularSquareBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::FlexiblePush.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdisclosurebezelstyle?language=objc)
 pub static NSDisclosureBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::Disclosure.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshadowlesssquarebezelstyle?language=objc)
 pub static NSShadowlessSquareBezelStyle: NSBezelStyle =
     NSBezelStyle(NSBezelStyle::ShadowlessSquare.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscircularbezelstyle?language=objc)
 pub static NSCircularBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::Circular.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexturedsquarebezelstyle?language=objc)
 pub static NSTexturedSquareBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::TexturedSquare.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpbuttonbezelstyle?language=objc)
 pub static NSHelpButtonBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::HelpButton.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssmallsquarebezelstyle?language=objc)
 pub static NSSmallSquareBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::SmallSquare.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexturedroundedbezelstyle?language=objc)
 pub static NSTexturedRoundedBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::Toolbar.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsroundrectbezelstyle?language=objc)
 pub static NSRoundRectBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::AccessoryBarAction.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrecessedbezelstyle?language=objc)
 pub static NSRecessedBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::AccessoryBar.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsroundeddisclosurebezelstyle?language=objc)
 pub static NSRoundedDisclosureBezelStyle: NSBezelStyle =
     NSBezelStyle(NSBezelStyle::PushDisclosure.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinlinebezelstyle?language=objc)
 pub static NSInlineBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::Badge.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssmalliconbuttonbezelstyle?language=objc)
 pub static NSSmallIconButtonBezelStyle: NSBezelStyle = NSBezelStyle(2);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsthicksquarebezelstyle?language=objc)
 pub static NSThickSquareBezelStyle: NSBezelStyle = NSBezelStyle(3);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsthickersquarebezelstyle?language=objc)
 pub static NSThickerSquareBezelStyle: NSBezelStyle = NSBezelStyle(4);
 
 extern_methods!(

@@ -8,9 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerrordomain?language=objc)
     pub static ASWebAuthenticationSessionErrorDomain: &'static NSErrorDomain;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -32,11 +34,13 @@ unsafe impl RefEncode for ASWebAuthenticationSessionErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessioncompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type ASWebAuthenticationSessionCompletionHandler =
     *mut block2::Block<dyn Fn(*mut NSURL, *mut NSError)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASWebAuthenticationSession;
@@ -118,6 +122,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationpresentationcontextproviding?language=objc)
     pub unsafe trait ASWebAuthenticationPresentationContextProviding:
         NSObjectProtocol + MainThreadOnly
     {

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloadmanagerdelegate?language=objc)
     pub unsafe trait BADownloadManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "BADownload")]
         #[optional]
@@ -55,6 +56,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloadmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BADownloadManager;

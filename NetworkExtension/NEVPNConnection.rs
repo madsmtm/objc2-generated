@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -33,17 +34,21 @@ unsafe impl RefEncode for NEVPNStatus {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatusdidchangenotification?language=objc)
     pub static NEVPNStatusDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionstartoptionusername?language=objc)
     pub static NEVPNConnectionStartOptionUsername: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionstartoptionpassword?language=objc)
     pub static NEVPNConnectionStartOptionPassword: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -98,10 +103,12 @@ unsafe impl RefEncode for NEVPNConnectionError {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerrordomain?language=objc)
     pub static NEVPNConnectionErrorDomain: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEVPNConnection;

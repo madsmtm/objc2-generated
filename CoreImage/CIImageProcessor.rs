@@ -8,6 +8,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageprocessorkernel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIImageProcessorKernel;
@@ -75,6 +76,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageprocessorinput?language=objc)
     pub unsafe trait CIImageProcessorInput {
         #[method(region)]
         unsafe fn region(&self) -> CGRect;
@@ -107,6 +109,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageprocessoroutput?language=objc)
     pub unsafe trait CIImageProcessorOutput {
         #[method(region)]
         unsafe fn region(&self) -> CGRect;

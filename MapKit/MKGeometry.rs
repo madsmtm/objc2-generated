@@ -7,6 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkcoordinatespan?language=objc)
 #[cfg(feature = "objc2-core-location")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -28,6 +29,7 @@ unsafe impl RefEncode for MKCoordinateSpan {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkcoordinateregion?language=objc)
 #[cfg(feature = "objc2-core-location")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -65,6 +67,7 @@ extern "C-unwind" {
     ) -> MKCoordinateRegion;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmappoint?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MKMapPoint {
@@ -80,6 +83,7 @@ unsafe impl RefEncode for MKMapPoint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapsize?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MKMapSize {
@@ -95,6 +99,7 @@ unsafe impl RefEncode for MKMapSize {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MKMapRect {
@@ -111,13 +116,16 @@ unsafe impl RefEncode for MKMapRect {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkzoomscale?language=objc)
 pub type MKZoomScale = CGFloat;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapsizeworld?language=objc)
     pub static MKMapSizeWorld: MKMapSize;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprectworld?language=objc)
     pub static MKMapRectWorld: MKMapRect;
 }
 
@@ -147,6 +155,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprectnull?language=objc)
     pub static MKMapRectNull: MKMapRect;
 }
 

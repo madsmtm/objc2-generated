@@ -964,5 +964,6 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvisionversionnumber?language=objc)
     pub static VNVisionVersionNumber: c_double;
 }

@@ -4,10 +4,12 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserscripttaskcompletionhandler?language=objc)
 #[cfg(all(feature = "NSError", feature = "block2"))]
 pub type NSUserScriptTaskCompletionHandler = *mut block2::Block<dyn Fn(*mut NSError)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserscripttask?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserScriptTask;
@@ -48,10 +50,12 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserunixtaskcompletionhandler?language=objc)
 #[cfg(all(feature = "NSError", feature = "block2"))]
 pub type NSUserUnixTaskCompletionHandler = *mut block2::Block<dyn Fn(*mut NSError)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserunixtask?language=objc)
     #[unsafe(super(NSUserScriptTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserUnixTask;
@@ -123,6 +127,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserapplescripttaskcompletionhandler?language=objc)
 #[cfg(all(
     feature = "NSAppleEventDescriptor",
     feature = "NSError",
@@ -132,6 +137,7 @@ pub type NSUserAppleScriptTaskCompletionHandler =
     *mut block2::Block<dyn Fn(*mut NSAppleEventDescriptor, *mut NSError)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserapplescripttask?language=objc)
     #[unsafe(super(NSUserScriptTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserAppleScriptTask;
@@ -178,11 +184,13 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserautomatortaskcompletionhandler?language=objc)
 #[cfg(all(feature = "NSError", feature = "block2"))]
 pub type NSUserAutomatorTaskCompletionHandler =
     *mut block2::Block<dyn Fn(*mut AnyObject, *mut NSError)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserautomatortask?language=objc)
     #[unsafe(super(NSUserScriptTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserAutomatorTask;

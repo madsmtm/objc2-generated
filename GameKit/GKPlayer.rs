@@ -9,10 +9,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayeridnolongeravailable?language=objc)
     pub static GKPlayerIDNoLongerAvailable: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayer?language=objc)
     #[unsafe(super(GKBasePlayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GKBasePlayer")]
@@ -65,6 +67,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkphotosize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -100,6 +103,7 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayerdidchangenotificationname?language=objc)
     pub static GKPlayerDidChangeNotificationName: &'static NSNotificationName;
 }
 

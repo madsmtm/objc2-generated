@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentmenuorder?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -28,6 +29,7 @@ unsafe impl RefEncode for UIDocumentMenuOrder {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentmenudelegate?language=objc)
     #[deprecated = "UIDocumentMenuDelegate is deprecated. Use UIDocumentPickerViewController directly."]
     pub unsafe trait UIDocumentMenuDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
@@ -54,6 +56,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentmenuviewcontroller?language=objc)
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

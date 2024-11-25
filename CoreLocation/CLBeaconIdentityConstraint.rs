@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clbeaconidentityconstraint?language=objc)
     #[unsafe(super(CLBeaconIdentityCondition, CLCondition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]

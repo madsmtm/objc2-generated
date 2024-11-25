@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdirectionpadelement?language=objc)
     #[cfg(feature = "GCPhysicalInputElement")]
     pub unsafe trait GCDirectionPadElement: GCPhysicalInputElement {
         #[cfg(feature = "GCAxis2DInput")]

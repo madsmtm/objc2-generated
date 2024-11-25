@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnectionstate?language=objc)
 // NS_ENUM
 #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
 #[repr(transparent)]
@@ -40,6 +41,7 @@ unsafe impl RefEncode for NWTCPConnectionState {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use `nw_connection_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
@@ -147,6 +149,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnectionauthenticationdelegate?language=objc)
     #[deprecated = "Use `sec_protocol_options_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub unsafe trait NWTCPConnectionAuthenticationDelegate: NSObjectProtocol {
         #[deprecated = "Use `sec_protocol_options_set_challenge_block` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]

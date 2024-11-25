@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaptype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -33,9 +34,11 @@ unsafe impl RefEncode for MKMapType {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkerrordomain?language=objc)
     pub static MKErrorDomain: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -57,6 +60,7 @@ unsafe impl RefEncode for MKErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturevisibility?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -78,6 +82,7 @@ unsafe impl RefEncode for MKFeatureVisibility {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchregionpriority?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

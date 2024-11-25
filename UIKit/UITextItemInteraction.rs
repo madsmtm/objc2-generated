@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextiteminteraction?language=objc)
 // NS_ENUM
 #[deprecated = "UITextItemInteraction has been replaced by text item methods on UITextViewDelegate"]
 #[repr(transparent)]

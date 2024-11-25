@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreferredpresentationstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -56,6 +57,7 @@ extern_category!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiitemproviderpresentationsizeproviding?language=objc)
     pub unsafe trait UIItemProviderPresentationSizeProviding:
         NSObjectProtocol + MainThreadOnly
     {
@@ -67,6 +69,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiitemproviderreadingaugmentationproviding?language=objc)
     pub unsafe trait UIItemProviderReadingAugmentationProviding {
         #[method_id(@__retain_semantics Other objectWithItemProviderData:typeIdentifier:requestedClass:error:_)]
         unsafe fn objectWithItemProviderData_typeIdentifier_requestedClass_error(
@@ -88,6 +91,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiitemproviderreadingaugmentationdesignating?language=objc)
     pub unsafe trait UIItemProviderReadingAugmentationDesignating:
         NSItemProviderReading
     {

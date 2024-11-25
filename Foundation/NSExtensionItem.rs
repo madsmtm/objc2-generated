@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSExtensionItem;
@@ -77,16 +78,19 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemattributedtitlekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionItemAttributedTitleKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemattributedcontenttextkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionItemAttributedContentTextKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemattachmentskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionItemAttachmentsKey: Option<&'static NSString>;
 }

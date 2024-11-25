@@ -9,10 +9,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistoryitemchangednotification?language=objc)
     pub static WebHistoryItemChangedNotification: Option<&'static NSString>;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistoryitem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

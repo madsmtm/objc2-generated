@@ -5,23 +5,32 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutpriority?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UILayoutPriority = c_float;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutpriorityrequired?language=objc)
 pub static UILayoutPriorityRequired: UILayoutPriority = 1000 as _;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutprioritydefaulthigh?language=objc)
 pub static UILayoutPriorityDefaultHigh: UILayoutPriority = 750 as _;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutprioritydragthatcanresizescene?language=objc)
 pub static UILayoutPriorityDragThatCanResizeScene: UILayoutPriority = 510 as _;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutpriorityscenesizestayput?language=objc)
 pub static UILayoutPrioritySceneSizeStayPut: UILayoutPriority = 500 as _;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutprioritydragthatcannotresizescene?language=objc)
 pub static UILayoutPriorityDragThatCannotResizeScene: UILayoutPriority = 490 as _;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutprioritydefaultlow?language=objc)
 pub static UILayoutPriorityDefaultLow: UILayoutPriority = 250 as _;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutpriorityfittingsizelevel?language=objc)
 pub static UILayoutPriorityFittingSizeLevel: UILayoutPriority = 50 as _;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutrelation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -43,6 +52,7 @@ unsafe impl RefEncode for NSLayoutRelation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutattribute?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -102,6 +112,7 @@ unsafe impl RefEncode for NSLayoutAttribute {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutformatoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -139,6 +150,7 @@ unsafe impl RefEncode for NSLayoutFormatOptions {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutconstraint?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -257,6 +269,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutsupport?language=objc)
     pub unsafe trait UILayoutSupport: NSObjectProtocol + MainThreadOnly {
         #[method(length)]
         unsafe fn length(&self) -> CGFloat;

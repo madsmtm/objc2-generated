@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelcollection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Background Assets or NSURLSession instead."]
@@ -56,5 +57,6 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelcollectiondidchangenotification?language=objc)
     pub static MLModelCollectionDidChangeNotification: &'static NSNotificationName;
 }

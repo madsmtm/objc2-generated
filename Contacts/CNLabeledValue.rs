@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabeledvalue?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNLabeledValue<ValueType: ?Sized = AnyObject>;
@@ -78,29 +79,36 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelhome?language=objc)
     pub static CNLabelHome: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelwork?language=objc)
     pub static CNLabelWork: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelschool?language=objc)
     pub static CNLabelSchool: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelother?language=objc)
     pub static CNLabelOther: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelemailicloud?language=objc)
     pub static CNLabelEmailiCloud: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelurladdresshomepage?language=objc)
     pub static CNLabelURLAddressHomePage: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabeldateanniversary?language=objc)
     pub static CNLabelDateAnniversary: &'static NSString;
 }

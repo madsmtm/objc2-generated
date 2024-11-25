@@ -9,6 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkachievementviewcontroller?language=objc)
     #[unsafe(super(GKGameCenterViewController, NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
@@ -106,6 +107,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkachievementviewcontrollerdelegate?language=objc)
     #[deprecated]
     pub unsafe trait GKAchievementViewControllerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]

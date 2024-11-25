@@ -4,11 +4,13 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalekey?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSLocaleKey = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLocale;
@@ -230,6 +232,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalelanguagedirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -329,156 +332,187 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscurrentlocaledidchangenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSCurrentLocaleDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocaleidentifier?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleIdentifier: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalelanguagecode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleLanguageCode: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecountrycode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleCountryCode: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalescriptcode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleScriptCode: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalevariantcode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleVariantCode: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocaleexemplarcharacterset?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleExemplarCharacterSet: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecalendar?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleCalendar: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecollationidentifier?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleCollationIdentifier: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocaleusesmetricsystem?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleUsesMetricSystem: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalemeasurementsystem?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleMeasurementSystem: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocaledecimalseparator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleDecimalSeparator: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalegroupingseparator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleGroupingSeparator: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecurrencysymbol?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleCurrencySymbol: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecurrencycode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleCurrencyCode: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecollatoridentifier?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleCollatorIdentifier: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalequotationbegindelimiterkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleQuotationBeginDelimiterKey: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalequotationenddelimiterkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleQuotationEndDelimiterKey: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalealternatequotationbegindelimiterkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleAlternateQuotationBeginDelimiterKey: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalealternatequotationenddelimiterkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleAlternateQuotationEndDelimiterKey: &'static NSLocaleKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgregoriancalendar?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSGregorianCalendar: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbuddhistcalendar?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSBuddhistCalendar: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nschinesecalendar?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSChineseCalendar: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshebrewcalendar?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHebrewCalendar: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsislamiccalendar?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIslamicCalendar: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsislamiccivilcalendar?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIslamicCivilCalendar: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsjapanesecalendar?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSJapaneseCalendar: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrepublicofchinacalendar?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSRepublicOfChinaCalendar: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersiancalendar?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSPersianCalendar: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsindiancalendar?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIndianCalendar: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsiso8601calendar?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSISO8601Calendar: &'static NSString;
 }

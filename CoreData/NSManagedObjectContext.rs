@@ -6,73 +6,91 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextwillsavenotification?language=objc)
     pub static NSManagedObjectContextWillSaveNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextdidsavenotification?language=objc)
     pub static NSManagedObjectContextDidSaveNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextobjectsdidchangenotification?language=objc)
     pub static NSManagedObjectContextObjectsDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextdidsaveobjectidsnotification?language=objc)
     pub static NSManagedObjectContextDidSaveObjectIDsNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextdidmergechangesobjectidsnotification?language=objc)
     pub static NSManagedObjectContextDidMergeChangesObjectIDsNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsinsertedobjectskey?language=objc)
     pub static NSInsertedObjectsKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsupdatedobjectskey?language=objc)
     pub static NSUpdatedObjectsKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsdeletedobjectskey?language=objc)
     pub static NSDeletedObjectsKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsrefreshedobjectskey?language=objc)
     pub static NSRefreshedObjectsKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsinvalidatedobjectskey?language=objc)
     pub static NSInvalidatedObjectsKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextquerygenerationkey?language=objc)
     pub static NSManagedObjectContextQueryGenerationKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsinvalidatedallobjectskey?language=objc)
     pub static NSInvalidatedAllObjectsKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsinsertedobjectidskey?language=objc)
     pub static NSInsertedObjectIDsKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsupdatedobjectidskey?language=objc)
     pub static NSUpdatedObjectIDsKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsdeletedobjectidskey?language=objc)
     pub static NSDeletedObjectIDsKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsrefreshedobjectidskey?language=objc)
     pub static NSRefreshedObjectIDsKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsinvalidatedobjectidskey?language=objc)
     pub static NSInvalidatedObjectIDsKey: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextconcurrencytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -93,6 +111,7 @@ unsafe impl RefEncode for NSManagedObjectContextConcurrencyType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSManagedObjectContext;

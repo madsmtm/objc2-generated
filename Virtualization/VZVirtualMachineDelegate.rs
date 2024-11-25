@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachinedelegate?language=objc)
     pub unsafe trait VZVirtualMachineDelegate: NSObjectProtocol {
         #[cfg(feature = "VZVirtualMachine")]
         #[optional]

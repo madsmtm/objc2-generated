@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmackeyboardconfiguration?language=objc)
     #[unsafe(super(VZKeyboardConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZKeyboardConfiguration")]

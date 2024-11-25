@@ -9,6 +9,7 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAdaptiveImageGlyph;

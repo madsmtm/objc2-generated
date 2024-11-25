@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisiblefunctiontabledescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLVisibleFunctionTableDescriptor;
@@ -44,6 +45,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisiblefunctiontable?language=objc)
     #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     pub unsafe trait MTLVisibleFunctionTable: MTLResource {
         #[cfg(feature = "MTLTypes")]

@@ -5,26 +5,32 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationopenidoperation?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationOpenIDOperation = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationoperationimplicit?language=objc)
     pub static ASAuthorizationOperationImplicit: &'static ASAuthorizationOpenIDOperation;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationoperationlogin?language=objc)
     pub static ASAuthorizationOperationLogin: &'static ASAuthorizationOpenIDOperation;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationoperationrefresh?language=objc)
     pub static ASAuthorizationOperationRefresh: &'static ASAuthorizationOpenIDOperation;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationoperationlogout?language=objc)
     pub static ASAuthorizationOperationLogout: &'static ASAuthorizationOpenIDOperation;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationopenidrequest?language=objc)
     #[unsafe(super(ASAuthorizationRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ASAuthorizationRequest")]

@@ -9,6 +9,7 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusmovementhint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIFocusMovementHint;

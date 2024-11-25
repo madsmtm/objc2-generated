@@ -6,33 +6,41 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerrordomain?language=objc)
     pub static CKErrorDomain: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckpartialerrorsbyitemidkey?language=objc)
     pub static CKPartialErrorsByItemIDKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordchangederrorancestorrecordkey?language=objc)
     pub static CKRecordChangedErrorAncestorRecordKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordchangederrorserverrecordkey?language=objc)
     pub static CKRecordChangedErrorServerRecordKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordchangederrorclientrecordkey?language=objc)
     pub static CKRecordChangedErrorClientRecordKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerroruserdidresetencrypteddatakey?language=objc)
     pub static CKErrorUserDidResetEncryptedDataKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerrorretryafterkey?language=objc)
     pub static CKErrorRetryAfterKey: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollelasticity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -27,6 +28,7 @@ unsafe impl RefEncode for NSScrollElasticity {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -386,22 +388,27 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollviewwillstartlivemagnifynotification?language=objc)
     pub static NSScrollViewWillStartLiveMagnifyNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollviewdidendlivemagnifynotification?language=objc)
     pub static NSScrollViewDidEndLiveMagnifyNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollviewwillstartlivescrollnotification?language=objc)
     pub static NSScrollViewWillStartLiveScrollNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollviewdidlivescrollnotification?language=objc)
     pub static NSScrollViewDidLiveScrollNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollviewdidendlivescrollnotification?language=objc)
     pub static NSScrollViewDidEndLiveScrollNotification: &'static NSNotificationName;
 }
 
@@ -451,6 +458,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollviewfindbarposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

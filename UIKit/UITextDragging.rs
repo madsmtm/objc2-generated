@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdragoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -26,6 +27,7 @@ unsafe impl RefEncode for UITextDragOptions {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdraggable?language=objc)
     #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
     pub unsafe trait UITextDraggable: UITextInput + MainThreadOnly {
         #[method_id(@__retain_semantics Other textDragDelegate)]
@@ -59,6 +61,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdragdelegate?language=objc)
     pub unsafe trait UITextDragDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UIDragItem",
@@ -148,6 +151,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdragrequest?language=objc)
     pub unsafe trait UITextDragRequest: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other dragRange)]

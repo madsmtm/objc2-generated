@@ -6,21 +6,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/social/slservicetypetwitter?language=objc)
     pub static SLServiceTypeTwitter: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/social/slservicetypefacebook?language=objc)
     pub static SLServiceTypeFacebook: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/social/slservicetypesinaweibo?language=objc)
     pub static SLServiceTypeSinaWeibo: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/social/slservicetypetencentweibo?language=objc)
     pub static SLServiceTypeTencentWeibo: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/social/slservicetypelinkedin?language=objc)
     pub static SLServiceTypeLinkedIn: Option<&'static NSString>;
 }

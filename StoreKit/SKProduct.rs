@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductperiodunit?language=objc)
 // NS_ENUM
 #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
 #[repr(transparent)]
@@ -34,6 +35,7 @@ unsafe impl RefEncode for SKProductPeriodUnit {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductsubscriptionperiod?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Product.SubscriptionPeriod"]
@@ -70,6 +72,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproduct?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Product"]

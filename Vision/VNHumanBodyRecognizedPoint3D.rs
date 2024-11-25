@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyrecognizedpoint3d?language=objc)
     #[unsafe(super(VNRecognizedPoint3D, VNPoint3D, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNGeometry", feature = "VNRecognizedPoint3D"))]

@@ -11,6 +11,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkplacemark?language=objc)
     #[unsafe(super(CLPlacemark, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-core-location")]

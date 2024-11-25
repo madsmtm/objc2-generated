@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifilterconstructor?language=objc)
     pub unsafe trait CIFilterConstructor {
         #[cfg(feature = "CIFilter")]
         #[method_id(@__retain_semantics Other filterWithName:)]

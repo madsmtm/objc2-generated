@@ -8,6 +8,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewinsertaction?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -34,6 +35,7 @@ unsafe impl RefEncode for WebViewInsertAction {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webeditingdelegate?language=objc)
     #[deprecated]
     pub unsafe trait WebEditingDelegate: NSObjectProtocol {
         #[cfg(all(

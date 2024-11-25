@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarselectionsingledate?language=objc)
     #[unsafe(super(UICalendarSelection, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -58,6 +59,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarselectionsingledatedelegate?language=objc)
     pub unsafe trait UICalendarSelectionSingleDateDelegate: NSObjectProtocol {
         #[cfg(feature = "UICalendarSelection")]
         #[method(dateSelection:didSelectDate:)]

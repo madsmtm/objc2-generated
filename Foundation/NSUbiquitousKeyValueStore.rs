@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUbiquitousKeyValueStore;
@@ -115,22 +116,29 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestoredidchangeexternallynotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUbiquitousKeyValueStoreDidChangeExternallyNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestorechangereasonkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSUbiquitousKeyValueStoreChangeReasonKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestorechangedkeyskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSUbiquitousKeyValueStoreChangedKeysKey: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestoreserverchange?language=objc)
 pub const NSUbiquitousKeyValueStoreServerChange: NSInteger = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestoreinitialsyncchange?language=objc)
 pub const NSUbiquitousKeyValueStoreInitialSyncChange: NSInteger = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestorequotaviolationchange?language=objc)
 pub const NSUbiquitousKeyValueStoreQuotaViolationChange: NSInteger = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestoreaccountchange?language=objc)
 pub const NSUbiquitousKeyValueStoreAccountChange: NSInteger = 3;

@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinput?language=objc)
     #[cfg(feature = "GCDevicePhysicalInputState")]
     pub unsafe trait GCDevicePhysicalInput: GCDevicePhysicalInputState {
         #[cfg(feature = "GCDevice")]

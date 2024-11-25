@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductstorepromotionvisibility?language=objc)
 // NS_CLOSED_ENUM
 #[deprecated = "Use Product.PromotionInfo.Visibility"]
 #[repr(isize)] // NSInteger
@@ -30,6 +31,7 @@ unsafe impl RefEncode for SKProductStorePromotionVisibility {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductstorepromotioncontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Product.PromotionInfo"]

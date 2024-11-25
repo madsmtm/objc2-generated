@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplayback?language=objc)
     pub unsafe trait MPMediaPlayback {
         #[method(prepareToPlay)]
         unsafe fn prepareToPlay(&self);
@@ -48,5 +49,6 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaybackispreparedtoplaydidchangenotification?language=objc)
     pub static MPMediaPlaybackIsPreparedToPlayDidChangeNotification: Option<&'static NSString>;
 }

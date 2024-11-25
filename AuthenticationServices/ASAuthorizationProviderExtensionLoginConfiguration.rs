@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionkerberosmapping?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationProviderExtensionKerberosMapping;
@@ -73,6 +74,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionfederationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -94,6 +96,7 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionFederationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionusersecureenclavekeybiometricpolicy?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -121,48 +124,58 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionUserSecureEnclaveKeyBi
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithm?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationProviderExtensionEncryptionAlgorithm = NSNumber;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithmecdhe_a256gcm?language=objc)
     pub static ASAuthorizationProviderExtensionEncryptionAlgorithmECDHE_A256GCM:
         &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithmhpke_p256_sha256_aes_gcm_256?language=objc)
     pub static ASAuthorizationProviderExtensionEncryptionAlgorithmHPKE_P256_SHA256_AES_GCM_256:
         &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithmhpke_p384_sha384_aes_gcm_256?language=objc)
     pub static ASAuthorizationProviderExtensionEncryptionAlgorithmHPKE_P384_SHA384_AES_GCM_256:
         &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithmhpke_curve25519_sha256_chachapoly?language=objc)
     pub static ASAuthorizationProviderExtensionEncryptionAlgorithmHPKE_Curve25519_SHA256_ChachaPoly:
         &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsigningalgorithm?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationProviderExtensionSigningAlgorithm = NSNumber;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsigningalgorithmes256?language=objc)
     pub static ASAuthorizationProviderExtensionSigningAlgorithmES256:
         &'static ASAuthorizationProviderExtensionSigningAlgorithm;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsigningalgorithmes384?language=objc)
     pub static ASAuthorizationProviderExtensionSigningAlgorithmES384:
         &'static ASAuthorizationProviderExtensionSigningAlgorithm;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsigningalgorithmed25519?language=objc)
     pub static ASAuthorizationProviderExtensionSigningAlgorithmEd25519:
         &'static ASAuthorizationProviderExtensionSigningAlgorithm;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationProviderExtensionLoginConfiguration;

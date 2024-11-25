@@ -5,14 +5,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clheadingcomponentvalue?language=objc)
 pub type CLHeadingComponentValue = c_double;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/kclheadingfilternone?language=objc)
     #[cfg(feature = "CLLocation")]
     pub static kCLHeadingFilterNone: CLLocationDegrees;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clheading?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLHeading;

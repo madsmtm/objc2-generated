@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatch?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatch;
@@ -32,6 +33,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchlink?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchLink;
@@ -63,6 +65,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchphonenumber?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchPhoneNumber;
@@ -97,6 +100,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchemailaddress?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchEmailAddress;
@@ -131,6 +135,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchpostaladdress?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchPostalAddress;
@@ -174,6 +179,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchcalendarevent?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchCalendarEvent;
@@ -217,6 +223,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchshipmenttrackingnumber?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchShipmentTrackingNumber;
@@ -251,6 +258,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchflightnumber?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchFlightNumber;
@@ -285,6 +293,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchmoneyamount?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchMoneyAmount;

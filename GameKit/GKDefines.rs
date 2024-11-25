@@ -5,4 +5,5 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchproperties?language=objc)
 pub type GKMatchProperties = NSDictionary<NSString, AnyObject>;

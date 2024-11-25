@@ -8,6 +8,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkpermissiondecision?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,6 +30,7 @@ unsafe impl RefEncode for WKPermissionDecision {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediacapturetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -50,6 +52,7 @@ unsafe impl RefEncode for WKMediaCaptureType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdialogresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -72,6 +75,7 @@ unsafe impl RefEncode for WKDialogResult {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuidelegate?language=objc)
     pub unsafe trait WKUIDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "WKNavigationAction",

@@ -5,23 +5,32 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutpriority?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSLayoutPriority = c_float;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutpriorityrequired?language=objc)
 pub static NSLayoutPriorityRequired: NSLayoutPriority = 1000 as _;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutprioritydefaulthigh?language=objc)
 pub static NSLayoutPriorityDefaultHigh: NSLayoutPriority = 750 as _;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutprioritydragthatcanresizewindow?language=objc)
 pub static NSLayoutPriorityDragThatCanResizeWindow: NSLayoutPriority = 510 as _;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutprioritywindowsizestayput?language=objc)
 pub static NSLayoutPriorityWindowSizeStayPut: NSLayoutPriority = 500 as _;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutprioritydragthatcannotresizewindow?language=objc)
 pub static NSLayoutPriorityDragThatCannotResizeWindow: NSLayoutPriority = 490 as _;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutprioritydefaultlow?language=objc)
 pub static NSLayoutPriorityDefaultLow: NSLayoutPriority = 250 as _;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutpriorityfittingsizecompression?language=objc)
 pub static NSLayoutPriorityFittingSizeCompression: NSLayoutPriority = 50 as _;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraintorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -41,6 +50,7 @@ unsafe impl RefEncode for NSLayoutConstraintOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutrelation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -62,6 +72,7 @@ unsafe impl RefEncode for NSLayoutRelation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutattribute?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -105,6 +116,7 @@ unsafe impl RefEncode for NSLayoutAttribute {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutformatoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -139,6 +151,7 @@ unsafe impl RefEncode for NSLayoutFormatOptions {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLayoutConstraint;
@@ -372,10 +385,12 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewnoinstrinsicmetric?language=objc)
     pub static NSViewNoInstrinsicMetric: CGFloat;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewnointrinsicmetric?language=objc)
     pub static NSViewNoIntrinsicMetric: CGFloat;
 }
 

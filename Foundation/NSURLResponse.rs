@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLResponse;
@@ -75,6 +76,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpurlresponse?language=objc)
     #[unsafe(super(NSURLResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHTTPURLResponse;

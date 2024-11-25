@@ -5,13 +5,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitransitioncontextviewcontrollerkey?language=objc)
 // NS_TYPED_ENUM
 pub type UITransitionContextViewControllerKey = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitransitioncontextviewkey?language=objc)
 // NS_TYPED_ENUM
 pub type UITransitionContextViewKey = NSString;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollertransitioncoordinatorcontext?language=objc)
     pub unsafe trait UIViewControllerTransitionCoordinatorContext:
         NSObjectProtocol + MainThreadOnly
     {
@@ -70,6 +73,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollertransitioncoordinator?language=objc)
     pub unsafe trait UIViewControllerTransitionCoordinator:
         UIViewControllerTransitionCoordinatorContext + MainThreadOnly
     {

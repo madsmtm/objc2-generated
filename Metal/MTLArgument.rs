@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -210,6 +211,7 @@ unsafe impl RefEncode for MTLDataType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -247,6 +249,7 @@ unsafe impl RefEncode for MTLBindingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -287,6 +290,7 @@ unsafe impl RefEncode for MTLArgumentType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingaccess?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -314,9 +318,11 @@ unsafe impl RefEncode for MTLBindingAccess {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumentaccess?language=objc)
 pub type MTLArgumentAccess = MTLBindingAccess;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltype?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLType;
@@ -343,6 +349,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstructmember?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLStructMember;
@@ -390,6 +397,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstructtype?language=objc)
     #[unsafe(super(MTLType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLStructType;
@@ -419,6 +427,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlarraytype?language=objc)
     #[unsafe(super(MTLType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLArrayType;
@@ -468,6 +477,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpointertype?language=objc)
     #[unsafe(super(MTLType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLPointerType;
@@ -512,6 +522,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturereferencetype?language=objc)
     #[unsafe(super(MTLType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLTextureReferenceType;
@@ -548,6 +559,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargument?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -634,6 +646,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinding?language=objc)
     pub unsafe trait MTLBinding: NSObjectProtocol {
         #[method_id(@__retain_semantics Other name)]
         unsafe fn name(&self) -> Retained<NSString>;
@@ -658,6 +671,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbufferbinding?language=objc)
     pub unsafe trait MTLBufferBinding: MTLBinding {
         #[method(bufferAlignment)]
         unsafe fn bufferAlignment(&self) -> NSUInteger;
@@ -679,6 +693,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlthreadgroupbinding?language=objc)
     pub unsafe trait MTLThreadgroupBinding: MTLBinding {
         #[method(threadgroupMemoryAlignment)]
         unsafe fn threadgroupMemoryAlignment(&self) -> NSUInteger;
@@ -691,6 +706,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturebinding?language=objc)
     pub unsafe trait MTLTextureBinding: MTLBinding {
         #[cfg(feature = "MTLTexture")]
         #[method(textureType)]
@@ -710,6 +726,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlobjectpayloadbinding?language=objc)
     pub unsafe trait MTLObjectPayloadBinding: MTLBinding {
         #[method(objectPayloadAlignment)]
         unsafe fn objectPayloadAlignment(&self) -> NSUInteger;

@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectionmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMFallDetectionManager;
@@ -54,6 +55,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectiondelegate?language=objc)
     pub unsafe trait CMFallDetectionDelegate: NSObjectProtocol {
         #[cfg(all(feature = "CMFallDetectionEvent", feature = "block2"))]
         #[optional]

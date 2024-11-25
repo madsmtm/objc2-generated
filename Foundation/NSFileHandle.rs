@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandle?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileHandle;
@@ -156,41 +157,49 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandleoperationexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSFileHandleOperationException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlereadcompletionnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleReadCompletionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlereadtoendoffilecompletionnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleReadToEndOfFileCompletionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandleconnectionacceptednotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleConnectionAcceptedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandledataavailablenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleDataAvailableNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlenotificationdataitem?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileHandleNotificationDataItem: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlenotificationfilehandleitem?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileHandleNotificationFileHandleItem: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlenotificationmonitormodes?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileHandleNotificationMonitorModes: &'static NSString;
 }
@@ -321,6 +330,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspipe?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPipe;

@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectrendercommand?language=objc)
     pub unsafe trait MTLIndirectRenderCommand: NSObjectProtocol {
         #[cfg(feature = "MTLRenderPipeline")]
         #[method(setRenderPipelineState:)]
@@ -191,6 +192,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcomputecommand?language=objc)
     pub unsafe trait MTLIndirectComputeCommand: NSObjectProtocol {
         #[cfg(feature = "MTLComputePipeline")]
         #[method(setComputePipelineState:)]

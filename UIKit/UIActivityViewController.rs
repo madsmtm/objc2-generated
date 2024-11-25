@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitysectiontypes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -26,15 +27,18 @@ unsafe impl RefEncode for UIActivitySectionTypes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityviewcontrollercompletionhandler?language=objc)
 #[cfg(all(feature = "UIActivity", feature = "block2"))]
 pub type UIActivityViewControllerCompletionHandler =
     *mut block2::Block<dyn Fn(*mut UIActivityType, Bool)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityviewcontrollercompletionwithitemshandler?language=objc)
 #[cfg(all(feature = "UIActivity", feature = "block2"))]
 pub type UIActivityViewControllerCompletionWithItemsHandler =
     *mut block2::Block<dyn Fn(*mut UIActivityType, Bool, *mut NSArray, *mut NSError)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller?language=objc)
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]

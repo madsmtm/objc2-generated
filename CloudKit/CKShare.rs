@@ -6,30 +6,36 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordtypeshare?language=objc)
     #[cfg(feature = "CKRecord")]
     pub static CKRecordTypeShare: &'static CKRecordType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordnamezonewideshare?language=objc)
     pub static CKRecordNameZoneWideShare: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharetitlekey?language=objc)
     #[cfg(feature = "CKRecord")]
     pub static CKShareTitleKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharethumbnailimagedatakey?language=objc)
     #[cfg(feature = "CKRecord")]
     pub static CKShareThumbnailImageDataKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharetypekey?language=objc)
     #[cfg(feature = "CKRecord")]
     pub static CKShareTypeKey: &'static CKRecordFieldKey;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare?language=objc)
     #[unsafe(super(CKRecord, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CKRecord")]

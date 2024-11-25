@@ -5,11 +5,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clbeaconmajorvalue?language=objc)
 pub type CLBeaconMajorValue = u16;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clbeaconminorvalue?language=objc)
 pub type CLBeaconMinorValue = u16;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clbeaconidentitycondition?language=objc)
     #[unsafe(super(CLCondition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CLCondition")]

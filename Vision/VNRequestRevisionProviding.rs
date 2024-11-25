@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestrevisionproviding?language=objc)
     pub unsafe trait VNRequestRevisionProviding {
         #[method(requestRevision)]
         unsafe fn requestRevision(&self) -> NSUInteger;

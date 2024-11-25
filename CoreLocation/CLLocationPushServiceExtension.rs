@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationpushserviceextension?language=objc)
     pub unsafe trait CLLocationPushServiceExtension: NSObjectProtocol {
         #[cfg(feature = "block2")]
         #[method(didReceiveLocationPushPayload:completion:)]

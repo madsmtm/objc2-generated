@@ -5,14 +5,18 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcedatarequestid?language=objc)
 pub type PHAssetResourceDataRequestID = i32;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phinvalidassetresourcedatarequestid?language=objc)
 pub static PHInvalidAssetResourceDataRequestID: PHAssetResourceDataRequestID = 0;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceprogresshandler?language=objc)
 #[cfg(feature = "block2")]
 pub type PHAssetResourceProgressHandler = *mut block2::Block<dyn Fn(c_double)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcerequestoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHAssetResourceRequestOptions;
@@ -56,6 +60,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcemanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHAssetResourceManager;

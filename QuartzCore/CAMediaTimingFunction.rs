@@ -5,10 +5,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfunctionname?language=objc)
 // NS_TYPED_ENUM
 pub type CAMediaTimingFunctionName = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfunction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAMediaTimingFunction;
@@ -56,21 +58,26 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcamediatimingfunctionlinear?language=objc)
     pub static kCAMediaTimingFunctionLinear: &'static CAMediaTimingFunctionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcamediatimingfunctioneasein?language=objc)
     pub static kCAMediaTimingFunctionEaseIn: &'static CAMediaTimingFunctionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcamediatimingfunctioneaseout?language=objc)
     pub static kCAMediaTimingFunctionEaseOut: &'static CAMediaTimingFunctionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcamediatimingfunctioneaseineaseout?language=objc)
     pub static kCAMediaTimingFunctionEaseInEaseOut: &'static CAMediaTimingFunctionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcamediatimingfunctiondefault?language=objc)
     pub static kCAMediaTimingFunctionDefault: &'static CAMediaTimingFunctionName;
 }

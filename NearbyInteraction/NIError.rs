@@ -6,9 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nierrordomain?language=objc)
     pub static NIErrorDomain: &'static NSErrorDomain;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nierrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductsrequestdelegate?language=objc)
     #[cfg(feature = "SKRequest")]
     #[deprecated = "Get products using Product.products(for:)"]
     pub unsafe trait SKProductsRequestDelegate: SKRequestDelegate {
@@ -23,6 +24,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductsrequest?language=objc)
     #[unsafe(super(SKRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SKRequest")]
@@ -72,6 +74,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductsresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Get products using Product.products(for:)"]

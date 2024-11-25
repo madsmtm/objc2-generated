@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontainertype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,6 +30,7 @@ unsafe impl RefEncode for CNContainerType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontainer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContainer;
@@ -71,13 +73,16 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontaineridentifierkey?language=objc)
     pub static CNContainerIdentifierKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontainernamekey?language=objc)
     pub static CNContainerNameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontainertypekey?language=objc)
     pub static CNContainerTypeKey: &'static NSString;
 }

@@ -6,9 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionerrordomain?language=objc)
     pub static ASExtensionErrorDomain: Option<&'static NSErrorDomain>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionerrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -35,5 +37,6 @@ unsafe impl RefEncode for ASExtensionErrorCode {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionlocalizedfailurereasonerrorkey?language=objc)
     pub static ASExtensionLocalizedFailureReasonErrorKey: Option<&'static NSErrorUserInfoKey>;
 }

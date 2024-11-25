@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotorsearchdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -24,6 +25,7 @@ unsafe impl RefEncode for NSAccessibilityCustomRotorSearchDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotortype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -84,6 +86,7 @@ unsafe impl RefEncode for NSAccessibilityCustomRotorType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityCustomRotor;
@@ -161,6 +164,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotorsearchparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityCustomRotorSearchParameters;
@@ -208,6 +212,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotoritemresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityCustomRotorItemResult;
@@ -263,6 +268,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotoritemsearchdelegate?language=objc)
     pub unsafe trait NSAccessibilityCustomRotorItemSearchDelegate: NSObjectProtocol {
         #[method_id(@__retain_semantics Other rotor:resultForSearchParameters:)]
         unsafe fn rotor_resultForSearchParameters(

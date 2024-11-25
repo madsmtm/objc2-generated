@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiedgeinsets?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct UIEdgeInsets {
@@ -34,6 +35,7 @@ unsafe impl Send for UIEdgeInsets {}
 
 unsafe impl Sync for UIEdgeInsets {}
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSDirectionalEdgeInsets {
@@ -63,6 +65,7 @@ unsafe impl Send for NSDirectionalEdgeInsets {}
 
 unsafe impl Sync for NSDirectionalEdgeInsets {}
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uioffset?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct UIOffset {
@@ -83,6 +86,7 @@ unsafe impl Send for UIOffset {}
 
 unsafe impl Sync for UIOffset {}
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectedge?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -112,6 +116,7 @@ unsafe impl RefEncode for UIRectEdge {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectcorner?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -139,6 +144,7 @@ unsafe impl RefEncode for UIRectCorner {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaxis?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -164,6 +170,7 @@ unsafe impl RefEncode for UIAxis {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionalrectedge?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -193,6 +200,7 @@ unsafe impl RefEncode for NSDirectionalRectEdge {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidirectionalrectedge?language=objc)
 // NS_OPTIONS
 #[deprecated]
 #[repr(transparent)]
@@ -229,6 +237,7 @@ unsafe impl RefEncode for UIDirectionalRectEdge {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -277,14 +286,17 @@ unsafe impl RefEncode for NSRectAlignment {
 // TODO: pub fn UIOffsetEqualToOffset(offset1: UIOffset,offset2: UIOffset,) -> Bool;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiedgeinsetszero?language=objc)
     pub static UIEdgeInsetsZero: UIEdgeInsets;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsetszero?language=objc)
     pub static NSDirectionalEdgeInsetsZero: NSDirectionalEdgeInsets;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uioffsetzero?language=objc)
     pub static UIOffsetZero: UIOffset;
 }
 

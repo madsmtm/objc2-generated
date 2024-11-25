@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsscoreitem?language=objc)
     #[unsafe(super(CLSActivityItem, CLSObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]

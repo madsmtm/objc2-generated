@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverpresentationcontrollerdelegate?language=objc)
     #[cfg(feature = "UIPresentationController")]
     pub unsafe trait UIPopoverPresentationControllerDelegate:
         UIAdaptivePresentationControllerDelegate + MainThreadOnly
@@ -49,6 +50,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverpresentationcontroller?language=objc)
     #[unsafe(super(UIPresentationController, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

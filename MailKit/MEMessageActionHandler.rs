@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageactionhandler?language=objc)
     pub unsafe trait MEMessageActionHandler: NSObjectProtocol {
         #[cfg(all(
             feature = "MEMessage",

@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSXPCConnection instead"]
@@ -257,16 +258,19 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectionreplymode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSConnectionReplyMode: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectiondiddienotification?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSConnectionDidDieNotification: &'static NSString;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectiondelegate?language=objc)
     #[deprecated = "Use NSXPCConnection instead"]
     pub unsafe trait NSConnectionDelegate: NSObjectProtocol {
         #[deprecated = "Use NSXPCConnection instead"]
@@ -325,16 +329,19 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfailedauthenticationexception?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFailedAuthenticationException: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectiondidinitializenotification?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSConnectionDidInitializeNotification: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistantobjectrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSXPCConnection instead"]

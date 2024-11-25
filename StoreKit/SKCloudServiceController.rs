@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudserviceauthorizationstatus?language=objc)
 // NS_ENUM
 #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
 #[repr(transparent)]
@@ -33,6 +34,7 @@ unsafe impl RefEncode for SKCloudServiceAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicecapability?language=objc)
 // NS_OPTIONS
 #[deprecated = "Use MusicSubscription from MusicKit"]
 #[repr(transparent)]
@@ -64,6 +66,7 @@ unsafe impl RefEncode for SKCloudServiceCapability {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicecontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use MusicKit"]
@@ -141,13 +144,16 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicecapabilitiesdidchangenotification?language=objc)
     pub static SKCloudServiceCapabilitiesDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstorefrontcountrycodedidchangenotification?language=objc)
     pub static SKStorefrontCountryCodeDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstorefrontidentifierdidchangenotification?language=objc)
     pub static SKStorefrontIdentifierDidChangeNotification: &'static NSNotificationName;
 }

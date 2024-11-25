@@ -8,11 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointsofinterestrequestmaxradius?language=objc)
     #[cfg(feature = "objc2-core-location")]
     pub static MKPointsOfInterestRequestMaxRadius: CLLocationDistance;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalpointsofinterestrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLocalPointsOfInterestRequest;

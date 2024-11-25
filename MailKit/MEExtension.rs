@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/meextension?language=objc)
     pub unsafe trait MEExtension: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "MEComposeSession")]
         #[optional]

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchsuggestion?language=objc)
     pub unsafe trait UISearchSuggestion: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other localizedSuggestion)]
         unsafe fn localizedSuggestion(&self) -> Option<Retained<NSString>>;
@@ -33,6 +34,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchsuggestionitem?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

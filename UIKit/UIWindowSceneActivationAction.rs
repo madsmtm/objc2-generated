@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneactivationactionconfigurationprovider?language=objc)
 #[cfg(all(
     feature = "UIAction",
     feature = "UIMenuElement",
@@ -16,6 +17,7 @@ pub type UIWindowSceneActivationActionConfigurationProvider = *mut block2::Block
 >;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneactivationaction?language=objc)
     #[unsafe(super(UIAction, UIMenuElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]

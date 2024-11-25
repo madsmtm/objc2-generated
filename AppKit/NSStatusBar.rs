@@ -5,11 +5,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvariablestatusitemlength?language=objc)
 pub static NSVariableStatusItemLength: CGFloat = -1.0 as _;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssquarestatusitemlength?language=objc)
 pub static NSSquareStatusItemLength: CGFloat = -2.0 as _;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusbar?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStatusBar;

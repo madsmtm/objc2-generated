@@ -5,9 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnibname?language=objc)
 pub type NSNibName = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnib?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNib;
@@ -74,9 +76,11 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnibowner?language=objc)
     pub static NSNibOwner: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnibtoplevelobjects?language=objc)
     pub static NSNibTopLevelObjects: &'static NSString;
 }

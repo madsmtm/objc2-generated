@@ -124,6 +124,7 @@ extern "C-unwind" {
     pub fn NSOpenStepRootDirectory() -> NonNull<NSString>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssearchpathdirectory?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -166,6 +167,7 @@ unsafe impl RefEncode for NSSearchPathDirectory {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssearchpathdomainmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

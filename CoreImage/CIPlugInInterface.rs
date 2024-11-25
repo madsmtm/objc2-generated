@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cipluginregistration?language=objc)
     pub unsafe trait CIPlugInRegistration {
         #[method(load:)]
         unsafe fn load(&self, host: *mut c_void) -> bool;

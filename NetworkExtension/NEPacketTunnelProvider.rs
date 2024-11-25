@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nepackettunnelprovider?language=objc)
     #[unsafe(super(NETunnelProvider, NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NEProvider", feature = "NETunnelProvider"))]

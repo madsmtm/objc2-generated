@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentdelegate?language=objc)
     #[deprecated = "Use CarPlay framework"]
     pub unsafe trait MPPlayableContentDelegate: NSObjectProtocol {
         #[cfg(all(feature = "MPPlayableContentManager", feature = "block2"))]

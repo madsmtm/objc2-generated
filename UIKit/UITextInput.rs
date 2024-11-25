@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinput?language=objc)
     #[cfg(feature = "UITextInputTraits")]
     pub unsafe trait UIKeyInput: UITextInputTraits + MainThreadOnly {
         #[method(hasText)]
@@ -22,6 +23,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UIKeyInput {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextstoragedirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -41,6 +43,7 @@ unsafe impl RefEncode for UITextStorageDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextlayoutdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -64,9 +67,11 @@ unsafe impl RefEncode for UITextLayoutDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdirection?language=objc)
 // NS_TYPED_ENUM
 pub type UITextDirection = NSInteger;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextgranularity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -95,6 +100,7 @@ unsafe impl RefEncode for UITextGranularity {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidictationphrase?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -125,6 +131,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputassistantitem?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -188,6 +195,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextplaceholder?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -214,6 +222,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextalternativestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -234,6 +243,7 @@ unsafe impl RefEncode for UITextAlternativeStyle {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinput?language=objc)
     #[cfg(feature = "UITextInputTraits")]
     pub unsafe trait UITextInput: UIKeyInput + MainThreadOnly {
         #[method_id(@__retain_semantics Other textInRange:)]
@@ -576,18 +586,22 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputtextbackgroundcolorkey?language=objc)
     pub static UITextInputTextBackgroundColorKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputtextcolorkey?language=objc)
     pub static UITextInputTextColorKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputtextfontkey?language=objc)
     pub static UITextInputTextFontKey: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextposition?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -612,6 +626,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextrange?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -645,6 +660,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextselectionrect?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -688,6 +704,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputdelegate?language=objc)
     pub unsafe trait UITextInputDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInputTraits")]
         #[method(selectionWillChange:)]
@@ -710,6 +727,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputtokenizer?language=objc)
     pub unsafe trait UITextInputTokenizer: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other rangeEnclosingPosition:withGranularity:inDirection:)]
         unsafe fn rangeEnclosingPosition_withGranularity_inDirection(
@@ -748,6 +766,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputstringtokenizer?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -781,6 +800,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputmode?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -820,5 +840,6 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputcurrentinputmodedidchangenotification?language=objc)
     pub static UITextInputCurrentInputModeDidChangeNotification: &'static NSNotificationName;
 }

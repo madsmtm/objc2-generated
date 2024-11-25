@@ -8,71 +8,104 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagopenlinkinnewwindow?language=objc)
 #[deprecated]
 pub const WebMenuItemTagOpenLinkInNewWindow: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagdownloadlinktodisk?language=objc)
 #[deprecated]
 pub const WebMenuItemTagDownloadLinkToDisk: c_uint = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagcopylinktoclipboard?language=objc)
 #[deprecated]
 pub const WebMenuItemTagCopyLinkToClipboard: c_uint = 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagopenimageinnewwindow?language=objc)
 #[deprecated]
 pub const WebMenuItemTagOpenImageInNewWindow: c_uint = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagdownloadimagetodisk?language=objc)
 #[deprecated]
 pub const WebMenuItemTagDownloadImageToDisk: c_uint = 5;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagcopyimagetoclipboard?language=objc)
 #[deprecated]
 pub const WebMenuItemTagCopyImageToClipboard: c_uint = 6;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagopenframeinnewwindow?language=objc)
 #[deprecated]
 pub const WebMenuItemTagOpenFrameInNewWindow: c_uint = 7;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagcopy?language=objc)
 #[deprecated]
 pub const WebMenuItemTagCopy: c_uint = 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtaggoback?language=objc)
 #[deprecated]
 pub const WebMenuItemTagGoBack: c_uint = 9;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtaggoforward?language=objc)
 #[deprecated]
 pub const WebMenuItemTagGoForward: c_uint = 10;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagstop?language=objc)
 #[deprecated]
 pub const WebMenuItemTagStop: c_uint = 11;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagreload?language=objc)
 #[deprecated]
 pub const WebMenuItemTagReload: c_uint = 12;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagcut?language=objc)
 #[deprecated]
 pub const WebMenuItemTagCut: c_uint = 13;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagpaste?language=objc)
 #[deprecated]
 pub const WebMenuItemTagPaste: c_uint = 14;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagspellingguess?language=objc)
 #[deprecated]
 pub const WebMenuItemTagSpellingGuess: c_uint = 15;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagnoguessesfound?language=objc)
 #[deprecated]
 pub const WebMenuItemTagNoGuessesFound: c_uint = 16;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagignorespelling?language=objc)
 #[deprecated]
 pub const WebMenuItemTagIgnoreSpelling: c_uint = 17;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtaglearnspelling?language=objc)
 #[deprecated]
 pub const WebMenuItemTagLearnSpelling: c_uint = 18;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagother?language=objc)
 #[deprecated]
 pub const WebMenuItemTagOther: c_uint = 19;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagsearchinspotlight?language=objc)
 #[deprecated]
 pub const WebMenuItemTagSearchInSpotlight: c_uint = 20;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagsearchweb?language=objc)
 #[deprecated]
 pub const WebMenuItemTagSearchWeb: c_uint = 21;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtaglookupindictionary?language=objc)
 #[deprecated]
 pub const WebMenuItemTagLookUpInDictionary: c_uint = 22;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagopenwithdefaultapplication?language=objc)
 #[deprecated]
 pub const WebMenuItemTagOpenWithDefaultApplication: c_uint = 23;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitempdfactualsize?language=objc)
 #[deprecated]
 pub const WebMenuItemPDFActualSize: c_uint = 24;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitempdfzoomin?language=objc)
 #[deprecated]
 pub const WebMenuItemPDFZoomIn: c_uint = 25;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitempdfzoomout?language=objc)
 #[deprecated]
 pub const WebMenuItemPDFZoomOut: c_uint = 26;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitempdfautosize?language=objc)
 #[deprecated]
 pub const WebMenuItemPDFAutoSize: c_uint = 27;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitempdfsinglepage?language=objc)
 #[deprecated]
 pub const WebMenuItemPDFSinglePage: c_uint = 28;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitempdffacingpages?language=objc)
 #[deprecated]
 pub const WebMenuItemPDFFacingPages: c_uint = 29;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitempdfcontinuous?language=objc)
 #[deprecated]
 pub const WebMenuItemPDFContinuous: c_uint = 30;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitempdfnextpage?language=objc)
 #[deprecated]
 pub const WebMenuItemPDFNextPage: c_uint = 31;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitempdfpreviouspage?language=objc)
 #[deprecated]
 pub const WebMenuItemPDFPreviousPage: c_uint = 32;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragdestinationaction?language=objc)
 // NS_OPTIONS
 #[deprecated]
 #[repr(transparent)]
@@ -106,6 +139,7 @@ unsafe impl RefEncode for WebDragDestinationAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragsourceaction?language=objc)
 // NS_OPTIONS
 #[deprecated]
 #[repr(transparent)]
@@ -143,6 +177,7 @@ unsafe impl RefEncode for WebDragSourceAction {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webopenpanelresultlistener?language=objc)
     #[deprecated]
     pub unsafe trait WebOpenPanelResultListener: NSObjectProtocol {
         #[deprecated]
@@ -161,6 +196,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webuidelegate?language=objc)
     #[deprecated]
     pub unsafe trait WebUIDelegate: NSObjectProtocol {
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]

@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionvisibility?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,27 +29,33 @@ unsafe impl RefEncode for NSFontCollectionVisibility {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionmatchingoptionkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSFontCollectionMatchingOptionKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionincludedisabledfontsoption?language=objc)
     pub static NSFontCollectionIncludeDisabledFontsOption:
         &'static NSFontCollectionMatchingOptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionremoveduplicatesoption?language=objc)
     pub static NSFontCollectionRemoveDuplicatesOption: &'static NSFontCollectionMatchingOptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectiondisallowautoactivationoption?language=objc)
     pub static NSFontCollectionDisallowAutoActivationOption:
         &'static NSFontCollectionMatchingOptionKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionname?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFontCollectionName = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFontCollection;
@@ -168,6 +175,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmutablefontcollection?language=objc)
     #[unsafe(super(NSFontCollection, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableFontCollection;
@@ -261,55 +269,69 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectiondidchangenotification?language=objc)
     pub static NSFontCollectionDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionuserinfokey?language=objc)
 // NS_TYPED_ENUM
 pub type NSFontCollectionUserInfoKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionactionkey?language=objc)
     pub static NSFontCollectionActionKey: &'static NSFontCollectionUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionnamekey?language=objc)
     pub static NSFontCollectionNameKey: &'static NSFontCollectionUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionoldnamekey?language=objc)
     pub static NSFontCollectionOldNameKey: &'static NSFontCollectionUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionvisibilitykey?language=objc)
     pub static NSFontCollectionVisibilityKey: &'static NSFontCollectionUserInfoKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionactiontypekey?language=objc)
 // NS_TYPED_ENUM
 pub type NSFontCollectionActionTypeKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionwasshown?language=objc)
     pub static NSFontCollectionWasShown: &'static NSFontCollectionActionTypeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionwashidden?language=objc)
     pub static NSFontCollectionWasHidden: &'static NSFontCollectionActionTypeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionwasrenamed?language=objc)
     pub static NSFontCollectionWasRenamed: &'static NSFontCollectionActionTypeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionallfonts?language=objc)
     pub static NSFontCollectionAllFonts: &'static NSFontCollectionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionuser?language=objc)
     pub static NSFontCollectionUser: &'static NSFontCollectionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionfavorites?language=objc)
     pub static NSFontCollectionFavorites: &'static NSFontCollectionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionrecentlyused?language=objc)
     pub static NSFontCollectionRecentlyUsed: &'static NSFontCollectionName;
 }

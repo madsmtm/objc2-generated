@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthenticationmethod?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -26,6 +27,7 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionAuthenticationMethod {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -57,6 +59,7 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionRequestOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionregistrationresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -80,6 +83,7 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionRegistrationResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsupportedgranttypes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -107,6 +111,7 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionSupportedGrantTypes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionplatformssoprotocolversion?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -125,6 +130,7 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionPlatformSSOProtocolVer
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionregistrationhandler?language=objc)
     pub unsafe trait ASAuthorizationProviderExtensionRegistrationHandler:
         NSObjectProtocol
     {

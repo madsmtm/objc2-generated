@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbdescriptor?language=objc)
     #[unsafe(super(CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]
@@ -45,6 +46,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmutabledescriptor?language=objc)
     #[unsafe(super(CBDescriptor, CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]

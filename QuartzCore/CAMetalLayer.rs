@@ -8,6 +8,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cametaldrawable?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub unsafe trait CAMetalDrawable: MTLDrawable {
         #[method_id(@__retain_semantics Other texture)]
@@ -23,6 +24,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cametallayer?language=objc)
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]

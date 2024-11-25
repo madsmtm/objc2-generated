@@ -5,9 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfieldrecentsautosavename?language=objc)
 pub type NSSearchFieldRecentsAutosaveName = NSString;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfielddelegate?language=objc)
     #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
     pub unsafe trait NSSearchFieldDelegate: NSTextFieldDelegate + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -26,6 +28,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfield?language=objc)
     #[unsafe(super(NSTextField, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

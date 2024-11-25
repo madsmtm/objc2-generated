@@ -6,12 +6,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkgeojsonobject?language=objc)
     pub unsafe trait MKGeoJSONObject: NSObjectProtocol {}
 
     unsafe impl ProtocolType for dyn MKGeoJSONObject {}
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkgeojsondecoder?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKGeoJSONDecoder;
@@ -41,6 +43,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkgeojsonfeature?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKGeoJSONFeature;

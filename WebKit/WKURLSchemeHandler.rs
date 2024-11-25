@@ -8,6 +8,7 @@ use objc2_app_kit::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkurlschemehandler?language=objc)
     pub unsafe trait WKURLSchemeHandler: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "WKURLSchemeTask",

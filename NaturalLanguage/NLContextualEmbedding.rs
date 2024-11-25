@@ -5,21 +5,26 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingkey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NLContextualEmbeddingKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingkeylanguages?language=objc)
     pub static NLContextualEmbeddingKeyLanguages: &'static NLContextualEmbeddingKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingkeyscripts?language=objc)
     pub static NLContextualEmbeddingKeyScripts: &'static NLContextualEmbeddingKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingkeyrevision?language=objc)
     pub static NLContextualEmbeddingKeyRevision: &'static NLContextualEmbeddingKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingassetsresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -42,6 +47,7 @@ unsafe impl RefEncode for NLContextualEmbeddingAssetsResult {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembedding?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NLContextualEmbedding;
@@ -133,6 +139,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NLContextualEmbeddingResult;

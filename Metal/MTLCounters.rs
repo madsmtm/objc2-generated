@@ -5,84 +5,105 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter?language=objc)
 // NS_TYPED_ENUM
 pub type MTLCommonCounter = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountertimestamp?language=objc)
     pub static MTLCommonCounterTimestamp: &'static MTLCommonCounter;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountertessellationinputpatches?language=objc)
     pub static MTLCommonCounterTessellationInputPatches: &'static MTLCommonCounter;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountervertexinvocations?language=objc)
     pub static MTLCommonCounterVertexInvocations: &'static MTLCommonCounter;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterposttessellationvertexinvocations?language=objc)
     pub static MTLCommonCounterPostTessellationVertexInvocations: &'static MTLCommonCounter;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterclipperinvocations?language=objc)
     pub static MTLCommonCounterClipperInvocations: &'static MTLCommonCounter;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterclipperprimitivesout?language=objc)
     pub static MTLCommonCounterClipperPrimitivesOut: &'static MTLCommonCounter;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterfragmentinvocations?language=objc)
     pub static MTLCommonCounterFragmentInvocations: &'static MTLCommonCounter;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterfragmentspassed?language=objc)
     pub static MTLCommonCounterFragmentsPassed: &'static MTLCommonCounter;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountercomputekernelinvocations?language=objc)
     pub static MTLCommonCounterComputeKernelInvocations: &'static MTLCommonCounter;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountertotalcycles?language=objc)
     pub static MTLCommonCounterTotalCycles: &'static MTLCommonCounter;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountervertexcycles?language=objc)
     pub static MTLCommonCounterVertexCycles: &'static MTLCommonCounter;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountertessellationcycles?language=objc)
     pub static MTLCommonCounterTessellationCycles: &'static MTLCommonCounter;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterposttessellationvertexcycles?language=objc)
     pub static MTLCommonCounterPostTessellationVertexCycles: &'static MTLCommonCounter;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterfragmentcycles?language=objc)
     pub static MTLCommonCounterFragmentCycles: &'static MTLCommonCounter;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterrendertargetwritecycles?language=objc)
     pub static MTLCommonCounterRenderTargetWriteCycles: &'static MTLCommonCounter;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterset?language=objc)
 // NS_TYPED_ENUM
 pub type MTLCommonCounterSet = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountersettimestamp?language=objc)
     pub static MTLCommonCounterSetTimestamp: &'static MTLCommonCounterSet;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountersetstageutilization?language=objc)
     pub static MTLCommonCounterSetStageUtilization: &'static MTLCommonCounterSet;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountersetstatistic?language=objc)
     pub static MTLCommonCounterSetStatistic: &'static MTLCommonCounterSet;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounterresulttimestamp?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLCounterResultTimestamp {
@@ -97,6 +118,7 @@ unsafe impl RefEncode for MTLCounterResultTimestamp {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounterresultstageutilization?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLCounterResultStageUtilization {
@@ -126,6 +148,7 @@ unsafe impl RefEncode for MTLCounterResultStageUtilization {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounterresultstatistic?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLCounterResultStatistic {
@@ -160,6 +183,7 @@ unsafe impl RefEncode for MTLCounterResultStatistic {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounter?language=objc)
     pub unsafe trait MTLCounter: NSObjectProtocol {
         #[method_id(@__retain_semantics Other name)]
         unsafe fn name(&self) -> Retained<NSString>;
@@ -169,6 +193,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounterset?language=objc)
     pub unsafe trait MTLCounterSet: NSObjectProtocol {
         #[method_id(@__retain_semantics Other name)]
         unsafe fn name(&self) -> Retained<NSString>;
@@ -181,6 +206,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebufferdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLCounterSampleBufferDescriptor;
@@ -236,6 +262,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffer?language=objc)
     pub unsafe trait MTLCounterSampleBuffer: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
@@ -255,9 +282,11 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountererrordomain?language=objc)
     pub static MTLCounterErrorDomain: &'static NSErrorDomain;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffererror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

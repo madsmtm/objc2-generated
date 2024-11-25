@@ -6,10 +6,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesystemprotectiondidchangenotification?language=objc)
     pub static UISceneSystemProtectionDidChangeNotification: &'static NSNotificationName;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesystemprotectionmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

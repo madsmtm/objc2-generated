@@ -6,81 +6,101 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osascripterrormessagekey?language=objc)
     pub static OSAScriptErrorMessageKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osascripterrorbriefmessagekey?language=objc)
     pub static OSAScriptErrorBriefMessageKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osascripterrornumberkey?language=objc)
     pub static OSAScriptErrorNumberKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osascripterrorpartialresultkey?language=objc)
     pub static OSAScriptErrorPartialResultKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osascripterroroffendingobjectkey?language=objc)
     pub static OSAScriptErrorOffendingObjectKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osascripterrorexpectedtypekey?language=objc)
     pub static OSAScriptErrorExpectedTypeKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osascripterrorappaddresskey?language=objc)
     pub static OSAScriptErrorAppAddressKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osascripterrorappnamekey?language=objc)
     pub static OSAScriptErrorAppNameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osascripterrorrangekey?language=objc)
     pub static OSAScriptErrorRangeKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osascripterrormessage?language=objc)
     pub static OSAScriptErrorMessage: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osascripterrornumber?language=objc)
     pub static OSAScriptErrorNumber: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osascripterrorappname?language=objc)
     pub static OSAScriptErrorAppName: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osascripterrorbriefmessage?language=objc)
     pub static OSAScriptErrorBriefMessage: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osascripterrorrange?language=objc)
     pub static OSAScriptErrorRange: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osastoragescripttype?language=objc)
     pub static OSAStorageScriptType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osastoragescriptbundletype?language=objc)
     pub static OSAStorageScriptBundleType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osastorageapplicationtype?language=objc)
     pub static OSAStorageApplicationType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osastorageapplicationbundletype?language=objc)
     pub static OSAStorageApplicationBundleType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osastoragetexttype?language=objc)
     pub static OSAStorageTextType: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/osakit/osastorageoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -105,6 +125,7 @@ unsafe impl RefEncode for OSAStorageOptions {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osascript?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSAScript;

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksavedgamelistener?language=objc)
     pub unsafe trait GKSavedGameListener: NSObjectProtocol {
         #[cfg(all(
             feature = "GKBasePlayer",

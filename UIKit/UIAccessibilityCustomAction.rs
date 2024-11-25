@@ -5,11 +5,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomactionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type UIAccessibilityCustomActionHandler =
     *mut block2::Block<dyn Fn(NonNull<UIAccessibilityCustomAction>) -> Bool>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomaction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -151,5 +153,6 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomactioncategoryedit?language=objc)
     pub static UIAccessibilityCustomActionCategoryEdit: &'static NSString;
 }

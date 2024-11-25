@@ -8,6 +8,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbaricon?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -31,6 +32,7 @@ unsafe impl RefEncode for UISearchBarIcon {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbarstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -53,6 +55,7 @@ unsafe impl RefEncode for UISearchBarStyle {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilooktodictatecapable?language=objc)
     pub unsafe trait UILookToDictateCapable: NSObjectProtocol {
         #[method(isLookToDictateEnabled)]
         unsafe fn isLookToDictateEnabled(&self) -> bool;
@@ -65,6 +68,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar?language=objc)
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -458,6 +462,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbardelegate?language=objc)
     #[cfg(feature = "UIBarCommon")]
     pub unsafe trait UISearchBarDelegate: UIBarPositioningDelegate + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]

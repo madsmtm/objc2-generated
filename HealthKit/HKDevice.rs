@@ -6,38 +6,47 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeyname?language=objc)
     pub static HKDevicePropertyKeyName: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeymanufacturer?language=objc)
     pub static HKDevicePropertyKeyManufacturer: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeymodel?language=objc)
     pub static HKDevicePropertyKeyModel: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeyhardwareversion?language=objc)
     pub static HKDevicePropertyKeyHardwareVersion: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeyfirmwareversion?language=objc)
     pub static HKDevicePropertyKeyFirmwareVersion: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeysoftwareversion?language=objc)
     pub static HKDevicePropertyKeySoftwareVersion: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeylocalidentifier?language=objc)
     pub static HKDevicePropertyKeyLocalIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeyudideviceidentifier?language=objc)
     pub static HKDevicePropertyKeyUDIDeviceIdentifier: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKDevice;

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowrestoration?language=objc)
     pub unsafe trait NSWindowRestoration: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "NSResponder",
@@ -54,6 +55,7 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdidfinishrestoringwindowsnotification?language=objc)
     pub static NSApplicationDidFinishRestoringWindowsNotification: &'static NSNotificationName;
 }
 

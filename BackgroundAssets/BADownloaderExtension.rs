@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloaderextension?language=objc)
     pub unsafe trait BADownloaderExtension: NSObjectProtocol {
         #[cfg(all(
             feature = "BAAppExtensionInfo",

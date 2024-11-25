@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountcredentialrenewresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -26,21 +27,26 @@ unsafe impl RefEncode for ACAccountCredentialRenewResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstoresavecompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type ACAccountStoreSaveCompletionHandler = *mut block2::Block<dyn Fn(Bool, *mut NSError)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstoreremovecompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type ACAccountStoreRemoveCompletionHandler = *mut block2::Block<dyn Fn(Bool, *mut NSError)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstorerequestaccesscompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type ACAccountStoreRequestAccessCompletionHandler =
     *mut block2::Block<dyn Fn(Bool, *mut NSError)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstorecredentialrenewalhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type ACAccountStoreCredentialRenewalHandler =
     *mut block2::Block<dyn Fn(ACAccountCredentialRenewResult, *mut NSError)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
@@ -139,5 +145,6 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstoredidchangenotification?language=objc)
     pub static ACAccountStoreDidChangeNotification: Option<&'static NSString>;
 }

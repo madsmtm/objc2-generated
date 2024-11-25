@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessorybrowserstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,6 +29,7 @@ unsafe impl RefEncode for EAWiFiUnconfiguredAccessoryBrowserState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryconfigurationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -50,6 +52,7 @@ unsafe impl RefEncode for EAWiFiUnconfiguredAccessoryConfigurationStatus {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessorybrowser?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EAWiFiUnconfiguredAccessoryBrowser;
@@ -100,6 +103,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessorybrowserdelegate?language=objc)
     pub unsafe trait EAWiFiUnconfiguredAccessoryBrowserDelegate: NSObjectProtocol {
         #[method(accessoryBrowser:didUpdateState:)]
         unsafe fn accessoryBrowser_didUpdateState(

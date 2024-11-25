@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutanchor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLayoutAnchor<AnchorType: ?Sized = AnyObject>;
@@ -95,6 +96,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutxaxisanchor?language=objc)
     #[unsafe(super(NSLayoutAnchor, NSObject))]
     #[derive(Debug)]
     pub struct NSLayoutXAxisAnchor;
@@ -156,6 +158,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutyaxisanchor?language=objc)
     #[unsafe(super(NSLayoutAnchor, NSObject))]
     #[derive(Debug)]
     pub struct NSLayoutYAxisAnchor;
@@ -217,6 +220,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutdimension?language=objc)
     #[unsafe(super(NSLayoutAnchor, NSObject))]
     #[derive(Debug)]
     pub struct NSLayoutDimension;

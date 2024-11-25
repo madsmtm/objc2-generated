@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amshellscriptaction?language=objc)
     #[unsafe(super(AMBundleAction, AMAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]

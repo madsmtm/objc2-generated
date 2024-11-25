@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2encryptionalgorithm?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -37,6 +38,7 @@ unsafe impl RefEncode for NEVPNIKEv2EncryptionAlgorithm {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2integrityalgorithm?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -64,6 +66,7 @@ unsafe impl RefEncode for NEVPNIKEv2IntegrityAlgorithm {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2deadpeerdetectionrate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -87,6 +90,7 @@ unsafe impl RefEncode for NEVPNIKEv2DeadPeerDetectionRate {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -120,6 +124,7 @@ unsafe impl RefEncode for NEVPNIKEv2DiffieHellmanGroup {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2certificatetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -147,6 +152,7 @@ unsafe impl RefEncode for NEVPNIKEv2CertificateType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2tlsversion?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -168,6 +174,7 @@ unsafe impl RefEncode for NEVPNIKEv2TLSVersion {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2securityassociationparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEVPNIKEv2SecurityAssociationParameters;
@@ -234,6 +241,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2ppkconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEVPNIKEv2PPKConfiguration;
@@ -282,6 +290,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnprotocolikev2?language=objc)
     #[unsafe(super(NEVPNProtocolIPSec, NEVPNProtocol, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NEVPNProtocol", feature = "NEVPNProtocolIPSec"))]

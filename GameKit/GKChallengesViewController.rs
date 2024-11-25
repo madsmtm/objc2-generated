@@ -9,6 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengesviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -102,6 +103,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengesviewcontrollerdelegate?language=objc)
     pub unsafe trait GKChallengesViewControllerDelegate {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicolorpickerviewcontrollerdelegate?language=objc)
     pub unsafe trait UIColorPickerViewControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -45,6 +46,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicolorpickerviewcontroller?language=objc)
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

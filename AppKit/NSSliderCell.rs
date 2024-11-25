@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstickmarkposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,6 +29,7 @@ unsafe impl RefEncode for NSTickMarkPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslidertype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -48,6 +50,7 @@ unsafe impl RefEncode for NSSliderType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslidercell?language=objc)
     #[unsafe(super(NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
@@ -277,14 +280,20 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstickmarkbelow?language=objc)
 pub static NSTickMarkBelow: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::Below.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstickmarkabove?language=objc)
 pub static NSTickMarkAbove: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::Above.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstickmarkleft?language=objc)
 pub static NSTickMarkLeft: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::Leading.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstickmarkright?language=objc)
 pub static NSTickMarkRight: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::Trailing.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinearslider?language=objc)
 pub static NSLinearSlider: NSSliderType = NSSliderType(NSSliderType::Linear.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscircularslider?language=objc)
 pub static NSCircularSlider: NSSliderType = NSSliderType(NSSliderType::Circular.0);

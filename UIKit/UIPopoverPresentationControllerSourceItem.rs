@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverpresentationcontrollersourceitem?language=objc)
     pub unsafe trait UIPopoverPresentationControllerSourceItem: NSObjectProtocol {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(frameInView:)]

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem?language=objc)
     #[unsafe(super(NSTouchBarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSTouchBarItem")]
@@ -88,6 +89,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritemdelegate?language=objc)
     #[cfg(feature = "NSSharingService")]
     pub unsafe trait NSSharingServicePickerTouchBarItemDelegate:
         NSSharingServicePickerDelegate + MainThreadOnly

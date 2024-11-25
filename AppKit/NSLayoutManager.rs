@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -24,6 +25,7 @@ unsafe impl RefEncode for NSTextLayoutOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphproperty?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -49,6 +51,7 @@ unsafe impl RefEncode for NSGlyphProperty {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolcharacteraction?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -79,6 +82,7 @@ unsafe impl RefEncode for NSControlCharacterAction {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutorientationprovider?language=objc)
     pub unsafe trait NSTextLayoutOrientationProvider {
         #[method(layoutOrientation)]
         unsafe fn layoutOrientation(&self) -> NSTextLayoutOrientation;
@@ -87,6 +91,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSTextLayoutOrientationProvider {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesetterbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -113,6 +118,7 @@ unsafe impl RefEncode for NSTypesetterBehavior {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLayoutManager;
@@ -856,6 +862,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanagerdelegate?language=objc)
     pub unsafe trait NSLayoutManagerDelegate: NSObjectProtocol {
         #[optional]
         #[method(layoutManager:lineSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:)]
@@ -974,15 +981,20 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSLayoutManagerDelegate {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphattributesoft?language=objc)
 #[deprecated]
 pub const NSGlyphAttributeSoft: c_uint = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphattributeelastic?language=objc)
 #[deprecated]
 pub const NSGlyphAttributeElastic: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphattributebidilevel?language=objc)
 #[deprecated]
 pub const NSGlyphAttributeBidiLevel: c_uint = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphattributeinscribe?language=objc)
 #[deprecated]
 pub const NSGlyphAttributeInscribe: c_uint = 5;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphinscription?language=objc)
 // NS_ENUM
 #[deprecated = "Use NSGlyphProperty instead"]
 #[repr(transparent)]

@@ -5,38 +5,47 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion?language=objc)
 // NS_TYPED_ENUM
 pub type CIRAWDecoderVersion = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversionnone?language=objc)
     pub static CIRAWDecoderVersionNone: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion8?language=objc)
     pub static CIRAWDecoderVersion8: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion8dng?language=objc)
     pub static CIRAWDecoderVersion8DNG: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion7?language=objc)
     pub static CIRAWDecoderVersion7: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion7dng?language=objc)
     pub static CIRAWDecoderVersion7DNG: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion6?language=objc)
     pub static CIRAWDecoderVersion6: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion6dng?language=objc)
     pub static CIRAWDecoderVersion6DNG: &'static CIRAWDecoderVersion;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilter?language=objc)
     #[unsafe(super(CIFilter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CIFilter")]

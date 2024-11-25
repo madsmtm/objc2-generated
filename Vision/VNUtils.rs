@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnnormalizedidentityrect?language=objc)
     pub static VNNormalizedIdentityRect: CGRect;
 }
 

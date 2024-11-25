@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcesnapshot?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDiffableDataSourceSnapshot<
@@ -200,6 +201,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcecellprovider?language=objc)
 #[cfg(all(
     feature = "UICollectionView",
     feature = "UICollectionViewCell",
@@ -216,6 +218,7 @@ pub type UICollectionViewDiffableDataSourceCellProvider = *mut block2::Block<
     ) -> *mut UICollectionViewCell,
 >;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcesupplementaryviewprovider?language=objc)
 #[cfg(all(
     feature = "UICollectionView",
     feature = "UICollectionViewCell",
@@ -233,6 +236,7 @@ pub type UICollectionViewDiffableDataSourceSupplementaryViewProvider = *mut bloc
 >;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcesectiontransaction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDiffableDataSourceSectionTransaction<
@@ -286,6 +290,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcetransaction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDiffableDataSourceTransaction<
@@ -343,6 +348,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcereorderinghandlers?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -439,6 +445,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcesectionsnapshothandlers?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -556,6 +563,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasource?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -748,6 +756,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdiffabledatasourcecellprovider?language=objc)
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIScrollView",
@@ -761,6 +770,7 @@ pub type UITableViewDiffableDataSourceCellProvider = *mut block2::Block<
 >;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdiffabledatasource?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

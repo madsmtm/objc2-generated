@@ -6,13 +6,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserrordomain?language=objc)
     pub static PHPhotosErrorDomain: Option<&'static NSErrorDomain>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlocalidentifierserrorkey?language=objc)
     pub static PHLocalIdentifiersErrorKey: Option<&'static NSErrorUserInfoKey>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

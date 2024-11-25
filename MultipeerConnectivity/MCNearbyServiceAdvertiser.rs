@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcnearbyserviceadvertiser?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MCNearbyServiceAdvertiser;
@@ -66,6 +67,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcnearbyserviceadvertiserdelegate?language=objc)
     pub unsafe trait MCNearbyServiceAdvertiserDelegate: NSObjectProtocol {
         #[cfg(all(feature = "MCPeerID", feature = "MCSession", feature = "block2"))]
         #[method(advertiser:didReceiveInvitationFromPeer:withContext:invitationHandler:)]

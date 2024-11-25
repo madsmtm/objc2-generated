@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstestcomparisonoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,6 +29,7 @@ unsafe impl RefEncode for NSTestComparisonOperation {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptwhosetest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptWhoseTest;
@@ -64,6 +66,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslogicaltest?language=objc)
     #[unsafe(super(NSScriptWhoseTest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLogicalTest;
@@ -122,6 +125,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest?language=objc)
     #[unsafe(super(NSScriptWhoseTest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSpecifierTest;

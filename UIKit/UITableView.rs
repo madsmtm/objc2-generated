@@ -8,6 +8,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,6 +30,7 @@ unsafe impl RefEncode for UITableViewStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewscrollposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -52,6 +54,7 @@ unsafe impl RefEncode for UITableViewScrollPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewrowanimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -83,6 +86,7 @@ unsafe impl RefEncode for UITableViewRowAnimation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcontenthuggingelements?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -105,13 +109,16 @@ unsafe impl RefEncode for UITableViewContentHuggingElements {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewindexsearch?language=objc)
     pub static UITableViewIndexSearch: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewautomaticdimension?language=objc)
     pub static UITableViewAutomaticDimension: CGFloat;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewrowactionstyle?language=objc)
 // NS_ENUM
 #[deprecated = "Use UIContextualAction and related APIs instead."]
 #[repr(transparent)]
@@ -138,6 +145,7 @@ unsafe impl RefEncode for UITableViewRowActionStyle {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewrowaction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -211,6 +219,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewfocusupdatecontext?language=objc)
     #[unsafe(super(UIFocusUpdateContext, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -245,6 +254,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdelegate?language=objc)
     #[cfg(feature = "UIScrollView")]
     pub unsafe trait UITableViewDelegate:
         NSObjectProtocol + UIScrollViewDelegate + MainThreadOnly
@@ -811,9 +821,11 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewselectiondidchangenotification?language=objc)
     pub static UITableViewSelectionDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewseparatorinsetreference?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -831,6 +843,7 @@ unsafe impl RefEncode for UITableViewSeparatorInsetReference {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewselfsizinginvalidation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -853,6 +866,7 @@ unsafe impl RefEncode for UITableViewSelfSizingInvalidation {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview?language=objc)
     #[unsafe(super(UIScrollView, UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1574,6 +1588,7 @@ extern_methods!(
 unsafe impl UISpringLoadedInteractionSupporting for UITableView {}
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdatasource?language=objc)
     pub unsafe trait UITableViewDataSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
         #[method(tableView:numberOfRowsInSection:)]
@@ -1685,6 +1700,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdatasourceprefetching?language=objc)
     pub unsafe trait UITableViewDataSourcePrefetching:
         NSObjectProtocol + MainThreadOnly
     {
@@ -1710,6 +1726,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdragdelegate?language=objc)
     pub unsafe trait UITableViewDragDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UIDragItem",
@@ -1819,6 +1836,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropdelegate?language=objc)
     pub unsafe trait UITableViewDropDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
         #[method(tableView:performDropWithCoordinator:)]
@@ -1919,6 +1937,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UITableViewDropDelegate {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropintent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1943,6 +1962,7 @@ unsafe impl RefEncode for UITableViewDropIntent {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropproposal?language=objc)
     #[unsafe(super(UIDropProposal, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1995,6 +2015,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropcoordinator?language=objc)
     pub unsafe trait UITableViewDropCoordinator: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other items)]
         unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UITableViewDropItem>>>;
@@ -2053,6 +2074,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewplaceholder?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -2103,6 +2125,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropplaceholder?language=objc)
     #[unsafe(super(UITableViewPlaceholder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -2164,6 +2187,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropitem?language=objc)
     pub unsafe trait UITableViewDropItem: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIDragItem")]
         #[method_id(@__retain_semantics Other dragItem)]
@@ -2180,6 +2204,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropplaceholdercontext?language=objc)
     #[cfg(feature = "UIDragInteraction")]
     pub unsafe trait UITableViewDropPlaceholderContext:
         UIDragAnimating + MainThreadOnly

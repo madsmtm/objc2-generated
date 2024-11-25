@@ -5,8 +5,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchdocumentidentifier?language=objc)
 pub type UITextSearchDocumentIdentifier = AnyObject;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchfoundtextstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,6 +31,7 @@ unsafe impl RefEncode for UITextSearchFoundTextStyle {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchaggregator?language=objc)
     pub unsafe trait UITextSearchAggregator: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other allFoundRanges)]
@@ -62,6 +65,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearching?language=objc)
     pub unsafe trait UITextSearching: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other selectedTextRange)]

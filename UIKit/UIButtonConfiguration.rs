@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationtextattributestransformer?language=objc)
 #[cfg(feature = "block2")]
 pub type UIConfigurationTextAttributesTransformer = *mut block2::Block<
     dyn Fn(
@@ -12,6 +13,7 @@ pub type UIConfigurationTextAttributesTransformer = *mut block2::Block<
     ) -> NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,
 >;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationsize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -35,6 +37,7 @@ unsafe impl RefEncode for UIButtonConfigurationSize {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationtitlealignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -58,6 +61,7 @@ unsafe impl RefEncode for UIButtonConfigurationTitleAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationcornerstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -85,6 +89,7 @@ unsafe impl RefEncode for UIButtonConfigurationCornerStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationmacidiomstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -108,6 +113,7 @@ unsafe impl RefEncode for UIButtonConfigurationMacIdiomStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationindicator?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -130,6 +136,7 @@ unsafe impl RefEncode for UIButtonConfigurationIndicator {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

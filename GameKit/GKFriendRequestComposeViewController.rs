@@ -9,6 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendrequestcomposeviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -130,6 +131,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendrequestcomposeviewcontrollerdelegate?language=objc)
     #[deprecated]
     pub unsafe trait GKFriendRequestComposeViewControllerDelegate {
         #[cfg(feature = "objc2-app-kit")]

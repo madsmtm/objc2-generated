@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasourcecellprovider?language=objc)
 #[cfg(all(
     feature = "NSControl",
     feature = "NSResponder",
@@ -21,6 +22,7 @@ pub type NSTableViewDiffableDataSourceCellProvider = *mut block2::Block<
     ) -> NonNull<NSView>,
 >;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasourcerowprovider?language=objc)
 #[cfg(all(
     feature = "NSControl",
     feature = "NSResponder",
@@ -33,6 +35,7 @@ pub type NSTableViewDiffableDataSourceRowProvider = *mut block2::Block<
     dyn Fn(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>) -> NonNull<NSTableRowView>,
 >;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasourcesectionheaderviewprovider?language=objc)
 #[cfg(all(
     feature = "NSControl",
     feature = "NSResponder",
@@ -45,6 +48,7 @@ pub type NSTableViewDiffableDataSourceSectionHeaderViewProvider = *mut block2::B
 >;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTableViewDiffableDataSource<

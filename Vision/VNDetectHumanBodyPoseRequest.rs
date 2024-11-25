@@ -6,295 +6,349 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeynose?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyNose: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeylefteye?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyLeftEye: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyrighteye?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyRightEye: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyleftear?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyLeftEar: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyrightear?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyRightEar: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyleftshoulder?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyLeftShoulder: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyrightshoulder?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyRightShoulder: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyneck?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyNeck: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyleftelbow?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyLeftElbow: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyrightelbow?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyRightElbow: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyleftwrist?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyLeftWrist: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyrightwrist?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyRightWrist: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeylefthip?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyLeftHip: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyrighthip?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyRightHip: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyroot?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyRoot: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyleftknee?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyLeftKnee: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyrightknee?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyRightKnee: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyleftankle?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyLeftAnkle: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyrightankle?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkKeyRightAnkle: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkregionkeyface?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkRegionKeyFace: &'static VNRecognizedPointGroupKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkregionkeytorso?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkRegionKeyTorso: &'static VNRecognizedPointGroupKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkregionkeyleftarm?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkRegionKeyLeftArm: &'static VNRecognizedPointGroupKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkregionkeyrightarm?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkRegionKeyRightArm: &'static VNRecognizedPointGroupKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkregionkeyleftleg?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkRegionKeyLeftLeg: &'static VNRecognizedPointGroupKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkregionkeyrightleg?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNBodyLandmarkRegionKeyRightLeg: &'static VNRecognizedPointGroupKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointname?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "VNTypes")]
 pub type VNHumanBodyPoseObservationJointName = VNRecognizedPointKey;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnamenose?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameNose:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnamelefteye?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameLeftEye:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnamerighteye?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameRightEye:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnameleftear?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameLeftEar:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnamerightear?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameRightEar:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnameleftshoulder?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameLeftShoulder:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnamerightshoulder?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameRightShoulder:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnameneck?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameNeck:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnameleftelbow?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameLeftElbow:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnamerightelbow?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameRightElbow:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnameleftwrist?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameLeftWrist:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnamerightwrist?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameRightWrist:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnamelefthip?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameLeftHip:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnamerighthip?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameRightHip:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnameroot?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameRoot:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnameleftknee?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameLeftKnee:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnamerightknee?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameRightKnee:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnameleftankle?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameLeftAnkle:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointnamerightankle?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointNameRightAnkle:
         &'static VNHumanBodyPoseObservationJointName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointsgroupname?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "VNTypes")]
 pub type VNHumanBodyPoseObservationJointsGroupName = VNRecognizedPointGroupKey;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointsgroupnameface?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointsGroupNameFace:
         &'static VNHumanBodyPoseObservationJointsGroupName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointsgroupnametorso?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointsGroupNameTorso:
         &'static VNHumanBodyPoseObservationJointsGroupName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointsgroupnameleftarm?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointsGroupNameLeftArm:
         &'static VNHumanBodyPoseObservationJointsGroupName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointsgroupnamerightarm?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointsGroupNameRightArm:
         &'static VNHumanBodyPoseObservationJointsGroupName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointsgroupnameleftleg?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointsGroupNameLeftLeg:
         &'static VNHumanBodyPoseObservationJointsGroupName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointsgroupnamerightleg?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointsGroupNameRightLeg:
         &'static VNHumanBodyPoseObservationJointsGroupName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservationjointsgroupnameall?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanBodyPoseObservationJointsGroupNameAll:
         &'static VNHumanBodyPoseObservationJointsGroupName;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyposeobservation?language=objc)
     #[unsafe(super(VNRecognizedPointsObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNObservation")]
@@ -376,6 +430,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanbodyposerequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -453,4 +508,5 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanbodyposerequestrevision1?language=objc)
 pub static VNDetectHumanBodyPoseRequestRevision1: NSUInteger = 1;

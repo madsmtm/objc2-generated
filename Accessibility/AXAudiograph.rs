@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchart?language=objc)
     pub unsafe trait AXChart: NSObjectProtocol {
         #[method_id(@__retain_semantics Other accessibilityChartDescriptor)]
         unsafe fn accessibilityChartDescriptor(&self) -> Option<Retained<AXChartDescriptor>>;
@@ -21,6 +22,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axdataaxisdescriptor?language=objc)
     pub unsafe trait AXDataAxisDescriptor: NSCopying {
         #[method_id(@__retain_semantics Other title)]
         unsafe fn title(&self) -> Retained<NSString>;
@@ -38,6 +40,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn AXDataAxisDescriptor {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptorscale?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -57,6 +60,7 @@ unsafe impl RefEncode for AXNumericDataAxisDescriptorScale {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXNumericDataAxisDescriptor;
@@ -142,6 +146,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcategoricaldataaxisdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXCategoricalDataAxisDescriptor;
@@ -188,6 +193,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axdatapointvalue?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXDataPointValue;
@@ -230,6 +236,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axdatapoint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXDataPoint;
@@ -308,6 +315,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axdataseriesdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXDataSeriesDescriptor;
@@ -371,6 +379,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptorcontentdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -393,6 +402,7 @@ unsafe impl RefEncode for AXChartDescriptorContentDirection {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXChartDescriptor;
@@ -521,6 +531,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axliveaudiograph?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXLiveAudioGraph;

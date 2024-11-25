@@ -6,33 +6,41 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbadvertisementdatalocalnamekey?language=objc)
     pub static CBAdvertisementDataLocalNameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbadvertisementdatatxpowerlevelkey?language=objc)
     pub static CBAdvertisementDataTxPowerLevelKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbadvertisementdataserviceuuidskey?language=objc)
     pub static CBAdvertisementDataServiceUUIDsKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbadvertisementdataservicedatakey?language=objc)
     pub static CBAdvertisementDataServiceDataKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbadvertisementdatamanufacturerdatakey?language=objc)
     pub static CBAdvertisementDataManufacturerDataKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbadvertisementdataoverflowserviceuuidskey?language=objc)
     pub static CBAdvertisementDataOverflowServiceUUIDsKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbadvertisementdataisconnectable?language=objc)
     pub static CBAdvertisementDataIsConnectable: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbadvertisementdatasolicitedserviceuuidskey?language=objc)
     pub static CBAdvertisementDataSolicitedServiceUUIDsKey: &'static NSString;
 }

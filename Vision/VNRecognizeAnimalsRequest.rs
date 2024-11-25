@@ -5,18 +5,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalidentifier?language=objc)
 // NS_TYPED_ENUM
 pub type VNAnimalIdentifier = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalidentifierdog?language=objc)
     pub static VNAnimalIdentifierDog: &'static VNAnimalIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalidentifiercat?language=objc)
     pub static VNAnimalIdentifierCat: &'static VNAnimalIdentifier;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizeanimalsrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -79,6 +83,8 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizeanimalsrequestrevision1?language=objc)
 pub static VNRecognizeAnimalsRequestRevision1: NSUInteger = 1;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizeanimalsrequestrevision2?language=objc)
 pub static VNRecognizeAnimalsRequestRevision2: NSUInteger = 2;

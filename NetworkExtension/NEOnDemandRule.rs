@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,6 +29,7 @@ unsafe impl RefEncode for NEOnDemandRuleAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleinterfacetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -52,6 +54,7 @@ unsafe impl RefEncode for NEOnDemandRuleInterfaceType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandrule?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEOnDemandRule;
@@ -127,6 +130,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleconnect?language=objc)
     #[unsafe(super(NEOnDemandRule, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEOnDemandRuleConnect;
@@ -160,6 +164,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruledisconnect?language=objc)
     #[unsafe(super(NEOnDemandRule, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEOnDemandRuleDisconnect;
@@ -193,6 +198,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleignore?language=objc)
     #[unsafe(super(NEOnDemandRule, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEOnDemandRuleIgnore;
@@ -226,6 +232,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleevaluateconnection?language=objc)
     #[unsafe(super(NEOnDemandRule, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEOnDemandRuleEvaluateConnection;
@@ -268,6 +275,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neevaluateconnectionruleaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -288,6 +296,7 @@ unsafe impl RefEncode for NEEvaluateConnectionRuleAction {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neevaluateconnectionrule?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEEvaluateConnectionRule;

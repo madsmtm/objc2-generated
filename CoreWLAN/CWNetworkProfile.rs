@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwnetworkprofile?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWNetworkProfile;
@@ -72,6 +73,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwmutablenetworkprofile?language=objc)
     #[unsafe(super(CWNetworkProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWMutableNetworkProfile;

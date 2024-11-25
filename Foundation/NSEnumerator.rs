@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfastenumeration?language=objc)
     pub unsafe trait NSFastEnumeration {
         #[method(countByEnumeratingWithState:objects:count:)]
         unsafe fn countByEnumeratingWithState_objects_count(
@@ -19,6 +20,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumerator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSEnumerator<ObjectType: ?Sized = AnyObject>;

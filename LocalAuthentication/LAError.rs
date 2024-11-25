@@ -6,9 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerrordomain?language=objc)
     pub static LAErrorDomain: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

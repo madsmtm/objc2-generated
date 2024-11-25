@@ -5,11 +5,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicspdfdrawingactions?language=objc)
 #[cfg(all(feature = "UIGraphicsRenderer", feature = "block2"))]
 pub type UIGraphicsPDFDrawingActions =
     *mut block2::Block<dyn Fn(NonNull<UIGraphicsPDFRendererContext>)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicspdfrendererformat?language=objc)
     #[unsafe(super(UIGraphicsRendererFormat, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGraphicsRenderer")]
@@ -64,6 +66,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext?language=objc)
     #[unsafe(super(UIGraphicsRendererContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGraphicsRenderer")]
@@ -113,6 +116,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer?language=objc)
     #[unsafe(super(UIGraphicsRenderer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGraphicsRenderer")]

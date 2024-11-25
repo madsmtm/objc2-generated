@@ -7,6 +7,7 @@ use objc2_core_location::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkoverlay?language=objc)
     #[cfg(feature = "MKAnnotation")]
     pub unsafe trait MKOverlay: MKAnnotation {
         #[cfg(feature = "objc2-core-location")]

@@ -5,13 +5,16 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber?language=objc)
     pub static NSFoundationVersionNumber: c_double;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSExceptionName = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrunloopmode?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSRunLoopMode = NSString;
@@ -54,10 +57,12 @@ extern "C-unwind" {
     ) -> NonNull<c_char>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparator?language=objc)
 #[cfg(feature = "block2")]
 pub type NSComparator =
     *mut block2::Block<dyn Fn(NonNull<AnyObject>, NonNull<AnyObject>) -> NSComparisonResult>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -77,6 +82,7 @@ unsafe impl RefEncode for NSEnumerationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssortoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -96,6 +102,7 @@ unsafe impl RefEncode for NSSortOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsqualityofservice?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -121,4 +128,5 @@ unsafe impl RefEncode for NSQualityOfService {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotfound?language=objc)
 pub static NSNotFound: NSInteger = NSIntegerMax as _;

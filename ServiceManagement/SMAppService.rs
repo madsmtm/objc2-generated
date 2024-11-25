@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservicestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,10 +30,12 @@ unsafe impl RefEncode for SMAppServiceStatus {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappserviceerrordomain?language=objc)
     pub static SMAppServiceErrorDomain: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SMAppService;

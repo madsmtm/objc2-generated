@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,6 +29,7 @@ unsafe impl RefEncode for GKTurnBasedMatchStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipantstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -55,6 +57,7 @@ unsafe impl RefEncode for GKTurnBasedParticipantStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchoutcome?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -93,6 +96,7 @@ unsafe impl RefEncode for GKTurnBasedMatchOutcome {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKTurnBasedParticipant;
@@ -144,6 +148,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener?language=objc)
     pub unsafe trait GKTurnBasedEventListener {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[optional]
@@ -220,14 +225,17 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturntimeoutdefault?language=objc)
     pub static GKTurnTimeoutDefault: NSTimeInterval;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturntimeoutnone?language=objc)
     pub static GKTurnTimeoutNone: NSTimeInterval;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKTurnBasedMatch;
@@ -476,6 +484,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -502,14 +511,17 @@ unsafe impl RefEncode for GKTurnBasedExchangeStatus {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkexchangetimeoutdefault?language=objc)
     pub static GKExchangeTimeoutDefault: NSTimeInterval;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkexchangetimeoutnone?language=objc)
     pub static GKExchangeTimeoutNone: NSTimeInterval;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKTurnBasedExchange;
@@ -582,6 +594,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKTurnBasedExchangeReply;
@@ -617,6 +630,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandlerdelegate?language=objc)
     #[deprecated]
     pub unsafe trait GKTurnBasedEventHandlerDelegate {
         #[deprecated]
@@ -646,6 +660,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

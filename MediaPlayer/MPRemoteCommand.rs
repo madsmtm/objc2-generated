@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpremotecommandhandlerstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -31,6 +32,7 @@ unsafe impl RefEncode for MPRemoteCommandHandlerStatus {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpremotecommand?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPRemoteCommand;
@@ -73,6 +75,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpskipintervalcommand?language=objc)
     #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSkipIntervalCommand;
@@ -102,6 +105,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommand?language=objc)
     #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPFeedbackCommand;
@@ -143,6 +147,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpratingcommand?language=objc)
     #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPRatingCommand;
@@ -178,6 +183,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangeplaybackratecommand?language=objc)
     #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangePlaybackRateCommand;
@@ -210,6 +216,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangeplaybackpositioncommand?language=objc)
     #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangePlaybackPositionCommand;
@@ -233,6 +240,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangeshufflemodecommand?language=objc)
     #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangeShuffleModeCommand;
@@ -264,6 +272,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangerepeatmodecommand?language=objc)
     #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangeRepeatModeCommand;

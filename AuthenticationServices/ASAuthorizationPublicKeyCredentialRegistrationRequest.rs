@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialregistrationrequest?language=objc)
     pub unsafe trait ASAuthorizationPublicKeyCredentialRegistrationRequest:
         NSCopying + NSObjectProtocol + NSSecureCoding
     {

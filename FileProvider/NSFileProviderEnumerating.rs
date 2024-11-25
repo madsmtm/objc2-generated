@@ -5,21 +5,26 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidersyncanchor?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFileProviderSyncAnchor = NSData;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderpage?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFileProviderPage = NSData;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderinitialpagesortedbydate?language=objc)
     pub static NSFileProviderInitialPageSortedByDate: &'static NSFileProviderPage;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderinitialpagesortedbyname?language=objc)
     pub static NSFileProviderInitialPageSortedByName: &'static NSFileProviderPage;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderenumerationobserver?language=objc)
     pub unsafe trait NSFileProviderEnumerationObserver: NSObjectProtocol {
         #[cfg(feature = "NSFileProviderItem")]
         #[method(didEnumerateItems:)]
@@ -43,6 +48,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderchangeobserver?language=objc)
     pub unsafe trait NSFileProviderChangeObserver: NSObjectProtocol {
         #[cfg(feature = "NSFileProviderItem")]
         #[method(didUpdateItems:)]
@@ -77,6 +83,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderenumerator?language=objc)
     pub unsafe trait NSFileProviderEnumerator: NSObjectProtocol {
         #[method(invalidate)]
         unsafe fn invalidate(&self);

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuseractivityrestoring?language=objc)
     pub unsafe trait NSUserActivityRestoring: NSObjectProtocol + MainThreadOnly {
         #[method(restoreUserActivityState:)]
         unsafe fn restoreUserActivityState(&self, user_activity: &NSUserActivity);
@@ -51,5 +52,6 @@ extern_methods!(
 unsafe impl NSUserActivityRestoring for NSDocument {}
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuseractivitydocumenturlkey?language=objc)
     pub static NSUserActivityDocumentURLKey: &'static NSString;
 }

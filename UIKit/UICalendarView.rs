@@ -9,6 +9,7 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarview?language=objc)
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -176,6 +177,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarviewdelegate?language=objc)
     pub unsafe trait UICalendarViewDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "UICalendarViewDecoration",

@@ -5,164 +5,205 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagscheme?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NLTagScheme = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagschemetokentype?language=objc)
     pub static NLTagSchemeTokenType: Option<&'static NLTagScheme>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagschemelexicalclass?language=objc)
     pub static NLTagSchemeLexicalClass: Option<&'static NLTagScheme>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagschemenametype?language=objc)
     pub static NLTagSchemeNameType: Option<&'static NLTagScheme>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagschemenametypeorlexicalclass?language=objc)
     pub static NLTagSchemeNameTypeOrLexicalClass: Option<&'static NLTagScheme>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagschemelemma?language=objc)
     pub static NLTagSchemeLemma: Option<&'static NLTagScheme>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagschemelanguage?language=objc)
     pub static NLTagSchemeLanguage: Option<&'static NLTagScheme>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagschemescript?language=objc)
     pub static NLTagSchemeScript: Option<&'static NLTagScheme>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagschemesentimentscore?language=objc)
     pub static NLTagSchemeSentimentScore: Option<&'static NLTagScheme>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NLTag = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagword?language=objc)
     pub static NLTagWord: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagpunctuation?language=objc)
     pub static NLTagPunctuation: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagwhitespace?language=objc)
     pub static NLTagWhitespace: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagother?language=objc)
     pub static NLTagOther: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagnoun?language=objc)
     pub static NLTagNoun: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagverb?language=objc)
     pub static NLTagVerb: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagadjective?language=objc)
     pub static NLTagAdjective: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagadverb?language=objc)
     pub static NLTagAdverb: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagpronoun?language=objc)
     pub static NLTagPronoun: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagdeterminer?language=objc)
     pub static NLTagDeterminer: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagparticle?language=objc)
     pub static NLTagParticle: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagpreposition?language=objc)
     pub static NLTagPreposition: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagnumber?language=objc)
     pub static NLTagNumber: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagconjunction?language=objc)
     pub static NLTagConjunction: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltaginterjection?language=objc)
     pub static NLTagInterjection: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagclassifier?language=objc)
     pub static NLTagClassifier: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagidiom?language=objc)
     pub static NLTagIdiom: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagotherword?language=objc)
     pub static NLTagOtherWord: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagsentenceterminator?language=objc)
     pub static NLTagSentenceTerminator: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagopenquote?language=objc)
     pub static NLTagOpenQuote: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagclosequote?language=objc)
     pub static NLTagCloseQuote: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagopenparenthesis?language=objc)
     pub static NLTagOpenParenthesis: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagcloseparenthesis?language=objc)
     pub static NLTagCloseParenthesis: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagwordjoiner?language=objc)
     pub static NLTagWordJoiner: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagdash?language=objc)
     pub static NLTagDash: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagotherpunctuation?language=objc)
     pub static NLTagOtherPunctuation: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagparagraphbreak?language=objc)
     pub static NLTagParagraphBreak: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagotherwhitespace?language=objc)
     pub static NLTagOtherWhitespace: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagpersonalname?language=objc)
     pub static NLTagPersonalName: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagplacename?language=objc)
     pub static NLTagPlaceName: Option<&'static NLTag>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagorganizationname?language=objc)
     pub static NLTagOrganizationName: Option<&'static NLTag>;
 }

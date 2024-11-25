@@ -5,22 +5,27 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/businesschat/bcparametername?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type BCParameterName = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/businesschat/bcparameternameintent?language=objc)
     pub static BCParameterNameIntent: &'static BCParameterName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/businesschat/bcparameternamegroup?language=objc)
     pub static BCParameterNameGroup: &'static BCParameterName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/businesschat/bcparameternamebody?language=objc)
     pub static BCParameterNameBody: &'static BCParameterName;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/businesschat/bcchataction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

@@ -5,10 +5,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFileProviderDomainIdentifier = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainversion?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderDomainVersion;
@@ -44,6 +46,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomaintestingmodes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -63,6 +66,7 @@ unsafe impl RefEncode for NSFileProviderDomainTestingModes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolders?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -83,6 +87,7 @@ unsafe impl RefEncode for NSFileProviderKnownFolders {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderDomain;
@@ -198,5 +203,6 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomaindidchange?language=objc)
     pub static NSFileProviderDomainDidChange: &'static NSNotificationName;
 }

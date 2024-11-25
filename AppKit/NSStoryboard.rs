@@ -5,15 +5,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboardname?language=objc)
 pub type NSStoryboardName = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboardsceneidentifier?language=objc)
 pub type NSStoryboardSceneIdentifier = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboardcontrollercreator?language=objc)
 #[cfg(feature = "block2")]
 pub type NSStoryboardControllerCreator =
     *mut block2::Block<dyn Fn(NonNull<NSCoder>) -> *mut AnyObject>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboard?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStoryboard;

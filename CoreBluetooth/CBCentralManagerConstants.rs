@@ -6,74 +6,92 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanageroptionshowpoweralertkey?language=objc)
     pub static CBCentralManagerOptionShowPowerAlertKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanageroptionrestoreidentifierkey?language=objc)
     pub static CBCentralManagerOptionRestoreIdentifierKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanageroptiondeviceaccessformedia?language=objc)
     pub static CBCentralManagerOptionDeviceAccessForMedia: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerscanoptionallowduplicateskey?language=objc)
     pub static CBCentralManagerScanOptionAllowDuplicatesKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerscanoptionsolicitedserviceuuidskey?language=objc)
     pub static CBCentralManagerScanOptionSolicitedServiceUUIDsKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectperipheraloptionnotifyonconnectionkey?language=objc)
     pub static CBConnectPeripheralOptionNotifyOnConnectionKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectperipheraloptionnotifyondisconnectionkey?language=objc)
     pub static CBConnectPeripheralOptionNotifyOnDisconnectionKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectperipheraloptionnotifyonnotificationkey?language=objc)
     pub static CBConnectPeripheralOptionNotifyOnNotificationKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectperipheraloptionstartdelaykey?language=objc)
     pub static CBConnectPeripheralOptionStartDelayKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectperipheraloptionenabletransportbridgingkey?language=objc)
     pub static CBConnectPeripheralOptionEnableTransportBridgingKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectperipheraloptionrequiresancs?language=objc)
     pub static CBConnectPeripheralOptionRequiresANCS: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerrestoredstateperipheralskey?language=objc)
     pub static CBCentralManagerRestoredStatePeripheralsKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerrestoredstatescanserviceskey?language=objc)
     pub static CBCentralManagerRestoredStateScanServicesKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerrestoredstatescanoptionskey?language=objc)
     pub static CBCentralManagerRestoredStateScanOptionsKey: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectioneventmatchingoption?language=objc)
 // NS_TYPED_ENUM
 pub type CBConnectionEventMatchingOption = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectioneventmatchingoptionserviceuuids?language=objc)
     pub static CBConnectionEventMatchingOptionServiceUUIDs:
         &'static CBConnectionEventMatchingOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectioneventmatchingoptionperipheraluuids?language=objc)
     pub static CBConnectionEventMatchingOptionPeripheralUUIDs:
         &'static CBConnectionEventMatchingOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectperipheraloptionenableautoreconnect?language=objc)
     pub static CBConnectPeripheralOptionEnableAutoReconnect: &'static NSString;
 }

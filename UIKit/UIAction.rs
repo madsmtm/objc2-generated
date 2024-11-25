@@ -5,29 +5,36 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIActionIdentifier = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionpaste?language=objc)
     pub static UIActionPaste: &'static UIActionIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionpasteandmatchstyle?language=objc)
     pub static UIActionPasteAndMatchStyle: &'static UIActionIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionpasteandgo?language=objc)
     pub static UIActionPasteAndGo: &'static UIActionIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionpasteandsearch?language=objc)
     pub static UIActionPasteAndSearch: &'static UIActionIdentifier;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionhandler?language=objc)
 #[cfg(all(feature = "UIMenuElement", feature = "block2"))]
 pub type UIActionHandler = *mut block2::Block<dyn Fn(NonNull<UIAction>)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaction?language=objc)
     #[unsafe(super(UIMenuElement, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

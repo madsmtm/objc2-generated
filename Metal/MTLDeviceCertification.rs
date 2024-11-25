@@ -5,25 +5,31 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/nsdevicecertification?language=objc)
 // NS_TYPED_ENUM
 pub type NSDeviceCertification = NSInteger;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/nsdevicecertificationiphoneperformancegaming?language=objc)
     pub static NSDeviceCertificationiPhonePerformanceGaming: NSDeviceCertification;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/nsprocessperformanceprofile?language=objc)
 // NS_TYPED_ENUM
 pub type NSProcessPerformanceProfile = NSInteger;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/nsprocessperformanceprofiledefault?language=objc)
     pub static NSProcessPerformanceProfileDefault: NSProcessPerformanceProfile;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/nsprocessperformanceprofilesustained?language=objc)
     pub static NSProcessPerformanceProfileSustained: NSProcessPerformanceProfile;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/nsprocessinfoperformanceprofiledidchangenotification?language=objc)
     pub static NSProcessInfoPerformanceProfileDidChangeNotification:
         Option<&'static NSNotificationName>;
 }

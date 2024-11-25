@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -79,6 +80,7 @@ unsafe impl RefEncode for UIApplicationShortcutIconType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIApplicationShortcutIcon;
@@ -117,6 +119,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcutitem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIApplicationShortcutItem;
@@ -189,6 +192,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimutableapplicationshortcutitem?language=objc)
     #[unsafe(super(UIApplicationShortcutItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIMutableApplicationShortcutItem;

@@ -11,6 +11,7 @@ use objc2_photos::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoviewplaybackstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -36,6 +37,7 @@ unsafe impl Send for PHLivePhotoViewPlaybackStyle {}
 
 unsafe impl Sync for PHLivePhotoViewPlaybackStyle {}
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoviewcontentmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -60,6 +62,7 @@ unsafe impl Send for PHLivePhotoViewContentMode {}
 unsafe impl Sync for PHLivePhotoViewContentMode {}
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -198,6 +201,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoviewdelegate?language=objc)
     pub unsafe trait PHLivePhotoViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

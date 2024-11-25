@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -191,6 +192,7 @@ unsafe impl RefEncode for HKWorkoutActivityType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouteventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -223,6 +225,7 @@ unsafe impl RefEncode for HKWorkoutEventType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutEvent;
@@ -295,6 +298,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkout?language=objc)
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
@@ -476,65 +480,81 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutduration?language=objc)
     pub static HKPredicateKeyPathWorkoutDuration: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouttotaldistance?language=objc)
     pub static HKPredicateKeyPathWorkoutTotalDistance: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouttotalenergyburned?language=objc)
     pub static HKPredicateKeyPathWorkoutTotalEnergyBurned: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouttype?language=objc)
     pub static HKPredicateKeyPathWorkoutType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouttotalswimmingstrokecount?language=objc)
     pub static HKPredicateKeyPathWorkoutTotalSwimmingStrokeCount: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouttotalflightsclimbed?language=objc)
     pub static HKPredicateKeyPathWorkoutTotalFlightsClimbed: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutsumquantity?language=objc)
     pub static HKPredicateKeyPathWorkoutSumQuantity: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutminimumquantity?language=objc)
     pub static HKPredicateKeyPathWorkoutMinimumQuantity: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutmaximumquantity?language=objc)
     pub static HKPredicateKeyPathWorkoutMaximumQuantity: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutaveragequantity?language=objc)
     pub static HKPredicateKeyPathWorkoutAverageQuantity: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivity?language=objc)
     pub static HKPredicateKeyPathWorkoutActivity: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsortidentifierduration?language=objc)
     pub static HKWorkoutSortIdentifierDuration: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsortidentifiertotaldistance?language=objc)
     pub static HKWorkoutSortIdentifierTotalDistance: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsortidentifiertotalenergyburned?language=objc)
     pub static HKWorkoutSortIdentifierTotalEnergyBurned: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsortidentifiertotalswimmingstrokecount?language=objc)
     pub static HKWorkoutSortIdentifierTotalSwimmingStrokeCount: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsortidentifiertotalflightsclimbed?language=objc)
     pub static HKWorkoutSortIdentifierTotalFlightsClimbed: &'static NSString;
 }

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnphonenumber?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNPhoneNumber;
@@ -49,33 +50,41 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelphonenumberiphone?language=objc)
     pub static CNLabelPhoneNumberiPhone: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelphonenumberapplewatch?language=objc)
     pub static CNLabelPhoneNumberAppleWatch: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelphonenumbermobile?language=objc)
     pub static CNLabelPhoneNumberMobile: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelphonenumbermain?language=objc)
     pub static CNLabelPhoneNumberMain: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelphonenumberhomefax?language=objc)
     pub static CNLabelPhoneNumberHomeFax: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelphonenumberworkfax?language=objc)
     pub static CNLabelPhoneNumberWorkFax: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelphonenumberotherfax?language=objc)
     pub static CNLabelPhoneNumberOtherFax: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelphonenumberpager?language=objc)
     pub static CNLabelPhoneNumberPager: &'static NSString;
 }

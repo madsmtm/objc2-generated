@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectbarcodesrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -82,10 +83,14 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectbarcodesrequestrevision1?language=objc)
 pub static VNDetectBarcodesRequestRevision1: NSUInteger = 1;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectbarcodesrequestrevision2?language=objc)
 pub static VNDetectBarcodesRequestRevision2: NSUInteger = 2;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectbarcodesrequestrevision3?language=objc)
 pub static VNDetectBarcodesRequestRevision3: NSUInteger = 3;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectbarcodesrequestrevision4?language=objc)
 pub static VNDetectBarcodesRequestRevision4: NSUInteger = 4;

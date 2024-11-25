@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKObject;
@@ -56,33 +57,41 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathuuid?language=objc)
     pub static HKPredicateKeyPathUUID: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathsource?language=objc)
     pub static HKPredicateKeyPathSource: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmetadata?language=objc)
     pub static HKPredicateKeyPathMetadata: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcorrelation?language=objc)
     pub static HKPredicateKeyPathCorrelation: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkout?language=objc)
     pub static HKPredicateKeyPathWorkout: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathdevice?language=objc)
     pub static HKPredicateKeyPathDevice: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathsourcerevision?language=objc)
     pub static HKPredicateKeyPathSourceRevision: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouteffortrelationship?language=objc)
     pub static HKPredicateKeyPathWorkoutEffortRelationship: &'static NSString;
 }

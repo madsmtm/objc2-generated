@@ -6,13 +6,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeydeviceserialnumber?language=objc)
     pub static HKMetadataKeyDeviceSerialNumber: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeybodytemperaturesensorlocation?language=objc)
     pub static HKMetadataKeyBodyTemperatureSensorLocation: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -53,9 +56,11 @@ unsafe impl RefEncode for HKBodyTemperatureSensorLocation {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartratesensorlocation?language=objc)
     pub static HKMetadataKeyHeartRateSensorLocation: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratesensorlocation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -86,9 +91,11 @@ unsafe impl RefEncode for HKHeartRateSensorLocation {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartratemotioncontext?language=objc)
     pub static HKMetadataKeyHeartRateMotionContext: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratemotioncontext?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -111,9 +118,11 @@ unsafe impl RefEncode for HKHeartRateMotionContext {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyusermotioncontext?language=objc)
     pub static HKMetadataKeyUserMotionContext: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkusermotioncontext?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -136,9 +145,11 @@ unsafe impl RefEncode for HKUserMotionContext {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeysessionestimate?language=objc)
     pub static HKMetadataKeySessionEstimate: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartraterecoverytesttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -161,97 +172,121 @@ unsafe impl RefEncode for HKHeartRateRecoveryTestType {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartraterecoverytesttype?language=objc)
     pub static HKMetadataKeyHeartRateRecoveryTestType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartraterecoveryactivitytype?language=objc)
     pub static HKMetadataKeyHeartRateRecoveryActivityType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartraterecoveryactivityduration?language=objc)
     pub static HKMetadataKeyHeartRateRecoveryActivityDuration: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartraterecoverymaxobservedrecoveryheartrate?language=objc)
     pub static HKMetadataKeyHeartRateRecoveryMaxObservedRecoveryHeartRate: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyfoodtype?language=objc)
     pub static HKMetadataKeyFoodType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyudideviceidentifier?language=objc)
     pub static HKMetadataKeyUDIDeviceIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyudiproductionidentifier?language=objc)
     pub static HKMetadataKeyUDIProductionIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeydigitalsignature?language=objc)
     pub static HKMetadataKeyDigitalSignature: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyexternaluuid?language=objc)
     pub static HKMetadataKeyExternalUUID: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeysyncidentifier?language=objc)
     pub static HKMetadataKeySyncIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeysyncversion?language=objc)
     pub static HKMetadataKeySyncVersion: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeytimezone?language=objc)
     pub static HKMetadataKeyTimeZone: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeydevicename?language=objc)
     pub static HKMetadataKeyDeviceName: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeydevicemanufacturername?language=objc)
     pub static HKMetadataKeyDeviceManufacturerName: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeywastakeninlab?language=objc)
     pub static HKMetadataKeyWasTakenInLab: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyreferencerangelowerlimit?language=objc)
     pub static HKMetadataKeyReferenceRangeLowerLimit: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyreferencerangeupperlimit?language=objc)
     pub static HKMetadataKeyReferenceRangeUpperLimit: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeywasuserentered?language=objc)
     pub static HKMetadataKeyWasUserEntered: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyworkoutbrandname?language=objc)
     pub static HKMetadataKeyWorkoutBrandName: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeygroupfitness?language=objc)
     pub static HKMetadataKeyGroupFitness: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyapplefitnessplussession?language=objc)
     pub static HKMetadataKeyAppleFitnessPlusSession: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyindoorworkout?language=objc)
     pub static HKMetadataKeyIndoorWorkout: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeycoachedworkout?language=objc)
     pub static HKMetadataKeyCoachedWorkout: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -324,29 +359,36 @@ unsafe impl RefEncode for HKWeatherCondition {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyweathercondition?language=objc)
     pub static HKMetadataKeyWeatherCondition: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyweathertemperature?language=objc)
     pub static HKMetadataKeyWeatherTemperature: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyweatherhumidity?language=objc)
     pub static HKMetadataKeyWeatherHumidity: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeysexualactivityprotectionused?language=objc)
     pub static HKMetadataKeySexualActivityProtectionUsed: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeymenstrualcyclestart?language=objc)
     pub static HKMetadataKeyMenstrualCycleStart: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeylaplength?language=objc)
     pub static HKMetadataKeyLapLength: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutswimminglocationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -369,9 +411,11 @@ unsafe impl RefEncode for HKWorkoutSwimmingLocationType {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyswimminglocationtype?language=objc)
     pub static HKMetadataKeySwimmingLocationType: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -402,9 +446,11 @@ unsafe impl RefEncode for HKSwimmingStrokeStyle {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyswimmingstrokestyle?language=objc)
     pub static HKMetadataKeySwimmingStrokeStyle: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkinsulindeliveryreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -425,9 +471,11 @@ unsafe impl RefEncode for HKInsulinDeliveryReason {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyinsulindeliveryreason?language=objc)
     pub static HKMetadataKeyInsulinDeliveryReason: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodglucosemealtime?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -448,9 +496,11 @@ unsafe impl RefEncode for HKBloodGlucoseMealTime {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeybloodglucosemealtime?language=objc)
     pub static HKMetadataKeyBloodGlucoseMealTime: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvo2maxtesttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -473,57 +523,71 @@ unsafe impl RefEncode for HKVO2MaxTestType {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyvo2maxtesttype?language=objc)
     pub static HKMetadataKeyVO2MaxTestType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyaveragespeed?language=objc)
     pub static HKMetadataKeyAverageSpeed: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeymaximumspeed?language=objc)
     pub static HKMetadataKeyMaximumSpeed: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyalpineslopegrade?language=objc)
     pub static HKMetadataKeyAlpineSlopeGrade: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyelevationascended?language=objc)
     pub static HKMetadataKeyElevationAscended: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyelevationdescended?language=objc)
     pub static HKMetadataKeyElevationDescended: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyfitnessmachineduration?language=objc)
     pub static HKMetadataKeyFitnessMachineDuration: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyindoorbikedistance?language=objc)
     pub static HKMetadataKeyIndoorBikeDistance: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeycrosstrainerdistance?language=objc)
     pub static HKMetadataKeyCrossTrainerDistance: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartrateeventthreshold?language=objc)
     pub static HKMetadataKeyHeartRateEventThreshold: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyaveragemets?language=objc)
     pub static HKMetadataKeyAverageMETs: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyaudioexposurelevel?language=objc)
     pub static HKMetadataKeyAudioExposureLevel: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyaudioexposureduration?language=objc)
     pub static HKMetadataKeyAudioExposureDuration: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkappleecgalgorithmversion?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -542,9 +606,11 @@ unsafe impl RefEncode for HKAppleECGAlgorithmVersion {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyappleecgalgorithmversion?language=objc)
     pub static HKMetadataKeyAppleECGAlgorithmVersion: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdeviceplacementside?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -569,49 +635,61 @@ unsafe impl RefEncode for HKDevicePlacementSide {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeydeviceplacementside?language=objc)
     pub static HKMetadataKeyDevicePlacementSide: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeybarometricpressure?language=objc)
     pub static HKMetadataKeyBarometricPressure: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyappledevicecalibrated?language=objc)
     pub static HKMetadataKeyAppleDeviceCalibrated: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyvo2maxvalue?language=objc)
     pub static HKMetadataKeyVO2MaxValue: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeylowcardiofitnesseventthreshold?language=objc)
     pub static HKMetadataKeyLowCardioFitnessEventThreshold: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeydateofearliestdatausedforestimate?language=objc)
     pub static HKMetadataKeyDateOfEarliestDataUsedForEstimate: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyalgorithmversion?language=objc)
     pub static HKMetadataKeyAlgorithmVersion: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyswolfscore?language=objc)
     pub static HKMetadataKeySWOLFScore: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyquantityclampedtolowerbound?language=objc)
     pub static HKMetadataKeyQuantityClampedToLowerBound: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyquantityclampedtoupperbound?language=objc)
     pub static HKMetadataKeyQuantityClampedToUpperBound: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyglassesprescriptiondescription?language=objc)
     pub static HKMetadataKeyGlassesPrescriptionDescription: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwatersalinity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -632,17 +710,21 @@ unsafe impl RefEncode for HKWaterSalinity {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeywatersalinity?language=objc)
     pub static HKMetadataKeyWaterSalinity: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheadphonegain?language=objc)
     pub static HKMetadataKeyHeadphoneGain: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeycyclingfunctionalthresholdpowertesttype?language=objc)
     pub static HKMetadataKeyCyclingFunctionalThresholdPowerTestType: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcyclingfunctionalthresholdpowertesttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -667,13 +749,16 @@ unsafe impl RefEncode for HKCyclingFunctionalThresholdPowerTestType {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyactivitytype?language=objc)
     pub static HKMetadataKeyActivityType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyphysicaleffortestimationtype?language=objc)
     pub static HKMetadataKeyPhysicalEffortEstimationType: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphysicaleffortestimationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -694,5 +779,6 @@ unsafe impl RefEncode for HKPhysicalEffortEstimationType {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeymaximumlightintensity?language=objc)
     pub static HKMetadataKeyMaximumLightIntensity: &'static NSString;
 }

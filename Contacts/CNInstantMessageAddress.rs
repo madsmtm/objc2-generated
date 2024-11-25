@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageaddress?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNInstantMessageAddress;
@@ -58,49 +59,61 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageaddressusernamekey?language=objc)
     pub static CNInstantMessageAddressUsernameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageaddressservicekey?language=objc)
     pub static CNInstantMessageAddressServiceKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageserviceaim?language=objc)
     pub static CNInstantMessageServiceAIM: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageservicefacebook?language=objc)
     pub static CNInstantMessageServiceFacebook: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageservicegadugadu?language=objc)
     pub static CNInstantMessageServiceGaduGadu: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageservicegoogletalk?language=objc)
     pub static CNInstantMessageServiceGoogleTalk: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageserviceicq?language=objc)
     pub static CNInstantMessageServiceICQ: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageservicejabber?language=objc)
     pub static CNInstantMessageServiceJabber: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageservicemsn?language=objc)
     pub static CNInstantMessageServiceMSN: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageserviceqq?language=objc)
     pub static CNInstantMessageServiceQQ: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageserviceskype?language=objc)
     pub static CNInstantMessageServiceSkype: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageserviceyahoo?language=objc)
     pub static CNInstantMessageServiceYahoo: &'static NSString;
 }

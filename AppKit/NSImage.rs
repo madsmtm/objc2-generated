@@ -5,23 +5,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagename?language=objc)
 pub type NSImageName = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagehintctm?language=objc)
     #[cfg(feature = "NSImageRep")]
     pub static NSImageHintCTM: &'static NSImageHintKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagehintinterpolation?language=objc)
     #[cfg(feature = "NSImageRep")]
     pub static NSImageHintInterpolation: &'static NSImageHintKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagehintuserinterfacelayoutdirection?language=objc)
     #[cfg(feature = "NSImageRep")]
     pub static NSImageHintUserInterfaceLayoutDirection: &'static NSImageHintKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageloadstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -47,6 +52,7 @@ unsafe impl RefEncode for NSImageLoadStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagecachemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -67,6 +73,7 @@ unsafe impl RefEncode for NSImageCacheMode {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSImage;
@@ -422,6 +429,7 @@ unsafe impl NSItemProviderReading for NSImage {}
 unsafe impl NSItemProviderWriting for NSImage {}
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagedelegate?language=objc)
     pub unsafe trait NSImageDelegate: NSObjectProtocol {
         #[optional]
         #[method_id(@__retain_semantics Other imageDidNotDraw:inRect:)]
@@ -631,561 +639,701 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameaddtemplate?language=objc)
     pub static NSImageNameAddTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamebluetoothtemplate?language=objc)
     pub static NSImageNameBluetoothTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamebonjour?language=objc)
     pub static NSImageNameBonjour: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamebookmarkstemplate?language=objc)
     pub static NSImageNameBookmarksTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamecaution?language=objc)
     pub static NSImageNameCaution: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamecomputer?language=objc)
     pub static NSImageNameComputer: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameenterfullscreentemplate?language=objc)
     pub static NSImageNameEnterFullScreenTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameexitfullscreentemplate?language=objc)
     pub static NSImageNameExitFullScreenTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamefolder?language=objc)
     pub static NSImageNameFolder: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamefolderburnable?language=objc)
     pub static NSImageNameFolderBurnable: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamefoldersmart?language=objc)
     pub static NSImageNameFolderSmart: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamefollowlinkfreestandingtemplate?language=objc)
     pub static NSImageNameFollowLinkFreestandingTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamehometemplate?language=objc)
     pub static NSImageNameHomeTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameichattheatertemplate?language=objc)
     pub static NSImageNameIChatTheaterTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamelocklockedtemplate?language=objc)
     pub static NSImageNameLockLockedTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamelockunlockedtemplate?language=objc)
     pub static NSImageNameLockUnlockedTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamenetwork?language=objc)
     pub static NSImageNameNetwork: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamepathtemplate?language=objc)
     pub static NSImageNamePathTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamequicklooktemplate?language=objc)
     pub static NSImageNameQuickLookTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamerefreshfreestandingtemplate?language=objc)
     pub static NSImageNameRefreshFreestandingTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamerefreshtemplate?language=objc)
     pub static NSImageNameRefreshTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameremovetemplate?language=objc)
     pub static NSImageNameRemoveTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamerevealfreestandingtemplate?language=objc)
     pub static NSImageNameRevealFreestandingTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamesharetemplate?language=objc)
     pub static NSImageNameShareTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameslideshowtemplate?language=objc)
     pub static NSImageNameSlideshowTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamestatusavailable?language=objc)
     pub static NSImageNameStatusAvailable: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamestatusnone?language=objc)
     pub static NSImageNameStatusNone: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamestatuspartiallyavailable?language=objc)
     pub static NSImageNameStatusPartiallyAvailable: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamestatusunavailable?language=objc)
     pub static NSImageNameStatusUnavailable: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamestopprogressfreestandingtemplate?language=objc)
     pub static NSImageNameStopProgressFreestandingTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamestopprogresstemplate?language=objc)
     pub static NSImageNameStopProgressTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametrashempty?language=objc)
     pub static NSImageNameTrashEmpty: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametrashfull?language=objc)
     pub static NSImageNameTrashFull: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameactiontemplate?language=objc)
     pub static NSImageNameActionTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamesmartbadgetemplate?language=objc)
     pub static NSImageNameSmartBadgeTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameiconviewtemplate?language=objc)
     pub static NSImageNameIconViewTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamelistviewtemplate?language=objc)
     pub static NSImageNameListViewTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamecolumnviewtemplate?language=objc)
     pub static NSImageNameColumnViewTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameflowviewtemplate?language=objc)
     pub static NSImageNameFlowViewTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameinvaliddatafreestandingtemplate?language=objc)
     pub static NSImageNameInvalidDataFreestandingTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamegoforwardtemplate?language=objc)
     pub static NSImageNameGoForwardTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamegobacktemplate?language=objc)
     pub static NSImageNameGoBackTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamegorighttemplate?language=objc)
     pub static NSImageNameGoRightTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamegolefttemplate?language=objc)
     pub static NSImageNameGoLeftTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamerightfacingtriangletemplate?language=objc)
     pub static NSImageNameRightFacingTriangleTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameleftfacingtriangletemplate?language=objc)
     pub static NSImageNameLeftFacingTriangleTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamedotmac?language=objc)
     pub static NSImageNameDotMac: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamemobileme?language=objc)
     pub static NSImageNameMobileMe: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamemultipledocuments?language=objc)
     pub static NSImageNameMultipleDocuments: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameuseraccounts?language=objc)
     pub static NSImageNameUserAccounts: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamepreferencesgeneral?language=objc)
     pub static NSImageNamePreferencesGeneral: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameadvanced?language=objc)
     pub static NSImageNameAdvanced: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameinfo?language=objc)
     pub static NSImageNameInfo: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamefontpanel?language=objc)
     pub static NSImageNameFontPanel: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamecolorpanel?language=objc)
     pub static NSImageNameColorPanel: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameuser?language=objc)
     pub static NSImageNameUser: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameusergroup?language=objc)
     pub static NSImageNameUserGroup: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameeveryone?language=objc)
     pub static NSImageNameEveryone: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameuserguest?language=objc)
     pub static NSImageNameUserGuest: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamemenuonstatetemplate?language=objc)
     pub static NSImageNameMenuOnStateTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamemenumixedstatetemplate?language=objc)
     pub static NSImageNameMenuMixedStateTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameapplicationicon?language=objc)
     pub static NSImageNameApplicationIcon: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbaradddetailtemplate?language=objc)
     pub static NSImageNameTouchBarAddDetailTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbaraddtemplate?language=objc)
     pub static NSImageNameTouchBarAddTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbaralarmtemplate?language=objc)
     pub static NSImageNameTouchBarAlarmTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbaraudioinputmutetemplate?language=objc)
     pub static NSImageNameTouchBarAudioInputMuteTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbaraudioinputtemplate?language=objc)
     pub static NSImageNameTouchBarAudioInputTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbaraudiooutputmutetemplate?language=objc)
     pub static NSImageNameTouchBarAudioOutputMuteTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbaraudiooutputvolumehightemplate?language=objc)
     pub static NSImageNameTouchBarAudioOutputVolumeHighTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbaraudiooutputvolumelowtemplate?language=objc)
     pub static NSImageNameTouchBarAudioOutputVolumeLowTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbaraudiooutputvolumemediumtemplate?language=objc)
     pub static NSImageNameTouchBarAudioOutputVolumeMediumTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbaraudiooutputvolumeofftemplate?language=objc)
     pub static NSImageNameTouchBarAudioOutputVolumeOffTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarbookmarkstemplate?language=objc)
     pub static NSImageNameTouchBarBookmarksTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarcolorpickerfill?language=objc)
     pub static NSImageNameTouchBarColorPickerFill: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarcolorpickerfont?language=objc)
     pub static NSImageNameTouchBarColorPickerFont: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarcolorpickerstroke?language=objc)
     pub static NSImageNameTouchBarColorPickerStroke: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarcommunicationaudiotemplate?language=objc)
     pub static NSImageNameTouchBarCommunicationAudioTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarcommunicationvideotemplate?language=objc)
     pub static NSImageNameTouchBarCommunicationVideoTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarcomposetemplate?language=objc)
     pub static NSImageNameTouchBarComposeTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbardeletetemplate?language=objc)
     pub static NSImageNameTouchBarDeleteTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbardownloadtemplate?language=objc)
     pub static NSImageNameTouchBarDownloadTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarenterfullscreentemplate?language=objc)
     pub static NSImageNameTouchBarEnterFullScreenTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarexitfullscreentemplate?language=objc)
     pub static NSImageNameTouchBarExitFullScreenTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarfastforwardtemplate?language=objc)
     pub static NSImageNameTouchBarFastForwardTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarfoldercopytotemplate?language=objc)
     pub static NSImageNameTouchBarFolderCopyToTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarfoldermovetotemplate?language=objc)
     pub static NSImageNameTouchBarFolderMoveToTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarfoldertemplate?language=objc)
     pub static NSImageNameTouchBarFolderTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbargetinfotemplate?language=objc)
     pub static NSImageNameTouchBarGetInfoTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbargobacktemplate?language=objc)
     pub static NSImageNameTouchBarGoBackTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbargodowntemplate?language=objc)
     pub static NSImageNameTouchBarGoDownTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbargoforwardtemplate?language=objc)
     pub static NSImageNameTouchBarGoForwardTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbargouptemplate?language=objc)
     pub static NSImageNameTouchBarGoUpTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarhistorytemplate?language=objc)
     pub static NSImageNameTouchBarHistoryTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbariconviewtemplate?language=objc)
     pub static NSImageNameTouchBarIconViewTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarlistviewtemplate?language=objc)
     pub static NSImageNameTouchBarListViewTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarmailtemplate?language=objc)
     pub static NSImageNameTouchBarMailTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarnewfoldertemplate?language=objc)
     pub static NSImageNameTouchBarNewFolderTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarnewmessagetemplate?language=objc)
     pub static NSImageNameTouchBarNewMessageTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbaropeninbrowsertemplate?language=objc)
     pub static NSImageNameTouchBarOpenInBrowserTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarpausetemplate?language=objc)
     pub static NSImageNameTouchBarPauseTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarplaypausetemplate?language=objc)
     pub static NSImageNameTouchBarPlayPauseTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarplaytemplate?language=objc)
     pub static NSImageNameTouchBarPlayTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarquicklooktemplate?language=objc)
     pub static NSImageNameTouchBarQuickLookTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarrecordstarttemplate?language=objc)
     pub static NSImageNameTouchBarRecordStartTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarrecordstoptemplate?language=objc)
     pub static NSImageNameTouchBarRecordStopTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarrefreshtemplate?language=objc)
     pub static NSImageNameTouchBarRefreshTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarremovetemplate?language=objc)
     pub static NSImageNameTouchBarRemoveTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarrewindtemplate?language=objc)
     pub static NSImageNameTouchBarRewindTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarrotatelefttemplate?language=objc)
     pub static NSImageNameTouchBarRotateLeftTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarrotaterighttemplate?language=objc)
     pub static NSImageNameTouchBarRotateRightTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarsearchtemplate?language=objc)
     pub static NSImageNameTouchBarSearchTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarsharetemplate?language=objc)
     pub static NSImageNameTouchBarShareTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarsidebartemplate?language=objc)
     pub static NSImageNameTouchBarSidebarTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarskipahead15secondstemplate?language=objc)
     pub static NSImageNameTouchBarSkipAhead15SecondsTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarskipahead30secondstemplate?language=objc)
     pub static NSImageNameTouchBarSkipAhead30SecondsTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarskipaheadtemplate?language=objc)
     pub static NSImageNameTouchBarSkipAheadTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarskipback15secondstemplate?language=objc)
     pub static NSImageNameTouchBarSkipBack15SecondsTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarskipback30secondstemplate?language=objc)
     pub static NSImageNameTouchBarSkipBack30SecondsTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarskipbacktemplate?language=objc)
     pub static NSImageNameTouchBarSkipBackTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarskiptoendtemplate?language=objc)
     pub static NSImageNameTouchBarSkipToEndTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarskiptostarttemplate?language=objc)
     pub static NSImageNameTouchBarSkipToStartTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarslideshowtemplate?language=objc)
     pub static NSImageNameTouchBarSlideshowTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbartagicontemplate?language=objc)
     pub static NSImageNameTouchBarTagIconTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbartextboldtemplate?language=objc)
     pub static NSImageNameTouchBarTextBoldTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbartextboxtemplate?language=objc)
     pub static NSImageNameTouchBarTextBoxTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbartextcenteraligntemplate?language=objc)
     pub static NSImageNameTouchBarTextCenterAlignTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbartextitalictemplate?language=objc)
     pub static NSImageNameTouchBarTextItalicTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbartextjustifiedaligntemplate?language=objc)
     pub static NSImageNameTouchBarTextJustifiedAlignTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbartextleftaligntemplate?language=objc)
     pub static NSImageNameTouchBarTextLeftAlignTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbartextlisttemplate?language=objc)
     pub static NSImageNameTouchBarTextListTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbartextrightaligntemplate?language=objc)
     pub static NSImageNameTouchBarTextRightAlignTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbartextstrikethroughtemplate?language=objc)
     pub static NSImageNameTouchBarTextStrikethroughTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbartextunderlinetemplate?language=objc)
     pub static NSImageNameTouchBarTextUnderlineTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbaruseraddtemplate?language=objc)
     pub static NSImageNameTouchBarUserAddTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarusergrouptemplate?language=objc)
     pub static NSImageNameTouchBarUserGroupTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarusertemplate?language=objc)
     pub static NSImageNameTouchBarUserTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarvolumedowntemplate?language=objc)
     pub static NSImageNameTouchBarVolumeDownTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarvolumeuptemplate?language=objc)
     pub static NSImageNameTouchBarVolumeUpTemplate: &'static NSImageName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenametouchbarplayheadtemplate?language=objc)
     pub static NSImageNameTouchBarPlayheadTemplate: &'static NSImageName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagesymbolscale?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1208,6 +1356,7 @@ unsafe impl RefEncode for NSImageSymbolScale {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagesymbolconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSImageSymbolConfiguration;

@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotocolclient?language=objc)
     pub unsafe trait NSURLProtocolClient: NSObjectProtocol {
         #[cfg(all(feature = "NSURLRequest", feature = "NSURLResponse"))]
         #[method(URLProtocol:wasRedirectedToRequest:redirectResponse:)]
@@ -64,6 +65,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotocol?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLProtocol;

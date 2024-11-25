@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometerdata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMPedometerData;
@@ -65,6 +66,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometereventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -85,6 +87,7 @@ unsafe impl RefEncode for CMPedometerEventType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometerevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMPedometerEvent;
@@ -123,13 +126,16 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometerhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMPedometerHandler = *mut block2::Block<dyn Fn(*mut CMPedometerData, *mut NSError)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometereventhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMPedometerEventHandler = *mut block2::Block<dyn Fn(*mut CMPedometerEvent, *mut NSError)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMPedometer;

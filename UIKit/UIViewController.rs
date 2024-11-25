@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodaltransitionstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,6 +29,7 @@ unsafe impl RefEncode for UIModalTransitionStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -55,6 +57,7 @@ unsafe impl RefEncode for UIModalPresentationStyle {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentcontainer?language=objc)
     pub unsafe trait UIContentContainer: NSObjectProtocol + MainThreadOnly {
         #[method(preferredContentSize)]
         unsafe fn preferredContentSize(&self) -> CGSize;
@@ -102,10 +105,12 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollershowdetailtargetdidchangenotification?language=objc)
     pub static UIViewControllerShowDetailTargetDidChangeNotification: &'static NSNotificationName;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontroller?language=objc)
     #[unsafe(super(UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -703,6 +708,7 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollerhierarchyinconsistencyexception?language=objc)
     pub static UIViewControllerHierarchyInconsistencyException: &'static NSExceptionName;
 }
 
@@ -988,6 +994,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollerpreviewing?language=objc)
     pub unsafe trait UIViewControllerPreviewing: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIGestureRecognizer")]
         #[deprecated = "UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction."]
@@ -1020,6 +1027,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollerpreviewingdelegate?language=objc)
     pub unsafe trait UIViewControllerPreviewingDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -1179,6 +1187,7 @@ extern_methods!(
 #[cfg(all(feature = "UIResponder", feature = "UITraitCollection"))]
 unsafe impl UITraitChangeObservable for UIViewController {}
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontainerbackgroundstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1217,6 +1226,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewactionitem?language=objc)
     pub unsafe trait UIPreviewActionItem: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other title)]
         unsafe fn title(&self) -> Retained<NSString>;
@@ -1225,6 +1235,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UIPreviewActionItem {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewactionstyle?language=objc)
 // NS_ENUM
 #[deprecated = "Please use UIContextMenuInteraction."]
 #[repr(transparent)]
@@ -1251,6 +1262,7 @@ unsafe impl RefEncode for UIPreviewActionStyle {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewaction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1303,6 +1315,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewactiongroup?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

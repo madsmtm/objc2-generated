@@ -4,19 +4,31 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnoscripterror?language=objc)
 pub const NSNoScriptError: NSInteger = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsreceiverevaluationscripterror?language=objc)
 pub const NSReceiverEvaluationScriptError: NSInteger = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyspecifierevaluationscripterror?language=objc)
 pub const NSKeySpecifierEvaluationScriptError: NSInteger = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsargumentevaluationscripterror?language=objc)
 pub const NSArgumentEvaluationScriptError: NSInteger = 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsreceiverscanthandlecommandscripterror?language=objc)
 pub const NSReceiversCantHandleCommandScriptError: NSInteger = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrequiredargumentsmissingscripterror?language=objc)
 pub const NSRequiredArgumentsMissingScriptError: NSInteger = 5;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsargumentswrongscripterror?language=objc)
 pub const NSArgumentsWrongScriptError: NSInteger = 6;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunknownkeyscripterror?language=objc)
 pub const NSUnknownKeyScriptError: NSInteger = 7;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinternalscripterror?language=objc)
 pub const NSInternalScriptError: NSInteger = 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperationnotsupportedforkeyscripterror?language=objc)
 pub const NSOperationNotSupportedForKeyScriptError: NSInteger = 9;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscannotcreatescriptcommanderror?language=objc)
 pub const NSCannotCreateScriptCommandError: NSInteger = 10;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptcommand?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptCommand;

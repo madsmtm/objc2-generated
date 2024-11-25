@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectiongranularity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -23,6 +24,7 @@ unsafe impl RefEncode for NSSelectionGranularity {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectionaffinity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -43,10 +45,12 @@ unsafe impl RefEncode for NSSelectionAffinity {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsallromaninputsourceslocaleidentifier?language=objc)
     pub static NSAllRomanInputSourcesLocaleIdentifier: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextview?language=objc)
     #[unsafe(super(NSText, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
@@ -1306,6 +1310,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextviewdelegate?language=objc)
     #[cfg(feature = "NSText")]
     pub unsafe trait NSTextViewDelegate: NSTextDelegate {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -1703,55 +1708,67 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifiercharacterpicker?language=objc)
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierCharacterPicker: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifiertextcolorpicker?language=objc)
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierTextColorPicker: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifiertextstyle?language=objc)
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierTextStyle: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifiertextalignment?language=objc)
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierTextAlignment: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifiertextlist?language=objc)
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierTextList: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifiertextformat?language=objc)
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierTextFormat: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextviewwillchangenotifyingtextviewnotification?language=objc)
     pub static NSTextViewWillChangeNotifyingTextViewNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextviewdidchangeselectionnotification?language=objc)
     pub static NSTextViewDidChangeSelectionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextviewdidchangetypingattributesnotification?language=objc)
     pub static NSTextViewDidChangeTypingAttributesNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextviewwillswitchtonslayoutmanagernotification?language=objc)
     pub static NSTextViewWillSwitchToNSLayoutManagerNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextviewdidswitchtonslayoutmanagernotification?language=objc)
     pub static NSTextViewDidSwitchToNSLayoutManagerNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1788,21 +1805,26 @@ unsafe impl RefEncode for NSFindPanelAction {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelsearchoptionspboardtype?language=objc)
     #[cfg(feature = "NSPasteboard")]
     pub static NSFindPanelSearchOptionsPboardType: &'static NSPasteboardType;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypefindpanelsearchoptionkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSPasteboardTypeFindPanelSearchOptionKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelcaseinsensitivesearch?language=objc)
     pub static NSFindPanelCaseInsensitiveSearch: &'static NSPasteboardTypeFindPanelSearchOptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelsubstringmatch?language=objc)
     pub static NSFindPanelSubstringMatch: &'static NSPasteboardTypeFindPanelSearchOptionKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelsubstringmatchtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

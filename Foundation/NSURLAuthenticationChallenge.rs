@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationchallengesender?language=objc)
     pub unsafe trait NSURLAuthenticationChallengeSender: NSObjectProtocol {
         #[cfg(feature = "NSURLCredential")]
         #[method(useCredential:forAuthenticationChallenge:)]
@@ -42,6 +43,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationchallenge?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLAuthenticationChallenge;

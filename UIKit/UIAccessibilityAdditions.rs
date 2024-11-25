@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipickerviewaccessibilitydelegate?language=objc)
     #[cfg(feature = "UIPickerView")]
     pub unsafe trait UIPickerViewAccessibilityDelegate:
         UIPickerViewDelegate + MainThreadOnly
@@ -70,6 +71,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewaccessibilitydelegate?language=objc)
     #[cfg(feature = "UIScrollView")]
     pub unsafe trait UIScrollViewAccessibilityDelegate:
         UIScrollViewDelegate + MainThreadOnly

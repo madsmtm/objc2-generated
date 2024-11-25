@@ -5,11 +5,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorlistname?language=objc)
 pub type NSColorListName = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorname?language=objc)
 pub type NSColorName = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorlist?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSColorList;
@@ -94,5 +97,6 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorlistdidchangenotification?language=objc)
     pub static NSColorListDidChangeNotification: &'static NSNotificationName;
 }

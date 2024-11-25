@@ -6,21 +6,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextattributefont?language=objc)
     pub static UITextAttributeFont: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextattributetextcolor?language=objc)
     pub static UITextAttributeTextColor: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextattributetextshadowcolor?language=objc)
     pub static UITextAttributeTextShadowColor: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextattributetextshadowoffset?language=objc)
     pub static UITextAttributeTextShadowOffset: Option<&'static NSString>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilinebreakmode?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -55,6 +60,7 @@ unsafe impl RefEncode for UILineBreakMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextalignment?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -80,6 +86,7 @@ unsafe impl RefEncode for UITextAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibaselineadjustment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

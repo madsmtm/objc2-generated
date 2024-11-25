@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextselectionhighlightview?language=objc)
     #[cfg(feature = "UIView")]
     pub unsafe trait UITextSelectionHighlightView:
         UICoordinateSpace + MainThreadOnly

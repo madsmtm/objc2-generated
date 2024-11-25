@@ -8,90 +8,112 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicename?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSSharingServiceName = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamecomposeemail?language=objc)
     pub static NSSharingServiceNameComposeEmail: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamecomposemessage?language=objc)
     pub static NSSharingServiceNameComposeMessage: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamesendviaairdrop?language=objc)
     pub static NSSharingServiceNameSendViaAirDrop: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenameaddtosafarireadinglist?language=objc)
     pub static NSSharingServiceNameAddToSafariReadingList: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenameaddtoiphoto?language=objc)
     pub static NSSharingServiceNameAddToIPhoto: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenameaddtoaperture?language=objc)
     pub static NSSharingServiceNameAddToAperture: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenameuseasdesktoppicture?language=objc)
     pub static NSSharingServiceNameUseAsDesktopPicture: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostonfacebook?language=objc)
     pub static NSSharingServiceNamePostOnFacebook: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostontwitter?language=objc)
     pub static NSSharingServiceNamePostOnTwitter: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostonsinaweibo?language=objc)
     pub static NSSharingServiceNamePostOnSinaWeibo: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostontencentweibo?language=objc)
     pub static NSSharingServiceNamePostOnTencentWeibo: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostonlinkedin?language=objc)
     pub static NSSharingServiceNamePostOnLinkedIn: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenameuseastwitterprofileimage?language=objc)
     pub static NSSharingServiceNameUseAsTwitterProfileImage: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenameuseasfacebookprofileimage?language=objc)
     pub static NSSharingServiceNameUseAsFacebookProfileImage: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenameuseaslinkedinprofileimage?language=objc)
     pub static NSSharingServiceNameUseAsLinkedInProfileImage: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostimageonflickr?language=objc)
     pub static NSSharingServiceNamePostImageOnFlickr: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostvideoonvimeo?language=objc)
     pub static NSSharingServiceNamePostVideoOnVimeo: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostvideoonyouku?language=objc)
     pub static NSSharingServiceNamePostVideoOnYouku: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostvideoontudou?language=objc)
     pub static NSSharingServiceNamePostVideoOnTudou: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamecloudsharing?language=objc)
     pub static NSSharingServiceNameCloudSharing: &'static NSSharingServiceName;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSharingService;
@@ -195,6 +217,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingcontentscope?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -217,6 +240,7 @@ unsafe impl RefEncode for NSSharingContentScope {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicedelegate?language=objc)
     pub unsafe trait NSSharingServiceDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(sharingService:willShareItems:)]
@@ -285,6 +309,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSSharingServiceDelegate {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscloudkitsharingserviceoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -308,6 +333,7 @@ unsafe impl RefEncode for NSCloudKitSharingServiceOptions {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscloudsharingservicedelegate?language=objc)
     pub unsafe trait NSCloudSharingServiceDelegate: NSSharingServiceDelegate {
         #[optional]
         #[method(sharingService:didCompleteForItems:error:)]
@@ -376,6 +402,7 @@ extern_category!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicepicker?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSharingServicePicker;
@@ -430,6 +457,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicepickerdelegate?language=objc)
     pub unsafe trait NSSharingServicePickerDelegate: NSObjectProtocol {
         #[optional]
         #[method_id(@__retain_semantics Other sharingServicePicker:sharingServicesForItems:proposedSharingServices:)]

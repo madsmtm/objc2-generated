@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domhtmlmarqueeelement?language=objc)
     #[unsafe(super(
         DOMHTMLElement,
         DOMElement,

@@ -5,14 +5,18 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_horizontal?language=objc)
 #[deprecated]
 pub const DOM_HORIZONTAL: c_uint = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_vertical?language=objc)
 #[deprecated]
 pub const DOM_VERTICAL: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_both?language=objc)
 #[deprecated]
 pub const DOM_BOTH: c_uint = 2;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domoverflowevent?language=objc)
     #[unsafe(super(DOMEvent, DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

@@ -6,11 +6,13 @@ use objc2_symbols::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisymboleffectcompletion?language=objc)
 #[cfg(feature = "block2")]
 pub type UISymbolEffectCompletion =
     *mut block2::Block<dyn Fn(NonNull<UISymbolEffectCompletionContext>)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisymboleffectcompletioncontext?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

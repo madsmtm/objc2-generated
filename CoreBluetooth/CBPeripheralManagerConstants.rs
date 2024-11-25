@@ -6,17 +6,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanageroptionshowpoweralertkey?language=objc)
     pub static CBPeripheralManagerOptionShowPowerAlertKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanageroptionrestoreidentifierkey?language=objc)
     pub static CBPeripheralManagerOptionRestoreIdentifierKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerrestoredstateserviceskey?language=objc)
     pub static CBPeripheralManagerRestoredStateServicesKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerrestoredstateadvertisementdatakey?language=objc)
     pub static CBPeripheralManagerRestoredStateAdvertisementDataKey: &'static NSString;
 }

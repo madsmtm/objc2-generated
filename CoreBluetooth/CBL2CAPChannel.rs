@@ -5,9 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbl2cappsm?language=objc)
 pub type CBL2CAPPSM = u16;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbl2capchannel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CBL2CAPChannel;

@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalertstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -26,16 +27,20 @@ unsafe impl RefEncode for NSAlertStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalertfirstbuttonreturn?language=objc)
 #[cfg(feature = "NSApplication")]
 pub static NSAlertFirstButtonReturn: NSModalResponse = 1000;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalertsecondbuttonreturn?language=objc)
 #[cfg(feature = "NSApplication")]
 pub static NSAlertSecondButtonReturn: NSModalResponse = 1001;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalertthirdbuttonreturn?language=objc)
 #[cfg(feature = "NSApplication")]
 pub static NSAlertThirdButtonReturn: NSModalResponse = 1002;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalert?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -175,6 +180,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalertdelegate?language=objc)
     pub unsafe trait NSAlertDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(alertShowHelp:)]
@@ -200,8 +206,11 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswarningalertstyle?language=objc)
 pub static NSWarningAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Warning.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinformationalalertstyle?language=objc)
 pub static NSInformationalAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Informational.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscriticalalertstyle?language=objc)
 pub static NSCriticalAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Critical.0);

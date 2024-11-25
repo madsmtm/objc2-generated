@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequestcomputationaccuracy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,6 +30,7 @@ unsafe impl RefEncode for VNTrackOpticalFlowRequestComputationAccuracy {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequest?language=objc)
     #[unsafe(super(VNStatefulRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
@@ -95,4 +97,5 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequestrevision1?language=objc)
 pub static VNTrackOpticalFlowRequestRevision1: NSUInteger = 1;

@@ -5,81 +5,97 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttp?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceHTTP: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttps?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceHTTPS: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspaceftp?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceFTP: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttpproxy?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceHTTPProxy: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttpsproxy?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceHTTPSProxy: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspaceftpproxy?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceFTPProxy: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacesocksproxy?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceSOCKSProxy: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethoddefault?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodDefault: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodhttpbasic?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodHTTPBasic: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodhttpdigest?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodHTTPDigest: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodhtmlform?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodHTMLForm: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodntlm?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodNTLM: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodnegotiate?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodNegotiate: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodclientcertificate?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodClientCertificate: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodservertrust?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodServerTrust: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspace?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLProtectionSpace;

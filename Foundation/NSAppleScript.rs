@@ -5,31 +5,37 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrormessage?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorMessage: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrornumber?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorNumber: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrorappname?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorAppName: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrorbriefmessage?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorBriefMessage: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrorrange?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorRange: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescript?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAppleScript;

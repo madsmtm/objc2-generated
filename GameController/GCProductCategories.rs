@@ -6,53 +6,66 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorydualsense?language=objc)
     pub static GCProductCategoryDualSense: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorydualshock4?language=objc)
     pub static GCProductCategoryDualShock4: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorymfi?language=objc)
     pub static GCProductCategoryMFi: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategoryxboxone?language=objc)
     pub static GCProductCategoryXboxOne: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategoryhid?language=objc)
     pub static GCProductCategoryHID: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategoryarcadestick?language=objc)
     pub static GCProductCategoryArcadeStick: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorysiriremote1stgen?language=objc)
     pub static GCProductCategorySiriRemote1stGen: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorysiriremote2ndgen?language=objc)
     pub static GCProductCategorySiriRemote2ndGen: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorycontrolcenterremote?language=objc)
     pub static GCProductCategoryControlCenterRemote: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategoryuniversalelectronicsremote?language=objc)
     pub static GCProductCategoryUniversalElectronicsRemote: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorycoalescedremote?language=objc)
     pub static GCProductCategoryCoalescedRemote: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorymouse?language=objc)
     pub static GCProductCategoryMouse: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorykeyboard?language=objc)
     pub static GCProductCategoryKeyboard: Option<&'static NSString>;
 }

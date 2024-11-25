@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstorageeditactions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -25,6 +26,7 @@ unsafe impl RefEncode for NSTextStorageEditActions {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstorage?language=objc)
     #[unsafe(super(NSMutableAttributedString, NSAttributedString, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextStorage;
@@ -117,6 +119,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstoragedelegate?language=objc)
     pub unsafe trait NSTextStorageDelegate: NSObjectProtocol {
         #[optional]
         #[method(textStorage:willProcessEditing:range:changeInLength:)]
@@ -143,14 +146,17 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstoragewillprocesseditingnotification?language=objc)
     pub static NSTextStorageWillProcessEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstoragedidprocesseditingnotification?language=objc)
     pub static NSTextStorageDidProcessEditingNotification: &'static NSNotificationName;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstorageobserving?language=objc)
     pub unsafe trait NSTextStorageObserving: NSObjectProtocol {
         #[method_id(@__retain_semantics Other textStorage)]
         unsafe fn textStorage(&self) -> Option<Retained<NSTextStorage>>;

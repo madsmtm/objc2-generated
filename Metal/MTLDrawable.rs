@@ -4,11 +4,13 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawablepresentedhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type MTLDrawablePresentedHandler =
     *mut block2::Block<dyn Fn(NonNull<ProtocolObject<dyn MTLDrawable>>)>;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawable?language=objc)
     pub unsafe trait MTLDrawable: NSObjectProtocol {
         #[method(present)]
         fn present(&self);

@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwpathstatus?language=objc)
 // NS_ENUM
 #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
 #[repr(transparent)]
@@ -33,6 +34,7 @@ unsafe impl RefEncode for NWPathStatus {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwpath?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use `nw_path_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]

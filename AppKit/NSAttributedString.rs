@@ -6,93 +6,116 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontattributename?language=objc)
     pub static NSFontAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyleattributename?language=objc)
     pub static NSParagraphStyleAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsforegroundcolorattributename?language=objc)
     pub static NSForegroundColorAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackgroundcolorattributename?language=objc)
     pub static NSBackgroundColorAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsligatureattributename?language=objc)
     pub static NSLigatureAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nskernattributename?language=objc)
     pub static NSKernAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingattributename?language=objc)
     pub static NSTrackingAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstrikethroughstyleattributename?language=objc)
     pub static NSStrikethroughStyleAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinestyleattributename?language=objc)
     pub static NSUnderlineStyleAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstrokecolorattributename?language=objc)
     pub static NSStrokeColorAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstrokewidthattributename?language=objc)
     pub static NSStrokeWidthAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshadowattributename?language=objc)
     pub static NSShadowAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexteffectattributename?language=objc)
     pub static NSTextEffectAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsattachmentattributename?language=objc)
     pub static NSAttachmentAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinkattributename?language=objc)
     pub static NSLinkAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbaselineoffsetattributename?language=objc)
     pub static NSBaselineOffsetAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinecolorattributename?language=objc)
     pub static NSUnderlineColorAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstrikethroughcolorattributename?language=objc)
     pub static NSStrikethroughColorAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingdirectionattributename?language=objc)
     pub static NSWritingDirectionAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexthighlightstyleattributename?language=objc)
     pub static NSTextHighlightStyleAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexthighlightcolorschemeattributename?language=objc)
     pub static NSTextHighlightColorSchemeAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsadaptiveimageglyphattributename?language=objc)
     pub static NSAdaptiveImageGlyphAttributeName: &'static NSAttributedStringKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinestyle?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -130,6 +153,7 @@ unsafe impl RefEncode for NSUnderlineStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingdirectionformattype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -147,44 +171,55 @@ unsafe impl RefEncode for NSWritingDirectionFormatType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexteffectstyle?language=objc)
 // NS_TYPED_ENUM
 pub type NSTextEffectStyle = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexteffectletterpressstyle?language=objc)
     pub static NSTextEffectLetterpressStyle: &'static NSTextEffectStyle;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexthighlightstyle?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSTextHighlightStyle = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexthighlightstyledefault?language=objc)
     pub static NSTextHighlightStyleDefault: &'static NSTextHighlightStyle;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexthighlightcolorscheme?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSTextHighlightColorScheme = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexthighlightcolorschemedefault?language=objc)
     pub static NSTextHighlightColorSchemeDefault: &'static NSTextHighlightColorScheme;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexthighlightcolorschemepurple?language=objc)
     pub static NSTextHighlightColorSchemePurple: &'static NSTextHighlightColorScheme;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexthighlightcolorschemepink?language=objc)
     pub static NSTextHighlightColorSchemePink: &'static NSTextHighlightColorScheme;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexthighlightcolorschemeorange?language=objc)
     pub static NSTextHighlightColorSchemeOrange: &'static NSTextHighlightColorScheme;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexthighlightcolorschememint?language=objc)
     pub static NSTextHighlightColorSchemeMint: &'static NSTextHighlightColorScheme;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexthighlightcolorschemeblue?language=objc)
     pub static NSTextHighlightColorSchemeBlue: &'static NSTextHighlightColorScheme;
 }
 
@@ -198,36 +233,45 @@ extern_category!(
     unsafe impl NSAttributedStringAttributeFixing for NSMutableAttributedString {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsattributedstringdocumenttype?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSAttributedStringDocumentType = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsplaintextdocumenttype?language=objc)
     pub static NSPlainTextDocumentType: &'static NSAttributedStringDocumentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrtftextdocumenttype?language=objc)
     pub static NSRTFTextDocumentType: &'static NSAttributedStringDocumentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrtfdtextdocumenttype?language=objc)
     pub static NSRTFDTextDocumentType: &'static NSAttributedStringDocumentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshtmltextdocumenttype?language=objc)
     pub static NSHTMLTextDocumentType: &'static NSAttributedStringDocumentType;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutsectionkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSTextLayoutSectionKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutsectionorientation?language=objc)
     pub static NSTextLayoutSectionOrientation: &'static NSTextLayoutSectionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutsectionrange?language=objc)
     pub static NSTextLayoutSectionRange: &'static NSTextLayoutSectionKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextscalingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -245,107 +289,131 @@ unsafe impl RefEncode for NSTextScalingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsattributedstringdocumentattributekey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSAttributedStringDocumentAttributeKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocumenttypedocumentattribute?language=objc)
     pub static NSDocumentTypeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscharacterencodingdocumentattribute?language=objc)
     pub static NSCharacterEncodingDocumentAttribute:
         &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdefaultattributesdocumentattribute?language=objc)
     pub static NSDefaultAttributesDocumentAttribute:
         &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspapersizedocumentattribute?language=objc)
     pub static NSPaperSizeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewsizedocumentattribute?language=objc)
     pub static NSViewSizeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewzoomdocumentattribute?language=objc)
     pub static NSViewZoomDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewmodedocumentattribute?language=objc)
     pub static NSViewModeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdefaultfontexcludeddocumentattribute?language=objc)
     pub static NSDefaultFontExcludedDocumentAttribute:
         &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsreadonlydocumentattribute?language=objc)
     pub static NSReadOnlyDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackgroundcolordocumentattribute?language=objc)
     pub static NSBackgroundColorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshyphenationfactordocumentattribute?language=objc)
     pub static NSHyphenationFactorDocumentAttribute:
         &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdefaulttabintervaldocumentattribute?language=objc)
     pub static NSDefaultTabIntervalDocumentAttribute:
         &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutsectionsattribute?language=objc)
     pub static NSTextLayoutSectionsAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextscalingdocumentattribute?language=objc)
     pub static NSTextScalingDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssourcetextscalingdocumentattribute?language=objc)
     pub static NSSourceTextScalingDocumentAttribute:
         &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscocoaversiondocumentattribute?language=objc)
     pub static NSCocoaVersionDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsattributedstringdocumentreadingoptionkey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSAttributedStringDocumentReadingOptionKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocumenttypedocumentoption?language=objc)
     pub static NSDocumentTypeDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdefaultattributesdocumentoption?language=objc)
     pub static NSDefaultAttributesDocumentOption:
         &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscharacterencodingdocumentoption?language=objc)
     pub static NSCharacterEncodingDocumentOption:
         &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstargettextscalingdocumentoption?language=objc)
     pub static NSTargetTextScalingDocumentOption:
         &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssourcetextscalingdocumentoption?language=objc)
     pub static NSSourceTextScalingDocumentOption:
         &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextkit1listmarkerformatdocumentoption?language=objc)
     pub static NSTextKit1ListMarkerFormatDocumentOption:
         &'static NSAttributedStringDocumentReadingOptionKey;
 }
@@ -440,33 +508,41 @@ extern_category!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorattributename?language=objc)
     pub static NSCursorAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstooltipattributename?language=objc)
     pub static NSToolTipAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmarkedclausesegmentattributename?language=objc)
     pub static NSMarkedClauseSegmentAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextalternativesattributename?language=objc)
     pub static NSTextAlternativesAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellingstateattributename?language=objc)
     pub static NSSpellingStateAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssuperscriptattributename?language=objc)
     pub static NSSuperscriptAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphinfoattributename?language=objc)
     pub static NSGlyphInfoAttributeName: &'static NSAttributedStringKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellingstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -503,145 +579,180 @@ extern_category!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmacsimpletextdocumenttype?language=objc)
     pub static NSMacSimpleTextDocumentType: &'static NSAttributedStringDocumentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocformattextdocumenttype?language=objc)
     pub static NSDocFormatTextDocumentType: &'static NSAttributedStringDocumentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswordmltextdocumenttype?language=objc)
     pub static NSWordMLTextDocumentType: &'static NSAttributedStringDocumentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswebarchivetextdocumenttype?language=objc)
     pub static NSWebArchiveTextDocumentType: &'static NSAttributedStringDocumentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsofficeopenxmltextdocumenttype?language=objc)
     pub static NSOfficeOpenXMLTextDocumentType: &'static NSAttributedStringDocumentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopendocumenttextdocumenttype?language=objc)
     pub static NSOpenDocumentTextDocumentType: &'static NSAttributedStringDocumentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsconverteddocumentattribute?language=objc)
     pub static NSConvertedDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfiletypedocumentattribute?language=objc)
     pub static NSFileTypeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstitledocumentattribute?language=objc)
     pub static NSTitleDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompanydocumentattribute?language=objc)
     pub static NSCompanyDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscopyrightdocumentattribute?language=objc)
     pub static NSCopyrightDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssubjectdocumentattribute?language=objc)
     pub static NSSubjectDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsauthordocumentattribute?language=objc)
     pub static NSAuthorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nskeywordsdocumentattribute?language=objc)
     pub static NSKeywordsDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscommentdocumentattribute?language=objc)
     pub static NSCommentDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseditordocumentattribute?language=objc)
     pub static NSEditorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscreationtimedocumentattribute?language=objc)
     pub static NSCreationTimeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmodificationtimedocumentattribute?language=objc)
     pub static NSModificationTimeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmanagerdocumentattribute?language=objc)
     pub static NSManagerDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscategorydocumentattribute?language=objc)
     pub static NSCategoryDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancedocumentattribute?language=objc)
     pub static NSAppearanceDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsexcludedelementsdocumentattribute?language=objc)
     pub static NSExcludedElementsDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextencodingnamedocumentattribute?language=objc)
     pub static NSTextEncodingNameDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprefixspacesdocumentattribute?language=objc)
     pub static NSPrefixSpacesDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmargindocumentattribute?language=objc)
     pub static NSLeftMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmargindocumentattribute?language=objc)
     pub static NSRightMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstopmargindocumentattribute?language=objc)
     pub static NSTopMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbottommargindocumentattribute?language=objc)
     pub static NSBottomMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextencodingnamedocumentoption?language=objc)
     pub static NSTextEncodingNameDocumentOption:
         &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbaseurldocumentoption?language=objc)
     pub static NSBaseURLDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstimeoutdocumentoption?language=objc)
     pub static NSTimeoutDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswebpreferencesdocumentoption?language=objc)
     pub static NSWebPreferencesDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswebresourceloaddelegatedocumentoption?language=objc)
     pub static NSWebResourceLoadDelegateDocumentOption:
         &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextsizemultiplierdocumentoption?language=objc)
     pub static NSTextSizeMultiplierDocumentOption:
         &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfiletypedocumentoption?language=objc)
     pub static NSFileTypeDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
@@ -885,53 +996,68 @@ extern_category!(
     unsafe impl NSMutableAttributedStringAppKitAdditions for NSMutableAttributedString {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinepatternsolid?language=objc)
 pub static NSUnderlinePatternSolid: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternSolid.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinepatterndot?language=objc)
 pub static NSUnderlinePatternDot: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternDot.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinepatterndash?language=objc)
 pub static NSUnderlinePatternDash: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternDash.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinepatterndashdot?language=objc)
 pub static NSUnderlinePatternDashDot: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternDashDot.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinepatterndashdotdot?language=objc)
 pub static NSUnderlinePatternDashDotDot: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternDashDotDot.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinebyword?language=objc)
 pub static NSUnderlineByWord: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::ByWord.0);
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscharactershapeattributename?language=objc)
     pub static NSCharacterShapeAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsusesscreenfontsdocumentattribute?language=objc)
     pub static NSUsesScreenFontsDocumentAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsobliquenessattributename?language=objc)
     pub static NSObliquenessAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsexpansionattributename?language=objc)
     pub static NSExpansionAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsverticalglyphformattributename?language=objc)
     pub static NSVerticalGlyphFormAttributeName: &'static NSAttributedStringKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnounderlinestyle?language=objc)
 #[deprecated = "Use NSUnderlineStyleNone instead"]
 pub const NSNoUnderlineStyle: c_uint = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssingleunderlinestyle?language=objc)
 #[deprecated = "Use NSUnderlineStyleSingle instead"]
 pub const NSSingleUnderlineStyle: c_uint = 1;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinestrikethroughmask?language=objc)
     pub static NSUnderlineStrikethroughMask: NSUInteger;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinebywordmask?language=objc)
     pub static NSUnderlineByWordMask: NSUInteger;
 }
 

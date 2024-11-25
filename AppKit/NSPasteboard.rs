@@ -5,96 +5,120 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtype?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSPasteboardType = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypestring?language=objc)
     pub static NSPasteboardTypeString: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypepdf?language=objc)
     pub static NSPasteboardTypePDF: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypetiff?language=objc)
     pub static NSPasteboardTypeTIFF: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypepng?language=objc)
     pub static NSPasteboardTypePNG: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypertf?language=objc)
     pub static NSPasteboardTypeRTF: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypertfd?language=objc)
     pub static NSPasteboardTypeRTFD: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypehtml?language=objc)
     pub static NSPasteboardTypeHTML: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypetabulartext?language=objc)
     pub static NSPasteboardTypeTabularText: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypefont?language=objc)
     pub static NSPasteboardTypeFont: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtyperuler?language=objc)
     pub static NSPasteboardTypeRuler: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypecolor?language=objc)
     pub static NSPasteboardTypeColor: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypesound?language=objc)
     pub static NSPasteboardTypeSound: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypemultipletextselection?language=objc)
     pub static NSPasteboardTypeMultipleTextSelection: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypetextfinderoptions?language=objc)
     pub static NSPasteboardTypeTextFinderOptions: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypeurl?language=objc)
     pub static NSPasteboardTypeURL: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypefileurl?language=objc)
     pub static NSPasteboardTypeFileURL: &'static NSPasteboardType;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardname?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSPasteboardName = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardnamegeneral?language=objc)
     pub static NSPasteboardNameGeneral: &'static NSPasteboardName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardnamefont?language=objc)
     pub static NSPasteboardNameFont: &'static NSPasteboardName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardnameruler?language=objc)
     pub static NSPasteboardNameRuler: &'static NSPasteboardName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardnamefind?language=objc)
     pub static NSPasteboardNameFind: &'static NSPasteboardName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardnamedrag?language=objc)
     pub static NSPasteboardNameDrag: &'static NSPasteboardName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardcontentsoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -113,19 +137,23 @@ unsafe impl RefEncode for NSPasteboardContentsOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardreadingoptionkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSPasteboardReadingOptionKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardurlreadingfileurlsonlykey?language=objc)
     pub static NSPasteboardURLReadingFileURLsOnlyKey: &'static NSPasteboardReadingOptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardurlreadingcontentsconformtotypeskey?language=objc)
     pub static NSPasteboardURLReadingContentsConformToTypesKey:
         &'static NSPasteboardReadingOptionKey;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPasteboard;
@@ -293,6 +321,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypeowner?language=objc)
     pub unsafe trait NSPasteboardTypeOwner: NSObjectProtocol {
         #[method(pasteboard:provideDataForType:)]
         unsafe fn pasteboard_provideDataForType(
@@ -309,6 +338,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSPasteboardTypeOwner {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardwritingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -328,6 +358,7 @@ unsafe impl RefEncode for NSPasteboardWritingOptions {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardwriting?language=objc)
     pub unsafe trait NSPasteboardWriting: NSObjectProtocol {
         #[method_id(@__retain_semantics Other writableTypesForPasteboard:)]
         unsafe fn writableTypesForPasteboard(
@@ -353,6 +384,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSPasteboardWriting {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardreadingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -375,6 +407,7 @@ unsafe impl RefEncode for NSPasteboardReadingOptions {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardreading?language=objc)
     pub unsafe trait NSPasteboardReading: NSObjectProtocol {
         #[method_id(@__retain_semantics Other readableTypesForPasteboard:)]
         unsafe fn readableTypesForPasteboard(
@@ -444,6 +477,7 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilecontentspboardtype?language=objc)
     pub static NSFileContentsPboardType: &'static NSPasteboardType;
 }
 
@@ -464,97 +498,121 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstringpboardtype?language=objc)
     pub static NSStringPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilenamespboardtype?language=objc)
     pub static NSFilenamesPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstiffpboardtype?language=objc)
     pub static NSTIFFPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrtfpboardtype?language=objc)
     pub static NSRTFPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabulartextpboardtype?language=objc)
     pub static NSTabularTextPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpboardtype?language=objc)
     pub static NSFontPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrulerpboardtype?language=objc)
     pub static NSRulerPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpboardtype?language=objc)
     pub static NSColorPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrtfdpboardtype?language=objc)
     pub static NSRTFDPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshtmlpboardtype?language=objc)
     pub static NSHTMLPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsurlpboardtype?language=objc)
     pub static NSURLPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspdfpboardtype?language=objc)
     pub static NSPDFPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmultipletextselectionpboardtype?language=objc)
     pub static NSMultipleTextSelectionPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspostscriptpboardtype?language=objc)
     pub static NSPostScriptPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvcardpboardtype?language=objc)
     pub static NSVCardPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinktextpboardtype?language=objc)
     pub static NSInkTextPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilespromisepboardtype?language=objc)
     pub static NSFilesPromisePboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypefindpanelsearchoptions?language=objc)
     pub static NSPasteboardTypeFindPanelSearchOptions: &'static NSPasteboardType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgeneralpboard?language=objc)
     pub static NSGeneralPboard: &'static NSPasteboardName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpboard?language=objc)
     pub static NSFontPboard: &'static NSPasteboardName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrulerpboard?language=objc)
     pub static NSRulerPboard: &'static NSPasteboardName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpboard?language=objc)
     pub static NSFindPboard: &'static NSPasteboardName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragpboard?language=objc)
     pub static NSDragPboard: &'static NSPasteboardName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspictpboardtype?language=objc)
     pub static NSPICTPboardType: &'static NSPasteboardType;
 }

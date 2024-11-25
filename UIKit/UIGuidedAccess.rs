@@ -6,9 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccesserrordomain?language=objc)
     pub static UIGuidedAccessErrorDomain: &'static NSErrorDomain;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccesserrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -26,6 +28,7 @@ unsafe impl RefEncode for UIGuidedAccessErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessrestrictionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -46,6 +49,7 @@ unsafe impl RefEncode for UIGuidedAccessRestrictionState {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessrestrictiondelegate?language=objc)
     pub unsafe trait UIGuidedAccessRestrictionDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -82,6 +86,7 @@ extern "C-unwind" {
     ) -> UIGuidedAccessRestrictionState;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessaccessibilityfeature?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

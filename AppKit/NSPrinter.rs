@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintertablestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -23,13 +24,16 @@ unsafe impl RefEncode for NSPrinterTableStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintertypename?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSPrinterTypeName = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprinterpapername?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSPrinterPaperName = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprinter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPrinter;

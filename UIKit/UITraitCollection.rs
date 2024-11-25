@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitcollection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitCollection;
@@ -238,6 +239,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimutabletraits?language=objc)
     pub unsafe trait UIMutableTraits: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITrait")]
         #[method(setCGFloatValue:forTrait:)]
@@ -420,6 +422,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UIMutableTraits {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitmutations?language=objc)
 #[cfg(feature = "block2")]
 pub type UITraitMutations =
     *mut block2::Block<dyn Fn(NonNull<ProtocolObject<dyn UIMutableTraits>>)>;
@@ -502,6 +505,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitenvironment?language=objc)
     pub unsafe trait UITraitEnvironment: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other traitCollection)]
         fn traitCollection(&self) -> Retained<UITraitCollection>;
@@ -518,6 +522,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitchangeregistration?language=objc)
     pub unsafe trait UITraitChangeRegistration:
         NSCopying + NSObjectProtocol + MainThreadOnly
     {
@@ -526,12 +531,14 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UITraitChangeRegistration {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitchangehandler?language=objc)
 #[cfg(feature = "block2")]
 pub type UITraitChangeHandler = *mut block2::Block<
     dyn Fn(NonNull<ProtocolObject<dyn UITraitEnvironment>>, NonNull<UITraitCollection>),
 >;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitoverrides?language=objc)
     pub unsafe trait UITraitOverrides: UIMutableTraits + MainThreadOnly {
         #[cfg(feature = "UITrait")]
         #[method(containsTrait:)]
@@ -546,6 +553,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitchangeobservable?language=objc)
     pub unsafe trait UITraitChangeObservable: MainThreadOnly {
         #[method(unregisterForTraitChanges:)]
         unsafe fn unregisterForTraitChanges(

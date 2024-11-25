@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/screcordingoutputconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCRecordingOutputConfiguration;
@@ -35,6 +36,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/screcordingoutputdelegate?language=objc)
     pub unsafe trait SCRecordingOutputDelegate: NSObjectProtocol {
         #[optional]
         #[method(recordingOutputDidStartRecording:)]
@@ -57,6 +59,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/screcordingoutput?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCRecordingOutput;

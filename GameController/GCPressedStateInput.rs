@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcpressedstateinput?language=objc)
     pub unsafe trait GCPressedStateInput: NSObjectProtocol {
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         #[method(pressedDidChangeHandler)]

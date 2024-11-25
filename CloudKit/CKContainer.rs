@@ -6,14 +6,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcurrentuserdefaultname?language=objc)
     pub static CKCurrentUserDefaultName: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckownerdefaultname?language=objc)
     pub static CKOwnerDefaultName: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKContainer;
@@ -74,6 +77,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -100,6 +104,7 @@ unsafe impl RefEncode for CKAccountStatus {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountchangednotification?language=objc)
     pub static CKAccountChangedNotification: &'static NSString;
 }
 
@@ -115,6 +120,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckapplicationpermissions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -134,6 +140,7 @@ unsafe impl RefEncode for CKApplicationPermissions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckapplicationpermissionstatus?language=objc)
 // NS_ENUM
 #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
 #[repr(transparent)]
@@ -162,6 +169,7 @@ unsafe impl RefEncode for CKApplicationPermissionStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckapplicationpermissionblock?language=objc)
 #[cfg(feature = "block2")]
 pub type CKApplicationPermissionBlock =
     *mut block2::Block<dyn Fn(CKApplicationPermissionStatus, *mut NSError)>;

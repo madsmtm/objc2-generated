@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbservice?language=objc)
     #[unsafe(super(CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]
@@ -53,6 +54,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmutableservice?language=objc)
     #[unsafe(super(CBService, CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]

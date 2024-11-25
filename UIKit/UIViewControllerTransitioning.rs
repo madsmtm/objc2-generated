@@ -6,28 +6,33 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitransitioncontextfromviewcontrollerkey?language=objc)
     #[cfg(feature = "UIViewControllerTransitionCoordinator")]
     pub static UITransitionContextFromViewControllerKey:
         &'static UITransitionContextViewControllerKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitransitioncontexttoviewcontrollerkey?language=objc)
     #[cfg(feature = "UIViewControllerTransitionCoordinator")]
     pub static UITransitionContextToViewControllerKey:
         &'static UITransitionContextViewControllerKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitransitioncontextfromviewkey?language=objc)
     #[cfg(feature = "UIViewControllerTransitionCoordinator")]
     pub static UITransitionContextFromViewKey: &'static UITransitionContextViewKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitransitioncontexttoviewkey?language=objc)
     #[cfg(feature = "UIViewControllerTransitionCoordinator")]
     pub static UITransitionContextToViewKey: &'static UITransitionContextViewKey;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollercontexttransitioning?language=objc)
     pub unsafe trait UIViewControllerContextTransitioning:
         NSObjectProtocol + MainThreadOnly
     {
@@ -98,6 +103,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrolleranimatedtransitioning?language=objc)
     pub unsafe trait UIViewControllerAnimatedTransitioning:
         NSObjectProtocol + MainThreadOnly
     {
@@ -130,6 +136,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollerinteractivetransitioning?language=objc)
     pub unsafe trait UIViewControllerInteractiveTransitioning:
         NSObjectProtocol + MainThreadOnly
     {
@@ -157,6 +164,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollertransitioningdelegate?language=objc)
     pub unsafe trait UIViewControllerTransitioningDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -211,6 +219,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipercentdriveninteractivetransition?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

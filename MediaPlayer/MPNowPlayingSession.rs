@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpadtimerange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPAdTimeRange;
@@ -30,6 +31,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingsession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPNowPlayingSession;
@@ -90,6 +92,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingsessiondelegate?language=objc)
     pub unsafe trait MPNowPlayingSessionDelegate: NSObjectProtocol {
         #[optional]
         #[method(nowPlayingSessionDidChangeActive:)]

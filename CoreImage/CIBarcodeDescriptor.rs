@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cibarcodedescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIBarcodeDescriptor;
@@ -38,6 +39,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodeerrorcorrectionlevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -62,6 +64,7 @@ unsafe impl RefEncode for CIQRCodeErrorCorrectionLevel {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodedescriptor?language=objc)
     #[unsafe(super(CIBarcodeDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIQRCodeDescriptor;
@@ -124,6 +127,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciazteccodedescriptor?language=objc)
     #[unsafe(super(CIBarcodeDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIAztecCodeDescriptor;
@@ -186,6 +190,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cipdf417codedescriptor?language=objc)
     #[unsafe(super(CIBarcodeDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIPDF417CodeDescriptor;
@@ -247,6 +252,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodeeccversion?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -269,6 +275,7 @@ unsafe impl RefEncode for CIDataMatrixCodeECCVersion {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodedescriptor?language=objc)
     #[unsafe(super(CIBarcodeDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIDataMatrixCodeDescriptor;

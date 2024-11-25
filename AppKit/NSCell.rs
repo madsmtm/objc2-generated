@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscelltype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -23,6 +24,7 @@ unsafe impl RefEncode for NSCellType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellattribute?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -55,6 +57,7 @@ unsafe impl RefEncode for NSCellAttribute {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellimageposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -79,6 +82,7 @@ unsafe impl RefEncode for NSCellImagePosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagescaling?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -104,15 +108,20 @@ unsafe impl RefEncode for NSImageScaling {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolstatevalue?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSControlStateValue = NSInteger;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolstatevaluemixed?language=objc)
 pub static NSControlStateValueMixed: NSControlStateValue = -1;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolstatevalueoff?language=objc)
 pub static NSControlStateValueOff: NSControlStateValue = 0;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolstatevalueon?language=objc)
 pub static NSControlStateValueOn: NSControlStateValue = 1;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellstylemask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -135,6 +144,7 @@ unsafe impl RefEncode for NSCellStyleMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltint?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -154,6 +164,7 @@ unsafe impl RefEncode for NSControlTint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolsize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -178,6 +189,7 @@ unsafe impl RefEncode for NSControlSize {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -780,6 +792,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellhitresult?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -832,6 +845,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackgroundstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -952,41 +966,58 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackgroundstylelight?language=objc)
 pub static NSBackgroundStyleLight: NSBackgroundStyle =
     NSBackgroundStyle(NSBackgroundStyle::Normal.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackgroundstyledark?language=objc)
 pub static NSBackgroundStyleDark: NSBackgroundStyle =
     NSBackgroundStyle(NSBackgroundStyle::Emphasized.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellstatevalue?language=objc)
 pub type NSCellStateValue = NSControlStateValue;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmixedstate?language=objc)
 pub static NSMixedState: NSControlStateValue = NSControlStateValueMixed;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoffstate?language=objc)
 pub static NSOffState: NSControlStateValue = NSControlStateValueOff;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsonstate?language=objc)
 pub static NSOnState: NSControlStateValue = NSControlStateValueOn;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsregularcontrolsize?language=objc)
 pub static NSRegularControlSize: NSControlSize = NSControlSize(NSControlSize::Regular.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssmallcontrolsize?language=objc)
 pub static NSSmallControlSize: NSControlSize = NSControlSize(NSControlSize::Small.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsminicontrolsize?language=objc)
 pub static NSMiniControlSize: NSControlSize = NSControlSize(NSControlSize::Mini.0);
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltintdidchangenotification?language=objc)
     pub static NSControlTintDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanytype?language=objc)
 #[deprecated = "Use formatters instead"]
 pub const NSAnyType: c_uint = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinttype?language=objc)
 #[deprecated = "Use formatters instead"]
 pub const NSIntType: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspositiveinttype?language=objc)
 #[deprecated = "Use formatters instead"]
 pub const NSPositiveIntType: c_uint = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfloattype?language=objc)
 #[deprecated = "Use formatters instead"]
 pub const NSFloatType: c_uint = 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspositivefloattype?language=objc)
 #[deprecated = "Use formatters instead"]
 pub const NSPositiveFloatType: c_uint = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdoubletype?language=objc)
 #[deprecated = "Use formatters instead"]
 pub const NSDoubleType: c_uint = 6;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspositivedoubletype?language=objc)
 #[deprecated = "Use formatters instead"]
 pub const NSPositiveDoubleType: c_uint = 7;

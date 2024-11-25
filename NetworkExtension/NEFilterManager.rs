@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanagererror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -33,13 +34,16 @@ unsafe impl RefEncode for NEFilterManagerError {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltererrordomain?language=objc)
     pub static NEFilterErrorDomain: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterconfigurationdidchangenotification?language=objc)
     pub static NEFilterConfigurationDidChangeNotification: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanagergrade?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -60,6 +64,7 @@ unsafe impl RefEncode for NEFilterManagerGrade {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterManager;

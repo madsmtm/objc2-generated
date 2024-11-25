@@ -6,25 +6,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrordomain?language=objc)
     pub static CXErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrordomainincomingcall?language=objc)
     pub static CXErrorDomainIncomingCall: &'static NSErrorDomain;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrordomainrequesttransaction?language=objc)
     pub static CXErrorDomainRequestTransaction: &'static NSErrorDomain;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrordomaincalldirectorymanager?language=objc)
     pub static CXErrorDomainCallDirectoryManager: &'static NSErrorDomain;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrordomainnotificationserviceextension?language=objc)
     pub static CXErrorDomainNotificationServiceExtension: &'static NSErrorDomain;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -48,6 +54,7 @@ unsafe impl RefEncode for CXErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -77,6 +84,7 @@ unsafe impl RefEncode for CXErrorCodeIncomingCallError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -110,6 +118,7 @@ unsafe impl RefEncode for CXErrorCodeRequestTransactionError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -143,6 +152,7 @@ unsafe impl RefEncode for CXErrorCodeCallDirectoryManagerError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodenotificationserviceextensionerror?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

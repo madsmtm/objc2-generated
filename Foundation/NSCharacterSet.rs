@@ -4,9 +4,11 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsopenstepunicodereservedbase?language=objc)
 pub const NSOpenStepUnicodeReservedBase: c_uint = 0xF400;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscharacterset?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCharacterSet;
@@ -143,6 +145,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutablecharacterset?language=objc)
     #[unsafe(super(NSCharacterSet, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableCharacterSet;

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilargecontentvieweritem?language=objc)
     pub unsafe trait UILargeContentViewerItem: NSObjectProtocol + MainThreadOnly {
         #[method(showsLargeContentViewer)]
         unsafe fn showsLargeContentViewer(&self) -> bool;
@@ -72,6 +73,7 @@ extern_methods!(
 unsafe impl UILargeContentViewerItem for UIView {}
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilargecontentviewerinteraction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -119,6 +121,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilargecontentviewerinteractiondelegate?language=objc)
     pub unsafe trait UILargeContentViewerInteractionDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -152,6 +155,7 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilargecontentviewerinteractionenabledstatusdidchangenotification?language=objc)
     pub static UILargeContentViewerInteractionEnabledStatusDidChangeNotification:
         &'static NSNotificationName;
 }

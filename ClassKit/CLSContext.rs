@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -56,42 +57,52 @@ unsafe impl RefEncode for CLSContextType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopic?language=objc)
 // NS_TYPED_ENUM
 pub type CLSContextTopic = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopicmath?language=objc)
     pub static CLSContextTopicMath: &'static CLSContextTopic;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopicscience?language=objc)
     pub static CLSContextTopicScience: &'static CLSContextTopic;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopicliteracyandwriting?language=objc)
     pub static CLSContextTopicLiteracyAndWriting: &'static CLSContextTopic;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopicworldlanguage?language=objc)
     pub static CLSContextTopicWorldLanguage: &'static CLSContextTopic;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopicsocialscience?language=objc)
     pub static CLSContextTopicSocialScience: &'static CLSContextTopic;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopiccomputerscienceandengineering?language=objc)
     pub static CLSContextTopicComputerScienceAndEngineering: &'static CLSContextTopic;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopicartsandmusic?language=objc)
     pub static CLSContextTopicArtsAndMusic: &'static CLSContextTopic;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopichealthandfitness?language=objc)
     pub static CLSContextTopicHealthAndFitness: &'static CLSContextTopic;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontext?language=objc)
     #[unsafe(super(CLSObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CLSObject")]

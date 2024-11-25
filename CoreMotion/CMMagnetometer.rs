@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmagneticfield?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMMagneticField {
@@ -29,6 +30,7 @@ unsafe impl RefEncode for CMMagneticField {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmagnetometerdata?language=objc)
     #[unsafe(super(CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CMLogItem")]

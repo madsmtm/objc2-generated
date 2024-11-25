@@ -8,6 +8,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewheaderfooterviewconfigurationupdatehandler?language=objc)
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIView",
@@ -19,6 +20,7 @@ pub type UITableViewHeaderFooterViewConfigurationUpdateHandler = *mut block2::Bl
 >;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewheaderfooterview?language=objc)
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

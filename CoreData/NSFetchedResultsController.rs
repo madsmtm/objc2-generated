@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchedresultscontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFetchedResultsController<ResultType: ?Sized = AnyObject>;
@@ -107,6 +108,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchedresultssectioninfo?language=objc)
     pub unsafe trait NSFetchedResultsSectionInfo {
         #[method_id(@__retain_semantics Other name)]
         unsafe fn name(&self) -> Retained<NSString>;
@@ -124,6 +126,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSFetchedResultsSectionInfo {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchedresultschangetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -144,6 +147,7 @@ unsafe impl RefEncode for NSFetchedResultsChangeType {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchedresultscontrollerdelegate?language=objc)
     pub unsafe trait NSFetchedResultsControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "NSManagedObjectID")]
         #[optional]

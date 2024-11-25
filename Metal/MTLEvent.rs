@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlevent?language=objc)
     pub unsafe trait MTLEvent: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
@@ -22,6 +23,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsharedeventlistener?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLSharedEventListener;
@@ -51,11 +53,13 @@ impl DefaultRetained for MTLSharedEventListener {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsharedeventnotificationblock?language=objc)
 #[cfg(feature = "block2")]
 pub type MTLSharedEventNotificationBlock =
     *mut block2::Block<dyn Fn(NonNull<ProtocolObject<dyn MTLSharedEvent>>, u64)>;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsharedevent?language=objc)
     pub unsafe trait MTLSharedEvent: MTLEvent {
         #[cfg(feature = "block2")]
         #[method(notifyListener:atValue:block:)]
@@ -83,6 +87,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsharedeventhandle?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLSharedEventHandle;

@@ -23,17 +23,21 @@ extern_category!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypeidentifierdatetext?language=objc)
     pub static NSTypeIdentifierDateText: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypeidentifieraddresstext?language=objc)
     pub static NSTypeIdentifierAddressText: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypeidentifierphonenumbertext?language=objc)
     pub static NSTypeIdentifierPhoneNumberText: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypeidentifiertransitinformationtext?language=objc)
     pub static NSTypeIdentifierTransitInformationText: &'static NSString;
 }

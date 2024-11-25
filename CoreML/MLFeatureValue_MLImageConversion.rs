@@ -5,14 +5,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalueimageoption?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type MLFeatureValueImageOption = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalueimageoptioncroprect?language=objc)
     pub static MLFeatureValueImageOptionCropRect: &'static MLFeatureValueImageOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalueimageoptioncropandscale?language=objc)
     pub static MLFeatureValueImageOptionCropAndScale: &'static MLFeatureValueImageOption;
 }
 

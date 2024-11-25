@@ -6,9 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskschedulererrordomain?language=objc)
     pub static BGTaskSchedulerErrorDomain: &'static NSErrorDomain;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskschedulererrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -31,6 +33,7 @@ unsafe impl RefEncode for BGTaskSchedulerErrorCode {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGTaskScheduler;

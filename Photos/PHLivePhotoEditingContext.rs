@@ -7,15 +7,18 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframeprocessingblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
 pub type PHLivePhotoFrameProcessingBlock = *mut block2::Block<
     dyn Fn(NonNull<ProtocolObject<dyn PHLivePhotoFrame>>, NonNull<*mut NSError>) -> *mut CIImage,
 >;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingoption?language=objc)
 // NS_TYPED_ENUM
 pub type PHLivePhotoEditingOption = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHLivePhotoEditingContext;
@@ -84,6 +87,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -104,6 +108,7 @@ unsafe impl RefEncode for PHLivePhotoFrameType {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframe?language=objc)
     pub unsafe trait PHLivePhotoFrame {
         #[cfg(feature = "objc2-core-image")]
         #[method_id(@__retain_semantics Other image)]
@@ -120,13 +125,16 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoshouldrenderatplaybacktime?language=objc)
     pub static PHLivePhotoShouldRenderAtPlaybackTime: &'static PHLivePhotoEditingOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingerrordomain?language=objc)
     pub static PHLivePhotoEditingErrorDomain: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

@@ -4,98 +4,118 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nserrordomain?language=objc)
 #[cfg(feature = "NSString")]
 pub type NSErrorDomain = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscocoaerrordomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCocoaErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsposixerrordomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSPOSIXErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsosstatuserrordomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSOSStatusErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmacherrordomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMachErrorDomain: &'static NSErrorDomain;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nserroruserinfokey?language=objc)
 #[cfg(feature = "NSString")]
 pub type NSErrorUserInfoKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunderlyingerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSUnderlyingErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmultipleunderlyingerrorskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMultipleUnderlyingErrorsKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizeddescriptionkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocalizedDescriptionKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizedfailurereasonerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocalizedFailureReasonErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizedrecoverysuggestionerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocalizedRecoverySuggestionErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizedrecoveryoptionserrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocalizedRecoveryOptionsErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrecoveryattemptererrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSRecoveryAttempterErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshelpanchorerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHelpAnchorErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdebugdescriptionerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSDebugDescriptionErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizedfailureerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocalizedFailureErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStringEncodingErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilepatherrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFilePathErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nserror?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSError;

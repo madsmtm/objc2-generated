@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspreviewrepresentableactivityitem?language=objc)
     pub unsafe trait NSPreviewRepresentableActivityItem: NSObjectProtocol {
         #[method_id(@__retain_semantics Other item)]
         unsafe fn item(&self) -> Retained<AnyObject>;
@@ -27,6 +28,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspreviewrepresentingactivityitem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPreviewRepresentingActivityItem;

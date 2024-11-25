@@ -9,87 +9,109 @@ use objc2_metal::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloadererror?language=objc)
 // NS_TYPED_ENUM
 pub type MTKTextureLoaderError = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloadererrordomain?language=objc)
     pub static MTKTextureLoaderErrorDomain: &'static MTKTextureLoaderError;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloadererrorkey?language=objc)
     pub static MTKTextureLoaderErrorKey: &'static MTKTextureLoaderError;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoption?language=objc)
 // NS_TYPED_ENUM
 pub type MTKTextureLoaderOption = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptionallocatemipmaps?language=objc)
     pub static MTKTextureLoaderOptionAllocateMipmaps: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptiongeneratemipmaps?language=objc)
     pub static MTKTextureLoaderOptionGenerateMipmaps: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptionsrgb?language=objc)
     pub static MTKTextureLoaderOptionSRGB: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptiontextureusage?language=objc)
     pub static MTKTextureLoaderOptionTextureUsage: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptiontexturecpucachemode?language=objc)
     pub static MTKTextureLoaderOptionTextureCPUCacheMode: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptiontexturestoragemode?language=objc)
     pub static MTKTextureLoaderOptionTextureStorageMode: &'static MTKTextureLoaderOption;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloadercubelayout?language=objc)
 // NS_TYPED_ENUM
 pub type MTKTextureLoaderCubeLayout = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptioncubelayout?language=objc)
     pub static MTKTextureLoaderOptionCubeLayout: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloadercubelayoutvertical?language=objc)
     pub static MTKTextureLoaderCubeLayoutVertical: &'static MTKTextureLoaderCubeLayout;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderorigin?language=objc)
 // NS_TYPED_ENUM
 pub type MTKTextureLoaderOrigin = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptionorigin?language=objc)
     pub static MTKTextureLoaderOptionOrigin: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderorigintopleft?language=objc)
     pub static MTKTextureLoaderOriginTopLeft: &'static MTKTextureLoaderOrigin;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoriginbottomleft?language=objc)
     pub static MTKTextureLoaderOriginBottomLeft: &'static MTKTextureLoaderOrigin;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoriginflippedvertically?language=objc)
     pub static MTKTextureLoaderOriginFlippedVertically: &'static MTKTextureLoaderOrigin;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptionloadasarray?language=objc)
     pub static MTKTextureLoaderOptionLoadAsArray: &'static MTKTextureLoaderOption;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloadercallback?language=objc)
 #[cfg(feature = "block2")]
 pub type MTKTextureLoaderCallback =
     *mut block2::Block<dyn Fn(*mut ProtocolObject<dyn MTLTexture>, *mut NSError)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderarraycallback?language=objc)
 #[cfg(feature = "block2")]
 pub type MTKTextureLoaderArrayCallback =
     *mut block2::Block<dyn Fn(NonNull<NSArray<ProtocolObject<dyn MTLTexture>>>, *mut NSError)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTKTextureLoader;

@@ -5,10 +5,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemdecorationidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFileProviderItemDecorationIdentifier = NSString;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemdecorating?language=objc)
     #[cfg(feature = "NSFileProviderItem")]
     pub unsafe trait NSFileProviderItemDecorating: NSFileProviderItemProtocol {
         #[method_id(@__retain_semantics Other decorations)]

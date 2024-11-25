@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechRecognitionRequest;
@@ -82,6 +83,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechurlrecognitionrequest?language=objc)
     #[unsafe(super(SFSpeechRecognitionRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechURLRecognitionRequest;
@@ -111,6 +113,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest?language=objc)
     #[unsafe(super(SFSpeechRecognitionRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechAudioBufferRecognitionRequest;

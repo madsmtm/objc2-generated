@@ -7,6 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbarstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -34,6 +35,7 @@ unsafe impl RefEncode for UIStatusBarStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbaranimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -56,9 +58,11 @@ unsafe impl RefEncode for UIStatusBarAnimation {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationinvalidinterfaceorientationexception?language=objc)
     pub static UIApplicationInvalidInterfaceOrientationException: &'static NSExceptionName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiremotenotificationtype?language=objc)
 // NS_OPTIONS
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
 #[repr(transparent)]
@@ -92,6 +96,7 @@ unsafe impl RefEncode for UIRemoteNotificationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundfetchresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -113,6 +118,7 @@ unsafe impl RefEncode for UIBackgroundFetchResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundrefreshstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -134,6 +140,7 @@ unsafe impl RefEncode for UIBackgroundRefreshStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -155,29 +162,36 @@ unsafe impl RefEncode for UIApplicationState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundtaskidentifier?language=objc)
 // NS_TYPED_ENUM
 pub type UIBackgroundTaskIdentifier = NSUInteger;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundtaskinvalid?language=objc)
     pub static UIBackgroundTaskInvalid: UIBackgroundTaskIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiminimumkeepalivetimeout?language=objc)
     pub static UIMinimumKeepAliveTimeout: NSTimeInterval;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationbackgroundfetchintervalminimum?language=objc)
     pub static UIApplicationBackgroundFetchIntervalMinimum: NSTimeInterval;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationbackgroundfetchintervalnever?language=objc)
     pub static UIApplicationBackgroundFetchIntervalNever: NSTimeInterval;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenexternalurloptionskey?language=objc)
 // NS_TYPED_ENUM
 pub type UIApplicationOpenExternalURLOptionsKey = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication?language=objc)
     #[unsafe(super(UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -588,16 +602,20 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionskey?language=objc)
 // NS_TYPED_ENUM
 pub type UIApplicationLaunchOptionsKey = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionskey?language=objc)
 // NS_TYPED_ENUM
 pub type UIApplicationOpenURLOptionsKey = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationextensionpointidentifier?language=objc)
 // NS_TYPED_ENUM
 pub type UIApplicationExtensionPointIdentifier = NSString;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate?language=objc)
     pub unsafe trait UIApplicationDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIResponder")]
         #[optional]
@@ -1174,185 +1192,227 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitrackingrunloopmode?language=objc)
     pub static UITrackingRunLoopMode: &'static NSRunLoopMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationdidenterbackgroundnotification?language=objc)
     pub static UIApplicationDidEnterBackgroundNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationwillenterforegroundnotification?language=objc)
     pub static UIApplicationWillEnterForegroundNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationdidfinishlaunchingnotification?language=objc)
     pub static UIApplicationDidFinishLaunchingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationdidbecomeactivenotification?language=objc)
     pub static UIApplicationDidBecomeActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationwillresignactivenotification?language=objc)
     pub static UIApplicationWillResignActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationdidreceivememorywarningnotification?language=objc)
     pub static UIApplicationDidReceiveMemoryWarningNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationwillterminatenotification?language=objc)
     pub static UIApplicationWillTerminateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationsignificanttimechangenotification?language=objc)
     pub static UIApplicationSignificantTimeChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationwillchangestatusbarorientationnotification?language=objc)
     pub static UIApplicationWillChangeStatusBarOrientationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationdidchangestatusbarorientationnotification?language=objc)
     pub static UIApplicationDidChangeStatusBarOrientationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationstatusbarorientationuserinfokey?language=objc)
     pub static UIApplicationStatusBarOrientationUserInfoKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationwillchangestatusbarframenotification?language=objc)
     pub static UIApplicationWillChangeStatusBarFrameNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationdidchangestatusbarframenotification?language=objc)
     pub static UIApplicationDidChangeStatusBarFrameNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationstatusbarframeuserinfokey?language=objc)
     pub static UIApplicationStatusBarFrameUserInfoKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationbackgroundrefreshstatusdidchangenotification?language=objc)
     pub static UIApplicationBackgroundRefreshStatusDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationprotecteddatawillbecomeunavailable?language=objc)
     pub static UIApplicationProtectedDataWillBecomeUnavailable: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationprotecteddatadidbecomeavailable?language=objc)
     pub static UIApplicationProtectedDataDidBecomeAvailable: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsurlkey?language=objc)
     pub static UIApplicationLaunchOptionsURLKey: &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionssourceapplicationkey?language=objc)
     pub static UIApplicationLaunchOptionsSourceApplicationKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsremotenotificationkey?language=objc)
     pub static UIApplicationLaunchOptionsRemoteNotificationKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionslocalnotificationkey?language=objc)
     pub static UIApplicationLaunchOptionsLocalNotificationKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsannotationkey?language=objc)
     pub static UIApplicationLaunchOptionsAnnotationKey: &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionslocationkey?language=objc)
     pub static UIApplicationLaunchOptionsLocationKey: &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsnewsstanddownloadskey?language=objc)
     pub static UIApplicationLaunchOptionsNewsstandDownloadsKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsbluetoothcentralskey?language=objc)
     pub static UIApplicationLaunchOptionsBluetoothCentralsKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsbluetoothperipheralskey?language=objc)
     pub static UIApplicationLaunchOptionsBluetoothPeripheralsKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsshortcutitemkey?language=objc)
     pub static UIApplicationLaunchOptionsShortcutItemKey: &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionseventattributionkey?language=objc)
     pub static UIApplicationLaunchOptionsEventAttributionKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsuseractivitydictionarykey?language=objc)
     pub static UIApplicationLaunchOptionsUserActivityDictionaryKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsuseractivitytypekey?language=objc)
     pub static UIApplicationLaunchOptionsUserActivityTypeKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionscloudkitsharemetadatakey?language=objc)
     pub static UIApplicationLaunchOptionsCloudKitShareMetadataKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopensettingsurlstring?language=objc)
     pub static UIApplicationOpenSettingsURLString: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopennotificationsettingsurlstring?language=objc)
     pub static UIApplicationOpenNotificationSettingsURLString: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionssourceapplicationkey?language=objc)
     pub static UIApplicationOpenURLOptionsSourceApplicationKey:
         &'static UIApplicationOpenURLOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionsannotationkey?language=objc)
     pub static UIApplicationOpenURLOptionsAnnotationKey: &'static UIApplicationOpenURLOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionsopeninplacekey?language=objc)
     pub static UIApplicationOpenURLOptionsOpenInPlaceKey: &'static UIApplicationOpenURLOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionseventattributionkey?language=objc)
     pub static UIApplicationOpenURLOptionsEventAttributionKey:
         &'static UIApplicationOpenURLOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationuserdidtakescreenshotnotification?language=objc)
     pub static UIApplicationUserDidTakeScreenshotNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationkeyboardextensionpointidentifier?language=objc)
     pub static UIApplicationKeyboardExtensionPointIdentifier:
         &'static UIApplicationExtensionPointIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionuniversallinksonly?language=objc)
     pub static UIApplicationOpenURLOptionUniversalLinksOnly:
         &'static UIApplicationOpenExternalURLOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenexternalurloptionseventattributionkey?language=objc)
     pub static UIApplicationOpenExternalURLOptionsEventAttributionKey:
         &'static UIApplicationOpenExternalURLOptionsKey;
 }

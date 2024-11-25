@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotordirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -24,6 +25,7 @@ unsafe impl RefEncode for UIAccessibilityCustomRotorDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomsystemrotortype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -77,6 +79,7 @@ unsafe impl RefEncode for UIAccessibilityCustomSystemRotorType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotorsearch?language=objc)
 #[cfg(feature = "block2")]
 pub type UIAccessibilityCustomRotorSearch = *mut block2::Block<
     dyn Fn(
@@ -84,6 +87,7 @@ pub type UIAccessibilityCustomRotorSearch = *mut block2::Block<
     ) -> *mut UIAccessibilityCustomRotorItemResult,
 >;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axcustomrotorsreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXCustomRotorsReturnBlock =
     *mut block2::Block<dyn Fn() -> *mut NSArray<UIAccessibilityCustomRotor>>;
@@ -125,6 +129,7 @@ extern_category!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotorsearchpredicate?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -164,6 +169,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -238,6 +244,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotoritemresult?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

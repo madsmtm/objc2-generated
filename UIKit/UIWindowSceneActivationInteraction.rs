@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneactivationinteractionconfigurationprovider?language=objc)
 #[cfg(all(feature = "UIWindowSceneActivationConfiguration", feature = "block2"))]
 pub type UIWindowSceneActivationInteractionConfigurationProvider = *mut block2::Block<
     dyn Fn(
@@ -14,6 +15,7 @@ pub type UIWindowSceneActivationInteractionConfigurationProvider = *mut block2::
 >;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneactivationinteraction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

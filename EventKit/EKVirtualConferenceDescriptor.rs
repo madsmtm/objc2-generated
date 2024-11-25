@@ -5,9 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekvirtualconferenceroomtypeidentifier?language=objc)
 pub type EKVirtualConferenceRoomTypeIdentifier = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekvirtualconferenceroomtypedescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKVirtualConferenceRoomTypeDescriptor;
@@ -39,6 +41,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekvirtualconferenceurldescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKVirtualConferenceURLDescriptor;
@@ -70,6 +73,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekvirtualconferencedescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKVirtualConferenceDescriptor;

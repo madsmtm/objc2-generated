@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcproxycreating?language=objc)
     pub unsafe trait NSXPCProxyCreating {
         #[method_id(@__retain_semantics Other remoteObjectProxy)]
         unsafe fn remoteObjectProxy(&self) -> Retained<AnyObject>;
@@ -28,6 +29,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSXPCProxyCreating {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -47,6 +49,7 @@ unsafe impl RefEncode for NSXPCConnectionOptions {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXPCConnection;
@@ -195,6 +198,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpclistener?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXPCListener;
@@ -262,6 +266,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpclistenerdelegate?language=objc)
     pub unsafe trait NSXPCListenerDelegate: NSObjectProtocol {
         #[optional]
         #[method(listener:shouldAcceptNewConnection:)]
@@ -276,6 +281,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcinterface?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXPCInterface;
@@ -344,6 +350,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpclistenerendpoint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXPCListenerEndpoint;
@@ -377,6 +384,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpccoder?language=objc)
     #[unsafe(super(NSCoder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCoder")]

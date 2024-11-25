@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentsformatterstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,6 +30,7 @@ unsafe impl RefEncode for NSPersonNameComponentsFormatterStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentsformatteroptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -48,6 +50,7 @@ unsafe impl RefEncode for NSPersonNameComponentsFormatterOptions {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentsformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]
@@ -150,41 +153,49 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSPersonNameComponentKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentgivenname?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSPersonNameComponentGivenName: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentfamilyname?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSPersonNameComponentFamilyName: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentmiddlename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSPersonNameComponentMiddleName: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentprefix?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSPersonNameComponentPrefix: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentsuffix?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSPersonNameComponentSuffix: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentnickname?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSPersonNameComponentNickname: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentdelimiter?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSPersonNameComponentDelimiter: &'static NSString;
 }

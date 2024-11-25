@@ -6,14 +6,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationdefaultactionidentifier?language=objc)
     pub static UNNotificationDefaultActionIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationdismissactionidentifier?language=objc)
     pub static UNNotificationDismissActionIdentifier: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationResponse;
@@ -54,6 +57,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/untextinputnotificationresponse?language=objc)
     #[unsafe(super(UNNotificationResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNTextInputNotificationResponse;

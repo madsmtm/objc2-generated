@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressionmethod?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -38,21 +39,26 @@ extern "C-unwind" {
     pub fn MTLCopyAllDevices() -> NonNull<NSArray<ProtocolObject<dyn MTLDevice>>>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationname?language=objc)
 // NS_TYPED_ENUM
 pub type MTLDeviceNotificationName = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicewasaddednotification?language=objc)
     pub static MTLDeviceWasAddedNotification: &'static MTLDeviceNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldeviceremovalrequestednotification?language=objc)
     pub static MTLDeviceRemovalRequestedNotification: &'static MTLDeviceNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicewasremovednotification?language=objc)
     pub static MTLDeviceWasRemovedNotification: &'static MTLDeviceNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type MTLDeviceNotificationHandler = *mut block2::Block<
     dyn Fn(NonNull<ProtocolObject<dyn MTLDevice>>, NonNull<MTLDeviceNotificationName>),
@@ -62,6 +68,7 @@ extern "C-unwind" {
     pub fn MTLRemoveDeviceObserver(observer: &ProtocolObject<dyn NSObjectProtocol>);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset?language=objc)
 // NS_ENUM
 #[deprecated = "Use MTLGPUFamily instead"]
 #[repr(transparent)]
@@ -145,6 +152,7 @@ unsafe impl RefEncode for MTLFeatureSet {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -197,6 +205,7 @@ unsafe impl RefEncode for MTLGPUFamily {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicelocation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -220,6 +229,7 @@ unsafe impl RefEncode for MTLDeviceLocation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelineoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -248,6 +258,7 @@ unsafe impl RefEncode for MTLPipelineOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlreadwritetexturetier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -267,6 +278,7 @@ unsafe impl RefEncode for MTLReadWriteTextureTier {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumentbufferstier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -284,6 +296,7 @@ unsafe impl RefEncode for MTLArgumentBuffersTier {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsetextureregionalignmentmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -303,6 +316,7 @@ unsafe impl RefEncode for MTLSparseTextureRegionAlignmentMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsepagesize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -321,6 +335,7 @@ unsafe impl RefEncode for MTLSparsePageSize {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuresizes?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLAccelerationStructureSizes {
@@ -344,6 +359,7 @@ unsafe impl RefEncode for MTLAccelerationStructureSizes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplingpoint?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -369,6 +385,7 @@ unsafe impl RefEncode for MTLCounterSamplingPoint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsizeandalign?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLSizeAndAlign {
@@ -385,14 +402,17 @@ unsafe impl RefEncode for MTLSizeAndAlign {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewlibrarycompletionhandler?language=objc)
 #[cfg(all(feature = "MTLLibrary", feature = "block2"))]
 pub type MTLNewLibraryCompletionHandler =
     *mut block2::Block<dyn Fn(*mut ProtocolObject<dyn MTLLibrary>, *mut NSError)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewrenderpipelinestatecompletionhandler?language=objc)
 #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
 pub type MTLNewRenderPipelineStateCompletionHandler =
     *mut block2::Block<dyn Fn(*mut ProtocolObject<dyn MTLRenderPipelineState>, *mut NSError)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewrenderpipelinestatewithreflectioncompletionhandler?language=objc)
 #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
 pub type MTLNewRenderPipelineStateWithReflectionCompletionHandler = *mut block2::Block<
     dyn Fn(
@@ -402,10 +422,12 @@ pub type MTLNewRenderPipelineStateWithReflectionCompletionHandler = *mut block2:
     ),
 >;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewcomputepipelinestatecompletionhandler?language=objc)
 #[cfg(all(feature = "MTLComputePipeline", feature = "block2"))]
 pub type MTLNewComputePipelineStateCompletionHandler =
     *mut block2::Block<dyn Fn(*mut ProtocolObject<dyn MTLComputePipelineState>, *mut NSError)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewcomputepipelinestatewithreflectioncompletionhandler?language=objc)
 #[cfg(all(feature = "MTLComputePipeline", feature = "block2"))]
 pub type MTLNewComputePipelineStateWithReflectionCompletionHandler = *mut block2::Block<
     dyn Fn(
@@ -416,6 +438,7 @@ pub type MTLNewComputePipelineStateWithReflectionCompletionHandler = *mut block2
 >;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumentdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLArgumentDescriptor;
@@ -490,6 +513,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlarchitecture?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLArchitecture;
@@ -521,9 +545,11 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltimestamp?language=objc)
 pub type MTLTimestamp = u64;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevice?language=objc)
     pub unsafe trait MTLDevice: NSObjectProtocol {
         #[method_id(@__retain_semantics Other name)]
         fn name(&self) -> Retained<NSString>;

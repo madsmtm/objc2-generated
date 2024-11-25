@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdownloadredirectpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -25,6 +26,7 @@ unsafe impl RefEncode for WKDownloadRedirectPolicy {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdownloaddelegate?language=objc)
     pub unsafe trait WKDownloadDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "WKDownload", feature = "block2"))]
         #[method(download:decideDestinationUsingResponse:suggestedFilename:completionHandler:)]

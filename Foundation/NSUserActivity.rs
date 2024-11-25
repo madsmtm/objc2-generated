@@ -4,10 +4,12 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivitypersistentidentifier?language=objc)
 #[cfg(feature = "NSString")]
 pub type NSUserActivityPersistentIdentifier = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivity?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserActivity;
@@ -209,11 +211,13 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivitytypebrowsingweb?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSUserActivityTypeBrowsingWeb: &'static NSString;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivitydelegate?language=objc)
     pub unsafe trait NSUserActivityDelegate: NSObjectProtocol {
         #[optional]
         #[method(userActivityWillSave:)]

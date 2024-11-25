@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageencoder?language=objc)
     pub unsafe trait MEMessageEncoder: NSObjectProtocol {
         #[cfg(all(
             feature = "MEComposeContext",

@@ -6,42 +6,52 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicextendedpropertiesstring?language=objc)
     pub static CBUUIDCharacteristicExtendedPropertiesString: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicuserdescriptionstring?language=objc)
     pub static CBUUIDCharacteristicUserDescriptionString: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidclientcharacteristicconfigurationstring?language=objc)
     pub static CBUUIDClientCharacteristicConfigurationString: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidservercharacteristicconfigurationstring?language=objc)
     pub static CBUUIDServerCharacteristicConfigurationString: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicformatstring?language=objc)
     pub static CBUUIDCharacteristicFormatString: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicaggregateformatstring?language=objc)
     pub static CBUUIDCharacteristicAggregateFormatString: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicvalidrangestring?language=objc)
     pub static CBUUIDCharacteristicValidRangeString: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicobservationschedulestring?language=objc)
     pub static CBUUIDCharacteristicObservationScheduleString: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidl2cappsmcharacteristicstring?language=objc)
     pub static CBUUIDL2CAPPSMCharacteristicString: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuid?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CBUUID;

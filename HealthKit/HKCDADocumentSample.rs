@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcdadocumentsample?language=objc)
     #[unsafe(super(HKDocumentSample, HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -98,6 +99,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcdadocument?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKCDADocument;
@@ -140,21 +142,26 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdatitle?language=objc)
     pub static HKPredicateKeyPathCDATitle: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdapatientname?language=objc)
     pub static HKPredicateKeyPathCDAPatientName: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdaauthorname?language=objc)
     pub static HKPredicateKeyPathCDAAuthorName: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdacustodianname?language=objc)
     pub static HKPredicateKeyPathCDACustodianName: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdetailedcdavalidationerrorkey?language=objc)
     pub static HKDetailedCDAValidationErrorKey: &'static NSString;
 }

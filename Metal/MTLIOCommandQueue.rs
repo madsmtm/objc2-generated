@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliopriority?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -26,6 +27,7 @@ unsafe impl RefEncode for MTLIOPriority {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandqueuetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -46,9 +48,11 @@ unsafe impl RefEncode for MTLIOCommandQueueType {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioerrordomain?language=objc)
     pub static MTLIOErrorDomain: &'static NSErrorDomain;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioerror?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -69,6 +73,7 @@ unsafe impl RefEncode for MTLIOError {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandqueue?language=objc)
     pub unsafe trait MTLIOCommandQueue: NSObjectProtocol {
         #[method(enqueueBarrier)]
         unsafe fn enqueueBarrier(&self);
@@ -94,6 +99,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioscratchbuffer?language=objc)
     pub unsafe trait MTLIOScratchBuffer: NSObjectProtocol {
         #[cfg(all(
             feature = "MTLAllocation",
@@ -108,6 +114,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioscratchbufferallocator?language=objc)
     pub unsafe trait MTLIOScratchBufferAllocator: NSObjectProtocol {
         #[method_id(@__retain_semantics New newScratchBufferWithMinimumSize:)]
         unsafe fn newScratchBufferWithMinimumSize(
@@ -120,6 +127,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandqueuedescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLIOCommandQueueDescriptor;
@@ -184,6 +192,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliofilehandle?language=objc)
     pub unsafe trait MTLIOFileHandle: NSObjectProtocol {
         #[method_id(@__retain_semantics Other label)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;

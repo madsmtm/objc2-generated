@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeature?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIFeature;
@@ -35,22 +36,27 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeaturetypeface?language=objc)
     pub static CIFeatureTypeFace: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeaturetyperectangle?language=objc)
     pub static CIFeatureTypeRectangle: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeaturetypeqrcode?language=objc)
     pub static CIFeatureTypeQRCode: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeaturetypetext?language=objc)
     pub static CIFeatureTypeText: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifacefeature?language=objc)
     #[unsafe(super(CIFeature, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIFaceFeature;
@@ -122,6 +128,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirectanglefeature?language=objc)
     #[unsafe(super(CIFeature, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIRectangleFeature;
@@ -160,6 +167,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodefeature?language=objc)
     #[unsafe(super(CIFeature, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIQRCodeFeature;
@@ -215,6 +223,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/citextfeature?language=objc)
     #[unsafe(super(CIFeature, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CITextFeature;

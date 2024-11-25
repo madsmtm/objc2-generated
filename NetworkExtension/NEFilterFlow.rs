@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterflow?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterFlow;
@@ -64,6 +65,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterbrowserflow?language=objc)
     #[unsafe(super(NEFilterFlow, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterBrowserFlow;
@@ -106,6 +108,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltersocketflow?language=objc)
     #[unsafe(super(NEFilterFlow, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterSocketFlow;

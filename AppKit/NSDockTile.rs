@@ -5,10 +5,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumberwithdocktilepluginsupport?language=objc)
 #[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithDockTilePlugInSupport: NSAppKitVersion = 1001.0 as _;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocktile?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDockTile;
@@ -61,6 +63,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocktileplugin?language=objc)
     pub unsafe trait NSDockTilePlugIn: NSObjectProtocol {
         #[method(setDockTile:)]
         unsafe fn setDockTile(&self, dock_tile: Option<&NSDockTile>);

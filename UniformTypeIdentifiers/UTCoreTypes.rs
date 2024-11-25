@@ -5,696 +5,835 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeitem?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeItem: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecontent?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeContent: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecompositecontent?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeCompositeContent: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypediskimage?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeDiskImage: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeData: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedirectory?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeDirectory: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttyperesolvable?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeResolvable: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypesymboliclink?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeSymbolicLink: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeexecutable?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeExecutable: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemountpoint?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMountPoint: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypealiasfile?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAliasFile: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeurlbookmarkdata?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeURLBookmarkData: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeurl?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeURL: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypefileurl?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeFileURL: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetext?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeText: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeplaintext?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePlainText: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeutf8plaintext?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeUTF8PlainText: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeutf16externalplaintext?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeUTF16ExternalPlainText: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeutf16plaintext?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeUTF16PlainText: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedelimitedtext?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeDelimitedText: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecommaseparatedtext?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeCommaSeparatedText: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetabseparatedtext?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeTabSeparatedText: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeutf8tabseparatedtext?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeUTF8TabSeparatedText: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypertf?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeRTF: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypehtml?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeHTML: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypexml?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeXML: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeyaml?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeYAML: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecss?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeCSS: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypesourcecode?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeSourceCode: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeassemblylanguagesource?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAssemblyLanguageSource: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecsource?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeCSource: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeobjectivecsource?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeObjectiveCSource: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeswiftsource?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeSwiftSource: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecplusplussource?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeCPlusPlusSource: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeobjectivecplusplussource?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeObjectiveCPlusPlusSource: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecheader?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeCHeader: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecplusplusheader?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeCPlusPlusHeader: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypescript?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeScript: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeapplescript?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAppleScript: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeosascript?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeOSAScript: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeosascriptbundle?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeOSAScriptBundle: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypejavascript?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeJavaScript: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeshellscript?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeShellScript: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeperlscript?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePerlScript: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepythonscript?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePythonScript: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttyperubyscript?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeRubyScript: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypephpscript?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePHPScript: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemakefile?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMakefile: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypejson?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeJSON: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepropertylist?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePropertyList: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypexmlpropertylist?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeXMLPropertyList: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypebinarypropertylist?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeBinaryPropertyList: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepdf?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePDF: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypertfd?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeRTFD: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeflatrtfd?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeFlatRTFD: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypewebarchive?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeWebArchive: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeimage?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeImage: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypejpeg?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeJPEG: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetiff?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeTIFF: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypegif?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeGIF: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepng?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePNG: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeicns?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeICNS: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypebmp?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeBMP: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeico?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeICO: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttyperawimage?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeRAWImage: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypesvg?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeSVG: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypelivephoto?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeLivePhoto: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeheif?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeHEIF: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeheic?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeHEIC: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeheics?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeHEICS: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypewebp?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeWebP: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeexr?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeEXR: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedng?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeDNG: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttype3dcontent?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTType3DContent: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeusd?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeUSD: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeusdz?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeUSDZ: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttyperealityfile?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeRealityFile: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypescenekitscene?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeSceneKitScene: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypearreferenceobject?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeARReferenceObject: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeaudiovisualcontent?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAudiovisualContent: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemovie?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMovie: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypevideo?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeVideo: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeaudio?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAudio: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypequicktimemovie?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeQuickTimeMovie: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypempeg?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMPEG: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypempeg2video?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMPEG2Video: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypempeg2transportstream?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMPEG2TransportStream: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemp3?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMP3: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypempeg4movie?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMPEG4Movie: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypempeg4audio?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMPEG4Audio: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeappleprotectedmpeg4audio?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAppleProtectedMPEG4Audio: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeappleprotectedmpeg4video?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAppleProtectedMPEG4Video: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeavi?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAVI: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeaiff?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAIFF: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypewav?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeWAV: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemidi?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMIDI: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeplaylist?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePlaylist: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypem3uplaylist?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeM3UPlaylist: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypefolder?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeFolder: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypevolume?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeVolume: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepackage?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePackage: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypebundle?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeBundle: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepluginbundle?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePluginBundle: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypespotlightimporter?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeSpotlightImporter: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypequicklookgenerator?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeQuickLookGenerator: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypexpcservice?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeXPCService: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeframework?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeFramework: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeapplication?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeApplication: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeapplicationbundle?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeApplicationBundle: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeapplicationextension?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeApplicationExtension: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeunixexecutable?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeUnixExecutable: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeexe?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeEXE: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypesystempreferencespane?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeSystemPreferencesPane: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypearchive?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeArchive: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypegzip?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeGZIP: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypebz2?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeBZ2: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypezip?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeZIP: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeapplearchive?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAppleArchive: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetararchive?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeTarArchive: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypespreadsheet?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeSpreadsheet: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepresentation?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePresentation: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedatabase?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeDatabase: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemessage?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMessage: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecontact?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeContact: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypevcard?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeVCard: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetodoitem?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeToDoItem: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecalendarevent?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeCalendarEvent: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeemailmessage?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeEmailMessage: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeinternetlocation?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeInternetLocation: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeinternetshortcut?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeInternetShortcut: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypefont?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeFont: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypebookmark?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeBookmark: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepkcs12?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePKCS12: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypex509certificate?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeX509Certificate: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeepub?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeEPUB: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypelog?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeLog: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeahap?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAHAP: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypegeojson?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeGeoJSON: &'static UTType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypelinkpresentationmetadata?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeLinkPresentationMetadata: &'static UTType;
 }

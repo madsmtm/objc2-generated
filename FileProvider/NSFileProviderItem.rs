@@ -7,23 +7,28 @@ use objc2_uniform_type_identifiers::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFileProviderItemIdentifier = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderrootcontaineritemidentifier?language=objc)
     pub static NSFileProviderRootContainerItemIdentifier: &'static NSFileProviderItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderworkingsetcontaineritemidentifier?language=objc)
     pub static NSFileProviderWorkingSetContainerItemIdentifier:
         &'static NSFileProviderItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertrashcontaineritemidentifier?language=objc)
     pub static NSFileProviderTrashContainerItemIdentifier: &'static NSFileProviderItemIdentifier;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemversion?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderItemVersion;
@@ -63,9 +68,11 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderfavoriterankunranked?language=objc)
     pub static NSFileProviderFavoriteRankUnranked: c_ulonglong;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemcapabilities?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -107,6 +114,7 @@ unsafe impl RefEncode for NSFileProviderItemCapabilities {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemfields?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -135,6 +143,7 @@ unsafe impl RefEncode for NSFileProviderItemFields {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderfilesystemflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -157,6 +166,7 @@ unsafe impl RefEncode for NSFileProviderFileSystemFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertypeandcreator?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSFileProviderTypeAndCreator {
@@ -175,6 +185,7 @@ unsafe impl RefEncode for NSFileProviderTypeAndCreator {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidercontentpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -199,6 +210,7 @@ unsafe impl RefEncode for NSFileProviderContentPolicy {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemprotocol?language=objc)
     pub unsafe trait NSFileProviderItemProtocol: NSObjectProtocol {
         #[method_id(@__retain_semantics Other itemIdentifier)]
         unsafe fn itemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
@@ -338,4 +350,5 @@ extern_protocol!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritem?language=objc)
 pub type NSFileProviderItem = ProtocolObject<dyn NSFileProviderItemProtocol>;

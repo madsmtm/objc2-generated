@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycolor?language=objc)
     pub unsafe trait NSAccessibilityColor {
         #[method_id(@__retain_semantics Other accessibilityName)]
         unsafe fn accessibilityName(&self) -> Retained<NSString>;

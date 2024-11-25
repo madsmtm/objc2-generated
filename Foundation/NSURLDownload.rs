@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurldownload?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLDownload;
@@ -72,6 +73,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate?language=objc)
     pub unsafe trait NSURLDownloadDelegate: NSObjectProtocol {
         #[optional]
         #[method(downloadDidBegin:)]

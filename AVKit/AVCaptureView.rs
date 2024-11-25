@@ -8,6 +8,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewcontrolsstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -32,6 +33,7 @@ unsafe impl RefEncode for AVCaptureViewControlsStyle {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -132,6 +134,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewdelegate?language=objc)
     pub unsafe trait AVCaptureViewDelegate: NSObjectProtocol {}
 
     unsafe impl ProtocolType for dyn AVCaptureViewDelegate {}

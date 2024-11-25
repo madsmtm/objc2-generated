@@ -7,54 +7,67 @@ use objc2_metal::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicontextoption?language=objc)
 // NS_TYPED_ENUM
 pub type CIContextOption = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextoutputcolorspace?language=objc)
     pub static kCIContextOutputColorSpace: &'static CIContextOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextworkingcolorspace?language=objc)
     pub static kCIContextWorkingColorSpace: &'static CIContextOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextworkingformat?language=objc)
     pub static kCIContextWorkingFormat: &'static CIContextOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontexthighqualitydownsample?language=objc)
     pub static kCIContextHighQualityDownsample: &'static CIContextOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextoutputpremultiplied?language=objc)
     pub static kCIContextOutputPremultiplied: &'static CIContextOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextcacheintermediates?language=objc)
     pub static kCIContextCacheIntermediates: &'static CIContextOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextusesoftwarerenderer?language=objc)
     pub static kCIContextUseSoftwareRenderer: &'static CIContextOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextpriorityrequestlow?language=objc)
     pub static kCIContextPriorityRequestLow: &'static CIContextOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextallowlowpower?language=objc)
     pub static kCIContextAllowLowPower: &'static CIContextOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextname?language=objc)
     pub static kCIContextName: &'static CIContextOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextmemorylimit?language=objc)
     pub static kCIContextMemoryLimit: &'static CIContextOption;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIContext;
@@ -169,65 +182,79 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimagerepresentationoption?language=objc)
 // NS_TYPED_ENUM
 pub type CIImageRepresentationOption = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationavdepthdata?language=objc)
     pub static kCIImageRepresentationAVDepthData: &'static CIImageRepresentationOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationdepthimage?language=objc)
     pub static kCIImageRepresentationDepthImage: &'static CIImageRepresentationOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationdisparityimage?language=objc)
     pub static kCIImageRepresentationDisparityImage: &'static CIImageRepresentationOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationavportraiteffectsmatte?language=objc)
     pub static kCIImageRepresentationAVPortraitEffectsMatte: &'static CIImageRepresentationOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationportraiteffectsmatteimage?language=objc)
     pub static kCIImageRepresentationPortraitEffectsMatteImage:
         &'static CIImageRepresentationOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationavsemanticsegmentationmattes?language=objc)
     pub static kCIImageRepresentationAVSemanticSegmentationMattes:
         &'static CIImageRepresentationOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationskinmatteimage?language=objc)
     pub static kCIImageRepresentationSemanticSegmentationSkinMatteImage:
         &'static CIImageRepresentationOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationhairmatteimage?language=objc)
     pub static kCIImageRepresentationSemanticSegmentationHairMatteImage:
         &'static CIImageRepresentationOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationteethmatteimage?language=objc)
     pub static kCIImageRepresentationSemanticSegmentationTeethMatteImage:
         &'static CIImageRepresentationOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationglassesmatteimage?language=objc)
     pub static kCIImageRepresentationSemanticSegmentationGlassesMatteImage:
         &'static CIImageRepresentationOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationskymatteimage?language=objc)
     pub static kCIImageRepresentationSemanticSegmentationSkyMatteImage:
         &'static CIImageRepresentationOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationhdrimage?language=objc)
     pub static kCIImageRepresentationHDRImage: &'static CIImageRepresentationOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationhdrgainmapimage?language=objc)
     pub static kCIImageRepresentationHDRGainMapImage: &'static CIImageRepresentationOption;
 }
 

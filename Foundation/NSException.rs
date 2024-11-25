@@ -5,81 +5,97 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgenericexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSGenericException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrangeexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSRangeException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvalidargumentexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvalidArgumentException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinternalinconsistencyexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInternalInconsistencyException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmallocexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSMallocException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsobjectinaccessibleexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSObjectInaccessibleException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsobjectnotavailableexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSObjectNotAvailableException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdestinationinvalidexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDestinationInvalidException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsporttimeoutexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSPortTimeoutException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvalidsendportexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvalidSendPortException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvalidreceiveportexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvalidReceivePortException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsportsendexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSPortSendException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsportreceiveexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSPortReceiveException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoldstyleexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSOldStyleException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinconsistentarchiveexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInconsistentArchiveException: &'static NSExceptionName;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexception?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSException;
@@ -163,6 +179,7 @@ extern_methods!(
     unsafe impl NSException {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuncaughtexceptionhandler?language=objc)
 pub type NSUncaughtExceptionHandler = core::ffi::c_void;
 
 extern "C-unwind" {
@@ -174,11 +191,13 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsassertionhandlerkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAssertionHandlerKey: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsassertionhandler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAssertionHandler;

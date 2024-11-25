@@ -5,9 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationid?language=objc)
 pub type CKOperationID = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperation?language=objc)
     #[unsafe(super(NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKOperation;
@@ -59,6 +61,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKOperationConfiguration;

@@ -5,21 +5,25 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvalidarchiveoperationexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvalidArchiveOperationException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvalidunarchiveoperationexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvalidUnarchiveOperationException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyedarchiverootobjectkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSKeyedArchiveRootObjectKey: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyedarchiver?language=objc)
     #[unsafe(super(NSCoder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCoder")]
@@ -172,6 +176,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyedunarchiver?language=objc)
     #[unsafe(super(NSCoder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCoder")]
@@ -371,6 +376,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyedarchiverdelegate?language=objc)
     pub unsafe trait NSKeyedArchiverDelegate: NSObjectProtocol {
         #[cfg(feature = "NSCoder")]
         #[optional]
@@ -415,6 +421,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyedunarchiverdelegate?language=objc)
     pub unsafe trait NSKeyedUnarchiverDelegate: NSObjectProtocol {
         #[cfg(all(feature = "NSArray", feature = "NSCoder", feature = "NSString"))]
         #[optional]

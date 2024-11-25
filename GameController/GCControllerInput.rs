@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerinputstate?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCControllerInputState;
@@ -31,6 +32,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerliveinput?language=objc)
     #[unsafe(super(GCControllerInputState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCControllerLiveInput;

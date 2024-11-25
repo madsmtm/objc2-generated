@@ -4,21 +4,29 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowsntoperatingsystem?language=objc)
 #[deprecated = "Not supported"]
 pub const NSWindowsNTOperatingSystem: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindows95operatingsystem?language=objc)
 #[deprecated = "Not supported"]
 pub const NSWindows95OperatingSystem: c_uint = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssolarisoperatingsystem?language=objc)
 #[deprecated = "Not supported"]
 pub const NSSolarisOperatingSystem: c_uint = 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshpuxoperatingsystem?language=objc)
 #[deprecated = "Not supported"]
 pub const NSHPUXOperatingSystem: c_uint = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachoperatingsystem?language=objc)
 #[deprecated = "Not supported"]
 pub const NSMACHOperatingSystem: c_uint = 5;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssunosoperatingsystem?language=objc)
 #[deprecated = "Not supported"]
 pub const NSSunOSOperatingSystem: c_uint = 6;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsosf1operatingsystem?language=objc)
 #[deprecated = "Not supported"]
 pub const NSOSF1OperatingSystem: c_uint = 7;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperatingsystemversion?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSOperatingSystemVersion {
@@ -47,6 +55,7 @@ unsafe impl Send for NSOperatingSystemVersion {}
 unsafe impl Sync for NSOperatingSystemVersion {}
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSProcessInfo;
@@ -161,6 +170,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsactivityoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -235,6 +245,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfothermalstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -275,11 +286,13 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfothermalstatedidchangenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSProcessInfoThermalStateDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfopowerstatedidchangenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSProcessInfoPowerStateDidChangeNotification: &'static NSNotificationName;
 }

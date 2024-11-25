@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -44,6 +45,7 @@ unsafe impl RefEncode for NSDragOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingformation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -69,6 +71,7 @@ unsafe impl RefEncode for NSDraggingFormation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingcontext?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -88,6 +91,7 @@ unsafe impl RefEncode for NSDraggingContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingitemenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -107,6 +111,7 @@ unsafe impl RefEncode for NSDraggingItemEnumerationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadinghighlight?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -129,6 +134,7 @@ unsafe impl RefEncode for NSSpringLoadingHighlight {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragginginfo?language=objc)
     pub unsafe trait NSDraggingInfo: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method_id(@__retain_semantics Other draggingDestinationWindow)]
@@ -214,6 +220,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingdestination?language=objc)
     pub unsafe trait NSDraggingDestination: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(draggingEntered:)]
@@ -268,6 +275,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingsource?language=objc)
     pub unsafe trait NSDraggingSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSDraggingSession")]
         #[method(draggingSession:sourceOperationMaskForDraggingContext:)]
@@ -314,6 +322,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSDraggingSource {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -336,6 +345,7 @@ unsafe impl RefEncode for NSSpringLoadingOptions {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadingdestination?language=objc)
     pub unsafe trait NSSpringLoadingDestination: NSObjectProtocol + MainThreadOnly {
         #[method(springLoadingActivated:draggingInfo:)]
         unsafe fn springLoadingActivated_draggingInfo(

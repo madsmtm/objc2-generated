@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatplayerstate?language=objc)
 // NS_ENUM
 #[deprecated = "No longer supported"]
 #[repr(transparent)]
@@ -32,6 +33,7 @@ unsafe impl RefEncode for GKVoiceChatPlayerState {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechat?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "No longer supported"]

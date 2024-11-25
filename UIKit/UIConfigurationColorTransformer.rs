@@ -4,21 +4,25 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformer?language=objc)
 #[cfg(all(feature = "UIColor", feature = "block2"))]
 pub type UIConfigurationColorTransformer =
     *mut block2::Block<dyn Fn(NonNull<UIColor>) -> NonNull<UIColor>>;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformergrayscale?language=objc)
     #[cfg(all(feature = "UIColor", feature = "block2"))]
     pub static UIConfigurationColorTransformerGrayscale: UIConfigurationColorTransformer;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformerpreferredtint?language=objc)
     #[cfg(all(feature = "UIColor", feature = "block2"))]
     pub static UIConfigurationColorTransformerPreferredTint: UIConfigurationColorTransformer;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformermonochrometint?language=objc)
     #[cfg(all(feature = "UIColor", feature = "block2"))]
     pub static UIConfigurationColorTransformerMonochromeTint: UIConfigurationColorTransformer;
 }

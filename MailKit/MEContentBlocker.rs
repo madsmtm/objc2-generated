@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecontentblocker?language=objc)
     pub unsafe trait MEContentBlocker: NSObjectProtocol {
         #[method_id(@__retain_semantics Other contentRulesJSON)]
         unsafe fn contentRulesJSON(&self) -> Retained<NSData>;

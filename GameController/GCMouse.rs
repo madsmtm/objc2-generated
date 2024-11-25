@@ -6,22 +6,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmousedidconnectnotification?language=objc)
     pub static GCMouseDidConnectNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmousediddisconnectnotification?language=objc)
     pub static GCMouseDidDisconnectNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmousedidbecomecurrentnotification?language=objc)
     pub static GCMouseDidBecomeCurrentNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmousedidstopbeingcurrentnotification?language=objc)
     pub static GCMouseDidStopBeingCurrentNotification: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmouse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCMouse;

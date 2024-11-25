@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -38,6 +39,7 @@ unsafe impl RefEncode for MTLIndirectCommandType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandbufferexecutionrange?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLIndirectCommandBufferExecutionRange {
@@ -56,6 +58,7 @@ unsafe impl RefEncode for MTLIndirectCommandBufferExecutionRange {
 // TODO: pub fn MTLIndirectCommandBufferExecutionRangeMake(location: u32,length: u32,) -> MTLIndirectCommandBufferExecutionRange;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandbufferdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLIndirectCommandBufferDescriptor;
@@ -166,6 +169,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandbuffer?language=objc)
     #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     pub unsafe trait MTLIndirectCommandBuffer: MTLResource {
         #[method(size)]

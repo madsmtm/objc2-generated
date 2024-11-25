@@ -9,6 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdownload?language=objc)
     #[unsafe(super(NSURLDownload, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -55,6 +56,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdownloaddelegate?language=objc)
     #[deprecated]
     pub unsafe trait WebDownloadDelegate: NSURLDownloadDelegate {
         #[cfg(feature = "objc2-app-kit")]

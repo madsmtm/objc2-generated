@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmedialibraryauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,6 +30,7 @@ unsafe impl RefEncode for MPMediaLibraryAuthorizationStatus {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmedialibrary?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMediaLibrary;
@@ -101,5 +103,6 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmedialibrarydidchangenotification?language=objc)
     pub static MPMediaLibraryDidChangeNotification: &'static NSString;
 }

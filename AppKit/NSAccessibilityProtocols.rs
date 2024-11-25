@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityelementprotocol?language=objc)
     pub unsafe trait NSAccessibilityElementProtocol: NSObjectProtocol {
         #[method(accessibilityFrame)]
         unsafe fn accessibilityFrame(&self) -> NSRect;
@@ -28,12 +29,14 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitygroup?language=objc)
     pub unsafe trait NSAccessibilityGroup: NSAccessibilityElementProtocol {}
 
     unsafe impl ProtocolType for dyn NSAccessibilityGroup {}
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitybutton?language=objc)
     pub unsafe trait NSAccessibilityButton: NSAccessibilityElementProtocol {
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
@@ -46,6 +49,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityswitch?language=objc)
     pub unsafe trait NSAccessibilitySwitch: NSAccessibilityButton {
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Retained<NSString>>;
@@ -63,6 +67,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityradiobutton?language=objc)
     pub unsafe trait NSAccessibilityRadioButton: NSAccessibilityButton {
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Retained<NSNumber>>;
@@ -72,6 +77,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycheckbox?language=objc)
     pub unsafe trait NSAccessibilityCheckBox: NSAccessibilityButton {
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Retained<NSNumber>>;
@@ -81,6 +87,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitystatictext?language=objc)
     pub unsafe trait NSAccessibilityStaticText: NSAccessibilityElementProtocol {
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Retained<NSString>>;
@@ -101,6 +108,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitynavigablestatictext?language=objc)
     pub unsafe trait NSAccessibilityNavigableStaticText: NSAccessibilityStaticText {
         #[method_id(@__retain_semantics Other accessibilityStringForRange:)]
         unsafe fn accessibilityStringForRange(&self, range: NSRange) -> Option<Retained<NSString>>;
@@ -119,6 +127,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityprogressindicator?language=objc)
     pub unsafe trait NSAccessibilityProgressIndicator: NSAccessibilityGroup {
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Retained<NSNumber>>;
@@ -128,6 +137,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitystepper?language=objc)
     pub unsafe trait NSAccessibilityStepper: NSAccessibilityElementProtocol {
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
@@ -147,6 +157,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityslider?language=objc)
     pub unsafe trait NSAccessibilitySlider: NSAccessibilityElementProtocol {
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
@@ -165,6 +176,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityimage?language=objc)
     pub unsafe trait NSAccessibilityImage: NSAccessibilityElementProtocol {
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
@@ -174,6 +186,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycontainstransientui?language=objc)
     pub unsafe trait NSAccessibilityContainsTransientUI:
         NSAccessibilityElementProtocol
     {
@@ -191,6 +204,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytable?language=objc)
     pub unsafe trait NSAccessibilityTable: NSAccessibilityGroup {
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
@@ -257,18 +271,21 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityoutline?language=objc)
     pub unsafe trait NSAccessibilityOutline: NSAccessibilityTable {}
 
     unsafe impl ProtocolType for dyn NSAccessibilityOutline {}
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylist?language=objc)
     pub unsafe trait NSAccessibilityList: NSAccessibilityTable {}
 
     unsafe impl ProtocolType for dyn NSAccessibilityList {}
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrow?language=objc)
     pub unsafe trait NSAccessibilityRow: NSAccessibilityGroup {
         #[method(accessibilityIndex)]
         unsafe fn accessibilityIndex(&self) -> NSInteger;
@@ -282,6 +299,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylayoutarea?language=objc)
     pub unsafe trait NSAccessibilityLayoutArea: NSAccessibilityGroup {
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self) -> Retained<NSString>;
@@ -300,6 +318,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylayoutitem?language=objc)
     pub unsafe trait NSAccessibilityLayoutItem: NSAccessibilityGroup {
         #[optional]
         #[method(setAccessibilityFrame:)]
@@ -310,6 +329,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityelementloading?language=objc)
     pub unsafe trait NSAccessibilityElementLoading: NSObjectProtocol {
         #[cfg(feature = "NSAccessibilityConstants")]
         #[method_id(@__retain_semantics Other accessibilityElementWithToken:)]
@@ -331,6 +351,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility?language=objc)
     pub unsafe trait NSAccessibility: NSObjectProtocol {
         #[method(isAccessibilityElement)]
         unsafe fn isAccessibilityElement(&self) -> bool;

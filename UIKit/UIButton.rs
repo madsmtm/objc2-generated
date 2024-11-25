@@ -8,6 +8,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -41,6 +42,7 @@ unsafe impl RefEncode for UIButtonType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonrole?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -64,6 +66,7 @@ unsafe impl RefEncode for UIButtonRole {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonpointerstyleprovider?language=objc)
 #[cfg(all(
     feature = "UIControl",
     feature = "UIHoverStyle",
@@ -80,6 +83,7 @@ pub type UIButtonPointerStyleProvider = *mut block2::Block<
     ) -> *mut UIPointerStyle,
 >;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationupdatehandler?language=objc)
 #[cfg(all(
     feature = "UIControl",
     feature = "UIResponder",
@@ -89,6 +93,7 @@ pub type UIButtonPointerStyleProvider = *mut block2::Block<
 pub type UIButtonConfigurationUpdateHandler = *mut block2::Block<dyn Fn(NonNull<UIButton>)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton?language=objc)
     #[unsafe(super(UIControl, UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

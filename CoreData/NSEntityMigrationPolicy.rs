@@ -6,30 +6,37 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationmanagerkey?language=objc)
     pub static NSMigrationManagerKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationsourceobjectkey?language=objc)
     pub static NSMigrationSourceObjectKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationdestinationobjectkey?language=objc)
     pub static NSMigrationDestinationObjectKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationentitymappingkey?language=objc)
     pub static NSMigrationEntityMappingKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationpropertymappingkey?language=objc)
     pub static NSMigrationPropertyMappingKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationentitypolicykey?language=objc)
     pub static NSMigrationEntityPolicyKey: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitymigrationpolicy?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSEntityMigrationPolicy;

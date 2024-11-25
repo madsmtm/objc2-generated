@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem?language=objc)
     #[unsafe(super(NSTouchBarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSTouchBarItem")]
@@ -149,6 +150,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritemdelegate?language=objc)
     pub unsafe trait NSCandidateListTouchBarItemDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -206,6 +208,7 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifiercandidatelist?language=objc)
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierCandidateList: &'static NSTouchBarItemIdentifier;
 }

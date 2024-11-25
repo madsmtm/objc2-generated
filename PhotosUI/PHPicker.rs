@@ -11,6 +11,7 @@ use objc2_photos::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationassetrepresentationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -36,6 +37,7 @@ unsafe impl Send for PHPickerConfigurationAssetRepresentationMode {}
 
 unsafe impl Sync for PHPickerConfigurationAssetRepresentationMode {}
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationselection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -63,6 +65,7 @@ unsafe impl Send for PHPickerConfigurationSelection {}
 
 unsafe impl Sync for PHPickerConfigurationSelection {}
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickermode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -82,6 +85,7 @@ unsafe impl RefEncode for PHPickerMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickercapabilities?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -112,6 +116,7 @@ unsafe impl RefEncode for PHPickerCapabilities {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerfilter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerFilter;
@@ -192,6 +197,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerupdateconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerUpdateConfiguration;
@@ -240,6 +246,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerConfiguration;
@@ -340,6 +347,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerResult;
@@ -364,6 +372,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerviewcontrollerdelegate?language=objc)
     pub unsafe trait PHPickerViewControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -381,6 +390,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

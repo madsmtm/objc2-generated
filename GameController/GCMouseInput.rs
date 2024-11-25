@@ -5,10 +5,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmousemoved?language=objc)
 #[cfg(all(feature = "GCPhysicalInputProfile", feature = "block2"))]
 pub type GCMouseMoved = *mut block2::Block<dyn Fn(NonNull<GCMouseInput>, c_float, c_float)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmouseinput?language=objc)
     #[unsafe(super(GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCPhysicalInputProfile")]

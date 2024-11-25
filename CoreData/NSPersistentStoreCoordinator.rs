@@ -6,198 +6,247 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nssqlitestoretype?language=objc)
     pub static NSSQLiteStoreType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsxmlstoretype?language=objc)
     pub static NSXMLStoreType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbinarystoretype?language=objc)
     pub static NSBinaryStoreType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsinmemorystoretype?language=objc)
     pub static NSInMemoryStoreType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsstoretypekey?language=objc)
     pub static NSStoreTypeKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsstoreuuidkey?language=objc)
     pub static NSStoreUUIDKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorecoordinatorstoreswillchangenotification?language=objc)
     pub static NSPersistentStoreCoordinatorStoresWillChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorecoordinatorstoresdidchangenotification?language=objc)
     pub static NSPersistentStoreCoordinatorStoresDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorecoordinatorwillremovestorenotification?language=objc)
     pub static NSPersistentStoreCoordinatorWillRemoveStoreNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsaddedpersistentstoreskey?language=objc)
     pub static NSAddedPersistentStoresKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsremovedpersistentstoreskey?language=objc)
     pub static NSRemovedPersistentStoresKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsuuidchangedpersistentstoreskey?language=objc)
     pub static NSUUIDChangedPersistentStoresKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsreadonlypersistentstoreoption?language=objc)
     pub static NSReadOnlyPersistentStoreOption: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidatexmlstoreoption?language=objc)
     pub static NSValidateXMLStoreOption: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoretimeoutoption?language=objc)
     pub static NSPersistentStoreTimeoutOption: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nssqlitepragmasoption?language=objc)
     pub static NSSQLitePragmasOption: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nssqliteanalyzeoption?language=objc)
     pub static NSSQLiteAnalyzeOption: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nssqlitemanualvacuumoption?language=objc)
     pub static NSSQLiteManualVacuumOption: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsignorepersistentstoreversioningoption?language=objc)
     pub static NSIgnorePersistentStoreVersioningOption: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigratepersistentstoresautomaticallyoption?language=objc)
     pub static NSMigratePersistentStoresAutomaticallyOption: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsinfermappingmodelautomaticallyoption?language=objc)
     pub static NSInferMappingModelAutomaticallyOption: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsstoremodelversionhasheskey?language=objc)
     pub static NSStoreModelVersionHashesKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsstoremodelversionidentifierskey?language=objc)
     pub static NSStoreModelVersionIdentifiersKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreoscompatibility?language=objc)
     pub static NSPersistentStoreOSCompatibility: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreconnectionpoolmaxsizekey?language=objc)
     pub static NSPersistentStoreConnectionPoolMaxSizeKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nscoredatacorespotlightexporter?language=objc)
     pub static NSCoreDataCoreSpotlightExporter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorestagedmigrationmanageroptionkey?language=objc)
     pub static NSPersistentStoreStagedMigrationManagerOptionKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsxmlexternalrecordtype?language=objc)
     pub static NSXMLExternalRecordType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbinaryexternalrecordtype?language=objc)
     pub static NSBinaryExternalRecordType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsexternalrecordsfileformatoption?language=objc)
     pub static NSExternalRecordsFileFormatOption: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsexternalrecordsdirectoryoption?language=objc)
     pub static NSExternalRecordsDirectoryOption: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsexternalrecordextensionoption?language=objc)
     pub static NSExternalRecordExtensionOption: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitynameinpathkey?language=objc)
     pub static NSEntityNameInPathKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsstoreuuidinpathkey?language=objc)
     pub static NSStoreUUIDInPathKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsstorepathkey?language=objc)
     pub static NSStorePathKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmodelpathkey?language=objc)
     pub static NSModelPathKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsobjecturikey?language=objc)
     pub static NSObjectURIKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreforcedestroyoption?language=objc)
     pub static NSPersistentStoreForceDestroyOption: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorefileprotectionkey?language=objc)
     pub static NSPersistentStoreFileProtectionKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistorytrackingkey?language=objc)
     pub static NSPersistentHistoryTrackingKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbinarystoresecuredecodingclasses?language=objc)
     pub static NSBinaryStoreSecureDecodingClasses: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbinarystoreinsecuredecodingcompatibilityoption?language=objc)
     pub static NSBinaryStoreInsecureDecodingCompatibilityOption: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreremotechangenotificationpostoptionkey?language=objc)
     pub static NSPersistentStoreRemoteChangeNotificationPostOptionKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreremotechangenotification?language=objc)
     pub static NSPersistentStoreRemoteChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreurlkey?language=objc)
     pub static NSPersistentStoreURLKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistorytokenkey?language=objc)
     pub static NSPersistentHistoryTokenKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoredeferredlightweightmigrationoptionkey?language=objc)
     pub static NSPersistentStoreDeferredLightweightMigrationOptionKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoremodelversionchecksumkey?language=objc)
     pub static NSPersistentStoreModelVersionChecksumKey: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorecoordinator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentStoreCoordinator;
@@ -465,6 +514,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitoustransitiontype?language=objc)
 // NS_ENUM
 #[deprecated = "Please see the release notes and Core Data documentation."]
 #[repr(transparent)]
@@ -494,33 +544,41 @@ unsafe impl RefEncode for NSPersistentStoreUbiquitousTransitionType {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitouscontentnamekey?language=objc)
     pub static NSPersistentStoreUbiquitousContentNameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitouscontenturlkey?language=objc)
     pub static NSPersistentStoreUbiquitousContentURLKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoredidimportubiquitouscontentchangesnotification?language=objc)
     pub static NSPersistentStoreDidImportUbiquitousContentChangesNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitoustransitiontypekey?language=objc)
     pub static NSPersistentStoreUbiquitousTransitionTypeKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitouspeertokenoption?language=objc)
     pub static NSPersistentStoreUbiquitousPeerTokenOption: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreremoveubiquitousmetadataoption?language=objc)
     pub static NSPersistentStoreRemoveUbiquitousMetadataOption: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitouscontaineridentifierkey?language=objc)
     pub static NSPersistentStoreUbiquitousContainerIdentifierKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorerebuildfromubiquitouscontentoption?language=objc)
     pub static NSPersistentStoreRebuildFromUbiquitousContentOption: &'static NSString;
 }

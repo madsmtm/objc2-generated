@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidercreateitemoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -24,6 +25,7 @@ unsafe impl RefEncode for NSFileProviderCreateItemOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdeleteitemoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -42,6 +44,7 @@ unsafe impl RefEncode for NSFileProviderDeleteItemOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermaterializationflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -61,6 +64,7 @@ unsafe impl RefEncode for NSFileProviderMaterializationFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderfetchcontentsoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -81,6 +85,7 @@ unsafe impl RefEncode for NSFileProviderFetchContentsOptions {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderenumerating?language=objc)
     pub unsafe trait NSFileProviderEnumerating: NSObjectProtocol {
         #[cfg(all(
             feature = "NSFileProviderEnumerating",
@@ -99,6 +104,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderreplicatedextension?language=objc)
     pub unsafe trait NSFileProviderReplicatedExtension:
         NSFileProviderEnumerating + NSObjectProtocol
     {
@@ -223,6 +229,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderincrementalcontentfetching?language=objc)
     pub unsafe trait NSFileProviderIncrementalContentFetching: NSObjectProtocol {
         #[cfg(all(
             feature = "NSFileProviderItem",
@@ -247,6 +254,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderservicing?language=objc)
     pub unsafe trait NSFileProviderServicing: NSObjectProtocol {
         #[cfg(all(
             feature = "NSFileProviderItem",
@@ -267,6 +275,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderthumbnailing?language=objc)
     pub unsafe trait NSFileProviderThumbnailing: NSObjectProtocol {
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method_id(@__retain_semantics Other fetchThumbnailsForItemIdentifiers:requestedSize:perThumbnailCompletionHandler:completionHandler:)]
@@ -285,6 +294,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidercustomaction?language=objc)
     pub unsafe trait NSFileProviderCustomAction: NSObjectProtocol {
         #[cfg(all(
             feature = "NSFileProviderActions",
@@ -304,6 +314,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideruserinteractionsuppressing?language=objc)
     pub unsafe trait NSFileProviderUserInteractionSuppressing: NSObjectProtocol {
         #[method(setInteractionSuppressed:forIdentifier:)]
         unsafe fn setInteractionSuppressed_forIdentifier(
@@ -323,6 +334,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainstate?language=objc)
     pub unsafe trait NSFileProviderDomainState: NSObjectProtocol {
         #[cfg(feature = "NSFileProviderDomain")]
         #[method_id(@__retain_semantics Other domainVersion)]
@@ -336,6 +348,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderpartialcontentfetching?language=objc)
     pub unsafe trait NSFileProviderPartialContentFetching: NSObjectProtocol {
         #[cfg(all(
             feature = "NSFileProviderItem",
@@ -367,6 +380,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderexternalvolumehandling?language=objc)
     pub unsafe trait NSFileProviderExternalVolumeHandling: NSObjectProtocol {
         #[cfg(feature = "block2")]
         #[method(shouldConnectExternalDomainWithCompletionHandler:)]

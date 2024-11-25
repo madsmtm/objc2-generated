@@ -6,22 +6,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputdirectionaldpad?language=objc)
     pub static GCInputDirectionalDpad: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputdirectionaltouchsurfacebutton?language=objc)
     pub static GCInputDirectionalTouchSurfaceButton: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputdirectionalcardinaldpad?language=objc)
     pub static GCInputDirectionalCardinalDpad: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputdirectionalcenterbutton?language=objc)
     pub static GCInputDirectionalCenterButton: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdirectionalgamepad?language=objc)
     #[unsafe(super(GCMicroGamepad, GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]

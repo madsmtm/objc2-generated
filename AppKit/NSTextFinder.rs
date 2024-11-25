@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinderaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -46,17 +47,21 @@ unsafe impl RefEncode for NSTextFinderAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypetextfinderoptionkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSPasteboardTypeTextFinderOptionKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfindercaseinsensitivekey?language=objc)
     pub static NSTextFinderCaseInsensitiveKey: &'static NSPasteboardTypeTextFinderOptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfindermatchingtypekey?language=objc)
     pub static NSTextFinderMatchingTypeKey: &'static NSPasteboardTypeTextFinderOptionKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfindermatchingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -81,6 +86,7 @@ unsafe impl RefEncode for NSTextFinderMatchingType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinder?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextFinder;
@@ -165,6 +171,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinderclient?language=objc)
     pub unsafe trait NSTextFinderClient: NSObjectProtocol {
         #[optional]
         #[method(isSelectable)]
@@ -258,6 +265,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinderbarcontainer?language=objc)
     pub unsafe trait NSTextFinderBarContainer: NSObjectProtocol {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other findBarView)]

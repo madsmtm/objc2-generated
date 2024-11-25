@@ -5,77 +5,96 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboardname?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIPasteboardName = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboardnamegeneral?language=objc)
     pub static UIPasteboardNameGeneral: &'static UIPasteboardName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboardnamefind?language=objc)
     pub static UIPasteboardNameFind: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpattern?language=objc)
 // NS_TYPED_ENUM
 pub type UIPasteboardDetectionPattern = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternprobableweburl?language=objc)
     pub static UIPasteboardDetectionPatternProbableWebURL: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternprobablewebsearch?language=objc)
     pub static UIPasteboardDetectionPatternProbableWebSearch: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternnumber?language=objc)
     pub static UIPasteboardDetectionPatternNumber: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternlink?language=objc)
     pub static UIPasteboardDetectionPatternLink: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternphonenumber?language=objc)
     pub static UIPasteboardDetectionPatternPhoneNumber: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternemailaddress?language=objc)
     pub static UIPasteboardDetectionPatternEmailAddress: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternpostaladdress?language=objc)
     pub static UIPasteboardDetectionPatternPostalAddress: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatterncalendarevent?language=objc)
     pub static UIPasteboardDetectionPatternCalendarEvent: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternshipmenttrackingnumber?language=objc)
     pub static UIPasteboardDetectionPatternShipmentTrackingNumber:
         &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternflightnumber?language=objc)
     pub static UIPasteboardDetectionPatternFlightNumber: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternmoneyamount?language=objc)
     pub static UIPasteboardDetectionPatternMoneyAmount: &'static UIPasteboardDetectionPattern;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboardoption?language=objc)
 // NS_TYPED_ENUM
 pub type UIPasteboardOption = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboardoptionexpirationdate?language=objc)
     pub static UIPasteboardOptionExpirationDate: &'static UIPasteboardOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboardoptionlocalonly?language=objc)
     pub static UIPasteboardOptionLocalOnly: &'static UIPasteboardOption;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPasteboard;
@@ -352,37 +371,46 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboardchangednotification?language=objc)
     pub static UIPasteboardChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboardchangedtypesaddedkey?language=objc)
     pub static UIPasteboardChangedTypesAddedKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboardchangedtypesremovedkey?language=objc)
     pub static UIPasteboardChangedTypesRemovedKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboardremovednotification?language=objc)
     pub static UIPasteboardRemovedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboardtypeliststring?language=objc)
     pub static UIPasteboardTypeListString: &'static NSArray<NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboardtypelisturl?language=objc)
     pub static UIPasteboardTypeListURL: &'static NSArray<NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboardtypelistimage?language=objc)
     pub static UIPasteboardTypeListImage: &'static NSArray<NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboardtypelistcolor?language=objc)
     pub static UIPasteboardTypeListColor: &'static NSArray<NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboardtypeautomatic?language=objc)
     pub static UIPasteboardTypeAutomatic: &'static NSString;
 }

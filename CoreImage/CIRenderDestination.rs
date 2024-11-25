@@ -7,6 +7,7 @@ use objc2_metal::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirenderdestinationalphamode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -26,6 +27,7 @@ unsafe impl RefEncode for CIRenderDestinationAlphaMode {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirenderdestination?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIRenderDestination;
@@ -135,6 +137,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirenderinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIRenderInfo;
@@ -170,6 +173,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirendertask?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIRenderTask;

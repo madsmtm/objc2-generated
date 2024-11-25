@@ -7,12 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuierrordomain?language=objc)
     pub static FPUIErrorDomain: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuiactionidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type FPUIActionIdentifier = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuiextensionerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -33,6 +36,7 @@ unsafe impl RefEncode for FPUIExtensionErrorCode {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuiactionextensioncontext?language=objc)
     #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FPUIActionExtensionContext;

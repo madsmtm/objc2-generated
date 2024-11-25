@@ -9,6 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapitemdetailviewcontrollerdelegate?language=objc)
     pub unsafe trait MKMapItemDetailViewControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -25,6 +26,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapitemdetailviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

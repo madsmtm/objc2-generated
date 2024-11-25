@@ -5,18 +5,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity?language=objc)
 // NS_TYPED_ENUM
 pub type CALayerContentsGravity = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsformat?language=objc)
 // NS_TYPED_ENUM
 pub type CALayerContentsFormat = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsfilter?language=objc)
 // NS_TYPED_ENUM
 pub type CALayerContentsFilter = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercornercurve?language=objc)
 // NS_TYPED_ENUM
 pub type CALayerCornerCurve = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caautoresizingmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -41,21 +46,26 @@ unsafe impl RefEncode for CAAutoresizingMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catonemapmode?language=objc)
 // NS_TYPED_ENUM
 pub type CAToneMapMode = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catonemapmodeautomatic?language=objc)
     pub static CAToneMapModeAutomatic: &'static CAToneMapMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catonemapmodenever?language=objc)
     pub static CAToneMapModeNever: &'static CAToneMapMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catonemapmodeifsupported?language=objc)
     pub static CAToneMapModeIfSupported: &'static CAToneMapMode;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caedgeantialiasingmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -77,6 +87,7 @@ unsafe impl RefEncode for CAEdgeAntialiasingMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cacornermask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -99,6 +110,7 @@ unsafe impl RefEncode for CACornerMask {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CALayer;
@@ -599,6 +611,7 @@ impl DefaultRetained for CALayer {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayoutmanager?language=objc)
     pub unsafe trait CALayoutManager: NSObjectProtocol {
         #[optional]
         #[method(preferredSizeOfLayer:)]
@@ -617,6 +630,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caaction?language=objc)
     pub unsafe trait CAAction {
         #[method(runActionForKey:object:arguments:)]
         unsafe fn runActionForKey_object_arguments(
@@ -633,6 +647,7 @@ extern_protocol!(
 unsafe impl CAAction for NSNull {}
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayerdelegate?language=objc)
     pub unsafe trait CALayerDelegate: NSObjectProtocol {
         #[optional]
         #[method(displayLayer:)]
@@ -659,93 +674,116 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagravitycenter?language=objc)
     pub static kCAGravityCenter: &'static CALayerContentsGravity;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagravitytop?language=objc)
     pub static kCAGravityTop: &'static CALayerContentsGravity;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagravitybottom?language=objc)
     pub static kCAGravityBottom: &'static CALayerContentsGravity;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagravityleft?language=objc)
     pub static kCAGravityLeft: &'static CALayerContentsGravity;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagravityright?language=objc)
     pub static kCAGravityRight: &'static CALayerContentsGravity;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagravitytopleft?language=objc)
     pub static kCAGravityTopLeft: &'static CALayerContentsGravity;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagravitytopright?language=objc)
     pub static kCAGravityTopRight: &'static CALayerContentsGravity;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagravitybottomleft?language=objc)
     pub static kCAGravityBottomLeft: &'static CALayerContentsGravity;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagravitybottomright?language=objc)
     pub static kCAGravityBottomRight: &'static CALayerContentsGravity;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagravityresize?language=objc)
     pub static kCAGravityResize: &'static CALayerContentsGravity;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagravityresizeaspect?language=objc)
     pub static kCAGravityResizeAspect: &'static CALayerContentsGravity;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagravityresizeaspectfill?language=objc)
     pub static kCAGravityResizeAspectFill: &'static CALayerContentsGravity;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcacontentsformatrgba8uint?language=objc)
     pub static kCAContentsFormatRGBA8Uint: &'static CALayerContentsFormat;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcacontentsformatrgba16float?language=objc)
     pub static kCAContentsFormatRGBA16Float: &'static CALayerContentsFormat;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcacontentsformatgray8uint?language=objc)
     pub static kCAContentsFormatGray8Uint: &'static CALayerContentsFormat;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcafilternearest?language=objc)
     pub static kCAFilterNearest: &'static CALayerContentsFilter;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcafilterlinear?language=objc)
     pub static kCAFilterLinear: &'static CALayerContentsFilter;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcafiltertrilinear?language=objc)
     pub static kCAFilterTrilinear: &'static CALayerContentsFilter;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcacornercurvecircular?language=objc)
     pub static kCACornerCurveCircular: &'static CALayerCornerCurve;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcacornercurvecontinuous?language=objc)
     pub static kCACornerCurveContinuous: &'static CALayerCornerCurve;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaonorderin?language=objc)
     pub static kCAOnOrderIn: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaonorderout?language=objc)
     pub static kCAOnOrderOut: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransition?language=objc)
     pub static kCATransition: &'static NSString;
 }

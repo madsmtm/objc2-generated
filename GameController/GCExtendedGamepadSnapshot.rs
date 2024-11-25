@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshot?language=objc)
     #[unsafe(super(GCExtendedGamepad, GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
@@ -54,6 +55,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshotdataversion?language=objc)
 // NS_ENUM
 #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
 #[repr(transparent)]
@@ -75,6 +77,7 @@ unsafe impl RefEncode for GCExtendedGamepadSnapshotDataVersion {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccurrentextendedgamepadsnapshotdataversion?language=objc)
     pub static GCCurrentExtendedGamepadSnapshotDataVersion: GCExtendedGamepadSnapshotDataVersion;
 }
 
@@ -93,6 +96,7 @@ extern "C-unwind" {
     ) -> *mut NSData;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshotdatav100?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct GCExtendedGamepadSnapShotDataV100 {

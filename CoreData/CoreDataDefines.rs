@@ -5,5 +5,6 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nscoredataversionnumber?language=objc)
     pub static NSCoreDataVersionNumber: c_double;
 }

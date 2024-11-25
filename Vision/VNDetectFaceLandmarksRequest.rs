@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestfacelandmarksconstellation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -25,6 +26,7 @@ unsafe impl RefEncode for VNRequestFaceLandmarksConstellation {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -91,8 +93,11 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequestrevision1?language=objc)
 pub static VNDetectFaceLandmarksRequestRevision1: NSUInteger = 1;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequestrevision2?language=objc)
 pub static VNDetectFaceLandmarksRequestRevision2: NSUInteger = 2;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequestrevision3?language=objc)
 pub static VNDetectFaceLandmarksRequestRevision3: NSUInteger = 3;

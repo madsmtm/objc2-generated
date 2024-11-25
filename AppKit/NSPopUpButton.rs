@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbutton?language=objc)
     #[unsafe(super(NSButton, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -398,5 +399,6 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbuttonwillpopupnotification?language=objc)
     pub static NSPopUpButtonWillPopUpNotification: &'static NSNotificationName;
 }

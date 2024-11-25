@@ -5,65 +5,78 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundefinedkeyexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSUndefinedKeyException: &'static NSExceptionName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueoperator?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSKeyValueOperator = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsaveragekeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAverageKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscountkeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCountKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistinctunionofarrayskeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSDistinctUnionOfArraysKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistinctunionofobjectskeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSDistinctUnionOfObjectsKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistinctunionofsetskeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSDistinctUnionOfSetsKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaximumkeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMaximumKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsminimumkeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMinimumKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssumkeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSSumKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunionofarrayskeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSUnionOfArraysKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunionofobjectskeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSUnionOfObjectsKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunionofsetskeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSUnionOfSetsKeyValueOperator: &'static NSKeyValueOperator;
 }

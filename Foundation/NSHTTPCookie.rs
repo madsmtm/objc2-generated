@@ -4,95 +4,114 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiepropertykey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSHTTPCookiePropertyKey = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiestringpolicy?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSHTTPCookieStringPolicy = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieName: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookievalue?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieValue: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookieoriginurl?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieOriginURL: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookieversion?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieVersion: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiedomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieDomain: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiepath?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookiePath: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiesecure?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieSecure: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookieexpires?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieExpires: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiecomment?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieComment: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiecommenturl?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieCommentURL: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiediscard?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieDiscard: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiemaximumage?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieMaximumAge: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookieport?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookiePort: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiesamesitepolicy?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieSameSitePolicy: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiesamesitelax?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieSameSiteLax: &'static NSHTTPCookieStringPolicy;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiesamesitestrict?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieSameSiteStrict: &'static NSHTTPCookieStringPolicy;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookie?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHTTPCookie;

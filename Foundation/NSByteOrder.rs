@@ -46,6 +46,7 @@ use crate::*;
 
 // TODO: pub fn NSSwapHostLongLongToLittle(x: c_ulonglong,) -> c_ulonglong;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsswappedfloat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSSwappedFloat {
@@ -64,6 +65,7 @@ unsafe impl Send for NSSwappedFloat {}
 
 unsafe impl Sync for NSSwappedFloat {}
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsswappeddouble?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSSwappedDouble {

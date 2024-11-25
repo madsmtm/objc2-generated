@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontrollerqueue?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerControllerQueue;
@@ -28,6 +29,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontrollermutablequeue?language=objc)
     #[unsafe(super(MPMusicPlayerControllerQueue, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerControllerMutableQueue;
@@ -67,6 +69,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayerapplicationcontroller?language=objc)
     #[unsafe(super(MPMusicPlayerController, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPMusicPlayerController")]
@@ -107,5 +110,6 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontrollerqueuedidchangenotification?language=objc)
     pub static MPMusicPlayerControllerQueueDidChangeNotification: &'static NSString;
 }

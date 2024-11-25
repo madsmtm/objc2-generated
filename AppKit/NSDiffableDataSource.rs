@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdiffabledatasourcesnapshot?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDiffableDataSourceSnapshot<
@@ -184,6 +185,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewdiffabledatasourcesupplementaryviewprovider?language=objc)
 #[cfg(all(
     feature = "NSCollectionView",
     feature = "NSResponder",
@@ -195,6 +197,7 @@ pub type NSCollectionViewDiffableDataSourceSupplementaryViewProvider = *mut bloc
 >;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewdiffabledatasource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewDiffableDataSource<

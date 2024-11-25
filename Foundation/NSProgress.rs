@@ -4,26 +4,32 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogresskind?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSProgressKind = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressuserinfokey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSProgressUserInfoKey = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressfileoperationkind?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSProgressFileOperationKind = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressunpublishinghandler?language=objc)
 #[cfg(feature = "block2")]
 pub type NSProgressUnpublishingHandler = *mut block2::Block<dyn Fn()>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogresspublishinghandler?language=objc)
 #[cfg(feature = "block2")]
 pub type NSProgressPublishingHandler =
     *mut block2::Block<dyn Fn(NonNull<NSProgress>) -> NSProgressUnpublishingHandler>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogress?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSProgress;
@@ -276,6 +282,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressreporting?language=objc)
     pub unsafe trait NSProgressReporting: NSObjectProtocol {
         #[method_id(@__retain_semantics Other progress)]
         unsafe fn progress(&self) -> Retained<NSProgress>;
@@ -285,82 +292,98 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressestimatedtimeremainingkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSProgressEstimatedTimeRemainingKey: &'static NSProgressUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressthroughputkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSProgressThroughputKey: &'static NSProgressUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogresskindfile?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSProgressKindFile: &'static NSProgressKind;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressfileoperationkindkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSProgressFileOperationKindKey: &'static NSProgressUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressfileoperationkinddownloading?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSProgressFileOperationKindDownloading: &'static NSProgressFileOperationKind;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressfileoperationkinddecompressingafterdownloading?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSProgressFileOperationKindDecompressingAfterDownloading:
         &'static NSProgressFileOperationKind;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressfileoperationkindreceiving?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSProgressFileOperationKindReceiving: &'static NSProgressFileOperationKind;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressfileoperationkindcopying?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSProgressFileOperationKindCopying: &'static NSProgressFileOperationKind;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressfileoperationkinduploading?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSProgressFileOperationKindUploading: &'static NSProgressFileOperationKind;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressfileoperationkindduplicating?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSProgressFileOperationKindDuplicating: &'static NSProgressFileOperationKind;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressfileurlkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSProgressFileURLKey: &'static NSProgressUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressfiletotalcountkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSProgressFileTotalCountKey: &'static NSProgressUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressfilecompletedcountkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSProgressFileCompletedCountKey: &'static NSProgressUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressfileanimationimagekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSProgressFileAnimationImageKey: &'static NSProgressUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressfileanimationimageoriginalrectkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSProgressFileAnimationImageOriginalRectKey: &'static NSProgressUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressfileiconkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSProgressFileIconKey: &'static NSProgressUserInfoKey;
 }

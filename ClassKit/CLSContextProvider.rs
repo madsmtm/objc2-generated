@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontextprovider?language=objc)
     pub unsafe trait CLSContextProvider {
         #[cfg(all(feature = "CLSContext", feature = "CLSObject", feature = "block2"))]
         #[method(updateDescendantsOfContext:completion:)]

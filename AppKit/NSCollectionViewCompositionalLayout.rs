@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdirectionalrectedge?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -34,6 +35,7 @@ unsafe impl RefEncode for NSDirectionalRectEdge {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdirectionaledgeinsets?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSDirectionalEdgeInsets {
@@ -64,9 +66,11 @@ unsafe impl Send for NSDirectionalEdgeInsets {}
 unsafe impl Sync for NSDirectionalEdgeInsets {}
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdirectionaledgeinsetszero?language=objc)
     pub static NSDirectionalEdgeInsetsZero: NSDirectionalEdgeInsets;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -103,6 +107,7 @@ unsafe impl RefEncode for NSRectAlignment {
 // TODO: pub fn NSDirectionalEdgeInsetsMake(top: CGFloat,leading: CGFloat,bottom: CGFloat,trailing: CGFloat,) -> NSDirectionalEdgeInsets;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewcompositionallayoutconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -157,6 +162,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewcompositionallayoutsectionprovider?language=objc)
 #[cfg(feature = "block2")]
 pub type NSCollectionViewCompositionalLayoutSectionProvider = *mut block2::Block<
     dyn Fn(
@@ -166,6 +172,7 @@ pub type NSCollectionViewCompositionalLayoutSectionProvider = *mut block2::Block
 >;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewcompositionallayout?language=objc)
     #[unsafe(super(NSCollectionViewLayout, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCollectionViewLayout")]
@@ -228,6 +235,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutsectionorthogonalscrollingbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -257,6 +265,7 @@ unsafe impl RefEncode for NSCollectionLayoutSectionOrthogonalScrollingBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutsectionvisibleitemsinvalidationhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type NSCollectionLayoutSectionVisibleItemsInvalidationHandler = *mut block2::Block<
     dyn Fn(
@@ -267,6 +276,7 @@ pub type NSCollectionLayoutSectionVisibleItemsInvalidationHandler = *mut block2:
 >;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutsection?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -361,6 +371,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutitem?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -415,6 +426,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutgroupcustomitem?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -455,6 +467,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutgroupcustomitemprovider?language=objc)
 #[cfg(feature = "block2")]
 pub type NSCollectionLayoutGroupCustomItemProvider = *mut block2::Block<
     dyn Fn(
@@ -463,6 +476,7 @@ pub type NSCollectionLayoutGroupCustomItemProvider = *mut block2::Block<
 >;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutgroup?language=objc)
     #[unsafe(super(NSCollectionLayoutItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutGroup;
@@ -560,6 +574,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutdimension?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -624,6 +639,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutsize?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -661,6 +677,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutspacing?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -705,6 +722,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -751,6 +769,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutsupplementaryitem?language=objc)
     #[unsafe(super(NSCollectionLayoutItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutSupplementaryItem;
@@ -819,6 +838,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutboundarysupplementaryitem?language=objc)
     #[unsafe(super(NSCollectionLayoutSupplementaryItem, NSCollectionLayoutItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutBoundarySupplementaryItem;
@@ -910,6 +930,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutdecorationitem?language=objc)
     #[unsafe(super(NSCollectionLayoutItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutDecorationItem;
@@ -963,6 +984,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1020,6 +1042,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutcontainer?language=objc)
     pub unsafe trait NSCollectionLayoutContainer: NSObjectProtocol + MainThreadOnly {
         #[method(contentSize)]
         unsafe fn contentSize(&self) -> NSSize;
@@ -1038,6 +1061,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutenvironment?language=objc)
     pub unsafe trait NSCollectionLayoutEnvironment:
         NSObjectProtocol + MainThreadOnly
     {
@@ -1049,6 +1073,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutvisibleitem?language=objc)
     pub unsafe trait NSCollectionLayoutVisibleItem:
         NSObjectProtocol + MainThreadOnly
     {

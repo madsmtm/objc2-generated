@@ -8,6 +8,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewscrollposition?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -39,6 +40,7 @@ unsafe impl RefEncode for UICollectionViewScrollPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewreorderingcadence?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -60,6 +62,7 @@ unsafe impl RefEncode for UICollectionViewReorderingCadence {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewselfsizinginvalidation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -81,11 +84,13 @@ unsafe impl RefEncode for UICollectionViewSelfSizingInvalidation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutinteractivetransitioncompletion?language=objc)
 #[cfg(feature = "block2")]
 pub type UICollectionViewLayoutInteractiveTransitionCompletion =
     *mut block2::Block<dyn Fn(Bool, Bool)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewfocusupdatecontext?language=objc)
     #[unsafe(super(UIFocusUpdateContext, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -120,6 +125,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdatasource?language=objc)
     pub unsafe trait UICollectionViewDataSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
         #[method(collectionView:numberOfItemsInSection:)]
@@ -207,6 +213,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdatasourceprefetching?language=objc)
     pub unsafe trait UICollectionViewDataSourcePrefetching:
         NSObjectProtocol + MainThreadOnly
     {
@@ -232,6 +239,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdelegate?language=objc)
     #[cfg(feature = "UIScrollView")]
     pub unsafe trait UICollectionViewDelegate:
         UIScrollViewDelegate + MainThreadOnly
@@ -708,6 +716,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview?language=objc)
     #[unsafe(super(UIScrollView, UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1313,6 +1322,7 @@ extern_methods!(
 unsafe impl UISpringLoadedInteractionSupporting for UICollectionView {}
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdragdelegate?language=objc)
     pub unsafe trait UICollectionViewDragDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -1424,6 +1434,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropdelegate?language=objc)
     pub unsafe trait UICollectionViewDropDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -1526,6 +1537,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UICollectionViewDropDelegate {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropintent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1548,6 +1560,7 @@ unsafe impl RefEncode for UICollectionViewDropIntent {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropproposal?language=objc)
     #[unsafe(super(UIDropProposal, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1600,6 +1613,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropcoordinator?language=objc)
     pub unsafe trait UICollectionViewDropCoordinator:
         NSObjectProtocol + MainThreadOnly
     {
@@ -1660,6 +1674,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewplaceholder?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1709,6 +1724,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropplaceholder?language=objc)
     #[unsafe(super(UICollectionViewPlaceholder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1771,6 +1787,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropitem?language=objc)
     pub unsafe trait UICollectionViewDropItem: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIDragItem")]
         #[method_id(@__retain_semantics Other dragItem)]
@@ -1787,6 +1804,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropplaceholdercontext?language=objc)
     #[cfg(feature = "UIDragInteraction")]
     pub unsafe trait UICollectionViewDropPlaceholderContext:
         UIDragAnimating + MainThreadOnly

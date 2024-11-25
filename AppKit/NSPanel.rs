@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspanel?language=objc)
     #[unsafe(super(NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
@@ -141,11 +142,15 @@ extern "C-unwind" {
     pub fn NSReleaseAlertPanel(panel: Option<&AnyObject>);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalertdefaultreturn?language=objc)
 #[deprecated = "Use NSAlertFirstButtonReturn with an NSAlert presentation instead"]
 pub const NSAlertDefaultReturn: c_int = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalertalternatereturn?language=objc)
 #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
 pub const NSAlertAlternateReturn: c_int = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalertotherreturn?language=objc)
 #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
 pub const NSAlertOtherReturn: c_int = -1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalerterrorreturn?language=objc)
 #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
 pub const NSAlertErrorReturn: c_int = -2;

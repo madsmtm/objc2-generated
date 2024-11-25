@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextselectionhandleview?language=objc)
     #[cfg(feature = "UIView")]
     pub unsafe trait UITextSelectionHandleView: UICoordinateSpace + MainThreadOnly {
         #[cfg(feature = "UIGeometry")]

@@ -66,6 +66,7 @@ extern_category!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontainerdatatablecell?language=objc)
     pub unsafe trait UIAccessibilityContainerDataTableCell:
         NSObjectProtocol + MainThreadOnly
     {
@@ -80,6 +81,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontainerdatatable?language=objc)
     pub unsafe trait UIAccessibilityContainerDataTable:
         NSObjectProtocol + MainThreadOnly
     {

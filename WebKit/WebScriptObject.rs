@@ -42,6 +42,7 @@ extern_category!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webscriptobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -109,6 +110,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webundefined?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

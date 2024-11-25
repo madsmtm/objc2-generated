@@ -4,18 +4,25 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointpointer?language=objc)
 pub type NSPointPointer = *mut NSPoint;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointarray?language=objc)
 pub type NSPointArray = *mut NSPoint;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssizepointer?language=objc)
 pub type NSSizePointer = *mut NSSize;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssizearray?language=objc)
 pub type NSSizeArray = *mut NSSize;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrectpointer?language=objc)
 pub type NSRectPointer = *mut NSRect;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrectarray?language=objc)
 pub type NSRectArray = *mut NSRect;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsedgeinsets?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSEdgeInsets {
@@ -45,6 +52,7 @@ unsafe impl Send for NSEdgeInsets {}
 
 unsafe impl Sync for NSEdgeInsets {}
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsalignmentoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -85,18 +93,22 @@ unsafe impl RefEncode for NSAlignmentOptions {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszeropoint?language=objc)
     pub static NSZeroPoint: NSPoint;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszerosize?language=objc)
     pub static NSZeroSize: NSSize;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszerorect?language=objc)
     pub static NSZeroRect: NSRect;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsedgeinsetszero?language=objc)
     pub static NSEdgeInsetsZero: NSEdgeInsets;
 }
 

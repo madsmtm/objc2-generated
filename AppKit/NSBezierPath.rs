@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinecapstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -26,6 +27,7 @@ unsafe impl RefEncode for NSLineCapStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinejoinstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -47,6 +49,7 @@ unsafe impl RefEncode for NSLineJoinStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindingrule?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -66,6 +69,7 @@ unsafe impl RefEncode for NSWindingRule {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpathelement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -95,6 +99,7 @@ unsafe impl RefEncode for NSBezierPathElement {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBezierPath;
@@ -425,30 +430,42 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbuttlinecapstyle?language=objc)
 pub static NSButtLineCapStyle: NSLineCapStyle = NSLineCapStyle(NSLineCapStyle::Butt.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsroundlinecapstyle?language=objc)
 pub static NSRoundLineCapStyle: NSLineCapStyle = NSLineCapStyle(NSLineCapStyle::Round.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssquarelinecapstyle?language=objc)
 pub static NSSquareLineCapStyle: NSLineCapStyle = NSLineCapStyle(NSLineCapStyle::Square.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmiterlinejoinstyle?language=objc)
 pub static NSMiterLineJoinStyle: NSLineJoinStyle = NSLineJoinStyle(NSLineJoinStyle::Miter.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsroundlinejoinstyle?language=objc)
 pub static NSRoundLineJoinStyle: NSLineJoinStyle = NSLineJoinStyle(NSLineJoinStyle::Round.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbevellinejoinstyle?language=objc)
 pub static NSBevelLineJoinStyle: NSLineJoinStyle = NSLineJoinStyle(NSLineJoinStyle::Bevel.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnonzerowindingrule?language=objc)
 pub static NSNonZeroWindingRule: NSWindingRule = NSWindingRule(NSWindingRule::NonZero.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevenoddwindingrule?language=objc)
 pub static NSEvenOddWindingRule: NSWindingRule = NSWindingRule(NSWindingRule::EvenOdd.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmovetobezierpathelement?language=objc)
 pub static NSMoveToBezierPathElement: NSBezierPathElement =
     NSBezierPathElement(NSBezierPathElement::MoveTo.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinetobezierpathelement?language=objc)
 pub static NSLineToBezierPathElement: NSBezierPathElement =
     NSBezierPathElement(NSBezierPathElement::LineTo.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscurvetobezierpathelement?language=objc)
 pub static NSCurveToBezierPathElement: NSBezierPathElement =
     NSBezierPathElement(NSBezierPathElement::CurveTo.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsclosepathbezierpathelement?language=objc)
 pub static NSClosePathBezierPathElement: NSBezierPathElement =
     NSBezierPathElement(NSBezierPathElement::ClosePath.0);

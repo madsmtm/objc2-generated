@@ -6,21 +6,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputmicrogamepaddpad?language=objc)
     pub static GCInputMicroGamepadDpad: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputmicrogamepadbuttona?language=objc)
     pub static GCInputMicroGamepadButtonA: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputmicrogamepadbuttonx?language=objc)
     pub static GCInputMicroGamepadButtonX: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputmicrogamepadbuttonmenu?language=objc)
     pub static GCInputMicroGamepadButtonMenu: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadvaluechangedhandler?language=objc)
 #[cfg(all(
     feature = "GCControllerElement",
     feature = "GCPhysicalInputProfile",
@@ -30,6 +35,7 @@ pub type GCMicroGamepadValueChangedHandler =
     *mut block2::Block<dyn Fn(NonNull<GCMicroGamepad>, NonNull<GCControllerElement>)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepad?language=objc)
     #[unsafe(super(GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCPhysicalInputProfile")]

@@ -8,6 +8,7 @@ use objc2_app_kit::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkselectionaccessory?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKSelectionAccessory;
@@ -30,6 +31,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapitemdetailselectionaccessorycalloutstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -52,6 +54,7 @@ unsafe impl RefEncode for MKMapItemDetailSelectionAccessoryCalloutStyle {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapitemdetailselectionaccessorypresentationstyle?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapItemDetailSelectionAccessoryPresentationStyle;

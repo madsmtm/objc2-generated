@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -40,6 +41,7 @@ unsafe impl RefEncode for UIFocusHeading {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusitemdeferralmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -61,21 +63,28 @@ unsafe impl RefEncode for UIFocusItemDeferralMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussoundidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIFocusSoundIdentifier = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusgrouppriority?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIFocusGroupPriority = NSInteger;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusgrouppriorityignored?language=objc)
 pub static UIFocusGroupPriorityIgnored: UIFocusGroupPriority = 0;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusgroupprioritypreviouslyfocused?language=objc)
 pub static UIFocusGroupPriorityPreviouslyFocused: UIFocusGroupPriority = 1000;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusgrouppriorityprioritized?language=objc)
 pub static UIFocusGroupPriorityPrioritized: UIFocusGroupPriority = 2000;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusgroupprioritycurrentlyfocused?language=objc)
 pub static UIFocusGroupPriorityCurrentlyFocused: UIFocusGroupPriority = NSIntegerMax as _;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusenvironment?language=objc)
     pub unsafe trait UIFocusEnvironment: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other preferredFocusEnvironments)]
         unsafe fn preferredFocusEnvironments(
@@ -131,6 +140,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusitem?language=objc)
     pub unsafe trait UIFocusItem: UIFocusEnvironment + MainThreadOnly {
         #[method(canBecomeFocused)]
         unsafe fn canBecomeFocused(&self) -> bool;
@@ -165,6 +175,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusitemcontainer?language=objc)
     pub unsafe trait UIFocusItemContainer: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIView")]
         #[method_id(@__retain_semantics Other coordinateSpace)]
@@ -181,6 +192,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusitemscrollablecontainer?language=objc)
     pub unsafe trait UIFocusItemScrollableContainer:
         UIFocusItemContainer + MainThreadOnly
     {
@@ -201,6 +213,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusupdatecontext?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -244,25 +257,31 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusdidupdatenotification?language=objc)
     pub static UIFocusDidUpdateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusmovementdidfailnotification?language=objc)
     pub static UIFocusMovementDidFailNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusupdatecontextkey?language=objc)
     pub static UIFocusUpdateContextKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusupdateanimationcoordinatorkey?language=objc)
     pub static UIFocusUpdateAnimationCoordinatorKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussoundidentifiernone?language=objc)
     pub static UIFocusSoundIdentifierNone: &'static UIFocusSoundIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussoundidentifierdefault?language=objc)
     pub static UIFocusSoundIdentifierDefault: &'static UIFocusSoundIdentifier;
 }

@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionactivityhandler?language=objc)
 #[cfg(all(
     feature = "CMLogItem",
     feature = "CMMotionActivity",
@@ -12,6 +13,7 @@ use crate::*;
 ))]
 pub type CMMotionActivityHandler = *mut block2::Block<dyn Fn(*mut CMMotionActivity)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionactivityqueryhandler?language=objc)
 #[cfg(all(
     feature = "CMLogItem",
     feature = "CMMotionActivity",
@@ -21,6 +23,7 @@ pub type CMMotionActivityQueryHandler =
     *mut block2::Block<dyn Fn(*mut NSArray<CMMotionActivity>, *mut NSError)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionactivitymanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMMotionActivityManager;

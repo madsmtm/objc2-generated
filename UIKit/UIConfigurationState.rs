@@ -5,10 +5,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationstatecustomkey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIConfigurationStateCustomKey = NSString;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationstate?language=objc)
     pub unsafe trait UIConfigurationState:
         NSCopying + NSObjectProtocol + NSSecureCoding + MainThreadOnly
     {

@@ -5,51 +5,62 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIActivityItemsConfigurationMetadataKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakeytitle?language=objc)
     pub static UIActivityItemsConfigurationMetadataKeyTitle:
         &'static UIActivityItemsConfigurationMetadataKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakeymessagebody?language=objc)
     pub static UIActivityItemsConfigurationMetadataKeyMessageBody:
         &'static UIActivityItemsConfigurationMetadataKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakeylinkpresentationmetadata?language=objc)
     pub static UIActivityItemsConfigurationMetadataKeyLinkPresentationMetadata:
         &'static UIActivityItemsConfigurationMetadataKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationpreviewintent?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIActivityItemsConfigurationPreviewIntent = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationpreviewintentfullsize?language=objc)
     pub static UIActivityItemsConfigurationPreviewIntentFullSize:
         &'static UIActivityItemsConfigurationPreviewIntent;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationpreviewintentthumbnail?language=objc)
     pub static UIActivityItemsConfigurationPreviewIntentThumbnail:
         &'static UIActivityItemsConfigurationPreviewIntent;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationinteraction?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIActivityItemsConfigurationInteraction = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationinteractionshare?language=objc)
     pub static UIActivityItemsConfigurationInteractionShare:
         &'static UIActivityItemsConfigurationInteraction;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationinteractioncopy?language=objc)
     pub static UIActivityItemsConfigurationInteractionCopy:
         &'static UIActivityItemsConfigurationInteraction;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationreading?language=objc)
     pub unsafe trait UIActivityItemsConfigurationReading:
         NSObjectProtocol + MainThreadOnly
     {
@@ -101,6 +112,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationproviding?language=objc)
     pub unsafe trait UIActivityItemsConfigurationProviding: NSObjectProtocol {
         #[method_id(@__retain_semantics Other activityItemsConfiguration)]
         unsafe fn activityItemsConfiguration(

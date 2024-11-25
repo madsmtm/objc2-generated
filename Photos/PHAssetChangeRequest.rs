@@ -11,6 +11,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetchangerequest?language=objc)
     #[unsafe(super(PHChangeRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHChangeRequest")]
@@ -103,9 +104,11 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phcontenteditinginputrequestid?language=objc)
 pub type PHContentEditingInputRequestID = NSUInteger;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcontenteditinginputrequestoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHContentEditingInputRequestOptions;
@@ -182,14 +185,17 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcontenteditinginputresultisincloudkey?language=objc)
     pub static PHContentEditingInputResultIsInCloudKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcontenteditinginputcancelledkey?language=objc)
     pub static PHContentEditingInputCancelledKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcontenteditinginputerrorkey?language=objc)
     pub static PHContentEditingInputErrorKey: &'static NSString;
 }
 

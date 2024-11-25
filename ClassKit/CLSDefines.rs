@@ -6,9 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserrorcodedomain?language=objc)
     pub static CLSErrorCodeDomain: Option<&'static NSString>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -46,44 +48,55 @@ unsafe impl RefEncode for CLSErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserroruserinfokey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CLSErrorUserInfoKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserrorobjectkey?language=objc)
     pub static CLSErrorObjectKey: Option<&'static CLSErrorUserInfoKey>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserrorunderlyingerrorskey?language=objc)
     pub static CLSErrorUnderlyingErrorsKey: Option<&'static CLSErrorUserInfoKey>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserrorsuccessfulobjectskey?language=objc)
     pub static CLSErrorSuccessfulObjectsKey: Option<&'static CLSErrorUserInfoKey>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/classkit/clspredicatekeypath?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CLSPredicateKeyPath = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clspredicatekeypathdatecreated?language=objc)
     pub static CLSPredicateKeyPathDateCreated: Option<&'static CLSPredicateKeyPath>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clspredicatekeypathidentifier?language=objc)
     pub static CLSPredicateKeyPathIdentifier: Option<&'static CLSPredicateKeyPath>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clspredicatekeypathtitle?language=objc)
     pub static CLSPredicateKeyPathTitle: Option<&'static CLSPredicateKeyPath>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clspredicatekeypathuniversallinkurl?language=objc)
     pub static CLSPredicateKeyPathUniversalLinkURL: Option<&'static CLSPredicateKeyPath>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clspredicatekeypathtopic?language=objc)
     pub static CLSPredicateKeyPathTopic: Option<&'static CLSPredicateKeyPath>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clspredicatekeypathparent?language=objc)
     pub static CLSPredicateKeyPathParent: Option<&'static CLSPredicateKeyPath>;
 }

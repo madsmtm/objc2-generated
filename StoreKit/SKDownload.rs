@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadstate?language=objc)
 // NS_CLOSED_ENUM
 #[deprecated = "Hosted content is no longer supported"]
 #[repr(isize)] // NSInteger
@@ -39,10 +40,12 @@ unsafe impl RefEncode for SKDownloadState {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadtimeremainingunknown?language=objc)
     pub static SKDownloadTimeRemainingUnknown: NSTimeInterval;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownload?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Hosted content is no longer supported"]

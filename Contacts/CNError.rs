@@ -6,9 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerrordomain?language=objc)
     pub static CNErrorDomain: Option<&'static NSString>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -81,17 +83,21 @@ unsafe impl RefEncode for CNErrorCode {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerroruserinfoaffectedrecordskey?language=objc)
     pub static CNErrorUserInfoAffectedRecordsKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerroruserinfoaffectedrecordidentifierskey?language=objc)
     pub static CNErrorUserInfoAffectedRecordIdentifiersKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerroruserinfovalidationerrorskey?language=objc)
     pub static CNErrorUserInfoValidationErrorsKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerroruserinfokeypathskey?language=objc)
     pub static CNErrorUserInfoKeyPathsKey: Option<&'static NSString>;
 }

@@ -9,17 +9,21 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutautomaticdimension?language=objc)
     pub static UICollectionViewLayoutAutomaticDimension: CGFloat;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionelementkindsectionheader?language=objc)
     pub static UICollectionElementKindSectionHeader: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionelementkindsectionfooter?language=objc)
     pub static UICollectionElementKindSectionFooter: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewscrolldirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -39,6 +43,7 @@ unsafe impl RefEncode for UICollectionViewScrollDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionelementcategory?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -61,6 +66,7 @@ unsafe impl RefEncode for UICollectionElementCategory {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutattributes?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -184,6 +190,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutinvalidationcontext?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -269,6 +276,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewlayout?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

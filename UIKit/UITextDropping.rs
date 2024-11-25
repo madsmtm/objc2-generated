@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdroppable?language=objc)
     #[cfg(all(
         feature = "UIPasteConfigurationSupporting",
         feature = "UITextInput",
@@ -44,6 +45,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UITextDroppable {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropeditability?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -66,6 +68,7 @@ unsafe impl RefEncode for UITextDropEditability {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropdelegate?language=objc)
     pub unsafe trait UITextDropDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UIPasteConfigurationSupporting",
@@ -208,6 +211,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdroprequest?language=objc)
     pub unsafe trait UITextDropRequest: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInput")]
         #[method_id(@__retain_semantics Other dropPosition)]

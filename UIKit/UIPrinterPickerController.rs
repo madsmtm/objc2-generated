@@ -5,11 +5,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterpickercompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type UIPrinterPickerCompletionHandler =
     *mut block2::Block<dyn Fn(NonNull<UIPrinterPickerController>, Bool, *mut NSError)>;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterpickercontrollerdelegate?language=objc)
     pub unsafe trait UIPrinterPickerControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -70,6 +72,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterpickercontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -7,22 +7,27 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoption?language=objc)
 // NS_TYPED_ENUM
 pub type VNImageOption = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoptionproperties?language=objc)
     pub static VNImageOptionProperties: &'static VNImageOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoptioncameraintrinsics?language=objc)
     pub static VNImageOptionCameraIntrinsics: &'static VNImageOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoptioncicontext?language=objc)
     pub static VNImageOptionCIContext: &'static VNImageOption;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagerequesthandler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageRequestHandler;
@@ -75,6 +80,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnsequencerequesthandler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNSequenceRequestHandler;

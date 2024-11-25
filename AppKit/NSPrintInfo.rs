@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspaperorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -24,6 +25,7 @@ unsafe impl RefEncode for NSPaperOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintingpaginationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -45,151 +47,189 @@ unsafe impl RefEncode for NSPrintingPaginationMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfoattributekey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSPrintInfoAttributeKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpapername?language=objc)
     pub static NSPrintPaperName: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpapersize?language=objc)
     pub static NSPrintPaperSize: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintorientation?language=objc)
     pub static NSPrintOrientation: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintscalingfactor?language=objc)
     pub static NSPrintScalingFactor: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintleftmargin?language=objc)
     pub static NSPrintLeftMargin: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintrightmargin?language=objc)
     pub static NSPrintRightMargin: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprinttopmargin?language=objc)
     pub static NSPrintTopMargin: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintbottommargin?language=objc)
     pub static NSPrintBottomMargin: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprinthorizontallycentered?language=objc)
     pub static NSPrintHorizontallyCentered: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintverticallycentered?language=objc)
     pub static NSPrintVerticallyCentered: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprinthorizontalpagination?language=objc)
     pub static NSPrintHorizontalPagination: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintverticalpagination?language=objc)
     pub static NSPrintVerticalPagination: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintprinter?language=objc)
     pub static NSPrintPrinter: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintcopies?language=objc)
     pub static NSPrintCopies: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintallpages?language=objc)
     pub static NSPrintAllPages: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintfirstpage?language=objc)
     pub static NSPrintFirstPage: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintlastpage?language=objc)
     pub static NSPrintLastPage: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintmustcollate?language=objc)
     pub static NSPrintMustCollate: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintreversepageorder?language=objc)
     pub static NSPrintReversePageOrder: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintjobdisposition?language=objc)
     pub static NSPrintJobDisposition: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpagesacross?language=objc)
     pub static NSPrintPagesAcross: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpagesdown?language=objc)
     pub static NSPrintPagesDown: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprinttime?language=objc)
     pub static NSPrintTime: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintdetailederrorreporting?language=objc)
     pub static NSPrintDetailedErrorReporting: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintfaxnumber?language=objc)
     pub static NSPrintFaxNumber: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintprintername?language=objc)
     pub static NSPrintPrinterName: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintselectiononly?language=objc)
     pub static NSPrintSelectionOnly: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintjobsavingurl?language=objc)
     pub static NSPrintJobSavingURL: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintjobsavingfilenameextensionhidden?language=objc)
     pub static NSPrintJobSavingFileNameExtensionHidden: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintheaderandfooter?language=objc)
     pub static NSPrintHeaderAndFooter: &'static NSPrintInfoAttributeKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintjobdispositionvalue?language=objc)
 // NS_TYPED_ENUM
 pub type NSPrintJobDispositionValue = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintspooljob?language=objc)
     pub static NSPrintSpoolJob: &'static NSPrintJobDispositionValue;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpreviewjob?language=objc)
     pub static NSPrintPreviewJob: &'static NSPrintJobDispositionValue;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintsavejob?language=objc)
     pub static NSPrintSaveJob: &'static NSPrintJobDispositionValue;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintcanceljob?language=objc)
     pub static NSPrintCancelJob: &'static NSPrintJobDispositionValue;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfosettingkey?language=objc)
 pub type NSPrintInfoSettingKey = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPrintInfo;
@@ -390,29 +430,36 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintformname?language=objc)
     pub static NSPrintFormName: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintjobfeatures?language=objc)
     pub static NSPrintJobFeatures: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintmanualfeed?language=objc)
     pub static NSPrintManualFeed: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpagespersheet?language=objc)
     pub static NSPrintPagesPerSheet: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpaperfeed?language=objc)
     pub static NSPrintPaperFeed: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintsavepath?language=objc)
     pub static NSPrintSavePath: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintingorientation?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -433,11 +480,14 @@ unsafe impl RefEncode for NSPrintingOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsautopagination?language=objc)
 pub static NSAutoPagination: NSPrintingPaginationMode =
     NSPrintingPaginationMode(NSPrintingPaginationMode::Automatic.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfitpagination?language=objc)
 pub static NSFitPagination: NSPrintingPaginationMode =
     NSPrintingPaginationMode(NSPrintingPaginationMode::Fit.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsclippagination?language=objc)
 pub static NSClipPagination: NSPrintingPaginationMode =
     NSPrintingPaginationMode(NSPrintingPaginationMode::Clip.0);

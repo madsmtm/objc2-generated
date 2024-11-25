@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequesttextrecognitionlevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -25,6 +26,7 @@ unsafe impl RefEncode for VNRequestTextRecognitionLevel {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizetextrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -127,8 +129,11 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizetextrequestrevision1?language=objc)
 pub static VNRecognizeTextRequestRevision1: NSUInteger = 1;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizetextrequestrevision2?language=objc)
 pub static VNRecognizeTextRequestRevision2: NSUInteger = 2;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizetextrequestrevision3?language=objc)
 pub static VNRecognizeTextRequestRevision3: NSUInteger = 3;

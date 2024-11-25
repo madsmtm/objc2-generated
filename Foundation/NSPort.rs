@@ -4,14 +4,17 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssocketnativehandle?language=objc)
 pub type NSSocketNativeHandle = c_int;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsportdidbecomeinvalidnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSPortDidBecomeInvalidNotification: &'static NSNotificationName;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsport?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPort;
@@ -123,6 +126,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsportdelegate?language=objc)
     pub unsafe trait NSPortDelegate: NSObjectProtocol {
         #[cfg(feature = "NSPortMessage")]
         #[optional]
@@ -133,6 +137,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSPortDelegate {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachportoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -154,6 +159,7 @@ unsafe impl RefEncode for NSMachPortOptions {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachport?language=objc)
     #[unsafe(super(NSPort, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMachPort;
@@ -227,6 +233,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachportdelegate?language=objc)
     pub unsafe trait NSMachPortDelegate: NSPortDelegate {
         #[optional]
         #[method(handleMachMessage:)]
@@ -237,6 +244,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmessageport?language=objc)
     #[unsafe(super(NSPort, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMessagePort;
@@ -271,6 +279,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssocketport?language=objc)
     #[unsafe(super(NSPort, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSocketPort;

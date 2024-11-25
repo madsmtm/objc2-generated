@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domeventlistener?language=objc)
     #[deprecated]
     pub unsafe trait DOMEventListener: NSObjectProtocol {
         #[cfg(all(

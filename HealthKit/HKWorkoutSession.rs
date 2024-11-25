@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -32,6 +33,7 @@ unsafe impl RefEncode for HKWorkoutSessionState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -52,6 +54,7 @@ unsafe impl RefEncode for HKWorkoutSessionType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutSession;
@@ -206,6 +209,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessiondelegate?language=objc)
     pub unsafe trait HKWorkoutSessionDelegate: NSObjectProtocol {
         #[method(workoutSession:didChangeToState:fromState:date:)]
         unsafe fn workoutSession_didChangeToState_fromState_date(

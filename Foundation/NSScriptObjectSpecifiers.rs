@@ -4,14 +4,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnospecifiererror?language=objc)
 pub const NSNoSpecifierError: NSInteger = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotoplevelcontainersspecifiererror?language=objc)
 pub const NSNoTopLevelContainersSpecifierError: NSInteger = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscontainerspecifiererror?language=objc)
 pub const NSContainerSpecifierError: NSInteger = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunknownkeyspecifiererror?language=objc)
 pub const NSUnknownKeySpecifierError: NSInteger = 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvalidindexspecifiererror?language=objc)
 pub const NSInvalidIndexSpecifierError: NSInteger = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinternalspecifiererror?language=objc)
 pub const NSInternalSpecifierError: NSInteger = 5;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperationnotsupportedforkeyspecifiererror?language=objc)
 pub const NSOperationNotSupportedForKeySpecifierError: NSInteger = 6;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinsertionposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -32,6 +40,7 @@ unsafe impl RefEncode for NSInsertionPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativeposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -49,6 +58,7 @@ unsafe impl RefEncode for NSRelativePosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosesubelementidentifier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -70,6 +80,7 @@ unsafe impl RefEncode for NSWhoseSubelementIdentifier {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptObjectSpecifier;
@@ -235,6 +246,7 @@ extern_category!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsindexspecifier?language=objc)
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSIndexSpecifier;
@@ -314,6 +326,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmiddlespecifier?language=objc)
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMiddleSpecifier;
@@ -373,6 +386,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnamespecifier?language=objc)
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNameSpecifier;
@@ -454,6 +468,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspositionalspecifier?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPositionalSpecifier;
@@ -513,6 +528,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertyspecifier?language=objc)
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPropertySpecifier;
@@ -572,6 +588,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrandomspecifier?language=objc)
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRandomSpecifier;
@@ -631,6 +648,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrangespecifier?language=objc)
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRangeSpecifier;
@@ -717,6 +735,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativespecifier?language=objc)
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRelativeSpecifier;
@@ -803,6 +822,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuniqueidspecifier?language=objc)
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUniqueIDSpecifier;
@@ -882,6 +902,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosespecifier?language=objc)
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWhoseSpecifier;

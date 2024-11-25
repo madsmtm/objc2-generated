@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidynamicanimatordelegate?language=objc)
     pub unsafe trait UIDynamicAnimatorDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(dynamicAnimatorWillResume:)]
@@ -20,6 +21,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidynamicanimator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIDynamicAnimator;

@@ -5,9 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbarcustomizationidentifier?language=objc)
 pub type NSTouchBarCustomizationIdentifier = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbar?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -150,6 +152,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbardelegate?language=objc)
     pub unsafe trait NSTouchBarDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSTouchBarItem")]
         #[optional]
@@ -165,6 +168,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbarprovider?language=objc)
     pub unsafe trait NSTouchBarProvider: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other touchBar)]
         unsafe fn touchBar(&self) -> Option<Retained<NSTouchBar>>;

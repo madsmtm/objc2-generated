@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewdropoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -22,6 +23,7 @@ unsafe impl RefEncode for NSCollectionViewDropOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewitemhighlightstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -41,6 +43,7 @@ unsafe impl RefEncode for NSCollectionViewItemHighlightState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewscrollposition?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -80,9 +83,11 @@ unsafe impl RefEncode for NSCollectionViewScrollPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewsupplementaryelementkind?language=objc)
 pub type NSCollectionViewSupplementaryElementKind = NSString;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewelement?language=objc)
     #[cfg(feature = "NSUserInterfaceItemIdentification")]
     pub unsafe trait NSCollectionViewElement:
         NSObjectProtocol + NSUserInterfaceItemIdentification + MainThreadOnly
@@ -131,6 +136,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewsectionheaderview?language=objc)
     #[cfg(feature = "NSUserInterfaceItemIdentification")]
     pub unsafe trait NSCollectionViewSectionHeaderView:
         NSCollectionViewElement + MainThreadOnly
@@ -162,6 +168,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewitem?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
@@ -293,6 +300,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -717,6 +725,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource?language=objc)
     pub unsafe trait NSCollectionViewDataSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(collectionView:numberOfItemsInSection:)]
@@ -761,6 +770,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewprefetching?language=objc)
     pub unsafe trait NSCollectionViewPrefetching: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(collectionView:prefetchItemsAtIndexPaths:)]
@@ -784,6 +794,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewdelegate?language=objc)
     pub unsafe trait NSCollectionViewDelegate: NSObjectProtocol {
         #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[optional]

@@ -5,10 +5,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagedrawingactions?language=objc)
 #[cfg(all(feature = "UIGraphicsRenderer", feature = "block2"))]
 pub type UIGraphicsImageDrawingActions =
     *mut block2::Block<dyn Fn(NonNull<UIGraphicsImageRendererContext>)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformatrange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -33,6 +35,7 @@ unsafe impl RefEncode for UIGraphicsImageRendererFormatRange {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformat?language=objc)
     #[unsafe(super(UIGraphicsRendererFormat, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGraphicsRenderer")]
@@ -116,6 +119,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderercontext?language=objc)
     #[unsafe(super(UIGraphicsRendererContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGraphicsRenderer")]
@@ -147,6 +151,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer?language=objc)
     #[unsafe(super(UIGraphicsRenderer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGraphicsRenderer")]

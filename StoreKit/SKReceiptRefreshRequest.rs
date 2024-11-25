@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skreceiptrefreshrequest?language=objc)
     #[unsafe(super(SKRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SKRequest")]
@@ -51,13 +52,16 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skreceiptpropertyisexpired?language=objc)
     pub static SKReceiptPropertyIsExpired: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skreceiptpropertyisrevoked?language=objc)
     pub static SKReceiptPropertyIsRevoked: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skreceiptpropertyisvolumepurchase?language=objc)
     pub static SKReceiptPropertyIsVolumePurchase: &'static NSString;
 }

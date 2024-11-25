@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWConfiguration;
@@ -78,6 +79,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwmutableconfiguration?language=objc)
     #[unsafe(super(CWConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWMutableConfiguration;

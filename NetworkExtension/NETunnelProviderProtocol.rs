@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelproviderprotocol?language=objc)
     #[unsafe(super(NEVPNProtocol, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NEVPNProtocol")]

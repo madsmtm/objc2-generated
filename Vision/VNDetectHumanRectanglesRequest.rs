@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -63,6 +64,8 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequestrevision1?language=objc)
 pub static VNDetectHumanRectanglesRequestRevision1: NSUInteger = 1;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequestrevision2?language=objc)
 pub static VNDetectHumanRectanglesRequestRevision2: NSUInteger = 2;

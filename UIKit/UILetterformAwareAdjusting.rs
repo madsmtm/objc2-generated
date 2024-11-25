@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiletterformawaresizingrule?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -24,6 +25,7 @@ unsafe impl RefEncode for UILetterformAwareSizingRule {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiletterformawareadjusting?language=objc)
     pub unsafe trait UILetterformAwareAdjusting: NSObjectProtocol + MainThreadOnly {
         #[method(sizingRule)]
         unsafe fn sizingRule(&self) -> UILetterformAwareSizingRule;

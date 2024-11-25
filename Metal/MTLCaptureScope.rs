@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcapturescope?language=objc)
     pub unsafe trait MTLCaptureScope: NSObjectProtocol {
         #[method(beginScope)]
         fn beginScope(&self);

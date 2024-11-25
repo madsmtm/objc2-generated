@@ -54,7 +54,9 @@ extern "C-unwind" {
     pub fn NSZoneFree(zone: *mut NSZone, ptr: NonNull<c_void>);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscannedoption?language=objc)
 pub const NSScannedOption: NSUInteger = 1 << 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscollectordisabledoption?language=objc)
 pub const NSCollectorDisabledOption: NSUInteger = 1 << 1;
 
 extern "C-unwind" {

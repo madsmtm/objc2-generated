@@ -9,6 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webframeloaddelegate?language=objc)
     #[deprecated]
     pub unsafe trait WebFrameLoadDelegate: NSObjectProtocol {
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]

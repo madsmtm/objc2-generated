@@ -6,26 +6,32 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistaterestorationviewcontrollerstoryboardkey?language=objc)
     pub static UIStateRestorationViewControllerStoryboardKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationstaterestorationbundleversionkey?language=objc)
     pub static UIApplicationStateRestorationBundleVersionKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationstaterestorationuserinterfaceidiomkey?language=objc)
     pub static UIApplicationStateRestorationUserInterfaceIdiomKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationstaterestorationtimestampkey?language=objc)
     pub static UIApplicationStateRestorationTimestampKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationstaterestorationsystemversionkey?language=objc)
     pub static UIApplicationStateRestorationSystemVersionKey: &'static NSString;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollerrestoration?language=objc)
     pub unsafe trait UIViewControllerRestoration: MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[method_id(@__retain_semantics Other viewControllerWithRestorationIdentifierPath:coder:)]
@@ -40,6 +46,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatasourcemodelassociation?language=objc)
     pub unsafe trait UIDataSourceModelAssociation: MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other modelIdentifierForElementAtIndexPath:inView:)]
@@ -62,6 +69,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistaterestoring?language=objc)
     pub unsafe trait UIStateRestoring: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method_id(@__retain_semantics Other restorationParent)]
@@ -90,6 +98,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiobjectrestoration?language=objc)
     pub unsafe trait UIObjectRestoration: MainThreadOnly {
         #[method_id(@__retain_semantics Other objectWithRestorationIdentifierPath:coder:)]
         unsafe fn objectWithRestorationIdentifierPath_coder(

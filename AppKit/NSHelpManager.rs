@@ -5,13 +5,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpbookname?language=objc)
 pub type NSHelpBookName = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpanchorname?language=objc)
 pub type NSHelpAnchorName = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpmanagercontexthelpkey?language=objc)
 pub type NSHelpManagerContextHelpKey = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -84,10 +88,12 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontexthelpmodedidactivatenotification?language=objc)
     pub static NSContextHelpModeDidActivateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontexthelpmodediddeactivatenotification?language=objc)
     pub static NSContextHelpModeDidDeactivateNotification: &'static NSNotificationName;
 }
 

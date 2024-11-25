@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcalldirectoryextensioncontextdelegate?language=objc)
     pub unsafe trait CXCallDirectoryExtensionContextDelegate: NSObjectProtocol {
         #[method(requestFailedForExtensionContext:withError:)]
         unsafe fn requestFailedForExtensionContext_withError(
@@ -19,6 +20,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcalldirectoryextensioncontext?language=objc)
     #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CXCallDirectoryExtensionContext;

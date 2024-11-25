@@ -8,6 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontrollerdelegate?language=objc)
     pub unsafe trait ASAuthorizationControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -42,6 +43,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontrollerpresentationcontextproviding?language=objc)
     pub unsafe trait ASAuthorizationControllerPresentationContextProviding:
         NSObjectProtocol + MainThreadOnly
     {
@@ -57,6 +59,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn ASAuthorizationControllerPresentationContextProviding {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontrollerrequestoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -76,6 +79,7 @@ unsafe impl RefEncode for ASAuthorizationControllerRequestOptions {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationController;

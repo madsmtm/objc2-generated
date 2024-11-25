@@ -4,12 +4,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascosealgorithmidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASCOSEAlgorithmIdentifier = NSInteger;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascosealgorithmidentifieres256?language=objc)
 pub static ASCOSEAlgorithmIdentifierES256: ASCOSEAlgorithmIdentifier = -7;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascoseellipticcurveidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASCOSEEllipticCurveIdentifier = NSInteger;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascoseellipticcurveidentifierp256?language=objc)
 pub static ASCOSEEllipticCurveIdentifierP256: ASCOSEEllipticCurveIdentifier = 1;

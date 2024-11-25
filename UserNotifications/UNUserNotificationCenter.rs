@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -33,9 +34,11 @@ unsafe impl RefEncode for UNAuthorizationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptionnone?language=objc)
 pub static UNAuthorizationOptionNone: UNAuthorizationOptions = UNAuthorizationOptions(0);
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNUserNotificationCenter;
@@ -150,6 +153,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationpresentationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -173,10 +177,12 @@ unsafe impl RefEncode for UNNotificationPresentationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationpresentationoptionnone?language=objc)
 pub static UNNotificationPresentationOptionNone: UNNotificationPresentationOptions =
     UNNotificationPresentationOptions(0);
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate?language=objc)
     pub unsafe trait UNUserNotificationCenterDelegate: NSObjectProtocol {
         #[cfg(all(feature = "UNNotification", feature = "block2"))]
         #[optional]

@@ -9,12 +9,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkviewcontroller?language=objc)
     pub unsafe trait GKViewController {}
 
     unsafe impl ProtocolType for dyn GKViewController {}
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkdialogcontroller?language=objc)
     #[unsafe(super(NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

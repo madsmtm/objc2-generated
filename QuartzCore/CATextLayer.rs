@@ -5,13 +5,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayertruncationmode?language=objc)
 // NS_TYPED_ENUM
 pub type CATextLayerTruncationMode = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayeralignmentmode?language=objc)
 // NS_TYPED_ENUM
 pub type CATextLayerAlignmentMode = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayer?language=objc)
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]
@@ -99,37 +102,46 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatruncationnone?language=objc)
     pub static kCATruncationNone: &'static CATextLayerTruncationMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatruncationstart?language=objc)
     pub static kCATruncationStart: &'static CATextLayerTruncationMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatruncationend?language=objc)
     pub static kCATruncationEnd: &'static CATextLayerTruncationMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatruncationmiddle?language=objc)
     pub static kCATruncationMiddle: &'static CATextLayerTruncationMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaalignmentnatural?language=objc)
     pub static kCAAlignmentNatural: &'static CATextLayerAlignmentMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaalignmentleft?language=objc)
     pub static kCAAlignmentLeft: &'static CATextLayerAlignmentMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaalignmentright?language=objc)
     pub static kCAAlignmentRight: &'static CATextLayerAlignmentMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaalignmentcenter?language=objc)
     pub static kCAAlignmentCenter: &'static CATextLayerAlignmentMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaalignmentjustified?language=objc)
     pub static kCAAlignmentJustified: &'static CATextLayerAlignmentMode;
 }

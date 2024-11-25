@@ -7,49 +7,61 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordtype?language=objc)
 pub type CKRecordType = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordfieldkey?language=objc)
 pub type CKRecordFieldKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordtypeuserrecord?language=objc)
     pub static CKRecordTypeUserRecord: &'static CKRecordType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordrecordidkey?language=objc)
     pub static CKRecordRecordIDKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordcreatoruserrecordidkey?language=objc)
     pub static CKRecordCreatorUserRecordIDKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordcreationdatekey?language=objc)
     pub static CKRecordCreationDateKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordlastmodifieduserrecordidkey?language=objc)
     pub static CKRecordLastModifiedUserRecordIDKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordmodificationdatekey?language=objc)
     pub static CKRecordModificationDateKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordparentkey?language=objc)
     pub static CKRecordParentKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordsharekey?language=objc)
     pub static CKRecordShareKey: &'static CKRecordFieldKey;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordvalue?language=objc)
     pub unsafe trait CKRecordValue: NSObjectProtocol {}
 
     unsafe impl ProtocolType for dyn CKRecordValue {}
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecord?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKRecord;
@@ -212,6 +224,7 @@ unsafe impl CKRecordValue for CKAsset {}
 unsafe impl CKRecordValue for CLLocation {}
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordkeyvaluesetting?language=objc)
     pub unsafe trait CKRecordKeyValueSetting: NSObjectProtocol {
         #[method_id(@__retain_semantics Other objectForKey:)]
         unsafe fn objectForKey(

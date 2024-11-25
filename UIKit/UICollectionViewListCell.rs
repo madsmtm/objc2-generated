@@ -9,6 +9,7 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewlistcell?language=objc)
     #[unsafe(super(
         UICollectionViewCell,
         UICollectionReusableView,

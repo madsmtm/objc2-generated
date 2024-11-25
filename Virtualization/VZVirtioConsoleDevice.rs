@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledevicedelegate?language=objc)
     pub unsafe trait VZVirtioConsoleDeviceDelegate: NSObjectProtocol {
         #[cfg(all(feature = "VZConsoleDevice", feature = "VZVirtioConsolePort"))]
         #[optional]
@@ -29,6 +30,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledevice?language=objc)
     #[unsafe(super(VZConsoleDevice, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZConsoleDevice")]

@@ -6,9 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snerrordomain?language=objc)
     pub static SNErrorDomain: Option<&'static NSString>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snerrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

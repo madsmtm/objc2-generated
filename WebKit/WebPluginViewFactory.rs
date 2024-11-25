@@ -9,26 +9,32 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webpluginbaseurlkey?language=objc)
     pub static WebPlugInBaseURLKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webpluginattributeskey?language=objc)
     pub static WebPlugInAttributesKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webplugincontainerkey?language=objc)
     pub static WebPlugInContainerKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webplugincontainingelementkey?language=objc)
     pub static WebPlugInContainingElementKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webpluginshouldloadmainresourcekey?language=objc)
     pub static WebPlugInShouldLoadMainResourceKey: Option<&'static NSString>;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webpluginviewfactory?language=objc)
     #[deprecated]
     pub unsafe trait WebPlugInViewFactory: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]

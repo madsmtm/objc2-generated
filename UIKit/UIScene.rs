@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene?language=objc)
     #[unsafe(super(UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -85,6 +86,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenedelegate?language=objc)
     pub unsafe trait UISceneDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UIResponder",
@@ -193,30 +195,37 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenewillconnectnotification?language=objc)
     pub static UISceneWillConnectNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenediddisconnectnotification?language=objc)
     pub static UISceneDidDisconnectNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenedidactivatenotification?language=objc)
     pub static UISceneDidActivateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenewilldeactivatenotification?language=objc)
     pub static UISceneWillDeactivateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenewillenterforegroundnotification?language=objc)
     pub static UISceneWillEnterForegroundNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenedidenterbackgroundnotification?language=objc)
     pub static UISceneDidEnterBackgroundNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesessionroleimmersivespaceapplication?language=objc)
     #[cfg(feature = "UISceneDefinitions")]
     pub static UISceneSessionRoleImmersiveSpaceApplication: &'static UISceneSessionRole;
 }

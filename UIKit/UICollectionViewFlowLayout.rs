@@ -6,9 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayoutautomaticsize?language=objc)
     pub static UICollectionViewFlowLayoutAutomaticSize: CGSize;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayoutsectioninsetreference?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,6 +30,7 @@ unsafe impl RefEncode for UICollectionViewFlowLayoutSectionInsetReference {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayoutinvalidationcontext?language=objc)
     #[unsafe(super(UICollectionViewLayoutInvalidationContext, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -74,6 +77,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdelegateflowlayout?language=objc)
     #[cfg(all(feature = "UICollectionView", feature = "UIScrollView"))]
     pub unsafe trait UICollectionViewDelegateFlowLayout:
         UICollectionViewDelegate + MainThreadOnly
@@ -169,6 +173,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout?language=objc)
     #[unsafe(super(UICollectionViewLayout, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

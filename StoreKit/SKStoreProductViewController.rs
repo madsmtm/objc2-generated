@@ -9,6 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -112,6 +113,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductviewcontrollerdelegate?language=objc)
     pub unsafe trait SKStoreProductViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
@@ -127,29 +129,36 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteritunesitemidentifier?language=objc)
     pub static SKStoreProductParameterITunesItemIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameterproductidentifier?language=objc)
     pub static SKStoreProductParameterProductIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparametercustomproductpageidentifier?language=objc)
     pub static SKStoreProductParameterCustomProductPageIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteraffiliatetoken?language=objc)
     pub static SKStoreProductParameterAffiliateToken: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparametercampaigntoken?language=objc)
     pub static SKStoreProductParameterCampaignToken: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameterprovidertoken?language=objc)
     pub static SKStoreProductParameterProviderToken: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradvertisingpartnertoken?language=objc)
     pub static SKStoreProductParameterAdvertisingPartnerToken: &'static NSString;
 }

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarditem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPasteboardItem;
@@ -90,6 +91,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarditemdataprovider?language=objc)
     pub unsafe trait NSPasteboardItemDataProvider: NSObjectProtocol {
         #[cfg(feature = "NSPasteboard")]
         #[method(pasteboard:item:provideDataForType:)]

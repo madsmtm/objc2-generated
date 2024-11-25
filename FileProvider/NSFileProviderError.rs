@@ -6,21 +6,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidererrordomain?language=objc)
     pub static NSFileProviderErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidererrorcollidingitemkey?language=objc)
     pub static NSFileProviderErrorCollidingItemKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidererroritemkey?language=objc)
     pub static NSFileProviderErrorItemKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidererrornonexistentitemidentifierkey?language=objc)
     pub static NSFileProviderErrorNonExistentItemIdentifierKey: &'static NSErrorUserInfoKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidererrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

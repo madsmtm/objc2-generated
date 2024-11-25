@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -31,6 +32,7 @@ unsafe impl RefEncode for MTLBlitOption {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitcommandencoder?language=objc)
     #[cfg(feature = "MTLCommandEncoder")]
     pub unsafe trait MTLBlitCommandEncoder: MTLCommandEncoder {
         #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]

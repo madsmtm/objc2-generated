@@ -7,10 +7,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestcompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type VNRequestCompletionHandler = *mut block2::Block<dyn Fn(NonNull<VNRequest>, *mut NSError)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRequest;
@@ -86,6 +88,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestrevisionunspecified?language=objc)
 pub static VNRequestRevisionUnspecified: NSUInteger = 0;
 
 extern_methods!(
@@ -119,6 +122,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagebasedrequest?language=objc)
     #[unsafe(super(VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageBasedRequest;
@@ -165,11 +169,13 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestprogresshandler?language=objc)
 #[cfg(feature = "block2")]
 pub type VNRequestProgressHandler =
     *mut block2::Block<dyn Fn(NonNull<VNRequest>, c_double, *mut NSError)>;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestprogressproviding?language=objc)
     pub unsafe trait VNRequestProgressProviding: NSObjectProtocol {
         #[cfg(feature = "block2")]
         #[method(progressHandler)]

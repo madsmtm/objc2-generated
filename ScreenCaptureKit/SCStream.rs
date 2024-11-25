@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamoutputtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -26,6 +27,7 @@ unsafe impl RefEncode for SCStreamOutputType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scframestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -53,6 +55,7 @@ unsafe impl RefEncode for SCFrameStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scpresenteroverlayalertsetting?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -74,6 +77,7 @@ unsafe impl RefEncode for SCPresenterOverlayAlertSetting {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamtype?language=objc)
 // NS_ENUM
 #[deprecated = "Use SCShareableContentStyle instead"]
 #[repr(transparent)]
@@ -96,6 +100,7 @@ unsafe impl RefEncode for SCStreamType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccaptureresolutiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -114,6 +119,7 @@ unsafe impl RefEncode for SCCaptureResolutionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccapturedynamicrange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -136,6 +142,7 @@ unsafe impl RefEncode for SCCaptureDynamicRange {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentfilter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCContentFilter;
@@ -219,6 +226,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamconfigurationpreset?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -243,6 +251,7 @@ unsafe impl RefEncode for SCStreamConfigurationPreset {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCStreamConfiguration;
@@ -441,46 +450,57 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfo?language=objc)
 // NS_TYPED_ENUM
 pub type SCStreamFrameInfo = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfostatus?language=objc)
     pub static SCStreamFrameInfoStatus: &'static SCStreamFrameInfo;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfodisplaytime?language=objc)
     pub static SCStreamFrameInfoDisplayTime: &'static SCStreamFrameInfo;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfoscalefactor?language=objc)
     pub static SCStreamFrameInfoScaleFactor: &'static SCStreamFrameInfo;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfocontentscale?language=objc)
     pub static SCStreamFrameInfoContentScale: &'static SCStreamFrameInfo;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfocontentrect?language=objc)
     pub static SCStreamFrameInfoContentRect: &'static SCStreamFrameInfo;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfodirtyrects?language=objc)
     pub static SCStreamFrameInfoDirtyRects: &'static SCStreamFrameInfo;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfoscreenrect?language=objc)
     pub static SCStreamFrameInfoScreenRect: &'static SCStreamFrameInfo;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfoboundingrect?language=objc)
     pub static SCStreamFrameInfoBoundingRect: &'static SCStreamFrameInfo;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfopresenteroverlaycontentrect?language=objc)
     pub static SCStreamFrameInfoPresenterOverlayContentRect: &'static SCStreamFrameInfo;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstream?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCStream;
@@ -558,12 +578,14 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamoutput?language=objc)
     pub unsafe trait SCStreamOutput: NSObjectProtocol {}
 
     unsafe impl ProtocolType for dyn SCStreamOutput {}
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamdelegate?language=objc)
     pub unsafe trait SCStreamDelegate: NSObjectProtocol {
         #[optional]
         #[method(stream:didStopWithError:)]

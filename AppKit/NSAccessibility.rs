@@ -145,6 +145,7 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceaccessibilitydisplayoptionsdidchangenotification?language=objc)
     pub static NSWorkspaceAccessibilityDisplayOptionsDidChangeNotification:
         &'static NSNotificationName;
 }

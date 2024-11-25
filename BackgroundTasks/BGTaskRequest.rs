@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGTaskRequest;
@@ -39,6 +40,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgapprefreshtaskrequest?language=objc)
     #[unsafe(super(BGTaskRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGAppRefreshTaskRequest;
@@ -74,6 +76,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgprocessingtaskrequest?language=objc)
     #[unsafe(super(BGTaskRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGProcessingTaskRequest;
@@ -121,6 +124,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bghealthresearchtaskrequest?language=objc)
     #[unsafe(super(BGProcessingTaskRequest, BGTaskRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGHealthResearchTaskRequest;

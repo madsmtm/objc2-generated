@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3d?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CATransform3D {
@@ -55,6 +56,7 @@ unsafe impl RefEncode for CATransform3D {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3didentity?language=objc)
     pub static CATransform3DIdentity: CATransform3D;
 }
 

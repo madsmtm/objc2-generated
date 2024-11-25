@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -41,10 +42,12 @@ unsafe impl RefEncode for NEAppProxyFlowError {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyerrordomain?language=objc)
     pub static NEAppProxyErrorDomain: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflow?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEAppProxyFlow;

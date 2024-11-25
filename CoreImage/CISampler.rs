@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cisampler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CISampler;
@@ -65,33 +66,41 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcisampleraffinematrix?language=objc)
     pub static kCISamplerAffineMatrix: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcisamplerwrapmode?language=objc)
     pub static kCISamplerWrapMode: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcisamplerfiltermode?language=objc)
     pub static kCISamplerFilterMode: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcisamplerwrapblack?language=objc)
     pub static kCISamplerWrapBlack: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcisamplerwrapclamp?language=objc)
     pub static kCISamplerWrapClamp: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcisamplerfilternearest?language=objc)
     pub static kCISamplerFilterNearest: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcisamplerfilterlinear?language=objc)
     pub static kCISamplerFilterLinear: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcisamplercolorspace?language=objc)
     pub static kCISamplerColorSpace: &'static NSString;
 }

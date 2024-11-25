@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domxpathnsresolver?language=objc)
     #[deprecated]
     pub unsafe trait DOMXPathNSResolver: NSObjectProtocol {
         #[deprecated]

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcustommodel?language=objc)
     pub unsafe trait MLCustomModel {
         #[cfg(feature = "MLModelDescription")]
         #[method_id(@__retain_semantics Init initWithModelDescription:parameterDictionary:error:_)]

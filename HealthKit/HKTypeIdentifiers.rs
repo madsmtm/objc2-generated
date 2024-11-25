@@ -5,860 +5,1071 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier?language=objc)
 // NS_TYPED_ENUM
 pub type HKQuantityTypeIdentifier = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierapplesleepingwristtemperature?language=objc)
     pub static HKQuantityTypeIdentifierAppleSleepingWristTemperature:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierbodyfatpercentage?language=objc)
     pub static HKQuantityTypeIdentifierBodyFatPercentage: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierbodymass?language=objc)
     pub static HKQuantityTypeIdentifierBodyMass: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierbodymassindex?language=objc)
     pub static HKQuantityTypeIdentifierBodyMassIndex: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierelectrodermalactivity?language=objc)
     pub static HKQuantityTypeIdentifierElectrodermalActivity: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierheight?language=objc)
     pub static HKQuantityTypeIdentifierHeight: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierleanbodymass?language=objc)
     pub static HKQuantityTypeIdentifierLeanBodyMass: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierwaistcircumference?language=objc)
     pub static HKQuantityTypeIdentifierWaistCircumference: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifieractiveenergyburned?language=objc)
     pub static HKQuantityTypeIdentifierActiveEnergyBurned: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierappleexercisetime?language=objc)
     pub static HKQuantityTypeIdentifierAppleExerciseTime: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierapplemovetime?language=objc)
     pub static HKQuantityTypeIdentifierAppleMoveTime: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierapplestandtime?language=objc)
     pub static HKQuantityTypeIdentifierAppleStandTime: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierbasalenergyburned?language=objc)
     pub static HKQuantityTypeIdentifierBasalEnergyBurned: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifiercrosscountryskiingspeed?language=objc)
     pub static HKQuantityTypeIdentifierCrossCountrySkiingSpeed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifiercyclingcadence?language=objc)
     pub static HKQuantityTypeIdentifierCyclingCadence: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifiercyclingfunctionalthresholdpower?language=objc)
     pub static HKQuantityTypeIdentifierCyclingFunctionalThresholdPower:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifiercyclingpower?language=objc)
     pub static HKQuantityTypeIdentifierCyclingPower: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifiercyclingspeed?language=objc)
     pub static HKQuantityTypeIdentifierCyclingSpeed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdistancecrosscountryskiing?language=objc)
     pub static HKQuantityTypeIdentifierDistanceCrossCountrySkiing:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdistancecycling?language=objc)
     pub static HKQuantityTypeIdentifierDistanceCycling: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdistancedownhillsnowsports?language=objc)
     pub static HKQuantityTypeIdentifierDistanceDownhillSnowSports:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdistancepaddlesports?language=objc)
     pub static HKQuantityTypeIdentifierDistancePaddleSports: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdistancerowing?language=objc)
     pub static HKQuantityTypeIdentifierDistanceRowing: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdistanceskatingsports?language=objc)
     pub static HKQuantityTypeIdentifierDistanceSkatingSports: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdistanceswimming?language=objc)
     pub static HKQuantityTypeIdentifierDistanceSwimming: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdistancewalkingrunning?language=objc)
     pub static HKQuantityTypeIdentifierDistanceWalkingRunning: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdistancewheelchair?language=objc)
     pub static HKQuantityTypeIdentifierDistanceWheelchair: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierestimatedworkouteffortscore?language=objc)
     pub static HKQuantityTypeIdentifierEstimatedWorkoutEffortScore:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierflightsclimbed?language=objc)
     pub static HKQuantityTypeIdentifierFlightsClimbed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifiernikefuel?language=objc)
     pub static HKQuantityTypeIdentifierNikeFuel: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierpaddlesportsspeed?language=objc)
     pub static HKQuantityTypeIdentifierPaddleSportsSpeed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierphysicaleffort?language=objc)
     pub static HKQuantityTypeIdentifierPhysicalEffort: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierpushcount?language=objc)
     pub static HKQuantityTypeIdentifierPushCount: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierrowingspeed?language=objc)
     pub static HKQuantityTypeIdentifierRowingSpeed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierrunningpower?language=objc)
     pub static HKQuantityTypeIdentifierRunningPower: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierrunningspeed?language=objc)
     pub static HKQuantityTypeIdentifierRunningSpeed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierstepcount?language=objc)
     pub static HKQuantityTypeIdentifierStepCount: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierswimmingstrokecount?language=objc)
     pub static HKQuantityTypeIdentifierSwimmingStrokeCount: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierunderwaterdepth?language=objc)
     pub static HKQuantityTypeIdentifierUnderwaterDepth: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierworkouteffortscore?language=objc)
     pub static HKQuantityTypeIdentifierWorkoutEffortScore: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierenvironmentalaudioexposure?language=objc)
     pub static HKQuantityTypeIdentifierEnvironmentalAudioExposure:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierenvironmentalsoundreduction?language=objc)
     pub static HKQuantityTypeIdentifierEnvironmentalSoundReduction:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierheadphoneaudioexposure?language=objc)
     pub static HKQuantityTypeIdentifierHeadphoneAudioExposure: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifieratrialfibrillationburden?language=objc)
     pub static HKQuantityTypeIdentifierAtrialFibrillationBurden: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierheartrate?language=objc)
     pub static HKQuantityTypeIdentifierHeartRate: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierheartraterecoveryoneminute?language=objc)
     pub static HKQuantityTypeIdentifierHeartRateRecoveryOneMinute:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierheartratevariabilitysdnn?language=objc)
     pub static HKQuantityTypeIdentifierHeartRateVariabilitySDNN: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierperipheralperfusionindex?language=objc)
     pub static HKQuantityTypeIdentifierPeripheralPerfusionIndex: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierrestingheartrate?language=objc)
     pub static HKQuantityTypeIdentifierRestingHeartRate: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifiervo2max?language=objc)
     pub static HKQuantityTypeIdentifierVO2Max: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierwalkingheartrateaverage?language=objc)
     pub static HKQuantityTypeIdentifierWalkingHeartRateAverage: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierapplewalkingsteadiness?language=objc)
     pub static HKQuantityTypeIdentifierAppleWalkingSteadiness: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierrunninggroundcontacttime?language=objc)
     pub static HKQuantityTypeIdentifierRunningGroundContactTime: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierrunningstridelength?language=objc)
     pub static HKQuantityTypeIdentifierRunningStrideLength: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierrunningverticaloscillation?language=objc)
     pub static HKQuantityTypeIdentifierRunningVerticalOscillation:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifiersixminutewalktestdistance?language=objc)
     pub static HKQuantityTypeIdentifierSixMinuteWalkTestDistance: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierstairascentspeed?language=objc)
     pub static HKQuantityTypeIdentifierStairAscentSpeed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierstairdescentspeed?language=objc)
     pub static HKQuantityTypeIdentifierStairDescentSpeed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierwalkingasymmetrypercentage?language=objc)
     pub static HKQuantityTypeIdentifierWalkingAsymmetryPercentage:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierwalkingdoublesupportpercentage?language=objc)
     pub static HKQuantityTypeIdentifierWalkingDoubleSupportPercentage:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierwalkingspeed?language=objc)
     pub static HKQuantityTypeIdentifierWalkingSpeed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierwalkingsteplength?language=objc)
     pub static HKQuantityTypeIdentifierWalkingStepLength: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietarybiotin?language=objc)
     pub static HKQuantityTypeIdentifierDietaryBiotin: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietarycaffeine?language=objc)
     pub static HKQuantityTypeIdentifierDietaryCaffeine: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietarycalcium?language=objc)
     pub static HKQuantityTypeIdentifierDietaryCalcium: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietarycarbohydrates?language=objc)
     pub static HKQuantityTypeIdentifierDietaryCarbohydrates: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietarychloride?language=objc)
     pub static HKQuantityTypeIdentifierDietaryChloride: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietarycholesterol?language=objc)
     pub static HKQuantityTypeIdentifierDietaryCholesterol: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietarychromium?language=objc)
     pub static HKQuantityTypeIdentifierDietaryChromium: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietarycopper?language=objc)
     pub static HKQuantityTypeIdentifierDietaryCopper: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryenergyconsumed?language=objc)
     pub static HKQuantityTypeIdentifierDietaryEnergyConsumed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryfatmonounsaturated?language=objc)
     pub static HKQuantityTypeIdentifierDietaryFatMonounsaturated: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryfatpolyunsaturated?language=objc)
     pub static HKQuantityTypeIdentifierDietaryFatPolyunsaturated: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryfatsaturated?language=objc)
     pub static HKQuantityTypeIdentifierDietaryFatSaturated: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryfattotal?language=objc)
     pub static HKQuantityTypeIdentifierDietaryFatTotal: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryfiber?language=objc)
     pub static HKQuantityTypeIdentifierDietaryFiber: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryfolate?language=objc)
     pub static HKQuantityTypeIdentifierDietaryFolate: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryiodine?language=objc)
     pub static HKQuantityTypeIdentifierDietaryIodine: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryiron?language=objc)
     pub static HKQuantityTypeIdentifierDietaryIron: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietarymagnesium?language=objc)
     pub static HKQuantityTypeIdentifierDietaryMagnesium: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietarymanganese?language=objc)
     pub static HKQuantityTypeIdentifierDietaryManganese: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietarymolybdenum?language=objc)
     pub static HKQuantityTypeIdentifierDietaryMolybdenum: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryniacin?language=objc)
     pub static HKQuantityTypeIdentifierDietaryNiacin: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietarypantothenicacid?language=objc)
     pub static HKQuantityTypeIdentifierDietaryPantothenicAcid: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryphosphorus?language=objc)
     pub static HKQuantityTypeIdentifierDietaryPhosphorus: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietarypotassium?language=objc)
     pub static HKQuantityTypeIdentifierDietaryPotassium: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryprotein?language=objc)
     pub static HKQuantityTypeIdentifierDietaryProtein: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryriboflavin?language=objc)
     pub static HKQuantityTypeIdentifierDietaryRiboflavin: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryselenium?language=objc)
     pub static HKQuantityTypeIdentifierDietarySelenium: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietarysodium?language=objc)
     pub static HKQuantityTypeIdentifierDietarySodium: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietarysugar?language=objc)
     pub static HKQuantityTypeIdentifierDietarySugar: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietarythiamin?language=objc)
     pub static HKQuantityTypeIdentifierDietaryThiamin: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryvitamina?language=objc)
     pub static HKQuantityTypeIdentifierDietaryVitaminA: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryvitaminb12?language=objc)
     pub static HKQuantityTypeIdentifierDietaryVitaminB12: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryvitaminb6?language=objc)
     pub static HKQuantityTypeIdentifierDietaryVitaminB6: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryvitaminc?language=objc)
     pub static HKQuantityTypeIdentifierDietaryVitaminC: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryvitamind?language=objc)
     pub static HKQuantityTypeIdentifierDietaryVitaminD: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryvitamine?language=objc)
     pub static HKQuantityTypeIdentifierDietaryVitaminE: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryvitamink?language=objc)
     pub static HKQuantityTypeIdentifierDietaryVitaminK: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietarywater?language=objc)
     pub static HKQuantityTypeIdentifierDietaryWater: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierdietaryzinc?language=objc)
     pub static HKQuantityTypeIdentifierDietaryZinc: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierbloodalcoholcontent?language=objc)
     pub static HKQuantityTypeIdentifierBloodAlcoholContent: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierbloodpressurediastolic?language=objc)
     pub static HKQuantityTypeIdentifierBloodPressureDiastolic: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierbloodpressuresystolic?language=objc)
     pub static HKQuantityTypeIdentifierBloodPressureSystolic: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierinsulindelivery?language=objc)
     pub static HKQuantityTypeIdentifierInsulinDelivery: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifiernumberofalcoholicbeverages?language=objc)
     pub static HKQuantityTypeIdentifierNumberOfAlcoholicBeverages:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifiernumberoftimesfallen?language=objc)
     pub static HKQuantityTypeIdentifierNumberOfTimesFallen: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifiertimeindaylight?language=objc)
     pub static HKQuantityTypeIdentifierTimeInDaylight: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifieruvexposure?language=objc)
     pub static HKQuantityTypeIdentifierUVExposure: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierwatertemperature?language=objc)
     pub static HKQuantityTypeIdentifierWaterTemperature: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierbasalbodytemperature?language=objc)
     pub static HKQuantityTypeIdentifierBasalBodyTemperature: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierapplesleepingbreathingdisturbances?language=objc)
     pub static HKQuantityTypeIdentifierAppleSleepingBreathingDisturbances:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierforcedexpiratoryvolume1?language=objc)
     pub static HKQuantityTypeIdentifierForcedExpiratoryVolume1: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierforcedvitalcapacity?language=objc)
     pub static HKQuantityTypeIdentifierForcedVitalCapacity: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierinhalerusage?language=objc)
     pub static HKQuantityTypeIdentifierInhalerUsage: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifieroxygensaturation?language=objc)
     pub static HKQuantityTypeIdentifierOxygenSaturation: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierpeakexpiratoryflowrate?language=objc)
     pub static HKQuantityTypeIdentifierPeakExpiratoryFlowRate: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierrespiratoryrate?language=objc)
     pub static HKQuantityTypeIdentifierRespiratoryRate: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierbloodglucose?language=objc)
     pub static HKQuantityTypeIdentifierBloodGlucose: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierbodytemperature?language=objc)
     pub static HKQuantityTypeIdentifierBodyTemperature: &'static HKQuantityTypeIdentifier;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier?language=objc)
 // NS_TYPED_ENUM
 pub type HKCategoryTypeIdentifier = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierapplestandhour?language=objc)
     pub static HKCategoryTypeIdentifierAppleStandHour: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierenvironmentalaudioexposureevent?language=objc)
     pub static HKCategoryTypeIdentifierEnvironmentalAudioExposureEvent:
         &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierheadphoneaudioexposureevent?language=objc)
     pub static HKCategoryTypeIdentifierHeadphoneAudioExposureEvent:
         &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierhighheartrateevent?language=objc)
     pub static HKCategoryTypeIdentifierHighHeartRateEvent: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierirregularheartrhythmevent?language=objc)
     pub static HKCategoryTypeIdentifierIrregularHeartRhythmEvent: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierlowcardiofitnessevent?language=objc)
     pub static HKCategoryTypeIdentifierLowCardioFitnessEvent: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierlowheartrateevent?language=objc)
     pub static HKCategoryTypeIdentifierLowHeartRateEvent: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiermindfulsession?language=objc)
     pub static HKCategoryTypeIdentifierMindfulSession: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierapplewalkingsteadinessevent?language=objc)
     pub static HKCategoryTypeIdentifierAppleWalkingSteadinessEvent:
         &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierhandwashingevent?language=objc)
     pub static HKCategoryTypeIdentifierHandwashingEvent: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiertoothbrushingevent?language=objc)
     pub static HKCategoryTypeIdentifierToothbrushingEvent: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierbleedingafterpregnancy?language=objc)
     pub static HKCategoryTypeIdentifierBleedingAfterPregnancy: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierbleedingduringpregnancy?language=objc)
     pub static HKCategoryTypeIdentifierBleedingDuringPregnancy: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiercervicalmucusquality?language=objc)
     pub static HKCategoryTypeIdentifierCervicalMucusQuality: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiercontraceptive?language=objc)
     pub static HKCategoryTypeIdentifierContraceptive: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierinfrequentmenstrualcycles?language=objc)
     pub static HKCategoryTypeIdentifierInfrequentMenstrualCycles: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierintermenstrualbleeding?language=objc)
     pub static HKCategoryTypeIdentifierIntermenstrualBleeding: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierirregularmenstrualcycles?language=objc)
     pub static HKCategoryTypeIdentifierIrregularMenstrualCycles: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierlactation?language=objc)
     pub static HKCategoryTypeIdentifierLactation: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiermenstrualflow?language=objc)
     pub static HKCategoryTypeIdentifierMenstrualFlow: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierovulationtestresult?language=objc)
     pub static HKCategoryTypeIdentifierOvulationTestResult: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierpersistentintermenstrualbleeding?language=objc)
     pub static HKCategoryTypeIdentifierPersistentIntermenstrualBleeding:
         &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierpregnancy?language=objc)
     pub static HKCategoryTypeIdentifierPregnancy: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierpregnancytestresult?language=objc)
     pub static HKCategoryTypeIdentifierPregnancyTestResult: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierprogesteronetestresult?language=objc)
     pub static HKCategoryTypeIdentifierProgesteroneTestResult: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierprolongedmenstrualperiods?language=objc)
     pub static HKCategoryTypeIdentifierProlongedMenstrualPeriods: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiersexualactivity?language=objc)
     pub static HKCategoryTypeIdentifierSexualActivity: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiersleepapneaevent?language=objc)
     pub static HKCategoryTypeIdentifierSleepApneaEvent: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiersleepanalysis?language=objc)
     pub static HKCategoryTypeIdentifierSleepAnalysis: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierabdominalcramps?language=objc)
     pub static HKCategoryTypeIdentifierAbdominalCramps: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifieracne?language=objc)
     pub static HKCategoryTypeIdentifierAcne: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierappetitechanges?language=objc)
     pub static HKCategoryTypeIdentifierAppetiteChanges: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierbladderincontinence?language=objc)
     pub static HKCategoryTypeIdentifierBladderIncontinence: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierbloating?language=objc)
     pub static HKCategoryTypeIdentifierBloating: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierbreastpain?language=objc)
     pub static HKCategoryTypeIdentifierBreastPain: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierchesttightnessorpain?language=objc)
     pub static HKCategoryTypeIdentifierChestTightnessOrPain: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierchills?language=objc)
     pub static HKCategoryTypeIdentifierChills: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierconstipation?language=objc)
     pub static HKCategoryTypeIdentifierConstipation: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiercoughing?language=objc)
     pub static HKCategoryTypeIdentifierCoughing: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierdiarrhea?language=objc)
     pub static HKCategoryTypeIdentifierDiarrhea: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierdizziness?language=objc)
     pub static HKCategoryTypeIdentifierDizziness: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierdryskin?language=objc)
     pub static HKCategoryTypeIdentifierDrySkin: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierfainting?language=objc)
     pub static HKCategoryTypeIdentifierFainting: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierfatigue?language=objc)
     pub static HKCategoryTypeIdentifierFatigue: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierfever?language=objc)
     pub static HKCategoryTypeIdentifierFever: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiergeneralizedbodyache?language=objc)
     pub static HKCategoryTypeIdentifierGeneralizedBodyAche: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierhairloss?language=objc)
     pub static HKCategoryTypeIdentifierHairLoss: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierheadache?language=objc)
     pub static HKCategoryTypeIdentifierHeadache: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierheartburn?language=objc)
     pub static HKCategoryTypeIdentifierHeartburn: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierhotflashes?language=objc)
     pub static HKCategoryTypeIdentifierHotFlashes: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierlossofsmell?language=objc)
     pub static HKCategoryTypeIdentifierLossOfSmell: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierlossoftaste?language=objc)
     pub static HKCategoryTypeIdentifierLossOfTaste: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierlowerbackpain?language=objc)
     pub static HKCategoryTypeIdentifierLowerBackPain: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiermemorylapse?language=objc)
     pub static HKCategoryTypeIdentifierMemoryLapse: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiermoodchanges?language=objc)
     pub static HKCategoryTypeIdentifierMoodChanges: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiernausea?language=objc)
     pub static HKCategoryTypeIdentifierNausea: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiernightsweats?language=objc)
     pub static HKCategoryTypeIdentifierNightSweats: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierpelvicpain?language=objc)
     pub static HKCategoryTypeIdentifierPelvicPain: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierrapidpoundingorflutteringheartbeat?language=objc)
     pub static HKCategoryTypeIdentifierRapidPoundingOrFlutteringHeartbeat:
         &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierrunnynose?language=objc)
     pub static HKCategoryTypeIdentifierRunnyNose: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiershortnessofbreath?language=objc)
     pub static HKCategoryTypeIdentifierShortnessOfBreath: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiersinuscongestion?language=objc)
     pub static HKCategoryTypeIdentifierSinusCongestion: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierskippedheartbeat?language=objc)
     pub static HKCategoryTypeIdentifierSkippedHeartbeat: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiersleepchanges?language=objc)
     pub static HKCategoryTypeIdentifierSleepChanges: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiersorethroat?language=objc)
     pub static HKCategoryTypeIdentifierSoreThroat: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiervaginaldryness?language=objc)
     pub static HKCategoryTypeIdentifierVaginalDryness: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiervomiting?language=objc)
     pub static HKCategoryTypeIdentifierVomiting: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierwheezing?language=objc)
     pub static HKCategoryTypeIdentifierWheezing: &'static HKCategoryTypeIdentifier;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifier?language=objc)
 // NS_TYPED_ENUM
 pub type HKCharacteristicTypeIdentifier = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifieractivitymovemode?language=objc)
     pub static HKCharacteristicTypeIdentifierActivityMoveMode:
         &'static HKCharacteristicTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifierbiologicalsex?language=objc)
     pub static HKCharacteristicTypeIdentifierBiologicalSex: &'static HKCharacteristicTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifierbloodtype?language=objc)
     pub static HKCharacteristicTypeIdentifierBloodType: &'static HKCharacteristicTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifierdateofbirth?language=objc)
     pub static HKCharacteristicTypeIdentifierDateOfBirth: &'static HKCharacteristicTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifierfitzpatrickskintype?language=objc)
     pub static HKCharacteristicTypeIdentifierFitzpatrickSkinType:
         &'static HKCharacteristicTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifierwheelchairuse?language=objc)
     pub static HKCharacteristicTypeIdentifierWheelchairUse: &'static HKCharacteristicTypeIdentifier;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcorrelationtypeidentifier?language=objc)
 // NS_TYPED_ENUM
 pub type HKCorrelationTypeIdentifier = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcorrelationtypeidentifierbloodpressure?language=objc)
     pub static HKCorrelationTypeIdentifierBloodPressure: &'static HKCorrelationTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcorrelationtypeidentifierfood?language=objc)
     pub static HKCorrelationTypeIdentifierFood: &'static HKCorrelationTypeIdentifier;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdocumenttypeidentifier?language=objc)
 // NS_TYPED_ENUM
 pub type HKDocumentTypeIdentifier = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdocumenttypeidentifiercda?language=objc)
     pub static HKDocumentTypeIdentifierCDA: &'static HKDocumentTypeIdentifier;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkscoredassessmenttypeidentifier?language=objc)
 // NS_TYPED_ENUM
 pub type HKScoredAssessmentTypeIdentifier = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkscoredassessmenttypeidentifiergad7?language=objc)
     pub static HKScoredAssessmentTypeIdentifierGAD7: &'static HKScoredAssessmentTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkscoredassessmenttypeidentifierphq9?language=objc)
     pub static HKScoredAssessmentTypeIdentifierPHQ9: &'static HKScoredAssessmentTypeIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouttypeidentifier?language=objc)
     pub static HKWorkoutTypeIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutroutetypeidentifier?language=objc)
     pub static HKWorkoutRouteTypeIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdatatypeidentifierheartbeatseries?language=objc)
     pub static HKDataTypeIdentifierHeartbeatSeries: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisionprescriptiontypeidentifier?language=objc)
     pub static HKVisionPrescriptionTypeIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdatatypeidentifierstateofmind?language=objc)
     pub static HKDataTypeIdentifierStateOfMind: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifieraudioexposureevent?language=objc)
     pub static HKCategoryTypeIdentifierAudioExposureEvent: &'static HKCategoryTypeIdentifier;
 }

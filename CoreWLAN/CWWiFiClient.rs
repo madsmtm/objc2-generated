@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cweventdelegate?language=objc)
     pub unsafe trait CWEventDelegate {
         #[optional]
         #[method(clientConnectionInterrupted)]
@@ -57,6 +58,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwwificlient?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWWiFiClient;

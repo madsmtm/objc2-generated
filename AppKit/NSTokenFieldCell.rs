@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -31,6 +32,7 @@ unsafe impl RefEncode for NSTokenStyle {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenfieldcell?language=objc)
     #[unsafe(super(NSTextFieldCell, NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -195,6 +197,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenfieldcelldelegate?language=objc)
     pub unsafe trait NSTokenFieldCellDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "NSActionCell",
@@ -337,8 +340,11 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSTokenFieldCellDelegate {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdefaulttokenstyle?language=objc)
 pub static NSDefaultTokenStyle: NSTokenStyle = NSTokenStyle(NSTokenStyle::Default.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsplaintexttokenstyle?language=objc)
 pub static NSPlainTextTokenStyle: NSTokenStyle = NSTokenStyle(NSTokenStyle::None.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsroundedtokenstyle?language=objc)
 pub static NSRoundedTokenStyle: NSTokenStyle = NSTokenStyle(NSTokenStyle::Rounded.0);

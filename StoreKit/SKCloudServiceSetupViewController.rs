@@ -8,16 +8,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionskey?language=objc)
 // NS_TYPED_ENUM
 pub type SKCloudServiceSetupOptionsKey = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupaction?language=objc)
 // NS_TYPED_ENUM
 pub type SKCloudServiceSetupAction = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifier?language=objc)
 // NS_TYPED_ENUM
 pub type SKCloudServiceSetupMessageIdentifier = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -116,6 +120,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupviewcontrollerdelegate?language=objc)
     #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
     pub unsafe trait SKCloudServiceSetupViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
@@ -133,47 +138,57 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsactionkey?language=objc)
     pub static SKCloudServiceSetupOptionsActionKey: &'static SKCloudServiceSetupOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsitunesitemidentifierkey?language=objc)
     pub static SKCloudServiceSetupOptionsITunesItemIdentifierKey:
         &'static SKCloudServiceSetupOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsaffiliatetokenkey?language=objc)
     pub static SKCloudServiceSetupOptionsAffiliateTokenKey: &'static SKCloudServiceSetupOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionscampaigntokenkey?language=objc)
     pub static SKCloudServiceSetupOptionsCampaignTokenKey: &'static SKCloudServiceSetupOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsmessageidentifierkey?language=objc)
     pub static SKCloudServiceSetupOptionsMessageIdentifierKey:
         &'static SKCloudServiceSetupOptionsKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupactionsubscribe?language=objc)
     pub static SKCloudServiceSetupActionSubscribe: &'static SKCloudServiceSetupAction;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifierjoin?language=objc)
     pub static SKCloudServiceSetupMessageIdentifierJoin:
         &'static SKCloudServiceSetupMessageIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifierconnect?language=objc)
     pub static SKCloudServiceSetupMessageIdentifierConnect:
         &'static SKCloudServiceSetupMessageIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifieraddmusic?language=objc)
     pub static SKCloudServiceSetupMessageIdentifierAddMusic:
         &'static SKCloudServiceSetupMessageIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifierplaymusic?language=objc)
     pub static SKCloudServiceSetupMessageIdentifierPlayMusic:
         &'static SKCloudServiceSetupMessageIdentifier;
 }

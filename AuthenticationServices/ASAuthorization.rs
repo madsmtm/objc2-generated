@@ -5,18 +5,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationscope?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationScope = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationscopefullname?language=objc)
     pub static ASAuthorizationScopeFullName: &'static ASAuthorizationScope;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationscopeemail?language=objc)
     pub static ASAuthorizationScopeEmail: &'static ASAuthorizationScope;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorization?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorization;

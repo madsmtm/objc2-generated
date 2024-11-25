@@ -5,130 +5,162 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption?language=objc)
 // NS_TYPED_ENUM
 pub type CIRAWFilterOption = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputallowdraftmodekey?language=objc)
     pub static kCIInputAllowDraftModeKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputdecoderversionkey?language=objc)
     pub static kCIInputDecoderVersionKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcisupporteddecoderversionskey?language=objc)
     pub static kCISupportedDecoderVersionsKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputbaselineexposurekey?language=objc)
     pub static kCIInputBaselineExposureKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputboostkey?language=objc)
     pub static kCIInputBoostKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputboostshadowamountkey?language=objc)
     pub static kCIInputBoostShadowAmountKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputdisablegamutmapkey?language=objc)
     pub static kCIInputDisableGamutMapKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputneutralchromaticityxkey?language=objc)
     pub static kCIInputNeutralChromaticityXKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputneutralchromaticityykey?language=objc)
     pub static kCIInputNeutralChromaticityYKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputneutraltemperaturekey?language=objc)
     pub static kCIInputNeutralTemperatureKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputneutraltintkey?language=objc)
     pub static kCIInputNeutralTintKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputneutrallocationkey?language=objc)
     pub static kCIInputNeutralLocationKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputscalefactorkey?language=objc)
     pub static kCIInputScaleFactorKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputignoreimageorientationkey?language=objc)
     pub static kCIInputIgnoreImageOrientationKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputimageorientationkey?language=objc)
     pub static kCIInputImageOrientationKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputenablesharpeningkey?language=objc)
     pub static kCIInputEnableSharpeningKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputenablechromaticnoisetrackingkey?language=objc)
     pub static kCIInputEnableChromaticNoiseTrackingKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputnoisereductionamountkey?language=objc)
     pub static kCIInputNoiseReductionAmountKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputmoireamountkey?language=objc)
     pub static kCIInputMoireAmountKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputenablevendorlenscorrectionkey?language=objc)
     pub static kCIInputEnableVendorLensCorrectionKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputluminancenoisereductionamountkey?language=objc)
     pub static kCIInputLuminanceNoiseReductionAmountKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputcolornoisereductionamountkey?language=objc)
     pub static kCIInputColorNoiseReductionAmountKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputnoisereductionsharpnessamountkey?language=objc)
     pub static kCIInputNoiseReductionSharpnessAmountKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputnoisereductioncontrastamountkey?language=objc)
     pub static kCIInputNoiseReductionContrastAmountKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputnoisereductiondetailamountkey?language=objc)
     pub static kCIInputNoiseReductionDetailAmountKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputenableedrmodekey?language=objc)
     pub static kCIInputEnableEDRModeKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputlocaltonemapamountkey?language=objc)
     pub static kCIInputLocalToneMapAmountKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputlinearspacefilter?language=objc)
     pub static kCIInputLinearSpaceFilter: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcioutputnativesizekey?language=objc)
     pub static kCIOutputNativeSizeKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciactivekeys?language=objc)
     pub static kCIActiveKeys: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcipropertieskey?language=objc)
     pub static kCIPropertiesKey: Option<&'static CIRAWFilterOption>;
 }
 

@@ -8,6 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEComposeSession;
@@ -44,9 +45,11 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesessionerrordomain?language=objc)
     pub static MEComposeSessionErrorDomain: &'static NSErrorDomain;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesessionerrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -69,6 +72,7 @@ unsafe impl RefEncode for MEComposeSessionErrorCode {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesessionhandler?language=objc)
     pub unsafe trait MEComposeSessionHandler: NSObjectProtocol + MainThreadOnly {
         #[method(mailComposeSessionDidBegin:)]
         unsafe fn mailComposeSessionDidBegin(&self, session: &MEComposeSession);

@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitimingcurvetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,6 +30,7 @@ unsafe impl RefEncode for UITimingCurveType {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitimingcurveprovider?language=objc)
     pub unsafe trait UITimingCurveProvider: NSCoding + NSCopying + MainThreadOnly {
         #[method(timingCurveType)]
         unsafe fn timingCurveType(&self) -> UITimingCurveType;

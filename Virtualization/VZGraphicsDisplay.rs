@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzgraphicsdisplay?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZGraphicsDisplay;
@@ -49,6 +50,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzgraphicsdisplayobserver?language=objc)
     pub unsafe trait VZGraphicsDisplayObserver: NSObjectProtocol {
         #[optional]
         #[method(displayDidBeginReconfiguration:)]

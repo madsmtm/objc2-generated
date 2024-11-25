@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcursorview?language=objc)
     #[cfg(feature = "UIView")]
     pub unsafe trait UITextCursorView: UICoordinateSpace + MainThreadOnly {
         #[method(isBlinking)]

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nisession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NISession;
@@ -61,6 +62,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobjectremovalreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -80,6 +82,7 @@ unsafe impl RefEncode for NINearbyObjectRemovalReason {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -102,6 +105,7 @@ unsafe impl RefEncode for NIAlgorithmConvergenceStatus {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergence?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NIAlgorithmConvergence;
@@ -137,6 +141,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nisessiondelegate?language=objc)
     pub unsafe trait NISessionDelegate: NSObjectProtocol {
         #[cfg(feature = "NINearbyObject")]
         #[optional]

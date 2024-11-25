@@ -6,10 +6,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiproposedscenesizenopreference?language=objc)
     pub static UIProposedSceneSizeNoPreference: CGFloat;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenegeometrypreferencesvision?language=objc)
     #[unsafe(super(UIWindowSceneGeometryPreferences, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]

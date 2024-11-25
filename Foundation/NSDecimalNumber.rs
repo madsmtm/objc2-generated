@@ -5,26 +5,31 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberexactnessexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberExactnessException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberoverflowexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberOverflowException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberunderflowexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberUnderflowException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberdividebyzeroexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberDivideByZeroException: &'static NSExceptionName;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberbehaviors?language=objc)
     pub unsafe trait NSDecimalNumberBehaviors {
         #[cfg(feature = "NSDecimal")]
         #[method(roundingMode)]
@@ -48,6 +53,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber?language=objc)
     #[unsafe(super(NSNumber, NSValue, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSValue")]
@@ -300,6 +306,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberhandler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDecimalNumberHandler;

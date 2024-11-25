@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -37,6 +38,7 @@ unsafe impl RefEncode for NSFileProviderTestingOperationType {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperation?language=objc)
     pub unsafe trait NSFileProviderTestingOperation: NSObjectProtocol {
         #[method(type)]
         unsafe fn r#type(&self) -> NSFileProviderTestingOperationType;
@@ -108,6 +110,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationside?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -128,6 +131,7 @@ unsafe impl RefEncode for NSFileProviderTestingOperationSide {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingingestion?language=objc)
     pub unsafe trait NSFileProviderTestingIngestion: NSFileProviderTestingOperation {
         #[method(side)]
         unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
@@ -145,6 +149,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestinglookup?language=objc)
     pub unsafe trait NSFileProviderTestingLookup: NSFileProviderTestingOperation {
         #[method(side)]
         unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
@@ -158,6 +163,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingcreation?language=objc)
     pub unsafe trait NSFileProviderTestingCreation: NSFileProviderTestingOperation {
         #[method(targetSide)]
         unsafe fn targetSide(&self) -> NSFileProviderTestingOperationSide;
@@ -175,6 +181,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingmodification?language=objc)
     pub unsafe trait NSFileProviderTestingModification:
         NSFileProviderTestingOperation
     {
@@ -206,6 +213,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingdeletion?language=objc)
     pub unsafe trait NSFileProviderTestingDeletion: NSFileProviderTestingOperation {
         #[method(targetSide)]
         unsafe fn targetSide(&self) -> NSFileProviderTestingOperationSide;
@@ -231,6 +239,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingcontentfetch?language=objc)
     pub unsafe trait NSFileProviderTestingContentFetch:
         NSFileProviderTestingOperation
     {
@@ -246,6 +255,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingchildrenenumeration?language=objc)
     pub unsafe trait NSFileProviderTestingChildrenEnumeration:
         NSFileProviderTestingOperation
     {
@@ -261,6 +271,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingcollisionresolution?language=objc)
     pub unsafe trait NSFileProviderTestingCollisionResolution:
         NSFileProviderTestingOperation
     {

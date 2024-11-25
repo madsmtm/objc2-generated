@@ -5,11 +5,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshowcontrolglyphs?language=objc)
 pub const NSShowControlGlyphs: c_uint = 1 << 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshowinvisibleglyphs?language=objc)
 pub const NSShowInvisibleGlyphs: c_uint = 1 << 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswantsbidilevels?language=objc)
 pub const NSWantsBidiLevels: c_uint = 1 << 2;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphstorage?language=objc)
     pub unsafe trait NSGlyphStorage {
         #[cfg(feature = "NSFont")]
         #[method(insertGlyphs:length:forStartingGlyphAtIndex:characterIndex:)]
@@ -40,6 +44,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphgenerator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGlyphGenerator;

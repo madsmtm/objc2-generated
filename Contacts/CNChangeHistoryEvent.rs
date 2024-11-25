@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryEvent;
@@ -45,6 +46,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistorydropeverythingevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryDropEverythingEvent;
@@ -78,6 +80,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryaddcontactevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryAddContactEvent;
@@ -118,6 +121,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryupdatecontactevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryUpdateContactEvent;
@@ -155,6 +159,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistorydeletecontactevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryDeleteContactEvent;
@@ -191,6 +196,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryaddgroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryAddGroupEvent;
@@ -231,6 +237,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryupdategroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryUpdateGroupEvent;
@@ -268,6 +275,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistorydeletegroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryDeleteGroupEvent;
@@ -304,6 +312,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryaddmembertogroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryAddMemberToGroupEvent;
@@ -345,6 +354,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryremovememberfromgroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryRemoveMemberFromGroupEvent;
@@ -386,6 +396,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryaddsubgrouptogroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryAddSubgroupToGroupEvent;
@@ -427,6 +438,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryremovesubgroupfromgroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryRemoveSubgroupFromGroupEvent;
@@ -468,6 +480,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor?language=objc)
     pub unsafe trait CNChangeHistoryEventVisitor: NSObjectProtocol {
         #[method(visitDropEverythingEvent:)]
         unsafe fn visitDropEverythingEvent(&self, event: &CNChangeHistoryDropEverythingEvent);

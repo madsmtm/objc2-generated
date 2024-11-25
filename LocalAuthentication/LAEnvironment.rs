@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laenvironment?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LAEnvironment;
@@ -36,6 +37,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laenvironmentobserver?language=objc)
     pub unsafe trait LAEnvironmentObserver: NSObjectProtocol {
         #[cfg(feature = "LAEnvironmentState")]
         #[optional]

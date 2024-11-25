@@ -9,6 +9,7 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscreen?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -101,6 +102,7 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscreencolorspacedidchangenotification?language=objc)
     pub static NSScreenColorSpaceDidChangeNotification: &'static NSNotificationName;
 }
 

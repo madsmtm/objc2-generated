@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidragdropsession?language=objc)
     pub unsafe trait UIDragDropSession: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIDragItem")]
         #[method_id(@__retain_semantics Other items)]
@@ -35,6 +36,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidragsession?language=objc)
     pub unsafe trait UIDragSession: UIDragDropSession + MainThreadOnly {
         #[method_id(@__retain_semantics Other localContext)]
         unsafe fn localContext(&self) -> Option<Retained<AnyObject>>;
@@ -46,6 +48,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UIDragSession {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropsessionprogressindicatorstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -66,6 +69,7 @@ unsafe impl RefEncode for UIDropSessionProgressIndicatorStyle {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropsession?language=objc)
     pub unsafe trait UIDropSession:
         NSProgressReporting + UIDragDropSession + MainThreadOnly
     {

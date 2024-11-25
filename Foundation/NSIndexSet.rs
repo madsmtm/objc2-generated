@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsindexset?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSIndexSet;
@@ -223,6 +224,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutableindexset?language=objc)
     #[unsafe(super(NSIndexSet, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableIndexSet;

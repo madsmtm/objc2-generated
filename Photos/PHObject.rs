@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHObject;
@@ -42,6 +43,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phobjectplaceholder?language=objc)
     #[unsafe(super(PHObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHObjectPlaceholder;

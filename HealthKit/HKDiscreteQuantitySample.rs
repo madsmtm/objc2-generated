@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample?language=objc)
     #[unsafe(super(HKQuantitySample, HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -146,29 +147,36 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmin?language=objc)
     pub static HKPredicateKeyPathMin: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathaverage?language=objc)
     pub static HKPredicateKeyPathAverage: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmax?language=objc)
     pub static HKPredicateKeyPathMax: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecent?language=objc)
     pub static HKPredicateKeyPathMostRecent: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecentstartdate?language=objc)
     pub static HKPredicateKeyPathMostRecentStartDate: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecentenddate?language=objc)
     pub static HKPredicateKeyPathMostRecentEndDate: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecentduration?language=objc)
     pub static HKPredicateKeyPathMostRecentDuration: &'static NSString;
 }

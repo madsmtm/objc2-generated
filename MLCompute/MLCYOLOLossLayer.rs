@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcyololosslayer?language=objc)
     #[unsafe(super(MLCLossLayer, MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MLCLayer", feature = "MLCLossLayer"))]

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackrectanglerequest?language=objc)
     #[unsafe(super(VNTrackingRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
@@ -62,4 +63,5 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackrectanglerequestrevision1?language=objc)
 pub static VNTrackRectangleRequestRevision1: NSUInteger = 1;

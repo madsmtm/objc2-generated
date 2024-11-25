@@ -4,13 +4,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitecturei386?language=objc)
 pub const NSBundleExecutableArchitectureI386: c_uint = 0x00000007;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitectureppc?language=objc)
 pub const NSBundleExecutableArchitecturePPC: c_uint = 0x00000012;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitecturex86_64?language=objc)
 pub const NSBundleExecutableArchitectureX86_64: c_uint = 0x01000007;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitectureppc64?language=objc)
 pub const NSBundleExecutableArchitecturePPC64: c_uint = 0x01000012;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitecturearm64?language=objc)
 pub const NSBundleExecutableArchitectureARM64: c_uint = 0x0100000c;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundle?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBundle;
@@ -364,16 +370,19 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundledidloadnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSBundleDidLoadNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsloadedclasses?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLoadedClasses: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleresourcerequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBundleResourceRequest;
@@ -464,10 +473,12 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleresourcerequestlowdiskspacenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSBundleResourceRequestLowDiskSpaceNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleresourcerequestloadingpriorityurgent?language=objc)
     pub static NSBundleResourceRequestLoadingPriorityUrgent: c_double;
 }

@@ -7,6 +7,7 @@ use objc2_contacts::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contactsui/cncontactpickerdelegate?language=objc)
     pub unsafe trait CNContactPickerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "CNContactPicker", feature = "objc2-contacts"))]
         #[optional]

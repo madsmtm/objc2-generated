@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcursoraccessoryplacement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -39,6 +40,7 @@ unsafe impl RefEncode for NSTextCursorAccessoryPlacement {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputclient?language=objc)
     pub unsafe trait NSTextInputClient {
         #[method(insertText:replacementRange:)]
         unsafe fn insertText_replacementRange(

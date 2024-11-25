@@ -4,31 +4,38 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtablestrongmemory?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSHashTableStrongMemory: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsStrongMemory.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtablezeroingweakmemory?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSHashTableZeroingWeakMemory: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsZeroingWeakMemory.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtablecopyin?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSHashTableCopyIn: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsCopyIn.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtableobjectpointerpersonality?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSHashTableObjectPointerPersonality: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(
         NSPointerFunctionsOptions::NSPointerFunctionsObjectPointerPersonality.0,
     );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtableweakmemory?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSHashTableWeakMemory: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsWeakMemory.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtableoptions?language=objc)
 pub type NSHashTableOptions = NSUInteger;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtable?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHashTable<ObjectType: ?Sized = AnyObject>;
@@ -152,6 +159,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashenumerator?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSHashEnumerator {
@@ -238,6 +246,7 @@ extern "C-unwind" {
     pub fn NSAllHashTableObjects(table: &NSHashTable) -> NonNull<NSArray>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtablecallbacks?language=objc)
 #[cfg(feature = "NSString")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -300,41 +309,49 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintegerhashcallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIntegerHashCallBacks: NSHashTableCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnonownedpointerhashcallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSNonOwnedPointerHashCallBacks: NSHashTableCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnonretainedobjecthashcallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSNonRetainedObjectHashCallBacks: NSHashTableCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsobjecthashcallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSObjectHashCallBacks: NSHashTableCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsownedobjectidentityhashcallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSOwnedObjectIdentityHashCallBacks: NSHashTableCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsownedpointerhashcallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSOwnedPointerHashCallBacks: NSHashTableCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointertostructhashcallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSPointerToStructHashCallBacks: NSHashTableCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinthashcallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIntHashCallBacks: NSHashTableCallBacks;
 }

@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationactivationtype?language=objc)
 // NS_ENUM
 #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
 #[repr(transparent)]
@@ -34,6 +35,7 @@ unsafe impl RefEncode for NSUserNotificationActivationType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotification?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
@@ -239,6 +241,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationaction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
@@ -289,11 +292,13 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationdefaultsoundname?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSUserNotificationDefaultSoundName: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationcenter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
@@ -373,6 +378,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationcenterdelegate?language=objc)
     pub unsafe trait NSUserNotificationCenterDelegate: NSObjectProtocol {
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[optional]

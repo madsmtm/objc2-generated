@@ -5,22 +5,27 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadnetworkcoarseconversionvalue?language=objc)
 // NS_TYPED_ENUM
 pub type SKAdNetworkCoarseConversionValue = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadnetworkcoarseconversionvaluehigh?language=objc)
     pub static SKAdNetworkCoarseConversionValueHigh: &'static SKAdNetworkCoarseConversionValue;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadnetworkcoarseconversionvaluemedium?language=objc)
     pub static SKAdNetworkCoarseConversionValueMedium: &'static SKAdNetworkCoarseConversionValue;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadnetworkcoarseconversionvaluelow?language=objc)
     pub static SKAdNetworkCoarseConversionValueLow: &'static SKAdNetworkCoarseConversionValue;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadnetwork?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKAdNetwork;
@@ -90,33 +95,41 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworkattributionsignature?language=objc)
     pub static SKStoreProductParameterAdNetworkAttributionSignature: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworkcampaignidentifier?language=objc)
     pub static SKStoreProductParameterAdNetworkCampaignIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworksourceidentifier?language=objc)
     pub static SKStoreProductParameterAdNetworkSourceIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworkidentifier?language=objc)
     pub static SKStoreProductParameterAdNetworkIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworknonce?language=objc)
     pub static SKStoreProductParameterAdNetworkNonce: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworktimestamp?language=objc)
     pub static SKStoreProductParameterAdNetworkTimestamp: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworksourceappstoreidentifier?language=objc)
     pub static SKStoreProductParameterAdNetworkSourceAppStoreIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworkversion?language=objc)
     pub static SKStoreProductParameterAdNetworkVersion: &'static NSString;
 }

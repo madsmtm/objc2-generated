@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldispatchthreadgroupsindirectarguments?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLDispatchThreadgroupsIndirectArguments {
@@ -19,6 +20,7 @@ unsafe impl RefEncode for MTLDispatchThreadgroupsIndirectArguments {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstageinregionindirectarguments?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLStageInRegionIndirectArguments {
@@ -35,6 +37,7 @@ unsafe impl RefEncode for MTLStageInRegionIndirectArguments {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomputecommandencoder?language=objc)
     #[cfg(feature = "MTLCommandEncoder")]
     pub unsafe trait MTLComputeCommandEncoder: MTLCommandEncoder {
         #[cfg(feature = "MTLCommandBuffer")]

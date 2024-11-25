@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontrollerarrowdirection?language=objc)
 // NS_ENUM
 #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
 #[repr(transparent)]
@@ -28,6 +29,7 @@ unsafe impl RefEncode for UIMenuControllerArrowDirection {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -105,26 +107,32 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontrollerwillshowmenunotification?language=objc)
     pub static UIMenuControllerWillShowMenuNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontrollerdidshowmenunotification?language=objc)
     pub static UIMenuControllerDidShowMenuNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontrollerwillhidemenunotification?language=objc)
     pub static UIMenuControllerWillHideMenuNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontrollerdidhidemenunotification?language=objc)
     pub static UIMenuControllerDidHideMenuNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontrollermenuframedidchangenotification?language=objc)
     pub static UIMenuControllerMenuFrameDidChangeNotification: &'static NSNotificationName;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuitem?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

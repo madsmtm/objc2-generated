@@ -5,10 +5,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkobserverquerycompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type HKObserverQueryCompletionHandler = *mut block2::Block<dyn Fn()>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkobserverquery?language=objc)
     #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]

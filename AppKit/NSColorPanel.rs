@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanelmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -38,6 +39,7 @@ unsafe impl RefEncode for NSColorPanelMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpaneloptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -65,6 +67,7 @@ unsafe impl RefEncode for NSColorPanelOptions {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel?language=objc)
     #[unsafe(super(NSPanel, NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
@@ -273,6 +276,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorchanging?language=objc)
     pub unsafe trait NSColorChanging: NSObjectProtocol {
         #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
         #[method(changeColor:)]
@@ -283,25 +287,35 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanelcolordidchangenotification?language=objc)
     pub static NSColorPanelColorDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnomodecolorpanel?language=objc)
 pub static NSNoModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::None.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraymodecolorpanel?language=objc)
 pub static NSGrayModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::Gray.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrgbmodecolorpanel?language=objc)
 pub static NSRGBModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::RGB.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscmykmodecolorpanel?language=objc)
 pub static NSCMYKModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::CMYK.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshsbmodecolorpanel?language=objc)
 pub static NSHSBModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::HSB.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscustompalettemodecolorpanel?language=objc)
 pub static NSCustomPaletteModeColorPanel: NSColorPanelMode =
     NSColorPanelMode(NSColorPanelMode::CustomPalette.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorlistmodecolorpanel?language=objc)
 pub static NSColorListModeColorPanel: NSColorPanelMode =
     NSColorPanelMode(NSColorPanelMode::ColorList.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswheelmodecolorpanel?language=objc)
 pub static NSWheelModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::Wheel.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscrayonmodecolorpanel?language=objc)
 pub static NSCrayonModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::Crayon.0);

@@ -9,6 +9,7 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverbackgroundviewmethods?language=objc)
     pub unsafe trait UIPopoverBackgroundViewMethods {
         #[method(arrowBase)]
         unsafe fn arrowBase() -> CGFloat;
@@ -25,6 +26,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverbackgroundview?language=objc)
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]

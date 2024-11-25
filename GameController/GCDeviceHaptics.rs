@@ -5,46 +5,57 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocality?language=objc)
 // NS_TYPED_ENUM
 pub type GCHapticsLocality = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocalitydefault?language=objc)
     pub static GCHapticsLocalityDefault: &'static GCHapticsLocality;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocalityall?language=objc)
     pub static GCHapticsLocalityAll: &'static GCHapticsLocality;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocalityhandles?language=objc)
     pub static GCHapticsLocalityHandles: &'static GCHapticsLocality;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocalitylefthandle?language=objc)
     pub static GCHapticsLocalityLeftHandle: &'static GCHapticsLocality;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocalityrighthandle?language=objc)
     pub static GCHapticsLocalityRightHandle: &'static GCHapticsLocality;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocalitytriggers?language=objc)
     pub static GCHapticsLocalityTriggers: &'static GCHapticsLocality;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocalitylefttrigger?language=objc)
     pub static GCHapticsLocalityLeftTrigger: &'static GCHapticsLocality;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocalityrighttrigger?language=objc)
     pub static GCHapticsLocalityRightTrigger: &'static GCHapticsLocality;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticdurationinfinite?language=objc)
     pub static GCHapticDurationInfinite: c_float;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicehaptics?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCDeviceHaptics;

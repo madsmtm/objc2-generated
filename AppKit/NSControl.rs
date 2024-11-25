@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -316,6 +317,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltexteditingdelegate?language=objc)
     pub unsafe trait NSControlTextEditingDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -415,14 +417,17 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltextdidbegineditingnotification?language=objc)
     pub static NSControlTextDidBeginEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltextdidendeditingnotification?language=objc)
     pub static NSControlTextDidEndEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltextdidchangenotification?language=objc)
     pub static NSControlTextDidChangeNotification: &'static NSNotificationName;
 }
 

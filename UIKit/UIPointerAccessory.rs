@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessoryposition?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct UIPointerAccessoryPosition {
@@ -27,38 +28,47 @@ unsafe impl Sync for UIPointerAccessoryPosition {}
 // TODO: pub fn UIPointerAccessoryPositionMake(offset: CGFloat,angle: CGFloat,) -> UIPointerAccessoryPosition;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessorypositiontop?language=objc)
     pub static UIPointerAccessoryPositionTop: UIPointerAccessoryPosition;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessorypositiontopright?language=objc)
     pub static UIPointerAccessoryPositionTopRight: UIPointerAccessoryPosition;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessorypositionright?language=objc)
     pub static UIPointerAccessoryPositionRight: UIPointerAccessoryPosition;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessorypositionbottomright?language=objc)
     pub static UIPointerAccessoryPositionBottomRight: UIPointerAccessoryPosition;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessorypositionbottom?language=objc)
     pub static UIPointerAccessoryPositionBottom: UIPointerAccessoryPosition;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessorypositionbottomleft?language=objc)
     pub static UIPointerAccessoryPositionBottomLeft: UIPointerAccessoryPosition;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessorypositionleft?language=objc)
     pub static UIPointerAccessoryPositionLeft: UIPointerAccessoryPosition;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessorypositiontopleft?language=objc)
     pub static UIPointerAccessoryPositionTopLeft: UIPointerAccessoryPosition;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessory?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

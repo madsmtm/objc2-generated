@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksourcerevision?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKSourceRevision;
@@ -74,13 +75,16 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksourcerevisionanyversion?language=objc)
     pub static HKSourceRevisionAnyVersion: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksourcerevisionanyproducttype?language=objc)
     pub static HKSourceRevisionAnyProductType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksourcerevisionanyoperatingsystem?language=objc)
     pub static HKSourceRevisionAnyOperatingSystem: NSOperatingSystemVersion;
 }

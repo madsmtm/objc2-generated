@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachmentcellprotocol?language=objc)
     pub unsafe trait NSTextAttachmentCellProtocol: NSObjectProtocol {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawWithFrame:inView:)]
@@ -119,6 +120,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachmentcell?language=objc)
     #[unsafe(super(NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCell")]

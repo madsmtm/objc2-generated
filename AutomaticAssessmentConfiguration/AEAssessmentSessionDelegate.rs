@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate?language=objc)
     pub unsafe trait AEAssessmentSessionDelegate: NSObjectProtocol {
         #[cfg(feature = "AEAssessmentSession")]
         #[optional]

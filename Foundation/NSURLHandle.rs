@@ -5,60 +5,72 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertystatuscodekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPPropertyStatusCodeKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertystatusreasonkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPPropertyStatusReasonKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertyserverhttpversionkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPPropertyServerHTTPVersionKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertyredirectionheaderskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPPropertyRedirectionHeadersKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertyerrorpagedatakey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPPropertyErrorPageDataKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertyhttpproxy?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPPropertyHTTPProxy: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyuserloginkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFTPPropertyUserLoginKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyuserpasswordkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFTPPropertyUserPasswordKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyactivetransfermodekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFTPPropertyActiveTransferModeKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyfileoffsetkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFTPPropertyFileOffsetKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyftpproxy?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFTPPropertyFTPProxy: Option<&'static NSString>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandlestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -79,6 +91,7 @@ unsafe impl RefEncode for NSURLHandleStatus {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandleclient?language=objc)
     #[deprecated]
     pub unsafe trait NSURLHandleClient {
         #[cfg(feature = "NSData")]
@@ -116,6 +129,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandle?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLHandle;

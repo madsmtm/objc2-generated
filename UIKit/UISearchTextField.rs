@@ -9,6 +9,7 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchtextfield?language=objc)
     #[unsafe(super(UITextField, UIControl, UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -301,6 +302,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchtoken?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -334,6 +336,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchtextfielddelegate?language=objc)
     #[cfg(feature = "UITextField")]
     pub unsafe trait UISearchTextFieldDelegate:
         UITextFieldDelegate + MainThreadOnly
@@ -367,6 +370,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchtextfieldpasteitem?language=objc)
     #[cfg(feature = "UITextPasteDelegate")]
     pub unsafe trait UISearchTextFieldPasteItem: UITextPasteItem + MainThreadOnly {
         #[method(setSearchTokenResult:)]

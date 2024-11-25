@@ -5,20 +5,24 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptortransport?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptortransportusb?language=objc)
     pub static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportUSB:
         &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptortransportnfc?language=objc)
     pub static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportNFC:
         &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptortransportbluetooth?language=objc)
     pub static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportBluetooth:
         &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
 }
@@ -29,6 +33,7 @@ extern "C-unwind" {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor;

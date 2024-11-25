@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcustomlayer?language=objc)
     pub unsafe trait MLCustomLayer {
         #[method_id(@__retain_semantics Init initWithParameterDictionary:error:_)]
         unsafe fn initWithParameterDictionary_error(

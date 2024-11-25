@@ -6,13 +6,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobjectdistancenotavailable?language=objc)
     pub static NINearbyObjectDistanceNotAvailable: c_float;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobjectanglenotavailable?language=objc)
     pub static NINearbyObjectAngleNotAvailable: c_float;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobjectverticaldirectionestimate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -39,6 +42,7 @@ unsafe impl RefEncode for NINearbyObjectVerticalDirectionEstimate {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NINearbyObject;

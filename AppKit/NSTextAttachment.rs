@@ -5,9 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsattachmentcharacter?language=objc)
 pub const NSAttachmentCharacter: c_uint = 0xFFFC;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachmentlayout?language=objc)
     pub unsafe trait NSTextAttachmentLayout: NSObjectProtocol {
         #[cfg(all(
             feature = "NSImage",
@@ -53,6 +55,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachment?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextAttachment;
@@ -184,6 +187,7 @@ extern_category!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextAttachmentViewProvider;
@@ -269,6 +273,7 @@ extern_category!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachmentcontainer?language=objc)
     pub unsafe trait NSTextAttachmentContainer: NSObjectProtocol {
         #[cfg(all(feature = "NSImage", feature = "NSTextContainer"))]
         #[method_id(@__retain_semantics Other imageForBounds:textContainer:characterIndex:)]

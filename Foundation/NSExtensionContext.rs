@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensioncontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSExtensionContext;
@@ -52,26 +53,31 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemsanderrorskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionItemsAndErrorsKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostwillenterforegroundnotification?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionHostWillEnterForegroundNotification: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostdidenterbackgroundnotification?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionHostDidEnterBackgroundNotification: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostwillresignactivenotification?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionHostWillResignActiveNotification: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostdidbecomeactivenotification?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionHostDidBecomeActiveNotification: Option<&'static NSString>;
 }

@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocapitalizationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,6 +29,7 @@ unsafe impl RefEncode for UITextAutocapitalizationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocorrectiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -49,6 +51,7 @@ unsafe impl RefEncode for UITextAutocorrectionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextspellcheckingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -70,6 +73,7 @@ unsafe impl RefEncode for UITextSpellCheckingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartquotestype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -91,6 +95,7 @@ unsafe impl RefEncode for UITextSmartQuotesType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartdashestype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -112,6 +117,7 @@ unsafe impl RefEncode for UITextSmartDashesType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartinsertdeletetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -133,6 +139,7 @@ unsafe impl RefEncode for UITextSmartInsertDeleteType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinlinepredictiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -154,6 +161,7 @@ unsafe impl RefEncode for UITextInlinePredictionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextmathexpressioncompletiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -175,6 +183,7 @@ unsafe impl RefEncode for UITextMathExpressionCompletionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -216,6 +225,7 @@ unsafe impl RefEncode for UIKeyboardType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardappearance?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -239,6 +249,7 @@ unsafe impl RefEncode for UIKeyboardAppearance {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -266,6 +277,7 @@ unsafe impl RefEncode for UIReturnKeyType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -289,6 +301,7 @@ unsafe impl RefEncode for UIWritingToolsBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsresultoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -311,10 +324,12 @@ unsafe impl RefEncode for UIWritingToolsResultOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype?language=objc)
 // NS_TYPED_ENUM
 pub type UITextContentType = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputpasswordrules?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -353,6 +368,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputtraits?language=objc)
     pub unsafe trait UITextInputTraits: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(autocapitalizationType)]
@@ -510,181 +526,226 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypename?language=objc)
     pub static UITextContentTypeName: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypenameprefix?language=objc)
     pub static UITextContentTypeNamePrefix: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypegivenname?language=objc)
     pub static UITextContentTypeGivenName: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypemiddlename?language=objc)
     pub static UITextContentTypeMiddleName: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypefamilyname?language=objc)
     pub static UITextContentTypeFamilyName: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypenamesuffix?language=objc)
     pub static UITextContentTypeNameSuffix: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypenickname?language=objc)
     pub static UITextContentTypeNickname: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypejobtitle?language=objc)
     pub static UITextContentTypeJobTitle: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeorganizationname?language=objc)
     pub static UITextContentTypeOrganizationName: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypelocation?language=objc)
     pub static UITextContentTypeLocation: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypefullstreetaddress?language=objc)
     pub static UITextContentTypeFullStreetAddress: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypestreetaddressline1?language=objc)
     pub static UITextContentTypeStreetAddressLine1: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypestreetaddressline2?language=objc)
     pub static UITextContentTypeStreetAddressLine2: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeaddresscity?language=objc)
     pub static UITextContentTypeAddressCity: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeaddressstate?language=objc)
     pub static UITextContentTypeAddressState: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeaddresscityandstate?language=objc)
     pub static UITextContentTypeAddressCityAndState: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypesublocality?language=objc)
     pub static UITextContentTypeSublocality: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecountryname?language=objc)
     pub static UITextContentTypeCountryName: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypepostalcode?language=objc)
     pub static UITextContentTypePostalCode: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypetelephonenumber?language=objc)
     pub static UITextContentTypeTelephoneNumber: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeemailaddress?language=objc)
     pub static UITextContentTypeEmailAddress: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeurl?language=objc)
     pub static UITextContentTypeURL: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardnumber?language=objc)
     pub static UITextContentTypeCreditCardNumber: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeusername?language=objc)
     pub static UITextContentTypeUsername: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypepassword?language=objc)
     pub static UITextContentTypePassword: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypenewpassword?language=objc)
     pub static UITextContentTypeNewPassword: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeonetimecode?language=objc)
     pub static UITextContentTypeOneTimeCode: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeshipmenttrackingnumber?language=objc)
     pub static UITextContentTypeShipmentTrackingNumber: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeflightnumber?language=objc)
     pub static UITextContentTypeFlightNumber: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypedatetime?language=objc)
     pub static UITextContentTypeDateTime: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypebirthdate?language=objc)
     pub static UITextContentTypeBirthdate: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypebirthdateday?language=objc)
     pub static UITextContentTypeBirthdateDay: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypebirthdatemonth?language=objc)
     pub static UITextContentTypeBirthdateMonth: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypebirthdateyear?language=objc)
     pub static UITextContentTypeBirthdateYear: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardsecuritycode?language=objc)
     pub static UITextContentTypeCreditCardSecurityCode: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardname?language=objc)
     pub static UITextContentTypeCreditCardName: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardgivenname?language=objc)
     pub static UITextContentTypeCreditCardGivenName: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardmiddlename?language=objc)
     pub static UITextContentTypeCreditCardMiddleName: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardfamilyname?language=objc)
     pub static UITextContentTypeCreditCardFamilyName: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardexpiration?language=objc)
     pub static UITextContentTypeCreditCardExpiration: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardexpirationmonth?language=objc)
     pub static UITextContentTypeCreditCardExpirationMonth: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardexpirationyear?language=objc)
     pub static UITextContentTypeCreditCardExpirationYear: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardtype?language=objc)
     pub static UITextContentTypeCreditCardType: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecellulareid?language=objc)
     pub static UITextContentTypeCellularEID: &'static UITextContentType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecellularimei?language=objc)
     pub static UITextContentTypeCellularIMEI: &'static UITextContentType;
 }

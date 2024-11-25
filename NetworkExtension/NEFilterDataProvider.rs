@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterdataattribute?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -23,6 +24,7 @@ unsafe impl RefEncode for NEFilterDataAttribute {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterdataprovider?language=objc)
     #[unsafe(super(NEFilterProvider, NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NEFilterProvider", feature = "NEProvider"))]
@@ -118,6 +120,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterdataverdict?language=objc)
     #[unsafe(super(NEFilterVerdict, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NEFilterProvider")]
@@ -192,6 +195,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterremediationverdict?language=objc)
     #[unsafe(super(NEFilterVerdict, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NEFilterProvider")]

@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsbinaryvaluetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,6 +30,7 @@ unsafe impl RefEncode for CLSBinaryValueType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsbinaryitem?language=objc)
     #[unsafe(super(CLSActivityItem, CLSObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]

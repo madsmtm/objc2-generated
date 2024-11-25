@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayerqueuedescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerQueueDescriptor;
@@ -24,6 +25,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayermediaitemqueuedescriptor?language=objc)
     #[unsafe(super(MPMusicPlayerQueueDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerMediaItemQueueDescriptor;
@@ -86,6 +88,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayerstorequeuedescriptor?language=objc)
     #[unsafe(super(MPMusicPlayerQueueDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerStoreQueueDescriptor;
@@ -141,6 +144,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayerplayparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerPlayParameters;
@@ -173,6 +177,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayerplayparametersqueuedescriptor?language=objc)
     #[unsafe(super(MPMusicPlayerQueueDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerPlayParametersQueueDescriptor;

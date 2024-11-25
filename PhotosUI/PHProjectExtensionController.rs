@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectextensioncontroller?language=objc)
     pub unsafe trait PHProjectExtensionController: NSObjectProtocol {
         #[cfg(feature = "PHProjectTypeDescription")]
         #[deprecated]

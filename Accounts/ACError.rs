@@ -6,9 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrordomain?language=objc)
     pub static ACErrorDomain: Option<&'static NSString>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrorcode?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ACErrorCode(pub c_uint);

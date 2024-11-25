@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplaybackstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -32,6 +33,7 @@ unsafe impl RefEncode for MPMusicPlaybackState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicrepeatmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -55,6 +57,7 @@ unsafe impl RefEncode for MPMusicRepeatMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicshufflemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -79,6 +82,7 @@ unsafe impl RefEncode for MPMusicShuffleMode {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpsystemmusicplayercontroller?language=objc)
     pub unsafe trait MPSystemMusicPlayerController: NSObjectProtocol {
         #[cfg(feature = "MPMusicPlayerQueueDescriptor")]
         #[method(openToPlayQueueDescriptor:)]
@@ -89,6 +93,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerController;
@@ -203,15 +208,18 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontrollerplaybackstatedidchangenotification?language=objc)
     pub static MPMusicPlayerControllerPlaybackStateDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontrollernowplayingitemdidchangenotification?language=objc)
     pub static MPMusicPlayerControllerNowPlayingItemDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontrollervolumedidchangenotification?language=objc)
     pub static MPMusicPlayerControllerVolumeDidChangeNotification: &'static NSNotificationName;
 }

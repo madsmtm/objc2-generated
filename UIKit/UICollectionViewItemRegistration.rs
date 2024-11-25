@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcellregistrationconfigurationhandler?language=objc)
 #[cfg(all(
     feature = "UICollectionViewCell",
     feature = "UIResponder",
@@ -16,6 +17,7 @@ pub type UICollectionViewCellRegistrationConfigurationHandler = *mut block2::Blo
 >;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcellregistration?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -84,6 +86,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewsupplementaryregistrationconfigurationhandler?language=objc)
 #[cfg(all(
     feature = "UICollectionViewCell",
     feature = "UIResponder",
@@ -95,6 +98,7 @@ pub type UICollectionViewSupplementaryRegistrationConfigurationHandler = *mut bl
 >;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewsupplementaryregistration?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

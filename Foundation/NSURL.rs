@@ -4,776 +4,931 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlresourcekey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSURLResourceKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfilescheme?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileScheme: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlkeysofunsetvalueskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLKeysOfUnsetValuesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlnamekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLNameKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurllocalizednamekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLLocalizedNameKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlisregularfilekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsRegularFileKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlisdirectorykey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsDirectoryKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlissymboliclinkkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsSymbolicLinkKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlisvolumekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsVolumeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlispackagekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsPackageKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlisapplicationkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsApplicationKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlapplicationisscriptablekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLApplicationIsScriptableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlissystemimmutablekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsSystemImmutableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlisuserimmutablekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsUserImmutableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlishiddenkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsHiddenKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhashiddenextensionkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLHasHiddenExtensionKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcreationdatekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLCreationDateKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcontentaccessdatekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLContentAccessDateKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcontentmodificationdatekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLContentModificationDateKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlattributemodificationdatekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAttributeModificationDateKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurllinkcountkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLLinkCountKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlparentdirectoryurlkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLParentDirectoryURLKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumeurlkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeURLKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurltypeidentifierkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLTypeIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcontenttypekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLContentTypeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurllocalizedtypedescriptionkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLLocalizedTypeDescriptionKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurllabelnumberkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLLabelNumberKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurllabelcolorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLLabelColorKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurllocalizedlabelkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLLocalizedLabelKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurleffectiveiconkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLEffectiveIconKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcustomiconkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLCustomIconKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileresourceidentifierkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumeidentifierkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlpreferredioblocksizekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLPreferredIOBlockSizeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlisreadablekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsReadableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurliswritablekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsWritableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlisexecutablekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsExecutableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfilesecuritykey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileSecurityKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlisexcludedfrombackupkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsExcludedFromBackupKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurltagnameskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLTagNamesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlpathkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLPathKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcanonicalpathkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLCanonicalPathKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlismounttriggerkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsMountTriggerKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlgenerationidentifierkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLGenerationIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurldocumentidentifierkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLDocumentIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurladdedtodirectorydatekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAddedToDirectoryDateKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlquarantinepropertieskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLQuarantinePropertiesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileresourcetypekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileidentifierkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfilecontentidentifierkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileContentIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlmaysharefilecontentkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLMayShareFileContentKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlmayhaveextendedattributeskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLMayHaveExtendedAttributesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlispurgeablekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsPurgeableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlissparsekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsSparseKey: &'static NSURLResourceKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileresourcetype?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSURLFileResourceType = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileresourcetypenamedpipe?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeNamedPipe: &'static NSURLFileResourceType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileresourcetypecharacterspecial?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeCharacterSpecial: &'static NSURLFileResourceType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileresourcetypedirectory?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeDirectory: &'static NSURLFileResourceType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileresourcetypeblockspecial?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeBlockSpecial: &'static NSURLFileResourceType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileresourcetyperegular?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeRegular: &'static NSURLFileResourceType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileresourcetypesymboliclink?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeSymbolicLink: &'static NSURLFileResourceType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileresourcetypesocket?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeSocket: &'static NSURLFileResourceType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileresourcetypeunknown?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeUnknown: &'static NSURLFileResourceType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlthumbnaildictionarykey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLThumbnailDictionaryKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlthumbnailkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLThumbnailKey: &'static NSURLResourceKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlthumbnaildictionaryitem?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSURLThumbnailDictionaryItem = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsthumbnail1024x1024sizekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSThumbnail1024x1024SizeKey: &'static NSURLThumbnailDictionaryItem;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfilesizekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileSizeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileallocatedsizekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileAllocatedSizeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurltotalfilesizekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLTotalFileSizeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurltotalfileallocatedsizekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLTotalFileAllocatedSizeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlisaliasfilekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsAliasFileKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileprotectionkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileProtectionKey: &'static NSURLResourceKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileprotectiontype?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSURLFileProtectionType = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileprotectionnone?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileProtectionNone: &'static NSURLFileProtectionType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileprotectioncomplete?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileProtectionComplete: &'static NSURLFileProtectionType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileprotectioncompleteunlessopen?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileProtectionCompleteUnlessOpen: &'static NSURLFileProtectionType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileprotectioncompleteuntilfirstuserauthentication?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileProtectionCompleteUntilFirstUserAuthentication:
         &'static NSURLFileProtectionType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfileprotectioncompletewhenuserinactive?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLFileProtectionCompleteWhenUserInactive: &'static NSURLFileProtectionType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurldirectoryentrycountkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLDirectoryEntryCountKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumelocalizedformatdescriptionkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeLocalizedFormatDescriptionKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumetotalcapacitykey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeTotalCapacityKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumeavailablecapacitykey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeAvailableCapacityKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumeresourcecountkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeResourceCountKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportspersistentidskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsPersistentIDsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportssymboliclinkskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsSymbolicLinksKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportshardlinkskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsHardLinksKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportsjournalingkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsJournalingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumeisjournalingkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsJournalingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportssparsefileskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsSparseFilesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportszerorunskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsZeroRunsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportscasesensitivenameskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsCaseSensitiveNamesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportscasepreservednameskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsCasePreservedNamesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportsrootdirectorydateskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsRootDirectoryDatesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportsvolumesizeskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsVolumeSizesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportsrenamingkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsRenamingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportsadvisoryfilelockingkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsAdvisoryFileLockingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportsextendedsecuritykey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsExtendedSecurityKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumeisbrowsablekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsBrowsableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumemaximumfilesizekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeMaximumFileSizeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumeisejectablekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsEjectableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumeisremovablekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsRemovableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumeisinternalkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsInternalKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumeisautomountedkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsAutomountedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumeislocalkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsLocalKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumeisreadonlykey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsReadOnlyKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumecreationdatekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeCreationDateKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumeurlforremountingkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeURLForRemountingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumeuuidstringkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeUUIDStringKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumenamekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeNameKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumelocalizednamekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeLocalizedNameKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumeisencryptedkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsEncryptedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumeisrootfilesystemkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsRootFileSystemKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportscompressionkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsCompressionKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportsfilecloningkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsFileCloningKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportsswaprenamingkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsSwapRenamingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportsexclusiverenamingkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsExclusiveRenamingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportsimmutablefileskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsImmutableFilesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportsaccesspermissionskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsAccessPermissionsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesupportsfileprotectionkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsFileProtectionKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumeavailablecapacityforimportantusagekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeAvailableCapacityForImportantUsageKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumeavailablecapacityforopportunisticusagekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeAvailableCapacityForOpportunisticUsageKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumetypenamekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeTypeNameKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumesubtypekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSubtypeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlvolumemountfromlocationkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeMountFromLocationKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlisubiquitousitemkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsUbiquitousItemKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemhasunresolvedconflictskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemHasUnresolvedConflictsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemisdownloadedkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemIsDownloadedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemisdownloadingkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemIsDownloadingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemisuploadedkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemIsUploadedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemisuploadingkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemIsUploadingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitempercentdownloadedkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemPercentDownloadedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitempercentuploadedkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemPercentUploadedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemdownloadingstatuskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemDownloadingStatusKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemdownloadingerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemDownloadingErrorKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemuploadingerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemUploadingErrorKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemdownloadrequestedkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemDownloadRequestedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemcontainerdisplaynamekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemContainerDisplayNameKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemisexcludedfromsynckey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemIsExcludedFromSyncKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemissharedkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemIsSharedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousshareditemcurrentuserrolekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemCurrentUserRoleKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousshareditemcurrentuserpermissionskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemCurrentUserPermissionsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousshareditemownernamecomponentskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemOwnerNameComponentsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousshareditemmostrecenteditornamecomponentskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemMostRecentEditorNameComponentsKey:
         &'static NSURLResourceKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemdownloadingstatus?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSURLUbiquitousItemDownloadingStatus = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemdownloadingstatusnotdownloaded?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemDownloadingStatusNotDownloaded:
         &'static NSURLUbiquitousItemDownloadingStatus;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemdownloadingstatusdownloaded?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemDownloadingStatusDownloaded:
         &'static NSURLUbiquitousItemDownloadingStatus;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemdownloadingstatuscurrent?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemDownloadingStatusCurrent:
         &'static NSURLUbiquitousItemDownloadingStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousshareditemrole?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSURLUbiquitousSharedItemRole = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousshareditemroleowner?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemRoleOwner: &'static NSURLUbiquitousSharedItemRole;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousshareditemroleparticipant?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemRoleParticipant: &'static NSURLUbiquitousSharedItemRole;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousshareditempermissions?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSURLUbiquitousSharedItemPermissions = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousshareditempermissionsreadonly?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemPermissionsReadOnly:
         &'static NSURLUbiquitousSharedItemPermissions;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousshareditempermissionsreadwrite?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemPermissionsReadWrite:
         &'static NSURLUbiquitousSharedItemPermissions;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlbookmarkcreationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -798,6 +953,7 @@ unsafe impl RefEncode for NSURLBookmarkCreationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlbookmarkresolutionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -819,9 +975,11 @@ unsafe impl RefEncode for NSURLBookmarkResolutionOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlbookmarkfilecreationoptions?language=objc)
 pub type NSURLBookmarkFileCreationOptions = NSUInteger;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURL;
@@ -1268,6 +1426,7 @@ unsafe impl NSItemProviderReading for NSURL {}
 unsafe impl NSItemProviderWriting for NSURL {}
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlqueryitem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLQueryItem;
@@ -1332,6 +1491,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcomponents?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLComponents;
@@ -1702,6 +1862,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilesecurity?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileSecurity;

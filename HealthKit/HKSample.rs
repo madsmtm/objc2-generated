@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksample?language=objc)
     #[unsafe(super(HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKObject")]
@@ -64,17 +65,21 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksamplesortidentifierstartdate?language=objc)
     pub static HKSampleSortIdentifierStartDate: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksamplesortidentifierenddate?language=objc)
     pub static HKSampleSortIdentifierEndDate: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathstartdate?language=objc)
     pub static HKPredicateKeyPathStartDate: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathenddate?language=objc)
     pub static HKPredicateKeyPathEndDate: &'static NSString;
 }

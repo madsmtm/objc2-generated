@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteractioncommitstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -24,6 +25,7 @@ unsafe impl RefEncode for UIContextMenuInteractionCommitStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteractionappearance?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -46,6 +48,7 @@ unsafe impl RefEncode for UIContextMenuInteractionAppearance {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteraction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -96,6 +99,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteractionanimating?language=objc)
     pub unsafe trait UIContextMenuInteractionAnimating:
         NSObjectProtocol + MainThreadOnly
     {
@@ -116,6 +120,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteractioncommitanimating?language=objc)
     pub unsafe trait UIContextMenuInteractionCommitAnimating:
         UIContextMenuInteractionAnimating + MainThreadOnly
     {
@@ -133,6 +138,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteractiondelegate?language=objc)
     pub unsafe trait UIContextMenuInteractionDelegate:
         NSObjectProtocol + MainThreadOnly
     {

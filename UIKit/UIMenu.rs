@@ -5,9 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIMenuIdentifier = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -33,6 +35,7 @@ unsafe impl RefEncode for UIMenuOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelementsize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -57,6 +60,7 @@ unsafe impl RefEncode for UIMenuElementSize {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu?language=objc)
     #[unsafe(super(UIMenuElement, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -158,193 +162,241 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuapplication?language=objc)
     pub static UIMenuApplication: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenufile?language=objc)
     pub static UIMenuFile: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuedit?language=objc)
     pub static UIMenuEdit: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuview?language=objc)
     pub static UIMenuView: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuwindow?language=objc)
     pub static UIMenuWindow: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuhelp?language=objc)
     pub static UIMenuHelp: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuabout?language=objc)
     pub static UIMenuAbout: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenupreferences?language=objc)
     pub static UIMenuPreferences: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuservices?language=objc)
     pub static UIMenuServices: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuhide?language=objc)
     pub static UIMenuHide: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuquit?language=objc)
     pub static UIMenuQuit: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenunewscene?language=objc)
     pub static UIMenuNewScene: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuopen?language=objc)
     pub static UIMenuOpen: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuopenrecent?language=objc)
     pub static UIMenuOpenRecent: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuclose?language=objc)
     pub static UIMenuClose: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuprint?language=objc)
     pub static UIMenuPrint: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenudocument?language=objc)
     pub static UIMenuDocument: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuundoredo?language=objc)
     pub static UIMenuUndoRedo: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenustandardedit?language=objc)
     pub static UIMenuStandardEdit: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenufind?language=objc)
     pub static UIMenuFind: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenureplace?language=objc)
     pub static UIMenuReplace: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenushare?language=objc)
     pub static UIMenuShare: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenutextstyle?language=objc)
     pub static UIMenuTextStyle: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuspelling?language=objc)
     pub static UIMenuSpelling: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuspellingpanel?language=objc)
     pub static UIMenuSpellingPanel: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuspellingoptions?language=objc)
     pub static UIMenuSpellingOptions: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusubstitutions?language=objc)
     pub static UIMenuSubstitutions: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusubstitutionspanel?language=objc)
     pub static UIMenuSubstitutionsPanel: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusubstitutionoptions?language=objc)
     pub static UIMenuSubstitutionOptions: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenutransformations?language=objc)
     pub static UIMenuTransformations: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuspeech?language=objc)
     pub static UIMenuSpeech: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenulookup?language=objc)
     pub static UIMenuLookup: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenulearn?language=objc)
     pub static UIMenuLearn: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuformat?language=objc)
     pub static UIMenuFormat: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuautofill?language=objc)
     pub static UIMenuAutoFill: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenufont?language=objc)
     pub static UIMenuFont: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenutextsize?language=objc)
     pub static UIMenuTextSize: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenutextcolor?language=objc)
     pub static UIMenuTextColor: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenutextstylepasteboard?language=objc)
     pub static UIMenuTextStylePasteboard: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenutext?language=objc)
     pub static UIMenuText: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuwritingdirection?language=objc)
     pub static UIMenuWritingDirection: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenualignment?language=objc)
     pub static UIMenuAlignment: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenutoolbar?language=objc)
     pub static UIMenuToolbar: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusidebar?language=objc)
     pub static UIMenuSidebar: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenufullscreen?language=objc)
     pub static UIMenuFullscreen: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuminimizeandzoom?language=objc)
     pub static UIMenuMinimizeAndZoom: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenubringalltofront?language=objc)
     pub static UIMenuBringAllToFront: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuroot?language=objc)
     pub static UIMenuRoot: &'static UIMenuIdentifier;
 }

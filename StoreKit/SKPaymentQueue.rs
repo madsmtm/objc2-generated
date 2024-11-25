@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymentqueue?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "No longer supported"]
@@ -135,6 +136,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymentqueuedelegate?language=objc)
     #[deprecated = "No longer supported"]
     pub unsafe trait SKPaymentQueueDelegate: NSObjectProtocol {
         #[cfg(all(feature = "SKPaymentTransaction", feature = "SKStorefront"))]
@@ -159,6 +161,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymenttransactionobserver?language=objc)
     #[deprecated = "Use StoreKit 2 Transaction APIs"]
     pub unsafe trait SKPaymentTransactionObserver: NSObjectProtocol {
         #[cfg(feature = "SKPaymentTransaction")]

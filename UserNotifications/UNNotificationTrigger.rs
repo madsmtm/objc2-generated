@@ -8,6 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationtrigger?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationTrigger;
@@ -44,6 +45,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unpushnotificationtrigger?language=objc)
     #[unsafe(super(UNNotificationTrigger, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNPushNotificationTrigger;
@@ -82,6 +84,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/untimeintervalnotificationtrigger?language=objc)
     #[unsafe(super(UNNotificationTrigger, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNTimeIntervalNotificationTrigger;
@@ -132,6 +135,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/uncalendarnotificationtrigger?language=objc)
     #[unsafe(super(UNNotificationTrigger, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNCalendarNotificationTrigger;
@@ -182,6 +186,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unlocationnotificationtrigger?language=objc)
     #[unsafe(super(UNNotificationTrigger, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNLocationNotificationTrigger;

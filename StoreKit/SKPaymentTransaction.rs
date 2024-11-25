@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymenttransactionstate?language=objc)
 // NS_ENUM
 #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
 #[repr(transparent)]
@@ -37,6 +38,7 @@ unsafe impl RefEncode for SKPaymentTransactionState {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymenttransaction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]

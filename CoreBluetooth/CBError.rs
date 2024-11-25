@@ -6,9 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberrordomain?language=objc)
     pub static CBErrorDomain: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -66,9 +68,11 @@ unsafe impl RefEncode for CBError {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterrordomain?language=objc)
     pub static CBATTErrorDomain: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

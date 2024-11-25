@@ -5,10 +5,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cikernelroicallback?language=objc)
 #[cfg(feature = "block2")]
 pub type CIKernelROICallback = *mut block2::Block<dyn Fn(c_int, CGRect) -> CGRect>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cikernel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIKernel;
@@ -78,6 +80,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolorkernel?language=objc)
     #[unsafe(super(CIKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIColorKernel;
@@ -132,6 +135,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciwarpkernel?language=objc)
     #[unsafe(super(CIKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIWarpKernel;
@@ -188,6 +192,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciblendkernel?language=objc)
     #[unsafe(super(CIColorKernel, CIKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIBlendKernel;

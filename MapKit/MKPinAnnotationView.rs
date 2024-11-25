@@ -8,6 +8,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpinannotationcolor?language=objc)
 // NS_ENUM
 #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
 #[repr(transparent)]
@@ -34,6 +35,7 @@ unsafe impl RefEncode for MKPinAnnotationColor {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpinannotationview?language=objc)
     #[unsafe(super(MKAnnotationView, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]

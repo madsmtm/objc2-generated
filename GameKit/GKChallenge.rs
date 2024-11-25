@@ -8,6 +8,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -32,6 +33,7 @@ unsafe impl RefEncode for GKChallengeState {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallenge?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKChallenge;
@@ -103,6 +105,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkscorechallenge?language=objc)
     #[unsafe(super(GKChallenge, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKScoreChallenge;
@@ -139,6 +142,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkachievementchallenge?language=objc)
     #[unsafe(super(GKChallenge, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKAchievementChallenge;
@@ -255,11 +259,13 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengecomposecompletionblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
 pub type GKChallengeComposeCompletionBlock =
     *mut block2::Block<dyn Fn(NonNull<NSViewController>, Bool, *mut NSArray<NSString>)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengecomposehandler?language=objc)
 #[cfg(all(
     feature = "GKBasePlayer",
     feature = "GKPlayer",

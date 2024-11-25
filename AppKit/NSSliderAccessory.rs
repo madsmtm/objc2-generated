@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslideraccessory?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -61,6 +62,7 @@ unsafe impl NSAccessibility for NSSliderAccessory {}
 unsafe impl NSAccessibilityElementProtocol for NSSliderAccessory {}
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslideraccessorybehavior?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

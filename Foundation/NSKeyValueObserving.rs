@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueobservingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -25,6 +26,7 @@ unsafe impl RefEncode for NSKeyValueObservingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -48,6 +50,7 @@ unsafe impl RefEncode for NSKeyValueChange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluesetmutationkind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -67,31 +70,37 @@ unsafe impl RefEncode for NSKeyValueSetMutationKind {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSKeyValueChangeKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangekindkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeKindKey: &'static NSKeyValueChangeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangenewkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeNewKey: &'static NSKeyValueChangeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangeoldkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeOldKey: &'static NSKeyValueChangeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangeindexeskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeIndexesKey: &'static NSKeyValueChangeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangenotificationispriorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeNotificationIsPriorKey: &'static NSKeyValueChangeKey;
 }

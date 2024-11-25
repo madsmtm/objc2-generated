@@ -6,11 +6,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nscoredatacorespotlightdelegateindexdidupdatenotification?language=objc)
     pub static NSCoreDataCoreSpotlightDelegateIndexDidUpdateNotification:
         &'static NSNotificationName;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nscoredatacorespotlightdelegate?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCoreDataCoreSpotlightDelegate;

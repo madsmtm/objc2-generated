@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilepromiseprovider?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFilePromiseProvider;
@@ -63,6 +64,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilepromiseproviderdelegate?language=objc)
     pub unsafe trait NSFilePromiseProviderDelegate: NSObjectProtocol {
         #[method_id(@__retain_semantics Other filePromiseProvider:fileNameForType:)]
         unsafe fn filePromiseProvider_fileNameForType(

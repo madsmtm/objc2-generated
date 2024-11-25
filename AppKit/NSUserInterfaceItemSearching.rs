@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfaceitemsearching?language=objc)
     pub unsafe trait NSUserInterfaceItemSearching: NSObjectProtocol {
         #[cfg(feature = "block2")]
         #[method(searchForItemsWithSearchString:resultLimit:matchedItemHandler:)]

@@ -6,12 +6,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snresult?language=objc)
     pub unsafe trait SNResult: NSObjectProtocol {}
 
     unsafe impl ProtocolType for dyn SNResult {}
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snresultsobserving?language=objc)
     pub unsafe trait SNResultsObserving: NSObjectProtocol {
         #[cfg(feature = "SNRequest")]
         #[method(request:didProduceResult:)]

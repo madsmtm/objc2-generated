@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextelement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextElement;
@@ -65,6 +66,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextparagraph?language=objc)
     #[unsafe(super(NSTextElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextParagraph;

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberlayoutattributes?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScrubberLayoutAttributes;
@@ -56,6 +57,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberlayout?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -132,6 +134,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberflowlayoutdelegate?language=objc)
     #[cfg(feature = "NSScrubber")]
     pub unsafe trait NSScrubberFlowLayoutDelegate: NSScrubberDelegate {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -150,6 +153,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberflowlayout?language=objc)
     #[unsafe(super(NSScrubberLayout, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScrubberFlowLayout;
@@ -198,6 +202,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberproportionallayout?language=objc)
     #[unsafe(super(NSScrubberLayout, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScrubberProportionalLayout;

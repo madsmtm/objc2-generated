@@ -5,10 +5,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancename?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSAppearanceName = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAppearance;
@@ -82,42 +84,52 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenameaqua?language=objc)
     pub static NSAppearanceNameAqua: &'static NSAppearanceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenamedarkaqua?language=objc)
     pub static NSAppearanceNameDarkAqua: &'static NSAppearanceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenamelightcontent?language=objc)
     pub static NSAppearanceNameLightContent: &'static NSAppearanceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenamevibrantdark?language=objc)
     pub static NSAppearanceNameVibrantDark: &'static NSAppearanceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenamevibrantlight?language=objc)
     pub static NSAppearanceNameVibrantLight: &'static NSAppearanceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenameaccessibilityhighcontrastaqua?language=objc)
     pub static NSAppearanceNameAccessibilityHighContrastAqua: &'static NSAppearanceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenameaccessibilityhighcontrastdarkaqua?language=objc)
     pub static NSAppearanceNameAccessibilityHighContrastDarkAqua: &'static NSAppearanceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenameaccessibilityhighcontrastvibrantlight?language=objc)
     pub static NSAppearanceNameAccessibilityHighContrastVibrantLight: &'static NSAppearanceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenameaccessibilityhighcontrastvibrantdark?language=objc)
     pub static NSAppearanceNameAccessibilityHighContrastVibrantDark: &'static NSAppearanceName;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancecustomization?language=objc)
     pub unsafe trait NSAppearanceCustomization: NSObjectProtocol {
         #[method_id(@__retain_semantics Other appearance)]
         unsafe fn appearance(&self) -> Option<Retained<NSAppearance>>;

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiindirectscribbleinteraction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -41,9 +42,11 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscribbleelementidentifier?language=objc)
 pub type UIScribbleElementIdentifier = AnyObject;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiindirectscribbleinteractiondelegate?language=objc)
     pub unsafe trait UIIndirectScribbleInteractionDelegate:
         NSObjectProtocol + MainThreadOnly
     {

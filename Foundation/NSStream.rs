@@ -4,10 +4,12 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreampropertykey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSStreamPropertyKey = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -39,6 +41,7 @@ unsafe impl RefEncode for NSStreamStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamevent?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -69,6 +72,7 @@ unsafe impl RefEncode for NSStreamEvent {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstream?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStream;
@@ -142,6 +146,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinputstream?language=objc)
     #[unsafe(super(NSStream, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInputStream;
@@ -186,6 +191,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoutputstream?language=objc)
     #[unsafe(super(NSStream, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOutputStream;
@@ -330,6 +336,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamdelegate?language=objc)
     pub unsafe trait NSStreamDelegate: NSObjectProtocol {
         #[optional]
         #[method(stream:handleEvent:)]
@@ -340,137 +347,165 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecuritylevelkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelKey: &'static NSStreamPropertyKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecuritylevel?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSStreamSocketSecurityLevel = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecuritylevelnone?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelNone: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecuritylevelsslv2?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelSSLv2: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecuritylevelsslv3?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelSSLv3: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecurityleveltlsv1?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelTLSv1: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecuritylevelnegotiatedssl?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelNegotiatedSSL: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyconfigurationkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyConfigurationKey: &'static NSStreamPropertyKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyconfiguration?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSStreamSOCKSProxyConfiguration = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyhostkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyHostKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyportkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyPortKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyversionkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyVersionKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyuserkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyUserKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxypasswordkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyPasswordKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyversion?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSStreamSOCKSProxyVersion = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyversion4?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyVersion4: &'static NSStreamSOCKSProxyVersion;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyversion5?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyVersion5: &'static NSStreamSOCKSProxyVersion;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamdatawrittentomemorystreamkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamDataWrittenToMemoryStreamKey: &'static NSStreamPropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamfilecurrentoffsetkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamFileCurrentOffsetKey: &'static NSStreamPropertyKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsslerrordomain?language=objc)
     #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSStreamSocketSSLErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsockserrordomain?language=objc)
     #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSStreamSOCKSErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetype?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceType: &'static NSStreamPropertyKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetypevalue?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSStreamNetworkServiceTypeValue = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetypevoip?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeVoIP: &'static NSStreamNetworkServiceTypeValue;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetypevideo?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeVideo: &'static NSStreamNetworkServiceTypeValue;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetypebackground?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeBackground: &'static NSStreamNetworkServiceTypeValue;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetypevoice?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeVoice: &'static NSStreamNetworkServiceTypeValue;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetypecallsignaling?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeCallSignaling: &'static NSStreamNetworkServiceTypeValue;
 }

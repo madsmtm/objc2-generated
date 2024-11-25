@@ -8,6 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageregistrationrequest?language=objc)
     #[unsafe(super(VNTargetedImageRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
@@ -111,6 +112,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest?language=objc)
     #[unsafe(super(
         VNImageRegistrationRequest,
         VNTargetedImageRequest,
@@ -225,9 +227,11 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequestrevision1?language=objc)
 pub static VNTranslationalImageRegistrationRequestRevision1: NSUInteger = 1;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequest?language=objc)
     #[unsafe(super(
         VNImageRegistrationRequest,
         VNTargetedImageRequest,
@@ -342,4 +346,5 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequestrevision1?language=objc)
 pub static VNHomographicImageRegistrationRequestRevision1: NSUInteger = 1;

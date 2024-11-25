@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmanagerdelegate?language=objc)
     pub unsafe trait CMWaterSubmersionManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "CMWaterSubmersionData")]
         #[method(manager:didUpdateEvent:)]
@@ -39,6 +40,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMWaterSubmersionManager;

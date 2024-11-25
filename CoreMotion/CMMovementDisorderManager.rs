@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdyskineticsymptomresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMDyskineticSymptomResult;
@@ -51,6 +52,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmtremorresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMTremorResult;
@@ -107,15 +109,18 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdyskineticsymptomresulthandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMDyskineticSymptomResultHandler =
     *mut block2::Block<dyn Fn(NonNull<NSArray<CMDyskineticSymptomResult>>, *mut NSError)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmtremorresulthandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMTremorResultHandler =
     *mut block2::Block<dyn Fn(NonNull<NSArray<CMTremorResult>>, *mut NSError)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmovementdisordermanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMMovementDisorderManager;

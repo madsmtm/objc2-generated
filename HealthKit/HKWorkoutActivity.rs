@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivity?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutActivity;
@@ -82,33 +83,41 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivitytype?language=objc)
     pub static HKPredicateKeyPathWorkoutActivityType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivityduration?language=objc)
     pub static HKPredicateKeyPathWorkoutActivityDuration: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivitystartdate?language=objc)
     pub static HKPredicateKeyPathWorkoutActivityStartDate: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivityenddate?language=objc)
     pub static HKPredicateKeyPathWorkoutActivityEndDate: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivitysumquantity?language=objc)
     pub static HKPredicateKeyPathWorkoutActivitySumQuantity: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivityminimumquantity?language=objc)
     pub static HKPredicateKeyPathWorkoutActivityMinimumQuantity: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivitymaximumquantity?language=objc)
     pub static HKPredicateKeyPathWorkoutActivityMaximumQuantity: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivityaveragequantity?language=objc)
     pub static HKPredicateKeyPathWorkoutActivityAverageQuantity: &'static NSString;
 }

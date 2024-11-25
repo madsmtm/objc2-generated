@@ -5,9 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboardsegueidentifier?language=objc)
 pub type NSStoryboardSegueIdentifier = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboardsegue?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStoryboardSegue;
@@ -60,6 +62,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegueperforming?language=objc)
     pub unsafe trait NSSeguePerforming: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(prepareForSegue:sender:)]

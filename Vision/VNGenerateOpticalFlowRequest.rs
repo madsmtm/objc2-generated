@@ -7,6 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateopticalflowrequestcomputationaccuracy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -31,6 +32,7 @@ unsafe impl RefEncode for VNGenerateOpticalFlowRequestComputationAccuracy {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest?language=objc)
     #[unsafe(super(VNTargetedImageRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
@@ -159,6 +161,8 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateopticalflowrequestrevision1?language=objc)
 pub static VNGenerateOpticalFlowRequestRevision1: NSUInteger = 1;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateopticalflowrequestrevision2?language=objc)
 pub static VNGenerateOpticalFlowRequestRevision2: NSUInteger = 2;

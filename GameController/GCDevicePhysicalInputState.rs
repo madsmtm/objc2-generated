@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinputstate?language=objc)
     pub unsafe trait GCDevicePhysicalInputState: NSObjectProtocol {
         #[cfg(feature = "GCDevice")]
         #[method_id(@__retain_semantics Other device)]

@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollersourcetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,6 +29,7 @@ unsafe impl RefEncode for UIImagePickerControllerSourceType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerqualitytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -54,6 +56,7 @@ unsafe impl RefEncode for UIImagePickerControllerQualityType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollercameracapturemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -73,6 +76,7 @@ unsafe impl RefEncode for UIImagePickerControllerCameraCaptureMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollercameradevice?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -92,6 +96,7 @@ unsafe impl RefEncode for UIImagePickerControllerCameraDevice {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollercameraflashmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -113,6 +118,7 @@ unsafe impl RefEncode for UIImagePickerControllerCameraFlashMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerimageurlexportpreset?language=objc)
 // NS_ENUM
 #[deprecated = "Will be removed in a future release, use PHPicker."]
 #[repr(transparent)]
@@ -135,50 +141,62 @@ unsafe impl RefEncode for UIImagePickerControllerImageURLExportPreset {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerinfokey?language=objc)
 // NS_TYPED_ENUM
 pub type UIImagePickerControllerInfoKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollermediatype?language=objc)
     pub static UIImagePickerControllerMediaType: &'static UIImagePickerControllerInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrolleroriginalimage?language=objc)
     pub static UIImagePickerControllerOriginalImage: &'static UIImagePickerControllerInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollereditedimage?language=objc)
     pub static UIImagePickerControllerEditedImage: &'static UIImagePickerControllerInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollercroprect?language=objc)
     pub static UIImagePickerControllerCropRect: &'static UIImagePickerControllerInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollermediaurl?language=objc)
     pub static UIImagePickerControllerMediaURL: &'static UIImagePickerControllerInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerreferenceurl?language=objc)
     pub static UIImagePickerControllerReferenceURL: &'static UIImagePickerControllerInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollermediametadata?language=objc)
     pub static UIImagePickerControllerMediaMetadata: &'static UIImagePickerControllerInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerlivephoto?language=objc)
     pub static UIImagePickerControllerLivePhoto: &'static UIImagePickerControllerInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerphasset?language=objc)
     pub static UIImagePickerControllerPHAsset: &'static UIImagePickerControllerInfoKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerimageurl?language=objc)
     pub static UIImagePickerControllerImageURL: &'static UIImagePickerControllerInfoKey;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller?language=objc)
     #[unsafe(super(UINavigationController, UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -462,6 +480,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerdelegate?language=objc)
     pub unsafe trait UIImagePickerControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {

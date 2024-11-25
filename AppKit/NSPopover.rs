@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverappearance?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -27,6 +28,7 @@ unsafe impl RefEncode for NSPopoverAppearance {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -49,6 +51,7 @@ unsafe impl RefEncode for NSPopoverBehavior {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover?language=objc)
     #[unsafe(super(NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSResponder")]
@@ -179,37 +182,46 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverclosereasonkey?language=objc)
     pub static NSPopoverCloseReasonKey: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverclosereasonvalue?language=objc)
 // NS_TYPED_ENUM
 pub type NSPopoverCloseReasonValue = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverclosereasonstandard?language=objc)
     pub static NSPopoverCloseReasonStandard: &'static NSPopoverCloseReasonValue;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverclosereasondetachtowindow?language=objc)
     pub static NSPopoverCloseReasonDetachToWindow: &'static NSPopoverCloseReasonValue;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverwillshownotification?language=objc)
     pub static NSPopoverWillShowNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverdidshownotification?language=objc)
     pub static NSPopoverDidShowNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverwillclosenotification?language=objc)
     pub static NSPopoverWillCloseNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverdidclosenotification?language=objc)
     pub static NSPopoverDidCloseNotification: &'static NSNotificationName;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverdelegate?language=objc)
     pub unsafe trait NSPopoverDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSResponder")]
         #[optional]

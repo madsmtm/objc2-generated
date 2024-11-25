@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawerstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,6 +30,7 @@ unsafe impl RefEncode for NSDrawerState {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer?language=objc)
     #[unsafe(super(NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSResponder")]
@@ -177,6 +179,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawerdelegate?language=objc)
     pub unsafe trait NSDrawerDelegate: NSObjectProtocol {
         #[cfg(feature = "NSResponder")]
         #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
@@ -225,17 +228,21 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawerwillopennotification?language=objc)
     pub static NSDrawerWillOpenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawerdidopennotification?language=objc)
     pub static NSDrawerDidOpenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawerwillclosenotification?language=objc)
     pub static NSDrawerWillCloseNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawerdidclosenotification?language=objc)
     pub static NSDrawerDidCloseNotification: &'static NSNotificationName;
 }

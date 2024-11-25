@@ -6,45 +6,56 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristicismainprogramcontent?language=objc)
     pub static MPLanguageOptionCharacteristicIsMainProgramContent: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristicisauxiliarycontent?language=objc)
     pub static MPLanguageOptionCharacteristicIsAuxiliaryContent: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristiccontainsonlyforcedsubtitles?language=objc)
     pub static MPLanguageOptionCharacteristicContainsOnlyForcedSubtitles: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristictranscribesspokendialog?language=objc)
     pub static MPLanguageOptionCharacteristicTranscribesSpokenDialog: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristicdescribesmusicandsound?language=objc)
     pub static MPLanguageOptionCharacteristicDescribesMusicAndSound: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristiceasytoread?language=objc)
     pub static MPLanguageOptionCharacteristicEasyToRead: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristicdescribesvideo?language=objc)
     pub static MPLanguageOptionCharacteristicDescribesVideo: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristiclanguagetranslation?language=objc)
     pub static MPLanguageOptionCharacteristicLanguageTranslation: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristicdubbedtranslation?language=objc)
     pub static MPLanguageOptionCharacteristicDubbedTranslation: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristicvoiceovertranslation?language=objc)
     pub static MPLanguageOptionCharacteristicVoiceOverTranslation: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfolanguageoptiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -65,6 +76,7 @@ unsafe impl RefEncode for MPNowPlayingInfoLanguageOptionType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfolanguageoption?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPNowPlayingInfoLanguageOption;
@@ -119,6 +131,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfolanguageoptiongroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPNowPlayingInfoLanguageOptionGroup;

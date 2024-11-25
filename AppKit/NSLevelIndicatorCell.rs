@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslevelindicatorstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,6 +30,7 @@ unsafe impl RefEncode for NSLevelIndicatorStyle {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslevelindicatorcell?language=objc)
     #[unsafe(super(NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
@@ -168,14 +170,18 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrelevancylevelindicatorstyle?language=objc)
 pub static NSRelevancyLevelIndicatorStyle: NSLevelIndicatorStyle =
     NSLevelIndicatorStyle(NSLevelIndicatorStyle::Relevancy.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontinuouscapacitylevelindicatorstyle?language=objc)
 pub static NSContinuousCapacityLevelIndicatorStyle: NSLevelIndicatorStyle =
     NSLevelIndicatorStyle(NSLevelIndicatorStyle::ContinuousCapacity.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdiscretecapacitylevelindicatorstyle?language=objc)
 pub static NSDiscreteCapacityLevelIndicatorStyle: NSLevelIndicatorStyle =
     NSLevelIndicatorStyle(NSLevelIndicatorStyle::DiscreteCapacity.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsratinglevelindicatorstyle?language=objc)
 pub static NSRatingLevelIndicatorStyle: NSLevelIndicatorStyle =
     NSLevelIndicatorStyle(NSLevelIndicatorStyle::Rating.0);

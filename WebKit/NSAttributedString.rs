@@ -9,11 +9,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/nsreadaccessurldocumentoption?language=objc)
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     pub static NSReadAccessURLDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/nsattributedstringcompletionhandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
 pub type NSAttributedStringCompletionHandler = *mut block2::Block<

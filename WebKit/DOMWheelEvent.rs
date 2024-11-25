@@ -5,14 +5,18 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_dom_delta_pixel?language=objc)
 #[deprecated]
 pub const DOM_DOM_DELTA_PIXEL: c_uint = 0x00;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_dom_delta_line?language=objc)
 #[deprecated]
 pub const DOM_DOM_DELTA_LINE: c_uint = 0x01;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_dom_delta_page?language=objc)
 #[deprecated]
 pub const DOM_DOM_DELTA_PAGE: c_uint = 0x02;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domwheelevent?language=objc)
     #[unsafe(super(
         DOMMouseEvent,
         DOMUIEvent,

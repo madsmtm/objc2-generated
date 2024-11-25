@@ -5,74 +5,89 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollercomponentkey?language=objc)
 // NS_TYPED_ENUM
 pub type UITextFormattingViewControllerComponentKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerformattingstylescomponentkey?language=objc)
     pub static UITextFormattingViewControllerFormattingStylesComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerfontattributescomponentkey?language=objc)
     pub static UITextFormattingViewControllerFontAttributesComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerfontpickercomponentkey?language=objc)
     pub static UITextFormattingViewControllerFontPickerComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerfontsizecomponentkey?language=objc)
     pub static UITextFormattingViewControllerFontSizeComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerfontpointsizecomponentkey?language=objc)
     pub static UITextFormattingViewControllerFontPointSizeComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollertextalignmentcomponentkey?language=objc)
     pub static UITextFormattingViewControllerTextAlignmentComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollertextalignmentandjustificationcomponentkey?language=objc)
     pub static UITextFormattingViewControllerTextAlignmentAndJustificationComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollertextindentationcomponentkey?language=objc)
     pub static UITextFormattingViewControllerTextIndentationComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerlineheightcomponentkey?language=objc)
     pub static UITextFormattingViewControllerLineHeightComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerliststylescomponentkey?language=objc)
     pub static UITextFormattingViewControllerListStylesComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollertextcolorcomponentkey?language=objc)
     pub static UITextFormattingViewControllerTextColorComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerhighlightcomponentkey?language=objc)
     pub static UITextFormattingViewControllerHighlightComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerhighlightpickercomponentkey?language=objc)
     pub static UITextFormattingViewControllerHighlightPickerComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollercomponentsize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -101,6 +116,7 @@ unsafe impl RefEncode for UITextFormattingViewControllerComponentSize {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollercomponent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextFormattingViewControllerComponent;
@@ -142,6 +158,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollercomponentgroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextFormattingViewControllerComponentGroup;

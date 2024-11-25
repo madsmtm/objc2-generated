@@ -6,9 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domxpathexception?language=objc)
     pub static DOMXPathException: Option<&'static NSString>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/domxpathexceptioncode?language=objc)
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

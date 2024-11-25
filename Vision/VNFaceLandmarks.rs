@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnfacelandmarkregion?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceLandmarkRegion;
@@ -40,6 +41,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnfacelandmarkregion2d?language=objc)
     #[unsafe(super(VNFaceLandmarkRegion, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceLandmarkRegion2D;
@@ -89,6 +91,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnfacelandmarks?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceLandmarks;
@@ -129,6 +132,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnfacelandmarks2d?language=objc)
     #[unsafe(super(VNFaceLandmarks, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceLandmarks2D;

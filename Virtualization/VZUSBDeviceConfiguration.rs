@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbdeviceconfiguration?language=objc)
     pub unsafe trait VZUSBDeviceConfiguration: NSObjectProtocol {
         #[method_id(@__retain_semantics Other uuid)]
         unsafe fn uuid(&self) -> Retained<NSUUID>;

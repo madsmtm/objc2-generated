@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyboardvaluechangedhandler?language=objc)
 #[cfg(all(
     feature = "GCControllerButtonInput",
     feature = "GCControllerElement",
@@ -16,6 +17,7 @@ pub type GCKeyboardValueChangedHandler = *mut block2::Block<
 >;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyboardinput?language=objc)
     #[unsafe(super(GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCPhysicalInputProfile")]

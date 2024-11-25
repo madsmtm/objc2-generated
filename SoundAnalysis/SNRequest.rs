@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snrequest?language=objc)
     pub unsafe trait SNRequest: NSObjectProtocol {}
 
     unsafe impl ProtocolType for dyn SNRequest {}

@@ -5,17 +5,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirrelease?language=objc)
 // NS_TYPED_ENUM
 pub type HKFHIRRelease = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirreleasedstu2?language=objc)
     pub static HKFHIRReleaseDSTU2: &'static HKFHIRRelease;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirreleaser4?language=objc)
     pub static HKFHIRReleaseR4: &'static HKFHIRRelease;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirreleaseunknown?language=objc)
     pub static HKFHIRReleaseUnknown: &'static HKFHIRRelease;
 }

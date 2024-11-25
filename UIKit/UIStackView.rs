@@ -8,6 +8,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackviewdistribution?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -33,6 +34,7 @@ unsafe impl RefEncode for UIStackViewDistribution {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackviewalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -64,12 +66,15 @@ unsafe impl RefEncode for UIStackViewAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackviewspacingusedefault?language=objc)
 pub static UIStackViewSpacingUseDefault: CGFloat = c_float::MAX as _;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackviewspacingusesystem?language=objc)
 pub static UIStackViewSpacingUseSystem: CGFloat =
     0.000000000000000000000000000000000000011754943508222875 as _;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackview?language=objc)
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

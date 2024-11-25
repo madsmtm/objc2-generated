@@ -18,58 +18,75 @@ extern "C-unwind" {
     ) -> NonNull<UIBezierPath>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axboolreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXBoolReturnBlock = *mut block2::Block<dyn Fn() -> Bool>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axstringreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXStringReturnBlock = *mut block2::Block<dyn Fn() -> *mut NSString>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axstringarrayreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXStringArrayReturnBlock = *mut block2::Block<dyn Fn() -> *mut NSArray<NSString>>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axattributedstringreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXAttributedStringReturnBlock = *mut block2::Block<dyn Fn() -> *mut NSAttributedString>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axattributedstringarrayreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXAttributedStringArrayReturnBlock =
     *mut block2::Block<dyn Fn() -> *mut NSArray<NSAttributedString>>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axrectreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXRectReturnBlock = *mut block2::Block<dyn Fn() -> CGRect>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axpathreturnblock?language=objc)
 #[cfg(all(feature = "UIBezierPath", feature = "block2"))]
 pub type AXPathReturnBlock = *mut block2::Block<dyn Fn() -> *mut UIBezierPath>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axpointreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXPointReturnBlock = *mut block2::Block<dyn Fn() -> CGPoint>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axobjectreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXObjectReturnBlock = *mut block2::Block<dyn Fn() -> *mut AnyObject>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axarrayreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXArrayReturnBlock = *mut block2::Block<dyn Fn() -> *mut NSArray>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axvoidreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXVoidReturnBlock = *mut block2::Block<dyn Fn()>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axtraitsreturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
 pub type AXTraitsReturnBlock = *mut block2::Block<dyn Fn() -> UIAccessibilityTraits>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axnavigationstylereturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
 pub type AXNavigationStyleReturnBlock =
     *mut block2::Block<dyn Fn() -> UIAccessibilityNavigationStyle>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axcontainertypereturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
 pub type AXContainerTypeReturnBlock = *mut block2::Block<dyn Fn() -> UIAccessibilityContainerType>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axtextualcontextreturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
 pub type AXTextualContextReturnBlock =
     *mut block2::Block<dyn Fn() -> *mut UIAccessibilityTextualContext>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axcustomactionsreturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityCustomAction", feature = "block2"))]
 pub type AXCustomActionsReturnBlock =
     *mut block2::Block<dyn Fn() -> *mut NSArray<UIAccessibilityCustomAction>>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axuitextinputreturnblock?language=objc)
 #[cfg(all(
     feature = "UITextInput",
     feature = "UITextInputTraits",
@@ -822,6 +839,7 @@ extern_category!(
     unsafe impl NSObjectUIAccessibilityFocus for NSObject {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityscrolldirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -902,6 +920,7 @@ extern_category!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityreadingcontent?language=objc)
     pub unsafe trait UIAccessibilityReadingContent: MainThreadOnly {
         #[method(accessibilityLineNumberForPoint:)]
         unsafe fn accessibilityLineNumberForPoint(&self, point: CGPoint) -> NSInteger;
@@ -1117,10 +1136,12 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityvoiceoverstatuschanged?language=objc)
     pub static UIAccessibilityVoiceOverStatusChanged: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityvoiceoverstatusdidchangenotification?language=objc)
     pub static UIAccessibilityVoiceOverStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1129,6 +1150,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitymonoaudiostatusdidchangenotification?language=objc)
     pub static UIAccessibilityMonoAudioStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1137,6 +1159,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityclosedcaptioningstatusdidchangenotification?language=objc)
     pub static UIAccessibilityClosedCaptioningStatusDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -1146,6 +1169,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityinvertcolorsstatusdidchangenotification?language=objc)
     pub static UIAccessibilityInvertColorsStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1154,6 +1178,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityguidedaccessstatusdidchangenotification?language=objc)
     pub static UIAccessibilityGuidedAccessStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1162,6 +1187,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityboldtextstatusdidchangenotification?language=objc)
     pub static UIAccessibilityBoldTextStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1170,6 +1196,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitybuttonshapesenabledstatusdidchangenotification?language=objc)
     pub static UIAccessibilityButtonShapesEnabledStatusDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -1179,6 +1206,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitygrayscalestatusdidchangenotification?language=objc)
     pub static UIAccessibilityGrayscaleStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1187,6 +1215,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityreducetransparencystatusdidchangenotification?language=objc)
     pub static UIAccessibilityReduceTransparencyStatusDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -1196,6 +1225,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityreducemotionstatusdidchangenotification?language=objc)
     pub static UIAccessibilityReduceMotionStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1204,6 +1234,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitypreferscrossfadetransitionsstatusdidchangenotification?language=objc)
     pub static UIAccessibilityPrefersCrossFadeTransitionsStatusDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -1213,6 +1244,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityvideoautoplaystatusdidchangenotification?language=objc)
     pub static UIAccessibilityVideoAutoplayStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1221,6 +1253,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitydarkersystemcolorsstatusdidchangenotification?language=objc)
     pub static UIAccessibilityDarkerSystemColorsStatusDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -1230,6 +1263,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityswitchcontrolstatusdidchangenotification?language=objc)
     pub static UIAccessibilitySwitchControlStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1238,6 +1272,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityspeakselectionstatusdidchangenotification?language=objc)
     pub static UIAccessibilitySpeakSelectionStatusDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -1247,6 +1282,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityspeakscreenstatusdidchangenotification?language=objc)
     pub static UIAccessibilitySpeakScreenStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1255,6 +1291,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityshaketoundodidchangenotification?language=objc)
     pub static UIAccessibilityShakeToUndoDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1263,6 +1300,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityassistivetouchstatusdidchangenotification?language=objc)
     pub static UIAccessibilityAssistiveTouchStatusDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -1272,6 +1310,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityshoulddifferentiatewithoutcolordidchangenotification?language=objc)
     pub static UIAccessibilityShouldDifferentiateWithoutColorDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -1281,6 +1320,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityonoffswitchlabelsdidchangenotification?language=objc)
     pub static UIAccessibilityOnOffSwitchLabelsDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1292,6 +1332,7 @@ extern "C-unwind" {
     );
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityhearingdeviceear?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1322,6 +1363,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityhearingdevicepairedeardidchangenotification?language=objc)
     pub static UIAccessibilityHearingDevicePairedEarDidChangeNotification:
         &'static NSNotificationName;
 }

@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoding?language=objc)
     pub unsafe trait NSCoding {
         #[cfg(feature = "NSCoder")]
         #[method(encodeWithCoder:)]
@@ -19,6 +20,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssecurecoding?language=objc)
     pub unsafe trait NSSecureCoding: NSCoding {
         #[method(supportsSecureCoding)]
         unsafe fn supportsSecureCoding() -> bool;
@@ -49,6 +51,7 @@ extern_category!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdiscardablecontent?language=objc)
     pub unsafe trait NSDiscardableContent {
         #[method(beginContentAccess)]
         unsafe fn beginContentAccess(&self) -> bool;

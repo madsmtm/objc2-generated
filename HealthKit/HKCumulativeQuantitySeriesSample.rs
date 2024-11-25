@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcumulativequantityseriessample?language=objc)
     #[unsafe(super(
         HKCumulativeQuantitySample,
         HKQuantitySample,

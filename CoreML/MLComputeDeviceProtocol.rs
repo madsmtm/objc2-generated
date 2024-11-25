@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputedeviceprotocol?language=objc)
     pub unsafe trait MLComputeDeviceProtocol: NSObjectProtocol {}
 
     unsafe impl ProtocolType for dyn MLComputeDeviceProtocol {}

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidiscoverytoken?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NIDiscoveryToken;
@@ -39,6 +40,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/niconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NIConfiguration;
@@ -67,6 +69,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration?language=objc)
     #[unsafe(super(NIConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NINearbyPeerConfiguration;
@@ -119,6 +122,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyaccessoryconfiguration?language=objc)
     #[unsafe(super(NIConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NINearbyAccessoryConfiguration;

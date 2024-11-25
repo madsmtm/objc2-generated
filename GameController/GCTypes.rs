@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcpoint2?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct GCPoint2 {
@@ -22,6 +23,7 @@ unsafe impl RefEncode for GCPoint2 {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcpoint2zero?language=objc)
     pub static GCPoint2Zero: GCPoint2;
 }
 

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkurlschemetask?language=objc)
     pub unsafe trait WKURLSchemeTask: NSObjectProtocol {
         #[method_id(@__retain_semantics Other request)]
         unsafe fn request(&self) -> Retained<NSURLRequest>;

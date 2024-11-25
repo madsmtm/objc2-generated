@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperationqueuepriority?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -30,6 +31,7 @@ unsafe impl RefEncode for NSOperationQueuePriority {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOperation;
@@ -135,6 +137,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsblockoperation?language=objc)
     #[unsafe(super(NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBlockOperation;
@@ -170,6 +173,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvocationoperation?language=objc)
     #[unsafe(super(NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInvocationOperation;
@@ -215,18 +219,22 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvocationoperationvoidresultexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvocationOperationVoidResultException: &'static NSExceptionName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvocationoperationcancelledexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvocationOperationCancelledException: &'static NSExceptionName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperationqueuedefaultmaxconcurrentoperationcount?language=objc)
 pub static NSOperationQueueDefaultMaxConcurrentOperationCount: NSInteger = -1;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperationqueue?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOperationQueue;

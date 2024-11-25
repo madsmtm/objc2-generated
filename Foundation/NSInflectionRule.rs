@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionrule?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInflectionRule;
@@ -45,6 +46,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionruleexplicit?language=objc)
     #[unsafe(super(NSInflectionRule, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInflectionRuleExplicit;

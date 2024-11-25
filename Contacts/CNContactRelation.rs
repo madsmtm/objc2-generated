@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactrelation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContactRelation;
@@ -48,870 +49,1086 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationassistant?language=objc)
     pub static CNLabelContactRelationAssistant: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmanager?language=objc)
     pub static CNLabelContactRelationManager: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcolleague?language=objc)
     pub static CNLabelContactRelationColleague: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationteacher?language=objc)
     pub static CNLabelContactRelationTeacher: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsibling?language=objc)
     pub static CNLabelContactRelationSibling: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungersibling?language=objc)
     pub static CNLabelContactRelationYoungerSibling: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldersibling?language=objc)
     pub static CNLabelContactRelationElderSibling: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsister?language=objc)
     pub static CNLabelContactRelationSister: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungersister?language=objc)
     pub static CNLabelContactRelationYoungerSister: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungestsister?language=objc)
     pub static CNLabelContactRelationYoungestSister: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldersister?language=objc)
     pub static CNLabelContactRelationElderSister: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldestsister?language=objc)
     pub static CNLabelContactRelationEldestSister: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrother?language=objc)
     pub static CNLabelContactRelationBrother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungerbrother?language=objc)
     pub static CNLabelContactRelationYoungerBrother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungestbrother?language=objc)
     pub static CNLabelContactRelationYoungestBrother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationelderbrother?language=objc)
     pub static CNLabelContactRelationElderBrother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldestbrother?language=objc)
     pub static CNLabelContactRelationEldestBrother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfriend?language=objc)
     pub static CNLabelContactRelationFriend: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmalefriend?language=objc)
     pub static CNLabelContactRelationMaleFriend: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfemalefriend?language=objc)
     pub static CNLabelContactRelationFemaleFriend: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationspouse?language=objc)
     pub static CNLabelContactRelationSpouse: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationwife?language=objc)
     pub static CNLabelContactRelationWife: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationhusband?language=objc)
     pub static CNLabelContactRelationHusband: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationpartner?language=objc)
     pub static CNLabelContactRelationPartner: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmalepartner?language=objc)
     pub static CNLabelContactRelationMalePartner: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfemalepartner?language=objc)
     pub static CNLabelContactRelationFemalePartner: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgirlfriendorboyfriend?language=objc)
     pub static CNLabelContactRelationGirlfriendOrBoyfriend: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgirlfriend?language=objc)
     pub static CNLabelContactRelationGirlfriend: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationboyfriend?language=objc)
     pub static CNLabelContactRelationBoyfriend: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparent?language=objc)
     pub static CNLabelContactRelationParent: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmother?language=objc)
     pub static CNLabelContactRelationMother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfather?language=objc)
     pub static CNLabelContactRelationFather: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationchild?language=objc)
     pub static CNLabelContactRelationChild: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationdaughter?language=objc)
     pub static CNLabelContactRelationDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationson?language=objc)
     pub static CNLabelContactRelationSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandparent?language=objc)
     pub static CNLabelContactRelationGrandparent: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandmother?language=objc)
     pub static CNLabelContactRelationGrandmother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandmothermothersmother?language=objc)
     pub static CNLabelContactRelationGrandmotherMothersMother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandmotherfathersmother?language=objc)
     pub static CNLabelContactRelationGrandmotherFathersMother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandfather?language=objc)
     pub static CNLabelContactRelationGrandfather: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandfathermothersfather?language=objc)
     pub static CNLabelContactRelationGrandfatherMothersFather: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandfatherfathersfather?language=objc)
     pub static CNLabelContactRelationGrandfatherFathersFather: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgreatgrandparent?language=objc)
     pub static CNLabelContactRelationGreatGrandparent: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgreatgrandmother?language=objc)
     pub static CNLabelContactRelationGreatGrandmother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgreatgrandfather?language=objc)
     pub static CNLabelContactRelationGreatGrandfather: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandchild?language=objc)
     pub static CNLabelContactRelationGrandchild: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgranddaughter?language=objc)
     pub static CNLabelContactRelationGranddaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgranddaughterdaughtersdaughter?language=objc)
     pub static CNLabelContactRelationGranddaughterDaughtersDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgranddaughtersonsdaughter?language=objc)
     pub static CNLabelContactRelationGranddaughterSonsDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandson?language=objc)
     pub static CNLabelContactRelationGrandson: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandsondaughtersson?language=objc)
     pub static CNLabelContactRelationGrandsonDaughtersSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandsonsonsson?language=objc)
     pub static CNLabelContactRelationGrandsonSonsSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgreatgrandchild?language=objc)
     pub static CNLabelContactRelationGreatGrandchild: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgreatgranddaughter?language=objc)
     pub static CNLabelContactRelationGreatGranddaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgreatgrandson?language=objc)
     pub static CNLabelContactRelationGreatGrandson: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentinlaw?language=objc)
     pub static CNLabelContactRelationParentInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmotherinlaw?language=objc)
     pub static CNLabelContactRelationMotherInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmotherinlawwifesmother?language=objc)
     pub static CNLabelContactRelationMotherInLawWifesMother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmotherinlawhusbandsmother?language=objc)
     pub static CNLabelContactRelationMotherInLawHusbandsMother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfatherinlaw?language=objc)
     pub static CNLabelContactRelationFatherInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfatherinlawwifesfather?language=objc)
     pub static CNLabelContactRelationFatherInLawWifesFather: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfatherinlawhusbandsfather?language=objc)
     pub static CNLabelContactRelationFatherInLawHusbandsFather: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcoparentinlaw?language=objc)
     pub static CNLabelContactRelationCoParentInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcomotherinlaw?language=objc)
     pub static CNLabelContactRelationCoMotherInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcofatherinlaw?language=objc)
     pub static CNLabelContactRelationCoFatherInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsiblinginlaw?language=objc)
     pub static CNLabelContactRelationSiblingInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungersiblinginlaw?language=objc)
     pub static CNLabelContactRelationYoungerSiblingInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldersiblinginlaw?language=objc)
     pub static CNLabelContactRelationElderSiblingInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsisterinlaw?language=objc)
     pub static CNLabelContactRelationSisterInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungersisterinlaw?language=objc)
     pub static CNLabelContactRelationYoungerSisterInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldersisterinlaw?language=objc)
     pub static CNLabelContactRelationElderSisterInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsisterinlawspousessister?language=objc)
     pub static CNLabelContactRelationSisterInLawSpousesSister: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsisterinlawwifessister?language=objc)
     pub static CNLabelContactRelationSisterInLawWifesSister: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsisterinlawhusbandssister?language=objc)
     pub static CNLabelContactRelationSisterInLawHusbandsSister: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsisterinlawbrotherswife?language=objc)
     pub static CNLabelContactRelationSisterInLawBrothersWife: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsisterinlawyoungerbrotherswife?language=objc)
     pub static CNLabelContactRelationSisterInLawYoungerBrothersWife: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsisterinlawelderbrotherswife?language=objc)
     pub static CNLabelContactRelationSisterInLawElderBrothersWife: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrotherinlaw?language=objc)
     pub static CNLabelContactRelationBrotherInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungerbrotherinlaw?language=objc)
     pub static CNLabelContactRelationYoungerBrotherInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationelderbrotherinlaw?language=objc)
     pub static CNLabelContactRelationElderBrotherInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrotherinlawspousesbrother?language=objc)
     pub static CNLabelContactRelationBrotherInLawSpousesBrother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrotherinlawhusbandsbrother?language=objc)
     pub static CNLabelContactRelationBrotherInLawHusbandsBrother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrotherinlawwifesbrother?language=objc)
     pub static CNLabelContactRelationBrotherInLawWifesBrother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrotherinlawsistershusband?language=objc)
     pub static CNLabelContactRelationBrotherInLawSistersHusband: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrotherinlawyoungersistershusband?language=objc)
     pub static CNLabelContactRelationBrotherInLawYoungerSistersHusband: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrotherinlaweldersistershusband?language=objc)
     pub static CNLabelContactRelationBrotherInLawElderSistersHusband: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsisterinlawwifesbrotherswife?language=objc)
     pub static CNLabelContactRelationSisterInLawWifesBrothersWife: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsisterinlawhusbandsbrotherswife?language=objc)
     pub static CNLabelContactRelationSisterInLawHusbandsBrothersWife: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrotherinlawwifessistershusband?language=objc)
     pub static CNLabelContactRelationBrotherInLawWifesSistersHusband: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrotherinlawhusbandssistershusband?language=objc)
     pub static CNLabelContactRelationBrotherInLawHusbandsSistersHusband: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcosiblinginlaw?language=objc)
     pub static CNLabelContactRelationCoSiblingInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcosisterinlaw?language=objc)
     pub static CNLabelContactRelationCoSisterInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcobrotherinlaw?language=objc)
     pub static CNLabelContactRelationCoBrotherInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationchildinlaw?language=objc)
     pub static CNLabelContactRelationChildInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationdaughterinlaw?language=objc)
     pub static CNLabelContactRelationDaughterInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsoninlaw?language=objc)
     pub static CNLabelContactRelationSonInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousin?language=objc)
     pub static CNLabelContactRelationCousin: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousin?language=objc)
     pub static CNLabelContactRelationYoungerCousin: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousin?language=objc)
     pub static CNLabelContactRelationElderCousin: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmalecousin?language=objc)
     pub static CNLabelContactRelationMaleCousin: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfemalecousin?language=objc)
     pub static CNLabelContactRelationFemaleCousin: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinparentssiblingschild?language=objc)
     pub static CNLabelContactRelationCousinParentsSiblingsChild: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinparentssiblingsson?language=objc)
     pub static CNLabelContactRelationCousinParentsSiblingsSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinparentssiblingsson?language=objc)
     pub static CNLabelContactRelationYoungerCousinParentsSiblingsSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinparentssiblingsson?language=objc)
     pub static CNLabelContactRelationElderCousinParentsSiblingsSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinparentssiblingsdaughter?language=objc)
     pub static CNLabelContactRelationCousinParentsSiblingsDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinparentssiblingsdaughter?language=objc)
     pub static CNLabelContactRelationYoungerCousinParentsSiblingsDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinparentssiblingsdaughter?language=objc)
     pub static CNLabelContactRelationElderCousinParentsSiblingsDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinmotherssistersdaughter?language=objc)
     pub static CNLabelContactRelationCousinMothersSistersDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinmotherssistersdaughter?language=objc)
     pub static CNLabelContactRelationYoungerCousinMothersSistersDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinmotherssistersdaughter?language=objc)
     pub static CNLabelContactRelationElderCousinMothersSistersDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinmotherssistersson?language=objc)
     pub static CNLabelContactRelationCousinMothersSistersSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinmotherssistersson?language=objc)
     pub static CNLabelContactRelationYoungerCousinMothersSistersSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinmotherssistersson?language=objc)
     pub static CNLabelContactRelationElderCousinMothersSistersSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinmothersbrothersdaughter?language=objc)
     pub static CNLabelContactRelationCousinMothersBrothersDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinmothersbrothersdaughter?language=objc)
     pub static CNLabelContactRelationYoungerCousinMothersBrothersDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinmothersbrothersdaughter?language=objc)
     pub static CNLabelContactRelationElderCousinMothersBrothersDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinmothersbrothersson?language=objc)
     pub static CNLabelContactRelationCousinMothersBrothersSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinmothersbrothersson?language=objc)
     pub static CNLabelContactRelationYoungerCousinMothersBrothersSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinmothersbrothersson?language=objc)
     pub static CNLabelContactRelationElderCousinMothersBrothersSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinfatherssistersdaughter?language=objc)
     pub static CNLabelContactRelationCousinFathersSistersDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinfatherssistersdaughter?language=objc)
     pub static CNLabelContactRelationYoungerCousinFathersSistersDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinfatherssistersdaughter?language=objc)
     pub static CNLabelContactRelationElderCousinFathersSistersDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinfatherssistersson?language=objc)
     pub static CNLabelContactRelationCousinFathersSistersSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinfatherssistersson?language=objc)
     pub static CNLabelContactRelationYoungerCousinFathersSistersSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinfatherssistersson?language=objc)
     pub static CNLabelContactRelationElderCousinFathersSistersSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinfathersbrothersdaughter?language=objc)
     pub static CNLabelContactRelationCousinFathersBrothersDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinfathersbrothersdaughter?language=objc)
     pub static CNLabelContactRelationYoungerCousinFathersBrothersDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinfathersbrothersdaughter?language=objc)
     pub static CNLabelContactRelationElderCousinFathersBrothersDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinfathersbrothersson?language=objc)
     pub static CNLabelContactRelationCousinFathersBrothersSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinfathersbrothersson?language=objc)
     pub static CNLabelContactRelationYoungerCousinFathersBrothersSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinfathersbrothersson?language=objc)
     pub static CNLabelContactRelationElderCousinFathersBrothersSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousingrandparentssiblingschild?language=objc)
     pub static CNLabelContactRelationCousinGrandparentsSiblingsChild: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousingrandparentssiblingsdaughter?language=objc)
     pub static CNLabelContactRelationCousinGrandparentsSiblingsDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousingrandparentssiblingsson?language=objc)
     pub static CNLabelContactRelationCousinGrandparentsSiblingsSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinmotherssiblingssonorfatherssistersson?language=objc)
     pub static CNLabelContactRelationYoungerCousinMothersSiblingsSonOrFathersSistersSon:
         &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinmotherssiblingssonorfatherssistersson?language=objc)
     pub static CNLabelContactRelationElderCousinMothersSiblingsSonOrFathersSistersSon:
         &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinmotherssiblingsdaughterorfatherssistersdaughter?language=objc)
     pub static CNLabelContactRelationYoungerCousinMothersSiblingsDaughterOrFathersSistersDaughter:
         &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinmotherssiblingsdaughterorfatherssistersdaughter?language=objc)
     pub static CNLabelContactRelationElderCousinMothersSiblingsDaughterOrFathersSistersDaughter:
         &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentssibling?language=objc)
     pub static CNLabelContactRelationParentsSibling: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentsyoungersibling?language=objc)
     pub static CNLabelContactRelationParentsYoungerSibling: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentseldersibling?language=objc)
     pub static CNLabelContactRelationParentsElderSibling: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentssiblingmotherssibling?language=objc)
     pub static CNLabelContactRelationParentsSiblingMothersSibling: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentssiblingmothersyoungersibling?language=objc)
     pub static CNLabelContactRelationParentsSiblingMothersYoungerSibling: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentssiblingmotherseldersibling?language=objc)
     pub static CNLabelContactRelationParentsSiblingMothersElderSibling: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentssiblingfatherssibling?language=objc)
     pub static CNLabelContactRelationParentsSiblingFathersSibling: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentssiblingfathersyoungersibling?language=objc)
     pub static CNLabelContactRelationParentsSiblingFathersYoungerSibling: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentssiblingfatherseldersibling?language=objc)
     pub static CNLabelContactRelationParentsSiblingFathersElderSibling: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationaunt?language=objc)
     pub static CNLabelContactRelationAunt: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntparentssister?language=objc)
     pub static CNLabelContactRelationAuntParentsSister: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntparentsyoungersister?language=objc)
     pub static CNLabelContactRelationAuntParentsYoungerSister: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntparentseldersister?language=objc)
     pub static CNLabelContactRelationAuntParentsElderSister: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntfatherssister?language=objc)
     pub static CNLabelContactRelationAuntFathersSister: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntfathersyoungersister?language=objc)
     pub static CNLabelContactRelationAuntFathersYoungerSister: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntfatherseldersister?language=objc)
     pub static CNLabelContactRelationAuntFathersElderSister: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntfathersbrotherswife?language=objc)
     pub static CNLabelContactRelationAuntFathersBrothersWife: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntfathersyoungerbrotherswife?language=objc)
     pub static CNLabelContactRelationAuntFathersYoungerBrothersWife: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntfatherselderbrotherswife?language=objc)
     pub static CNLabelContactRelationAuntFathersElderBrothersWife: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntmotherssister?language=objc)
     pub static CNLabelContactRelationAuntMothersSister: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntmothersyoungersister?language=objc)
     pub static CNLabelContactRelationAuntMothersYoungerSister: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntmotherseldersister?language=objc)
     pub static CNLabelContactRelationAuntMothersElderSister: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntmothersbrotherswife?language=objc)
     pub static CNLabelContactRelationAuntMothersBrothersWife: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandaunt?language=objc)
     pub static CNLabelContactRelationGrandaunt: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationuncle?language=objc)
     pub static CNLabelContactRelationUncle: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationuncleparentsbrother?language=objc)
     pub static CNLabelContactRelationUncleParentsBrother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationuncleparentsyoungerbrother?language=objc)
     pub static CNLabelContactRelationUncleParentsYoungerBrother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationuncleparentselderbrother?language=objc)
     pub static CNLabelContactRelationUncleParentsElderBrother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclemothersbrother?language=objc)
     pub static CNLabelContactRelationUncleMothersBrother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclemothersyoungerbrother?language=objc)
     pub static CNLabelContactRelationUncleMothersYoungerBrother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclemotherselderbrother?language=objc)
     pub static CNLabelContactRelationUncleMothersElderBrother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclemotherssistershusband?language=objc)
     pub static CNLabelContactRelationUncleMothersSistersHusband: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclefathersbrother?language=objc)
     pub static CNLabelContactRelationUncleFathersBrother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclefathersyoungerbrother?language=objc)
     pub static CNLabelContactRelationUncleFathersYoungerBrother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclefatherselderbrother?language=objc)
     pub static CNLabelContactRelationUncleFathersElderBrother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclefatherssistershusband?language=objc)
     pub static CNLabelContactRelationUncleFathersSistersHusband: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclefathersyoungersistershusband?language=objc)
     pub static CNLabelContactRelationUncleFathersYoungerSistersHusband: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclefatherseldersistershusband?language=objc)
     pub static CNLabelContactRelationUncleFathersElderSistersHusband: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgranduncle?language=objc)
     pub static CNLabelContactRelationGranduncle: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsiblingschild?language=objc)
     pub static CNLabelContactRelationSiblingsChild: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationniece?language=objc)
     pub static CNLabelContactRelationNiece: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationniecesistersdaughter?language=objc)
     pub static CNLabelContactRelationNieceSistersDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationniecebrothersdaughter?language=objc)
     pub static CNLabelContactRelationNieceBrothersDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationniecesistersdaughterorwifessiblingsdaughter?language=objc)
     pub static CNLabelContactRelationNieceSistersDaughterOrWifesSiblingsDaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationniecebrothersdaughterorhusbandssiblingsdaughter?language=objc)
     pub static CNLabelContactRelationNieceBrothersDaughterOrHusbandsSiblingsDaughter:
         &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationnephew?language=objc)
     pub static CNLabelContactRelationNephew: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationnephewsistersson?language=objc)
     pub static CNLabelContactRelationNephewSistersSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationnephewbrothersson?language=objc)
     pub static CNLabelContactRelationNephewBrothersSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationnephewbrotherssonorhusbandssiblingsson?language=objc)
     pub static CNLabelContactRelationNephewBrothersSonOrHusbandsSiblingsSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationnephewsisterssonorwifessiblingsson?language=objc)
     pub static CNLabelContactRelationNephewSistersSonOrWifesSiblingsSon: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandniece?language=objc)
     pub static CNLabelContactRelationGrandniece: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandniecesistersgranddaughter?language=objc)
     pub static CNLabelContactRelationGrandnieceSistersGranddaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandniecebrothersgranddaughter?language=objc)
     pub static CNLabelContactRelationGrandnieceBrothersGranddaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandnephew?language=objc)
     pub static CNLabelContactRelationGrandnephew: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandnephewsistersgrandson?language=objc)
     pub static CNLabelContactRelationGrandnephewSistersGrandson: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandnephewbrothersgrandson?language=objc)
     pub static CNLabelContactRelationGrandnephewBrothersGrandson: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationstepparent?language=objc)
     pub static CNLabelContactRelationStepparent: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationstepmother?language=objc)
     pub static CNLabelContactRelationStepmother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationstepfather?language=objc)
     pub static CNLabelContactRelationStepfather: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationstepchild?language=objc)
     pub static CNLabelContactRelationStepchild: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationstepdaughter?language=objc)
     pub static CNLabelContactRelationStepdaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationstepson?language=objc)
     pub static CNLabelContactRelationStepson: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationstepsister?language=objc)
     pub static CNLabelContactRelationStepsister: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationstepbrother?language=objc)
     pub static CNLabelContactRelationStepbrother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmotherinlaworstepmother?language=objc)
     pub static CNLabelContactRelationMotherInLawOrStepmother: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfatherinlaworstepfather?language=objc)
     pub static CNLabelContactRelationFatherInLawOrStepfather: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationdaughterinlaworstepdaughter?language=objc)
     pub static CNLabelContactRelationDaughterInLawOrStepdaughter: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsoninlaworstepson?language=objc)
     pub static CNLabelContactRelationSonInLawOrStepson: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinorsiblingschild?language=objc)
     pub static CNLabelContactRelationCousinOrSiblingsChild: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationnieceorcousin?language=objc)
     pub static CNLabelContactRelationNieceOrCousin: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationnepheworcousin?language=objc)
     pub static CNLabelContactRelationNephewOrCousin: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandchildorsiblingschild?language=objc)
     pub static CNLabelContactRelationGrandchildOrSiblingsChild: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgranddaughterorniece?language=objc)
     pub static CNLabelContactRelationGranddaughterOrNiece: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandsonornephew?language=objc)
     pub static CNLabelContactRelationGrandsonOrNephew: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgreatgrandchildorsiblingsgrandchild?language=objc)
     pub static CNLabelContactRelationGreatGrandchildOrSiblingsGrandchild: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationdaughterinlaworsisterinlaw?language=objc)
     pub static CNLabelContactRelationDaughterInLawOrSisterInLaw: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsoninlaworbrotherinlaw?language=objc)
     pub static CNLabelContactRelationSonInLawOrBrotherInLaw: &'static NSString;
 }

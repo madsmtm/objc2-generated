@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcracingwheelinputstate?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCRacingWheelInputState;
@@ -53,6 +54,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcracingwheelinput?language=objc)
     #[unsafe(super(GCRacingWheelInputState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCRacingWheelInput;

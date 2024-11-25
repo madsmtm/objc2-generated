@@ -4,22 +4,27 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventmanagersuspensionid?language=objc)
 pub type NSAppleEventManagerSuspensionID = *mut c_void;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventtimeoutdefault?language=objc)
     pub static NSAppleEventTimeOutDefault: c_double;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventtimeoutnone?language=objc)
     pub static NSAppleEventTimeOutNone: c_double;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventmanagerwillprocessfirsteventnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSAppleEventManagerWillProcessFirstEventNotification: &'static NSNotificationName;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAppleEventManager;

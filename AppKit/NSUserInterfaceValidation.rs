@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvalidateduserinterfaceitem?language=objc)
     pub unsafe trait NSValidatedUserInterfaceItem: MainThreadOnly {
         #[method(action)]
         unsafe fn action(&self) -> Option<Sel>;
@@ -17,6 +18,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfacevalidations?language=objc)
     pub unsafe trait NSUserInterfaceValidations: MainThreadOnly {
         #[method(validateUserInterfaceItem:)]
         unsafe fn validateUserInterfaceItem(

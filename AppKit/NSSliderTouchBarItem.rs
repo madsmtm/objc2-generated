@@ -5,18 +5,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslideraccessorywidth?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSSliderAccessoryWidth = CGFloat;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslideraccessorywidthdefault?language=objc)
     pub static NSSliderAccessoryWidthDefault: NSSliderAccessoryWidth;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslideraccessorywidthwide?language=objc)
     pub static NSSliderAccessoryWidthWide: NSSliderAccessoryWidth;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslidertouchbaritem?language=objc)
     #[unsafe(super(NSTouchBarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSTouchBarItem")]

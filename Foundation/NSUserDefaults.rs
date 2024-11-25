@@ -5,21 +5,25 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsglobaldomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSGlobalDomain: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsargumentdomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSArgumentDomain: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregistrationdomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSRegistrationDomain: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserdefaults?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserDefaults;
@@ -225,157 +229,188 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserdefaultssizelimitexceedednotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUserDefaultsSizeLimitExceededNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitoususerdefaultsnocloudaccountnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUbiquitousUserDefaultsNoCloudAccountNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitoususerdefaultsdidchangeaccountsnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUbiquitousUserDefaultsDidChangeAccountsNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitoususerdefaultscompletedinitialsyncnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUbiquitousUserDefaultsCompletedInitialSyncNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserdefaultsdidchangenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUserDefaultsDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsweekdaynamearray?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSWeekDayNameArray: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsshortweekdaynamearray?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSShortWeekDayNameArray: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmonthnamearray?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMonthNameArray: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsshortmonthnamearray?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSShortMonthNameArray: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimeformatstring?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTimeFormatString: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdateformatstring?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSDateFormatString: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimedateformatstring?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTimeDateFormatString: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsshorttimedateformatstring?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSShortTimeDateFormatString: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscurrencysymbol?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCurrencySymbol: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalseparator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSDecimalSeparator: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsthousandsseparator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSThousandsSeparator: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimaldigits?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSDecimalDigits: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsampmdesignation?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAMPMDesignation: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshournamedesignations?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHourNameDesignations: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsyearmonthweekdesignations?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSYearMonthWeekDesignations: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsearliertimedesignations?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSEarlierTimeDesignations: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslatertimedesignations?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLaterTimeDesignations: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsthisdaydesignations?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSThisDayDesignations: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnextdaydesignations?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSNextDayDesignations: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnextnextdaydesignations?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSNextNextDayDesignations: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspriordaydesignations?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSPriorDayDesignations: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatetimeordering?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSDateTimeOrdering: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinternationalcurrencystring?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInternationalCurrencyString: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsshortdateformatstring?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSShortDateFormatString: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspositivecurrencyformatstring?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSPositiveCurrencyFormatString: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnegativecurrencyformatstring?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSNegativeCurrencyFormatString: &'static NSString;
 }

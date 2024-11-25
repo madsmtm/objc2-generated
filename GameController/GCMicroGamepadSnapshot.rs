@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshot?language=objc)
     #[unsafe(super(GCMicroGamepad, GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
@@ -54,6 +55,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshotdataversion?language=objc)
 // NS_ENUM
 #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
 #[repr(transparent)]
@@ -73,9 +75,11 @@ unsafe impl RefEncode for GCMicroGamepadSnapshotDataVersion {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccurrentmicrogamepadsnapshotdataversion?language=objc)
     pub static GCCurrentMicroGamepadSnapshotDataVersion: GCMicroGamepadSnapshotDataVersion;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshotdata?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct GCMicroGamepadSnapshotData {
@@ -120,6 +124,7 @@ extern "C-unwind" {
     ) -> *mut NSData;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshotdatav100?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct GCMicroGamepadSnapShotDataV100 {

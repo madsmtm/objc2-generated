@@ -5,24 +5,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerdetentidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UISheetPresentationControllerDetentIdentifier = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerdetentidentifiermedium?language=objc)
     pub static UISheetPresentationControllerDetentIdentifierMedium:
         &'static UISheetPresentationControllerDetentIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerdetentidentifierlarge?language=objc)
     pub static UISheetPresentationControllerDetentIdentifierLarge:
         &'static UISheetPresentationControllerDetentIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerdetentinactive?language=objc)
     pub static UISheetPresentationControllerDetentInactive: CGFloat;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerdetentresolutioncontext?language=objc)
     pub unsafe trait UISheetPresentationControllerDetentResolutionContext:
         NSObjectProtocol + MainThreadOnly
     {
@@ -38,6 +43,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerdetent?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -86,10 +92,12 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerautomaticdimension?language=objc)
     pub static UISheetPresentationControllerAutomaticDimension: CGFloat;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerdelegate?language=objc)
     #[cfg(feature = "UIPresentationController")]
     pub unsafe trait UISheetPresentationControllerDelegate:
         UIAdaptivePresentationControllerDelegate + MainThreadOnly
@@ -107,6 +115,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontroller?language=objc)
     #[unsafe(super(UIPresentationController, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

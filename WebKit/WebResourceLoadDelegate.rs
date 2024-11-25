@@ -9,6 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webresourceloaddelegate?language=objc)
     #[deprecated]
     pub unsafe trait WebResourceLoadDelegate: NSObjectProtocol {
         #[cfg(all(

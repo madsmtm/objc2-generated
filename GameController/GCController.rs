@@ -6,25 +6,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerdidconnectnotification?language=objc)
     pub static GCControllerDidConnectNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerdiddisconnectnotification?language=objc)
     pub static GCControllerDidDisconnectNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerdidbecomecurrentnotification?language=objc)
     pub static GCControllerDidBecomeCurrentNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerdidstopbeingcurrentnotification?language=objc)
     pub static GCControllerDidStopBeingCurrentNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerusercustomizationsdidchangenotification?language=objc)
     pub static GCControllerUserCustomizationsDidChangeNotification: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerplayerindex?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -47,6 +53,7 @@ unsafe impl RefEncode for GCControllerPlayerIndex {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCController;

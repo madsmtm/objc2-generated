@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -27,6 +28,7 @@ unsafe impl RefEncode for NSWritingDirection {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstext?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -333,17 +335,28 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsentercharacter?language=objc)
 pub const NSEnterCharacter: c_uint = 0x0003;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackspacecharacter?language=objc)
 pub const NSBackspaceCharacter: c_uint = 0x0008;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabcharacter?language=objc)
 pub const NSTabCharacter: c_uint = 0x0009;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnewlinecharacter?language=objc)
 pub const NSNewlineCharacter: c_uint = 0x000a;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsformfeedcharacter?language=objc)
 pub const NSFormFeedCharacter: c_uint = 0x000c;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscarriagereturncharacter?language=objc)
 pub const NSCarriageReturnCharacter: c_uint = 0x000d;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbacktabcharacter?language=objc)
 pub const NSBackTabCharacter: c_uint = 0x0019;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeletecharacter?language=objc)
 pub const NSDeleteCharacter: c_uint = 0x007f;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslineseparatorcharacter?language=objc)
 pub const NSLineSeparatorCharacter: c_uint = 0x2028;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphseparatorcharacter?language=objc)
 pub const NSParagraphSeparatorCharacter: c_uint = 0x2029;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -378,33 +391,48 @@ unsafe impl RefEncode for NSTextMovement {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextdidbegineditingnotification?language=objc)
     pub static NSTextDidBeginEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextdidendeditingnotification?language=objc)
     pub static NSTextDidEndEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextdidchangenotification?language=objc)
     pub static NSTextDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovementuserinfokey?language=objc)
     pub static NSTextMovementUserInfoKey: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsillegaltextmovement?language=objc)
 pub const NSIllegalTextMovement: c_uint = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsreturntextmovement?language=objc)
 pub const NSReturnTextMovement: c_uint = 0x10;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabtextmovement?language=objc)
 pub const NSTabTextMovement: c_uint = 0x11;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbacktabtextmovement?language=objc)
 pub const NSBacktabTextMovement: c_uint = 0x12;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslefttextmovement?language=objc)
 pub const NSLeftTextMovement: c_uint = 0x13;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrighttextmovement?language=objc)
 pub const NSRightTextMovement: c_uint = 0x14;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuptextmovement?language=objc)
 pub const NSUpTextMovement: c_uint = 0x15;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdowntextmovement?language=objc)
 pub const NSDownTextMovement: c_uint = 0x16;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscanceltextmovement?language=objc)
 pub const NSCancelTextMovement: c_uint = 0x17;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothertextmovement?language=objc)
 pub const NSOtherTextMovement: c_uint = 0;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextdelegate?language=objc)
     pub unsafe trait NSTextDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -432,18 +460,25 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSTextDelegate {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextwritingdirectionembedding?language=objc)
 #[deprecated = "Use NSWritingDirectionEmbedding instead"]
 pub const NSTextWritingDirectionEmbedding: c_uint = 0 << 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextwritingdirectionoverride?language=objc)
 #[deprecated = "Use NSWritingDirectionOverride instead"]
 pub const NSTextWritingDirectionOverride: c_uint = 1 << 1;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslefttextalignment?language=objc)
 pub static NSLeftTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::Left.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrighttextalignment?language=objc)
 pub static NSRightTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::Right.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscentertextalignment?language=objc)
 pub static NSCenterTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::Center.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsjustifiedtextalignment?language=objc)
 pub static NSJustifiedTextAlignment: NSTextAlignment =
     NSTextAlignment(NSTextAlignment::Justified.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnaturaltextalignment?language=objc)
 pub static NSNaturalTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::Natural.0);

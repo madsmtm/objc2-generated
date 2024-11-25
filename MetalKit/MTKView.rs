@@ -12,6 +12,7 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -251,6 +252,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkviewdelegate?language=objc)
     pub unsafe trait MTKViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

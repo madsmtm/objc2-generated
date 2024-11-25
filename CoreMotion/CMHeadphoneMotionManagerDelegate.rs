@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanagerdelegate?language=objc)
     pub unsafe trait CMHeadphoneMotionManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "CMHeadphoneMotionManager")]
         #[optional]

@@ -9,6 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gklocalplayer?language=objc)
     #[unsafe(super(GKPlayer, GKBasePlayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
@@ -107,6 +108,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gklocalplayerlistener?language=objc)
     #[cfg(all(
         feature = "GKEventListener",
         feature = "GKMatchmaker",
@@ -158,6 +160,7 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayerauthenticationdidchangenotificationname?language=objc)
     pub static GKPlayerAuthenticationDidChangeNotificationName: &'static NSNotificationName;
 }
 
@@ -232,6 +235,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendsauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainremovalmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -27,6 +28,7 @@ unsafe impl RefEncode for NSFileProviderDomainRemovalMode {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderManager;
@@ -170,6 +172,7 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermaterializedsetdidchange?language=objc)
     pub static NSFileProviderMaterializedSetDidChange: &'static NSNotificationName;
 }
 
@@ -185,10 +188,12 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderpendingsetdidchange?language=objc)
     pub static NSFileProviderPendingSetDidChange: &'static NSNotificationName;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderpendingsetenumerator?language=objc)
     #[cfg(feature = "NSFileProviderEnumerating")]
     pub unsafe trait NSFileProviderPendingSetEnumerator: NSFileProviderEnumerator {
         #[cfg(feature = "NSFileProviderDomain")]
@@ -290,6 +295,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanagerdisconnectionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -354,6 +360,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidervolumeunsupportedreason?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

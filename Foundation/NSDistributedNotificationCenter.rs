@@ -4,15 +4,18 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistributednotificationcentertype?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSDistributedNotificationCenterType = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalnotificationcentertype?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocalNotificationCenterType: &'static NSDistributedNotificationCenterType;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotificationsuspensionbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -36,6 +39,7 @@ unsafe impl RefEncode for NSNotificationSuspensionBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistributednotificationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -55,17 +59,20 @@ unsafe impl RefEncode for NSDistributedNotificationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotificationdeliverimmediately?language=objc)
 pub static NSNotificationDeliverImmediately: NSDistributedNotificationOptions =
     NSDistributedNotificationOptions(
         NSDistributedNotificationOptions::NSDistributedNotificationDeliverImmediately.0,
     );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotificationposttoallsessions?language=objc)
 pub static NSNotificationPostToAllSessions: NSDistributedNotificationOptions =
     NSDistributedNotificationOptions(
         NSDistributedNotificationOptions::NSDistributedNotificationPostToAllSessions.0,
     );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistributednotificationcenter?language=objc)
     #[unsafe(super(NSNotificationCenter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSNotification")]

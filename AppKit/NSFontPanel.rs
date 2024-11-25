@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelmodemask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -43,6 +44,7 @@ unsafe impl RefEncode for NSFontPanelModeMask {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontchanging?language=objc)
     pub unsafe trait NSFontChanging: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSFontManager")]
         #[optional]
@@ -59,6 +61,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel?language=objc)
     #[unsafe(super(NSPanel, NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
@@ -223,22 +226,40 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelfacemodemask?language=objc)
 pub const NSFontPanelFaceModeMask: c_uint = 1 << 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelsizemodemask?language=objc)
 pub const NSFontPanelSizeModeMask: c_uint = 1 << 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelcollectionmodemask?language=objc)
 pub const NSFontPanelCollectionModeMask: c_uint = 1 << 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelunderlineeffectmodemask?language=objc)
 pub const NSFontPanelUnderlineEffectModeMask: c_uint = 1 << 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelstrikethrougheffectmodemask?language=objc)
 pub const NSFontPanelStrikethroughEffectModeMask: c_uint = 1 << 9;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpaneltextcoloreffectmodemask?language=objc)
 pub const NSFontPanelTextColorEffectModeMask: c_uint = 1 << 10;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpaneldocumentcoloreffectmodemask?language=objc)
 pub const NSFontPanelDocumentColorEffectModeMask: c_uint = 1 << 11;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelshadoweffectmodemask?language=objc)
 pub const NSFontPanelShadowEffectModeMask: c_uint = 1 << 12;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelalleffectsmodemask?language=objc)
 pub const NSFontPanelAllEffectsModeMask: c_uint = 0xFFF00;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelstandardmodesmask?language=objc)
 pub const NSFontPanelStandardModesMask: c_uint = 0xFFFF;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelallmodesmask?language=objc)
 pub const NSFontPanelAllModesMask: c_uint = 0xFFFFFFFF;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfppreviewbutton?language=objc)
 pub const NSFPPreviewButton: c_uint = 131;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfprevertbutton?language=objc)
 pub const NSFPRevertButton: c_uint = 130;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfpsetbutton?language=objc)
 pub const NSFPSetButton: c_uint = 132;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfppreviewfield?language=objc)
 pub const NSFPPreviewField: c_uint = 128;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfpsizefield?language=objc)
 pub const NSFPSizeField: c_uint = 129;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfpsizetitle?language=objc)
 pub const NSFPSizeTitle: c_uint = 133;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfpcurrentfield?language=objc)
 pub const NSFPCurrentField: c_uint = 134;

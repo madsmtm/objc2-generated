@@ -7,6 +7,7 @@ use objc2_app_kit::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/localauthenticationembeddedui/lapresentationcontext?language=objc)
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 pub type LAPresentationContext = NSWindow;

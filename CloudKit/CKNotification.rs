@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cknotificationid?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKNotificationID;
@@ -38,6 +39,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cknotificationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -62,6 +64,7 @@ unsafe impl RefEncode for CKNotificationType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cknotification?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKNotification;
@@ -162,6 +165,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerynotificationreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -184,6 +188,7 @@ unsafe impl RefEncode for CKQueryNotificationReason {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerynotification?language=objc)
     #[unsafe(super(CKNotification, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKQueryNotification;
@@ -230,6 +235,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzonenotification?language=objc)
     #[unsafe(super(CKNotification, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKRecordZoneNotification;
@@ -270,6 +276,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdatabasenotification?language=objc)
     #[unsafe(super(CKNotification, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKDatabaseNotification;

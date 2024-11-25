@@ -5,20 +5,24 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderauthorizationoperation?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationProviderAuthorizationOperation = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderauthorizationoperationconfigurationremoved?language=objc)
     pub static ASAuthorizationProviderAuthorizationOperationConfigurationRemoved:
         &'static ASAuthorizationProviderAuthorizationOperation;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderauthorizationoperationdirectrequest?language=objc)
     pub static ASAuthorizationProviderAuthorizationOperationDirectRequest:
         &'static ASAuthorizationProviderAuthorizationOperation;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthorizationrequesthandler?language=objc)
     pub unsafe trait ASAuthorizationProviderExtensionAuthorizationRequestHandler:
         NSObjectProtocol + MainThreadOnly
     {
@@ -40,6 +44,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthorizationrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationProviderExtensionAuthorizationRequest;

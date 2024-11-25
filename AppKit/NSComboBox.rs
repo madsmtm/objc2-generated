@@ -6,22 +6,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscomboboxwillpopupnotification?language=objc)
     pub static NSComboBoxWillPopUpNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscomboboxwilldismissnotification?language=objc)
     pub static NSComboBoxWillDismissNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscomboboxselectiondidchangenotification?language=objc)
     pub static NSComboBoxSelectionDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscomboboxselectionischangingnotification?language=objc)
     pub static NSComboBoxSelectionIsChangingNotification: &'static NSNotificationName;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscomboboxdatasource?language=objc)
     pub unsafe trait NSComboBoxDataSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "NSControl",
@@ -80,6 +85,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscomboboxdelegate?language=objc)
     #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
     pub unsafe trait NSComboBoxDelegate: NSTextFieldDelegate + MainThreadOnly {
         #[optional]
@@ -104,6 +110,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscombobox?language=objc)
     #[unsafe(super(NSTextField, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

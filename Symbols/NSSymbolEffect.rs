@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboleffectoptionsrepeatbehavior?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolEffectOptionsRepeatBehavior;
@@ -52,6 +53,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboleffectoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolEffectOptions;
@@ -122,6 +124,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboleffect?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolEffect;
@@ -150,6 +153,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolpulseeffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolPulseEffect;
@@ -192,6 +196,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolbounceeffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolBounceEffect;
@@ -240,6 +245,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolvariablecoloreffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolVariableColorEffect;
@@ -294,6 +300,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolscaleeffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolScaleEffect;
@@ -342,6 +349,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolappeareffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolAppearEffect;
@@ -390,6 +398,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboldisappeareffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolDisappearEffect;
@@ -438,6 +447,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolwiggleeffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolWiggleEffect;
@@ -507,6 +517,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolrotateeffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolRotateEffect;
@@ -555,6 +566,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolbreatheeffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolBreatheEffect;
@@ -603,6 +615,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolcontenttransition?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolContentTransition;
@@ -631,6 +644,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolmagicreplacecontenttransition?language=objc)
     #[unsafe(super(NSSymbolContentTransition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolMagicReplaceContentTransition;
@@ -664,6 +678,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolreplacecontenttransition?language=objc)
     #[unsafe(super(NSSymbolContentTransition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolReplaceContentTransition;
@@ -720,6 +735,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolautomaticcontenttransition?language=objc)
     #[unsafe(super(NSSymbolContentTransition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolAutomaticContentTransition;

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnfaceobservationaccepting?language=objc)
     pub unsafe trait VNFaceObservationAccepting: NSObjectProtocol {
         #[cfg(feature = "VNObservation")]
         #[method_id(@__retain_semantics Other inputFaceObservations)]

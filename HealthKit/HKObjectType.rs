@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkobjecttype?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKObjectType;
@@ -108,6 +109,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcharacteristictype?language=objc)
     #[unsafe(super(HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKCharacteristicType;
@@ -150,6 +152,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksampletype?language=objc)
     #[unsafe(super(HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKSampleType;
@@ -207,6 +210,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKCategoryType;
@@ -249,6 +253,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcorrelationtype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKCorrelationType;
@@ -291,6 +296,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdocumenttype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKDocumentType;
@@ -333,6 +339,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKQuantityType;
@@ -383,6 +390,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouttype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutType;
@@ -425,6 +433,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkseriestype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKSeriesType;
@@ -473,6 +482,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkactivitysummarytype?language=objc)
     #[unsafe(super(HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKActivitySummaryType;
@@ -515,6 +525,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramsampletype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKAudiogramSampleType;
@@ -557,6 +568,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramtype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKElectrocardiogramType;
@@ -599,6 +611,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkprescriptiontype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKPrescriptionType;
@@ -641,6 +654,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkscoredassessmenttype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKScoredAssessmentType;
@@ -683,6 +697,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmindtype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKStateOfMindType;

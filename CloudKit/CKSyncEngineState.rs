@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginestate?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineState;
@@ -73,6 +74,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginestateserialization?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineStateSerialization;
@@ -98,6 +100,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingrecordzonechangetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -118,6 +121,7 @@ unsafe impl RefEncode for CKSyncEnginePendingRecordZoneChangeType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingrecordzonechange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEnginePendingRecordZoneChange;
@@ -154,6 +158,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingdatabasechangetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -174,6 +179,7 @@ unsafe impl RefEncode for CKSyncEnginePendingDatabaseChangeType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingdatabasechange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEnginePendingDatabaseChange;
@@ -203,6 +209,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingzonesave?language=objc)
     #[unsafe(super(CKSyncEnginePendingDatabaseChange, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEnginePendingZoneSave;
@@ -238,6 +245,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingzonedelete?language=objc)
     #[unsafe(super(CKSyncEnginePendingDatabaseChange, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEnginePendingZoneDelete;

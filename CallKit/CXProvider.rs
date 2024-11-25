@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcallendedreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -31,6 +32,7 @@ unsafe impl RefEncode for CXCallEndedReason {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxproviderdelegate?language=objc)
     pub unsafe trait CXProviderDelegate: NSObjectProtocol {
         #[method(providerDidReset:)]
         unsafe fn providerDidReset(&self, provider: &CXProvider);
@@ -153,6 +155,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxprovider?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CXProvider;

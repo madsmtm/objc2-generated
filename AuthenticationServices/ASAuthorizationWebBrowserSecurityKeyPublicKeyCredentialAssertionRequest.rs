@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationwebbrowsersecuritykeypublickeycredentialassertionrequest?language=objc)
     pub unsafe trait ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialAssertionRequest {
         #[cfg(feature = "ASPublicKeyCredentialClientData")]
         #[method_id(@__retain_semantics Other clientData)]

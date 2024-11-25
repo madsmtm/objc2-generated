@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caframeraterange?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CAFrameRateRange {
@@ -28,6 +29,7 @@ unsafe impl RefEncode for CAFrameRateRange {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caframeraterangedefault?language=objc)
     pub static CAFrameRateRangeDefault: CAFrameRateRange;
 }
 

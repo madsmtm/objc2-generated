@@ -5,8 +5,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewautosavename?language=objc)
 pub type NSSplitViewAutosaveName = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewdividerstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,6 +31,7 @@ unsafe impl RefEncode for NSSplitViewDividerStyle {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -212,6 +215,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewdelegate?language=objc)
     pub unsafe trait NSSplitViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -323,10 +327,12 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewwillresizesubviewsnotification?language=objc)
     pub static NSSplitViewWillResizeSubviewsNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewdidresizesubviewsnotification?language=objc)
     pub static NSSplitViewDidResizeSubviewsNotification: &'static NSNotificationName;
 }
 

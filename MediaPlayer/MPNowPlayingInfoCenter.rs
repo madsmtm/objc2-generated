@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfomediatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -26,6 +27,7 @@ unsafe impl RefEncode for MPNowPlayingInfoMediaType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingplaybackstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -52,6 +54,7 @@ unsafe impl RefEncode for MPNowPlayingPlaybackState {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfocenter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPNowPlayingInfoCenter;
@@ -88,89 +91,111 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyelapsedplaybacktime?language=objc)
     pub static MPNowPlayingInfoPropertyElapsedPlaybackTime: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyplaybackrate?language=objc)
     pub static MPNowPlayingInfoPropertyPlaybackRate: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertydefaultplaybackrate?language=objc)
     pub static MPNowPlayingInfoPropertyDefaultPlaybackRate: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyplaybackqueueindex?language=objc)
     pub static MPNowPlayingInfoPropertyPlaybackQueueIndex: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyplaybackqueuecount?language=objc)
     pub static MPNowPlayingInfoPropertyPlaybackQueueCount: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertychapternumber?language=objc)
     pub static MPNowPlayingInfoPropertyChapterNumber: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertychaptercount?language=objc)
     pub static MPNowPlayingInfoPropertyChapterCount: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyislivestream?language=objc)
     pub static MPNowPlayingInfoPropertyIsLiveStream: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyavailablelanguageoptions?language=objc)
     pub static MPNowPlayingInfoPropertyAvailableLanguageOptions: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertycurrentlanguageoptions?language=objc)
     pub static MPNowPlayingInfoPropertyCurrentLanguageOptions: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfocollectionidentifier?language=objc)
     pub static MPNowPlayingInfoCollectionIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyexternalcontentidentifier?language=objc)
     pub static MPNowPlayingInfoPropertyExternalContentIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyexternaluserprofileidentifier?language=objc)
     pub static MPNowPlayingInfoPropertyExternalUserProfileIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyserviceidentifier?language=objc)
     pub static MPNowPlayingInfoPropertyServiceIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyplaybackprogress?language=objc)
     pub static MPNowPlayingInfoPropertyPlaybackProgress: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertymediatype?language=objc)
     pub static MPNowPlayingInfoPropertyMediaType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyasseturl?language=objc)
     pub static MPNowPlayingInfoPropertyAssetURL: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertycurrentplaybackdate?language=objc)
     pub static MPNowPlayingInfoPropertyCurrentPlaybackDate: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyadtimeranges?language=objc)
     pub static MPNowPlayingInfoPropertyAdTimeRanges: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertycreditsstarttime?language=objc)
     pub static MPNowPlayingInfoPropertyCreditsStartTime: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyinternationalstandardrecordingcode?language=objc)
     pub static MPNowPlayingInfoPropertyInternationalStandardRecordingCode: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyexcludefromsuggestions?language=objc)
     pub static MPNowPlayingInfoPropertyExcludeFromSuggestions: &'static NSString;
 }

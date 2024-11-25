@@ -5,9 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputsourceidentifier?language=objc)
 pub type NSTextInputSourceIdentifier = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputcontext?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -105,6 +107,7 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputcontextkeyboardselectiondidchangenotification?language=objc)
     pub static NSTextInputContextKeyboardSelectionDidChangeNotification:
         &'static NSNotificationName;
 }

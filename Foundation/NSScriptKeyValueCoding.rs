@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperationnotsupportedforkeyexception?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSOperationNotSupportedForKeyException: &'static NSString;
 }

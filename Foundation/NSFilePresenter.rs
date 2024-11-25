@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilepresenter?language=objc)
     pub unsafe trait NSFilePresenter: NSObjectProtocol {
         #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other presentedItemURL)]

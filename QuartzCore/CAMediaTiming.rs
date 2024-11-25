@@ -5,10 +5,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfillmode?language=objc)
 // NS_TYPED_ENUM
 pub type CAMediaTimingFillMode = NSString;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatiming?language=objc)
     pub unsafe trait CAMediaTiming {
         #[method(beginTime)]
         unsafe fn beginTime(&self) -> CFTimeInterval;
@@ -63,17 +65,21 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcafillmodeforwards?language=objc)
     pub static kCAFillModeForwards: &'static CAMediaTimingFillMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcafillmodebackwards?language=objc)
     pub static kCAFillModeBackwards: &'static CAMediaTimingFillMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcafillmodeboth?language=objc)
     pub static kCAFillModeBoth: &'static CAMediaTimingFillMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcafillmoderemoved?language=objc)
     pub static kCAFillModeRemoved: &'static CAMediaTimingFillMode;
 }

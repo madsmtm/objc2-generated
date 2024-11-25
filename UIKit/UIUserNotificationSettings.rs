@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationtype?language=objc)
 // NS_OPTIONS
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
 #[repr(transparent)]
@@ -35,6 +36,7 @@ unsafe impl RefEncode for UIUserNotificationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactionbehavior?language=objc)
 // NS_ENUM
 #[deprecated = "Use UserNotifications Framework's UNNotificationAction or UNTextInputNotificationAction"]
 #[repr(transparent)]
@@ -57,6 +59,7 @@ unsafe impl RefEncode for UIUserNotificationActionBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactivationmode?language=objc)
 // NS_ENUM
 #[deprecated = "Use UserNotifications Framework's UNNotificationActionOptions"]
 #[repr(transparent)]
@@ -79,6 +82,7 @@ unsafe impl RefEncode for UIUserNotificationActivationMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactioncontext?language=objc)
 // NS_ENUM
 #[deprecated = "Use UserNotifications Framework's -[UNNotificationCategory actions] or -[UNNotificationCategory minimalActions]"]
 #[repr(transparent)]
@@ -102,14 +106,17 @@ unsafe impl RefEncode for UIUserNotificationActionContext {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationtextinputactionbuttontitlekey?language=objc)
     pub static UIUserNotificationTextInputActionButtonTitleKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactionresponsetypedtextkey?language=objc)
     pub static UIUserNotificationActionResponseTypedTextKey: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationsettings?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -151,6 +158,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationcategory?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -207,6 +215,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimutableusernotificationcategory?language=objc)
     #[unsafe(super(UIUserNotificationCategory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -275,6 +284,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationaction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -343,6 +353,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimutableusernotificationaction?language=objc)
     #[unsafe(super(UIUserNotificationAction, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

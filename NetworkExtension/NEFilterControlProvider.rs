@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltercontrolprovider?language=objc)
     #[unsafe(super(NEFilterProvider, NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NEFilterProvider", feature = "NEProvider"))]

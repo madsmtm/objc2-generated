@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanelresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -24,6 +25,7 @@ unsafe impl RefEncode for NSPrintPanelResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpaneloptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -49,34 +51,42 @@ unsafe impl RefEncode for NSPrintPanelOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpaneljobstylehint?language=objc)
 // NS_TYPED_ENUM
 pub type NSPrintPanelJobStyleHint = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintphotojobstylehint?language=objc)
     pub static NSPrintPhotoJobStyleHint: &'static NSPrintPanelJobStyleHint;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintallpresetsjobstylehint?language=objc)
     pub static NSPrintAllPresetsJobStyleHint: &'static NSPrintPanelJobStyleHint;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintnopresetsjobstylehint?language=objc)
     pub static NSPrintNoPresetsJobStyleHint: &'static NSPrintPanelJobStyleHint;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanelaccessorysummarykey?language=objc)
 // NS_TYPED_ENUM
 pub type NSPrintPanelAccessorySummaryKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanelaccessorysummaryitemnamekey?language=objc)
     pub static NSPrintPanelAccessorySummaryItemNameKey: &'static NSPrintPanelAccessorySummaryKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanelaccessorysummaryitemdescriptionkey?language=objc)
     pub static NSPrintPanelAccessorySummaryItemDescriptionKey:
         &'static NSPrintPanelAccessorySummaryKey;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanelaccessorizing?language=objc)
     pub unsafe trait NSPrintPanelAccessorizing: MainThreadOnly {
         #[method_id(@__retain_semantics Other localizedSummaryItems)]
         unsafe fn localizedSummaryItems(
@@ -92,6 +102,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

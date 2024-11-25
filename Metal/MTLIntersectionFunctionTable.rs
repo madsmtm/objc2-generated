@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -41,6 +42,7 @@ unsafe impl RefEncode for MTLIntersectionFunctionSignature {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctiontabledescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLIntersectionFunctionTableDescriptor;
@@ -87,6 +89,7 @@ impl DefaultRetained for MTLIntersectionFunctionTableDescriptor {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctiontable?language=objc)
     #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     pub unsafe trait MTLIntersectionFunctionTable: MTLResource {
         #[cfg(feature = "MTLBuffer")]

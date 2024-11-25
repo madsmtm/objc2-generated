@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -68,6 +69,8 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequestrevision1?language=objc)
 pub static VNGenerateImageFeaturePrintRequestRevision1: NSUInteger = 1;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequestrevision2?language=objc)
 pub static VNGenerateImageFeaturePrintRequestRevision2: NSUInteger = 2;

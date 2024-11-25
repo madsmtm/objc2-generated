@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcswitchelement?language=objc)
     #[cfg(feature = "GCPhysicalInputElement")]
     pub unsafe trait GCSwitchElement: GCPhysicalInputElement {
         #[cfg(feature = "GCSwitchPositionInput")]

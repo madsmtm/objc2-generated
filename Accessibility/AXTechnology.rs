@@ -5,37 +5,46 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axtechnology?language=objc)
 // NS_TYPED_ENUM
 pub type AXTechnology = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axtechnologyvoiceover?language=objc)
     pub static AXTechnologyVoiceOver: Option<&'static AXTechnology>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axtechnologyswitchcontrol?language=objc)
     pub static AXTechnologySwitchControl: Option<&'static AXTechnology>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axtechnologyvoicecontrol?language=objc)
     pub static AXTechnologyVoiceControl: Option<&'static AXTechnology>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axtechnologyfullkeyboardaccess?language=objc)
     pub static AXTechnologyFullKeyboardAccess: Option<&'static AXTechnology>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axtechnologyspeakscreen?language=objc)
     pub static AXTechnologySpeakScreen: Option<&'static AXTechnology>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axtechnologyautomation?language=objc)
     pub static AXTechnologyAutomation: Option<&'static AXTechnology>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axtechnologyhovertext?language=objc)
     pub static AXTechnologyHoverText: Option<&'static AXTechnology>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axtechnologyzoom?language=objc)
     pub static AXTechnologyZoom: Option<&'static AXTechnology>;
 }

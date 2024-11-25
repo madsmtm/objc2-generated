@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/screensaver/screensaverdefaults?language=objc)
     #[unsafe(super(NSUserDefaults, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ScreenSaverDefaults;

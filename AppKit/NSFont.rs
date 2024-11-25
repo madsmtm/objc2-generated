@@ -6,10 +6,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontidentitymatrix?language=objc)
     pub static NSFontIdentityMatrix: NonNull<CGFloat>;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFont;
@@ -233,18 +235,24 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsantialiasthresholdchangednotification?language=objc)
     pub static NSAntialiasThresholdChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontsetchangednotification?language=objc)
     pub static NSFontSetChangedNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyph?language=objc)
 pub type NSGlyph = c_uint;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolglyph?language=objc)
 pub const NSControlGlyph: c_uint = 0x00FFFFFF;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnullglyph?language=objc)
 pub const NSNullGlyph: c_uint = 0x0;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontrenderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -264,6 +272,7 @@ unsafe impl RefEncode for NSFontRenderingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmultibyteglyphpacking?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]

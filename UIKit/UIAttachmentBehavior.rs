@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiattachmentbehaviortype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -24,6 +25,7 @@ unsafe impl RefEncode for UIAttachmentBehaviorType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifloatrange?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct UIFloatRange {
@@ -44,10 +46,12 @@ unsafe impl Send for UIFloatRange {}
 unsafe impl Sync for UIFloatRange {}
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifloatrangezero?language=objc)
     pub static UIFloatRangeZero: UIFloatRange;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifloatrangeinfinite?language=objc)
     pub static UIFloatRangeInfinite: UIFloatRange;
 }
 
@@ -60,6 +64,7 @@ extern "C-unwind" {
 // TODO: pub fn UIFloatRangeIsEqualToRange(range: UIFloatRange,other_range: UIFloatRange,) -> Bool;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiattachmentbehavior?language=objc)
     #[unsafe(super(UIDynamicBehavior, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

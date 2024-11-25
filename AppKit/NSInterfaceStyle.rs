@@ -5,15 +5,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnointerfacestyle?language=objc)
 #[deprecated]
 pub const NSNoInterfaceStyle: c_uint = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnextstepinterfacestyle?language=objc)
 #[deprecated]
 pub const NSNextStepInterfaceStyle: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindows95interfacestyle?language=objc)
 #[deprecated]
 pub const NSWindows95InterfaceStyle: c_uint = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmacintoshinterfacestyle?language=objc)
 #[deprecated]
 pub const NSMacintoshInterfaceStyle: c_uint = 3;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinterfacestyle?language=objc)
 pub type NSInterfaceStyle = NSUInteger;
 
 extern "C-unwind" {
@@ -40,5 +45,6 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinterfacestyledefault?language=objc)
     pub static NSInterfaceStyleDefault: Option<&'static NSString>;
 }

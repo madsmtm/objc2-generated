@@ -8,6 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotation?language=objc)
     pub unsafe trait MKAnnotation: NSObjectProtocol {
         #[cfg(feature = "objc2-core-location")]
         #[method(coordinate)]

@@ -8,6 +8,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsversion?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,6 +30,7 @@ unsafe impl RefEncode for PHImageRequestOptionsVersion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsdeliverymode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -50,6 +52,7 @@ unsafe impl RefEncode for PHImageRequestOptionsDeliveryMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsresizemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -71,11 +74,13 @@ unsafe impl RefEncode for PHImageRequestOptionsResizeMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetimageprogresshandler?language=objc)
 #[cfg(feature = "block2")]
 pub type PHAssetImageProgressHandler =
     *mut block2::Block<dyn Fn(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHImageRequestOptions;
@@ -155,6 +160,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotorequestoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHLivePhotoRequestOptions;
@@ -209,6 +215,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsversion?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -228,6 +235,7 @@ unsafe impl RefEncode for PHVideoRequestOptionsVersion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsdeliverymode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -251,11 +259,13 @@ unsafe impl RefEncode for PHVideoRequestOptionsDeliveryMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetvideoprogresshandler?language=objc)
 #[cfg(feature = "block2")]
 pub type PHAssetVideoProgressHandler =
     *mut block2::Block<dyn Fn(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHVideoRequestOptions;
@@ -310,35 +320,44 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestid?language=objc)
 pub type PHImageRequestID = i32;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phinvalidimagerequestid?language=objc)
 pub static PHInvalidImageRequestID: PHImageRequestID = 0;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagemanagermaximumsize?language=objc)
     pub static PHImageManagerMaximumSize: CGSize;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimageresultisincloudkey?language=objc)
     pub static PHImageResultIsInCloudKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimageresultisdegradedkey?language=objc)
     pub static PHImageResultIsDegradedKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimageresultrequestidkey?language=objc)
     pub static PHImageResultRequestIDKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagecancelledkey?language=objc)
     pub static PHImageCancelledKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimageerrorkey?language=objc)
     pub static PHImageErrorKey: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagemanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHImageManager;
@@ -403,6 +422,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcachingimagemanager?language=objc)
     #[unsafe(super(PHImageManager, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHCachingImageManager;

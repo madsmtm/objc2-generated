@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlconnection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLConnection;
@@ -93,6 +94,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlconnectiondelegate?language=objc)
     pub unsafe trait NSURLConnectionDelegate: NSObjectProtocol {
         #[cfg(feature = "NSError")]
         #[optional]
@@ -148,6 +150,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlconnectiondatadelegate?language=objc)
     pub unsafe trait NSURLConnectionDataDelegate: NSURLConnectionDelegate {
         #[cfg(all(feature = "NSURLRequest", feature = "NSURLResponse"))]
         #[optional]
@@ -210,6 +213,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlconnectiondownloaddelegate?language=objc)
     pub unsafe trait NSURLConnectionDownloadDelegate: NSURLConnectionDelegate {
         #[optional]
         #[method(connection:didWriteData:totalBytesWritten:expectedTotalBytes:)]

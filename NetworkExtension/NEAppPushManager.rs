@@ -6,9 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppusherrordomain?language=objc)
     pub static NEAppPushErrorDomain: &'static NSErrorDomain;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushmanagererror?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -33,6 +35,7 @@ unsafe impl RefEncode for NEAppPushManagerError {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neprivateltenetwork?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEPrivateLTENetwork;
@@ -84,6 +87,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEAppPushManager;
@@ -191,6 +195,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushdelegate?language=objc)
     pub unsafe trait NEAppPushDelegate: NSObjectProtocol {
         #[method(appPushManager:didReceiveIncomingCallWithUserInfo:)]
         unsafe fn appPushManager_didReceiveIncomingCallWithUserInfo(

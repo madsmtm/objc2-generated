@@ -13,6 +13,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avpictureinpicturesamplebufferplaybackdelegate?language=objc)
     pub unsafe trait AVPictureInPictureSampleBufferPlaybackDelegate:
         NSObjectProtocol
     {

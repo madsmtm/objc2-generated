@@ -6,18 +6,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcifiltergeneratorexportedkey?language=objc)
     pub static kCIFilterGeneratorExportedKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcifiltergeneratorexportedkeytargetobject?language=objc)
     pub static kCIFilterGeneratorExportedKeyTargetObject: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcifiltergeneratorexportedkeyname?language=objc)
     pub static kCIFilterGeneratorExportedKeyName: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifiltergenerator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIFilterGenerator;

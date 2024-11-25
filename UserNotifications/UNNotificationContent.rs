@@ -6,11 +6,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationcontentproviding?language=objc)
     pub unsafe trait UNNotificationContentProviding: NSObjectProtocol {}
 
     unsafe impl ProtocolType for dyn UNNotificationContentProviding {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationinterruptionlevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -35,6 +37,7 @@ unsafe impl RefEncode for UNNotificationInterruptionLevel {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationcontent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationContent;
@@ -132,6 +135,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unmutablenotificationcontent?language=objc)
     #[unsafe(super(UNNotificationContent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNMutableNotificationContent;

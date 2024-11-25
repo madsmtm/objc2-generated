@@ -6,12 +6,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiappearancecontainer?language=objc)
     pub unsafe trait UIAppearanceContainer: NSObjectProtocol + MainThreadOnly {}
 
     unsafe impl ProtocolType for dyn UIAppearanceContainer {}
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiappearance?language=objc)
     pub unsafe trait UIAppearance: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other appearance)]
         unsafe fn appearance(mtm: MainThreadMarker) -> Retained<Self>;

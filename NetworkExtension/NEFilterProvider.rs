@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterprovider?language=objc)
     #[unsafe(super(NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NEProvider")]
@@ -54,6 +55,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreportfrequency?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -78,6 +80,7 @@ unsafe impl RefEncode for NEFilterReportFrequency {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterverdict?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterVerdict;
@@ -117,6 +120,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilternewflowverdict?language=objc)
     #[unsafe(super(NEFilterVerdict, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterNewFlowVerdict;
@@ -190,6 +194,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltercontrolverdict?language=objc)
     #[unsafe(super(NEFilterNewFlowVerdict, NEFilterVerdict, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterControlVerdict;
@@ -235,6 +240,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilteraction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -260,6 +266,7 @@ unsafe impl RefEncode for NEFilterAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreportevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -284,6 +291,7 @@ unsafe impl RefEncode for NEFilterReportEvent {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterReport;

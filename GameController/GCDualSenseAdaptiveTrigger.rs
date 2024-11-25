@@ -4,8 +4,10 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetriggerdiscretepositioncount?language=objc)
 pub const GCDualSenseAdaptiveTriggerDiscretePositionCount: c_uint = 10;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetriggermode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -31,6 +33,7 @@ unsafe impl RefEncode for GCDualSenseAdaptiveTriggerMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetriggerstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -68,6 +71,7 @@ unsafe impl RefEncode for GCDualSenseAdaptiveTriggerStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetriggerpositionalamplitudes?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct GCDualSenseAdaptiveTriggerPositionalAmplitudes {
@@ -82,6 +86,7 @@ unsafe impl RefEncode for GCDualSenseAdaptiveTriggerPositionalAmplitudes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetriggerpositionalresistivestrengths?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct GCDualSenseAdaptiveTriggerPositionalResistiveStrengths {
@@ -97,6 +102,7 @@ unsafe impl RefEncode for GCDualSenseAdaptiveTriggerPositionalResistiveStrengths
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger?language=objc)
     #[unsafe(super(GCControllerButtonInput, GCControllerElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]

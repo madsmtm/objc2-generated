@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchinsertrequestresulttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -26,6 +27,7 @@ unsafe impl RefEncode for NSBatchInsertRequestResultType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchupdaterequestresulttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -44,6 +46,7 @@ unsafe impl RefEncode for NSBatchUpdateRequestResultType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchdeleterequestresulttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -62,6 +65,7 @@ unsafe impl RefEncode for NSBatchDeleteRequestResultType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistoryresulttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -90,6 +94,7 @@ unsafe impl RefEncode for NSPersistentHistoryResultType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentStoreResult;
@@ -113,6 +118,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreasynchronousresult?language=objc)
     #[unsafe(super(NSPersistentStoreResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentStoreAsynchronousResult;
@@ -149,6 +155,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsasynchronousfetchresult?language=objc)
     #[unsafe(super(NSPersistentStoreAsynchronousResult, NSPersistentStoreResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAsynchronousFetchResult<ResultType: ?Sized = AnyObject>;
@@ -179,6 +186,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchinsertresult?language=objc)
     #[unsafe(super(NSPersistentStoreResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBatchInsertResult;
@@ -208,6 +216,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchupdateresult?language=objc)
     #[unsafe(super(NSPersistentStoreResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBatchUpdateResult;
@@ -237,6 +246,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchdeleteresult?language=objc)
     #[unsafe(super(NSPersistentStoreResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBatchDeleteResult;
@@ -266,6 +276,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistoryresult?language=objc)
     #[unsafe(super(NSPersistentStoreResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentHistoryResult;
@@ -294,6 +305,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainereventresulttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -314,6 +326,7 @@ unsafe impl RefEncode for NSPersistentCloudKitContainerEventResultType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainereventresult?language=objc)
     #[unsafe(super(NSPersistentStoreResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentCloudKitContainerEventResult;

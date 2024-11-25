@@ -5,10 +5,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationsoundname?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UNNotificationSoundName = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationsound?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationSound;

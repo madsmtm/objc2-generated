@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextcontentmanagerenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -27,6 +28,7 @@ unsafe impl RefEncode for NSTextContentManagerEnumerationOptions {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextelementprovider?language=objc)
     pub unsafe trait NSTextElementProvider: NSObjectProtocol {
         #[cfg(feature = "NSTextRange")]
         #[method_id(@__retain_semantics Other documentRange)]
@@ -88,6 +90,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextcontentmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextContentManager;
@@ -208,6 +211,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextcontentmanagerdelegate?language=objc)
     pub unsafe trait NSTextContentManagerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]
         #[optional]
@@ -233,6 +237,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextcontentstoragedelegate?language=objc)
     pub unsafe trait NSTextContentStorageDelegate: NSTextContentManagerDelegate {
         #[cfg(feature = "NSTextElement")]
         #[optional]
@@ -248,6 +253,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextcontentstorage?language=objc)
     #[unsafe(super(NSTextContentManager, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextContentStorage;
@@ -347,6 +353,7 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextcontentstorageunsupportedattributeaddednotification?language=objc)
     pub static NSTextContentStorageUnsupportedAttributeAddedNotification:
         &'static NSNotificationName;
 }

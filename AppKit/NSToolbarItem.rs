@@ -8,18 +8,24 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemvisibilitypriority?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSToolbarItemVisibilityPriority = NSInteger;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemvisibilityprioritystandard?language=objc)
 pub static NSToolbarItemVisibilityPriorityStandard: NSToolbarItemVisibilityPriority = 0;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemvisibilityprioritylow?language=objc)
 pub static NSToolbarItemVisibilityPriorityLow: NSToolbarItemVisibilityPriority = -1000;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemvisibilitypriorityhigh?language=objc)
 pub static NSToolbarItemVisibilityPriorityHigh: NSToolbarItemVisibilityPriority = 1000;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemvisibilitypriorityuser?language=objc)
 pub static NSToolbarItemVisibilityPriorityUser: NSToolbarItemVisibilityPriority = 2000;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -216,6 +222,7 @@ unsafe impl NSMenuItemValidation for NSToolbarItem {}
 unsafe impl NSValidatedUserInterfaceItem for NSToolbarItem {}
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemvalidation?language=objc)
     pub unsafe trait NSToolbarItemValidation: NSObjectProtocol + MainThreadOnly {
         #[method(validateToolbarItem:)]
         unsafe fn validateToolbarItem(&self, item: &NSToolbarItem) -> bool;
@@ -225,6 +232,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscloudsharingvalidation?language=objc)
     pub unsafe trait NSCloudSharingValidation: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSUserInterfaceValidation", feature = "objc2-cloud-kit"))]
         #[cfg(target_vendor = "apple")]
@@ -239,61 +247,73 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarspaceitemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarSpaceItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarflexiblespaceitemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarFlexibleSpaceItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarshowcolorsitemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarShowColorsItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarshowfontsitemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarShowFontsItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarprintitemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarPrintItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbartogglesidebaritemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarToggleSidebarItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbartoggleinspectoritemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarToggleInspectorItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarcloudsharingitemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarCloudSharingItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarsidebartrackingseparatoritemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarSidebarTrackingSeparatorItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarinspectortrackingseparatoritemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarInspectorTrackingSeparatorItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarseparatoritemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarSeparatorItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarcustomizetoolbaritemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarCustomizeToolbarItemIdentifier: &'static NSToolbarItemIdentifier;
 }

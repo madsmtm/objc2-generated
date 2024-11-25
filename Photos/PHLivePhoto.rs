@@ -8,23 +8,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotorequestid?language=objc)
 pub type PHLivePhotoRequestID = i32;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotorequestidinvalid?language=objc)
 pub static PHLivePhotoRequestIDInvalid: PHLivePhotoRequestID = 0;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoinfoerrorkey?language=objc)
     pub static PHLivePhotoInfoErrorKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoinfoisdegradedkey?language=objc)
     pub static PHLivePhotoInfoIsDegradedKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoinfocancelledkey?language=objc)
     pub static PHLivePhotoInfoCancelledKey: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephoto?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHLivePhoto;

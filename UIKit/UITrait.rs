@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitdefinition?language=objc)
     pub unsafe trait UITraitDefinition: MainThreadOnly {
         #[optional]
         #[method_id(@__retain_semantics Other identifier)]
@@ -23,9 +24,11 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UITraitDefinition {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitrait?language=objc)
 pub type UITrait = AnyClass;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicgfloattraitdefinition?language=objc)
     pub unsafe trait UICGFloatTraitDefinition: UITraitDefinition + MainThreadOnly {
         #[method(defaultValue)]
         unsafe fn defaultValue(mtm: MainThreadMarker) -> CGFloat;
@@ -34,9 +37,11 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UICGFloatTraitDefinition {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicgfloattrait?language=objc)
 pub type UICGFloatTrait = AnyClass;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinsintegertraitdefinition?language=objc)
     pub unsafe trait UINSIntegerTraitDefinition: UITraitDefinition + MainThreadOnly {
         #[method(defaultValue)]
         unsafe fn defaultValue(mtm: MainThreadMarker) -> NSInteger;
@@ -45,9 +50,11 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UINSIntegerTraitDefinition {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinsintegertrait?language=objc)
 pub type UINSIntegerTrait = AnyClass;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiobjecttraitdefinition?language=objc)
     pub unsafe trait UIObjectTraitDefinition: UITraitDefinition + MainThreadOnly {
         #[method_id(@__retain_semantics Other defaultValue)]
         unsafe fn defaultValue(
@@ -58,9 +65,11 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UIObjectTraitDefinition {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiobjecttrait?language=objc)
 pub type UIObjectTrait = AnyClass;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraituserinterfaceidiom?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -89,6 +98,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraituserinterfacestyle?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -117,6 +127,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitlayoutdirection?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -145,6 +156,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitdisplayscale?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -173,6 +185,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraithorizontalsizeclass?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -201,6 +214,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitverticalsizeclass?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -229,6 +243,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitforcetouchcapability?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -257,6 +272,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitpreferredcontentsizecategory?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -285,6 +301,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitdisplaygamut?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -313,6 +330,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitaccessibilitycontrast?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -341,6 +359,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraituserinterfacelevel?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -369,6 +388,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitlegibilityweight?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -397,6 +417,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitactiveappearance?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -425,6 +446,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraittoolbaritempresentationsize?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -453,6 +475,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitimagedynamicrange?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -481,6 +504,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraittypesettinglanguage?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -509,6 +533,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitscenecapturestate?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axbraillemap?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXBrailleMap;
@@ -43,6 +44,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axbraillemaprenderer?language=objc)
     pub unsafe trait AXBrailleMapRenderer: NSObjectProtocol {
         #[optional]
         #[method(accessibilityBrailleMapRenderRegion)]

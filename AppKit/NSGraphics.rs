@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -79,93 +80,123 @@ unsafe impl RefEncode for NSCompositingOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositeclear?language=objc)
 pub static NSCompositeClear: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Clear.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositecopy?language=objc)
 pub static NSCompositeCopy: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Copy.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositesourceover?language=objc)
 pub static NSCompositeSourceOver: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::SourceOver.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositesourcein?language=objc)
 pub static NSCompositeSourceIn: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::SourceIn.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositesourceout?language=objc)
 pub static NSCompositeSourceOut: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::SourceOut.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositesourceatop?language=objc)
 pub static NSCompositeSourceAtop: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::SourceAtop.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositedestinationover?language=objc)
 pub static NSCompositeDestinationOver: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::DestinationOver.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositedestinationin?language=objc)
 pub static NSCompositeDestinationIn: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::DestinationIn.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositedestinationout?language=objc)
 pub static NSCompositeDestinationOut: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::DestinationOut.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositedestinationatop?language=objc)
 pub static NSCompositeDestinationAtop: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::DestinationAtop.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositexor?language=objc)
 pub static NSCompositeXOR: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::XOR.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositeplusdarker?language=objc)
 pub static NSCompositePlusDarker: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::PlusDarker.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositehighlight?language=objc)
 pub static NSCompositeHighlight: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Highlight.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositepluslighter?language=objc)
 pub static NSCompositePlusLighter: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::PlusLighter.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositemultiply?language=objc)
 pub static NSCompositeMultiply: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Multiply.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositescreen?language=objc)
 pub static NSCompositeScreen: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Screen.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositeoverlay?language=objc)
 pub static NSCompositeOverlay: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Overlay.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositedarken?language=objc)
 pub static NSCompositeDarken: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Darken.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositelighten?language=objc)
 pub static NSCompositeLighten: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Lighten.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositecolordodge?language=objc)
 pub static NSCompositeColorDodge: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::ColorDodge.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositecolorburn?language=objc)
 pub static NSCompositeColorBurn: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::ColorBurn.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositesoftlight?language=objc)
 pub static NSCompositeSoftLight: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::SoftLight.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositehardlight?language=objc)
 pub static NSCompositeHardLight: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::HardLight.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositedifference?language=objc)
 pub static NSCompositeDifference: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Difference.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositeexclusion?language=objc)
 pub static NSCompositeExclusion: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Exclusion.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositehue?language=objc)
 pub static NSCompositeHue: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Hue.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositesaturation?language=objc)
 pub static NSCompositeSaturation: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Saturation.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositecolor?language=objc)
 pub static NSCompositeColor: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Color.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositeluminosity?language=objc)
 pub static NSCompositeLuminosity: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Luminosity.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackingstoretype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -186,6 +217,7 @@ unsafe impl RefEncode for NSBackingStoreType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindoworderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -204,6 +236,7 @@ unsafe impl RefEncode for NSWindowOrderingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringplacement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -222,6 +255,7 @@ unsafe impl RefEncode for NSFocusRingPlacement {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -243,6 +277,7 @@ unsafe impl RefEncode for NSFocusRingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorrenderingintent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -268,49 +303,61 @@ unsafe impl RefEncode for NSColorRenderingIntent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename?language=objc)
 // NS_TYPED_ENUM
 pub type NSColorSpaceName = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscalibratedwhitecolorspace?language=objc)
     pub static NSCalibratedWhiteColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscalibratedrgbcolorspace?language=objc)
     pub static NSCalibratedRGBColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicewhitecolorspace?language=objc)
     pub static NSDeviceWhiteColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicergbcolorspace?language=objc)
     pub static NSDeviceRGBColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicecmykcolorspace?language=objc)
     pub static NSDeviceCMYKColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnamedcolorspace?language=objc)
     pub static NSNamedColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspatterncolorspace?language=objc)
     pub static NSPatternColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscustomcolorspace?language=objc)
     pub static NSCustomColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscalibratedblackcolorspace?language=objc)
     pub static NSCalibratedBlackColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeviceblackcolorspace?language=objc)
     pub static NSDeviceBlackColorSpace: &'static NSColorSpaceName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdepth?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -367,21 +414,26 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswhite?language=objc)
     pub static NSWhite: CGFloat;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslightgray?language=objc)
     pub static NSLightGray: CGFloat;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdarkgray?language=objc)
     pub static NSDarkGray: CGFloat;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsblack?language=objc)
     pub static NSBlack: CGFloat;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdisplaygamut?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -401,30 +453,37 @@ unsafe impl RefEncode for NSDisplayGamut {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicedescriptionkey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSDeviceDescriptionKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeviceresolution?language=objc)
     pub static NSDeviceResolution: &'static NSDeviceDescriptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicecolorspacename?language=objc)
     pub static NSDeviceColorSpaceName: &'static NSDeviceDescriptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicebitspersample?language=objc)
     pub static NSDeviceBitsPerSample: &'static NSDeviceDescriptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeviceisscreen?language=objc)
     pub static NSDeviceIsScreen: &'static NSDeviceDescriptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeviceisprinter?language=objc)
     pub static NSDeviceIsPrinter: &'static NSDeviceDescriptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicesize?language=objc)
     pub static NSDeviceSize: &'static NSDeviceDescriptionKey;
 }
 
@@ -591,6 +650,7 @@ extern "C-unwind" {
     pub fn NSEnableScreenUpdates();
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationeffect?language=objc)
 // NS_ENUM
 #[deprecated = "Use +[NSCursor disappearingItemCursor] instead"]
 #[repr(transparent)]

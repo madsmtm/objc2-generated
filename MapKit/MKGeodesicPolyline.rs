@@ -7,6 +7,7 @@ use objc2_core_location::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkgeodesicpolyline?language=objc)
     #[unsafe(super(MKPolyline, MKMultiPoint, MKShape, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]

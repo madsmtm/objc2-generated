@@ -6,9 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domrangeexception?language=objc)
     pub static DOMRangeException: Option<&'static NSString>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/domrangeexceptioncode?language=objc)
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

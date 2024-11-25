@@ -5,19 +5,24 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationcalculationmode?language=objc)
 // NS_TYPED_ENUM
 pub type CAAnimationCalculationMode = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationrotationmode?language=objc)
 // NS_TYPED_ENUM
 pub type CAAnimationRotationMode = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitiontype?language=objc)
 // NS_TYPED_ENUM
 pub type CATransitionType = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitionsubtype?language=objc)
 // NS_TYPED_ENUM
 pub type CATransitionSubtype = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAAnimation;
@@ -100,6 +105,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationdelegate?language=objc)
     pub unsafe trait CAAnimationDelegate: NSObjectProtocol {
         #[optional]
         #[method(animationDidStart:)]
@@ -114,6 +120,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/capropertyanimation?language=objc)
     #[unsafe(super(CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAPropertyAnimation;
@@ -190,6 +197,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cabasicanimation?language=objc)
     #[unsafe(super(CAPropertyAnimation, CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CABasicAnimation;
@@ -263,6 +271,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cakeyframeanimation?language=objc)
     #[unsafe(super(CAPropertyAnimation, CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAKeyframeAnimation;
@@ -371,34 +380,42 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaanimationlinear?language=objc)
     pub static kCAAnimationLinear: &'static CAAnimationCalculationMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaanimationdiscrete?language=objc)
     pub static kCAAnimationDiscrete: &'static CAAnimationCalculationMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaanimationpaced?language=objc)
     pub static kCAAnimationPaced: &'static CAAnimationCalculationMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaanimationcubic?language=objc)
     pub static kCAAnimationCubic: &'static CAAnimationCalculationMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaanimationcubicpaced?language=objc)
     pub static kCAAnimationCubicPaced: &'static CAAnimationCalculationMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaanimationrotateauto?language=objc)
     pub static kCAAnimationRotateAuto: &'static CAAnimationRotationMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaanimationrotateautoreverse?language=objc)
     pub static kCAAnimationRotateAutoReverse: &'static CAAnimationRotationMode;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caspringanimation?language=objc)
     #[unsafe(super(CABasicAnimation, CAPropertyAnimation, CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CASpringAnimation;
@@ -500,6 +517,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransition?language=objc)
     #[unsafe(super(CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CATransition;
@@ -577,38 +595,47 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransitionfade?language=objc)
     pub static kCATransitionFade: &'static CATransitionType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransitionmovein?language=objc)
     pub static kCATransitionMoveIn: &'static CATransitionType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransitionpush?language=objc)
     pub static kCATransitionPush: &'static CATransitionType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransitionreveal?language=objc)
     pub static kCATransitionReveal: &'static CATransitionType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransitionfromright?language=objc)
     pub static kCATransitionFromRight: &'static CATransitionSubtype;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransitionfromleft?language=objc)
     pub static kCATransitionFromLeft: &'static CATransitionSubtype;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransitionfromtop?language=objc)
     pub static kCATransitionFromTop: &'static CATransitionSubtype;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransitionfrombottom?language=objc)
     pub static kCATransitionFromBottom: &'static CATransitionSubtype;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationgroup?language=objc)
     #[unsafe(super(CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAAnimationGroup;

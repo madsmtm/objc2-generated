@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netransparentproxyprovider?language=objc)
     #[unsafe(super(NEAppProxyProvider, NETunnelProvider, NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

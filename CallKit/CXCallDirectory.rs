@@ -3,6 +3,8 @@
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcalldirectoryphonenumber?language=objc)
 pub type CXCallDirectoryPhoneNumber = i64;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcalldirectoryphonenumbermax?language=objc)
 pub static CXCallDirectoryPhoneNumberMax: CXCallDirectoryPhoneNumber = INT64_MAX - 1;

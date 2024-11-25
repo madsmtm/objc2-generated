@@ -5,14 +5,18 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumberwithcontinuousscrollingbrowser?language=objc)
 #[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithContinuousScrollingBrowser: NSAppKitVersion = 680.0 as _;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumberwithcolumnresizingbrowser?language=objc)
 #[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithColumnResizingBrowser: NSAppKitVersion = 685.0 as _;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowsercolumnsautosavename?language=objc)
 pub type NSBrowserColumnsAutosaveName = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowsercolumnresizingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -31,6 +35,7 @@ unsafe impl RefEncode for NSBrowserColumnResizingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowserdropoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -49,6 +54,7 @@ unsafe impl RefEncode for NSBrowserDropOperation {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser?language=objc)
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
@@ -555,10 +561,12 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowsercolumnconfigurationdidchangenotification?language=objc)
     pub static NSBrowserColumnConfigurationDidChangeNotification: &'static NSNotificationName;
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowserdelegate?language=objc)
     pub unsafe trait NSBrowserDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]

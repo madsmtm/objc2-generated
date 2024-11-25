@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsdatastoredelegate?language=objc)
     pub unsafe trait CLSDataStoreDelegate: NSObjectProtocol {
         #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
         #[method_id(@__retain_semantics Other createContextForIdentifier:parentContext:parentIdentifierPath:)]
@@ -21,6 +22,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsdatastore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLSDataStore;

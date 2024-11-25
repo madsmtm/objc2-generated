@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdressformatterstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -23,6 +24,7 @@ unsafe impl RefEncode for CNPostalAddressFormatterStyle {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdressformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNPostalAddressFormatter;
@@ -90,9 +92,11 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdresspropertyattribute?language=objc)
     pub static CNPostalAddressPropertyAttribute: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdresslocalizedpropertynameattribute?language=objc)
     pub static CNPostalAddressLocalizedPropertyNameAttribute: &'static NSString;
 }

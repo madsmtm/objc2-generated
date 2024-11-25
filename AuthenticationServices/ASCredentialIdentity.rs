@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentity?language=objc)
     pub unsafe trait ASCredentialIdentity: NSObjectProtocol {
         #[cfg(feature = "ASCredentialServiceIdentifier")]
         #[method_id(@__retain_semantics Other serviceIdentifier)]

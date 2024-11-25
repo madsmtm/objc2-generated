@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationattachment?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationAttachment;
@@ -55,17 +56,21 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionstypehintkey?language=objc)
     pub static UNNotificationAttachmentOptionsTypeHintKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionsthumbnailhiddenkey?language=objc)
     pub static UNNotificationAttachmentOptionsThumbnailHiddenKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionsthumbnailclippingrectkey?language=objc)
     pub static UNNotificationAttachmentOptionsThumbnailClippingRectKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionsthumbnailtimekey?language=objc)
     pub static UNNotificationAttachmentOptionsThumbnailTimeKey: &'static NSString;
 }

@@ -5,16 +5,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cashapelayerfillrule?language=objc)
 // NS_TYPED_ENUM
 pub type CAShapeLayerFillRule = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cashapelayerlinejoin?language=objc)
 // NS_TYPED_ENUM
 pub type CAShapeLayerLineJoin = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cashapelayerlinecap?language=objc)
 // NS_TYPED_ENUM
 pub type CAShapeLayerLineCap = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cashapelayer?language=objc)
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]
@@ -117,33 +121,41 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcafillrulenonzero?language=objc)
     pub static kCAFillRuleNonZero: &'static CAShapeLayerFillRule;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcafillruleevenodd?language=objc)
     pub static kCAFillRuleEvenOdd: &'static CAShapeLayerFillRule;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcalinejoinmiter?language=objc)
     pub static kCALineJoinMiter: &'static CAShapeLayerLineJoin;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcalinejoinround?language=objc)
     pub static kCALineJoinRound: &'static CAShapeLayerLineJoin;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcalinejoinbevel?language=objc)
     pub static kCALineJoinBevel: &'static CAShapeLayerLineJoin;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcalinecapbutt?language=objc)
     pub static kCALineCapButt: &'static CAShapeLayerLineCap;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcalinecapround?language=objc)
     pub static kCALineCapRound: &'static CAShapeLayerLineCap;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcalinecapsquare?language=objc)
     pub static kCALineCapSquare: &'static CAShapeLayerLineCap;
 }

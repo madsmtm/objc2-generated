@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidevicecapability?language=objc)
     pub unsafe trait NIDeviceCapability {
         #[method(supportsPreciseDistanceMeasurement)]
         unsafe fn supportsPreciseDistanceMeasurement(&self) -> bool;

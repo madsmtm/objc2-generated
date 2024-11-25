@@ -8,9 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesecurityerrordomain?language=objc)
     pub static MEMessageSecurityErrorDomain: &'static NSErrorDomain;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesecurityerrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,6 +31,7 @@ unsafe impl RefEncode for MEMessageSecurityErrorCode {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesecurityhandler?language=objc)
     #[cfg(all(feature = "MEMessageDecoder", feature = "MEMessageEncoder"))]
     pub unsafe trait MEMessageSecurityHandler:
         MEMessageDecoder + MEMessageEncoder + MainThreadOnly

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessorcadence?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorCadence;
@@ -35,6 +36,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessorframeratecadence?language=objc)
     #[unsafe(super(VNVideoProcessorCadence, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorFrameRateCadence;
@@ -73,6 +75,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessortimeintervalcadence?language=objc)
     #[unsafe(super(VNVideoProcessorCadence, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorTimeIntervalCadence;
@@ -102,6 +105,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessorrequestprocessingoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorRequestProcessingOptions;
@@ -137,6 +141,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessor;

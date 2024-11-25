@@ -10,6 +10,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axprefershorizontaltextlayoutdidchangenotification?language=objc)
     pub static AXPrefersHorizontalTextLayoutDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -18,6 +19,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axanimatedimagesenableddidchangenotification?language=objc)
     pub static AXAnimatedImagesEnabledDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -30,10 +32,12 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axprefersnonblinkingtextinsertionindicatordidchangenotification?language=objc)
     pub static AXPrefersNonBlinkingTextInsertionIndicatorDidChangeNotification:
         &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axsettingsfeature?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

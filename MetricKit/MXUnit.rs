@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxunitsignalbars?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXUnitSignalBars;
@@ -60,6 +61,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxunitaveragepixelluminance?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXUnitAveragePixelLuminance;

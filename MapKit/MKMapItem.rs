@@ -8,6 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapitem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapItem;
@@ -120,42 +121,52 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodekey?language=objc)
     pub static MKLaunchOptionsDirectionsModeKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsmaptypekey?language=objc)
     pub static MKLaunchOptionsMapTypeKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsshowstraffickey?language=objc)
     pub static MKLaunchOptionsShowsTrafficKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodedefault?language=objc)
     pub static MKLaunchOptionsDirectionsModeDefault: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodedriving?language=objc)
     pub static MKLaunchOptionsDirectionsModeDriving: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodewalking?language=objc)
     pub static MKLaunchOptionsDirectionsModeWalking: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodetransit?language=objc)
     pub static MKLaunchOptionsDirectionsModeTransit: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsmapcenterkey?language=objc)
     pub static MKLaunchOptionsMapCenterKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsmapspankey?language=objc)
     pub static MKLaunchOptionsMapSpanKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionscamerakey?language=objc)
     pub static MKLaunchOptionsCameraKey: &'static NSString;
 }
 
@@ -167,5 +178,6 @@ extern_methods!(
 unsafe impl NSSecureCoding for MKMapItem {}
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapitemtypeidentifier?language=objc)
     pub static MKMapItemTypeIdentifier: &'static NSString;
 }

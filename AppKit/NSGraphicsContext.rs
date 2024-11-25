@@ -8,29 +8,36 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontextattributekey?language=objc)
 // NS_TYPED_ENUM
 pub type NSGraphicsContextAttributeKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontextdestinationattributename?language=objc)
     pub static NSGraphicsContextDestinationAttributeName: &'static NSGraphicsContextAttributeKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontextrepresentationformatattributename?language=objc)
     pub static NSGraphicsContextRepresentationFormatAttributeName:
         &'static NSGraphicsContextAttributeKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontextrepresentationformatname?language=objc)
 // NS_TYPED_ENUM
 pub type NSGraphicsContextRepresentationFormatName = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontextpsformat?language=objc)
     pub static NSGraphicsContextPSFormat: &'static NSGraphicsContextRepresentationFormatName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontextpdfformat?language=objc)
     pub static NSGraphicsContextPDFFormat: &'static NSGraphicsContextRepresentationFormatName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageinterpolation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -57,6 +64,7 @@ unsafe impl RefEncode for NSImageInterpolation {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGraphicsContext;

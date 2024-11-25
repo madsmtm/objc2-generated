@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nschangespelling?language=objc)
     pub unsafe trait NSChangeSpelling {
         #[method(changeSpelling:)]
         unsafe fn changeSpelling(&self, sender: Option<&AnyObject>);
@@ -14,6 +15,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsignoremisspelledwords?language=objc)
     pub unsafe trait NSIgnoreMisspelledWords {
         #[method(ignoreSpelling:)]
         unsafe fn ignoreSpelling(&self, sender: Option<&AnyObject>);

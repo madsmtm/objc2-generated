@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationmanagerdelegate?language=objc)
     pub unsafe trait CLLocationManagerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "CLLocation", feature = "CLLocationManager"))]
         #[deprecated = "Implement -locationManager:didUpdateLocations: instead"]

@@ -5,18 +5,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationdegrees?language=objc)
 pub type CLLocationDegrees = c_double;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationaccuracy?language=objc)
 pub type CLLocationAccuracy = c_double;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationspeed?language=objc)
 pub type CLLocationSpeed = c_double;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationspeedaccuracy?language=objc)
 pub type CLLocationSpeedAccuracy = c_double;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationdirection?language=objc)
 pub type CLLocationDirection = c_double;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationdirectionaccuracy?language=objc)
 pub type CLLocationDirectionAccuracy = c_double;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationcoordinate2d?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CLLocationCoordinate2D {
@@ -35,49 +42,61 @@ unsafe impl RefEncode for CLLocationCoordinate2D {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationdistance?language=objc)
 pub type CLLocationDistance = c_double;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/kcldistancefilternone?language=objc)
     pub static kCLDistanceFilterNone: CLLocationDistance;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/kcllocationaccuracybestfornavigation?language=objc)
     pub static kCLLocationAccuracyBestForNavigation: CLLocationAccuracy;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/kcllocationaccuracybest?language=objc)
     pub static kCLLocationAccuracyBest: CLLocationAccuracy;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/kcllocationaccuracynearesttenmeters?language=objc)
     pub static kCLLocationAccuracyNearestTenMeters: CLLocationAccuracy;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/kcllocationaccuracyhundredmeters?language=objc)
     pub static kCLLocationAccuracyHundredMeters: CLLocationAccuracy;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/kcllocationaccuracykilometer?language=objc)
     pub static kCLLocationAccuracyKilometer: CLLocationAccuracy;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/kcllocationaccuracythreekilometers?language=objc)
     pub static kCLLocationAccuracyThreeKilometers: CLLocationAccuracy;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/kcllocationaccuracyreduced?language=objc)
     pub static kCLLocationAccuracyReduced: CLLocationAccuracy;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationdistancemax?language=objc)
     pub static CLLocationDistanceMax: CLLocationDistance;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cltimeintervalmax?language=objc)
     pub static CLTimeIntervalMax: NSTimeInterval;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/kcllocationcoordinate2dinvalid?language=objc)
     pub static kCLLocationCoordinate2DInvalid: CLLocationCoordinate2D;
 }
 
@@ -93,6 +112,7 @@ extern "C-unwind" {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clfloor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLFloor;
@@ -129,6 +149,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationsourceinformation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLLocationSourceInformation;
@@ -175,6 +196,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLLocation;

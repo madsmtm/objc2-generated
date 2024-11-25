@@ -6,14 +6,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsuncaughtsystemexceptionexception?language=objc)
     pub static NSUncaughtSystemExceptionException: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsuncaughtruntimeerrorexception?language=objc)
     pub static NSUncaughtRuntimeErrorException: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsstacktracekey?language=objc)
     pub static NSStackTraceKey: Option<&'static NSString>;
 }
 
@@ -21,24 +24,40 @@ extern "C-unwind" {
     pub fn NSExceptionHandlerResume();
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsloguncaughtexceptionmask?language=objc)
 pub const NSLogUncaughtExceptionMask: c_uint = 1 << 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshandleuncaughtexceptionmask?language=objc)
 pub const NSHandleUncaughtExceptionMask: c_uint = 1 << 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsloguncaughtsystemexceptionmask?language=objc)
 pub const NSLogUncaughtSystemExceptionMask: c_uint = 1 << 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshandleuncaughtsystemexceptionmask?language=objc)
 pub const NSHandleUncaughtSystemExceptionMask: c_uint = 1 << 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsloguncaughtruntimeerrormask?language=objc)
 pub const NSLogUncaughtRuntimeErrorMask: c_uint = 1 << 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshandleuncaughtruntimeerrormask?language=objc)
 pub const NSHandleUncaughtRuntimeErrorMask: c_uint = 1 << 5;
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nslogtoplevelexceptionmask?language=objc)
 pub const NSLogTopLevelExceptionMask: c_uint = 1 << 6;
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshandletoplevelexceptionmask?language=objc)
 pub const NSHandleTopLevelExceptionMask: c_uint = 1 << 7;
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nslogotherexceptionmask?language=objc)
 pub const NSLogOtherExceptionMask: c_uint = 1 << 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshandleotherexceptionmask?language=objc)
 pub const NSHandleOtherExceptionMask: c_uint = 1 << 9;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshangonuncaughtexceptionmask?language=objc)
 pub const NSHangOnUncaughtExceptionMask: c_uint = 1 << 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshangonuncaughtsystemexceptionmask?language=objc)
 pub const NSHangOnUncaughtSystemExceptionMask: c_uint = 1 << 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshangonuncaughtruntimeerrormask?language=objc)
 pub const NSHangOnUncaughtRuntimeErrorMask: c_uint = 1 << 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshangontoplevelexceptionmask?language=objc)
 pub const NSHangOnTopLevelExceptionMask: c_uint = 1 << 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshangonotherexceptionmask?language=objc)
 pub const NSHangOnOtherExceptionMask: c_uint = 1 << 4;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsexceptionhandler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSExceptionHandler;

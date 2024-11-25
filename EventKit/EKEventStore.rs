@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekspan?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -24,6 +25,7 @@ unsafe impl RefEncode for EKSpan {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventsearchcallback?language=objc)
 #[cfg(all(
     feature = "EKCalendarItem",
     feature = "EKEvent",
@@ -32,11 +34,13 @@ unsafe impl RefEncode for EKSpan {
 ))]
 pub type EKEventSearchCallback = *mut block2::Block<dyn Fn(NonNull<EKEvent>, NonNull<Bool>)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstorerequestaccesscompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type EKEventStoreRequestAccessCompletionHandler =
     *mut block2::Block<dyn Fn(Bool, *mut NSError)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKEventStore;
@@ -329,5 +333,6 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstorechangednotification?language=objc)
     pub static EKEventStoreChangedNotification: &'static NSString;
 }

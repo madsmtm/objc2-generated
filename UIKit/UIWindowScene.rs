@@ -8,6 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene?language=objc)
     #[unsafe(super(UIScene, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -132,6 +133,7 @@ unsafe impl UITraitChangeObservable for UIWindowScene {}
 unsafe impl UITraitEnvironment for UIWindowScene {}
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenedelegate?language=objc)
     #[cfg(feature = "UIScene")]
     pub unsafe trait UIWindowSceneDelegate: UISceneDelegate + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "UIWindow"))]
@@ -189,25 +191,30 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenesessionroleapplication?language=objc)
     #[cfg(feature = "UISceneDefinitions")]
     pub static UIWindowSceneSessionRoleApplication: &'static UISceneSessionRole;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenesessionroleexternaldisplaynoninteractive?language=objc)
     #[cfg(feature = "UISceneDefinitions")]
     pub static UIWindowSceneSessionRoleExternalDisplayNonInteractive: &'static UISceneSessionRole;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenesessionroleexternaldisplay?language=objc)
     #[cfg(feature = "UISceneDefinitions")]
     pub static UIWindowSceneSessionRoleExternalDisplay: &'static UISceneSessionRole;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenesessionrolevolumetricapplication?language=objc)
     #[cfg(feature = "UISceneDefinitions")]
     pub static UIWindowSceneSessionRoleVolumetricApplication: &'static UISceneSessionRole;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenedismissalanimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -230,6 +237,7 @@ unsafe impl RefEncode for UIWindowSceneDismissalAnimation {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenedestructionrequestoptions?language=objc)
     #[unsafe(super(UISceneDestructionRequestOptions, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -267,6 +275,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesizerestrictions?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

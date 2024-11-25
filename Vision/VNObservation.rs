@@ -10,6 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnobservation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNObservation;
@@ -53,6 +54,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectedobjectobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNDetectedObjectObservation;
@@ -104,6 +106,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnfaceobservation?language=objc)
     #[unsafe(super(VNDetectedObjectObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceObservation;
@@ -188,6 +191,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnclassificationobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNClassificationObservation;
@@ -249,6 +253,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedobjectobservation?language=objc)
     #[unsafe(super(VNDetectedObjectObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRecognizedObjectObservation;
@@ -302,6 +307,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vncoremlfeaturevalueobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNCoreMLFeatureValueObservation;
@@ -345,6 +351,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnpixelbufferobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNPixelBufferObservation;
@@ -384,6 +391,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrectangleobservation?language=objc)
     #[unsafe(super(VNDetectedObjectObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRectangleObservation;
@@ -465,6 +473,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrajectoryobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNTrajectoryObservation;
@@ -512,6 +521,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntextobservation?language=objc)
     #[unsafe(super(
         VNRectangleObservation,
         VNDetectedObjectObservation,
@@ -594,6 +604,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedtext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRecognizedText;
@@ -643,6 +654,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedtextobservation?language=objc)
     #[unsafe(super(
         VNRectangleObservation,
         VNDetectedObjectObservation,
@@ -728,6 +740,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodeobservation?language=objc)
     #[unsafe(super(
         VNRectangleObservation,
         VNDetectedObjectObservation,
@@ -837,6 +850,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhorizonobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNHorizonObservation;
@@ -876,6 +890,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagealignmentobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageAlignmentObservation;
@@ -912,6 +927,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagetranslationalignmentobservation?language=objc)
     #[unsafe(super(VNImageAlignmentObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageTranslationAlignmentObservation;
@@ -948,6 +964,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagehomographicalignmentobservation?language=objc)
     #[unsafe(super(VNImageAlignmentObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageHomographicAlignmentObservation;
@@ -984,6 +1001,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnsaliencyimageobservation?language=objc)
     #[unsafe(super(VNPixelBufferObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNSaliencyImageObservation;
@@ -1023,6 +1041,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnfeatureprintobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFeaturePrintObservation;
@@ -1076,6 +1095,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vncontoursobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNContoursObservation;
@@ -1136,11 +1156,13 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpointgroupkeyall?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNRecognizedPointGroupKeyAll: &'static VNRecognizedPointGroupKey;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpointsobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRecognizedPointsObservation;
@@ -1211,6 +1233,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanobservation?language=objc)
     #[unsafe(super(VNDetectedObjectObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNHumanObservation;
@@ -1264,6 +1287,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vninstancemaskobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNInstanceMaskObservation;
@@ -1303,6 +1327,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation?language=objc)
     #[unsafe(super(VNRecognizedPointsObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNAnimalBodyPoseObservation;
@@ -1376,11 +1401,13 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpoint3dgroupkeyall?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNRecognizedPoint3DGroupKeyAll: &'static VNRecognizedPointGroupKey;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpoints3dobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRecognizedPoints3DObservation;
@@ -1444,6 +1471,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationheightestimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1464,6 +1492,7 @@ unsafe impl RefEncode for VNHumanBodyPose3DObservationHeightEstimation {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation?language=objc)
     #[unsafe(super(VNRecognizedPoints3DObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNHumanBodyPose3DObservation;
@@ -1561,6 +1590,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageaestheticsscoresobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageAestheticsScoresObservation;

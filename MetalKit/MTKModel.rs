@@ -6,18 +6,22 @@ use objc2_metal::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmodelerror?language=objc)
 // NS_TYPED_ENUM
 pub type MTKModelError = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmodelerrordomain?language=objc)
     pub static MTKModelErrorDomain: &'static MTKModelError;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmodelerrorkey?language=objc)
     pub static MTKModelErrorKey: &'static MTKModelError;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmeshbufferallocator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTKMeshBufferAllocator;
@@ -50,6 +54,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmeshbuffer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTKMeshBuffer;
@@ -91,6 +96,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtksubmesh?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTKSubmesh;
@@ -135,6 +141,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmesh?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTKMesh;

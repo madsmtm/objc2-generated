@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutanchor?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -96,6 +97,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutxaxisanchor?language=objc)
     #[unsafe(super(NSLayoutAnchor, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug)]
@@ -134,6 +136,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutyaxisanchor?language=objc)
     #[unsafe(super(NSLayoutAnchor, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug)]
@@ -172,6 +175,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutdimension?language=objc)
     #[unsafe(super(NSLayoutAnchor, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug)]

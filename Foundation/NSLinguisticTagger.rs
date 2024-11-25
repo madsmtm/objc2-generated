@@ -4,204 +4,245 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagscheme?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSLinguisticTagScheme = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemetokentype?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagSchemeTokenType: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemelexicalclass?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagSchemeLexicalClass: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemenametype?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagSchemeNameType: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemenametypeorlexicalclass?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagSchemeNameTypeOrLexicalClass: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemelemma?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagSchemeLemma: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemelanguage?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagSchemeLanguage: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemescript?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagSchemeScript: &'static NSLinguisticTagScheme;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSLinguisticTag = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagword?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagWord: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagpunctuation?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagPunctuation: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagwhitespace?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagWhitespace: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagother?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagOther: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagnoun?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagNoun: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagverb?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagVerb: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagadjective?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagAdjective: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagadverb?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagAdverb: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagpronoun?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagPronoun: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagdeterminer?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagDeterminer: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagparticle?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagParticle: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagpreposition?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagPreposition: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagnumber?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagNumber: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagconjunction?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagConjunction: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaginterjection?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagInterjection: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagclassifier?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagClassifier: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagidiom?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagIdiom: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagotherword?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagOtherWord: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagsentenceterminator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagSentenceTerminator: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagopenquote?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagOpenQuote: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagclosequote?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagCloseQuote: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagopenparenthesis?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagOpenParenthesis: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagcloseparenthesis?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagCloseParenthesis: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagwordjoiner?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagWordJoiner: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagdash?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagDash: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagotherpunctuation?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagOtherPunctuation: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagparagraphbreak?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagParagraphBreak: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagotherwhitespace?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagOtherWhitespace: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagpersonalname?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagPersonalName: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagplacename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagPlaceName: &'static NSLinguisticTag;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagorganizationname?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLinguisticTagOrganizationName: &'static NSLinguisticTag;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaggerunit?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -225,6 +266,7 @@ unsafe impl RefEncode for NSLinguisticTaggerUnit {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaggeroptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -248,6 +290,7 @@ unsafe impl RefEncode for NSLinguisticTaggerOptions {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagger?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]

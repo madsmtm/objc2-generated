@@ -5,10 +5,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cascrolllayerscrollmode?language=objc)
 // NS_TYPED_ENUM
 pub type CAScrollLayerScrollMode = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cascrolllayer?language=objc)
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]
@@ -84,17 +86,21 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcascrollnone?language=objc)
     pub static kCAScrollNone: &'static CAScrollLayerScrollMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcascrollvertically?language=objc)
     pub static kCAScrollVertically: &'static CAScrollLayerScrollMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcascrollhorizontally?language=objc)
     pub static kCAScrollHorizontally: &'static CAScrollLayerScrollMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcascrollboth?language=objc)
     pub static kCAScrollBoth: &'static CAScrollLayerScrollMode;
 }

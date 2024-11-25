@@ -5,16 +5,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittershape?language=objc)
 // NS_TYPED_ENUM
 pub type CAEmitterLayerEmitterShape = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittermode?language=objc)
 // NS_TYPED_ENUM
 pub type CAEmitterLayerEmitterMode = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayerrendermode?language=objc)
 // NS_TYPED_ENUM
 pub type CAEmitterLayerRenderMode = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayer?language=objc)
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]
@@ -155,61 +159,76 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayerpoint?language=objc)
     pub static kCAEmitterLayerPoint: &'static CAEmitterLayerEmitterShape;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayerline?language=objc)
     pub static kCAEmitterLayerLine: &'static CAEmitterLayerEmitterShape;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayerrectangle?language=objc)
     pub static kCAEmitterLayerRectangle: &'static CAEmitterLayerEmitterShape;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayercuboid?language=objc)
     pub static kCAEmitterLayerCuboid: &'static CAEmitterLayerEmitterShape;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayercircle?language=objc)
     pub static kCAEmitterLayerCircle: &'static CAEmitterLayerEmitterShape;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayersphere?language=objc)
     pub static kCAEmitterLayerSphere: &'static CAEmitterLayerEmitterShape;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayerpoints?language=objc)
     pub static kCAEmitterLayerPoints: &'static CAEmitterLayerEmitterMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayeroutline?language=objc)
     pub static kCAEmitterLayerOutline: &'static CAEmitterLayerEmitterMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayersurface?language=objc)
     pub static kCAEmitterLayerSurface: &'static CAEmitterLayerEmitterMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayervolume?language=objc)
     pub static kCAEmitterLayerVolume: &'static CAEmitterLayerEmitterMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayerunordered?language=objc)
     pub static kCAEmitterLayerUnordered: &'static CAEmitterLayerRenderMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayeroldestfirst?language=objc)
     pub static kCAEmitterLayerOldestFirst: &'static CAEmitterLayerRenderMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayeroldestlast?language=objc)
     pub static kCAEmitterLayerOldestLast: &'static CAEmitterLayerRenderMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayerbacktofront?language=objc)
     pub static kCAEmitterLayerBackToFront: &'static CAEmitterLayerRenderMode;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayeradditive?language=objc)
     pub static kCAEmitterLayerAdditive: &'static CAEmitterLayerRenderMode;
 }

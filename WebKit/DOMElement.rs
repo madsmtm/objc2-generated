@@ -5,10 +5,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_allow_keyboard_input?language=objc)
 #[deprecated]
 pub const DOM_ALLOW_KEYBOARD_INPUT: c_uint = 1;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domelement?language=objc)
     #[unsafe(super(DOMNode, DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

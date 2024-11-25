@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment?language=objc)
     #[unsafe(super(VZStorageDeviceAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZStorageDeviceAttachment")]
@@ -79,6 +80,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachmentdelegate?language=objc)
     pub unsafe trait VZNetworkBlockDeviceStorageDeviceAttachmentDelegate:
         NSObjectProtocol
     {

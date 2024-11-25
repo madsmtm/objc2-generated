@@ -6,10 +6,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webarchivepboardtype?language=objc)
     pub static WebArchivePboardType: Option<&'static NSString>;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webarchive?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

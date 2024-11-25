@@ -7,6 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osascriptview?language=objc)
     #[unsafe(super(NSTextView, NSText, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSAScriptView;

@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -45,6 +46,7 @@ unsafe impl RefEncode for CKSyncEngineEventType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineEvent;
@@ -118,6 +120,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginestateupdateevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineStateUpdateEvent;
@@ -148,6 +151,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineaccountchangetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -170,6 +174,7 @@ unsafe impl RefEncode for CKSyncEngineAccountChangeType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineaccountchangeevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineAccountChangeEvent;
@@ -208,6 +213,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginefetcheddatabasechangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFetchedDatabaseChangesEvent;
@@ -242,6 +248,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginefetchedrecordzonechangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFetchedRecordZoneChangesEvent;
@@ -276,6 +283,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesentdatabasechangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineSentDatabaseChangesEvent;
@@ -318,6 +326,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesentrecordzonechangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineSentRecordZoneChangesEvent;
@@ -360,6 +369,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginewillfetchchangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineWillFetchChangesEvent;
@@ -391,6 +401,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginewillfetchrecordzonechangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineWillFetchRecordZoneChangesEvent;
@@ -422,6 +433,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginedidfetchrecordzonechangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineDidFetchRecordZoneChangesEvent;
@@ -456,6 +468,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginedidfetchchangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineDidFetchChangesEvent;
@@ -487,6 +500,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginewillsendchangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineWillSendChangesEvent;
@@ -518,6 +532,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginedidsendchangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineDidSendChangesEvent;
@@ -549,6 +564,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginefetchedrecorddeletion?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFetchedRecordDeletion;
@@ -578,6 +594,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginezonedeletionreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -600,6 +617,7 @@ unsafe impl RefEncode for CKSyncEngineZoneDeletionReason {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginefetchedzonedeletion?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFetchedZoneDeletion;
@@ -629,6 +647,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginefailedrecordsave?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFailedRecordSave;
@@ -658,6 +677,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginefailedzonesave?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFailedZoneSave;

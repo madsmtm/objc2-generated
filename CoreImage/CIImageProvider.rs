@@ -32,11 +32,13 @@ extern_category!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageprovidertilesize?language=objc)
     #[cfg(feature = "CIImage")]
     pub static kCIImageProviderTileSize: &'static CIImageOption;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageprovideruserinfo?language=objc)
     #[cfg(feature = "CIImage")]
     pub static kCIImageProviderUserInfo: &'static CIImageOption;
 }

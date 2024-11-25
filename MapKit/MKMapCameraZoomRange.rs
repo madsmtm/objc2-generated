@@ -8,11 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapcamerazoomdefault?language=objc)
     #[cfg(feature = "objc2-core-location")]
     pub static MKMapCameraZoomDefault: CLLocationDistance;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapcamerazoomrange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapCameraZoomRange;

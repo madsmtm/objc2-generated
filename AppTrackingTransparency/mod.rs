@@ -29,9 +29,11 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/apptrackingtransparencyversionnumber?language=objc)
     pub static AppTrackingTransparencyVersionNumber: c_double;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/apptrackingtransparencyversionstring?language=objc)
     pub static AppTrackingTransparencyVersionString: *mut c_uchar;
 }

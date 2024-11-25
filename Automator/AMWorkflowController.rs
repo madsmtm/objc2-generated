@@ -8,6 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amworkflowcontroller?language=objc)
     #[unsafe(super(NSController, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -109,6 +110,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amworkflowcontrollerdelegate?language=objc)
     pub unsafe trait AMWorkflowControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[optional]

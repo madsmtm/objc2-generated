@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eabluetoothaccessorypickererrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -25,29 +26,36 @@ unsafe impl RefEncode for EABluetoothAccessoryPickerErrorCode {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eabluetoothaccessorypickererrordomain?language=objc)
     pub static EABluetoothAccessoryPickerErrorDomain: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eabluetoothaccessorypickercompletion?language=objc)
 #[cfg(feature = "block2")]
 pub type EABluetoothAccessoryPickerCompletion = *mut block2::Block<dyn Fn(*mut NSError)>;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eaaccessorydidconnectnotification?language=objc)
     pub static EAAccessoryDidConnectNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eaaccessorydiddisconnectnotification?language=objc)
     pub static EAAccessoryDidDisconnectNotification: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eaaccessorykey?language=objc)
     pub static EAAccessoryKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eaaccessoryselectedkey?language=objc)
     pub static EAAccessorySelectedKey: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eaaccessorymanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EAAccessoryManager;

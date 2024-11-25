@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderrepresentationvisibility?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -27,6 +28,7 @@ unsafe impl RefEncode for NSItemProviderRepresentationVisibility {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderfileoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -46,6 +48,7 @@ unsafe impl RefEncode for NSItemProviderFileOptions {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderwriting?language=objc)
     pub unsafe trait NSItemProviderWriting: NSObjectProtocol {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other writableTypeIdentifiersForItemProvider)]
@@ -90,6 +93,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderreading?language=objc)
     pub unsafe trait NSItemProviderReading: NSObjectProtocol {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other readableTypeIdentifiersForItemProvider)]
@@ -106,10 +110,12 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSItemProviderReading {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovidercompletionhandler?language=objc)
 #[cfg(all(feature = "NSError", feature = "NSObject", feature = "block2"))]
 pub type NSItemProviderCompletionHandler =
     *mut block2::Block<dyn Fn(*mut ProtocolObject<dyn NSSecureCoding>, *mut NSError)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderloadhandler?language=objc)
 #[cfg(all(
     feature = "NSDictionary",
     feature = "NSError",
@@ -120,6 +126,7 @@ pub type NSItemProviderLoadHandler =
     *mut block2::Block<dyn Fn(NSItemProviderCompletionHandler, *const AnyClass, *mut NSDictionary)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSItemProvider;
@@ -320,6 +327,7 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderpreferredimagesizekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSItemProviderPreferredImageSizeKey: &'static NSString;
 }
@@ -364,20 +372,24 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionjavascriptpreprocessingresultskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionJavaScriptPreprocessingResultsKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionjavascriptfinalizeargumentkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionJavaScriptFinalizeArgumentKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovidererrordomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSItemProviderErrorDomain: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovidererrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

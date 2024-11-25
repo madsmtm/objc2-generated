@@ -8,6 +8,7 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentpickerdelegate?language=objc)
     pub unsafe trait UIDocumentPickerDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
@@ -37,6 +38,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UIDocumentPickerDelegate {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentpickermode?language=objc)
 // NS_ENUM
 #[deprecated = "Use appropriate initializers instead"]
 #[repr(transparent)]
@@ -66,6 +68,7 @@ unsafe impl RefEncode for UIDocumentPickerMode {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentpickerviewcontroller?language=objc)
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

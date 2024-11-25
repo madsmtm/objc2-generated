@@ -9,6 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPictureInPictureController;
@@ -107,6 +108,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avpictureinpicturecontrollercontentsource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPictureInPictureControllerContentSource;
@@ -125,6 +127,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avpictureinpicturecontrollerdelegate?language=objc)
     pub unsafe trait AVPictureInPictureControllerDelegate: NSObjectProtocol {
         #[optional]
         #[method(pictureInPictureControllerWillStartPictureInPicture:)]

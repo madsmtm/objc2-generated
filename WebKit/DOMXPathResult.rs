@@ -5,28 +5,39 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_any_type?language=objc)
 #[deprecated]
 pub const DOM_ANY_TYPE: c_uint = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_number_type?language=objc)
 #[deprecated]
 pub const DOM_NUMBER_TYPE: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_string_type?language=objc)
 #[deprecated]
 pub const DOM_STRING_TYPE: c_uint = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_boolean_type?language=objc)
 #[deprecated]
 pub const DOM_BOOLEAN_TYPE: c_uint = 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_unordered_node_iterator_type?language=objc)
 #[deprecated]
 pub const DOM_UNORDERED_NODE_ITERATOR_TYPE: c_uint = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_ordered_node_iterator_type?language=objc)
 #[deprecated]
 pub const DOM_ORDERED_NODE_ITERATOR_TYPE: c_uint = 5;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_unordered_node_snapshot_type?language=objc)
 #[deprecated]
 pub const DOM_UNORDERED_NODE_SNAPSHOT_TYPE: c_uint = 6;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_ordered_node_snapshot_type?language=objc)
 #[deprecated]
 pub const DOM_ORDERED_NODE_SNAPSHOT_TYPE: c_uint = 7;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_any_unordered_node_type?language=objc)
 #[deprecated]
 pub const DOM_ANY_UNORDERED_NODE_TYPE: c_uint = 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_first_ordered_node_type?language=objc)
 #[deprecated]
 pub const DOM_FIRST_ORDERED_NODE_TYPE: c_uint = 9;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domxpathresult?language=objc)
     #[unsafe(super(DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]

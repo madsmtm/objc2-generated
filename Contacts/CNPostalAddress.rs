@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdress?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNPostalAddress;
@@ -73,33 +74,41 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdressstreetkey?language=objc)
     pub static CNPostalAddressStreetKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdresssublocalitykey?language=objc)
     pub static CNPostalAddressSubLocalityKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdresscitykey?language=objc)
     pub static CNPostalAddressCityKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdresssubadministrativeareakey?language=objc)
     pub static CNPostalAddressSubAdministrativeAreaKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdressstatekey?language=objc)
     pub static CNPostalAddressStateKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdresspostalcodekey?language=objc)
     pub static CNPostalAddressPostalCodeKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdresscountrykey?language=objc)
     pub static CNPostalAddressCountryKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdressisocountrycodekey?language=objc)
     pub static CNPostalAddressISOCountryCodeKey: &'static NSString;
 }

@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlayposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -25,6 +26,7 @@ unsafe impl RefEncode for SKOverlayPosition {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlayconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKOverlayConfiguration;
@@ -43,6 +45,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlayappconfiguration?language=objc)
     #[unsafe(super(SKOverlayConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKOverlayAppConfiguration;
@@ -123,6 +126,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlayappclipconfiguration?language=objc)
     #[unsafe(super(SKOverlayConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKOverlayAppClipConfiguration;

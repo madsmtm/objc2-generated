@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureusage?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -30,6 +31,7 @@ unsafe impl RefEncode for MTLAccelerationStructureUsage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstanceoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -52,6 +54,7 @@ unsafe impl RefEncode for MTLAccelerationStructureInstanceOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmatrixlayout?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -72,6 +75,7 @@ unsafe impl RefEncode for MTLMatrixLayout {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuredescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureDescriptor;
@@ -107,6 +111,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureGeometryDescriptor;
@@ -203,6 +208,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmotionbordermode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -223,6 +229,7 @@ unsafe impl RefEncode for MTLMotionBorderMode {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor?language=objc)
     #[unsafe(super(MTLAccelerationStructureDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLPrimitiveAccelerationStructureDescriptor;
@@ -299,6 +306,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuretrianglegeometrydescriptor?language=objc)
     #[unsafe(super(MTLAccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureTriangleGeometryDescriptor;
@@ -442,6 +450,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureboundingboxgeometrydescriptor?language=objc)
     #[unsafe(super(MTLAccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureBoundingBoxGeometryDescriptor;
@@ -511,6 +520,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmotionkeyframedata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLMotionKeyframeData;
@@ -559,6 +569,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor?language=objc)
     #[unsafe(super(MTLAccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureMotionTriangleGeometryDescriptor;
@@ -686,6 +697,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotionboundingboxgeometrydescriptor?language=objc)
     #[unsafe(super(MTLAccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor;
@@ -738,6 +750,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurvetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -757,6 +770,7 @@ unsafe impl RefEncode for MTLCurveType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurvebasis?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -780,6 +794,7 @@ unsafe impl RefEncode for MTLCurveBasis {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurveendcaps?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -802,6 +817,7 @@ unsafe impl RefEncode for MTLCurveEndCaps {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor?language=objc)
     #[unsafe(super(MTLAccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureCurveGeometryDescriptor;
@@ -975,6 +991,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor?language=objc)
     #[unsafe(super(MTLAccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureMotionCurveGeometryDescriptor;
@@ -1115,6 +1132,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptor?language=objc)
 #[cfg(feature = "MTLAccelerationStructureTypes")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -1145,6 +1163,7 @@ unsafe impl RefEncode for MTLAccelerationStructureInstanceDescriptor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureuseridinstancedescriptor?language=objc)
 #[cfg(feature = "MTLAccelerationStructureTypes")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -1177,6 +1196,7 @@ unsafe impl RefEncode for MTLAccelerationStructureUserIDInstanceDescriptor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptortype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1202,6 +1222,7 @@ unsafe impl RefEncode for MTLAccelerationStructureInstanceDescriptorType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioninstancedescriptor?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLAccelerationStructureMotionInstanceDescriptor {
@@ -1241,6 +1262,7 @@ unsafe impl RefEncode for MTLAccelerationStructureMotionInstanceDescriptor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectaccelerationstructureinstancedescriptor?language=objc)
 #[cfg(all(feature = "MTLAccelerationStructureTypes", feature = "MTLTypes"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -1273,6 +1295,7 @@ unsafe impl RefEncode for MTLIndirectAccelerationStructureInstanceDescriptor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectaccelerationstructuremotioninstancedescriptor?language=objc)
 #[cfg(feature = "MTLTypes")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -1315,6 +1338,7 @@ unsafe impl RefEncode for MTLIndirectAccelerationStructureMotionInstanceDescript
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltransformtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1335,6 +1359,7 @@ unsafe impl RefEncode for MTLTransformType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlinstanceaccelerationstructuredescriptor?language=objc)
     #[unsafe(super(MTLAccelerationStructureDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLInstanceAccelerationStructureDescriptor;
@@ -1492,6 +1517,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor?language=objc)
     #[unsafe(super(MTLAccelerationStructureDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLIndirectInstanceAccelerationStructureDescriptor;
@@ -1690,6 +1716,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructure?language=objc)
     #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     pub unsafe trait MTLAccelerationStructure: MTLResource {
         #[method(size)]

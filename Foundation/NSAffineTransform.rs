@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsaffinetransformstruct?language=objc)
 #[cfg(feature = "NSGeometry")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -43,6 +44,7 @@ unsafe impl Send for NSAffineTransformStruct {}
 unsafe impl Sync for NSAffineTransformStruct {}
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsaffinetransform?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAffineTransform;

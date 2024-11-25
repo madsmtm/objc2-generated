@@ -7,26 +7,40 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimksinglecolumnscrollingcandidatepanel?language=objc)
 pub const kIMKSingleColumnScrollingCandidatePanel: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimkscrollinggridcandidatepanel?language=objc)
 pub const kIMKScrollingGridCandidatePanel: c_uint = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimksinglerowsteppingcandidatepanel?language=objc)
 pub const kIMKSingleRowSteppingCandidatePanel: c_uint = 3;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkcandidatepaneltype?language=objc)
 pub type IMKCandidatePanelType = NSUInteger;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimkmain?language=objc)
 pub const kIMKMain: c_uint = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimkannotation?language=objc)
 pub const kIMKAnnotation: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimksublist?language=objc)
 pub const kIMKSubList: c_uint = 2;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkstyletype?language=objc)
 pub type IMKStyleType = NSUInteger;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimklocatecandidatesabovehint?language=objc)
 pub const kIMKLocateCandidatesAboveHint: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimklocatecandidatesbelowhint?language=objc)
 pub const kIMKLocateCandidatesBelowHint: c_uint = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimklocatecandidateslefthint?language=objc)
 pub const kIMKLocateCandidatesLeftHint: c_uint = 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimklocatecandidatesrighthint?language=objc)
 pub const kIMKLocateCandidatesRightHint: c_uint = 4;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkcandidateslocationhint?language=objc)
 pub type IMKCandidatesLocationHint = NSUInteger;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkcandidates?language=objc)
     #[unsafe(super(NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

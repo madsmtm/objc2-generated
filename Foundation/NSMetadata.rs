@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquery?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataQuery;
@@ -173,6 +174,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerydelegate?language=objc)
     pub unsafe trait NSMetadataQueryDelegate: NSObjectProtocol {
         #[optional]
         #[method_id(@__retain_semantics Other metadataQuery:replacementObjectForResultObject:)]
@@ -197,86 +199,103 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerydidstartgatheringnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryDidStartGatheringNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerygatheringprogressnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryGatheringProgressNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerydidfinishgatheringnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryDidFinishGatheringNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerydidupdatenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryDidUpdateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryupdateaddeditemskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUpdateAddedItemsKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryupdatechangeditemskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUpdateChangedItemsKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryupdateremoveditemskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUpdateRemovedItemsKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryresultcontentrelevanceattribute?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryResultContentRelevanceAttribute: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryuserhomescope?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUserHomeScope: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerylocalcomputerscope?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryLocalComputerScope: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerynetworkscope?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryNetworkScope: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryindexedlocalcomputerscope?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryIndexedLocalComputerScope: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryindexednetworkscope?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryIndexedNetworkScope: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryubiquitousdocumentsscope?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUbiquitousDocumentsScope: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryubiquitousdatascope?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUbiquitousDataScope: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryaccessibleubiquitousexternaldocumentsscope?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryAccessibleUbiquitousExternalDocumentsScope: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataItem;
@@ -319,6 +338,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryattributevaluetuple?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataQueryAttributeValueTuple;
@@ -352,6 +372,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryresultgroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataQueryResultGroup;

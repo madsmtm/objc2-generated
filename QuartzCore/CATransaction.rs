@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransaction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CATransaction;
@@ -78,17 +79,21 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransactionanimationduration?language=objc)
     pub static kCATransactionAnimationDuration: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransactiondisableactions?language=objc)
     pub static kCATransactionDisableActions: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransactionanimationtimingfunction?language=objc)
     pub static kCATransactionAnimationTimingFunction: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransactioncompletionblock?language=objc)
     pub static kCATransactionCompletionBlock: &'static NSString;
 }

@@ -9,6 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdocumentview?language=objc)
     #[deprecated]
     pub unsafe trait WebDocumentView: NSObjectProtocol {
         #[cfg(feature = "WebDataSource")]
@@ -44,6 +45,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdocumentsearching?language=objc)
     #[deprecated]
     pub unsafe trait WebDocumentSearching: NSObjectProtocol {
         #[deprecated]
@@ -61,6 +63,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdocumenttext?language=objc)
     #[deprecated]
     pub unsafe trait WebDocumentText: NSObjectProtocol {
         #[deprecated]
@@ -96,6 +99,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdocumentrepresentation?language=objc)
     #[deprecated]
     pub unsafe trait WebDocumentRepresentation: NSObjectProtocol {
         #[cfg(feature = "WebDataSource")]

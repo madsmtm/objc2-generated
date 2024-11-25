@@ -4,20 +4,24 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringkey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSAttributedStringKey = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringformattingcontextkey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSAttributedStringFormattingContextKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionconceptskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInflectionConceptsKey: &'static NSAttributedStringFormattingContextKey;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAttributedString;
@@ -81,6 +85,7 @@ impl DefaultRetained for NSAttributedString {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -220,6 +225,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutableattributedstring?language=objc)
     #[unsafe(super(NSAttributedString, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableAttributedString;
@@ -344,6 +350,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinlinepresentationintent?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -378,30 +385,36 @@ unsafe impl RefEncode for NSInlinePresentationIntent {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinlinepresentationintentattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInlinePresentationIntentAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsalternatedescriptionattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAlternateDescriptionAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsimageurlattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSImageURLAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslanguageidentifierattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLanguageIdentifierAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmarkdownsourcepositionattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMarkdownSourcePositionAttributeName: &'static NSAttributedStringKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdownparsingfailurepolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -420,6 +433,7 @@ unsafe impl RefEncode for NSAttributedStringMarkdownParsingFailurePolicy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdowninterpretedsyntax?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -442,6 +456,7 @@ unsafe impl RefEncode for NSAttributedStringMarkdownInterpretedSyntax {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdownsourceposition?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAttributedStringMarkdownSourcePosition;
@@ -504,6 +519,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdownparsingoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAttributedStringMarkdownParsingOptions;
@@ -641,6 +657,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringformattingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -671,6 +688,7 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsreplacementindexattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSReplacementIndexAttributeName: &'static NSAttributedStringKey;
 }
@@ -684,45 +702,54 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmorphologyattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMorphologyAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionruleattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInflectionRuleAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionagreementargumentattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInflectionAgreementArgumentAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionagreementconceptattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInflectionAgreementConceptAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionreferentconceptattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInflectionReferentConceptAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionalternativeattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInflectionAlternativeAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizednumberformatattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocalizedNumberFormatAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSPresentationIntentAttributeName: &'static NSAttributedStringKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentkind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -762,6 +789,7 @@ unsafe impl RefEncode for NSPresentationIntentKind {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintenttablecolumnalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -784,6 +812,7 @@ unsafe impl RefEncode for NSPresentationIntentTableColumnAlignment {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPresentationIntent;

@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextpasteconfigurationsupporting?language=objc)
     #[cfg(feature = "UIPasteConfigurationSupporting")]
     pub unsafe trait UITextPasteConfigurationSupporting:
         UIPasteConfigurationSupporting + MainThreadOnly

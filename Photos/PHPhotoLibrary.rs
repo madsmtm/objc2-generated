@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -30,6 +31,7 @@ unsafe impl RefEncode for PHAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phaccesslevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -50,6 +52,7 @@ unsafe impl RefEncode for PHAccessLevel {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotolibrarychangeobserver?language=objc)
     pub unsafe trait PHPhotoLibraryChangeObserver: NSObjectProtocol {
         #[cfg(feature = "PHChange")]
         #[method(photoLibraryDidChange:)]
@@ -60,6 +63,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotolibraryavailabilityobserver?language=objc)
     pub unsafe trait PHPhotoLibraryAvailabilityObserver: NSObjectProtocol {
         #[method(photoLibraryDidBecomeUnavailable:)]
         unsafe fn photoLibraryDidBecomeUnavailable(&self, photo_library: &PHPhotoLibrary);
@@ -69,6 +73,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotolibrary?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPhotoLibrary;

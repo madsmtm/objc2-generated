@@ -5,18 +5,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingimagecomponentkey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSDraggingImageComponentKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingimagecomponenticonkey?language=objc)
     pub static NSDraggingImageComponentIconKey: &'static NSDraggingImageComponentKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingimagecomponentlabelkey?language=objc)
     pub static NSDraggingImageComponentLabelKey: &'static NSDraggingImageComponentKey;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDraggingImageComponent;
@@ -69,6 +73,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingitem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDraggingItem;

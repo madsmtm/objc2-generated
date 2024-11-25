@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -33,9 +34,11 @@ unsafe impl RefEncode for MTLCommandBufferStatus {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererrordomain?language=objc)
     pub static MTLCommandBufferErrorDomain: &'static NSErrorDomain;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -77,9 +80,11 @@ unsafe impl RefEncode for MTLCommandBufferError {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferencoderinfoerrorkey?language=objc)
     pub static MTLCommandBufferEncoderInfoErrorKey: &'static NSErrorUserInfoKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererroroption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -101,6 +106,7 @@ unsafe impl RefEncode for MTLCommandBufferErrorOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencodererrorstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -127,6 +133,7 @@ unsafe impl RefEncode for MTLCommandEncoderErrorState {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLCommandBufferDescriptor;
@@ -176,6 +183,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferencoderinfo?language=objc)
     pub unsafe trait MTLCommandBufferEncoderInfo: NSObjectProtocol {
         #[method_id(@__retain_semantics Other label)]
         unsafe fn label(&self) -> Retained<NSString>;
@@ -190,10 +198,12 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn MTLCommandBufferEncoderInfo {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type MTLCommandBufferHandler =
     *mut block2::Block<dyn Fn(NonNull<ProtocolObject<dyn MTLCommandBuffer>>)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldispatchtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -214,6 +224,7 @@ unsafe impl RefEncode for MTLDispatchType {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffer?language=objc)
     pub unsafe trait MTLCommandBuffer: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]

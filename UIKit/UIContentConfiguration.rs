@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentconfiguration?language=objc)
     pub unsafe trait UIContentConfiguration:
         NSCopying + NSObjectProtocol + MainThreadOnly
     {
@@ -25,6 +26,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentview?language=objc)
     pub unsafe trait UIContentView: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other configuration)]
         unsafe fn configuration(&self) -> Retained<ProtocolObject<dyn UIContentConfiguration>>;

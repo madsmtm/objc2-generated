@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilderdelegate?language=objc)
     pub unsafe trait HKLiveWorkoutBuilderDelegate: NSObjectProtocol {
         #[cfg(all(feature = "HKObjectType", feature = "HKWorkoutBuilder"))]
         #[method(workoutBuilder:didCollectDataOfTypes:)]
@@ -42,6 +43,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder?language=objc)
     #[unsafe(super(HKWorkoutBuilder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKWorkoutBuilder")]

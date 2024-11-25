@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevice?language=objc)
     pub unsafe trait GCDevice: NSObjectProtocol {
         #[method_id(@__retain_semantics Other vendorName)]
         unsafe fn vendorName(&self) -> Option<Retained<NSString>>;

@@ -5,10 +5,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cagradientlayertype?language=objc)
 // NS_TYPED_ENUM
 pub type CAGradientLayerType = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cagradientlayer?language=objc)
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]
@@ -87,13 +89,16 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagradientlayeraxial?language=objc)
     pub static kCAGradientLayerAxial: &'static CAGradientLayerType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagradientlayerradial?language=objc)
     pub static kCAGradientLayerRadial: &'static CAGradientLayerType;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagradientlayerconic?language=objc)
     pub static kCAGradientLayerConic: &'static CAGradientLayerType;
 }

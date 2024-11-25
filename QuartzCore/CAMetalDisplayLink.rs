@@ -8,6 +8,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cametaldisplaylinkupdate?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAMetalDisplayLinkUpdate;
@@ -41,6 +42,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cametaldisplaylinkdelegate?language=objc)
     pub unsafe trait CAMetalDisplayLinkDelegate {
         #[method(metalDisplayLink:needsUpdate:)]
         unsafe fn metalDisplayLink_needsUpdate(
@@ -54,6 +56,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cametaldisplaylink?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAMetalDisplayLink;

@@ -5,9 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eaconnectionidnone?language=objc)
 pub const EAConnectionIDNone: c_uint = 0;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eaaccessory?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EAAccessory;
@@ -71,6 +73,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eaaccessorydelegate?language=objc)
     pub unsafe trait EAAccessoryDelegate: NSObjectProtocol {
         #[optional]
         #[method(accessoryDidDisconnect:)]

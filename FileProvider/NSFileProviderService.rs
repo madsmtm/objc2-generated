@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderservicesource?language=objc)
     pub unsafe trait NSFileProviderServiceSource {
         #[method_id(@__retain_semantics Other serviceName)]
         unsafe fn serviceName(&self) -> Retained<NSFileProviderServiceName>;

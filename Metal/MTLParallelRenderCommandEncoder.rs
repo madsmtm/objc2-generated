@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlparallelrendercommandencoder?language=objc)
     #[cfg(feature = "MTLCommandEncoder")]
     pub unsafe trait MTLParallelRenderCommandEncoder: MTLCommandEncoder {
         #[cfg(feature = "MTLRenderCommandEncoder")]

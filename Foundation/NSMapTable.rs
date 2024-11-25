@@ -4,31 +4,38 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablestrongmemory?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSMapTableStrongMemory: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsStrongMemory.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablezeroingweakmemory?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSMapTableZeroingWeakMemory: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsZeroingWeakMemory.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablecopyin?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSMapTableCopyIn: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsCopyIn.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptableobjectpointerpersonality?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSMapTableObjectPointerPersonality: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(
         NSPointerFunctionsOptions::NSPointerFunctionsObjectPointerPersonality.0,
     );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptableweakmemory?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSMapTableWeakMemory: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsWeakMemory.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptableoptions?language=objc)
 pub type NSMapTableOptions = NSUInteger;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptable?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMapTable<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject>;
@@ -176,6 +183,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmapenumerator?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSMapEnumerator {
@@ -280,6 +288,7 @@ extern "C-unwind" {
     pub fn NSAllMapTableValues(table: &NSMapTable) -> NonNull<NSArray>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablekeycallbacks?language=objc)
 #[cfg(feature = "NSString")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -306,6 +315,7 @@ unsafe impl RefEncode for NSMapTableKeyCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablevaluecallbacks?language=objc)
 #[cfg(feature = "NSString")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -355,66 +365,79 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintegermapkeycallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIntegerMapKeyCallBacks: NSMapTableKeyCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnonownedpointermapkeycallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSNonOwnedPointerMapKeyCallBacks: NSMapTableKeyCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnonownedpointerornullmapkeycallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSNonOwnedPointerOrNullMapKeyCallBacks: NSMapTableKeyCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnonretainedobjectmapkeycallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSNonRetainedObjectMapKeyCallBacks: NSMapTableKeyCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsobjectmapkeycallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSObjectMapKeyCallBacks: NSMapTableKeyCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsownedpointermapkeycallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSOwnedPointerMapKeyCallBacks: NSMapTableKeyCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintmapkeycallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIntMapKeyCallBacks: NSMapTableKeyCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintegermapvaluecallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIntegerMapValueCallBacks: NSMapTableValueCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnonownedpointermapvaluecallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSNonOwnedPointerMapValueCallBacks: NSMapTableValueCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsobjectmapvaluecallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSObjectMapValueCallBacks: NSMapTableValueCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnonretainedobjectmapvaluecallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSNonRetainedObjectMapValueCallBacks: NSMapTableValueCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsownedpointermapvaluecallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSOwnedPointerMapValueCallBacks: NSMapTableValueCallBacks;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintmapvaluecallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIntMapValueCallBacks: NSMapTableValueCallBacks;
 }

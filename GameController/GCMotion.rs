@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcacceleration?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct GCAcceleration {
@@ -27,6 +28,7 @@ unsafe impl RefEncode for GCAcceleration {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcrotationrate?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct GCRotationRate {
@@ -50,6 +52,7 @@ unsafe impl RefEncode for GCRotationRate {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gceulerangles?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct GCEulerAngles {
@@ -73,6 +76,7 @@ unsafe impl RefEncode for GCEulerAngles {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcquaternion?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct GCQuaternion {
@@ -98,10 +102,12 @@ unsafe impl RefEncode for GCQuaternion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmotionvaluechangedhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type GCMotionValueChangedHandler = *mut block2::Block<dyn Fn(NonNull<GCMotion>)>;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmotion?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCMotion;

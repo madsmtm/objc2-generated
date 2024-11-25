@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscache?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCache<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject>;
@@ -78,6 +79,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscachedelegate?language=objc)
     pub unsafe trait NSCacheDelegate: NSObjectProtocol {
         #[optional]
         #[method(cache:willEvictObject:)]

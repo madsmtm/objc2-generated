@@ -8,6 +8,7 @@ use objc2_uniform_type_identifiers::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceiconcreationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,6 +29,7 @@ unsafe impl RefEncode for NSWorkspaceIconCreationOptions {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWorkspace;
@@ -270,6 +272,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceopenconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWorkspaceOpenConfiguration;
@@ -379,18 +382,22 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedesktopimageoptionkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSWorkspaceDesktopImageOptionKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedesktopimagescalingkey?language=objc)
     pub static NSWorkspaceDesktopImageScalingKey: &'static NSWorkspaceDesktopImageOptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedesktopimageallowclippingkey?language=objc)
     pub static NSWorkspaceDesktopImageAllowClippingKey: &'static NSWorkspaceDesktopImageOptionKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedesktopimagefillcolorkey?language=objc)
     pub static NSWorkspaceDesktopImageFillColorKey: &'static NSWorkspaceDesktopImageOptionKey;
 }
 
@@ -420,6 +427,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceauthorizationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -442,6 +450,7 @@ unsafe impl RefEncode for NSWorkspaceAuthorizationType {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceauthorization?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWorkspaceAuthorization;
@@ -491,108 +500,135 @@ extern_category!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceapplicationkey?language=objc)
     pub static NSWorkspaceApplicationKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacewilllaunchapplicationnotification?language=objc)
     pub static NSWorkspaceWillLaunchApplicationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedidlaunchapplicationnotification?language=objc)
     pub static NSWorkspaceDidLaunchApplicationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedidterminateapplicationnotification?language=objc)
     pub static NSWorkspaceDidTerminateApplicationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedidhideapplicationnotification?language=objc)
     pub static NSWorkspaceDidHideApplicationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedidunhideapplicationnotification?language=objc)
     pub static NSWorkspaceDidUnhideApplicationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedidactivateapplicationnotification?language=objc)
     pub static NSWorkspaceDidActivateApplicationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacediddeactivateapplicationnotification?language=objc)
     pub static NSWorkspaceDidDeactivateApplicationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacevolumelocalizednamekey?language=objc)
     pub static NSWorkspaceVolumeLocalizedNameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacevolumeurlkey?language=objc)
     pub static NSWorkspaceVolumeURLKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacevolumeoldlocalizednamekey?language=objc)
     pub static NSWorkspaceVolumeOldLocalizedNameKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacevolumeoldurlkey?language=objc)
     pub static NSWorkspaceVolumeOldURLKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedidmountnotification?language=objc)
     pub static NSWorkspaceDidMountNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedidunmountnotification?language=objc)
     pub static NSWorkspaceDidUnmountNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacewillunmountnotification?language=objc)
     pub static NSWorkspaceWillUnmountNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedidrenamevolumenotification?language=objc)
     pub static NSWorkspaceDidRenameVolumeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacewillpoweroffnotification?language=objc)
     pub static NSWorkspaceWillPowerOffNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacewillsleepnotification?language=objc)
     pub static NSWorkspaceWillSleepNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedidwakenotification?language=objc)
     pub static NSWorkspaceDidWakeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacescreensdidsleepnotification?language=objc)
     pub static NSWorkspaceScreensDidSleepNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacescreensdidwakenotification?language=objc)
     pub static NSWorkspaceScreensDidWakeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacesessiondidbecomeactivenotification?language=objc)
     pub static NSWorkspaceSessionDidBecomeActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacesessiondidresignactivenotification?language=objc)
     pub static NSWorkspaceSessionDidResignActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedidchangefilelabelsnotification?language=objc)
     pub static NSWorkspaceDidChangeFileLabelsNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceactivespacedidchangenotification?language=objc)
     pub static NSWorkspaceActiveSpaceDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacefileoperationname?language=objc)
 // NS_TYPED_ENUM
 pub type NSWorkspaceFileOperationName = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacelaunchoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -634,23 +670,28 @@ unsafe impl RefEncode for NSWorkspaceLaunchOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacelaunchconfigurationkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSWorkspaceLaunchConfigurationKey = NSString;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacelaunchconfigurationappleevent?language=objc)
     pub static NSWorkspaceLaunchConfigurationAppleEvent: &'static NSWorkspaceLaunchConfigurationKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacelaunchconfigurationarguments?language=objc)
     pub static NSWorkspaceLaunchConfigurationArguments: &'static NSWorkspaceLaunchConfigurationKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacelaunchconfigurationenvironment?language=objc)
     pub static NSWorkspaceLaunchConfigurationEnvironment:
         &'static NSWorkspaceLaunchConfigurationKey;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacelaunchconfigurationarchitecture?language=objc)
     pub static NSWorkspaceLaunchConfigurationArchitecture:
         &'static NSWorkspaceLaunchConfigurationKey;
 }
@@ -892,65 +933,81 @@ extern_methods!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacemoveoperation?language=objc)
     pub static NSWorkspaceMoveOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacecopyoperation?language=objc)
     pub static NSWorkspaceCopyOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacelinkoperation?language=objc)
     pub static NSWorkspaceLinkOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacecompressoperation?language=objc)
     pub static NSWorkspaceCompressOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedecompressoperation?language=objc)
     pub static NSWorkspaceDecompressOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceencryptoperation?language=objc)
     pub static NSWorkspaceEncryptOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedecryptoperation?language=objc)
     pub static NSWorkspaceDecryptOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedestroyoperation?language=objc)
     pub static NSWorkspaceDestroyOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacerecycleoperation?language=objc)
     pub static NSWorkspaceRecycleOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceduplicateoperation?language=objc)
     pub static NSWorkspaceDuplicateOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedidperformfileoperationnotification?language=objc)
     pub static NSWorkspaceDidPerformFileOperationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsplainfiletype?language=objc)
     pub static NSPlainFileType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdirectoryfiletype?language=objc)
     pub static NSDirectoryFileType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationfiletype?language=objc)
     pub static NSApplicationFileType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilesystemfiletype?language=objc)
     pub static NSFilesystemFileType: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshellcommandfiletype?language=objc)
     pub static NSShellCommandFileType: &'static NSString;
 }

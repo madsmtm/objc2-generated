@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextpastedelegate?language=objc)
     pub unsafe trait UITextPasteDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UIPasteConfigurationSupporting",
@@ -74,6 +75,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextpasteitem?language=objc)
     pub unsafe trait UITextPasteItem: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other itemProvider)]
         unsafe fn itemProvider(&self) -> Retained<NSItemProvider>;

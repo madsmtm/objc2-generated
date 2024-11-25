@@ -22,21 +22,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerrordomain?language=objc)
     pub static OSSystemExtensionErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/osbundleusagedescriptionkey?language=objc)
     pub static OSBundleUsageDescriptionKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/nssystemextensionusagedescriptionkey?language=objc)
     pub static NSSystemExtensionUsageDescriptionKey: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/osrelatedkernelextensionkey?language=objc)
     pub static OSRelatedKernelExtensionKey: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -66,6 +71,7 @@ unsafe impl RefEncode for OSSystemExtensionErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionreplacementaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -85,6 +91,7 @@ unsafe impl RefEncode for OSSystemExtensionReplacementAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequestresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -103,6 +110,7 @@ unsafe impl RefEncode for OSSystemExtensionRequestResult {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSSystemExtensionRequest;
@@ -141,6 +149,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSSystemExtensionProperties;
@@ -185,6 +194,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequestdelegate?language=objc)
     pub unsafe trait OSSystemExtensionRequestDelegate: NSObjectProtocol {
         #[method(request:actionForReplacingExtension:withExtension:)]
         unsafe fn request_actionForReplacingExtension_withExtension(
@@ -224,6 +234,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSSystemExtensionManager;
@@ -256,6 +267,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensioninfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSSystemExtensionInfo;
@@ -292,6 +304,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionsworkspaceobserver?language=objc)
     pub unsafe trait OSSystemExtensionsWorkspaceObserver: NSObjectProtocol {
         #[optional]
         #[method(systemExtensionWillBecomeEnabled:)]
@@ -319,6 +332,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionsworkspace?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSSystemExtensionsWorkspace;

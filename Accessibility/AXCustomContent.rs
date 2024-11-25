@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcustomcontentimportance?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -25,6 +26,7 @@ unsafe impl RefEncode for AXCustomContentImportance {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcustomcontent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXCustomContent;
@@ -82,10 +84,12 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcustomcontentreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXCustomContentReturnBlock = *mut block2::Block<dyn Fn() -> *mut NSArray<AXCustomContent>>;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcustomcontentprovider?language=objc)
     pub unsafe trait AXCustomContentProvider: NSObjectProtocol {
         #[method_id(@__retain_semantics Other accessibilityCustomContent)]
         unsafe fn accessibilityCustomContent(&self) -> Retained<NSArray<AXCustomContent>>;

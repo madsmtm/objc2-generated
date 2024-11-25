@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstitchedlibraryoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -26,12 +27,14 @@ unsafe impl RefEncode for MTLStitchedLibraryOptions {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionstitchingattribute?language=objc)
     pub unsafe trait MTLFunctionStitchingAttribute: NSObjectProtocol {}
 
     unsafe impl ProtocolType for dyn MTLFunctionStitchingAttribute {}
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionstitchingattributealwaysinline?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionStitchingAttributeAlwaysInline;
@@ -57,12 +60,14 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionstitchingnode?language=objc)
     pub unsafe trait MTLFunctionStitchingNode: NSCopying + NSObjectProtocol {}
 
     unsafe impl ProtocolType for dyn MTLFunctionStitchingNode {}
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionstitchinginputnode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionStitchingInputNode;
@@ -106,6 +111,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionstitchingfunctionnode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionStitchingFunctionNode;
@@ -173,6 +179,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionstitchinggraph?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionStitchingGraph;
@@ -240,6 +247,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstitchedlibrarydescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLStitchedLibraryDescriptor;

@@ -5,15 +5,18 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnetserviceserrorcode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSNetServicesErrorCode: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnetserviceserrordomain?language=objc)
     #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSNetServicesErrorDomain: &'static NSErrorDomain;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnetserviceserror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -38,6 +41,7 @@ unsafe impl RefEncode for NSNetServicesError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnetserviceoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -58,6 +62,7 @@ unsafe impl RefEncode for NSNetServiceOptions {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnetservice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
@@ -219,6 +224,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnetservicebrowser?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use nw_browser_t in Network framework instead"]
@@ -302,6 +308,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnetservicedelegate?language=objc)
     pub unsafe trait NSNetServiceDelegate: NSObjectProtocol {
         #[optional]
         #[method(netServiceWillPublish:)]
@@ -361,6 +368,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnetservicebrowserdelegate?language=objc)
     pub unsafe trait NSNetServiceBrowserDelegate: NSObjectProtocol {
         #[optional]
         #[method(netServiceBrowserWillSearch:)]

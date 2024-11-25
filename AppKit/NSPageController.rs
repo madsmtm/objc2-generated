@@ -5,8 +5,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagecontrollerobjectidentifier?language=objc)
 pub type NSPageControllerObjectIdentifier = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagecontrollertransitionstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,6 +31,7 @@ unsafe impl RefEncode for NSPageControllerTransitionStyle {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagecontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
@@ -161,6 +164,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagecontrollerdelegate?language=objc)
     pub unsafe trait NSPageControllerDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[optional]

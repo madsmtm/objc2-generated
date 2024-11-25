@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifindinteractiondelegate?language=objc)
     pub unsafe trait UIFindInteractionDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIFindSession", feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other findInteraction:sessionForView:)]
@@ -38,6 +39,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifindinteraction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

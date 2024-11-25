@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarmetrics?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -33,6 +34,7 @@ unsafe impl RefEncode for UIBarMetrics {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -57,6 +59,7 @@ unsafe impl RefEncode for UIBarPosition {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarpositioning?language=objc)
     pub unsafe trait UIBarPositioning: NSObjectProtocol + MainThreadOnly {
         #[method(barPosition)]
         unsafe fn barPosition(&self) -> UIBarPosition;
@@ -66,6 +69,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarpositioningdelegate?language=objc)
     pub unsafe trait UIBarPositioningDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(positionForBar:)]

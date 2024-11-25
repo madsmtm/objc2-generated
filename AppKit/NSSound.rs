@@ -6,15 +6,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssoundpboardtype?language=objc)
     #[cfg(feature = "NSPasteboard")]
     pub static NSSoundPboardType: &'static NSPasteboardType;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssoundname?language=objc)
 pub type NSSoundName = NSString;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssoundplaybackdeviceidentifier?language=objc)
 pub type NSSoundPlaybackDeviceIdentifier = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssound?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSound;
@@ -176,6 +180,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssounddelegate?language=objc)
     pub unsafe trait NSSoundDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(sound:didFinishPlaying:)]

@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -88,52 +89,76 @@ unsafe impl RefEncode for NSEventType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmousedown?language=objc)
 pub static NSLeftMouseDown: NSEventType = NSEventType(NSEventType::LeftMouseDown.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmouseup?language=objc)
 pub static NSLeftMouseUp: NSEventType = NSEventType(NSEventType::LeftMouseUp.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmousedown?language=objc)
 pub static NSRightMouseDown: NSEventType = NSEventType(NSEventType::RightMouseDown.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmouseup?language=objc)
 pub static NSRightMouseUp: NSEventType = NSEventType(NSEventType::RightMouseUp.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmousemoved?language=objc)
 pub static NSMouseMoved: NSEventType = NSEventType(NSEventType::MouseMoved.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmousedragged?language=objc)
 pub static NSLeftMouseDragged: NSEventType = NSEventType(NSEventType::LeftMouseDragged.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmousedragged?language=objc)
 pub static NSRightMouseDragged: NSEventType = NSEventType(NSEventType::RightMouseDragged.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmouseentered?language=objc)
 pub static NSMouseEntered: NSEventType = NSEventType(NSEventType::MouseEntered.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmouseexited?language=objc)
 pub static NSMouseExited: NSEventType = NSEventType(NSEventType::MouseExited.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nskeydown?language=objc)
 pub static NSKeyDown: NSEventType = NSEventType(NSEventType::KeyDown.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nskeyup?language=objc)
 pub static NSKeyUp: NSEventType = NSEventType(NSEventType::KeyUp.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsflagschanged?language=objc)
 pub static NSFlagsChanged: NSEventType = NSEventType(NSEventType::FlagsChanged.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitdefined?language=objc)
 pub static NSAppKitDefined: NSEventType = NSEventType(NSEventType::AppKitDefined.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssystemdefined?language=objc)
 pub static NSSystemDefined: NSEventType = NSEventType(NSEventType::SystemDefined.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdefined?language=objc)
 pub static NSApplicationDefined: NSEventType = NSEventType(NSEventType::ApplicationDefined.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsperiodic?language=objc)
 pub static NSPeriodic: NSEventType = NSEventType(NSEventType::Periodic.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorupdate?language=objc)
 pub static NSCursorUpdate: NSEventType = NSEventType(NSEventType::CursorUpdate.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollwheel?language=objc)
 pub static NSScrollWheel: NSEventType = NSEventType(NSEventType::ScrollWheel.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabletpoint?language=objc)
 pub static NSTabletPoint: NSEventType = NSEventType(NSEventType::TabletPoint.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabletproximity?language=objc)
 pub static NSTabletProximity: NSEventType = NSEventType(NSEventType::TabletProximity.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothermousedown?language=objc)
 pub static NSOtherMouseDown: NSEventType = NSEventType(NSEventType::OtherMouseDown.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothermouseup?language=objc)
 pub static NSOtherMouseUp: NSEventType = NSEventType(NSEventType::OtherMouseUp.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothermousedragged?language=objc)
 pub static NSOtherMouseDragged: NSEventType = NSEventType(NSEventType::OtherMouseDragged.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -219,56 +244,81 @@ unsafe impl RefEncode for NSEventMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmousedownmask?language=objc)
 pub static NSLeftMouseDownMask: NSEventMask = NSEventMask(NSEventMask::LeftMouseDown.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmouseupmask?language=objc)
 pub static NSLeftMouseUpMask: NSEventMask = NSEventMask(NSEventMask::LeftMouseUp.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmousedownmask?language=objc)
 pub static NSRightMouseDownMask: NSEventMask = NSEventMask(NSEventMask::RightMouseDown.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmouseupmask?language=objc)
 pub static NSRightMouseUpMask: NSEventMask = NSEventMask(NSEventMask::RightMouseUp.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmousemovedmask?language=objc)
 pub static NSMouseMovedMask: NSEventMask = NSEventMask(NSEventMask::MouseMoved.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmousedraggedmask?language=objc)
 pub static NSLeftMouseDraggedMask: NSEventMask = NSEventMask(NSEventMask::LeftMouseDragged.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmousedraggedmask?language=objc)
 pub static NSRightMouseDraggedMask: NSEventMask = NSEventMask(NSEventMask::RightMouseDragged.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmouseenteredmask?language=objc)
 pub static NSMouseEnteredMask: NSEventMask = NSEventMask(NSEventMask::MouseEntered.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmouseexitedmask?language=objc)
 pub static NSMouseExitedMask: NSEventMask = NSEventMask(NSEventMask::MouseExited.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nskeydownmask?language=objc)
 pub static NSKeyDownMask: NSEventMask = NSEventMask(NSEventMask::KeyDown.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nskeyupmask?language=objc)
 pub static NSKeyUpMask: NSEventMask = NSEventMask(NSEventMask::KeyUp.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsflagschangedmask?language=objc)
 pub static NSFlagsChangedMask: NSEventMask = NSEventMask(NSEventMask::FlagsChanged.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitdefinedmask?language=objc)
 pub static NSAppKitDefinedMask: NSEventMask = NSEventMask(NSEventMask::AppKitDefined.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssystemdefinedmask?language=objc)
 pub static NSSystemDefinedMask: NSEventMask = NSEventMask(NSEventMask::SystemDefined.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdefinedmask?language=objc)
 pub static NSApplicationDefinedMask: NSEventMask = NSEventMask(NSEventMask::ApplicationDefined.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsperiodicmask?language=objc)
 pub static NSPeriodicMask: NSEventMask = NSEventMask(NSEventMask::Periodic.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorupdatemask?language=objc)
 pub static NSCursorUpdateMask: NSEventMask = NSEventMask(NSEventMask::CursorUpdate.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollwheelmask?language=objc)
 pub static NSScrollWheelMask: NSEventMask = NSEventMask(NSEventMask::ScrollWheel.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabletpointmask?language=objc)
 pub static NSTabletPointMask: NSEventMask = NSEventMask(NSEventMask::TabletPoint.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabletproximitymask?language=objc)
 pub static NSTabletProximityMask: NSEventMask = NSEventMask(NSEventMask::TabletProximity.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothermousedownmask?language=objc)
 pub static NSOtherMouseDownMask: NSEventMask = NSEventMask(NSEventMask::OtherMouseDown.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothermouseupmask?language=objc)
 pub static NSOtherMouseUpMask: NSEventMask = NSEventMask(NSEventMask::OtherMouseUp.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothermousedraggedmask?language=objc)
 pub static NSOtherMouseDraggedMask: NSEventMask = NSEventMask(NSEventMask::OtherMouseDragged.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanyeventmask?language=objc)
 pub static NSAnyEventMask: NSEventMask = NSEventMask(NSUIntegerMax as _);
 
 // TODO: pub fn NSEventMaskFromType(r#type: NSEventType,) -> NSEventMask;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventmodifierflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -295,33 +345,43 @@ unsafe impl RefEncode for NSEventModifierFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalphashiftkeymask?language=objc)
 pub static NSAlphaShiftKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagCapsLock.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshiftkeymask?language=objc)
 pub static NSShiftKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagShift.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolkeymask?language=objc)
 pub static NSControlKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagControl.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalternatekeymask?language=objc)
 pub static NSAlternateKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagOption.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscommandkeymask?language=objc)
 pub static NSCommandKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagCommand.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnumericpadkeymask?language=objc)
 pub static NSNumericPadKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagNumericPad.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpkeymask?language=objc)
 pub static NSHelpKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagHelp.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfunctionkeymask?language=objc)
 pub static NSFunctionKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagFunction.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeviceindependentmodifierflagsmask?language=objc)
 pub static NSDeviceIndependentModifierFlagsMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagDeviceIndependentFlagsMask.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspointingdevicetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -345,18 +405,23 @@ unsafe impl RefEncode for NSPointingDeviceType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunknownpointingdevice?language=objc)
 pub static NSUnknownPointingDevice: NSPointingDeviceType =
     NSPointingDeviceType(NSPointingDeviceType::Unknown.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspenpointingdevice?language=objc)
 pub static NSPenPointingDevice: NSPointingDeviceType =
     NSPointingDeviceType(NSPointingDeviceType::Pen.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorpointingdevice?language=objc)
 pub static NSCursorPointingDevice: NSPointingDeviceType =
     NSPointingDeviceType(NSPointingDeviceType::Cursor.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseraserpointingdevice?language=objc)
 pub static NSEraserPointingDevice: NSPointingDeviceType =
     NSPointingDeviceType(NSPointingDeviceType::Eraser.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventbuttonmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -380,14 +445,18 @@ unsafe impl RefEncode for NSEventButtonMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspentipmask?language=objc)
 pub static NSPenTipMask: NSEventButtonMask = NSEventButtonMask(NSEventButtonMask::PenTip.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspenlowersidemask?language=objc)
 pub static NSPenLowerSideMask: NSEventButtonMask =
     NSEventButtonMask(NSEventButtonMask::PenLowerSide.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspenuppersidemask?language=objc)
 pub static NSPenUpperSideMask: NSEventButtonMask =
     NSEventButtonMask(NSEventButtonMask::PenUpperSide.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventphase?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -419,6 +488,7 @@ unsafe impl RefEncode for NSEventPhase {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventgestureaxis?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -440,6 +510,7 @@ unsafe impl RefEncode for NSEventGestureAxis {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventswipetrackingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -459,6 +530,7 @@ unsafe impl RefEncode for NSEventSwipeTrackingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventsubtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -494,34 +566,46 @@ unsafe impl RefEncode for NSEventSubtype {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowexposedeventtype?language=objc)
 pub static NSWindowExposedEventType: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::WindowExposed.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationactivatedeventtype?language=objc)
 pub static NSApplicationActivatedEventType: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::ApplicationActivated.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdeactivatedeventtype?language=objc)
 pub static NSApplicationDeactivatedEventType: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::ApplicationDeactivated.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowmovedeventtype?language=objc)
 pub static NSWindowMovedEventType: NSEventSubtype = NSEventSubtype(NSEventSubtype::WindowMoved.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscreenchangedeventtype?language=objc)
 pub static NSScreenChangedEventType: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::ScreenChanged.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsawteventtype?language=objc)
 pub static NSAWTEventType: NSEventSubtype = NSEventSubtype(16);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspoweroffeventtype?language=objc)
 pub static NSPowerOffEventType: NSEventSubtype = NSEventSubtype(NSEventSubtype::PowerOff.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmouseeventsubtype?language=objc)
 pub static NSMouseEventSubtype: NSEventSubtype = NSEventSubtype(NSEventSubtype::MouseEvent.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabletpointeventsubtype?language=objc)
 pub static NSTabletPointEventSubtype: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::TabletPoint.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabletproximityeventsubtype?language=objc)
 pub static NSTabletProximityEventSubtype: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::TabletProximity.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoucheventsubtype?language=objc)
 pub static NSTouchEventSubtype: NSEventSubtype = NSEventSubtype(NSEventSubtype::Touch.0);
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspressurebehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -552,6 +636,7 @@ unsafe impl RefEncode for NSPressureBehavior {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSEvent;
@@ -903,75 +988,147 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuparrowfunctionkey?language=objc)
 pub const NSUpArrowFunctionKey: c_uint = 0xF700;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdownarrowfunctionkey?language=objc)
 pub const NSDownArrowFunctionKey: c_uint = 0xF701;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftarrowfunctionkey?language=objc)
 pub const NSLeftArrowFunctionKey: c_uint = 0xF702;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightarrowfunctionkey?language=objc)
 pub const NSRightArrowFunctionKey: c_uint = 0xF703;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf1functionkey?language=objc)
 pub const NSF1FunctionKey: c_uint = 0xF704;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf2functionkey?language=objc)
 pub const NSF2FunctionKey: c_uint = 0xF705;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf3functionkey?language=objc)
 pub const NSF3FunctionKey: c_uint = 0xF706;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf4functionkey?language=objc)
 pub const NSF4FunctionKey: c_uint = 0xF707;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf5functionkey?language=objc)
 pub const NSF5FunctionKey: c_uint = 0xF708;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf6functionkey?language=objc)
 pub const NSF6FunctionKey: c_uint = 0xF709;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf7functionkey?language=objc)
 pub const NSF7FunctionKey: c_uint = 0xF70A;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf8functionkey?language=objc)
 pub const NSF8FunctionKey: c_uint = 0xF70B;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf9functionkey?language=objc)
 pub const NSF9FunctionKey: c_uint = 0xF70C;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf10functionkey?language=objc)
 pub const NSF10FunctionKey: c_uint = 0xF70D;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf11functionkey?language=objc)
 pub const NSF11FunctionKey: c_uint = 0xF70E;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf12functionkey?language=objc)
 pub const NSF12FunctionKey: c_uint = 0xF70F;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf13functionkey?language=objc)
 pub const NSF13FunctionKey: c_uint = 0xF710;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf14functionkey?language=objc)
 pub const NSF14FunctionKey: c_uint = 0xF711;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf15functionkey?language=objc)
 pub const NSF15FunctionKey: c_uint = 0xF712;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf16functionkey?language=objc)
 pub const NSF16FunctionKey: c_uint = 0xF713;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf17functionkey?language=objc)
 pub const NSF17FunctionKey: c_uint = 0xF714;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf18functionkey?language=objc)
 pub const NSF18FunctionKey: c_uint = 0xF715;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf19functionkey?language=objc)
 pub const NSF19FunctionKey: c_uint = 0xF716;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf20functionkey?language=objc)
 pub const NSF20FunctionKey: c_uint = 0xF717;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf21functionkey?language=objc)
 pub const NSF21FunctionKey: c_uint = 0xF718;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf22functionkey?language=objc)
 pub const NSF22FunctionKey: c_uint = 0xF719;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf23functionkey?language=objc)
 pub const NSF23FunctionKey: c_uint = 0xF71A;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf24functionkey?language=objc)
 pub const NSF24FunctionKey: c_uint = 0xF71B;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf25functionkey?language=objc)
 pub const NSF25FunctionKey: c_uint = 0xF71C;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf26functionkey?language=objc)
 pub const NSF26FunctionKey: c_uint = 0xF71D;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf27functionkey?language=objc)
 pub const NSF27FunctionKey: c_uint = 0xF71E;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf28functionkey?language=objc)
 pub const NSF28FunctionKey: c_uint = 0xF71F;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf29functionkey?language=objc)
 pub const NSF29FunctionKey: c_uint = 0xF720;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf30functionkey?language=objc)
 pub const NSF30FunctionKey: c_uint = 0xF721;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf31functionkey?language=objc)
 pub const NSF31FunctionKey: c_uint = 0xF722;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf32functionkey?language=objc)
 pub const NSF32FunctionKey: c_uint = 0xF723;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf33functionkey?language=objc)
 pub const NSF33FunctionKey: c_uint = 0xF724;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf34functionkey?language=objc)
 pub const NSF34FunctionKey: c_uint = 0xF725;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf35functionkey?language=objc)
 pub const NSF35FunctionKey: c_uint = 0xF726;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinsertfunctionkey?language=objc)
 pub const NSInsertFunctionKey: c_uint = 0xF727;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeletefunctionkey?language=objc)
 pub const NSDeleteFunctionKey: c_uint = 0xF728;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshomefunctionkey?language=objc)
 pub const NSHomeFunctionKey: c_uint = 0xF729;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbeginfunctionkey?language=objc)
 pub const NSBeginFunctionKey: c_uint = 0xF72A;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsendfunctionkey?language=objc)
 pub const NSEndFunctionKey: c_uint = 0xF72B;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspageupfunctionkey?language=objc)
 pub const NSPageUpFunctionKey: c_uint = 0xF72C;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagedownfunctionkey?language=objc)
 pub const NSPageDownFunctionKey: c_uint = 0xF72D;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintscreenfunctionkey?language=objc)
 pub const NSPrintScreenFunctionKey: c_uint = 0xF72E;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrolllockfunctionkey?language=objc)
 pub const NSScrollLockFunctionKey: c_uint = 0xF72F;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspausefunctionkey?language=objc)
 pub const NSPauseFunctionKey: c_uint = 0xF730;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssysreqfunctionkey?language=objc)
 pub const NSSysReqFunctionKey: c_uint = 0xF731;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbreakfunctionkey?language=objc)
 pub const NSBreakFunctionKey: c_uint = 0xF732;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsresetfunctionkey?language=objc)
 pub const NSResetFunctionKey: c_uint = 0xF733;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstopfunctionkey?language=objc)
 pub const NSStopFunctionKey: c_uint = 0xF734;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenufunctionkey?language=objc)
 pub const NSMenuFunctionKey: c_uint = 0xF735;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserfunctionkey?language=objc)
 pub const NSUserFunctionKey: c_uint = 0xF736;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssystemfunctionkey?language=objc)
 pub const NSSystemFunctionKey: c_uint = 0xF737;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintfunctionkey?language=objc)
 pub const NSPrintFunctionKey: c_uint = 0xF738;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsclearlinefunctionkey?language=objc)
 pub const NSClearLineFunctionKey: c_uint = 0xF739;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscleardisplayfunctionkey?language=objc)
 pub const NSClearDisplayFunctionKey: c_uint = 0xF73A;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinsertlinefunctionkey?language=objc)
 pub const NSInsertLineFunctionKey: c_uint = 0xF73B;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeletelinefunctionkey?language=objc)
 pub const NSDeleteLineFunctionKey: c_uint = 0xF73C;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinsertcharfunctionkey?language=objc)
 pub const NSInsertCharFunctionKey: c_uint = 0xF73D;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeletecharfunctionkey?language=objc)
 pub const NSDeleteCharFunctionKey: c_uint = 0xF73E;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprevfunctionkey?language=objc)
 pub const NSPrevFunctionKey: c_uint = 0xF73F;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnextfunctionkey?language=objc)
 pub const NSNextFunctionKey: c_uint = 0xF740;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectfunctionkey?language=objc)
 pub const NSSelectFunctionKey: c_uint = 0xF741;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsexecutefunctionkey?language=objc)
 pub const NSExecuteFunctionKey: c_uint = 0xF742;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsundofunctionkey?language=objc)
 pub const NSUndoFunctionKey: c_uint = 0xF743;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsredofunctionkey?language=objc)
 pub const NSRedoFunctionKey: c_uint = 0xF744;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindfunctionkey?language=objc)
 pub const NSFindFunctionKey: c_uint = 0xF745;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpfunctionkey?language=objc)
 pub const NSHelpFunctionKey: c_uint = 0xF746;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmodeswitchfunctionkey?language=objc)
 pub const NSModeSwitchFunctionKey: c_uint = 0xF747;

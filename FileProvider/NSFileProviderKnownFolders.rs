@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderKnownFolderLocation;
@@ -44,6 +45,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderKnownFolderLocations;
@@ -121,6 +123,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfoldersupporting?language=objc)
     pub unsafe trait NSFileProviderKnownFolderSupporting: NSObjectProtocol {
         #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
         #[method(getKnownFolderLocations:completionHandler:)]

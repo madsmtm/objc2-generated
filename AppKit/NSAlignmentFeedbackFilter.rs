@@ -6,12 +6,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalignmentfeedbacktoken?language=objc)
     pub unsafe trait NSAlignmentFeedbackToken: NSObjectProtocol {}
 
     unsafe impl ProtocolType for dyn NSAlignmentFeedbackToken {}
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalignmentfeedbackfilter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAlignmentFeedbackFilter;

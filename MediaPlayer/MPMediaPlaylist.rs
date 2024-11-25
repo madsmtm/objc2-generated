@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistattribute?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -31,34 +32,42 @@ unsafe impl RefEncode for MPMediaPlaylistAttribute {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistpropertypersistentid?language=objc)
     pub static MPMediaPlaylistPropertyPersistentID: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistpropertycloudglobalid?language=objc)
     pub static MPMediaPlaylistPropertyCloudGlobalID: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistpropertyname?language=objc)
     pub static MPMediaPlaylistPropertyName: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistpropertyplaylistattributes?language=objc)
     pub static MPMediaPlaylistPropertyPlaylistAttributes: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistpropertyseeditems?language=objc)
     pub static MPMediaPlaylistPropertySeedItems: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistpropertydescriptiontext?language=objc)
     pub static MPMediaPlaylistPropertyDescriptionText: &'static NSString;
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistpropertyauthordisplayname?language=objc)
     pub static MPMediaPlaylistPropertyAuthorDisplayName: &'static NSString;
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylist?language=objc)
     #[unsafe(super(MPMediaItemCollection, MPMediaEntity, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
@@ -143,6 +152,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistcreationmetadata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMediaPlaylistCreationMetadata;

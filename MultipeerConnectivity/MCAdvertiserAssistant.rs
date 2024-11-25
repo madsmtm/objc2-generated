@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcadvertiserassistant?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MCAdvertiserAssistant;
@@ -66,6 +67,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcadvertiserassistantdelegate?language=objc)
     pub unsafe trait MCAdvertiserAssistantDelegate: NSObjectProtocol {
         #[optional]
         #[method(advertiserAssistantWillPresentInvitation:)]

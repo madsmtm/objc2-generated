@@ -15,6 +15,7 @@ use objc2_photos::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcreationsource?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -55,6 +56,7 @@ unsafe impl RefEncode for PHProjectCreationSource {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectInfo;
@@ -102,6 +104,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsectiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -130,6 +133,7 @@ unsafe impl Send for PHProjectSectionType {}
 unsafe impl Sync for PHProjectSectionType {}
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectSection;
@@ -165,6 +169,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsectioncontent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectSectionContent;
@@ -210,6 +215,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectelement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectElement;
@@ -241,10 +247,12 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectregionofinterestidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type PHProjectRegionOfInterestIdentifier = NSString;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectregionofinterest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectRegionOfInterest;
@@ -279,6 +287,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectassetelement?language=objc)
     #[unsafe(super(PHProjectElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectAssetElement;
@@ -329,6 +338,7 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttextelementtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -355,6 +365,7 @@ unsafe impl Send for PHProjectTextElementType {}
 unsafe impl Sync for PHProjectTextElementType {}
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttextelement?language=objc)
     #[unsafe(super(PHProjectElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectTextElement;
@@ -395,6 +406,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectjournalentryelement?language=objc)
     #[unsafe(super(PHProjectElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectJournalEntryElement;
@@ -435,6 +447,7 @@ extern_methods!(
 );
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectmapelement?language=objc)
     #[unsafe(super(PHProjectElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectMapElement;

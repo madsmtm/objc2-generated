@@ -6,5 +6,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/kclerrordomain?language=objc)
     pub static kCLErrorDomain: &'static NSString;
 }

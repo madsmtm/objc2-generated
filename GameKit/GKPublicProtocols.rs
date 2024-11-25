@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessiondelegate?language=objc)
     #[deprecated]
     pub unsafe trait GKSessionDelegate: NSObjectProtocol {
         #[cfg(all(feature = "GKPublicConstants", feature = "GKSession"))]
@@ -51,6 +52,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatclient?language=objc)
     #[deprecated]
     pub unsafe trait GKVoiceChatClient: NSObjectProtocol {
         #[cfg(feature = "GKVoiceChatService")]

@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionlogtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -23,12 +24,14 @@ unsafe impl RefEncode for MTLFunctionLogType {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogcontainer?language=objc)
     pub unsafe trait MTLLogContainer: NSFastEnumeration + NSObjectProtocol {}
 
     unsafe impl ProtocolType for dyn MTLLogContainer {}
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionlogdebuglocation?language=objc)
     pub unsafe trait MTLFunctionLogDebugLocation: NSObjectProtocol {
         #[method_id(@__retain_semantics Other functionName)]
         unsafe fn functionName(&self) -> Option<Retained<NSString>>;
@@ -47,6 +50,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionlog?language=objc)
     pub unsafe trait MTLFunctionLog: NSObjectProtocol {
         #[method(type)]
         unsafe fn r#type(&self) -> MTLFunctionLogType;
