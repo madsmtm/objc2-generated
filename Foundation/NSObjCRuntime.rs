@@ -33,7 +33,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "NSString")]
-    pub fn NSClassFromString(a_class_name: &NSString) -> *const AnyClass;
+    pub fn NSClassFromString(a_class_name: &NSString) -> Option<&'static AnyClass>;
 }
 
 extern "C-unwind" {
