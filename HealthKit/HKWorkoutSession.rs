@@ -57,6 +57,10 @@ extern_class!(
     pub struct HKWorkoutSession;
 );
 
+unsafe impl Send for HKWorkoutSession {}
+
+unsafe impl Sync for HKWorkoutSession {}
+
 unsafe impl NSCoding for HKWorkoutSession {}
 
 unsafe impl NSObjectProtocol for HKWorkoutSession {}

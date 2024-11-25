@@ -13,6 +13,12 @@ extern_class!(
 );
 
 #[cfg(feature = "HKObject")]
+unsafe impl Send for HKSample {}
+
+#[cfg(feature = "HKObject")]
+unsafe impl Sync for HKSample {}
+
+#[cfg(feature = "HKObject")]
 unsafe impl NSCoding for HKSample {}
 
 #[cfg(feature = "HKObject")]

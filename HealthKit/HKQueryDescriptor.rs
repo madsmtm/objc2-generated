@@ -11,6 +11,10 @@ extern_class!(
     pub struct HKQueryDescriptor;
 );
 
+unsafe impl Send for HKQueryDescriptor {}
+
+unsafe impl Sync for HKQueryDescriptor {}
+
 unsafe impl NSCoding for HKQueryDescriptor {}
 
 unsafe impl NSCopying for HKQueryDescriptor {}

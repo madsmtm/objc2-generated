@@ -13,6 +13,10 @@ extern_class!(
     pub struct HKAttachment;
 );
 
+unsafe impl Send for HKAttachment {}
+
+unsafe impl Sync for HKAttachment {}
+
 unsafe impl NSCoding for HKAttachment {}
 
 unsafe impl NSCopying for HKAttachment {}

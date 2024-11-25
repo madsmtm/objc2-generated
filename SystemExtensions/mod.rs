@@ -254,3 +254,108 @@ extern_methods!(
         pub unsafe fn new_class() -> Retained<Self>;
     }
 );
+
+extern_class!(
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct OSSystemExtensionInfo;
+);
+
+unsafe impl Send for OSSystemExtensionInfo {}
+
+unsafe impl Sync for OSSystemExtensionInfo {}
+
+unsafe impl NSObjectProtocol for OSSystemExtensionInfo {}
+
+extern_methods!(
+    unsafe impl OSSystemExtensionInfo {
+        #[method_id(@__retain_semantics Other bundleIdentifier)]
+        pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
+
+        #[method_id(@__retain_semantics Other bundleVersion)]
+        pub unsafe fn bundleVersion(&self) -> Retained<NSString>;
+
+        #[method_id(@__retain_semantics Other bundleShortVersion)]
+        pub unsafe fn bundleShortVersion(&self) -> Retained<NSString>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl OSSystemExtensionInfo {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_protocol!(
+    pub unsafe trait OSSystemExtensionsWorkspaceObserver: NSObjectProtocol {
+        #[optional]
+        #[method(systemExtensionWillBecomeEnabled:)]
+        unsafe fn systemExtensionWillBecomeEnabled(
+            &self,
+            system_extension_info: &OSSystemExtensionInfo,
+        );
+
+        #[optional]
+        #[method(systemExtensionWillBecomeDisabled:)]
+        unsafe fn systemExtensionWillBecomeDisabled(
+            &self,
+            system_extension_info: &OSSystemExtensionInfo,
+        );
+
+        #[optional]
+        #[method(systemExtensionWillBecomeInactive:)]
+        unsafe fn systemExtensionWillBecomeInactive(
+            &self,
+            system_extension_info: &OSSystemExtensionInfo,
+        );
+    }
+
+    unsafe impl ProtocolType for dyn OSSystemExtensionsWorkspaceObserver {}
+);
+
+extern_class!(
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct OSSystemExtensionsWorkspace;
+);
+
+unsafe impl Send for OSSystemExtensionsWorkspace {}
+
+unsafe impl Sync for OSSystemExtensionsWorkspace {}
+
+unsafe impl NSObjectProtocol for OSSystemExtensionsWorkspace {}
+
+extern_methods!(
+    unsafe impl OSSystemExtensionsWorkspace {
+        #[method_id(@__retain_semantics Other sharedWorkspace)]
+        pub unsafe fn sharedWorkspace() -> Retained<OSSystemExtensionsWorkspace>;
+
+        #[method(addObserver:error:_)]
+        pub unsafe fn addObserver_error(
+            &self,
+            observer: &ProtocolObject<dyn OSSystemExtensionsWorkspaceObserver>,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[method(removeObserver:)]
+        pub unsafe fn removeObserver(
+            &self,
+            observer: &ProtocolObject<dyn OSSystemExtensionsWorkspaceObserver>,
+        );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl OSSystemExtensionsWorkspace {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);

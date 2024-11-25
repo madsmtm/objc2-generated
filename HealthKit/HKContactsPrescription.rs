@@ -21,6 +21,20 @@ extern_class!(
     feature = "HKSample",
     feature = "HKVisionPrescription"
 ))]
+unsafe impl Send for HKContactsPrescription {}
+
+#[cfg(all(
+    feature = "HKObject",
+    feature = "HKSample",
+    feature = "HKVisionPrescription"
+))]
+unsafe impl Sync for HKContactsPrescription {}
+
+#[cfg(all(
+    feature = "HKObject",
+    feature = "HKSample",
+    feature = "HKVisionPrescription"
+))]
 unsafe impl NSCoding for HKContactsPrescription {}
 
 #[cfg(all(

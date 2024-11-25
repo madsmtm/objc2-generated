@@ -11,6 +11,10 @@ extern_class!(
     pub struct HKAudiogramSensitivityPoint;
 );
 
+unsafe impl Send for HKAudiogramSensitivityPoint {}
+
+unsafe impl Sync for HKAudiogramSensitivityPoint {}
+
 unsafe impl NSCoding for HKAudiogramSensitivityPoint {}
 
 unsafe impl NSObjectProtocol for HKAudiogramSensitivityPoint {}
@@ -24,19 +28,33 @@ extern_methods!(
         pub unsafe fn frequency(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
+        #[deprecated = "Use tests object which will contain a value for left ear"]
         #[method_id(@__retain_semantics Other leftEarSensitivity)]
         pub unsafe fn leftEarSensitivity(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
+        #[deprecated = "Use tests object which will contain a value for right ear"]
         #[method_id(@__retain_semantics Other rightEarSensitivity)]
         pub unsafe fn rightEarSensitivity(&self) -> Option<Retained<HKQuantity>>;
 
+        #[cfg(feature = "HKAudiogramSensitivityTest")]
+        #[method_id(@__retain_semantics Other tests)]
+        pub unsafe fn tests(&self) -> Retained<NSArray<HKAudiogramSensitivityTest>>;
+
         #[cfg(feature = "HKQuantity")]
+        #[deprecated = "Use +[HKAudiogramSensitivityPoint sensitivityPointWithFrequency:tests:error:]"]
         #[method_id(@__retain_semantics Other sensitivityPointWithFrequency:leftEarSensitivity:rightEarSensitivity:error:_)]
         pub unsafe fn sensitivityPointWithFrequency_leftEarSensitivity_rightEarSensitivity_error(
             frequency: &HKQuantity,
             left_ear_sensitivity: Option<&HKQuantity>,
             right_ear_sensitivity: Option<&HKQuantity>,
+        ) -> Result<Retained<Self>, Retained<NSError>>;
+
+        #[cfg(all(feature = "HKAudiogramSensitivityTest", feature = "HKQuantity"))]
+        #[method_id(@__retain_semantics Other sensitivityPointWithFrequency:tests:error:_)]
+        pub unsafe fn sensitivityPointWithFrequency_tests_error(
+            frequency: &HKQuantity,
+            tests: &NSArray<HKAudiogramSensitivityTest>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method_id(@__retain_semantics Init init)]

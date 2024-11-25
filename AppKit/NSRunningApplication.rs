@@ -52,6 +52,10 @@ extern_class!(
     pub struct NSRunningApplication;
 );
 
+unsafe impl Send for NSRunningApplication {}
+
+unsafe impl Sync for NSRunningApplication {}
+
 unsafe impl NSObjectProtocol for NSRunningApplication {}
 
 extern_methods!(

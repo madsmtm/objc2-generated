@@ -646,6 +646,10 @@ extern_class!(
     pub struct HKScoredAssessmentType;
 );
 
+unsafe impl Send for HKScoredAssessmentType {}
+
+unsafe impl Sync for HKScoredAssessmentType {}
+
 unsafe impl NSCoding for HKScoredAssessmentType {}
 
 unsafe impl NSCopying for HKScoredAssessmentType {}
@@ -683,6 +687,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKStateOfMindType;
 );
+
+unsafe impl Send for HKStateOfMindType {}
+
+unsafe impl Sync for HKStateOfMindType {}
 
 unsafe impl NSCoding for HKStateOfMindType {}
 

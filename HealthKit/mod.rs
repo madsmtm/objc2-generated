@@ -43,6 +43,12 @@ mod __HKAudiogramSample;
 #[cfg(feature = "HKAudiogramSensitivityPoint")]
 #[path = "HKAudiogramSensitivityPoint.rs"]
 mod __HKAudiogramSensitivityPoint;
+#[cfg(feature = "HKAudiogramSensitivityPointClampingRange")]
+#[path = "HKAudiogramSensitivityPointClampingRange.rs"]
+mod __HKAudiogramSensitivityPointClampingRange;
+#[cfg(feature = "HKAudiogramSensitivityTest")]
+#[path = "HKAudiogramSensitivityTest.rs"]
+mod __HKAudiogramSensitivityTest;
 #[cfg(feature = "HKCDADocumentSample")]
 #[path = "HKCDADocumentSample.rs"]
 mod __HKCDADocumentSample;
@@ -318,6 +324,14 @@ pub use self::__HKAttachmentStore::HKAttachmentStore;
 pub use self::__HKAudiogramSample::HKAudiogramSample;
 #[cfg(feature = "HKAudiogramSensitivityPoint")]
 pub use self::__HKAudiogramSensitivityPoint::HKAudiogramSensitivityPoint;
+#[cfg(feature = "HKAudiogramSensitivityPointClampingRange")]
+pub use self::__HKAudiogramSensitivityPointClampingRange::HKAudiogramSensitivityPointClampingRange;
+#[cfg(feature = "HKAudiogramSensitivityTest")]
+pub use self::__HKAudiogramSensitivityTest::HKAudiogramConductionType;
+#[cfg(feature = "HKAudiogramSensitivityTest")]
+pub use self::__HKAudiogramSensitivityTest::HKAudiogramSensitivityTest;
+#[cfg(feature = "HKAudiogramSensitivityTest")]
+pub use self::__HKAudiogramSensitivityTest::HKAudiogramSensitivityTestSide;
 #[cfg(feature = "HKCDADocumentSample")]
 pub use self::__HKCDADocumentSample::HKCDADocument;
 #[cfg(all(

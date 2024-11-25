@@ -11,6 +11,10 @@ extern_class!(
     pub struct HKWorkoutActivity;
 );
 
+unsafe impl Send for HKWorkoutActivity {}
+
+unsafe impl Sync for HKWorkoutActivity {}
+
 unsafe impl NSCoding for HKWorkoutActivity {}
 
 unsafe impl NSCopying for HKWorkoutActivity {}

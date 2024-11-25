@@ -44,6 +44,8 @@ impl NEProviderStopReason {
     pub const Sleep: Self = Self(15);
     #[doc(alias = "NEProviderStopReasonAppUpdate")]
     pub const AppUpdate: Self = Self(16);
+    #[doc(alias = "NEProviderStopReasonInternalError")]
+    pub const InternalError: Self = Self(17);
 }
 
 unsafe impl Encode for NEProviderStopReason {

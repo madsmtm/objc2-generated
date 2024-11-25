@@ -1700,6 +1700,13 @@ pub use self::__UIAccessibility::AXTextualContextReturnBlock;
     feature = "block2"
 ))]
 pub use self::__UIAccessibility::AXTraitsReturnBlock;
+#[cfg(all(
+    feature = "UIAccessibility",
+    feature = "UITextInput",
+    feature = "UITextInputTraits",
+    feature = "block2"
+))]
+pub use self::__UIAccessibility::AXUITextInputReturnBlock;
 #[cfg(all(feature = "UIAccessibility", feature = "block2"))]
 pub use self::__UIAccessibility::AXVoidReturnBlock;
 #[cfg(feature = "UIAccessibility")]
@@ -1714,6 +1721,8 @@ pub use self::__UIAccessibility::NSObjectUIAccessibilityFocus;
 pub use self::__UIAccessibility::NSObjectUIAccessibilityHitTest;
 #[cfg(feature = "UIAccessibility")]
 pub use self::__UIAccessibility::NSObjectUIAccessibilityTextNavigation;
+#[cfg(feature = "UIAccessibility")]
+pub use self::__UIAccessibility::NSObjectUIAccessibilityTextOperations;
 #[cfg(feature = "UIAccessibility")]
 pub use self::__UIAccessibility::UIAccessibilityAssistiveTouchStatusDidChangeNotification;
 #[cfg(feature = "UIAccessibility")]
@@ -3745,6 +3754,8 @@ pub use self::__UIMenu::UIMenuLookup;
 pub use self::__UIMenu::UIMenuMinimizeAndZoom;
 #[cfg(feature = "UIMenu")]
 pub use self::__UIMenu::UIMenuNewScene;
+#[cfg(feature = "UIMenu")]
+pub use self::__UIMenu::UIMenuOpen;
 #[cfg(feature = "UIMenu")]
 pub use self::__UIMenu::UIMenuOpenRecent;
 #[cfg(feature = "UIMenu")]

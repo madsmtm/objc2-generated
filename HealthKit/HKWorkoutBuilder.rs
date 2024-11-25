@@ -11,6 +11,10 @@ extern_class!(
     pub struct HKWorkoutBuilder;
 );
 
+unsafe impl Send for HKWorkoutBuilder {}
+
+unsafe impl Sync for HKWorkoutBuilder {}
+
 unsafe impl NSObjectProtocol for HKWorkoutBuilder {}
 
 extern_methods!(

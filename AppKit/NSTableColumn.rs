@@ -27,6 +27,7 @@ unsafe impl RefEncode for NSTableColumnResizingOptions {
 
 extern_class!(
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTableColumn;
 );
@@ -65,7 +66,7 @@ extern_methods!(
             feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other tableView)]
-        pub unsafe fn tableView(&self, mtm: MainThreadMarker) -> Option<Retained<NSTableView>>;
+        pub unsafe fn tableView(&self) -> Option<Retained<NSTableView>>;
 
         #[cfg(all(
             feature = "NSControl",
@@ -108,7 +109,7 @@ extern_methods!(
             feature = "NSTextFieldCell"
         ))]
         #[method_id(@__retain_semantics Other headerCell)]
-        pub unsafe fn headerCell(&self, mtm: MainThreadMarker) -> Retained<NSTableHeaderCell>;
+        pub unsafe fn headerCell(&self) -> Retained<NSTableHeaderCell>;
 
         #[cfg(all(
             feature = "NSActionCell",
@@ -164,7 +165,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 

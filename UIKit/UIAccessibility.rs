@@ -70,6 +70,14 @@ pub type AXTextualContextReturnBlock =
 pub type AXCustomActionsReturnBlock =
     *mut block2::Block<dyn Fn() -> *mut NSArray<UIAccessibilityCustomAction>>;
 
+#[cfg(all(
+    feature = "UITextInput",
+    feature = "UITextInputTraits",
+    feature = "block2"
+))]
+pub type AXUITextInputReturnBlock =
+    *mut block2::Block<dyn Fn() -> *mut ProtocolObject<dyn UITextInput>>;
+
 extern_category!(
     /// Category "UIAccessibility" on [`NSObject`].
     #[doc(alias = "UIAccessibility")]
@@ -1047,6 +1055,53 @@ extern_category!(
     }
 
     unsafe impl NSObjectUIAccessibilityTextNavigation for NSObject {}
+);
+
+extern_category!(
+    /// Category "UIAccessibilityTextOperations" on [`NSObject`].
+    #[doc(alias = "UIAccessibilityTextOperations")]
+    pub unsafe trait NSObjectUIAccessibilityTextOperations {
+        #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
+        #[method_id(@__retain_semantics Other accessibilityTextInputResponder)]
+        unsafe fn accessibilityTextInputResponder(
+            &self,
+            mtm: MainThreadMarker,
+        ) -> Option<Retained<ProtocolObject<dyn UITextInput>>>;
+
+        #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
+        /// This is a [weak property][objc2::topics::weak_property].
+        #[method(setAccessibilityTextInputResponder:)]
+        unsafe fn setAccessibilityTextInputResponder(
+            &self,
+            accessibility_text_input_responder: Option<&ProtocolObject<dyn UITextInput>>,
+            mtm: MainThreadMarker,
+        );
+
+        #[cfg(all(
+            feature = "UITextInput",
+            feature = "UITextInputTraits",
+            feature = "block2"
+        ))]
+        #[method(accessibilityTextInputResponderBlock)]
+        unsafe fn accessibilityTextInputResponderBlock(
+            &self,
+            mtm: MainThreadMarker,
+        ) -> AXUITextInputReturnBlock;
+
+        #[cfg(all(
+            feature = "UITextInput",
+            feature = "UITextInputTraits",
+            feature = "block2"
+        ))]
+        #[method(setAccessibilityTextInputResponderBlock:)]
+        unsafe fn setAccessibilityTextInputResponderBlock(
+            &self,
+            accessibility_text_input_responder_block: AXUITextInputReturnBlock,
+            mtm: MainThreadMarker,
+        );
+    }
+
+    unsafe impl NSObjectUIAccessibilityTextOperations for NSObject {}
 );
 
 extern "C-unwind" {

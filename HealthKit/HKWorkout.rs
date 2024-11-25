@@ -228,6 +228,10 @@ extern_class!(
     pub struct HKWorkoutEvent;
 );
 
+unsafe impl Send for HKWorkoutEvent {}
+
+unsafe impl Sync for HKWorkoutEvent {}
+
 unsafe impl NSCoding for HKWorkoutEvent {}
 
 unsafe impl NSCopying for HKWorkoutEvent {}
@@ -296,6 +300,12 @@ extern_class!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     pub struct HKWorkout;
 );
+
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+unsafe impl Send for HKWorkout {}
+
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+unsafe impl Sync for HKWorkout {}
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSCoding for HKWorkout {}

@@ -10,6 +10,10 @@ extern_class!(
     pub struct HKSeriesBuilder;
 );
 
+unsafe impl Send for HKSeriesBuilder {}
+
+unsafe impl Sync for HKSeriesBuilder {}
+
 unsafe impl NSObjectProtocol for HKSeriesBuilder {}
 
 extern_methods!(

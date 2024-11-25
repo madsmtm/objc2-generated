@@ -206,6 +206,10 @@ extern "C" {
 }
 
 extern "C" {
+    pub static UIMenuOpen: &'static UIMenuIdentifier;
+}
+
+extern "C" {
     pub static UIMenuOpenRecent: &'static UIMenuIdentifier;
 }
 

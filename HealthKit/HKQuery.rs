@@ -11,6 +11,10 @@ extern_class!(
     pub struct HKQuery;
 );
 
+unsafe impl Send for HKQuery {}
+
+unsafe impl Sync for HKQuery {}
+
 unsafe impl NSObjectProtocol for HKQuery {}
 
 extern_methods!(
@@ -201,7 +205,7 @@ extern_methods!(
         ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "HKQuantity")]
-        #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierActiveEnergyBurned"]
+        #[deprecated = "Use predicateForWorkoutsWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierActiveEnergyBurned"]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:totalEnergyBurned:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_totalEnergyBurned(
             operator_type: NSPredicateOperatorType,
@@ -209,7 +213,7 @@ extern_methods!(
         ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "HKQuantity")]
-        #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for the desired distance type"]
+        #[deprecated = "Use predicateForWorkoutsWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for the desired distance type"]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:totalDistance:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_totalDistance(
             operator_type: NSPredicateOperatorType,
@@ -217,7 +221,7 @@ extern_methods!(
         ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "HKQuantity")]
-        #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount"]
+        #[deprecated = "Use predicateForWorkoutsWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount"]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:totalSwimmingStrokeCount:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_totalSwimmingStrokeCount(
             operator_type: NSPredicateOperatorType,
@@ -225,7 +229,7 @@ extern_methods!(
         ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "HKQuantity")]
-        #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierFlightsClimbed"]
+        #[deprecated = "Use predicateForWorkoutsWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierFlightsClimbed"]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:totalFlightsClimbed:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_totalFlightsClimbed(
             operator_type: NSPredicateOperatorType,

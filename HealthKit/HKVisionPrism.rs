@@ -55,6 +55,10 @@ extern_class!(
     pub struct HKVisionPrism;
 );
 
+unsafe impl Send for HKVisionPrism {}
+
+unsafe impl Sync for HKVisionPrism {}
+
 unsafe impl NSCoding for HKVisionPrism {}
 
 unsafe impl NSCopying for HKVisionPrism {}

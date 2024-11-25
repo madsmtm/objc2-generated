@@ -13,6 +13,12 @@ extern_class!(
 );
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
+unsafe impl Send for HKAudiogramSample {}
+
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+unsafe impl Sync for HKAudiogramSample {}
+
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSCoding for HKAudiogramSample {}
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
@@ -29,11 +35,22 @@ extern_methods!(
         pub unsafe fn sensitivityPoints(&self) -> Retained<NSArray<HKAudiogramSensitivityPoint>>;
 
         #[cfg(feature = "HKAudiogramSensitivityPoint")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other audiogramSampleWithSensitivityPoints:startDate:endDate:metadata:)]
         pub unsafe fn audiogramSampleWithSensitivityPoints_startDate_endDate_metadata(
             sensitivity_points: &NSArray<HKAudiogramSensitivityPoint>,
             start_date: &NSDate,
             end_date: &NSDate,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(feature = "HKAudiogramSensitivityPoint", feature = "HKDevice"))]
+        #[method_id(@__retain_semantics Other audiogramSampleWithSensitivityPoints:startDate:endDate:device:metadata:)]
+        pub unsafe fn audiogramSampleWithSensitivityPoints_startDate_endDate_device_metadata(
+            sensitivity_points: &NSArray<HKAudiogramSensitivityPoint>,
+            start_date: &NSDate,
+            end_date: &NSDate,
+            device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
     }

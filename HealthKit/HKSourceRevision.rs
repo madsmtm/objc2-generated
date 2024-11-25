@@ -11,6 +11,10 @@ extern_class!(
     pub struct HKSourceRevision;
 );
 
+unsafe impl Send for HKSourceRevision {}
+
+unsafe impl Sync for HKSourceRevision {}
+
 unsafe impl NSCoding for HKSourceRevision {}
 
 unsafe impl NSCopying for HKSourceRevision {}

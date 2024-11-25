@@ -38,6 +38,7 @@ extern "C" {
 
 extern_class!(
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewLayoutAttributes;
 );
@@ -97,11 +98,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other layoutAttributesForItemWithIndexPath:)]
         pub unsafe fn layoutAttributesForItemWithIndexPath(
             index_path: &NSIndexPath,
+            mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other layoutAttributesForInterItemGapBeforeIndexPath:)]
         pub unsafe fn layoutAttributesForInterItemGapBeforeIndexPath(
             index_path: &NSIndexPath,
+            mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCollectionView")]
@@ -109,12 +112,14 @@ extern_methods!(
         pub unsafe fn layoutAttributesForSupplementaryViewOfKind_withIndexPath(
             element_kind: &NSCollectionViewSupplementaryElementKind,
             index_path: &NSIndexPath,
+            mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other layoutAttributesForDecorationViewOfKind:withIndexPath:)]
         pub unsafe fn layoutAttributesForDecorationViewOfKind_withIndexPath(
             decoration_view_kind: &NSCollectionViewDecorationElementKind,
             index_path: &NSIndexPath,
+            mtm: MainThreadMarker,
         ) -> Retained<Self>;
     }
 );
@@ -126,7 +131,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -157,6 +162,7 @@ unsafe impl RefEncode for NSCollectionUpdateAction {
 
 extern_class!(
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewUpdateItem;
 );
@@ -183,12 +189,13 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
 extern_class!(
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewLayoutInvalidationContext;
 );
@@ -258,12 +265,13 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
 extern_class!(
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewLayout;
 );
@@ -280,10 +288,7 @@ extern_methods!(
             feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other collectionView)]
-        pub unsafe fn collectionView(
-            &self,
-            mtm: MainThreadMarker,
-        ) -> Option<Retained<NSCollectionView>>;
+        pub unsafe fn collectionView(&self) -> Option<Retained<NSCollectionView>>;
 
         #[method(invalidateLayout)]
         pub unsafe fn invalidateLayout(&self);
@@ -318,7 +323,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -326,10 +331,10 @@ extern_methods!(
     /// NSSubclassingHooks
     unsafe impl NSCollectionViewLayout {
         #[method(layoutAttributesClass)]
-        pub unsafe fn layoutAttributesClass() -> &'static AnyClass;
+        pub unsafe fn layoutAttributesClass(mtm: MainThreadMarker) -> &'static AnyClass;
 
         #[method(invalidationContextClass)]
-        pub unsafe fn invalidationContextClass() -> &'static AnyClass;
+        pub unsafe fn invalidationContextClass(mtm: MainThreadMarker) -> &'static AnyClass;
 
         #[method(prepareLayout)]
         pub unsafe fn prepareLayout(&self);

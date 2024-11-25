@@ -11,6 +11,10 @@ extern_class!(
     pub struct HKQuantitySeriesSampleBuilder;
 );
 
+unsafe impl Send for HKQuantitySeriesSampleBuilder {}
+
+unsafe impl Sync for HKQuantitySeriesSampleBuilder {}
+
 unsafe impl NSObjectProtocol for HKQuantitySeriesSampleBuilder {}
 
 extern_methods!(

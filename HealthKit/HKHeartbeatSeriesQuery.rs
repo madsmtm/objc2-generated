@@ -13,6 +13,12 @@ extern_class!(
 );
 
 #[cfg(feature = "HKQuery")]
+unsafe impl Send for HKHeartbeatSeriesQuery {}
+
+#[cfg(feature = "HKQuery")]
+unsafe impl Sync for HKHeartbeatSeriesQuery {}
+
+#[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKHeartbeatSeriesQuery {}
 
 extern_methods!(

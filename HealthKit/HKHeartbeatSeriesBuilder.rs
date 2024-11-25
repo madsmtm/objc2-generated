@@ -13,6 +13,12 @@ extern_class!(
 );
 
 #[cfg(feature = "HKSeriesBuilder")]
+unsafe impl Send for HKHeartbeatSeriesBuilder {}
+
+#[cfg(feature = "HKSeriesBuilder")]
+unsafe impl Sync for HKHeartbeatSeriesBuilder {}
+
+#[cfg(feature = "HKSeriesBuilder")]
 unsafe impl NSObjectProtocol for HKHeartbeatSeriesBuilder {}
 
 extern_methods!(

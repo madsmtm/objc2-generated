@@ -14,6 +14,8 @@ impl CLServiceSessionAuthorizationRequirement {
     pub const None: Self = Self(0);
     #[doc(alias = "CLServiceSessionAuthorizationRequirementWhenInUse")]
     pub const WhenInUse: Self = Self(1);
+    #[doc(alias = "CLServiceSessionAuthorizationRequirementAlways")]
+    pub const Always: Self = Self(2);
 }
 
 unsafe impl Encode for CLServiceSessionAuthorizationRequirement {

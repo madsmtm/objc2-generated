@@ -71,34 +71,6 @@ unsafe impl RefEncode for NSWritingToolsResultOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// NS_OPTIONS
-#[deprecated]
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct NSWritingToolsAllowedInputOptions(pub NSUInteger);
-bitflags::bitflags! {
-    impl NSWritingToolsAllowedInputOptions: NSUInteger {
-        #[doc(alias = "NSWritingToolsAllowedInputOptionsDefault")]
-        const Default = 0;
-        #[doc(alias = "NSWritingToolsAllowedInputOptionsPlainText")]
-        const PlainText = 1<<0;
-        #[doc(alias = "NSWritingToolsAllowedInputOptionsRichText")]
-        const RichText = 1<<1;
-        #[doc(alias = "NSWritingToolsAllowedInputOptionsList")]
-        const List = 1<<2;
-        #[doc(alias = "NSWritingToolsAllowedInputOptionsTable")]
-        const Table = 1<<3;
-    }
-}
-
-unsafe impl Encode for NSWritingToolsAllowedInputOptions {
-    const ENCODING: Encoding = NSUInteger::ENCODING;
-}
-
-unsafe impl RefEncode for NSWritingToolsAllowedInputOptions {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 extern_protocol!(
     pub unsafe trait NSTextInputTraits {
         #[optional]
@@ -217,19 +189,6 @@ extern_protocol!(
         unsafe fn setAllowedWritingToolsResultOptions(
             &self,
             allowed_writing_tools_result_options: NSWritingToolsResultOptions,
-        );
-
-        #[deprecated]
-        #[optional]
-        #[method(writingToolsAllowedInputOptions)]
-        unsafe fn writingToolsAllowedInputOptions(&self) -> NSWritingToolsAllowedInputOptions;
-
-        #[deprecated]
-        #[optional]
-        #[method(setWritingToolsAllowedInputOptions:)]
-        unsafe fn setWritingToolsAllowedInputOptions(
-            &self,
-            writing_tools_allowed_input_options: NSWritingToolsAllowedInputOptions,
         );
     }
 

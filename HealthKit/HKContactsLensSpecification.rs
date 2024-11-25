@@ -13,6 +13,12 @@ extern_class!(
 );
 
 #[cfg(feature = "HKLensSpecification")]
+unsafe impl Send for HKContactsLensSpecification {}
+
+#[cfg(feature = "HKLensSpecification")]
+unsafe impl Sync for HKContactsLensSpecification {}
+
+#[cfg(feature = "HKLensSpecification")]
 unsafe impl NSCoding for HKContactsLensSpecification {}
 
 #[cfg(feature = "HKLensSpecification")]

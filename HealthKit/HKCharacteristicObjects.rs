@@ -11,6 +11,10 @@ extern_class!(
     pub struct HKBiologicalSexObject;
 );
 
+unsafe impl Send for HKBiologicalSexObject {}
+
+unsafe impl Sync for HKBiologicalSexObject {}
+
 unsafe impl NSCoding for HKBiologicalSexObject {}
 
 unsafe impl NSCopying for HKBiologicalSexObject {}
@@ -47,6 +51,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKBloodTypeObject;
 );
+
+unsafe impl Send for HKBloodTypeObject {}
+
+unsafe impl Sync for HKBloodTypeObject {}
 
 unsafe impl NSCoding for HKBloodTypeObject {}
 
@@ -85,6 +93,10 @@ extern_class!(
     pub struct HKFitzpatrickSkinTypeObject;
 );
 
+unsafe impl Send for HKFitzpatrickSkinTypeObject {}
+
+unsafe impl Sync for HKFitzpatrickSkinTypeObject {}
+
 unsafe impl NSCoding for HKFitzpatrickSkinTypeObject {}
 
 unsafe impl NSCopying for HKFitzpatrickSkinTypeObject {}
@@ -122,6 +134,10 @@ extern_class!(
     pub struct HKWheelchairUseObject;
 );
 
+unsafe impl Send for HKWheelchairUseObject {}
+
+unsafe impl Sync for HKWheelchairUseObject {}
+
 unsafe impl NSCoding for HKWheelchairUseObject {}
 
 unsafe impl NSCopying for HKWheelchairUseObject {}
@@ -158,6 +174,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKActivityMoveModeObject;
 );
+
+unsafe impl Send for HKActivityMoveModeObject {}
+
+unsafe impl Sync for HKActivityMoveModeObject {}
 
 unsafe impl NSCoding for HKActivityMoveModeObject {}
 

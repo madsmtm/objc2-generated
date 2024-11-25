@@ -38,6 +38,10 @@ extern_class!(
     pub struct HKStatistics;
 );
 
+unsafe impl Send for HKStatistics {}
+
+unsafe impl Sync for HKStatistics {}
+
 unsafe impl NSCoding for HKStatistics {}
 
 unsafe impl NSCopying for HKStatistics {}

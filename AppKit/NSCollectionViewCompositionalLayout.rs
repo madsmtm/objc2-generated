@@ -104,6 +104,7 @@ unsafe impl RefEncode for NSRectAlignment {
 
 extern_class!(
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewCompositionalLayoutConfiguration;
 );
@@ -152,7 +153,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
 
@@ -212,7 +213,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(
@@ -267,6 +268,7 @@ pub type NSCollectionLayoutSectionVisibleItemsInvalidationHandler = *mut block2:
 
 extern_class!(
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutSection;
 );
@@ -288,7 +290,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(contentInsets)]
         pub unsafe fn contentInsets(&self) -> NSDirectionalEdgeInsets;
@@ -360,6 +362,7 @@ extern_methods!(
 
 extern_class!(
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutItem;
 );
@@ -387,7 +390,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(contentInsets)]
         pub unsafe fn contentInsets(&self) -> NSDirectionalEdgeInsets;
@@ -413,6 +416,7 @@ extern_methods!(
 
 extern_class!(
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutGroupCustomItem;
 );
@@ -428,19 +432,20 @@ unsafe impl NSObjectProtocol for NSCollectionLayoutGroupCustomItem {}
 extern_methods!(
     unsafe impl NSCollectionLayoutGroupCustomItem {
         #[method_id(@__retain_semantics Other customItemWithFrame:)]
-        pub unsafe fn customItemWithFrame(frame: NSRect) -> Retained<Self>;
+        pub unsafe fn customItemWithFrame(frame: NSRect, mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other customItemWithFrame:zIndex:)]
         pub unsafe fn customItemWithFrame_zIndex(
             frame: NSRect,
             z_index: NSInteger,
+            mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(frame)]
         pub unsafe fn frame(&self) -> NSRect;
@@ -510,7 +515,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other supplementaryItems)]
         pub unsafe fn supplementaryItems(
@@ -556,6 +561,7 @@ extern_methods!(
 
 extern_class!(
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutDimension;
 );
@@ -571,22 +577,34 @@ unsafe impl NSObjectProtocol for NSCollectionLayoutDimension {}
 extern_methods!(
     unsafe impl NSCollectionLayoutDimension {
         #[method_id(@__retain_semantics Other fractionalWidthDimension:)]
-        pub unsafe fn fractionalWidthDimension(fractional_width: CGFloat) -> Retained<Self>;
+        pub unsafe fn fractionalWidthDimension(
+            fractional_width: CGFloat,
+            mtm: MainThreadMarker,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other fractionalHeightDimension:)]
-        pub unsafe fn fractionalHeightDimension(fractional_height: CGFloat) -> Retained<Self>;
+        pub unsafe fn fractionalHeightDimension(
+            fractional_height: CGFloat,
+            mtm: MainThreadMarker,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other absoluteDimension:)]
-        pub unsafe fn absoluteDimension(absolute_dimension: CGFloat) -> Retained<Self>;
+        pub unsafe fn absoluteDimension(
+            absolute_dimension: CGFloat,
+            mtm: MainThreadMarker,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other estimatedDimension:)]
-        pub unsafe fn estimatedDimension(estimated_dimension: CGFloat) -> Retained<Self>;
+        pub unsafe fn estimatedDimension(
+            estimated_dimension: CGFloat,
+            mtm: MainThreadMarker,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(isFractionalWidth)]
         pub unsafe fn isFractionalWidth(&self) -> bool;
@@ -607,6 +625,7 @@ extern_methods!(
 
 extern_class!(
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutSize;
 );
@@ -631,7 +650,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other widthDimension)]
         pub unsafe fn widthDimension(&self) -> Retained<NSCollectionLayoutDimension>;
@@ -643,6 +662,7 @@ extern_methods!(
 
 extern_class!(
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutSpacing;
 );
@@ -658,16 +678,20 @@ unsafe impl NSObjectProtocol for NSCollectionLayoutSpacing {}
 extern_methods!(
     unsafe impl NSCollectionLayoutSpacing {
         #[method_id(@__retain_semantics Other flexibleSpacing:)]
-        pub unsafe fn flexibleSpacing(flexible_spacing: CGFloat) -> Retained<Self>;
+        pub unsafe fn flexibleSpacing(
+            flexible_spacing: CGFloat,
+            mtm: MainThreadMarker,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other fixedSpacing:)]
-        pub unsafe fn fixedSpacing(fixed_spacing: CGFloat) -> Retained<Self>;
+        pub unsafe fn fixedSpacing(fixed_spacing: CGFloat, mtm: MainThreadMarker)
+            -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(spacing)]
         pub unsafe fn spacing(&self) -> CGFloat;
@@ -682,6 +706,7 @@ extern_methods!(
 
 extern_class!(
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutEdgeSpacing;
 );
@@ -702,13 +727,14 @@ extern_methods!(
             top: Option<&NSCollectionLayoutSpacing>,
             trailing: Option<&NSCollectionLayoutSpacing>,
             bottom: Option<&NSCollectionLayoutSpacing>,
+            mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other leading)]
         pub unsafe fn leading(&self) -> Option<Retained<NSCollectionLayoutSpacing>>;
@@ -759,7 +785,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(zIndex)]
         pub unsafe fn zIndex(&self) -> NSInteger;
@@ -827,7 +853,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(extendsBoundary)]
         pub unsafe fn extendsBoundary(&self) -> bool;
@@ -902,13 +928,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other backgroundDecorationItemWithElementKind:)]
         pub unsafe fn backgroundDecorationItemWithElementKind(
             element_kind: &NSString,
+            mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(zIndex)]
         pub unsafe fn zIndex(&self) -> NSInteger;
@@ -937,6 +964,7 @@ extern_methods!(
 
 extern_class!(
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutAnchor;
 );
@@ -952,25 +980,30 @@ unsafe impl NSObjectProtocol for NSCollectionLayoutAnchor {}
 extern_methods!(
     unsafe impl NSCollectionLayoutAnchor {
         #[method_id(@__retain_semantics Other layoutAnchorWithEdges:)]
-        pub unsafe fn layoutAnchorWithEdges(edges: NSDirectionalRectEdge) -> Retained<Self>;
+        pub unsafe fn layoutAnchorWithEdges(
+            edges: NSDirectionalRectEdge,
+            mtm: MainThreadMarker,
+        ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other layoutAnchorWithEdges:absoluteOffset:)]
         pub unsafe fn layoutAnchorWithEdges_absoluteOffset(
             edges: NSDirectionalRectEdge,
             absolute_offset: NSPoint,
+            mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other layoutAnchorWithEdges:fractionalOffset:)]
         pub unsafe fn layoutAnchorWithEdges_fractionalOffset(
             edges: NSDirectionalRectEdge,
             fractional_offset: NSPoint,
+            mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(edges)]
         pub unsafe fn edges(&self) -> NSDirectionalRectEdge;
@@ -987,7 +1020,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSCollectionLayoutContainer: NSObjectProtocol {
+    pub unsafe trait NSCollectionLayoutContainer: NSObjectProtocol + MainThreadOnly {
         #[method(contentSize)]
         unsafe fn contentSize(&self) -> NSSize;
 
@@ -1005,7 +1038,9 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSCollectionLayoutEnvironment: NSObjectProtocol {
+    pub unsafe trait NSCollectionLayoutEnvironment:
+        NSObjectProtocol + MainThreadOnly
+    {
         #[method_id(@__retain_semantics Other container)]
         unsafe fn container(&self) -> Retained<ProtocolObject<dyn NSCollectionLayoutContainer>>;
     }
@@ -1014,7 +1049,9 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSCollectionLayoutVisibleItem: NSObjectProtocol {
+    pub unsafe trait NSCollectionLayoutVisibleItem:
+        NSObjectProtocol + MainThreadOnly
+    {
         #[method(alpha)]
         unsafe fn alpha(&self) -> CGFloat;
 

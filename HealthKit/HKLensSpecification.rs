@@ -10,6 +10,10 @@ extern_class!(
     pub struct HKLensSpecification;
 );
 
+unsafe impl Send for HKLensSpecification {}
+
+unsafe impl Sync for HKLensSpecification {}
+
 unsafe impl NSObjectProtocol for HKLensSpecification {}
 
 extern_methods!(

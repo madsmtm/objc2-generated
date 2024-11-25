@@ -11,6 +11,10 @@ extern_class!(
     pub struct HKWorkoutEffortRelationship;
 );
 
+unsafe impl Send for HKWorkoutEffortRelationship {}
+
+unsafe impl Sync for HKWorkoutEffortRelationship {}
+
 unsafe impl NSCoding for HKWorkoutEffortRelationship {}
 
 unsafe impl NSCopying for HKWorkoutEffortRelationship {}
@@ -75,6 +79,12 @@ extern_class!(
     #[cfg(feature = "HKQuery")]
     pub struct HKWorkoutEffortRelationshipQuery;
 );
+
+#[cfg(feature = "HKQuery")]
+unsafe impl Send for HKWorkoutEffortRelationshipQuery {}
+
+#[cfg(feature = "HKQuery")]
+unsafe impl Sync for HKWorkoutEffortRelationshipQuery {}
 
 #[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKWorkoutEffortRelationshipQuery {}

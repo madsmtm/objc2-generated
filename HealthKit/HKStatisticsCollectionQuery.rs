@@ -11,6 +11,10 @@ extern_class!(
     pub struct HKStatisticsCollection;
 );
 
+unsafe impl Send for HKStatisticsCollection {}
+
+unsafe impl Sync for HKStatisticsCollection {}
+
 unsafe impl NSObjectProtocol for HKStatisticsCollection {}
 
 extern_methods!(
@@ -55,6 +59,12 @@ extern_class!(
     #[cfg(feature = "HKQuery")]
     pub struct HKStatisticsCollectionQuery;
 );
+
+#[cfg(feature = "HKQuery")]
+unsafe impl Send for HKStatisticsCollectionQuery {}
+
+#[cfg(feature = "HKQuery")]
+unsafe impl Sync for HKStatisticsCollectionQuery {}
 
 #[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKStatisticsCollectionQuery {}

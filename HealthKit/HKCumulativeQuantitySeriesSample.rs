@@ -30,6 +30,22 @@ extern_class!(
     feature = "HKQuantitySample",
     feature = "HKSample"
 ))]
+unsafe impl Send for HKCumulativeQuantitySeriesSample {}
+
+#[cfg(all(
+    feature = "HKCumulativeQuantitySample",
+    feature = "HKObject",
+    feature = "HKQuantitySample",
+    feature = "HKSample"
+))]
+unsafe impl Sync for HKCumulativeQuantitySeriesSample {}
+
+#[cfg(all(
+    feature = "HKCumulativeQuantitySample",
+    feature = "HKObject",
+    feature = "HKQuantitySample",
+    feature = "HKSample"
+))]
 unsafe impl NSCoding for HKCumulativeQuantitySeriesSample {}
 
 #[cfg(all(

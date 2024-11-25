@@ -43,6 +43,10 @@ extern_class!(
     pub struct HKDevice;
 );
 
+unsafe impl Send for HKDevice {}
+
+unsafe impl Sync for HKDevice {}
+
 unsafe impl NSCoding for HKDevice {}
 
 unsafe impl NSCopying for HKDevice {}

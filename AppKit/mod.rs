@@ -6305,8 +6305,6 @@ pub use self::__NSTextCheckingClient::NSTextInputTraitType;
 #[cfg(feature = "NSTextCheckingClient")]
 pub use self::__NSTextCheckingClient::NSTextInputTraits;
 #[cfg(feature = "NSTextCheckingClient")]
-pub use self::__NSTextCheckingClient::NSWritingToolsAllowedInputOptions;
-#[cfg(feature = "NSTextCheckingClient")]
 pub use self::__NSTextCheckingClient::NSWritingToolsBehavior;
 #[cfg(feature = "NSTextCheckingClient")]
 pub use self::__NSTextCheckingClient::NSWritingToolsResultOptions;

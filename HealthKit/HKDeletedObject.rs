@@ -11,6 +11,10 @@ extern_class!(
     pub struct HKDeletedObject;
 );
 
+unsafe impl Send for HKDeletedObject {}
+
+unsafe impl Sync for HKDeletedObject {}
+
 unsafe impl NSCoding for HKDeletedObject {}
 
 unsafe impl NSObjectProtocol for HKDeletedObject {}

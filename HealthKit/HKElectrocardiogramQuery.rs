@@ -11,6 +11,10 @@ extern_class!(
     pub struct HKElectrocardiogramVoltageMeasurement;
 );
 
+unsafe impl Send for HKElectrocardiogramVoltageMeasurement {}
+
+unsafe impl Sync for HKElectrocardiogramVoltageMeasurement {}
+
 unsafe impl NSCopying for HKElectrocardiogramVoltageMeasurement {}
 
 unsafe impl CopyingHelper for HKElectrocardiogramVoltageMeasurement {
@@ -50,6 +54,12 @@ extern_class!(
     #[cfg(feature = "HKQuery")]
     pub struct HKElectrocardiogramQuery;
 );
+
+#[cfg(feature = "HKQuery")]
+unsafe impl Send for HKElectrocardiogramQuery {}
+
+#[cfg(feature = "HKQuery")]
+unsafe impl Sync for HKElectrocardiogramQuery {}
 
 #[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKElectrocardiogramQuery {}

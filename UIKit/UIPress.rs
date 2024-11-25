@@ -53,6 +53,10 @@ impl UIPressType {
     pub const PageUp: Self = Self(30);
     #[doc(alias = "UIPressTypePageDown")]
     pub const PageDown: Self = Self(31);
+    #[doc(alias = "UIPressTypeTVRemoteOneTwoThree")]
+    pub const TVRemoteOneTwoThree: Self = Self(32);
+    #[doc(alias = "UIPressTypeTVRemoteFourColors")]
+    pub const TVRemoteFourColors: Self = Self(33);
 }
 
 unsafe impl Encode for UIPressType {

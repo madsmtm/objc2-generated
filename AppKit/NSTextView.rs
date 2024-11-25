@@ -968,19 +968,6 @@ extern_methods!(
             &self,
             allowed_writing_tools_result_options: NSWritingToolsResultOptions,
         );
-
-        #[cfg(feature = "NSTextCheckingClient")]
-        #[deprecated]
-        #[method(writingToolsAllowedInputOptions)]
-        pub unsafe fn writingToolsAllowedInputOptions(&self) -> NSWritingToolsAllowedInputOptions;
-
-        #[cfg(feature = "NSTextCheckingClient")]
-        #[deprecated]
-        #[method(setWritingToolsAllowedInputOptions:)]
-        pub unsafe fn setWritingToolsAllowedInputOptions(
-            &self,
-            writing_tools_allowed_input_options: NSWritingToolsAllowedInputOptions,
-        );
     }
 );
 

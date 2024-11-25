@@ -11,6 +11,10 @@ extern_class!(
     pub struct HKLiveWorkoutDataSource;
 );
 
+unsafe impl Send for HKLiveWorkoutDataSource {}
+
+unsafe impl Sync for HKLiveWorkoutDataSource {}
+
 unsafe impl NSObjectProtocol for HKLiveWorkoutDataSource {}
 
 extern_methods!(

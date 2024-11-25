@@ -15,6 +15,12 @@ extern_class!(
 );
 
 #[cfg(feature = "HKSeriesBuilder")]
+unsafe impl Send for HKWorkoutRouteBuilder {}
+
+#[cfg(feature = "HKSeriesBuilder")]
+unsafe impl Sync for HKWorkoutRouteBuilder {}
+
+#[cfg(feature = "HKSeriesBuilder")]
 unsafe impl NSObjectProtocol for HKWorkoutRouteBuilder {}
 
 extern_methods!(

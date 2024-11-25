@@ -13,6 +13,12 @@ extern_class!(
 );
 
 #[cfg(feature = "HKQuery")]
+unsafe impl Send for HKCorrelationQuery {}
+
+#[cfg(feature = "HKQuery")]
+unsafe impl Sync for HKCorrelationQuery {}
+
+#[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKCorrelationQuery {}
 
 extern_methods!(
