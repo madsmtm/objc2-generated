@@ -168,7 +168,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other readObjectsForClasses:options:)]
         pub unsafe fn readObjectsForClasses_options(
             &self,
-            class_array: &NSArray<TodoClass>,
+            class_array: &NSArray<AnyClass>,
             options: Option<&NSDictionary<NSPasteboardReadingOptionKey, AnyObject>>,
         ) -> Option<Retained<NSArray>>;
 
@@ -192,7 +192,7 @@ extern_methods!(
         #[method(canReadObjectForClasses:options:)]
         pub unsafe fn canReadObjectForClasses_options(
             &self,
-            class_array: &NSArray<TodoClass>,
+            class_array: &NSArray<AnyClass>,
             options: Option<&NSDictionary<NSPasteboardReadingOptionKey, AnyObject>>,
         ) -> bool;
 

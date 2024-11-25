@@ -298,7 +298,7 @@ extern_methods!(
         #[method(setClasses:forSelector:argumentIndex:ofReply:)]
         pub unsafe fn setClasses_forSelector_argumentIndex_ofReply(
             &self,
-            classes: &NSSet<TodoClass>,
+            classes: &NSSet<AnyClass>,
             sel: Sel,
             arg: NSUInteger,
             of_reply: bool,
@@ -311,7 +311,7 @@ extern_methods!(
             sel: Sel,
             arg: NSUInteger,
             of_reply: bool,
-        ) -> Retained<NSSet<TodoClass>>;
+        ) -> Retained<NSSet<AnyClass>>;
 
         #[method(setInterface:forSelector:argumentIndex:ofReply:)]
         pub unsafe fn setInterface_forSelector_argumentIndex_ofReply(

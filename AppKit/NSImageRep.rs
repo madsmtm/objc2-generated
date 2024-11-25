@@ -136,7 +136,7 @@ extern_methods!(
         pub unsafe fn unregisterImageRepClass(image_rep_class: &AnyClass);
 
         #[method_id(@__retain_semantics Other registeredImageRepClasses)]
-        pub unsafe fn registeredImageRepClasses() -> Retained<NSArray<TodoClass>>;
+        pub unsafe fn registeredImageRepClasses() -> Retained<NSArray<AnyClass>>;
 
         #[deprecated = "Use +imageRepClassForType: instead"]
         #[method(imageRepClassForFileType:)]

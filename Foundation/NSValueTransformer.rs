@@ -108,7 +108,7 @@ extern_methods!(
     unsafe impl NSSecureUnarchiveFromDataTransformer {
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other allowedTopLevelClasses)]
-        pub unsafe fn allowedTopLevelClasses() -> Retained<NSArray<TodoClass>>;
+        pub unsafe fn allowedTopLevelClasses() -> Retained<NSArray<AnyClass>>;
     }
 );
 

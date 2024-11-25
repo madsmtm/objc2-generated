@@ -109,7 +109,7 @@ extern_methods!(
         pub unsafe fn allowedClassesForRestorableStateKeyPath(
             key_path: &NSString,
             mtm: MainThreadMarker,
-        ) -> Retained<NSArray<TodoClass>>;
+        ) -> Retained<NSArray<AnyClass>>;
     }
 );
 
@@ -167,6 +167,6 @@ extern_methods!(
         pub unsafe fn allowedClassesForRestorableStateKeyPath(
             key_path: &NSString,
             mtm: MainThreadMarker,
-        ) -> Retained<NSArray<TodoClass>>;
+        ) -> Retained<NSArray<AnyClass>>;
     }
 );

@@ -241,27 +241,27 @@ extern_protocol!(
     pub unsafe trait UIMutableTraits: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITrait")]
         #[method(setCGFloatValue:forTrait:)]
-        unsafe fn setCGFloatValue_forTrait(&self, value: CGFloat, r#trait: UICGFloatTrait);
+        unsafe fn setCGFloatValue_forTrait(&self, value: CGFloat, r#trait: &UICGFloatTrait);
 
         #[cfg(feature = "UITrait")]
         #[method(valueForCGFloatTrait:)]
-        unsafe fn valueForCGFloatTrait(&self, r#trait: UICGFloatTrait) -> CGFloat;
+        unsafe fn valueForCGFloatTrait(&self, r#trait: &UICGFloatTrait) -> CGFloat;
 
         #[cfg(feature = "UITrait")]
         #[method(setNSIntegerValue:forTrait:)]
-        unsafe fn setNSIntegerValue_forTrait(&self, value: NSInteger, r#trait: UINSIntegerTrait);
+        unsafe fn setNSIntegerValue_forTrait(&self, value: NSInteger, r#trait: &UINSIntegerTrait);
 
         #[cfg(feature = "UITrait")]
         #[method(valueForNSIntegerTrait:)]
-        unsafe fn valueForNSIntegerTrait(&self, r#trait: UINSIntegerTrait) -> NSInteger;
+        unsafe fn valueForNSIntegerTrait(&self, r#trait: &UINSIntegerTrait) -> NSInteger;
 
         #[cfg(feature = "UITrait")]
         #[method(setObject:forTrait:)]
-        unsafe fn setObject_forTrait(&self, object: Option<&NSObject>, r#trait: UIObjectTrait);
+        unsafe fn setObject_forTrait(&self, object: Option<&NSObject>, r#trait: &UIObjectTrait);
 
         #[cfg(feature = "UITrait")]
         #[method_id(@__retain_semantics Other objectForTrait:)]
-        unsafe fn objectForTrait(&self, r#trait: UIObjectTrait) -> Option<Retained<NSObject>>;
+        unsafe fn objectForTrait(&self, r#trait: &UIObjectTrait) -> Option<Retained<NSObject>>;
 
         #[cfg(feature = "UIDevice")]
         #[method(userInterfaceIdiom)]
@@ -436,7 +436,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other traitCollectionWithCGFloatValue:forTrait:)]
         pub unsafe fn traitCollectionWithCGFloatValue_forTrait(
             value: CGFloat,
-            r#trait: UICGFloatTrait,
+            r#trait: &UICGFloatTrait,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITrait")]
@@ -444,18 +444,18 @@ extern_methods!(
         pub unsafe fn traitCollectionByReplacingCGFloatValue_forTrait(
             &self,
             value: CGFloat,
-            r#trait: UICGFloatTrait,
+            r#trait: &UICGFloatTrait,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITrait")]
         #[method(valueForCGFloatTrait:)]
-        pub unsafe fn valueForCGFloatTrait(&self, r#trait: UICGFloatTrait) -> CGFloat;
+        pub unsafe fn valueForCGFloatTrait(&self, r#trait: &UICGFloatTrait) -> CGFloat;
 
         #[cfg(feature = "UITrait")]
         #[method_id(@__retain_semantics Other traitCollectionWithNSIntegerValue:forTrait:)]
         pub unsafe fn traitCollectionWithNSIntegerValue_forTrait(
             value: NSInteger,
-            r#trait: UINSIntegerTrait,
+            r#trait: &UINSIntegerTrait,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITrait")]
@@ -463,18 +463,18 @@ extern_methods!(
         pub unsafe fn traitCollectionByReplacingNSIntegerValue_forTrait(
             &self,
             value: NSInteger,
-            r#trait: UINSIntegerTrait,
+            r#trait: &UINSIntegerTrait,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITrait")]
         #[method(valueForNSIntegerTrait:)]
-        pub unsafe fn valueForNSIntegerTrait(&self, r#trait: UINSIntegerTrait) -> NSInteger;
+        pub unsafe fn valueForNSIntegerTrait(&self, r#trait: &UINSIntegerTrait) -> NSInteger;
 
         #[cfg(feature = "UITrait")]
         #[method_id(@__retain_semantics Other traitCollectionWithObject:forTrait:)]
         pub unsafe fn traitCollectionWithObject_forTrait(
             object: Option<&NSObject>,
-            r#trait: UIObjectTrait,
+            r#trait: &UIObjectTrait,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITrait")]
@@ -482,12 +482,12 @@ extern_methods!(
         pub unsafe fn traitCollectionByReplacingObject_forTrait(
             &self,
             object: Option<&NSObject>,
-            r#trait: UIObjectTrait,
+            r#trait: &UIObjectTrait,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITrait")]
         #[method_id(@__retain_semantics Other objectForTrait:)]
-        pub unsafe fn objectForTrait(&self, r#trait: UIObjectTrait) -> Option<Retained<NSObject>>;
+        pub unsafe fn objectForTrait(&self, r#trait: &UIObjectTrait) -> Option<Retained<NSObject>>;
     }
 );
 
@@ -525,11 +525,11 @@ extern_protocol!(
     pub unsafe trait UITraitOverrides: UIMutableTraits + MainThreadOnly {
         #[cfg(feature = "UITrait")]
         #[method(containsTrait:)]
-        unsafe fn containsTrait(&self, r#trait: UITrait) -> bool;
+        unsafe fn containsTrait(&self, r#trait: &UITrait) -> bool;
 
         #[cfg(feature = "UITrait")]
         #[method(removeTrait:)]
-        unsafe fn removeTrait(&self, r#trait: UITrait);
+        unsafe fn removeTrait(&self, r#trait: &UITrait);
     }
 
     unsafe impl ProtocolType for dyn UITraitOverrides {}

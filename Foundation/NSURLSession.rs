@@ -1144,11 +1144,11 @@ extern_methods!(
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other protocolClasses)]
-        pub unsafe fn protocolClasses(&self) -> Option<Retained<NSArray<TodoClass>>>;
+        pub unsafe fn protocolClasses(&self) -> Option<Retained<NSArray<AnyClass>>>;
 
         #[cfg(feature = "NSArray")]
         #[method(setProtocolClasses:)]
-        pub unsafe fn setProtocolClasses(&self, protocol_classes: Option<&NSArray<TodoClass>>);
+        pub unsafe fn setProtocolClasses(&self, protocol_classes: Option<&NSArray<AnyClass>>);
 
         #[method(multipathServiceType)]
         pub unsafe fn multipathServiceType(&self) -> NSURLSessionMultipathServiceType;

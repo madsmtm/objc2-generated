@@ -23,7 +23,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UITraitDefinition {}
 );
 
-pub type UITrait = *mut AnyClass;
+pub type UITrait = AnyClass;
 
 extern_protocol!(
     pub unsafe trait UICGFloatTraitDefinition: UITraitDefinition + MainThreadOnly {
@@ -34,7 +34,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UICGFloatTraitDefinition {}
 );
 
-pub type UICGFloatTrait = *mut AnyClass;
+pub type UICGFloatTrait = AnyClass;
 
 extern_protocol!(
     pub unsafe trait UINSIntegerTraitDefinition: UITraitDefinition + MainThreadOnly {
@@ -45,7 +45,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UINSIntegerTraitDefinition {}
 );
 
-pub type UINSIntegerTrait = *mut AnyClass;
+pub type UINSIntegerTrait = AnyClass;
 
 extern_protocol!(
     pub unsafe trait UIObjectTraitDefinition: UITraitDefinition + MainThreadOnly {
@@ -56,7 +56,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UIObjectTraitDefinition {}
 );
 
-pub type UIObjectTrait = *mut AnyClass;
+pub type UIObjectTrait = AnyClass;
 
 extern_class!(
     #[unsafe(super(NSObject))]

@@ -18,7 +18,7 @@ extern_protocol!(
 
         #[method_id(@__retain_semantics Other appearanceWhenContainedInInstancesOfClasses:)]
         unsafe fn appearanceWhenContainedInInstancesOfClasses(
-            container_types: &NSArray<TodoClass>,
+            container_types: &NSArray<AnyClass>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
@@ -33,7 +33,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other appearanceForTraitCollection:whenContainedInInstancesOfClasses:)]
         unsafe fn appearanceForTraitCollection_whenContainedInInstancesOfClasses(
             r#trait: &UITraitCollection,
-            container_types: &NSArray<TodoClass>,
+            container_types: &NSArray<AnyClass>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
     }

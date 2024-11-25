@@ -216,7 +216,7 @@ extern_methods!(
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSSet"))]
         #[method_id(@__retain_semantics Other unarchivedObjectOfClasses:fromData:error:_)]
         pub unsafe fn unarchivedObjectOfClasses_fromData_error(
-            classes: &NSSet<TodoClass>,
+            classes: &NSSet<AnyClass>,
             data: &NSData,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
@@ -228,7 +228,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other unarchivedArrayOfObjectsOfClasses:fromData:error:_)]
         pub unsafe fn unarchivedArrayOfObjectsOfClasses_fromData_error(
-            classes: &NSSet<TodoClass>,
+            classes: &NSSet<AnyClass>,
             data: &NSData,
         ) -> Result<Retained<NSArray>, Retained<NSError>>;
 
@@ -240,8 +240,8 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other unarchivedDictionaryWithKeysOfClasses:objectsOfClasses:fromData:error:_)]
         pub unsafe fn unarchivedDictionaryWithKeysOfClasses_objectsOfClasses_fromData_error(
-            key_classes: &NSSet<TodoClass>,
-            value_classes: &NSSet<TodoClass>,
+            key_classes: &NSSet<AnyClass>,
+            value_classes: &NSSet<AnyClass>,
             data: &NSData,
         ) -> Result<Retained<NSDictionary>, Retained<NSError>>;
 

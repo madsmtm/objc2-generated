@@ -198,7 +198,7 @@ extern_protocol!(
             &self,
             enum_opts: NSDraggingItemEnumerationOptions,
             view: Option<&NSView>,
-            class_array: &NSArray<TodoClass>,
+            class_array: &NSArray<AnyClass>,
             search_options: &NSDictionary<NSPasteboardReadingOptionKey, AnyObject>,
             block: &block2::Block<dyn Fn(NonNull<NSDraggingItem>, NSInteger, NonNull<Bool>)>,
         );
