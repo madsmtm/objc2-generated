@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-video")]
+use objc2_core_video::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-metal")]
 use objc2_metal::*;
@@ -39,6 +41,13 @@ unsafe impl NSObjectProtocol for CIRenderDestination {}
 
 extern_methods!(
     unsafe impl CIRenderDestination {
+        #[cfg(feature = "objc2-core-video")]
+        #[method_id(@__retain_semantics Init initWithPixelBuffer:)]
+        pub unsafe fn initWithPixelBuffer(
+            this: Allocated<Self>,
+            pixel_buffer: CVPixelBufferRef,
+        ) -> Retained<Self>;
+
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Init initWithMTLTexture:commandBuffer:)]
         pub unsafe fn initWithMTLTexture_commandBuffer(

@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-video")]
+use objc2_core_video::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-metal")]
 use objc2_metal::*;
@@ -95,6 +97,10 @@ extern_protocol!(
         #[method(baseAddress)]
         unsafe fn baseAddress(&self) -> NonNull<c_void>;
 
+        #[cfg(feature = "objc2-core-video")]
+        #[method(pixelBuffer)]
+        unsafe fn pixelBuffer(&self) -> CVPixelBufferRef;
+
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other metalTexture)]
         unsafe fn metalTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -128,6 +134,10 @@ extern_protocol!(
 
         #[method(baseAddress)]
         unsafe fn baseAddress(&self) -> NonNull<c_void>;
+
+        #[cfg(feature = "objc2-core-video")]
+        #[method(pixelBuffer)]
+        unsafe fn pixelBuffer(&self) -> CVPixelBufferRef;
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other metalTexture)]

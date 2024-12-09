@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-image")]
 use objc2_core_image::*;
+#[cfg(feature = "objc2-core-video")]
+use objc2_core_video::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -39,6 +41,14 @@ extern_methods!(
     unsafe impl VNImageRequestHandler {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-core-video")]
+        #[method_id(@__retain_semantics Init initWithCVPixelBuffer:options:)]
+        pub unsafe fn initWithCVPixelBuffer_options(
+            this: Allocated<Self>,
+            pixel_buffer: CVPixelBufferRef,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-image")]
         #[method_id(@__retain_semantics Init initWithCIImage:options:)]
@@ -92,6 +102,14 @@ extern_methods!(
     unsafe impl VNSequenceRequestHandler {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[cfg(all(feature = "VNRequest", feature = "objc2-core-video"))]
+        #[method(performRequests:onCVPixelBuffer:error:_)]
+        pub unsafe fn performRequests_onCVPixelBuffer_error(
+            &self,
+            requests: &NSArray<VNRequest>,
+            pixel_buffer: CVPixelBufferRef,
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "VNRequest", feature = "objc2-core-image"))]
         #[method(performRequests:onCIImage:error:_)]

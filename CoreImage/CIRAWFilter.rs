@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-video")]
+use objc2_core_video::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -291,6 +293,13 @@ extern_methods!(
         pub unsafe fn filterWithImageData_identifierHint(
             data: &NSData,
             identifier_hint: Option<&NSString>,
+        ) -> Option<Retained<Self>>;
+
+        #[cfg(feature = "objc2-core-video")]
+        #[method_id(@__retain_semantics Other filterWithCVPixelBuffer:properties:)]
+        pub unsafe fn filterWithCVPixelBuffer_properties(
+            buffer: CVPixelBufferRef,
+            properties: &NSDictionary,
         ) -> Option<Retained<Self>>;
     }
 );

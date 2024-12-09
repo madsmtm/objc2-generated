@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-video")]
+use objc2_core_video::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-metal")]
 use objc2_metal::*;
@@ -323,6 +325,28 @@ extern_methods!(
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Option<Retained<CIImage>>;
 
+        #[cfg(feature = "objc2-core-video")]
+        #[method_id(@__retain_semantics Other imageWithCVImageBuffer:)]
+        pub unsafe fn imageWithCVImageBuffer(image_buffer: CVImageBufferRef) -> Retained<CIImage>;
+
+        #[cfg(feature = "objc2-core-video")]
+        #[method_id(@__retain_semantics Other imageWithCVImageBuffer:options:)]
+        pub unsafe fn imageWithCVImageBuffer_options(
+            image_buffer: CVImageBufferRef,
+            options: Option<&NSDictionary<CIImageOption, AnyObject>>,
+        ) -> Retained<CIImage>;
+
+        #[cfg(feature = "objc2-core-video")]
+        #[method_id(@__retain_semantics Other imageWithCVPixelBuffer:)]
+        pub unsafe fn imageWithCVPixelBuffer(pixel_buffer: CVPixelBufferRef) -> Retained<CIImage>;
+
+        #[cfg(feature = "objc2-core-video")]
+        #[method_id(@__retain_semantics Other imageWithCVPixelBuffer:options:)]
+        pub unsafe fn imageWithCVPixelBuffer_options(
+            pixel_buffer: CVPixelBufferRef,
+            options: Option<&NSDictionary<CIImageOption, AnyObject>>,
+        ) -> Retained<CIImage>;
+
         #[cfg(feature = "CIColor")]
         #[method_id(@__retain_semantics Other imageWithColor:)]
         pub unsafe fn imageWithColor(color: &CIColor) -> Retained<CIImage>;
@@ -401,6 +425,36 @@ extern_methods!(
             url: &NSURL,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Option<Retained<Self>>;
+
+        #[cfg(feature = "objc2-core-video")]
+        #[method_id(@__retain_semantics Init initWithCVImageBuffer:)]
+        pub unsafe fn initWithCVImageBuffer(
+            this: Allocated<Self>,
+            image_buffer: CVImageBufferRef,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-core-video")]
+        #[method_id(@__retain_semantics Init initWithCVImageBuffer:options:)]
+        pub unsafe fn initWithCVImageBuffer_options(
+            this: Allocated<Self>,
+            image_buffer: CVImageBufferRef,
+            options: Option<&NSDictionary<CIImageOption, AnyObject>>,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-core-video")]
+        #[method_id(@__retain_semantics Init initWithCVPixelBuffer:)]
+        pub unsafe fn initWithCVPixelBuffer(
+            this: Allocated<Self>,
+            pixel_buffer: CVPixelBufferRef,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-core-video")]
+        #[method_id(@__retain_semantics Init initWithCVPixelBuffer:options:)]
+        pub unsafe fn initWithCVPixelBuffer_options(
+            this: Allocated<Self>,
+            pixel_buffer: CVPixelBufferRef,
+            options: Option<&NSDictionary<CIImageOption, AnyObject>>,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "CIColor")]
         #[method_id(@__retain_semantics Init initWithColor:)]
@@ -496,6 +550,10 @@ extern_methods!(
 
         #[method(contentHeadroom)]
         pub unsafe fn contentHeadroom(&self) -> c_float;
+
+        #[cfg(feature = "objc2-core-video")]
+        #[method(pixelBuffer)]
+        pub unsafe fn pixelBuffer(&self) -> CVPixelBufferRef;
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other metalTexture)]

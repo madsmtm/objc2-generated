@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-image")]
 use objc2_core_image::*;
+#[cfg(feature = "objc2-core-video")]
+use objc2_core_video::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -42,6 +44,27 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
+        #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-video"))]
+        #[method_id(@__retain_semantics Init initWithTargetedCVPixelBuffer:options:)]
+        pub unsafe fn initWithTargetedCVPixelBuffer_options(
+            this: Allocated<Self>,
+            pixel_buffer: CVPixelBufferRef,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-core-video"
+        ))]
+        #[method_id(@__retain_semantics Init initWithTargetedCVPixelBuffer:options:completionHandler:)]
+        pub unsafe fn initWithTargetedCVPixelBuffer_options_completionHandler(
+            this: Allocated<Self>,
+            pixel_buffer: CVPixelBufferRef,
+            options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
@@ -161,6 +184,27 @@ extern_methods!(
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
+        #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-video"))]
+        #[method_id(@__retain_semantics Init initWithTargetedCVPixelBuffer:options:)]
+        pub unsafe fn initWithTargetedCVPixelBuffer_options(
+            this: Allocated<Self>,
+            pixel_buffer: CVPixelBufferRef,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-core-video"
+        ))]
+        #[method_id(@__retain_semantics Init initWithTargetedCVPixelBuffer:options:completionHandler:)]
+        pub unsafe fn initWithTargetedCVPixelBuffer_options_completionHandler(
+            this: Allocated<Self>,
+            pixel_buffer: CVPixelBufferRef,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-image"))]
         #[method_id(@__retain_semantics Init initWithTargetedCIImage:options:)]
         pub unsafe fn initWithTargetedCIImage_options(
@@ -277,6 +321,27 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
+        #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-video"))]
+        #[method_id(@__retain_semantics Init initWithTargetedCVPixelBuffer:options:)]
+        pub unsafe fn initWithTargetedCVPixelBuffer_options(
+            this: Allocated<Self>,
+            pixel_buffer: CVPixelBufferRef,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-core-video"
+        ))]
+        #[method_id(@__retain_semantics Init initWithTargetedCVPixelBuffer:options:completionHandler:)]
+        pub unsafe fn initWithTargetedCVPixelBuffer_options_completionHandler(
+            this: Allocated<Self>,
+            pixel_buffer: CVPixelBufferRef,
+            options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 

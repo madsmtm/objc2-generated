@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-video")]
+use objc2_core_video::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-metal")]
 use objc2_metal::*;
@@ -144,6 +146,10 @@ extern_methods!(
             in_rect: CGRect,
             from_rect: CGRect,
         );
+
+        #[cfg(all(feature = "CIImage", feature = "objc2-core-video"))]
+        #[method(render:toCVPixelBuffer:)]
+        pub unsafe fn render_toCVPixelBuffer(&self, image: &CIImage, buffer: CVPixelBufferRef);
 
         #[method(reclaimResources)]
         pub unsafe fn reclaimResources(&self);

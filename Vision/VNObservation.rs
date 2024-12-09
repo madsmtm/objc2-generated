@@ -7,6 +7,8 @@ use objc2_core_foundation::*;
 use objc2_core_image::*;
 #[cfg(feature = "objc2-core-ml")]
 use objc2_core_ml::*;
+#[cfg(feature = "objc2-core-video")]
+use objc2_core_video::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -385,6 +387,10 @@ unsafe impl VNRequestRevisionProviding for VNPixelBufferObservation {}
 
 extern_methods!(
     unsafe impl VNPixelBufferObservation {
+        #[cfg(feature = "objc2-core-video")]
+        #[method(pixelBuffer)]
+        pub unsafe fn pixelBuffer(&self) -> CVPixelBufferRef;
+
         #[method_id(@__retain_semantics Other featureName)]
         pub unsafe fn featureName(&self) -> Option<Retained<NSString>>;
     }
@@ -1345,6 +1351,10 @@ unsafe impl VNRequestRevisionProviding for VNInstanceMaskObservation {}
 
 extern_methods!(
     unsafe impl VNInstanceMaskObservation {
+        #[cfg(feature = "objc2-core-video")]
+        #[method(instanceMask)]
+        pub unsafe fn instanceMask(&self) -> CVPixelBufferRef;
+
         #[method_id(@__retain_semantics Other allInstances)]
         pub unsafe fn allInstances(&self) -> Retained<NSIndexSet>;
     }
