@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-location")]
 use objc2_core_location::*;
 use objc2_foundation::*;
@@ -31,7 +33,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other appearance)]
         pub unsafe fn appearance(&self) -> Retained<NSAppearance>;
 
-        #[cfg(feature = "objc2-core-location")]
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-location"))]
         #[method(pointForCoordinate:)]
         pub unsafe fn pointForCoordinate(&self, coordinate: CLLocationCoordinate2D) -> NSPoint;
     }

@@ -427,273 +427,273 @@ pub use self::__GCInputNames::GCInputRightBumper;
 pub use self::__GCInputNames::GCPhysicalInputElementName;
 #[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCSwitchElementName;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeApplication;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeBackslash;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeCapsLock;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeCloseBracket;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeComma;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeDeleteForward;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeDeleteOrBackspace;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeDownArrow;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeEight;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeEnd;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeEqualSign;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeEscape;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF1;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF10;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF11;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF12;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF13;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF14;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF15;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF16;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF17;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF18;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF19;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF2;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF20;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF3;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF4;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF5;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF6;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF7;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF8;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeF9;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeFive;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeFour;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeGraveAccentAndTilde;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeHome;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeHyphen;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeInsert;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeInternational1;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeInternational2;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeInternational3;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeInternational4;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeInternational5;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeInternational6;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeInternational7;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeInternational8;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeInternational9;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyA;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyB;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyC;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyD;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyE;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyF;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyG;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyH;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyI;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyJ;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyK;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyL;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyM;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyN;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyO;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyP;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyQ;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyR;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyS;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyT;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyU;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyV;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyW;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyX;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyY;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeyZ;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad0;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad1;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad2;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad3;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad4;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad5;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad6;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad7;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad8;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad9;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeypadAsterisk;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeypadEnter;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeypadEqualSign;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeypadHyphen;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeypadNumLock;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeypadPeriod;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeypadPlus;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeKeypadSlash;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeLANG1;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeLANG2;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeLANG3;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeLANG4;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeLANG5;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeLANG6;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeLANG7;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeLANG8;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeLANG9;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeLeftAlt;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeLeftArrow;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeLeftControl;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeLeftGUI;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeLeftShift;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeNine;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeNonUSBackslash;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeNonUSPound;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeOne;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeOpenBracket;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodePageDown;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodePageUp;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodePause;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodePeriod;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodePower;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodePrintScreen;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeQuote;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeReturnOrEnter;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeRightAlt;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeRightArrow;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeRightControl;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeRightGUI;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeRightShift;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeScrollLock;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeSemicolon;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeSeven;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeSix;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeSlash;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeSpacebar;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeTab;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeThree;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeTwo;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeUpArrow;
-#[cfg(feature = "GCKeyCodes")]
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeZero;
 #[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyA;
@@ -977,7 +977,8 @@ pub use self::__GCKeyboardInput::GCKeyboardInput;
     feature = "GCKeyCodes",
     feature = "GCKeyboardInput",
     feature = "GCPhysicalInputProfile",
-    feature = "block2"
+    feature = "block2",
+    feature = "objc2-core-foundation"
 ))]
 pub use self::__GCKeyboardInput::GCKeyboardValueChangedHandler;
 #[cfg(feature = "GCLinearInput")]

@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-location")]
 use objc2_core_location::*;
 use objc2_foundation::*;
@@ -183,7 +185,7 @@ extern_methods!(
         #[method(mapRectThatFits:)]
         pub unsafe fn mapRectThatFits(&self, map_rect: MKMapRect) -> MKMapRect;
 
-        #[cfg(feature = "MKGeometry")]
+        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]
         #[method(setVisibleMapRect:edgePadding:animated:)]
         pub unsafe fn setVisibleMapRect_edgePadding_animated(
             &self,
@@ -192,7 +194,7 @@ extern_methods!(
             animate: bool,
         );
 
-        #[cfg(feature = "MKGeometry")]
+        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]
         #[method(mapRectThatFits:edgePadding:)]
         pub unsafe fn mapRectThatFits_edgePadding(
             &self,
@@ -244,7 +246,7 @@ extern_methods!(
             animated: bool,
         );
 
-        #[cfg(feature = "objc2-core-location")]
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-location"))]
         #[method(convertCoordinate:toPointToView:)]
         pub unsafe fn convertCoordinate_toPointToView(
             &self,
@@ -252,7 +254,7 @@ extern_methods!(
             view: Option<&NSView>,
         ) -> CGPoint;
 
-        #[cfg(feature = "objc2-core-location")]
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-location"))]
         #[method(convertPoint:toCoordinateFromView:)]
         pub unsafe fn convertPoint_toCoordinateFromView(
             &self,
@@ -260,7 +262,11 @@ extern_methods!(
             view: Option<&NSView>,
         ) -> CLLocationCoordinate2D;
 
-        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
+        #[cfg(all(
+            feature = "MKGeometry",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-location"
+        ))]
         #[method(convertRegion:toRectToView:)]
         pub unsafe fn convertRegion_toRectToView(
             &self,
@@ -268,7 +274,11 @@ extern_methods!(
             view: Option<&NSView>,
         ) -> CGRect;
 
-        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
+        #[cfg(all(
+            feature = "MKGeometry",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-location"
+        ))]
         #[method(convertRect:toRegionFromView:)]
         pub unsafe fn convertRect_toRegionFromView(
             &self,
@@ -488,6 +498,7 @@ extern_methods!(
             selected_annotations: &NSArray<ProtocolObject<dyn MKAnnotation>>,
         );
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(annotationVisibleRect)]
         pub unsafe fn annotationVisibleRect(&self) -> CGRect;
 
@@ -506,6 +517,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKMapView {
+        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 

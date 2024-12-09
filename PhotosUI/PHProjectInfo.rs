@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-location")]
 use objc2_core_location::*;
 use objc2_foundation::*;
@@ -236,6 +238,7 @@ extern_methods!(
         #[method(weight)]
         pub unsafe fn weight(&self) -> c_double;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(placement)]
         pub unsafe fn placement(&self) -> CGRect;
 
@@ -266,6 +269,7 @@ unsafe impl NSSecureCoding for PHProjectRegionOfInterest {}
 
 extern_methods!(
     unsafe impl PHProjectRegionOfInterest {
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(rect)]
         pub unsafe fn rect(&self) -> CGRect;
 
@@ -313,6 +317,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other annotation)]
         pub unsafe fn annotation(&self) -> Retained<NSString>;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(cropRect)]
         pub unsafe fn cropRect(&self) -> CGRect;
 
@@ -477,6 +482,7 @@ extern_methods!(
         #[method(heading)]
         pub unsafe fn heading(&self) -> CLLocationDirection;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(pitch)]
         pub unsafe fn pitch(&self) -> CGFloat;
 

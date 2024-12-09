@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-cloud-kit")]
 use objc2_cloud_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -302,6 +304,7 @@ extern_methods!(
         #[method(statusBarOrientationAnimationDuration)]
         pub unsafe fn statusBarOrientationAnimationDuration(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Use the statusBarManager property of the window scene instead."]
         #[method(statusBarFrame)]
         pub fn statusBarFrame(&self) -> CGRect;
@@ -718,7 +721,7 @@ extern_protocol!(
             old_status_bar_orientation: UIInterfaceOrientation,
         );
 
-        #[cfg(feature = "UIResponder")]
+        #[cfg(all(feature = "UIResponder", feature = "objc2-core-foundation"))]
         #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
         #[optional]
         #[method(application:willChangeStatusBarFrame:)]
@@ -728,7 +731,7 @@ extern_protocol!(
             new_status_bar_frame: CGRect,
         );
 
-        #[cfg(feature = "UIResponder")]
+        #[cfg(all(feature = "UIResponder", feature = "objc2-core-foundation"))]
         #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
         #[optional]
         #[method(application:didChangeStatusBarFrame:)]

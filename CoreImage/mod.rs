@@ -554,7 +554,11 @@ pub use self::__CIKernel::CIBlendKernel;
 pub use self::__CIKernel::CIColorKernel;
 #[cfg(feature = "CIKernel")]
 pub use self::__CIKernel::CIKernel;
-#[cfg(all(feature = "CIKernel", feature = "block2"))]
+#[cfg(all(
+    feature = "CIKernel",
+    feature = "block2",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__CIKernel::CIKernelROICallback;
 #[cfg(feature = "CIKernel")]
 pub use self::__CIKernel::CIWarpKernel;

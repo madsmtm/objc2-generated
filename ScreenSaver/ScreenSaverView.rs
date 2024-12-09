@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -48,6 +50,7 @@ extern_methods!(
         #[method(performGammaFade)]
         pub unsafe fn performGammaFade(mtm: MainThreadMarker) -> bool;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:isPreview:)]
         pub unsafe fn initWithFrame_isPreview(
             this: Allocated<Self>,
@@ -70,6 +73,7 @@ extern_methods!(
         #[method(isAnimating)]
         pub unsafe fn isAnimating(&self) -> bool;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawRect:)]
         pub unsafe fn drawRect(&self, rect: NSRect);
 
@@ -91,6 +95,7 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl ScreenSaverView {
+        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 

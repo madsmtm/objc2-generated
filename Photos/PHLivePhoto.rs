@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -53,10 +55,16 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(size)]
         pub unsafe fn size(&self) -> CGSize;
 
-        #[cfg(all(feature = "PhotosTypes", feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(all(
+            feature = "PhotosTypes",
+            feature = "block2",
+            feature = "objc2-app-kit",
+            feature = "objc2-core-foundation"
+        ))]
         #[cfg(target_os = "macos")]
         #[method(requestLivePhotoWithResourceFileURLs:placeholderImage:targetSize:contentMode:resultHandler:)]
         pub unsafe fn requestLivePhotoWithResourceFileURLs_placeholderImage_targetSize_contentMode_resultHandler(

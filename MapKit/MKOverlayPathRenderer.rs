@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -42,21 +44,27 @@ extern_methods!(
         #[method(setStrokeColor:)]
         pub unsafe fn setStrokeColor(&self, stroke_color: Option<&NSColor>);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(lineWidth)]
         pub unsafe fn lineWidth(&self) -> CGFloat;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setLineWidth:)]
         pub unsafe fn setLineWidth(&self, line_width: CGFloat);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(miterLimit)]
         pub unsafe fn miterLimit(&self) -> CGFloat;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setMiterLimit:)]
         pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(lineDashPhase)]
         pub unsafe fn lineDashPhase(&self) -> CGFloat;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setLineDashPhase:)]
         pub unsafe fn setLineDashPhase(&self, line_dash_phase: CGFloat);
 

@@ -1680,9 +1680,17 @@ pub use self::__UIAccessibility::AXObjectReturnBlock;
     feature = "block2"
 ))]
 pub use self::__UIAccessibility::AXPathReturnBlock;
-#[cfg(all(feature = "UIAccessibility", feature = "block2"))]
+#[cfg(all(
+    feature = "UIAccessibility",
+    feature = "block2",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__UIAccessibility::AXPointReturnBlock;
-#[cfg(all(feature = "UIAccessibility", feature = "block2"))]
+#[cfg(all(
+    feature = "UIAccessibility",
+    feature = "block2",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__UIAccessibility::AXRectReturnBlock;
 #[cfg(all(feature = "UIAccessibility", feature = "block2"))]
 pub use self::__UIAccessibility::AXStringArrayReturnBlock;
@@ -1736,7 +1744,8 @@ pub use self::__UIAccessibility::UIAccessibilityClosedCaptioningStatusDidChangeN
 #[cfg(all(
     feature = "UIAccessibility",
     feature = "UIResponder",
-    feature = "UIView"
+    feature = "UIView",
+    feature = "objc2-core-foundation"
 ))]
 pub use self::__UIAccessibility::UIAccessibilityConvertFrameToScreenCoordinates;
 #[cfg(all(
@@ -2007,7 +2016,8 @@ pub use self::__UIAccessibilityZoom::UIAccessibilityRegisterGestureConflictWithZ
 #[cfg(all(
     feature = "UIAccessibilityZoom",
     feature = "UIResponder",
-    feature = "UIView"
+    feature = "UIView",
+    feature = "objc2-core-foundation"
 ))]
 pub use self::__UIAccessibilityZoom::UIAccessibilityZoomFocusChanged;
 #[cfg(feature = "UIAccessibilityZoom")]
@@ -2308,13 +2318,13 @@ pub use self::__UIApplicationShortcutItem::UIMutableApplicationShortcutItem;
 pub use self::__UIAttachmentBehavior::UIAttachmentBehavior;
 #[cfg(feature = "UIAttachmentBehavior")]
 pub use self::__UIAttachmentBehavior::UIAttachmentBehaviorType;
-#[cfg(feature = "UIAttachmentBehavior")]
+#[cfg(all(feature = "UIAttachmentBehavior", feature = "objc2-core-foundation"))]
 pub use self::__UIAttachmentBehavior::UIFloatRange;
-#[cfg(feature = "UIAttachmentBehavior")]
+#[cfg(all(feature = "UIAttachmentBehavior", feature = "objc2-core-foundation"))]
 pub use self::__UIAttachmentBehavior::UIFloatRangeInfinite;
-#[cfg(feature = "UIAttachmentBehavior")]
+#[cfg(all(feature = "UIAttachmentBehavior", feature = "objc2-core-foundation"))]
 pub use self::__UIAttachmentBehavior::UIFloatRangeIsInfinite;
-#[cfg(feature = "UIAttachmentBehavior")]
+#[cfg(all(feature = "UIAttachmentBehavior", feature = "objc2-core-foundation"))]
 pub use self::__UIAttachmentBehavior::UIFloatRangeZero;
 #[cfg(feature = "UIBackgroundConfiguration")]
 pub use self::__UIBackgroundConfiguration::UIBackgroundConfiguration;
@@ -2470,7 +2480,7 @@ pub use self::__UICellAccessory::UICellAccessoryPositionAfterAccessoryOfClass;
 pub use self::__UICellAccessory::UICellAccessoryPositionBeforeAccessoryOfClass;
 #[cfg(feature = "UICellAccessory")]
 pub use self::__UICellAccessory::UICellAccessoryReorder;
-#[cfg(feature = "UICellAccessory")]
+#[cfg(all(feature = "UICellAccessory", feature = "objc2-core-foundation"))]
 pub use self::__UICellAccessory::UICellAccessoryStandardDimension;
 #[cfg(feature = "UICellConfigurationState")]
 pub use self::__UICellConfigurationState::UICellConfigurationDragState;
@@ -2604,7 +2614,8 @@ pub use self::__UICollectionViewCompositionalLayout::NSCollectionLayoutSection;
 #[cfg(all(
     feature = "UICollectionViewCompositionalLayout",
     feature = "UIDynamicBehavior",
-    feature = "block2"
+    feature = "block2",
+    feature = "objc2-core-foundation"
 ))]
 pub use self::__UICollectionViewCompositionalLayout::NSCollectionLayoutSectionVisibleItemsInvalidationHandler;
 #[cfg(feature = "UICollectionViewCompositionalLayout")]
@@ -2622,13 +2633,25 @@ pub use self::__UICollectionViewCompositionalLayout::NSCollectionLayoutVisibleIt
 pub use self::__UICollectionViewCompositionalLayout::UICollectionLayoutSectionOrthogonalScrollingBehavior;
 #[cfg(feature = "UICollectionViewCompositionalLayout")]
 pub use self::__UICollectionViewCompositionalLayout::UICollectionLayoutSectionOrthogonalScrollingBounce;
-#[cfg(feature = "UICollectionViewCompositionalLayout")]
+#[cfg(all(
+    feature = "UICollectionViewCompositionalLayout",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__UICollectionViewCompositionalLayout::UICollectionLayoutSectionOrthogonalScrollingDecelerationRate;
-#[cfg(feature = "UICollectionViewCompositionalLayout")]
+#[cfg(all(
+    feature = "UICollectionViewCompositionalLayout",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__UICollectionViewCompositionalLayout::UICollectionLayoutSectionOrthogonalScrollingDecelerationRateAutomatic;
-#[cfg(feature = "UICollectionViewCompositionalLayout")]
+#[cfg(all(
+    feature = "UICollectionViewCompositionalLayout",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__UICollectionViewCompositionalLayout::UICollectionLayoutSectionOrthogonalScrollingDecelerationRateFast;
-#[cfg(feature = "UICollectionViewCompositionalLayout")]
+#[cfg(all(
+    feature = "UICollectionViewCompositionalLayout",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__UICollectionViewCompositionalLayout::UICollectionLayoutSectionOrthogonalScrollingDecelerationRateNormal;
 #[cfg(feature = "UICollectionViewCompositionalLayout")]
 pub use self::__UICollectionViewCompositionalLayout::UICollectionLayoutSectionOrthogonalScrollingProperties;
@@ -2660,7 +2683,10 @@ pub use self::__UICollectionViewFlowLayout::UICollectionViewDelegateFlowLayout;
     feature = "UICollectionViewLayout"
 ))]
 pub use self::__UICollectionViewFlowLayout::UICollectionViewFlowLayout;
-#[cfg(feature = "UICollectionViewFlowLayout")]
+#[cfg(all(
+    feature = "UICollectionViewFlowLayout",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__UICollectionViewFlowLayout::UICollectionViewFlowLayoutAutomaticSize;
 #[cfg(all(
     feature = "UICollectionViewFlowLayout",
@@ -2699,7 +2725,7 @@ pub use self::__UICollectionViewLayout::UICollectionElementKindSectionHeader;
 pub use self::__UICollectionViewLayout::UICollectionViewLayout;
 #[cfg(feature = "UICollectionViewLayout")]
 pub use self::__UICollectionViewLayout::UICollectionViewLayoutAttributes;
-#[cfg(feature = "UICollectionViewLayout")]
+#[cfg(all(feature = "UICollectionViewLayout", feature = "objc2-core-foundation"))]
 pub use self::__UICollectionViewLayout::UICollectionViewLayoutAutomaticDimension;
 #[cfg(feature = "UICollectionViewLayout")]
 pub use self::__UICollectionViewLayout::UICollectionViewLayoutInvalidationContext;
@@ -3280,37 +3306,37 @@ pub use self::__UIFontDescriptor::UIFontTextStyleTitle1;
 pub use self::__UIFontDescriptor::UIFontTextStyleTitle2;
 #[cfg(feature = "UIFontDescriptor")]
 pub use self::__UIFontDescriptor::UIFontTextStyleTitle3;
-#[cfg(feature = "UIFontDescriptor")]
+#[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__UIFontDescriptor::UIFontWeight;
-#[cfg(feature = "UIFontDescriptor")]
+#[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__UIFontDescriptor::UIFontWeightBlack;
-#[cfg(feature = "UIFontDescriptor")]
+#[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__UIFontDescriptor::UIFontWeightBold;
-#[cfg(feature = "UIFontDescriptor")]
+#[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__UIFontDescriptor::UIFontWeightHeavy;
-#[cfg(feature = "UIFontDescriptor")]
+#[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__UIFontDescriptor::UIFontWeightLight;
-#[cfg(feature = "UIFontDescriptor")]
+#[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__UIFontDescriptor::UIFontWeightMedium;
-#[cfg(feature = "UIFontDescriptor")]
+#[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__UIFontDescriptor::UIFontWeightRegular;
-#[cfg(feature = "UIFontDescriptor")]
+#[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__UIFontDescriptor::UIFontWeightSemibold;
-#[cfg(feature = "UIFontDescriptor")]
+#[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__UIFontDescriptor::UIFontWeightThin;
 #[cfg(feature = "UIFontDescriptor")]
 pub use self::__UIFontDescriptor::UIFontWeightTrait;
-#[cfg(feature = "UIFontDescriptor")]
+#[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__UIFontDescriptor::UIFontWeightUltraLight;
-#[cfg(feature = "UIFontDescriptor")]
+#[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__UIFontDescriptor::UIFontWidth;
-#[cfg(feature = "UIFontDescriptor")]
+#[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__UIFontDescriptor::UIFontWidthCompressed;
-#[cfg(feature = "UIFontDescriptor")]
+#[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__UIFontDescriptor::UIFontWidthCondensed;
-#[cfg(feature = "UIFontDescriptor")]
+#[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__UIFontDescriptor::UIFontWidthExpanded;
-#[cfg(feature = "UIFontDescriptor")]
+#[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__UIFontDescriptor::UIFontWidthStandard;
 #[cfg(feature = "UIFontDescriptor")]
 pub use self::__UIFontDescriptor::UIFontWidthTrait;
@@ -3326,43 +3352,43 @@ pub use self::__UIFontPickerViewController::UIFontPickerViewController;
 pub use self::__UIFontPickerViewController::UIFontPickerViewControllerDelegate;
 #[cfg(feature = "UIFontPickerViewControllerConfiguration")]
 pub use self::__UIFontPickerViewControllerConfiguration::UIFontPickerViewControllerConfiguration;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::CGAffineTransformFromString;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::CGPointFromString;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::CGRectFromString;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::CGSizeFromString;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::CGVectorFromString;
 #[cfg(feature = "UIGeometry")]
 pub use self::__UIGeometry::NSCoderUIGeometryKeyedCoding;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::NSDirectionalEdgeInsets;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::NSDirectionalEdgeInsetsFromString;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::NSDirectionalEdgeInsetsZero;
 #[cfg(feature = "UIGeometry")]
 pub use self::__UIGeometry::NSDirectionalRectEdge;
 #[cfg(feature = "UIGeometry")]
 pub use self::__UIGeometry::NSRectAlignment;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::NSStringFromCGAffineTransform;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::NSStringFromCGPoint;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::NSStringFromCGRect;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::NSStringFromCGSize;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::NSStringFromCGVector;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::NSStringFromDirectionalEdgeInsets;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::NSStringFromUIEdgeInsets;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::NSStringFromUIOffset;
 #[cfg(feature = "UIGeometry")]
 pub use self::__UIGeometry::NSValueUIGeometryExtensions;
@@ -3370,17 +3396,17 @@ pub use self::__UIGeometry::NSValueUIGeometryExtensions;
 pub use self::__UIGeometry::UIAxis;
 #[cfg(feature = "UIGeometry")]
 pub use self::__UIGeometry::UIDirectionalRectEdge;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::UIEdgeInsets;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::UIEdgeInsetsFromString;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::UIEdgeInsetsZero;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::UIOffset;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::UIOffsetFromString;
-#[cfg(feature = "UIGeometry")]
+#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::UIOffsetZero;
 #[cfg(feature = "UIGeometry")]
 pub use self::__UIGeometry::UIRectCorner;
@@ -3392,19 +3418,19 @@ pub use self::__UIGestureRecognizer::UIGestureRecognizer;
 pub use self::__UIGestureRecognizer::UIGestureRecognizerDelegate;
 #[cfg(feature = "UIGestureRecognizer")]
 pub use self::__UIGestureRecognizer::UIGestureRecognizerState;
-#[cfg(feature = "UIGraphics")]
+#[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]
 pub use self::__UIGraphics::UIGraphicsAddPDFContextDestinationAtPoint;
-#[cfg(feature = "UIGraphics")]
+#[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]
 pub use self::__UIGraphics::UIGraphicsBeginImageContext;
-#[cfg(feature = "UIGraphics")]
+#[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]
 pub use self::__UIGraphics::UIGraphicsBeginImageContextWithOptions;
-#[cfg(feature = "UIGraphics")]
+#[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]
 pub use self::__UIGraphics::UIGraphicsBeginPDFContextToData;
-#[cfg(feature = "UIGraphics")]
+#[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]
 pub use self::__UIGraphics::UIGraphicsBeginPDFContextToFile;
 #[cfg(feature = "UIGraphics")]
 pub use self::__UIGraphics::UIGraphicsBeginPDFPage;
-#[cfg(feature = "UIGraphics")]
+#[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]
 pub use self::__UIGraphics::UIGraphicsBeginPDFPageWithInfo;
 #[cfg(feature = "UIGraphics")]
 pub use self::__UIGraphics::UIGraphicsEndImageContext;
@@ -3412,19 +3438,19 @@ pub use self::__UIGraphics::UIGraphicsEndImageContext;
 pub use self::__UIGraphics::UIGraphicsEndPDFContext;
 #[cfg(all(feature = "UIGraphics", feature = "UIImage"))]
 pub use self::__UIGraphics::UIGraphicsGetImageFromCurrentImageContext;
-#[cfg(feature = "UIGraphics")]
+#[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]
 pub use self::__UIGraphics::UIGraphicsGetPDFContextBounds;
 #[cfg(feature = "UIGraphics")]
 pub use self::__UIGraphics::UIGraphicsPopContext;
-#[cfg(feature = "UIGraphics")]
+#[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]
 pub use self::__UIGraphics::UIGraphicsSetPDFContextDestinationForRect;
-#[cfg(feature = "UIGraphics")]
+#[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]
 pub use self::__UIGraphics::UIGraphicsSetPDFContextURLForRect;
-#[cfg(feature = "UIGraphics")]
+#[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]
 pub use self::__UIGraphics::UIRectClip;
-#[cfg(feature = "UIGraphics")]
+#[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]
 pub use self::__UIGraphics::UIRectFill;
-#[cfg(feature = "UIGraphics")]
+#[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]
 pub use self::__UIGraphics::UIRectFrame;
 #[cfg(all(
     feature = "UIGraphicsImageRenderer",
@@ -3501,7 +3527,7 @@ pub use self::__UIImage::CIImageUIKitAdditions;
 pub use self::__UIImage::UIImage;
 #[cfg(feature = "UIImage")]
 pub use self::__UIImage::UIImageHEICRepresentation;
-#[cfg(feature = "UIImage")]
+#[cfg(all(feature = "UIImage", feature = "objc2-core-foundation"))]
 pub use self::__UIImage::UIImageJPEGRepresentation;
 #[cfg(feature = "UIImage")]
 pub use self::__UIImage::UIImageOrientation;
@@ -3568,7 +3594,11 @@ pub use self::__UIImagePickerController::UIVideoAtPathIsCompatibleWithSavedPhoto
 pub use self::__UIImageReader::UIImageReader;
 #[cfg(feature = "UIImageReader")]
 pub use self::__UIImageReader::UIImageReaderConfiguration;
-#[cfg(all(feature = "UIFontDescriptor", feature = "UIImageSymbolConfiguration"))]
+#[cfg(all(
+    feature = "UIFontDescriptor",
+    feature = "UIImageSymbolConfiguration",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__UIImageSymbolConfiguration::UIFontWeightForImageSymbolWeight;
 #[cfg(all(
     feature = "UIImageConfiguration",
@@ -3579,7 +3609,11 @@ pub use self::__UIImageSymbolConfiguration::UIImageSymbolConfiguration;
 pub use self::__UIImageSymbolConfiguration::UIImageSymbolScale;
 #[cfg(feature = "UIImageSymbolConfiguration")]
 pub use self::__UIImageSymbolConfiguration::UIImageSymbolWeight;
-#[cfg(all(feature = "UIFontDescriptor", feature = "UIImageSymbolConfiguration"))]
+#[cfg(all(
+    feature = "UIFontDescriptor",
+    feature = "UIImageSymbolConfiguration",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__UIImageSymbolConfiguration::UIImageSymbolWeightForFontWeight;
 #[cfg(all(feature = "UIImageView", feature = "UIResponder", feature = "UIView"))]
 pub use self::__UIImageView::UIImageView;
@@ -3643,7 +3677,7 @@ pub use self::__UIKey::UIKey;
     feature = "UIMenuElement"
 ))]
 pub use self::__UIKeyCommand::UIKeyCommand;
-#[cfg(feature = "UIKeyConstants")]
+#[cfg(all(feature = "UIKeyConstants", feature = "objc2-core-foundation"))]
 pub use self::__UIKeyConstants::UIKeyboardHIDUsage;
 #[cfg(all(
     feature = "UIKeyboardLayoutGuide",
@@ -3683,7 +3717,10 @@ pub use self::__UIListContentConfiguration::UIListContentConfiguration;
 pub use self::__UIListContentConfiguration::UIListContentView;
 #[cfg(feature = "UIListContentImageProperties")]
 pub use self::__UIListContentImageProperties::UIListContentImageProperties;
-#[cfg(feature = "UIListContentImageProperties")]
+#[cfg(all(
+    feature = "UIListContentImageProperties",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__UIListContentImageProperties::UIListContentImageStandardDimension;
 #[cfg(feature = "UIListContentTextProperties")]
 pub use self::__UIListContentTextProperties::UIListContentTextAlignment;
@@ -3691,7 +3728,11 @@ pub use self::__UIListContentTextProperties::UIListContentTextAlignment;
 pub use self::__UIListContentTextProperties::UIListContentTextProperties;
 #[cfg(feature = "UIListContentTextProperties")]
 pub use self::__UIListContentTextProperties::UIListContentTextTransform;
-#[cfg(all(feature = "UIGeometry", feature = "UIListSeparatorConfiguration"))]
+#[cfg(all(
+    feature = "UIGeometry",
+    feature = "UIListSeparatorConfiguration",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__UIListSeparatorConfiguration::UIListSeparatorAutomaticInsets;
 #[cfg(feature = "UIListSeparatorConfiguration")]
 pub use self::__UIListSeparatorConfiguration::UIListSeparatorConfiguration;
@@ -3872,7 +3913,7 @@ pub use self::__UINavigationBarAppearance::UINavigationBarAppearance;
 pub use self::__UINavigationController::UINavigationController;
 #[cfg(feature = "UINavigationController")]
 pub use self::__UINavigationController::UINavigationControllerDelegate;
-#[cfg(feature = "UINavigationController")]
+#[cfg(all(feature = "UINavigationController", feature = "objc2-core-foundation"))]
 pub use self::__UINavigationController::UINavigationControllerHideShowBarDuration;
 #[cfg(feature = "UINavigationController")]
 pub use self::__UINavigationController::UINavigationControllerOperation;
@@ -4057,23 +4098,23 @@ pub use self::__UIPickerView::UIPickerViewDelegate;
 pub use self::__UIPinchGestureRecognizer::UIPinchGestureRecognizer;
 #[cfg(feature = "UIPointerAccessory")]
 pub use self::__UIPointerAccessory::UIPointerAccessory;
-#[cfg(feature = "UIPointerAccessory")]
+#[cfg(all(feature = "UIPointerAccessory", feature = "objc2-core-foundation"))]
 pub use self::__UIPointerAccessory::UIPointerAccessoryPosition;
-#[cfg(feature = "UIPointerAccessory")]
+#[cfg(all(feature = "UIPointerAccessory", feature = "objc2-core-foundation"))]
 pub use self::__UIPointerAccessory::UIPointerAccessoryPositionBottom;
-#[cfg(feature = "UIPointerAccessory")]
+#[cfg(all(feature = "UIPointerAccessory", feature = "objc2-core-foundation"))]
 pub use self::__UIPointerAccessory::UIPointerAccessoryPositionBottomLeft;
-#[cfg(feature = "UIPointerAccessory")]
+#[cfg(all(feature = "UIPointerAccessory", feature = "objc2-core-foundation"))]
 pub use self::__UIPointerAccessory::UIPointerAccessoryPositionBottomRight;
-#[cfg(feature = "UIPointerAccessory")]
+#[cfg(all(feature = "UIPointerAccessory", feature = "objc2-core-foundation"))]
 pub use self::__UIPointerAccessory::UIPointerAccessoryPositionLeft;
-#[cfg(feature = "UIPointerAccessory")]
+#[cfg(all(feature = "UIPointerAccessory", feature = "objc2-core-foundation"))]
 pub use self::__UIPointerAccessory::UIPointerAccessoryPositionRight;
-#[cfg(feature = "UIPointerAccessory")]
+#[cfg(all(feature = "UIPointerAccessory", feature = "objc2-core-foundation"))]
 pub use self::__UIPointerAccessory::UIPointerAccessoryPositionTop;
-#[cfg(feature = "UIPointerAccessory")]
+#[cfg(all(feature = "UIPointerAccessory", feature = "objc2-core-foundation"))]
 pub use self::__UIPointerAccessory::UIPointerAccessoryPositionTopLeft;
-#[cfg(feature = "UIPointerAccessory")]
+#[cfg(all(feature = "UIPointerAccessory", feature = "objc2-core-foundation"))]
 pub use self::__UIPointerAccessory::UIPointerAccessoryPositionTopRight;
 #[cfg(feature = "UIPointerInteraction")]
 pub use self::__UIPointerInteraction::UIPointerInteraction;
@@ -4373,11 +4414,11 @@ pub use self::__UIScribbleInteraction::UIScribbleInteractionDelegate;
 pub use self::__UIScrollView::UIScrollView;
 #[cfg(feature = "UIScrollView")]
 pub use self::__UIScrollView::UIScrollViewContentInsetAdjustmentBehavior;
-#[cfg(feature = "UIScrollView")]
+#[cfg(all(feature = "UIScrollView", feature = "objc2-core-foundation"))]
 pub use self::__UIScrollView::UIScrollViewDecelerationRate;
-#[cfg(feature = "UIScrollView")]
+#[cfg(all(feature = "UIScrollView", feature = "objc2-core-foundation"))]
 pub use self::__UIScrollView::UIScrollViewDecelerationRateFast;
-#[cfg(feature = "UIScrollView")]
+#[cfg(all(feature = "UIScrollView", feature = "objc2-core-foundation"))]
 pub use self::__UIScrollView::UIScrollViewDecelerationRateNormal;
 #[cfg(feature = "UIScrollView")]
 pub use self::__UIScrollView::UIScrollViewDelegate;
@@ -4474,7 +4515,10 @@ pub use self::__UIShape::UIShapeResolutionContext;
     feature = "UISheetPresentationController"
 ))]
 pub use self::__UISheetPresentationController::UISheetPresentationController;
-#[cfg(feature = "UISheetPresentationController")]
+#[cfg(all(
+    feature = "UISheetPresentationController",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__UISheetPresentationController::UISheetPresentationControllerAutomaticDimension;
 #[cfg(all(
     feature = "UIPresentationController",
@@ -4489,7 +4533,10 @@ pub use self::__UISheetPresentationController::UISheetPresentationControllerDete
 pub use self::__UISheetPresentationController::UISheetPresentationControllerDetentIdentifierLarge;
 #[cfg(feature = "UISheetPresentationController")]
 pub use self::__UISheetPresentationController::UISheetPresentationControllerDetentIdentifierMedium;
-#[cfg(feature = "UISheetPresentationController")]
+#[cfg(all(
+    feature = "UISheetPresentationController",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__UISheetPresentationController::UISheetPresentationControllerDetentInactive;
 #[cfg(feature = "UISheetPresentationController")]
 pub use self::__UISheetPresentationController::UISheetPresentationControllerDetentResolutionContext;
@@ -4508,7 +4555,7 @@ pub use self::__UISnapBehavior::UISnapBehavior;
     feature = "UIViewController"
 ))]
 pub use self::__UISplitViewController::UISplitViewController;
-#[cfg(feature = "UISplitViewController")]
+#[cfg(all(feature = "UISplitViewController", feature = "objc2-core-foundation"))]
 pub use self::__UISplitViewController::UISplitViewControllerAutomaticDimension;
 #[cfg(feature = "UISplitViewController")]
 pub use self::__UISplitViewController::UISplitViewControllerBackgroundStyle;
@@ -4544,9 +4591,9 @@ pub use self::__UIStackView::UIStackView;
 pub use self::__UIStackView::UIStackViewAlignment;
 #[cfg(feature = "UIStackView")]
 pub use self::__UIStackView::UIStackViewDistribution;
-#[cfg(feature = "UIStackView")]
+#[cfg(all(feature = "UIStackView", feature = "objc2-core-foundation"))]
 pub use self::__UIStackView::UIStackViewSpacingUseDefault;
-#[cfg(feature = "UIStackView")]
+#[cfg(all(feature = "UIStackView", feature = "objc2-core-foundation"))]
 pub use self::__UIStackView::UIStackViewSpacingUseSystem;
 #[cfg(all(
     feature = "UIResponder",
@@ -4686,7 +4733,7 @@ pub use self::__UITabSidebarItem::UITabSidebarItemRequest;
     feature = "UIView"
 ))]
 pub use self::__UITableView::UITableView;
-#[cfg(feature = "UITableView")]
+#[cfg(all(feature = "UITableView", feature = "objc2-core-foundation"))]
 pub use self::__UITableView::UITableViewAutomaticDimension;
 #[cfg(feature = "UITableView")]
 pub use self::__UITableView::UITableViewContentHuggingElements;
@@ -5371,9 +5418,9 @@ pub use self::__UIVideoEditorController::UIVideoEditorControllerDelegate;
 pub use self::__UIView::UICoordinateSpace;
 #[cfg(feature = "UIView")]
 pub use self::__UIView::UILayoutConstraintAxis;
-#[cfg(feature = "UIView")]
+#[cfg(all(feature = "UIView", feature = "objc2-core-foundation"))]
 pub use self::__UIView::UILayoutFittingCompressedSize;
-#[cfg(feature = "UIView")]
+#[cfg(all(feature = "UIView", feature = "objc2-core-foundation"))]
 pub use self::__UIView::UILayoutFittingExpandedSize;
 #[cfg(feature = "UIView")]
 pub use self::__UIView::UISemanticContentAttribute;
@@ -5393,7 +5440,7 @@ pub use self::__UIView::UIViewAutoresizing;
 pub use self::__UIView::UIViewContentMode;
 #[cfg(feature = "UIView")]
 pub use self::__UIView::UIViewKeyframeAnimationOptions;
-#[cfg(feature = "UIView")]
+#[cfg(all(feature = "UIView", feature = "objc2-core-foundation"))]
 pub use self::__UIView::UIViewNoIntrinsicMetric;
 #[cfg(feature = "UIView")]
 pub use self::__UIView::UIViewTintAdjustmentMode;
@@ -5535,13 +5582,13 @@ pub use self::__UIWindow::UIWindowDidBecomeKeyNotification;
 pub use self::__UIWindow::UIWindowDidBecomeVisibleNotification;
 #[cfg(feature = "UIWindow")]
 pub use self::__UIWindow::UIWindowDidResignKeyNotification;
-#[cfg(feature = "UIWindow")]
+#[cfg(all(feature = "UIWindow", feature = "objc2-core-foundation"))]
 pub use self::__UIWindow::UIWindowLevel;
-#[cfg(feature = "UIWindow")]
+#[cfg(all(feature = "UIWindow", feature = "objc2-core-foundation"))]
 pub use self::__UIWindow::UIWindowLevelAlert;
-#[cfg(feature = "UIWindow")]
+#[cfg(all(feature = "UIWindow", feature = "objc2-core-foundation"))]
 pub use self::__UIWindow::UIWindowLevelNormal;
-#[cfg(feature = "UIWindow")]
+#[cfg(all(feature = "UIWindow", feature = "objc2-core-foundation"))]
 pub use self::__UIWindow::UIWindowLevelStatusBar;
 #[cfg(feature = "UIWindowScene")]
 pub use self::__UIWindowScene::UISceneSizeRestrictions;
@@ -5586,7 +5633,8 @@ pub use self::__UIWindowSceneActivationInteraction::UIWindowSceneActivationInter
 #[cfg(all(
     feature = "UIWindowSceneActivationConfiguration",
     feature = "UIWindowSceneActivationInteraction",
-    feature = "block2"
+    feature = "block2",
+    feature = "objc2-core-foundation"
 ))]
 pub use self::__UIWindowSceneActivationInteraction::UIWindowSceneActivationInteractionConfigurationProvider;
 #[cfg(all(
@@ -5614,7 +5662,10 @@ pub use self::__UIWindowSceneGeometryPreferencesIOS::UIWindowSceneGeometryPrefer
     feature = "UIWindowSceneGeometryPreferencesMac"
 ))]
 pub use self::__UIWindowSceneGeometryPreferencesMac::UIWindowSceneGeometryPreferencesMac;
-#[cfg(feature = "UIWindowSceneGeometryPreferencesVision")]
+#[cfg(all(
+    feature = "UIWindowSceneGeometryPreferencesVision",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__UIWindowSceneGeometryPreferencesVision::UIProposedSceneSizeNoPreference;
 #[cfg(all(
     feature = "UIWindowSceneGeometryPreferences",

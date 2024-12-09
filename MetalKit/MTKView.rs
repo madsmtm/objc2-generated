@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 use objc2_metal::*;
 #[cfg(feature = "objc2-quartz-core")]
@@ -61,6 +63,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MTKView {
+        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:device:)]
         pub unsafe fn initWithFrame_device(
             this: Allocated<Self>,
@@ -198,12 +201,15 @@ extern_methods!(
         #[method(setAutoResizeDrawable:)]
         pub unsafe fn setAutoResizeDrawable(&self, auto_resize_drawable: bool);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawableSize)]
         pub unsafe fn drawableSize(&self) -> CGSize;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setDrawableSize:)]
         pub unsafe fn setDrawableSize(&self, drawable_size: CGSize);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(preferredDrawableSize)]
         pub unsafe fn preferredDrawableSize(&self) -> CGSize;
 
@@ -226,6 +232,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MTKView {
+        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }
@@ -254,7 +261,7 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkviewdelegate?language=objc)
     pub unsafe trait MTKViewDelegate: NSObjectProtocol + MainThreadOnly {
-        #[cfg(feature = "objc2-app-kit")]
+        #[cfg(all(feature = "objc2-app-kit", feature = "objc2-core-foundation"))]
         #[cfg(target_os = "macos")]
         #[method(mtkView:drawableSizeWillChange:)]
         unsafe fn mtkView_drawableSizeWillChange(&self, view: &MTKView, size: CGSize);

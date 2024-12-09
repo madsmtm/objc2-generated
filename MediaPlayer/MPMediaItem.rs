@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -415,7 +417,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(all(
+            feature = "block2",
+            feature = "objc2-app-kit",
+            feature = "objc2-core-foundation"
+        ))]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Init initWithBoundsSize:requestHandler:)]
         pub unsafe fn initWithBoundsSize_requestHandler(
@@ -424,14 +430,16 @@ extern_methods!(
             request_handler: &block2::Block<dyn Fn(CGSize) -> NonNull<NSImage>>,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "objc2-app-kit")]
+        #[cfg(all(feature = "objc2-app-kit", feature = "objc2-core-foundation"))]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other imageWithSize:)]
         pub unsafe fn imageWithSize(&self, size: CGSize) -> Option<Retained<NSImage>>;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(bounds)]
         pub unsafe fn bounds(&self) -> CGRect;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "cropRect is no longer used"]
         #[method(imageCropRect)]
         pub unsafe fn imageCropRect(&self) -> CGRect;

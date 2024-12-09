@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -336,14 +338,22 @@ extern_protocol!(
         #[method(webView:setResizable:)]
         unsafe fn webView_setResizable(&self, sender: Option<&WebView>, resizable: bool);
 
-        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(all(
+            feature = "WebView",
+            feature = "objc2-app-kit",
+            feature = "objc2-core-foundation"
+        ))]
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:setFrame:)]
         unsafe fn webView_setFrame(&self, sender: Option<&WebView>, frame: NSRect);
 
-        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(all(
+            feature = "WebView",
+            feature = "objc2-app-kit",
+            feature = "objc2-core-foundation"
+        ))]
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
@@ -492,7 +502,11 @@ extern_protocol!(
             dragging_info: Option<&ProtocolObject<dyn NSDraggingInfo>>,
         );
 
-        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(all(
+            feature = "WebView",
+            feature = "objc2-app-kit",
+            feature = "objc2-core-foundation"
+        ))]
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
@@ -503,7 +517,11 @@ extern_protocol!(
             point: NSPoint,
         ) -> NSUInteger;
 
-        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(all(
+            feature = "WebView",
+            feature = "objc2-app-kit",
+            feature = "objc2-core-foundation"
+        ))]
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
@@ -545,14 +563,22 @@ extern_protocol!(
         #[method(webViewFooterHeight:)]
         unsafe fn webViewFooterHeight(&self, sender: Option<&WebView>) -> c_float;
 
-        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(all(
+            feature = "WebView",
+            feature = "objc2-app-kit",
+            feature = "objc2-core-foundation"
+        ))]
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:drawHeaderInRect:)]
         unsafe fn webView_drawHeaderInRect(&self, sender: Option<&WebView>, rect: NSRect);
 
-        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(all(
+            feature = "WebView",
+            feature = "objc2-app-kit",
+            feature = "objc2-core-foundation"
+        ))]
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
@@ -593,14 +619,22 @@ extern_protocol!(
             default_text: Option<&NSString>,
         ) -> Option<Retained<NSString>>;
 
-        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(all(
+            feature = "WebView",
+            feature = "objc2-app-kit",
+            feature = "objc2-core-foundation"
+        ))]
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:setContentRect:)]
         unsafe fn webView_setContentRect(&self, sender: Option<&WebView>, frame: NSRect);
 
-        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(all(
+            feature = "WebView",
+            feature = "objc2-app-kit",
+            feature = "objc2-core-foundation"
+        ))]
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]

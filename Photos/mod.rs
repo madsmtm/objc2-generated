@@ -195,7 +195,7 @@ pub use self::__PHImageManager::PHImageCancelledKey;
 pub use self::__PHImageManager::PHImageErrorKey;
 #[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHImageManager;
-#[cfg(feature = "PHImageManager")]
+#[cfg(all(feature = "PHImageManager", feature = "objc2-core-foundation"))]
 pub use self::__PHImageManager::PHImageManagerMaximumSize;
 #[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHImageRequestID;

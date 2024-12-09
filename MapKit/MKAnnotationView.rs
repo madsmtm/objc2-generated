@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -172,33 +174,43 @@ extern_methods!(
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(centerOffset)]
         pub unsafe fn centerOffset(&self) -> CGPoint;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setCenterOffset:)]
         pub unsafe fn setCenterOffset(&self, center_offset: CGPoint);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(accessoryOffset)]
         pub unsafe fn accessoryOffset(&self) -> CGPoint;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setAccessoryOffset:)]
         pub unsafe fn setAccessoryOffset(&self, accessory_offset: CGPoint);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(calloutOffset)]
         pub unsafe fn calloutOffset(&self) -> CGPoint;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setCalloutOffset:)]
         pub unsafe fn setCalloutOffset(&self, callout_offset: CGPoint);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(leftCalloutOffset)]
         pub unsafe fn leftCalloutOffset(&self) -> CGPoint;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setLeftCalloutOffset:)]
         pub unsafe fn setLeftCalloutOffset(&self, left_callout_offset: CGPoint);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(rightCalloutOffset)]
         pub unsafe fn rightCalloutOffset(&self) -> CGPoint;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setRightCalloutOffset:)]
         pub unsafe fn setRightCalloutOffset(&self, right_callout_offset: CGPoint);
 
@@ -315,6 +327,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKAnnotationView {
+        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }

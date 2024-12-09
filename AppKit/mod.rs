@@ -919,13 +919,15 @@ pub use self::__NSAccessibility::NSAccessibilityActionDescription;
 #[cfg(all(
     feature = "NSAccessibility",
     feature = "NSResponder",
-    feature = "NSView"
+    feature = "NSView",
+    feature = "objc2-core-foundation"
 ))]
 pub use self::__NSAccessibility::NSAccessibilityFrameInView;
 #[cfg(all(
     feature = "NSAccessibility",
     feature = "NSResponder",
-    feature = "NSView"
+    feature = "NSView",
+    feature = "objc2-core-foundation"
 ))]
 pub use self::__NSAccessibility::NSAccessibilityPointInView;
 #[cfg(all(feature = "NSAccessibility", feature = "NSAccessibilityConstants"))]
@@ -2594,9 +2596,19 @@ pub use self::__NSCell::NSControlTint;
 pub use self::__NSCell::NSControlTintDidChangeNotification;
 #[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSDoubleType;
-#[cfg(all(feature = "NSCell", feature = "NSGraphics", feature = "NSImage"))]
+#[cfg(all(
+    feature = "NSCell",
+    feature = "NSGraphics",
+    feature = "NSImage",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__NSCell::NSDrawNinePartImage;
-#[cfg(all(feature = "NSCell", feature = "NSGraphics", feature = "NSImage"))]
+#[cfg(all(
+    feature = "NSCell",
+    feature = "NSGraphics",
+    feature = "NSImage",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__NSCell::NSDrawThreePartImage;
 #[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSFloatType;
@@ -2692,7 +2704,11 @@ pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutItem;
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutSection;
 #[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutSectionOrthogonalScrollingBehavior;
-#[cfg(all(feature = "NSCollectionViewCompositionalLayout", feature = "block2"))]
+#[cfg(all(
+    feature = "NSCollectionViewCompositionalLayout",
+    feature = "block2",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutSectionVisibleItemsInvalidationHandler;
 #[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutSize;
@@ -2711,9 +2727,15 @@ pub use self::__NSCollectionViewCompositionalLayout::NSCollectionViewComposition
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionViewCompositionalLayoutConfiguration;
 #[cfg(all(feature = "NSCollectionViewCompositionalLayout", feature = "block2"))]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionViewCompositionalLayoutSectionProvider;
-#[cfg(feature = "NSCollectionViewCompositionalLayout")]
+#[cfg(all(
+    feature = "NSCollectionViewCompositionalLayout",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__NSCollectionViewCompositionalLayout::NSDirectionalEdgeInsets;
-#[cfg(feature = "NSCollectionViewCompositionalLayout")]
+#[cfg(all(
+    feature = "NSCollectionViewCompositionalLayout",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__NSCollectionViewCompositionalLayout::NSDirectionalEdgeInsetsZero;
 #[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSDirectionalRectEdge;
@@ -3455,7 +3477,7 @@ pub use self::__NSFont::NSControlGlyph;
 pub use self::__NSFont::NSConvertGlyphsToPackedGlyphs;
 #[cfg(feature = "NSFont")]
 pub use self::__NSFont::NSFont;
-#[cfg(feature = "NSFont")]
+#[cfg(all(feature = "NSFont", feature = "objc2-core-foundation"))]
 pub use self::__NSFont::NSFontIdentityMatrix;
 #[cfg(feature = "NSFont")]
 pub use self::__NSFont::NSFontRenderingMode;
@@ -3649,37 +3671,37 @@ pub use self::__NSFontDescriptor::NSFontVariationAxisNameKey;
 pub use self::__NSFontDescriptor::NSFontVerticalTrait;
 #[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontVisibleNameAttribute;
-#[cfg(feature = "NSFontDescriptor")]
+#[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__NSFontDescriptor::NSFontWeight;
-#[cfg(feature = "NSFontDescriptor")]
+#[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__NSFontDescriptor::NSFontWeightBlack;
-#[cfg(feature = "NSFontDescriptor")]
+#[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__NSFontDescriptor::NSFontWeightBold;
-#[cfg(feature = "NSFontDescriptor")]
+#[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__NSFontDescriptor::NSFontWeightHeavy;
-#[cfg(feature = "NSFontDescriptor")]
+#[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__NSFontDescriptor::NSFontWeightLight;
-#[cfg(feature = "NSFontDescriptor")]
+#[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__NSFontDescriptor::NSFontWeightMedium;
-#[cfg(feature = "NSFontDescriptor")]
+#[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__NSFontDescriptor::NSFontWeightRegular;
-#[cfg(feature = "NSFontDescriptor")]
+#[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__NSFontDescriptor::NSFontWeightSemibold;
-#[cfg(feature = "NSFontDescriptor")]
+#[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__NSFontDescriptor::NSFontWeightThin;
 #[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWeightTrait;
-#[cfg(feature = "NSFontDescriptor")]
+#[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__NSFontDescriptor::NSFontWeightUltraLight;
-#[cfg(feature = "NSFontDescriptor")]
+#[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__NSFontDescriptor::NSFontWidth;
-#[cfg(feature = "NSFontDescriptor")]
+#[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__NSFontDescriptor::NSFontWidthCompressed;
-#[cfg(feature = "NSFontDescriptor")]
+#[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__NSFontDescriptor::NSFontWidthCondensed;
-#[cfg(feature = "NSFontDescriptor")]
+#[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__NSFontDescriptor::NSFontWidthExpanded;
-#[cfg(feature = "NSFontDescriptor")]
+#[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
 pub use self::__NSFontDescriptor::NSFontWidthStandard;
 #[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWidthTrait;
@@ -3786,7 +3808,7 @@ pub use self::__NSGraphics::NSBestDepth;
 pub use self::__NSGraphics::NSBitsPerPixelFromDepth;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSBitsPerSampleFromDepth;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSBlack;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCalibratedBlackColorSpace;
@@ -3860,7 +3882,7 @@ pub use self::__NSGraphics::NSCompositeSourceOver;
 pub use self::__NSGraphics::NSCompositeXOR;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositingOperation;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSCopyBits;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCountWindows;
@@ -3868,7 +3890,7 @@ pub use self::__NSGraphics::NSCountWindows;
 pub use self::__NSGraphics::NSCountWindowsForContext;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCustomColorSpace;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSDarkGray;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDeviceBitsPerSample;
@@ -3896,45 +3918,49 @@ pub use self::__NSGraphics::NSDeviceWhiteColorSpace;
 pub use self::__NSGraphics::NSDisableScreenUpdates;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDisplayGamut;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSDottedFrameRect;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSDrawButton;
-#[cfg(all(feature = "NSColor", feature = "NSGraphics"))]
+#[cfg(all(
+    feature = "NSColor",
+    feature = "NSGraphics",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__NSGraphics::NSDrawColorTiledRects;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSDrawDarkBezel;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSDrawGrayBezel;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSDrawGroove;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSDrawLightBezel;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSDrawTiledRects;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSDrawWhiteBezel;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSDrawWindowBackground;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSEnableScreenUpdates;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSEraseRect;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSFocusRingPlacement;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSFocusRingType;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSFrameRect;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSFrameRectWithWidth;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSFrameRectWithWidthUsingOperation;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSGetWindowServerMemory;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSHighlightRect;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSLightGray;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSNamedColorSpace;
@@ -3944,31 +3970,43 @@ pub use self::__NSGraphics::NSNumberOfColorComponents;
 pub use self::__NSGraphics::NSPatternColorSpace;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSPlanarFromDepth;
-#[cfg(all(feature = "NSColor", feature = "NSGraphics"))]
+#[cfg(all(
+    feature = "NSColor",
+    feature = "NSGraphics",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__NSGraphics::NSReadPixel;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSRectClip;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSRectClipList;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSRectFill;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSRectFillList;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSRectFillListUsingOperation;
-#[cfg(all(feature = "NSColor", feature = "NSGraphics"))]
+#[cfg(all(
+    feature = "NSColor",
+    feature = "NSGraphics",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__NSGraphics::NSRectFillListWithColors;
-#[cfg(all(feature = "NSColor", feature = "NSGraphics"))]
+#[cfg(all(
+    feature = "NSColor",
+    feature = "NSGraphics",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__NSGraphics::NSRectFillListWithColorsUsingOperation;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSRectFillListWithGrays;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSRectFillUsingOperation;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSSetFocusRingStyle;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSShowAnimationEffect;
-#[cfg(feature = "NSGraphics")]
+#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSWhite;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSWindowDepth;
@@ -4006,7 +4044,7 @@ pub use self::__NSGridView::NSGridRow;
 pub use self::__NSGridView::NSGridRowAlignment;
 #[cfg(all(feature = "NSGridView", feature = "NSResponder", feature = "NSView"))]
 pub use self::__NSGridView::NSGridView;
-#[cfg(feature = "NSGridView")]
+#[cfg(all(feature = "NSGridView", feature = "objc2-core-foundation"))]
 pub use self::__NSGridView::NSGridViewSizeForContent;
 #[cfg(all(feature = "NSGroupTouchBarItem", feature = "NSTouchBarItem"))]
 pub use self::__NSGroupTouchBarItem::NSGroupTouchBarItem;
@@ -4663,9 +4701,9 @@ pub use self::__NSLayoutConstraint::NSLayoutPriorityRequired;
 pub use self::__NSLayoutConstraint::NSLayoutPriorityWindowSizeStayPut;
 #[cfg(feature = "NSLayoutConstraint")]
 pub use self::__NSLayoutConstraint::NSLayoutRelation;
-#[cfg(feature = "NSLayoutConstraint")]
+#[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
 pub use self::__NSLayoutConstraint::NSViewNoInstrinsicMetric;
-#[cfg(feature = "NSLayoutConstraint")]
+#[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
 pub use self::__NSLayoutConstraint::NSViewNoIntrinsicMetric;
 #[cfg(feature = "NSLayoutGuide")]
 pub use self::__NSLayoutGuide::NSLayoutGuide;
@@ -5743,11 +5781,11 @@ pub use self::__NSSliderCell::NSTickMarkLeft;
 pub use self::__NSSliderCell::NSTickMarkPosition;
 #[cfg(feature = "NSSliderCell")]
 pub use self::__NSSliderCell::NSTickMarkRight;
-#[cfg(feature = "NSSliderTouchBarItem")]
+#[cfg(all(feature = "NSSliderTouchBarItem", feature = "objc2-core-foundation"))]
 pub use self::__NSSliderTouchBarItem::NSSliderAccessoryWidth;
-#[cfg(feature = "NSSliderTouchBarItem")]
+#[cfg(all(feature = "NSSliderTouchBarItem", feature = "objc2-core-foundation"))]
 pub use self::__NSSliderTouchBarItem::NSSliderAccessoryWidthDefault;
-#[cfg(feature = "NSSliderTouchBarItem")]
+#[cfg(all(feature = "NSSliderTouchBarItem", feature = "objc2-core-foundation"))]
 pub use self::__NSSliderTouchBarItem::NSSliderAccessoryWidthWide;
 #[cfg(all(feature = "NSSliderTouchBarItem", feature = "NSTouchBarItem"))]
 pub use self::__NSSliderTouchBarItem::NSSliderTouchBarItem;
@@ -5977,7 +6015,7 @@ pub use self::__NSSplitView::NSSplitViewWillResizeSubviewsNotification;
     feature = "NSViewController"
 ))]
 pub use self::__NSSplitViewController::NSSplitViewController;
-#[cfg(feature = "NSSplitViewController")]
+#[cfg(all(feature = "NSSplitViewController", feature = "objc2-core-foundation"))]
 pub use self::__NSSplitViewController::NSSplitViewControllerAutomaticDimension;
 #[cfg(feature = "NSSplitViewItem")]
 pub use self::__NSSplitViewItem::NSSplitViewItem;
@@ -5985,7 +6023,7 @@ pub use self::__NSSplitViewItem::NSSplitViewItem;
 pub use self::__NSSplitViewItem::NSSplitViewItemBehavior;
 #[cfg(feature = "NSSplitViewItem")]
 pub use self::__NSSplitViewItem::NSSplitViewItemCollapseBehavior;
-#[cfg(feature = "NSSplitViewItem")]
+#[cfg(all(feature = "NSSplitViewItem", feature = "objc2-core-foundation"))]
 pub use self::__NSSplitViewItem::NSSplitViewItemUnspecifiedDimension;
 #[cfg(all(feature = "NSResponder", feature = "NSStackView", feature = "NSView"))]
 pub use self::__NSStackView::NSStackView;
@@ -5995,7 +6033,7 @@ pub use self::__NSStackView::NSStackViewDelegate;
 pub use self::__NSStackView::NSStackViewDistribution;
 #[cfg(feature = "NSStackView")]
 pub use self::__NSStackView::NSStackViewGravity;
-#[cfg(feature = "NSStackView")]
+#[cfg(all(feature = "NSStackView", feature = "objc2-core-foundation"))]
 pub use self::__NSStackView::NSStackViewSpacingUseDefault;
 #[cfg(feature = "NSStackView")]
 pub use self::__NSStackView::NSStackViewVisibilityPriority;
@@ -6005,11 +6043,11 @@ pub use self::__NSStackView::NSStackViewVisibilityPriorityDetachOnlyIfNecessary;
 pub use self::__NSStackView::NSStackViewVisibilityPriorityMustHold;
 #[cfg(feature = "NSStackView")]
 pub use self::__NSStackView::NSStackViewVisibilityPriorityNotVisible;
-#[cfg(feature = "NSStatusBar")]
+#[cfg(all(feature = "NSStatusBar", feature = "objc2-core-foundation"))]
 pub use self::__NSStatusBar::NSSquareStatusItemLength;
 #[cfg(feature = "NSStatusBar")]
 pub use self::__NSStatusBar::NSStatusBar;
-#[cfg(feature = "NSStatusBar")]
+#[cfg(all(feature = "NSStatusBar", feature = "objc2-core-foundation"))]
 pub use self::__NSStatusBar::NSVariableStatusItemLength;
 #[cfg(all(
     feature = "NSButton",

@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -161,6 +163,7 @@ extern_methods!(
         #[method(registerURLSchemeAsLocal:)]
         pub unsafe fn registerURLSchemeAsLocal(scheme: Option<&NSString>, mtm: MainThreadMarker);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Init initWithFrame:frameName:groupName:)]
         pub unsafe fn initWithFrame_frameName_groupName(
@@ -411,6 +414,7 @@ extern_methods!(
         #[method(isLoading)]
         pub unsafe fn isLoading(&self) -> bool;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other elementAtPoint:)]
         pub unsafe fn elementAtPoint(&self, point: NSPoint) -> Option<Retained<NSDictionary>>;
@@ -443,6 +447,7 @@ extern_methods!(
             pasteboard: Option<&NSPasteboard>,
         );
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(moveDragCaretToPoint:)]
         pub unsafe fn moveDragCaretToPoint(&self, point: NSPoint);
@@ -500,6 +505,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl WebView {
+        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
@@ -661,7 +667,8 @@ extern_methods!(
         #[cfg(all(
             feature = "DOMObject",
             feature = "DOMRange",
-            feature = "WebScriptObject"
+            feature = "WebScriptObject",
+            feature = "objc2-core-foundation"
         ))]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other editableDOMRangeForPoint:)]

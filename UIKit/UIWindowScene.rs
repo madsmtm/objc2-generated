@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-cloud-kit")]
 use objc2_cloud_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -292,15 +294,19 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(minimumSize)]
         pub unsafe fn minimumSize(&self) -> CGSize;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setMinimumSize:)]
         pub unsafe fn setMinimumSize(&self, minimum_size: CGSize);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(maximumSize)]
         pub unsafe fn maximumSize(&self) -> CGSize;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setMaximumSize:)]
         pub unsafe fn setMaximumSize(&self, maximum_size: CGSize);
 

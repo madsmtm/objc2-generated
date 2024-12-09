@@ -374,7 +374,7 @@ pub use self::__MKGeometry::MKMapSizeWorld;
 pub use self::__MKGeometry::MKMetersBetweenMapPoints;
 #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
 pub use self::__MKGeometry::MKMetersPerMapPointAtLatitude;
-#[cfg(feature = "MKGeometry")]
+#[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]
 pub use self::__MKGeometry::MKZoomScale;
 #[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::NSValueMapKitGeometryExtensions;
@@ -540,7 +540,11 @@ pub use self::__MKOverlay::MKOverlay;
 pub use self::__MKOverlayPathRenderer::MKOverlayPathRenderer;
 #[cfg(feature = "MKOverlayRenderer")]
 pub use self::__MKOverlayRenderer::MKOverlayRenderer;
-#[cfg(all(feature = "MKGeometry", feature = "MKOverlayRenderer"))]
+#[cfg(all(
+    feature = "MKGeometry",
+    feature = "MKOverlayRenderer",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__MKOverlayRenderer::MKRoadWidthAtZoomScale;
 #[cfg(feature = "MKPinAnnotationView")]
 pub use self::__MKPinAnnotationView::MKPinAnnotationColor;
@@ -738,7 +742,7 @@ pub use self::__MKStandardMapConfiguration::MKStandardMapConfiguration;
 pub use self::__MKStandardMapConfiguration::MKStandardMapEmphasisStyle;
 #[cfg(feature = "MKTileOverlay")]
 pub use self::__MKTileOverlay::MKTileOverlay;
-#[cfg(feature = "MKTileOverlay")]
+#[cfg(all(feature = "MKTileOverlay", feature = "objc2-core-foundation"))]
 pub use self::__MKTileOverlay::MKTileOverlayPath;
 #[cfg(all(feature = "MKOverlayRenderer", feature = "MKTileOverlayRenderer"))]
 pub use self::__MKTileOverlayRenderer::MKTileOverlayRenderer;

@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -104,6 +106,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSTextView`
     unsafe impl OSAScriptView {
+        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:textContainer:)]
         pub unsafe fn initWithFrame_textContainer(
             this: Allocated<Self>,
@@ -117,6 +120,7 @@ extern_methods!(
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 

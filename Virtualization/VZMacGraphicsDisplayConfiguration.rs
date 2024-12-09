@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -37,7 +39,7 @@ extern_methods!(
             pixels_per_inch: NSInteger,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "objc2-app-kit")]
+        #[cfg(all(feature = "objc2-app-kit", feature = "objc2-core-foundation"))]
         #[method_id(@__retain_semantics Init initForScreen:sizeInPoints:)]
         pub unsafe fn initForScreen_sizeInPoints(
             this: Allocated<Self>,

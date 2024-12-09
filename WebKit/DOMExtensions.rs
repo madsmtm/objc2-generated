@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -16,6 +18,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMNode {
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(boundingBox)]
         pub unsafe fn boundingBox(&self) -> NSRect;
 

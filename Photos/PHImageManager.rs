@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -114,9 +116,11 @@ extern_methods!(
         #[method(setResizeMode:)]
         pub unsafe fn setResizeMode(&self, resize_mode: PHImageRequestOptionsResizeMode);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(normalizedCropRect)]
         pub unsafe fn normalizedCropRect(&self) -> CGRect;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setNormalizedCropRect:)]
         pub unsafe fn setNormalizedCropRect(&self, normalized_crop_rect: CGRect);
 
@@ -328,6 +332,7 @@ pub static PHInvalidImageRequestID: PHImageRequestID = 0;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagemanagermaximumsize?language=objc)
+    #[cfg(feature = "objc2-core-foundation")]
     pub static PHImageManagerMaximumSize: CGSize;
 }
 
@@ -375,7 +380,8 @@ extern_methods!(
             feature = "PHObject",
             feature = "PhotosTypes",
             feature = "block2",
-            feature = "objc2-app-kit"
+            feature = "objc2-app-kit",
+            feature = "objc2-core-foundation"
         ))]
         #[cfg(target_os = "macos")]
         #[method(requestImageForAsset:targetSize:contentMode:options:resultHandler:)]
@@ -396,7 +402,8 @@ extern_methods!(
             feature = "PHLivePhoto",
             feature = "PHObject",
             feature = "PhotosTypes",
-            feature = "block2"
+            feature = "block2",
+            feature = "objc2-core-foundation"
         ))]
         #[method(requestLivePhotoForAsset:targetSize:contentMode:options:resultHandler:)]
         pub unsafe fn requestLivePhotoForAsset_targetSize_contentMode_options_resultHandler(
@@ -441,7 +448,12 @@ extern_methods!(
             allows_caching_high_quality_images: bool,
         );
 
-        #[cfg(all(feature = "PHAsset", feature = "PHObject", feature = "PhotosTypes"))]
+        #[cfg(all(
+            feature = "PHAsset",
+            feature = "PHObject",
+            feature = "PhotosTypes",
+            feature = "objc2-core-foundation"
+        ))]
         #[method(startCachingImagesForAssets:targetSize:contentMode:options:)]
         pub unsafe fn startCachingImagesForAssets_targetSize_contentMode_options(
             &self,
@@ -451,7 +463,12 @@ extern_methods!(
             options: Option<&PHImageRequestOptions>,
         );
 
-        #[cfg(all(feature = "PHAsset", feature = "PHObject", feature = "PhotosTypes"))]
+        #[cfg(all(
+            feature = "PHAsset",
+            feature = "PHObject",
+            feature = "PhotosTypes",
+            feature = "objc2-core-foundation"
+        ))]
         #[method(stopCachingImagesForAssets:targetSize:contentMode:options:)]
         pub unsafe fn stopCachingImagesForAssets_targetSize_contentMode_options(
             &self,

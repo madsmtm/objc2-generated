@@ -694,7 +694,7 @@ pub use self::__FoundationErrors::NSXPCConnectionInvalid;
 pub use self::__FoundationErrors::NSXPCConnectionReplyInvalid;
 #[cfg(feature = "NSAffineTransform")]
 pub use self::__NSAffineTransform::NSAffineTransform;
-#[cfg(all(feature = "NSAffineTransform", feature = "NSGeometry"))]
+#[cfg(all(feature = "NSAffineTransform", feature = "objc2-core-foundation"))]
 pub use self::__NSAffineTransform::NSAffineTransformStruct;
 #[cfg(feature = "NSAppleEventDescriptor")]
 pub use self::__NSAppleEventDescriptor::NSAppleEventDescriptor;
@@ -1423,71 +1423,95 @@ pub use self::__NSFormatter::NSFormattingUnitStyle;
 pub use self::__NSGarbageCollector::NSGarbageCollector;
 #[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSAlignmentOptions;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSContainsRect;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSDivideRect;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSEdgeInsets;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSEdgeInsetsEqual;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSEdgeInsetsZero;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSEqualPoints;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSEqualRects;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSEqualSizes;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSInsetRect;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSIntegralRect;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSIntegralRectWithOptions;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSIntersectionRect;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSIntersectsRect;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSIsEmptyRect;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSMouseInRect;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSOffsetRect;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSPointArray;
-#[cfg(all(feature = "NSGeometry", feature = "NSString"))]
+#[cfg(all(
+    feature = "NSGeometry",
+    feature = "NSString",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__NSGeometry::NSPointFromString;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSPointInRect;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSPointPointer;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSRectArray;
-#[cfg(all(feature = "NSGeometry", feature = "NSString"))]
+#[cfg(all(
+    feature = "NSGeometry",
+    feature = "NSString",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__NSGeometry::NSRectFromString;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSRectPointer;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSSizeArray;
-#[cfg(all(feature = "NSGeometry", feature = "NSString"))]
+#[cfg(all(
+    feature = "NSGeometry",
+    feature = "NSString",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__NSGeometry::NSSizeFromString;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSSizePointer;
-#[cfg(all(feature = "NSGeometry", feature = "NSString"))]
+#[cfg(all(
+    feature = "NSGeometry",
+    feature = "NSString",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__NSGeometry::NSStringFromPoint;
-#[cfg(all(feature = "NSGeometry", feature = "NSString"))]
+#[cfg(all(
+    feature = "NSGeometry",
+    feature = "NSString",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__NSGeometry::NSStringFromRect;
-#[cfg(all(feature = "NSGeometry", feature = "NSString"))]
+#[cfg(all(
+    feature = "NSGeometry",
+    feature = "NSString",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__NSGeometry::NSStringFromSize;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSUnionRect;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSZeroPoint;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSZeroRect;
-#[cfg(feature = "NSGeometry")]
+#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSZeroSize;
 #[cfg(all(feature = "NSHFSFileTypes", feature = "NSString"))]
 pub use self::__NSHFSFileTypes::NSFileTypeForHFSTypeCode;

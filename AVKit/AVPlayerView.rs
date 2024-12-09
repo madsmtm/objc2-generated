@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -88,6 +90,7 @@ extern_methods!(
         #[method(isReadyForDisplay)]
         pub unsafe fn isReadyForDisplay(&self) -> bool;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(videoBounds)]
         pub unsafe fn videoBounds(&self) -> NSRect;
 
@@ -150,12 +153,15 @@ extern_methods!(
         #[method(setAllowsMagnification:)]
         pub unsafe fn setAllowsMagnification(&self, allows_magnification: bool);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(magnification)]
         pub unsafe fn magnification(&self) -> CGFloat;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setMagnification:)]
         pub unsafe fn setMagnification(&self, magnification: CGFloat);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setMagnification:centeredAtPoint:)]
         pub unsafe fn setMagnification_centeredAtPoint(
             &self,
@@ -170,6 +176,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
+        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 

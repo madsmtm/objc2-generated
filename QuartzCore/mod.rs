@@ -161,7 +161,7 @@ pub use self::__CAAnimation::CATransition;
 pub use self::__CAAnimation::CATransitionSubtype;
 #[cfg(feature = "CAAnimation")]
 pub use self::__CAAnimation::CATransitionType;
-#[cfg(feature = "CABase")]
+#[cfg(all(feature = "CABase", feature = "objc2-core-foundation"))]
 pub use self::__CABase::CACurrentMediaTime;
 #[cfg(feature = "CAConstraintLayoutManager")]
 pub use self::__CAConstraintLayoutManager::CAConstraint;
@@ -427,31 +427,31 @@ pub use self::__CATransaction::kCATransactionCompletionBlock;
 pub use self::__CATransaction::kCATransactionDisableActions;
 #[cfg(feature = "CATransaction")]
 pub use self::__CATransaction::CATransaction;
-#[cfg(feature = "CATransform3D")]
+#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3D;
-#[cfg(feature = "CATransform3D")]
+#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3DConcat;
-#[cfg(feature = "CATransform3D")]
+#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3DEqualToTransform;
-#[cfg(feature = "CATransform3D")]
+#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3DIdentity;
-#[cfg(feature = "CATransform3D")]
+#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3DInvert;
-#[cfg(feature = "CATransform3D")]
+#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3DIsAffine;
-#[cfg(feature = "CATransform3D")]
+#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3DIsIdentity;
-#[cfg(feature = "CATransform3D")]
+#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3DMakeRotation;
-#[cfg(feature = "CATransform3D")]
+#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3DMakeScale;
-#[cfg(feature = "CATransform3D")]
+#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3DMakeTranslation;
-#[cfg(feature = "CATransform3D")]
+#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3DRotate;
-#[cfg(feature = "CATransform3D")]
+#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3DScale;
-#[cfg(feature = "CATransform3D")]
+#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3DTranslate;
 #[cfg(feature = "CATransform3D")]
 pub use self::__CATransform3D::NSValueCATransform3DAdditions;

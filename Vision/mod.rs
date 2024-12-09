@@ -929,25 +929,25 @@ pub use self::__VNTypes::VNVideoProcessingOptionFrameCadence;
 pub use self::__VNTypes::VNVideoProcessingOptionTimeInterval;
 #[cfg(all(feature = "VNTypes", feature = "VNUtils"))]
 pub use self::__VNUtils::VNElementTypeSize;
-#[cfg(feature = "VNUtils")]
+#[cfg(all(feature = "VNUtils", feature = "objc2-core-foundation"))]
 pub use self::__VNUtils::VNImagePointForNormalizedPoint;
-#[cfg(feature = "VNUtils")]
+#[cfg(all(feature = "VNUtils", feature = "objc2-core-foundation"))]
 pub use self::__VNUtils::VNImagePointForNormalizedPointUsingRegionOfInterest;
-#[cfg(feature = "VNUtils")]
+#[cfg(all(feature = "VNUtils", feature = "objc2-core-foundation"))]
 pub use self::__VNUtils::VNImageRectForNormalizedRect;
-#[cfg(feature = "VNUtils")]
+#[cfg(all(feature = "VNUtils", feature = "objc2-core-foundation"))]
 pub use self::__VNUtils::VNImageRectForNormalizedRectUsingRegionOfInterest;
-#[cfg(feature = "VNUtils")]
+#[cfg(all(feature = "VNUtils", feature = "objc2-core-foundation"))]
 pub use self::__VNUtils::VNNormalizedIdentityRect;
-#[cfg(feature = "VNUtils")]
+#[cfg(all(feature = "VNUtils", feature = "objc2-core-foundation"))]
 pub use self::__VNUtils::VNNormalizedPointForImagePoint;
-#[cfg(feature = "VNUtils")]
+#[cfg(all(feature = "VNUtils", feature = "objc2-core-foundation"))]
 pub use self::__VNUtils::VNNormalizedPointForImagePointUsingRegionOfInterest;
-#[cfg(feature = "VNUtils")]
+#[cfg(all(feature = "VNUtils", feature = "objc2-core-foundation"))]
 pub use self::__VNUtils::VNNormalizedRectForImageRect;
-#[cfg(feature = "VNUtils")]
+#[cfg(all(feature = "VNUtils", feature = "objc2-core-foundation"))]
 pub use self::__VNUtils::VNNormalizedRectForImageRectUsingRegionOfInterest;
-#[cfg(feature = "VNUtils")]
+#[cfg(all(feature = "VNUtils", feature = "objc2-core-foundation"))]
 pub use self::__VNUtils::VNNormalizedRectIsIdentityRect;
 #[cfg(feature = "VNVideoProcessor")]
 pub use self::__VNVideoProcessor::VNVideoProcessor;

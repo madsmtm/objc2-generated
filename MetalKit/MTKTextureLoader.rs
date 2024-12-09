@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 use objc2_metal::*;
 
@@ -142,7 +144,7 @@ extern_methods!(
             completion_handler: MTKTextureLoaderCallback,
         );
 
-        #[cfg(feature = "block2")]
+        #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         #[method(newTextureWithName:scaleFactor:bundle:options:completionHandler:)]
         pub unsafe fn newTextureWithName_scaleFactor_bundle_options_completionHandler(
             &self,
@@ -153,7 +155,11 @@ extern_methods!(
             completion_handler: MTKTextureLoaderCallback,
         );
 
-        #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(all(
+            feature = "block2",
+            feature = "objc2-app-kit",
+            feature = "objc2-core-foundation"
+        ))]
         #[cfg(target_os = "macos")]
         #[method(newTextureWithName:scaleFactor:displayGamut:bundle:options:completionHandler:)]
         pub unsafe fn newTextureWithName_scaleFactor_displayGamut_bundle_options_completionHandler(
@@ -175,7 +181,7 @@ extern_methods!(
             completion_handler: MTKTextureLoaderArrayCallback,
         );
 
-        #[cfg(feature = "block2")]
+        #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         #[method(newTexturesWithNames:scaleFactor:bundle:options:completionHandler:)]
         pub unsafe fn newTexturesWithNames_scaleFactor_bundle_options_completionHandler(
             &self,
@@ -186,7 +192,11 @@ extern_methods!(
             completion_handler: MTKTextureLoaderArrayCallback,
         );
 
-        #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(all(
+            feature = "block2",
+            feature = "objc2-app-kit",
+            feature = "objc2-core-foundation"
+        ))]
         #[cfg(target_os = "macos")]
         #[method(newTexturesWithNames:scaleFactor:displayGamut:bundle:options:completionHandler:)]
         pub unsafe fn newTexturesWithNames_scaleFactor_displayGamut_bundle_options_completionHandler(
@@ -222,6 +232,7 @@ extern_methods!(
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLTexture>>, Retained<NSError>>;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics New newTextureWithName:scaleFactor:bundle:options:error:_)]
         pub unsafe fn newTextureWithName_scaleFactor_bundle_options_error(
             &self,
@@ -231,7 +242,7 @@ extern_methods!(
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLTexture>>, Retained<NSError>>;
 
-        #[cfg(feature = "objc2-app-kit")]
+        #[cfg(all(feature = "objc2-app-kit", feature = "objc2-core-foundation"))]
         #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics New newTextureWithName:scaleFactor:displayGamut:bundle:options:error:_)]
         pub unsafe fn newTextureWithName_scaleFactor_displayGamut_bundle_options_error(

@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-photos")]
 #[cfg(not(target_os = "watchos"))]
@@ -132,9 +134,11 @@ extern_methods!(
         #[method(setContentMode:)]
         pub unsafe fn setContentMode(&self, content_mode: PHLivePhotoViewContentMode);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(contentsRect)]
         pub unsafe fn contentsRect(&self) -> CGRect;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setContentsRect:)]
         pub unsafe fn setContentsRect(&self, contents_rect: CGRect);
 
@@ -169,6 +173,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl PHLivePhotoView {
+        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 

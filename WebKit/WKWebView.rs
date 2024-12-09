@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -155,7 +157,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other backForwardList)]
         pub unsafe fn backForwardList(&self) -> Retained<WKBackForwardList>;
 
-        #[cfg(feature = "WKWebViewConfiguration")]
+        #[cfg(all(feature = "WKWebViewConfiguration", feature = "objc2-core-foundation"))]
         #[method_id(@__retain_semantics Init initWithFrame:configuration:)]
         pub unsafe fn initWithFrame_configuration(
             this: Allocated<Self>,
@@ -420,12 +422,15 @@ extern_methods!(
         #[method(setAllowsMagnification:)]
         pub unsafe fn setAllowsMagnification(&self, allows_magnification: bool);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(magnification)]
         pub unsafe fn magnification(&self) -> CGFloat;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setMagnification:)]
         pub unsafe fn setMagnification(&self, magnification: CGFloat);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setMagnification:centeredAtPoint:)]
         pub unsafe fn setMagnification_centeredAtPoint(
             &self,
@@ -433,9 +438,11 @@ extern_methods!(
             point: CGPoint,
         );
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(pageZoom)]
         pub unsafe fn pageZoom(&self) -> CGFloat;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setPageZoom:)]
         pub unsafe fn setPageZoom(&self, page_zoom: CGFloat);
 
@@ -548,12 +555,15 @@ extern_methods!(
         #[method(fullscreenState)]
         pub unsafe fn fullscreenState(&self) -> WKFullscreenState;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(minimumViewportInset)]
         pub unsafe fn minimumViewportInset(&self) -> NSEdgeInsets;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(maximumViewportInset)]
         pub unsafe fn maximumViewportInset(&self) -> NSEdgeInsets;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setMinimumViewportInset:maximumViewportInset:)]
         pub unsafe fn setMinimumViewportInset_maximumViewportInset(
             &self,
@@ -577,6 +587,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl WKWebView {
+        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }

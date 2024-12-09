@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-cloud-kit")]
 #[cfg(target_vendor = "apple")]
 use objc2_cloud_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -267,6 +269,7 @@ extern_protocol!(
             items: &NSArray,
         );
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[optional]
         #[method(sharingService:sourceFrameOnScreenForShareItem:)]
         unsafe fn sharingService_sourceFrameOnScreenForShareItem(
@@ -275,7 +278,7 @@ extern_protocol!(
             item: &AnyObject,
         ) -> NSRect;
 
-        #[cfg(feature = "NSImage")]
+        #[cfg(all(feature = "NSImage", feature = "objc2-core-foundation"))]
         #[optional]
         #[method_id(@__retain_semantics Other sharingService:transitionImageForShareItem:contentRect:)]
         unsafe fn sharingService_transitionImageForShareItem_contentRect(
@@ -295,7 +298,11 @@ extern_protocol!(
             sharing_content_scope: NonNull<NSSharingContentScope>,
         ) -> Option<Retained<NSWindow>>;
 
-        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        #[cfg(all(
+            feature = "NSResponder",
+            feature = "NSView",
+            feature = "objc2-core-foundation"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other anchoringViewForSharingService:showRelativeToRect:preferredEdge:)]
         unsafe fn anchoringViewForSharingService_showRelativeToRect_preferredEdge(
@@ -430,7 +437,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        #[cfg(all(
+            feature = "NSResponder",
+            feature = "NSView",
+            feature = "objc2-core-foundation"
+        ))]
         #[method(showRelativeToRect:ofView:preferredEdge:)]
         pub unsafe fn showRelativeToRect_ofView_preferredEdge(
             &self,

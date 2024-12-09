@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -101,6 +103,7 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkmousehandling?language=objc)
     pub unsafe trait IMKMouseHandling {
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(mouseDownOnCharacterIndex:coordinate:withModifier:continueTracking:client:)]
         unsafe fn mouseDownOnCharacterIndex_coordinate_withModifier_continueTracking_client(
             &self,
@@ -111,6 +114,7 @@ extern_protocol!(
             sender: Option<&AnyObject>,
         ) -> bool;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(mouseUpOnCharacterIndex:coordinate:withModifier:client:)]
         unsafe fn mouseUpOnCharacterIndex_coordinate_withModifier_client(
             &self,
@@ -120,6 +124,7 @@ extern_protocol!(
             sender: Option<&AnyObject>,
         ) -> bool;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(mouseMovedOnCharacterIndex:coordinate:withModifier:client:)]
         unsafe fn mouseMovedOnCharacterIndex_coordinate_withModifier_client(
             &self,

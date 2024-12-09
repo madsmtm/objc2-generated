@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-location")]
 use objc2_core_location::*;
 use objc2_foundation::*;
@@ -101,9 +103,11 @@ extern_methods!(
         #[method(setShowsBuildings:)]
         pub unsafe fn setShowsBuildings(&self, shows_buildings: bool);
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: NSSize);
 
