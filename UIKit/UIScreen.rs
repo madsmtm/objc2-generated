@@ -197,6 +197,10 @@ extern_methods!(
         #[method(maximumFramesPerSecond)]
         pub fn maximumFramesPerSecond(&self) -> NSInteger;
 
+        #[cfg(feature = "objc2-core-foundation")]
+        #[method(calibratedLatency)]
+        pub unsafe fn calibratedLatency(&self) -> CFTimeInterval;
+
         #[method(referenceDisplayModeStatus)]
         pub unsafe fn referenceDisplayModeStatus(&self) -> UIScreenReferenceDisplayModeStatus;
 

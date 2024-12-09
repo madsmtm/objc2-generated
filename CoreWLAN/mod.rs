@@ -104,5 +104,31 @@ pub use self::__CoreWLANTypes::CWKeychainDomain;
 pub use self::__CoreWLANTypes::CWPHYMode;
 #[cfg(feature = "CoreWLANTypes")]
 pub use self::__CoreWLANTypes::CWSecurity;
+#[cfg(all(feature = "CoreWLANUtil", feature = "objc2-core-foundation"))]
+pub use self::__CoreWLANUtil::CWKeychainCopyEAPIdentityList;
+#[cfg(all(feature = "CoreWLANUtil", feature = "objc2-core-foundation"))]
+pub use self::__CoreWLANUtil::CWKeychainCopyEAPUsernameAndPassword;
+#[cfg(all(feature = "CoreWLANUtil", feature = "objc2-core-foundation"))]
+pub use self::__CoreWLANUtil::CWKeychainCopyPassword;
+#[cfg(all(feature = "CoreWLANUtil", feature = "objc2-core-foundation"))]
+pub use self::__CoreWLANUtil::CWKeychainDeleteEAPUsernameAndPassword;
+#[cfg(all(feature = "CoreWLANUtil", feature = "objc2-core-foundation"))]
+pub use self::__CoreWLANUtil::CWKeychainDeletePassword;
+#[cfg(all(feature = "CoreWLANTypes", feature = "CoreWLANUtil"))]
+pub use self::__CoreWLANUtil::CWKeychainDeleteWiFiEAPUsernameAndPassword;
+#[cfg(all(feature = "CoreWLANTypes", feature = "CoreWLANUtil"))]
+pub use self::__CoreWLANUtil::CWKeychainDeleteWiFiPassword;
+#[cfg(all(feature = "CoreWLANTypes", feature = "CoreWLANUtil"))]
+pub use self::__CoreWLANUtil::CWKeychainFindWiFiEAPUsernameAndPassword;
+#[cfg(all(feature = "CoreWLANTypes", feature = "CoreWLANUtil"))]
+pub use self::__CoreWLANUtil::CWKeychainFindWiFiPassword;
+#[cfg(all(feature = "CoreWLANUtil", feature = "objc2-core-foundation"))]
+pub use self::__CoreWLANUtil::CWKeychainSetEAPUsernameAndPassword;
+#[cfg(all(feature = "CoreWLANUtil", feature = "objc2-core-foundation"))]
+pub use self::__CoreWLANUtil::CWKeychainSetPassword;
+#[cfg(all(feature = "CoreWLANTypes", feature = "CoreWLANUtil"))]
+pub use self::__CoreWLANUtil::CWKeychainSetWiFiEAPUsernameAndPassword;
+#[cfg(all(feature = "CoreWLANTypes", feature = "CoreWLANUtil"))]
+pub use self::__CoreWLANUtil::CWKeychainSetWiFiPassword;
 #[cfg(all(feature = "CWNetwork", feature = "CoreWLANUtil"))]
 pub use self::__CoreWLANUtil::CWMergeNetworks;

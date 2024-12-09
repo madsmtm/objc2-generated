@@ -428,6 +428,8 @@ pub use self::__GCInputNames::GCPhysicalInputElementName;
 #[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCSwitchElementName;
 #[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
+pub use self::__GCKeyCodes::GCKeyCode;
+#[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeApplication;
 #[cfg(all(feature = "GCKeyCodes", feature = "objc2-core-foundation"))]
 pub use self::__GCKeyCodes::GCKeyCodeBackslash;

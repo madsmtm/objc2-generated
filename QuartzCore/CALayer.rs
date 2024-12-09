@@ -202,6 +202,14 @@ extern_methods!(
         pub fn setTransform(&self, transform: CATransform3D);
 
         #[cfg(feature = "objc2-core-foundation")]
+        #[method(affineTransform)]
+        pub fn affineTransform(&self) -> CGAffineTransform;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[method(setAffineTransform:)]
+        pub fn setAffineTransform(&self, m: CGAffineTransform);
+
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(frame)]
         pub fn frame(&self) -> CGRect;
 
