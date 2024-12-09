@@ -628,11 +628,11 @@ unsafe impl VNRequestRevisionProviding for VNRecognizedText {}
 extern_methods!(
     unsafe impl VNRecognizedText {
         #[method_id(@__retain_semantics Other string)]
-        pub unsafe fn string(&self) -> Retained<NSString>;
+        pub fn string(&self) -> Retained<NSString>;
 
         #[cfg(feature = "VNTypes")]
         #[method(confidence)]
-        pub unsafe fn confidence(&self) -> VNConfidence;
+        pub fn confidence(&self) -> VNConfidence;
 
         #[method_id(@__retain_semantics Other boundingBoxForRange:error:_)]
         pub unsafe fn boundingBoxForRange_error(
@@ -683,7 +683,7 @@ unsafe impl VNRequestRevisionProviding for VNRecognizedTextObservation {}
 extern_methods!(
     unsafe impl VNRecognizedTextObservation {
         #[method_id(@__retain_semantics Other topCandidates:)]
-        pub unsafe fn topCandidates(
+        pub fn topCandidates(
             &self,
             max_candidate_count: NSUInteger,
         ) -> Retained<NSArray<VNRecognizedText>>;

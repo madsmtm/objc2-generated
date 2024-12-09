@@ -66,41 +66,41 @@ extern_methods!(
         pub unsafe fn recognitionLanguages(&self) -> Retained<NSArray<NSString>>;
 
         #[method(setRecognitionLanguages:)]
-        pub unsafe fn setRecognitionLanguages(&self, recognition_languages: &NSArray<NSString>);
+        pub fn setRecognitionLanguages(&self, recognition_languages: &NSArray<NSString>);
 
         #[method_id(@__retain_semantics Other customWords)]
-        pub unsafe fn customWords(&self) -> Retained<NSArray<NSString>>;
+        pub fn customWords(&self) -> Retained<NSArray<NSString>>;
 
         #[method(setCustomWords:)]
-        pub unsafe fn setCustomWords(&self, custom_words: &NSArray<NSString>);
+        pub fn setCustomWords(&self, custom_words: &NSArray<NSString>);
 
         #[method(recognitionLevel)]
-        pub unsafe fn recognitionLevel(&self) -> VNRequestTextRecognitionLevel;
+        pub fn recognitionLevel(&self) -> VNRequestTextRecognitionLevel;
 
         #[method(setRecognitionLevel:)]
-        pub unsafe fn setRecognitionLevel(&self, recognition_level: VNRequestTextRecognitionLevel);
+        pub fn setRecognitionLevel(&self, recognition_level: VNRequestTextRecognitionLevel);
 
         #[method(usesLanguageCorrection)]
-        pub unsafe fn usesLanguageCorrection(&self) -> bool;
+        pub fn usesLanguageCorrection(&self) -> bool;
 
         #[method(setUsesLanguageCorrection:)]
-        pub unsafe fn setUsesLanguageCorrection(&self, uses_language_correction: bool);
+        pub fn setUsesLanguageCorrection(&self, uses_language_correction: bool);
 
         #[method(automaticallyDetectsLanguage)]
-        pub unsafe fn automaticallyDetectsLanguage(&self) -> bool;
+        pub fn automaticallyDetectsLanguage(&self) -> bool;
 
         #[method(setAutomaticallyDetectsLanguage:)]
-        pub unsafe fn setAutomaticallyDetectsLanguage(&self, automatically_detects_language: bool);
+        pub fn setAutomaticallyDetectsLanguage(&self, automatically_detects_language: bool);
 
         #[method(minimumTextHeight)]
-        pub unsafe fn minimumTextHeight(&self) -> c_float;
+        pub fn minimumTextHeight(&self) -> c_float;
 
         #[method(setMinimumTextHeight:)]
-        pub unsafe fn setMinimumTextHeight(&self, minimum_text_height: c_float);
+        pub fn setMinimumTextHeight(&self, minimum_text_height: c_float);
 
         #[cfg(feature = "VNObservation")]
         #[method_id(@__retain_semantics Other results)]
-        pub unsafe fn results(&self) -> Option<Retained<NSArray<VNRecognizedTextObservation>>>;
+        pub fn results(&self) -> Option<Retained<NSArray<VNRecognizedTextObservation>>>;
     }
 );
 
@@ -125,9 +125,17 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNRecognizeTextRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     }
 );
+
+#[cfg(feature = "VNRequest")]
+impl DefaultRetained for VNRecognizeTextRequest {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizetextrequestrevision1?language=objc)
 pub static VNRecognizeTextRequestRevision1: NSUInteger = 1;

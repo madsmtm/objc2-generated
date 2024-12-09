@@ -56,7 +56,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithData:options:)]
-        pub unsafe fn initWithData_options(
+        pub fn initWithData_options(
             this: Allocated<Self>,
             image_data: &NSData,
             options: &NSDictionary<VNImageOption, AnyObject>,
@@ -64,7 +64,7 @@ extern_methods!(
 
         #[cfg(feature = "VNRequest")]
         #[method(performRequests:error:_)]
-        pub unsafe fn performRequests_error(
+        pub fn performRequests_error(
             &self,
             requests: &NSArray<VNRequest>,
         ) -> Result<(), Retained<NSError>>;
