@@ -3,6 +3,9 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+#[cfg(target_vendor = "apple")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -139,6 +142,21 @@ extern_methods!(
             x_radius: CGFloat,
             y_radius: CGFloat,
         ) -> Retained<NSBezierPath>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[cfg(target_vendor = "apple")]
+        #[method_id(@__retain_semantics Other bezierPathWithCGPath:)]
+        pub unsafe fn bezierPathWithCGPath(cg_path: CGPathRef) -> Retained<NSBezierPath>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[cfg(target_vendor = "apple")]
+        #[method(CGPath)]
+        pub unsafe fn CGPath(&self) -> CGPathRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[cfg(target_vendor = "apple")]
+        #[method(setCGPath:)]
+        pub unsafe fn setCGPath(&self, cg_path: CGPathRef);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(fillRect:)]
@@ -415,6 +433,21 @@ extern_methods!(
             point1: NSPoint,
             point2: NSPoint,
             radius: CGFloat,
+        );
+
+        #[cfg(all(feature = "NSFont", feature = "objc2-core-graphics"))]
+        #[cfg(target_vendor = "apple")]
+        #[method(appendBezierPathWithCGGlyph:inFont:)]
+        pub unsafe fn appendBezierPathWithCGGlyph_inFont(&self, glyph: CGGlyph, font: &NSFont);
+
+        #[cfg(all(feature = "NSFont", feature = "objc2-core-graphics"))]
+        #[cfg(target_vendor = "apple")]
+        #[method(appendBezierPathWithCGGlyphs:count:inFont:)]
+        pub unsafe fn appendBezierPathWithCGGlyphs_count_inFont(
+            &self,
+            glyphs: NonNull<CGGlyph>,
+            count: NSInteger,
+            font: &NSFont,
         );
 
         #[cfg(feature = "objc2-core-foundation")]

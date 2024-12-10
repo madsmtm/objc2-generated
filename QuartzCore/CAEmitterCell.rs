@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -167,6 +169,14 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setSpinRange:)]
         pub unsafe fn setSpinRange(&self, spin_range: CGFloat);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(color)]
+        pub unsafe fn color(&self) -> CGColorRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setColor:)]
+        pub unsafe fn setColor(&self, color: CGColorRef);
 
         #[method(redRange)]
         pub unsafe fn redRange(&self) -> c_float;

@@ -3442,6 +3442,8 @@ pub use self::__UIGraphics::UIGraphicsGetImageFromCurrentImageContext;
 pub use self::__UIGraphics::UIGraphicsGetPDFContextBounds;
 #[cfg(feature = "UIGraphics")]
 pub use self::__UIGraphics::UIGraphicsPopContext;
+#[cfg(all(feature = "UIGraphics", feature = "objc2-core-graphics"))]
+pub use self::__UIGraphics::UIGraphicsPushContext;
 #[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]
 pub use self::__UIGraphics::UIGraphicsSetPDFContextDestinationForRect;
 #[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]
@@ -3450,8 +3452,20 @@ pub use self::__UIGraphics::UIGraphicsSetPDFContextURLForRect;
 pub use self::__UIGraphics::UIRectClip;
 #[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]
 pub use self::__UIGraphics::UIRectFill;
+#[cfg(all(
+    feature = "UIGraphics",
+    feature = "objc2-core-foundation",
+    feature = "objc2-core-graphics"
+))]
+pub use self::__UIGraphics::UIRectFillUsingBlendMode;
 #[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]
 pub use self::__UIGraphics::UIRectFrame;
+#[cfg(all(
+    feature = "UIGraphics",
+    feature = "objc2-core-foundation",
+    feature = "objc2-core-graphics"
+))]
+pub use self::__UIGraphics::UIRectFrameUsingBlendMode;
 #[cfg(all(
     feature = "UIGraphicsImageRenderer",
     feature = "UIGraphicsRenderer",

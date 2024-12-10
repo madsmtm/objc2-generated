@@ -6,6 +6,8 @@ use objc2::__framework_prelude::*;
 use objc2_app_kit::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 use objc2_metal::*;
 
@@ -218,6 +220,15 @@ extern_methods!(
             completion_handler: MTKTextureLoaderCallback,
         );
 
+        #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
+        #[method(newTextureWithCGImage:options:completionHandler:)]
+        pub unsafe fn newTextureWithCGImage_options_completionHandler(
+            &self,
+            cg_image: CGImageRef,
+            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
+            completion_handler: MTKTextureLoaderCallback,
+        );
+
         #[method_id(@__retain_semantics New newTextureWithContentsOfURL:options:error:_)]
         pub unsafe fn newTextureWithContentsOfURL_options_error(
             &self,
@@ -229,6 +240,14 @@ extern_methods!(
         pub unsafe fn newTextureWithData_options_error(
             &self,
             data: &NSData,
+            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
+        ) -> Result<Retained<ProtocolObject<dyn MTLTexture>>, Retained<NSError>>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method_id(@__retain_semantics New newTextureWithCGImage:options:error:_)]
+        pub unsafe fn newTextureWithCGImage_options_error(
+            &self,
+            cg_image: CGImageRef,
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLTexture>>, Retained<NSError>>;
 

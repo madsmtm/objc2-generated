@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -28,6 +30,10 @@ unsafe impl NSSecureCoding for CIColor {}
 
 extern_methods!(
     unsafe impl CIColor {
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method_id(@__retain_semantics Other colorWithCGColor:)]
+        pub unsafe fn colorWithCGColor(c: CGColorRef) -> Retained<Self>;
+
         #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other colorWithRed:green:blue:alpha:)]
         pub unsafe fn colorWithRed_green_blue_alpha(
@@ -42,8 +48,31 @@ extern_methods!(
         pub unsafe fn colorWithRed_green_blue(r: CGFloat, g: CGFloat, b: CGFloat)
             -> Retained<Self>;
 
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[method_id(@__retain_semantics Other colorWithRed:green:blue:alpha:colorSpace:)]
+        pub unsafe fn colorWithRed_green_blue_alpha_colorSpace(
+            r: CGFloat,
+            g: CGFloat,
+            b: CGFloat,
+            a: CGFloat,
+            color_space: CGColorSpaceRef,
+        ) -> Option<Retained<Self>>;
+
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[method_id(@__retain_semantics Other colorWithRed:green:blue:colorSpace:)]
+        pub unsafe fn colorWithRed_green_blue_colorSpace(
+            r: CGFloat,
+            g: CGFloat,
+            b: CGFloat,
+            color_space: CGColorSpaceRef,
+        ) -> Option<Retained<Self>>;
+
         #[method_id(@__retain_semantics Other colorWithString:)]
         pub unsafe fn colorWithString(representation: &NSString) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method_id(@__retain_semantics Init initWithCGColor:)]
+        pub unsafe fn initWithCGColor(this: Allocated<Self>, c: CGColorRef) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithRed:green:blue:alpha:)]
@@ -63,6 +92,27 @@ extern_methods!(
             g: CGFloat,
             b: CGFloat,
         ) -> Retained<Self>;
+
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[method_id(@__retain_semantics Init initWithRed:green:blue:alpha:colorSpace:)]
+        pub unsafe fn initWithRed_green_blue_alpha_colorSpace(
+            this: Allocated<Self>,
+            r: CGFloat,
+            g: CGFloat,
+            b: CGFloat,
+            a: CGFloat,
+            color_space: CGColorSpaceRef,
+        ) -> Option<Retained<Self>>;
+
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[method_id(@__retain_semantics Init initWithRed:green:blue:colorSpace:)]
+        pub unsafe fn initWithRed_green_blue_colorSpace(
+            this: Allocated<Self>,
+            r: CGFloat,
+            g: CGFloat,
+            b: CGFloat,
+            color_space: CGColorSpaceRef,
+        ) -> Option<Retained<Self>>;
 
         #[method(numberOfComponents)]
         pub unsafe fn numberOfComponents(&self) -> usize;

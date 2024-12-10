@@ -208,11 +208,29 @@ pub extern "C-unwind" fn CATransform3DInvert(t: CATransform3D) -> CATransform3D 
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
+pub extern "C-unwind" fn CATransform3DMakeAffineTransform(m: CGAffineTransform) -> CATransform3D {
+    extern "C-unwind" {
+        fn CATransform3DMakeAffineTransform(m: CGAffineTransform) -> CATransform3D;
+    }
+    unsafe { CATransform3DMakeAffineTransform(m) }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
 pub extern "C-unwind" fn CATransform3DIsAffine(t: CATransform3D) -> bool {
     extern "C-unwind" {
         fn CATransform3DIsAffine(t: CATransform3D) -> bool;
     }
     unsafe { CATransform3DIsAffine(t) }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub extern "C-unwind" fn CATransform3DGetAffineTransform(t: CATransform3D) -> CGAffineTransform {
+    extern "C-unwind" {
+        fn CATransform3DGetAffineTransform(t: CATransform3D) -> CGAffineTransform;
+    }
+    unsafe { CATransform3DGetAffineTransform(t) }
 }
 
 extern_category!(

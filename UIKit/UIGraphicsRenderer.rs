@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -59,6 +61,10 @@ unsafe impl NSObjectProtocol for UIGraphicsRendererContext {}
 
 extern_methods!(
     unsafe impl UIGraphicsRendererContext {
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(CGContext)]
+        pub unsafe fn CGContext(&self) -> CGContextRef;
+
         #[method_id(@__retain_semantics Other format)]
         pub unsafe fn format(&self) -> Retained<UIGraphicsRendererFormat>;
 
@@ -66,9 +72,17 @@ extern_methods!(
         #[method(fillRect:)]
         pub unsafe fn fillRect(&self, rect: CGRect);
 
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[method(fillRect:blendMode:)]
+        pub unsafe fn fillRect_blendMode(&self, rect: CGRect, blend_mode: CGBlendMode);
+
         #[cfg(feature = "objc2-core-foundation")]
         #[method(strokeRect:)]
         pub unsafe fn strokeRect(&self, rect: CGRect);
+
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[method(strokeRect:blendMode:)]
+        pub unsafe fn strokeRect_blendMode(&self, rect: CGRect, blend_mode: CGBlendMode);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(clipToRect:)]

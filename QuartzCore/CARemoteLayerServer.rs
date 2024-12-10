@@ -17,6 +17,10 @@ extern_methods!(
     unsafe impl CARemoteLayerServer {
         #[method_id(@__retain_semantics Other sharedServer)]
         pub unsafe fn sharedServer() -> Retained<CARemoteLayerServer>;
+
+        #[cfg(feature = "libc")]
+        #[method(serverPort)]
+        pub unsafe fn serverPort(&self) -> libc::mach_port_t;
     }
 );
 

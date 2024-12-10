@@ -3,6 +3,9 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+#[cfg(target_vendor = "apple")]
+use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-image")]
 #[cfg(target_vendor = "apple")]
 use objc2_core_image::*;
@@ -646,6 +649,16 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[method(drawSwatchInRect:)]
         pub unsafe fn drawSwatchInRect(&self, rect: NSRect);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[cfg(target_vendor = "apple")]
+        #[method_id(@__retain_semantics Other colorWithCGColor:)]
+        pub unsafe fn colorWithCGColor(cg_color: CGColorRef) -> Option<Retained<NSColor>>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[cfg(target_vendor = "apple")]
+        #[method(CGColor)]
+        pub unsafe fn CGColor(&self) -> CGColorRef;
 
         #[deprecated = "Use `showsAlpha` in `NSColorPanel` and `supportsAlpha` in `NSColorWell` to control alpha behavior for individual controls."]
         #[method(ignoresAlpha)]

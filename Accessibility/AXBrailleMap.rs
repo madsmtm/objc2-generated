@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -39,6 +41,10 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[method(heightAtPoint:)]
         pub unsafe fn heightAtPoint(&self, point: CGPoint) -> c_float;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(presentImage:)]
+        pub unsafe fn presentImage(&self, image: CGImageRef);
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 
 use crate::*;
 
@@ -470,6 +472,18 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CVBuffer")]
     pub fn CVImageBufferIsFlipped(image_buffer: CVImageBufferRef) -> Boolean;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "CVBuffer", feature = "objc2-core-graphics"))]
+    pub fn CVImageBufferGetColorSpace(image_buffer: CVImageBufferRef) -> CGColorSpaceRef;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+    pub fn CVImageBufferCreateColorSpaceFromAttachments(
+        attachments: CFDictionaryRef,
+    ) -> CGColorSpaceRef;
 }
 
 extern "C" {

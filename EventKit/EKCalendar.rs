@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -62,6 +64,14 @@ extern_methods!(
 
         #[method(isImmutable)]
         pub unsafe fn isImmutable(&self) -> bool;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(CGColor)]
+        pub unsafe fn CGColor(&self) -> CGColorRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setCGColor:)]
+        pub unsafe fn setCGColor(&self, cg_color: CGColorRef);
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

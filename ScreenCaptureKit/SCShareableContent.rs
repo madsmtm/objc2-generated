@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -71,6 +73,10 @@ unsafe impl NSObjectProtocol for SCWindow {}
 
 extern_methods!(
     unsafe impl SCWindow {
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(windowID)]
+        pub unsafe fn windowID(&self) -> CGWindowID;
+
         #[cfg(feature = "objc2-core-foundation")]
         #[method(frame)]
         pub unsafe fn frame(&self) -> CGRect;
@@ -109,6 +115,10 @@ unsafe impl NSObjectProtocol for SCDisplay {}
 
 extern_methods!(
     unsafe impl SCDisplay {
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(displayID)]
+        pub unsafe fn displayID(&self) -> CGDirectDisplayID;
+
         #[method(width)]
         pub unsafe fn width(&self) -> NSInteger;
 

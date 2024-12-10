@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-image")]
 #[cfg(not(target_os = "watchos"))]
 use objc2_core_image::*;
@@ -90,6 +92,10 @@ extern_methods!(
             alpha: CGFloat,
         ) -> Retained<UIColor>;
 
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method_id(@__retain_semantics Other colorWithCGColor:)]
+        pub unsafe fn colorWithCGColor(cg_color: CGColorRef) -> Retained<UIColor>;
+
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other colorWithPatternImage:)]
         pub unsafe fn colorWithPatternImage(image: &UIImage) -> Retained<UIColor>;
@@ -135,6 +141,13 @@ extern_methods!(
             green: CGFloat,
             blue: CGFloat,
             alpha: CGFloat,
+        ) -> Retained<UIColor>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method_id(@__retain_semantics Init initWithCGColor:)]
+        pub unsafe fn initWithCGColor(
+            this: Allocated<Self>,
+            cg_color: CGColorRef,
         ) -> Retained<UIColor>;
 
         #[cfg(feature = "UIImage")]
@@ -233,6 +246,10 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other colorWithAlphaComponent:)]
         pub unsafe fn colorWithAlphaComponent(&self, alpha: CGFloat) -> Retained<UIColor>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(CGColor)]
+        pub unsafe fn CGColor(&self) -> CGColorRef;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]

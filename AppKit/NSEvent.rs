@@ -3,6 +3,9 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+#[cfg(target_vendor = "apple")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -764,6 +767,16 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other eventWithEventRef:)]
         pub unsafe fn eventWithEventRef(event_ref: NonNull<c_void>) -> Option<Retained<NSEvent>>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[cfg(target_vendor = "apple")]
+        #[method(CGEvent)]
+        pub unsafe fn CGEvent(&self) -> CGEventRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[cfg(target_vendor = "apple")]
+        #[method_id(@__retain_semantics Other eventWithCGEvent:)]
+        pub unsafe fn eventWithCGEvent(cg_event: CGEventRef) -> Option<Retained<NSEvent>>;
 
         #[method(isMouseCoalescingEnabled)]
         pub unsafe fn isMouseCoalescingEnabled() -> bool;

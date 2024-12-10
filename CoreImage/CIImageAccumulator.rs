@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 
 use crate::*;
 
@@ -24,12 +26,37 @@ extern_methods!(
             format: CIFormat,
         ) -> Option<Retained<Self>>;
 
+        #[cfg(all(
+            feature = "CIImage",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics"
+        ))]
+        #[method_id(@__retain_semantics Other imageAccumulatorWithExtent:format:colorSpace:)]
+        pub unsafe fn imageAccumulatorWithExtent_format_colorSpace(
+            extent: CGRect,
+            format: CIFormat,
+            color_space: CGColorSpaceRef,
+        ) -> Option<Retained<Self>>;
+
         #[cfg(all(feature = "CIImage", feature = "objc2-core-foundation"))]
         #[method_id(@__retain_semantics Init initWithExtent:format:)]
         pub unsafe fn initWithExtent_format(
             this: Allocated<Self>,
             extent: CGRect,
             format: CIFormat,
+        ) -> Option<Retained<Self>>;
+
+        #[cfg(all(
+            feature = "CIImage",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics"
+        ))]
+        #[method_id(@__retain_semantics Init initWithExtent:format:colorSpace:)]
+        pub unsafe fn initWithExtent_format_colorSpace(
+            this: Allocated<Self>,
+            extent: CGRect,
+            format: CIFormat,
+            color_space: CGColorSpaceRef,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-foundation")]

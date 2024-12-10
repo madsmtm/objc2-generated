@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-metal")]
 use objc2_metal::*;
@@ -97,6 +99,14 @@ extern_methods!(
 
         #[method(setPresentsWithTransaction:)]
         pub unsafe fn setPresentsWithTransaction(&self, presents_with_transaction: bool);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(colorspace)]
+        pub unsafe fn colorspace(&self) -> CGColorSpaceRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setColorspace:)]
+        pub unsafe fn setColorspace(&self, colorspace: CGColorSpaceRef);
 
         #[method(wantsExtendedDynamicRangeContent)]
         pub unsafe fn wantsExtendedDynamicRangeContent(&self) -> bool;

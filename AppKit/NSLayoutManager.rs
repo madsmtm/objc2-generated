@@ -3,6 +3,9 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+#[cfg(target_vendor = "apple")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -323,8 +326,34 @@ extern_methods!(
             container: &NSTextContainer,
         );
 
+        #[cfg(all(feature = "NSFont", feature = "objc2-core-graphics"))]
+        #[cfg(target_vendor = "apple")]
+        #[method(setGlyphs:properties:characterIndexes:font:forGlyphRange:)]
+        pub unsafe fn setGlyphs_properties_characterIndexes_font_forGlyphRange(
+            &self,
+            glyphs: NonNull<CGGlyph>,
+            props: NonNull<NSGlyphProperty>,
+            char_indexes: NonNull<NSUInteger>,
+            a_font: &NSFont,
+            glyph_range: NSRange,
+        );
+
         #[method(numberOfGlyphs)]
         pub unsafe fn numberOfGlyphs(&self) -> NSUInteger;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[cfg(target_vendor = "apple")]
+        #[method(CGGlyphAtIndex:isValidIndex:)]
+        pub unsafe fn CGGlyphAtIndex_isValidIndex(
+            &self,
+            glyph_index: NSUInteger,
+            is_valid_index: *mut Bool,
+        ) -> CGGlyph;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[cfg(target_vendor = "apple")]
+        #[method(CGGlyphAtIndex:)]
+        pub unsafe fn CGGlyphAtIndex(&self, glyph_index: NSUInteger) -> CGGlyph;
 
         #[method(isValidGlyphIndex:)]
         pub unsafe fn isValidGlyphIndex(&self, glyph_index: NSUInteger) -> bool;
@@ -337,6 +366,18 @@ extern_methods!(
 
         #[method(glyphIndexForCharacterAtIndex:)]
         pub unsafe fn glyphIndexForCharacterAtIndex(&self, char_index: NSUInteger) -> NSUInteger;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[cfg(target_vendor = "apple")]
+        #[method(getGlyphsInRange:glyphs:properties:characterIndexes:bidiLevels:)]
+        pub unsafe fn getGlyphsInRange_glyphs_properties_characterIndexes_bidiLevels(
+            &self,
+            glyph_range: NSRange,
+            glyph_buffer: *mut CGGlyph,
+            props: *mut NSGlyphProperty,
+            char_index_buffer: *mut NSUInteger,
+            bidi_level_buffer: *mut c_uchar,
+        ) -> NSUInteger;
 
         #[cfg(feature = "NSTextContainer")]
         #[method(setTextContainer:forGlyphRange:)]
@@ -546,6 +587,15 @@ extern_methods!(
         ) -> NSRange;
 
         #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
+        #[method(glyphIndexForPoint:inTextContainer:fractionOfDistanceThroughGlyph:)]
+        pub unsafe fn glyphIndexForPoint_inTextContainer_fractionOfDistanceThroughGlyph(
+            &self,
+            point: NSPoint,
+            container: &NSTextContainer,
+            partial_fraction: *mut CGFloat,
+        ) -> NSUInteger;
+
+        #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
         #[method(glyphIndexForPoint:inTextContainer:)]
         pub unsafe fn glyphIndexForPoint_inTextContainer(
             &self,
@@ -623,6 +673,24 @@ extern_methods!(
             &self,
             glyphs_to_show: NSRange,
             origin: NSPoint,
+        );
+
+        #[cfg(all(
+            feature = "NSFont",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics"
+        ))]
+        #[cfg(target_vendor = "apple")]
+        #[method(showCGGlyphs:positions:count:font:textMatrix:attributes:inContext:)]
+        pub unsafe fn showCGGlyphs_positions_count_font_textMatrix_attributes_inContext(
+            &self,
+            glyphs: NonNull<CGGlyph>,
+            positions: NonNull<CGPoint>,
+            glyph_count: NSInteger,
+            font: &NSFont,
+            text_matrix: CGAffineTransform,
+            attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
+            cg_context: CGContextRef,
         );
 
         #[cfg(all(feature = "NSColor", feature = "objc2-core-foundation"))]
@@ -888,6 +956,20 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanagerdelegate?language=objc)
     pub unsafe trait NSLayoutManagerDelegate: NSObjectProtocol {
+        #[cfg(all(feature = "NSFont", feature = "objc2-core-graphics"))]
+        #[cfg(target_vendor = "apple")]
+        #[optional]
+        #[method(layoutManager:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:)]
+        unsafe fn layoutManager_shouldGenerateGlyphs_properties_characterIndexes_font_forGlyphRange(
+            &self,
+            layout_manager: &NSLayoutManager,
+            glyphs: NonNull<CGGlyph>,
+            props: NonNull<NSGlyphProperty>,
+            char_indexes: NonNull<NSUInteger>,
+            a_font: &NSFont,
+            glyph_range: NSRange,
+        ) -> NSUInteger;
+
         #[cfg(feature = "objc2-core-foundation")]
         #[optional]
         #[method(layoutManager:lineSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:)]
@@ -1244,6 +1326,26 @@ extern_methods!(
             font: &NSFont,
             color: &NSColor,
             printing_adjustment: NSSize,
+        );
+
+        #[cfg(all(
+            feature = "NSFont",
+            feature = "NSGraphicsContext",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics"
+        ))]
+        #[cfg(target_vendor = "apple")]
+        #[deprecated]
+        #[method(showCGGlyphs:positions:count:font:matrix:attributes:inContext:)]
+        pub unsafe fn showCGGlyphs_positions_count_font_matrix_attributes_inContext(
+            &self,
+            glyphs: NonNull<CGGlyph>,
+            positions: NonNull<NSPoint>,
+            glyph_count: NSUInteger,
+            font: &NSFont,
+            text_matrix: &NSAffineTransform,
+            attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
+            graphics_context: &NSGraphicsContext,
         );
 
         #[deprecated = "Please use usesDefaultHyphenation or -[NSParagraphStyle hyphenationFactor] instead."]

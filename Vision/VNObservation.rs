@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-image")]
 use objc2_core_image::*;
 #[cfg(feature = "objc2-core-ml")]
@@ -912,8 +914,20 @@ unsafe impl VNRequestRevisionProviding for VNHorizonObservation {}
 extern_methods!(
     unsafe impl VNHorizonObservation {
         #[cfg(feature = "objc2-core-foundation")]
+        #[method(transform)]
+        pub unsafe fn transform(&self) -> CGAffineTransform;
+
+        #[cfg(feature = "objc2-core-foundation")]
         #[method(angle)]
         pub unsafe fn angle(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[method(transformForImageWidth:height:)]
+        pub unsafe fn transformForImageWidth_height(
+            &self,
+            width: usize,
+            height: usize,
+        ) -> CGAffineTransform;
     }
 );
 
@@ -988,7 +1002,11 @@ unsafe impl NSSecureCoding for VNImageTranslationAlignmentObservation {}
 unsafe impl VNRequestRevisionProviding for VNImageTranslationAlignmentObservation {}
 
 extern_methods!(
-    unsafe impl VNImageTranslationAlignmentObservation {}
+    unsafe impl VNImageTranslationAlignmentObservation {
+        #[cfg(feature = "objc2-core-foundation")]
+        #[method(alignmentTransform)]
+        pub unsafe fn alignmentTransform(&self) -> CGAffineTransform;
+    }
 );
 
 extern_methods!(
@@ -1180,6 +1198,10 @@ extern_methods!(
             &self,
             index_path: &NSIndexPath,
         ) -> Result<Retained<VNContour>, Retained<NSError>>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(normalizedPath)]
+        pub unsafe fn normalizedPath(&self) -> CGPathRef;
     }
 );
 

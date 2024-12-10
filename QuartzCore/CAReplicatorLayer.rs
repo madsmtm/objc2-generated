@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -57,6 +59,14 @@ extern_methods!(
         #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
         #[method(setInstanceTransform:)]
         pub unsafe fn setInstanceTransform(&self, instance_transform: CATransform3D);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(instanceColor)]
+        pub unsafe fn instanceColor(&self) -> CGColorRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setInstanceColor:)]
+        pub unsafe fn setInstanceColor(&self, instance_color: CGColorRef);
 
         #[method(instanceRedOffset)]
         pub unsafe fn instanceRedOffset(&self) -> c_float;

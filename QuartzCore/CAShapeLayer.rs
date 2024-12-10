@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -42,11 +44,35 @@ unsafe impl NSSecureCoding for CAShapeLayer {}
 extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAShapeLayer {
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(path)]
+        pub unsafe fn path(&self) -> CGPathRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setPath:)]
+        pub unsafe fn setPath(&self, path: CGPathRef);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(fillColor)]
+        pub unsafe fn fillColor(&self) -> CGColorRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setFillColor:)]
+        pub unsafe fn setFillColor(&self, fill_color: CGColorRef);
+
         #[method_id(@__retain_semantics Other fillRule)]
         pub unsafe fn fillRule(&self) -> Retained<CAShapeLayerFillRule>;
 
         #[method(setFillRule:)]
         pub unsafe fn setFillRule(&self, fill_rule: &CAShapeLayerFillRule);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(strokeColor)]
+        pub unsafe fn strokeColor(&self) -> CGColorRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setStrokeColor:)]
+        pub unsafe fn setStrokeColor(&self, stroke_color: CGColorRef);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(strokeStart)]

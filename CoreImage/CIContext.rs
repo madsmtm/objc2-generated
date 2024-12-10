@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-video")]
 use objc2_core_video::*;
 use objc2_foundation::*;
@@ -81,6 +83,13 @@ unsafe impl NSObjectProtocol for CIContext {}
 
 extern_methods!(
     unsafe impl CIContext {
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method_id(@__retain_semantics Other contextWithCGContext:options:)]
+        pub unsafe fn contextWithCGContext_options(
+            cgctx: CGContextRef,
+            options: Option<&NSDictionary<CIContextOption, AnyObject>>,
+        ) -> Retained<CIContext>;
+
         #[method_id(@__retain_semantics Other contextWithOptions:)]
         pub unsafe fn contextWithOptions(
             options: Option<&NSDictionary<CIContextOption, AnyObject>>,
@@ -124,6 +133,10 @@ extern_methods!(
             options: Option<&NSDictionary<CIContextOption, AnyObject>>,
         ) -> Retained<CIContext>;
 
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(workingColorSpace)]
+        pub unsafe fn workingColorSpace(&self) -> CGColorSpaceRef;
+
         #[cfg(feature = "CIImage")]
         #[method(workingFormat)]
         pub unsafe fn workingFormat(&self) -> CIFormat;
@@ -147,9 +160,56 @@ extern_methods!(
             from_rect: CGRect,
         );
 
+        #[cfg(all(
+            feature = "CIImage",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics"
+        ))]
+        #[method(render:toBitmap:rowBytes:bounds:format:colorSpace:)]
+        pub unsafe fn render_toBitmap_rowBytes_bounds_format_colorSpace(
+            &self,
+            image: &CIImage,
+            data: NonNull<c_void>,
+            row_bytes: isize,
+            bounds: CGRect,
+            format: CIFormat,
+            color_space: CGColorSpaceRef,
+        );
+
         #[cfg(all(feature = "CIImage", feature = "objc2-core-video"))]
         #[method(render:toCVPixelBuffer:)]
         pub unsafe fn render_toCVPixelBuffer(&self, image: &CIImage, buffer: CVPixelBufferRef);
+
+        #[cfg(all(
+            feature = "CIImage",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics",
+            feature = "objc2-core-video"
+        ))]
+        #[method(render:toCVPixelBuffer:bounds:colorSpace:)]
+        pub unsafe fn render_toCVPixelBuffer_bounds_colorSpace(
+            &self,
+            image: &CIImage,
+            buffer: CVPixelBufferRef,
+            bounds: CGRect,
+            color_space: CGColorSpaceRef,
+        );
+
+        #[cfg(all(
+            feature = "CIImage",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics",
+            feature = "objc2-metal"
+        ))]
+        #[method(render:toMTLTexture:commandBuffer:bounds:colorSpace:)]
+        pub unsafe fn render_toMTLTexture_commandBuffer_bounds_colorSpace(
+            &self,
+            image: &CIImage,
+            texture: &ProtocolObject<dyn MTLTexture>,
+            command_buffer: Option<&ProtocolObject<dyn MTLCommandBuffer>>,
+            bounds: CGRect,
+            color_space: CGColorSpaceRef,
+        );
 
         #[method(reclaimResources)]
         pub unsafe fn reclaimResources(&self);
@@ -271,6 +331,54 @@ extern "C" {
 extern_methods!(
     /// ImageRepresentation
     unsafe impl CIContext {
+        #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        #[method_id(@__retain_semantics Other TIFFRepresentationOfImage:format:colorSpace:options:)]
+        pub unsafe fn TIFFRepresentationOfImage_format_colorSpace_options(
+            &self,
+            image: &CIImage,
+            format: CIFormat,
+            color_space: CGColorSpaceRef,
+            options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
+        ) -> Option<Retained<NSData>>;
+
+        #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        #[method_id(@__retain_semantics Other JPEGRepresentationOfImage:colorSpace:options:)]
+        pub unsafe fn JPEGRepresentationOfImage_colorSpace_options(
+            &self,
+            image: &CIImage,
+            color_space: CGColorSpaceRef,
+            options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
+        ) -> Option<Retained<NSData>>;
+
+        #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        #[method_id(@__retain_semantics Other HEIFRepresentationOfImage:format:colorSpace:options:)]
+        pub unsafe fn HEIFRepresentationOfImage_format_colorSpace_options(
+            &self,
+            image: &CIImage,
+            format: CIFormat,
+            color_space: CGColorSpaceRef,
+            options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
+        ) -> Option<Retained<NSData>>;
+
+        #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        #[method_id(@__retain_semantics Other HEIF10RepresentationOfImage:colorSpace:options:error:_)]
+        pub unsafe fn HEIF10RepresentationOfImage_colorSpace_options_error(
+            &self,
+            image: &CIImage,
+            color_space: CGColorSpaceRef,
+            options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
+        ) -> Result<Retained<NSData>, Retained<NSError>>;
+
+        #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        #[method_id(@__retain_semantics Other PNGRepresentationOfImage:format:colorSpace:options:)]
+        pub unsafe fn PNGRepresentationOfImage_format_colorSpace_options(
+            &self,
+            image: &CIImage,
+            format: CIFormat,
+            color_space: CGColorSpaceRef,
+            options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
+        ) -> Option<Retained<NSData>>;
+
         #[cfg(feature = "CIImage")]
         #[method_id(@__retain_semantics Other OpenEXRRepresentationOfImage:options:error:_)]
         pub unsafe fn OpenEXRRepresentationOfImage_options_error(
@@ -278,6 +386,59 @@ extern_methods!(
             image: &CIImage,
             options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
+
+        #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        #[method(writeTIFFRepresentationOfImage:toURL:format:colorSpace:options:error:_)]
+        pub unsafe fn writeTIFFRepresentationOfImage_toURL_format_colorSpace_options_error(
+            &self,
+            image: &CIImage,
+            url: &NSURL,
+            format: CIFormat,
+            color_space: CGColorSpaceRef,
+            options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        #[method(writePNGRepresentationOfImage:toURL:format:colorSpace:options:error:_)]
+        pub unsafe fn writePNGRepresentationOfImage_toURL_format_colorSpace_options_error(
+            &self,
+            image: &CIImage,
+            url: &NSURL,
+            format: CIFormat,
+            color_space: CGColorSpaceRef,
+            options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        #[method(writeJPEGRepresentationOfImage:toURL:colorSpace:options:error:_)]
+        pub unsafe fn writeJPEGRepresentationOfImage_toURL_colorSpace_options_error(
+            &self,
+            image: &CIImage,
+            url: &NSURL,
+            color_space: CGColorSpaceRef,
+            options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        #[method(writeHEIFRepresentationOfImage:toURL:format:colorSpace:options:error:_)]
+        pub unsafe fn writeHEIFRepresentationOfImage_toURL_format_colorSpace_options_error(
+            &self,
+            image: &CIImage,
+            url: &NSURL,
+            format: CIFormat,
+            color_space: CGColorSpaceRef,
+            options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        #[method(writeHEIF10RepresentationOfImage:toURL:colorSpace:options:error:_)]
+        pub unsafe fn writeHEIF10RepresentationOfImage_toURL_colorSpace_options_error(
+            &self,
+            image: &CIImage,
+            url: &NSURL,
+            color_space: CGColorSpaceRef,
+            options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "CIImage")]
         #[method(writeOpenEXRRepresentationOfImage:toURL:options:error:_)]

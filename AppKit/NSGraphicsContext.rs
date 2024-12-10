@@ -3,6 +3,9 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+#[cfg(target_vendor = "apple")]
+use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-image")]
 #[cfg(target_vendor = "apple")]
 use objc2_core_image::*;
@@ -87,6 +90,14 @@ extern_methods!(
             bitmap_rep: &NSBitmapImageRep,
         ) -> Option<Retained<NSGraphicsContext>>;
 
+        #[cfg(feature = "objc2-core-graphics")]
+        #[cfg(target_vendor = "apple")]
+        #[method_id(@__retain_semantics Other graphicsContextWithCGContext:flipped:)]
+        pub unsafe fn graphicsContextWithCGContext_flipped(
+            graphics_port: CGContextRef,
+            initial_flipped_state: bool,
+        ) -> Retained<NSGraphicsContext>;
+
         #[method_id(@__retain_semantics Other currentContext)]
         pub unsafe fn currentContext() -> Option<Retained<NSGraphicsContext>>;
 
@@ -118,6 +129,11 @@ extern_methods!(
 
         #[method(flushGraphics)]
         pub unsafe fn flushGraphics(&self);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[cfg(target_vendor = "apple")]
+        #[method(CGContext)]
+        pub unsafe fn CGContext(&self) -> CGContextRef;
 
         #[method(isFlipped)]
         pub unsafe fn isFlipped(&self) -> bool;

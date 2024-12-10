@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -437,6 +439,14 @@ extern_methods!(
         #[method(setDrawsAsynchronously:)]
         pub fn setDrawsAsynchronously(&self, draws_asynchronously: bool);
 
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(drawInContext:)]
+        pub unsafe fn drawInContext(&self, ctx: CGContextRef);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(renderInContext:)]
+        pub unsafe fn renderInContext(&self, ctx: CGContextRef);
+
         #[method(edgeAntialiasingMask)]
         pub fn edgeAntialiasingMask(&self) -> CAEdgeAntialiasingMask;
 
@@ -448,6 +458,14 @@ extern_methods!(
 
         #[method(setAllowsEdgeAntialiasing:)]
         pub fn setAllowsEdgeAntialiasing(&self, allows_edge_antialiasing: bool);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(backgroundColor)]
+        pub unsafe fn backgroundColor(&self) -> CGColorRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setBackgroundColor:)]
+        pub unsafe fn setBackgroundColor(&self, background_color: CGColorRef);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(cornerRadius)]
@@ -480,6 +498,14 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setBorderWidth:)]
         pub fn setBorderWidth(&self, border_width: CGFloat);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(borderColor)]
+        pub unsafe fn borderColor(&self) -> CGColorRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setBorderColor:)]
+        pub unsafe fn setBorderColor(&self, border_color: CGColorRef);
 
         #[method(opacity)]
         pub fn opacity(&self) -> c_float;
@@ -525,6 +551,14 @@ extern_methods!(
         #[method(setRasterizationScale:)]
         pub fn setRasterizationScale(&self, rasterization_scale: CGFloat);
 
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(shadowColor)]
+        pub unsafe fn shadowColor(&self) -> CGColorRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setShadowColor:)]
+        pub unsafe fn setShadowColor(&self, shadow_color: CGColorRef);
+
         #[method(shadowOpacity)]
         pub fn shadowOpacity(&self) -> c_float;
 
@@ -546,6 +580,14 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setShadowRadius:)]
         pub fn setShadowRadius(&self, shadow_radius: CGFloat);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(shadowPath)]
+        pub unsafe fn shadowPath(&self) -> CGPathRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setShadowPath:)]
+        pub unsafe fn setShadowPath(&self, shadow_path: CGPathRef);
 
         #[method(autoresizingMask)]
         pub fn autoresizingMask(&self) -> CAAutoresizingMask;
@@ -704,6 +746,11 @@ extern_protocol!(
         #[optional]
         #[method(displayLayer:)]
         unsafe fn displayLayer(&self, layer: &CALayer);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[optional]
+        #[method(drawLayer:inContext:)]
+        unsafe fn drawLayer_inContext(&self, layer: &CALayer, ctx: CGContextRef);
 
         #[optional]
         #[method(layerWillDraw:)]

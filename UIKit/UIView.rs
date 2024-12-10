@@ -495,6 +495,14 @@ extern_methods!(
         #[method(setCenter:)]
         pub unsafe fn setCenter(&self, center: CGPoint);
 
+        #[cfg(feature = "objc2-core-foundation")]
+        #[method(transform)]
+        pub unsafe fn transform(&self) -> CGAffineTransform;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[method(setTransform:)]
+        pub unsafe fn setTransform(&self, transform: CGAffineTransform);
+
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         #[method(transform3D)]

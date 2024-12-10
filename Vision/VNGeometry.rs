@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -325,6 +327,10 @@ extern_methods!(
 
         #[method(pointCount)]
         pub unsafe fn pointCount(&self) -> NSInteger;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(normalizedPath)]
+        pub unsafe fn normalizedPath(&self) -> CGPathRef;
 
         #[method(aspectRatio)]
         pub unsafe fn aspectRatio(&self) -> c_float;

@@ -6,6 +6,8 @@ use objc2::__framework_prelude::*;
 use objc2_app_kit::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 use objc2_metal::*;
 #[cfg(feature = "objc2-quartz-core")]
@@ -221,6 +223,14 @@ extern_methods!(
 
         #[method(setPaused:)]
         pub unsafe fn setPaused(&self, paused: bool);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(colorspace)]
+        pub unsafe fn colorspace(&self) -> CGColorSpaceRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setColorspace:)]
+        pub unsafe fn setColorspace(&self, colorspace: CGColorSpaceRef);
 
         #[method(draw)]
         pub unsafe fn draw(&self);

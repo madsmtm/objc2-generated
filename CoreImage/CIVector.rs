@@ -64,6 +64,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other vectorWithCGRect:)]
         pub unsafe fn vectorWithCGRect(r: CGRect) -> Retained<Self>;
 
+        #[cfg(feature = "objc2-core-foundation")]
+        #[method_id(@__retain_semantics Other vectorWithCGAffineTransform:)]
+        pub unsafe fn vectorWithCGAffineTransform(t: CGAffineTransform) -> Retained<Self>;
+
         #[method_id(@__retain_semantics Other vectorWithString:)]
         pub unsafe fn vectorWithString(representation: &NSString) -> Retained<Self>;
 
@@ -110,6 +114,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCGRect:)]
         pub unsafe fn initWithCGRect(this: Allocated<Self>, r: CGRect) -> Retained<Self>;
 
+        #[cfg(feature = "objc2-core-foundation")]
+        #[method_id(@__retain_semantics Init initWithCGAffineTransform:)]
+        pub unsafe fn initWithCGAffineTransform(
+            this: Allocated<Self>,
+            r: CGAffineTransform,
+        ) -> Retained<Self>;
+
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(
             this: Allocated<Self>,
@@ -146,6 +157,10 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[method(CGRectValue)]
         pub unsafe fn CGRectValue(&self) -> CGRect;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[method(CGAffineTransformValue)]
+        pub unsafe fn CGAffineTransformValue(&self) -> CGAffineTransform;
 
         #[method_id(@__retain_semantics Other stringRepresentation)]
         pub unsafe fn stringRepresentation(&self) -> Retained<NSString>;

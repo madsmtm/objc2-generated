@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-video")]
 use objc2_core_video::*;
 use objc2_foundation::*;
@@ -290,6 +292,50 @@ unsafe impl NSSecureCoding for CIImage {}
 
 extern_methods!(
     unsafe impl CIImage {
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method_id(@__retain_semantics Other imageWithCGImage:)]
+        pub unsafe fn imageWithCGImage(image: CGImageRef) -> Retained<CIImage>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method_id(@__retain_semantics Other imageWithCGImage:options:)]
+        pub unsafe fn imageWithCGImage_options(
+            image: CGImageRef,
+            options: Option<&NSDictionary<CIImageOption, AnyObject>>,
+        ) -> Retained<CIImage>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[deprecated]
+        #[method_id(@__retain_semantics Other imageWithCGLayer:)]
+        pub unsafe fn imageWithCGLayer(layer: CGLayerRef) -> Retained<CIImage>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[deprecated]
+        #[method_id(@__retain_semantics Other imageWithCGLayer:options:)]
+        pub unsafe fn imageWithCGLayer_options(
+            layer: CGLayerRef,
+            options: Option<&NSDictionary<CIImageOption, AnyObject>>,
+        ) -> Retained<CIImage>;
+
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[method_id(@__retain_semantics Other imageWithBitmapData:bytesPerRow:size:format:colorSpace:)]
+        pub unsafe fn imageWithBitmapData_bytesPerRow_size_format_colorSpace(
+            data: &NSData,
+            bytes_per_row: usize,
+            size: CGSize,
+            format: CIFormat,
+            color_space: CGColorSpaceRef,
+        ) -> Retained<CIImage>;
+
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
+        #[method_id(@__retain_semantics Other imageWithTexture:size:flipped:colorSpace:)]
+        pub unsafe fn imageWithTexture_size_flipped_colorSpace(
+            name: c_uint,
+            size: CGSize,
+            flipped: bool,
+            color_space: CGColorSpaceRef,
+        ) -> Retained<CIImage>;
+
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
         #[method_id(@__retain_semantics Other imageWithTexture:size:flipped:options:)]
@@ -384,6 +430,32 @@ extern_methods!(
         #[method_id(@__retain_semantics Other clearImage)]
         pub unsafe fn clearImage() -> Retained<CIImage>;
 
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method_id(@__retain_semantics Init initWithCGImage:)]
+        pub unsafe fn initWithCGImage(this: Allocated<Self>, image: CGImageRef) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method_id(@__retain_semantics Init initWithCGImage:options:)]
+        pub unsafe fn initWithCGImage_options(
+            this: Allocated<Self>,
+            image: CGImageRef,
+            options: Option<&NSDictionary<CIImageOption, AnyObject>>,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[deprecated = "Use initWithCGImage: instead."]
+        #[method_id(@__retain_semantics Init initWithCGLayer:)]
+        pub unsafe fn initWithCGLayer(this: Allocated<Self>, layer: CGLayerRef) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[deprecated = "Use initWithCGImage:options instead."]
+        #[method_id(@__retain_semantics Init initWithCGLayer:options:)]
+        pub unsafe fn initWithCGLayer_options(
+            this: Allocated<Self>,
+            layer: CGLayerRef,
+            options: Option<&NSDictionary<CIImageOption, AnyObject>>,
+        ) -> Retained<Self>;
+
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Option<Retained<Self>>;
 
@@ -393,6 +465,28 @@ extern_methods!(
             data: &NSData,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Option<Retained<Self>>;
+
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[method_id(@__retain_semantics Init initWithBitmapData:bytesPerRow:size:format:colorSpace:)]
+        pub unsafe fn initWithBitmapData_bytesPerRow_size_format_colorSpace(
+            this: Allocated<Self>,
+            data: &NSData,
+            bytes_per_row: usize,
+            size: CGSize,
+            format: CIFormat,
+            color_space: CGColorSpaceRef,
+        ) -> Retained<Self>;
+
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
+        #[method_id(@__retain_semantics Init initWithTexture:size:flipped:colorSpace:)]
+        pub unsafe fn initWithTexture_size_flipped_colorSpace(
+            this: Allocated<Self>,
+            name: c_uint,
+            size: CGSize,
+            flipped: bool,
+            color_space: CGColorSpaceRef,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
@@ -460,6 +554,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithColor:)]
         pub unsafe fn initWithColor(this: Allocated<Self>, color: &CIColor) -> Retained<Self>;
 
+        #[cfg(feature = "objc2-core-foundation")]
+        #[method_id(@__retain_semantics Other imageByApplyingTransform:)]
+        pub unsafe fn imageByApplyingTransform(
+            &self,
+            matrix: CGAffineTransform,
+        ) -> Retained<CIImage>;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[method_id(@__retain_semantics Other imageByApplyingTransform:highQualityDownsample:)]
+        pub unsafe fn imageByApplyingTransform_highQualityDownsample(
+            &self,
+            matrix: CGAffineTransform,
+            high_quality_downsample: bool,
+        ) -> Retained<CIImage>;
+
         #[method_id(@__retain_semantics Other imageByApplyingOrientation:)]
         pub unsafe fn imageByApplyingOrientation(&self, orientation: c_int) -> Retained<CIImage>;
 
@@ -486,6 +595,20 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other imageByApplyingFilter:)]
         pub unsafe fn imageByApplyingFilter(&self, filter_name: &NSString) -> Retained<CIImage>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method_id(@__retain_semantics Other imageByColorMatchingColorSpaceToWorkingSpace:)]
+        pub unsafe fn imageByColorMatchingColorSpaceToWorkingSpace(
+            &self,
+            color_space: CGColorSpaceRef,
+        ) -> Option<Retained<CIImage>>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method_id(@__retain_semantics Other imageByColorMatchingWorkingSpaceToColorSpace:)]
+        pub unsafe fn imageByColorMatchingWorkingSpaceToColorSpace(
+            &self,
+            color_space: CGColorSpaceRef,
+        ) -> Option<Retained<CIImage>>;
 
         #[method_id(@__retain_semantics Other imageByPremultiplyingAlpha)]
         pub unsafe fn imageByPremultiplyingAlpha(&self) -> Retained<CIImage>;
@@ -554,6 +677,10 @@ extern_methods!(
         #[cfg(feature = "objc2-core-video")]
         #[method(pixelBuffer)]
         pub unsafe fn pixelBuffer(&self) -> CVPixelBufferRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(CGImage)]
+        pub unsafe fn CGImage(&self) -> CGImageRef;
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other metalTexture)]

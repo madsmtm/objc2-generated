@@ -343,6 +343,8 @@ pub use self::__CAMetalDisplayLink::CAMetalDisplayLinkUpdate;
 pub use self::__CAMetalLayer::CAMetalDrawable;
 #[cfg(all(feature = "CALayer", feature = "CAMetalLayer"))]
 pub use self::__CAMetalLayer::CAMetalLayer;
+#[cfg(all(feature = "CALayer", feature = "CAOpenGLLayer"))]
+pub use self::__CAOpenGLLayer::CAOpenGLLayer;
 #[cfg(feature = "CARemoteLayerClient")]
 pub use self::__CARemoteLayerClient::CARemoteLayerClient;
 #[cfg(feature = "CARemoteLayerServer")]
@@ -434,6 +436,8 @@ pub use self::__CATransform3D::CATransform3DConcat;
 #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3DEqualToTransform;
 #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
+pub use self::__CATransform3D::CATransform3DGetAffineTransform;
+#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3DIdentity;
 #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3DInvert;
@@ -441,6 +445,8 @@ pub use self::__CATransform3D::CATransform3DInvert;
 pub use self::__CATransform3D::CATransform3DIsAffine;
 #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3DIsIdentity;
+#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
+pub use self::__CATransform3D::CATransform3DMakeAffineTransform;
 #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3DMakeRotation;
 #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]

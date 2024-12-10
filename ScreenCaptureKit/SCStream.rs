@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -312,6 +314,14 @@ extern_methods!(
         #[method(setShowMouseClicks:)]
         pub unsafe fn setShowMouseClicks(&self, show_mouse_clicks: bool);
 
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(backgroundColor)]
+        pub unsafe fn backgroundColor(&self) -> CGColorRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setBackgroundColor:)]
+        pub unsafe fn setBackgroundColor(&self, background_color: CGColorRef);
+
         #[cfg(feature = "objc2-core-foundation")]
         #[method(sourceRect)]
         pub unsafe fn sourceRect(&self) -> CGRect;
@@ -333,6 +343,22 @@ extern_methods!(
 
         #[method(setQueueDepth:)]
         pub unsafe fn setQueueDepth(&self, queue_depth: NSInteger);
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[method(colorMatrix)]
+        pub unsafe fn colorMatrix(&self) -> CFStringRef;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[method(setColorMatrix:)]
+        pub unsafe fn setColorMatrix(&self, color_matrix: CFStringRef);
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[method(colorSpaceName)]
+        pub unsafe fn colorSpaceName(&self) -> CFStringRef;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[method(setColorSpaceName:)]
+        pub unsafe fn setColorSpaceName(&self, color_space_name: CFStringRef);
 
         #[method(capturesAudio)]
         pub unsafe fn capturesAudio(&self) -> bool;

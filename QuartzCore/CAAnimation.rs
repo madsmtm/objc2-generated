@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -304,6 +306,14 @@ extern_methods!(
 
         #[method(setValues:)]
         pub unsafe fn setValues(&self, values: Option<&NSArray>);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(path)]
+        pub unsafe fn path(&self) -> CGPathRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setPath:)]
+        pub unsafe fn setPath(&self, path: CGPathRef);
 
         #[method_id(@__retain_semantics Other keyTimes)]
         pub unsafe fn keyTimes(&self) -> Option<Retained<NSArray<NSNumber>>>;

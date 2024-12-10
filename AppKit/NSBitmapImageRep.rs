@@ -3,6 +3,9 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+#[cfg(target_vendor = "apple")]
+use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-image")]
 #[cfg(target_vendor = "apple")]
 use objc2_core_image::*;
@@ -278,6 +281,14 @@ extern_methods!(
             p_bits: NSInteger,
         ) -> Option<Retained<Self>>;
 
+        #[cfg(feature = "objc2-core-graphics")]
+        #[cfg(target_vendor = "apple")]
+        #[method_id(@__retain_semantics Init initWithCGImage:)]
+        pub unsafe fn initWithCGImage(
+            this: Allocated<Self>,
+            cg_image: CGImageRef,
+        ) -> Retained<Self>;
+
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Init initWithCIImage:)]
@@ -398,6 +409,11 @@ extern_methods!(
 
         #[method(setPixel:atX:y:)]
         pub unsafe fn setPixel_atX_y(&self, p: NonNull<NSUInteger>, x: NSInteger, y: NSInteger);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[cfg(target_vendor = "apple")]
+        #[method(CGImage)]
+        pub unsafe fn CGImage(&self) -> CGImageRef;
 
         #[cfg(feature = "NSColorSpace")]
         #[method_id(@__retain_semantics Other colorSpace)]

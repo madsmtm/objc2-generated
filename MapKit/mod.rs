@@ -348,6 +348,8 @@ pub use self::__MKGeometry::MKMapRect;
 pub use self::__MKGeometry::MKMapRectContainsPoint;
 #[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapRectContainsRect;
+#[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]
+pub use self::__MKGeometry::MKMapRectDivide;
 #[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapRectInset;
 #[cfg(feature = "MKGeometry")]

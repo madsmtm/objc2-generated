@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -64,6 +66,10 @@ extern_methods!(
             clockwise: bool,
         ) -> Retained<Self>;
 
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method_id(@__retain_semantics Other bezierPathWithCGPath:)]
+        pub unsafe fn bezierPathWithCGPath(cg_path: CGPathRef) -> Retained<Self>;
+
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -72,6 +78,14 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(CGPath)]
+        pub unsafe fn CGPath(&self) -> CGPathRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setCGPath:)]
+        pub unsafe fn setCGPath(&self, cg_path: CGPathRef);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(moveToPoint:)]
@@ -148,6 +162,22 @@ extern_methods!(
         #[method(setLineWidth:)]
         pub unsafe fn setLineWidth(&self, line_width: CGFloat);
 
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(lineCapStyle)]
+        pub unsafe fn lineCapStyle(&self) -> CGLineCap;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setLineCapStyle:)]
+        pub unsafe fn setLineCapStyle(&self, line_cap_style: CGLineCap);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(lineJoinStyle)]
+        pub unsafe fn lineJoinStyle(&self) -> CGLineJoin;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setLineJoinStyle:)]
+        pub unsafe fn setLineJoinStyle(&self, line_join_style: CGLineJoin);
+
         #[cfg(feature = "objc2-core-foundation")]
         #[method(miterLimit)]
         pub unsafe fn miterLimit(&self) -> CGFloat;
@@ -193,6 +223,14 @@ extern_methods!(
 
         #[method(stroke)]
         pub unsafe fn stroke(&self);
+
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[method(fillWithBlendMode:alpha:)]
+        pub unsafe fn fillWithBlendMode_alpha(&self, blend_mode: CGBlendMode, alpha: CGFloat);
+
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[method(strokeWithBlendMode:alpha:)]
+        pub unsafe fn strokeWithBlendMode_alpha(&self, blend_mode: CGBlendMode, alpha: CGFloat);
 
         #[method(addClip)]
         pub unsafe fn addClip(&self);

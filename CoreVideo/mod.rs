@@ -129,8 +129,29 @@ pub use self::__CVBuffer::CVBufferSetAttachment;
 pub use self::__CVBuffer::CVBufferSetAttachments;
 #[cfg(all(feature = "CVDisplayLink", feature = "CVReturn"))]
 pub use self::__CVDisplayLink::CVDisplayLinkCreateWithActiveCGDisplays;
+#[cfg(all(
+    feature = "CVDisplayLink",
+    feature = "CVReturn",
+    feature = "objc2-core-graphics"
+))]
+pub use self::__CVDisplayLink::CVDisplayLinkCreateWithCGDisplay;
+#[cfg(all(
+    feature = "CVDisplayLink",
+    feature = "CVReturn",
+    feature = "objc2-core-foundation",
+    feature = "objc2-core-graphics"
+))]
+pub use self::__CVDisplayLink::CVDisplayLinkCreateWithCGDisplays;
+#[cfg(all(
+    feature = "CVDisplayLink",
+    feature = "CVReturn",
+    feature = "objc2-core-graphics"
+))]
+pub use self::__CVDisplayLink::CVDisplayLinkCreateWithOpenGLDisplayMask;
 #[cfg(feature = "CVDisplayLink")]
 pub use self::__CVDisplayLink::CVDisplayLinkGetActualOutputVideoRefreshPeriod;
+#[cfg(all(feature = "CVDisplayLink", feature = "objc2-core-graphics"))]
+pub use self::__CVDisplayLink::CVDisplayLinkGetCurrentCGDisplay;
 #[cfg(all(feature = "CVBase", feature = "CVDisplayLink", feature = "CVReturn"))]
 pub use self::__CVDisplayLink::CVDisplayLinkGetCurrentTime;
 #[cfg(all(feature = "CVBase", feature = "CVDisplayLink"))]
@@ -154,6 +175,12 @@ pub use self::__CVDisplayLink::CVDisplayLinkOutputHandler;
 pub use self::__CVDisplayLink::CVDisplayLinkRef;
 #[cfg(feature = "CVDisplayLink")]
 pub use self::__CVDisplayLink::CVDisplayLinkRetain;
+#[cfg(all(
+    feature = "CVDisplayLink",
+    feature = "CVReturn",
+    feature = "objc2-core-graphics"
+))]
+pub use self::__CVDisplayLink::CVDisplayLinkSetCurrentCGDisplay;
 #[cfg(all(feature = "CVBase", feature = "CVDisplayLink", feature = "CVReturn"))]
 pub use self::__CVDisplayLink::CVDisplayLinkSetOutputCallback;
 #[cfg(all(
@@ -328,11 +355,23 @@ pub use self::__CVImageBuffer::CVColorPrimariesGetIntegerCodePointForString;
 #[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
 pub use self::__CVImageBuffer::CVColorPrimariesGetStringForIntegerCodePoint;
 #[cfg(all(
+    feature = "CVImageBuffer",
+    feature = "objc2-core-foundation",
+    feature = "objc2-core-graphics"
+))]
+pub use self::__CVImageBuffer::CVImageBufferCreateColorSpaceFromAttachments;
+#[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CVImageBuffer::CVImageBufferGetCleanRect;
+#[cfg(all(
+    feature = "CVBuffer",
+    feature = "CVImageBuffer",
+    feature = "objc2-core-graphics"
+))]
+pub use self::__CVImageBuffer::CVImageBufferGetColorSpace;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",

@@ -3,17 +3,34 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-graphics")]
+    pub fn UIGraphicsPushContext(context: CGContextRef);
+}
 
 extern "C-unwind" {
     pub fn UIGraphicsPopContext();
 }
 
 extern "C-unwind" {
+    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+    pub fn UIRectFillUsingBlendMode(rect: CGRect, blend_mode: CGBlendMode);
+}
+
+extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     pub fn UIRectFill(rect: CGRect);
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+    pub fn UIRectFrameUsingBlendMode(rect: CGRect, blend_mode: CGBlendMode);
 }
 
 extern "C-unwind" {

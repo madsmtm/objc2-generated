@@ -3,6 +3,9 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+#[cfg(target_vendor = "apple")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -225,6 +228,20 @@ extern_methods!(
         pub unsafe fn imageRepWithPasteboard(
             pasteboard: &NSPasteboard,
         ) -> Option<Retained<NSImageRep>>;
+
+        #[cfg(all(
+            feature = "NSGraphicsContext",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics"
+        ))]
+        #[cfg(target_vendor = "apple")]
+        #[method(CGImageForProposedRect:context:hints:)]
+        pub unsafe fn CGImageForProposedRect_context_hints(
+            &self,
+            proposed_dest_rect: *mut NSRect,
+            context: Option<&NSGraphicsContext>,
+            hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
+        ) -> CGImageRef;
     }
 );
 

@@ -70,6 +70,8 @@ pub use self::__AXAudiograph::AXNumericDataAxisDescriptorScale;
 pub use self::__AXBrailleMap::AXBrailleMap;
 #[cfg(feature = "AXBrailleMap")]
 pub use self::__AXBrailleMap::AXBrailleMapRenderer;
+#[cfg(all(feature = "AXColorUtilities", feature = "objc2-core-graphics"))]
+pub use self::__AXColorUtilities::AXNameFromColor;
 #[cfg(feature = "AXCustomContent")]
 pub use self::__AXCustomContent::AXCustomContent;
 #[cfg(feature = "AXCustomContent")]

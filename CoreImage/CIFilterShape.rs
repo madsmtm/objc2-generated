@@ -32,6 +32,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithRect:)]
         pub unsafe fn initWithRect(this: Allocated<Self>, r: CGRect) -> Retained<Self>;
 
+        #[cfg(feature = "objc2-core-foundation")]
+        #[method_id(@__retain_semantics Other transformBy:interior:)]
+        pub unsafe fn transformBy_interior(
+            &self,
+            m: CGAffineTransform,
+            flag: bool,
+        ) -> Retained<CIFilterShape>;
+
         #[method_id(@__retain_semantics Other insetByX:Y:)]
         pub unsafe fn insetByX_Y(&self, dx: c_int, dy: c_int) -> Retained<CIFilterShape>;
 

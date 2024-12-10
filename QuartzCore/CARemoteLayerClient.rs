@@ -15,6 +15,13 @@ unsafe impl NSObjectProtocol for CARemoteLayerClient {}
 
 extern_methods!(
     unsafe impl CARemoteLayerClient {
+        #[cfg(feature = "libc")]
+        #[method_id(@__retain_semantics Init initWithServerPort:)]
+        pub unsafe fn initWithServerPort(
+            this: Allocated<Self>,
+            port: libc::mach_port_t,
+        ) -> Retained<Self>;
+
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
 

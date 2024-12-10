@@ -217,6 +217,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[cfg(feature = "objc2-core-foundation")]
+    pub fn MKMapRectDivide(
+        rect: MKMapRect,
+        slice: NonNull<MKMapRect>,
+        remainder: NonNull<MKMapRect>,
+        amount: c_double,
+        edge: CGRectEdge,
+    );
+}
+
+extern "C-unwind" {
     pub fn MKMapRectContainsPoint(rect: MKMapRect, point: MKMapPoint) -> Bool;
 }
 

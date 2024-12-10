@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -222,6 +224,15 @@ extern_methods!(
             &self,
             foreground: &CIImage,
             background: &CIImage,
+        ) -> Option<Retained<CIImage>>;
+
+        #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        #[method_id(@__retain_semantics Other applyWithForeground:background:colorSpace:)]
+        pub unsafe fn applyWithForeground_background_colorSpace(
+            &self,
+            foreground: &CIImage,
+            background: &CIImage,
+            color_space: CGColorSpaceRef,
         ) -> Option<Retained<CIImage>>;
     }
 );

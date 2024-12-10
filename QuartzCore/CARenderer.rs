@@ -3,7 +3,11 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-video")]
+use objc2_core_video::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-metal")]
+use objc2_metal::*;
 
 use crate::*;
 
@@ -25,6 +29,13 @@ extern_methods!(
             dict: Option<&NSDictionary>,
         ) -> Retained<CARenderer>;
 
+        #[cfg(feature = "objc2-metal")]
+        #[method_id(@__retain_semantics Other rendererWithMTLTexture:options:)]
+        pub unsafe fn rendererWithMTLTexture_options(
+            tex: &ProtocolObject<dyn MTLTexture>,
+            dict: Option<&NSDictionary>,
+        ) -> Retained<CARenderer>;
+
         #[cfg(feature = "CALayer")]
         #[method_id(@__retain_semantics Other layer)]
         pub fn layer(&self) -> Option<Retained<CALayer>>;
@@ -40,6 +51,10 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setBounds:)]
         pub fn setBounds(&self, bounds: CGRect);
+
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-video"))]
+        #[method(beginFrameAtTime:timeStamp:)]
+        pub unsafe fn beginFrameAtTime_timeStamp(&self, t: CFTimeInterval, ts: *mut CVTimeStamp);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(updateBounds)]
@@ -58,6 +73,10 @@ extern_methods!(
 
         #[method(endFrame)]
         pub fn endFrame(&self);
+
+        #[cfg(feature = "objc2-metal")]
+        #[method(setDestination:)]
+        pub unsafe fn setDestination(&self, tex: &ProtocolObject<dyn MTLTexture>);
     }
 );
 

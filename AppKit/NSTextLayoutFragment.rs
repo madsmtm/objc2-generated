@@ -3,6 +3,9 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+#[cfg(target_vendor = "apple")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -158,6 +161,11 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[method(bottomMargin)]
         pub unsafe fn bottomMargin(&self) -> CGFloat;
+
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[cfg(target_vendor = "apple")]
+        #[method(drawAtPoint:inContext:)]
+        pub unsafe fn drawAtPoint_inContext(&self, point: CGPoint, context: CGContextRef);
 
         #[cfg(feature = "NSTextAttachment")]
         #[method_id(@__retain_semantics Other textAttachmentViewProviders)]

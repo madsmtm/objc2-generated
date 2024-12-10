@@ -6,6 +6,8 @@ use objc2::__framework_prelude::*;
 use objc2_app_kit::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -52,6 +54,22 @@ extern_methods!(
         #[method(setLineWidth:)]
         pub unsafe fn setLineWidth(&self, line_width: CGFloat);
 
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(lineJoin)]
+        pub unsafe fn lineJoin(&self) -> CGLineJoin;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setLineJoin:)]
+        pub unsafe fn setLineJoin(&self, line_join: CGLineJoin);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(lineCap)]
+        pub unsafe fn lineCap(&self) -> CGLineCap;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setLineCap:)]
+        pub unsafe fn setLineCap(&self, line_cap: CGLineCap);
+
         #[cfg(feature = "objc2-core-foundation")]
         #[method(miterLimit)]
         pub unsafe fn miterLimit(&self) -> CGFloat;
@@ -83,8 +101,48 @@ extern_methods!(
         #[method(createPath)]
         pub unsafe fn createPath(&self);
 
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(path)]
+        pub unsafe fn path(&self) -> CGPathRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setPath:)]
+        pub unsafe fn setPath(&self, path: CGPathRef);
+
         #[method(invalidatePath)]
         pub unsafe fn invalidatePath(&self);
+
+        #[cfg(all(
+            feature = "MKGeometry",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics"
+        ))]
+        #[method(applyStrokePropertiesToContext:atZoomScale:)]
+        pub unsafe fn applyStrokePropertiesToContext_atZoomScale(
+            &self,
+            context: CGContextRef,
+            zoom_scale: MKZoomScale,
+        );
+
+        #[cfg(all(
+            feature = "MKGeometry",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics"
+        ))]
+        #[method(applyFillPropertiesToContext:atZoomScale:)]
+        pub unsafe fn applyFillPropertiesToContext_atZoomScale(
+            &self,
+            context: CGContextRef,
+            zoom_scale: MKZoomScale,
+        );
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(strokePath:inContext:)]
+        pub unsafe fn strokePath_inContext(&self, path: CGPathRef, context: CGContextRef);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(fillPath:inContext:)]
+        pub unsafe fn fillPath_inContext(&self, path: CGPathRef, context: CGContextRef);
     }
 );
 

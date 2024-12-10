@@ -3,6 +3,9 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+#[cfg(target_vendor = "apple")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -341,6 +344,30 @@ extern_methods!(
             &self,
             accessibility_description: Option<&NSString>,
         );
+
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[cfg(target_vendor = "apple")]
+        #[method_id(@__retain_semantics Init initWithCGImage:size:)]
+        pub unsafe fn initWithCGImage_size(
+            this: Allocated<Self>,
+            cg_image: CGImageRef,
+            size: NSSize,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "NSGraphicsContext",
+            feature = "NSImageRep",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics"
+        ))]
+        #[cfg(target_vendor = "apple")]
+        #[method(CGImageForProposedRect:context:hints:)]
+        pub unsafe fn CGImageForProposedRect_context_hints(
+            &self,
+            proposed_dest_rect: *mut NSRect,
+            reference_context: Option<&NSGraphicsContext>,
+            hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
+        ) -> CGImageRef;
 
         #[cfg(all(
             feature = "NSGraphicsContext",

@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -59,6 +61,10 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[method(glyphOrigin)]
         pub unsafe fn glyphOrigin(&self) -> CGPoint;
+
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[method(drawAtPoint:inContext:)]
+        pub unsafe fn drawAtPoint_inContext(&self, point: CGPoint, context: CGContextRef);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(locationForCharacterAtIndex:)]

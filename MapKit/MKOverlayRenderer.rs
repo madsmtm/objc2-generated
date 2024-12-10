@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 
 use crate::*;
 
@@ -52,6 +54,19 @@ extern_methods!(
             zoom_scale: MKZoomScale,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "MKGeometry",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics"
+        ))]
+        #[method(drawMapRect:zoomScale:inContext:)]
+        pub unsafe fn drawMapRect_zoomScale_inContext(
+            &self,
+            map_rect: MKMapRect,
+            zoom_scale: MKZoomScale,
+            context: CGContextRef,
+        );
+
         #[method(setNeedsDisplay)]
         pub unsafe fn setNeedsDisplay(&self);
 
@@ -78,6 +93,14 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[method(contentScaleFactor)]
         pub unsafe fn contentScaleFactor(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(blendMode)]
+        pub unsafe fn blendMode(&self) -> CGBlendMode;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setBlendMode:)]
+        pub unsafe fn setBlendMode(&self, blend_mode: CGBlendMode);
     }
 );
 

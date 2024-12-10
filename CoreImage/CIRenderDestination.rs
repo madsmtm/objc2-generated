@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-video")]
 use objc2_core_video::*;
 use objc2_foundation::*;
@@ -116,6 +118,14 @@ extern_methods!(
 
         #[method(setClamped:)]
         pub unsafe fn setClamped(&self, clamped: bool);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(colorSpace)]
+        pub unsafe fn colorSpace(&self) -> CGColorSpaceRef;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[method(setColorSpace:)]
+        pub unsafe fn setColorSpace(&self, color_space: CGColorSpaceRef);
 
         #[cfg(feature = "CIKernel")]
         #[method_id(@__retain_semantics Other blendKernel)]

@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 
 use crate::*;
 
@@ -41,11 +43,58 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[cfg(all(
+        feature = "CVReturn",
+        feature = "objc2-core-foundation",
+        feature = "objc2-core-graphics"
+    ))]
+    #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
+    pub fn CVDisplayLinkCreateWithCGDisplays(
+        display_array: NonNull<CGDirectDisplayID>,
+        count: CFIndex,
+        display_link_out: NonNull<CVDisplayLinkRef>,
+    ) -> CVReturn;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
+    #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
+    pub fn CVDisplayLinkCreateWithOpenGLDisplayMask(
+        mask: CGOpenGLDisplayMask,
+        display_link_out: NonNull<CVDisplayLinkRef>,
+    ) -> CVReturn;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
+    #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
+    pub fn CVDisplayLinkCreateWithCGDisplay(
+        display_id: CGDirectDisplayID,
+        display_link_out: NonNull<CVDisplayLinkRef>,
+    ) -> CVReturn;
+}
+
+extern "C-unwind" {
     #[cfg(feature = "CVReturn")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     pub fn CVDisplayLinkCreateWithActiveCGDisplays(
         display_link_out: NonNull<CVDisplayLinkRef>,
     ) -> CVReturn;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
+    #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
+    pub fn CVDisplayLinkSetCurrentCGDisplay(
+        display_link: CVDisplayLinkRef,
+        display_id: CGDirectDisplayID,
+    ) -> CVReturn;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
+    pub fn CVDisplayLinkGetCurrentCGDisplay(display_link: CVDisplayLinkRef) -> CGDirectDisplayID;
 }
 
 extern "C-unwind" {
