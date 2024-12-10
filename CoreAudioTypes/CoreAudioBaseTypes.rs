@@ -1348,7 +1348,7 @@ impl MPEG4ObjectID {
 }
 
 unsafe impl Encode for MPEG4ObjectID {
-    const ENCODING: Encoding = c_long::ENCODING;
+    const ENCODING: Encoding = Encoding::C_LONG;
 }
 
 unsafe impl RefEncode for MPEG4ObjectID {
