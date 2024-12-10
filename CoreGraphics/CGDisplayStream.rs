@@ -3,6 +3,9 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-io-surface")]
+#[cfg(not(target_os = "watchos"))]
+use objc2_io_surface::*;
 
 use crate::*;
 
@@ -51,6 +54,13 @@ unsafe impl Encode for CGDisplayStreamFrameStatus {
 unsafe impl RefEncode for CGDisplayStreamFrameStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamframeavailablehandler?language=objc)
+#[cfg(all(feature = "CGBase", feature = "block2", feature = "objc2-io-surface"))]
+#[cfg(not(target_os = "watchos"))]
+pub type CGDisplayStreamFrameAvailableHandler = *mut block2::Block<
+    dyn Fn(CGDisplayStreamFrameStatus, u64, IOSurfaceRef, CGDisplayStreamUpdateRef),
+>;
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
@@ -161,6 +171,26 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub fn CGDisplayStreamGetTypeID() -> CFTypeID;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "CGBase",
+        feature = "CGDirectDisplay",
+        feature = "block2",
+        feature = "objc2-core-foundation",
+        feature = "objc2-io-surface"
+    ))]
+    #[cfg(not(target_os = "watchos"))]
+    #[deprecated = "Please use ScreenCaptureKit instead."]
+    pub fn CGDisplayStreamCreate(
+        display: CGDirectDisplayID,
+        output_width: usize,
+        output_height: usize,
+        pixel_format: i32,
+        properties: CFDictionaryRef,
+        handler: CGDisplayStreamFrameAvailableHandler,
+    ) -> CGDisplayStreamRef;
 }
 
 extern "C-unwind" {

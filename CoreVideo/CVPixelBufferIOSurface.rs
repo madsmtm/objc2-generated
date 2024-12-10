@@ -3,6 +3,9 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-io-surface")]
+#[cfg(not(target_os = "watchos"))]
+use objc2_io_surface::*;
 
 use crate::*;
 
@@ -34,4 +37,33 @@ extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferiosurfaceopenglesfbocompatibilitykey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferIOSurfaceOpenGLESFBOCompatibilityKey: CFStringRef;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "CVBuffer",
+        feature = "CVImageBuffer",
+        feature = "CVPixelBuffer",
+        feature = "objc2-io-surface"
+    ))]
+    #[cfg(not(target_os = "watchos"))]
+    pub fn CVPixelBufferGetIOSurface(pixel_buffer: CVPixelBufferRef) -> IOSurfaceRef;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "CVBuffer",
+        feature = "CVImageBuffer",
+        feature = "CVPixelBuffer",
+        feature = "CVReturn",
+        feature = "objc2-core-foundation",
+        feature = "objc2-io-surface"
+    ))]
+    #[cfg(not(target_os = "watchos"))]
+    pub fn CVPixelBufferCreateWithIOSurface(
+        allocator: CFAllocatorRef,
+        surface: IOSurfaceRef,
+        pixel_buffer_attributes: CFDictionaryRef,
+        pixel_buffer_out: NonNull<CVPixelBufferRef>,
+    ) -> CVReturn;
 }

@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-io-surface")]
+use objc2_io_surface::*;
 
 use crate::*;
 
@@ -363,6 +365,10 @@ extern_protocol!(
 
         #[method(bufferBytesPerRow)]
         fn bufferBytesPerRow(&self) -> NSUInteger;
+
+        #[cfg(feature = "objc2-io-surface")]
+        #[method(iosurface)]
+        unsafe fn iosurface(&self) -> IOSurfaceRef;
 
         #[method(iosurfacePlane)]
         fn iosurfacePlane(&self) -> NSUInteger;

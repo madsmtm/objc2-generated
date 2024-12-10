@@ -6,6 +6,8 @@ use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-video")]
 use objc2_core_video::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-io-surface")]
+use objc2_io_surface::*;
 #[cfg(feature = "objc2-metal")]
 use objc2_metal::*;
 
@@ -97,6 +99,10 @@ extern_protocol!(
         #[method(baseAddress)]
         unsafe fn baseAddress(&self) -> NonNull<c_void>;
 
+        #[cfg(feature = "objc2-io-surface")]
+        #[method(surface)]
+        unsafe fn surface(&self) -> IOSurfaceRef;
+
         #[cfg(feature = "objc2-core-video")]
         #[method(pixelBuffer)]
         unsafe fn pixelBuffer(&self) -> CVPixelBufferRef;
@@ -134,6 +140,10 @@ extern_protocol!(
 
         #[method(baseAddress)]
         unsafe fn baseAddress(&self) -> NonNull<c_void>;
+
+        #[cfg(feature = "objc2-io-surface")]
+        #[method(surface)]
+        unsafe fn surface(&self) -> IOSurfaceRef;
 
         #[cfg(feature = "objc2-core-video")]
         #[method(pixelBuffer)]

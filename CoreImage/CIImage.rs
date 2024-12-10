@@ -8,6 +8,8 @@ use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-video")]
 use objc2_core_video::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-io-surface")]
+use objc2_io_surface::*;
 #[cfg(feature = "objc2-metal")]
 use objc2_metal::*;
 
@@ -393,6 +395,17 @@ extern_methods!(
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<CIImage>;
 
+        #[cfg(feature = "objc2-io-surface")]
+        #[method_id(@__retain_semantics Other imageWithIOSurface:)]
+        pub unsafe fn imageWithIOSurface(surface: IOSurfaceRef) -> Retained<CIImage>;
+
+        #[cfg(feature = "objc2-io-surface")]
+        #[method_id(@__retain_semantics Other imageWithIOSurface:options:)]
+        pub unsafe fn imageWithIOSurface_options(
+            surface: IOSurfaceRef,
+            options: Option<&NSDictionary<CIImageOption, AnyObject>>,
+        ) -> Retained<CIImage>;
+
         #[cfg(feature = "CIColor")]
         #[method_id(@__retain_semantics Other imageWithColor:)]
         pub unsafe fn imageWithColor(color: &CIColor) -> Retained<CIImage>;
@@ -519,6 +532,32 @@ extern_methods!(
             url: &NSURL,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Option<Retained<Self>>;
+
+        #[cfg(feature = "objc2-io-surface")]
+        #[method_id(@__retain_semantics Init initWithIOSurface:)]
+        pub unsafe fn initWithIOSurface(
+            this: Allocated<Self>,
+            surface: IOSurfaceRef,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-io-surface")]
+        #[method_id(@__retain_semantics Init initWithIOSurface:options:)]
+        pub unsafe fn initWithIOSurface_options(
+            this: Allocated<Self>,
+            surface: IOSurfaceRef,
+            options: Option<&NSDictionary<CIImageOption, AnyObject>>,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-io-surface")]
+        #[deprecated]
+        #[method_id(@__retain_semantics Init initWithIOSurface:plane:format:options:)]
+        pub unsafe fn initWithIOSurface_plane_format_options(
+            this: Allocated<Self>,
+            surface: IOSurfaceRef,
+            plane: usize,
+            format: CIFormat,
+            options: Option<&NSDictionary<CIImageOption, AnyObject>>,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-video")]
         #[method_id(@__retain_semantics Init initWithCVImageBuffer:)]

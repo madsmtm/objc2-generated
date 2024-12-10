@@ -8,6 +8,8 @@ use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-video")]
 use objc2_core_video::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-io-surface")]
+use objc2_io_surface::*;
 #[cfg(feature = "objc2-metal")]
 use objc2_metal::*;
 
@@ -173,6 +175,21 @@ extern_methods!(
             row_bytes: isize,
             bounds: CGRect,
             format: CIFormat,
+            color_space: CGColorSpaceRef,
+        );
+
+        #[cfg(all(
+            feature = "CIImage",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics",
+            feature = "objc2-io-surface"
+        ))]
+        #[method(render:toIOSurface:bounds:colorSpace:)]
+        pub unsafe fn render_toIOSurface_bounds_colorSpace(
+            &self,
+            image: &CIImage,
+            surface: IOSurfaceRef,
+            bounds: CGRect,
             color_space: CGColorSpaceRef,
         );
 

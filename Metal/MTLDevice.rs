@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-io-surface")]
+use objc2_io_surface::*;
 
 use crate::*;
 
@@ -728,6 +730,20 @@ extern_protocol!(
         fn newTextureWithDescriptor(
             &self,
             descriptor: &MTLTextureDescriptor,
+        ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
+
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLTexture",
+            feature = "objc2-io-surface"
+        ))]
+        #[method_id(@__retain_semantics New newTextureWithDescriptor:iosurface:plane:)]
+        unsafe fn newTextureWithDescriptor_iosurface_plane(
+            &self,
+            descriptor: &MTLTextureDescriptor,
+            iosurface: IOSurfaceRef,
+            plane: NSUInteger,
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(all(

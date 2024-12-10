@@ -1030,6 +1030,26 @@ pub use self::__CVPixelBufferIOSurface::kCVPixelBufferIOSurfaceOpenGLESTextureCo
 pub use self::__CVPixelBufferIOSurface::kCVPixelBufferIOSurfaceOpenGLFBOCompatibilityKey;
 #[cfg(all(feature = "CVPixelBufferIOSurface", feature = "objc2-core-foundation"))]
 pub use self::__CVPixelBufferIOSurface::kCVPixelBufferIOSurfaceOpenGLTextureCompatibilityKey;
+#[cfg(all(
+    feature = "CVBuffer",
+    feature = "CVImageBuffer",
+    feature = "CVPixelBuffer",
+    feature = "CVPixelBufferIOSurface",
+    feature = "CVReturn",
+    feature = "objc2-core-foundation",
+    feature = "objc2-io-surface"
+))]
+#[cfg(not(target_os = "watchos"))]
+pub use self::__CVPixelBufferIOSurface::CVPixelBufferCreateWithIOSurface;
+#[cfg(all(
+    feature = "CVBuffer",
+    feature = "CVImageBuffer",
+    feature = "CVPixelBuffer",
+    feature = "CVPixelBufferIOSurface",
+    feature = "objc2-io-surface"
+))]
+#[cfg(not(target_os = "watchos"))]
+pub use self::__CVPixelBufferIOSurface::CVPixelBufferGetIOSurface;
 #[cfg(all(feature = "CVPixelBufferPool", feature = "objc2-core-foundation"))]
 pub use self::__CVPixelBufferPool::kCVPixelBufferPoolAllocationThresholdKey;
 #[cfg(all(feature = "CVPixelBufferPool", feature = "objc2-core-foundation"))]

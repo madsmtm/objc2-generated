@@ -8,6 +8,8 @@ use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-video")]
 use objc2_core_video::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-io-surface")]
+use objc2_io_surface::*;
 #[cfg(feature = "objc2-metal")]
 use objc2_metal::*;
 
@@ -48,6 +50,13 @@ extern_methods!(
         pub unsafe fn initWithPixelBuffer(
             this: Allocated<Self>,
             pixel_buffer: CVPixelBufferRef,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-io-surface")]
+        #[method_id(@__retain_semantics Init initWithIOSurface:)]
+        pub unsafe fn initWithIOSurface(
+            this: Allocated<Self>,
+            surface: &IOSurface,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-metal")]
