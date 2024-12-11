@@ -34,7 +34,6 @@ unsafe impl RefEncode for EKAuthorizationStatus {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekweekday?language=objc)
-// NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct EKWeekday(pub NSInteger);

@@ -37,14 +37,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
-            identifier: Option<&NSString>,
+            identifier: &NSString,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Init initWithIdentifier:player:)]
         pub unsafe fn initWithIdentifier_player(
             this: Allocated<Self>,
-            identifier: Option<&NSString>,
+            identifier: &NSString,
             player: &GKPlayer,
         ) -> Retained<Self>;
 
@@ -56,10 +56,10 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[method(setIdentifier:)]
-        pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
+        pub unsafe fn setIdentifier(&self, identifier: &NSString);
 
         #[method(percentComplete)]
         pub unsafe fn percentComplete(&self) -> c_double;

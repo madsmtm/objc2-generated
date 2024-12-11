@@ -103,6 +103,9 @@ mod __NSDateInterval;
 #[cfg(feature = "NSDateIntervalFormatter")]
 #[path = "NSDateIntervalFormatter.rs"]
 mod __NSDateIntervalFormatter;
+#[cfg(feature = "NSDebug")]
+#[path = "NSDebug.rs"]
+mod __NSDebug;
 #[cfg(feature = "NSDecimal")]
 #[path = "NSDecimal.rs"]
 mod __NSDecimal;
@@ -984,6 +987,24 @@ pub use self::__NSDateInterval::NSDateInterval;
 pub use self::__NSDateIntervalFormatter::NSDateIntervalFormatter;
 #[cfg(feature = "NSDateIntervalFormatter")]
 pub use self::__NSDateIntervalFormatter::NSDateIntervalFormatterStyle;
+#[cfg(feature = "NSDebug")]
+pub use self::__NSDebug::NSCountFrames;
+#[cfg(feature = "NSDebug")]
+pub use self::__NSDebug::NSDeallocateZombies;
+#[cfg(feature = "NSDebug")]
+pub use self::__NSDebug::NSDebugEnabled;
+#[cfg(feature = "NSDebug")]
+pub use self::__NSDebug::NSFrameAddress;
+#[cfg(feature = "NSDebug")]
+pub use self::__NSDebug::NSIsFreedObject;
+#[cfg(feature = "NSDebug")]
+pub use self::__NSDebug::NSKeepAllocationStatistics;
+#[cfg(feature = "NSDebug")]
+pub use self::__NSDebug::NSRecordAllocationEvent;
+#[cfg(feature = "NSDebug")]
+pub use self::__NSDebug::NSReturnAddress;
+#[cfg(feature = "NSDebug")]
+pub use self::__NSDebug::NSZombieEnabled;
 #[cfg(feature = "NSDecimal")]
 pub use self::__NSDecimal::NSCalculationError;
 #[cfg(feature = "NSDecimal")]

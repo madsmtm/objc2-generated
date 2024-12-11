@@ -31,7 +31,6 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcode?language=objc)
-// NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CXErrorCode(pub NSInteger);
@@ -55,7 +54,6 @@ unsafe impl RefEncode for CXErrorCode {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror?language=objc)
-// NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CXErrorCodeIncomingCallError(pub NSInteger);
@@ -85,7 +83,6 @@ unsafe impl RefEncode for CXErrorCodeIncomingCallError {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror?language=objc)
-// NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CXErrorCodeRequestTransactionError(pub NSInteger);
@@ -119,7 +116,6 @@ unsafe impl RefEncode for CXErrorCodeRequestTransactionError {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror?language=objc)
-// NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CXErrorCodeCallDirectoryManagerError(pub NSInteger);
@@ -153,7 +149,6 @@ unsafe impl RefEncode for CXErrorCodeCallDirectoryManagerError {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodenotificationserviceextensionerror?language=objc)
-// NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CXErrorCodeNotificationServiceExtensionError(pub NSInteger);

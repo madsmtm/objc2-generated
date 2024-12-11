@@ -34,7 +34,7 @@ extern_methods!(
         pub unsafe fn initWithStringValue(
             this: Allocated<Self>,
             string: &NSString,
-        ) -> Option<Retained<Self>>;
+        ) -> Retained<CNPhoneNumber>;
 
         #[deprecated = "Use initWithStringValue:"]
         #[method_id(@__retain_semantics Init init)]

@@ -97,9 +97,9 @@ mod __CFNumberFormatter;
 #[cfg(feature = "CFPlugIn")]
 #[path = "CFPlugIn.rs"]
 mod __CFPlugIn;
-#[cfg(feature = "CFPluginCOM")]
-#[path = "CFPluginCOM.rs"]
-mod __CFPluginCOM;
+#[cfg(feature = "CFPlugInCOM")]
+#[path = "CFPlugInCOM.rs"]
+mod __CFPlugInCOM;
 #[cfg(feature = "CFPreferences")]
 #[path = "CFPreferences.rs"]
 mod __CFPreferences;
@@ -1634,16 +1634,16 @@ pub use self::__CFPlugIn::CFPlugInUnloadFunction;
 pub use self::__CFPlugIn::CFPlugInUnregisterFactory;
 #[cfg(all(feature = "CFPlugIn", feature = "CFUUID"))]
 pub use self::__CFPlugIn::CFPlugInUnregisterPlugInType;
-#[cfg(all(feature = "CFPluginCOM", feature = "CFUUID"))]
-pub use self::__CFPluginCOM::IUnknownVTbl;
-#[cfg(feature = "CFPluginCOM")]
-pub use self::__CFPluginCOM::HRESULT;
-#[cfg(feature = "CFPluginCOM")]
-pub use self::__CFPluginCOM::LPVOID;
-#[cfg(all(feature = "CFPluginCOM", feature = "CFUUID"))]
-pub use self::__CFPluginCOM::REFIID;
-#[cfg(feature = "CFPluginCOM")]
-pub use self::__CFPluginCOM::ULONG;
+#[cfg(all(feature = "CFPlugInCOM", feature = "CFUUID"))]
+pub use self::__CFPlugInCOM::IUnknownVTbl;
+#[cfg(feature = "CFPlugInCOM")]
+pub use self::__CFPlugInCOM::HRESULT;
+#[cfg(feature = "CFPlugInCOM")]
+pub use self::__CFPlugInCOM::LPVOID;
+#[cfg(all(feature = "CFPlugInCOM", feature = "CFUUID"))]
+pub use self::__CFPlugInCOM::REFIID;
+#[cfg(feature = "CFPlugInCOM")]
+pub use self::__CFPlugInCOM::ULONG;
 #[cfg(all(feature = "CFBase", feature = "CFPreferences"))]
 pub use self::__CFPreferences::kCFPreferencesAnyApplication;
 #[cfg(all(feature = "CFBase", feature = "CFPreferences"))]

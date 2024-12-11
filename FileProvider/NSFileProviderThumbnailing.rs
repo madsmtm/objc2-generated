@@ -9,7 +9,7 @@ use crate::*;
 
 extern_methods!(
     /// NSFileProviderThumbnailing
-    #[cfg(feature = "NSFileProviderExtension")]
+    #[cfg(feature = "Extension")]
     unsafe impl NSFileProviderExtension {
         #[cfg(all(
             feature = "NSFileProviderItem",

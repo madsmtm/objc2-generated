@@ -665,12 +665,6 @@ extern_methods!(
         #[cfg(feature = "VNTypes")]
         #[method(confidence)]
         pub fn confidence(&self) -> VNConfidence;
-
-        #[method_id(@__retain_semantics Other boundingBoxForRange:error:_)]
-        pub unsafe fn boundingBoxForRange_error(
-            &self,
-            range: NSRange,
-        ) -> Result<Retained<VNRectangleObservation>, Retained<NSError>>;
     }
 );
 

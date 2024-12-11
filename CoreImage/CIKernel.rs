@@ -71,7 +71,7 @@ extern_methods!(
             &self,
             extent: CGRect,
             callback: CIKernelROICallback,
-            args: Option<&NSArray<AnyObject>>,
+            args: &NSArray<AnyObject>,
         ) -> Option<Retained<CIImage>>;
     }
 );
@@ -107,7 +107,7 @@ extern_methods!(
         pub unsafe fn applyWithExtent_arguments(
             &self,
             extent: CGRect,
-            args: Option<&NSArray<AnyObject>>,
+            args: &NSArray<AnyObject>,
         ) -> Option<Retained<CIImage>>;
     }
 );
@@ -168,7 +168,7 @@ extern_methods!(
             extent: CGRect,
             callback: CIKernelROICallback,
             image: &CIImage,
-            args: Option<&NSArray<AnyObject>>,
+            args: &NSArray<AnyObject>,
         ) -> Option<Retained<CIImage>>;
     }
 );

@@ -195,7 +195,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSFileProviderDomain
-    #[cfg(feature = "NSFileProviderExtension")]
+    #[cfg(feature = "Extension")]
     unsafe impl NSFileProviderExtension {
         #[method_id(@__retain_semantics Other domain)]
         pub unsafe fn domain(&self) -> Option<Retained<NSFileProviderDomain>>;

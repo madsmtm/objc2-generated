@@ -313,6 +313,8 @@ pub use self::__CTFont::kCTFontVariationAxisNameKey;
 pub use self::__CTFont::kCTFontVendorURLNameKey;
 #[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
 pub use self::__CTFont::kCTFontVersionNameKey;
+#[cfg(feature = "CTFont")]
+pub use self::__CTFont::ATSFontRef;
 #[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
 pub use self::__CTFont::CTFontCopyAttribute;
 #[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]

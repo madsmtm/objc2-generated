@@ -37,6 +37,9 @@ mod __MCPeerID;
 #[cfg(feature = "MCSession")]
 #[path = "MCSession.rs"]
 mod __MCSession;
+#[cfg(feature = "MultipeerConnectivity")]
+#[path = "MultipeerConnectivity.rs"]
+mod __MultipeerConnectivity;
 
 #[cfg(feature = "MCAdvertiserAssistant")]
 pub use self::__MCAdvertiserAssistant::MCAdvertiserAssistant;

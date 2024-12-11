@@ -16,6 +16,9 @@
 #[link(name = "FileProvider", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "Extension")]
+#[path = "Extension.rs"]
+mod __Extension;
 #[cfg(feature = "NSFileProviderActions")]
 #[path = "NSFileProviderActions.rs"]
 mod __NSFileProviderActions;
@@ -31,9 +34,6 @@ mod __NSFileProviderEnumerating;
 #[cfg(feature = "NSFileProviderError")]
 #[path = "NSFileProviderError.rs"]
 mod __NSFileProviderError;
-#[cfg(feature = "NSFileProviderExtension")]
-#[path = "NSFileProviderExtension.rs"]
-mod __NSFileProviderExtension;
 #[cfg(feature = "NSFileProviderItem")]
 #[path = "NSFileProviderItem.rs"]
 mod __NSFileProviderItem;
@@ -43,9 +43,6 @@ mod __NSFileProviderItemDecoration;
 #[cfg(feature = "NSFileProviderKnownFolders")]
 #[path = "NSFileProviderKnownFolders.rs"]
 mod __NSFileProviderKnownFolders;
-#[cfg(feature = "NSFileProviderManager")]
-#[path = "NSFileProviderManager.rs"]
-mod __NSFileProviderManager;
 #[cfg(feature = "NSFileProviderModifyItemOptions")]
 #[path = "NSFileProviderModifyItemOptions.rs"]
 mod __NSFileProviderModifyItemOptions;
@@ -65,6 +62,22 @@ mod __NSFileProviderTesting;
 #[path = "NSFileProviderThumbnailing.rs"]
 mod __NSFileProviderThumbnailing;
 
+#[cfg(feature = "Extension")]
+pub use self::__Extension::NSFileProviderDomainRemovalMode;
+#[cfg(feature = "Extension")]
+pub use self::__Extension::NSFileProviderExtension;
+#[cfg(feature = "Extension")]
+pub use self::__Extension::NSFileProviderManager;
+#[cfg(feature = "Extension")]
+pub use self::__Extension::NSFileProviderManagerDisconnectionOptions;
+#[cfg(feature = "Extension")]
+pub use self::__Extension::NSFileProviderMaterializedSetDidChange;
+#[cfg(feature = "Extension")]
+pub use self::__Extension::NSFileProviderPendingSetDidChange;
+#[cfg(all(feature = "Extension", feature = "NSFileProviderEnumerating"))]
+pub use self::__Extension::NSFileProviderPendingSetEnumerator;
+#[cfg(feature = "Extension")]
+pub use self::__Extension::NSFileProviderVolumeUnsupportedReason;
 #[cfg(feature = "NSFileProviderActions")]
 pub use self::__NSFileProviderActions::NSFileProviderExtensionActionIdentifier;
 #[cfg(feature = "NSFileProviderDomain")]
@@ -105,8 +118,6 @@ pub use self::__NSFileProviderError::NSFileProviderErrorDomain;
 pub use self::__NSFileProviderError::NSFileProviderErrorItemKey;
 #[cfg(feature = "NSFileProviderError")]
 pub use self::__NSFileProviderError::NSFileProviderErrorNonExistentItemIdentifierKey;
-#[cfg(feature = "NSFileProviderExtension")]
-pub use self::__NSFileProviderExtension::NSFileProviderExtension;
 #[cfg(feature = "NSFileProviderItem")]
 pub use self::__NSFileProviderItem::NSFileProviderContentPolicy;
 #[cfg(feature = "NSFileProviderItem")]
@@ -146,23 +157,6 @@ pub use self::__NSFileProviderKnownFolders::NSFileProviderKnownFolderLocation;
 pub use self::__NSFileProviderKnownFolders::NSFileProviderKnownFolderLocations;
 #[cfg(feature = "NSFileProviderKnownFolders")]
 pub use self::__NSFileProviderKnownFolders::NSFileProviderKnownFolderSupporting;
-#[cfg(feature = "NSFileProviderManager")]
-pub use self::__NSFileProviderManager::NSFileProviderDomainRemovalMode;
-#[cfg(feature = "NSFileProviderManager")]
-pub use self::__NSFileProviderManager::NSFileProviderManager;
-#[cfg(feature = "NSFileProviderManager")]
-pub use self::__NSFileProviderManager::NSFileProviderManagerDisconnectionOptions;
-#[cfg(feature = "NSFileProviderManager")]
-pub use self::__NSFileProviderManager::NSFileProviderMaterializedSetDidChange;
-#[cfg(feature = "NSFileProviderManager")]
-pub use self::__NSFileProviderManager::NSFileProviderPendingSetDidChange;
-#[cfg(all(
-    feature = "NSFileProviderEnumerating",
-    feature = "NSFileProviderManager"
-))]
-pub use self::__NSFileProviderManager::NSFileProviderPendingSetEnumerator;
-#[cfg(feature = "NSFileProviderManager")]
-pub use self::__NSFileProviderManager::NSFileProviderVolumeUnsupportedReason;
 #[cfg(feature = "NSFileProviderModifyItemOptions")]
 pub use self::__NSFileProviderModifyItemOptions::NSFileProviderModifyItemOptions;
 #[cfg(feature = "NSFileProviderReplicatedExtension")]

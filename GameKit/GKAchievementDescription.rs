@@ -32,19 +32,19 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other groupIdentifier)]
         pub unsafe fn groupIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other achievedDescription)]
-        pub unsafe fn achievedDescription(&self) -> Option<Retained<NSString>>;
+        pub unsafe fn achievedDescription(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other unachievedDescription)]
-        pub unsafe fn unachievedDescription(&self) -> Option<Retained<NSString>>;
+        pub unsafe fn unachievedDescription(&self) -> Retained<NSString>;
 
         #[method(maximumPoints)]
         pub unsafe fn maximumPoints(&self) -> NSInteger;

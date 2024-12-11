@@ -100,7 +100,7 @@ extern_methods!(
 
 extern_methods!(
     /// KnownFolders
-    #[cfg(feature = "NSFileProviderManager")]
+    #[cfg(feature = "Extension")]
     unsafe impl NSFileProviderManager {
         #[cfg(feature = "block2")]
         #[method(claimKnownFolders:localizedReason:completionHandler:)]

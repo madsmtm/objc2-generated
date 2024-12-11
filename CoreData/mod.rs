@@ -16,6 +16,9 @@
 #[link(name = "CoreData", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "CloudKit")]
+#[path = "CloudKit.rs"]
+mod __CloudKit;
 #[cfg(feature = "CoreDataDefines")]
 #[path = "CoreDataDefines.rs"]
 mod __CoreDataDefines;

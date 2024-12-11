@@ -246,13 +246,13 @@ unsafe impl NSObjectProtocol for GKTurnBasedMatch {}
 extern_methods!(
     unsafe impl GKTurnBasedMatch {
         #[method_id(@__retain_semantics Other matchID)]
-        pub unsafe fn matchID(&self) -> Option<Retained<NSString>>;
+        pub unsafe fn matchID(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other creationDate)]
-        pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
+        pub unsafe fn creationDate(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other participants)]
-        pub unsafe fn participants(&self) -> Option<Retained<NSArray<GKTurnBasedParticipant>>>;
+        pub unsafe fn participants(&self) -> Retained<NSArray<GKTurnBasedParticipant>>;
 
         #[method(status)]
         pub unsafe fn status(&self) -> GKTurnBasedMatchStatus;
@@ -532,13 +532,13 @@ unsafe impl NSObjectProtocol for GKTurnBasedExchange {}
 extern_methods!(
     unsafe impl GKTurnBasedExchange {
         #[method_id(@__retain_semantics Other exchangeID)]
-        pub unsafe fn exchangeID(&self) -> Option<Retained<NSString>>;
+        pub unsafe fn exchangeID(&self) -> Retained<NSString>;
 
         #[method_id(@__retain_semantics Other sender)]
-        pub unsafe fn sender(&self) -> Option<Retained<GKTurnBasedParticipant>>;
+        pub unsafe fn sender(&self) -> Retained<GKTurnBasedParticipant>;
 
         #[method_id(@__retain_semantics Other recipients)]
-        pub unsafe fn recipients(&self) -> Option<Retained<NSArray<GKTurnBasedParticipant>>>;
+        pub unsafe fn recipients(&self) -> Retained<NSArray<GKTurnBasedParticipant>>;
 
         #[method(status)]
         pub unsafe fn status(&self) -> GKTurnBasedExchangeStatus;
@@ -550,7 +550,7 @@ extern_methods!(
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
         #[method_id(@__retain_semantics Other sendDate)]
-        pub unsafe fn sendDate(&self) -> Option<Retained<NSDate>>;
+        pub unsafe fn sendDate(&self) -> Retained<NSDate>;
 
         #[method_id(@__retain_semantics Other timeoutDate)]
         pub unsafe fn timeoutDate(&self) -> Option<Retained<NSDate>>;
@@ -605,7 +605,7 @@ unsafe impl NSObjectProtocol for GKTurnBasedExchangeReply {}
 extern_methods!(
     unsafe impl GKTurnBasedExchangeReply {
         #[method_id(@__retain_semantics Other recipient)]
-        pub unsafe fn recipient(&self) -> Option<Retained<GKTurnBasedParticipant>>;
+        pub unsafe fn recipient(&self) -> Retained<GKTurnBasedParticipant>;
 
         #[method_id(@__retain_semantics Other message)]
         pub unsafe fn message(&self) -> Option<Retained<NSString>>;

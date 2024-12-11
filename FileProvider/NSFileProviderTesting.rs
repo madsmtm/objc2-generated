@@ -89,7 +89,7 @@ extern_protocol!(
 
 extern_methods!(
     /// TestingModeInteractive
-    #[cfg(feature = "NSFileProviderManager")]
+    #[cfg(feature = "Extension")]
     unsafe impl NSFileProviderManager {
         #[method_id(@__retain_semantics Other listAvailableTestingOperationsWithError:_)]
         pub unsafe fn listAvailableTestingOperationsWithError(

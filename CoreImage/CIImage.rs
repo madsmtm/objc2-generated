@@ -629,7 +629,7 @@ extern_methods!(
         pub unsafe fn imageByApplyingFilter_withInputParameters(
             &self,
             filter_name: &NSString,
-            params: Option<&NSDictionary<NSString, AnyObject>>,
+            params: &NSDictionary<NSString, AnyObject>,
         ) -> Retained<CIImage>;
 
         #[method_id(@__retain_semantics Other imageByApplyingFilter:)]

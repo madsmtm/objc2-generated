@@ -728,6 +728,9 @@ extern "C-unwind" {
     ) -> CTFontRef;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/atsfontref?language=objc)
+pub type ATSFontRef = u32;
+
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Quickdraw font references are deprecated"]

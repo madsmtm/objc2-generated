@@ -100,12 +100,6 @@ mod __CAValueFunction;
 #[cfg(feature = "CoreAnimation")]
 #[path = "CoreAnimation.rs"]
 mod __CoreAnimation;
-#[cfg(feature = "CoreImage")]
-#[path = "CoreImage.rs"]
-mod __CoreImage;
-#[cfg(feature = "CoreVideo")]
-#[path = "CoreVideo.rs"]
-mod __CoreVideo;
 
 #[cfg(feature = "CAAnimation")]
 pub use self::__CAAnimation::kCAAnimationCubic;

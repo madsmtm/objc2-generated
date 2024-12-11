@@ -16,41 +16,352 @@
 #[link(name = "AutomaticAssessmentConfiguration", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "AEAssessmentApplication")]
-#[path = "AEAssessmentApplication.rs"]
-mod __AEAssessmentApplication;
-#[cfg(feature = "AEAssessmentConfiguration")]
-#[path = "AEAssessmentConfiguration.rs"]
-mod __AEAssessmentConfiguration;
-#[cfg(feature = "AEAssessmentParticipantConfiguration")]
-#[path = "AEAssessmentParticipantConfiguration.rs"]
-mod __AEAssessmentParticipantConfiguration;
-#[cfg(feature = "AEAssessmentSession")]
-#[path = "AEAssessmentSession.rs"]
-mod __AEAssessmentSession;
-#[cfg(feature = "AEAssessmentSessionDelegate")]
-#[path = "AEAssessmentSessionDelegate.rs"]
-mod __AEAssessmentSessionDelegate;
-#[cfg(feature = "AEErrors")]
-#[path = "AEErrors.rs"]
-mod __AEErrors;
-#[cfg(feature = "AEVisibility")]
-#[path = "AEVisibility.rs"]
-mod __AEVisibility;
+use objc2::__framework_prelude::*;
+use objc2_foundation::*;
 
-#[cfg(feature = "AEAssessmentApplication")]
-pub use self::__AEAssessmentApplication::AEAssessmentApplication;
-#[cfg(feature = "AEAssessmentConfiguration")]
-pub use self::__AEAssessmentConfiguration::AEAssessmentConfiguration;
-#[cfg(feature = "AEAssessmentConfiguration")]
-pub use self::__AEAssessmentConfiguration::AEAutocorrectMode;
-#[cfg(feature = "AEAssessmentParticipantConfiguration")]
-pub use self::__AEAssessmentParticipantConfiguration::AEAssessmentParticipantConfiguration;
-#[cfg(feature = "AEAssessmentSession")]
-pub use self::__AEAssessmentSession::AEAssessmentSession;
-#[cfg(feature = "AEAssessmentSessionDelegate")]
-pub use self::__AEAssessmentSessionDelegate::AEAssessmentSessionDelegate;
-#[cfg(feature = "AEErrors")]
-pub use self::__AEErrors::AEAssessmentErrorCode;
-#[cfg(feature = "AEErrors")]
-pub use self::__AEErrors::AEAssessmentErrorDomain;
+use crate::*;
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AEAssessmentApplication;
+);
+
+unsafe impl NSCopying for AEAssessmentApplication {}
+
+unsafe impl CopyingHelper for AEAssessmentApplication {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for AEAssessmentApplication {}
+
+extern_methods!(
+    unsafe impl AEAssessmentApplication {
+        #[method_id(@__retain_semantics Other bundleIdentifier)]
+        pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
+
+        #[method_id(@__retain_semantics Other teamIdentifier)]
+        pub unsafe fn teamIdentifier(&self) -> Option<Retained<NSString>>;
+
+        #[method(requiresSignatureValidation)]
+        pub unsafe fn requiresSignatureValidation(&self) -> bool;
+
+        #[method(setRequiresSignatureValidation:)]
+        pub unsafe fn setRequiresSignatureValidation(&self, requires_signature_validation: bool);
+
+        #[method_id(@__retain_semantics Init initWithBundleIdentifier:)]
+        pub unsafe fn initWithBundleIdentifier(
+            this: Allocated<Self>,
+            bundle_identifier: &NSString,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Init initWithBundleIdentifier:teamIdentifier:)]
+        pub unsafe fn initWithBundleIdentifier_teamIdentifier(
+            this: Allocated<Self>,
+            bundle_identifier: &NSString,
+            team_identifier: Option<&NSString>,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeautocorrectmode?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AEAutocorrectMode(pub NSUInteger);
+bitflags::bitflags! {
+    impl AEAutocorrectMode: NSUInteger {
+        #[doc(alias = "AEAutocorrectModeNone")]
+        const None = 0;
+        #[doc(alias = "AEAutocorrectModeSpelling")]
+        const Spelling = 1<<0;
+        #[doc(alias = "AEAutocorrectModePunctuation")]
+        const Punctuation = 1<<1;
+    }
+}
+
+unsafe impl Encode for AEAutocorrectMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for AEAutocorrectMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AEAssessmentConfiguration;
+);
+
+unsafe impl NSCopying for AEAssessmentConfiguration {}
+
+unsafe impl CopyingHelper for AEAssessmentConfiguration {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for AEAssessmentConfiguration {}
+
+extern_methods!(
+    unsafe impl AEAssessmentConfiguration {
+        #[method(autocorrectMode)]
+        pub unsafe fn autocorrectMode(&self) -> AEAutocorrectMode;
+
+        #[method(setAutocorrectMode:)]
+        pub unsafe fn setAutocorrectMode(&self, autocorrect_mode: AEAutocorrectMode);
+
+        #[method(allowsSpellCheck)]
+        pub unsafe fn allowsSpellCheck(&self) -> bool;
+
+        #[method(setAllowsSpellCheck:)]
+        pub unsafe fn setAllowsSpellCheck(&self, allows_spell_check: bool);
+
+        #[method(allowsPredictiveKeyboard)]
+        pub unsafe fn allowsPredictiveKeyboard(&self) -> bool;
+
+        #[method(setAllowsPredictiveKeyboard:)]
+        pub unsafe fn setAllowsPredictiveKeyboard(&self, allows_predictive_keyboard: bool);
+
+        #[method(allowsKeyboardShortcuts)]
+        pub unsafe fn allowsKeyboardShortcuts(&self) -> bool;
+
+        #[method(setAllowsKeyboardShortcuts:)]
+        pub unsafe fn setAllowsKeyboardShortcuts(&self, allows_keyboard_shortcuts: bool);
+
+        #[method(allowsActivityContinuation)]
+        pub unsafe fn allowsActivityContinuation(&self) -> bool;
+
+        #[method(setAllowsActivityContinuation:)]
+        pub unsafe fn setAllowsActivityContinuation(&self, allows_activity_continuation: bool);
+
+        #[method(allowsDictation)]
+        pub unsafe fn allowsDictation(&self) -> bool;
+
+        #[method(setAllowsDictation:)]
+        pub unsafe fn setAllowsDictation(&self, allows_dictation: bool);
+
+        #[method(allowsAccessibilitySpeech)]
+        pub unsafe fn allowsAccessibilitySpeech(&self) -> bool;
+
+        #[method(setAllowsAccessibilitySpeech:)]
+        pub unsafe fn setAllowsAccessibilitySpeech(&self, allows_accessibility_speech: bool);
+
+        #[method(allowsPasswordAutoFill)]
+        pub unsafe fn allowsPasswordAutoFill(&self) -> bool;
+
+        #[method(setAllowsPasswordAutoFill:)]
+        pub unsafe fn setAllowsPasswordAutoFill(&self, allows_password_auto_fill: bool);
+
+        #[method(allowsContinuousPathKeyboard)]
+        pub unsafe fn allowsContinuousPathKeyboard(&self) -> bool;
+
+        #[method(setAllowsContinuousPathKeyboard:)]
+        pub unsafe fn setAllowsContinuousPathKeyboard(&self, allows_continuous_path_keyboard: bool);
+
+        #[method_id(@__retain_semantics Other mainParticipantConfiguration)]
+        pub unsafe fn mainParticipantConfiguration(
+            &self,
+        ) -> Retained<AEAssessmentParticipantConfiguration>;
+
+        #[method_id(@__retain_semantics Other configurationsByApplication)]
+        pub unsafe fn configurationsByApplication(
+            &self,
+        ) -> Retained<NSDictionary<AEAssessmentApplication, AEAssessmentParticipantConfiguration>>;
+
+        #[method(setConfiguration:forApplication:)]
+        pub unsafe fn setConfiguration_forApplication(
+            &self,
+            configuration: &AEAssessmentParticipantConfiguration,
+            application: &AEAssessmentApplication,
+        );
+
+        #[method(removeApplication:)]
+        pub unsafe fn removeApplication(&self, application: &AEAssessmentApplication);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl AEAssessmentConfiguration {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentparticipantconfiguration?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AEAssessmentParticipantConfiguration;
+);
+
+unsafe impl NSCopying for AEAssessmentParticipantConfiguration {}
+
+unsafe impl CopyingHelper for AEAssessmentParticipantConfiguration {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for AEAssessmentParticipantConfiguration {}
+
+extern_methods!(
+    unsafe impl AEAssessmentParticipantConfiguration {
+        #[method(allowsNetworkAccess)]
+        pub unsafe fn allowsNetworkAccess(&self) -> bool;
+
+        #[method(setAllowsNetworkAccess:)]
+        pub unsafe fn setAllowsNetworkAccess(&self, allows_network_access: bool);
+
+        #[method_id(@__retain_semantics Other configurationInfo)]
+        pub unsafe fn configurationInfo(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
+
+        #[method(setConfigurationInfo:)]
+        pub unsafe fn setConfigurationInfo(
+            &self,
+            configuration_info: &NSDictionary<NSString, AnyObject>,
+        );
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AEAssessmentSession;
+);
+
+unsafe impl NSObjectProtocol for AEAssessmentSession {}
+
+extern_methods!(
+    unsafe impl AEAssessmentSession {
+        #[method(supportsMultipleParticipants)]
+        pub unsafe fn supportsMultipleParticipants() -> bool;
+
+        #[method(supportsConfigurationUpdates)]
+        pub unsafe fn supportsConfigurationUpdates() -> bool;
+
+        #[method_id(@__retain_semantics Other delegate)]
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn AEAssessmentSessionDelegate>>>;
+
+        /// This is a [weak property][objc2::topics::weak_property].
+        #[method(setDelegate:)]
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn AEAssessmentSessionDelegate>>,
+        );
+
+        #[method_id(@__retain_semantics Other configuration)]
+        pub unsafe fn configuration(&self) -> Retained<AEAssessmentConfiguration>;
+
+        #[method(isActive)]
+        pub unsafe fn isActive(&self) -> bool;
+
+        #[method_id(@__retain_semantics Init initWithConfiguration:)]
+        pub unsafe fn initWithConfiguration(
+            this: Allocated<Self>,
+            configuration: &AEAssessmentConfiguration,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+
+        #[method(begin)]
+        pub unsafe fn begin(&self);
+
+        #[method(end)]
+        pub unsafe fn end(&self);
+
+        #[method(updateToConfiguration:)]
+        pub unsafe fn updateToConfiguration(&self, configuration: &AEAssessmentConfiguration);
+    }
+);
+
+extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate?language=objc)
+    pub unsafe trait AEAssessmentSessionDelegate: NSObjectProtocol {
+        #[optional]
+        #[method(assessmentSessionDidBegin:)]
+        unsafe fn assessmentSessionDidBegin(&self, session: &AEAssessmentSession);
+
+        #[optional]
+        #[method(assessmentSession:failedToBeginWithError:)]
+        unsafe fn assessmentSession_failedToBeginWithError(
+            &self,
+            session: &AEAssessmentSession,
+            error: &NSError,
+        );
+
+        #[optional]
+        #[method(assessmentSession:wasInterruptedWithError:)]
+        unsafe fn assessmentSession_wasInterruptedWithError(
+            &self,
+            session: &AEAssessmentSession,
+            error: &NSError,
+        );
+
+        #[optional]
+        #[method(assessmentSessionDidEnd:)]
+        unsafe fn assessmentSessionDidEnd(&self, session: &AEAssessmentSession);
+
+        #[optional]
+        #[method(assessmentSessionDidUpdate:)]
+        unsafe fn assessmentSessionDidUpdate(&self, session: &AEAssessmentSession);
+
+        #[optional]
+        #[method(assessmentSession:failedToUpdateToConfiguration:error:)]
+        unsafe fn assessmentSession_failedToUpdateToConfiguration_error(
+            &self,
+            session: &AEAssessmentSession,
+            configuration: &AEAssessmentConfiguration,
+            error: &NSError,
+        );
+    }
+
+    unsafe impl ProtocolType for dyn AEAssessmentSessionDelegate {}
+);
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmenterrordomain?language=objc)
+    pub static AEAssessmentErrorDomain: &'static NSErrorDomain;
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmenterrorcode?language=objc)
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AEAssessmentErrorCode(pub NSInteger);
+impl AEAssessmentErrorCode {
+    pub const AEAssessmentErrorUnknown: Self = Self(1);
+    pub const AEAssessmentErrorUnsupportedPlatform: Self = Self(2);
+    pub const AEAssessmentErrorMultipleParticipantsNotSupported: Self = Self(3);
+    pub const AEAssessmentErrorConfigurationUpdatesNotSupported: Self = Self(4);
+}
+
+unsafe impl Encode for AEAssessmentErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for AEAssessmentErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

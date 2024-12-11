@@ -159,7 +159,7 @@ extern_methods!(
         pub unsafe fn currentHistoryToken(&self) -> Option<Retained<NSData>>;
 
         #[method_id(@__retain_semantics Other defaultContainerIdentifier)]
-        pub unsafe fn defaultContainerIdentifier(&self) -> Option<Retained<NSString>>;
+        pub unsafe fn defaultContainerIdentifier(&self) -> Retained<NSString>;
     }
 );
 

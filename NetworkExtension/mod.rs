@@ -16,538 +16,6624 @@
 #[link(name = "NetworkExtension", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "NEAppProxyFlow")]
-#[path = "NEAppProxyFlow.rs"]
-mod __NEAppProxyFlow;
-#[cfg(feature = "NEAppProxyProvider")]
-#[path = "NEAppProxyProvider.rs"]
-mod __NEAppProxyProvider;
-#[cfg(feature = "NEAppProxyProviderManager")]
-#[path = "NEAppProxyProviderManager.rs"]
-mod __NEAppProxyProviderManager;
-#[cfg(feature = "NEAppProxyTCPFlow")]
-#[path = "NEAppProxyTCPFlow.rs"]
-mod __NEAppProxyTCPFlow;
-#[cfg(feature = "NEAppProxyUDPFlow")]
-#[path = "NEAppProxyUDPFlow.rs"]
-mod __NEAppProxyUDPFlow;
-#[cfg(feature = "NEAppPushManager")]
-#[path = "NEAppPushManager.rs"]
-mod __NEAppPushManager;
-#[cfg(feature = "NEAppPushProvider")]
-#[path = "NEAppPushProvider.rs"]
-mod __NEAppPushProvider;
-#[cfg(feature = "NEAppRule")]
-#[path = "NEAppRule.rs"]
-mod __NEAppRule;
-#[cfg(feature = "NEDNSProxyManager")]
-#[path = "NEDNSProxyManager.rs"]
-mod __NEDNSProxyManager;
-#[cfg(feature = "NEDNSProxyProvider")]
-#[path = "NEDNSProxyProvider.rs"]
-mod __NEDNSProxyProvider;
-#[cfg(feature = "NEDNSProxyProviderProtocol")]
-#[path = "NEDNSProxyProviderProtocol.rs"]
-mod __NEDNSProxyProviderProtocol;
-#[cfg(feature = "NEDNSSettings")]
-#[path = "NEDNSSettings.rs"]
-mod __NEDNSSettings;
-#[cfg(feature = "NEDNSSettingsManager")]
-#[path = "NEDNSSettingsManager.rs"]
-mod __NEDNSSettingsManager;
-#[cfg(feature = "NEEthernetTunnelNetworkSettings")]
-#[path = "NEEthernetTunnelNetworkSettings.rs"]
-mod __NEEthernetTunnelNetworkSettings;
-#[cfg(feature = "NEEthernetTunnelProvider")]
-#[path = "NEEthernetTunnelProvider.rs"]
-mod __NEEthernetTunnelProvider;
-#[cfg(feature = "NEFilterControlProvider")]
-#[path = "NEFilterControlProvider.rs"]
-mod __NEFilterControlProvider;
-#[cfg(feature = "NEFilterDataProvider")]
-#[path = "NEFilterDataProvider.rs"]
-mod __NEFilterDataProvider;
-#[cfg(feature = "NEFilterFlow")]
-#[path = "NEFilterFlow.rs"]
-mod __NEFilterFlow;
-#[cfg(feature = "NEFilterManager")]
-#[path = "NEFilterManager.rs"]
-mod __NEFilterManager;
-#[cfg(feature = "NEFilterPacketProvider")]
-#[path = "NEFilterPacketProvider.rs"]
-mod __NEFilterPacketProvider;
-#[cfg(feature = "NEFilterProvider")]
-#[path = "NEFilterProvider.rs"]
-mod __NEFilterProvider;
-#[cfg(feature = "NEFilterProviderConfiguration")]
-#[path = "NEFilterProviderConfiguration.rs"]
-mod __NEFilterProviderConfiguration;
-#[cfg(feature = "NEFilterRule")]
-#[path = "NEFilterRule.rs"]
-mod __NEFilterRule;
-#[cfg(feature = "NEFilterSettings")]
-#[path = "NEFilterSettings.rs"]
-mod __NEFilterSettings;
-#[cfg(feature = "NEFlowMetaData")]
-#[path = "NEFlowMetaData.rs"]
-mod __NEFlowMetaData;
-#[cfg(feature = "NEHotspotConfigurationManager")]
-#[path = "NEHotspotConfigurationManager.rs"]
-mod __NEHotspotConfigurationManager;
-#[cfg(feature = "NEHotspotHelper")]
-#[path = "NEHotspotHelper.rs"]
-mod __NEHotspotHelper;
-#[cfg(feature = "NEHotspotNetwork")]
-#[path = "NEHotspotNetwork.rs"]
-mod __NEHotspotNetwork;
-#[cfg(feature = "NEIPv4Settings")]
-#[path = "NEIPv4Settings.rs"]
-mod __NEIPv4Settings;
-#[cfg(feature = "NEIPv6Settings")]
-#[path = "NEIPv6Settings.rs"]
-mod __NEIPv6Settings;
-#[cfg(feature = "NENetworkRule")]
-#[path = "NENetworkRule.rs"]
-mod __NENetworkRule;
-#[cfg(feature = "NEOnDemandRule")]
-#[path = "NEOnDemandRule.rs"]
-mod __NEOnDemandRule;
-#[cfg(feature = "NEPacket")]
-#[path = "NEPacket.rs"]
-mod __NEPacket;
-#[cfg(feature = "NEPacketTunnelFlow")]
-#[path = "NEPacketTunnelFlow.rs"]
-mod __NEPacketTunnelFlow;
-#[cfg(feature = "NEPacketTunnelNetworkSettings")]
-#[path = "NEPacketTunnelNetworkSettings.rs"]
-mod __NEPacketTunnelNetworkSettings;
-#[cfg(feature = "NEPacketTunnelProvider")]
-#[path = "NEPacketTunnelProvider.rs"]
-mod __NEPacketTunnelProvider;
-#[cfg(feature = "NEProvider")]
-#[path = "NEProvider.rs"]
-mod __NEProvider;
-#[cfg(feature = "NEProxySettings")]
-#[path = "NEProxySettings.rs"]
-mod __NEProxySettings;
-#[cfg(feature = "NERelay")]
-#[path = "NERelay.rs"]
-mod __NERelay;
-#[cfg(feature = "NERelayManager")]
-#[path = "NERelayManager.rs"]
-mod __NERelayManager;
-#[cfg(feature = "NETransparentProxyManager")]
-#[path = "NETransparentProxyManager.rs"]
-mod __NETransparentProxyManager;
-#[cfg(feature = "NETransparentProxyNetworkSettings")]
-#[path = "NETransparentProxyNetworkSettings.rs"]
-mod __NETransparentProxyNetworkSettings;
-#[cfg(feature = "NETransparentProxyProvider")]
-#[path = "NETransparentProxyProvider.rs"]
-mod __NETransparentProxyProvider;
-#[cfg(feature = "NETunnelNetworkSettings")]
-#[path = "NETunnelNetworkSettings.rs"]
-mod __NETunnelNetworkSettings;
-#[cfg(feature = "NETunnelProvider")]
-#[path = "NETunnelProvider.rs"]
-mod __NETunnelProvider;
-#[cfg(feature = "NETunnelProviderManager")]
-#[path = "NETunnelProviderManager.rs"]
-mod __NETunnelProviderManager;
-#[cfg(feature = "NETunnelProviderProtocol")]
-#[path = "NETunnelProviderProtocol.rs"]
-mod __NETunnelProviderProtocol;
-#[cfg(feature = "NETunnelProviderSession")]
-#[path = "NETunnelProviderSession.rs"]
-mod __NETunnelProviderSession;
-#[cfg(feature = "NEVPNConnection")]
-#[path = "NEVPNConnection.rs"]
-mod __NEVPNConnection;
-#[cfg(feature = "NEVPNManager")]
-#[path = "NEVPNManager.rs"]
-mod __NEVPNManager;
-#[cfg(feature = "NEVPNProtocol")]
-#[path = "NEVPNProtocol.rs"]
-mod __NEVPNProtocol;
-#[cfg(feature = "NEVPNProtocolIKEv2")]
-#[path = "NEVPNProtocolIKEv2.rs"]
-mod __NEVPNProtocolIKEv2;
-#[cfg(feature = "NEVPNProtocolIPSec")]
-#[path = "NEVPNProtocolIPSec.rs"]
-mod __NEVPNProtocolIPSec;
-#[cfg(feature = "NWBonjourServiceEndpoint")]
-#[path = "NWBonjourServiceEndpoint.rs"]
-mod __NWBonjourServiceEndpoint;
-#[cfg(feature = "NWEndpoint")]
-#[path = "NWEndpoint.rs"]
-mod __NWEndpoint;
-#[cfg(feature = "NWHostEndpoint")]
-#[path = "NWHostEndpoint.rs"]
-mod __NWHostEndpoint;
-#[cfg(feature = "NWPath")]
-#[path = "NWPath.rs"]
-mod __NWPath;
-#[cfg(feature = "NWTCPConnection")]
-#[path = "NWTCPConnection.rs"]
-mod __NWTCPConnection;
-#[cfg(feature = "NWTLSParameters")]
-#[path = "NWTLSParameters.rs"]
-mod __NWTLSParameters;
-#[cfg(feature = "NWUDPSession")]
-#[path = "NWUDPSession.rs"]
-mod __NWUDPSession;
+use objc2::__framework_prelude::*;
+use objc2_foundation::*;
 
-#[cfg(feature = "NEAppProxyFlow")]
-pub use self::__NEAppProxyFlow::NEAppProxyErrorDomain;
-#[cfg(feature = "NEAppProxyFlow")]
-pub use self::__NEAppProxyFlow::NEAppProxyFlow;
-#[cfg(feature = "NEAppProxyFlow")]
-pub use self::__NEAppProxyFlow::NEAppProxyFlowError;
-#[cfg(all(
-    feature = "NEAppProxyProvider",
-    feature = "NEProvider",
-    feature = "NETunnelProvider"
-))]
-pub use self::__NEAppProxyProvider::NEAppProxyProvider;
-#[cfg(all(
-    feature = "NEAppProxyProviderManager",
-    feature = "NETunnelProviderManager",
-    feature = "NEVPNManager"
-))]
-pub use self::__NEAppProxyProviderManager::NEAppProxyProviderManager;
-#[cfg(all(feature = "NEAppProxyFlow", feature = "NEAppProxyTCPFlow"))]
-pub use self::__NEAppProxyTCPFlow::NEAppProxyTCPFlow;
-#[cfg(all(feature = "NEAppProxyFlow", feature = "NEAppProxyUDPFlow"))]
-pub use self::__NEAppProxyUDPFlow::NEAppProxyUDPFlow;
-#[cfg(feature = "NEAppPushManager")]
-pub use self::__NEAppPushManager::NEAppPushDelegate;
-#[cfg(feature = "NEAppPushManager")]
-pub use self::__NEAppPushManager::NEAppPushErrorDomain;
-#[cfg(feature = "NEAppPushManager")]
-pub use self::__NEAppPushManager::NEAppPushManager;
-#[cfg(feature = "NEAppPushManager")]
-pub use self::__NEAppPushManager::NEAppPushManagerError;
-#[cfg(feature = "NEAppPushManager")]
-pub use self::__NEAppPushManager::NEPrivateLTENetwork;
-#[cfg(all(feature = "NEAppPushProvider", feature = "NEProvider"))]
-pub use self::__NEAppPushProvider::NEAppPushProvider;
-#[cfg(feature = "NEAppRule")]
-pub use self::__NEAppRule::NEAppRule;
-#[cfg(feature = "NEDNSProxyManager")]
-pub use self::__NEDNSProxyManager::NEDNSProxyConfigurationDidChangeNotification;
-#[cfg(feature = "NEDNSProxyManager")]
-pub use self::__NEDNSProxyManager::NEDNSProxyErrorDomain;
-#[cfg(feature = "NEDNSProxyManager")]
-pub use self::__NEDNSProxyManager::NEDNSProxyManager;
-#[cfg(feature = "NEDNSProxyManager")]
-pub use self::__NEDNSProxyManager::NEDNSProxyManagerError;
-#[cfg(all(feature = "NEDNSProxyProvider", feature = "NEProvider"))]
-pub use self::__NEDNSProxyProvider::NEDNSProxyProvider;
-#[cfg(all(feature = "NEDNSProxyProviderProtocol", feature = "NEVPNProtocol"))]
-pub use self::__NEDNSProxyProviderProtocol::NEDNSProxyProviderProtocol;
-#[cfg(feature = "NEDNSSettings")]
-pub use self::__NEDNSSettings::NEDNSOverHTTPSSettings;
-#[cfg(feature = "NEDNSSettings")]
-pub use self::__NEDNSSettings::NEDNSOverTLSSettings;
-#[cfg(feature = "NEDNSSettings")]
-pub use self::__NEDNSSettings::NEDNSProtocol;
-#[cfg(feature = "NEDNSSettings")]
-pub use self::__NEDNSSettings::NEDNSSettings;
-#[cfg(feature = "NEDNSSettingsManager")]
-pub use self::__NEDNSSettingsManager::NEDNSSettingsConfigurationDidChangeNotification;
-#[cfg(feature = "NEDNSSettingsManager")]
-pub use self::__NEDNSSettingsManager::NEDNSSettingsErrorDomain;
-#[cfg(feature = "NEDNSSettingsManager")]
-pub use self::__NEDNSSettingsManager::NEDNSSettingsManager;
-#[cfg(feature = "NEDNSSettingsManager")]
-pub use self::__NEDNSSettingsManager::NEDNSSettingsManagerError;
-#[cfg(all(
-    feature = "NEEthernetTunnelNetworkSettings",
-    feature = "NEPacketTunnelNetworkSettings",
-    feature = "NETunnelNetworkSettings"
-))]
-pub use self::__NEEthernetTunnelNetworkSettings::NEEthernetTunnelNetworkSettings;
-#[cfg(all(
-    feature = "NEEthernetTunnelProvider",
-    feature = "NEPacketTunnelProvider",
-    feature = "NEProvider",
-    feature = "NETunnelProvider"
-))]
-pub use self::__NEEthernetTunnelProvider::NEEthernetTunnelProvider;
-#[cfg(all(
-    feature = "NEFilterControlProvider",
-    feature = "NEFilterProvider",
-    feature = "NEProvider"
-))]
-pub use self::__NEFilterControlProvider::NEFilterControlProvider;
-#[cfg(feature = "NEFilterDataProvider")]
-pub use self::__NEFilterDataProvider::NEFilterDataAttribute;
-#[cfg(all(
-    feature = "NEFilterDataProvider",
-    feature = "NEFilterProvider",
-    feature = "NEProvider"
-))]
-pub use self::__NEFilterDataProvider::NEFilterDataProvider;
-#[cfg(all(feature = "NEFilterDataProvider", feature = "NEFilterProvider"))]
-pub use self::__NEFilterDataProvider::NEFilterDataVerdict;
-#[cfg(all(feature = "NEFilterDataProvider", feature = "NEFilterProvider"))]
-pub use self::__NEFilterDataProvider::NEFilterRemediationVerdict;
-#[cfg(feature = "NEFilterFlow")]
-pub use self::__NEFilterFlow::NEFilterBrowserFlow;
-#[cfg(feature = "NEFilterFlow")]
-pub use self::__NEFilterFlow::NEFilterFlow;
-#[cfg(feature = "NEFilterFlow")]
-pub use self::__NEFilterFlow::NEFilterSocketFlow;
-#[cfg(feature = "NEFilterManager")]
-pub use self::__NEFilterManager::NEFilterConfigurationDidChangeNotification;
-#[cfg(feature = "NEFilterManager")]
-pub use self::__NEFilterManager::NEFilterErrorDomain;
-#[cfg(feature = "NEFilterManager")]
-pub use self::__NEFilterManager::NEFilterManager;
-#[cfg(feature = "NEFilterManager")]
-pub use self::__NEFilterManager::NEFilterManagerError;
-#[cfg(feature = "NEFilterManager")]
-pub use self::__NEFilterManager::NEFilterManagerGrade;
-#[cfg(feature = "NEFilterPacketProvider")]
-pub use self::__NEFilterPacketProvider::NEFilterPacketContext;
-#[cfg(all(
-    feature = "NEFilterPacketProvider",
-    feature = "NEFilterProvider",
-    feature = "NEProvider"
-))]
-pub use self::__NEFilterPacketProvider::NEFilterPacketProvider;
-#[cfg(feature = "NEFilterPacketProvider")]
-pub use self::__NEFilterPacketProvider::NEFilterPacketProviderVerdict;
-#[cfg(feature = "NEFilterProvider")]
-pub use self::__NEFilterProvider::NEFilterAction;
-#[cfg(feature = "NEFilterProvider")]
-pub use self::__NEFilterProvider::NEFilterControlVerdict;
-#[cfg(feature = "NEFilterProvider")]
-pub use self::__NEFilterProvider::NEFilterNewFlowVerdict;
-#[cfg(all(feature = "NEFilterProvider", feature = "NEProvider"))]
-pub use self::__NEFilterProvider::NEFilterProvider;
-#[cfg(feature = "NEFilterProvider")]
-pub use self::__NEFilterProvider::NEFilterReport;
-#[cfg(feature = "NEFilterProvider")]
-pub use self::__NEFilterProvider::NEFilterReportEvent;
-#[cfg(feature = "NEFilterProvider")]
-pub use self::__NEFilterProvider::NEFilterReportFrequency;
-#[cfg(feature = "NEFilterProvider")]
-pub use self::__NEFilterProvider::NEFilterVerdict;
-#[cfg(feature = "NEFilterProviderConfiguration")]
-pub use self::__NEFilterProviderConfiguration::NEFilterProviderConfiguration;
-#[cfg(feature = "NEFilterRule")]
-pub use self::__NEFilterRule::NEFilterRule;
-#[cfg(feature = "NEFilterSettings")]
-pub use self::__NEFilterSettings::NEFilterSettings;
-#[cfg(feature = "NEFlowMetaData")]
-pub use self::__NEFlowMetaData::NEFlowMetaData;
-#[cfg(feature = "NEHotspotConfigurationManager")]
-pub use self::__NEHotspotConfigurationManager::NEHotspotConfiguration;
-#[cfg(feature = "NEHotspotConfigurationManager")]
-pub use self::__NEHotspotConfigurationManager::NEHotspotConfigurationEAPTLSVersion;
-#[cfg(feature = "NEHotspotConfigurationManager")]
-pub use self::__NEHotspotConfigurationManager::NEHotspotConfigurationEAPType;
-#[cfg(feature = "NEHotspotConfigurationManager")]
-pub use self::__NEHotspotConfigurationManager::NEHotspotConfigurationError;
-#[cfg(feature = "NEHotspotConfigurationManager")]
-pub use self::__NEHotspotConfigurationManager::NEHotspotConfigurationErrorDomain;
-#[cfg(feature = "NEHotspotConfigurationManager")]
-pub use self::__NEHotspotConfigurationManager::NEHotspotConfigurationManager;
-#[cfg(feature = "NEHotspotConfigurationManager")]
-pub use self::__NEHotspotConfigurationManager::NEHotspotConfigurationTTLSInnerAuthenticationType;
-#[cfg(feature = "NEHotspotConfigurationManager")]
-pub use self::__NEHotspotConfigurationManager::NEHotspotEAPSettings;
-#[cfg(feature = "NEHotspotConfigurationManager")]
-pub use self::__NEHotspotConfigurationManager::NEHotspotHS20Settings;
-#[cfg(feature = "NEHotspotHelper")]
-pub use self::__NEHotspotHelper::NEHotspotHelper;
-#[cfg(feature = "NEHotspotHelper")]
-pub use self::__NEHotspotHelper::NEHotspotHelperCommand;
-#[cfg(feature = "NEHotspotHelper")]
-pub use self::__NEHotspotHelper::NEHotspotHelperCommandType;
-#[cfg(feature = "NEHotspotHelper")]
-pub use self::__NEHotspotHelper::NEHotspotHelperConfidence;
-#[cfg(all(feature = "NEHotspotHelper", feature = "block2"))]
-pub use self::__NEHotspotHelper::NEHotspotHelperHandler;
-#[cfg(feature = "NEHotspotHelper")]
-pub use self::__NEHotspotHelper::NEHotspotHelperResponse;
-#[cfg(feature = "NEHotspotHelper")]
-pub use self::__NEHotspotHelper::NEHotspotHelperResult;
-#[cfg(feature = "NEHotspotHelper")]
-pub use self::__NEHotspotHelper::NSMutableURLRequestNEHotspotHelper;
-#[cfg(feature = "NEHotspotNetwork")]
-pub use self::__NEHotspotNetwork::NEHotspotNetwork;
-#[cfg(feature = "NEHotspotNetwork")]
-pub use self::__NEHotspotNetwork::NEHotspotNetworkSecurityType;
-#[cfg(feature = "NEIPv4Settings")]
-pub use self::__NEIPv4Settings::NEIPv4Route;
-#[cfg(feature = "NEIPv4Settings")]
-pub use self::__NEIPv4Settings::NEIPv4Settings;
-#[cfg(feature = "NEIPv6Settings")]
-pub use self::__NEIPv6Settings::NEIPv6Route;
-#[cfg(feature = "NEIPv6Settings")]
-pub use self::__NEIPv6Settings::NEIPv6Settings;
-#[cfg(feature = "NENetworkRule")]
-pub use self::__NENetworkRule::NENetworkRule;
-#[cfg(feature = "NENetworkRule")]
-pub use self::__NENetworkRule::NENetworkRuleProtocol;
-#[cfg(feature = "NENetworkRule")]
-pub use self::__NENetworkRule::NETrafficDirection;
-#[cfg(feature = "NEOnDemandRule")]
-pub use self::__NEOnDemandRule::NEEvaluateConnectionRule;
-#[cfg(feature = "NEOnDemandRule")]
-pub use self::__NEOnDemandRule::NEEvaluateConnectionRuleAction;
-#[cfg(feature = "NEOnDemandRule")]
-pub use self::__NEOnDemandRule::NEOnDemandRule;
-#[cfg(feature = "NEOnDemandRule")]
-pub use self::__NEOnDemandRule::NEOnDemandRuleAction;
-#[cfg(feature = "NEOnDemandRule")]
-pub use self::__NEOnDemandRule::NEOnDemandRuleConnect;
-#[cfg(feature = "NEOnDemandRule")]
-pub use self::__NEOnDemandRule::NEOnDemandRuleDisconnect;
-#[cfg(feature = "NEOnDemandRule")]
-pub use self::__NEOnDemandRule::NEOnDemandRuleEvaluateConnection;
-#[cfg(feature = "NEOnDemandRule")]
-pub use self::__NEOnDemandRule::NEOnDemandRuleIgnore;
-#[cfg(feature = "NEOnDemandRule")]
-pub use self::__NEOnDemandRule::NEOnDemandRuleInterfaceType;
-#[cfg(feature = "NEPacket")]
-pub use self::__NEPacket::NEPacket;
-#[cfg(feature = "NEPacketTunnelFlow")]
-pub use self::__NEPacketTunnelFlow::NEPacketTunnelFlow;
-#[cfg(all(
-    feature = "NEPacketTunnelNetworkSettings",
-    feature = "NETunnelNetworkSettings"
-))]
-pub use self::__NEPacketTunnelNetworkSettings::NEPacketTunnelNetworkSettings;
-#[cfg(all(
-    feature = "NEPacketTunnelProvider",
-    feature = "NEProvider",
-    feature = "NETunnelProvider"
-))]
-pub use self::__NEPacketTunnelProvider::NEPacketTunnelProvider;
-#[cfg(feature = "NEProvider")]
-pub use self::__NEProvider::NEProvider;
-#[cfg(feature = "NEProvider")]
-pub use self::__NEProvider::NEProviderStopReason;
-#[cfg(feature = "NEProxySettings")]
-pub use self::__NEProxySettings::NEProxyServer;
-#[cfg(feature = "NEProxySettings")]
-pub use self::__NEProxySettings::NEProxySettings;
-#[cfg(feature = "NERelay")]
-pub use self::__NERelay::NERelay;
-#[cfg(feature = "NERelayManager")]
-pub use self::__NERelayManager::NERelayClientErrorDomain;
-#[cfg(feature = "NERelayManager")]
-pub use self::__NERelayManager::NERelayConfigurationDidChangeNotification;
-#[cfg(feature = "NERelayManager")]
-pub use self::__NERelayManager::NERelayErrorDomain;
-#[cfg(feature = "NERelayManager")]
-pub use self::__NERelayManager::NERelayManager;
-#[cfg(feature = "NERelayManager")]
-pub use self::__NERelayManager::NERelayManagerClientError;
-#[cfg(feature = "NERelayManager")]
-pub use self::__NERelayManager::NERelayManagerError;
-#[cfg(all(feature = "NETransparentProxyManager", feature = "NEVPNManager"))]
-pub use self::__NETransparentProxyManager::NETransparentProxyManager;
-#[cfg(all(
-    feature = "NETransparentProxyNetworkSettings",
-    feature = "NETunnelNetworkSettings"
-))]
-pub use self::__NETransparentProxyNetworkSettings::NETransparentProxyNetworkSettings;
-#[cfg(all(
-    feature = "NEAppProxyProvider",
-    feature = "NEProvider",
-    feature = "NETransparentProxyProvider",
-    feature = "NETunnelProvider"
-))]
-pub use self::__NETransparentProxyProvider::NETransparentProxyProvider;
-#[cfg(feature = "NETunnelNetworkSettings")]
-pub use self::__NETunnelNetworkSettings::NETunnelNetworkSettings;
-#[cfg(all(feature = "NEProvider", feature = "NETunnelProvider"))]
-pub use self::__NETunnelProvider::NETunnelProvider;
-#[cfg(feature = "NETunnelProvider")]
-pub use self::__NETunnelProvider::NETunnelProviderError;
-#[cfg(feature = "NETunnelProvider")]
-pub use self::__NETunnelProvider::NETunnelProviderErrorDomain;
-#[cfg(feature = "NETunnelProvider")]
-pub use self::__NETunnelProvider::NETunnelProviderRoutingMethod;
-#[cfg(all(feature = "NETunnelProviderManager", feature = "NEVPNManager"))]
-pub use self::__NETunnelProviderManager::NETunnelProviderManager;
-#[cfg(all(feature = "NETunnelProviderProtocol", feature = "NEVPNProtocol"))]
-pub use self::__NETunnelProviderProtocol::NETunnelProviderProtocol;
-#[cfg(all(feature = "NETunnelProviderSession", feature = "NEVPNConnection"))]
-pub use self::__NETunnelProviderSession::NETunnelProviderSession;
-#[cfg(feature = "NEVPNConnection")]
-pub use self::__NEVPNConnection::NEVPNConnection;
-#[cfg(feature = "NEVPNConnection")]
-pub use self::__NEVPNConnection::NEVPNConnectionError;
-#[cfg(feature = "NEVPNConnection")]
-pub use self::__NEVPNConnection::NEVPNConnectionErrorDomain;
-#[cfg(feature = "NEVPNConnection")]
-pub use self::__NEVPNConnection::NEVPNConnectionStartOptionPassword;
-#[cfg(feature = "NEVPNConnection")]
-pub use self::__NEVPNConnection::NEVPNConnectionStartOptionUsername;
-#[cfg(feature = "NEVPNConnection")]
-pub use self::__NEVPNConnection::NEVPNStatus;
-#[cfg(feature = "NEVPNConnection")]
-pub use self::__NEVPNConnection::NEVPNStatusDidChangeNotification;
-#[cfg(feature = "NEVPNManager")]
-pub use self::__NEVPNManager::NEVPNConfigurationChangeNotification;
-#[cfg(feature = "NEVPNManager")]
-pub use self::__NEVPNManager::NEVPNError;
-#[cfg(feature = "NEVPNManager")]
-pub use self::__NEVPNManager::NEVPNErrorDomain;
-#[cfg(feature = "NEVPNManager")]
-pub use self::__NEVPNManager::NEVPNManager;
-#[cfg(feature = "NEVPNProtocol")]
-pub use self::__NEVPNProtocol::NEVPNProtocol;
-#[cfg(feature = "NEVPNProtocolIKEv2")]
-pub use self::__NEVPNProtocolIKEv2::NEVPNIKEv2CertificateType;
-#[cfg(feature = "NEVPNProtocolIKEv2")]
-pub use self::__NEVPNProtocolIKEv2::NEVPNIKEv2DeadPeerDetectionRate;
-#[cfg(feature = "NEVPNProtocolIKEv2")]
-pub use self::__NEVPNProtocolIKEv2::NEVPNIKEv2DiffieHellmanGroup;
-#[cfg(feature = "NEVPNProtocolIKEv2")]
-pub use self::__NEVPNProtocolIKEv2::NEVPNIKEv2EncryptionAlgorithm;
-#[cfg(feature = "NEVPNProtocolIKEv2")]
-pub use self::__NEVPNProtocolIKEv2::NEVPNIKEv2IntegrityAlgorithm;
-#[cfg(feature = "NEVPNProtocolIKEv2")]
-pub use self::__NEVPNProtocolIKEv2::NEVPNIKEv2PPKConfiguration;
-#[cfg(feature = "NEVPNProtocolIKEv2")]
-pub use self::__NEVPNProtocolIKEv2::NEVPNIKEv2SecurityAssociationParameters;
-#[cfg(feature = "NEVPNProtocolIKEv2")]
-pub use self::__NEVPNProtocolIKEv2::NEVPNIKEv2TLSVersion;
-#[cfg(all(
-    feature = "NEVPNProtocol",
-    feature = "NEVPNProtocolIKEv2",
-    feature = "NEVPNProtocolIPSec"
-))]
-pub use self::__NEVPNProtocolIKEv2::NEVPNProtocolIKEv2;
-#[cfg(feature = "NEVPNProtocolIPSec")]
-pub use self::__NEVPNProtocolIPSec::NEVPNIKEAuthenticationMethod;
-#[cfg(all(feature = "NEVPNProtocol", feature = "NEVPNProtocolIPSec"))]
-pub use self::__NEVPNProtocolIPSec::NEVPNProtocolIPSec;
-#[cfg(all(feature = "NWBonjourServiceEndpoint", feature = "NWEndpoint"))]
-pub use self::__NWBonjourServiceEndpoint::NWBonjourServiceEndpoint;
-#[cfg(feature = "NWEndpoint")]
-pub use self::__NWEndpoint::NWEndpoint;
-#[cfg(all(feature = "NWEndpoint", feature = "NWHostEndpoint"))]
-pub use self::__NWHostEndpoint::NWHostEndpoint;
-#[cfg(feature = "NWPath")]
-pub use self::__NWPath::NWPath;
-#[cfg(feature = "NWPath")]
-pub use self::__NWPath::NWPathStatus;
-#[cfg(feature = "NWTCPConnection")]
-pub use self::__NWTCPConnection::NWTCPConnection;
-#[cfg(feature = "NWTCPConnection")]
-pub use self::__NWTCPConnection::NWTCPConnectionAuthenticationDelegate;
-#[cfg(feature = "NWTCPConnection")]
-pub use self::__NWTCPConnection::NWTCPConnectionState;
-#[cfg(feature = "NWTLSParameters")]
-pub use self::__NWTLSParameters::NWTLSParameters;
-#[cfg(feature = "NWUDPSession")]
-pub use self::__NWUDPSession::NWUDPSession;
-#[cfg(feature = "NWUDPSession")]
-pub use self::__NWUDPSession::NWUDPSessionState;
+use crate::*;
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEAppProxyFlowError(pub NSInteger);
+impl NEAppProxyFlowError {
+    #[doc(alias = "NEAppProxyFlowErrorNotConnected")]
+    pub const NotConnected: Self = Self(1);
+    #[doc(alias = "NEAppProxyFlowErrorPeerReset")]
+    pub const PeerReset: Self = Self(2);
+    #[doc(alias = "NEAppProxyFlowErrorHostUnreachable")]
+    pub const HostUnreachable: Self = Self(3);
+    #[doc(alias = "NEAppProxyFlowErrorInvalidArgument")]
+    pub const InvalidArgument: Self = Self(4);
+    #[doc(alias = "NEAppProxyFlowErrorAborted")]
+    pub const Aborted: Self = Self(5);
+    #[doc(alias = "NEAppProxyFlowErrorRefused")]
+    pub const Refused: Self = Self(6);
+    #[doc(alias = "NEAppProxyFlowErrorTimedOut")]
+    pub const TimedOut: Self = Self(7);
+    #[doc(alias = "NEAppProxyFlowErrorInternal")]
+    pub const Internal: Self = Self(8);
+    #[doc(alias = "NEAppProxyFlowErrorDatagramTooLarge")]
+    pub const DatagramTooLarge: Self = Self(9);
+    #[doc(alias = "NEAppProxyFlowErrorReadAlreadyPending")]
+    pub const ReadAlreadyPending: Self = Self(10);
+}
+
+unsafe impl Encode for NEAppProxyFlowError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEAppProxyFlowError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyerrordomain?language=objc)
+    pub static NEAppProxyErrorDomain: &'static NSString;
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflow?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEAppProxyFlow;
+);
+
+unsafe impl NSObjectProtocol for NEAppProxyFlow {}
+
+extern_methods!(
+    unsafe impl NEAppProxyFlow {
+        #[cfg(feature = "block2")]
+        #[deprecated]
+        #[method(openWithLocalEndpoint:completionHandler:)]
+        pub unsafe fn openWithLocalEndpoint_completionHandler(
+            &self,
+            local_endpoint: Option<&NWHostEndpoint>,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[method(closeReadWithError:)]
+        pub unsafe fn closeReadWithError(&self, error: Option<&NSError>);
+
+        #[method(closeWriteWithError:)]
+        pub unsafe fn closeWriteWithError(&self, error: Option<&NSError>);
+
+        #[method_id(@__retain_semantics Other metaData)]
+        pub unsafe fn metaData(&self) -> Retained<NEFlowMetaData>;
+
+        #[method_id(@__retain_semantics Other remoteHostname)]
+        pub unsafe fn remoteHostname(&self) -> Option<Retained<NSString>>;
+
+        #[method(isBound)]
+        pub unsafe fn isBound(&self) -> bool;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEAppProxyFlow {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEProviderStopReason(pub NSInteger);
+impl NEProviderStopReason {
+    #[doc(alias = "NEProviderStopReasonNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NEProviderStopReasonUserInitiated")]
+    pub const UserInitiated: Self = Self(1);
+    #[doc(alias = "NEProviderStopReasonProviderFailed")]
+    pub const ProviderFailed: Self = Self(2);
+    #[doc(alias = "NEProviderStopReasonNoNetworkAvailable")]
+    pub const NoNetworkAvailable: Self = Self(3);
+    #[doc(alias = "NEProviderStopReasonUnrecoverableNetworkChange")]
+    pub const UnrecoverableNetworkChange: Self = Self(4);
+    #[doc(alias = "NEProviderStopReasonProviderDisabled")]
+    pub const ProviderDisabled: Self = Self(5);
+    #[doc(alias = "NEProviderStopReasonAuthenticationCanceled")]
+    pub const AuthenticationCanceled: Self = Self(6);
+    #[doc(alias = "NEProviderStopReasonConfigurationFailed")]
+    pub const ConfigurationFailed: Self = Self(7);
+    #[doc(alias = "NEProviderStopReasonIdleTimeout")]
+    pub const IdleTimeout: Self = Self(8);
+    #[doc(alias = "NEProviderStopReasonConfigurationDisabled")]
+    pub const ConfigurationDisabled: Self = Self(9);
+    #[doc(alias = "NEProviderStopReasonConfigurationRemoved")]
+    pub const ConfigurationRemoved: Self = Self(10);
+    #[doc(alias = "NEProviderStopReasonSuperceded")]
+    pub const Superceded: Self = Self(11);
+    #[doc(alias = "NEProviderStopReasonUserLogout")]
+    pub const UserLogout: Self = Self(12);
+    #[doc(alias = "NEProviderStopReasonUserSwitch")]
+    pub const UserSwitch: Self = Self(13);
+    #[doc(alias = "NEProviderStopReasonConnectionFailed")]
+    pub const ConnectionFailed: Self = Self(14);
+    #[doc(alias = "NEProviderStopReasonSleep")]
+    pub const Sleep: Self = Self(15);
+    #[doc(alias = "NEProviderStopReasonAppUpdate")]
+    pub const AppUpdate: Self = Self(16);
+    #[doc(alias = "NEProviderStopReasonInternalError")]
+    pub const InternalError: Self = Self(17);
+}
+
+unsafe impl Encode for NEProviderStopReason {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEProviderStopReason {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neprovider?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEProvider;
+);
+
+unsafe impl NSObjectProtocol for NEProvider {}
+
+extern_methods!(
+    unsafe impl NEProvider {
+        #[cfg(feature = "block2")]
+        #[method(sleepWithCompletionHandler:)]
+        pub unsafe fn sleepWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn()>,
+        );
+
+        #[method(wake)]
+        pub unsafe fn wake(&self);
+
+        #[deprecated = "Use nw_connection_t in Network framework instead"]
+        #[method_id(@__retain_semantics Other createTCPConnectionToEndpoint:enableTLS:TLSParameters:delegate:)]
+        pub unsafe fn createTCPConnectionToEndpoint_enableTLS_TLSParameters_delegate(
+            &self,
+            remote_endpoint: &NWEndpoint,
+            enable_tls: bool,
+            tls_parameters: Option<&NWTLSParameters>,
+            delegate: Option<&AnyObject>,
+        ) -> Retained<NWTCPConnection>;
+
+        #[deprecated = "Use nw_connection_t in Network framework instead"]
+        #[method_id(@__retain_semantics Other createUDPSessionToEndpoint:fromEndpoint:)]
+        pub unsafe fn createUDPSessionToEndpoint_fromEndpoint(
+            &self,
+            remote_endpoint: &NWEndpoint,
+            local_endpoint: Option<&NWHostEndpoint>,
+        ) -> Retained<NWUDPSession>;
+
+        #[cfg(feature = "block2")]
+        #[deprecated]
+        #[method(displayMessage:completionHandler:)]
+        pub unsafe fn displayMessage_completionHandler(
+            &self,
+            message: &NSString,
+            completion_handler: &block2::Block<dyn Fn(Bool)>,
+        );
+
+        #[method(startSystemExtensionMode)]
+        pub unsafe fn startSystemExtensionMode();
+
+        #[deprecated = "Use nw_path_monitor_t in Network framework instead"]
+        #[method_id(@__retain_semantics Other defaultPath)]
+        pub unsafe fn defaultPath(&self) -> Option<Retained<NWPath>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEProvider {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovidererror?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NETunnelProviderError(pub NSInteger);
+impl NETunnelProviderError {
+    #[doc(alias = "NETunnelProviderErrorNetworkSettingsInvalid")]
+    pub const NetworkSettingsInvalid: Self = Self(1);
+    #[doc(alias = "NETunnelProviderErrorNetworkSettingsCanceled")]
+    pub const NetworkSettingsCanceled: Self = Self(2);
+    #[doc(alias = "NETunnelProviderErrorNetworkSettingsFailed")]
+    pub const NetworkSettingsFailed: Self = Self(3);
+}
+
+unsafe impl Encode for NETunnelProviderError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NETunnelProviderError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelproviderroutingmethod?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NETunnelProviderRoutingMethod(pub NSInteger);
+impl NETunnelProviderRoutingMethod {
+    #[doc(alias = "NETunnelProviderRoutingMethodDestinationIP")]
+    pub const DestinationIP: Self = Self(1);
+    #[doc(alias = "NETunnelProviderRoutingMethodSourceApplication")]
+    pub const SourceApplication: Self = Self(2);
+    #[doc(alias = "NETunnelProviderRoutingMethodNetworkRule")]
+    pub const NetworkRule: Self = Self(3);
+}
+
+unsafe impl Encode for NETunnelProviderRoutingMethod {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NETunnelProviderRoutingMethod {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovidererrordomain?language=objc)
+    pub static NETunnelProviderErrorDomain: &'static NSString;
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovider?language=objc)
+    #[unsafe(super(NEProvider, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NETunnelProvider;
+);
+
+unsafe impl NSObjectProtocol for NETunnelProvider {}
+
+extern_methods!(
+    unsafe impl NETunnelProvider {
+        #[cfg(feature = "block2")]
+        #[method(handleAppMessage:completionHandler:)]
+        pub unsafe fn handleAppMessage_completionHandler(
+            &self,
+            message_data: &NSData,
+            completion_handler: Option<&block2::Block<dyn Fn(*mut NSData)>>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(setTunnelNetworkSettings:completionHandler:)]
+        pub unsafe fn setTunnelNetworkSettings_completionHandler(
+            &self,
+            tunnel_network_settings: Option<&NETunnelNetworkSettings>,
+            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+        );
+
+        #[method_id(@__retain_semantics Other protocolConfiguration)]
+        pub unsafe fn protocolConfiguration(&self) -> Retained<NEVPNProtocol>;
+
+        #[method_id(@__retain_semantics Other appRules)]
+        pub unsafe fn appRules(&self) -> Option<Retained<NSArray<NEAppRule>>>;
+
+        #[method(routingMethod)]
+        pub unsafe fn routingMethod(&self) -> NETunnelProviderRoutingMethod;
+
+        #[method(reasserting)]
+        pub unsafe fn reasserting(&self) -> bool;
+
+        #[method(setReasserting:)]
+        pub unsafe fn setReasserting(&self, reasserting: bool);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NETunnelProvider {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyprovider?language=objc)
+    #[unsafe(super(NETunnelProvider, NEProvider, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEAppProxyProvider;
+);
+
+unsafe impl NSObjectProtocol for NEAppProxyProvider {}
+
+extern_methods!(
+    unsafe impl NEAppProxyProvider {
+        #[cfg(feature = "block2")]
+        #[method(startProxyWithOptions:completionHandler:)]
+        pub unsafe fn startProxyWithOptions_completionHandler(
+            &self,
+            options: Option<&NSDictionary<NSString, AnyObject>>,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(stopProxyWithReason:completionHandler:)]
+        pub unsafe fn stopProxyWithReason_completionHandler(
+            &self,
+            reason: NEProviderStopReason,
+            completion_handler: &block2::Block<dyn Fn()>,
+        );
+
+        #[method(cancelProxyWithError:)]
+        pub unsafe fn cancelProxyWithError(&self, error: Option<&NSError>);
+
+        #[method(handleNewFlow:)]
+        pub unsafe fn handleNewFlow(&self, flow: &NEAppProxyFlow) -> bool;
+
+        #[deprecated]
+        #[method(handleNewUDPFlow:initialRemoteEndpoint:)]
+        pub unsafe fn handleNewUDPFlow_initialRemoteEndpoint(
+            &self,
+            flow: &NEAppProxyUDPFlow,
+            remote_endpoint: &NWEndpoint,
+        ) -> bool;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEAppProxyProvider {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerror?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEVPNError(pub NSInteger);
+impl NEVPNError {
+    #[doc(alias = "NEVPNErrorConfigurationInvalid")]
+    pub const ConfigurationInvalid: Self = Self(1);
+    #[doc(alias = "NEVPNErrorConfigurationDisabled")]
+    pub const ConfigurationDisabled: Self = Self(2);
+    #[doc(alias = "NEVPNErrorConnectionFailed")]
+    pub const ConnectionFailed: Self = Self(3);
+    #[doc(alias = "NEVPNErrorConfigurationStale")]
+    pub const ConfigurationStale: Self = Self(4);
+    #[doc(alias = "NEVPNErrorConfigurationReadWriteFailed")]
+    pub const ConfigurationReadWriteFailed: Self = Self(5);
+    #[doc(alias = "NEVPNErrorConfigurationUnknown")]
+    pub const ConfigurationUnknown: Self = Self(6);
+}
+
+unsafe impl Encode for NEVPNError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEVPNError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerrordomain?language=objc)
+    pub static NEVPNErrorDomain: &'static NSString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconfigurationchangenotification?language=objc)
+    pub static NEVPNConfigurationChangeNotification: &'static NSString;
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnmanager?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEVPNManager;
+);
+
+unsafe impl NSObjectProtocol for NEVPNManager {}
+
+extern_methods!(
+    unsafe impl NEVPNManager {
+        #[method_id(@__retain_semantics Other sharedManager)]
+        pub unsafe fn sharedManager() -> Retained<NEVPNManager>;
+
+        #[cfg(feature = "block2")]
+        #[method(loadFromPreferencesWithCompletionHandler:)]
+        pub unsafe fn loadFromPreferencesWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(removeFromPreferencesWithCompletionHandler:)]
+        pub unsafe fn removeFromPreferencesWithCompletionHandler(
+            &self,
+            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(saveToPreferencesWithCompletionHandler:)]
+        pub unsafe fn saveToPreferencesWithCompletionHandler(
+            &self,
+            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+        );
+
+        #[method_id(@__retain_semantics Other onDemandRules)]
+        pub unsafe fn onDemandRules(&self) -> Option<Retained<NSArray<NEOnDemandRule>>>;
+
+        #[method(setOnDemandRules:)]
+        pub unsafe fn setOnDemandRules(&self, on_demand_rules: Option<&NSArray<NEOnDemandRule>>);
+
+        #[method(isOnDemandEnabled)]
+        pub unsafe fn isOnDemandEnabled(&self) -> bool;
+
+        #[method(setOnDemandEnabled:)]
+        pub unsafe fn setOnDemandEnabled(&self, on_demand_enabled: bool);
+
+        #[method_id(@__retain_semantics Other localizedDescription)]
+        pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
+
+        #[method(setLocalizedDescription:)]
+        pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Other protocol)]
+        pub unsafe fn protocol(&self) -> Option<Retained<NEVPNProtocol>>;
+
+        #[deprecated]
+        #[method(setProtocol:)]
+        pub unsafe fn setProtocol(&self, protocol: Option<&NEVPNProtocol>);
+
+        #[method_id(@__retain_semantics Other protocolConfiguration)]
+        pub unsafe fn protocolConfiguration(&self) -> Option<Retained<NEVPNProtocol>>;
+
+        #[method(setProtocolConfiguration:)]
+        pub unsafe fn setProtocolConfiguration(
+            &self,
+            protocol_configuration: Option<&NEVPNProtocol>,
+        );
+
+        #[method_id(@__retain_semantics Other connection)]
+        pub unsafe fn connection(&self) -> Retained<NEVPNConnection>;
+
+        #[method(isEnabled)]
+        pub unsafe fn isEnabled(&self) -> bool;
+
+        #[method(setEnabled:)]
+        pub unsafe fn setEnabled(&self, enabled: bool);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEVPNManager {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovidermanager?language=objc)
+    #[unsafe(super(NEVPNManager, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NETunnelProviderManager;
+);
+
+unsafe impl NSObjectProtocol for NETunnelProviderManager {}
+
+extern_methods!(
+    unsafe impl NETunnelProviderManager {
+        #[cfg(feature = "block2")]
+        #[method(loadAllFromPreferencesWithCompletionHandler:)]
+        pub unsafe fn loadAllFromPreferencesWithCompletionHandler(
+            completion_handler: &block2::Block<
+                dyn Fn(*mut NSArray<NETunnelProviderManager>, *mut NSError),
+            >,
+        );
+
+        #[method_id(@__retain_semantics Other forPerAppVPN)]
+        pub unsafe fn forPerAppVPN() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Copy copyAppRules)]
+        pub unsafe fn copyAppRules(&self) -> Option<Retained<NSArray<NEAppRule>>>;
+
+        #[method(routingMethod)]
+        pub unsafe fn routingMethod(&self) -> NETunnelProviderRoutingMethod;
+
+        #[method_id(@__retain_semantics Other safariDomains)]
+        pub unsafe fn safariDomains(&self) -> Retained<NSArray<NSString>>;
+
+        #[method(setSafariDomains:)]
+        pub unsafe fn setSafariDomains(&self, safari_domains: &NSArray<NSString>);
+
+        #[method_id(@__retain_semantics Other mailDomains)]
+        pub unsafe fn mailDomains(&self) -> Retained<NSArray<NSString>>;
+
+        #[method(setMailDomains:)]
+        pub unsafe fn setMailDomains(&self, mail_domains: &NSArray<NSString>);
+
+        #[method_id(@__retain_semantics Other calendarDomains)]
+        pub unsafe fn calendarDomains(&self) -> Retained<NSArray<NSString>>;
+
+        #[method(setCalendarDomains:)]
+        pub unsafe fn setCalendarDomains(&self, calendar_domains: &NSArray<NSString>);
+
+        #[method_id(@__retain_semantics Other contactsDomains)]
+        pub unsafe fn contactsDomains(&self) -> Retained<NSArray<NSString>>;
+
+        #[method(setContactsDomains:)]
+        pub unsafe fn setContactsDomains(&self, contacts_domains: &NSArray<NSString>);
+
+        #[method_id(@__retain_semantics Other appRules)]
+        pub unsafe fn appRules(&self) -> Retained<NSArray<NEAppRule>>;
+
+        #[method(setAppRules:)]
+        pub unsafe fn setAppRules(&self, app_rules: &NSArray<NEAppRule>);
+
+        #[method_id(@__retain_semantics Other excludedDomains)]
+        pub unsafe fn excludedDomains(&self) -> Retained<NSArray<NSString>>;
+
+        #[method(setExcludedDomains:)]
+        pub unsafe fn setExcludedDomains(&self, excluded_domains: &NSArray<NSString>);
+
+        #[method_id(@__retain_semantics Other associatedDomains)]
+        pub unsafe fn associatedDomains(&self) -> Retained<NSArray<NSString>>;
+
+        #[method(setAssociatedDomains:)]
+        pub unsafe fn setAssociatedDomains(&self, associated_domains: &NSArray<NSString>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NETunnelProviderManager {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyprovidermanager?language=objc)
+    #[unsafe(super(NETunnelProviderManager, NEVPNManager, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEAppProxyProviderManager;
+);
+
+unsafe impl NSObjectProtocol for NEAppProxyProviderManager {}
+
+extern_methods!(
+    unsafe impl NEAppProxyProviderManager {
+        #[cfg(feature = "block2")]
+        #[method(loadAllFromPreferencesWithCompletionHandler:)]
+        pub unsafe fn loadAllFromPreferencesWithCompletionHandler(
+            completion_handler: &block2::Block<
+                dyn Fn(*mut NSArray<NEAppProxyProviderManager>, *mut NSError),
+            >,
+        );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NETunnelProviderManager`
+    unsafe impl NEAppProxyProviderManager {
+        #[method_id(@__retain_semantics Other forPerAppVPN)]
+        pub unsafe fn forPerAppVPN() -> Retained<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEAppProxyProviderManager {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxytcpflow?language=objc)
+    #[unsafe(super(NEAppProxyFlow, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEAppProxyTCPFlow;
+);
+
+unsafe impl NSObjectProtocol for NEAppProxyTCPFlow {}
+
+extern_methods!(
+    unsafe impl NEAppProxyTCPFlow {
+        #[cfg(feature = "block2")]
+        #[method(readDataWithCompletionHandler:)]
+        pub unsafe fn readDataWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(writeData:withCompletionHandler:)]
+        pub unsafe fn writeData_withCompletionHandler(
+            &self,
+            data: &NSData,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Other remoteEndpoint)]
+        pub unsafe fn remoteEndpoint(&self) -> Retained<NWEndpoint>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEAppProxyTCPFlow {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyudpflow?language=objc)
+    #[unsafe(super(NEAppProxyFlow, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEAppProxyUDPFlow;
+);
+
+unsafe impl NSObjectProtocol for NEAppProxyUDPFlow {}
+
+extern_methods!(
+    unsafe impl NEAppProxyUDPFlow {
+        #[cfg(feature = "block2")]
+        #[deprecated]
+        #[method(readDatagramsWithCompletionHandler:)]
+        pub unsafe fn readDatagramsWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<
+                dyn Fn(*mut NSArray<NSData>, *mut NSArray<NWEndpoint>, *mut NSError),
+            >,
+        );
+
+        #[cfg(feature = "block2")]
+        #[deprecated]
+        #[method(writeDatagrams:sentByEndpoints:completionHandler:)]
+        pub unsafe fn writeDatagrams_sentByEndpoints_completionHandler(
+            &self,
+            datagrams: &NSArray<NSData>,
+            remote_endpoints: &NSArray<NWEndpoint>,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Other localEndpoint)]
+        pub unsafe fn localEndpoint(&self) -> Option<Retained<NWEndpoint>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEAppProxyUDPFlow {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapprule?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEAppRule;
+);
+
+unsafe impl NSCoding for NEAppRule {}
+
+unsafe impl NSCopying for NEAppRule {}
+
+unsafe impl CopyingHelper for NEAppRule {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEAppRule {}
+
+unsafe impl NSSecureCoding for NEAppRule {}
+
+extern_methods!(
+    unsafe impl NEAppRule {
+        #[method_id(@__retain_semantics Init initWithSigningIdentifier:)]
+        pub unsafe fn initWithSigningIdentifier(
+            this: Allocated<Self>,
+            signing_identifier: &NSString,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Init initWithSigningIdentifier:designatedRequirement:)]
+        pub unsafe fn initWithSigningIdentifier_designatedRequirement(
+            this: Allocated<Self>,
+            signing_identifier: &NSString,
+            designated_requirement: &NSString,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other matchSigningIdentifier)]
+        pub unsafe fn matchSigningIdentifier(&self) -> Retained<NSString>;
+
+        #[method_id(@__retain_semantics Other matchDesignatedRequirement)]
+        pub unsafe fn matchDesignatedRequirement(&self) -> Retained<NSString>;
+
+        #[method_id(@__retain_semantics Other matchPath)]
+        pub unsafe fn matchPath(&self) -> Option<Retained<NSString>>;
+
+        #[method(setMatchPath:)]
+        pub unsafe fn setMatchPath(&self, match_path: Option<&NSString>);
+
+        #[method_id(@__retain_semantics Other matchDomains)]
+        pub unsafe fn matchDomains(&self) -> Option<Retained<NSArray>>;
+
+        #[method(setMatchDomains:)]
+        pub unsafe fn setMatchDomains(&self, match_domains: Option<&NSArray>);
+
+        #[method_id(@__retain_semantics Other matchTools)]
+        pub unsafe fn matchTools(&self) -> Option<Retained<NSArray<NEAppRule>>>;
+
+        #[method(setMatchTools:)]
+        pub unsafe fn setMatchTools(&self, match_tools: Option<&NSArray<NEAppRule>>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEAppRule {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxymanagererror?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEDNSProxyManagerError(pub NSInteger);
+impl NEDNSProxyManagerError {
+    #[doc(alias = "NEDNSProxyManagerErrorConfigurationInvalid")]
+    pub const ConfigurationInvalid: Self = Self(1);
+    #[doc(alias = "NEDNSProxyManagerErrorConfigurationDisabled")]
+    pub const ConfigurationDisabled: Self = Self(2);
+    #[doc(alias = "NEDNSProxyManagerErrorConfigurationStale")]
+    pub const ConfigurationStale: Self = Self(3);
+    #[doc(alias = "NEDNSProxyManagerErrorConfigurationCannotBeRemoved")]
+    pub const ConfigurationCannotBeRemoved: Self = Self(4);
+}
+
+unsafe impl Encode for NEDNSProxyManagerError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEDNSProxyManagerError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxyerrordomain?language=objc)
+    pub static NEDNSProxyErrorDomain: &'static NSString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxyconfigurationdidchangenotification?language=objc)
+    pub static NEDNSProxyConfigurationDidChangeNotification: &'static NSString;
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxymanager?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEDNSProxyManager;
+);
+
+unsafe impl NSObjectProtocol for NEDNSProxyManager {}
+
+extern_methods!(
+    unsafe impl NEDNSProxyManager {
+        #[method_id(@__retain_semantics Other sharedManager)]
+        pub unsafe fn sharedManager() -> Retained<NEDNSProxyManager>;
+
+        #[cfg(feature = "block2")]
+        #[method(loadFromPreferencesWithCompletionHandler:)]
+        pub unsafe fn loadFromPreferencesWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(removeFromPreferencesWithCompletionHandler:)]
+        pub unsafe fn removeFromPreferencesWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(saveToPreferencesWithCompletionHandler:)]
+        pub unsafe fn saveToPreferencesWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[method_id(@__retain_semantics Other localizedDescription)]
+        pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
+
+        #[method(setLocalizedDescription:)]
+        pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
+
+        #[method_id(@__retain_semantics Other providerProtocol)]
+        pub unsafe fn providerProtocol(&self) -> Option<Retained<NEDNSProxyProviderProtocol>>;
+
+        #[method(setProviderProtocol:)]
+        pub unsafe fn setProviderProtocol(
+            &self,
+            provider_protocol: Option<&NEDNSProxyProviderProtocol>,
+        );
+
+        #[method(isEnabled)]
+        pub unsafe fn isEnabled(&self) -> bool;
+
+        #[method(setEnabled:)]
+        pub unsafe fn setEnabled(&self, enabled: bool);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEDNSProxyManager {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxyprovider?language=objc)
+    #[unsafe(super(NEProvider, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEDNSProxyProvider;
+);
+
+unsafe impl NSObjectProtocol for NEDNSProxyProvider {}
+
+extern_methods!(
+    unsafe impl NEDNSProxyProvider {
+        #[cfg(feature = "block2")]
+        #[method(startProxyWithOptions:completionHandler:)]
+        pub unsafe fn startProxyWithOptions_completionHandler(
+            &self,
+            options: Option<&NSDictionary<NSString, AnyObject>>,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(stopProxyWithReason:completionHandler:)]
+        pub unsafe fn stopProxyWithReason_completionHandler(
+            &self,
+            reason: NEProviderStopReason,
+            completion_handler: &block2::Block<dyn Fn()>,
+        );
+
+        #[method(cancelProxyWithError:)]
+        pub unsafe fn cancelProxyWithError(&self, error: Option<&NSError>);
+
+        #[method(handleNewFlow:)]
+        pub unsafe fn handleNewFlow(&self, flow: &NEAppProxyFlow) -> bool;
+
+        #[deprecated]
+        #[method(handleNewUDPFlow:initialRemoteEndpoint:)]
+        pub unsafe fn handleNewUDPFlow_initialRemoteEndpoint(
+            &self,
+            flow: &NEAppProxyUDPFlow,
+            remote_endpoint: &NWEndpoint,
+        ) -> bool;
+
+        #[method_id(@__retain_semantics Other systemDNSSettings)]
+        pub unsafe fn systemDNSSettings(&self) -> Option<Retained<NSArray<NEDNSSettings>>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEDNSProxyProvider {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproxyserver?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEProxyServer;
+);
+
+unsafe impl NSCoding for NEProxyServer {}
+
+unsafe impl NSCopying for NEProxyServer {}
+
+unsafe impl CopyingHelper for NEProxyServer {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEProxyServer {}
+
+unsafe impl NSSecureCoding for NEProxyServer {}
+
+extern_methods!(
+    unsafe impl NEProxyServer {
+        #[method_id(@__retain_semantics Init initWithAddress:port:)]
+        pub unsafe fn initWithAddress_port(
+            this: Allocated<Self>,
+            address: &NSString,
+            port: NSInteger,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other address)]
+        pub unsafe fn address(&self) -> Retained<NSString>;
+
+        #[method(port)]
+        pub unsafe fn port(&self) -> NSInteger;
+
+        #[method(authenticationRequired)]
+        pub unsafe fn authenticationRequired(&self) -> bool;
+
+        #[method(setAuthenticationRequired:)]
+        pub unsafe fn setAuthenticationRequired(&self, authentication_required: bool);
+
+        #[method_id(@__retain_semantics Other username)]
+        pub unsafe fn username(&self) -> Option<Retained<NSString>>;
+
+        #[method(setUsername:)]
+        pub unsafe fn setUsername(&self, username: Option<&NSString>);
+
+        #[method_id(@__retain_semantics Other password)]
+        pub unsafe fn password(&self) -> Option<Retained<NSString>>;
+
+        #[method(setPassword:)]
+        pub unsafe fn setPassword(&self, password: Option<&NSString>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEProxyServer {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproxysettings?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEProxySettings;
+);
+
+unsafe impl NSCoding for NEProxySettings {}
+
+unsafe impl NSCopying for NEProxySettings {}
+
+unsafe impl CopyingHelper for NEProxySettings {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEProxySettings {}
+
+unsafe impl NSSecureCoding for NEProxySettings {}
+
+extern_methods!(
+    unsafe impl NEProxySettings {
+        #[method(autoProxyConfigurationEnabled)]
+        pub unsafe fn autoProxyConfigurationEnabled(&self) -> bool;
+
+        #[method(setAutoProxyConfigurationEnabled:)]
+        pub unsafe fn setAutoProxyConfigurationEnabled(
+            &self,
+            auto_proxy_configuration_enabled: bool,
+        );
+
+        #[method_id(@__retain_semantics Other proxyAutoConfigurationURL)]
+        pub unsafe fn proxyAutoConfigurationURL(&self) -> Option<Retained<NSURL>>;
+
+        #[method(setProxyAutoConfigurationURL:)]
+        pub unsafe fn setProxyAutoConfigurationURL(
+            &self,
+            proxy_auto_configuration_url: Option<&NSURL>,
+        );
+
+        #[method_id(@__retain_semantics Other proxyAutoConfigurationJavaScript)]
+        pub unsafe fn proxyAutoConfigurationJavaScript(&self) -> Option<Retained<NSString>>;
+
+        #[method(setProxyAutoConfigurationJavaScript:)]
+        pub unsafe fn setProxyAutoConfigurationJavaScript(
+            &self,
+            proxy_auto_configuration_java_script: Option<&NSString>,
+        );
+
+        #[method(HTTPEnabled)]
+        pub unsafe fn HTTPEnabled(&self) -> bool;
+
+        #[method(setHTTPEnabled:)]
+        pub unsafe fn setHTTPEnabled(&self, http_enabled: bool);
+
+        #[method_id(@__retain_semantics Other HTTPServer)]
+        pub unsafe fn HTTPServer(&self) -> Option<Retained<NEProxyServer>>;
+
+        #[method(setHTTPServer:)]
+        pub unsafe fn setHTTPServer(&self, http_server: Option<&NEProxyServer>);
+
+        #[method(HTTPSEnabled)]
+        pub unsafe fn HTTPSEnabled(&self) -> bool;
+
+        #[method(setHTTPSEnabled:)]
+        pub unsafe fn setHTTPSEnabled(&self, https_enabled: bool);
+
+        #[method_id(@__retain_semantics Other HTTPSServer)]
+        pub unsafe fn HTTPSServer(&self) -> Option<Retained<NEProxyServer>>;
+
+        #[method(setHTTPSServer:)]
+        pub unsafe fn setHTTPSServer(&self, https_server: Option<&NEProxyServer>);
+
+        #[method(excludeSimpleHostnames)]
+        pub unsafe fn excludeSimpleHostnames(&self) -> bool;
+
+        #[method(setExcludeSimpleHostnames:)]
+        pub unsafe fn setExcludeSimpleHostnames(&self, exclude_simple_hostnames: bool);
+
+        #[method_id(@__retain_semantics Other exceptionList)]
+        pub unsafe fn exceptionList(&self) -> Option<Retained<NSArray<NSString>>>;
+
+        #[method(setExceptionList:)]
+        pub unsafe fn setExceptionList(&self, exception_list: Option<&NSArray<NSString>>);
+
+        #[method_id(@__retain_semantics Other matchDomains)]
+        pub unsafe fn matchDomains(&self) -> Option<Retained<NSArray<NSString>>>;
+
+        #[method(setMatchDomains:)]
+        pub unsafe fn setMatchDomains(&self, match_domains: Option<&NSArray<NSString>>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEProxySettings {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnprotocol?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEVPNProtocol;
+);
+
+unsafe impl NSCoding for NEVPNProtocol {}
+
+unsafe impl NSCopying for NEVPNProtocol {}
+
+unsafe impl CopyingHelper for NEVPNProtocol {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEVPNProtocol {}
+
+unsafe impl NSSecureCoding for NEVPNProtocol {}
+
+extern_methods!(
+    unsafe impl NEVPNProtocol {
+        #[method_id(@__retain_semantics Other serverAddress)]
+        pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
+
+        #[method(setServerAddress:)]
+        pub unsafe fn setServerAddress(&self, server_address: Option<&NSString>);
+
+        #[method_id(@__retain_semantics Other username)]
+        pub unsafe fn username(&self) -> Option<Retained<NSString>>;
+
+        #[method(setUsername:)]
+        pub unsafe fn setUsername(&self, username: Option<&NSString>);
+
+        #[method_id(@__retain_semantics Other passwordReference)]
+        pub unsafe fn passwordReference(&self) -> Option<Retained<NSData>>;
+
+        #[method(setPasswordReference:)]
+        pub unsafe fn setPasswordReference(&self, password_reference: Option<&NSData>);
+
+        #[method_id(@__retain_semantics Other identityReference)]
+        pub unsafe fn identityReference(&self) -> Option<Retained<NSData>>;
+
+        #[method(setIdentityReference:)]
+        pub unsafe fn setIdentityReference(&self, identity_reference: Option<&NSData>);
+
+        #[method_id(@__retain_semantics Other identityData)]
+        pub unsafe fn identityData(&self) -> Option<Retained<NSData>>;
+
+        #[method(setIdentityData:)]
+        pub unsafe fn setIdentityData(&self, identity_data: Option<&NSData>);
+
+        #[method_id(@__retain_semantics Other identityDataPassword)]
+        pub unsafe fn identityDataPassword(&self) -> Option<Retained<NSString>>;
+
+        #[method(setIdentityDataPassword:)]
+        pub unsafe fn setIdentityDataPassword(&self, identity_data_password: Option<&NSString>);
+
+        #[method(disconnectOnSleep)]
+        pub unsafe fn disconnectOnSleep(&self) -> bool;
+
+        #[method(setDisconnectOnSleep:)]
+        pub unsafe fn setDisconnectOnSleep(&self, disconnect_on_sleep: bool);
+
+        #[method_id(@__retain_semantics Other proxySettings)]
+        pub unsafe fn proxySettings(&self) -> Option<Retained<NEProxySettings>>;
+
+        #[method(setProxySettings:)]
+        pub unsafe fn setProxySettings(&self, proxy_settings: Option<&NEProxySettings>);
+
+        #[method(includeAllNetworks)]
+        pub unsafe fn includeAllNetworks(&self) -> bool;
+
+        #[method(setIncludeAllNetworks:)]
+        pub unsafe fn setIncludeAllNetworks(&self, include_all_networks: bool);
+
+        #[method(excludeLocalNetworks)]
+        pub unsafe fn excludeLocalNetworks(&self) -> bool;
+
+        #[method(setExcludeLocalNetworks:)]
+        pub unsafe fn setExcludeLocalNetworks(&self, exclude_local_networks: bool);
+
+        #[method(excludeCellularServices)]
+        pub unsafe fn excludeCellularServices(&self) -> bool;
+
+        #[method(setExcludeCellularServices:)]
+        pub unsafe fn setExcludeCellularServices(&self, exclude_cellular_services: bool);
+
+        #[method(excludeAPNs)]
+        pub unsafe fn excludeAPNs(&self) -> bool;
+
+        #[method(setExcludeAPNs:)]
+        pub unsafe fn setExcludeAPNs(&self, exclude_ap_ns: bool);
+
+        #[method(excludeDeviceCommunication)]
+        pub unsafe fn excludeDeviceCommunication(&self) -> bool;
+
+        #[method(setExcludeDeviceCommunication:)]
+        pub unsafe fn setExcludeDeviceCommunication(&self, exclude_device_communication: bool);
+
+        #[method(enforceRoutes)]
+        pub unsafe fn enforceRoutes(&self) -> bool;
+
+        #[method(setEnforceRoutes:)]
+        pub unsafe fn setEnforceRoutes(&self, enforce_routes: bool);
+
+        #[method_id(@__retain_semantics Other sliceUUID)]
+        pub unsafe fn sliceUUID(&self) -> Option<Retained<NSString>>;
+
+        #[method(setSliceUUID:)]
+        pub unsafe fn setSliceUUID(&self, slice_uuid: Option<&NSString>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEVPNProtocol {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxyproviderprotocol?language=objc)
+    #[unsafe(super(NEVPNProtocol, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEDNSProxyProviderProtocol;
+);
+
+unsafe impl NSCoding for NEDNSProxyProviderProtocol {}
+
+unsafe impl NSCopying for NEDNSProxyProviderProtocol {}
+
+unsafe impl CopyingHelper for NEDNSProxyProviderProtocol {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEDNSProxyProviderProtocol {}
+
+unsafe impl NSSecureCoding for NEDNSProxyProviderProtocol {}
+
+extern_methods!(
+    unsafe impl NEDNSProxyProviderProtocol {
+        #[method_id(@__retain_semantics Other providerConfiguration)]
+        pub unsafe fn providerConfiguration(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
+
+        #[method(setProviderConfiguration:)]
+        pub unsafe fn setProviderConfiguration(
+            &self,
+            provider_configuration: Option<&NSDictionary<NSString, AnyObject>>,
+        );
+
+        #[method_id(@__retain_semantics Other providerBundleIdentifier)]
+        pub unsafe fn providerBundleIdentifier(&self) -> Option<Retained<NSString>>;
+
+        #[method(setProviderBundleIdentifier:)]
+        pub unsafe fn setProviderBundleIdentifier(
+            &self,
+            provider_bundle_identifier: Option<&NSString>,
+        );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEDNSProxyProviderProtocol {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsprotocol?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEDNSProtocol(pub NSInteger);
+impl NEDNSProtocol {
+    #[doc(alias = "NEDNSProtocolCleartext")]
+    pub const Cleartext: Self = Self(1);
+    #[doc(alias = "NEDNSProtocolTLS")]
+    pub const TLS: Self = Self(2);
+    #[doc(alias = "NEDNSProtocolHTTPS")]
+    pub const HTTPS: Self = Self(3);
+}
+
+unsafe impl Encode for NEDNSProtocol {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEDNSProtocol {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettings?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEDNSSettings;
+);
+
+unsafe impl NSCoding for NEDNSSettings {}
+
+unsafe impl NSCopying for NEDNSSettings {}
+
+unsafe impl CopyingHelper for NEDNSSettings {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEDNSSettings {}
+
+unsafe impl NSSecureCoding for NEDNSSettings {}
+
+extern_methods!(
+    unsafe impl NEDNSSettings {
+        #[method(dnsProtocol)]
+        pub unsafe fn dnsProtocol(&self) -> NEDNSProtocol;
+
+        #[method_id(@__retain_semantics Init initWithServers:)]
+        pub unsafe fn initWithServers(
+            this: Allocated<Self>,
+            servers: &NSArray<NSString>,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other servers)]
+        pub unsafe fn servers(&self) -> Retained<NSArray<NSString>>;
+
+        #[method_id(@__retain_semantics Other searchDomains)]
+        pub unsafe fn searchDomains(&self) -> Option<Retained<NSArray<NSString>>>;
+
+        #[method(setSearchDomains:)]
+        pub unsafe fn setSearchDomains(&self, search_domains: Option<&NSArray<NSString>>);
+
+        #[method_id(@__retain_semantics Other domainName)]
+        pub unsafe fn domainName(&self) -> Option<Retained<NSString>>;
+
+        #[method(setDomainName:)]
+        pub unsafe fn setDomainName(&self, domain_name: Option<&NSString>);
+
+        #[method_id(@__retain_semantics Other matchDomains)]
+        pub unsafe fn matchDomains(&self) -> Option<Retained<NSArray<NSString>>>;
+
+        #[method(setMatchDomains:)]
+        pub unsafe fn setMatchDomains(&self, match_domains: Option<&NSArray<NSString>>);
+
+        #[method(matchDomainsNoSearch)]
+        pub unsafe fn matchDomainsNoSearch(&self) -> bool;
+
+        #[method(setMatchDomainsNoSearch:)]
+        pub unsafe fn setMatchDomainsNoSearch(&self, match_domains_no_search: bool);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEDNSSettings {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsovertlssettings?language=objc)
+    #[unsafe(super(NEDNSSettings, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEDNSOverTLSSettings;
+);
+
+unsafe impl NSCoding for NEDNSOverTLSSettings {}
+
+unsafe impl NSCopying for NEDNSOverTLSSettings {}
+
+unsafe impl CopyingHelper for NEDNSOverTLSSettings {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEDNSOverTLSSettings {}
+
+unsafe impl NSSecureCoding for NEDNSOverTLSSettings {}
+
+extern_methods!(
+    unsafe impl NEDNSOverTLSSettings {
+        #[method_id(@__retain_semantics Other serverName)]
+        pub unsafe fn serverName(&self) -> Option<Retained<NSString>>;
+
+        #[method(setServerName:)]
+        pub unsafe fn setServerName(&self, server_name: Option<&NSString>);
+
+        #[method_id(@__retain_semantics Other identityReference)]
+        pub unsafe fn identityReference(&self) -> Option<Retained<NSData>>;
+
+        #[method(setIdentityReference:)]
+        pub unsafe fn setIdentityReference(&self, identity_reference: Option<&NSData>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NEDNSSettings`
+    unsafe impl NEDNSOverTLSSettings {
+        #[method_id(@__retain_semantics Init initWithServers:)]
+        pub unsafe fn initWithServers(
+            this: Allocated<Self>,
+            servers: &NSArray<NSString>,
+        ) -> Retained<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEDNSOverTLSSettings {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsoverhttpssettings?language=objc)
+    #[unsafe(super(NEDNSSettings, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEDNSOverHTTPSSettings;
+);
+
+unsafe impl NSCoding for NEDNSOverHTTPSSettings {}
+
+unsafe impl NSCopying for NEDNSOverHTTPSSettings {}
+
+unsafe impl CopyingHelper for NEDNSOverHTTPSSettings {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEDNSOverHTTPSSettings {}
+
+unsafe impl NSSecureCoding for NEDNSOverHTTPSSettings {}
+
+extern_methods!(
+    unsafe impl NEDNSOverHTTPSSettings {
+        #[method_id(@__retain_semantics Other serverURL)]
+        pub unsafe fn serverURL(&self) -> Option<Retained<NSURL>>;
+
+        #[method(setServerURL:)]
+        pub unsafe fn setServerURL(&self, server_url: Option<&NSURL>);
+
+        #[method_id(@__retain_semantics Other identityReference)]
+        pub unsafe fn identityReference(&self) -> Option<Retained<NSData>>;
+
+        #[method(setIdentityReference:)]
+        pub unsafe fn setIdentityReference(&self, identity_reference: Option<&NSData>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NEDNSSettings`
+    unsafe impl NEDNSOverHTTPSSettings {
+        #[method_id(@__retain_semantics Init initWithServers:)]
+        pub unsafe fn initWithServers(
+            this: Allocated<Self>,
+            servers: &NSArray<NSString>,
+        ) -> Retained<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEDNSOverHTTPSSettings {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingsmanagererror?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEDNSSettingsManagerError(pub NSInteger);
+impl NEDNSSettingsManagerError {
+    #[doc(alias = "NEDNSSettingsManagerErrorConfigurationInvalid")]
+    pub const ConfigurationInvalid: Self = Self(1);
+    #[doc(alias = "NEDNSSettingsManagerErrorConfigurationDisabled")]
+    pub const ConfigurationDisabled: Self = Self(2);
+    #[doc(alias = "NEDNSSettingsManagerErrorConfigurationStale")]
+    pub const ConfigurationStale: Self = Self(3);
+    #[doc(alias = "NEDNSSettingsManagerErrorConfigurationCannotBeRemoved")]
+    pub const ConfigurationCannotBeRemoved: Self = Self(4);
+}
+
+unsafe impl Encode for NEDNSSettingsManagerError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEDNSSettingsManagerError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingserrordomain?language=objc)
+    pub static NEDNSSettingsErrorDomain: &'static NSString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingsconfigurationdidchangenotification?language=objc)
+    pub static NEDNSSettingsConfigurationDidChangeNotification: &'static NSString;
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingsmanager?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEDNSSettingsManager;
+);
+
+unsafe impl NSObjectProtocol for NEDNSSettingsManager {}
+
+extern_methods!(
+    unsafe impl NEDNSSettingsManager {
+        #[method_id(@__retain_semantics Other sharedManager)]
+        pub unsafe fn sharedManager() -> Retained<NEDNSSettingsManager>;
+
+        #[cfg(feature = "block2")]
+        #[method(loadFromPreferencesWithCompletionHandler:)]
+        pub unsafe fn loadFromPreferencesWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(removeFromPreferencesWithCompletionHandler:)]
+        pub unsafe fn removeFromPreferencesWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(saveToPreferencesWithCompletionHandler:)]
+        pub unsafe fn saveToPreferencesWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[method_id(@__retain_semantics Other localizedDescription)]
+        pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
+
+        #[method(setLocalizedDescription:)]
+        pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
+
+        #[method_id(@__retain_semantics Other dnsSettings)]
+        pub unsafe fn dnsSettings(&self) -> Option<Retained<NEDNSSettings>>;
+
+        #[method(setDnsSettings:)]
+        pub unsafe fn setDnsSettings(&self, dns_settings: Option<&NEDNSSettings>);
+
+        #[method_id(@__retain_semantics Other onDemandRules)]
+        pub unsafe fn onDemandRules(&self) -> Option<Retained<NSArray<NEOnDemandRule>>>;
+
+        #[method(setOnDemandRules:)]
+        pub unsafe fn setOnDemandRules(&self, on_demand_rules: Option<&NSArray<NEOnDemandRule>>);
+
+        #[method(isEnabled)]
+        pub unsafe fn isEnabled(&self) -> bool;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEDNSSettingsManager {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nenetworkruleprotocol?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NENetworkRuleProtocol(pub NSInteger);
+impl NENetworkRuleProtocol {
+    #[doc(alias = "NENetworkRuleProtocolAny")]
+    pub const Any: Self = Self(0);
+    #[doc(alias = "NENetworkRuleProtocolTCP")]
+    pub const TCP: Self = Self(1);
+    #[doc(alias = "NENetworkRuleProtocolUDP")]
+    pub const UDP: Self = Self(2);
+}
+
+unsafe impl Encode for NENetworkRuleProtocol {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NENetworkRuleProtocol {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netrafficdirection?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NETrafficDirection(pub NSInteger);
+impl NETrafficDirection {
+    #[doc(alias = "NETrafficDirectionAny")]
+    pub const Any: Self = Self(0);
+    #[doc(alias = "NETrafficDirectionInbound")]
+    pub const Inbound: Self = Self(1);
+    #[doc(alias = "NETrafficDirectionOutbound")]
+    pub const Outbound: Self = Self(2);
+}
+
+unsafe impl Encode for NETrafficDirection {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NETrafficDirection {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nenetworkrule?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NENetworkRule;
+);
+
+unsafe impl NSCoding for NENetworkRule {}
+
+unsafe impl NSCopying for NENetworkRule {}
+
+unsafe impl CopyingHelper for NENetworkRule {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NENetworkRule {}
+
+unsafe impl NSSecureCoding for NENetworkRule {}
+
+extern_methods!(
+    unsafe impl NENetworkRule {
+        #[deprecated]
+        #[method_id(@__retain_semantics Init initWithDestinationNetwork:prefix:protocol:)]
+        pub unsafe fn initWithDestinationNetwork_prefix_protocol(
+            this: Allocated<Self>,
+            network_endpoint: &NWHostEndpoint,
+            destination_prefix: NSUInteger,
+            protocol: NENetworkRuleProtocol,
+        ) -> Retained<Self>;
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Init initWithDestinationHost:protocol:)]
+        pub unsafe fn initWithDestinationHost_protocol(
+            this: Allocated<Self>,
+            host_endpoint: &NWHostEndpoint,
+            protocol: NENetworkRuleProtocol,
+        ) -> Retained<Self>;
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Init initWithRemoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:)]
+        pub unsafe fn initWithRemoteNetwork_remotePrefix_localNetwork_localPrefix_protocol_direction(
+            this: Allocated<Self>,
+            remote_network: Option<&NWHostEndpoint>,
+            remote_prefix: NSUInteger,
+            local_network: Option<&NWHostEndpoint>,
+            local_prefix: NSUInteger,
+            protocol: NENetworkRuleProtocol,
+            direction: NETrafficDirection,
+        ) -> Retained<Self>;
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Other matchRemoteEndpoint)]
+        pub unsafe fn matchRemoteEndpoint(&self) -> Option<Retained<NWHostEndpoint>>;
+
+        #[method(matchRemotePrefix)]
+        pub unsafe fn matchRemotePrefix(&self) -> NSUInteger;
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Other matchLocalNetwork)]
+        pub unsafe fn matchLocalNetwork(&self) -> Option<Retained<NWHostEndpoint>>;
+
+        #[method(matchLocalPrefix)]
+        pub unsafe fn matchLocalPrefix(&self) -> NSUInteger;
+
+        #[method(matchProtocol)]
+        pub unsafe fn matchProtocol(&self) -> NENetworkRuleProtocol;
+
+        #[method(matchDirection)]
+        pub unsafe fn matchDirection(&self) -> NETrafficDirection;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NENetworkRule {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterflow?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFilterFlow;
+);
+
+unsafe impl NSCoding for NEFilterFlow {}
+
+unsafe impl NSCopying for NEFilterFlow {}
+
+unsafe impl CopyingHelper for NEFilterFlow {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEFilterFlow {}
+
+unsafe impl NSSecureCoding for NEFilterFlow {}
+
+extern_methods!(
+    unsafe impl NEFilterFlow {
+        #[method_id(@__retain_semantics Other URL)]
+        pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
+
+        #[method_id(@__retain_semantics Other sourceAppUniqueIdentifier)]
+        pub unsafe fn sourceAppUniqueIdentifier(&self) -> Option<Retained<NSData>>;
+
+        #[method_id(@__retain_semantics Other sourceAppIdentifier)]
+        pub unsafe fn sourceAppIdentifier(&self) -> Option<Retained<NSString>>;
+
+        #[method_id(@__retain_semantics Other sourceAppVersion)]
+        pub unsafe fn sourceAppVersion(&self) -> Option<Retained<NSString>>;
+
+        #[method(direction)]
+        pub unsafe fn direction(&self) -> NETrafficDirection;
+
+        #[method_id(@__retain_semantics Other sourceAppAuditToken)]
+        pub unsafe fn sourceAppAuditToken(&self) -> Option<Retained<NSData>>;
+
+        #[method_id(@__retain_semantics Other sourceProcessAuditToken)]
+        pub unsafe fn sourceProcessAuditToken(&self) -> Option<Retained<NSData>>;
+
+        #[method_id(@__retain_semantics Other identifier)]
+        pub unsafe fn identifier(&self) -> Retained<NSUUID>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFilterFlow {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterbrowserflow?language=objc)
+    #[unsafe(super(NEFilterFlow, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFilterBrowserFlow;
+);
+
+unsafe impl NSCoding for NEFilterBrowserFlow {}
+
+unsafe impl NSCopying for NEFilterBrowserFlow {}
+
+unsafe impl CopyingHelper for NEFilterBrowserFlow {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEFilterBrowserFlow {}
+
+unsafe impl NSSecureCoding for NEFilterBrowserFlow {}
+
+extern_methods!(
+    unsafe impl NEFilterBrowserFlow {
+        #[method_id(@__retain_semantics Other request)]
+        pub unsafe fn request(&self) -> Option<Retained<NSURLRequest>>;
+
+        #[method_id(@__retain_semantics Other response)]
+        pub unsafe fn response(&self) -> Option<Retained<NSURLResponse>>;
+
+        #[method_id(@__retain_semantics Other parentURL)]
+        pub unsafe fn parentURL(&self) -> Option<Retained<NSURL>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFilterBrowserFlow {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltersocketflow?language=objc)
+    #[unsafe(super(NEFilterFlow, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFilterSocketFlow;
+);
+
+unsafe impl NSCoding for NEFilterSocketFlow {}
+
+unsafe impl NSCopying for NEFilterSocketFlow {}
+
+unsafe impl CopyingHelper for NEFilterSocketFlow {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEFilterSocketFlow {}
+
+unsafe impl NSSecureCoding for NEFilterSocketFlow {}
+
+extern_methods!(
+    unsafe impl NEFilterSocketFlow {
+        #[deprecated]
+        #[method_id(@__retain_semantics Other remoteEndpoint)]
+        pub unsafe fn remoteEndpoint(&self) -> Option<Retained<NWEndpoint>>;
+
+        #[method_id(@__retain_semantics Other remoteHostname)]
+        pub unsafe fn remoteHostname(&self) -> Option<Retained<NSString>>;
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Other localEndpoint)]
+        pub unsafe fn localEndpoint(&self) -> Option<Retained<NWEndpoint>>;
+
+        #[method(socketFamily)]
+        pub unsafe fn socketFamily(&self) -> c_int;
+
+        #[method(socketType)]
+        pub unsafe fn socketType(&self) -> c_int;
+
+        #[method(socketProtocol)]
+        pub unsafe fn socketProtocol(&self) -> c_int;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFilterSocketFlow {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterprovider?language=objc)
+    #[unsafe(super(NEProvider, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFilterProvider;
+);
+
+unsafe impl NSObjectProtocol for NEFilterProvider {}
+
+extern_methods!(
+    unsafe impl NEFilterProvider {
+        #[cfg(feature = "block2")]
+        #[method(startFilterWithCompletionHandler:)]
+        pub unsafe fn startFilterWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(stopFilterWithReason:completionHandler:)]
+        pub unsafe fn stopFilterWithReason_completionHandler(
+            &self,
+            reason: NEProviderStopReason,
+            completion_handler: &block2::Block<dyn Fn()>,
+        );
+
+        #[method_id(@__retain_semantics Other filterConfiguration)]
+        pub unsafe fn filterConfiguration(&self) -> Retained<NEFilterProviderConfiguration>;
+
+        #[method(handleReport:)]
+        pub unsafe fn handleReport(&self, report: &NEFilterReport);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFilterProvider {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreportfrequency?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEFilterReportFrequency(pub NSInteger);
+impl NEFilterReportFrequency {
+    #[doc(alias = "NEFilterReportFrequencyNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NEFilterReportFrequencyLow")]
+    pub const Low: Self = Self(1);
+    #[doc(alias = "NEFilterReportFrequencyMedium")]
+    pub const Medium: Self = Self(2);
+    #[doc(alias = "NEFilterReportFrequencyHigh")]
+    pub const High: Self = Self(3);
+}
+
+unsafe impl Encode for NEFilterReportFrequency {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEFilterReportFrequency {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterverdict?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFilterVerdict;
+);
+
+unsafe impl NSCoding for NEFilterVerdict {}
+
+unsafe impl NSCopying for NEFilterVerdict {}
+
+unsafe impl CopyingHelper for NEFilterVerdict {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEFilterVerdict {}
+
+unsafe impl NSSecureCoding for NEFilterVerdict {}
+
+extern_methods!(
+    unsafe impl NEFilterVerdict {
+        #[method(shouldReport)]
+        pub unsafe fn shouldReport(&self) -> bool;
+
+        #[method(setShouldReport:)]
+        pub unsafe fn setShouldReport(&self, should_report: bool);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFilterVerdict {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilternewflowverdict?language=objc)
+    #[unsafe(super(NEFilterVerdict, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFilterNewFlowVerdict;
+);
+
+unsafe impl NSCoding for NEFilterNewFlowVerdict {}
+
+unsafe impl NSCopying for NEFilterNewFlowVerdict {}
+
+unsafe impl CopyingHelper for NEFilterNewFlowVerdict {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEFilterNewFlowVerdict {}
+
+unsafe impl NSSecureCoding for NEFilterNewFlowVerdict {}
+
+extern_methods!(
+    unsafe impl NEFilterNewFlowVerdict {
+        #[method(statisticsReportFrequency)]
+        pub unsafe fn statisticsReportFrequency(&self) -> NEFilterReportFrequency;
+
+        #[method(setStatisticsReportFrequency:)]
+        pub unsafe fn setStatisticsReportFrequency(
+            &self,
+            statistics_report_frequency: NEFilterReportFrequency,
+        );
+
+        #[method_id(@__retain_semantics Other needRulesVerdict)]
+        pub unsafe fn needRulesVerdict() -> Retained<NEFilterNewFlowVerdict>;
+
+        #[method_id(@__retain_semantics Other allowVerdict)]
+        pub unsafe fn allowVerdict() -> Retained<NEFilterNewFlowVerdict>;
+
+        #[method_id(@__retain_semantics Other dropVerdict)]
+        pub unsafe fn dropVerdict() -> Retained<NEFilterNewFlowVerdict>;
+
+        #[method_id(@__retain_semantics Other remediateVerdictWithRemediationURLMapKey:remediationButtonTextMapKey:)]
+        pub unsafe fn remediateVerdictWithRemediationURLMapKey_remediationButtonTextMapKey(
+            remediation_url_map_key: &NSString,
+            remediation_button_text_map_key: &NSString,
+        ) -> Retained<NEFilterNewFlowVerdict>;
+
+        #[method_id(@__retain_semantics Other URLAppendStringVerdictWithMapKey:)]
+        pub unsafe fn URLAppendStringVerdictWithMapKey(
+            url_append_map_key: &NSString,
+        ) -> Retained<NEFilterNewFlowVerdict>;
+
+        #[method_id(@__retain_semantics Other filterDataVerdictWithFilterInbound:peekInboundBytes:filterOutbound:peekOutboundBytes:)]
+        pub unsafe fn filterDataVerdictWithFilterInbound_peekInboundBytes_filterOutbound_peekOutboundBytes(
+            filter_inbound: bool,
+            peek_inbound_bytes: NSUInteger,
+            filter_outbound: bool,
+            peek_outbound_bytes: NSUInteger,
+        ) -> Retained<NEFilterNewFlowVerdict>;
+
+        #[method_id(@__retain_semantics Other pauseVerdict)]
+        pub unsafe fn pauseVerdict() -> Retained<NEFilterNewFlowVerdict>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFilterNewFlowVerdict {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltercontrolverdict?language=objc)
+    #[unsafe(super(NEFilterNewFlowVerdict, NEFilterVerdict, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFilterControlVerdict;
+);
+
+unsafe impl NSCoding for NEFilterControlVerdict {}
+
+unsafe impl NSCopying for NEFilterControlVerdict {}
+
+unsafe impl CopyingHelper for NEFilterControlVerdict {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEFilterControlVerdict {}
+
+unsafe impl NSSecureCoding for NEFilterControlVerdict {}
+
+extern_methods!(
+    unsafe impl NEFilterControlVerdict {
+        #[method_id(@__retain_semantics Other allowVerdictWithUpdateRules:)]
+        pub unsafe fn allowVerdictWithUpdateRules(
+            update_rules: bool,
+        ) -> Retained<NEFilterControlVerdict>;
+
+        #[method_id(@__retain_semantics Other dropVerdictWithUpdateRules:)]
+        pub unsafe fn dropVerdictWithUpdateRules(
+            update_rules: bool,
+        ) -> Retained<NEFilterControlVerdict>;
+
+        #[method_id(@__retain_semantics Other updateRules)]
+        pub unsafe fn updateRules() -> Retained<NEFilterControlVerdict>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFilterControlVerdict {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilteraction?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEFilterAction(pub NSInteger);
+impl NEFilterAction {
+    #[doc(alias = "NEFilterActionInvalid")]
+    pub const Invalid: Self = Self(0);
+    #[doc(alias = "NEFilterActionAllow")]
+    pub const Allow: Self = Self(1);
+    #[doc(alias = "NEFilterActionDrop")]
+    pub const Drop: Self = Self(2);
+    #[doc(alias = "NEFilterActionRemediate")]
+    pub const Remediate: Self = Self(3);
+    #[doc(alias = "NEFilterActionFilterData")]
+    pub const FilterData: Self = Self(4);
+}
+
+unsafe impl Encode for NEFilterAction {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEFilterAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreportevent?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEFilterReportEvent(pub NSInteger);
+impl NEFilterReportEvent {
+    #[doc(alias = "NEFilterReportEventNewFlow")]
+    pub const NewFlow: Self = Self(1);
+    #[doc(alias = "NEFilterReportEventDataDecision")]
+    pub const DataDecision: Self = Self(2);
+    #[doc(alias = "NEFilterReportEventFlowClosed")]
+    pub const FlowClosed: Self = Self(3);
+    #[doc(alias = "NEFilterReportEventStatistics")]
+    pub const Statistics: Self = Self(4);
+}
+
+unsafe impl Encode for NEFilterReportEvent {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEFilterReportEvent {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFilterReport;
+);
+
+unsafe impl NSCoding for NEFilterReport {}
+
+unsafe impl NSCopying for NEFilterReport {}
+
+unsafe impl CopyingHelper for NEFilterReport {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEFilterReport {}
+
+unsafe impl NSSecureCoding for NEFilterReport {}
+
+extern_methods!(
+    unsafe impl NEFilterReport {
+        #[method_id(@__retain_semantics Other flow)]
+        pub unsafe fn flow(&self) -> Option<Retained<NEFilterFlow>>;
+
+        #[method(action)]
+        pub unsafe fn action(&self) -> NEFilterAction;
+
+        #[method(event)]
+        pub unsafe fn event(&self) -> NEFilterReportEvent;
+
+        #[method(bytesInboundCount)]
+        pub unsafe fn bytesInboundCount(&self) -> NSUInteger;
+
+        #[method(bytesOutboundCount)]
+        pub unsafe fn bytesOutboundCount(&self) -> NSUInteger;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFilterReport {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltercontrolprovider?language=objc)
+    #[unsafe(super(NEFilterProvider, NEProvider, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFilterControlProvider;
+);
+
+unsafe impl NSObjectProtocol for NEFilterControlProvider {}
+
+extern_methods!(
+    unsafe impl NEFilterControlProvider {
+        #[method_id(@__retain_semantics Other remediationMap)]
+        pub unsafe fn remediationMap(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSString, NSDictionary<NSString, NSObject>>>>;
+
+        #[method(setRemediationMap:)]
+        pub unsafe fn setRemediationMap(
+            &self,
+            remediation_map: Option<&NSDictionary<NSString, NSDictionary<NSString, NSObject>>>,
+        );
+
+        #[method_id(@__retain_semantics Other URLAppendStringMap)]
+        pub unsafe fn URLAppendStringMap(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
+
+        #[method(setURLAppendStringMap:)]
+        pub unsafe fn setURLAppendStringMap(
+            &self,
+            url_append_string_map: Option<&NSDictionary<NSString, NSString>>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(handleRemediationForFlow:completionHandler:)]
+        pub unsafe fn handleRemediationForFlow_completionHandler(
+            &self,
+            flow: &NEFilterFlow,
+            completion_handler: &block2::Block<dyn Fn(NonNull<NEFilterControlVerdict>)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(handleNewFlow:completionHandler:)]
+        pub unsafe fn handleNewFlow_completionHandler(
+            &self,
+            flow: &NEFilterFlow,
+            completion_handler: &block2::Block<dyn Fn(NonNull<NEFilterControlVerdict>)>,
+        );
+
+        #[method(notifyRulesChanged)]
+        pub unsafe fn notifyRulesChanged(&self);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFilterControlProvider {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterdataattribute?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEFilterDataAttribute(pub NSInteger);
+impl NEFilterDataAttribute {
+    #[doc(alias = "NEFilterDataAttributeHasIPHeader")]
+    pub const HasIPHeader: Self = Self(0x00000001);
+}
+
+unsafe impl Encode for NEFilterDataAttribute {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEFilterDataAttribute {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterdataprovider?language=objc)
+    #[unsafe(super(NEFilterProvider, NEProvider, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFilterDataProvider;
+);
+
+unsafe impl NSObjectProtocol for NEFilterDataProvider {}
+
+extern_methods!(
+    unsafe impl NEFilterDataProvider {
+        #[method_id(@__retain_semantics Other handleNewFlow:)]
+        pub unsafe fn handleNewFlow(&self, flow: &NEFilterFlow)
+            -> Retained<NEFilterNewFlowVerdict>;
+
+        #[method_id(@__retain_semantics Other handleInboundDataFromFlow:readBytesStartOffset:readBytes:)]
+        pub unsafe fn handleInboundDataFromFlow_readBytesStartOffset_readBytes(
+            &self,
+            flow: &NEFilterFlow,
+            offset: NSUInteger,
+            read_bytes: &NSData,
+        ) -> Retained<NEFilterDataVerdict>;
+
+        #[method_id(@__retain_semantics Other handleOutboundDataFromFlow:readBytesStartOffset:readBytes:)]
+        pub unsafe fn handleOutboundDataFromFlow_readBytesStartOffset_readBytes(
+            &self,
+            flow: &NEFilterFlow,
+            offset: NSUInteger,
+            read_bytes: &NSData,
+        ) -> Retained<NEFilterDataVerdict>;
+
+        #[method_id(@__retain_semantics Other handleInboundDataCompleteForFlow:)]
+        pub unsafe fn handleInboundDataCompleteForFlow(
+            &self,
+            flow: &NEFilterFlow,
+        ) -> Retained<NEFilterDataVerdict>;
+
+        #[method_id(@__retain_semantics Other handleOutboundDataCompleteForFlow:)]
+        pub unsafe fn handleOutboundDataCompleteForFlow(
+            &self,
+            flow: &NEFilterFlow,
+        ) -> Retained<NEFilterDataVerdict>;
+
+        #[method_id(@__retain_semantics Other handleRemediationForFlow:)]
+        pub unsafe fn handleRemediationForFlow(
+            &self,
+            flow: &NEFilterFlow,
+        ) -> Retained<NEFilterRemediationVerdict>;
+
+        #[method(handleRulesChanged)]
+        pub unsafe fn handleRulesChanged(&self);
+
+        #[cfg(feature = "block2")]
+        #[method(applySettings:completionHandler:)]
+        pub unsafe fn applySettings_completionHandler(
+            &self,
+            settings: Option<&NEFilterSettings>,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[method(resumeFlow:withVerdict:)]
+        pub unsafe fn resumeFlow_withVerdict(&self, flow: &NEFilterFlow, verdict: &NEFilterVerdict);
+
+        #[method(updateFlow:usingVerdict:forDirection:)]
+        pub unsafe fn updateFlow_usingVerdict_forDirection(
+            &self,
+            flow: &NEFilterSocketFlow,
+            verdict: &NEFilterDataVerdict,
+            direction: NETrafficDirection,
+        );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFilterDataProvider {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterdataverdict?language=objc)
+    #[unsafe(super(NEFilterVerdict, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFilterDataVerdict;
+);
+
+unsafe impl NSCoding for NEFilterDataVerdict {}
+
+unsafe impl NSCopying for NEFilterDataVerdict {}
+
+unsafe impl CopyingHelper for NEFilterDataVerdict {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEFilterDataVerdict {}
+
+unsafe impl NSSecureCoding for NEFilterDataVerdict {}
+
+extern_methods!(
+    unsafe impl NEFilterDataVerdict {
+        #[method(statisticsReportFrequency)]
+        pub unsafe fn statisticsReportFrequency(&self) -> NEFilterReportFrequency;
+
+        #[method(setStatisticsReportFrequency:)]
+        pub unsafe fn setStatisticsReportFrequency(
+            &self,
+            statistics_report_frequency: NEFilterReportFrequency,
+        );
+
+        #[method_id(@__retain_semantics Other allowVerdict)]
+        pub unsafe fn allowVerdict() -> Retained<NEFilterDataVerdict>;
+
+        #[method_id(@__retain_semantics Other dropVerdict)]
+        pub unsafe fn dropVerdict() -> Retained<NEFilterDataVerdict>;
+
+        #[method_id(@__retain_semantics Other remediateVerdictWithRemediationURLMapKey:remediationButtonTextMapKey:)]
+        pub unsafe fn remediateVerdictWithRemediationURLMapKey_remediationButtonTextMapKey(
+            remediation_url_map_key: Option<&NSString>,
+            remediation_button_text_map_key: Option<&NSString>,
+        ) -> Retained<NEFilterDataVerdict>;
+
+        #[method_id(@__retain_semantics Other dataVerdictWithPassBytes:peekBytes:)]
+        pub unsafe fn dataVerdictWithPassBytes_peekBytes(
+            pass_bytes: NSUInteger,
+            peek_bytes: NSUInteger,
+        ) -> Retained<NEFilterDataVerdict>;
+
+        #[method_id(@__retain_semantics Other needRulesVerdict)]
+        pub unsafe fn needRulesVerdict() -> Retained<NEFilterDataVerdict>;
+
+        #[method_id(@__retain_semantics Other pauseVerdict)]
+        pub unsafe fn pauseVerdict() -> Retained<NEFilterDataVerdict>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFilterDataVerdict {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterremediationverdict?language=objc)
+    #[unsafe(super(NEFilterVerdict, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFilterRemediationVerdict;
+);
+
+unsafe impl NSCoding for NEFilterRemediationVerdict {}
+
+unsafe impl NSCopying for NEFilterRemediationVerdict {}
+
+unsafe impl CopyingHelper for NEFilterRemediationVerdict {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEFilterRemediationVerdict {}
+
+unsafe impl NSSecureCoding for NEFilterRemediationVerdict {}
+
+extern_methods!(
+    unsafe impl NEFilterRemediationVerdict {
+        #[method_id(@__retain_semantics Other allowVerdict)]
+        pub unsafe fn allowVerdict() -> Retained<NEFilterRemediationVerdict>;
+
+        #[method_id(@__retain_semantics Other dropVerdict)]
+        pub unsafe fn dropVerdict() -> Retained<NEFilterRemediationVerdict>;
+
+        #[method_id(@__retain_semantics Other needRulesVerdict)]
+        pub unsafe fn needRulesVerdict() -> Retained<NEFilterRemediationVerdict>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFilterRemediationVerdict {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanagererror?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEFilterManagerError(pub NSInteger);
+impl NEFilterManagerError {
+    #[doc(alias = "NEFilterManagerErrorConfigurationInvalid")]
+    pub const ConfigurationInvalid: Self = Self(1);
+    #[doc(alias = "NEFilterManagerErrorConfigurationDisabled")]
+    pub const ConfigurationDisabled: Self = Self(2);
+    #[doc(alias = "NEFilterManagerErrorConfigurationStale")]
+    pub const ConfigurationStale: Self = Self(3);
+    #[doc(alias = "NEFilterManagerErrorConfigurationCannotBeRemoved")]
+    pub const ConfigurationCannotBeRemoved: Self = Self(4);
+    #[doc(alias = "NEFilterManagerErrorConfigurationPermissionDenied")]
+    pub const ConfigurationPermissionDenied: Self = Self(5);
+    #[doc(alias = "NEFilterManagerErrorConfigurationInternalError")]
+    pub const ConfigurationInternalError: Self = Self(6);
+}
+
+unsafe impl Encode for NEFilterManagerError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEFilterManagerError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltererrordomain?language=objc)
+    pub static NEFilterErrorDomain: &'static NSString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterconfigurationdidchangenotification?language=objc)
+    pub static NEFilterConfigurationDidChangeNotification: &'static NSString;
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanagergrade?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEFilterManagerGrade(pub NSInteger);
+impl NEFilterManagerGrade {
+    #[doc(alias = "NEFilterManagerGradeFirewall")]
+    pub const Firewall: Self = Self(1);
+    #[doc(alias = "NEFilterManagerGradeInspector")]
+    pub const Inspector: Self = Self(2);
+}
+
+unsafe impl Encode for NEFilterManagerGrade {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEFilterManagerGrade {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanager?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFilterManager;
+);
+
+unsafe impl NSObjectProtocol for NEFilterManager {}
+
+extern_methods!(
+    unsafe impl NEFilterManager {
+        #[method_id(@__retain_semantics Other sharedManager)]
+        pub unsafe fn sharedManager() -> Retained<NEFilterManager>;
+
+        #[cfg(feature = "block2")]
+        #[method(loadFromPreferencesWithCompletionHandler:)]
+        pub unsafe fn loadFromPreferencesWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(removeFromPreferencesWithCompletionHandler:)]
+        pub unsafe fn removeFromPreferencesWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(saveToPreferencesWithCompletionHandler:)]
+        pub unsafe fn saveToPreferencesWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[method_id(@__retain_semantics Other localizedDescription)]
+        pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
+
+        #[method(setLocalizedDescription:)]
+        pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
+
+        #[method_id(@__retain_semantics Other providerConfiguration)]
+        pub unsafe fn providerConfiguration(
+            &self,
+        ) -> Option<Retained<NEFilterProviderConfiguration>>;
+
+        #[method(setProviderConfiguration:)]
+        pub unsafe fn setProviderConfiguration(
+            &self,
+            provider_configuration: Option<&NEFilterProviderConfiguration>,
+        );
+
+        #[method(isEnabled)]
+        pub unsafe fn isEnabled(&self) -> bool;
+
+        #[method(setEnabled:)]
+        pub unsafe fn setEnabled(&self, enabled: bool);
+
+        #[method(grade)]
+        pub unsafe fn grade(&self) -> NEFilterManagerGrade;
+
+        #[method(setGrade:)]
+        pub unsafe fn setGrade(&self, grade: NEFilterManagerGrade);
+
+        #[method(disableEncryptedDNSSettings)]
+        pub unsafe fn disableEncryptedDNSSettings(&self) -> bool;
+
+        #[method(setDisableEncryptedDNSSettings:)]
+        pub unsafe fn setDisableEncryptedDNSSettings(&self, disable_encrypted_dns_settings: bool);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFilterManager {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterpacketcontext?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFilterPacketContext;
+);
+
+unsafe impl NSObjectProtocol for NEFilterPacketContext {}
+
+extern_methods!(
+    unsafe impl NEFilterPacketContext {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFilterPacketContext {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterpacketproviderverdict?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEFilterPacketProviderVerdict(pub NSInteger);
+impl NEFilterPacketProviderVerdict {
+    #[doc(alias = "NEFilterPacketProviderVerdictAllow")]
+    pub const Allow: Self = Self(0);
+    #[doc(alias = "NEFilterPacketProviderVerdictDrop")]
+    pub const Drop: Self = Self(1);
+    #[doc(alias = "NEFilterPacketProviderVerdictDelay")]
+    pub const Delay: Self = Self(2);
+}
+
+unsafe impl Encode for NEFilterPacketProviderVerdict {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEFilterPacketProviderVerdict {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterpacketprovider?language=objc)
+    #[unsafe(super(NEFilterProvider, NEProvider, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFilterPacketProvider;
+);
+
+unsafe impl NSObjectProtocol for NEFilterPacketProvider {}
+
+extern_methods!(
+    unsafe impl NEFilterPacketProvider {
+        #[method_id(@__retain_semantics Other delayCurrentPacket:)]
+        pub unsafe fn delayCurrentPacket(
+            &self,
+            context: &NEFilterPacketContext,
+        ) -> Retained<NEPacket>;
+
+        #[method(allowPacket:)]
+        pub unsafe fn allowPacket(&self, packet: &NEPacket);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFilterPacketProvider {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFilterProviderConfiguration;
+);
+
+unsafe impl NSCoding for NEFilterProviderConfiguration {}
+
+unsafe impl NSCopying for NEFilterProviderConfiguration {}
+
+unsafe impl CopyingHelper for NEFilterProviderConfiguration {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEFilterProviderConfiguration {}
+
+unsafe impl NSSecureCoding for NEFilterProviderConfiguration {}
+
+extern_methods!(
+    unsafe impl NEFilterProviderConfiguration {
+        #[deprecated = "filterBrowsers is not supported on macOS"]
+        #[method(filterBrowsers)]
+        pub unsafe fn filterBrowsers(&self) -> bool;
+
+        #[deprecated = "filterBrowsers is not supported on macOS"]
+        #[method(setFilterBrowsers:)]
+        pub unsafe fn setFilterBrowsers(&self, filter_browsers: bool);
+
+        #[method(filterSockets)]
+        pub unsafe fn filterSockets(&self) -> bool;
+
+        #[method(setFilterSockets:)]
+        pub unsafe fn setFilterSockets(&self, filter_sockets: bool);
+
+        #[method(filterPackets)]
+        pub unsafe fn filterPackets(&self) -> bool;
+
+        #[method(setFilterPackets:)]
+        pub unsafe fn setFilterPackets(&self, filter_packets: bool);
+
+        #[method_id(@__retain_semantics Other vendorConfiguration)]
+        pub unsafe fn vendorConfiguration(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
+
+        #[method(setVendorConfiguration:)]
+        pub unsafe fn setVendorConfiguration(
+            &self,
+            vendor_configuration: Option<&NSDictionary<NSString, AnyObject>>,
+        );
+
+        #[method_id(@__retain_semantics Other serverAddress)]
+        pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
+
+        #[method(setServerAddress:)]
+        pub unsafe fn setServerAddress(&self, server_address: Option<&NSString>);
+
+        #[method_id(@__retain_semantics Other username)]
+        pub unsafe fn username(&self) -> Option<Retained<NSString>>;
+
+        #[method(setUsername:)]
+        pub unsafe fn setUsername(&self, username: Option<&NSString>);
+
+        #[method_id(@__retain_semantics Other organization)]
+        pub unsafe fn organization(&self) -> Option<Retained<NSString>>;
+
+        #[method(setOrganization:)]
+        pub unsafe fn setOrganization(&self, organization: Option<&NSString>);
+
+        #[method_id(@__retain_semantics Other passwordReference)]
+        pub unsafe fn passwordReference(&self) -> Option<Retained<NSData>>;
+
+        #[method(setPasswordReference:)]
+        pub unsafe fn setPasswordReference(&self, password_reference: Option<&NSData>);
+
+        #[method_id(@__retain_semantics Other identityReference)]
+        pub unsafe fn identityReference(&self) -> Option<Retained<NSData>>;
+
+        #[method(setIdentityReference:)]
+        pub unsafe fn setIdentityReference(&self, identity_reference: Option<&NSData>);
+
+        #[method_id(@__retain_semantics Other filterDataProviderBundleIdentifier)]
+        pub unsafe fn filterDataProviderBundleIdentifier(&self) -> Option<Retained<NSString>>;
+
+        #[method(setFilterDataProviderBundleIdentifier:)]
+        pub unsafe fn setFilterDataProviderBundleIdentifier(
+            &self,
+            filter_data_provider_bundle_identifier: Option<&NSString>,
+        );
+
+        #[method_id(@__retain_semantics Other filterPacketProviderBundleIdentifier)]
+        pub unsafe fn filterPacketProviderBundleIdentifier(&self) -> Option<Retained<NSString>>;
+
+        #[method(setFilterPacketProviderBundleIdentifier:)]
+        pub unsafe fn setFilterPacketProviderBundleIdentifier(
+            &self,
+            filter_packet_provider_bundle_identifier: Option<&NSString>,
+        );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFilterProviderConfiguration {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterrule?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFilterRule;
+);
+
+unsafe impl NSCoding for NEFilterRule {}
+
+unsafe impl NSCopying for NEFilterRule {}
+
+unsafe impl CopyingHelper for NEFilterRule {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEFilterRule {}
+
+unsafe impl NSSecureCoding for NEFilterRule {}
+
+extern_methods!(
+    unsafe impl NEFilterRule {
+        #[method_id(@__retain_semantics Init initWithNetworkRule:action:)]
+        pub unsafe fn initWithNetworkRule_action(
+            this: Allocated<Self>,
+            network_rule: &NENetworkRule,
+            action: NEFilterAction,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other networkRule)]
+        pub unsafe fn networkRule(&self) -> Retained<NENetworkRule>;
+
+        #[method(action)]
+        pub unsafe fn action(&self) -> NEFilterAction;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFilterRule {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltersettings?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFilterSettings;
+);
+
+unsafe impl NSCoding for NEFilterSettings {}
+
+unsafe impl NSCopying for NEFilterSettings {}
+
+unsafe impl CopyingHelper for NEFilterSettings {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEFilterSettings {}
+
+unsafe impl NSSecureCoding for NEFilterSettings {}
+
+extern_methods!(
+    unsafe impl NEFilterSettings {
+        #[method_id(@__retain_semantics Init initWithRules:defaultAction:)]
+        pub unsafe fn initWithRules_defaultAction(
+            this: Allocated<Self>,
+            rules: &NSArray<NEFilterRule>,
+            default_action: NEFilterAction,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other rules)]
+        pub unsafe fn rules(&self) -> Retained<NSArray<NEFilterRule>>;
+
+        #[method(defaultAction)]
+        pub unsafe fn defaultAction(&self) -> NEFilterAction;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFilterSettings {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neflowmetadata?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEFlowMetaData;
+);
+
+unsafe impl NSCoding for NEFlowMetaData {}
+
+unsafe impl NSCopying for NEFlowMetaData {}
+
+unsafe impl CopyingHelper for NEFlowMetaData {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEFlowMetaData {}
+
+unsafe impl NSSecureCoding for NEFlowMetaData {}
+
+extern_methods!(
+    unsafe impl NEFlowMetaData {
+        #[method_id(@__retain_semantics Other sourceAppUniqueIdentifier)]
+        pub unsafe fn sourceAppUniqueIdentifier(&self) -> Retained<NSData>;
+
+        #[method_id(@__retain_semantics Other sourceAppSigningIdentifier)]
+        pub unsafe fn sourceAppSigningIdentifier(&self) -> Retained<NSString>;
+
+        #[method_id(@__retain_semantics Other sourceAppAuditToken)]
+        pub unsafe fn sourceAppAuditToken(&self) -> Option<Retained<NSData>>;
+
+        #[method_id(@__retain_semantics Other filterFlowIdentifier)]
+        pub unsafe fn filterFlowIdentifier(&self) -> Option<Retained<NSUUID>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEFlowMetaData {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotnetworksecuritytype?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEHotspotNetworkSecurityType(pub NSInteger);
+impl NEHotspotNetworkSecurityType {
+    #[doc(alias = "NEHotspotNetworkSecurityTypeOpen")]
+    pub const Open: Self = Self(0);
+    #[doc(alias = "NEHotspotNetworkSecurityTypeWEP")]
+    pub const WEP: Self = Self(1);
+    #[doc(alias = "NEHotspotNetworkSecurityTypePersonal")]
+    pub const Personal: Self = Self(2);
+    #[doc(alias = "NEHotspotNetworkSecurityTypeEnterprise")]
+    pub const Enterprise: Self = Self(3);
+    #[doc(alias = "NEHotspotNetworkSecurityTypeUnknown")]
+    pub const Unknown: Self = Self(4);
+}
+
+unsafe impl Encode for NEHotspotNetworkSecurityType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEHotspotNetworkSecurityType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotnetwork?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEHotspotNetwork;
+);
+
+unsafe impl NSObjectProtocol for NEHotspotNetwork {}
+
+extern_methods!(
+    unsafe impl NEHotspotNetwork {
+        #[method_id(@__retain_semantics Other SSID)]
+        pub unsafe fn SSID(&self) -> Retained<NSString>;
+
+        #[method_id(@__retain_semantics Other BSSID)]
+        pub unsafe fn BSSID(&self) -> Retained<NSString>;
+
+        #[method(securityType)]
+        pub unsafe fn securityType(&self) -> NEHotspotNetworkSecurityType;
+
+        #[cfg(feature = "block2")]
+        #[method(fetchCurrentWithCompletionHandler:)]
+        pub unsafe fn fetchCurrentWithCompletionHandler(
+            completion_handler: &block2::Block<dyn Fn(*mut NEHotspotNetwork)>,
+        );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEHotspotNetwork {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEHotspotHelperCommandType(pub NSInteger);
+impl NEHotspotHelperCommandType {
+    pub const kNEHotspotHelperCommandTypeNone: Self = Self(0);
+    pub const kNEHotspotHelperCommandTypeFilterScanList: Self = Self(1);
+    pub const kNEHotspotHelperCommandTypeEvaluate: Self = Self(2);
+    pub const kNEHotspotHelperCommandTypeAuthenticate: Self = Self(3);
+    pub const kNEHotspotHelperCommandTypePresentUI: Self = Self(4);
+    pub const kNEHotspotHelperCommandTypeMaintain: Self = Self(5);
+    pub const kNEHotspotHelperCommandTypeLogoff: Self = Self(6);
+}
+
+unsafe impl Encode for NEHotspotHelperCommandType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEHotspotHelperCommandType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresult?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEHotspotHelperResult(pub NSInteger);
+impl NEHotspotHelperResult {
+    pub const kNEHotspotHelperResultSuccess: Self = Self(0);
+    pub const kNEHotspotHelperResultFailure: Self = Self(1);
+    pub const kNEHotspotHelperResultUIRequired: Self = Self(2);
+    pub const kNEHotspotHelperResultCommandNotRecognized: Self = Self(3);
+    pub const kNEHotspotHelperResultAuthenticationRequired: Self = Self(4);
+    pub const kNEHotspotHelperResultUnsupportedNetwork: Self = Self(5);
+    pub const kNEHotspotHelperResultTemporaryFailure: Self = Self(6);
+}
+
+unsafe impl Encode for NEHotspotHelperResult {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEHotspotHelperResult {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperconfidence?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEHotspotHelperConfidence(pub NSInteger);
+impl NEHotspotHelperConfidence {
+    pub const kNEHotspotHelperConfidenceNone: Self = Self(0);
+    pub const kNEHotspotHelperConfidenceLow: Self = Self(1);
+    pub const kNEHotspotHelperConfidenceHigh: Self = Self(2);
+}
+
+unsafe impl Encode for NEHotspotHelperConfidence {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEHotspotHelperConfidence {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_methods!(
+    /// HotspotHelper
+    unsafe impl NEHotspotNetwork {
+        #[method(signalStrength)]
+        pub unsafe fn signalStrength(&self) -> c_double;
+
+        #[method(isSecure)]
+        pub unsafe fn isSecure(&self) -> bool;
+
+        #[method(didAutoJoin)]
+        pub unsafe fn didAutoJoin(&self) -> bool;
+
+        #[method(didJustJoin)]
+        pub unsafe fn didJustJoin(&self) -> bool;
+
+        #[method(isChosenHelper)]
+        pub unsafe fn isChosenHelper(&self) -> bool;
+
+        #[method(setConfidence:)]
+        pub unsafe fn setConfidence(&self, confidence: NEHotspotHelperConfidence);
+
+        #[method(setPassword:)]
+        pub unsafe fn setPassword(&self, password: &NSString);
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommand?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEHotspotHelperCommand;
+);
+
+unsafe impl NSObjectProtocol for NEHotspotHelperCommand {}
+
+extern_methods!(
+    unsafe impl NEHotspotHelperCommand {
+        #[method(commandType)]
+        pub unsafe fn commandType(&self) -> NEHotspotHelperCommandType;
+
+        #[method_id(@__retain_semantics Other network)]
+        pub unsafe fn network(&self) -> Option<Retained<NEHotspotNetwork>>;
+
+        #[method_id(@__retain_semantics Other networkList)]
+        pub unsafe fn networkList(&self) -> Option<Retained<NSArray<NEHotspotNetwork>>>;
+
+        #[method_id(@__retain_semantics Other createResponse:)]
+        pub unsafe fn createResponse(
+            &self,
+            result: NEHotspotHelperResult,
+        ) -> Retained<NEHotspotHelperResponse>;
+
+        #[deprecated = "Use the `interface` property with `nw_parameters_require_interface`"]
+        #[method_id(@__retain_semantics Other createTCPConnection:)]
+        pub unsafe fn createTCPConnection(
+            &self,
+            endpoint: &NWEndpoint,
+        ) -> Retained<NWTCPConnection>;
+
+        #[deprecated = "Use the `interface` property with `nw_parameters_require_interface`"]
+        #[method_id(@__retain_semantics Other createUDPSession:)]
+        pub unsafe fn createUDPSession(&self, endpoint: &NWEndpoint) -> Retained<NWUDPSession>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEHotspotHelperCommand {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresponse?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEHotspotHelperResponse;
+);
+
+unsafe impl NSObjectProtocol for NEHotspotHelperResponse {}
+
+extern_methods!(
+    unsafe impl NEHotspotHelperResponse {
+        #[method(setNetwork:)]
+        pub unsafe fn setNetwork(&self, network: &NEHotspotNetwork);
+
+        #[method(setNetworkList:)]
+        pub unsafe fn setNetworkList(&self, network_list: &NSArray<NEHotspotNetwork>);
+
+        #[method(deliver)]
+        pub unsafe fn deliver(&self);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEHotspotHelperResponse {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperhandler?language=objc)
+#[cfg(feature = "block2")]
+pub type NEHotspotHelperHandler = *mut block2::Block<dyn Fn(NonNull<NEHotspotHelperCommand>)>;
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelper?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEHotspotHelper;
+);
+
+unsafe impl NSObjectProtocol for NEHotspotHelper {}
+
+extern_methods!(
+    unsafe impl NEHotspotHelper {
+        #[method(logoff:)]
+        pub unsafe fn logoff(network: &NEHotspotNetwork) -> bool;
+
+        #[method_id(@__retain_semantics Other supportedNetworkInterfaces)]
+        pub unsafe fn supportedNetworkInterfaces() -> Option<Retained<NSArray>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEHotspotHelper {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_category!(
+    /// Category "NEHotspotHelper" on [`NSMutableURLRequest`].
+    #[doc(alias = "NEHotspotHelper")]
+    pub unsafe trait NSMutableURLRequestNEHotspotHelper {
+        #[method(bindToHotspotHelperCommand:)]
+        unsafe fn bindToHotspotHelperCommand(&self, command: &NEHotspotHelperCommand);
+    }
+
+    unsafe impl NSMutableURLRequestNEHotspotHelper for NSMutableURLRequest {}
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationeaptype?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEHotspotConfigurationEAPType(pub NSInteger);
+impl NEHotspotConfigurationEAPType {
+    #[doc(alias = "NEHotspotConfigurationEAPTypeEAPTLS")]
+    pub const EAPTLS: Self = Self(13);
+    #[doc(alias = "NEHotspotConfigurationEAPTypeEAPTTLS")]
+    pub const EAPTTLS: Self = Self(21);
+    #[doc(alias = "NEHotspotConfigurationEAPTypeEAPPEAP")]
+    pub const EAPPEAP: Self = Self(25);
+    #[doc(alias = "NEHotspotConfigurationEAPTypeEAPFAST")]
+    pub const EAPFAST: Self = Self(43);
+}
+
+unsafe impl Encode for NEHotspotConfigurationEAPType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEHotspotConfigurationEAPType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationttlsinnerauthenticationtype?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEHotspotConfigurationTTLSInnerAuthenticationType(pub NSInteger);
+impl NEHotspotConfigurationTTLSInnerAuthenticationType {
+    pub const NEHotspotConfigurationEAPTTLSInnerAuthenticationPAP: Self = Self(0);
+    pub const NEHotspotConfigurationEAPTTLSInnerAuthenticationCHAP: Self = Self(1);
+    pub const NEHotspotConfigurationEAPTTLSInnerAuthenticationMSCHAP: Self = Self(2);
+    pub const NEHotspotConfigurationEAPTTLSInnerAuthenticationMSCHAPv2: Self = Self(3);
+    pub const NEHotspotConfigurationEAPTTLSInnerAuthenticationEAP: Self = Self(4);
+}
+
+unsafe impl Encode for NEHotspotConfigurationTTLSInnerAuthenticationType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEHotspotConfigurationTTLSInnerAuthenticationType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationeaptlsversion?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEHotspotConfigurationEAPTLSVersion(pub NSInteger);
+impl NEHotspotConfigurationEAPTLSVersion {
+    #[doc(alias = "NEHotspotConfigurationEAPTLSVersion_1_0")]
+    pub const _1_0: Self = Self(0);
+    #[doc(alias = "NEHotspotConfigurationEAPTLSVersion_1_1")]
+    pub const _1_1: Self = Self(1);
+    #[doc(alias = "NEHotspotConfigurationEAPTLSVersion_1_2")]
+    pub const _1_2: Self = Self(2);
+}
+
+unsafe impl Encode for NEHotspotConfigurationEAPTLSVersion {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEHotspotConfigurationEAPTLSVersion {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoths20settings?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEHotspotHS20Settings;
+);
+
+unsafe impl NSCoding for NEHotspotHS20Settings {}
+
+unsafe impl NSCopying for NEHotspotHS20Settings {}
+
+unsafe impl CopyingHelper for NEHotspotHS20Settings {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEHotspotHS20Settings {}
+
+unsafe impl NSSecureCoding for NEHotspotHS20Settings {}
+
+extern_methods!(
+    unsafe impl NEHotspotHS20Settings {
+        #[method_id(@__retain_semantics Other domainName)]
+        pub unsafe fn domainName(&self) -> Retained<NSString>;
+
+        #[method(isRoamingEnabled)]
+        pub unsafe fn isRoamingEnabled(&self) -> bool;
+
+        #[method(setRoamingEnabled:)]
+        pub unsafe fn setRoamingEnabled(&self, roaming_enabled: bool);
+
+        #[method_id(@__retain_semantics Other roamingConsortiumOIs)]
+        pub unsafe fn roamingConsortiumOIs(&self) -> Retained<NSArray<NSString>>;
+
+        #[method(setRoamingConsortiumOIs:)]
+        pub unsafe fn setRoamingConsortiumOIs(&self, roaming_consortium_o_is: &NSArray<NSString>);
+
+        #[method_id(@__retain_semantics Other naiRealmNames)]
+        pub unsafe fn naiRealmNames(&self) -> Retained<NSArray<NSString>>;
+
+        #[method(setNaiRealmNames:)]
+        pub unsafe fn setNaiRealmNames(&self, nai_realm_names: &NSArray<NSString>);
+
+        #[method_id(@__retain_semantics Other MCCAndMNCs)]
+        pub unsafe fn MCCAndMNCs(&self) -> Retained<NSArray<NSString>>;
+
+        #[method(setMCCAndMNCs:)]
+        pub unsafe fn setMCCAndMNCs(&self, mcc_and_mn_cs: &NSArray<NSString>);
+
+        #[method_id(@__retain_semantics Init initWithDomainName:roamingEnabled:)]
+        pub unsafe fn initWithDomainName_roamingEnabled(
+            this: Allocated<Self>,
+            domain_name: &NSString,
+            roaming_enabled: bool,
+        ) -> Retained<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEHotspotHS20Settings {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEHotspotEAPSettings;
+);
+
+unsafe impl NSCoding for NEHotspotEAPSettings {}
+
+unsafe impl NSCopying for NEHotspotEAPSettings {}
+
+unsafe impl CopyingHelper for NEHotspotEAPSettings {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEHotspotEAPSettings {}
+
+unsafe impl NSSecureCoding for NEHotspotEAPSettings {}
+
+extern_methods!(
+    unsafe impl NEHotspotEAPSettings {
+        #[method_id(@__retain_semantics Other supportedEAPTypes)]
+        pub unsafe fn supportedEAPTypes(&self) -> Retained<NSArray<NSNumber>>;
+
+        #[method(setSupportedEAPTypes:)]
+        pub unsafe fn setSupportedEAPTypes(&self, supported_eap_types: &NSArray<NSNumber>);
+
+        #[method_id(@__retain_semantics Other username)]
+        pub unsafe fn username(&self) -> Retained<NSString>;
+
+        #[method(setUsername:)]
+        pub unsafe fn setUsername(&self, username: &NSString);
+
+        #[method_id(@__retain_semantics Other outerIdentity)]
+        pub unsafe fn outerIdentity(&self) -> Retained<NSString>;
+
+        #[method(setOuterIdentity:)]
+        pub unsafe fn setOuterIdentity(&self, outer_identity: &NSString);
+
+        #[method(ttlsInnerAuthenticationType)]
+        pub unsafe fn ttlsInnerAuthenticationType(
+            &self,
+        ) -> NEHotspotConfigurationTTLSInnerAuthenticationType;
+
+        #[method(setTtlsInnerAuthenticationType:)]
+        pub unsafe fn setTtlsInnerAuthenticationType(
+            &self,
+            ttls_inner_authentication_type: NEHotspotConfigurationTTLSInnerAuthenticationType,
+        );
+
+        #[method_id(@__retain_semantics Other password)]
+        pub unsafe fn password(&self) -> Retained<NSString>;
+
+        #[method(setPassword:)]
+        pub unsafe fn setPassword(&self, password: &NSString);
+
+        #[method_id(@__retain_semantics Other trustedServerNames)]
+        pub unsafe fn trustedServerNames(&self) -> Retained<NSArray<NSString>>;
+
+        #[method(setTrustedServerNames:)]
+        pub unsafe fn setTrustedServerNames(&self, trusted_server_names: &NSArray<NSString>);
+
+        #[method(isTLSClientCertificateRequired)]
+        pub unsafe fn isTLSClientCertificateRequired(&self) -> bool;
+
+        #[method(setTlsClientCertificateRequired:)]
+        pub unsafe fn setTlsClientCertificateRequired(&self, tls_client_certificate_required: bool);
+
+        #[method(preferredTLSVersion)]
+        pub unsafe fn preferredTLSVersion(&self) -> NEHotspotConfigurationEAPTLSVersion;
+
+        #[method(setPreferredTLSVersion:)]
+        pub unsafe fn setPreferredTLSVersion(
+            &self,
+            preferred_tls_version: NEHotspotConfigurationEAPTLSVersion,
+        );
+
+        #[method(setTrustedServerCertificates:)]
+        pub unsafe fn setTrustedServerCertificates(&self, certificates: &NSArray) -> bool;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEHotspotEAPSettings {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfiguration?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEHotspotConfiguration;
+);
+
+unsafe impl NSCoding for NEHotspotConfiguration {}
+
+unsafe impl NSCopying for NEHotspotConfiguration {}
+
+unsafe impl CopyingHelper for NEHotspotConfiguration {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEHotspotConfiguration {}
+
+unsafe impl NSSecureCoding for NEHotspotConfiguration {}
+
+extern_methods!(
+    unsafe impl NEHotspotConfiguration {
+        #[method_id(@__retain_semantics Other SSID)]
+        pub unsafe fn SSID(&self) -> Retained<NSString>;
+
+        #[method_id(@__retain_semantics Other SSIDPrefix)]
+        pub unsafe fn SSIDPrefix(&self) -> Retained<NSString>;
+
+        #[method(joinOnce)]
+        pub unsafe fn joinOnce(&self) -> bool;
+
+        #[method(setJoinOnce:)]
+        pub unsafe fn setJoinOnce(&self, join_once: bool);
+
+        #[method_id(@__retain_semantics Other lifeTimeInDays)]
+        pub unsafe fn lifeTimeInDays(&self) -> Retained<NSNumber>;
+
+        #[method(setLifeTimeInDays:)]
+        pub unsafe fn setLifeTimeInDays(&self, life_time_in_days: &NSNumber);
+
+        #[method(hidden)]
+        pub unsafe fn hidden(&self) -> bool;
+
+        #[method(setHidden:)]
+        pub unsafe fn setHidden(&self, hidden: bool);
+
+        #[method_id(@__retain_semantics Init initWithSSID:)]
+        pub unsafe fn initWithSSID(this: Allocated<Self>, ssid: &NSString) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Init initWithSSID:passphrase:isWEP:)]
+        pub unsafe fn initWithSSID_passphrase_isWEP(
+            this: Allocated<Self>,
+            ssid: &NSString,
+            passphrase: &NSString,
+            is_wep: bool,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Init initWithSSID:eapSettings:)]
+        pub unsafe fn initWithSSID_eapSettings(
+            this: Allocated<Self>,
+            ssid: &NSString,
+            eap_settings: &NEHotspotEAPSettings,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Init initWithHS20Settings:eapSettings:)]
+        pub unsafe fn initWithHS20Settings_eapSettings(
+            this: Allocated<Self>,
+            hs20_settings: &NEHotspotHS20Settings,
+            eap_settings: &NEHotspotEAPSettings,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Init initWithSSIDPrefix:)]
+        pub unsafe fn initWithSSIDPrefix(
+            this: Allocated<Self>,
+            ssid_prefix: &NSString,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Init initWithSSIDPrefix:passphrase:isWEP:)]
+        pub unsafe fn initWithSSIDPrefix_passphrase_isWEP(
+            this: Allocated<Self>,
+            ssid_prefix: &NSString,
+            passphrase: &NSString,
+            is_wep: bool,
+        ) -> Retained<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEHotspotConfiguration {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerrordomain?language=objc)
+    pub static NEHotspotConfigurationErrorDomain: &'static NSString;
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEHotspotConfigurationError(pub NSInteger);
+impl NEHotspotConfigurationError {
+    #[doc(alias = "NEHotspotConfigurationErrorInvalid")]
+    pub const Invalid: Self = Self(0);
+    #[doc(alias = "NEHotspotConfigurationErrorInvalidSSID")]
+    pub const InvalidSSID: Self = Self(1);
+    #[doc(alias = "NEHotspotConfigurationErrorInvalidWPAPassphrase")]
+    pub const InvalidWPAPassphrase: Self = Self(2);
+    #[doc(alias = "NEHotspotConfigurationErrorInvalidWEPPassphrase")]
+    pub const InvalidWEPPassphrase: Self = Self(3);
+    #[doc(alias = "NEHotspotConfigurationErrorInvalidEAPSettings")]
+    pub const InvalidEAPSettings: Self = Self(4);
+    #[doc(alias = "NEHotspotConfigurationErrorInvalidHS20Settings")]
+    pub const InvalidHS20Settings: Self = Self(5);
+    #[doc(alias = "NEHotspotConfigurationErrorInvalidHS20DomainName")]
+    pub const InvalidHS20DomainName: Self = Self(6);
+    #[doc(alias = "NEHotspotConfigurationErrorUserDenied")]
+    pub const UserDenied: Self = Self(7);
+    #[doc(alias = "NEHotspotConfigurationErrorInternal")]
+    pub const Internal: Self = Self(8);
+    #[doc(alias = "NEHotspotConfigurationErrorPending")]
+    pub const Pending: Self = Self(9);
+    #[doc(alias = "NEHotspotConfigurationErrorSystemConfiguration")]
+    pub const SystemConfiguration: Self = Self(10);
+    #[doc(alias = "NEHotspotConfigurationErrorUnknown")]
+    pub const Unknown: Self = Self(11);
+    #[doc(alias = "NEHotspotConfigurationErrorJoinOnceNotSupported")]
+    pub const JoinOnceNotSupported: Self = Self(12);
+    #[doc(alias = "NEHotspotConfigurationErrorAlreadyAssociated")]
+    pub const AlreadyAssociated: Self = Self(13);
+    #[doc(alias = "NEHotspotConfigurationErrorApplicationIsNotInForeground")]
+    pub const ApplicationIsNotInForeground: Self = Self(14);
+    #[doc(alias = "NEHotspotConfigurationErrorInvalidSSIDPrefix")]
+    pub const InvalidSSIDPrefix: Self = Self(15);
+    #[doc(alias = "NEHotspotConfigurationErrorUserUnauthorized")]
+    pub const UserUnauthorized: Self = Self(16);
+    #[doc(alias = "NEHotspotConfigurationErrorSystemDenied")]
+    pub const SystemDenied: Self = Self(17);
+}
+
+unsafe impl Encode for NEHotspotConfigurationError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEHotspotConfigurationError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationmanager?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEHotspotConfigurationManager;
+);
+
+unsafe impl NSObjectProtocol for NEHotspotConfigurationManager {}
+
+extern_methods!(
+    unsafe impl NEHotspotConfigurationManager {
+        #[method_id(@__retain_semantics Other sharedManager)]
+        pub unsafe fn sharedManager() -> Retained<NEHotspotConfigurationManager>;
+
+        #[cfg(feature = "block2")]
+        #[method(applyConfiguration:completionHandler:)]
+        pub unsafe fn applyConfiguration_completionHandler(
+            &self,
+            configuration: &NEHotspotConfiguration,
+            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+        );
+
+        #[method(removeConfigurationForSSID:)]
+        pub unsafe fn removeConfigurationForSSID(&self, ssid: &NSString);
+
+        #[method(removeConfigurationForHS20DomainName:)]
+        pub unsafe fn removeConfigurationForHS20DomainName(&self, domain_name: &NSString);
+
+        #[cfg(feature = "block2")]
+        #[method(getConfiguredSSIDsWithCompletionHandler:)]
+        pub unsafe fn getConfiguredSSIDsWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(NonNull<NSArray<NSString>>)>,
+        );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEHotspotConfigurationManager {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neipv4settings?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEIPv4Settings;
+);
+
+unsafe impl NSCoding for NEIPv4Settings {}
+
+unsafe impl NSCopying for NEIPv4Settings {}
+
+unsafe impl CopyingHelper for NEIPv4Settings {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEIPv4Settings {}
+
+unsafe impl NSSecureCoding for NEIPv4Settings {}
+
+extern_methods!(
+    unsafe impl NEIPv4Settings {
+        #[method_id(@__retain_semantics Init initWithAddresses:subnetMasks:)]
+        pub unsafe fn initWithAddresses_subnetMasks(
+            this: Allocated<Self>,
+            addresses: &NSArray<NSString>,
+            subnet_masks: &NSArray<NSString>,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other settingsWithAutomaticAddressing)]
+        pub unsafe fn settingsWithAutomaticAddressing() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other addresses)]
+        pub unsafe fn addresses(&self) -> Retained<NSArray<NSString>>;
+
+        #[method_id(@__retain_semantics Other subnetMasks)]
+        pub unsafe fn subnetMasks(&self) -> Retained<NSArray<NSString>>;
+
+        #[method_id(@__retain_semantics Other router)]
+        pub unsafe fn router(&self) -> Option<Retained<NSString>>;
+
+        #[method(setRouter:)]
+        pub unsafe fn setRouter(&self, router: Option<&NSString>);
+
+        #[method_id(@__retain_semantics Other includedRoutes)]
+        pub unsafe fn includedRoutes(&self) -> Option<Retained<NSArray<NEIPv4Route>>>;
+
+        #[method(setIncludedRoutes:)]
+        pub unsafe fn setIncludedRoutes(&self, included_routes: Option<&NSArray<NEIPv4Route>>);
+
+        #[method_id(@__retain_semantics Other excludedRoutes)]
+        pub unsafe fn excludedRoutes(&self) -> Option<Retained<NSArray<NEIPv4Route>>>;
+
+        #[method(setExcludedRoutes:)]
+        pub unsafe fn setExcludedRoutes(&self, excluded_routes: Option<&NSArray<NEIPv4Route>>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEIPv4Settings {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neipv4route?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEIPv4Route;
+);
+
+unsafe impl NSCoding for NEIPv4Route {}
+
+unsafe impl NSCopying for NEIPv4Route {}
+
+unsafe impl CopyingHelper for NEIPv4Route {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEIPv4Route {}
+
+unsafe impl NSSecureCoding for NEIPv4Route {}
+
+extern_methods!(
+    unsafe impl NEIPv4Route {
+        #[method_id(@__retain_semantics Init initWithDestinationAddress:subnetMask:)]
+        pub unsafe fn initWithDestinationAddress_subnetMask(
+            this: Allocated<Self>,
+            address: &NSString,
+            subnet_mask: &NSString,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other destinationAddress)]
+        pub unsafe fn destinationAddress(&self) -> Retained<NSString>;
+
+        #[method_id(@__retain_semantics Other destinationSubnetMask)]
+        pub unsafe fn destinationSubnetMask(&self) -> Retained<NSString>;
+
+        #[method_id(@__retain_semantics Other gatewayAddress)]
+        pub unsafe fn gatewayAddress(&self) -> Option<Retained<NSString>>;
+
+        #[method(setGatewayAddress:)]
+        pub unsafe fn setGatewayAddress(&self, gateway_address: Option<&NSString>);
+
+        #[method_id(@__retain_semantics Other defaultRoute)]
+        pub unsafe fn defaultRoute() -> Retained<NEIPv4Route>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEIPv4Route {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neipv6settings?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEIPv6Settings;
+);
+
+unsafe impl NSCoding for NEIPv6Settings {}
+
+unsafe impl NSCopying for NEIPv6Settings {}
+
+unsafe impl CopyingHelper for NEIPv6Settings {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEIPv6Settings {}
+
+unsafe impl NSSecureCoding for NEIPv6Settings {}
+
+extern_methods!(
+    unsafe impl NEIPv6Settings {
+        #[method_id(@__retain_semantics Init initWithAddresses:networkPrefixLengths:)]
+        pub unsafe fn initWithAddresses_networkPrefixLengths(
+            this: Allocated<Self>,
+            addresses: &NSArray<NSString>,
+            network_prefix_lengths: &NSArray<NSNumber>,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other settingsWithAutomaticAddressing)]
+        pub unsafe fn settingsWithAutomaticAddressing() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other settingsWithLinkLocalAddressing)]
+        pub unsafe fn settingsWithLinkLocalAddressing() -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other addresses)]
+        pub unsafe fn addresses(&self) -> Retained<NSArray<NSString>>;
+
+        #[method_id(@__retain_semantics Other networkPrefixLengths)]
+        pub unsafe fn networkPrefixLengths(&self) -> Retained<NSArray<NSNumber>>;
+
+        #[method_id(@__retain_semantics Other includedRoutes)]
+        pub unsafe fn includedRoutes(&self) -> Option<Retained<NSArray<NEIPv6Route>>>;
+
+        #[method(setIncludedRoutes:)]
+        pub unsafe fn setIncludedRoutes(&self, included_routes: Option<&NSArray<NEIPv6Route>>);
+
+        #[method_id(@__retain_semantics Other excludedRoutes)]
+        pub unsafe fn excludedRoutes(&self) -> Option<Retained<NSArray<NEIPv6Route>>>;
+
+        #[method(setExcludedRoutes:)]
+        pub unsafe fn setExcludedRoutes(&self, excluded_routes: Option<&NSArray<NEIPv6Route>>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEIPv6Settings {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neipv6route?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEIPv6Route;
+);
+
+unsafe impl NSCoding for NEIPv6Route {}
+
+unsafe impl NSCopying for NEIPv6Route {}
+
+unsafe impl CopyingHelper for NEIPv6Route {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEIPv6Route {}
+
+unsafe impl NSSecureCoding for NEIPv6Route {}
+
+extern_methods!(
+    unsafe impl NEIPv6Route {
+        #[method_id(@__retain_semantics Init initWithDestinationAddress:networkPrefixLength:)]
+        pub unsafe fn initWithDestinationAddress_networkPrefixLength(
+            this: Allocated<Self>,
+            address: &NSString,
+            network_prefix_length: &NSNumber,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other destinationAddress)]
+        pub unsafe fn destinationAddress(&self) -> Retained<NSString>;
+
+        #[method_id(@__retain_semantics Other destinationNetworkPrefixLength)]
+        pub unsafe fn destinationNetworkPrefixLength(&self) -> Retained<NSNumber>;
+
+        #[method_id(@__retain_semantics Other gatewayAddress)]
+        pub unsafe fn gatewayAddress(&self) -> Option<Retained<NSString>>;
+
+        #[method(setGatewayAddress:)]
+        pub unsafe fn setGatewayAddress(&self, gateway_address: Option<&NSString>);
+
+        #[method_id(@__retain_semantics Other defaultRoute)]
+        pub unsafe fn defaultRoute() -> Retained<NEIPv6Route>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEIPv6Route {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelnetworksettings?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NETunnelNetworkSettings;
+);
+
+unsafe impl NSCoding for NETunnelNetworkSettings {}
+
+unsafe impl NSCopying for NETunnelNetworkSettings {}
+
+unsafe impl CopyingHelper for NETunnelNetworkSettings {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NETunnelNetworkSettings {}
+
+unsafe impl NSSecureCoding for NETunnelNetworkSettings {}
+
+extern_methods!(
+    unsafe impl NETunnelNetworkSettings {
+        #[method_id(@__retain_semantics Init initWithTunnelRemoteAddress:)]
+        pub unsafe fn initWithTunnelRemoteAddress(
+            this: Allocated<Self>,
+            address: &NSString,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other tunnelRemoteAddress)]
+        pub unsafe fn tunnelRemoteAddress(&self) -> Retained<NSString>;
+
+        #[method_id(@__retain_semantics Other DNSSettings)]
+        pub unsafe fn DNSSettings(&self) -> Option<Retained<NEDNSSettings>>;
+
+        #[method(setDNSSettings:)]
+        pub unsafe fn setDNSSettings(&self, dns_settings: Option<&NEDNSSettings>);
+
+        #[method_id(@__retain_semantics Other proxySettings)]
+        pub unsafe fn proxySettings(&self) -> Option<Retained<NEProxySettings>>;
+
+        #[method(setProxySettings:)]
+        pub unsafe fn setProxySettings(&self, proxy_settings: Option<&NEProxySettings>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NETunnelNetworkSettings {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings?language=objc)
+    #[unsafe(super(NETunnelNetworkSettings, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEPacketTunnelNetworkSettings;
+);
+
+unsafe impl NSCoding for NEPacketTunnelNetworkSettings {}
+
+unsafe impl NSCopying for NEPacketTunnelNetworkSettings {}
+
+unsafe impl CopyingHelper for NEPacketTunnelNetworkSettings {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEPacketTunnelNetworkSettings {}
+
+unsafe impl NSSecureCoding for NEPacketTunnelNetworkSettings {}
+
+extern_methods!(
+    unsafe impl NEPacketTunnelNetworkSettings {
+        #[method_id(@__retain_semantics Other IPv4Settings)]
+        pub unsafe fn IPv4Settings(&self) -> Option<Retained<NEIPv4Settings>>;
+
+        #[method(setIPv4Settings:)]
+        pub unsafe fn setIPv4Settings(&self, i_pv4_settings: Option<&NEIPv4Settings>);
+
+        #[method_id(@__retain_semantics Other IPv6Settings)]
+        pub unsafe fn IPv6Settings(&self) -> Option<Retained<NEIPv6Settings>>;
+
+        #[method(setIPv6Settings:)]
+        pub unsafe fn setIPv6Settings(&self, i_pv6_settings: Option<&NEIPv6Settings>);
+
+        #[method_id(@__retain_semantics Other tunnelOverheadBytes)]
+        pub unsafe fn tunnelOverheadBytes(&self) -> Option<Retained<NSNumber>>;
+
+        #[method(setTunnelOverheadBytes:)]
+        pub unsafe fn setTunnelOverheadBytes(&self, tunnel_overhead_bytes: Option<&NSNumber>);
+
+        #[method_id(@__retain_semantics Other MTU)]
+        pub unsafe fn MTU(&self) -> Option<Retained<NSNumber>>;
+
+        #[method(setMTU:)]
+        pub unsafe fn setMTU(&self, mtu: Option<&NSNumber>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NETunnelNetworkSettings`
+    unsafe impl NEPacketTunnelNetworkSettings {
+        #[method_id(@__retain_semantics Init initWithTunnelRemoteAddress:)]
+        pub unsafe fn initWithTunnelRemoteAddress(
+            this: Allocated<Self>,
+            address: &NSString,
+        ) -> Retained<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEPacketTunnelNetworkSettings {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neethernettunnelnetworksettings?language=objc)
+    #[unsafe(super(NEPacketTunnelNetworkSettings, NETunnelNetworkSettings, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEEthernetTunnelNetworkSettings;
+);
+
+unsafe impl NSCoding for NEEthernetTunnelNetworkSettings {}
+
+unsafe impl NSCopying for NEEthernetTunnelNetworkSettings {}
+
+unsafe impl CopyingHelper for NEEthernetTunnelNetworkSettings {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEEthernetTunnelNetworkSettings {}
+
+unsafe impl NSSecureCoding for NEEthernetTunnelNetworkSettings {}
+
+extern_methods!(
+    unsafe impl NEEthernetTunnelNetworkSettings {
+        #[method_id(@__retain_semantics Init initWithTunnelRemoteAddress:ethernetAddress:mtu:)]
+        pub unsafe fn initWithTunnelRemoteAddress_ethernetAddress_mtu(
+            this: Allocated<Self>,
+            address: &NSString,
+            ethernet_address: &NSString,
+            mtu: NSInteger,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other ethernetAddress)]
+        pub unsafe fn ethernetAddress(&self) -> Retained<NSString>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NETunnelNetworkSettings`
+    unsafe impl NEEthernetTunnelNetworkSettings {
+        #[method_id(@__retain_semantics Init initWithTunnelRemoteAddress:)]
+        pub unsafe fn initWithTunnelRemoteAddress(
+            this: Allocated<Self>,
+            address: &NSString,
+        ) -> Retained<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEEthernetTunnelNetworkSettings {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nepackettunnelprovider?language=objc)
+    #[unsafe(super(NETunnelProvider, NEProvider, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEPacketTunnelProvider;
+);
+
+unsafe impl NSObjectProtocol for NEPacketTunnelProvider {}
+
+extern_methods!(
+    unsafe impl NEPacketTunnelProvider {
+        #[cfg(feature = "block2")]
+        #[method(startTunnelWithOptions:completionHandler:)]
+        pub unsafe fn startTunnelWithOptions_completionHandler(
+            &self,
+            options: Option<&NSDictionary<NSString, NSObject>>,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(stopTunnelWithReason:completionHandler:)]
+        pub unsafe fn stopTunnelWithReason_completionHandler(
+            &self,
+            reason: NEProviderStopReason,
+            completion_handler: &block2::Block<dyn Fn()>,
+        );
+
+        #[method(cancelTunnelWithError:)]
+        pub unsafe fn cancelTunnelWithError(&self, error: Option<&NSError>);
+
+        #[method_id(@__retain_semantics Other packetFlow)]
+        pub unsafe fn packetFlow(&self) -> Retained<NEPacketTunnelFlow>;
+
+        #[deprecated = "Use the `virtualInterface` property with `nw_parameters_require_interface`"]
+        #[method_id(@__retain_semantics Other createTCPConnectionThroughTunnelToEndpoint:enableTLS:TLSParameters:delegate:)]
+        pub unsafe fn createTCPConnectionThroughTunnelToEndpoint_enableTLS_TLSParameters_delegate(
+            &self,
+            remote_endpoint: &NWEndpoint,
+            enable_tls: bool,
+            tls_parameters: Option<&NWTLSParameters>,
+            delegate: Option<&AnyObject>,
+        ) -> Retained<NWTCPConnection>;
+
+        #[deprecated = "Use the `virtualInterface` property with `nw_parameters_require_interface`"]
+        #[method_id(@__retain_semantics Other createUDPSessionThroughTunnelToEndpoint:fromEndpoint:)]
+        pub unsafe fn createUDPSessionThroughTunnelToEndpoint_fromEndpoint(
+            &self,
+            remote_endpoint: &NWEndpoint,
+            local_endpoint: Option<&NWHostEndpoint>,
+        ) -> Retained<NWUDPSession>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEPacketTunnelProvider {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neethernettunnelprovider?language=objc)
+    #[unsafe(super(NEPacketTunnelProvider, NETunnelProvider, NEProvider, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEEthernetTunnelProvider;
+);
+
+unsafe impl NSObjectProtocol for NEEthernetTunnelProvider {}
+
+extern_methods!(
+    unsafe impl NEEthernetTunnelProvider {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEEthernetTunnelProvider {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleaction?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEOnDemandRuleAction(pub NSInteger);
+impl NEOnDemandRuleAction {
+    #[doc(alias = "NEOnDemandRuleActionConnect")]
+    pub const Connect: Self = Self(1);
+    #[doc(alias = "NEOnDemandRuleActionDisconnect")]
+    pub const Disconnect: Self = Self(2);
+    #[doc(alias = "NEOnDemandRuleActionEvaluateConnection")]
+    pub const EvaluateConnection: Self = Self(3);
+    #[doc(alias = "NEOnDemandRuleActionIgnore")]
+    pub const Ignore: Self = Self(4);
+}
+
+unsafe impl Encode for NEOnDemandRuleAction {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEOnDemandRuleAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleinterfacetype?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEOnDemandRuleInterfaceType(pub NSInteger);
+impl NEOnDemandRuleInterfaceType {
+    #[doc(alias = "NEOnDemandRuleInterfaceTypeAny")]
+    pub const Any: Self = Self(0);
+    #[doc(alias = "NEOnDemandRuleInterfaceTypeEthernet")]
+    pub const Ethernet: Self = Self(1);
+    #[doc(alias = "NEOnDemandRuleInterfaceTypeWiFi")]
+    pub const WiFi: Self = Self(2);
+    #[doc(alias = "NEOnDemandRuleInterfaceTypeCellular")]
+    pub const Cellular: Self = Self(3);
+}
+
+unsafe impl Encode for NEOnDemandRuleInterfaceType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEOnDemandRuleInterfaceType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandrule?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEOnDemandRule;
+);
+
+unsafe impl NSCoding for NEOnDemandRule {}
+
+unsafe impl NSCopying for NEOnDemandRule {}
+
+unsafe impl CopyingHelper for NEOnDemandRule {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEOnDemandRule {}
+
+unsafe impl NSSecureCoding for NEOnDemandRule {}
+
+extern_methods!(
+    unsafe impl NEOnDemandRule {
+        #[method(action)]
+        pub unsafe fn action(&self) -> NEOnDemandRuleAction;
+
+        #[method_id(@__retain_semantics Other DNSSearchDomainMatch)]
+        pub unsafe fn DNSSearchDomainMatch(&self) -> Option<Retained<NSArray<NSString>>>;
+
+        #[method(setDNSSearchDomainMatch:)]
+        pub unsafe fn setDNSSearchDomainMatch(
+            &self,
+            dns_search_domain_match: Option<&NSArray<NSString>>,
+        );
+
+        #[method_id(@__retain_semantics Other DNSServerAddressMatch)]
+        pub unsafe fn DNSServerAddressMatch(&self) -> Option<Retained<NSArray<NSString>>>;
+
+        #[method(setDNSServerAddressMatch:)]
+        pub unsafe fn setDNSServerAddressMatch(
+            &self,
+            dns_server_address_match: Option<&NSArray<NSString>>,
+        );
+
+        #[method(interfaceTypeMatch)]
+        pub unsafe fn interfaceTypeMatch(&self) -> NEOnDemandRuleInterfaceType;
+
+        #[method(setInterfaceTypeMatch:)]
+        pub unsafe fn setInterfaceTypeMatch(
+            &self,
+            interface_type_match: NEOnDemandRuleInterfaceType,
+        );
+
+        #[method_id(@__retain_semantics Other SSIDMatch)]
+        pub unsafe fn SSIDMatch(&self) -> Option<Retained<NSArray<NSString>>>;
+
+        #[method(setSSIDMatch:)]
+        pub unsafe fn setSSIDMatch(&self, ssid_match: Option<&NSArray<NSString>>);
+
+        #[method_id(@__retain_semantics Other probeURL)]
+        pub unsafe fn probeURL(&self) -> Option<Retained<NSURL>>;
+
+        #[method(setProbeURL:)]
+        pub unsafe fn setProbeURL(&self, probe_url: Option<&NSURL>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEOnDemandRule {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleconnect?language=objc)
+    #[unsafe(super(NEOnDemandRule, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEOnDemandRuleConnect;
+);
+
+unsafe impl NSCoding for NEOnDemandRuleConnect {}
+
+unsafe impl NSCopying for NEOnDemandRuleConnect {}
+
+unsafe impl CopyingHelper for NEOnDemandRuleConnect {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEOnDemandRuleConnect {}
+
+unsafe impl NSSecureCoding for NEOnDemandRuleConnect {}
+
+extern_methods!(
+    unsafe impl NEOnDemandRuleConnect {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEOnDemandRuleConnect {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruledisconnect?language=objc)
+    #[unsafe(super(NEOnDemandRule, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEOnDemandRuleDisconnect;
+);
+
+unsafe impl NSCoding for NEOnDemandRuleDisconnect {}
+
+unsafe impl NSCopying for NEOnDemandRuleDisconnect {}
+
+unsafe impl CopyingHelper for NEOnDemandRuleDisconnect {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEOnDemandRuleDisconnect {}
+
+unsafe impl NSSecureCoding for NEOnDemandRuleDisconnect {}
+
+extern_methods!(
+    unsafe impl NEOnDemandRuleDisconnect {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEOnDemandRuleDisconnect {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleignore?language=objc)
+    #[unsafe(super(NEOnDemandRule, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEOnDemandRuleIgnore;
+);
+
+unsafe impl NSCoding for NEOnDemandRuleIgnore {}
+
+unsafe impl NSCopying for NEOnDemandRuleIgnore {}
+
+unsafe impl CopyingHelper for NEOnDemandRuleIgnore {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEOnDemandRuleIgnore {}
+
+unsafe impl NSSecureCoding for NEOnDemandRuleIgnore {}
+
+extern_methods!(
+    unsafe impl NEOnDemandRuleIgnore {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEOnDemandRuleIgnore {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleevaluateconnection?language=objc)
+    #[unsafe(super(NEOnDemandRule, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEOnDemandRuleEvaluateConnection;
+);
+
+unsafe impl NSCoding for NEOnDemandRuleEvaluateConnection {}
+
+unsafe impl NSCopying for NEOnDemandRuleEvaluateConnection {}
+
+unsafe impl CopyingHelper for NEOnDemandRuleEvaluateConnection {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEOnDemandRuleEvaluateConnection {}
+
+unsafe impl NSSecureCoding for NEOnDemandRuleEvaluateConnection {}
+
+extern_methods!(
+    unsafe impl NEOnDemandRuleEvaluateConnection {
+        #[method_id(@__retain_semantics Other connectionRules)]
+        pub unsafe fn connectionRules(&self)
+            -> Option<Retained<NSArray<NEEvaluateConnectionRule>>>;
+
+        #[method(setConnectionRules:)]
+        pub unsafe fn setConnectionRules(
+            &self,
+            connection_rules: Option<&NSArray<NEEvaluateConnectionRule>>,
+        );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEOnDemandRuleEvaluateConnection {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neevaluateconnectionruleaction?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEEvaluateConnectionRuleAction(pub NSInteger);
+impl NEEvaluateConnectionRuleAction {
+    #[doc(alias = "NEEvaluateConnectionRuleActionConnectIfNeeded")]
+    pub const ConnectIfNeeded: Self = Self(1);
+    #[doc(alias = "NEEvaluateConnectionRuleActionNeverConnect")]
+    pub const NeverConnect: Self = Self(2);
+}
+
+unsafe impl Encode for NEEvaluateConnectionRuleAction {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEEvaluateConnectionRuleAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neevaluateconnectionrule?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEEvaluateConnectionRule;
+);
+
+unsafe impl NSCoding for NEEvaluateConnectionRule {}
+
+unsafe impl NSCopying for NEEvaluateConnectionRule {}
+
+unsafe impl CopyingHelper for NEEvaluateConnectionRule {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEEvaluateConnectionRule {}
+
+unsafe impl NSSecureCoding for NEEvaluateConnectionRule {}
+
+extern_methods!(
+    unsafe impl NEEvaluateConnectionRule {
+        #[method_id(@__retain_semantics Init initWithMatchDomains:andAction:)]
+        pub unsafe fn initWithMatchDomains_andAction(
+            this: Allocated<Self>,
+            domains: &NSArray<NSString>,
+            action: NEEvaluateConnectionRuleAction,
+        ) -> Retained<Self>;
+
+        #[method(action)]
+        pub unsafe fn action(&self) -> NEEvaluateConnectionRuleAction;
+
+        #[method_id(@__retain_semantics Other matchDomains)]
+        pub unsafe fn matchDomains(&self) -> Retained<NSArray<NSString>>;
+
+        #[method_id(@__retain_semantics Other useDNSServers)]
+        pub unsafe fn useDNSServers(&self) -> Option<Retained<NSArray<NSString>>>;
+
+        #[method(setUseDNSServers:)]
+        pub unsafe fn setUseDNSServers(&self, use_dns_servers: Option<&NSArray<NSString>>);
+
+        #[method_id(@__retain_semantics Other probeURL)]
+        pub unsafe fn probeURL(&self) -> Option<Retained<NSURL>>;
+
+        #[method(setProbeURL:)]
+        pub unsafe fn setProbeURL(&self, probe_url: Option<&NSURL>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEEvaluateConnectionRule {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nepacket?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEPacket;
+);
+
+unsafe impl NSCoding for NEPacket {}
+
+unsafe impl NSCopying for NEPacket {}
+
+unsafe impl CopyingHelper for NEPacket {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEPacket {}
+
+unsafe impl NSSecureCoding for NEPacket {}
+
+extern_methods!(
+    unsafe impl NEPacket {
+        #[cfg(feature = "libc")]
+        #[method_id(@__retain_semantics Init initWithData:protocolFamily:)]
+        pub unsafe fn initWithData_protocolFamily(
+            this: Allocated<Self>,
+            data: &NSData,
+            protocol_family: libc::sa_family_t,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other data)]
+        pub unsafe fn data(&self) -> Retained<NSData>;
+
+        #[cfg(feature = "libc")]
+        #[method(protocolFamily)]
+        pub unsafe fn protocolFamily(&self) -> libc::sa_family_t;
+
+        #[method(direction)]
+        pub unsafe fn direction(&self) -> NETrafficDirection;
+
+        #[method_id(@__retain_semantics Other metadata)]
+        pub unsafe fn metadata(&self) -> Option<Retained<NEFlowMetaData>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEPacket {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nepackettunnelflow?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEPacketTunnelFlow;
+);
+
+unsafe impl NSObjectProtocol for NEPacketTunnelFlow {}
+
+extern_methods!(
+    unsafe impl NEPacketTunnelFlow {
+        #[cfg(feature = "block2")]
+        #[method(readPacketsWithCompletionHandler:)]
+        pub unsafe fn readPacketsWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<
+                dyn Fn(NonNull<NSArray<NSData>>, NonNull<NSArray<NSNumber>>),
+            >,
+        );
+
+        #[method(writePackets:withProtocols:)]
+        pub unsafe fn writePackets_withProtocols(
+            &self,
+            packets: &NSArray<NSData>,
+            protocols: &NSArray<NSNumber>,
+        ) -> bool;
+
+        #[cfg(feature = "block2")]
+        #[method(readPacketObjectsWithCompletionHandler:)]
+        pub unsafe fn readPacketObjectsWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(NonNull<NSArray<NEPacket>>)>,
+        );
+
+        #[method(writePacketObjects:)]
+        pub unsafe fn writePacketObjects(&self, packets: &NSArray<NEPacket>) -> bool;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEPacketTunnelFlow {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelay?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NERelay;
+);
+
+unsafe impl NSCoding for NERelay {}
+
+unsafe impl NSCopying for NERelay {}
+
+unsafe impl CopyingHelper for NERelay {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NERelay {}
+
+unsafe impl NSSecureCoding for NERelay {}
+
+extern_methods!(
+    unsafe impl NERelay {
+        #[method_id(@__retain_semantics Other HTTP3RelayURL)]
+        pub unsafe fn HTTP3RelayURL(&self) -> Option<Retained<NSURL>>;
+
+        #[method(setHTTP3RelayURL:)]
+        pub unsafe fn setHTTP3RelayURL(&self, http3_relay_url: Option<&NSURL>);
+
+        #[method_id(@__retain_semantics Other HTTP2RelayURL)]
+        pub unsafe fn HTTP2RelayURL(&self) -> Option<Retained<NSURL>>;
+
+        #[method(setHTTP2RelayURL:)]
+        pub unsafe fn setHTTP2RelayURL(&self, http2_relay_url: Option<&NSURL>);
+
+        #[method_id(@__retain_semantics Other dnsOverHTTPSURL)]
+        pub unsafe fn dnsOverHTTPSURL(&self) -> Option<Retained<NSURL>>;
+
+        #[method(setDnsOverHTTPSURL:)]
+        pub unsafe fn setDnsOverHTTPSURL(&self, dns_over_httpsurl: Option<&NSURL>);
+
+        #[method_id(@__retain_semantics Other syntheticDNSAnswerIPv4Prefix)]
+        pub unsafe fn syntheticDNSAnswerIPv4Prefix(&self) -> Option<Retained<NSString>>;
+
+        #[method(setSyntheticDNSAnswerIPv4Prefix:)]
+        pub unsafe fn setSyntheticDNSAnswerIPv4Prefix(
+            &self,
+            synthetic_dns_answer_i_pv4_prefix: Option<&NSString>,
+        );
+
+        #[method_id(@__retain_semantics Other syntheticDNSAnswerIPv6Prefix)]
+        pub unsafe fn syntheticDNSAnswerIPv6Prefix(&self) -> Option<Retained<NSString>>;
+
+        #[method(setSyntheticDNSAnswerIPv6Prefix:)]
+        pub unsafe fn setSyntheticDNSAnswerIPv6Prefix(
+            &self,
+            synthetic_dns_answer_i_pv6_prefix: Option<&NSString>,
+        );
+
+        #[method_id(@__retain_semantics Other additionalHTTPHeaderFields)]
+        pub unsafe fn additionalHTTPHeaderFields(
+            &self,
+        ) -> Retained<NSDictionary<NSString, NSString>>;
+
+        #[method(setAdditionalHTTPHeaderFields:)]
+        pub unsafe fn setAdditionalHTTPHeaderFields(
+            &self,
+            additional_http_header_fields: &NSDictionary<NSString, NSString>,
+        );
+
+        #[method_id(@__retain_semantics Other rawPublicKeys)]
+        pub unsafe fn rawPublicKeys(&self) -> Option<Retained<NSArray<NSData>>>;
+
+        #[method(setRawPublicKeys:)]
+        pub unsafe fn setRawPublicKeys(&self, raw_public_keys: Option<&NSArray<NSData>>);
+
+        #[method_id(@__retain_semantics Other identityData)]
+        pub unsafe fn identityData(&self) -> Option<Retained<NSData>>;
+
+        #[method(setIdentityData:)]
+        pub unsafe fn setIdentityData(&self, identity_data: Option<&NSData>);
+
+        #[method_id(@__retain_semantics Other identityDataPassword)]
+        pub unsafe fn identityDataPassword(&self) -> Option<Retained<NSString>>;
+
+        #[method(setIdentityDataPassword:)]
+        pub unsafe fn setIdentityDataPassword(&self, identity_data_password: Option<&NSString>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NERelay {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagererror?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NERelayManagerError(pub NSInteger);
+impl NERelayManagerError {
+    #[doc(alias = "NERelayManagerErrorConfigurationInvalid")]
+    pub const ConfigurationInvalid: Self = Self(1);
+    #[doc(alias = "NERelayManagerErrorConfigurationDisabled")]
+    pub const ConfigurationDisabled: Self = Self(2);
+    #[doc(alias = "NERelayManagerErrorConfigurationStale")]
+    pub const ConfigurationStale: Self = Self(3);
+    #[doc(alias = "NERelayManagerErrorConfigurationCannotBeRemoved")]
+    pub const ConfigurationCannotBeRemoved: Self = Self(4);
+}
+
+unsafe impl Encode for NERelayManagerError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NERelayManagerError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelayerrordomain?language=objc)
+    pub static NERelayErrorDomain: &'static NSString;
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NERelayManagerClientError(pub NSInteger);
+impl NERelayManagerClientError {
+    #[doc(alias = "NERelayManagerClientErrorNone")]
+    pub const None: Self = Self(1);
+    #[doc(alias = "NERelayManagerClientErrorDNSFailed")]
+    pub const DNSFailed: Self = Self(2);
+    #[doc(alias = "NERelayManagerClientErrorServerUnreachable")]
+    pub const ServerUnreachable: Self = Self(3);
+    #[doc(alias = "NERelayManagerClientErrorServerDisconnected")]
+    pub const ServerDisconnected: Self = Self(4);
+    #[doc(alias = "NERelayManagerClientErrorCertificateMissing")]
+    pub const CertificateMissing: Self = Self(5);
+    #[doc(alias = "NERelayManagerClientErrorCertificateInvalid")]
+    pub const CertificateInvalid: Self = Self(6);
+    #[doc(alias = "NERelayManagerClientErrorCertificateExpired")]
+    pub const CertificateExpired: Self = Self(7);
+    #[doc(alias = "NERelayManagerClientErrorServerCertificateInvalid")]
+    pub const ServerCertificateInvalid: Self = Self(8);
+    #[doc(alias = "NERelayManagerClientErrorServerCertificateExpired")]
+    pub const ServerCertificateExpired: Self = Self(9);
+    #[doc(alias = "NERelayManagerClientErrorOther")]
+    pub const Other: Self = Self(10);
+}
+
+unsafe impl Encode for NERelayManagerClientError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NERelayManagerClientError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelayclienterrordomain?language=objc)
+    pub static NERelayClientErrorDomain: &'static NSString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelayconfigurationdidchangenotification?language=objc)
+    pub static NERelayConfigurationDidChangeNotification: &'static NSString;
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanager?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NERelayManager;
+);
+
+unsafe impl NSObjectProtocol for NERelayManager {}
+
+extern_methods!(
+    unsafe impl NERelayManager {
+        #[method_id(@__retain_semantics Other sharedManager)]
+        pub unsafe fn sharedManager() -> Retained<NERelayManager>;
+
+        #[cfg(feature = "block2")]
+        #[method(loadFromPreferencesWithCompletionHandler:)]
+        pub unsafe fn loadFromPreferencesWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(removeFromPreferencesWithCompletionHandler:)]
+        pub unsafe fn removeFromPreferencesWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(saveToPreferencesWithCompletionHandler:)]
+        pub unsafe fn saveToPreferencesWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(getLastClientErrors:completionHandler:)]
+        pub unsafe fn getLastClientErrors_completionHandler(
+            &self,
+            seconds: NSTimeInterval,
+            completion_handler: &block2::Block<dyn Fn(*mut NSArray<NSError>)>,
+        );
+
+        #[method_id(@__retain_semantics Other localizedDescription)]
+        pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
+
+        #[method(setLocalizedDescription:)]
+        pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
+
+        #[method(isEnabled)]
+        pub unsafe fn isEnabled(&self) -> bool;
+
+        #[method(setEnabled:)]
+        pub unsafe fn setEnabled(&self, enabled: bool);
+
+        #[method_id(@__retain_semantics Other relays)]
+        pub unsafe fn relays(&self) -> Option<Retained<NSArray<NERelay>>>;
+
+        #[method(setRelays:)]
+        pub unsafe fn setRelays(&self, relays: Option<&NSArray<NERelay>>);
+
+        #[method_id(@__retain_semantics Other matchDomains)]
+        pub unsafe fn matchDomains(&self) -> Option<Retained<NSArray<NSString>>>;
+
+        #[method(setMatchDomains:)]
+        pub unsafe fn setMatchDomains(&self, match_domains: Option<&NSArray<NSString>>);
+
+        #[method_id(@__retain_semantics Other excludedDomains)]
+        pub unsafe fn excludedDomains(&self) -> Option<Retained<NSArray<NSString>>>;
+
+        #[method(setExcludedDomains:)]
+        pub unsafe fn setExcludedDomains(&self, excluded_domains: Option<&NSArray<NSString>>);
+
+        #[method_id(@__retain_semantics Other onDemandRules)]
+        pub unsafe fn onDemandRules(&self) -> Option<Retained<NSArray<NEOnDemandRule>>>;
+
+        #[method(setOnDemandRules:)]
+        pub unsafe fn setOnDemandRules(&self, on_demand_rules: Option<&NSArray<NEOnDemandRule>>);
+
+        #[cfg(feature = "block2")]
+        #[method(loadAllManagersFromPreferencesWithCompletionHandler:)]
+        pub unsafe fn loadAllManagersFromPreferencesWithCompletionHandler(
+            completion_handler: &block2::Block<
+                dyn Fn(NonNull<NSArray<NERelayManager>>, *mut NSError),
+            >,
+        );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NERelayManager {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netransparentproxymanager?language=objc)
+    #[unsafe(super(NEVPNManager, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NETransparentProxyManager;
+);
+
+unsafe impl NSObjectProtocol for NETransparentProxyManager {}
+
+extern_methods!(
+    unsafe impl NETransparentProxyManager {
+        #[cfg(feature = "block2")]
+        #[method(loadAllFromPreferencesWithCompletionHandler:)]
+        pub unsafe fn loadAllFromPreferencesWithCompletionHandler(
+            completion_handler: &block2::Block<
+                dyn Fn(*mut NSArray<NETransparentProxyManager>, *mut NSError),
+            >,
+        );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NETransparentProxyManager {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netransparentproxynetworksettings?language=objc)
+    #[unsafe(super(NETunnelNetworkSettings, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NETransparentProxyNetworkSettings;
+);
+
+unsafe impl NSCoding for NETransparentProxyNetworkSettings {}
+
+unsafe impl NSCopying for NETransparentProxyNetworkSettings {}
+
+unsafe impl CopyingHelper for NETransparentProxyNetworkSettings {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NETransparentProxyNetworkSettings {}
+
+unsafe impl NSSecureCoding for NETransparentProxyNetworkSettings {}
+
+extern_methods!(
+    unsafe impl NETransparentProxyNetworkSettings {
+        #[method_id(@__retain_semantics Other includedNetworkRules)]
+        pub unsafe fn includedNetworkRules(&self) -> Option<Retained<NSArray<NENetworkRule>>>;
+
+        #[method(setIncludedNetworkRules:)]
+        pub unsafe fn setIncludedNetworkRules(
+            &self,
+            included_network_rules: Option<&NSArray<NENetworkRule>>,
+        );
+
+        #[method_id(@__retain_semantics Other excludedNetworkRules)]
+        pub unsafe fn excludedNetworkRules(&self) -> Option<Retained<NSArray<NENetworkRule>>>;
+
+        #[method(setExcludedNetworkRules:)]
+        pub unsafe fn setExcludedNetworkRules(
+            &self,
+            excluded_network_rules: Option<&NSArray<NENetworkRule>>,
+        );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NETunnelNetworkSettings`
+    unsafe impl NETransparentProxyNetworkSettings {
+        #[method_id(@__retain_semantics Init initWithTunnelRemoteAddress:)]
+        pub unsafe fn initWithTunnelRemoteAddress(
+            this: Allocated<Self>,
+            address: &NSString,
+        ) -> Retained<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NETransparentProxyNetworkSettings {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netransparentproxyprovider?language=objc)
+    #[unsafe(super(NEAppProxyProvider, NETunnelProvider, NEProvider, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NETransparentProxyProvider;
+);
+
+unsafe impl NSObjectProtocol for NETransparentProxyProvider {}
+
+extern_methods!(
+    unsafe impl NETransparentProxyProvider {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NETransparentProxyProvider {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatus?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEVPNStatus(pub NSInteger);
+impl NEVPNStatus {
+    #[doc(alias = "NEVPNStatusInvalid")]
+    pub const Invalid: Self = Self(0);
+    #[doc(alias = "NEVPNStatusDisconnected")]
+    pub const Disconnected: Self = Self(1);
+    #[doc(alias = "NEVPNStatusConnecting")]
+    pub const Connecting: Self = Self(2);
+    #[doc(alias = "NEVPNStatusConnected")]
+    pub const Connected: Self = Self(3);
+    #[doc(alias = "NEVPNStatusReasserting")]
+    pub const Reasserting: Self = Self(4);
+    #[doc(alias = "NEVPNStatusDisconnecting")]
+    pub const Disconnecting: Self = Self(5);
+}
+
+unsafe impl Encode for NEVPNStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEVPNStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatusdidchangenotification?language=objc)
+    pub static NEVPNStatusDidChangeNotification: &'static NSString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionstartoptionusername?language=objc)
+    pub static NEVPNConnectionStartOptionUsername: &'static NSString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionstartoptionpassword?language=objc)
+    pub static NEVPNConnectionStartOptionPassword: &'static NSString;
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEVPNConnectionError(pub NSInteger);
+impl NEVPNConnectionError {
+    #[doc(alias = "NEVPNConnectionErrorOverslept")]
+    pub const Overslept: Self = Self(1);
+    #[doc(alias = "NEVPNConnectionErrorNoNetworkAvailable")]
+    pub const NoNetworkAvailable: Self = Self(2);
+    #[doc(alias = "NEVPNConnectionErrorUnrecoverableNetworkChange")]
+    pub const UnrecoverableNetworkChange: Self = Self(3);
+    #[doc(alias = "NEVPNConnectionErrorConfigurationFailed")]
+    pub const ConfigurationFailed: Self = Self(4);
+    #[doc(alias = "NEVPNConnectionErrorServerAddressResolutionFailed")]
+    pub const ServerAddressResolutionFailed: Self = Self(5);
+    #[doc(alias = "NEVPNConnectionErrorServerNotResponding")]
+    pub const ServerNotResponding: Self = Self(6);
+    #[doc(alias = "NEVPNConnectionErrorServerDead")]
+    pub const ServerDead: Self = Self(7);
+    #[doc(alias = "NEVPNConnectionErrorAuthenticationFailed")]
+    pub const AuthenticationFailed: Self = Self(8);
+    #[doc(alias = "NEVPNConnectionErrorClientCertificateInvalid")]
+    pub const ClientCertificateInvalid: Self = Self(9);
+    #[doc(alias = "NEVPNConnectionErrorClientCertificateNotYetValid")]
+    pub const ClientCertificateNotYetValid: Self = Self(10);
+    #[doc(alias = "NEVPNConnectionErrorClientCertificateExpired")]
+    pub const ClientCertificateExpired: Self = Self(11);
+    #[doc(alias = "NEVPNConnectionErrorPluginFailed")]
+    pub const PluginFailed: Self = Self(12);
+    #[doc(alias = "NEVPNConnectionErrorConfigurationNotFound")]
+    pub const ConfigurationNotFound: Self = Self(13);
+    #[doc(alias = "NEVPNConnectionErrorPluginDisabled")]
+    pub const PluginDisabled: Self = Self(14);
+    #[doc(alias = "NEVPNConnectionErrorNegotiationFailed")]
+    pub const NegotiationFailed: Self = Self(15);
+    #[doc(alias = "NEVPNConnectionErrorServerDisconnected")]
+    pub const ServerDisconnected: Self = Self(16);
+    #[doc(alias = "NEVPNConnectionErrorServerCertificateInvalid")]
+    pub const ServerCertificateInvalid: Self = Self(17);
+    #[doc(alias = "NEVPNConnectionErrorServerCertificateNotYetValid")]
+    pub const ServerCertificateNotYetValid: Self = Self(18);
+    #[doc(alias = "NEVPNConnectionErrorServerCertificateExpired")]
+    pub const ServerCertificateExpired: Self = Self(19);
+}
+
+unsafe impl Encode for NEVPNConnectionError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEVPNConnectionError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerrordomain?language=objc)
+    pub static NEVPNConnectionErrorDomain: &'static NSString;
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnection?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEVPNConnection;
+);
+
+unsafe impl NSObjectProtocol for NEVPNConnection {}
+
+extern_methods!(
+    unsafe impl NEVPNConnection {
+        #[method(startVPNTunnelAndReturnError:_)]
+        pub unsafe fn startVPNTunnelAndReturnError(&self) -> Result<(), Retained<NSError>>;
+
+        #[method(startVPNTunnelWithOptions:andReturnError:_)]
+        pub unsafe fn startVPNTunnelWithOptions_andReturnError(
+            &self,
+            options: Option<&NSDictionary<NSString, NSObject>>,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[method(stopVPNTunnel)]
+        pub unsafe fn stopVPNTunnel(&self);
+
+        #[cfg(feature = "block2")]
+        #[method(fetchLastDisconnectErrorWithCompletionHandler:)]
+        pub unsafe fn fetchLastDisconnectErrorWithCompletionHandler(
+            &self,
+            handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[method(status)]
+        pub unsafe fn status(&self) -> NEVPNStatus;
+
+        #[method_id(@__retain_semantics Other connectedDate)]
+        pub unsafe fn connectedDate(&self) -> Option<Retained<NSDate>>;
+
+        #[method_id(@__retain_semantics Other manager)]
+        pub unsafe fn manager(&self) -> Retained<NEVPNManager>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEVPNConnection {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovidersession?language=objc)
+    #[unsafe(super(NEVPNConnection, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NETunnelProviderSession;
+);
+
+unsafe impl NSObjectProtocol for NETunnelProviderSession {}
+
+extern_methods!(
+    unsafe impl NETunnelProviderSession {
+        #[method(startTunnelWithOptions:andReturnError:_)]
+        pub unsafe fn startTunnelWithOptions_andReturnError(
+            &self,
+            options: Option<&NSDictionary<NSString, AnyObject>>,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[method(stopTunnel)]
+        pub unsafe fn stopTunnel(&self);
+
+        #[cfg(feature = "block2")]
+        #[method(sendProviderMessage:returnError:responseHandler:)]
+        pub unsafe fn sendProviderMessage_returnError_responseHandler(
+            &self,
+            message_data: &NSData,
+            error: Option<&mut Option<Retained<NSError>>>,
+            response_handler: Option<&block2::Block<dyn Fn(*mut NSData)>>,
+        ) -> bool;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NETunnelProviderSession {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelproviderprotocol?language=objc)
+    #[unsafe(super(NEVPNProtocol, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NETunnelProviderProtocol;
+);
+
+unsafe impl NSCoding for NETunnelProviderProtocol {}
+
+unsafe impl NSCopying for NETunnelProviderProtocol {}
+
+unsafe impl CopyingHelper for NETunnelProviderProtocol {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NETunnelProviderProtocol {}
+
+unsafe impl NSSecureCoding for NETunnelProviderProtocol {}
+
+extern_methods!(
+    unsafe impl NETunnelProviderProtocol {
+        #[method_id(@__retain_semantics Other providerConfiguration)]
+        pub unsafe fn providerConfiguration(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
+
+        #[method(setProviderConfiguration:)]
+        pub unsafe fn setProviderConfiguration(
+            &self,
+            provider_configuration: Option<&NSDictionary<NSString, AnyObject>>,
+        );
+
+        #[method_id(@__retain_semantics Other providerBundleIdentifier)]
+        pub unsafe fn providerBundleIdentifier(&self) -> Option<Retained<NSString>>;
+
+        #[method(setProviderBundleIdentifier:)]
+        pub unsafe fn setProviderBundleIdentifier(
+            &self,
+            provider_bundle_identifier: Option<&NSString>,
+        );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NETunnelProviderProtocol {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikeauthenticationmethod?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEVPNIKEAuthenticationMethod(pub NSInteger);
+impl NEVPNIKEAuthenticationMethod {
+    #[doc(alias = "NEVPNIKEAuthenticationMethodNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NEVPNIKEAuthenticationMethodCertificate")]
+    pub const Certificate: Self = Self(1);
+    #[doc(alias = "NEVPNIKEAuthenticationMethodSharedSecret")]
+    pub const SharedSecret: Self = Self(2);
+}
+
+unsafe impl Encode for NEVPNIKEAuthenticationMethod {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEVPNIKEAuthenticationMethod {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnprotocolipsec?language=objc)
+    #[unsafe(super(NEVPNProtocol, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEVPNProtocolIPSec;
+);
+
+unsafe impl NSCoding for NEVPNProtocolIPSec {}
+
+unsafe impl NSCopying for NEVPNProtocolIPSec {}
+
+unsafe impl CopyingHelper for NEVPNProtocolIPSec {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEVPNProtocolIPSec {}
+
+unsafe impl NSSecureCoding for NEVPNProtocolIPSec {}
+
+extern_methods!(
+    unsafe impl NEVPNProtocolIPSec {
+        #[method(authenticationMethod)]
+        pub unsafe fn authenticationMethod(&self) -> NEVPNIKEAuthenticationMethod;
+
+        #[method(setAuthenticationMethod:)]
+        pub unsafe fn setAuthenticationMethod(
+            &self,
+            authentication_method: NEVPNIKEAuthenticationMethod,
+        );
+
+        #[method(useExtendedAuthentication)]
+        pub unsafe fn useExtendedAuthentication(&self) -> bool;
+
+        #[method(setUseExtendedAuthentication:)]
+        pub unsafe fn setUseExtendedAuthentication(&self, use_extended_authentication: bool);
+
+        #[method_id(@__retain_semantics Other sharedSecretReference)]
+        pub unsafe fn sharedSecretReference(&self) -> Option<Retained<NSData>>;
+
+        #[method(setSharedSecretReference:)]
+        pub unsafe fn setSharedSecretReference(&self, shared_secret_reference: Option<&NSData>);
+
+        #[method_id(@__retain_semantics Other localIdentifier)]
+        pub unsafe fn localIdentifier(&self) -> Option<Retained<NSString>>;
+
+        #[method(setLocalIdentifier:)]
+        pub unsafe fn setLocalIdentifier(&self, local_identifier: Option<&NSString>);
+
+        #[method_id(@__retain_semantics Other remoteIdentifier)]
+        pub unsafe fn remoteIdentifier(&self) -> Option<Retained<NSString>>;
+
+        #[method(setRemoteIdentifier:)]
+        pub unsafe fn setRemoteIdentifier(&self, remote_identifier: Option<&NSString>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEVPNProtocolIPSec {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2encryptionalgorithm?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEVPNIKEv2EncryptionAlgorithm(pub NSInteger);
+impl NEVPNIKEv2EncryptionAlgorithm {
+    #[deprecated = "Use an encryption algorithm with 256-bit keys instead"]
+    #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmDES")]
+    pub const DES: Self = Self(1);
+    #[deprecated = "Use an encryption algorithm with 256-bit keys instead"]
+    pub const NEVPNIKEv2EncryptionAlgorithm3DES: Self = Self(2);
+    #[deprecated = "Use an encryption algorithm with 256-bit keys instead"]
+    #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES128")]
+    pub const AES128: Self = Self(3);
+    #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES256")]
+    pub const AES256: Self = Self(4);
+    #[deprecated = "Use an encryption algorithm with 256-bit keys instead"]
+    #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES128GCM")]
+    pub const AES128GCM: Self = Self(5);
+    #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES256GCM")]
+    pub const AES256GCM: Self = Self(6);
+    #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmChaCha20Poly1305")]
+    pub const ChaCha20Poly1305: Self = Self(7);
+}
+
+unsafe impl Encode for NEVPNIKEv2EncryptionAlgorithm {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEVPNIKEv2EncryptionAlgorithm {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2integrityalgorithm?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEVPNIKEv2IntegrityAlgorithm(pub NSInteger);
+impl NEVPNIKEv2IntegrityAlgorithm {
+    #[deprecated = "Use SHA-2 for integrity protection instead"]
+    #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA96")]
+    pub const SHA96: Self = Self(1);
+    #[deprecated = "Use SHA-2 for integrity protection instead"]
+    #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA160")]
+    pub const SHA160: Self = Self(2);
+    #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA256")]
+    pub const SHA256: Self = Self(3);
+    #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA384")]
+    pub const SHA384: Self = Self(4);
+    #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA512")]
+    pub const SHA512: Self = Self(5);
+}
+
+unsafe impl Encode for NEVPNIKEv2IntegrityAlgorithm {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEVPNIKEv2IntegrityAlgorithm {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2deadpeerdetectionrate?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEVPNIKEv2DeadPeerDetectionRate(pub NSInteger);
+impl NEVPNIKEv2DeadPeerDetectionRate {
+    #[doc(alias = "NEVPNIKEv2DeadPeerDetectionRateNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NEVPNIKEv2DeadPeerDetectionRateLow")]
+    pub const Low: Self = Self(1);
+    #[doc(alias = "NEVPNIKEv2DeadPeerDetectionRateMedium")]
+    pub const Medium: Self = Self(2);
+    #[doc(alias = "NEVPNIKEv2DeadPeerDetectionRateHigh")]
+    pub const High: Self = Self(3);
+}
+
+unsafe impl Encode for NEVPNIKEv2DeadPeerDetectionRate {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEVPNIKEv2DeadPeerDetectionRate {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEVPNIKEv2DiffieHellmanGroup(pub NSInteger);
+impl NEVPNIKEv2DiffieHellmanGroup {
+    #[doc(alias = "NEVPNIKEv2DiffieHellmanGroupInvalid")]
+    pub const Invalid: Self = Self(0);
+    #[deprecated = "Use Diffie Hellman group 14 or greater instead"]
+    pub const NEVPNIKEv2DiffieHellmanGroup1: Self = Self(1);
+    #[deprecated = "Use Diffie Hellman group 14 or greater instead"]
+    pub const NEVPNIKEv2DiffieHellmanGroup2: Self = Self(2);
+    #[deprecated = "Use Diffie Hellman group 14 or greater instead"]
+    pub const NEVPNIKEv2DiffieHellmanGroup5: Self = Self(5);
+    pub const NEVPNIKEv2DiffieHellmanGroup14: Self = Self(14);
+    pub const NEVPNIKEv2DiffieHellmanGroup15: Self = Self(15);
+    pub const NEVPNIKEv2DiffieHellmanGroup16: Self = Self(16);
+    pub const NEVPNIKEv2DiffieHellmanGroup17: Self = Self(17);
+    pub const NEVPNIKEv2DiffieHellmanGroup18: Self = Self(18);
+    pub const NEVPNIKEv2DiffieHellmanGroup19: Self = Self(19);
+    pub const NEVPNIKEv2DiffieHellmanGroup20: Self = Self(20);
+    pub const NEVPNIKEv2DiffieHellmanGroup21: Self = Self(21);
+    pub const NEVPNIKEv2DiffieHellmanGroup31: Self = Self(31);
+    pub const NEVPNIKEv2DiffieHellmanGroup32: Self = Self(32);
+}
+
+unsafe impl Encode for NEVPNIKEv2DiffieHellmanGroup {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEVPNIKEv2DiffieHellmanGroup {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2certificatetype?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEVPNIKEv2CertificateType(pub NSInteger);
+impl NEVPNIKEv2CertificateType {
+    #[doc(alias = "NEVPNIKEv2CertificateTypeRSA")]
+    pub const RSA: Self = Self(1);
+    #[doc(alias = "NEVPNIKEv2CertificateTypeECDSA256")]
+    pub const ECDSA256: Self = Self(2);
+    #[doc(alias = "NEVPNIKEv2CertificateTypeECDSA384")]
+    pub const ECDSA384: Self = Self(3);
+    #[doc(alias = "NEVPNIKEv2CertificateTypeECDSA521")]
+    pub const ECDSA521: Self = Self(4);
+    #[doc(alias = "NEVPNIKEv2CertificateTypeEd25519")]
+    pub const Ed25519: Self = Self(5);
+    #[doc(alias = "NEVPNIKEv2CertificateTypeRSAPSS")]
+    pub const RSAPSS: Self = Self(6);
+}
+
+unsafe impl Encode for NEVPNIKEv2CertificateType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEVPNIKEv2CertificateType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2tlsversion?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEVPNIKEv2TLSVersion(pub NSInteger);
+impl NEVPNIKEv2TLSVersion {
+    #[doc(alias = "NEVPNIKEv2TLSVersionDefault")]
+    pub const Default: Self = Self(0);
+    pub const NEVPNIKEv2TLSVersion1_0: Self = Self(1);
+    pub const NEVPNIKEv2TLSVersion1_1: Self = Self(2);
+    pub const NEVPNIKEv2TLSVersion1_2: Self = Self(3);
+}
+
+unsafe impl Encode for NEVPNIKEv2TLSVersion {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEVPNIKEv2TLSVersion {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2securityassociationparameters?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEVPNIKEv2SecurityAssociationParameters;
+);
+
+unsafe impl NSCoding for NEVPNIKEv2SecurityAssociationParameters {}
+
+unsafe impl NSCopying for NEVPNIKEv2SecurityAssociationParameters {}
+
+unsafe impl CopyingHelper for NEVPNIKEv2SecurityAssociationParameters {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEVPNIKEv2SecurityAssociationParameters {}
+
+unsafe impl NSSecureCoding for NEVPNIKEv2SecurityAssociationParameters {}
+
+extern_methods!(
+    unsafe impl NEVPNIKEv2SecurityAssociationParameters {
+        #[method(encryptionAlgorithm)]
+        pub unsafe fn encryptionAlgorithm(&self) -> NEVPNIKEv2EncryptionAlgorithm;
+
+        #[method(setEncryptionAlgorithm:)]
+        pub unsafe fn setEncryptionAlgorithm(
+            &self,
+            encryption_algorithm: NEVPNIKEv2EncryptionAlgorithm,
+        );
+
+        #[method(integrityAlgorithm)]
+        pub unsafe fn integrityAlgorithm(&self) -> NEVPNIKEv2IntegrityAlgorithm;
+
+        #[method(setIntegrityAlgorithm:)]
+        pub unsafe fn setIntegrityAlgorithm(
+            &self,
+            integrity_algorithm: NEVPNIKEv2IntegrityAlgorithm,
+        );
+
+        #[method(diffieHellmanGroup)]
+        pub unsafe fn diffieHellmanGroup(&self) -> NEVPNIKEv2DiffieHellmanGroup;
+
+        #[method(setDiffieHellmanGroup:)]
+        pub unsafe fn setDiffieHellmanGroup(
+            &self,
+            diffie_hellman_group: NEVPNIKEv2DiffieHellmanGroup,
+        );
+
+        #[method(lifetimeMinutes)]
+        pub unsafe fn lifetimeMinutes(&self) -> i32;
+
+        #[method(setLifetimeMinutes:)]
+        pub unsafe fn setLifetimeMinutes(&self, lifetime_minutes: i32);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEVPNIKEv2SecurityAssociationParameters {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2ppkconfiguration?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEVPNIKEv2PPKConfiguration;
+);
+
+unsafe impl NSCopying for NEVPNIKEv2PPKConfiguration {}
+
+unsafe impl CopyingHelper for NEVPNIKEv2PPKConfiguration {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEVPNIKEv2PPKConfiguration {}
+
+extern_methods!(
+    unsafe impl NEVPNIKEv2PPKConfiguration {
+        #[method_id(@__retain_semantics Init initWithIdentifier:keychainReference:)]
+        pub unsafe fn initWithIdentifier_keychainReference(
+            this: Allocated<Self>,
+            identifier: &NSString,
+            keychain_reference: &NSData,
+        ) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics Other identifier)]
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
+
+        #[method_id(@__retain_semantics Other keychainReference)]
+        pub unsafe fn keychainReference(&self) -> Retained<NSData>;
+
+        #[method(isMandatory)]
+        pub unsafe fn isMandatory(&self) -> bool;
+
+        #[method(setIsMandatory:)]
+        pub unsafe fn setIsMandatory(&self, is_mandatory: bool);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEVPNIKEv2PPKConfiguration {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnprotocolikev2?language=objc)
+    #[unsafe(super(NEVPNProtocolIPSec, NEVPNProtocol, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEVPNProtocolIKEv2;
+);
+
+unsafe impl NSCoding for NEVPNProtocolIKEv2 {}
+
+unsafe impl NSCopying for NEVPNProtocolIKEv2 {}
+
+unsafe impl CopyingHelper for NEVPNProtocolIKEv2 {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEVPNProtocolIKEv2 {}
+
+unsafe impl NSSecureCoding for NEVPNProtocolIKEv2 {}
+
+extern_methods!(
+    unsafe impl NEVPNProtocolIKEv2 {
+        #[method(deadPeerDetectionRate)]
+        pub unsafe fn deadPeerDetectionRate(&self) -> NEVPNIKEv2DeadPeerDetectionRate;
+
+        #[method(setDeadPeerDetectionRate:)]
+        pub unsafe fn setDeadPeerDetectionRate(
+            &self,
+            dead_peer_detection_rate: NEVPNIKEv2DeadPeerDetectionRate,
+        );
+
+        #[method_id(@__retain_semantics Other serverCertificateIssuerCommonName)]
+        pub unsafe fn serverCertificateIssuerCommonName(&self) -> Option<Retained<NSString>>;
+
+        #[method(setServerCertificateIssuerCommonName:)]
+        pub unsafe fn setServerCertificateIssuerCommonName(
+            &self,
+            server_certificate_issuer_common_name: Option<&NSString>,
+        );
+
+        #[method_id(@__retain_semantics Other serverCertificateCommonName)]
+        pub unsafe fn serverCertificateCommonName(&self) -> Option<Retained<NSString>>;
+
+        #[method(setServerCertificateCommonName:)]
+        pub unsafe fn setServerCertificateCommonName(
+            &self,
+            server_certificate_common_name: Option<&NSString>,
+        );
+
+        #[method(certificateType)]
+        pub unsafe fn certificateType(&self) -> NEVPNIKEv2CertificateType;
+
+        #[method(setCertificateType:)]
+        pub unsafe fn setCertificateType(&self, certificate_type: NEVPNIKEv2CertificateType);
+
+        #[method(useConfigurationAttributeInternalIPSubnet)]
+        pub unsafe fn useConfigurationAttributeInternalIPSubnet(&self) -> bool;
+
+        #[method(setUseConfigurationAttributeInternalIPSubnet:)]
+        pub unsafe fn setUseConfigurationAttributeInternalIPSubnet(
+            &self,
+            use_configuration_attribute_internal_ip_subnet: bool,
+        );
+
+        #[method_id(@__retain_semantics Other IKESecurityAssociationParameters)]
+        pub unsafe fn IKESecurityAssociationParameters(
+            &self,
+        ) -> Retained<NEVPNIKEv2SecurityAssociationParameters>;
+
+        #[method_id(@__retain_semantics Other childSecurityAssociationParameters)]
+        pub unsafe fn childSecurityAssociationParameters(
+            &self,
+        ) -> Retained<NEVPNIKEv2SecurityAssociationParameters>;
+
+        #[method(disableMOBIKE)]
+        pub unsafe fn disableMOBIKE(&self) -> bool;
+
+        #[method(setDisableMOBIKE:)]
+        pub unsafe fn setDisableMOBIKE(&self, disable_mobike: bool);
+
+        #[method(disableRedirect)]
+        pub unsafe fn disableRedirect(&self) -> bool;
+
+        #[method(setDisableRedirect:)]
+        pub unsafe fn setDisableRedirect(&self, disable_redirect: bool);
+
+        #[method(enablePFS)]
+        pub unsafe fn enablePFS(&self) -> bool;
+
+        #[method(setEnablePFS:)]
+        pub unsafe fn setEnablePFS(&self, enable_pfs: bool);
+
+        #[method(enableRevocationCheck)]
+        pub unsafe fn enableRevocationCheck(&self) -> bool;
+
+        #[method(setEnableRevocationCheck:)]
+        pub unsafe fn setEnableRevocationCheck(&self, enable_revocation_check: bool);
+
+        #[method(strictRevocationCheck)]
+        pub unsafe fn strictRevocationCheck(&self) -> bool;
+
+        #[method(setStrictRevocationCheck:)]
+        pub unsafe fn setStrictRevocationCheck(&self, strict_revocation_check: bool);
+
+        #[method(minimumTLSVersion)]
+        pub unsafe fn minimumTLSVersion(&self) -> NEVPNIKEv2TLSVersion;
+
+        #[method(setMinimumTLSVersion:)]
+        pub unsafe fn setMinimumTLSVersion(&self, minimum_tls_version: NEVPNIKEv2TLSVersion);
+
+        #[method(maximumTLSVersion)]
+        pub unsafe fn maximumTLSVersion(&self) -> NEVPNIKEv2TLSVersion;
+
+        #[method(setMaximumTLSVersion:)]
+        pub unsafe fn setMaximumTLSVersion(&self, maximum_tls_version: NEVPNIKEv2TLSVersion);
+
+        #[method(enableFallback)]
+        pub unsafe fn enableFallback(&self) -> bool;
+
+        #[method(setEnableFallback:)]
+        pub unsafe fn setEnableFallback(&self, enable_fallback: bool);
+
+        #[method(mtu)]
+        pub unsafe fn mtu(&self) -> NSUInteger;
+
+        #[method(setMtu:)]
+        pub unsafe fn setMtu(&self, mtu: NSUInteger);
+
+        #[method_id(@__retain_semantics Other ppkConfiguration)]
+        pub unsafe fn ppkConfiguration(&self) -> Option<Retained<NEVPNIKEv2PPKConfiguration>>;
+
+        #[method(setPpkConfiguration:)]
+        pub unsafe fn setPpkConfiguration(
+            &self,
+            ppk_configuration: Option<&NEVPNIKEv2PPKConfiguration>,
+        );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEVPNProtocolIKEv2 {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppusherrordomain?language=objc)
+    pub static NEAppPushErrorDomain: &'static NSErrorDomain;
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushmanagererror?language=objc)
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEAppPushManagerError(pub NSInteger);
+impl NEAppPushManagerError {
+    #[doc(alias = "NEAppPushManagerErrorConfigurationInvalid")]
+    pub const ConfigurationInvalid: Self = Self(1);
+    #[doc(alias = "NEAppPushManagerErrorConfigurationNotLoaded")]
+    pub const ConfigurationNotLoaded: Self = Self(2);
+    #[doc(alias = "NEAppPushManagerErrorInternalError")]
+    pub const InternalError: Self = Self(3);
+    #[doc(alias = "NEAppPushManagerErrorInactiveSession")]
+    pub const InactiveSession: Self = Self(4);
+}
+
+unsafe impl Encode for NEAppPushManagerError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEAppPushManagerError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neprivateltenetwork?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEPrivateLTENetwork;
+);
+
+unsafe impl NSCoding for NEPrivateLTENetwork {}
+
+unsafe impl NSCopying for NEPrivateLTENetwork {}
+
+unsafe impl CopyingHelper for NEPrivateLTENetwork {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NEPrivateLTENetwork {}
+
+unsafe impl NSSecureCoding for NEPrivateLTENetwork {}
+
+extern_methods!(
+    unsafe impl NEPrivateLTENetwork {
+        #[method_id(@__retain_semantics Other mobileCountryCode)]
+        pub unsafe fn mobileCountryCode(&self) -> Retained<NSString>;
+
+        #[method(setMobileCountryCode:)]
+        pub unsafe fn setMobileCountryCode(&self, mobile_country_code: &NSString);
+
+        #[method_id(@__retain_semantics Other mobileNetworkCode)]
+        pub unsafe fn mobileNetworkCode(&self) -> Retained<NSString>;
+
+        #[method(setMobileNetworkCode:)]
+        pub unsafe fn setMobileNetworkCode(&self, mobile_network_code: &NSString);
+
+        #[method_id(@__retain_semantics Other trackingAreaCode)]
+        pub unsafe fn trackingAreaCode(&self) -> Option<Retained<NSString>>;
+
+        #[method(setTrackingAreaCode:)]
+        pub unsafe fn setTrackingAreaCode(&self, tracking_area_code: Option<&NSString>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEPrivateLTENetwork {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushmanager?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEAppPushManager;
+);
+
+unsafe impl NSObjectProtocol for NEAppPushManager {}
+
+extern_methods!(
+    unsafe impl NEAppPushManager {
+        #[method_id(@__retain_semantics Other matchSSIDs)]
+        pub unsafe fn matchSSIDs(&self) -> Retained<NSArray<NSString>>;
+
+        #[method(setMatchSSIDs:)]
+        pub unsafe fn setMatchSSIDs(&self, match_ssi_ds: &NSArray<NSString>);
+
+        #[method_id(@__retain_semantics Other matchPrivateLTENetworks)]
+        pub unsafe fn matchPrivateLTENetworks(&self) -> Retained<NSArray<NEPrivateLTENetwork>>;
+
+        #[method(setMatchPrivateLTENetworks:)]
+        pub unsafe fn setMatchPrivateLTENetworks(
+            &self,
+            match_private_lte_networks: &NSArray<NEPrivateLTENetwork>,
+        );
+
+        #[method_id(@__retain_semantics Other providerConfiguration)]
+        pub unsafe fn providerConfiguration(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
+
+        #[method(setProviderConfiguration:)]
+        pub unsafe fn setProviderConfiguration(
+            &self,
+            provider_configuration: &NSDictionary<NSString, AnyObject>,
+        );
+
+        #[method_id(@__retain_semantics Other providerBundleIdentifier)]
+        pub unsafe fn providerBundleIdentifier(&self) -> Option<Retained<NSString>>;
+
+        #[method(setProviderBundleIdentifier:)]
+        pub unsafe fn setProviderBundleIdentifier(
+            &self,
+            provider_bundle_identifier: Option<&NSString>,
+        );
+
+        #[method_id(@__retain_semantics Other delegate)]
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NEAppPushDelegate>>>;
+
+        /// This is a [weak property][objc2::topics::weak_property].
+        #[method(setDelegate:)]
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NEAppPushDelegate>>);
+
+        #[cfg(feature = "block2")]
+        #[method(loadAllFromPreferencesWithCompletionHandler:)]
+        pub unsafe fn loadAllFromPreferencesWithCompletionHandler(
+            completion_handler: &block2::Block<
+                dyn Fn(*mut NSArray<NEAppPushManager>, *mut NSError),
+            >,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(loadFromPreferencesWithCompletionHandler:)]
+        pub unsafe fn loadFromPreferencesWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(removeFromPreferencesWithCompletionHandler:)]
+        pub unsafe fn removeFromPreferencesWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(saveToPreferencesWithCompletionHandler:)]
+        pub unsafe fn saveToPreferencesWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[method_id(@__retain_semantics Other localizedDescription)]
+        pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
+
+        #[method(setLocalizedDescription:)]
+        pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
+
+        #[method(isEnabled)]
+        pub unsafe fn isEnabled(&self) -> bool;
+
+        #[method(setEnabled:)]
+        pub unsafe fn setEnabled(&self, enabled: bool);
+
+        #[method(isActive)]
+        pub unsafe fn isActive(&self) -> bool;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEAppPushManager {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushdelegate?language=objc)
+    pub unsafe trait NEAppPushDelegate: NSObjectProtocol {
+        #[method(appPushManager:didReceiveIncomingCallWithUserInfo:)]
+        unsafe fn appPushManager_didReceiveIncomingCallWithUserInfo(
+            &self,
+            manager: &NEAppPushManager,
+            user_info: &NSDictionary,
+        );
+    }
+
+    unsafe impl ProtocolType for dyn NEAppPushDelegate {}
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushprovider?language=objc)
+    #[unsafe(super(NEProvider, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEAppPushProvider;
+);
+
+unsafe impl NSObjectProtocol for NEAppPushProvider {}
+
+extern_methods!(
+    unsafe impl NEAppPushProvider {
+        #[method_id(@__retain_semantics Other providerConfiguration)]
+        pub unsafe fn providerConfiguration(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
+
+        #[cfg(feature = "block2")]
+        #[deprecated]
+        #[method(startWithCompletionHandler:)]
+        pub unsafe fn startWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[method(start)]
+        pub unsafe fn start(&self);
+
+        #[cfg(feature = "block2")]
+        #[method(stopWithReason:completionHandler:)]
+        pub unsafe fn stopWithReason_completionHandler(
+            &self,
+            reason: NEProviderStopReason,
+            completion_handler: &block2::Block<dyn Fn()>,
+        );
+
+        #[method(reportIncomingCallWithUserInfo:)]
+        pub unsafe fn reportIncomingCallWithUserInfo(&self, user_info: &NSDictionary);
+
+        #[method(reportPushToTalkMessageWithUserInfo:)]
+        pub unsafe fn reportPushToTalkMessageWithUserInfo(&self, user_info: &NSDictionary);
+
+        #[method(handleTimerEvent)]
+        pub unsafe fn handleTimerEvent(&self);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NEAppPushProvider {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwendpoint?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use nw_endpoint_t in Network framework instead, see deprecation notice in <NetworkExtension/NWEndpoint.h>"]
+    pub struct NWEndpoint;
+);
+
+unsafe impl NSCoding for NWEndpoint {}
+
+unsafe impl NSCopying for NWEndpoint {}
+
+unsafe impl CopyingHelper for NWEndpoint {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NWEndpoint {}
+
+unsafe impl NSSecureCoding for NWEndpoint {}
+
+extern_methods!(
+    unsafe impl NWEndpoint {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NWEndpoint {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwhostendpoint?language=objc)
+    #[unsafe(super(NWEndpoint, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use `nw_endpoint_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>"]
+    pub struct NWHostEndpoint;
+);
+
+unsafe impl NSCoding for NWHostEndpoint {}
+
+unsafe impl NSCopying for NWHostEndpoint {}
+
+unsafe impl CopyingHelper for NWHostEndpoint {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NWHostEndpoint {}
+
+unsafe impl NSSecureCoding for NWHostEndpoint {}
+
+extern_methods!(
+    unsafe impl NWHostEndpoint {
+        #[deprecated = "Use `nw_endpoint_create_host` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>"]
+        #[method_id(@__retain_semantics Other endpointWithHostname:port:)]
+        pub unsafe fn endpointWithHostname_port(
+            hostname: &NSString,
+            port: &NSString,
+        ) -> Retained<Self>;
+
+        #[deprecated = "Use `nw_endpoint_get_hostname` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>"]
+        #[method_id(@__retain_semantics Other hostname)]
+        pub unsafe fn hostname(&self) -> Retained<NSString>;
+
+        #[deprecated = "Use `nw_endpoint_get_port` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>"]
+        #[method_id(@__retain_semantics Other port)]
+        pub unsafe fn port(&self) -> Retained<NSString>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NWHostEndpoint {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwbonjourserviceendpoint?language=objc)
+    #[unsafe(super(NWEndpoint, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use `nw_endpoint_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>"]
+    pub struct NWBonjourServiceEndpoint;
+);
+
+unsafe impl NSCoding for NWBonjourServiceEndpoint {}
+
+unsafe impl NSCopying for NWBonjourServiceEndpoint {}
+
+unsafe impl CopyingHelper for NWBonjourServiceEndpoint {
+    type Result = Self;
+}
+
+unsafe impl NSObjectProtocol for NWBonjourServiceEndpoint {}
+
+unsafe impl NSSecureCoding for NWBonjourServiceEndpoint {}
+
+extern_methods!(
+    unsafe impl NWBonjourServiceEndpoint {
+        #[deprecated = "Use `nw_endpoint_create_bonjour_service` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>"]
+        #[method_id(@__retain_semantics Other endpointWithName:type:domain:)]
+        pub unsafe fn endpointWithName_type_domain(
+            name: &NSString,
+            r#type: &NSString,
+            domain: &NSString,
+        ) -> Retained<Self>;
+
+        #[deprecated = "Use `nw_endpoint_get_bonjour_service_name` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>"]
+        #[method_id(@__retain_semantics Other name)]
+        pub unsafe fn name(&self) -> Retained<NSString>;
+
+        #[deprecated = "Use `nw_endpoint_get_bonjour_service_type` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>"]
+        #[method_id(@__retain_semantics Other type)]
+        pub unsafe fn r#type(&self) -> Retained<NSString>;
+
+        #[deprecated = "Use `nw_endpoint_get_bonjour_service_domain` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>"]
+        #[method_id(@__retain_semantics Other domain)]
+        pub unsafe fn domain(&self) -> Retained<NSString>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NWBonjourServiceEndpoint {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwpathstatus?language=objc)
+// NS_ENUM
+#[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NWPathStatus(pub NSInteger);
+impl NWPathStatus {
+    #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
+    #[doc(alias = "NWPathStatusInvalid")]
+    pub const Invalid: Self = Self(0);
+    #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
+    #[doc(alias = "NWPathStatusSatisfied")]
+    pub const Satisfied: Self = Self(1);
+    #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
+    #[doc(alias = "NWPathStatusUnsatisfied")]
+    pub const Unsatisfied: Self = Self(2);
+    #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
+    #[doc(alias = "NWPathStatusSatisfiable")]
+    pub const Satisfiable: Self = Self(3);
+}
+
+unsafe impl Encode for NWPathStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NWPathStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwpath?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use `nw_path_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
+    pub struct NWPath;
+);
+
+unsafe impl NSObjectProtocol for NWPath {}
+
+extern_methods!(
+    unsafe impl NWPath {
+        #[deprecated = "Use `nw_path_get_status` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
+        #[method(status)]
+        pub unsafe fn status(&self) -> NWPathStatus;
+
+        #[deprecated = "Use `nw_path_is_expensive` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
+        #[method(isExpensive)]
+        pub unsafe fn isExpensive(&self) -> bool;
+
+        #[deprecated = "Use `nw_path_is_constrained` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
+        #[method(isConstrained)]
+        pub unsafe fn isConstrained(&self) -> bool;
+
+        #[deprecated = "Use `nw_path_is_equal` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
+        #[method(isEqualToPath:)]
+        pub unsafe fn isEqualToPath(&self, path: &NWPath) -> bool;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NWPath {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnectionstate?language=objc)
+// NS_ENUM
+#[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NWTCPConnectionState(pub NSInteger);
+impl NWTCPConnectionState {
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+    #[doc(alias = "NWTCPConnectionStateInvalid")]
+    pub const Invalid: Self = Self(0);
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+    #[doc(alias = "NWTCPConnectionStateConnecting")]
+    pub const Connecting: Self = Self(1);
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+    #[doc(alias = "NWTCPConnectionStateWaiting")]
+    pub const Waiting: Self = Self(2);
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+    #[doc(alias = "NWTCPConnectionStateConnected")]
+    pub const Connected: Self = Self(3);
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+    #[doc(alias = "NWTCPConnectionStateDisconnected")]
+    pub const Disconnected: Self = Self(4);
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+    #[doc(alias = "NWTCPConnectionStateCancelled")]
+    pub const Cancelled: Self = Self(5);
+}
+
+unsafe impl Encode for NWTCPConnectionState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NWTCPConnectionState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnection?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use `nw_connection_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+    pub struct NWTCPConnection;
+);
+
+unsafe impl NSObjectProtocol for NWTCPConnection {}
+
+extern_methods!(
+    unsafe impl NWTCPConnection {
+        #[deprecated = "Use `nw_connection_create` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[method_id(@__retain_semantics Init initWithUpgradeForConnection:)]
+        pub unsafe fn initWithUpgradeForConnection(
+            this: Allocated<Self>,
+            connection: &NWTCPConnection,
+        ) -> Retained<Self>;
+
+        #[deprecated = "Use `nw_connection_set_state_changed_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[method(state)]
+        pub unsafe fn state(&self) -> NWTCPConnectionState;
+
+        #[deprecated = "Use `nw_connection_set_viability_changed_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[method(isViable)]
+        pub unsafe fn isViable(&self) -> bool;
+
+        #[deprecated = "Use `nw_connection_set_better_path_available_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[method(hasBetterPath)]
+        pub unsafe fn hasBetterPath(&self) -> bool;
+
+        #[deprecated = "Use `nw_connection_copy_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[method_id(@__retain_semantics Other endpoint)]
+        pub unsafe fn endpoint(&self) -> Retained<NWEndpoint>;
+
+        #[deprecated = "Use `nw_connection_copy_current_path` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[method_id(@__retain_semantics Other connectedPath)]
+        pub unsafe fn connectedPath(&self) -> Option<Retained<NWPath>>;
+
+        #[deprecated = "Use `nw_path_copy_effective_local_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[method_id(@__retain_semantics Other localAddress)]
+        pub unsafe fn localAddress(&self) -> Option<Retained<NWEndpoint>>;
+
+        #[deprecated = "Use `nw_path_copy_effective_remote_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[method_id(@__retain_semantics Other remoteAddress)]
+        pub unsafe fn remoteAddress(&self) -> Option<Retained<NWEndpoint>>;
+
+        #[deprecated = "Use `nw_endpoint_copy_txt_record` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[method_id(@__retain_semantics Other txtRecord)]
+        pub unsafe fn txtRecord(&self) -> Option<Retained<NSData>>;
+
+        #[deprecated = "Use `nw_connection_set_state_changed_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[method_id(@__retain_semantics Other error)]
+        pub unsafe fn error(&self) -> Option<Retained<NSError>>;
+
+        #[deprecated = "Use `nw_connection_cancel` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[method(cancel)]
+        pub unsafe fn cancel(&self);
+
+        #[cfg(feature = "block2")]
+        #[deprecated = "Use `nw_connection_receive` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[method(readLength:completionHandler:)]
+        pub unsafe fn readLength_completionHandler(
+            &self,
+            length: NSUInteger,
+            completion: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[deprecated = "Use `nw_connection_receive` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[method(readMinimumLength:maximumLength:completionHandler:)]
+        pub unsafe fn readMinimumLength_maximumLength_completionHandler(
+            &self,
+            minimum: NSUInteger,
+            maximum: NSUInteger,
+            completion: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[deprecated = "Use `nw_connection_send` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[method(write:completionHandler:)]
+        pub unsafe fn write_completionHandler(
+            &self,
+            data: &NSData,
+            completion: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[deprecated = "Use `nw_connection_send` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[method(writeClose)]
+        pub unsafe fn writeClose(&self);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NWTCPConnection {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnectionauthenticationdelegate?language=objc)
+    #[deprecated = "Use `sec_protocol_options_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+    pub unsafe trait NWTCPConnectionAuthenticationDelegate: NSObjectProtocol {
+        #[deprecated = "Use `sec_protocol_options_set_challenge_block` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[optional]
+        #[method(shouldProvideIdentityForConnection:)]
+        unsafe fn shouldProvideIdentityForConnection(&self, connection: &NWTCPConnection) -> bool;
+
+        #[deprecated = "Use `sec_protocol_options_set_verify_block` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[optional]
+        #[method(shouldEvaluateTrustForConnection:)]
+        unsafe fn shouldEvaluateTrustForConnection(&self, connection: &NWTCPConnection) -> bool;
+    }
+
+    unsafe impl ProtocolType for dyn NWTCPConnectionAuthenticationDelegate {}
+);
+
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwudpsessionstate?language=objc)
+// NS_ENUM
+#[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NWUDPSessionState(pub NSInteger);
+impl NWUDPSessionState {
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+    #[doc(alias = "NWUDPSessionStateInvalid")]
+    pub const Invalid: Self = Self(0);
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+    #[doc(alias = "NWUDPSessionStateWaiting")]
+    pub const Waiting: Self = Self(1);
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+    #[doc(alias = "NWUDPSessionStatePreparing")]
+    pub const Preparing: Self = Self(2);
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+    #[doc(alias = "NWUDPSessionStateReady")]
+    pub const Ready: Self = Self(3);
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+    #[doc(alias = "NWUDPSessionStateFailed")]
+    pub const Failed: Self = Self(4);
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+    #[doc(alias = "NWUDPSessionStateCancelled")]
+    pub const Cancelled: Self = Self(5);
+}
+
+unsafe impl Encode for NWUDPSessionState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NWUDPSessionState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwudpsession?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use `nw_connection_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+    pub struct NWUDPSession;
+);
+
+unsafe impl NSObjectProtocol for NWUDPSession {}
+
+extern_methods!(
+    unsafe impl NWUDPSession {
+        #[deprecated = "Use `nw_connection_create` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+        #[method_id(@__retain_semantics Init initWithUpgradeForSession:)]
+        pub unsafe fn initWithUpgradeForSession(
+            this: Allocated<Self>,
+            session: &NWUDPSession,
+        ) -> Retained<Self>;
+
+        #[deprecated = "Use `nw_connection_set_state_changed_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+        #[method(state)]
+        pub unsafe fn state(&self) -> NWUDPSessionState;
+
+        #[deprecated = "Use `nw_connection_copy_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+        #[method_id(@__retain_semantics Other endpoint)]
+        pub unsafe fn endpoint(&self) -> Retained<NWEndpoint>;
+
+        #[deprecated = "Use `nw_connection_copy_current_path` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+        #[method_id(@__retain_semantics Other resolvedEndpoint)]
+        pub unsafe fn resolvedEndpoint(&self) -> Option<Retained<NWEndpoint>>;
+
+        #[deprecated = "Use `nw_connection_set_viability_changed_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+        #[method(isViable)]
+        pub unsafe fn isViable(&self) -> bool;
+
+        #[deprecated = "Use `nw_connection_set_better_path_available_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+        #[method(hasBetterPath)]
+        pub unsafe fn hasBetterPath(&self) -> bool;
+
+        #[deprecated = "Use `nw_connection_copy_current_path` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+        #[method_id(@__retain_semantics Other currentPath)]
+        pub unsafe fn currentPath(&self) -> Option<Retained<NWPath>>;
+
+        #[deprecated = "Use `nw_connection_cancel_current_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+        #[method(tryNextResolvedEndpoint)]
+        pub unsafe fn tryNextResolvedEndpoint(&self);
+
+        #[deprecated = "Use `nw_connection_get_maximum_datagram_size` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+        #[method(maximumDatagramLength)]
+        pub unsafe fn maximumDatagramLength(&self) -> NSUInteger;
+
+        #[cfg(feature = "block2")]
+        #[deprecated = "Use `nw_connection_receive` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+        #[method(setReadHandler:maxDatagrams:)]
+        pub unsafe fn setReadHandler_maxDatagrams(
+            &self,
+            handler: &block2::Block<dyn Fn(*mut NSArray<NSData>, *mut NSError)>,
+            max_datagrams: NSUInteger,
+        );
+
+        #[cfg(feature = "block2")]
+        #[deprecated = "Use `nw_connection_send` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+        #[method(writeMultipleDatagrams:completionHandler:)]
+        pub unsafe fn writeMultipleDatagrams_completionHandler(
+            &self,
+            datagram_array: &NSArray<NSData>,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[deprecated = "Use `nw_connection_send` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+        #[method(writeDatagram:completionHandler:)]
+        pub unsafe fn writeDatagram_completionHandler(
+            &self,
+            datagram: &NSData,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[deprecated = "Use `nw_connection_cancel` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+        #[method(cancel)]
+        pub unsafe fn cancel(&self);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NWUDPSession {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtlsparameters?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use `sec_protocol_options_t` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
+    pub struct NWTLSParameters;
+);
+
+unsafe impl NSObjectProtocol for NWTLSParameters {}
+
+extern_methods!(
+    unsafe impl NWTLSParameters {
+        #[deprecated = "Use `sec_protocol_options_set_tls_resumption_enabled` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
+        #[method_id(@__retain_semantics Other TLSSessionID)]
+        pub unsafe fn TLSSessionID(&self) -> Option<Retained<NSData>>;
+
+        #[deprecated = "Use `sec_protocol_options_set_tls_resumption_enabled` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
+        #[method(setTLSSessionID:)]
+        pub unsafe fn setTLSSessionID(&self, tls_session_id: Option<&NSData>);
+
+        #[deprecated = "Use `sec_protocol_options_append_tls_ciphersuite` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
+        #[method_id(@__retain_semantics Other SSLCipherSuites)]
+        pub unsafe fn SSLCipherSuites(&self) -> Option<Retained<NSSet<NSNumber>>>;
+
+        #[deprecated = "Use `sec_protocol_options_append_tls_ciphersuite` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
+        #[method(setSSLCipherSuites:)]
+        pub unsafe fn setSSLCipherSuites(&self, ssl_cipher_suites: Option<&NSSet<NSNumber>>);
+
+        #[deprecated = "Use `sec_protocol_options_set_min_tls_protocol_version` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
+        #[method(minimumSSLProtocolVersion)]
+        pub unsafe fn minimumSSLProtocolVersion(&self) -> NSUInteger;
+
+        #[deprecated = "Use `sec_protocol_options_set_min_tls_protocol_version` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
+        #[method(setMinimumSSLProtocolVersion:)]
+        pub unsafe fn setMinimumSSLProtocolVersion(&self, minimum_ssl_protocol_version: NSUInteger);
+
+        #[deprecated = "Use `sec_protocol_options_set_max_tls_protocol_version` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
+        #[method(maximumSSLProtocolVersion)]
+        pub unsafe fn maximumSSLProtocolVersion(&self) -> NSUInteger;
+
+        #[deprecated = "Use `sec_protocol_options_set_max_tls_protocol_version` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
+        #[method(setMaximumSSLProtocolVersion:)]
+        pub unsafe fn setMaximumSSLProtocolVersion(&self, maximum_ssl_protocol_version: NSUInteger);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    unsafe impl NWTLSParameters {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Retained<Self>;
+    }
+);

@@ -11,7 +11,7 @@ pub type NSFileProviderExtensionActionIdentifier = NSString;
 
 extern_methods!(
     /// NSFileProviderActions
-    #[cfg(feature = "NSFileProviderExtension")]
+    #[cfg(feature = "Extension")]
     unsafe impl NSFileProviderExtension {
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(importDocumentAtURL:toParentItemIdentifier:completionHandler:)]

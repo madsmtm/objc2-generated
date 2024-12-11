@@ -385,12 +385,21 @@ mod __NSMovie;
 #[cfg(feature = "NSNib")]
 #[path = "NSNib.rs"]
 mod __NSNib;
+#[cfg(feature = "NSNibConnector")]
+#[path = "NSNibConnector.rs"]
+mod __NSNibConnector;
+#[cfg(feature = "NSNibControlConnector")]
+#[path = "NSNibControlConnector.rs"]
+mod __NSNibControlConnector;
 #[cfg(feature = "NSNibDeclarations")]
 #[path = "NSNibDeclarations.rs"]
 mod __NSNibDeclarations;
 #[cfg(feature = "NSNibLoading")]
 #[path = "NSNibLoading.rs"]
 mod __NSNibLoading;
+#[cfg(feature = "NSNibOutletConnector")]
+#[path = "NSNibOutletConnector.rs"]
+mod __NSNibOutletConnector;
 #[cfg(feature = "NSObjectController")]
 #[path = "NSObjectController.rs"]
 mod __NSObjectController;
@@ -4829,8 +4838,14 @@ pub use self::__NSNib::NSNibName;
 pub use self::__NSNib::NSNibOwner;
 #[cfg(feature = "NSNib")]
 pub use self::__NSNib::NSNibTopLevelObjects;
+#[cfg(feature = "NSNibConnector")]
+pub use self::__NSNibConnector::NSNibConnector;
+#[cfg(all(feature = "NSNibConnector", feature = "NSNibControlConnector"))]
+pub use self::__NSNibControlConnector::NSNibControlConnector;
 #[cfg(feature = "NSNibLoading")]
 pub use self::__NSNibLoading::NSObjectNSNibAwaking;
+#[cfg(all(feature = "NSNibConnector", feature = "NSNibOutletConnector"))]
+pub use self::__NSNibOutletConnector::NSNibOutletConnector;
 #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
 pub use self::__NSObjectController::NSObjectController;
 #[cfg(feature = "NSOpenGL")]

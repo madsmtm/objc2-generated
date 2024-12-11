@@ -34,6 +34,9 @@ mod __CIFeature;
 #[cfg(feature = "CIFilter")]
 #[path = "CIFilter.rs"]
 mod __CIFilter;
+#[cfg(feature = "CIFilterBuiltins")]
+#[path = "CIFilterBuiltins.rs"]
+mod __CIFilterBuiltins;
 #[cfg(feature = "CIFilterConstructor")]
 #[path = "CIFilterConstructor.rs"]
 mod __CIFilterConstructor;
@@ -404,6 +407,378 @@ pub use self::__CIFilter::kCIUISetIntermediate;
 pub use self::__CIFilter::CIFilter;
 #[cfg(feature = "CIFilter")]
 pub use self::__CIFilter::CIFilterProtocol;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIAccordionFoldTransition;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIAffineClamp;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIAffineTile;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIAreaAverage;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIAreaBoundsRed;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIAreaHistogram;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIAreaLogarithmicHistogram;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIAreaMaximum;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIAreaMaximumAlpha;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIAreaMinMax;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIAreaMinMaxRed;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIAreaMinimum;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIAreaMinimumAlpha;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIAreaReductionFilter;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIAttributedTextImageGenerator;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIAztecCodeGenerator;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIBarcodeGenerator;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIBarsSwipeTransition;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIBicubicScaleTransform;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIBlendWithMask;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIBloom;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIBlurredRectangleGenerator;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIBokehBlur;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIBoxBlur;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIBumpDistortion;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIBumpDistortionLinear;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CICMYKHalftone;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CICannyEdgeDetector;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CICheckerboardGenerator;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CICircleSplashDistortion;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CICircularScreen;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CICircularWrap;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CICode128BarcodeGenerator;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIColorAbsoluteDifference;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIColorClamp;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIColorControls;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIColorCrossPolynomial;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIColorCube;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIColorCubeWithColorSpace;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIColorCubesMixedWithMask;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIColorCurves;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIColorInvert;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIColorMap;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIColorMatrix;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIColorMonochrome;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIColorPolynomial;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIColorPosterize;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIColorThreshold;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIColorThresholdOtsu;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIColumnAverage;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIComicEffect;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CICompositeOperation;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIConvertLab;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIConvolution;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CICopyMachineTransition;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CICoreMLModel;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CICrystallize;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIDepthOfField;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIDepthToDisparity;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIDiscBlur;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIDisintegrateWithMaskTransition;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIDisparityToDepth;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIDisplacementDistortion;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIDissolveTransition;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIDither;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIDocumentEnhancer;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIDotScreen;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIDroste;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIEdgePreserveUpsample;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIEdgeWork;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIEdges;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIEightfoldReflectedTile;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIExposureAdjust;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIFalseColor;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIFlashTransition;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIFourCoordinateGeometryFilter;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIFourfoldReflectedTile;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIFourfoldRotatedTile;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIFourfoldTranslatedTile;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIGaborGradients;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIGammaAdjust;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIGaussianBlur;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIGaussianGradient;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIGlassDistortion;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIGlassLozenge;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIGlideReflectedTile;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIGloom;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIHatchedScreen;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIHeightFieldFromMask;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIHexagonalPixellate;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIHighlightShadowAdjust;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIHistogramDisplay;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIHoleDistortion;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIHueAdjust;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIHueSaturationValueGradient;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIKMeans;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIKaleidoscope;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIKeystoneCorrectionCombined;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIKeystoneCorrectionHorizontal;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIKeystoneCorrectionVertical;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CILabDeltaE;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CILanczosScaleTransform;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CILenticularHaloGenerator;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CILightTunnel;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CILineOverlay;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CILineScreen;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CILinearGradient;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CILinearToSRGBToneCurve;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIMaskToAlpha;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIMaskedVariableBlur;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIMaximumComponent;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIMaximumScaleTransform;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIMedian;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIMeshGenerator;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIMinimumComponent;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIMix;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIModTransition;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIMorphologyGradient;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIMorphologyMaximum;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIMorphologyMinimum;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIMorphologyRectangleMaximum;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIMorphologyRectangleMinimum;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIMotionBlur;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CINinePartStretched;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CINinePartTiled;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CINoiseReduction;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIOpTile;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIPDF417BarcodeGenerator;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIPageCurlTransition;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIPageCurlWithShadowTransition;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIPaletteCentroid;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIPalettize;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIParallelogramTile;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIPersonSegmentation;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIPerspectiveCorrection;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIPerspectiveRotate;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIPerspectiveTile;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIPerspectiveTransform;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIPerspectiveTransformWithExtent;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIPhotoEffect;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIPinchDistortion;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIPixellate;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIPointillize;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIQRCodeGenerator;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIRadialGradient;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIRandomGenerator;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIRippleTransition;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIRoundedRectangleGenerator;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIRoundedRectangleStrokeGenerator;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIRowAverage;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CISRGBToneCurveToLinear;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CISaliencyMap;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CISepiaTone;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIShadedMaterial;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CISharpenLuminance;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CISixfoldReflectedTile;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CISixfoldRotatedTile;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CISmoothLinearGradient;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CISobelGradients;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CISpotColor;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CISpotLight;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIStarShineGenerator;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIStraighten;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIStretchCrop;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIStripesGenerator;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CISunbeamsGenerator;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CISwipeTransition;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CITemperatureAndTint;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CITextImageGenerator;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIThermal;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIToneCurve;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIToneMapHeadroom;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CITorusLensDistortion;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CITransitionFilter;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CITriangleKaleidoscope;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CITriangleTile;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CITwelvefoldReflectedTile;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CITwirlDistortion;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIUnsharpMask;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIVibrance;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIVignette;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIVignetteEffect;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIVortexDistortion;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIWhitePointAdjust;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIXRay;
+#[cfg(all(feature = "CIFilter", feature = "CIFilterBuiltins"))]
+pub use self::__CIFilterBuiltins::CIZoomBlur;
 #[cfg(feature = "CIFilterConstructor")]
 pub use self::__CIFilterConstructor::CIFilterConstructor;
 #[cfg(feature = "CIFilterGenerator")]
