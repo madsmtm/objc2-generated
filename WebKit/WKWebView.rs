@@ -9,6 +9,8 @@ use objc2_app_kit::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-security")]
+use objc2_security::*;
 
 use crate::*;
 
@@ -347,6 +349,19 @@ extern_methods!(
         /// for this property.
         #[method(hasOnlySecureContent)]
         pub unsafe fn hasOnlySecureContent(&self) -> bool;
+
+        #[cfg(feature = "objc2-security")]
+        /// A SecTrustRef for the currently committed navigation.
+        ///
+        ///
+        /// ```text
+        ///  WKWebView
+        /// ```
+        ///
+        /// is key-value observing (KVO) compliant
+        /// for this property.
+        #[method_id(@__retain_semantics Other serverTrust)]
+        pub unsafe fn serverTrust(&self) -> Option<Retained<SecTrust>>;
 
         /// A Boolean value indicating whether there is a back item in
         /// the back-forward list that can be navigated to.

@@ -4,6 +4,8 @@ use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-security")]
+use objc2_security::*;
 
 use crate::*;
 
@@ -228,5 +230,21 @@ extern_protocol!(
         unsafe fn supportedUserSecureEnclaveKeySigningAlgorithms(
             &self,
         ) -> Retained<NSArray<ASAuthorizationProviderExtensionSigningAlgorithm>>;
+
+        #[cfg(all(
+            feature = "ASAuthorizationProviderExtensionLoginManager",
+            feature = "block2",
+            feature = "objc2-security"
+        ))]
+        /// The specified keyType will rotate to a new key. The rotation is complete when the completion handler is called.  This is only called by the system for automatic key rotation.
+        #[optional]
+        #[method(keyWillRotateForKeyType:newKey:loginManager:completion:)]
+        unsafe fn keyWillRotateForKeyType_newKey_loginManager_completion(
+            &self,
+            key_type: ASAuthorizationProviderExtensionKeyType,
+            new_key: &SecKey,
+            login_manager: &ASAuthorizationProviderExtensionLoginManager,
+            completion: &block2::Block<dyn Fn(Bool)>,
+        );
     }
 );

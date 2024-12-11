@@ -4,6 +4,8 @@ use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-security")]
+use objc2_security::*;
 
 use crate::*;
 
@@ -135,6 +137,49 @@ extern_methods!(
             &self,
             login_configuration: &ASAuthorizationProviderExtensionLoginConfiguration,
         ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "objc2-security")]
+        /// Saves the provided certificate for the key type.
+        ///
+        /// Parameter `certificate`: The certificate to save.
+        ///
+        /// Parameter `keyType`: The key type for the certificate.
+        #[method(saveCertificate:keyType:)]
+        pub unsafe fn saveCertificate_keyType(
+            &self,
+            certificate: &SecCertificate,
+            key_type: ASAuthorizationProviderExtensionKeyType,
+        );
+
+        #[cfg(feature = "objc2-security")]
+        /// Retrieves the key for the specified platform SSO key type.
+        ///
+        /// Parameter `keyType`: The key type to retrieve.
+        #[method_id(@__retain_semantics Copy copyKeyForKeyType:)]
+        pub unsafe fn copyKeyForKeyType(
+            &self,
+            key_type: ASAuthorizationProviderExtensionKeyType,
+        ) -> Option<Retained<SecKey>>;
+
+        #[cfg(feature = "objc2-security")]
+        /// Retrieves the identity for the specified platform SSO key type.
+        ///
+        /// Parameter `keyType`: The key type to retrieve.
+        #[method_id(@__retain_semantics Copy copyIdentityForKeyType:)]
+        pub unsafe fn copyIdentityForKeyType(
+            &self,
+            key_type: ASAuthorizationProviderExtensionKeyType,
+        ) -> Option<Retained<SecIdentity>>;
+
+        #[cfg(feature = "objc2-security")]
+        /// Generates a new key for the specified platform SSO key type using the strongest supported key strength returning the new key.  Nil is returned if there is an error generating the new key.
+        ///
+        /// Parameter `keyType`: The key type to retrieve.
+        #[method_id(@__retain_semantics Other beginKeyRotationForKeyType:)]
+        pub unsafe fn beginKeyRotationForKeyType(
+            &self,
+            key_type: ASAuthorizationProviderExtensionKeyType,
+        ) -> Option<Retained<SecKey>>;
 
         /// Completes rotation for the key to replace the previous key.
         ///

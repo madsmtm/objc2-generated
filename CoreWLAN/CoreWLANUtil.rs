@@ -5,6 +5,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-security")]
+use objc2_security::*;
 
 use crate::*;
 
@@ -165,6 +167,60 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Parameter `domain`: The keychain domain, which determines which keychain will be used.
+    ///
+    ///
+    /// Parameter `ssid`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+    ///
+    ///
+    /// Parameter `identity`: A SecIdentityRef passed by reference, which upon return will contain the SecIdentityRef associated with the specified SSID.
+    /// This parameter is optional.  The returned value must be released by the caller.
+    ///
+    ///
+    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
+    /// <i>
+    /// errSecSuccess
+    /// </i>
+    /// indicates no error occurred.
+    ///
+    ///
+    /// Finds and returns the identity stored for the specified SSID and keychain domain.
+    #[cfg(all(feature = "CoreWLANTypes", feature = "objc2-security"))]
+    pub fn CWKeychainCopyWiFiEAPIdentity(
+        domain: CWKeychainDomain,
+        ssid: &NSData,
+        identity: *mut *mut SecIdentity,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Parameter `domain`: The keychain domain, which determines which keychain will be used.
+    ///
+    ///
+    /// Parameter `ssid`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+    ///
+    ///
+    /// Parameter `identity`: The identity containing the certificate to use for 802.1X authentication.
+    /// Passing nil clears any identity association for the specified SSID.
+    ///
+    ///
+    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
+    /// <i>
+    /// errSecSuccess
+    /// </i>
+    /// indicates no error occurred.
+    ///
+    ///
+    /// Associates an identity to the specified SSID and keychain domain.
+    #[cfg(all(feature = "CoreWLANTypes", feature = "objc2-security"))]
+    pub fn CWKeychainSetWiFiEAPIdentity(
+        domain: CWKeychainDomain,
+        ssid: &NSData,
+        identity: Option<&SecIdentity>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
     /// Parameter `identityList`: A CFArrayRef passed by reference, which upon return will be populated with a list of SecIdentityRef objects.
     /// This parameter is optional.  The returned value must be released by the caller.
     ///
@@ -255,6 +311,54 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Use CWKeychainDeleteWiFiEAPUsernameAndPassword() instead"]
     pub fn CWKeychainDeleteEAPUsernameAndPassword(ssid_data: &CFData) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Parameter `ssidData`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+    ///
+    ///
+    /// Parameter `identity`: A SecIdentityRef passed by reference, which upon return will contain the SecIdentityRef associated with the specified SSID.
+    /// This parameter is optional.  The returned value must be released by the caller.
+    ///
+    ///
+    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
+    /// <i>
+    /// errSecSuccess
+    /// </i>
+    /// indicates no error occurred.
+    ///
+    ///
+    /// Finds and returns the identity stored for the specified SSID and keychain domain.
+    /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
+    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
+    #[deprecated = "Use CWKeychainCopyWiFiEAPIdentity() instead"]
+    pub fn CWKeychainCopyEAPIdentity(
+        ssid_data: &CFData,
+        identity: *mut *mut SecIdentity,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Parameter `ssidData`: The service set identifier (SSID) which is used to uniquely identify the keychain item.
+    ///
+    ///
+    /// Parameter `identity`: The identity containing the certificate to use for 802.1X authentication.
+    /// Passing nil clears any identity association for the specified SSID.
+    ///
+    ///
+    /// Returns: An OSStatus error code indicating whether or not a failure occurred.
+    /// <i>
+    /// errSecSuccess
+    /// </i>
+    /// indicates no error occurred.
+    ///
+    ///
+    /// Associates an identity to the specified SSID.
+    /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
+    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
+    #[deprecated = "Use CWKeychainSetWiFiEAPIdentity() instead"]
+    pub fn CWKeychainSetEAPIdentity(ssid_data: &CFData, identity: Option<&SecIdentity>)
+        -> OSStatus;
 }
 
 extern "C-unwind" {

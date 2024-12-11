@@ -379,7 +379,18 @@ pub struct CFRunLoopSourceContext {
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
 unsafe impl Encode for CFRunLoopSourceContext {
-    const ENCODING: Encoding = Encoding::Struct("?", &[<CFIndex>::ENCODING,<*mut c_void>::ENCODING,<Option<unsafe extern "C-unwind" fn(*const c_void,) -> *const c_void>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*const c_void,)>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*const c_void,) -> *mut CFString>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*const c_void,*const c_void,) -> Boolean>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*const c_void,) -> CFHashCode>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*mut c_void,*mut CFRunLoop,*mut CFRunLoopMode,)>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*mut c_void,*mut CFRunLoop,*mut CFRunLoopMode,)>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*mut c_void,)>>::ENCODING,]);
+    const ENCODING: Encoding = Encoding::Struct("?", &[
+        <CFIndex>::ENCODING,
+        <*mut c_void>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*const c_void,) -> *const c_void>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*const c_void,)>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*const c_void,) -> *mut CFString>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*const c_void,*const c_void,) -> Boolean>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*const c_void,) -> CFHashCode>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut CFRunLoop,*mut CFRunLoopMode,)>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut CFRunLoop,*mut CFRunLoopMode,)>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*mut c_void,)>>::ENCODING,
+    ]);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -412,7 +423,17 @@ pub struct CFRunLoopSourceContext1 {
 
 #[cfg(all(feature = "CFBase", feature = "libc", feature = "objc2"))]
 unsafe impl Encode for CFRunLoopSourceContext1 {
-    const ENCODING: Encoding = Encoding::Struct("?", &[<CFIndex>::ENCODING,<*mut c_void>::ENCODING,<Option<unsafe extern "C-unwind" fn(*const c_void,) -> *const c_void>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*const c_void,)>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*const c_void,) -> *mut CFString>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*const c_void,*const c_void,) -> Boolean>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*const c_void,) -> CFHashCode>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*mut c_void,) -> libc::mach_port_t>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*mut c_void,CFIndex,*mut CFAllocator,*mut c_void,) -> *mut c_void>>::ENCODING,]);
+    const ENCODING: Encoding = Encoding::Struct("?", &[
+        <CFIndex>::ENCODING,
+        <*mut c_void>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*const c_void,) -> *const c_void>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*const c_void,)>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*const c_void,) -> *mut CFString>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*const c_void,*const c_void,) -> Boolean>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*const c_void,) -> CFHashCode>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> libc::mach_port_t>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*mut c_void,CFIndex,*mut CFAllocator,*mut c_void,) -> *mut c_void>>::ENCODING,
+    ]);
 }
 
 #[cfg(all(feature = "CFBase", feature = "libc", feature = "objc2"))]

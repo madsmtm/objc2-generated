@@ -4,6 +4,8 @@ use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-security")]
+use objc2_security::*;
 
 use crate::*;
 
@@ -479,6 +481,39 @@ extern_methods!(
         /// Disassociates from the current Wi-Fi network.
         #[method(disassociate)]
         pub unsafe fn disassociate(&self);
+
+        #[cfg(all(feature = "CWNetwork", feature = "objc2-security"))]
+        /// Parameter `network`: The network to which the Wi-Fi interface will associate.
+        ///
+        ///
+        /// Parameter `username`: The username to use for 802.1X authentication.
+        ///
+        ///
+        /// Parameter `password`: The password to use for 802.1X authentication.
+        ///
+        ///
+        /// Parameter `identity`: The identity to use for IEEE 802.1X authentication. Holds the corresponding client certificate.
+        ///
+        ///
+        /// Parameter `error`: An NSError object passed by reference, which upon return will contain the error if an error occurs.
+        /// This parameter is optional.
+        ///
+        ///
+        /// Returns: Returns YES upon success, or NO if an error occurred.
+        ///
+        ///
+        /// Associates to an enterprise W-Fi network using the specified 802.1X credentials.
+        ///
+        ///
+        /// This method will block for the duration of the association.
+        #[method(associateToEnterpriseNetwork:identity:username:password:error:_)]
+        pub unsafe fn associateToEnterpriseNetwork_identity_username_password_error(
+            &self,
+            network: &CWNetwork,
+            identity: Option<&SecIdentity>,
+            username: Option<&NSString>,
+            password: Option<&NSString>,
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "CoreWLANTypes")]
         /// Parameter `ssidData`: The SSID to use for the IBSS network.

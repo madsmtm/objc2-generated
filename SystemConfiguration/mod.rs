@@ -480,6 +480,8 @@ pub use self::__SCPreferences::SCPreferencesContext;
 pub use self::__SCPreferences::SCPreferencesCopyKeyList;
 #[cfg(feature = "SCPreferences")]
 pub use self::__SCPreferences::SCPreferencesCreate;
+#[cfg(all(feature = "SCPreferences", feature = "objc2-security"))]
+pub use self::__SCPreferences::SCPreferencesCreateWithAuthorization;
 #[cfg(feature = "SCPreferences")]
 pub use self::__SCPreferences::SCPreferencesGetSignature;
 #[cfg(feature = "SCPreferences")]

@@ -7,6 +7,8 @@ use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-security")]
+use objc2_security::*;
 
 use crate::*;
 
@@ -163,6 +165,49 @@ pub unsafe extern "C-unwind" fn SCPreferencesCreate(
         ) -> *mut SCPreferences;
     }
     let ret = unsafe { SCPreferencesCreate(allocator, name, prefs_id) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+/// Initiates access to the per-system set of configuration
+/// preferences.
+///
+/// Parameter `allocator`: The CFAllocator that should be used to allocate
+/// memory for this preferences session.
+/// This parameter may be NULL in which case the current
+/// default CFAllocator is used.
+/// If this reference is not a valid CFAllocator, the behavior
+/// is undefined.
+///
+/// Parameter `name`: A string that describes the name of the calling
+/// process.
+///
+/// Parameter `prefsID`: A string that identifies the name of the
+/// group of preferences to be accessed or updated.
+///
+/// Parameter `authorization`: An authorization reference that is used to
+/// authorize any access to the enhanced privileges needed
+/// to manage the preferences session.
+///
+/// Returns: Returns a reference to the new SCPreferences.
+/// You must release the returned value.
+#[cfg(feature = "objc2-security")]
+#[inline]
+pub unsafe extern "C-unwind" fn SCPreferencesCreateWithAuthorization(
+    allocator: Option<&CFAllocator>,
+    name: &CFString,
+    prefs_id: Option<&CFString>,
+    authorization: AuthorizationRef,
+) -> Option<CFRetained<SCPreferences>> {
+    extern "C-unwind" {
+        fn SCPreferencesCreateWithAuthorization(
+            allocator: Option<&CFAllocator>,
+            name: &CFString,
+            prefs_id: Option<&CFString>,
+            authorization: AuthorizationRef,
+        ) -> *mut SCPreferences;
+    }
+    let ret =
+        unsafe { SCPreferencesCreateWithAuthorization(allocator, name, prefs_id, authorization) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 

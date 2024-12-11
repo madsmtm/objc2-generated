@@ -4,6 +4,8 @@ use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-security")]
+use objc2_security::*;
 
 use crate::*;
 
@@ -661,6 +663,21 @@ extern_methods!(
             custom_federation_user_preauthentication_request_values: &NSArray<NSURLQueryItem>,
         );
 
+        #[cfg(feature = "objc2-security")]
+        /// The public key to use for encrypting the embedded login assertion.
+        ///
+        /// Only applies to password authentication.  If set, the password will encrypted in an embedded assertion instead of the login request itself.
+        #[method_id(@__retain_semantics Other loginRequestEncryptionPublicKey)]
+        pub unsafe fn loginRequestEncryptionPublicKey(&self) -> Option<Retained<SecKey>>;
+
+        #[cfg(feature = "objc2-security")]
+        /// Setter for [`loginRequestEncryptionPublicKey`][Self::loginRequestEncryptionPublicKey].
+        #[method(setLoginRequestEncryptionPublicKey:)]
+        pub unsafe fn setLoginRequestEncryptionPublicKey(
+            &self,
+            login_request_encryption_public_key: Option<&SecKey>,
+        );
+
         /// The APV prefix used for encrypted embedded login assertions.
         #[method_id(@__retain_semantics Other loginRequestEncryptionAPVPrefix)]
         pub unsafe fn loginRequestEncryptionAPVPrefix(&self) -> Option<Retained<NSData>>;
@@ -804,5 +821,15 @@ extern_methods!(
         /// Setter for [`hpkePreSharedKeyID`][Self::hpkePreSharedKeyID].
         #[method(setHpkePreSharedKeyID:)]
         pub unsafe fn setHpkePreSharedKeyID(&self, hpke_pre_shared_key_id: Option<&NSData>);
+
+        #[cfg(feature = "objc2-security")]
+        /// The Authentication public key to be used for HPKE.  Setting this value with changet the mode to Auth or AuthPSK if the hpkePreSharedKey is also set.  This public key is used to authenticate HPKE responses.
+        #[method_id(@__retain_semantics Other hpkeAuthPublicKey)]
+        pub unsafe fn hpkeAuthPublicKey(&self) -> Option<Retained<SecKey>>;
+
+        #[cfg(feature = "objc2-security")]
+        /// Setter for [`hpkeAuthPublicKey`][Self::hpkeAuthPublicKey].
+        #[method(setHpkeAuthPublicKey:)]
+        pub unsafe fn setHpkeAuthPublicKey(&self, hpke_auth_public_key: Option<&SecKey>);
     }
 );

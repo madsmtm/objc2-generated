@@ -364,7 +364,14 @@ pub struct NSMapTableKeyCallBacks {
 
 #[cfg(feature = "NSString")]
 unsafe impl Encode for NSMapTableKeyCallBacks {
-    const ENCODING: Encoding = Encoding::Struct("?", &[<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,) -> NSUInteger>>::ENCODING,<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,NonNull<c_void>,) -> Bool>>::ENCODING,<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,)>>::ENCODING,<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,)>>::ENCODING,<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,) -> *mut NSString>>::ENCODING,<*const c_void>::ENCODING,]);
+    const ENCODING: Encoding = Encoding::Struct("?", &[
+        <Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,) -> NSUInteger>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,NonNull<c_void>,) -> Bool>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,)>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,)>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,) -> *mut NSString>>::ENCODING,
+        <*const c_void>::ENCODING,
+    ]);
 }
 
 #[cfg(feature = "NSString")]

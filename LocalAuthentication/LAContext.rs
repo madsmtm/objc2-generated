@@ -4,6 +4,8 @@ use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-security")]
+use objc2_security::*;
 
 use crate::*;
 
@@ -339,6 +341,65 @@ extern_methods!(
         /// Returns: YES on success, NO otherwise.
         #[method(isCredentialSet:)]
         pub unsafe fn isCredentialSet(&self, r#type: LACredentialType) -> bool;
+
+        #[cfg(all(feature = "block2", feature = "objc2-security"))]
+        /// Evaluates access control object for the specified operation.
+        ///
+        ///
+        /// Access control evaluation may involve prompting user for various kinds of interaction
+        /// or authentication. Actual behavior is dependent on evaluated access control, device type,
+        /// and can be affected by installed configuration profiles.
+        ///
+        /// Be sure to keep a strong reference to the context while the evaluation is in progress.
+        /// Otherwise, an evaluation would be canceled when the context is being deallocated.
+        ///
+        /// The method does not block. Instead, the caller must provide a reply block to be
+        /// called asynchronously when evaluation finishes. The block is executed on a private
+        /// queue internal to the framework in an unspecified threading context. Other than that,
+        /// no guarantee is made about which queue, thread, or run-loop the block is executed on.
+        ///
+        /// After successful access control evaluation, the LAContext can be used with keychain operations,
+        /// so that they do not require user to authenticate.
+        ///
+        /// Access control evaluation may fail for various reasons, including user cancel, system cancel
+        /// and others, see LAError codes.
+        ///
+        ///
+        /// Parameter `accessControl`: Access control object that is typically created by SecAccessControlCreateWithFlags.
+        ///
+        ///
+        /// Parameter `operation`: Type of operation the access control will be used with.
+        ///
+        ///
+        /// Parameter `localizedReason`: Application reason for authentication. This string must be provided in correct
+        /// localization and should be short and clear. It will be eventually displayed in
+        /// the authentication dialog as a part of the following string:
+        /// "<appname>" is trying to
+        /// <localized
+        /// reason>.
+        ///
+        /// For example, if the app name is "TestApp" and localizedReason is passed "access
+        /// the hidden records", then the authentication prompt will read:
+        /// "TestApp" is trying to access the hidden records.
+        ///
+        ///
+        /// Parameter `reply`: Reply block that is executed when access control evaluation finishes.
+        /// success Reply parameter that is YES if the access control has been evaluated successfully or
+        /// NO if the evaluation failed.
+        /// error Reply parameter that is nil if the access control has been evaluated successfully, or
+        /// it contains error information about the evaluation failure.
+        ///
+        ///
+        /// Warning: localizedReason parameter is mandatory and the call will throw NSInvalidArgumentException if
+        /// nil or empty string is specified.
+        #[method(evaluateAccessControl:operation:localizedReason:reply:)]
+        pub unsafe fn evaluateAccessControl_operation_localizedReason_reply(
+            &self,
+            access_control: &SecAccessControl,
+            operation: LAAccessControlOperation,
+            localized_reason: &NSString,
+            reply: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+        );
 
         /// Fallback button title.
         ///

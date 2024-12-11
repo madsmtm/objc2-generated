@@ -151,7 +151,22 @@ pub struct MIDIDriverInterface {
     feature = "objc2-core-foundation"
 ))]
 unsafe impl Encode for MIDIDriverInterface {
-    const ENCODING: Encoding = Encoding::Struct("MIDIDriverInterface", &[<NonNull<c_void>>::ENCODING,<unsafe extern "C-unwind" fn(NonNull<c_void>,REFIID,*mut LPVOID,) -> HRESULT>::ENCODING,<unsafe extern "C-unwind" fn(NonNull<c_void>,) -> ULONG>::ENCODING,<unsafe extern "C-unwind" fn(NonNull<c_void>,) -> ULONG>::ENCODING,<unsafe extern "C-unwind" fn(MIDIDriverRef,MIDIDeviceListRef,) -> OSStatus>::ENCODING,<unsafe extern "C-unwind" fn(MIDIDriverRef,MIDIDeviceListRef,) -> OSStatus>::ENCODING,<unsafe extern "C-unwind" fn(MIDIDriverRef,) -> OSStatus>::ENCODING,<unsafe extern "C-unwind" fn(MIDIDriverRef,MIDIDeviceRef,) -> OSStatus>::ENCODING,<unsafe extern "C-unwind" fn(MIDIDriverRef,NonNull<MIDIPacketList>,NonNull<c_void>,NonNull<c_void>,) -> OSStatus>::ENCODING,<unsafe extern "C-unwind" fn(MIDIDriverRef,MIDIEndpointRef,Boolean,) -> OSStatus>::ENCODING,<unsafe extern "C-unwind" fn(MIDIDriverRef,MIDIEndpointRef,*mut c_void,*mut c_void,) -> OSStatus>::ENCODING,<unsafe extern "C-unwind" fn(MIDIDriverRef,MIDIEndpointRef,NonNull<MIDIPacketList>,) -> OSStatus>::ENCODING,<unsafe extern "C-unwind" fn(MIDIDriverRef,NonNull<MIDIEventList>,NonNull<c_void>,NonNull<c_void>,) -> OSStatus>::ENCODING,<unsafe extern "C-unwind" fn(MIDIDriverRef,MIDIEndpointRef,NonNull<MIDIEventList>,) -> OSStatus>::ENCODING,]);
+    const ENCODING: Encoding = Encoding::Struct("MIDIDriverInterface", &[
+        <NonNull<c_void>>::ENCODING,
+        <unsafe extern "C-unwind" fn(NonNull<c_void>,REFIID,*mut LPVOID,) -> HRESULT>::ENCODING,
+        <unsafe extern "C-unwind" fn(NonNull<c_void>,) -> ULONG>::ENCODING,
+        <unsafe extern "C-unwind" fn(NonNull<c_void>,) -> ULONG>::ENCODING,
+        <unsafe extern "C-unwind" fn(MIDIDriverRef,MIDIDeviceListRef,) -> OSStatus>::ENCODING,
+        <unsafe extern "C-unwind" fn(MIDIDriverRef,MIDIDeviceListRef,) -> OSStatus>::ENCODING,
+        <unsafe extern "C-unwind" fn(MIDIDriverRef,) -> OSStatus>::ENCODING,
+        <unsafe extern "C-unwind" fn(MIDIDriverRef,MIDIDeviceRef,) -> OSStatus>::ENCODING,
+        <unsafe extern "C-unwind" fn(MIDIDriverRef,NonNull<MIDIPacketList>,NonNull<c_void>,NonNull<c_void>,) -> OSStatus>::ENCODING,
+        <unsafe extern "C-unwind" fn(MIDIDriverRef,MIDIEndpointRef,Boolean,) -> OSStatus>::ENCODING,
+        <unsafe extern "C-unwind" fn(MIDIDriverRef,MIDIEndpointRef,*mut c_void,*mut c_void,) -> OSStatus>::ENCODING,
+        <unsafe extern "C-unwind" fn(MIDIDriverRef,MIDIEndpointRef,NonNull<MIDIPacketList>,) -> OSStatus>::ENCODING,
+        <unsafe extern "C-unwind" fn(MIDIDriverRef,NonNull<MIDIEventList>,NonNull<c_void>,NonNull<c_void>,) -> OSStatus>::ENCODING,
+        <unsafe extern "C-unwind" fn(MIDIDriverRef,MIDIEndpointRef,NonNull<MIDIEventList>,) -> OSStatus>::ENCODING,
+    ]);
 }
 
 #[cfg(all(

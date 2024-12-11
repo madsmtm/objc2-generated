@@ -3,7 +3,11 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-security")]
+use objc2_security::*;
 
 use crate::*;
 
@@ -29,6 +33,70 @@ extern_methods!(
             &self,
             handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
+
+        #[cfg(all(
+            feature = "block2",
+            feature = "objc2-core-foundation",
+            feature = "objc2-security"
+        ))]
+        /// Encrypts the given data
+        ///
+        /// Parameter `data`: The data to encrypt.
+        ///
+        /// Parameter `algorithm`: A
+        /// `SecKeyAlgorithm`suitable for encrypting with this key –e.g:
+        /// `kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA256AESGCM`.
+        ///
+        /// Parameter `handler`: Completion handler with the ciphertext or an error on failure.
+        #[method(encryptData:secKeyAlgorithm:completion:)]
+        pub unsafe fn encryptData_secKeyAlgorithm_completion(
+            &self,
+            data: &NSData,
+            algorithm: &SecKeyAlgorithm,
+            handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+        );
+
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
+        /// Checks if the the provided algorithm can be used for encryption with the key.
+        ///
+        /// Parameter `algorithm`: Cryptographic algorithm
+        ///
+        /// Returns: `YES`in case the key supports the provided algorithm with the specified operation.
+        #[method(canEncryptUsingSecKeyAlgorithm:)]
+        pub unsafe fn canEncryptUsingSecKeyAlgorithm(&self, algorithm: &SecKeyAlgorithm) -> bool;
+
+        #[cfg(all(
+            feature = "block2",
+            feature = "objc2-core-foundation",
+            feature = "objc2-security"
+        ))]
+        /// Verifies a digital signature for the given data.
+        ///
+        /// Parameter `signedData`: The signed data.
+        ///
+        /// Parameter `signature`: The signature of the given data.
+        ///
+        /// Parameter `algorithm`: One of
+        /// `SecKeyAlgorithm`suitable for verifying signatures with this key –e.g:
+        /// `kSecKeyAlgorithmECDSASignatureMessageX962SHA256`
+        /// Parameter `handler`: Completion hadnler with the signature of given data or an error on failure.
+        #[method(verifyData:signature:secKeyAlgorithm:completion:)]
+        pub unsafe fn verifyData_signature_secKeyAlgorithm_completion(
+            &self,
+            signed_data: &NSData,
+            signature: &NSData,
+            algorithm: &SecKeyAlgorithm,
+            handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
+        /// Checks if the the provided algorithm can be used for verifying signatures with the key.
+        ///
+        /// Parameter `algorithm`: Cryptographic algorithm
+        ///
+        /// Returns: `YES`in case the key supports the provided algorithm with the specified operation.
+        #[method(canVerifyUsingSecKeyAlgorithm:)]
+        pub unsafe fn canVerifyUsingSecKeyAlgorithm(&self, algorithm: &SecKeyAlgorithm) -> bool;
 
         /// Clients cannot create
         /// `LAPublicKey`instances directly. They can only obtain them from a related

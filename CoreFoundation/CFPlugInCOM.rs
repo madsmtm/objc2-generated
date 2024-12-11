@@ -33,7 +33,12 @@ pub struct IUnknownVTbl {
 
 #[cfg(all(feature = "CFUUID", feature = "objc2"))]
 unsafe impl Encode for IUnknownVTbl {
-    const ENCODING: Encoding = Encoding::Struct("IUnknownVTbl", &[<*mut c_void>::ENCODING,<Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,]);
+    const ENCODING: Encoding = Encoding::Struct("IUnknownVTbl", &[
+        <*mut c_void>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
+    ]);
 }
 
 #[cfg(all(feature = "CFUUID", feature = "objc2"))]

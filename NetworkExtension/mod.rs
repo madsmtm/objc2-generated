@@ -25,6 +25,8 @@ use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-security")]
+use objc2_security::*;
 
 use crate::*;
 
@@ -646,6 +648,13 @@ extern_methods!(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
+
+        #[cfg(feature = "objc2-security")]
+        /// This function sets an authorization object that can be used to obtain the authorization rights necessary to modify the system VPN configuration.
+        ///
+        /// Parameter `authorization`: The AuthorizationRef to use to obtain rights.
+        #[method(setAuthorization:)]
+        pub unsafe fn setAuthorization(&self, authorization: AuthorizationRef);
 
         /// An array of NEOnDemandRule objects.
         #[method_id(@__retain_semantics Other onDemandRules)]
@@ -4721,6 +4730,22 @@ extern_methods!(
             preferred_tls_version: NEHotspotConfigurationEAPTLSVersion,
         );
 
+        #[cfg(feature = "objc2-security")]
+        /// Setter to configure the EAP peer identity. The application needs to store
+        /// this identity in keychain access group "$(TeamIdentifierPrefix)com.apple.networkextensionsharing".
+        /// The API uses SecItemCopyMatching to obtain persistent reference for this identity from application's
+        /// keychain and uses that at the time of EAP authentication.
+        /// This property is mandatory when EAP-TLS is desired or tlsClientCertificateRequired is set to YES.
+        ///
+        ///
+        /// Parameter `identity`: The identity of the EAP Peer. This is a SecIdentityRef object that contains
+        /// a SecKeyRef object and an associated SecCertificateRef object.
+        ///
+        /// Returns: returns NO if the parameter is not an object of SecIdentityRef type or if the persistent reference
+        /// is not found in the application's keychain else returns YES.
+        #[method(setIdentity:)]
+        pub unsafe fn setIdentity(&self, identity: &SecIdentity) -> bool;
+
         /// Setter to configure an array of trusted server certificates used for trust evaluation of
         /// the server certificate.
         ///
@@ -8521,6 +8546,29 @@ extern_protocol!(
         #[method(shouldProvideIdentityForConnection:)]
         unsafe fn shouldProvideIdentityForConnection(&self, connection: &NWTCPConnection) -> bool;
 
+        #[cfg(all(feature = "block2", feature = "objc2-security"))]
+        /// The caller can implement this optional protocol method to provide the identity
+        /// and an optional certificate chain to be used for authentication.
+        ///
+        /// Parameter `connection`: The connection sending this message
+        ///
+        /// Parameter `completion`: The completion handler for passing identity and certificate chain to the connection.
+        /// The "identity" argument is required and must not be nil. The "certificateChain" argument is optional,
+        /// and is an array of one or more SecCertificateRef objects. The certificate chain must contain objects
+        /// of type SecCertificateRef only. If the certificate chain is set, it will be used. Otherwise, the leaf
+        /// certificate will be extracted from the SecIdentityRef object and will be used for authentication.
+        ///
+        /// The caller is responsible for keeping the argument object(s) alive for the duration of the
+        /// completion handler invocation.
+        #[deprecated = "Use `sec_protocol_options_set_challenge_block` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[optional]
+        #[method(provideIdentityForConnection:completionHandler:)]
+        unsafe fn provideIdentityForConnection_completionHandler(
+            &self,
+            connection: &NWTCPConnection,
+            completion: &block2::Block<dyn Fn(NonNull<SecIdentity>, NonNull<NSArray<AnyObject>>)>,
+        );
+
         /// The caller can implement this optional protocol method to decide whether it
         /// wants to take over the default trust evaluation for this connection. If this delegate method
         /// is not implemented, the return value will default to YES if
@@ -8534,6 +8582,30 @@ extern_protocol!(
         #[optional]
         #[method(shouldEvaluateTrustForConnection:)]
         unsafe fn shouldEvaluateTrustForConnection(&self, connection: &NWTCPConnection) -> bool;
+
+        #[cfg(all(feature = "block2", feature = "objc2-security"))]
+        /// The caller can implement this optional protocol method to set up custom policies
+        /// for peer certificate trust evaluation. If the delegate method is implemented, the caller
+        /// is responsible for creating and setting up the SecTrustRef object and passing it to the
+        /// completion handler. Otherwise, the default trust evaluation policy is used for the connection.
+        ///
+        /// Parameter `connection`: The connection sending this message
+        ///
+        /// Parameter `peerCertificateChain`: The peer certificate chain
+        ///
+        /// Parameter `completion`: The completion handler for passing the SecTrustRef object to the connection.
+        /// The SecTrustRef object "trust" is required and must not be nil. It will be evaluated using
+        /// SecTrustEvaluate() if necessary. The caller is responsible for keeping the argument object
+        /// alive for the duration of the completion handler invocation.
+        #[deprecated = "Use `sec_protocol_options_set_verify_block` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+        #[optional]
+        #[method(evaluateTrustForConnection:peerCertificateChain:completionHandler:)]
+        unsafe fn evaluateTrustForConnection_peerCertificateChain_completionHandler(
+            &self,
+            connection: &NWTCPConnection,
+            peer_certificate_chain: &NSArray<AnyObject>,
+            completion: &block2::Block<dyn Fn(NonNull<SecTrust>)>,
+        );
     }
 );
 
