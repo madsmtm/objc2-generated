@@ -243,8 +243,6 @@ pub use self::__IOSurfaceRef::IOSurfaceMemoryLedgerFlags;
 #[cfg(feature = "IOSurfaceRef")]
 pub use self::__IOSurfaceRef::IOSurfaceMemoryLedgerTags;
 #[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceRef;
-#[cfg(feature = "IOSurfaceRef")]
 pub use self::__IOSurfaceRef::IOSurfaceRemoveAllValues;
 #[cfg(all(feature = "IOSurfaceRef", feature = "objc2-core-foundation"))]
 pub use self::__IOSurfaceRef::IOSurfaceRemoveValue;

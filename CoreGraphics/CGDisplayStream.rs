@@ -56,7 +56,7 @@ unsafe impl RefEncode for CGDisplayStreamFrameStatus {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamframeavailablehandler?language=objc)
-#[cfg(all(feature = "CGBase", feature = "block2", feature = "objc2-io-surface"))]
+#[cfg(all(feature = "block2", feature = "objc2-io-surface"))]
 #[cfg(not(target_os = "watchos"))]
 pub type CGDisplayStreamFrameAvailableHandler = *mut block2::Block<
     dyn Fn(CGDisplayStreamFrameStatus, u64, IOSurfaceRef, CGDisplayStreamUpdateRef),
@@ -175,7 +175,6 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(all(
-        feature = "CGBase",
         feature = "CGDirectDisplay",
         feature = "block2",
         feature = "objc2-core-foundation",

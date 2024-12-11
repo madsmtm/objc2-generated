@@ -6,9 +6,6 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfaceref?language=objc)
-pub type IOSurfaceRef = *mut c_void;
-
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceallocsize?language=objc)
     #[cfg(feature = "objc2-core-foundation")]

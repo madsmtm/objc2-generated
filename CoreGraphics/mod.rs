@@ -1258,7 +1258,6 @@ pub use self::__CGDisplayStream::kCGDisplayStreamYCbCrMatrix_ITU_R_709_2;
 #[cfg(all(feature = "CGDisplayStream", feature = "objc2-core-foundation"))]
 pub use self::__CGDisplayStream::kCGDisplayStreamYCbCrMatrix_SMPTE_240M_1995;
 #[cfg(all(
-    feature = "CGBase",
     feature = "CGDirectDisplay",
     feature = "CGDisplayStream",
     feature = "block2",
@@ -1268,7 +1267,6 @@ pub use self::__CGDisplayStream::kCGDisplayStreamYCbCrMatrix_SMPTE_240M_1995;
 #[cfg(not(target_os = "watchos"))]
 pub use self::__CGDisplayStream::CGDisplayStreamCreate;
 #[cfg(all(
-    feature = "CGBase",
     feature = "CGDisplayStream",
     feature = "block2",
     feature = "objc2-io-surface"
