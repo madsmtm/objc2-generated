@@ -101,6 +101,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
+    #[must_use]
     pub fn CGRectStandardize(rect: CGRect) -> CGRect;
 }
 
@@ -121,26 +122,31 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
+    #[must_use]
     pub fn CGRectInset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> CGRect;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
+    #[must_use]
     pub fn CGRectIntegral(rect: CGRect) -> CGRect;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
+    #[must_use]
     pub fn CGRectUnion(r1: CGRect, r2: CGRect) -> CGRect;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
+    #[must_use]
     pub fn CGRectIntersection(r1: CGRect, r2: CGRect) -> CGRect;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
+    #[must_use]
     pub fn CGRectOffset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> CGRect;
 }
 

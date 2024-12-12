@@ -116,6 +116,7 @@ extern_methods!(
         #[method(setAdditionalValue:forKey:)]
         pub unsafe fn setAdditionalValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
 
+        #[must_use]
         #[method_id(@__retain_semantics Other additionalValueForKey:)]
         pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
@@ -184,6 +185,7 @@ extern_methods!(
         #[method(setAdditionalValue:forKey:)]
         pub unsafe fn setAdditionalValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
 
+        #[must_use]
         #[method_id(@__retain_semantics Other additionalValueForKey:)]
         pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
     }
