@@ -1573,6 +1573,8 @@ pub use self::__NSHTTPCookie::NSHTTPCookieSameSiteStrict;
 #[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookieSecure;
 #[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
+pub use self::__NSHTTPCookie::NSHTTPCookieSetByJavaScript;
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookieStringPolicy;
 #[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookieValue;

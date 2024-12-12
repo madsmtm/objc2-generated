@@ -687,6 +687,10 @@ extern_methods!(
             allowed_writing_tools_result_options: UIWritingToolsResultOptions,
         );
 
+        #[cfg(feature = "UIWritingToolsCoordinator")]
+        #[method_id(@__retain_semantics Other writingToolsCoordinator)]
+        pub unsafe fn writingToolsCoordinator(&self) -> Retained<UIWritingToolsCoordinator>;
+
         #[cfg(feature = "UITextFormattingViewControllerConfiguration")]
         #[method_id(@__retain_semantics Other textFormattingConfiguration)]
         pub unsafe fn textFormattingConfiguration(

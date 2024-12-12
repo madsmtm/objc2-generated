@@ -113,6 +113,21 @@ extern_protocol!(
             connections: &NSArray<AVCaptureConnection>,
         );
 
+        #[cfg(all(
+            feature = "AVCaptureOutputBase",
+            feature = "AVCaptureSession",
+            feature = "objc2-core-media"
+        ))]
+        #[optional]
+        #[method(captureOutput:didStartRecordingToOutputFileAtURL:startPTS:fromConnections:)]
+        unsafe fn captureOutput_didStartRecordingToOutputFileAtURL_startPTS_fromConnections(
+            &self,
+            output: &AVCaptureFileOutput,
+            file_url: &NSURL,
+            start_pts: CMTime,
+            connections: &NSArray<AVCaptureConnection>,
+        );
+
         #[cfg(all(feature = "AVCaptureOutputBase", feature = "AVCaptureSession"))]
         #[optional]
         #[method(captureOutput:didPauseRecordingToOutputFileAtURL:fromConnections:)]

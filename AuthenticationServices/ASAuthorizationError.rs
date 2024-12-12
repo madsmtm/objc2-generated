@@ -31,6 +31,10 @@ impl ASAuthorizationError {
     pub const NotInteractive: Self = Self(1005);
     #[doc(alias = "ASAuthorizationErrorMatchedExcludedCredential")]
     pub const MatchedExcludedCredential: Self = Self(1006);
+    #[doc(alias = "ASAuthorizationErrorCredentialImport")]
+    pub const CredentialImport: Self = Self(1007);
+    #[doc(alias = "ASAuthorizationErrorCredentialExport")]
+    pub const CredentialExport: Self = Self(1008);
 }
 
 unsafe impl Encode for ASAuthorizationError {

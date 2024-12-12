@@ -28,6 +28,30 @@ unsafe impl RefEncode for WKContentMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferencesupgradetohttpspolicy?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKWebpagePreferencesUpgradeToHTTPSPolicy(pub NSInteger);
+impl WKWebpagePreferencesUpgradeToHTTPSPolicy {
+    #[doc(alias = "WKWebpagePreferencesUpgradeToHTTPSPolicyKeepAsRequested")]
+    pub const KeepAsRequested: Self = Self(0);
+    #[doc(alias = "WKWebpagePreferencesUpgradeToHTTPSPolicyAutomaticFallbackToHTTP")]
+    pub const AutomaticFallbackToHTTP: Self = Self(1);
+    #[doc(alias = "WKWebpagePreferencesUpgradeToHTTPSPolicyUserMediatedFallbackToHTTP")]
+    pub const UserMediatedFallbackToHTTP: Self = Self(2);
+    #[doc(alias = "WKWebpagePreferencesUpgradeToHTTPSPolicyErrorOnFailure")]
+    pub const ErrorOnFailure: Self = Self(3);
+}
+
+unsafe impl Encode for WKWebpagePreferencesUpgradeToHTTPSPolicy {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for WKWebpagePreferencesUpgradeToHTTPSPolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences?language=objc)
     #[unsafe(super(NSObject))]
@@ -57,6 +81,17 @@ extern_methods!(
 
         #[method(setLockdownModeEnabled:)]
         pub unsafe fn setLockdownModeEnabled(&self, lockdown_mode_enabled: bool);
+
+        #[method(preferredHTTPSNavigationPolicy)]
+        pub unsafe fn preferredHTTPSNavigationPolicy(
+            &self,
+        ) -> WKWebpagePreferencesUpgradeToHTTPSPolicy;
+
+        #[method(setPreferredHTTPSNavigationPolicy:)]
+        pub unsafe fn setPreferredHTTPSNavigationPolicy(
+            &self,
+            preferred_https_navigation_policy: WKWebpagePreferencesUpgradeToHTTPSPolicy,
+        );
     }
 );
 

@@ -3,6 +3,9 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+use objc2_app_kit::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -203,6 +206,19 @@ extern_methods!(
 
         #[method(setSupportsAdaptiveImageGlyph:)]
         pub unsafe fn setSupportsAdaptiveImageGlyph(&self, supports_adaptive_image_glyph: bool);
+
+        #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
+        #[method(writingToolsBehavior)]
+        pub unsafe fn writingToolsBehavior(&self) -> NSWritingToolsBehavior;
+
+        #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
+        #[method(setWritingToolsBehavior:)]
+        pub unsafe fn setWritingToolsBehavior(
+            &self,
+            writing_tools_behavior: NSWritingToolsBehavior,
+        );
     }
 );
 

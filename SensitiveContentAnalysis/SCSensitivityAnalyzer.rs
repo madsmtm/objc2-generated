@@ -9,37 +9,6 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysis?language=objc)
-    #[unsafe(super(NSObject))]
-    #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct SCSensitivityAnalysis;
-);
-
-unsafe impl Send for SCSensitivityAnalysis {}
-
-unsafe impl Sync for SCSensitivityAnalysis {}
-
-unsafe impl NSObjectProtocol for SCSensitivityAnalysis {}
-
-extern_methods!(
-    unsafe impl SCSensitivityAnalysis {
-        #[method(isSensitive)]
-        pub unsafe fn isSensitive(&self) -> bool;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCSensitivityAnalysis {
-        #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Retained<Self>;
-    }
-);
-
 /// [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysispolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -83,7 +52,7 @@ extern_methods!(
         #[method(analysisPolicy)]
         pub unsafe fn analysisPolicy(&self) -> SCSensitivityAnalysisPolicy;
 
-        #[cfg(feature = "block2")]
+        #[cfg(all(feature = "SCSensitivityAnalysis", feature = "block2"))]
         #[method(analyzeImageFile:completionHandler:)]
         pub unsafe fn analyzeImageFile_completionHandler(
             &self,
@@ -91,7 +60,11 @@ extern_methods!(
             completion_handler: &block2::Block<dyn Fn(*mut SCSensitivityAnalysis, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
+        #[cfg(all(
+            feature = "SCSensitivityAnalysis",
+            feature = "block2",
+            feature = "objc2-core-graphics"
+        ))]
         #[method(analyzeCGImage:completionHandler:)]
         pub unsafe fn analyzeCGImage_completionHandler(
             &self,
@@ -99,7 +72,7 @@ extern_methods!(
             completion_handler: &block2::Block<dyn Fn(*mut SCSensitivityAnalysis, *mut NSError)>,
         );
 
-        #[cfg(feature = "block2")]
+        #[cfg(all(feature = "SCSensitivityAnalysis", feature = "block2"))]
         #[method_id(@__retain_semantics Other analyzeVideoFile:completionHandler:)]
         pub unsafe fn analyzeVideoFile_completionHandler(
             &self,

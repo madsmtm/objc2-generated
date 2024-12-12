@@ -57,6 +57,9 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        #[method_id(@__retain_semantics Other writingToolsItems)]
+        pub unsafe fn writingToolsItems(mtm: MainThreadMarker) -> Retained<NSArray<NSMenuItem>>;
+
         #[method_id(@__retain_semantics Init initWithTitle:action:keyEquivalent:)]
         pub unsafe fn initWithTitle_action_keyEquivalent(
             this: Allocated<Self>,

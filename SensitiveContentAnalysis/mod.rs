@@ -16,12 +16,15 @@
 #[link(name = "SensitiveContentAnalysis", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "SCSensitivityAnalysis")]
+#[path = "SCSensitivityAnalysis.rs"]
+mod __SCSensitivityAnalysis;
 #[cfg(feature = "SCSensitivityAnalyzer")]
 #[path = "SCSensitivityAnalyzer.rs"]
 mod __SCSensitivityAnalyzer;
 
-#[cfg(feature = "SCSensitivityAnalyzer")]
-pub use self::__SCSensitivityAnalyzer::SCSensitivityAnalysis;
+#[cfg(feature = "SCSensitivityAnalysis")]
+pub use self::__SCSensitivityAnalysis::SCSensitivityAnalysis;
 #[cfg(feature = "SCSensitivityAnalyzer")]
 pub use self::__SCSensitivityAnalyzer::SCSensitivityAnalysisPolicy;
 #[cfg(feature = "SCSensitivityAnalyzer")]

@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-graphics")]
 use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-media")]
@@ -42,6 +44,17 @@ extern_methods!(
         pub unsafe fn captureImageWithFilter_configuration_completionHandler(
             content_filter: &SCContentFilter,
             config: &SCStreamConfiguration,
+            completion_handler: Option<&block2::Block<dyn Fn(CGImageRef, *mut NSError)>>,
+        );
+
+        #[cfg(all(
+            feature = "block2",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics"
+        ))]
+        #[method(captureImageInRect:completionHandler:)]
+        pub unsafe fn captureImageInRect_completionHandler(
+            rect: CGRect,
             completion_handler: Option<&block2::Block<dyn Fn(CGImageRef, *mut NSError)>>,
         );
     }

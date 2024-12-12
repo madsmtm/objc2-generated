@@ -444,6 +444,12 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypejpegxl?language=objc)
+    #[cfg(feature = "UTType")]
+    pub static UTTypeJPEGXL: &'static UTType;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttype3dcontent?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTType3DContent: &'static UTType;

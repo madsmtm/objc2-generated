@@ -300,6 +300,15 @@ extern_methods!(
         #[method(setAllowsContextMenuPlugIns:)]
         pub unsafe fn setAllowsContextMenuPlugIns(&self, allows_context_menu_plug_ins: bool);
 
+        #[method(automaticallyInsertsWritingToolsItems)]
+        pub unsafe fn automaticallyInsertsWritingToolsItems(&self) -> bool;
+
+        #[method(setAutomaticallyInsertsWritingToolsItems:)]
+        pub unsafe fn setAutomaticallyInsertsWritingToolsItems(
+            &self,
+            automatically_inserts_writing_tools_items: bool,
+        );
+
         #[method(showsStateColumn)]
         pub unsafe fn showsStateColumn(&self) -> bool;
 

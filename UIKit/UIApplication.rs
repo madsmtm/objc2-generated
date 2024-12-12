@@ -607,6 +607,86 @@ extern_methods!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategory?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UIApplicationCategory(pub NSInteger);
+impl UIApplicationCategory {
+    #[doc(alias = "UIApplicationCategoryWebBrowser")]
+    pub const WebBrowser: Self = Self(1);
+}
+
+unsafe impl Encode for UIApplicationCategory {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIApplicationCategory {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultstatus?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UIApplicationCategoryDefaultStatus(pub NSInteger);
+impl UIApplicationCategoryDefaultStatus {
+    #[doc(alias = "UIApplicationCategoryDefaultStatusUnavailable")]
+    pub const Unavailable: Self = Self(0);
+    #[doc(alias = "UIApplicationCategoryDefaultStatusIsDefault")]
+    pub const IsDefault: Self = Self(1);
+    #[doc(alias = "UIApplicationCategoryDefaultStatusNotDefault")]
+    pub const NotDefault: Self = Self(2);
+}
+
+unsafe impl Encode for UIApplicationCategoryDefaultStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIApplicationCategoryDefaultStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaulterrordomain?language=objc)
+    pub static UIApplicationCategoryDefaultErrorDomain: &'static NSErrorDomain;
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaulterrorcode?language=objc)
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UIApplicationCategoryDefaultErrorCode(pub NSInteger);
+impl UIApplicationCategoryDefaultErrorCode {
+    pub const UIApplicationCategoryDefaultErrorRateLimited: Self = Self(1);
+}
+
+unsafe impl Encode for UIApplicationCategoryDefaultErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIApplicationCategoryDefaultErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultstatuslastprovideddateerrorkey?language=objc)
+    pub static UIApplicationCategoryDefaultStatusLastProvidedDateErrorKey:
+        &'static NSErrorUserInfoKey;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultretryavailabilitydateerrorkey?language=objc)
+    pub static UIApplicationCategoryDefaultRetryAvailabilityDateErrorKey:
+        &'static NSErrorUserInfoKey;
+}
+
+extern_methods!(
+    /// DefaultApplication
+    #[cfg(feature = "UIResponder")]
+    unsafe impl UIApplication {}
+);
+
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionskey?language=objc)
 // NS_TYPED_ENUM
 pub type UIApplicationLaunchOptionsKey = NSString;
@@ -1370,6 +1450,11 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopensettingsurlstring?language=objc)
     pub static UIApplicationOpenSettingsURLString: &'static NSString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopendefaultapplicationssettingsurlstring?language=objc)
+    pub static UIApplicationOpenDefaultApplicationsSettingsURLString: &'static NSString;
 }
 
 extern "C" {

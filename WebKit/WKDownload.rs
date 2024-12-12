@@ -41,6 +41,13 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn WKDownloadDelegate>>);
 
+        #[method(isUserInitiated)]
+        pub unsafe fn isUserInitiated(&self) -> bool;
+
+        #[cfg(feature = "WKFrameInfo")]
+        #[method_id(@__retain_semantics Other originatingFrame)]
+        pub unsafe fn originatingFrame(&self) -> Retained<WKFrameInfo>;
+
         #[cfg(feature = "block2")]
         #[method(cancel:)]
         pub unsafe fn cancel(

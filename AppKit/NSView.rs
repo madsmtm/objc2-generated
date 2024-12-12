@@ -1480,6 +1480,24 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// NSWritingToolsCoordinator
+    #[cfg(feature = "NSResponder")]
+    unsafe impl NSView {
+        #[cfg(feature = "NSWritingToolsCoordinator")]
+        #[method_id(@__retain_semantics Other writingToolsCoordinator)]
+        pub unsafe fn writingToolsCoordinator(&self)
+            -> Option<Retained<NSWritingToolsCoordinator>>;
+
+        #[cfg(feature = "NSWritingToolsCoordinator")]
+        #[method(setWritingToolsCoordinator:)]
+        pub unsafe fn setWritingToolsCoordinator(
+            &self,
+            writing_tools_coordinator: Option<&NSWritingToolsCoordinator>,
+        );
+    }
+);
+
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewframedidchangenotification?language=objc)
     pub static NSViewFrameDidChangeNotification: &'static NSNotificationName;

@@ -709,6 +709,14 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// NSWritingToolsSupport
+    unsafe impl NSResponder {
+        #[method(showWritingTools:)]
+        pub unsafe fn showWritingTools(&self, sender: Option<&AnyObject>);
+    }
+);
+
+extern_methods!(
     /// NSDeprecated
     unsafe impl NSResponder {
         #[deprecated = "This has always returned NO and had no effect on macOS"]

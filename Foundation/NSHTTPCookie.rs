@@ -94,6 +94,12 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiesetbyjavascript?language=objc)
+    #[cfg(feature = "NSString")]
+    pub static NSHTTPCookieSetByJavaScript: &'static NSHTTPCookiePropertyKey;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiesamesitepolicy?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieSameSitePolicy: &'static NSHTTPCookiePropertyKey;

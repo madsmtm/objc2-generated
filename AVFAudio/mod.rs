@@ -154,6 +154,8 @@ pub use self::__AVAudioApplication::AVAudioApplication;
 #[cfg(feature = "AVAudioApplication")]
 pub use self::__AVAudioApplication::AVAudioApplicationInputMuteStateChangeNotification;
 #[cfg(feature = "AVAudioApplication")]
+pub use self::__AVAudioApplication::AVAudioApplicationMicrophoneInjectionPermission;
+#[cfg(feature = "AVAudioApplication")]
 pub use self::__AVAudioApplication::AVAudioApplicationMuteStateKey;
 #[cfg(feature = "AVAudioApplication")]
 pub use self::__AVAudioApplication::AVAudioApplicationRecordPermission;
@@ -367,6 +369,10 @@ pub use self::__AVAudioSession::AVAudioSessionMediaServicesWereLostNotification;
 #[cfg(feature = "AVAudioSession")]
 pub use self::__AVAudioSession::AVAudioSessionMediaServicesWereResetNotification;
 #[cfg(feature = "AVAudioSession")]
+pub use self::__AVAudioSession::AVAudioSessionMicrophoneInjectionCapabilitiesChangeNotification;
+#[cfg(feature = "AVAudioSession")]
+pub use self::__AVAudioSession::AVAudioSessionMicrophoneInjectionIsAvailableKey;
+#[cfg(feature = "AVAudioSession")]
 pub use self::__AVAudioSession::AVAudioSessionRenderingCapabilitiesChangeNotification;
 #[cfg(feature = "AVAudioSession")]
 pub use self::__AVAudioSession::AVAudioSessionRenderingModeChangeNotification;
@@ -458,6 +464,8 @@ pub use self::__AVAudioSessionTypes::AVAudioSessionInterruptionOptions;
 pub use self::__AVAudioSessionTypes::AVAudioSessionInterruptionReason;
 #[cfg(feature = "AVAudioSessionTypes")]
 pub use self::__AVAudioSessionTypes::AVAudioSessionInterruptionType;
+#[cfg(feature = "AVAudioSessionTypes")]
+pub use self::__AVAudioSessionTypes::AVAudioSessionMicrophoneInjectionMode;
 #[cfg(feature = "AVAudioSessionTypes")]
 pub use self::__AVAudioSessionTypes::AVAudioSessionMode;
 #[cfg(feature = "AVAudioSessionTypes")]

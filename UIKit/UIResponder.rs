@@ -151,6 +151,10 @@ extern_protocol!(
         #[optional]
         #[method(export:)]
         unsafe fn export(&self, sender: Option<&AnyObject>);
+
+        #[optional]
+        #[method(showWritingTools:)]
+        unsafe fn showWritingTools(&self, sender: &AnyObject);
     }
 
     unsafe impl ProtocolType for dyn UIResponderStandardEditActions {}

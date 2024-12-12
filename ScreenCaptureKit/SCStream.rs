@@ -182,6 +182,18 @@ extern_methods!(
         pub unsafe fn setIncludeMenuBar(&self, include_menu_bar: bool);
 
         #[cfg(feature = "SCShareableContent")]
+        #[method_id(@__retain_semantics Other includedDisplays)]
+        pub unsafe fn includedDisplays(&self) -> Retained<NSArray<SCDisplay>>;
+
+        #[cfg(feature = "SCShareableContent")]
+        #[method_id(@__retain_semantics Other includedApplications)]
+        pub unsafe fn includedApplications(&self) -> Retained<NSArray<SCRunningApplication>>;
+
+        #[cfg(feature = "SCShareableContent")]
+        #[method_id(@__retain_semantics Other includedWindows)]
+        pub unsafe fn includedWindows(&self) -> Retained<NSArray<SCWindow>>;
+
+        #[cfg(feature = "SCShareableContent")]
         #[method_id(@__retain_semantics Init initWithDesktopIndependentWindow:)]
         pub unsafe fn initWithDesktopIndependentWindow(
             this: Allocated<Self>,
@@ -657,6 +669,14 @@ extern_protocol!(
         #[optional]
         #[method(outputVideoEffectDidStopForStream:)]
         unsafe fn outputVideoEffectDidStopForStream(&self, stream: &SCStream);
+
+        #[optional]
+        #[method(streamDidBecomeActive:)]
+        unsafe fn streamDidBecomeActive(&self, stream: &SCStream);
+
+        #[optional]
+        #[method(streamDidBecomeInactive:)]
+        unsafe fn streamDidBecomeInactive(&self, stream: &SCStream);
     }
 
     unsafe impl ProtocolType for dyn SCStreamDelegate {}

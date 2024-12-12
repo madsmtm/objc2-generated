@@ -90,6 +90,31 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        #[method_id(@__retain_semantics Other sliceTensor:startTensor:endTensor:strideTensor:startMask:endMask:squeezeMask:name:)]
+        pub unsafe fn sliceTensor_startTensor_endTensor_strideTensor_startMask_endMask_squeezeMask_name(
+            &self,
+            tensor: &MPSGraphTensor,
+            start_tensor: &MPSGraphTensor,
+            end_tensor: &MPSGraphTensor,
+            stride_tensor: &MPSGraphTensor,
+            start_mask: u32,
+            end_mask: u32,
+            squeeze_mask: u32,
+            name: Option<&NSString>,
+        ) -> Retained<MPSGraphTensor>;
+
+        #[cfg(feature = "MPSGraphTensor")]
+        #[method_id(@__retain_semantics Other sliceTensor:startTensor:sizeTensor:squeezeMask:name:)]
+        pub unsafe fn sliceTensor_startTensor_sizeTensor_squeezeMask_name(
+            &self,
+            tensor: &MPSGraphTensor,
+            start_tensor: &MPSGraphTensor,
+            size_tensor: &MPSGraphTensor,
+            squeeze_mask: u32,
+            name: Option<&NSString>,
+        ) -> Retained<MPSGraphTensor>;
+
+        #[cfg(feature = "MPSGraphTensor")]
         #[method_id(@__retain_semantics Other sliceGradientTensor:fwdInShapeTensor:starts:ends:strides:name:)]
         pub unsafe fn sliceGradientTensor_fwdInShapeTensor_starts_ends_strides_name(
             &self,
@@ -98,6 +123,33 @@ extern_methods!(
             starts: &NSArray<NSNumber>,
             ends: &NSArray<NSNumber>,
             strides: &NSArray<NSNumber>,
+            name: Option<&NSString>,
+        ) -> Retained<MPSGraphTensor>;
+
+        #[cfg(feature = "MPSGraphTensor")]
+        #[method_id(@__retain_semantics Other sliceGradientTensor:fwdInShapeTensor:startTensor:endTensor:strideTensor:startMask:endMask:squeezeMask:name:)]
+        pub unsafe fn sliceGradientTensor_fwdInShapeTensor_startTensor_endTensor_strideTensor_startMask_endMask_squeezeMask_name(
+            &self,
+            input_gradient_tensor: &MPSGraphTensor,
+            fwd_in_shape_tensor: &MPSGraphTensor,
+            start_tensor: &MPSGraphTensor,
+            end_tensor: &MPSGraphTensor,
+            stride_tensor: &MPSGraphTensor,
+            start_mask: u32,
+            end_mask: u32,
+            squeeze_mask: u32,
+            name: Option<&NSString>,
+        ) -> Retained<MPSGraphTensor>;
+
+        #[cfg(feature = "MPSGraphTensor")]
+        #[method_id(@__retain_semantics Other sliceGradientTensor:fwdInShapeTensor:startTensor:sizeTensor:squeezeMask:name:)]
+        pub unsafe fn sliceGradientTensor_fwdInShapeTensor_startTensor_sizeTensor_squeezeMask_name(
+            &self,
+            input_gradient_tensor: &MPSGraphTensor,
+            fwd_in_shape_tensor: &MPSGraphTensor,
+            start_tensor: &MPSGraphTensor,
+            size_tensor: &MPSGraphTensor,
+            squeeze_mask: u32,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
 

@@ -303,6 +303,12 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarwritingtoolsitemidentifier?language=objc)
+    #[cfg(feature = "NSToolbar")]
+    pub static NSToolbarWritingToolsItemIdentifier: &'static NSToolbarItemIdentifier;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarsidebartrackingseparatoritemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarSidebarTrackingSeparatorItemIdentifier: &'static NSToolbarItemIdentifier;

@@ -47,6 +47,8 @@ pub struct AXSettingsFeature(pub NSInteger);
 impl AXSettingsFeature {
     #[doc(alias = "AXSettingsFeaturePersonalVoiceAllowAppsToRequestToUse")]
     pub const PersonalVoiceAllowAppsToRequestToUse: Self = Self(1);
+    #[doc(alias = "AXSettingsFeatureAllowAppsToAddAudioToCalls")]
+    pub const AllowAppsToAddAudioToCalls: Self = Self(2);
 }
 
 unsafe impl Encode for AXSettingsFeature {

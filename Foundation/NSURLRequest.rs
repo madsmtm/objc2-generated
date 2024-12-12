@@ -175,6 +175,10 @@ extern_methods!(
 
         #[method(allowsPersistentDNS)]
         pub unsafe fn allowsPersistentDNS(&self) -> bool;
+
+        #[cfg(feature = "NSString")]
+        #[method_id(@__retain_semantics Other cookiePartitionIdentifier)]
+        pub unsafe fn cookiePartitionIdentifier(&self) -> Option<Retained<NSString>>;
     }
 );
 
@@ -305,6 +309,17 @@ extern_methods!(
 
         #[method(setAllowsPersistentDNS:)]
         pub unsafe fn setAllowsPersistentDNS(&self, allows_persistent_dns: bool);
+
+        #[cfg(feature = "NSString")]
+        #[method_id(@__retain_semantics Other cookiePartitionIdentifier)]
+        pub unsafe fn cookiePartitionIdentifier(&self) -> Option<Retained<NSString>>;
+
+        #[cfg(feature = "NSString")]
+        #[method(setCookiePartitionIdentifier:)]
+        pub unsafe fn setCookiePartitionIdentifier(
+            &self,
+            cookie_partition_identifier: Option<&NSString>,
+        );
     }
 );
 

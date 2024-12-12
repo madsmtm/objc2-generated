@@ -245,6 +245,8 @@ pub const kAudioUnitErr_InvalidFilePath: OSStatus = -66742;
 pub const kAudioUnitErr_MissingKey: OSStatus = -66741;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_componentmanagernotsupported?language=objc)
 pub const kAudioUnitErr_ComponentManagerNotSupported: OSStatus = -66740;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_multiplevoiceprocessors?language=objc)
+pub const kAudioUnitErr_MultipleVoiceProcessors: OSStatus = -66635;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponenterr_duplicatedescription?language=objc)
 pub const kAudioComponentErr_DuplicateDescription: OSStatus = -66752;

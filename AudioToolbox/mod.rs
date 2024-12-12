@@ -283,6 +283,8 @@ pub use self::__AUComponent::kAudioUnitErr_MIDIOutputBufferFull;
 #[cfg(feature = "AUComponent")]
 pub use self::__AUComponent::kAudioUnitErr_MissingKey;
 #[cfg(feature = "AUComponent")]
+pub use self::__AUComponent::kAudioUnitErr_MultipleVoiceProcessors;
+#[cfg(feature = "AUComponent")]
 pub use self::__AUComponent::kAudioUnitErr_NoConnection;
 #[cfg(feature = "AUComponent")]
 pub use self::__AUComponent::kAudioUnitErr_PropertyNotInUse;

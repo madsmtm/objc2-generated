@@ -166,6 +166,8 @@ pub use self::__UTCoreTypes::UTTypeItem;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeJPEG;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
+pub use self::__UTCoreTypes::UTTypeJPEGXL;
+#[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeJSON;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeJavaScript;

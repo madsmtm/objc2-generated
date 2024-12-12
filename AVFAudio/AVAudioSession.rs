@@ -139,6 +139,21 @@ extern_methods!(
         #[cfg(feature = "AVAudioSessionTypes")]
         #[method(renderingMode)]
         pub unsafe fn renderingMode(&self) -> AVAudioSessionRenderingMode;
+
+        #[method(setPrefersEchoCancelledInput:error:_)]
+        pub unsafe fn setPrefersEchoCancelledInput_error(
+            &self,
+            value: bool,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[method(prefersEchoCancelledInput)]
+        pub unsafe fn prefersEchoCancelledInput(&self) -> bool;
+
+        #[method(isEchoCancelledInputEnabled)]
+        pub unsafe fn isEchoCancelledInputEnabled(&self) -> bool;
+
+        #[method(isEchoCancelledInputAvailable)]
+        pub unsafe fn isEchoCancelledInputAvailable(&self) -> bool;
     }
 );
 
@@ -360,6 +375,27 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// MicrophoneInjection
+    unsafe impl AVAudioSession {
+        #[cfg(feature = "AVAudioSessionTypes")]
+        #[method(setPreferredMicrophoneInjectionMode:error:_)]
+        pub unsafe fn setPreferredMicrophoneInjectionMode_error(
+            &self,
+            in_value: AVAudioSessionMicrophoneInjectionMode,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "AVAudioSessionTypes")]
+        #[method(preferredMicrophoneInjectionMode)]
+        pub unsafe fn preferredMicrophoneInjectionMode(
+            &self,
+        ) -> AVAudioSessionMicrophoneInjectionMode;
+
+        #[method(isMicrophoneInjectionAvailable)]
+        pub unsafe fn isMicrophoneInjectionAvailable(&self) -> bool;
+    }
+);
+
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionnotification?language=objc)
     pub static AVAudioSessionInterruptionNotification: &'static NSNotificationName;
@@ -399,6 +435,12 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionrenderingcapabilitieschangenotification?language=objc)
     pub static AVAudioSessionRenderingCapabilitiesChangeNotification: &'static NSNotificationName;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmicrophoneinjectioncapabilitieschangenotification?language=objc)
+    pub static AVAudioSessionMicrophoneInjectionCapabilitiesChangeNotification:
+        &'static NSNotificationName;
 }
 
 extern "C" {
@@ -444,4 +486,9 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionrenderingmodenewrenderingmodekey?language=objc)
     pub static AVAudioSessionRenderingModeNewRenderingModeKey: &'static NSString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmicrophoneinjectionisavailablekey?language=objc)
+    pub static AVAudioSessionMicrophoneInjectionIsAvailableKey: &'static NSString;
 }

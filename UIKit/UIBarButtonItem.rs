@@ -91,6 +91,8 @@ impl UIBarButtonSystemItem {
     pub const PageCurl: Self = Self(23);
     #[doc(alias = "UIBarButtonSystemItemClose")]
     pub const Close: Self = Self(24);
+    #[doc(alias = "UIBarButtonSystemItemWritingTools")]
+    pub const WritingTools: Self = Self(25);
 }
 
 unsafe impl Encode for UIBarButtonSystemItem {

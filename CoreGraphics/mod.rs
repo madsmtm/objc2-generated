@@ -64,6 +64,9 @@ mod __CGDisplayFade;
 #[cfg(feature = "CGDisplayStream")]
 #[path = "CGDisplayStream.rs"]
 mod __CGDisplayStream;
+#[cfg(feature = "CGEXRToneMappingGamma")]
+#[path = "CGEXRToneMappingGamma.rs"]
+mod __CGEXRToneMappingGamma;
 #[cfg(feature = "CGError")]
 #[path = "CGError.rs"]
 mod __CGError;
@@ -88,6 +91,9 @@ mod __CGGeometry;
 #[cfg(feature = "CGGradient")]
 #[path = "CGGradient.rs"]
 mod __CGGradient;
+#[cfg(feature = "CGITUToneMapping")]
+#[path = "CGITUToneMapping.rs"]
+mod __CGITUToneMapping;
 #[cfg(feature = "CGImage")]
 #[path = "CGImage.rs"]
 mod __CGImage;
@@ -1300,6 +1306,14 @@ pub use self::__CGDisplayStream::CGDisplayStreamUpdateGetTypeID;
 pub use self::__CGDisplayStream::CGDisplayStreamUpdateRectType;
 #[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamUpdateRef;
+#[cfg(all(feature = "CGEXRToneMappingGamma", feature = "objc2-core-foundation"))]
+pub use self::__CGEXRToneMappingGamma::kCGEXRToneMappingGammaDefog;
+#[cfg(all(feature = "CGEXRToneMappingGamma", feature = "objc2-core-foundation"))]
+pub use self::__CGEXRToneMappingGamma::kCGEXRToneMappingGammaExposure;
+#[cfg(all(feature = "CGEXRToneMappingGamma", feature = "objc2-core-foundation"))]
+pub use self::__CGEXRToneMappingGamma::kCGEXRToneMappingGammaKneeHigh;
+#[cfg(all(feature = "CGEXRToneMappingGamma", feature = "objc2-core-foundation"))]
+pub use self::__CGEXRToneMappingGamma::kCGEXRToneMappingGammaKneeLow;
 #[cfg(feature = "CGError")]
 pub use self::__CGError::CGError;
 #[cfg(feature = "CGError")]
@@ -1718,6 +1732,14 @@ pub use self::__CGGradient::CGGradientRef;
 pub use self::__CGGradient::CGGradientRelease;
 #[cfg(feature = "CGGradient")]
 pub use self::__CGGradient::CGGradientRetain;
+#[cfg(all(feature = "CGITUToneMapping", feature = "objc2-core-foundation"))]
+pub use self::__CGITUToneMapping::kCGSkipBoostToHDR;
+#[cfg(all(feature = "CGITUToneMapping", feature = "objc2-core-foundation"))]
+pub use self::__CGITUToneMapping::kCGUse100nitsHLGOOTF;
+#[cfg(all(feature = "CGITUToneMapping", feature = "objc2-core-foundation"))]
+pub use self::__CGITUToneMapping::kCGUseBT1886ForCoreVideoGamma;
+#[cfg(all(feature = "CGITUToneMapping", feature = "objc2-core-foundation"))]
+pub use self::__CGITUToneMapping::kCGUseLegacyHDREcosystem;
 #[cfg(feature = "CGImage")]
 pub use self::__CGImage::kCGBitmapByteOrder16Host;
 #[cfg(feature = "CGImage")]
@@ -2536,22 +2558,6 @@ pub use self::__CGShading::CGShadingRef;
 pub use self::__CGShading::CGShadingRelease;
 #[cfg(feature = "CGShading")]
 pub use self::__CGShading::CGShadingRetain;
-#[cfg(all(feature = "CGToneMapping", feature = "objc2-core-foundation"))]
-pub use self::__CGToneMapping::kCGEXRToneMappingGammaDefog;
-#[cfg(all(feature = "CGToneMapping", feature = "objc2-core-foundation"))]
-pub use self::__CGToneMapping::kCGEXRToneMappingGammaExposure;
-#[cfg(all(feature = "CGToneMapping", feature = "objc2-core-foundation"))]
-pub use self::__CGToneMapping::kCGEXRToneMappingGammaKneeHigh;
-#[cfg(all(feature = "CGToneMapping", feature = "objc2-core-foundation"))]
-pub use self::__CGToneMapping::kCGEXRToneMappingGammaKneeLow;
-#[cfg(all(feature = "CGToneMapping", feature = "objc2-core-foundation"))]
-pub use self::__CGToneMapping::kCGSkipBoostToHDR;
-#[cfg(all(feature = "CGToneMapping", feature = "objc2-core-foundation"))]
-pub use self::__CGToneMapping::kCGUse100nitsHLGOOTF;
-#[cfg(all(feature = "CGToneMapping", feature = "objc2-core-foundation"))]
-pub use self::__CGToneMapping::kCGUseBT1886ForCoreVideoGamma;
-#[cfg(all(feature = "CGToneMapping", feature = "objc2-core-foundation"))]
-pub use self::__CGToneMapping::kCGUseLegacyHDREcosystem;
 #[cfg(feature = "CGToneMapping")]
 pub use self::__CGToneMapping::CGToneMapping;
 #[cfg(all(feature = "CGWindow", feature = "objc2-core-foundation"))]

@@ -273,6 +273,11 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyapplefitnesspluscatalogidentifier?language=objc)
+    pub static HKMetadataKeyAppleFitnessPlusCatalogIdentifier: &'static NSString;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyapplefitnessplussession?language=objc)
     pub static HKMetadataKeyAppleFitnessPlusSession: &'static NSString;
 }

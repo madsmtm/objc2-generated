@@ -238,6 +238,12 @@ extern_methods!(
         #[cfg(feature = "NSParagraphStyle")]
         #[method(setLineBreakStrategy:)]
         pub unsafe fn setLineBreakStrategy(&self, line_break_strategy: NSLineBreakStrategy);
+
+        #[method(allowsWritingTools)]
+        pub unsafe fn allowsWritingTools(&self) -> bool;
+
+        #[method(setAllowsWritingTools:)]
+        pub unsafe fn setAllowsWritingTools(&self, allows_writing_tools: bool);
     }
 );
 

@@ -549,3 +549,23 @@ unsafe impl Encode for AVAudioSessionRenderingMode {
 unsafe impl RefEncode for AVAudioSessionRenderingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
+
+/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmicrophoneinjectionmode?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AVAudioSessionMicrophoneInjectionMode(pub NSInteger);
+impl AVAudioSessionMicrophoneInjectionMode {
+    #[doc(alias = "AVAudioSessionMicrophoneInjectionModeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "AVAudioSessionMicrophoneInjectionModeSpokenAudio")]
+    pub const SpokenAudio: Self = Self(1);
+}
+
+unsafe impl Encode for AVAudioSessionMicrophoneInjectionMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for AVAudioSessionMicrophoneInjectionMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

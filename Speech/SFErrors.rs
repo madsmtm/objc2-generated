@@ -25,6 +25,8 @@ impl SFSpeechErrorCode {
     pub const UndefinedTemplateClassName: Self = Self(7);
     #[doc(alias = "SFSpeechErrorCodeMalformedSupplementalModel")]
     pub const MalformedSupplementalModel: Self = Self(8);
+    #[doc(alias = "SFSpeechErrorCodeTimeout")]
+    pub const Timeout: Self = Self(10);
 }
 
 unsafe impl Encode for SFSpeechErrorCode {

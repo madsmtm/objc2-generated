@@ -407,7 +407,7 @@ extern_methods!(
         #[method(beginSheetForDirectory:file:modalForWindow:modalDelegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetForDirectory_file_modalForWindow_modalDelegate_didEndSelector_contextInfo(
             &self,
-            path: &NSString,
+            path: Option<&NSString>,
             name: Option<&NSString>,
             doc_window: Option<&NSWindow>,
             delegate: Option<&AnyObject>,

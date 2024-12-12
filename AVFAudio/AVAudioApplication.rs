@@ -29,6 +29,30 @@ unsafe impl RefEncode for AVAudioApplicationRecordPermission {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplicationmicrophoneinjectionpermission?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AVAudioApplicationMicrophoneInjectionPermission(pub NSInteger);
+impl AVAudioApplicationMicrophoneInjectionPermission {
+    #[doc(alias = "AVAudioApplicationMicrophoneInjectionPermissionServiceDisabled")]
+    pub const ServiceDisabled: Self = Self(0x73726473);
+    #[doc(alias = "AVAudioApplicationMicrophoneInjectionPermissionUndetermined")]
+    pub const Undetermined: Self = Self(0x756e6474);
+    #[doc(alias = "AVAudioApplicationMicrophoneInjectionPermissionDenied")]
+    pub const Denied: Self = Self(0x64656e79);
+    #[doc(alias = "AVAudioApplicationMicrophoneInjectionPermissionGranted")]
+    pub const Granted: Self = Self(0x67726e74);
+}
+
+unsafe impl Encode for AVAudioApplicationMicrophoneInjectionPermission {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for AVAudioApplicationMicrophoneInjectionPermission {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplicationinputmutestatechangenotification?language=objc)
     pub static AVAudioApplicationInputMuteStateChangeNotification: &'static NSNotificationName;
@@ -80,6 +104,17 @@ extern_methods!(
         #[method(requestRecordPermissionWithCompletionHandler:)]
         pub unsafe fn requestRecordPermissionWithCompletionHandler(
             response: &block2::Block<dyn Fn(Bool)>,
+        );
+
+        #[method(microphoneInjectionPermission)]
+        pub unsafe fn microphoneInjectionPermission(
+            &self,
+        ) -> AVAudioApplicationMicrophoneInjectionPermission;
+
+        #[cfg(feature = "block2")]
+        #[method(requestMicrophoneInjectionPermissionWithCompletionHandler:)]
+        pub unsafe fn requestMicrophoneInjectionPermissionWithCompletionHandler(
+            response: &block2::Block<dyn Fn(AVAudioApplicationMicrophoneInjectionPermission)>,
         );
     }
 );
