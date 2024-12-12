@@ -1237,6 +1237,15 @@ mod __UIWindowSceneReplacePlacement;
 #[cfg(feature = "UIWindowSceneStandardPlacement")]
 #[path = "UIWindowSceneStandardPlacement.rs"]
 mod __UIWindowSceneStandardPlacement;
+#[cfg(feature = "UIWritingToolsCoordinator")]
+#[path = "UIWritingToolsCoordinator.rs"]
+mod __UIWritingToolsCoordinator;
+#[cfg(feature = "UIWritingToolsCoordinatorAnimationParameters")]
+#[path = "UIWritingToolsCoordinatorAnimationParameters.rs"]
+mod __UIWritingToolsCoordinatorAnimationParameters;
+#[cfg(feature = "UIWritingToolsCoordinatorContext")]
+#[path = "UIWritingToolsCoordinatorContext.rs"]
+mod __UIWritingToolsCoordinatorContext;
 #[cfg(feature = "UIZoomTransitionOptions")]
 #[path = "UIZoomTransitionOptions.rs"]
 mod __UIZoomTransitionOptions;
@@ -1414,6 +1423,8 @@ pub use self::__NSAttributedString::NSViewZoomDocumentAttribute;
 pub use self::__NSAttributedString::NSWritingDirectionAttributeName;
 #[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSWritingDirectionFormatType;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSWritingToolsExclusionAttributeName;
 #[cfg(feature = "NSDataAsset")]
 pub use self::__NSDataAsset::NSDataAsset;
 #[cfg(feature = "NSDataAsset")]
@@ -2193,6 +2204,18 @@ pub use self::__UIApplication::UIApplicationBackgroundFetchIntervalNever;
 #[cfg(feature = "UIApplication")]
 pub use self::__UIApplication::UIApplicationBackgroundRefreshStatusDidChangeNotification;
 #[cfg(feature = "UIApplication")]
+pub use self::__UIApplication::UIApplicationCategory;
+#[cfg(feature = "UIApplication")]
+pub use self::__UIApplication::UIApplicationCategoryDefaultErrorCode;
+#[cfg(feature = "UIApplication")]
+pub use self::__UIApplication::UIApplicationCategoryDefaultErrorDomain;
+#[cfg(feature = "UIApplication")]
+pub use self::__UIApplication::UIApplicationCategoryDefaultRetryAvailabilityDateErrorKey;
+#[cfg(feature = "UIApplication")]
+pub use self::__UIApplication::UIApplicationCategoryDefaultStatus;
+#[cfg(feature = "UIApplication")]
+pub use self::__UIApplication::UIApplicationCategoryDefaultStatusLastProvidedDateErrorKey;
+#[cfg(feature = "UIApplication")]
 pub use self::__UIApplication::UIApplicationDelegate;
 #[cfg(feature = "UIApplication")]
 pub use self::__UIApplication::UIApplicationDidBecomeActiveNotification;
@@ -2244,6 +2267,8 @@ pub use self::__UIApplication::UIApplicationLaunchOptionsUserActivityDictionaryK
 pub use self::__UIApplication::UIApplicationLaunchOptionsUserActivityTypeKey;
 #[cfg(feature = "UIApplication")]
 pub use self::__UIApplication::UIApplicationMain;
+#[cfg(feature = "UIApplication")]
+pub use self::__UIApplication::UIApplicationOpenDefaultApplicationsSettingsURLString;
 #[cfg(feature = "UIApplication")]
 pub use self::__UIApplication::UIApplicationOpenExternalURLOptionsEventAttributionKey;
 #[cfg(feature = "UIApplication")]
@@ -5708,6 +5733,26 @@ pub use self::__UIWindowSceneReplacePlacement::UIWindowSceneReplacePlacement;
     feature = "UIWindowSceneStandardPlacement"
 ))]
 pub use self::__UIWindowSceneStandardPlacement::UIWindowSceneStandardPlacement;
+#[cfg(feature = "UIWritingToolsCoordinator")]
+pub use self::__UIWritingToolsCoordinator::UIWritingToolsCoordinator;
+#[cfg(feature = "UIWritingToolsCoordinator")]
+pub use self::__UIWritingToolsCoordinator::UIWritingToolsCoordinatorContextScope;
+#[cfg(feature = "UIWritingToolsCoordinator")]
+pub use self::__UIWritingToolsCoordinator::UIWritingToolsCoordinatorDelegate;
+#[cfg(feature = "UIWritingToolsCoordinator")]
+pub use self::__UIWritingToolsCoordinator::UIWritingToolsCoordinatorState;
+#[cfg(feature = "UIWritingToolsCoordinator")]
+pub use self::__UIWritingToolsCoordinator::UIWritingToolsCoordinatorTextAnimation;
+#[cfg(feature = "UIWritingToolsCoordinator")]
+pub use self::__UIWritingToolsCoordinator::UIWritingToolsCoordinatorTextAnimationDebugDescription;
+#[cfg(feature = "UIWritingToolsCoordinator")]
+pub use self::__UIWritingToolsCoordinator::UIWritingToolsCoordinatorTextReplacementReason;
+#[cfg(feature = "UIWritingToolsCoordinator")]
+pub use self::__UIWritingToolsCoordinator::UIWritingToolsCoordinatorTextUpdateReason;
+#[cfg(feature = "UIWritingToolsCoordinatorAnimationParameters")]
+pub use self::__UIWritingToolsCoordinatorAnimationParameters::UIWritingToolsCoordinatorAnimationParameters;
+#[cfg(feature = "UIWritingToolsCoordinatorContext")]
+pub use self::__UIWritingToolsCoordinatorContext::UIWritingToolsCoordinatorContext;
 #[cfg(feature = "UIZoomTransitionOptions")]
 pub use self::__UIZoomTransitionOptions::UIZoomTransitionAlignmentRectContext;
 #[cfg(feature = "UIZoomTransitionOptions")]

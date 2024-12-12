@@ -1764,6 +1764,8 @@ pub use self::__WKDownload::WKDownload;
 #[cfg(feature = "WKDownloadDelegate")]
 pub use self::__WKDownloadDelegate::WKDownloadDelegate;
 #[cfg(feature = "WKDownloadDelegate")]
+pub use self::__WKDownloadDelegate::WKDownloadPlaceholderPolicy;
+#[cfg(feature = "WKDownloadDelegate")]
 pub use self::__WKDownloadDelegate::WKDownloadRedirectPolicy;
 #[cfg(feature = "WKError")]
 pub use self::__WKError::WKErrorCode;
@@ -1852,6 +1854,8 @@ pub use self::__WKWebViewConfiguration::WKWebViewConfiguration;
 pub use self::__WKWebpagePreferences::WKContentMode;
 #[cfg(feature = "WKWebpagePreferences")]
 pub use self::__WKWebpagePreferences::WKWebpagePreferences;
+#[cfg(feature = "WKWebpagePreferences")]
+pub use self::__WKWebpagePreferences::WKWebpagePreferencesUpgradeToHTTPSPolicy;
 #[cfg(feature = "WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataRecord;
 #[cfg(feature = "WKWebsiteDataRecord")]

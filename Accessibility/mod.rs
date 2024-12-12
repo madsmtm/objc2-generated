@@ -28,12 +28,18 @@ mod __AXColorUtilities;
 #[cfg(feature = "AXCustomContent")]
 #[path = "AXCustomContent.rs"]
 mod __AXCustomContent;
+#[cfg(feature = "AXFeatureOverrideSessionManager")]
+#[path = "AXFeatureOverrideSessionManager.rs"]
+mod __AXFeatureOverrideSessionManager;
 #[cfg(feature = "AXFoundation")]
 #[path = "AXFoundation.rs"]
 mod __AXFoundation;
 #[cfg(feature = "AXHearingUtilities")]
 #[path = "AXHearingUtilities.rs"]
 mod __AXHearingUtilities;
+#[cfg(feature = "AXMathExpression")]
+#[path = "AXMathExpression.rs"]
+mod __AXMathExpression;
 #[cfg(feature = "AXRequest")]
 #[path = "AXRequest.rs"]
 mod __AXRequest;
@@ -92,6 +98,38 @@ pub use self::__AXHearingUtilities::AXMFiHearingDeviceStreamingEar;
 pub use self::__AXHearingUtilities::AXMFiHearingDeviceStreamingEarDidChangeNotification;
 #[cfg(feature = "AXHearingUtilities")]
 pub use self::__AXHearingUtilities::AXSupportsBidirectionalAXMFiHearingDeviceStreaming;
+#[cfg(feature = "AXMathExpression")]
+pub use self::__AXMathExpression::AXMathExpression;
+#[cfg(feature = "AXMathExpression")]
+pub use self::__AXMathExpression::AXMathExpressionFenced;
+#[cfg(feature = "AXMathExpression")]
+pub use self::__AXMathExpression::AXMathExpressionFraction;
+#[cfg(feature = "AXMathExpression")]
+pub use self::__AXMathExpression::AXMathExpressionIdentifier;
+#[cfg(feature = "AXMathExpression")]
+pub use self::__AXMathExpression::AXMathExpressionMultiscript;
+#[cfg(feature = "AXMathExpression")]
+pub use self::__AXMathExpression::AXMathExpressionNumber;
+#[cfg(feature = "AXMathExpression")]
+pub use self::__AXMathExpression::AXMathExpressionOperator;
+#[cfg(feature = "AXMathExpression")]
+pub use self::__AXMathExpression::AXMathExpressionProvider;
+#[cfg(feature = "AXMathExpression")]
+pub use self::__AXMathExpression::AXMathExpressionRoot;
+#[cfg(feature = "AXMathExpression")]
+pub use self::__AXMathExpression::AXMathExpressionRow;
+#[cfg(feature = "AXMathExpression")]
+pub use self::__AXMathExpression::AXMathExpressionSubSuperscript;
+#[cfg(feature = "AXMathExpression")]
+pub use self::__AXMathExpression::AXMathExpressionTable;
+#[cfg(feature = "AXMathExpression")]
+pub use self::__AXMathExpression::AXMathExpressionTableCell;
+#[cfg(feature = "AXMathExpression")]
+pub use self::__AXMathExpression::AXMathExpressionTableRow;
+#[cfg(feature = "AXMathExpression")]
+pub use self::__AXMathExpression::AXMathExpressionText;
+#[cfg(feature = "AXMathExpression")]
+pub use self::__AXMathExpression::AXMathExpressionUnderOver;
 #[cfg(feature = "AXRequest")]
 pub use self::__AXRequest::AXRequest;
 #[cfg(feature = "AXSettings")]

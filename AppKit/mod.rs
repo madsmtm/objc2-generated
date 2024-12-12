@@ -868,6 +868,15 @@ mod __NSWindowTabGroup;
 #[cfg(feature = "NSWorkspace")]
 #[path = "NSWorkspace.rs"]
 mod __NSWorkspace;
+#[cfg(feature = "NSWritingToolsCoordinator")]
+#[path = "NSWritingToolsCoordinator.rs"]
+mod __NSWritingToolsCoordinator;
+#[cfg(feature = "NSWritingToolsCoordinatorAnimationParameters")]
+#[path = "NSWritingToolsCoordinatorAnimationParameters.rs"]
+mod __NSWritingToolsCoordinatorAnimationParameters;
+#[cfg(feature = "NSWritingToolsCoordinatorContext")]
+#[path = "NSWritingToolsCoordinatorContext.rs"]
+mod __NSWritingToolsCoordinatorContext;
 
 #[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSFontAssetDownloadError;
@@ -2347,6 +2356,8 @@ pub use self::__NSAttributedString::NSWordMLTextDocumentType;
 pub use self::__NSAttributedString::NSWritingDirectionAttributeName;
 #[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSWritingDirectionFormatType;
+#[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSWritingToolsExclusionAttributeName;
 #[cfg(feature = "NSBezierPath")]
 pub use self::__NSBezierPath::NSBevelLineJoinStyle;
 #[cfg(feature = "NSBezierPath")]
@@ -6796,6 +6807,8 @@ pub use self::__NSToolbarItem::NSToolbarSpaceItemIdentifier;
 pub use self::__NSToolbarItem::NSToolbarToggleInspectorItemIdentifier;
 #[cfg(all(feature = "NSToolbar", feature = "NSToolbarItem"))]
 pub use self::__NSToolbarItem::NSToolbarToggleSidebarItemIdentifier;
+#[cfg(all(feature = "NSToolbar", feature = "NSToolbarItem"))]
+pub use self::__NSToolbarItem::NSToolbarWritingToolsItemIdentifier;
 #[cfg(all(feature = "NSToolbarItem", feature = "NSToolbarItemGroup"))]
 pub use self::__NSToolbarItemGroup::NSToolbarItemGroup;
 #[cfg(feature = "NSToolbarItemGroup")]
@@ -7242,3 +7255,23 @@ pub use self::__NSWorkspace::NSWorkspaceWillPowerOffNotification;
 pub use self::__NSWorkspace::NSWorkspaceWillSleepNotification;
 #[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceWillUnmountNotification;
+#[cfg(feature = "NSWritingToolsCoordinator")]
+pub use self::__NSWritingToolsCoordinator::NSTextPreview;
+#[cfg(feature = "NSWritingToolsCoordinator")]
+pub use self::__NSWritingToolsCoordinator::NSWritingToolsCoordinator;
+#[cfg(feature = "NSWritingToolsCoordinator")]
+pub use self::__NSWritingToolsCoordinator::NSWritingToolsCoordinatorContextScope;
+#[cfg(feature = "NSWritingToolsCoordinator")]
+pub use self::__NSWritingToolsCoordinator::NSWritingToolsCoordinatorDelegate;
+#[cfg(feature = "NSWritingToolsCoordinator")]
+pub use self::__NSWritingToolsCoordinator::NSWritingToolsCoordinatorState;
+#[cfg(feature = "NSWritingToolsCoordinator")]
+pub use self::__NSWritingToolsCoordinator::NSWritingToolsCoordinatorTextAnimation;
+#[cfg(feature = "NSWritingToolsCoordinator")]
+pub use self::__NSWritingToolsCoordinator::NSWritingToolsCoordinatorTextReplacementReason;
+#[cfg(feature = "NSWritingToolsCoordinator")]
+pub use self::__NSWritingToolsCoordinator::NSWritingToolsCoordinatorTextUpdateReason;
+#[cfg(feature = "NSWritingToolsCoordinatorAnimationParameters")]
+pub use self::__NSWritingToolsCoordinatorAnimationParameters::NSWritingToolsCoordinatorAnimationParameters;
+#[cfg(feature = "NSWritingToolsCoordinatorContext")]
+pub use self::__NSWritingToolsCoordinatorContext::NSWritingToolsCoordinatorContext;

@@ -680,6 +680,8 @@ pub use self::__HKMetadata::HKMetadataKeyAppleDeviceCalibrated;
 #[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyAppleECGAlgorithmVersion;
 #[cfg(feature = "HKMetadata")]
+pub use self::__HKMetadata::HKMetadataKeyAppleFitnessPlusCatalogIdentifier;
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyAppleFitnessPlusSession;
 #[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyAudioExposureDuration;

@@ -115,6 +115,11 @@ extern "C" {
     pub static NSAdaptiveImageGlyphAttributeName: &'static NSAttributedStringKey;
 }
 
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nswritingtoolsexclusionattributename?language=objc)
+    pub static NSWritingToolsExclusionAttributeName: &'static NSAttributedStringKey;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
