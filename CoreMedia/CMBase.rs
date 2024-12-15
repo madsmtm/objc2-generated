@@ -14,12 +14,6 @@ pub type CMItemCount = CFIndex;
 #[cfg(feature = "objc2-core-foundation")]
 pub type CMItemIndex = CFIndex;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbaseclassversion?language=objc)
-pub type CMBaseClassVersion = usize;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmstructversion?language=objc)
-pub type CMStructVersion = usize;
-
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmpersistenttrackid?language=objc)
 pub type CMPersistentTrackID = i32;
 

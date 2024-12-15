@@ -116,16 +116,12 @@ pub use self::__CMAudioDeviceClock::CMAudioDeviceClockCreate;
 pub use self::__CMAudioDeviceClock::CMAudioDeviceClockSetAudioDeviceUID;
 #[cfg(feature = "CMBase")]
 pub use self::__CMBase::kCMPersistentTrackID_Invalid;
-#[cfg(feature = "CMBase")]
-pub use self::__CMBase::CMBaseClassVersion;
 #[cfg(all(feature = "CMBase", feature = "objc2-core-foundation"))]
 pub use self::__CMBase::CMItemCount;
 #[cfg(all(feature = "CMBase", feature = "objc2-core-foundation"))]
 pub use self::__CMBase::CMItemIndex;
 #[cfg(feature = "CMBase")]
 pub use self::__CMBase::CMPersistentTrackID;
-#[cfg(feature = "CMBase")]
-pub use self::__CMBase::CMStructVersion;
 #[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::kCMBlockBufferAlwaysCopyDataFlag;
 #[cfg(feature = "CMBlockBuffer")]
