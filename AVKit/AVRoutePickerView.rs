@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-av-foundation")]
+use objc2_av_foundation::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 use objc2_foundation::*;
@@ -112,6 +114,14 @@ extern_methods!(
             &self,
             delegate: Option<&ProtocolObject<dyn AVRoutePickerViewDelegate>>,
         );
+
+        #[cfg(feature = "objc2-av-foundation")]
+        #[method_id(@__retain_semantics Other player)]
+        pub unsafe fn player(&self) -> Option<Retained<AVPlayer>>;
+
+        #[cfg(feature = "objc2-av-foundation")]
+        #[method(setPlayer:)]
+        pub unsafe fn setPlayer(&self, player: Option<&AVPlayer>);
 
         #[method_id(@__retain_semantics Other routePickerButtonColorForState:)]
         pub unsafe fn routePickerButtonColorForState(

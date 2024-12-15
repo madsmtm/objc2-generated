@@ -4,7 +4,12 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-av-foundation")]
+use objc2_av_foundation::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+use objc2_quartz_core::*;
 
 use crate::*;
 
@@ -38,6 +43,14 @@ extern_methods!(
             content_source: &AVPictureInPictureControllerContentSource,
         ) -> Retained<Self>;
 
+        #[cfg(all(feature = "objc2-av-foundation", feature = "objc2-quartz-core"))]
+        #[cfg(not(target_os = "watchos"))]
+        #[method_id(@__retain_semantics Init initWithPlayerLayer:)]
+        pub unsafe fn initWithPlayerLayer(
+            this: Allocated<Self>,
+            player_layer: &AVPlayerLayer,
+        ) -> Option<Retained<Self>>;
+
         #[method_id(@__retain_semantics Other contentSource)]
         pub unsafe fn contentSource(
             &self,
@@ -48,6 +61,11 @@ extern_methods!(
             &self,
             content_source: Option<&AVPictureInPictureControllerContentSource>,
         );
+
+        #[cfg(all(feature = "objc2-av-foundation", feature = "objc2-quartz-core"))]
+        #[cfg(not(target_os = "watchos"))]
+        #[method_id(@__retain_semantics Other playerLayer)]
+        pub unsafe fn playerLayer(&self) -> Retained<AVPlayerLayer>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
@@ -123,6 +141,19 @@ extern_methods!(
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
+
+        #[cfg(all(feature = "objc2-av-foundation", feature = "objc2-quartz-core"))]
+        #[cfg(not(target_os = "watchos"))]
+        #[method_id(@__retain_semantics Init initWithPlayerLayer:)]
+        pub unsafe fn initWithPlayerLayer(
+            this: Allocated<Self>,
+            player_layer: &AVPlayerLayer,
+        ) -> Retained<Self>;
+
+        #[cfg(all(feature = "objc2-av-foundation", feature = "objc2-quartz-core"))]
+        #[cfg(not(target_os = "watchos"))]
+        #[method_id(@__retain_semantics Other playerLayer)]
+        pub unsafe fn playerLayer(&self) -> Option<Retained<AVPlayerLayer>>;
     }
 );
 

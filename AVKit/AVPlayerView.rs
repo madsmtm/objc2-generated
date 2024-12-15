@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-av-foundation")]
+use objc2_av_foundation::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 use objc2_foundation::*;
@@ -81,11 +83,27 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
+        #[cfg(feature = "objc2-av-foundation")]
+        #[method_id(@__retain_semantics Other player)]
+        pub unsafe fn player(&self) -> Option<Retained<AVPlayer>>;
+
+        #[cfg(feature = "objc2-av-foundation")]
+        #[method(setPlayer:)]
+        pub unsafe fn setPlayer(&self, player: Option<&AVPlayer>);
+
         #[method(controlsStyle)]
         pub unsafe fn controlsStyle(&self) -> AVPlayerViewControlsStyle;
 
         #[method(setControlsStyle:)]
         pub unsafe fn setControlsStyle(&self, controls_style: AVPlayerViewControlsStyle);
+
+        #[cfg(feature = "objc2-av-foundation")]
+        #[method_id(@__retain_semantics Other videoGravity)]
+        pub unsafe fn videoGravity(&self) -> Retained<AVLayerVideoGravity>;
+
+        #[cfg(feature = "objc2-av-foundation")]
+        #[method(setVideoGravity:)]
+        pub unsafe fn setVideoGravity(&self, video_gravity: &AVLayerVideoGravity);
 
         #[method(isReadyForDisplay)]
         pub unsafe fn isReadyForDisplay(&self) -> bool;

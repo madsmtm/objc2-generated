@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-av-foundation")]
+use objc2_av_foundation::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 use objc2_foundation::*;
@@ -413,6 +415,51 @@ extern_methods!(
             content_mode: PHImageContentMode,
             options: Option<&PHLivePhotoRequestOptions>,
             result_handler: &block2::Block<dyn Fn(*mut PHLivePhoto, *mut NSDictionary)>,
+        ) -> PHImageRequestID;
+
+        #[cfg(all(
+            feature = "PHAsset",
+            feature = "PHObject",
+            feature = "block2",
+            feature = "objc2-av-foundation"
+        ))]
+        #[method(requestPlayerItemForVideo:options:resultHandler:)]
+        pub unsafe fn requestPlayerItemForVideo_options_resultHandler(
+            &self,
+            asset: &PHAsset,
+            options: Option<&PHVideoRequestOptions>,
+            result_handler: &block2::Block<dyn Fn(*mut AVPlayerItem, *mut NSDictionary)>,
+        ) -> PHImageRequestID;
+
+        #[cfg(all(
+            feature = "PHAsset",
+            feature = "PHObject",
+            feature = "block2",
+            feature = "objc2-av-foundation"
+        ))]
+        #[method(requestExportSessionForVideo:options:exportPreset:resultHandler:)]
+        pub unsafe fn requestExportSessionForVideo_options_exportPreset_resultHandler(
+            &self,
+            asset: &PHAsset,
+            options: Option<&PHVideoRequestOptions>,
+            export_preset: &NSString,
+            result_handler: &block2::Block<dyn Fn(*mut AVAssetExportSession, *mut NSDictionary)>,
+        ) -> PHImageRequestID;
+
+        #[cfg(all(
+            feature = "PHAsset",
+            feature = "PHObject",
+            feature = "block2",
+            feature = "objc2-av-foundation"
+        ))]
+        #[method(requestAVAssetForVideo:options:resultHandler:)]
+        pub unsafe fn requestAVAssetForVideo_options_resultHandler(
+            &self,
+            asset: &PHAsset,
+            options: Option<&PHVideoRequestOptions>,
+            result_handler: &block2::Block<
+                dyn Fn(*mut AVAsset, *mut AVAudioMix, *mut NSDictionary),
+            >,
         ) -> PHImageRequestID;
     }
 );

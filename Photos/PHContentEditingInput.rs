@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-av-foundation")]
+use objc2_av_foundation::*;
 #[cfg(feature = "objc2-core-location")]
 use objc2_core_location::*;
 use objc2_foundation::*;
@@ -57,6 +59,15 @@ extern_methods!(
 
         #[method(fullSizeImageOrientation)]
         pub unsafe fn fullSizeImageOrientation(&self) -> c_int;
+
+        #[cfg(feature = "objc2-av-foundation")]
+        #[deprecated]
+        #[method_id(@__retain_semantics Other avAsset)]
+        pub unsafe fn avAsset(&self) -> Option<Retained<AVAsset>>;
+
+        #[cfg(feature = "objc2-av-foundation")]
+        #[method_id(@__retain_semantics Other audiovisualAsset)]
+        pub unsafe fn audiovisualAsset(&self) -> Option<Retained<AVAsset>>;
 
         #[cfg(feature = "PHLivePhoto")]
         #[method_id(@__retain_semantics Other livePhoto)]

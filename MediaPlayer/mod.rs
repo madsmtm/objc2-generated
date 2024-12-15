@@ -116,6 +116,12 @@ mod __MediaPlayerDefines;
 #[path = "NSUserActivity_MediaPlayerAdditions.rs"]
 mod __NSUserActivity_MediaPlayerAdditions;
 
+#[cfg(feature = "AVFoundation_MPNowPlayingInfoLanguageOptionAdditions")]
+pub use self::__AVFoundation_MPNowPlayingInfoLanguageOptionAdditions::AVMediaSelectionGroupMPNowPlayingInfoLanguageOptionAdditions;
+#[cfg(feature = "AVFoundation_MPNowPlayingInfoLanguageOptionAdditions")]
+pub use self::__AVFoundation_MPNowPlayingInfoLanguageOptionAdditions::AVMediaSelectionOptionMPNowPlayingInfoLanguageOptionAdditions;
+#[cfg(feature = "AVPlayerItem_MediaPlayerAdditions")]
+pub use self::__AVPlayerItem_MediaPlayerAdditions::AVPlayerItemMPAdditions;
 #[cfg(feature = "MPContentItem")]
 pub use self::__MPContentItem::MPContentItem;
 #[cfg(feature = "MPError")]

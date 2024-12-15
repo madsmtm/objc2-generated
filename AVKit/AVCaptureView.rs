@@ -4,6 +4,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
+#[cfg(feature = "objc2-av-foundation")]
+use objc2_av_foundation::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 use objc2_foundation::*;
@@ -79,6 +81,23 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVCaptureView {
+        #[cfg(feature = "objc2-av-foundation")]
+        #[method_id(@__retain_semantics Other session)]
+        pub unsafe fn session(&self) -> Option<Retained<AVCaptureSession>>;
+
+        #[cfg(feature = "objc2-av-foundation")]
+        #[method(setSession:showVideoPreview:showAudioPreview:)]
+        pub unsafe fn setSession_showVideoPreview_showAudioPreview(
+            &self,
+            session: Option<&AVCaptureSession>,
+            show_video_preview: bool,
+            show_audio_preview: bool,
+        );
+
+        #[cfg(feature = "objc2-av-foundation")]
+        #[method_id(@__retain_semantics Other fileOutput)]
+        pub unsafe fn fileOutput(&self) -> Option<Retained<AVCaptureFileOutput>>;
+
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
@@ -96,6 +115,14 @@ extern_methods!(
 
         #[method(setControlsStyle:)]
         pub unsafe fn setControlsStyle(&self, controls_style: AVCaptureViewControlsStyle);
+
+        #[cfg(feature = "objc2-av-foundation")]
+        #[method_id(@__retain_semantics Other videoGravity)]
+        pub unsafe fn videoGravity(&self) -> Retained<AVLayerVideoGravity>;
+
+        #[cfg(feature = "objc2-av-foundation")]
+        #[method(setVideoGravity:)]
+        pub unsafe fn setVideoGravity(&self, video_gravity: &AVLayerVideoGravity);
     }
 );
 
@@ -138,7 +165,16 @@ extern_methods!(
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewdelegate?language=objc)
-    pub unsafe trait AVCaptureViewDelegate: NSObjectProtocol {}
+    pub unsafe trait AVCaptureViewDelegate: NSObjectProtocol {
+        #[cfg(all(feature = "objc2-app-kit", feature = "objc2-av-foundation"))]
+        #[cfg(target_os = "macos")]
+        #[method(captureView:startRecordingToFileOutput:)]
+        unsafe fn captureView_startRecordingToFileOutput(
+            &self,
+            capture_view: &AVCaptureView,
+            file_output: &AVCaptureFileOutput,
+        );
+    }
 
     unsafe impl ProtocolType for dyn AVCaptureViewDelegate {}
 );
