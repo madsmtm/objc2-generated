@@ -21,11 +21,7 @@ mod __AudioSessionTypes;
 mod __CoreAudioBaseTypes;
 
 #[cfg(feature = "AudioSessionTypes")]
-pub use self::__AudioSessionTypes::AVAudioInteger;
-#[cfg(feature = "AudioSessionTypes")]
 pub use self::__AudioSessionTypes::AVAudioSessionErrorCode;
-#[cfg(feature = "AudioSessionTypes")]
-pub use self::__AudioSessionTypes::AVAudioUInteger;
 #[cfg(feature = "AudioSessionTypes")]
 pub use self::__AudioSessionTypes::AudioSessionID;
 #[cfg(feature = "CoreAudioBaseTypes")]

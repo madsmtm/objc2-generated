@@ -380,9 +380,6 @@ extern "C-unwind" {
     pub fn CFBundleGetPlugIn(bundle: CFBundleRef) -> CFPlugInRef;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlerefnum?language=objc)
-pub type CFBundleRefNum = c_int;
-
 extern "C-unwind" {
     #[deprecated = "The Carbon Resource Manager is deprecated. This should only be used to access Resource Manager-style resources in old bundles."]
     pub fn CFBundleOpenBundleResourceMap(bundle: CFBundleRef) -> CFBundleRefNum;

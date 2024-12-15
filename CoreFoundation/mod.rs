@@ -671,8 +671,6 @@ pub use self::__CFBundle::CFBundlePreflightExecutable;
 #[cfg(feature = "CFBundle")]
 pub use self::__CFBundle::CFBundleRef;
 #[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleRefNum;
-#[cfg(feature = "CFBundle")]
 pub use self::__CFBundle::CFBundleUnloadExecutable;
 #[cfg(feature = "CFBundle")]
 pub use self::__CFBundle::CFPlugInRef;

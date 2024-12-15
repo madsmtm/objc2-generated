@@ -4,12 +4,6 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiointeger?language=objc)
-pub type AVAudioInteger = c_long;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiouinteger?language=objc)
-pub type AVAudioUInteger = c_ulong;
-
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiosessionid?language=objc)
 pub type AudioSessionID = u32;
 
