@@ -5,6 +5,8 @@ use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-image")]
 use objc2_core_image::*;
+#[cfg(feature = "objc2-core-media")]
+use objc2_core_media::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -43,6 +45,14 @@ extern_methods!(
         #[cfg(feature = "objc2-core-image")]
         #[method_id(@__retain_semantics Other fullSizeImage)]
         pub unsafe fn fullSizeImage(&self) -> Retained<CIImage>;
+
+        #[cfg(feature = "objc2-core-media")]
+        #[method(duration)]
+        pub unsafe fn duration(&self) -> CMTime;
+
+        #[cfg(feature = "objc2-core-media")]
+        #[method(photoTime)]
+        pub unsafe fn photoTime(&self) -> CMTime;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
         #[method(frameProcessor)]
@@ -119,6 +129,10 @@ extern_protocol!(
         #[cfg(feature = "objc2-core-image")]
         #[method_id(@__retain_semantics Other image)]
         unsafe fn image(&self) -> Retained<CIImage>;
+
+        #[cfg(feature = "objc2-core-media")]
+        #[method(time)]
+        unsafe fn time(&self) -> CMTime;
 
         #[method(type)]
         unsafe fn r#type(&self) -> PHLivePhotoFrameType;

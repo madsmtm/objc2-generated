@@ -5,6 +5,8 @@ use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-graphics")]
 use objc2_core_graphics::*;
+#[cfg(feature = "objc2-core-media")]
+use objc2_core_media::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -278,6 +280,14 @@ extern_methods!(
         #[method(setHeight:)]
         pub unsafe fn setHeight(&self, height: usize);
 
+        #[cfg(feature = "objc2-core-media")]
+        #[method(minimumFrameInterval)]
+        pub unsafe fn minimumFrameInterval(&self) -> CMTime;
+
+        #[cfg(feature = "objc2-core-media")]
+        #[method(setMinimumFrameInterval:)]
+        pub unsafe fn setMinimumFrameInterval(&self, minimum_frame_interval: CMTime);
+
         #[method(pixelFormat)]
         pub unsafe fn pixelFormat(&self) -> OSType;
 
@@ -543,6 +553,10 @@ unsafe impl NSObjectProtocol for SCStream {}
 
 extern_methods!(
     unsafe impl SCStream {
+        #[cfg(feature = "objc2-core-media")]
+        #[method(synchronizationClock)]
+        pub unsafe fn synchronizationClock(&self) -> CMClockRef;
+
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -612,7 +626,17 @@ extern_methods!(
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamoutput?language=objc)
-    pub unsafe trait SCStreamOutput: NSObjectProtocol {}
+    pub unsafe trait SCStreamOutput: NSObjectProtocol {
+        #[cfg(feature = "objc2-core-media")]
+        #[optional]
+        #[method(stream:didOutputSampleBuffer:ofType:)]
+        unsafe fn stream_didOutputSampleBuffer_ofType(
+            &self,
+            stream: &SCStream,
+            sample_buffer: CMSampleBufferRef,
+            r#type: SCStreamOutputType,
+        );
+    }
 
     unsafe impl ProtocolType for dyn SCStreamOutput {}
 );

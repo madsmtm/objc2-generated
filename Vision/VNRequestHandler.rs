@@ -5,6 +5,8 @@ use objc2::__framework_prelude::*;
 use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-image")]
 use objc2_core_image::*;
+#[cfg(feature = "objc2-core-media")]
+use objc2_core_media::*;
 #[cfg(feature = "objc2-core-video")]
 use objc2_core_video::*;
 use objc2_foundation::*;
@@ -82,6 +84,14 @@ extern_methods!(
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
+        #[cfg(feature = "objc2-core-media")]
+        #[method_id(@__retain_semantics Init initWithCMSampleBuffer:options:)]
+        pub unsafe fn initWithCMSampleBuffer_options(
+            this: Allocated<Self>,
+            sample_buffer: CMSampleBufferRef,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
         #[cfg(feature = "VNRequest")]
         #[method(performRequests:error:_)]
         pub fn performRequests_error(
@@ -151,6 +161,14 @@ extern_methods!(
             &self,
             requests: &NSArray<VNRequest>,
             image_data: &NSData,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(all(feature = "VNRequest", feature = "objc2-core-media"))]
+        #[method(performRequests:onCMSampleBuffer:error:_)]
+        pub unsafe fn performRequests_onCMSampleBuffer_error(
+            &self,
+            requests: &NSArray<VNRequest>,
+            sample_buffer: CMSampleBufferRef,
         ) -> Result<(), Retained<NSError>>;
     }
 );

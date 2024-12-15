@@ -5,6 +5,8 @@ use objc2::__framework_prelude::*;
 use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-image")]
 use objc2_core_image::*;
+#[cfg(feature = "objc2-core-media")]
+use objc2_core_media::*;
 #[cfg(feature = "objc2-core-video")]
 use objc2_core_video::*;
 use objc2_foundation::*;
@@ -136,6 +138,27 @@ extern_methods!(
         pub unsafe fn initWithTargetedImageData_options_completionHandler(
             this: Allocated<Self>,
             image_data: &NSData,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
+        #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-media"))]
+        #[method_id(@__retain_semantics Init initWithTargetedCMSampleBuffer:options:)]
+        pub unsafe fn initWithTargetedCMSampleBuffer_options(
+            this: Allocated<Self>,
+            sample_buffer: CMSampleBufferRef,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-core-media"
+        ))]
+        #[method_id(@__retain_semantics Init initWithTargetedCMSampleBuffer:options:completionHandler:)]
+        pub unsafe fn initWithTargetedCMSampleBuffer_options_completionHandler(
+            this: Allocated<Self>,
+            sample_buffer: CMSampleBufferRef,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;

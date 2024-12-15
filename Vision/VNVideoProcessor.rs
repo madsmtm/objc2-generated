@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-media")]
+use objc2_core_media::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -192,6 +194,21 @@ extern_methods!(
         pub unsafe fn removeRequest_error(
             &self,
             request: &VNRequest,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "objc2-core-media")]
+        #[method(analyzeTimeRange:error:_)]
+        pub unsafe fn analyzeTimeRange_error(
+            &self,
+            time_range: CMTimeRange,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "objc2-core-media")]
+        #[deprecated]
+        #[method(analyzeWithTimeRange:error:_)]
+        pub unsafe fn analyzeWithTimeRange_error(
+            &self,
+            time_range: CMTimeRange,
         ) -> Result<(), Retained<NSError>>;
 
         #[method(cancel)]

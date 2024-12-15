@@ -7,6 +7,8 @@ use objc2_core_foundation::*;
 use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-image")]
 use objc2_core_image::*;
+#[cfg(feature = "objc2-core-media")]
+use objc2_core_media::*;
 #[cfg(feature = "objc2-core-ml")]
 use objc2_core_ml::*;
 #[cfg(feature = "objc2-core-video")]
@@ -45,6 +47,10 @@ extern_methods!(
         #[cfg(feature = "VNTypes")]
         #[method(confidence)]
         pub unsafe fn confidence(&self) -> VNConfidence;
+
+        #[cfg(feature = "objc2-core-media")]
+        #[method(timeRange)]
+        pub unsafe fn timeRange(&self) -> CMTimeRange;
     }
 );
 

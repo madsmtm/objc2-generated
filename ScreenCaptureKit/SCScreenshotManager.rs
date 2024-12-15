@@ -3,6 +3,8 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-graphics")]
 use objc2_core_graphics::*;
+#[cfg(feature = "objc2-core-media")]
+use objc2_core_media::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -20,6 +22,14 @@ extern_methods!(
     unsafe impl SCScreenshotManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[cfg(all(feature = "SCStream", feature = "block2", feature = "objc2-core-media"))]
+        #[method(captureSampleBufferWithFilter:configuration:completionHandler:)]
+        pub unsafe fn captureSampleBufferWithFilter_configuration_completionHandler(
+            content_filter: &SCContentFilter,
+            config: &SCStreamConfiguration,
+            completion_handler: Option<&block2::Block<dyn Fn(CMSampleBufferRef, *mut NSError)>>,
+        );
 
         #[cfg(all(
             feature = "SCStream",
