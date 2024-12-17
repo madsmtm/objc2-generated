@@ -310,15 +310,6 @@ extern_methods!(
         ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTypes")]
-        #[method_id(@__retain_semantics Other tensorByDequantizingToType:scale:bias:)]
-        pub unsafe fn tensorByDequantizingToType_scale_bias(
-            &self,
-            r#type: MLCDataType,
-            scale: &MLCTensor,
-            bias: &MLCTensor,
-        ) -> Option<Retained<MLCTensor>>;
-
-        #[cfg(feature = "MLCTypes")]
         #[method_id(@__retain_semantics Other tensorByDequantizingToType:scale:bias:axis:)]
         pub unsafe fn tensorByDequantizingToType_scale_bias_axis(
             &self,
