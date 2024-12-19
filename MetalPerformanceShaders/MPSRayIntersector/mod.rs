@@ -105,6 +105,8 @@ pub use self::__MPSSVGF::MPSSVGFTextureAllocator;
 pub use self::__MPSSVGF::MPSTemporalWeighting;
 #[cfg(all(feature = "MPSKernel", feature = "MPSSVGF"))]
 pub use self::__MPSSVGF::MPSSVGF;
+use core::ffi::*;
+use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 use objc2_metal::*;

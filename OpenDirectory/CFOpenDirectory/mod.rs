@@ -1326,7 +1326,7 @@ pub use self::__CFOpenDirectoryConstants::ODPolicyKeyType;
 pub use self::__CFOpenDirectoryConstants::ODPolicyType;
 #[cfg(feature = "CFOpenDirectoryConstants")]
 pub use self::__CFOpenDirectoryConstants::ODRecordType;
-use objc2::__framework_prelude::*;
+use core::ffi::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 

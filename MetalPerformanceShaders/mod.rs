@@ -47,6 +47,8 @@ pub use self::__MPSNDArray::*;
 pub use self::__MPSNeuralNetwork::*;
 #[cfg(feature = "MPSRayIntersector")]
 pub use self::__MPSRayIntersector::*;
+use core::ffi::*;
+use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_metal::*;
 

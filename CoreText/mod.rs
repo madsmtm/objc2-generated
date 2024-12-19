@@ -423,6 +423,7 @@ pub use self::__CTFont::CTFontDrawGlyphs;
 #[cfg(all(
     feature = "CTFont",
     feature = "CTRunDelegate",
+    feature = "objc2",
     feature = "objc2-core-foundation",
     feature = "objc2-core-graphics"
 ))]
@@ -492,6 +493,7 @@ pub use self::__CTFont::CTFontGetTypeID;
 #[cfg(all(
     feature = "CTFont",
     feature = "CTRunDelegate",
+    feature = "objc2",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CTFont::CTFontGetTypographicBoundsForAdaptiveImageProvider;
@@ -1060,7 +1062,7 @@ pub use self::__CTRun::CTRunStatus;
 pub use self::__CTRunDelegate::kCTRunDelegateCurrentVersion;
 #[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::kCTRunDelegateVersion1;
-#[cfg(feature = "CTRunDelegate")]
+#[cfg(all(feature = "CTRunDelegate", feature = "objc2"))]
 pub use self::__CTRunDelegate::CTAdaptiveImageProviding;
 #[cfg(all(feature = "CTRunDelegate", feature = "objc2-core-foundation"))]
 pub use self::__CTRunDelegate::CTRunDelegateCallbacks;

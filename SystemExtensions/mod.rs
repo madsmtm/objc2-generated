@@ -16,6 +16,8 @@
 #[link(name = "SystemExtensions", kind = "framework")]
 extern "C" {}
 
+use core::ffi::*;
+use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 

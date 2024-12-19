@@ -4156,6 +4156,8 @@ pub use self::__MusicPlayer::NewMusicSequence;
 pub use self::__MusicPlayer::NewMusicTrackFrom;
 #[cfg(all(feature = "AUComponent", feature = "MusicPlayer"))]
 pub use self::__MusicPlayer::ParameterEvent;
+use core::ffi::*;
+use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-audio-types")]
 use objc2_core_audio_types::*;

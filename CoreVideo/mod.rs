@@ -399,6 +399,7 @@ pub use self::__CVImageBuffer::CVYCbCrMatrixGetStringForIntegerCodePoint;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVMetalBuffer",
+    feature = "objc2",
     feature = "objc2-metal"
 ))]
 #[cfg(not(target_os = "watchos"))]
@@ -412,6 +413,7 @@ pub use self::__CVMetalBufferCache::kCVMetalBufferCacheMaximumBufferAgeKey;
 #[cfg(all(
     feature = "CVMetalBufferCache",
     feature = "CVReturn",
+    feature = "objc2",
     feature = "objc2-core-foundation",
     feature = "objc2-metal"
 ))]
@@ -440,6 +442,7 @@ pub use self::__CVMetalTexture::kCVMetalTextureUsage;
     feature = "CVBuffer",
     feature = "CVImageBuffer",
     feature = "CVMetalTexture",
+    feature = "objc2",
     feature = "objc2-metal"
 ))]
 #[cfg(not(target_os = "watchos"))]
@@ -463,6 +466,7 @@ pub use self::__CVMetalTextureCache::kCVMetalTextureCacheMaximumTextureAgeKey;
 #[cfg(all(
     feature = "CVMetalTextureCache",
     feature = "CVReturn",
+    feature = "objc2",
     feature = "objc2-core-foundation",
     feature = "objc2-metal"
 ))]
@@ -474,6 +478,7 @@ pub use self::__CVMetalTextureCache::CVMetalTextureCacheCreate;
     feature = "CVMetalTexture",
     feature = "CVMetalTextureCache",
     feature = "CVReturn",
+    feature = "objc2",
     feature = "objc2-core-foundation",
     feature = "objc2-metal"
 ))]

@@ -959,7 +959,7 @@ pub use self::__VNVideoProcessor::VNVideoProcessorFrameRateCadence;
 pub use self::__VNVideoProcessor::VNVideoProcessorRequestProcessingOptions;
 #[cfg(feature = "VNVideoProcessor")]
 pub use self::__VNVideoProcessor::VNVideoProcessorTimeIntervalCadence;
-use objc2::__framework_prelude::*;
+use core::ffi::*;
 
 use crate::*;
 

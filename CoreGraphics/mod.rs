@@ -1053,6 +1053,7 @@ pub use self::__CGDirectDisplay::CGShieldingWindowLevel;
 #[cfg(all(
     feature = "CGDirectDisplay",
     feature = "CGDirectDisplayMetal",
+    feature = "objc2",
     feature = "objc2-metal"
 ))]
 #[cfg(not(target_os = "watchos"))]
