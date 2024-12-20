@@ -9,25 +9,26 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryretaincallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFDictionaryRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(CFAllocatorRef, *mut c_void) -> *mut c_void>;
+    Option<unsafe extern "C-unwind" fn(CFAllocatorRef, *const c_void) -> *const c_void>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryreleasecallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFDictionaryReleaseCallBack =
-    Option<unsafe extern "C-unwind" fn(CFAllocatorRef, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(CFAllocatorRef, *const c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycopydescriptioncallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFDictionaryCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut c_void) -> CFStringRef>;
+    Option<unsafe extern "C-unwind" fn(*const c_void) -> CFStringRef>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryequalcallback?language=objc)
 pub type CFDictionaryEqualCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void) -> Boolean>;
+    Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryhashcallback?language=objc)
 #[cfg(feature = "CFBase")]
-pub type CFDictionaryHashCallBack = Option<unsafe extern "C-unwind" fn(*mut c_void) -> CFHashCode>;
+pub type CFDictionaryHashCallBack =
+    Option<unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarykeycallbacks?language=objc)
 #[cfg(feature = "CFBase")]
@@ -113,10 +114,10 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryapplierfunction?language=objc)
 pub type CFDictionaryApplierFunction =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryref?language=objc)
-pub type CFDictionaryRef = *mut c_void;
+pub type CFDictionaryRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutabledictionaryref?language=objc)
 pub type CFMutableDictionaryRef = *mut c_void;
@@ -130,11 +131,11 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFDictionaryCreate(
         allocator: CFAllocatorRef,
-        keys: *mut *mut c_void,
-        values: *mut *mut c_void,
+        keys: *mut *const c_void,
+        values: *mut *const c_void,
         num_values: CFIndex,
-        key_call_backs: *mut CFDictionaryKeyCallBacks,
-        value_call_backs: *mut CFDictionaryValueCallBacks,
+        key_call_backs: *const CFDictionaryKeyCallBacks,
+        value_call_backs: *const CFDictionaryValueCallBacks,
     ) -> CFDictionaryRef;
 }
 
@@ -151,8 +152,8 @@ extern "C-unwind" {
     pub fn CFDictionaryCreateMutable(
         allocator: CFAllocatorRef,
         capacity: CFIndex,
-        key_call_backs: *mut CFDictionaryKeyCallBacks,
-        value_call_backs: *mut CFDictionaryValueCallBacks,
+        key_call_backs: *const CFDictionaryKeyCallBacks,
+        value_call_backs: *const CFDictionaryValueCallBacks,
     ) -> CFMutableDictionaryRef;
 }
 
@@ -172,39 +173,39 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFDictionaryGetCountOfKey(the_dict: CFDictionaryRef, key: *mut c_void) -> CFIndex;
+    pub fn CFDictionaryGetCountOfKey(the_dict: CFDictionaryRef, key: *const c_void) -> CFIndex;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFDictionaryGetCountOfValue(the_dict: CFDictionaryRef, value: *mut c_void) -> CFIndex;
+    pub fn CFDictionaryGetCountOfValue(the_dict: CFDictionaryRef, value: *const c_void) -> CFIndex;
 }
 
 extern "C-unwind" {
-    pub fn CFDictionaryContainsKey(the_dict: CFDictionaryRef, key: *mut c_void) -> Boolean;
+    pub fn CFDictionaryContainsKey(the_dict: CFDictionaryRef, key: *const c_void) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFDictionaryContainsValue(the_dict: CFDictionaryRef, value: *mut c_void) -> Boolean;
+    pub fn CFDictionaryContainsValue(the_dict: CFDictionaryRef, value: *const c_void) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFDictionaryGetValue(the_dict: CFDictionaryRef, key: *mut c_void) -> *mut c_void;
+    pub fn CFDictionaryGetValue(the_dict: CFDictionaryRef, key: *const c_void) -> *const c_void;
 }
 
 extern "C-unwind" {
     pub fn CFDictionaryGetValueIfPresent(
         the_dict: CFDictionaryRef,
-        key: *mut c_void,
-        value: *mut *mut c_void,
+        key: *const c_void,
+        value: *mut *const c_void,
     ) -> Boolean;
 }
 
 extern "C-unwind" {
     pub fn CFDictionaryGetKeysAndValues(
         the_dict: CFDictionaryRef,
-        keys: *mut *mut c_void,
-        values: *mut *mut c_void,
+        keys: *mut *const c_void,
+        values: *mut *const c_void,
     );
 }
 
@@ -219,29 +220,29 @@ extern "C-unwind" {
 extern "C-unwind" {
     pub fn CFDictionaryAddValue(
         the_dict: CFMutableDictionaryRef,
-        key: *mut c_void,
-        value: *mut c_void,
+        key: *const c_void,
+        value: *const c_void,
     );
 }
 
 extern "C-unwind" {
     pub fn CFDictionarySetValue(
         the_dict: CFMutableDictionaryRef,
-        key: *mut c_void,
-        value: *mut c_void,
+        key: *const c_void,
+        value: *const c_void,
     );
 }
 
 extern "C-unwind" {
     pub fn CFDictionaryReplaceValue(
         the_dict: CFMutableDictionaryRef,
-        key: *mut c_void,
-        value: *mut c_void,
+        key: *const c_void,
+        value: *const c_void,
     );
 }
 
 extern "C-unwind" {
-    pub fn CFDictionaryRemoveValue(the_dict: CFMutableDictionaryRef, key: *mut c_void);
+    pub fn CFDictionaryRemoveValue(the_dict: CFMutableDictionaryRef, key: *const c_void);
 }
 
 extern "C-unwind" {

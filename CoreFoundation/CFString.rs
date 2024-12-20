@@ -56,7 +56,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFStringCreateWithCString(
         alloc: CFAllocatorRef,
-        c_str: *mut c_char,
+        c_str: *const c_char,
         encoding: CFStringEncoding,
     ) -> CFStringRef;
 }
@@ -65,7 +65,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFStringCreateWithBytes(
         alloc: CFAllocatorRef,
-        bytes: *mut u8,
+        bytes: *const u8,
         num_bytes: CFIndex,
         encoding: CFStringEncoding,
         is_external_representation: Boolean,
@@ -76,7 +76,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFStringCreateWithCharacters(
         alloc: CFAllocatorRef,
-        chars: *mut UniChar,
+        chars: *const UniChar,
         num_chars: CFIndex,
     ) -> CFStringRef;
 }
@@ -95,7 +95,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFStringCreateWithCStringNoCopy(
         alloc: CFAllocatorRef,
-        c_str: *mut c_char,
+        c_str: *const c_char,
         encoding: CFStringEncoding,
         contents_deallocator: CFAllocatorRef,
     ) -> CFStringRef;
@@ -105,7 +105,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFStringCreateWithBytesNoCopy(
         alloc: CFAllocatorRef,
-        bytes: *mut u8,
+        bytes: *const u8,
         num_bytes: CFIndex,
         encoding: CFStringEncoding,
         is_external_representation: Boolean,
@@ -117,7 +117,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFStringCreateWithCharactersNoCopy(
         alloc: CFAllocatorRef,
-        chars: *mut UniChar,
+        chars: *const UniChar,
         num_chars: CFIndex,
         contents_deallocator: CFAllocatorRef,
     ) -> CFStringRef;
@@ -210,12 +210,12 @@ extern "C-unwind" {
     pub fn CFStringGetCStringPtr(
         the_string: CFStringRef,
         encoding: CFStringEncoding,
-    ) -> *mut c_char;
+    ) -> *const c_char;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFStringGetCharactersPtr(the_string: CFStringRef) -> *mut UniChar;
+    pub fn CFStringGetCharactersPtr(the_string: CFStringRef) -> *const UniChar;
 }
 
 extern "C-unwind" {
@@ -291,7 +291,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFStringCreateWithFileSystemRepresentation(
         alloc: CFAllocatorRef,
-        buffer: *mut c_char,
+        buffer: *const c_char,
     ) -> CFStringRef;
 }
 
@@ -504,7 +504,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFStringAppendCharacters(
         the_string: CFMutableStringRef,
-        chars: *mut UniChar,
+        chars: *const UniChar,
         num_chars: CFIndex,
     );
 }
@@ -522,7 +522,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFStringAppendCString(
         the_string: CFMutableStringRef,
-        c_str: *mut c_char,
+        c_str: *const c_char,
         encoding: CFStringEncoding,
     );
 }
@@ -756,7 +756,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CFStringGetListOfAvailableEncodings() -> *mut CFStringEncoding;
+    pub fn CFStringGetListOfAvailableEncodings() -> *const CFStringEncoding;
 }
 
 extern "C-unwind" {
@@ -803,8 +803,8 @@ extern "C-unwind" {
 pub struct CFStringInlineBuffer {
     pub buffer: [UniChar; 64],
     pub theString: CFStringRef,
-    pub directUniCharBuffer: *mut UniChar,
-    pub directCStringBuffer: *mut c_char,
+    pub directUniCharBuffer: *const UniChar,
+    pub directCStringBuffer: *const c_char,
     pub rangeToBuffer: CFRange,
     pub bufferedRangeStart: CFIndex,
     pub bufferedRangeEnd: CFIndex,
@@ -817,8 +817,8 @@ unsafe impl Encode for CFStringInlineBuffer {
         &[
             <[UniChar; 64]>::ENCODING,
             <CFStringRef>::ENCODING,
-            <*mut UniChar>::ENCODING,
-            <*mut c_char>::ENCODING,
+            <*const UniChar>::ENCODING,
+            <*const c_char>::ENCODING,
             <CFRange>::ENCODING,
             <CFIndex>::ENCODING,
             <CFIndex>::ENCODING,

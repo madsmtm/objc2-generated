@@ -297,7 +297,7 @@ pub type AudioSessionInterruptionListener = Option<unsafe extern "C-unwind" fn(*
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessionpropertylistener?language=objc)
 pub type AudioSessionPropertyListener =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, AudioSessionPropertyID, u32, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(*mut c_void, AudioSessionPropertyID, u32, *const c_void)>;
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
@@ -337,7 +337,7 @@ extern "C-unwind" {
     pub fn AudioSessionSetProperty(
         in_id: AudioSessionPropertyID,
         in_data_size: u32,
-        in_data: *mut c_void,
+        in_data: *const c_void,
     ) -> OSStatus;
 }
 

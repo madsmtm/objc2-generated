@@ -203,23 +203,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn NSHashGet(table: &NSHashTable, pointer: *mut c_void) -> NonNull<c_void>;
+    pub fn NSHashGet(table: &NSHashTable, pointer: *const c_void) -> NonNull<c_void>;
 }
 
 extern "C-unwind" {
-    pub fn NSHashInsert(table: &NSHashTable, pointer: *mut c_void);
+    pub fn NSHashInsert(table: &NSHashTable, pointer: *const c_void);
 }
 
 extern "C-unwind" {
-    pub fn NSHashInsertKnownAbsent(table: &NSHashTable, pointer: *mut c_void);
+    pub fn NSHashInsertKnownAbsent(table: &NSHashTable, pointer: *const c_void);
 }
 
 extern "C-unwind" {
-    pub fn NSHashInsertIfAbsent(table: &NSHashTable, pointer: *mut c_void) -> *mut c_void;
+    pub fn NSHashInsertIfAbsent(table: &NSHashTable, pointer: *const c_void) -> *mut c_void;
 }
 
 extern "C-unwind" {
-    pub fn NSHashRemove(table: &NSHashTable, pointer: *mut c_void);
+    pub fn NSHashRemove(table: &NSHashTable, pointer: *const c_void);
 }
 
 extern "C-unwind" {

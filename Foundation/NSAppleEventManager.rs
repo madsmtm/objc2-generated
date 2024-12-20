@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventmanagersuspensionid?language=objc)
-pub type NSAppleEventManagerSuspensionID = *mut c_void;
+pub type NSAppleEventManagerSuspensionID = *const c_void;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventtimeoutdefault?language=objc)

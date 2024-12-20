@@ -42,7 +42,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
             threshold_value: c_float,
             maximum_value: c_float,
-            transform: *mut c_float,
+            transform: *const c_float,
         ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
@@ -127,7 +127,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
             threshold_value: c_float,
             maximum_value: c_float,
-            transform: *mut c_float,
+            transform: *const c_float,
         ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
@@ -211,7 +211,7 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             threshold_value: c_float,
-            transform: *mut c_float,
+            transform: *const c_float,
         ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
@@ -292,7 +292,7 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             threshold_value: c_float,
-            transform: *mut c_float,
+            transform: *const c_float,
         ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithDevice:)]
@@ -373,7 +373,7 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             threshold_value: c_float,
-            transform: *mut c_float,
+            transform: *const c_float,
         ) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:device:)]

@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidref?language=objc)
-pub type CFUUIDRef = *mut c_void;
+pub type CFUUIDRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidbytes?language=objc)
 #[repr(C)]

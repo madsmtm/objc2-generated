@@ -20,13 +20,13 @@ pub type AudioCodecPropertyID = u32;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioCodecMagicCookieInfo {
     pub mMagicCookieSize: u32,
-    pub mMagicCookie: *mut c_void,
+    pub mMagicCookie: *const c_void,
 }
 
 unsafe impl Encode for AudioCodecMagicCookieInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioCodecMagicCookieInfo",
-        &[<u32>::ENCODING, <*mut c_void>::ENCODING],
+        &[<u32>::ENCODING, <*const c_void>::ENCODING],
     );
 }
 
@@ -332,9 +332,9 @@ extern "C-unwind" {
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioCodecInitialize(
         in_codec: AudioCodec,
-        in_input_format: *mut AudioStreamBasicDescription,
-        in_output_format: *mut AudioStreamBasicDescription,
-        in_magic_cookie: *mut c_void,
+        in_input_format: *const AudioStreamBasicDescription,
+        in_output_format: *const AudioStreamBasicDescription,
+        in_magic_cookie: *const c_void,
         in_magic_cookie_byte_size: u32,
     ) -> OSStatus;
 }
@@ -351,7 +351,7 @@ extern "C-unwind" {
         in_input_data: NonNull<c_void>,
         io_input_data_byte_size: NonNull<u32>,
         io_number_packets: NonNull<u32>,
-        in_packet_description: *mut AudioStreamPacketDescription,
+        in_packet_description: *const AudioStreamPacketDescription,
     ) -> OSStatus;
 }
 
@@ -373,7 +373,7 @@ extern "C-unwind" {
         in_codec: AudioCodec,
         in_buffer_list: NonNull<AudioBufferList>,
         io_number_packets: NonNull<u32>,
-        in_packet_description: *mut AudioStreamPacketDescription,
+        in_packet_description: *const AudioStreamPacketDescription,
         out_bytes_consumed: NonNull<u32>,
     ) -> OSStatus;
 }
@@ -429,9 +429,9 @@ pub type AudioCodecSetPropertyProc = Option<
 pub type AudioCodecInitializeProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
-        *mut AudioStreamBasicDescription,
-        *mut AudioStreamBasicDescription,
-        *mut c_void,
+        *const AudioStreamBasicDescription,
+        *const AudioStreamBasicDescription,
+        *const c_void,
         u32,
     ) -> OSStatus,
 >;
@@ -448,7 +448,7 @@ pub type AudioCodecAppendInputDataProc = Option<
         NonNull<c_void>,
         NonNull<u32>,
         NonNull<u32>,
-        *mut AudioStreamPacketDescription,
+        *const AudioStreamPacketDescription,
     ) -> OSStatus,
 >;
 
@@ -475,7 +475,7 @@ pub type AudioCodecAppendInputBufferListProc = Option<
         NonNull<c_void>,
         NonNull<AudioBufferList>,
         NonNull<u32>,
-        *mut AudioStreamPacketDescription,
+        *const AudioStreamPacketDescription,
         NonNull<u32>,
     ) -> OSStatus,
 >;

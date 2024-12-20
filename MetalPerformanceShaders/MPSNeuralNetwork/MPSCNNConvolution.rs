@@ -150,10 +150,10 @@ extern_methods!(
         #[method(setBatchNormalizationParametersForInferenceWithMean:variance:gamma:beta:epsilon:)]
         pub unsafe fn setBatchNormalizationParametersForInferenceWithMean_variance_gamma_beta_epsilon(
             &self,
-            mean: *mut c_float,
-            variance: *mut c_float,
-            gamma: *mut c_float,
-            beta: *mut c_float,
+            mean: *const c_float,
+            variance: *const c_float,
+            gamma: *const c_float,
+            beta: *const c_float,
             epsilon: c_float,
         );
 
@@ -909,7 +909,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
             convolution_descriptor: &MPSCNNConvolutionDescriptor,
             kernel_weights: NonNull<c_float>,
-            bias_terms: *mut c_float,
+            bias_terms: *const c_float,
             flags: MPSCNNConvolutionFlags,
         ) -> Retained<Self>;
 
@@ -1217,7 +1217,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
             convolution_descriptor: &MPSCNNConvolutionDescriptor,
             kernel_weights: NonNull<c_float>,
-            bias_terms: *mut c_float,
+            bias_terms: *const c_float,
             flags: MPSCNNConvolutionFlags,
         ) -> Retained<Self>;
 
@@ -1771,10 +1771,10 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             convolution_data: &ProtocolObject<dyn MPSCNNConvolutionDataSource>,
-            output_bias_terms: *mut c_float,
-            output_scale_terms: *mut c_float,
-            input_bias_terms: *mut c_float,
-            input_scale_terms: *mut c_float,
+            output_bias_terms: *const c_float,
+            output_scale_terms: *const c_float,
+            input_bias_terms: *const c_float,
+            input_scale_terms: *const c_float,
             r#type: MPSCNNBinaryConvolutionType,
             flags: MPSCNNBinaryConvolutionFlags,
         ) -> Retained<Self>;
@@ -1863,10 +1863,10 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             convolution_data: &ProtocolObject<dyn MPSCNNConvolutionDataSource>,
-            output_bias_terms: *mut c_float,
-            output_scale_terms: *mut c_float,
-            input_bias_terms: *mut c_float,
-            input_scale_terms: *mut c_float,
+            output_bias_terms: *const c_float,
+            output_scale_terms: *const c_float,
+            input_bias_terms: *const c_float,
+            input_scale_terms: *const c_float,
             r#type: MPSCNNBinaryConvolutionType,
             flags: MPSCNNBinaryConvolutionFlags,
         ) -> Retained<Self>;

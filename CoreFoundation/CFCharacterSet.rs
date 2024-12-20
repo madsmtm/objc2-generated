@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetref?language=objc)
-pub type CFCharacterSetRef = *mut c_void;
+pub type CFCharacterSetRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablecharactersetref?language=objc)
 pub type CFMutableCharacterSetRef = *mut c_void;

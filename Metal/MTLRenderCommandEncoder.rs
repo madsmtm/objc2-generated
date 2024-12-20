@@ -572,7 +572,7 @@ extern_protocol!(
         unsafe fn setVertexAmplificationCount_viewMappings(
             &self,
             count: NSUInteger,
-            view_mappings: *mut MTLVertexAmplificationViewMapping,
+            view_mappings: *const MTLVertexAmplificationViewMapping,
         );
 
         #[method(setCullMode:)]

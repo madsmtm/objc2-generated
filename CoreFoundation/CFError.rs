@@ -105,8 +105,8 @@ extern "C-unwind" {
         allocator: CFAllocatorRef,
         domain: CFErrorDomain,
         code: CFIndex,
-        user_info_keys: *mut *const c_void,
-        user_info_values: *mut *const c_void,
+        user_info_keys: *const *const c_void,
+        user_info_values: *const *const c_void,
         num_user_info_values: CFIndex,
     ) -> CFErrorRef;
 }

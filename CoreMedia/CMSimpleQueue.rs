@@ -38,11 +38,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CMSimpleQueueDequeue(queue: CMSimpleQueueRef) -> *mut c_void;
+    pub fn CMSimpleQueueDequeue(queue: CMSimpleQueueRef) -> *const c_void;
 }
 
 extern "C-unwind" {
-    pub fn CMSimpleQueueGetHead(queue: CMSimpleQueueRef) -> *mut c_void;
+    pub fn CMSimpleQueueGetHead(queue: CMSimpleQueueRef) -> *const c_void;
 }
 
 extern "C-unwind" {

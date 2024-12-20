@@ -82,7 +82,7 @@ extern "C-unwind" {
         y_step: CGFloat,
         tiling: CGPatternTiling,
         is_colored: bool,
-        callbacks: *mut CGPatternCallbacks,
+        callbacks: *const CGPatternCallbacks,
     ) -> CGPatternRef;
 }
 

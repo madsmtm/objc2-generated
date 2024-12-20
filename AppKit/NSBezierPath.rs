@@ -329,7 +329,7 @@ extern_methods!(
         #[method(setLineDash:count:phase:)]
         pub unsafe fn setLineDash_count_phase(
             &self,
-            pattern: *mut CGFloat,
+            pattern: *const CGFloat,
             count: NSInteger,
             phase: CGFloat,
         );

@@ -12,7 +12,7 @@ pub type CGColorRef = *mut c_void;
 
 extern "C-unwind" {
     #[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
-    pub fn CGColorCreate(space: CGColorSpaceRef, components: *mut CGFloat) -> CGColorRef;
+    pub fn CGColorCreate(space: CGColorSpaceRef, components: *const CGFloat) -> CGColorRef;
 }
 
 extern "C-unwind" {
@@ -70,7 +70,7 @@ extern "C-unwind" {
     pub fn CGColorCreateWithPattern(
         space: CGColorSpaceRef,
         pattern: CGPatternRef,
-        components: *mut CGFloat,
+        components: *const CGFloat,
     ) -> CGColorRef;
 }
 
@@ -111,7 +111,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn CGColorGetComponents(color: CGColorRef) -> *mut CGFloat;
+    pub fn CGColorGetComponents(color: CGColorRef) -> *const CGFloat;
 }
 
 extern "C-unwind" {

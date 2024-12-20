@@ -57,10 +57,10 @@ extern "C-unwind" {
     pub fn CGFunctionCreate(
         info: *mut c_void,
         domain_dimension: usize,
-        domain: *mut CGFloat,
+        domain: *const CGFloat,
         range_dimension: usize,
-        range: *mut CGFloat,
-        callbacks: *mut CGFunctionCallbacks,
+        range: *const CGFloat,
+        callbacks: *const CGFunctionCallbacks,
     ) -> CGFunctionRef;
 }
 

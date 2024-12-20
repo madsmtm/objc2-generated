@@ -133,7 +133,7 @@ extern "C-unwind" {
     pub fn CGEventKeyboardSetUnicodeString(
         event: CGEventRef,
         string_length: UniCharCount,
-        unicode_string: *mut UniChar,
+        unicode_string: *const UniChar,
     );
 }
 

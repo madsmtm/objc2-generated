@@ -765,7 +765,7 @@ extern_methods!(
         pub unsafe fn data2(&self) -> NSInteger;
 
         #[method(eventRef)]
-        pub unsafe fn eventRef(&self) -> *mut c_void;
+        pub unsafe fn eventRef(&self) -> *const c_void;
 
         #[method_id(@__retain_semantics Other eventWithEventRef:)]
         pub unsafe fn eventWithEventRef(event_ref: NonNull<c_void>) -> Option<Retained<NSEvent>>;

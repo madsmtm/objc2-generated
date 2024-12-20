@@ -216,7 +216,7 @@ extern "C-unwind" {
     pub fn CGContextSetLineDash(
         c: CGContextRef,
         phase: CGFloat,
-        lengths: *mut CGFloat,
+        lengths: *const CGFloat,
         count: usize,
     );
 }
@@ -284,12 +284,12 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn CGContextAddRects(c: CGContextRef, rects: *mut CGRect, count: usize);
+    pub fn CGContextAddRects(c: CGContextRef, rects: *const CGRect, count: usize);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn CGContextAddLines(c: CGContextRef, points: *mut CGPoint, count: usize);
+    pub fn CGContextAddLines(c: CGContextRef, points: *const CGPoint, count: usize);
 }
 
 extern "C-unwind" {
@@ -382,7 +382,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn CGContextFillRects(c: CGContextRef, rects: *mut CGRect, count: usize);
+    pub fn CGContextFillRects(c: CGContextRef, rects: *const CGRect, count: usize);
 }
 
 extern "C-unwind" {
@@ -412,7 +412,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn CGContextStrokeLineSegments(c: CGContextRef, points: *mut CGPoint, count: usize);
+    pub fn CGContextStrokeLineSegments(c: CGContextRef, points: *const CGPoint, count: usize);
 }
 
 extern "C-unwind" {
@@ -469,12 +469,12 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn CGContextSetFillColor(c: CGContextRef, components: *mut CGFloat);
+    pub fn CGContextSetFillColor(c: CGContextRef, components: *const CGFloat);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn CGContextSetStrokeColor(c: CGContextRef, components: *mut CGFloat);
+    pub fn CGContextSetStrokeColor(c: CGContextRef, components: *const CGFloat);
 }
 
 extern "C-unwind" {
@@ -482,7 +482,7 @@ extern "C-unwind" {
     pub fn CGContextSetFillPattern(
         c: CGContextRef,
         pattern: CGPatternRef,
-        components: *mut CGFloat,
+        components: *const CGFloat,
     );
 }
 
@@ -491,7 +491,7 @@ extern "C-unwind" {
     pub fn CGContextSetStrokePattern(
         c: CGContextRef,
         pattern: CGPatternRef,
-        components: *mut CGFloat,
+        components: *const CGFloat,
     );
 }
 
@@ -699,8 +699,8 @@ extern "C-unwind" {
     #[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
     pub fn CGContextShowGlyphsAtPositions(
         c: CGContextRef,
-        glyphs: *mut CGGlyph,
-        lpositions: *mut CGPoint,
+        glyphs: *const CGGlyph,
+        lpositions: *const CGPoint,
         count: usize,
     );
 }
@@ -712,7 +712,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn CGContextBeginPage(c: CGContextRef, media_box: *mut CGRect);
+    pub fn CGContextBeginPage(c: CGContextRef, media_box: *const CGRect);
 }
 
 extern "C-unwind" {
@@ -837,7 +837,7 @@ extern "C-unwind" {
     #[deprecated = "No longer supported"]
     pub fn CGContextSelectFont(
         c: CGContextRef,
-        name: *mut c_char,
+        name: *const c_char,
         size: CGFloat,
         text_encoding: CGTextEncoding,
     );
@@ -845,7 +845,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated = "No longer supported"]
-    pub fn CGContextShowText(c: CGContextRef, string: *mut c_char, length: usize);
+    pub fn CGContextShowText(c: CGContextRef, string: *const c_char, length: usize);
 }
 
 extern "C-unwind" {
@@ -855,7 +855,7 @@ extern "C-unwind" {
         c: CGContextRef,
         x: CGFloat,
         y: CGFloat,
-        string: *mut c_char,
+        string: *const c_char,
         length: usize,
     );
 }
@@ -863,7 +863,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CGFont")]
     #[deprecated = "No longer supported"]
-    pub fn CGContextShowGlyphs(c: CGContextRef, g: *mut CGGlyph, count: usize);
+    pub fn CGContextShowGlyphs(c: CGContextRef, g: *const CGGlyph, count: usize);
 }
 
 extern "C-unwind" {
@@ -873,7 +873,7 @@ extern "C-unwind" {
         c: CGContextRef,
         x: CGFloat,
         y: CGFloat,
-        glyphs: *mut CGGlyph,
+        glyphs: *const CGGlyph,
         count: usize,
     );
 }
@@ -883,8 +883,8 @@ extern "C-unwind" {
     #[deprecated = "No longer supported"]
     pub fn CGContextShowGlyphsWithAdvances(
         c: CGContextRef,
-        glyphs: *mut CGGlyph,
-        advances: *mut CGSize,
+        glyphs: *const CGGlyph,
+        advances: *const CGSize,
         count: usize,
     );
 }

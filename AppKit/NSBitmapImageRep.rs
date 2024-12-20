@@ -366,7 +366,7 @@ extern_methods!(
 
         #[method(getTIFFCompressionTypes:count:)]
         pub unsafe fn getTIFFCompressionTypes_count(
-            list: NonNull<*mut NSTIFFCompression>,
+            list: NonNull<*const NSTIFFCompression>,
             num_types: NonNull<NSInteger>,
         );
 

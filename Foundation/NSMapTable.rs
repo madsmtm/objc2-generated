@@ -232,27 +232,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn NSMapGet(table: &NSMapTable, key: *mut c_void) -> *mut c_void;
+    pub fn NSMapGet(table: &NSMapTable, key: *const c_void) -> *mut c_void;
 }
 
 extern "C-unwind" {
-    pub fn NSMapInsert(table: &NSMapTable, key: *mut c_void, value: *mut c_void);
+    pub fn NSMapInsert(table: &NSMapTable, key: *const c_void, value: *const c_void);
 }
 
 extern "C-unwind" {
-    pub fn NSMapInsertKnownAbsent(table: &NSMapTable, key: *mut c_void, value: *mut c_void);
+    pub fn NSMapInsertKnownAbsent(table: &NSMapTable, key: *const c_void, value: *const c_void);
 }
 
 extern "C-unwind" {
     pub fn NSMapInsertIfAbsent(
         table: &NSMapTable,
-        key: *mut c_void,
-        value: *mut c_void,
+        key: *const c_void,
+        value: *const c_void,
     ) -> *mut c_void;
 }
 
 extern "C-unwind" {
-    pub fn NSMapRemove(table: &NSMapTable, key: *mut c_void);
+    pub fn NSMapRemove(table: &NSMapTable, key: *const c_void);
 }
 
 extern "C-unwind" {
@@ -304,12 +304,12 @@ pub struct NSMapTableKeyCallBacks {
     pub release: Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>)>,
     pub describe:
         Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>) -> *mut NSString>,
-    pub notAKeyMarker: *mut c_void,
+    pub notAKeyMarker: *const c_void,
 }
 
 #[cfg(feature = "NSString")]
 unsafe impl Encode for NSMapTableKeyCallBacks {
-    const ENCODING: Encoding = Encoding::Struct("?", &[<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,) -> NSUInteger>>::ENCODING,<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,NonNull<c_void>,) -> Bool>>::ENCODING,<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,)>>::ENCODING,<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,)>>::ENCODING,<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,) -> *mut NSString>>::ENCODING,<*mut c_void>::ENCODING,]);
+    const ENCODING: Encoding = Encoding::Struct("?", &[<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,) -> NSUInteger>>::ENCODING,<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,NonNull<c_void>,) -> Bool>>::ENCODING,<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,)>>::ENCODING,<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,)>>::ENCODING,<Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>,NonNull<c_void>,) -> *mut NSString>>::ENCODING,<*const c_void>::ENCODING,]);
 }
 
 #[cfg(feature = "NSString")]

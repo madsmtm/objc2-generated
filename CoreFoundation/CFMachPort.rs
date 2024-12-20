@@ -16,9 +16,9 @@ pub type CFMachPortRef = *mut c_void;
 pub struct CFMachPortContext {
     pub version: CFIndex,
     pub info: *mut c_void,
-    pub retain: Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void>,
-    pub release: Option<unsafe extern "C-unwind" fn(*mut c_void)>,
-    pub copyDescription: Option<unsafe extern "C-unwind" fn(*mut c_void) -> CFStringRef>,
+    pub retain: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>,
+    pub release: Option<unsafe extern "C-unwind" fn(*const c_void)>,
+    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> CFStringRef>,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -28,9 +28,9 @@ unsafe impl Encode for CFMachPortContext {
         &[
             <CFIndex>::ENCODING,
             <*mut c_void>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut c_void)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut c_void) -> CFStringRef>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*const c_void)>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*const c_void) -> CFStringRef>>::ENCODING,
         ],
     );
 }

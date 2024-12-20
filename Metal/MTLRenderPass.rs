@@ -647,7 +647,7 @@ extern_methods!(
         #[method(setSamplePositions:count:)]
         pub unsafe fn setSamplePositions_count(
             &self,
-            positions: *mut MTLSamplePosition,
+            positions: *const MTLSamplePosition,
             count: NSUInteger,
         );
 

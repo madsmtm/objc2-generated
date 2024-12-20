@@ -12,7 +12,7 @@ use objc2_core_graphics::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineref?language=objc)
-pub type CTLineRef = *mut c_void;
+pub type CTLineRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineboundsoptions?language=objc)
 // NS_OPTIONS

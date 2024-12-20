@@ -79,7 +79,7 @@ extern "C-unwind" {
     pub fn AudioServicesGetPropertyInfo(
         in_property_id: AudioServicesPropertyID,
         in_specifier_size: u32,
-        in_specifier: *mut c_void,
+        in_specifier: *const c_void,
         out_property_data_size: *mut u32,
         out_writable: *mut Boolean,
     ) -> OSStatus;
@@ -89,7 +89,7 @@ extern "C-unwind" {
     pub fn AudioServicesGetProperty(
         in_property_id: AudioServicesPropertyID,
         in_specifier_size: u32,
-        in_specifier: *mut c_void,
+        in_specifier: *const c_void,
         io_property_data_size: NonNull<u32>,
         out_property_data: *mut c_void,
     ) -> OSStatus;
@@ -99,7 +99,7 @@ extern "C-unwind" {
     pub fn AudioServicesSetProperty(
         in_property_id: AudioServicesPropertyID,
         in_specifier_size: u32,
-        in_specifier: *mut c_void,
+        in_specifier: *const c_void,
         in_property_data_size: u32,
         in_property_data: NonNull<c_void>,
     ) -> OSStatus;

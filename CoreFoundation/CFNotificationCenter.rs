@@ -21,7 +21,7 @@ pub type CFNotificationCallback = Option<
         CFNotificationCenterRef,
         *mut c_void,
         CFNotificationName,
-        *mut c_void,
+        *const c_void,
         CFDictionaryRef,
     ),
 >;
@@ -75,10 +75,10 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
     pub fn CFNotificationCenterAddObserver(
         center: CFNotificationCenterRef,
-        observer: *mut c_void,
+        observer: *const c_void,
         call_back: CFNotificationCallback,
         name: CFStringRef,
-        object: *mut c_void,
+        object: *const c_void,
         suspension_behavior: CFNotificationSuspensionBehavior,
     );
 }
@@ -87,16 +87,16 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFNotificationCenterRemoveObserver(
         center: CFNotificationCenterRef,
-        observer: *mut c_void,
+        observer: *const c_void,
         name: CFNotificationName,
-        object: *mut c_void,
+        object: *const c_void,
     );
 }
 
 extern "C-unwind" {
     pub fn CFNotificationCenterRemoveEveryObserver(
         center: CFNotificationCenterRef,
-        observer: *mut c_void,
+        observer: *const c_void,
     );
 }
 
@@ -105,7 +105,7 @@ extern "C-unwind" {
     pub fn CFNotificationCenterPostNotification(
         center: CFNotificationCenterRef,
         name: CFNotificationName,
-        object: *mut c_void,
+        object: *const c_void,
         user_info: CFDictionaryRef,
         deliver_immediately: Boolean,
     );
@@ -123,7 +123,7 @@ extern "C-unwind" {
     pub fn CFNotificationCenterPostNotificationWithOptions(
         center: CFNotificationCenterRef,
         name: CFNotificationName,
-        object: *mut c_void,
+        object: *const c_void,
         user_info: CFDictionaryRef,
         options: CFOptionFlags,
     );

@@ -16,7 +16,7 @@ use crate::*;
 pub type CGDisplayStreamRef = *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdateref?language=objc)
-pub type CGDisplayStreamUpdateRef = *mut c_void;
+pub type CGDisplayStreamUpdateRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdaterecttype?language=objc)
 // NS_ENUM
@@ -82,7 +82,7 @@ extern "C-unwind" {
         update_ref: CGDisplayStreamUpdateRef,
         rect_type: CGDisplayStreamUpdateRectType,
         rect_count: NonNull<usize>,
-    ) -> *mut CGRect;
+    ) -> *const CGRect;
 }
 
 extern "C-unwind" {

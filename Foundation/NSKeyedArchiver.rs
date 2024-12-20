@@ -155,7 +155,7 @@ extern_methods!(
         #[method(encodeBytes:length:forKey:)]
         pub unsafe fn encodeBytes_length_forKey(
             &self,
-            bytes: *mut u8,
+            bytes: *const u8,
             length: NSUInteger,
             key: &NSString,
         );
@@ -349,7 +349,7 @@ extern_methods!(
             &self,
             key: &NSString,
             lengthp: *mut NSUInteger,
-        ) -> *mut u8;
+        ) -> *const u8;
 
         #[method(requiresSecureCoding)]
         pub unsafe fn requiresSecureCoding(&self) -> bool;

@@ -877,7 +877,7 @@ extern "C-unwind" {
         in_iterator: MusicEventIterator,
         out_time_stamp: NonNull<MusicTimeStamp>,
         out_event_type: NonNull<MusicEventType>,
-        out_event_data: NonNull<*mut c_void>,
+        out_event_data: NonNull<*const c_void>,
         out_event_data_size: NonNull<u32>,
     ) -> OSStatus;
 }

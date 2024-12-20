@@ -115,7 +115,7 @@ pub type CFSocketCallBack = Option<
         CFSocketRef,
         CFSocketCallBackType,
         CFDataRef,
-        *mut c_void,
+        *const c_void,
         *mut c_void,
     ),
 >;
@@ -127,9 +127,9 @@ pub type CFSocketCallBack = Option<
 pub struct CFSocketContext {
     pub version: CFIndex,
     pub info: *mut c_void,
-    pub retain: Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void>,
-    pub release: Option<unsafe extern "C-unwind" fn(*mut c_void)>,
-    pub copyDescription: Option<unsafe extern "C-unwind" fn(*mut c_void) -> CFStringRef>,
+    pub retain: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>,
+    pub release: Option<unsafe extern "C-unwind" fn(*const c_void)>,
+    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> CFStringRef>,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -139,9 +139,9 @@ unsafe impl Encode for CFSocketContext {
         &[
             <CFIndex>::ENCODING,
             <*mut c_void>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut c_void)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut c_void) -> CFStringRef>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*const c_void)>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*const c_void) -> CFStringRef>>::ENCODING,
         ],
     );
 }
@@ -168,7 +168,7 @@ extern "C-unwind" {
         protocol: i32,
         call_back_types: CFOptionFlags,
         callout: CFSocketCallBack,
-        context: *mut CFSocketContext,
+        context: *const CFSocketContext,
     ) -> CFSocketRef;
 }
 
@@ -179,7 +179,7 @@ extern "C-unwind" {
         sock: CFSocketNativeHandle,
         call_back_types: CFOptionFlags,
         callout: CFSocketCallBack,
-        context: *mut CFSocketContext,
+        context: *const CFSocketContext,
     ) -> CFSocketRef;
 }
 
@@ -187,10 +187,10 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData"))]
     pub fn CFSocketCreateWithSocketSignature(
         allocator: CFAllocatorRef,
-        signature: *mut CFSocketSignature,
+        signature: *const CFSocketSignature,
         call_back_types: CFOptionFlags,
         callout: CFSocketCallBack,
-        context: *mut CFSocketContext,
+        context: *const CFSocketContext,
     ) -> CFSocketRef;
 }
 
@@ -198,10 +198,10 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFDate"))]
     pub fn CFSocketCreateConnectedToSocketSignature(
         allocator: CFAllocatorRef,
-        signature: *mut CFSocketSignature,
+        signature: *const CFSocketSignature,
         call_back_types: CFOptionFlags,
         callout: CFSocketCallBack,
-        context: *mut CFSocketContext,
+        context: *const CFSocketContext,
         timeout: CFTimeInterval,
     ) -> CFSocketRef;
 }
@@ -289,7 +289,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFDate"))]
     pub fn CFSocketRegisterValue(
-        name_server_signature: *mut CFSocketSignature,
+        name_server_signature: *const CFSocketSignature,
         timeout: CFTimeInterval,
         name: CFStringRef,
         value: CFPropertyListRef,
@@ -299,7 +299,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFDate"))]
     pub fn CFSocketCopyRegisteredValue(
-        name_server_signature: *mut CFSocketSignature,
+        name_server_signature: *const CFSocketSignature,
         timeout: CFTimeInterval,
         name: CFStringRef,
         value: *mut CFPropertyListRef,
@@ -310,17 +310,17 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFDate"))]
     pub fn CFSocketRegisterSocketSignature(
-        name_server_signature: *mut CFSocketSignature,
+        name_server_signature: *const CFSocketSignature,
         timeout: CFTimeInterval,
         name: CFStringRef,
-        signature: *mut CFSocketSignature,
+        signature: *const CFSocketSignature,
     ) -> CFSocketError;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFDate"))]
     pub fn CFSocketCopyRegisteredSocketSignature(
-        name_server_signature: *mut CFSocketSignature,
+        name_server_signature: *const CFSocketSignature,
         timeout: CFTimeInterval,
         name: CFStringRef,
         signature: *mut CFSocketSignature,
@@ -331,7 +331,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFDate"))]
     pub fn CFSocketUnregister(
-        name_server_signature: *mut CFSocketSignature,
+        name_server_signature: *const CFSocketSignature,
         timeout: CFTimeInterval,
         name: CFStringRef,
     ) -> CFSocketError;

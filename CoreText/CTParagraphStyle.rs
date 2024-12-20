@@ -10,7 +10,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstyleref?language=objc)
-pub type CTParagraphStyleRef = *mut c_void;
+pub type CTParagraphStyleRef = *const c_void;
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
@@ -161,7 +161,7 @@ unsafe impl RefEncode for CTParagraphStyleSetting {
 
 extern "C-unwind" {
     pub fn CTParagraphStyleCreate(
-        settings: *mut CTParagraphStyleSetting,
+        settings: *const CTParagraphStyleSetting,
         setting_count: usize,
     ) -> CTParagraphStyleRef;
 }

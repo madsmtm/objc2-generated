@@ -184,7 +184,7 @@ extern "C-unwind" {
     pub fn AudioFileStreamParseBytes(
         in_audio_file_stream: AudioFileStreamID,
         in_data_byte_size: u32,
-        in_data: *mut c_void,
+        in_data: *const c_void,
         in_flags: AudioFileStreamParseFlags,
     ) -> OSStatus;
 }

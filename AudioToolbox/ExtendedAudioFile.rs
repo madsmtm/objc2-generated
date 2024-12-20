@@ -102,7 +102,7 @@ extern "C-unwind" {
         in_url: CFURLRef,
         in_file_type: AudioFileTypeID,
         in_stream_desc: NonNull<AudioStreamBasicDescription>,
-        in_channel_layout: *mut AudioChannelLayout,
+        in_channel_layout: *const AudioChannelLayout,
         in_flags: u32,
         out_ext_audio_file: NonNull<ExtAudioFileRef>,
     ) -> OSStatus;
@@ -135,7 +135,7 @@ extern "C-unwind" {
     pub fn ExtAudioFileWriteAsync(
         in_ext_audio_file: ExtAudioFileRef,
         in_number_frames: u32,
-        io_data: *mut AudioBufferList,
+        io_data: *const AudioBufferList,
     ) -> OSStatus;
 }
 

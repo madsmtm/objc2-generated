@@ -10,7 +10,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninforef?language=objc)
-pub type CGColorConversionInfoRef = *mut c_void;
+pub type CGColorConversionInfoRef = *const c_void;
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]

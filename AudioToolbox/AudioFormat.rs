@@ -140,7 +140,7 @@ unsafe impl RefEncode for AudioFormatInfo {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ExtendedAudioFormatInfo {
     pub mASBD: AudioStreamBasicDescription,
-    pub mMagicCookie: *mut c_void,
+    pub mMagicCookie: *const c_void,
     pub mMagicCookieSize: u32,
     pub mClassDescription: AudioClassDescription,
 }
@@ -151,7 +151,7 @@ unsafe impl Encode for ExtendedAudioFormatInfo {
         "ExtendedAudioFormatInfo",
         &[
             <AudioStreamBasicDescription>::ENCODING,
-            <*mut c_void>::ENCODING,
+            <*const c_void>::ENCODING,
             <u32>::ENCODING,
             <AudioClassDescription>::ENCODING,
         ],
@@ -248,7 +248,7 @@ extern "C-unwind" {
     pub fn AudioFormatGetPropertyInfo(
         in_property_id: AudioFormatPropertyID,
         in_specifier_size: u32,
-        in_specifier: *mut c_void,
+        in_specifier: *const c_void,
         out_property_data_size: NonNull<u32>,
     ) -> OSStatus;
 }
@@ -257,7 +257,7 @@ extern "C-unwind" {
     pub fn AudioFormatGetProperty(
         in_property_id: AudioFormatPropertyID,
         in_specifier_size: u32,
-        in_specifier: *mut c_void,
+        in_specifier: *const c_void,
         io_property_data_size: *mut u32,
         out_property_data: *mut c_void,
     ) -> OSStatus;

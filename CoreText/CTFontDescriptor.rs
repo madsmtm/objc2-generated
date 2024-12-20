@@ -10,7 +10,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorref?language=objc)
-pub type CTFontDescriptorRef = *mut c_void;
+pub type CTFontDescriptorRef = *const c_void;
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]

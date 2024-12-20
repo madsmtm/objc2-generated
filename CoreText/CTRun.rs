@@ -12,7 +12,7 @@ use objc2_core_graphics::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrunref?language=objc)
-pub type CTRunRef = *mut c_void;
+pub type CTRunRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrunstatus?language=objc)
 // NS_OPTIONS
@@ -59,7 +59,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTRunGetGlyphsPtr(run: CTRunRef) -> *mut CGGlyph;
+    pub fn CTRunGetGlyphsPtr(run: CTRunRef) -> *const CGGlyph;
 }
 
 extern "C-unwind" {
@@ -69,7 +69,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn CTRunGetPositionsPtr(run: CTRunRef) -> *mut CGPoint;
+    pub fn CTRunGetPositionsPtr(run: CTRunRef) -> *const CGPoint;
 }
 
 extern "C-unwind" {
@@ -79,7 +79,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn CTRunGetAdvancesPtr(run: CTRunRef) -> *mut CGSize;
+    pub fn CTRunGetAdvancesPtr(run: CTRunRef) -> *const CGSize;
 }
 
 extern "C-unwind" {
@@ -89,7 +89,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn CTRunGetStringIndicesPtr(run: CTRunRef) -> *mut CFIndex;
+    pub fn CTRunGetStringIndicesPtr(run: CTRunRef) -> *const CFIndex;
 }
 
 extern "C-unwind" {

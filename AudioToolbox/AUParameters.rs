@@ -314,7 +314,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other stringFromValue:)]
-        pub unsafe fn stringFromValue(&self, value: *mut AUValue) -> Retained<NSString>;
+        pub unsafe fn stringFromValue(&self, value: *const AUValue) -> Retained<NSString>;
 
         #[method(valueFromString:)]
         pub unsafe fn valueFromString(&self, string: &NSString) -> AUValue;

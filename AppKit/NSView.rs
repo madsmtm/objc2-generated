@@ -208,7 +208,7 @@ extern_methods!(
         #[method(getRectsBeingDrawn:count:)]
         pub unsafe fn getRectsBeingDrawn_count(
             &self,
-            rects: *mut *mut NSRect,
+            rects: *mut *const NSRect,
             count: *mut NSInteger,
         );
 

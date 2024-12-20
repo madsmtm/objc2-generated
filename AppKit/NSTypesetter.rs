@@ -335,7 +335,7 @@ extern_methods!(
         pub unsafe fn setLocation_withAdvancements_forStartOfGlyphRange(
             &self,
             location: NSPoint,
-            advancements: *mut CGFloat,
+            advancements: *const CGFloat,
             glyph_range: NSRange,
         );
 
@@ -348,7 +348,7 @@ extern_methods!(
         );
 
         #[method(setBidiLevels:forGlyphRange:)]
-        pub unsafe fn setBidiLevels_forGlyphRange(&self, levels: *mut u8, glyph_range: NSRange);
+        pub unsafe fn setBidiLevels_forGlyphRange(&self, levels: *const u8, glyph_range: NSRange);
     }
 );
 

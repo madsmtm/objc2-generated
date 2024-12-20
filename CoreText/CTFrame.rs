@@ -12,7 +12,7 @@ use objc2_core_graphics::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframeref?language=objc)
-pub type CTFrameRef = *mut c_void;
+pub type CTFrameRef = *const c_void;
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]

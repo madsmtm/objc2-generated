@@ -27,7 +27,7 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateref?language=objc)
-pub type CFDateRef = *mut c_void;
+pub type CFDateRef = *const c_void;
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
@@ -60,7 +60,7 @@ extern "C-unwind" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezoneref?language=objc)
-pub type CFTimeZoneRef = *mut c_void;
+pub type CFTimeZoneRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregoriandate?language=objc)
 #[repr(C)]

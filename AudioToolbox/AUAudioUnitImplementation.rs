@@ -139,7 +139,7 @@ pub type AUImplementorValueProvider = *mut block2::Block<dyn Fn(NonNull<AUParame
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorstringfromvaluecallback?language=objc)
 #[cfg(all(feature = "AUParameters", feature = "block2"))]
 pub type AUImplementorStringFromValueCallback =
-    *mut block2::Block<dyn Fn(NonNull<AUParameter>, *mut AUValue) -> NonNull<NSString>>;
+    *mut block2::Block<dyn Fn(NonNull<AUParameter>, *const AUValue) -> NonNull<NSString>>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorvaluefromstringcallback?language=objc)
 #[cfg(all(feature = "AUParameters", feature = "block2"))]

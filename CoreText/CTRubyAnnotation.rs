@@ -10,7 +10,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotationref?language=objc)
-pub type CTRubyAnnotationRef = *mut c_void;
+pub type CTRubyAnnotationRef = *const c_void;
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]

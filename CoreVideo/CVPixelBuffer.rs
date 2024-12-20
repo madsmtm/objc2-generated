@@ -539,7 +539,7 @@ extern "C-unwind" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferreleasebytescallback?language=objc)
 pub type CVPixelBufferReleaseBytesCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(*mut c_void, *const c_void)>;
 
 extern "C-unwind" {
     #[cfg(all(
@@ -563,8 +563,9 @@ extern "C-unwind" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferreleaseplanarbytescallback?language=objc)
-pub type CVPixelBufferReleasePlanarBytesCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, usize, usize, *mut *mut c_void)>;
+pub type CVPixelBufferReleasePlanarBytesCallback = Option<
+    unsafe extern "C-unwind" fn(*mut c_void, *const c_void, usize, usize, *mut *const c_void),
+>;
 
 extern "C-unwind" {
     #[cfg(all(

@@ -433,7 +433,7 @@ extern "C-unwind" {
         in_id: AudioUnitPropertyID,
         in_scope: AudioUnitScope,
         in_element: AudioUnitElement,
-        in_data: *mut c_void,
+        in_data: *const c_void,
         in_data_size: u32,
     ) -> OSStatus;
 }

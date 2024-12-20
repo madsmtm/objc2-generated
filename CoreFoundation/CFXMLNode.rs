@@ -11,7 +11,7 @@ use crate::*;
 pub const kCFXMLNodeCurrentVersion: CFIndex = 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnoderef?language=objc)
-pub type CFXMLNodeRef = *mut c_void;
+pub type CFXMLNodeRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltreeref?language=objc)
 #[cfg(feature = "CFTree")]
@@ -330,7 +330,7 @@ extern "C-unwind" {
         alloc: CFAllocatorRef,
         xml_type: CFXMLNodeTypeCode,
         data_string: CFStringRef,
-        additional_info_ptr: *mut c_void,
+        additional_info_ptr: *const c_void,
         version: CFIndex,
     ) -> CFXMLNodeRef;
 }
@@ -355,7 +355,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-    pub fn CFXMLNodeGetInfoPtr(node: CFXMLNodeRef) -> *mut c_void;
+    pub fn CFXMLNodeGetInfoPtr(node: CFXMLNodeRef) -> *const c_void;
 }
 
 extern "C-unwind" {

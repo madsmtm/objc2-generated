@@ -51,7 +51,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     pub fn CGDataConsumerCreate(
         info: *mut c_void,
-        cbks: *mut CGDataConsumerCallbacks,
+        cbks: *const CGDataConsumerCallbacks,
     ) -> CGDataConsumerRef;
 }
 

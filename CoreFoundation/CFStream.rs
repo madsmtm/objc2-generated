@@ -154,7 +154,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFReadStreamCreateWithBytesNoCopy(
         alloc: CFAllocatorRef,
-        bytes: *mut u8,
+        bytes: *const u8,
         length: CFIndex,
         bytes_deallocator: CFAllocatorRef,
     ) -> CFReadStreamRef;
@@ -359,7 +359,7 @@ extern "C-unwind" {
     #[deprecated = "Use nw_connection_t in Network framework instead"]
     pub fn CFStreamCreatePairWithPeerSocketSignature(
         alloc: CFAllocatorRef,
-        signature: *mut CFSocketSignature,
+        signature: *const CFSocketSignature,
         read_stream: *mut CFReadStreamRef,
         write_stream: *mut CFWriteStreamRef,
     );
@@ -420,7 +420,7 @@ extern "C-unwind" {
         stream: CFReadStreamRef,
         max_bytes_to_read: CFIndex,
         num_bytes_read: *mut CFIndex,
-    ) -> *mut u8;
+    ) -> *const u8;
 }
 
 extern "C-unwind" {
@@ -431,7 +431,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFWriteStreamWrite(
         stream: CFWriteStreamRef,
-        buffer: *mut u8,
+        buffer: *const u8,
         buffer_length: CFIndex,
     ) -> CFIndex;
 }

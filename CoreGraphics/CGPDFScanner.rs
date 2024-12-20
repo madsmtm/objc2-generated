@@ -57,7 +57,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGPDFScannerPopName(scanner: CGPDFScannerRef, value: *mut *mut c_char) -> bool;
+    pub fn CGPDFScannerPopName(scanner: CGPDFScannerRef, value: *mut *const c_char) -> bool;
 }
 
 extern "C-unwind" {

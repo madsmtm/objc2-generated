@@ -253,7 +253,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other dataWithBytes:length:)]
         pub unsafe fn dataWithBytes_length(
-            bytes: *mut c_void,
+            bytes: *const c_void,
             length: NSUInteger,
         ) -> Retained<Self>;
 
@@ -295,7 +295,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithBytes:length:)]
         pub unsafe fn initWithBytes_length(
             this: Allocated<Self>,
-            bytes: *mut c_void,
+            bytes: *const c_void,
             length: NSUInteger,
         ) -> Retained<Self>;
 
@@ -371,7 +371,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other dataWithBytes:length:)]
         pub unsafe fn dataWithBytes_length(
-            bytes: *mut c_void,
+            bytes: *const c_void,
             length: NSUInteger,
         ) -> Retained<Self>;
 
@@ -413,7 +413,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithBytes:length:)]
         pub unsafe fn initWithBytes_length(
             this: Allocated<Self>,
-            bytes: *mut c_void,
+            bytes: *const c_void,
             length: NSUInteger,
         ) -> Retained<Self>;
 
@@ -719,7 +719,7 @@ extern_methods!(
         pub unsafe fn replaceBytesInRange_withBytes_length(
             &self,
             range: NSRange,
-            replacement_bytes: *mut c_void,
+            replacement_bytes: *const c_void,
             replacement_length: NSUInteger,
         );
     }

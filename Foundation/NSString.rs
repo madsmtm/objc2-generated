@@ -545,7 +545,7 @@ extern_methods!(
         );
 
         #[method(UTF8String)]
-        pub fn UTF8String(&self) -> *mut c_char;
+        pub fn UTF8String(&self) -> *const c_char;
 
         #[method(fastestEncoding)]
         pub unsafe fn fastestEncoding(&self) -> NSStringEncoding;
@@ -572,7 +572,7 @@ extern_methods!(
         pub unsafe fn canBeConvertedToEncoding(&self, encoding: NSStringEncoding) -> bool;
 
         #[method(cStringUsingEncoding:)]
-        pub unsafe fn cStringUsingEncoding(&self, encoding: NSStringEncoding) -> *mut c_char;
+        pub unsafe fn cStringUsingEncoding(&self, encoding: NSStringEncoding) -> *const c_char;
 
         #[method(getCString:maxLength:encoding:)]
         pub unsafe fn getCString_maxLength_encoding(
@@ -1262,11 +1262,11 @@ extern_methods!(
     unsafe impl NSString {
         #[deprecated = "Use -cStringUsingEncoding: instead"]
         #[method(cString)]
-        pub unsafe fn cString(&self) -> *mut c_char;
+        pub unsafe fn cString(&self) -> *const c_char;
 
         #[deprecated = "Use -cStringUsingEncoding: instead"]
         #[method(lossyCString)]
-        pub unsafe fn lossyCString(&self) -> *mut c_char;
+        pub unsafe fn lossyCString(&self) -> *const c_char;
 
         #[deprecated = "Use -lengthOfBytesUsingEncoding: instead"]
         #[method(cStringLength)]

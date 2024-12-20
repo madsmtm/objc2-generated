@@ -1333,7 +1333,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odcontextref?language=objc)
-pub type ODContextRef = *mut c_void;
+pub type ODContextRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnoderef?language=objc)
 pub type ODNodeRef = *mut c_void;

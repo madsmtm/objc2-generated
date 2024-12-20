@@ -142,7 +142,7 @@ extern "C-unwind" {
         space: CGColorSpaceRef,
         bitmap_info: CGBitmapInfo,
         provider: CGDataProviderRef,
-        decode: *mut CGFloat,
+        decode: *const CGFloat,
         should_interpolate: bool,
         intent: CGColorRenderingIntent,
     ) -> CGImageRef;
@@ -157,7 +157,7 @@ extern "C-unwind" {
         bits_per_pixel: usize,
         bytes_per_row: usize,
         provider: CGDataProviderRef,
-        decode: *mut CGFloat,
+        decode: *const CGFloat,
         should_interpolate: bool,
     ) -> CGImageRef;
 }
@@ -174,7 +174,7 @@ extern "C-unwind" {
     ))]
     pub fn CGImageCreateWithJPEGDataProvider(
         source: CGDataProviderRef,
-        decode: *mut CGFloat,
+        decode: *const CGFloat,
         should_interpolate: bool,
         intent: CGColorRenderingIntent,
     ) -> CGImageRef;
@@ -188,7 +188,7 @@ extern "C-unwind" {
     ))]
     pub fn CGImageCreateWithPNGDataProvider(
         source: CGDataProviderRef,
-        decode: *mut CGFloat,
+        decode: *const CGFloat,
         should_interpolate: bool,
         intent: CGColorRenderingIntent,
     ) -> CGImageRef;
@@ -207,7 +207,7 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CGImageCreateWithMaskingColors(
         image: CGImageRef,
-        components: *mut CGFloat,
+        components: *const CGFloat,
     ) -> CGImageRef;
 }
 
@@ -233,7 +233,7 @@ extern "C-unwind" {
         space: CGColorSpaceRef,
         bitmap_info: CGBitmapInfo,
         provider: CGDataProviderRef,
-        decode: *mut CGFloat,
+        decode: *const CGFloat,
         should_interpolate: bool,
         intent: CGColorRenderingIntent,
     ) -> CGImageRef;
@@ -301,7 +301,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn CGImageGetDecode(image: CGImageRef) -> *mut CGFloat;
+    pub fn CGImageGetDecode(image: CGImageRef) -> *const CGFloat;
 }
 
 extern "C-unwind" {

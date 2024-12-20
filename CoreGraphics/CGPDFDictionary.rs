@@ -54,7 +54,7 @@ extern "C-unwind" {
     pub fn CGPDFDictionaryGetName(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
-        value: *mut *mut c_char,
+        value: *mut *const c_char,
     ) -> bool;
 }
 

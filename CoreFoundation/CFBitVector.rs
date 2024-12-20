@@ -8,7 +8,7 @@ use crate::*;
 pub type CFBit = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorref?language=objc)
-pub type CFBitVectorRef = *mut c_void;
+pub type CFBitVectorRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablebitvectorref?language=objc)
 pub type CFMutableBitVectorRef = *mut c_void;
@@ -22,7 +22,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFBitVectorCreate(
         allocator: CFAllocatorRef,
-        bytes: *mut u8,
+        bytes: *const u8,
         num_bits: CFIndex,
     ) -> CFBitVectorRef;
 }

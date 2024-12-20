@@ -14,7 +14,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGPDFStringGetBytePtr(string: CGPDFStringRef) -> *mut c_uchar;
+    pub fn CGPDFStringGetBytePtr(string: CGPDFStringRef) -> *const c_uchar;
 }
 
 extern "C-unwind" {

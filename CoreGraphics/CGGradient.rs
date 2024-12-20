@@ -42,8 +42,8 @@ extern "C-unwind" {
     #[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
     pub fn CGGradientCreateWithColorComponents(
         space: CGColorSpaceRef,
-        components: *mut CGFloat,
-        locations: *mut CGFloat,
+        components: *const CGFloat,
+        locations: *const CGFloat,
         count: usize,
     ) -> CGGradientRef;
 }
@@ -53,7 +53,7 @@ extern "C-unwind" {
     pub fn CGGradientCreateWithColors(
         space: CGColorSpaceRef,
         colors: CFArrayRef,
-        locations: *mut CGFloat,
+        locations: *const CGFloat,
     ) -> CGGradientRef;
 }
 

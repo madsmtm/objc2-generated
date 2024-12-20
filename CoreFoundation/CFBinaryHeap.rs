@@ -13,9 +13,9 @@ use crate::*;
 pub struct CFBinaryHeapCompareContext {
     pub version: CFIndex,
     pub info: *mut c_void,
-    pub retain: Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void>,
-    pub release: Option<unsafe extern "C-unwind" fn(*mut c_void)>,
-    pub copyDescription: Option<unsafe extern "C-unwind" fn(*mut c_void) -> CFStringRef>,
+    pub retain: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>,
+    pub release: Option<unsafe extern "C-unwind" fn(*const c_void)>,
+    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> CFStringRef>,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -25,9 +25,9 @@ unsafe impl Encode for CFBinaryHeapCompareContext {
         &[
             <CFIndex>::ENCODING,
             <*mut c_void>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut c_void)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut c_void) -> CFStringRef>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*const c_void)>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*const c_void) -> CFStringRef>>::ENCODING,
         ],
     );
 }
@@ -43,17 +43,21 @@ unsafe impl RefEncode for CFBinaryHeapCompareContext {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFBinaryHeapCallBacks {
     pub version: CFIndex,
-    pub retain: Option<unsafe extern "C-unwind" fn(CFAllocatorRef, *mut c_void) -> *mut c_void>,
-    pub release: Option<unsafe extern "C-unwind" fn(CFAllocatorRef, *mut c_void)>,
-    pub copyDescription: Option<unsafe extern "C-unwind" fn(*mut c_void) -> CFStringRef>,
+    pub retain: Option<unsafe extern "C-unwind" fn(CFAllocatorRef, *const c_void) -> *const c_void>,
+    pub release: Option<unsafe extern "C-unwind" fn(CFAllocatorRef, *const c_void)>,
+    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> CFStringRef>,
     pub compare: Option<
-        unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, *mut c_void) -> CFComparisonResult,
+        unsafe extern "C-unwind" fn(
+            *const c_void,
+            *const c_void,
+            *mut c_void,
+        ) -> CFComparisonResult,
     >,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
 unsafe impl Encode for CFBinaryHeapCallBacks {
-    const ENCODING: Encoding = Encoding::Struct("?", &[<CFIndex>::ENCODING,<Option<unsafe extern "C-unwind" fn(CFAllocatorRef,*mut c_void,) -> *mut c_void>>::ENCODING,<Option<unsafe extern "C-unwind" fn(CFAllocatorRef,*mut c_void,)>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*mut c_void,) -> CFStringRef>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*mut c_void,*mut c_void,*mut c_void,) -> CFComparisonResult>>::ENCODING,]);
+    const ENCODING: Encoding = Encoding::Struct("?", &[<CFIndex>::ENCODING,<Option<unsafe extern "C-unwind" fn(CFAllocatorRef,*const c_void,) -> *const c_void>>::ENCODING,<Option<unsafe extern "C-unwind" fn(CFAllocatorRef,*const c_void,)>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*const c_void,) -> CFStringRef>>::ENCODING,<Option<unsafe extern "C-unwind" fn(*const c_void,*const c_void,*mut c_void,) -> CFComparisonResult>>::ENCODING,]);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -69,7 +73,7 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapapplierfunction?language=objc)
 pub type CFBinaryHeapApplierFunction =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(*const c_void, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapref?language=objc)
 pub type CFBinaryHeapRef = *mut c_void;
@@ -84,8 +88,8 @@ extern "C-unwind" {
     pub fn CFBinaryHeapCreate(
         allocator: CFAllocatorRef,
         capacity: CFIndex,
-        call_backs: *mut CFBinaryHeapCallBacks,
-        compare_context: *mut CFBinaryHeapCompareContext,
+        call_backs: *const CFBinaryHeapCallBacks,
+        compare_context: *const CFBinaryHeapCompareContext,
     ) -> CFBinaryHeapRef;
 }
 
@@ -105,26 +109,26 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBinaryHeapGetCountOfValue(heap: CFBinaryHeapRef, value: *mut c_void) -> CFIndex;
+    pub fn CFBinaryHeapGetCountOfValue(heap: CFBinaryHeapRef, value: *const c_void) -> CFIndex;
 }
 
 extern "C-unwind" {
-    pub fn CFBinaryHeapContainsValue(heap: CFBinaryHeapRef, value: *mut c_void) -> Boolean;
+    pub fn CFBinaryHeapContainsValue(heap: CFBinaryHeapRef, value: *const c_void) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFBinaryHeapGetMinimum(heap: CFBinaryHeapRef) -> *mut c_void;
+    pub fn CFBinaryHeapGetMinimum(heap: CFBinaryHeapRef) -> *const c_void;
 }
 
 extern "C-unwind" {
     pub fn CFBinaryHeapGetMinimumIfPresent(
         heap: CFBinaryHeapRef,
-        value: *mut *mut c_void,
+        value: *mut *const c_void,
     ) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFBinaryHeapGetValues(heap: CFBinaryHeapRef, values: *mut *mut c_void);
+    pub fn CFBinaryHeapGetValues(heap: CFBinaryHeapRef, values: *mut *const c_void);
 }
 
 extern "C-unwind" {
@@ -136,7 +140,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CFBinaryHeapAddValue(heap: CFBinaryHeapRef, value: *mut c_void);
+    pub fn CFBinaryHeapAddValue(heap: CFBinaryHeapRef, value: *const c_void);
 }
 
 extern "C-unwind" {

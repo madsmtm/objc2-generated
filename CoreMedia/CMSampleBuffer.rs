@@ -109,9 +109,9 @@ extern "C-unwind" {
         format_description: CMFormatDescriptionRef,
         num_samples: CMItemCount,
         num_sample_timing_entries: CMItemCount,
-        sample_timing_array: *mut CMSampleTimingInfo,
+        sample_timing_array: *const CMSampleTimingInfo,
         num_sample_size_entries: CMItemCount,
-        sample_size_array: *mut usize,
+        sample_size_array: *const usize,
         sample_buffer_out: NonNull<CMSampleBufferRef>,
     ) -> OSStatus;
 }
@@ -132,9 +132,9 @@ extern "C-unwind" {
         format_description: CMFormatDescriptionRef,
         num_samples: CMItemCount,
         num_sample_timing_entries: CMItemCount,
-        sample_timing_array: *mut CMSampleTimingInfo,
+        sample_timing_array: *const CMSampleTimingInfo,
         num_sample_size_entries: CMItemCount,
-        sample_size_array: *mut usize,
+        sample_size_array: *const usize,
         sample_buffer_out: NonNull<CMSampleBufferRef>,
         make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
     ) -> OSStatus;
@@ -154,9 +154,9 @@ extern "C-unwind" {
         format_description: CMFormatDescriptionRef,
         num_samples: CMItemCount,
         num_sample_timing_entries: CMItemCount,
-        sample_timing_array: *mut CMSampleTimingInfo,
+        sample_timing_array: *const CMSampleTimingInfo,
         num_sample_size_entries: CMItemCount,
-        sample_size_array: *mut usize,
+        sample_size_array: *const usize,
         sample_buffer_out: NonNull<CMSampleBufferRef>,
     ) -> OSStatus;
 }
@@ -179,7 +179,7 @@ extern "C-unwind" {
         format_description: CMFormatDescriptionRef,
         num_samples: CMItemCount,
         presentation_time_stamp: CMTime,
-        packet_descriptions: *mut AudioStreamPacketDescription,
+        packet_descriptions: *const AudioStreamPacketDescription,
         sample_buffer_out: NonNull<CMSampleBufferRef>,
     ) -> OSStatus;
 }
@@ -201,7 +201,7 @@ extern "C-unwind" {
         format_description: CMFormatDescriptionRef,
         num_samples: CMItemCount,
         presentation_time_stamp: CMTime,
-        packet_descriptions: *mut AudioStreamPacketDescription,
+        packet_descriptions: *const AudioStreamPacketDescription,
         sample_buffer_out: NonNull<CMSampleBufferRef>,
         make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
     ) -> OSStatus;
@@ -222,7 +222,7 @@ extern "C-unwind" {
         format_description: CMFormatDescriptionRef,
         num_samples: CMItemCount,
         presentation_time_stamp: CMTime,
-        packet_descriptions: *mut AudioStreamPacketDescription,
+        packet_descriptions: *const AudioStreamPacketDescription,
         sample_buffer_out: NonNull<CMSampleBufferRef>,
     ) -> OSStatus;
 }
@@ -300,7 +300,7 @@ extern "C-unwind" {
         allocator: CFAllocatorRef,
         original_s_buf: CMSampleBufferRef,
         num_sample_timing_entries: CMItemCount,
-        sample_timing_array: *mut CMSampleTimingInfo,
+        sample_timing_array: *const CMSampleTimingInfo,
         sample_buffer_out: NonNull<CMSampleBufferRef>,
     ) -> OSStatus;
 }
@@ -381,7 +381,7 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMSampleBufferGetAudioStreamPacketDescriptionsPtr(
         sbuf: CMSampleBufferRef,
-        packet_descriptions_pointer_out: *mut *mut AudioStreamPacketDescription,
+        packet_descriptions_pointer_out: *mut *const AudioStreamPacketDescription,
         packet_descriptions_size_out: *mut usize,
     ) -> OSStatus;
 }

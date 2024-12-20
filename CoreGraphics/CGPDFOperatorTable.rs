@@ -28,7 +28,7 @@ extern "C-unwind" {
     #[cfg(feature = "CGPDFScanner")]
     pub fn CGPDFOperatorTableSetCallback(
         table: CGPDFOperatorTableRef,
-        name: *mut c_char,
+        name: *const c_char,
         callback: CGPDFOperatorCallback,
     );
 }

@@ -38,7 +38,7 @@ unsafe impl RefEncode for CMTagCollectionError {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionref?language=objc)
-pub type CMTagCollectionRef = *mut c_void;
+pub type CMTagCollectionRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmutabletagcollectionref?language=objc)
 pub type CMMutableTagCollectionRef = *mut c_void;
@@ -65,7 +65,7 @@ extern "C-unwind" {
     ))]
     pub fn CMTagCollectionCreate(
         allocator: CFAllocatorRef,
-        tags: *mut CMTag,
+        tags: *const CMTag,
         tag_count: CMItemCount,
         new_collection_out: NonNull<CMTagCollectionRef>,
     ) -> OSStatus;

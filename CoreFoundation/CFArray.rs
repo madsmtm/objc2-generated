@@ -9,20 +9,21 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayretaincallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFArrayRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(CFAllocatorRef, *mut c_void) -> *mut c_void>;
+    Option<unsafe extern "C-unwind" fn(CFAllocatorRef, *const c_void) -> *const c_void>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayreleasecallback?language=objc)
 #[cfg(feature = "CFBase")]
-pub type CFArrayReleaseCallBack = Option<unsafe extern "C-unwind" fn(CFAllocatorRef, *mut c_void)>;
+pub type CFArrayReleaseCallBack =
+    Option<unsafe extern "C-unwind" fn(CFAllocatorRef, *const c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycopydescriptioncallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFArrayCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut c_void) -> CFStringRef>;
+    Option<unsafe extern "C-unwind" fn(*const c_void) -> CFStringRef>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayequalcallback?language=objc)
 pub type CFArrayEqualCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void) -> Boolean>;
+    Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycallbacks?language=objc)
 #[cfg(feature = "CFBase")]
@@ -62,10 +63,10 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayapplierfunction?language=objc)
-pub type CFArrayApplierFunction = Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void)>;
+pub type CFArrayApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayref?language=objc)
-pub type CFArrayRef = *mut c_void;
+pub type CFArrayRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablearrayref?language=objc)
 pub type CFMutableArrayRef = *mut c_void;
@@ -79,9 +80,9 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFArrayCreate(
         allocator: CFAllocatorRef,
-        values: *mut *mut c_void,
+        values: *mut *const c_void,
         num_values: CFIndex,
-        call_backs: *mut CFArrayCallBacks,
+        call_backs: *const CFArrayCallBacks,
     ) -> CFArrayRef;
 }
 
@@ -95,7 +96,7 @@ extern "C-unwind" {
     pub fn CFArrayCreateMutable(
         allocator: CFAllocatorRef,
         capacity: CFIndex,
-        call_backs: *mut CFArrayCallBacks,
+        call_backs: *const CFArrayCallBacks,
     ) -> CFMutableArrayRef;
 }
 
@@ -118,7 +119,7 @@ extern "C-unwind" {
     pub fn CFArrayGetCountOfValue(
         the_array: CFArrayRef,
         range: CFRange,
-        value: *mut c_void,
+        value: *const c_void,
     ) -> CFIndex;
 }
 
@@ -127,18 +128,18 @@ extern "C-unwind" {
     pub fn CFArrayContainsValue(
         the_array: CFArrayRef,
         range: CFRange,
-        value: *mut c_void,
+        value: *const c_void,
     ) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFArrayGetValueAtIndex(the_array: CFArrayRef, idx: CFIndex) -> *mut c_void;
+    pub fn CFArrayGetValueAtIndex(the_array: CFArrayRef, idx: CFIndex) -> *const c_void;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFArrayGetValues(the_array: CFArrayRef, range: CFRange, values: *mut *mut c_void);
+    pub fn CFArrayGetValues(the_array: CFArrayRef, range: CFRange, values: *mut *const c_void);
 }
 
 extern "C-unwind" {
@@ -156,7 +157,7 @@ extern "C-unwind" {
     pub fn CFArrayGetFirstIndexOfValue(
         the_array: CFArrayRef,
         range: CFRange,
-        value: *mut c_void,
+        value: *const c_void,
     ) -> CFIndex;
 }
 
@@ -165,7 +166,7 @@ extern "C-unwind" {
     pub fn CFArrayGetLastIndexOfValue(
         the_array: CFArrayRef,
         range: CFRange,
-        value: *mut c_void,
+        value: *const c_void,
     ) -> CFIndex;
 }
 
@@ -174,14 +175,14 @@ extern "C-unwind" {
     pub fn CFArrayBSearchValues(
         the_array: CFArrayRef,
         range: CFRange,
-        value: *mut c_void,
+        value: *const c_void,
         comparator: CFComparatorFunction,
         context: *mut c_void,
     ) -> CFIndex;
 }
 
 extern "C-unwind" {
-    pub fn CFArrayAppendValue(the_array: CFMutableArrayRef, value: *mut c_void);
+    pub fn CFArrayAppendValue(the_array: CFMutableArrayRef, value: *const c_void);
 }
 
 extern "C-unwind" {
@@ -189,13 +190,13 @@ extern "C-unwind" {
     pub fn CFArrayInsertValueAtIndex(
         the_array: CFMutableArrayRef,
         idx: CFIndex,
-        value: *mut c_void,
+        value: *const c_void,
     );
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFArraySetValueAtIndex(the_array: CFMutableArrayRef, idx: CFIndex, value: *mut c_void);
+    pub fn CFArraySetValueAtIndex(the_array: CFMutableArrayRef, idx: CFIndex, value: *const c_void);
 }
 
 extern "C-unwind" {
@@ -212,7 +213,7 @@ extern "C-unwind" {
     pub fn CFArrayReplaceValues(
         the_array: CFMutableArrayRef,
         range: CFRange,
-        new_values: *mut *mut c_void,
+        new_values: *mut *const c_void,
         new_count: CFIndex,
     );
 }

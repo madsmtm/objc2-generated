@@ -10,7 +10,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectionref?language=objc)
-pub type CTFontCollectionRef = *mut c_void;
+pub type CTFontCollectionRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctmutablefontcollectionref?language=objc)
 pub type CTMutableFontCollectionRef = *mut c_void;

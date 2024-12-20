@@ -21,7 +21,7 @@ pub const kCMFormatDescriptionError_AllocationFailed: OSStatus = -12711;
 pub const kCMFormatDescriptionError_ValueNotAvailable: OSStatus = -12718;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmformatdescriptionref?language=objc)
-pub type CMFormatDescriptionRef = *mut c_void;
+pub type CMFormatDescriptionRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmediatype?language=objc)
 pub type CMMediaType = FourCharCode;
@@ -143,9 +143,9 @@ extern "C-unwind" {
         allocator: CFAllocatorRef,
         asbd: NonNull<AudioStreamBasicDescription>,
         layout_size: usize,
-        layout: *mut AudioChannelLayout,
+        layout: *const AudioChannelLayout,
         magic_cookie_size: usize,
-        magic_cookie: *mut c_void,
+        magic_cookie: *const c_void,
         extensions: CFDictionaryRef,
         format_description_out: NonNull<CMAudioFormatDescriptionRef>,
     ) -> OSStatus;
@@ -155,14 +155,14 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionGetStreamBasicDescription(
         desc: CMAudioFormatDescriptionRef,
-    ) -> *mut AudioStreamBasicDescription;
+    ) -> *const AudioStreamBasicDescription;
 }
 
 extern "C-unwind" {
     pub fn CMAudioFormatDescriptionGetMagicCookie(
         desc: CMAudioFormatDescriptionRef,
         size_out: *mut usize,
-    ) -> *mut c_void;
+    ) -> *const c_void;
 }
 
 extern "C-unwind" {
@@ -170,7 +170,7 @@ extern "C-unwind" {
     pub fn CMAudioFormatDescriptionGetChannelLayout(
         desc: CMAudioFormatDescriptionRef,
         size_out: *mut usize,
-    ) -> *mut AudioChannelLayout;
+    ) -> *const AudioChannelLayout;
 }
 
 extern "C-unwind" {
@@ -178,21 +178,21 @@ extern "C-unwind" {
     pub fn CMAudioFormatDescriptionGetFormatList(
         desc: CMAudioFormatDescriptionRef,
         size_out: *mut usize,
-    ) -> *mut AudioFormatListItem;
+    ) -> *const AudioFormatListItem;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionGetRichestDecodableFormat(
         desc: CMAudioFormatDescriptionRef,
-    ) -> *mut AudioFormatListItem;
+    ) -> *const AudioFormatListItem;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionGetMostCompatibleFormat(
         desc: CMAudioFormatDescriptionRef,
-    ) -> *mut AudioFormatListItem;
+    ) -> *const AudioFormatListItem;
 }
 
 extern "C-unwind" {
@@ -1045,7 +1045,7 @@ extern "C-unwind" {
     pub fn CMVideoFormatDescriptionGetH264ParameterSetAtIndex(
         video_desc: CMFormatDescriptionRef,
         parameter_set_index: usize,
-        parameter_set_pointer_out: *mut *mut u8,
+        parameter_set_pointer_out: *mut *const u8,
         parameter_set_size_out: *mut usize,
         parameter_set_count_out: *mut usize,
         nal_unit_header_length_out: *mut c_int,
@@ -1056,7 +1056,7 @@ extern "C-unwind" {
     pub fn CMVideoFormatDescriptionGetHEVCParameterSetAtIndex(
         video_desc: CMFormatDescriptionRef,
         parameter_set_index: usize,
-        parameter_set_pointer_out: *mut *mut u8,
+        parameter_set_pointer_out: *mut *const u8,
         parameter_set_size_out: *mut usize,
         parameter_set_count_out: *mut usize,
         nal_unit_header_length_out: *mut c_int,

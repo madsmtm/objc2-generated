@@ -9,24 +9,24 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetretaincallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFSetRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(CFAllocatorRef, *mut c_void) -> *mut c_void>;
+    Option<unsafe extern "C-unwind" fn(CFAllocatorRef, *const c_void) -> *const c_void>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetreleasecallback?language=objc)
 #[cfg(feature = "CFBase")]
-pub type CFSetReleaseCallBack = Option<unsafe extern "C-unwind" fn(CFAllocatorRef, *mut c_void)>;
+pub type CFSetReleaseCallBack = Option<unsafe extern "C-unwind" fn(CFAllocatorRef, *const c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcopydescriptioncallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFSetCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut c_void) -> CFStringRef>;
+    Option<unsafe extern "C-unwind" fn(*const c_void) -> CFStringRef>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetequalcallback?language=objc)
 pub type CFSetEqualCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void) -> Boolean>;
+    Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsethashcallback?language=objc)
 #[cfg(feature = "CFBase")]
-pub type CFSetHashCallBack = Option<unsafe extern "C-unwind" fn(*mut c_void) -> CFHashCode>;
+pub type CFSetHashCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcallbacks?language=objc)
 #[cfg(feature = "CFBase")]
@@ -74,10 +74,10 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetapplierfunction?language=objc)
-pub type CFSetApplierFunction = Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void)>;
+pub type CFSetApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetref?language=objc)
-pub type CFSetRef = *mut c_void;
+pub type CFSetRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablesetref?language=objc)
 pub type CFMutableSetRef = *mut c_void;
@@ -91,9 +91,9 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFSetCreate(
         allocator: CFAllocatorRef,
-        values: *mut *mut c_void,
+        values: *mut *const c_void,
         num_values: CFIndex,
-        call_backs: *mut CFSetCallBacks,
+        call_backs: *const CFSetCallBacks,
     ) -> CFSetRef;
 }
 
@@ -107,7 +107,7 @@ extern "C-unwind" {
     pub fn CFSetCreateMutable(
         allocator: CFAllocatorRef,
         capacity: CFIndex,
-        call_backs: *mut CFSetCallBacks,
+        call_backs: *const CFSetCallBacks,
     ) -> CFMutableSetRef;
 }
 
@@ -127,27 +127,27 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFSetGetCountOfValue(the_set: CFSetRef, value: *mut c_void) -> CFIndex;
+    pub fn CFSetGetCountOfValue(the_set: CFSetRef, value: *const c_void) -> CFIndex;
 }
 
 extern "C-unwind" {
-    pub fn CFSetContainsValue(the_set: CFSetRef, value: *mut c_void) -> Boolean;
+    pub fn CFSetContainsValue(the_set: CFSetRef, value: *const c_void) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFSetGetValue(the_set: CFSetRef, value: *mut c_void) -> *mut c_void;
+    pub fn CFSetGetValue(the_set: CFSetRef, value: *const c_void) -> *const c_void;
 }
 
 extern "C-unwind" {
     pub fn CFSetGetValueIfPresent(
         the_set: CFSetRef,
-        candidate: *mut c_void,
-        value: *mut *mut c_void,
+        candidate: *const c_void,
+        value: *mut *const c_void,
     ) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFSetGetValues(the_set: CFSetRef, values: *mut *mut c_void);
+    pub fn CFSetGetValues(the_set: CFSetRef, values: *mut *const c_void);
 }
 
 extern "C-unwind" {
@@ -159,19 +159,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CFSetAddValue(the_set: CFMutableSetRef, value: *mut c_void);
+    pub fn CFSetAddValue(the_set: CFMutableSetRef, value: *const c_void);
 }
 
 extern "C-unwind" {
-    pub fn CFSetReplaceValue(the_set: CFMutableSetRef, value: *mut c_void);
+    pub fn CFSetReplaceValue(the_set: CFMutableSetRef, value: *const c_void);
 }
 
 extern "C-unwind" {
-    pub fn CFSetSetValue(the_set: CFMutableSetRef, value: *mut c_void);
+    pub fn CFSetSetValue(the_set: CFMutableSetRef, value: *const c_void);
 }
 
 extern "C-unwind" {
-    pub fn CFSetRemoveValue(the_set: CFMutableSetRef, value: *mut c_void);
+    pub fn CFSetRemoveValue(the_set: CFMutableSetRef, value: *const c_void);
 }
 
 extern "C-unwind" {

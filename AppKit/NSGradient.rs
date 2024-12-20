@@ -78,7 +78,7 @@ extern_methods!(
         pub unsafe fn initWithColors_atLocations_colorSpace(
             this: Allocated<Self>,
             color_array: &NSArray<NSColor>,
-            locations: *mut CGFloat,
+            locations: *const CGFloat,
             color_space: &NSColorSpace,
         ) -> Option<Retained<Self>>;
 

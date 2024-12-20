@@ -67,7 +67,7 @@ extern "C-unwind" {
         fd: CFFileDescriptorNativeDescriptor,
         close_on_invalidate: Boolean,
         callout: CFFileDescriptorCallBack,
-        context: *mut CFFileDescriptorContext,
+        context: *const CFFileDescriptorContext,
     ) -> CFFileDescriptorRef;
 }
 

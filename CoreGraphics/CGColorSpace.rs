@@ -317,7 +317,7 @@ extern "C-unwind" {
     #[cfg(all(feature = "CGDataProvider", feature = "objc2-core-foundation"))]
     pub fn CGColorSpaceCreateICCBased(
         n_components: usize,
-        range: *mut CGFloat,
+        range: *const CGFloat,
         profile: CGDataProviderRef,
         alternate: CGColorSpaceRef,
     ) -> CGColorSpaceRef;
@@ -327,7 +327,7 @@ extern "C-unwind" {
     pub fn CGColorSpaceCreateIndexed(
         base_space: CGColorSpaceRef,
         last_index: usize,
-        color_table: *mut c_uchar,
+        color_table: *const c_uchar,
     ) -> CGColorSpaceRef;
 }
 
@@ -336,7 +336,7 @@ extern "C-unwind" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/colorsyncprofileref?language=objc)
-pub type ColorSyncProfileRef = *mut c_void;
+pub type ColorSyncProfileRef = *const c_void;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendedrange?language=objc)
@@ -473,5 +473,5 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated = "No longer supported"]
-    pub fn CGColorSpaceCreateWithPlatformColorSpace(r#ref: *mut c_void) -> CGColorSpaceRef;
+    pub fn CGColorSpaceCreateWithPlatformColorSpace(r#ref: *const c_void) -> CGColorSpaceRef;
 }

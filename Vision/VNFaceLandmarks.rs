@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl VNFaceLandmarkRegion2D {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(normalizedPoints)]
-        pub unsafe fn normalizedPoints(&self) -> *mut CGPoint;
+        pub unsafe fn normalizedPoints(&self) -> *const CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(pointsInImageOfSize:)]

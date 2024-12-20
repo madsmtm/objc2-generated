@@ -82,7 +82,7 @@ extern_methods!(
         pub unsafe fn nonretainedObjectValue(&self) -> Option<Retained<AnyObject>>;
 
         #[method_id(@__retain_semantics Other valueWithPointer:)]
-        pub unsafe fn valueWithPointer(pointer: *mut c_void) -> Retained<NSValue>;
+        pub unsafe fn valueWithPointer(pointer: *const c_void) -> Retained<NSValue>;
 
         #[method(pointerValue)]
         pub unsafe fn pointerValue(&self) -> *mut c_void;

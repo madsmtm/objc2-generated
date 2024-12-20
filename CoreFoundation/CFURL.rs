@@ -31,7 +31,7 @@ unsafe impl RefEncode for CFURLPathStyle {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlref?language=objc)
-pub type CFURLRef = *mut c_void;
+pub type CFURLRef = *const c_void;
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
@@ -42,7 +42,7 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFString"))]
     pub fn CFURLCreateWithBytes(
         allocator: CFAllocatorRef,
-        url_bytes: *mut u8,
+        url_bytes: *const u8,
         length: CFIndex,
         encoding: CFStringEncoding,
         base_url: CFURLRef,
@@ -72,7 +72,7 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFString"))]
     pub fn CFURLCreateAbsoluteURLWithBytes(
         alloc: CFAllocatorRef,
-        relative_url_bytes: *mut u8,
+        relative_url_bytes: *const u8,
         length: CFIndex,
         encoding: CFStringEncoding,
         base_url: CFURLRef,
@@ -94,7 +94,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFURLCreateFromFileSystemRepresentation(
         allocator: CFAllocatorRef,
-        buffer: *mut u8,
+        buffer: *const u8,
         buf_len: CFIndex,
         is_directory: Boolean,
     ) -> CFURLRef;
@@ -115,7 +115,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFURLCreateFromFileSystemRepresentationRelativeToBase(
         allocator: CFAllocatorRef,
-        buffer: *mut u8,
+        buffer: *const u8,
         buf_len: CFIndex,
         is_directory: Boolean,
         base_url: CFURLRef,

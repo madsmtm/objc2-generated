@@ -635,7 +635,7 @@ extern "C-unwind" {
         in_audio_file: AudioFileID,
         in_use_cache: Boolean,
         in_num_bytes: u32,
-        in_packet_descriptions: *mut AudioStreamPacketDescription,
+        in_packet_descriptions: *const AudioStreamPacketDescription,
         in_starting_packet: i64,
         io_num_packets: NonNull<u32>,
         in_buffer: NonNull<c_void>,

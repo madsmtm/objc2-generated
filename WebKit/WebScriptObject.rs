@@ -18,10 +18,10 @@ extern_category!(
         unsafe fn isSelectorExcludedFromWebScript(selector: Option<Sel>) -> bool;
 
         #[method_id(@__retain_semantics Other webScriptNameForKey:)]
-        unsafe fn webScriptNameForKey(name: *mut c_char) -> Option<Retained<NSString>>;
+        unsafe fn webScriptNameForKey(name: *const c_char) -> Option<Retained<NSString>>;
 
         #[method(isKeyExcludedFromWebScript:)]
-        unsafe fn isKeyExcludedFromWebScript(name: *mut c_char) -> bool;
+        unsafe fn isKeyExcludedFromWebScript(name: *const c_char) -> bool;
 
         #[method_id(@__retain_semantics Other invokeUndefinedMethodFromWebScript:withArguments:)]
         unsafe fn invokeUndefinedMethodFromWebScript_withArguments(

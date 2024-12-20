@@ -44,11 +44,11 @@ extern_methods!(
 
         #[cfg(feature = "MPSCoreTypes")]
         #[method(scaleTransform)]
-        pub unsafe fn scaleTransform(&self) -> *mut MPSScaleTransform;
+        pub unsafe fn scaleTransform(&self) -> *const MPSScaleTransform;
 
         #[cfg(feature = "MPSCoreTypes")]
         #[method(setScaleTransform:)]
-        pub unsafe fn setScaleTransform(&self, scale_transform: *mut MPSScaleTransform);
+        pub unsafe fn setScaleTransform(&self, scale_transform: *const MPSScaleTransform);
 
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(

@@ -5,7 +5,7 @@ use core::ffi::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringref?language=objc)
-pub type CFAttributedStringRef = *mut c_void;
+pub type CFAttributedStringRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutableattributedstringref?language=objc)
 pub type CFMutableAttributedStringRef = *mut c_void;

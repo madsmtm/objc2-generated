@@ -161,15 +161,15 @@ unsafe impl RefEncode for CFXMLParserCallBacks {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserretaincallback?language=objc)
 pub type CFXMLParserRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void>;
+    Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserreleasecallback?language=objc)
-pub type CFXMLParserReleaseCallBack = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
+pub type CFXMLParserReleaseCallBack = Option<unsafe extern "C-unwind" fn(*const c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercopydescriptioncallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFXMLParserCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut c_void) -> CFStringRef>;
+    Option<unsafe extern "C-unwind" fn(*const c_void) -> CFStringRef>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercontext?language=objc)
 #[cfg(feature = "CFBase")]

@@ -216,9 +216,9 @@ extern "C-unwind" {
     pub fn CGSetDisplayTransferByTable(
         display: CGDirectDisplayID,
         table_size: u32,
-        red_table: *mut CGGammaValue,
-        green_table: *mut CGGammaValue,
-        blue_table: *mut CGGammaValue,
+        red_table: *const CGGammaValue,
+        green_table: *const CGGammaValue,
+        blue_table: *const CGGammaValue,
     ) -> CGError;
 }
 

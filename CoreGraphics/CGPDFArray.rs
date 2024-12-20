@@ -51,7 +51,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGPDFArrayGetName(array: CGPDFArrayRef, index: usize, value: *mut *mut c_char) -> bool;
+    pub fn CGPDFArrayGetName(array: CGPDFArrayRef, index: usize, value: *mut *const c_char)
+        -> bool;
 }
 
 extern "C-unwind" {

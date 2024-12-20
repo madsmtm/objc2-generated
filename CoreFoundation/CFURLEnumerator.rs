@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorref?language=objc)
-pub type CFURLEnumeratorRef = *mut c_void;
+pub type CFURLEnumeratorRef = *const c_void;
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]

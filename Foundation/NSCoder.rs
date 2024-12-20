@@ -104,7 +104,7 @@ extern_methods!(
         );
 
         #[method(encodeBytes:length:)]
-        pub unsafe fn encodeBytes_length(&self, byteaddr: *mut c_void, length: NSUInteger);
+        pub unsafe fn encodeBytes_length(&self, byteaddr: *const c_void, length: NSUInteger);
 
         #[method_id(@__retain_semantics Other decodeObject)]
         pub unsafe fn decodeObject(&self) -> Option<Retained<AnyObject>>;
@@ -189,7 +189,7 @@ extern_methods!(
         #[method(encodeBytes:length:forKey:)]
         pub unsafe fn encodeBytes_length_forKey(
             &self,
-            bytes: *mut u8,
+            bytes: *const u8,
             length: NSUInteger,
             key: &NSString,
         );
@@ -239,7 +239,7 @@ extern_methods!(
             &self,
             key: &NSString,
             lengthp: *mut NSUInteger,
-        ) -> *mut u8;
+        ) -> *const u8;
 
         #[cfg(feature = "NSString")]
         #[method(encodeInteger:forKey:)]

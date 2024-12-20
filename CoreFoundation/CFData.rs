@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdataref?language=objc)
-pub type CFDataRef = *mut c_void;
+pub type CFDataRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutabledataref?language=objc)
 pub type CFMutableDataRef = *mut c_void;
@@ -19,14 +19,14 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFDataCreate(allocator: CFAllocatorRef, bytes: *mut u8, length: CFIndex) -> CFDataRef;
+    pub fn CFDataCreate(allocator: CFAllocatorRef, bytes: *const u8, length: CFIndex) -> CFDataRef;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFDataCreateWithBytesNoCopy(
         allocator: CFAllocatorRef,
-        bytes: *mut u8,
+        bytes: *const u8,
         length: CFIndex,
         bytes_deallocator: CFAllocatorRef,
     ) -> CFDataRef;
@@ -57,7 +57,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CFDataGetBytePtr(the_data: CFDataRef) -> *mut u8;
+    pub fn CFDataGetBytePtr(the_data: CFDataRef) -> *const u8;
 }
 
 extern "C-unwind" {
@@ -81,7 +81,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFDataAppendBytes(the_data: CFMutableDataRef, bytes: *mut u8, length: CFIndex);
+    pub fn CFDataAppendBytes(the_data: CFMutableDataRef, bytes: *const u8, length: CFIndex);
 }
 
 extern "C-unwind" {
@@ -89,7 +89,7 @@ extern "C-unwind" {
     pub fn CFDataReplaceBytes(
         the_data: CFMutableDataRef,
         range: CFRange,
-        new_bytes: *mut u8,
+        new_bytes: *const u8,
         new_length: CFIndex,
     );
 }

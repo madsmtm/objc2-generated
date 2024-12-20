@@ -271,7 +271,7 @@ pub type AudioQueueInputCallbackBlock = *mut block2::Block<
         AudioQueueBufferRef,
         NonNull<AudioTimeStamp>,
         u32,
-        *mut AudioStreamPacketDescription,
+        *const AudioStreamPacketDescription,
     ),
 >;
 
@@ -289,7 +289,7 @@ pub type AudioQueueInputCallback = Option<
         AudioQueueBufferRef,
         NonNull<AudioTimeStamp>,
         u32,
-        *mut AudioStreamPacketDescription,
+        *const AudioStreamPacketDescription,
     ),
 >;
 
@@ -371,7 +371,7 @@ extern "C-unwind" {
         in_aq: AudioQueueRef,
         in_buffer: AudioQueueBufferRef,
         in_num_packet_descs: u32,
-        in_packet_descs: *mut AudioStreamPacketDescription,
+        in_packet_descs: *const AudioStreamPacketDescription,
     ) -> OSStatus;
 }
 
@@ -381,19 +381,19 @@ extern "C-unwind" {
         in_aq: AudioQueueRef,
         in_buffer: AudioQueueBufferRef,
         in_num_packet_descs: u32,
-        in_packet_descs: *mut AudioStreamPacketDescription,
+        in_packet_descs: *const AudioStreamPacketDescription,
         in_trim_frames_at_start: u32,
         in_trim_frames_at_end: u32,
         in_num_param_values: u32,
-        in_param_values: *mut AudioQueueParameterEvent,
-        in_start_time: *mut AudioTimeStamp,
+        in_param_values: *const AudioQueueParameterEvent,
+        in_start_time: *const AudioTimeStamp,
         out_actual_start_time: *mut AudioTimeStamp,
     ) -> OSStatus;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-audio-types")]
-    pub fn AudioQueueStart(in_aq: AudioQueueRef, in_start_time: *mut AudioTimeStamp) -> OSStatus;
+    pub fn AudioQueueStart(in_aq: AudioQueueRef, in_start_time: *const AudioTimeStamp) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -534,8 +534,8 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueSetOfflineRenderFormat(
         in_aq: AudioQueueRef,
-        in_format: *mut AudioStreamBasicDescription,
-        in_layout: *mut AudioChannelLayout,
+        in_format: *const AudioStreamBasicDescription,
+        in_layout: *const AudioChannelLayout,
     ) -> OSStatus;
 }
 

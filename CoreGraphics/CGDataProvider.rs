@@ -60,7 +60,7 @@ unsafe impl RefEncode for CGDataProviderSequentialCallbacks {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovidergetbytepointercallback?language=objc)
 pub type CGDataProviderGetBytePointerCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void>;
+    Option<unsafe extern "C-unwind" fn(*mut c_void) -> *const c_void>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataproviderreleasebytepointercallback?language=objc)
 pub type CGDataProviderReleaseBytePointerCallback =
@@ -111,7 +111,7 @@ extern "C-unwind" {
     #[cfg(feature = "libc")]
     pub fn CGDataProviderCreateSequential(
         info: *mut c_void,
-        callbacks: *mut CGDataProviderSequentialCallbacks,
+        callbacks: *const CGDataProviderSequentialCallbacks,
     ) -> CGDataProviderRef;
 }
 
@@ -120,7 +120,7 @@ extern "C-unwind" {
     pub fn CGDataProviderCreateDirect(
         info: *mut c_void,
         size: libc::off_t,
-        callbacks: *mut CGDataProviderDirectCallbacks,
+        callbacks: *const CGDataProviderDirectCallbacks,
     ) -> CGDataProviderRef;
 }
 
@@ -131,7 +131,7 @@ pub type CGDataProviderReleaseDataCallback =
 extern "C-unwind" {
     pub fn CGDataProviderCreateWithData(
         info: *mut c_void,
-        data: *mut c_void,
+        data: *const c_void,
         size: usize,
         release_data: CGDataProviderReleaseDataCallback,
     ) -> CGDataProviderRef;
@@ -148,7 +148,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGDataProviderCreateWithFilename(filename: *mut c_char) -> CGDataProviderRef;
+    pub fn CGDataProviderCreateWithFilename(filename: *const c_char) -> CGDataProviderRef;
 }
 
 extern "C-unwind" {

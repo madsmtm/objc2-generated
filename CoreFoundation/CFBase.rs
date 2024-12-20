@@ -27,10 +27,10 @@ pub type CFHashCode = c_ulong;
 pub type CFIndex = c_long;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftyperef?language=objc)
-pub type CFTypeRef = *mut c_void;
+pub type CFTypeRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringref?language=objc)
-pub type CFStringRef = *mut c_void;
+pub type CFStringRef = *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablestringref?language=objc)
 pub type CFMutableStringRef = *mut c_void;
@@ -61,7 +61,7 @@ unsafe impl RefEncode for CFComparisonResult {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcomparatorfunction?language=objc)
 pub type CFComparatorFunction = Option<
-    unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, *mut c_void) -> CFComparisonResult,
+    unsafe extern "C-unwind" fn(*const c_void, *const c_void, *mut c_void) -> CFComparisonResult,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnotfound?language=objc)
@@ -88,7 +88,7 @@ unsafe impl RefEncode for CFRange {
 // TODO: pub fn CFRangeMake(loc: CFIndex,len: CFIndex,) -> CFRange;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnullref?language=objc)
-pub type CFNullRef = *mut c_void;
+pub type CFNullRef = *const c_void;
 
 extern "C-unwind" {
     pub fn CFNullGetTypeID() -> CFTypeID;
@@ -100,7 +100,7 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorref?language=objc)
-pub type CFAllocatorRef = *mut c_void;
+pub type CFAllocatorRef = *const c_void;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault?language=objc)
@@ -134,14 +134,14 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorretaincallback?language=objc)
 pub type CFAllocatorRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void>;
+    Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorreleasecallback?language=objc)
-pub type CFAllocatorReleaseCallBack = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
+pub type CFAllocatorReleaseCallBack = Option<unsafe extern "C-unwind" fn(*const c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorcopydescriptioncallback?language=objc)
 pub type CFAllocatorCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut c_void) -> CFStringRef>;
+    Option<unsafe extern "C-unwind" fn(*const c_void) -> CFStringRef>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorallocatecallback?language=objc)
 pub type CFAllocatorAllocateCallBack =

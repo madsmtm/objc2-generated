@@ -12,7 +12,7 @@ use objc2_core_graphics::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontref?language=objc)
-pub type CTFontRef = *mut c_void;
+pub type CTFontRef = *const c_void;
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
@@ -132,7 +132,7 @@ extern "C-unwind" {
     pub fn CTFontCreateWithName(
         name: CFStringRef,
         size: CGFloat,
-        matrix: *mut CGAffineTransform,
+        matrix: *const CGAffineTransform,
     ) -> CTFontRef;
 }
 
@@ -141,7 +141,7 @@ extern "C-unwind" {
     pub fn CTFontCreateWithFontDescriptor(
         descriptor: CTFontDescriptorRef,
         size: CGFloat,
-        matrix: *mut CGAffineTransform,
+        matrix: *const CGAffineTransform,
     ) -> CTFontRef;
 }
 
@@ -176,7 +176,7 @@ extern "C-unwind" {
     pub fn CTFontCreateWithNameAndOptions(
         name: CFStringRef,
         size: CGFloat,
-        matrix: *mut CGAffineTransform,
+        matrix: *const CGAffineTransform,
         options: CTFontOptions,
     ) -> CTFontRef;
 }
@@ -186,7 +186,7 @@ extern "C-unwind" {
     pub fn CTFontCreateWithFontDescriptorAndOptions(
         descriptor: CTFontDescriptorRef,
         size: CGFloat,
-        matrix: *mut CGAffineTransform,
+        matrix: *const CGAffineTransform,
         options: CTFontOptions,
     ) -> CTFontRef;
 }
@@ -317,7 +317,7 @@ extern "C-unwind" {
     pub fn CTFontCreateCopyWithAttributes(
         font: CTFontRef,
         size: CGFloat,
-        matrix: *mut CGAffineTransform,
+        matrix: *const CGAffineTransform,
         attributes: CTFontDescriptorRef,
     ) -> CTFontRef;
 }
@@ -327,7 +327,7 @@ extern "C-unwind" {
     pub fn CTFontCreateCopyWithSymbolicTraits(
         font: CTFontRef,
         size: CGFloat,
-        matrix: *mut CGAffineTransform,
+        matrix: *const CGAffineTransform,
         sym_trait_value: CTFontSymbolicTraits,
         sym_trait_mask: CTFontSymbolicTraits,
     ) -> CTFontRef;
@@ -338,7 +338,7 @@ extern "C-unwind" {
     pub fn CTFontCreateCopyWithFamily(
         font: CTFontRef,
         size: CGFloat,
-        matrix: *mut CGAffineTransform,
+        matrix: *const CGAffineTransform,
         family: CFStringRef,
     ) -> CTFontRef;
 }
@@ -579,7 +579,7 @@ extern "C-unwind" {
     pub fn CTFontCreatePathForGlyph(
         font: CTFontRef,
         glyph: CGGlyph,
-        matrix: *mut CGAffineTransform,
+        matrix: *const CGAffineTransform,
     ) -> CGPathRef;
 }
 
@@ -728,7 +728,7 @@ extern "C-unwind" {
     pub fn CTFontCreateWithGraphicsFont(
         graphics_font: CGFontRef,
         size: CGFloat,
-        matrix: *mut CGAffineTransform,
+        matrix: *const CGAffineTransform,
         attributes: CTFontDescriptorRef,
     ) -> CTFontRef;
 }

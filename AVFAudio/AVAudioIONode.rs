@@ -19,7 +19,7 @@ use crate::*;
     feature = "objc2-core-audio-types"
 ))]
 pub type AVAudioIONodeInputBlock =
-    *mut block2::Block<dyn Fn(AVAudioFrameCount) -> *mut AudioBufferList>;
+    *mut block2::Block<dyn Fn(AVAudioFrameCount) -> *const AudioBufferList>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingspeechactivityevent?language=objc)
 // NS_ENUM

@@ -28,7 +28,7 @@ extern "C" {
 extern "C" {
     #[cfg(feature = "libc")]
     #[must_use]
-    pub fn dispatch_walltime(when: *mut libc::timespec, delta: i64) -> dispatch_time_t;
+    pub fn dispatch_walltime(when: *const libc::timespec, delta: i64) -> dispatch_time_t;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_t?language=objc)
@@ -228,7 +228,7 @@ extern "C" {
         link_name = "dispatch_queue_create_with_target$V2"
     )]
     pub fn dispatch_queue_create_with_target(
-        label: *mut c_char,
+        label: *const c_char,
         attr: dispatch_queue_attr_t,
         target: dispatch_queue_t,
     ) -> dispatch_queue_t;
@@ -237,7 +237,7 @@ extern "C" {
 extern "C" {
     #[must_use]
     pub fn dispatch_queue_create(
-        label: *mut c_char,
+        label: *const c_char,
         attr: dispatch_queue_attr_t,
     ) -> dispatch_queue_t;
 }
@@ -696,7 +696,7 @@ extern "C" {
     #[must_use]
     pub fn dispatch_data_create_map(
         data: dispatch_data_t,
-        buffer_ptr: *mut *mut c_void,
+        buffer_ptr: *mut *const c_void,
         size_ptr: *mut usize,
     ) -> dispatch_data_t;
 }
@@ -853,12 +853,12 @@ extern "C" {
 
 extern "C" {
     #[must_use]
-    pub fn dispatch_workloop_create(label: *mut c_char) -> dispatch_workloop_t;
+    pub fn dispatch_workloop_create(label: *const c_char) -> dispatch_workloop_t;
 }
 
 extern "C" {
     #[must_use]
-    pub fn dispatch_workloop_create_inactive(label: *mut c_char) -> dispatch_workloop_t;
+    pub fn dispatch_workloop_create_inactive(label: *const c_char) -> dispatch_workloop_t;
 }
 
 extern "C" {

@@ -17,7 +17,7 @@ pub type CFLocaleIdentifier = CFStringRef;
 pub type CFLocaleKey = CFStringRef;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocaleref?language=objc)
-pub type CFLocaleRef = *mut c_void;
+pub type CFLocaleRef = *const c_void;
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]

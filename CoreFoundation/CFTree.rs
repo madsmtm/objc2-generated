@@ -7,15 +7,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeretaincallback?language=objc)
-pub type CFTreeRetainCallBack = Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void>;
+pub type CFTreeRetainCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreereleasecallback?language=objc)
-pub type CFTreeReleaseCallBack = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
+pub type CFTreeReleaseCallBack = Option<unsafe extern "C-unwind" fn(*const c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreecopydescriptioncallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFTreeCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut c_void) -> CFStringRef>;
+    Option<unsafe extern "C-unwind" fn(*const c_void) -> CFStringRef>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreecontext?language=objc)
 #[cfg(feature = "CFBase")]
@@ -49,7 +49,7 @@ unsafe impl RefEncode for CFTreeContext {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeapplierfunction?language=objc)
-pub type CFTreeApplierFunction = Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void)>;
+pub type CFTreeApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeref?language=objc)
 pub type CFTreeRef = *mut c_void;
@@ -61,7 +61,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFTreeCreate(allocator: CFAllocatorRef, context: *mut CFTreeContext) -> CFTreeRef;
+    pub fn CFTreeCreate(allocator: CFAllocatorRef, context: *const CFTreeContext) -> CFTreeRef;
 }
 
 extern "C-unwind" {
@@ -109,7 +109,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFTreeSetContext(tree: CFTreeRef, context: *mut CFTreeContext);
+    pub fn CFTreeSetContext(tree: CFTreeRef, context: *const CFTreeContext);
 }
 
 extern "C-unwind" {

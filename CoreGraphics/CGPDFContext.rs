@@ -17,7 +17,7 @@ extern "C-unwind" {
     ))]
     pub fn CGPDFContextCreate(
         consumer: CGDataConsumerRef,
-        media_box: *mut CGRect,
+        media_box: *const CGRect,
         auxiliary_info: CFDictionaryRef,
     ) -> CGContextRef;
 }
@@ -26,7 +26,7 @@ extern "C-unwind" {
     #[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
     pub fn CGPDFContextCreateWithURL(
         url: CFURLRef,
-        media_box: *mut CGRect,
+        media_box: *const CGRect,
         auxiliary_info: CFDictionaryRef,
     ) -> CGContextRef;
 }
@@ -375,7 +375,7 @@ unsafe impl RefEncode for CGPDFTagType {
 }
 
 extern "C-unwind" {
-    pub fn CGPDFTagTypeGetName(tag_type: CGPDFTagType) -> *mut c_char;
+    pub fn CGPDFTagTypeGetName(tag_type: CGPDFTagType) -> *const c_char;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagproperty?language=objc)

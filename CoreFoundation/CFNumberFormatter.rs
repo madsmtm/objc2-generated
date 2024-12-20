@@ -93,7 +93,7 @@ extern "C-unwind" {
         allocator: CFAllocatorRef,
         formatter: CFNumberFormatterRef,
         number_type: CFNumberType,
-        value_ptr: *mut c_void,
+        value_ptr: *const c_void,
     ) -> CFStringRef;
 }
 

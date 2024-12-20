@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbooleanref?language=objc)
-pub type CFBooleanRef = *mut c_void;
+pub type CFBooleanRef = *const c_void;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue?language=objc)
@@ -66,7 +66,7 @@ unsafe impl RefEncode for CFNumberType {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberref?language=objc)
-pub type CFNumberRef = *mut c_void;
+pub type CFNumberRef = *const c_void;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberpositiveinfinity?language=objc)
@@ -93,7 +93,7 @@ extern "C-unwind" {
     pub fn CFNumberCreate(
         allocator: CFAllocatorRef,
         the_type: CFNumberType,
-        value_ptr: *mut c_void,
+        value_ptr: *const c_void,
     ) -> CFNumberRef;
 }
 
